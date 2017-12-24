@@ -65,27 +65,26 @@ var output = function(data) {
 	s = s + data['Q_DESC'] + "\n";
 	s = s + "<hr>";
 
-	for (var i = 0; i < cases.length; i++) {
-		var c = cases[i];
-		s = s + c[0] + "\n";
-		s = s + '<hr align="left" width="10%" style="border-top: dashed 1px;">';
-		s = s + c[1] + "\n";
-		if (i != cases.length - 1) {
-			s = s + '<hr align="left" width="10%">';
+
+	if (cases.length) {
+		s = s + '<table class="testcase">'
+		for (var i = 0; i < cases.length; i++) {
+			s = s + '<tr>'
+			s = s + '<td class="input"><pre>' + cases[i][0] + '</pre></td>'
+			s = s + '<td class="output"><pre>' + cases[i][1] + '</pre></td>'
+			s = s + '</tr>'
 		}
-	}
-	if (extras.length) {
-		s = s + "<hr>";
+		s = s + '</table>'
+		s = s + '<hr>'
 	}
 
-	for (var i = 0; i < extras.length; i++) {
-		var c = extras[i];
-		s = s + c + "\n";
-		if (i != extras.length - 1) {
-			s = s + '<hr align="left" width="10%">';
+	if (extras.length) {
+		for (var i = 0; i < extras.length; i++) {
+			s += 'program must contain:\n'
+			s += '\t' + extras[i];
+			s += '\n<hr>'
 		}
 	}
-	s = s + '<hr style="border-top: double">';
 
 	el.innerHTML = s;
 

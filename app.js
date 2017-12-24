@@ -44,7 +44,7 @@ var output = function(data) {
 
 	for (var i = 0; i < 2; i++) {
 		c[i] = c[i].trim();
-		if (c[i] == 0) {
+		if (c[i] == "0") {
 			continue;
 		} else {
 			extras.push(c[i]);

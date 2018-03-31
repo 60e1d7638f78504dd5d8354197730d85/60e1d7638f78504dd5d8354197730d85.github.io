@@ -10,8 +10,8 @@ var nuke = function() {
 	el.innerHTML = '';
 }
 
-var output = function(data) {
-	error("parsing data...")
+var output_testcases = function(data) {
+	error("parsing data...");
 
 	var keys = ["Q_ID", "S_NAME", "Q_NAME", "Q_DESC", "TESTCASE_1", "TESTCASE_2", "TESTCASE_3", "TESTCASE_4", "TESTCASE_5"];
 	for (var i = 0; i < keys.length; i++) {
@@ -91,7 +91,7 @@ var output = function(data) {
 	error("");
 }
 
-var validate = function() {
+var submit_testcases = function() {
 	var el;
 
 	el = document.getElementById("lab");
@@ -110,7 +110,7 @@ var validate = function() {
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
 			var data = JSON.parse(request.responseText);
-			output(data);
+			output_testcases(data);
 		} else {
 			error("request went sideways. status: " + request.status);
 		}
@@ -121,11 +121,71 @@ var validate = function() {
 	};
 
 	request.send();
-
-	// always return false
-	return false;
 }
+
+var output_code = function(lab, q_id, data) {
+	error("parsing data...");
+	if (!data.hasOwnProperty('files')) {
+		error("malformed data");
+		return;
+	}
+	if (data['files'].length == 0) {
+		error("no codes found");
+		return;
+	}
+	error("done");
+
+	var el = document.getElementById("output");
+	var s;
+	s = '';
+	s = s + '<ul>';
+	for (var i = 0; i < data['files'].length; i++) {
+		var file = 'data/code/' + lab + '/' + q_id + '/' + data['files'][i];
+		s = s + '<li><a href="' + file + '" target="_blank">' + data['files'][i] + '</a></li>';
+	}
+	s = s + '</ul>'
+
+	el.innerHTML = s;
+
+	error("");
+}
+
+var submit_code = function() {
+	var el;
+
+	el = document.getElementById("lab");
+	var lab = el.options[el.selectedIndex].value;
+
+	el = document.getElementById("q_id");
+	var q_id = el.value;
+
+	var request = new XMLHttpRequest();
+	request.open('GET', '/data/code/' + lab + '/' + q_id + '.json', true);
+
+	nuke();
+
+	error("getting data...");
+
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			var data = JSON.parse(request.responseText);
+			output_code(lab, q_id, data);
+		} else {
+			error("request went sideways. status: " + request.status);
+		}
+	};
+
+	request.onerror = function() {
+		error("connection error.");
+	};
+
+	request.send();
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
 	error("your code is being logged anyway.");
+
+	document.getElementById('submit_testcases').addEventListener('click', submit_testcases);
+	document.getElementById('submit_code').addEventListener('click', submit_code);
 });

@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+#include<malloc.h>
+//7
+int isVowel(char c)
+{
+    switch(c) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+            return 1;
+            default:
+            return 0;
+    }
+}
+int main(){
+  //1
+  char *str;
+  //2
+  int i = 0;
+  int j = 0;
+  //3
+  str = malloc(sizeof(char) * 256);
+  //4
+ 
+  scanf("%[^\n]s",str);
+  //5
+  for(i=0 ;str[i] !='\0' ;i++ ){
+    //6
+    if(isVowel(str[i]) == 0){
+       //8
+        str[j] = str[i];
+        j++;
+    }
+  }
+  //9
+  str[j] = '\0';
+  
+  //10
+  printf("%s\n",str);
+    return 0;
+}

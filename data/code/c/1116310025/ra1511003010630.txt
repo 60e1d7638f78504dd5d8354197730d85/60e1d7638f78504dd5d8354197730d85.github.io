@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h> 
+char* substring(char*, int, int);
+int pallindrome(char S[],int n)
+{
+	if(n==0) return 0;
+	int i,j,flag=0;
+	for(i=0,j=n-1;i<=j;i++,j--)
+	{
+		if(S[i]==S[j])
+		continue;
+		else flag=1;
+	}
+	if(flag)
+	return 0;
+	else return (1+pallindrome(S,n/2));
+}
+int input()
+{
+    int t=0;
+    char ch=getchar();
+    while(ch<33)
+    ch=getchar();
+    while(ch>33)
+    {
+        t=(t<<3)+(t<<1)+ch-'0';
+        ch=getchar();
+    }
+    return t;
+}
+char *substring(char *S, int position, int length) 
+{
+   char *pointer;
+   int c;
+ 
+   pointer = (char *)malloc(length+1);
+   for (c = 0 ; c < length ; c++)
+   {
+      *(pointer+c) = *(S+position-1);      
+      S++;   
+   }
+ 
+   *(pointer+c) = '\0';
+ 
+   return pointer;
+}
+int main() 
+{
+   char S[1000], *pointer,ch;
+   int position , length , temp, string_length;
+   int t,i;
+   t=input();
+   while(t--)
+   {
+   	  i=0;
+	  ch=getchar();
+   	  while(ch<33)
+   	  ch=getchar();
+   	  while(ch>33)
+   	  {
+   	  	S[i]=ch;ch=getchar();
+   	  	i++;
+	  }
+   	   temp = string_length = i;
+   	   length=1;position=1;
+ int sum=0;
+      while (position <= string_length)
+      {
+         while (length <= temp)
+         {
+            pointer = substring(S, position, length);
+            sum+=pallindrome(pointer,length);
+            free(pointer);
+            length++;
+         }
+         temp--;
+         position++;
+         length = 1;
+      }
+      printf("%d\n",sum);
+   }
+   return 0;
+} 

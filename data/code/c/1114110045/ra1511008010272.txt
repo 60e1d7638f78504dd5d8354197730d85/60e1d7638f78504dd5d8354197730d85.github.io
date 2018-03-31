@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int n,i;
+  	scanf("%d",&n);
+  	int a[n];
+  	for(i=0;i<n;i++) {
+      scanf("%d",&a[i]);
+    }
+  	int b[n+1];
+  	int x;
+  	int pos;
+  	scanf("%d%d",&x,&pos);
+  	for(i=0;i<pos-1;i++) {
+      b[i] = a[i];
+    }
+  	b[i] = x;
+  	int j;
+  	for(j=i+1;j<=n;j++) {
+      b[j] = a[j-1];
+    }
+  	for(i=0;i<=n;i++) {
+      printf("%d ",b[i]);
+    }
+	return 0;
+}

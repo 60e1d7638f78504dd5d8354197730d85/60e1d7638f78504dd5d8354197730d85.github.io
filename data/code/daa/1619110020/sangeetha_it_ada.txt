@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+vector<int> v;
+ 
+int main() {
+	int t, n, z;
+	scanf("%d", &t);
+	while (t--) {
+		v.clear();
+		scanf("%d %d", &z, &n);
+		for (int i = 0; i < n; i++) {
+			int x;
+			scanf("%d", &x);
+			v.push_back(x);
+		}
+		bool cond = true;
+		for (int i = 0; i < 32; i++) {
+			if ((z & (1 << i))) {
+				bool okay = false;
+				for (int j = 0; j < (int)v.size(); j++) {
+					if ((v[j] & (1 << i)) == 0) okay = true;
+				}
+				if (!okay) cond = false;
+			}
+		}
+		if (cond) {
+			printf("Yes\n");
+		} else {
+			printf("No\n");
+		}
+	}
+	return 0;
+}

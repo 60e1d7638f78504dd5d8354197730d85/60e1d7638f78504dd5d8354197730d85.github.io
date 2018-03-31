@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+    scanf("%d",&t);
+	while(t--)
+	{   int sum=0,n,w,k,arr[100005]={0},i,count=1;
+		scanf("%d%d",&n,&k);
+		if(k==0)
+		{
+			if((sum=(n*(n+1))/2)%2==0)
+			{
+			printf("Chef\n");continue;
+			}
+		else
+			{
+			printf("Mom\n");continue;
+			}
+		}
+		
+		while(k--)
+		{   
+			scanf("%d",&w);
+			arr[w]=1;
+		}
+     if(w==3)
+       printf("Chef");
+     else
+     {
+		for(i=1;i<=n;i++)
+		{
+			if(i<=count && arr[i]!=1)
+			{
+				count+=i;
+			}
+		}
+		if(count%2==0)
+		{
+			printf("Mom\n");
+		}
+		else
+		printf("Chef\n");
+	}
+    }
+	return 0;
+}

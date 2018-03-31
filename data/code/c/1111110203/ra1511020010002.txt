@@ -1,0 +1,32 @@
+#include <stdio.h>
+void pixels(int n);
+int main()
+{
+	int n;
+	scanf("%d",&n);
+  	pixels(n);
+	return 0;
+}
+void pixels(int n)
+{
+  	int i,k=0,lc,rc;
+  	int arr[100];
+  	for(i=1;i<=n;i++)
+    {
+      if(n%i==0)
+      {
+        arr[k++]=i;
+      }
+    }
+    int temp=k/2,max=1000;
+    for(i=0;i<=k/2;i++)
+    {
+      if((arr[k-i-1]-arr[i])<max)
+      {
+        max=arr[k-i-1]-arr[i];
+        lc=arr[k-i-1];
+        rc=arr[i];
+      }
+    }
+  printf("%d %d",lc,rc);
+}

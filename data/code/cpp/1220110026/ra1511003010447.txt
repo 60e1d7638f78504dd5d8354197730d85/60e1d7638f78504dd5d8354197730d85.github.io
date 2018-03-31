@@ -1,0 +1,43 @@
+#include <iostream>
+#include<fstream>
+
+using namespace std;
+int main()
+{
+  try{
+fstream f;
+  int h,m,s;
+  string t;
+  f.open("sample.txt",ios::out);
+  if(!f)
+    throw "Error opening file";
+  cin>>h>>m>>s;
+  t=to_string(h);
+  t+=":";
+
+  t+=to_string(m);
+  t+=":";
+  t+=to_string(s);
+  int l=t.length();
+   cout<<"Time "<<t<<" has been written into file\n";
+    f<<t;
+    f.close();
+    f.open("sample.txt",ios::in);
+    if(!f)
+      throw "Error opening file";
+    int i=0;
+    char c;
+    cout<<"The time is ";
+    while(!f.eof()){
+    f>>c;
+      if(i<l)
+        cout<<c;
+      i++;
+    }
+  }
+ catch(const char * e){
+
+cout<<e;
+}
+	return 0;
+}

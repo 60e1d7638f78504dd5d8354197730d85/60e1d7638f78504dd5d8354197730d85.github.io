@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+
+struct dist
+{
+  int feet;
+  int inches;
+};
+void calc(struct dist d1,struct dist d2)
+{ 
+  int sum1,sum2,diff1,diff2;
+  sum1=d1.feet+d2.feet;
+  sum2=d1.inches+d2.inches;
+  diff1=d1.feet-d2.feet;
+  diff2=d1.inches-d2.inches;
+  if(diff1<0)
+    diff1*=-1;
+  if(diff2<0)
+    diff2*=-1;
+  printf("%d ft %d inch",sum1,sum2);
+  printf("\n%d ft %d inch",diff1,diff2);
+  
+}
+int main()
+{   struct dist d1,d2;
+    scanf("%d %d",&d1.feet,&d1.inches);
+    scanf("%d %d",&d2.feet,&d2.inches);
+    calc(d1,d2);
+	return 0;
+}

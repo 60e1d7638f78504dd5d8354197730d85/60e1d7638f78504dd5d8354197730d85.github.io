@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+void rf(char *str,const char *tr);
+int main()
+{
+  char a[100],b[100];
+  scanf("%[^\n]s",a);
+  scanf("%s",b);
+  rf(a,b);
+  printf("%s",a);
+  return 0;
+}
+void rf(char *str,const char *tr)
+{
+  int i,j;
+  int len,removelen;
+  int found=0;
+  len=strlen(str);
+  removelen=strlen(tr);
+  for(i=0;i<len;i++)
+  {
+    found=1;
+    for(j=0;j<removelen;j++)
+    {
+      if(str[i+j]!=tr[j])
+      {
+        found=0;
+        break;
+      }
+    }
+    if(found==1)
+    {
+      for(j=i;j<=len-removelen;j++)
+      {
+        str[j]=str[j+removelen];
+      }
+      break;
+    }
+  }
+}

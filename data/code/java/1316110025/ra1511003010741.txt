@@ -1,0 +1,72 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc= new Scanner(System.in);
+       float i = sc.nextFloat();
+       Paint objp = new Paint();
+       Sphere objs = new Sphere();
+       float as =objs.area();
+       float ps= objp.paint(as,i);
+       //System.out.println(ps);
+       Rectangle objr = new Rectangle();
+       float ar = objr.area();
+       float pr = objp.paint(ar,i);
+       //System.out.println(pr);
+       Cylinder objc = new Cylinder();
+      float ac = objc.area();
+       float pc=objp.paint(ac,i);
+       //System.out.println(pc);
+       System.out.println("Amount for Rectangle of length "+objr.l+" and width "+objr.b+" is "+String.format("%.2f",pr));
+       System.out.println("Amount for Sphere of radius "+objs.r+" is "+String.format("%.2f",ps));
+       System.out.println("Amount for Cylinder of radius "+objc.r+" and height "+objc.h+" is " +String.format("%.2f",pc));
+	}
+}
+class Paint{
+ float p;
+   float paint(float j,float ii){
+  p = j/ii;
+    // System.out.println(p);
+     return p;
+  }
+}
+abstract class Shape{
+  abstract float area();
+}
+
+class Sphere extends Shape
+{
+  float r = 15;
+  float a;
+  float area()
+  {
+   float pi = (float) Math.PI;
+    a= 4*pi*r*r;
+   // System.out.println("sphere area"+a);
+    return a;
+  }   
+}
+class Rectangle extends Shape
+{
+float l = 20;
+float b= 35;
+float a;
+float area()
+{
+a= l*b;
+return a;
+}
+}
+class Cylinder extends Shape{
+float r= 10;
+float h = 30;
+float pi = (float)Math.PI;
+float a;
+float area()
+{
+a = pi*r*r*h;
+//System.out.println("Cylinder area"+a);
+return a;
+}
+}

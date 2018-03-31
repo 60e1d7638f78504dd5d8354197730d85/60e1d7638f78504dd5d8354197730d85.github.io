@@ -1,0 +1,67 @@
+#include<stdio.h>
+int n=3;//no of variable
+int N;// rhs of eq
+int sign=1;
+int x=0;
+long long int ans=0;
+void sol(int *,int*, int i);
+int main(){
+	int t;
+	scanf("%d",&t);
+	while(t>0){
+	//scanf("%d",&n);
+	int a[n];//array containing a1,a2....an in a[0],a[1]....a[n-1];
+	int i;
+	scanf("%d",&N);
+	for(i=0;i<n;i++)scanf("%d",&a[i]);
+	for(i=0;i<n;i++)a[i]=a[i]+1;
+	int slc[n];
+	for(i=0;i<n;i++) slc[i]=0;
+	x=N;
+	ans=0;
+	sign=1;
+	sol(a,slc,0);
+	printf("%lld\n",ans);
+	t--;
+	}
+	return 0;
+}
+void sol(int *a,int*slc,int i){
+	
+	int k=0;
+	//for(k=0;k<n;k++) printf("%d ",slc[k]);
+//	printf("\n");
+	x=N;
+	for(k=0;k<n;k++){
+		if(slc[k]==1){
+			x=x-a[k];
+		}
+	}
+	if(x<0)return;
+	x=x+n;
+	k=0;
+	long long int y=1;
+	while(k!=n){
+		y=y*(x-k);
+		k++;
+	}
+	k=1;
+	while(k<=n){
+		y=y/k;
+		k++;
+	}
+	ans=ans+sign*y;
+//	printf("ans %d\n",ans);
+	for(k=i;k<n;k++){
+		if(slc[k]==0){
+			slc[k]=1;
+			sign=sign*(-1);
+			sol(a,slc,k+1);
+			sign=sign*(-1);
+			slc[k]=0;
+		}
+ 
+	}
+	return ;
+}
+ 

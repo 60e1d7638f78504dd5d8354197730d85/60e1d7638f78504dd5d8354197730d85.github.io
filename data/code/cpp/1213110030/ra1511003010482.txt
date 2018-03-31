@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+int myStrStr(char * str, char * sub);
+int main()
+{
+ 	char str[100]={0}, strTocheck[100]={0};
+  	scanf("%s %s",str,strTocheck);
+  
+  	if(myStrStr(str, strTocheck))
+      printf("Best Friends");
+  	else
+      printf("Try Again");
+	return 0;
+}
+int myStrStr(char * str, char * sub)
+{
+  int flag=0;
+  int i=0,len1=0,len2=0;
+  
+  len1=strlen(str);
+  len2=strlen(sub);
+  while(str[i] != '\0')
+  {
+    if(str[i]==sub[0])
+    {
+      if((i+len2)>len1)
+        break;
+      if(strncmp(str+i,sub,len2)==0)
+      {
+        flag=1;
+        break;
+      }
+    }
+    i++;
+  }
+  return flag;
+}

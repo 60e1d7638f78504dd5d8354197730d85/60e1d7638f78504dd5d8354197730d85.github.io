@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+ 
+void CIELRCPT();
+ 
+int main(int argc, char *argv[]) {
+	CIELRCPT();
+	return 0;
+}
+ 
+void CIELRCPT()
+{
+	int numTests = 0;
+	int i = -1, k = -1, count = 0, temp=0;
+	long currentNum = -1;
+	//int p = -1;
+	long bit = 1;
+	scanf("%d", &numTests);
+	for(i = 0; i < numTests; i++){
+		scanf("%ld", &currentNum);
+		bit = 1;
+		count = 0;
+		for(k = 1; k <= 11; k++)
+		{
+			if(currentNum & bit)
+			{
+				count++;
+			}
+			bit = bit << 1;
+		}
+		temp = 0;
+		for(k=1; k<=6; k++){
+			if(currentNum & bit)
+			{
+				temp += pow(2, k-1);
+			}
+			bit = bit << 1;
+		}
+		count += temp;
+		printf("%d\n", count);
+	}
+} 

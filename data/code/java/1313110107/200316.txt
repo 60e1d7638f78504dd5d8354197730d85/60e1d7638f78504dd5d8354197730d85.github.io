@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  	 public static void main(String[] args)
+     { 
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		for(int i=0;i<t;i++)
+		{
+ 			String s1=sc.next();
+ 			if(s1.length()>=3)
+			{
+			int num1=Integer.parseInt(s1);
+            int num2=num1*2;
+			int num3=num1*3;
+
+			String s2=num2+"";
+			String s3=num3+"";
+			String s4=s2+s3;
+			String s5 = s4+s1;
+
+			char ch[]=s5.toCharArray();
+			Arrays.sort(ch);
+
+			int flag=0;
+
+			for(int j=0;j<ch.length-1;j++)
+				{
+				if(ch[j]==ch[j+1])
+						{
+						flag=1;
+						break;
+						}
+				}
+				if(flag==0)
+				System.out.println("Fascinating");
+				else
+				System.out.println("Not Fascinating");
+				}
+				else
+ 				System.out.println("Number should be atleast three digits");
+			}
+		}
+}
+

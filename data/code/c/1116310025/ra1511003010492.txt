@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int pali(int start, char arr[],int len)
+{
+    int i;
+ 
+    if(len==1)
+        return 1;
+ 
+    for(i=0;i<len/2;i++)
+        if(arr[start+i]!=arr[start+len-1-i])  // palindrome check
+            return 0;
+    return (1+pali(start,arr,len/2));
+}
+int main()
+{
+    int test,ans,len,i,j;
+    char string[10000];
+    scanf("%d",&test);
+ 
+    while(test--)
+    {
+        scanf("%s",string);
+        ans=0;
+        len=strlen(string);
+        for(i=1;i<len+1;i++)                //will determine the length of string
+           for(j=0;j<len-i+1;j++)           //will determine the starting point
+               ans+=pali(j,string,i);       
+        printf("%d\n",ans);
+    }
+ 
+    return 0;
+}

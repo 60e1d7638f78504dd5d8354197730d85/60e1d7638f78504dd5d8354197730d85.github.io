@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class Number {
+	int low, high;
+  	public:
+  		Number(int l, int h) : low(l), high(h) {}
+  		void perfect();
+  		bool divisorSum(int);
+};
+
+bool Number :: divisorSum(int val) {
+  	if(val < 6) return false;
+	int sum = 0;
+  	for(int i=2; i<val; i++) {
+    	int b = val/i;
+      	if(b < i) break;
+      	if(val % i == 0) {
+        	sum += i;
+          	if(i != b) sum += b;
+        }
+    }
+  	sum++;
+  	if(sum == val) return true;
+  	return false;
+}
+
+void Number :: perfect() {
+	for(int i=low; i<= high; i++) {
+    	if(divisorSum(i)) cout<<i<<" ";
+    }
+}
+
+int main()
+{
+  	int l, h;
+  	cin>>l>>h;
+  	Number num(l, h);
+  	num.perfect();
+	return 0;
+}

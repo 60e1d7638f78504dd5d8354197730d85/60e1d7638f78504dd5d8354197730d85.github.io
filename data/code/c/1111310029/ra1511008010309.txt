@@ -1,0 +1,41 @@
+#include<stdio.h>
+int cmpfunc(const void *a, const void*b){
+	return (*(int*)a - *(int*)b);
+}
+int main()
+{
+	int t;
+	int n,i;
+	int area,pair;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		int a[n];
+		
+		for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+		
+		qsort(a,n,sizeof(int),cmpfunc);
+		
+		area=1;
+		pair=0;
+		for(i=n-2;i>=0;i--)
+		{
+			if(a[i]==a[i+1])
+			{
+				area=(area*a[i]);
+				i--;
+				pair++;
+				if(pair==2)
+				break;
+			}
+		}
+		if(pair<2)
+		printf("-1\n");
+		else
+		printf("%d\n",area);
+		
+	}
+	
+}

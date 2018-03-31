@@ -1,0 +1,98 @@
+#include <stdio.h>
+void srt(int ar[],int n)
+{
+  int i,j;
+  int tmp;
+  for (i = 0; i < n; i++)
+  {
+    j=i;
+    while(j>0 && ar[j]>ar[j-1])
+    {
+      tmp=ar[j];
+      ar[j]=ar[j-1];
+      ar[j-1]=tmp;
+      j--;
+    }
+  }
+  
+}
+void swap(int ar[],int i,int j)
+{
+  int tmp;
+  tmp=ar[i];
+  ar[i]=ar[j];
+  ar[j]=tmp;
+}
+int msb(int x)
+{
+  int a=0;
+  while(x>0)
+    {
+      x=x/2;
+      a++;
+    }
+    return a;
+}
+ 
+int main(){
+    
+    int t,k,i,n,j,ans,nd,m,mx;
+    int ar[1005];
+    
+    scanf("%d",&t);
+    while(t--){
+    scanf("%d %d",&n,&k);
+    
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d",&ar[i]);
+    }
+    srt(ar,n);
+    
+   
+    m=msb(ar[0]);
+    
+    j=0;
+    while(m>=0)
+    {
+      
+      if(msb(ar[j])==m)
+      {for (i =j+1 ; i < n; i++)
+        {
+                if (msb(ar[i])==m)
+                  ar[i]=ar[i]^ar[j];
+               
+        }
+        j++;
+      }
+      else
+        {
+          mx=j;
+          for (i = j+1; i < n; i++)
+              if (ar[i]>ar[mx])
+                mx=i;
+          swap(ar,mx,j);
+          if (msb(ar[j])==m)
+            m++;
+                
+              
+        }
+     m--;
+           
+    }
+    ans=k;
+    
+    
+    for (i = 0; i < n; i++)
+    {
+      if(!(ans & 1<<(msb(ar[i])-1)))
+       { ans=ans^ar[i];
+      
+    }
+    
+      m--;
+    }
+    printf("0\n" );
+  }  
+    return 0;
+}  

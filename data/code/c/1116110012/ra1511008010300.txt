@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+void concatenate(char [], char []); 
+ 
+int main()
+{
+   char p[100], q[100];
+   scanf("%[^\n]%*c",p);
+   scanf("\n %[^\n]%*c",q);
+   printf("%s\n%s",p,q);
+   concatenate(p, q); 
+ 
+   printf("\n%s", p);
+ 
+   return 0;
+}
+ 
+void concatenate(char p[], char q[]) {
+   int c, d;
+ 
+   c = 0;
+ 
+   while (p[c] != '\0') {
+      c++;  	
+   }
+ 
+   d = 0;
+ 
+   while (q[d] != '\0') {
+      p[c] = q[d];
+      d++;
+      c++;	
+   }
+ 
+   p[c] = '\0';
+}

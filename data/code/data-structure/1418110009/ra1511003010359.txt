@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node *left,*right;
+};
+class BST
+{
+  private:
+  node *root;
+  public:
+  BST()
+  {
+    root=NULL;
+  }
+  void insert(int value)
+  {
+    node *parentptr,*nodeptr;
+    node * newnode=new node;
+    newnode->data=value;
+    newnode->left=NULL;
+    newnode->right=NULL;
+    if(root==NULL)
+      root=newnode;
+    else
+    {
+      parentptr=NULL;
+      nodeptr=root;
+      while(nodeptr!=NULL)
+      {
+        parentptr=nodeptr;
+         if(value<nodeptr->data)
+           nodeptr=nodeptr->left;
+        else
+          nodeptr=nodeptr->right;
+      }
+      if(value<parentptr->data)
+        parentptr->left=newnode;
+      else
+        parentptr->right=newnode;
+    }
+  }
+  node *getRoot()
+  {
+    return root;
+  }
+  void inOrder(node *root)
+  {
+    if(root!=NULL)
+    {  
+    inOrder(root->left);
+    cout<<root->data<<" ";
+    inOrder(root->right);
+    }
+  }
+};
+int main()
+{
+  int n,data;
+  cout<<"How many numbers do you want to insert ?"<<endl;
+  cin>>n;
+  BST t;
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    t.insert(data);
+  }
+  cout<<"Inorder Traversal: ";
+  t.inOrder(t.getRoot());
+	return 0;
+}

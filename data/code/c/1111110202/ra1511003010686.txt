@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdbool.h>
+int main()
+{
+  int i,j,n,k,count=0;
+  bool a_s=true;
+  bool letter=false;
+  char s[20];
+  scanf("%s",s);
+  k=strlen(s)-1;
+  if(s[0]>='A' && s[0]<='Z')
+  {
+    letter=true;}
+  if(s[0]>='a' && s[0]<='z')
+  {
+    letter=true;
+  }
+  if(s[0]=='_' || s[k]=='_')
+  {
+   a_s=false;
+  }
+  
+  for(i=0;i<k;i++)
+  {
+  if(s[i]=='_')
+  {
+    count++;
+  }else
+  {
+    count=0;
+  }
+    if(count==2)
+    {
+      a_s=false;
+    }
+  }
+  if(a_s && letter)
+  {
+    printf("valid identifier");
+  }else
+  {
+    printf("not a valid identifier");
+  }
+  
+
+	return 0;
+}

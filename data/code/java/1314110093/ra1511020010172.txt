@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int tc = sc.nextInt();
+       for(int j=0; j<tc;j++){
+        int n = sc.nextInt();
+         int m = sc.nextInt();
+         int c= sc.nextInt();
+         int count=0;
+         for(int i = 1;i * i <= c;i++)
+		{
+			if(c % i == 0)
+			{
+				if(i <= n && (c / i) <= m)
+					count++;
+				if(i <= m && (c / i) <= n && i != (c / i))
+					count++;	
+			}
+         }
+         System.out.println(count);
+       }
+	}
+}

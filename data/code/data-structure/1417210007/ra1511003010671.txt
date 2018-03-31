@@ -1,0 +1,79 @@
+#include<iostream>
+#include<queue>
+using namespace std;
+ 
+int main()
+{
+ int q;
+ cin>>q;
+ string s;
+ int x,temp;
+ int a[100001]={0};
+ priority_queue<int>great;
+ priority_queue<int,vector<int>,greater<int> >small;
+ 
+ while(q--)
+ {
+   cin>>s;
+   
+   if(s=="Push")
+   {
+     cin>>x;
+     if(a[x]==0)
+       {
+        small.push(x);
+        great.push(x);
+       }
+       a[x]++;
+   }
+           
+   else if(s=="Diff")
+   {
+     while((!small.empty()) && a[small.top()]==0) 
+       small.pop();
+       
+     while((!great.empty()) && a[great.top()]==0)  
+       great.pop();
+       
+      if(small.empty() || great.empty()) // THink both will be same if any1 is empty
+       cout<<-1<<endl;
+       
+      else
+      { temp=great.top();
+        cout<<great.top()-small.top()<<endl;
+        
+        a[great.top()]--;
+         
+        if(temp!=small.top())
+         a[small.top()]--;
+            
+      }
+      
+   }
+     
+   else if(s=="CountHigh")
+   {
+     while(!(great.empty()) && a[great.top()]==0)
+       great.pop();
+       
+     if(great.empty())  
+      cout<<-1<<endl;
+     else
+     cout<<a[great.top()]<<endl;
+   }
+   
+   else // CountLow
+   {
+    while(!(small.empty()) && a[small.top()]==0)
+       small.pop();
+       
+     if(small.empty())  
+      cout<<-1<<endl;
+     else
+     cout<<a[small.top()]<<endl;   
+       
+   }
+ }
+    
+    
+}

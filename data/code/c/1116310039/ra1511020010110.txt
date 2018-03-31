@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    long int T;
+    char String[100003];
+    scanf("%ld",&T);
+    while(T--)
+    {
+        long int max=0,alpha=0;
+        long int Arr[26]={0};
+        scanf("%s",String);
+        long int i=0,j=0;
+        while(String[i])
+        {
+            ++Arr[String[i]-'a'];
+            if(Arr[String[i]-'a']>max)
+               {
+                   max=Arr[String[i]-'a'];
+                   alpha=String[i]-'a';
+               }
+            ++i;
+ 
+        }
+        long int l=i-1;
+ 
+        if(max>(l+1)/2&&((l)%2))
+            printf("-1\n");
+        else if (max>(l+3)/2&&((l+1)%2))
+            printf("-1\n");
+        else
+        {
+            for(i=0,j=0;j<max&&i<=l;i=i+2)
+            {
+                String[i]=alpha+'a';
+                ++j;
+            }
+            Arr[alpha]=0;
+            j=0;
+            for(;i<=l;i=i+2)
+                {while(Arr[j]==0)
+                    ++j;
+                String[i]=j+'a';
+                --Arr[j];
+                }
+            for(i=1;i<=l;i=i+2)
+                {while(Arr[j]==0)
+                    ++j;
+                String[i]=j+'a';
+                --Arr[j];
+                }
+            String[l+1]='\0';
+ 
+            printf("%s\n",String);
+ 
+        }
+ 
+ 
+ 
+    }
+    return 0;
+}

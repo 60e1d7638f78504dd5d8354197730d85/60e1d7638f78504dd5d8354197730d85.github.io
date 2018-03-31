@@ -1,0 +1,29 @@
+#include<iostream>
+#include<iostream>
+using namespace std;
+const char * months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+class date
+{
+int day;
+int month,year;
+public:
+friend istream &operator>>(istream &scan,date &d)
+{
+scan>>d.day>>d.month>>d.year;
+return scan;
+}
+friend ostream &operator<<(ostream &print,date &d)
+{
+ 
+print<<(months[d.month-1])<<" "<<d.day<<" "<<d.year;
+return print;
+}
+};
+int main()
+{
+date dd;
+cin>>dd;
+cout<<dd;
+  return 0;
+}

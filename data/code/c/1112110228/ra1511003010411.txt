@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+   int t,pivot,ans,group,num,n,k,j,i,arr[1000];
+   scanf("%d",&t);
+   arr[0]=0;
+   while(t--)
+   {
+     ans=0;
+     group=0;
+     scanf("%d %d",&n,&k);
+     for(i=1;i<1000;i++)
+     {
+       arr[0]=0;
+     }
+     for(i=1;i<=n;i++)
+     {
+       scanf("%d",&num);
+       if(i==n)
+       {
+         pivot=num;}
+       arr[num]=1;
+     }
+     
+     for(i=pivot;i>=1;i--)
+     {
+       if(arr[i]==1)
+         group++;
+        else
+          ans+=(group+k-1)/k;
+     }
+     printf("%d\n",ans);
+   }
+	return 0;
+}

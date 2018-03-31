@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+int n,a[50],max,mim,i,j;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++){
+   for(j=i;j<n;j++){
+    if(a[i]>a[j]){
+     int t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+   }
+  }
+  int min = a[0];
+  max = a[n-1];
+  int diff = max - min;
+  for(i =0 ;i<n;i++){
+   if(a[i]==diff){
+    printf("%dYes",diff);
+     return 0;
+   }
+  }
+  printf("%dNo",diff);
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,a[10];
+  scanf("%d %d",&m,&n);
+  int i;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  int diff,min,j;
+  if(a[0]>a[1])
+    min=a[0]-a[1];
+  else
+    min=a[1]-a[0];
+  for(i=0;i<n-1;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(a[j]>a[i])
+        diff=a[j]-a[i];
+      else
+        diff=a[i]-a[j];
+      if(diff<min)
+        min=diff;
+    }
+  }
+  printf("%d",min);
+        
+  
+
+	return 0;
+}

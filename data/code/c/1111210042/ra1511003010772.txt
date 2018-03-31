@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int n,a[100],mi,i,j,flag = 0,ma,t,d;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(a[i] > a[j])
+      {
+        t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+    }
+  }
+  mi = a[0];
+  ma = a[n-1];
+  d = ma - mi;
+  for(i=0;i<n;i++)
+  {
+    if(a[i] == d)
+    {
+      flag = 1;
+      break;
+    }
+  }
+  if(flag == 1)
+    printf("%dYes",d);
+  else
+    printf("%dNo",d);
+  return 0;
+}

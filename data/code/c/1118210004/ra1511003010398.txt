@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+#include<math.h>
+#define MN -1
+#define MX 401
+#define INF 1000000009
+#define min(a,b) (((a)<(b))?(a):(b))
+
+int xe, ye, xa, ya;
+int de, da;
+char ch;
+
+int time[444][444];
+int dx[] = {0,1,0,-1};
+int dy[] = {1,0,-1,0};
+
+int getDir(char ch)
+{
+	return ch=='U' ? 0 : ( ch=='R' ? 1 : ( ch=='D' ? 2 : 3 ) );
+}
+
+int inside(int x,int y)
+{
+	return (x>MN && x<MX && y>MN && y<MX);
+}
+
+int main()
+{
+	int kases,t;
+	for(scanf("%d",&kases);kases--;)
+	{
+		scanf("%d %d %c",&xe,&ye,&ch);
+		xe+=100; ye+=100;
+		xe*=2; ye*=2; de = getDir(ch);
+
+		memset(time,0,sizeof time);
+		for( t=0;inside(xe,ye);t++)
+		{
+			time[xe][ye] = t;
+			xe += dx[de];
+			ye += dy[de];
+		}
+
+		int ans = INF;
+
+		int n;
+		for(scanf("%d",&n);n--;)
+		{
+			scanf("%d %d %c",&xa,&ya,&ch);
+			xa+=100; ya+=100;
+			xa*=2; ya*=2; da = getDir(ch);
+			for(t=0;inside(xa,ya);t++)
+			{
+				if(t>0 && time[xa][ya] == t)
+				{
+					ans = min(ans,time[xa][ya]);
+					break;
+				}
+				xa += dx[da];
+				ya += dy[da];
+			}
+		}
+
+		if(ans<INF) printf("%d.%d\n",ans/2,(ans%2)?5:0);
+		else puts("SAFE");
+	}
+	
+	return 0;
+}

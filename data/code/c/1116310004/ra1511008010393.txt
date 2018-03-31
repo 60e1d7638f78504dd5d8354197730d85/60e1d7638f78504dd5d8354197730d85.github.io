@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+int bsearch1(int x,int y,int a[],int b[],int k)
+{
+  int f,ans=x,l=x;
+  while(x<=y)
+  {
+    f=(x+y)/2;
+    if((a[f]-a[l-1])<=k &&(b[f]-b[l-1])<=k)
+    {
+      ans=f;
+      x=f+1;
+    }
+    else
+      y=f-1;
+  }
+  return ans;
+}
+int bsearch2(int x,int y,int c[])
+{
+  int f,ans=-1,l=y;
+  while(x<=y)
+  {
+    f=(x+y)/2;
+    if(c[f]<=l)
+    {
+      x=f+1;
+    }
+    else
+    {
+      ans=f;
+      y=f-1;
+    }
+  }
+  return ans;
+}
+
+int main()
+{
+  int t,i,j,k,n,q;
+  char ch[100010];
+  scanf("%d",&t);
+  static int a[100010],b[100010];
+  static int c[100010];
+  static long long int ans[100010],f,o;
+  while(t--)
+  {
+    scanf("%d %d %d",&n,&k,&q);
+    scanf("%s",ch);
+    a[0]=0;
+    b[0]=0;
+    for(i=1;i<=n;i++)
+    {
+      a[i]=a[i-1];
+      b[i]=b[i-1];
+      if(ch[i-1]=='1')
+        a[i]++;
+      else
+        b[i]++;
+    }
+    ans[0]=0;
+    c[i]=0;
+    for(i=1;i<=n;i++)
+    {
+      c[i]=bsearch1(i,n,a,b,k);
+      ans[i]=ans[i-1]+(c[i]-i+1);
+    }
+    int x,y;
+    while(q--)
+    {
+      scanf("%d %d",&x,&y);
+      i=bsearch2(x,y,c);
+      if(i==-1)
+      {
+        f=ans[y]-ans[x-1];
+        printf("%lld\n",f);
+      }
+      else
+      {
+        o=ans[i-1]-ans[x-1];
+        f=(y-i+1);
+        f=f*(f+1);
+        f=f/2;
+        o=o+f;
+        printf("%lld\n",o);
+      }
+    }
+  }
+	return 0;
+}

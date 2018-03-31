@@ -1,0 +1,49 @@
+// C++ program to find the element 
+// occurring odd number of times
+#include<iostream>
+using namespace std;
+ 
+// funtion to find the element 
+// occurring odd number of times
+int getOddOccurrence(int arr[],
+                    int arr_size)
+{
+    int i;
+    for (i = 0; i < arr_size; i++) {
+         
+        int count = 0;
+         
+        for (int j = 0; j < arr_size; j++)
+        {
+            if (arr[i] == arr[j])
+                count++;
+        }
+        if (count % 2 != 0)
+            return arr[i];
+    }
+    return -1;
+}
+ 
+// driver code
+int main()
+    {
+        int arr[10];
+        int n,ass;
+        int x;
+        cin>>x;
+     while(x>0)
+     {
+       cin>>n;
+       for(int i=0;i<n;i++)
+        cin>>arr[i];
+ 
+        // Function calling
+        ass=getOddOccurrence(arr, n);
+       if(ass>2)
+       cout<<ass;
+       else
+         cout<<"3";
+       x--;
+     }
+        return 0;
+}

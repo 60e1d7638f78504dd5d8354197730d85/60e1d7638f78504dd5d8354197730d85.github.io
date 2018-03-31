@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+class person
+{
+  public: 
+  string name,gender;
+  int age;
+  void getdata()
+{
+  cin>>name;
+  cin>>age;
+  cin>>gender;
+}
+  void display()
+  {
+   cout<<"Name: "<<name<<endl;
+  cout<<"Age: "<<age<<endl;
+  cout<<"Gender: "<<gender<<endl;
+  }
+};
+class employee:public person
+{
+public: 
+int salary;
+string cname;
+void getdata()
+{
+person::getdata();
+cin>>cname;
+cin>>salary;
+}
+void display()
+{
+ person::display();
+  cout<<"Name of Company: "<<cname<<endl;
+  cout<<"Salary: Rs."<<salary<<endl;
+ }
+};
+class programmer:public employee
+{
+public:
+int pknown;
+void getdata()
+{
+employee::getdata();
+cin>>pknown;
+}
+void display()
+{
+employee::display();
+ cout<<"Number of programming language known: "<<pknown<<endl;
+}
+};
+  
+  int main()
+{
+programmer obj;
+    obj.getdata();
+    obj.display();
+    return 0;
+}

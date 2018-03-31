@@ -1,0 +1,27 @@
+#include<stdio.h>
+    void decimal_to_binary(unsigned int);
+    int main(){
+                  unsigned int number;
+                  scanf("%u",&number);
+                  decimal_to_binary(number);
+    		return(0);
+    }
+    void decimal_to_binary(unsigned int n){
+                 unsigned int range=32768;
+                 xy:
+                 if(range > 0)
+                 {
+                 if((n & range) == 0 ){
+                 range = range >> 1 ;
+                 goto xy; }
+                 else
+                 while(range>0){
+                 if((n & range) == 0 )
+                 printf("0");
+                 else
+                 printf("1");
+                 range = range >> 1 ;
+                 }
+                 }
+    }
+

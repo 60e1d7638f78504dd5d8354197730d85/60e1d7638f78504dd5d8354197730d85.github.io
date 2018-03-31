@@ -1,0 +1,45 @@
+/*
+// Sample code to perform I/O:
+ 
+scanf("%s", name);              // Reading input from STDIN
+printf("Hi, %s.\n", name);      // Writing output to STDOUT
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+ 
+// Write your code here
+#include<stdio.h>
+int main()
+{
+    int n,r,top=0,sum=0;
+    scanf("%d", &n);
+    int a[n];
+    int m=n;
+    while(m--)
+    {
+    scanf("%d", &r);
+    if(r!=0)
+    {
+        top++;
+    a[top]=r;
+    }
+    if(r==0 && top==0)
+    {
+        top++;
+        a[top]=r;
+    }
+    if(r==0 && top!=0)
+    {
+        int val=a[top];
+        top--;
+    }
+    }
+    int c=top;
+    while(c--)
+    {
+        sum=sum+a[top];
+        top--;
+    }
+    printf("%d", sum);
+  return 0;
+}

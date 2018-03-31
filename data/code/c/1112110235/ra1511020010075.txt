@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <math.h>
+int ar[10000000];
+int l,r,t=0,sum=0;
+int prime(int n)
+{
+	int i=0;
+	if(n<2)
+		return 0;
+	for(;(int)sqrt(n)>=ar[i];i++)
+		if(n%ar[i]==0)
+			return 0;
+	return 1;
+}
+void pr()
+{
+	ar[0]=2;
+	int i;
+	for(i=3;i<=200000;i+=2)
+		if(prime(i)==1)
+			ar[++t]=i;
+}
+void good(int n)
+{
+	//printf("n=%d\n",n);
+	int h[n],i,j=0,o;
+	for(i=0;ar[i]<=n/2;i++)
+	{
+		if(n%ar[i]==0)
+			h[j++]=ar[i];
+	}
+	if(j==0&&n>=2)
+		h[j++]=n;
+	int k=0,s=1,c=0;
+	for(i=0,o=0;i<j;i++)
+	{
+		int g=0;
+		k=h[i];
+		s+=k;
+		while(i+1+g<j)
+		{
+			for(o=i+1+g;o<j;o++)
+			{
+				
+				k*=h[o];
+				s+=k;
+				//printf("g=%d\tk=%d\ts=%d\n",g,k,s);
+			}
+			g++;
+			k=h[i];
+		}
+		//printf("k=%d\ts=%d\n",k,s);
+	}
+	for(i=0;ar[i]<=s/2;i++)
+	{
+		if(s%ar[i]==0)
+			c++;
+	}
+	//printf("n=%d\ts=%d\tc=%d\n",n,s,c);
+	if(prime(c)==1)
+		sum+=s;
+}
+int main()
+{
+	pr();
+	int f;
+	scanf("%d",&f);
+	while(f-->0)
+	{
+		scanf("%d%d",&l,&r);
+		t=sum=0;
+		int i;
+		for(i=l;i<=r;i++)
+		{	
+			int j=0,flag=0;
+			while(ar[j]<=(int)sqrt(i)&&ar[j]!=0)
+			{
+				if(i%(ar[j]*ar[j])==0)
+				{	
+					flag=1;
+					break;
+				}
+				j++;
+			}	
+			if(flag==0)
+				good(i);
+		}
+		printf("%d\n",sum);
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,51 @@
+#include<stdio.h>
+
+void findElements(int arr[], int n)
+{
+	int i,j,t;
+	for (i=0; i<n; i++)
+	{
+		int count = 0;
+		for ( j=0; j<n; j++)
+			if (arr[j] > arr[i])
+				count++;
+
+		if (count >= 2)
+         printf("%d ",arr[i]);			
+	}
+  
+}
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void bubbleSort(int arr[], int n)
+{
+   int i, j;
+   for (i = 0; i < n-1; i++)      
+ 
+       // Last i elements are already in place   
+       for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+              swap(&arr[j], &arr[j+1]);
+}
+int main()
+{
+	int arr[50];
+	int n,i,z,j,t,k;
+	scanf("%d",&z);
+	for(i=0;i<z;i++)
+	{
+	scanf("%d",&n);
+	
+	for(j=0;j<n;j++)
+	{scanf("%d",&arr[j]);}
+      bubbleSort(arr, n);
+	findElements(arr, n);
+	 printf("\n");   
+	}
+	return 0;
+}

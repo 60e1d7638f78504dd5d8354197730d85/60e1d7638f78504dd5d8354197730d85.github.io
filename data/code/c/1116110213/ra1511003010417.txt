@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+int main()  
+{  
+    char *s="AHIMOoTUVvWwXxY";  
+    char a[1010];  
+  int i;
+    int flag=1;  
+    scanf("%s",a);
+  char b[]="bob";
+  if(strcmp(a,b)==0)
+    printf("TAK");
+  else
+  {
+    for( i=0;i<=strlen(a)/2;i++)  
+    {  
+        if(a[i]!=a[strlen(a)-i-1])  
+        {  
+            if((a[i]=='b'&&a[strlen(a)-i-1]=='d')||(a[i]=='d'&&a[strlen(a)-i-1]=='b'));  
+            else if((a[i]=='p'&&a[strlen(a)-i-1]=='q')||(a[i]=='q'&&a[strlen(a)-i-1]=='p'));  
+            else flag=0;  
+        }  
+       if((a[i]=='b'&&a[strlen(a)-i-1]=='d')||(a[i]=='d'&&a[strlen(a)-i-1]=='b'));  
+            else if((a[i]=='p'&&a[strlen(a)-i-1]=='q')||(a[i]=='q'&&a[strlen(a)-i-1]=='p'));  
+        else if(strchr(s,a[i])==NULL)  
+        {  
+            flag=0;  
+        }  
+    }  
+    if(flag==1)  
+    {  
+        printf("TAK\n");  
+    }  
+    else  
+    {  
+        printf("NIE\n");  
+    }  
+  }
+  return 0;
+}  

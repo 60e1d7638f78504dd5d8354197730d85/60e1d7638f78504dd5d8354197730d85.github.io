@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+int main(){
+  int test,num[100];
+  int i;
+  double sum,std,avg,dev,dvar;
+  scanf("%d",&test);
+  for(i=0;i<test;i++){
+    scanf("%d",&num[i]);
+  }
+  for(i=0;i<test;i++){
+    sum=sum+num[i];
+  }
+  avg=sum/test;
+  for(i=0;i<test;i++){
+    std=std+pow((avg-num[i]),2);
+  }
+  dvar=std/test;
+  dev=sqrt(dvar);
+  printf("Mean=%0.2f\n",avg);
+  printf("SD=%0.2f",dev);
+  return 0;
+}

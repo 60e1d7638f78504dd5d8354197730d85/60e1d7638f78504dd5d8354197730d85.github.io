@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.Scanner;
+ 
+class TestClass {
+ Scanner scan=new Scanner(System.in);
+ int testcases,Number;
+ public static void main(String []args)
+ {
+ 	TestClass testClass=new TestClass();
+ 	testClass.testcases=testClass.GetTestCases();
+ 	testClass.CheckTestCase(testClass.testcases);
+ }
+ 
+ int GetTestCases()
+ {
+ 	return GetInteger();
+ }
+ 
+ int GetInteger()
+ {
+ 	return scan.nextInt();
+ }
+ void CheckTestCase(int testcases)
+ {
+ 	while(testcases-->0) {
+ 	int Number=GetInteger();
+ 	int occurence;
+ 	occurence=ExecuteTask(Number);
+ 	PrintOutput(occurence);
+ 	}
+ 	
+ }
+ int ExecuteTask(int n)
+ {
+ int count=0;
+ int ans=0;
+ while(n>0)
+ {
+ 	ans=n%10;
+ 	if(ans==4)
+ 	{
+ 		count++;
+ 	}
+ 
+ 	n/=10;
+ }
+ return count;
+ }
+ 
+ void PrintOutput(int p)
+ {
+ 	System.out.println(p);
+ }
+		}
+ 

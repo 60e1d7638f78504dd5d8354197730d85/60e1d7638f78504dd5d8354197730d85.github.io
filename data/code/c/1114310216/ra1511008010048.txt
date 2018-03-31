@@ -1,0 +1,75 @@
+#include<stdio.h>
+
+#if defined(_WIN64)
+ 
+#define GC getchar
+#define PC putchar
+ 
+#else
+	
+#define GC getchar_unlocked
+#define PC putchar_unlocked
+ 
+#endif
+ 
+#define FRE freopen("input.txt","r",stdin);
+ 
+#ifdef LONG
+ 
+typedef long long int ll;
+ 
+#else
+	
+typedef int ll;
+ 
+#endif
+ 
+inline ll read_int()
+{
+    ll n=0;
+    char c=GC();
+    
+    while(c < 48 || c >57) 
+	{
+		c=GC();
+	}
+    while(c>47 && c<58)
+    {
+   		if(c=='4')
+			++n;
+    	c=GC();
+    }
+    return n;
+}
+ 
+ 
+inline void fastwrite(ll a)
+{
+	char snum[40];
+	ll i=0;
+	do
+	{
+		snum[i++]=a%10+48;
+		a=a/10;
+	}while(a!=0);
+	
+	i=i-1;
+	
+	while(i>=0)
+		PC(snum[i--]);
+	PC('\n');
+}
+ 
+int main()
+{
+	
+	ll t;
+	scanf("%d",&t);
+	
+	while(t--)
+	{
+		fastwrite(read_int());	
+	}
+	
+	return 0;
+} 

@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+ int i,j,k,test,p,q,r,l,ans,n;
+ int a[75][75],arr[75];
+ scanf("%d",&test);
+ while(test--)
+  {
+   scanf("%d",&n);
+   for(i=0;i<n;i++)
+   {
+    for(j=0;j<n;j++)
+     scanf("%d",&a[i][j]);
+   }
+  ans=0;
+  for(i=0;i<n;i=i+1)
+   {
+    for(j=0;j<n;j++)
+    {
+     p=0;
+     for(r=0;r<n;r++)
+      arr[r]=0;
+     for(k=i;k<n;k++)
+      {
+       q=0;
+       for(l=j;l<n;l++)
+        {
+         q=q^a[k][l];
+         arr[l]=arr[l]^q;
+         if(arr[l]>ans)
+          ans=arr[l];
+        }
+       }
+    }
+   }    
+ printf("%d\n",ans);
+    }
+ return 0 ;
+}

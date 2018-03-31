@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+struct date{
+  				int day, month, year;
+		   }d;
+
+int main()
+{
+	scanf("%d %d %d", &d.day, &d.month, &d.year);
+  	if(d.month <=0 || d.month >= 13)
+      printf("Invalid Month");
+  	else if(d.year <= 0 || d.year >= 3000)
+      printf("Invalid Year");
+  	else if(d.day >= 30 && d.month == 2)
+      printf("Inavlid Day");
+  	else if(d.day >= 31 && (d.month == 4 || d.month == 6 || d.month == 9 || d.month == 11))
+      printf("Invalid Day");
+  	else if(d.day >= 32 && (d.month == 1 || d.month == 3 || d.month == 5 || d.month == 7 || d.month == 8 || d.month == 10 || d.month == 12))
+  	  printf("Invalid Day");
+    else
+    {
+      	if((d.day+1 >= 31 && (d.month == 4 || d.month == 6 || d.month == 9 || d.month == 11)) || (d.day+1 >= 30 && d.month == 2) || (d.day+1 >= 32 && (d.month == 1 || d.month == 3 || d.month == 5 || d.month == 7 || d.month == 8 || d.month == 10 || d.month == 12)))
+          printf("Invalid Day");
+      	else
+      	  printf("New Date=%d %d %d", d.day+1, d.month, d.year);
+    }
+	return 0;
+}

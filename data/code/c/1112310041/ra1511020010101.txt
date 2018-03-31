@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int T;
+  scanf("%d",&T);
+  while(T>0)
+  {
+    int n,i,j,k;
+    scanf("%d",&n);
+    int ar[n];int min=999;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&ar[i]);
+      if(ar[i]<min)
+        min=ar[i];
+    }
+    for(i=min;i>=2;i--)
+    {
+      int flag=0;
+     for(j=0;j<n;j++)
+     {
+       if(ar[j]%i!=0)
+         flag++;
+     }
+      if(flag==0)
+      {for(j=0;j<n;j++)
+     	{
+       ar[j]=ar[j]/i;
+     	}
+      }
+    }
+    for(i=0;i<n;i++)
+    {
+     printf("%d ",ar[i]);
+    }
+    printf("\n");
+   T--; 
+  }
+	return 0;
+}

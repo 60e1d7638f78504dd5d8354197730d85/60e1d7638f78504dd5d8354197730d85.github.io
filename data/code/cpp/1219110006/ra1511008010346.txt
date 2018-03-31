@@ -1,0 +1,38 @@
+#include<iostream>
+#include<ctype.h>
+#include<string.h>
+using namespace std;
+class String
+{
+  private:
+  char str[20];
+  public :
+  int get_data()
+  {
+   cin>>str; 
+    return 0;
+  }
+  int display()
+  {
+    cout<<str;
+   return 0; 
+  }
+  String operator+(String x)
+  {
+    String s;
+    strcat(str,x.str);
+    strcpy(s.str,str);
+    return s;
+  }
+  
+};
+int main()
+{
+  String s1,s2,s3;
+  s1.get_data();
+  s2.get_data();
+  s3=s1+s2; // operator overloading+
+ s3.display();
+  
+  return 0;
+}

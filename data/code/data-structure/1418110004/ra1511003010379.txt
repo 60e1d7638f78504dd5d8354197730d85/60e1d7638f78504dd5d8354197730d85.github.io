@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node 
+{
+  int data;
+  struct node *left, *right;
+};
+
+int min_val(struct node *root)
+{
+  struct node *ptr=root;
+  struct node *parent;
+  while(ptr!=NULL)
+  {
+    parent=ptr;
+    ptr=ptr->left;
+  }
+  return parent->data;
+}
+
+
+
+struct node *insert(struct node *root, int data)
+{
+ struct node *ptr=root;
+  struct node *parent;
+ struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=data;
+  nn->left=NULL;
+  nn->right=NULL;
+  
+  if(root==NULL)
+  {
+    root=nn;
+  }
+  else
+  {
+    while(ptr!=NULL)
+    {
+      parent=ptr;
+      if(data<ptr->data)ptr=ptr->left;
+      else if(data>ptr->data)ptr=ptr->right;
+    }
+    if(data<parent->data)
+    {
+      parent->left=nn;
+    }
+    else if(data>parent->data)
+    {
+      parent->right=nn;
+    }
+  }
+ return root;
+}
+
+
+
+int main()
+{
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+  
+  struct node *root=NULL;
+  for(i=0;i<size;i++)root=insert(root,a[i]);
+
+  int res=min_val(root);
+  printf("minimum value in list is %d",res);
+	return 0;
+}

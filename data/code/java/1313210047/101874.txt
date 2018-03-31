@@ -1,0 +1,51 @@
+import java.util.*;
+public class TestClass 
+{
+	 public static void main(String[] args) 
+     { 
+		int size1=1,size2=5,size3=7,size4=10;	
+       	int bottles=0;
+       	Scanner input=new Scanner(System.in);
+       	int tCase=input.nextInt();
+        for(int i=0;i<tCase;i++)
+        {
+			int n=input.nextInt();
+          	int temp=n%10;
+          	bottles =n/10;
+          	switch(temp)
+            {
+              case 0: break;
+              case 1: bottles+=1; break;
+              case 2:
+                if(bottles==0)
+                  bottles=2;
+                else
+                  bottles+=1;
+                break;
+              case 3:
+                if(bottles==0)
+                  bottles=3;
+                else
+                  bottles+=2;
+                break;
+              case 4:
+                if(bottles==0)
+                  bottles=4;
+                else
+                  bottles+=1;
+               break;
+              case 5:bottles+=1;break;
+              case 6:bottles+=2;break;
+              case 7:bottles+=1;break;
+              case 8:bottles+=2;break;
+              case 9: 
+                if (bottles==0)
+                  bottles = 3;
+                else
+                  bottles+=2;
+                break;
+            }
+			System.out.println(bottles);
+        }
+	}
+}

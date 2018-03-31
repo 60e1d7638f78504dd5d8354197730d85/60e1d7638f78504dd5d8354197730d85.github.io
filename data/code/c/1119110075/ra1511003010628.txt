@@ -1,0 +1,59 @@
+#include <stdio.h>
+int numberofDigits(int n)
+{
+  int count=0;
+  while(n!=0)
+  {
+    ++count;
+    n=n/10;
+  }
+  return count;
+}
+int main()
+{
+   int d,page=0,i,fact,f[10],k=0,k1=1,flag=0;
+  scanf("%d",&d);
+  if(d==1)
+  {
+   printf("9\n");    
+  }
+  else if((d-9)%2!=0)
+  {
+    printf("Impossible\n");
+  }
+  else
+  {
+    d=d-9;
+    page=page+9;
+    fact=1;
+    for(i=0;i<10;i++)
+    {
+      fact=fact*10;
+      f[i]=fact;
+    }
+   while(d!=0)
+   {
+      for(i=f[k];i<=f[k1];i++)
+      {
+         d=d-numberofDigits(i);
+          if(d!=0)
+          {
+            ++page;
+          }
+        else
+        {
+          flag=1;
+          break;
+        }
+      }
+       if(flag==1)
+      {
+        break;
+      }
+      k++;
+      k1++;
+   }
+   printf("%d",page+1); 
+  }
+	return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+ 
+int main(void) {
+    int t,n,temp;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d",&n);
+        /*n=n%64;
+        if(n==0)
+            n=64;*/
+        if(n>8){
+            temp=n/8;
+            if(n%8==0)
+                temp=(n-1)/8;
+        }
+        else
+            temp=0;
+        n=n%8;
+        if(n==0||n==7){
+            if(n==0)
+                printf("%dSL",(temp*8)+7);
+            else
+                printf("%dSU",(temp*8)+8);
+        }
+        else if(n==3||n==6){
+            if(n==3)
+                printf("%dUB",(temp*8)+6);
+            else
+                printf("%dUB",(temp*8)+3);
+        }
+        else if(n==2||n==5){
+            if(n==2)
+                printf("%dMB",(temp*8)+5);
+            else
+                printf("%dMB",(temp*8)+2);
+        }
+        else if(n==1||n==4){
+            if(n==1)
+                printf("%dLB",(temp*8)+4);
+            else
+                printf("%dLB",(temp*8)+1);
+        }
+    }
+	return 0;
+}

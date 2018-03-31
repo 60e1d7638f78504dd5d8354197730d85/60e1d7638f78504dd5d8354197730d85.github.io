@@ -1,0 +1,51 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <queue>
+#include <deque>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include<string>
+#include<cstring>
+using namespace std;
+string s;
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+      cin>>s;
+      unsigned long long int l=s.length();
+      unsigned long long int losses=0;
+      unsigned long long int current=0;
+      unsigned long long int cnn=1;
+      for(int i=0;i<l;i++)
+      {
+ 
+          if(s[i]=='7')
+          {
+              losses+=cnn;
+              cnn++;
+          }
+          else
+          cnn=1;
+      }
+      current=((l)*(l+1))/2;
+      printf("%llu\n",current-losses);
+  }
+  return 0;
+}
+ 

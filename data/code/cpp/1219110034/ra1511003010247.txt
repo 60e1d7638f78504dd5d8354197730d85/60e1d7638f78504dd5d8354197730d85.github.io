@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+class comp
+{
+  int r,i;
+  public:
+  void get()
+  {
+    cin>>r>>i;
+  }
+  void put()
+  {
+    cout<<r<<"+"<<i<<"i"<<endl;
+  }
+  comp operator +(comp &c)
+  {
+    comp t;
+    t.r=r+c.r;
+    t.i=i+c.i;
+    return t;
+  }
+};
+
+int main()
+{
+  comp c1,c2,c3;
+  c1.get();
+  c2.get();
+  c1.put();
+  c2.put();
+  cout<<"Addition of Real and Imaginary Numbers:\n";
+  c3=c1+c2;
+  c3.put();
+
+	return 0;
+}

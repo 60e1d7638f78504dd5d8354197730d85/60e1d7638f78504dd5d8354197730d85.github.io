@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+class dist
+{
+public:
+  int feet, inches;
+  
+  void rd()
+   {cin>>feet>>inches;}
+ 
+  void dis()
+  {
+  cout<<"Feet:"<<feet<<" Inches:"<<inches;
+  }
+  
+  
+  dist operator + (dist &dist1)
+   {
+   dist temp;
+     temp.inches=inches+dist1.inches;
+     temp.feet=feet+dist1.feet+(temp.inches/12);
+     temp.inches=temp.inches%12;
+     return temp;
+   }
+};
+int main()
+{
+   
+    dist d1,d2,d3;
+  d1.rd();
+  d2.rd();
+  d3=d1+d2;
+cout<<"Total Distance:\n";
+  d3.dis();
+	return 0;
+}

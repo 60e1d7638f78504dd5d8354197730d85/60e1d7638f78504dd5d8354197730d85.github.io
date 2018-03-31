@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+    int test;
+    //printf("enter number of test cases=");
+    scanf("%d",&test);
+    if(test<1||test>1000)
+    {
+        return 0;
+    }
+    int i;
+    int ans[test];
+    for(i=0;i<test;i++)
+    {
+        ans[i]=0;
+        int n;
+        //printf("enter a number=");
+        scanf("%d",&n);
+        int j;
+        int k=0;
+        int r;
+        for(j=n;j>0;j=j/10)
+        {
+            r=j%10;
+            if(k==0)
+            {
+                ans[i]=ans[i]+r;
+            }
+            k++;
+        }
+        ans[i]=ans[i]+r;
+    }
+    for(i=0;i<test;i++)
+    {
+        printf("\n%d",ans[i]);
+    }
+    return 0;
+}

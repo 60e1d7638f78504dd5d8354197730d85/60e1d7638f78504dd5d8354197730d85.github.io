@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int suvo = 0;
+        int suvojit = 0;
+        string s;
+        cin >> s;
+
+        for (int i = 0; i <= s.size() - 7; i++) {
+            if (s.substr(i, 7) == "SUVOJIT")
+                suvojit++;
+        }
+        for (int i = 0; i <= s.size() - 4; i++) {
+            if (s.substr(i, 4) == "SUVO")
+                suvo++;
+        }
+
+        cout << "SUVO = " << suvo - suvojit << ", SUVOJIT = " << suvojit << "\n";
+    }
+    return 0;
+}

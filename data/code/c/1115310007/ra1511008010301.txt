@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<string.h>
+int main() {
+    int t,i,A[26],B[26],flag1,flag2;
+    char a[1005],b[1005];
+    scanf("%d",&t);
+    while(t--) {
+        scanf("%s%s",a,b);
+        memset(A,0,sizeof(A));
+        memset(B,0,sizeof(B));
+        flag1=flag2=1;
+        for(i=0;a[i]!='\0';i++) A[a[i]-'a']++;
+        for(i=0;b[i]!='\0';i++) B[b[i]-'a']++;
+        for(i=0;i<26;i++) {
+            if(A[i]!=B[i]) flag1=0;
+            if((!A[i] && B[i]) || (!B[i] && A[i])) flag2=0;
+        }
+        if(flag1 == flag2) printf("YES\n");
+        else printf("NO\n");
+    }
+    return 0;
+} 

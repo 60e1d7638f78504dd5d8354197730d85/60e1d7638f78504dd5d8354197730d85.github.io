@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[100];
+    char toRemove;
+    scanf("%[^\t\n]*s",str);
+     scanf(" %c",&toRemove);
+     int i, j;
+    int len = strlen(str);
+    for(i=0; i<len; i++)
+    {
+        if(str[i] == toRemove)
+        {
+            for(j=i; j<len; j++)
+            {
+                str[j] = str[j+1];
+            }
+            len--;
+            i--;
+        }
+    }
+    printf("%s",str);
+    return 0;
+}

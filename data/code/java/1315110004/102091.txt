@@ -1,0 +1,49 @@
+import java.util.*;
+class TestClass
+{
+	public static void main(String[] args) {
+      Sample objname = new Sample();
+        objname.getDetails();
+        objname.displayDetails();
+    }
+}
+ class Sample{
+   double[] sum1 = new double[6];
+   int n,k,l;
+   public void getDetails()
+    {
+      Scanner in = new Scanner(System.in);
+		int test = in.nextInt();
+        l=0;
+       		while(test-->0) {
+			n = in.nextInt();
+			k = in.nextInt();
+			
+            int[] arr = new int[n];
+            double sum = 0;  
+			for(int i=0; i<n; i++) {
+				arr[i] = in.nextInt();
+				sum += arr[i];
+			}
+			Arrays.sort(arr);
+			for(int i=0; i<k; i++) {
+				sum -= arr[i];
+			}
+			for(int i=n-k; i<n; i++){
+				sum -= arr[i];
+			}
+               sum1[l]= sum/(n-2*k);
+               l=l+1;  
+        }
+   }
+       public void displayDetails()
+       {
+			for(int i=0; i<l; i++){
+            String sf2=String.format("%.6f",sum1[i]);
+  		    System.out.println(sf2);
+            } 
+		}
+	}
+
+
+ 

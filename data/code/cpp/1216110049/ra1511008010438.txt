@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+void quicksort(long long int x[],long long int first,long long int last)
+{
+	long long int i,j,temp,pivot;
+	if(first<last)
+	{
+		i=first;
+		pivot=first;
+		j=last;
+		while(i<j)
+		{
+			while(x[i]<=x[pivot]&&i<last)
+			i++;
+			while(x[j]>x[pivot])
+			j--;
+			if(i<j)
+			{
+				temp=x[i];
+				x[i]=x[j];
+				x[j]=temp;
+			}
+		}
+		temp=x[j];
+		x[j]=x[pivot];
+		x[pivot]=temp;
+		quicksort(x,first,j-1);
+		quicksort(x,j+1,last);
+	}
+}
+int main()
+{
+    long long int t,n,m,count=0;
+    cin>>t;
+    while(t--)
+    {
+        long long int c=0,sum1=0;
+        cin>>n>>m;
+        string A[n];
+        long long int  a[n][m];
+        for(int i=0;i<n;i++)
+        {
+            cin>>A[i];
+        }
+        /*for(int i=0;i<n;i++)
+        {
+            cout<<s[i]<<endl;
+        }*/
+        for(int j=0;j<m;j++)
+        {
+            c=0;
+            for(int i=0;i<n;i++)
+                if(A[i][j]=='1')
+                    c++;
+            if(c>1)
+                sum1+=c*(c-1)/2;
+        }
+        cout<<sum1<<endl;
+    }
+} 

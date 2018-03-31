@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n,k;
+  cin>>n;
+  int a[n];
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+  }
+  cin>>k;
+  
+  if(n<k)
+  {cout<<"Invalid";}
+	
+  int res=0;
+  for(int j=0;j<k;j++)
+  {
+    res+=a[j];
+  }
+  int csm=res;
+  for(int p=k;p<n;p++)
+  {
+    csm+=a[p]-a[p-k];
+  	res=max(res,csm);
+  }
+  cout<<res;
+  return 0;
+}

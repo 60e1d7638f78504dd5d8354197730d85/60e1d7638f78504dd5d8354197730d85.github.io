@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool cmp(const pair<int,int> & a,const pair<int,int> & b)
+{
+    return (a.first<b.first);
+}
+int main()
+{
+    int n,k,val;
+    cin>>n>>k;
+    int arr[n];
+    vector<pair<int,int>>v;
+    for(int i=0;i<n;i++)
+    {
+        //int val;
+        cin>>arr[i];
+        val=arr[i]%k;
+        v.push_back(make_pair(val,arr[i]));
+    }
+    stable_sort(v.begin(),v.end(),cmp);
+    for(int i=0;i<v.size();i++)
+        cout<<v[i].second<<" ";
+    return 0;
+}

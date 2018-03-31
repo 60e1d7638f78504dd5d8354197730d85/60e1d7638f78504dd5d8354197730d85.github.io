@@ -1,0 +1,126 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define ll long long unsigned int
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+ 
+inline ll r()
+{
+	ll x=0;
+	char c=gc();
+	while(c<48||c>57)
+		c=gc();
+	while(c>=48&&c<=57)
+	{
+		x=x*10+c-48;
+		c=gc();
+	}
+	return x;
+}
+ll power(ll x,ll y)
+{
+	if(y==0)
+	return  1;   
+	else if(y==1)
+	return x;
+	return (x*x); 
+ }
+  int checkcount(int arr[])
+   {
+   	int i,j;
+       for(i=0,j=25 ; i<13 ;i++,j--)
+           if(arr[i]%2!=0 || arr[j]%2!=0)
+               return 2;
+ return 1;
+   }
+    char *substring(char *ch,int i,int j)
+{
+    int n,k=0;
+    char *ch1;
+    ch1=(char*)malloc((j-i+1));
+    n=j-i+1;
+     while(k<n)
+    {
+        ch1[k]=ch[i];
+        i++;k++;
+    }
+     return (char *)ch1;
+}
+   int solve(int l,int r,int type,char *sss)
+   {
+       int count[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+       int size=r-l+1,storex,i,j,k;
+       char *s22,*s33;
+       char sss3[100001];
+       strcpy(sss3,sss);
+       s22=substring(sss,l-1,r);
+	   char s3[size],s2[size];
+	   memset(s2,'\0',sizeof(char));
+        int sum=0,x=1,hold=size,pos;
+       for(i= size/2 ; i>0 ; i--)
+	  {
+		for(j=0 ; j<hold-1 ; j++)
+        	{
+			memset(s3,'\0',sizeof(char)*size);
+			memset(count,0,sizeof count);
+			s33=substring(s22,j,j+x+1);
+			strcpy(s3,s33);
+			for(k=0 ; k<x+1 ; k++)
+           		{
+                                pos=(int)s3[k];
+				pos=pos-97;
+                		count[pos]+=1;
+                            
+			}
+			            		if(checkcount(count)==1)
+            		{
+                		sum+=power(x+1,type);
+            		}
+		}
+		x+=2;hold-=2;
+        }
+       return sum;
+    }
+    void decode(char *ss)
+{
+    int A = 0 , B = 0,Q ,L,R,X,Y,ans,N,type; 
+    
+    Q=r();
+    char s1[100001];
+    memset(s1,'\0',sizeof(char));
+    strcpy(s1,ss);
+    N=strlen(s1);
+    while( Q -->0 ) 
+    {
+	X=r();Y=r();type=r();
+        L = ( X + A ) % N + 1; 
+        R = ( Y + B ) % N + 1; 
+    
+        if (L > R) {
+            int T = L;
+            L = R;
+            R = T;
+        }  
+        ans = solve(L,R,type,s1);
+        printf("%d\n",ans);
+        A = B;    
+        B = ans;  
+    } 
+}
+	
+ 
+	
+	int main() 
+    {
+    	char s[100000];
+    	memset(s,'\0',sizeof(char));
+    	int t;
+        scanf("%d\n",&t);
+        while(t-->0)
+        {
+            scanf("%s",s);
+            decode(s);
+        }
+        return 0;
+    } 

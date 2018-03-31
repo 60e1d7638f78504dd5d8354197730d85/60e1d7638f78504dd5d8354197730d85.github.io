@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main()
+{
+	long int t,n,i,r,d,c,tmp,a[1001]={0};
+		scanf("%ld",&n);
+		c=0;d=0,r=1;
+		for(i=1000;i>=0;i--)	
+		{
+			a[i]=0;
+		}
+		for(i=0;i<n;i++)
+		{
+			scanf("%ld",&tmp);
+			a[tmp]++;
+		}
+	     
+	     	for(i=1000;i>=0;i--)
+		{
+			
+		 if(a[i]>=2)
+		{
+			if(a[i]>=4&&c==0)
+			{
+				r=i*i;
+				d=1;
+				printf("%ld\n",r);
+				break;
+			}
+			else
+			{
+			r=r*i;
+			c++;	
+			}
+	    }
+	    if(c==2)
+		{
+		printf("%ld\n",r);
+		break;
+	    }
+		}
+		if(c<2&&(d!=1))
+		printf("-1\n");
+		
+	return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,n,flag=0,arr[20],d,count=0;
+  int *del;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  scanf("%d",&d);
+  del=&d;
+  
+  for(i=0;i<n;i++)
+  {
+    if(arr[i]==*del)
+    {
+      flag=1;
+      count=count+1;
+      for(j=i;j<n;j++)
+      {
+        arr[j]=arr[j+1];
+        
+      }n--;
+           
+    }
+    
+  }
+  
+  
+if(flag==0 || count>1)
+{
+  printf("invalidoutput");
+  return 0;
+}
+  for(i=0;i<n;i++)
+  {
+    printf("%d\n",arr[i]);
+  }
+	return 0;
+}

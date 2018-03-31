@@ -1,0 +1,35 @@
+#include<stdio.h>
+int issubset(int a[],int n,int sum)
+{
+	if(sum==0)
+		return 1;
+	if(n==0 && sum!=0)
+		return 0;
+		
+	if(a[n-1]>sum)
+		return issubset(a,n-1,sum);
+		
+	return(issubset(a,n-1,sum)|| issubset(a,n-1,sum-a[n-1]));
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,sum,i;
+		scanf("%d",&n);
+		scanf("%d",&sum);
+		int a[n];
+		for(i=0;i<n;i++)
+		{
+			scanf("%d",&a[i]);
+		}
+		
+		if(issubset(a,n,sum)==1)
+			printf("Yes\n");
+		else
+			printf("No\n");
+	}
+	return 0;
+}

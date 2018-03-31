@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+#define LL long long
+#define siz 100
+#define mo 1000000007
+#define Z(a) memset(a,0,sizeof(a))
+ 
+main()
+{
+int fall, i, j, x, y, n, m, p[siz+10], w[siz+10];
+LL s, e[2*siz+10][2*siz+10];
+for(i=e[0][0]=1; i<2*siz; e[i++][j+1]=1)
+	for(j=-(e[i][0]=1); ++j<i-1; e[i][j+1]=(e[i-1][j]+e[i-1][j+1])%mo);
+for(scanf("%d",&fall); fall--; printf("%lld\n",(mo+s)%mo))
+	{
+	for(Z(p),Z(w),p[0]=!(s=i=x=y=j=!scanf("%d %d",&n,&m)); i<m; scanf("%d %d",&x,&y),n-=x,w[i++]=y-x+1);
+	for(i=-1; ++i<m;)
+		for(j=siz+1; --j>=0; p[j+w[i]]=p[j]&&j+w[i]<=n?p[j+w[i]]+p[j]*-1:p[j+w[i]]);
+	for(i=-1; ++i<=n; s=(s+e[m+n-i-1][n-i]*((LL)p[i]))%mo);
+	}
+return 0;
+}

@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+struct comp
+{
+	bool operator()(int a,int b)
+	{
+		return (a>b);
+	}
+};
+ 
+int main()
+{
+	int q;
+	cin>>q;
+	priority_queue<int> pqL;
+	priority_queue<int,vector<int>,comp> pqS;
+	int count[100001]={0};
+ 
+	while(q--)
+	{
+		int num;
+		cin>>num;
+		
+		if(num==1)
+		{
+			int X;
+			cin>>X;
+			if(count[X]==0)
+			{
+				pqL.push(X);
+				pqS.push(X);
+			}
+			count[X]++;
+		}
+		if(num==2)
+		{
+			int X;
+			cin>>X;
+			if(count[X]==0)
+				cout<<"-1"<<endl;
+			else
+				count[X]--;
+		}
+		if(num==3)
+		{
+			int p=pqL.top();
+			while(count[p]==0 && !pqL.empty())
+			{
+				pqL.pop();
+				p=pqL.top();
+			}
+			if(pqL.empty())
+				cout<<"-1"<<endl;
+			else
+				cout<<pqL.top()<<endl;
+		}
+		if(num==4)
+		{
+			int p=pqS.top();
+			while(count[p]==0 && !pqS.empty())
+			{
+				pqS.pop();
+				p=pqS.top();
+			}
+			if(pqS.empty())
+				cout<<"-1"<<endl;
+			else
+				cout<<pqS.top()<<endl;
+		}
+	}
+}

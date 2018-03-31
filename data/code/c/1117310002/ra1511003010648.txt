@@ -1,0 +1,55 @@
+#include<stdio.h>
+int main()
+{
+int t,i,a,d,j,ap[1000000],l,r,sum=0,len,num,dig,f=0;
+scanf("%d",&t);
+for(i=0;i<t;i++)
+{	f=0;
+	scanf("%d%d%d%d",&a,&d,&l,&r);
+	ap[0]=a;
+	for(j=1;j<l;j++)
+	{
+		ap[0]=ap[0]+d;
+		}
+	for(j=1;j<=r-l;j++)
+	{
+		ap[j]=ap[j-1]+d;
+		//printf("%d\n",ap[j]);
+		}
+	
+	
+	
+	len=r-l+1;
+	
+	for(j=0;j<len;j++)
+	{
+		//printf("for\n");
+		sum=0;
+		num=ap[j];
+		while(num!=0)
+		{
+			dig=num%10;
+			num=num/10;
+			sum=sum+dig;
+			//printf("sum=%d\n",sum);
+			if(num==0)
+			{
+				if(sum>=10)
+					{
+						num=sum;
+						sum=0;
+						}
+				}
+			}
+		f=f+sum;
+		//printf("f=%d\n",f);
+		}
+	printf("%d\n",f);
+		
+	
+	}
+ 
+ 
+ 
+return 0;
+}

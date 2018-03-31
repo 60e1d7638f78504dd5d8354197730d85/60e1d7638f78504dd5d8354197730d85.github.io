@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main()
+{
+int i,j,tc,s,n,m,k,u,start,end,g,l;
+double sum,t;
+scanf("%d",&tc);
+for(u=1;u<=tc;u++)
+{
+scanf("%d %d %d %d",&s,&n,&m,&k);
+if(n-1<k||k==m)
+{
+printf("0.0000000\n");
+}
+else
+{
+start=(k>(m+n-s-1))?k:m+n-s-1;
+end=(m<n)?m:n;
+end--;
+t=1.0;
+g=(m>n)?m:n;
+l=(n<m)?n:m;
+for(i=1;i<l;i++)
+{
+t=(t*(g-i))/(s-i);
+}
+sum=t;
+for(i=end;i>start;i--)
+{
+t=(t*(s+i+1-m-n)*i)/((m-i)*(n-i));
+sum+=t;
+}
+printf("%0.7lf\n",sum);
+}
+}
+return 0;
+}

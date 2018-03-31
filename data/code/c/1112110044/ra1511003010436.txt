@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+char a[25002],b[25002];
+int calc(char *p, char *q, int lp, int lq)
+{
+	//checks for "q in p"...
+	lp++;
+	if(lp<lq)
+	         return 0;
+	while(lp>=0 && lq>=0)
+	{
+                lp--;
+          while(lp>=0 && p[lp]!=q[lq])
+                             lp--;
+          if(lp>=0)                   
+          lq--;
+          }
+          if(lq== -1)
+                  return 1;
+           else
+               return 0;                                     
+}			
+int main()
+{
+    int t;
+    scanf("%d", &t);
+	while(t--)
+	{
+               scanf("%s %s", a, b);
+		int lp=strlen(a), lq=strlen(b);
+		if(calc(a, b, lp, lq) || calc(b,a,lq,lp))
+		           printf("YES\n");
+		else
+            printf("NO\n");           
+	}	
+	return 0;
+}	

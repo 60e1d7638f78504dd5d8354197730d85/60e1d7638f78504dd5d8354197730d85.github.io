@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <memory.h>
+const int md=1000000007;
+int t,n,m,i,j,k,x,y,d,r,f[33][33],g[33][33];
+long long a[33][33][33];
+int main() {
+  scanf("%d",&t);
+  while (t--) {
+    scanf("%d%d",&n,&m);
+    if (n==1) { printf("%d\n",m); continue; }
+    memset(a,0,sizeof(a));
+    memset(f,0,sizeof(f));
+    r=0;
+    for (i=1; i<=m; i++) {
+      if (i>1) a[1][i][i-1]=1;
+      if (i<m) a[1][i][i+1]=1;
+    }
+    for (k=2; k<=30; k++) for (i=1; i<=m; i++) for (j=1; j<=m; j++) for (d=-1; d<=1; d++) {
+      x=j+d;
+      if (x<1 || x>m) continue;
+      for (y=1; y<=30; y++) a[k][i][y]=(a[k][i][y]+a[k-1][i][j]*a[k-1][x][y])%md;
+    }
+    for (k=30; k>0; k--) if (n>=(1<<k)) {
+      n-=1<<k;
+      for (i=1; i<=m; i++) for (j=1; j<=m; j++) f[i][j]=a[k][i][j];
+      break;
+    }
+    for (; k>0; k--) if (n>=(1<<k)) {
+      n-=1<<k;
+      memset(g,0,sizeof(g));
+      for (i=1; i<=m; i++) for (j=1; j<=m; j++) for (d=-1; d<=1; d++) {
+        x=j+d;
+        if (x<1 || x>m) continue;
+        for (y=1; y<=30; y++) g[i][y]=(g[i][y]+f[i][j]*a[k][x][y])%md;
+      }
+      for (i=1; i<=m; i++) for (j=1; j<=m; j++) f[i][j]=g[i][j];
+    }
+    
+    for (i=1; i<=m; i++) for (j=1; j<=m; j++)
+      if (n==1) r=(r+((j==1 || j==m)?2LL:3LL)*f[i][j])%md; else r=(r+f[i][j])%md;
+    printf("%d\n",r);
+  }
+  return 0;
+} 

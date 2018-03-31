@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+    char str[50],str1[30],str2[30];
+    cin>>str>>str1>>str2;
+    int i,len_str,len_str1,len_str2,pos,j,k,l;
+    len_str=strlen(str);
+    len_str1=strlen(str1);
+    len_str2=strlen(str2);
+    int flag=0;
+    for(j=0;j<len_str;j++){
+      if(str1[0]==str[j]){
+        pos=j;
+        for(k=0,l=j;k<len_str1 && l<len_str;k++,l++)
+          if(str[l]!=str1[k]){
+            flag=0;
+            break;
+          }
+          else{
+          flag++;
+          if(flag==len_str1)
+            break;
+        }
+        if(flag==len_str1)
+          break;
+      }
+    }
+  int d;
+  if(len_str1>len_str2)
+  {
+    d=len_str1-len_str2;
+    for(i=0;i<d;i++)
+      str[i]=str[i+1];
+    str[len_str1-1]='\0';
+  }
+  else if(len_str1<len_str2){
+    d=len_str2-len_str1;
+    for(i=0,j=len_str+d-1;str[i]!='\0';i++,j--){
+      str[j]=str[j-1];}
+    str[len_str+d]='\0';
+  }
+  for(i=pos,j=0;str2[j]!='\0';j++,i++)
+    str[i]=str2[j];
+  cout<<str;
+	return 0;
+}

@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char str[100000];int i;
+    while (scanf("%s", str) != EOF)
+    {
+        int len = strlen(str);
+        int changed = 0;
+        for ( i = 0; i < len; ++i)
+        {
+            if (str[i] != 'a')
+            {
+                changed = 1;
+                --str[i];
+            }
+            else if (changed==1)
+                break;
+        }
+        if (changed==0)        
+            str[len - 1] = 'z';
+        printf("%s\n", str);
+    }
+    return 0;
+}

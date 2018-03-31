@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int n,a[100],i,j,c,c1,s,t;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    scanf("%d",&t);
+    for(j=0;j<t;j++)
+    {
+      scanf("%d",&a[j]);
+    }
+    s=a[0]+a[t-1];
+    
+    for(c=0;c<(t-1);c++)
+    {
+      for(c1=c+1;c1<t;c1++)
+      {
+        if(s>(a[c]+a[c1]))
+          s=a[c]+a[c1];
+      }
+    }
+    printf("%d\n",s);
+  }
+	return 0;
+}

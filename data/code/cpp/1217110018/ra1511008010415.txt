@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+ 
+double u,v,w,U,V,W;
+ 
+double area(double a1, double a2, double a3){
+	double s = (a1+a2+a3)/2.0;
+	double r;
+	r = sqrt(s*(s-a1)*(s-a2)*(s-a3));
+	return(r);
+}
+ 
+void oh(double u,double v,double w,double W,double V,double U){
+	double vol,S;
+	S = 0;
+	vol = sqrt(4*u*u*v*v*w*w - u*u*(v*v+w*w-U*U)*(v*v+w*w-U*U) - v*v*(w*w+u*u-V*V)*(w*w+u*u-V*V) - w*w*(u*u+v*v-W*W)*(u*u+v*v-W*W) + (v*v+w*w-U*U)*(w*w+u*u-V*V)*(u*u+v*v-W*W))/12 ;
+	S += area(W,U,V);
+	S += area(V,u,w);
+	S += area(u,v,W);
+	S += area(U,w,v);
+ 
+	printf("%0.4lf\n", vol*3.0/S);
+ 
+}
+int main()
+{
+	int zx;
+	scanf("%d", &zx);
+	while(zx--){
+		scanf("%lf %lf %lf %lf %lf %lf", &u,&v,&w,&U,&V,&W);
+		oh(u,v,w,U,V,W);
+	}
+ 
+	return 0;
+}

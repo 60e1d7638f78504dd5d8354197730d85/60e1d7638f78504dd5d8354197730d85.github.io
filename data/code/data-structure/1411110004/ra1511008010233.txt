@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// input number of tests
+	int T;
+	cin >> T;
+	// loop over tests
+	for (int t = 0; t < T; ++t) {
+		// input N
+		int N;
+		cin >> N;
+		// init root as zero
+		int root = 0;
+		// loop over vertexes of the tree
+		for (int i = 0; i < N; ++i) {
+			// input id of the i-th vertex
+			// and sum of ids of its children
+			int id, sum_ids;
+			cin >> id >> sum_ids;
+
+			// according to the editorial the root is just
+			// the sum of differences (id - sum_ids)
+			root += id - sum_ids;
+		}
+		// output the result
+		cout << root << endl;
+	}
+	return 0;
+}

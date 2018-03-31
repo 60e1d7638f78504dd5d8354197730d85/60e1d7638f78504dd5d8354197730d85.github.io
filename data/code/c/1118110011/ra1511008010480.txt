@@ -1,0 +1,37 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student {
+  int rollNo;
+  char* name;
+  char* course;
+  float fees;
+}*s1,*s2;
+
+void printDetails(struct Student* s) {
+	printf("Roll no:%d\n", s->rollNo);
+  	printf("Name:%s\n", s->name);
+  	printf("Course:%s\n",s->course);
+  	printf("Fees:%.0f\n", s->fees);
+}
+
+int main()
+{
+  	char str1[10], str2[10];
+  	s1 = (struct Student*)malloc(sizeof(struct Student));
+  	s1->rollNo = 1;
+  	s1->name = "Raj";
+  	s1->course = "PHD";
+  	s1->fees = 14000;
+  	s2 = (struct Student*)malloc(sizeof(struct Student));
+  	scanf("%d", &s2->rollNo);
+  	scanf("%s", str1);
+  	s2->name = str1;
+  	scanf("%s", str2);
+  	s2->course = str2;
+  	scanf("%f", &s2->fees);
+  	printDetails(s1);
+  	printDetails(s2);
+	return 0;
+}

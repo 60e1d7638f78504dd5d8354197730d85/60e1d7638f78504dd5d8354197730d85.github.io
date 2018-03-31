@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Number {
+	int num;
+  	public:
+  		Number(int n): num(n) {}
+  		void convert() {
+          	if(num < 0) {
+            	cout<<"Invalid Input";
+            }
+          	else {
+        		cout<<num<<" in octal = "<<getDecimal(num, 0)<<" in decimal";
+          		//int val = getDecimal();
+            }
+        }
+  		int getDecimal(int n, int p) {
+        	if(n == 0) return 0;
+          	return (getDecimal(n/10, p+1) + (n%10)*pow(8,p));
+        }
+
+};
+
+int main()
+{
+	int n;
+  	cin>>n;
+  	Number num(n);
+  	num.convert();
+	return 0;
+}

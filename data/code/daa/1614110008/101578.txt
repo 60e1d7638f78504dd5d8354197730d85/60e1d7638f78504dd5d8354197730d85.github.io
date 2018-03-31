@@ -1,0 +1,56 @@
+#include <stdio.h>
+long int a[1000001],b[1000001];
+void quick(long int [],long int,long int);
+long int part(long int [],long int,long int);
+int main()
+{
+    long int n,i,sum=0;
+    scanf("%ld",&n);
+    for(i=0;i<n;i++)
+    scanf("%ld",&a[i]);
+    for(i=0;i<n;i++)
+    scanf("%ld",&b[i]);
+    a[n]=1000001;b[n]=1000001;
+    quick(a,0,n-1);
+    quick(b,0,n-1);
+    
+    for(i=0;i<n;i++)
+    sum+=a[i]*b[i];
+   
+    printf("%ld",sum);
+    return 0;
+}
+void quick(long int a[],long int low,long int high)
+{
+    long int pos;
+    if(low<high)
+    {
+    pos=part(a,low,high+1);
+    quick(a,low,pos-1);
+    quick(a,pos+1,high);
+    }
+}
+long int part(long int a[],long int low,long int high)
+{
+    long int i=low,v=a[low],j=high;
+    do
+    {
+        do
+        {
+         i++;   
+        }while(a[i]<v);
+        do
+        {
+            j--;
+        }while(a[j]>v);
+        if(i<j)
+        {
+            a[i]+=a[j];
+            a[j]=a[i]-a[j];
+            a[i]-=a[j];
+        }
+    }while(i<j);
+    a[low]=a[j];
+    a[j]=v;
+    return j;
+}

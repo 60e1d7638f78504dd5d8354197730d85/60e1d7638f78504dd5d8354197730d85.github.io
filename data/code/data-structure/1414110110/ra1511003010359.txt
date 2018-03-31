@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n,arr[20],ar1[10],ar2[10],elementinar1,elementinar2,printarr[20];
+  cin>>n;
+  for(int i=0; i<n; i++)
+    cin>>arr[i];
+  int j=0,k=0;
+  for(int i=0; i<n;)
+  {
+    ar1[j++]=arr[i++];
+    if(i<n)
+     ar2[k++]=arr[i++];
+  }
+  elementinar1=j;
+  elementinar2=k;
+  sort(ar1,ar1+elementinar1,greater<int>());
+  sort(ar2,ar2+elementinar2);
+   int i=0; j=0; k=0;
+  while(true)
+  {
+    printarr[k++]=ar1[i++];
+    printarr[k++]=ar2[j++];
+    if(i==elementinar1 || j==elementinar2)
+      break;    
+  }
+  if(i<elementinar1)
+   printarr[k]=ar1[i];
+  if(j<elementinar2)
+   printarr[k]=ar2[j];
+  
+  for(int i=0; i<(elementinar1+elementinar2); i++)
+    cout<<printarr[i]<<" ";
+  
+	return 0;
+}

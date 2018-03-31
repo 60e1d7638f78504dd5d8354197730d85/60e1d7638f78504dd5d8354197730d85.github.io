@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    node *next;
+}*start,*p1,*p2;
+int main()
+{
+  int n,i,t;
+  cin>>n;
+  p1=new node;
+  cin>>p1->data;
+  p1->next=start;
+  start=p1;
+  for(i=1;i<n;i++)
+  {
+    p1=new node;
+    cin>>p1->data;
+    p2=start;
+    while(p2->next!='\0')
+      p2=p2->next;
+    p2->next=p1;
+    p1->next='\0';
+  }
+  
+  cin>>t;
+  
+  cout<<"Linked List\n";
+  for(i=0,p1=start;i<n-t;i++,p1=p1->next)
+    cout<<"->"<<p1->data;
+  
+	return 0;
+}

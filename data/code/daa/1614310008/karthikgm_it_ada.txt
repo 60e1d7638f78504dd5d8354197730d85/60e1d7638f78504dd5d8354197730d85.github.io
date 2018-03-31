@@ -1,0 +1,110 @@
+#include<iostream>
+#include<cstdio>
+#include<string>
+#include<algorithm>
+using namespace std;
+ 
+#define GI ({int t; scanf("%d", &t); t;})
+#define debug(x) cerr << __LINE__ << ": " << #x << " = " << (x) << "\n"
+#define mpr make_pair
+#define pb push_back
+#define MXSZ 100001
+const int mod = 1000000007;
+ 
+ 
+typedef pair<int,int> pii;
+ 
+void init(){
+ 
+}
+ 
+int main(){
+	int n, K;
+	//freopen("/Users/utkarshshahdeo/Desktop/input/input009.txt","r",stdin);//redirects standard input
+	//freopen("/Users/utkarshshahdeo/Desktop/output/output009.txt","w",stdout);
+	cin >> n >> K;
+	string s;
+	cin >> s;
+ 
+	//cout << s << endl;
+ 
+	int f[26] = {0};
+	int free_char[26] = {0};
+	int cut_pos[MXSZ] = {0};
+	int last_pos[26] = {-1};
+	int prev_pos[MXSZ] = {-1};
+ 
+	for(int i= 0; i < n; i++){
+		int c = s[i]-'a';
+		f[s[i]-'a']++;
+		prev_pos[i] = last_pos[c];
+		last_pos[c] = i;
+	}
+	string res = "";
+ 
+ 
+	for(int i = 0; i < n; i++){
+		int c = s[i] - 'a';
+		//cout << (char)(c+'a') << "XXX\n" ;
+		if(cut_pos[i]){
+			for(int j = 0; j < 26; j++){
+				if(free_char[j]){
+					c = j;
+					free_char[j]--;
+					break;
+				}
+			}
+		}
+		if(K > 0){
+			int c1 , c2;
+			c1 = c2 = 27;
+			int flag = 0;
+			for(int j = 0; j < c; j++){
+				if(free_char[j]){
+					c1 = j;
+					flag = 1;
+					break;
+				}
+			}
+ 
+			for(int j = 0; j < c; j++){
+				if(last_pos[j] > i){
+					c2 = j;
+					flag = 1;
+					break;
+				}
+			}
+			int val1 = 1 - cut_pos[i];
+			int val2 = val1 + 1;
+ 
+			//cout << c1 << " " << c2 << endl;
+ 
+			if(flag){
+				if( (c1 <= c2 && K >= val1) || (c1 != 27 && val2 > K)){
+					//cout << "YYYYY\n";
+					K -= (1-cut_pos[i]);
+					free_char[c1]--;
+					free_char[c]++;
+					c = c1;
+				}
+				else{
+					if(K >= val2){
+						K -= (2-cut_pos[i]);
+						free_char[c]++;
+					cut_pos[last_pos[c2]] = 1;
+					last_pos[c2] = prev_pos[last_pos[c2]];
+					c = c2;
+					}
+ 
+				}
+			}
+ 
+		}
+		res += (char)(c+'a');
+		//cout << K << " " << (char)(c+'a') << endl;
+	}
+ 
+	cout << res << endl;
+ 
+	return 0;
+}

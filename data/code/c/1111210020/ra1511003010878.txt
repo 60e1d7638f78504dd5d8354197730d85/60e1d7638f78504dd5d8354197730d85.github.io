@@ -1,0 +1,28 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+       long long int n,i,j,c,A,B,C,ans=0;
+        scanf("%lld%lld%lld%lld",&n,&A,&B,&C);
+        for(i=0;i<=A;i++)
+        {
+            for(j=0;j<=B;j++)
+            {
+                if(n-i-j<0)
+                break;
+                else if(n-i-j>=0&&n-i-j<=C)
+                ans=ans+n-i-j+1;
+                else
+                ans=ans+C+1;
+            }
+        }
+        printf("%lld\n",ans);
+    }
+ 
+    return 0;
+}
+

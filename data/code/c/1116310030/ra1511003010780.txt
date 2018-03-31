@@ -1,0 +1,33 @@
+#include <stdio.h>
+int tcase,n,m;
+char s[1010];
+int max(int a,int b)
+{
+	return a>b?a:b;
+}
+int min(int a,int b)
+{
+	return a<b?a:b;
+}
+int main()
+{
+	int i,j,l,r,u,d;
+	scanf("%d",&tcase);
+	while(tcase--)
+	{
+		l = u = 9999; r = d = 0;
+		scanf("%d%d",&n,&m);
+		for(i=1;i<=n;i++)
+		{
+			scanf("%s",s+1);
+			for(j=1;j<=m;j++) if(s[j] == '*')
+			{
+				l = min(l,j); u = min(u,i);
+				r = max(r,j); d = max(d,i);
+			}
+		}
+		if(l == 9999) printf("0\n");
+		else printf("%d\n",max((r-l+1)/2+1,(d-u+1)/2+1));
+	}
+	return 0;
+} 

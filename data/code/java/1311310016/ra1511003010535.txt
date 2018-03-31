@@ -1,0 +1,259 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.InputMismatchException;
+import java.util.Set;
+ 
+class TestClass {
+	static InputStream is;
+	static PrintWriter out;
+	static String INPUT = "";
+	
+	static void solve()
+	{
+		int n = ni(), m = ni(), K = ni();
+		a = new int[n][];
+		for(int i = 0;i < n;i++){
+			a[i] = na(m);
+		}
+		
+		go(K, 2*K-1, 2*K-1, K-1, K-1);
+		out.println(ret);
+	}
+ 
+	static int[][] a;
+	static long ret = 1;
+	static long mod = 1000000007;
+	
+	static Set<Long> cache = new HashSet<>();
+	
+	public static void go(long[] b)
+	{
+		int minr = 99, minc = 99;
+		int maxr = -1, maxc = -1;
+		for(int i = 0;i < b.length;i++){
+			long x = b[i];
+			if(x != 0){
+				minr = Math.min(minr, i);
+				maxr = Math.max(maxr, i);
+				minc = Math.min(minc, Long.numberOfTrailingZeros(Long.lowestOneBit(x)));
+				maxc = Math.max(maxc, Long.numberOfTrailingZeros(Long.highestOneBit(x)));
+			}
+		}
+		long h = 0;
+		for(int i = minr;i <= maxr;i++){
+			h = h * 1000000009 + (b[i]>>>minc);
+		}
+		if(!cache.add(h)){
+			return;
+		}
+		
+		for(int i = 0;i+(maxr-minr) < a.length;i++){
+			for(int j = 0;j+(maxc-minc) < a[0].length;j++){
+				long s = 0;
+				for(int k = minr;k <= maxr;k++){
+					for(int l = minc;l <= maxc;l++){
+						if(b[k]<<~l<0){
+							s += a[k-minr+i][l-minc+j];
+						}
+					}
+				}
+				ret *= s;
+				ret %= mod;
+			}
+		}
+	}
+	
+	public static void go(int n, int H, int W, int cr, int cc)
+	{
+		long[] b = new long[H];
+//		b[cr] = 1L<<cc;
+		long[] ved = new long[H];
+		ved[cr] = 1L<<cc;
+		int[] untried = new int[900];
+		untried[0] = cr*W+cc;
+		dfs(n, b, ved, untried, 0, 1, H, W);
+	}
+	
+	public static void dfs(int rem, long[] b, long[] ved, int[] untried, int l, int r, int n, int m)
+	{
+		for(int i = l;i < r;i++){
+			int R = untried[i]/m, C = untried[i]%m;
+			b[R] ^= 1L<<C;
+			if(rem == 1){
+				go(b);
+			}else{
+				int x = 0;
+				int p = r;
+				for(int k = 0;k < 4;k++){
+					int nr = R + dr[k], nc = C + dc[k];
+					if(nr >= 0 && nr < n && nc >= 0 && nc < m && ved[nr]<<63-nc>=0){
+						untried[p++] = nr*m+nc;
+						x |= 1<<k;
+						ved[nr] ^= 1L<<nc;
+					}
+				}
+				dfs(rem-1, b, ved, untried, i+1, p, n, m);
+				for(int k = 0;k < 4;k++){
+					if(x<<31-k<0){
+						int nr = R + dr[k], nc = C + dc[k];
+						ved[nr] ^= 1L<<nc;
+					}
+				}
+			}
+			b[R] ^= 1L<<C;
+		}
+	}
+	
+	static int[] dr = { 1, 0, -1, 0 };
+	static int[] dc = { 0, 1, 0, -1 };
+	
+	public static void main(String[] args) throws Exception
+	{
+//		int n = 100, m = 99999;
+//		Random gen = new Random();
+//		StringBuilder sb = new StringBuilder();
+//		sb.append(n + " ");
+//		sb.append(10 + " ");
+//		sb.append(10 + " ");
+//		for (int i = 0; i < n*10; i++) {
+//			sb.append(gen.nextInt(1000)+1 + " ");
+//		}
+//		INPUT = sb.toString();
+ 
+		
+		long S = System.currentTimeMillis();
+		is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
+		out = new PrintWriter(System.out);
+		
+		solve();
+		out.flush();
+		long G = System.currentTimeMillis();
+		tr(G-S+"ms");
+	}
+	
+	private static boolean eof()
+	{
+		if(lenbuf == -1)return true;
+		int lptr = ptrbuf;
+		while(lptr < lenbuf)if(!isSpaceChar(inbuf[lptr++]))return false;
+		
+		try {
+			is.mark(1000);
+			while(true){
+				int b = is.read();
+				if(b == -1){
+					is.reset();
+					return true;
+				}else if(!isSpaceChar(b)){
+					is.reset();
+					return false;
+				}
+			}
+		} catch (IOException e) {
+			return true;
+		}
+	}
+	
+	private static byte[] inbuf = new byte[1024];
+	static int lenbuf = 0, ptrbuf = 0;
+	
+	private static int readByte()
+	{
+		if(lenbuf == -1)throw new InputMismatchException();
+		if(ptrbuf >= lenbuf){
+			ptrbuf = 0;
+			try { lenbuf = is.read(inbuf); } catch (IOException e) { throw new InputMismatchException(); }
+			if(lenbuf <= 0)return -1;
+		}
+		return inbuf[ptrbuf++];
+	}
+	
+	private static boolean isSpaceChar(int c) { return !(c >= 33 && c <= 126); }
+	private static int skip() { int b; while((b = readByte()) != -1 && isSpaceChar(b)); return b; }
+	
+	private static double nd() { return Double.parseDouble(ns()); }
+	private static char nc() { return (char)skip(); }
+	
+	private static String ns()
+	{
+		int b = skip();
+		StringBuilder sb = new StringBuilder();
+		while(!(isSpaceChar(b))){ // when nextLine, (isSpaceChar(b) && b != ' ')
+			sb.appendCodePoint(b);
+			b = readByte();
+		}
+		return sb.toString();
+	}
+	
+	private static char[] ns(int n)
+	{
+		char[] buf = new char[n];
+		int b = skip(), p = 0;
+		while(p < n && !(isSpaceChar(b))){
+			buf[p++] = (char)b;
+			b = readByte();
+		}
+		return n == p ? buf : Arrays.copyOf(buf, p);
+	}
+	
+	private static char[][] nm(int n, int m)
+	{
+		char[][] map = new char[n][];
+		for(int i = 0;i < n;i++)map[i] = ns(m);
+		return map;
+	}
+	
+	private static int[] na(int n)
+	{
+		int[] a = new int[n];
+		for(int i = 0;i < n;i++)a[i] = ni();
+		return a;
+	}
+	
+	private static int ni()
+	{
+		int num = 0, b;
+		boolean minus = false;
+		while((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
+		if(b == '-'){
+			minus = true;
+			b = readByte();
+		}
+		
+		while(true){
+			if(b >= '0' && b <= '9'){
+				num = num * 10 + (b - '0');
+			}else{
+				return minus ? -num : num;
+			}
+			b = readByte();
+		}
+	}
+	
+	private static long nl()
+	{
+		long num = 0;
+		int b;
+		boolean minus = false;
+		while((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-'));
+		if(b == '-'){
+			minus = true;
+			b = readByte();
+		}
+		
+		while(true){
+			if(b >= '0' && b <= '9'){
+				num = num * 10 + (b - '0');
+			}else{
+				return minus ? -num : num;
+			}
+			b = readByte();
+		}
+	}
+	
+	private static void tr(Object... o) { if(INPUT.length() != 0)System.out.println(Arrays.deepToString(o)); }
+} 

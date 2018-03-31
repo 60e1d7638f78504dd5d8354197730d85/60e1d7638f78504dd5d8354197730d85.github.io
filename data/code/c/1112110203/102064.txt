@@ -1,0 +1,46 @@
+#include <stdio.h>
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	XY:
+	while(t>0)
+	{
+		char s[50];
+		int i,j,k,x[50];
+		scanf("%s",s);
+		for(i=0;s[i]!='\0';i++);
+		int sl=i;
+		for(i=0;s[i]!='\0';i++)
+		{	int c=0;
+			for(j=i+1;s[j]!='\0';j++)
+			{
+				if(s[i]==s[j])
+				{
+					c++;
+					for(k=j;s[k]!='\0';k++)
+					s[k]=s[k+1];
+					j--;
+				}
+			}
+			x[i]=c+1;
+		}
+		int l=i;
+		 
+		for(i=0;i<l;i++)
+		{
+			if(x[i]==(sl-x[i]))
+			{
+				printf("YES\n");
+				t--;
+				goto XY;
+			}
+			
+			
+		}
+		printf("NO\n");
+		t--;
+	}
+	return 0;
+} 

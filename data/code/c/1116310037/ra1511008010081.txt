@@ -1,0 +1,175 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+struct  node
+{
+	int data,road;
+	struct node *next;
+};
+ 
+struct child
+{
+	int vis;
+	struct node *last;
+	struct node *next;
+};
+struct par
+{
+	int vis;
+	struct node *last;
+	struct node *next;
+};
+ 
+int *v,e,n,*left,*right;
+struct child *c;
+struct par *p;
+ 
+void fsd(int ind)
+{
+	int i,f=0;
+	/*for(i=1;i<=n;i++)
+	{
+		if(p[ind].vis==0 || c[ind].vis==0)
+		  f=1;
+	}
+	for(i=0;i<e;i++)
+	{
+		if(v[i]==0)
+		  f=1;
+	}
+	if(f==0)
+	  return; */
+	//p[ind].vis=c[ind].vis=1;
+	struct node *temp=(struct node*)malloc(sizeof(struct node));
+	temp=c[ind].next;
+	if(c[ind].vis==0)
+	{
+	  c[ind].vis=1;
+	while(temp!=NULL)
+	{
+		
+		if(v[temp->road]==0)
+		{
+			v[temp->road]=1;
+			fsd(temp->data);
+		}
+		temp=temp->next;
+	}
+	}
+	struct node *temp1=(struct node*)malloc(sizeof(struct node));
+	temp1=p[ind].next;
+	if(p[ind].vis==0)
+	{
+	 p[ind].vis=1;
+	while(temp1!=NULL)
+	{
+		if(v[temp1->road]==0)
+		{
+			v[temp1->road]=1;
+			int tp=left[temp1->road];
+			left[temp1->road]=right[temp1->road];
+			right[temp1->road]=tp;
+			fsd(temp1->data);
+		}
+		temp1=temp1->next;
+	}
+	}
+}
+			
+	
+ 
+int main()
+{
+	int i,j;
+	scanf("%d %d",&n,&e);
+	v=(int*)malloc(e*sizeof(int));
+	left=(int*)malloc(e*sizeof(int));
+	right=(int*)malloc(e*sizeof(int));
+	int *val=(int*)malloc((n+1)*sizeof(int));
+	c=(struct child*)malloc((n+1)*sizeof(struct child));
+	p=(struct par*)malloc((n+1)*sizeof(struct par));
+	for(i=1;i<=n;i++)
+	{
+		c[i].vis=p[i].vis=0;
+		p[i].last=c[i].last=NULL;
+		c[i].next=p[i].next=NULL;
+		val[i]=left[i]=right[i]=0;
+	}
+	for(i=0;i<e;i++)
+	{
+		v[i]=0;
+		int a,b;
+		scanf("%d %d",&a,&b);
+		left[i]=a;
+		right[i]=b;
+		val[a]++;
+		val[b]++;
+		if(c[a].last==NULL)
+		{
+			c[a].next=(struct node*)malloc(sizeof(struct node));
+			(c[a].next)->data=b;
+			(c[a].next)->road=i;
+			(c[a].next)->next=NULL;
+			c[a].last=c[a].next;
+		}
+		else
+		{
+			(c[a].last)->next=(struct node*)malloc(sizeof(struct node));
+			((c[a].last)->next)->data=b;
+			((c[a].last)->next)->road=i;
+			(c[a].last)->next->next=NULL;
+			c[a].last=(c[a].last)->next;
+		}
+		if(p[b].last==NULL)
+		{
+			p[b].next=(struct node*)malloc(sizeof(struct node));
+			(p[b].next)->data=a;
+			(p[b].next)->road=i;
+			(p[b].next)->next=NULL;
+			p[b].last=p[b].next;
+		}
+		else
+		{
+			(p[b].last)->next=(struct node*)malloc(sizeof(struct node));
+			((p[b].last)->next)->data=a;
+			((p[b].last)->next)->road=i;
+			(p[b].last)->next->next=NULL;
+			p[b].last=(p[b].last)->next;
+		}
+	}
+	int f=0;
+	for(i=1;i<=n;i++)
+	{
+		if(val[i]%2==1)
+		{
+			f=1;
+		//	printf("ERR1\n");
+			break;
+		}
+	}
+	if(e<n || e>n*(n-1))
+	{
+	 // printf("ERR2\n");
+	  f=1; 
+	}
+	  fsd(1);
+	for(i=1;i<=n;i++)
+	{
+		if(p[i].vis==0 && c[i].vis==0)
+		{ // printf("ERR3\n");
+			f=1;
+		  break;
+		}
+	}
+	if(f==1)
+	  printf("NO\n");
+	else
+	{
+		printf("YES\n");
+		for(i=0;i<e;i++)
+		{
+			printf("%d %d\n",left[i],right[i]);
+		}
+	}
+	return 0;
+}  

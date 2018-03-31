@@ -1,0 +1,28 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass
+{
+	public static void main(String[] args)
+	{
+		Scanner scan=new Scanner(System.in);
+		int testCases=scan.nextInt();
+		for(int i=0;i<testCases;i++)
+		{
+			ArrayList<Integer> numberList=new ArrayList<>();
+			int numberCases=scan.nextInt();
+			for(int j=0;j<numberCases;j++)
+			{
+				int k=scan.nextInt();
+				numberList.add(k);
+			}
+			Collections.sort(numberList);
+			int med=(numberList.size()-1)/2;
+			if(numberList.size()%2==0)
+				System.out.println((numberList.get(med)+numberList.get(med+1))/2);
+			else
+				System.out.println(numberList.get(med));
+		}
+}
+}//End	

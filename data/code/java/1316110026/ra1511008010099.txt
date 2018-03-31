@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+
+		Complex c1 = new Complex((double) a, (double) b);
+		Complex c2 = new Complex((double) x, (double) y);
+		
+		if(c1.equals(c2)){
+			System.out.println("Equal");
+		}
+		else{
+			System.out.println("Not Equal");
+		}
+        }
+}
+
+class Complex {
+
+	double re, im;
+
+	public Complex(double re, double im) {
+		this.re = re;
+		this.im = im;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(im);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(re);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Complex other = (Complex) obj;
+		if (Double.doubleToLongBits(im) != Double.doubleToLongBits(other.im))
+			return false;
+		if (Double.doubleToLongBits(re) != Double.doubleToLongBits(other.re))
+			return false;
+		return true;
+	}
+}

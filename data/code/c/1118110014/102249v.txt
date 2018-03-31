@@ -1,0 +1,45 @@
+#include <stdio.h>
+struct fraction{
+  int n,d,n1,d1;
+};
+int compare(int,int);
+
+int main()
+{
+   struct fraction f; 
+    int res1=0,res=0,ret =0;
+    scanf("%d %d\n",&f.n,&f.d);
+    scanf("%d %d",&f.n1,&f.d1);
+    res= f.n/f.d;
+    res1=f.n1/f.d1;
+    ret = compare(res,res1);
+    if(ret == 0)
+    {
+      printf("%d/%d is equal to %d/%d",f.n,f.d,f.n1,f.d1);
+    }
+    else if( ret == 1)
+    {
+     printf("%d/%d is greater than %d/%d",f.n,f.d,f.n1,f.d1);
+    }
+    else if (ret == -1)
+    {
+      printf("%d/%d is smaller than %d/%d",f.n,f.d,f.n1,f.d1);
+    }
+  return 0;
+}
+int compare(int res,int res1)
+{
+  struct fraction f;
+    if(res == res1)
+    {
+      return 0;
+    }else if(res > res1)
+    {
+      return 1;
+    }
+    else {
+      
+      return -1;
+    }
+
+}

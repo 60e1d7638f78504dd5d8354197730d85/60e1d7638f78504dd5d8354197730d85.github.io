@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int checkreg(char *str, char *chkstr);
+int generatesubstr(char *str, char *chkstr, long long int k);
+ 
+int main(){
+ 	int t, i;
+    char str[100002], chkstr[100002];
+    long long int k;
+    
+	scanf("%d", &t);
+    
+	for(i=0;i<t;i++){
+		
+		scanf("%s", str);
+		scanf("%lld", &k);
+		
+		if(strlen(str)&1){//odd length
+		    if(k==1)
+    		    printf("%s\n",str);
+            else 
+                printf("-1\n");
+		}
+        else{//even length
+            if(!checkreg(str, chkstr)){
+                if(k==1)
+        		    printf("%s\n",str);
+                else 
+                    printf("-1\n");
+            }
+            else{
+                if(generatesubstr(str, chkstr, k))
+        		    printf("%s\n",chkstr);
+                else 
+                    printf("-1\n");
+            }
+        }
+        		
+	}
+ 
+ return 0;
+}
+ 
+int checkreg(char *str, char *chkstr){
+    
+    int i, j=0;
+    
+   /* memset(chkstr, '\0', 100002);
+    for(i=0;i<strlen(str);i++){
+        if(str[i]=='(')
+            chkstr[j++]=str[i];
+        else{  
+            j--;
+            if(j<0)
+                return 0;
+        }
+    }
+    if(!j)
+        return 1;
+    else
+        return 0;
+    */    
+    
+    for(i=0;i<strlen(str);i++){
+        if(str[i]==')')
+            j--;
+        else
+            j++;
+        if(j<0)
+            break;
+    }
+    if(!j)
+        return 1;
+    else
+        return 0;
+    
+}
+ 
+int generatesubstr(char *str, char *chkstr, long long int k){
+ 
+    int i=0, j;
+ 
+    memset(chkstr, '\0', 100002);
+ 
+    for(j=0;j<strlen(str);j++){
+        if(str[j]==')' && (j==strlen(str)-1 || str[j]!=str[j+1])){
+            i++;
+            if(i==k)
+                break;
+        }
+    }
+    if(i!=k){
+        for(j=strlen(str)-1;j>=0;j--){
+            if(str[j]=='(' && (j==0 || str[j]!=str[j-1])){
+                i++;
+                if(i==k)
+                    break;
+            }
+        }
+    }
+    if(i==k){
+        strncpy(chkstr, str, j);
+        strcpy(chkstr+j, str+(j+1));
+        return 1;        
+    }
+    else
+        return 0;
+} 

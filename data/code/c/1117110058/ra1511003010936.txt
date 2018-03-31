@@ -1,0 +1,40 @@
+#include <stdio.h>
+void sort(int n,int a[]){
+  int m,l,k,temp;
+  for(m=0;m<n;m++)
+  {l=m;
+   for(k=m;k<n;k++){
+     if(a[k]<a[l])
+       l=k;}
+   temp=a[l];
+   a[l]=a[m];
+   a[m]=temp;}}
+void sol(int n,int a[]){
+  int j,f1=0,p,f2=0,c;
+  for(j=n-1;j>=0;j--){
+    if(a[j]==a[j-1])
+    { f1=a[j];
+     p=j;
+     break;}}
+  for(j=p-2;j>=0;j--){
+    if(a[j]==a[j-1]){
+      f2=a[j];
+      break;}}
+  c=f1*f2;
+  if(c!=0)
+    printf("%d\n",c);
+  else
+    printf("-1\n");}
+  
+int main()
+{ int t,i,j,n,a[1000];
+ scanf("%d",&t);
+ for(i=0;i<t;i++){
+   scanf("%d",&n);
+   for(j=0;j<n;j++)
+     scanf("%d",&a[j]);
+   sort(n,a);
+   sol(n,a);}
+
+	return 0;
+}

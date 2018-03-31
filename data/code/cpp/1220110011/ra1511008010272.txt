@@ -1,0 +1,50 @@
+#include <iostream>
+#include <exception>
+#include <cstdlib>
+using namespace std;
+class dividebyzero:public exception {
+  public:
+  const char* what() const throw() {
+   return "Array Index out of Bound Exception";
+  }
+};
+class arrayindexoutofbounds:public exception {
+  public:
+  const char* what() const throw() {
+    return "Divide by zero exception";
+  }
+};
+int main()
+{
+	int n;
+  	cin>>n;
+  	int a[n];
+  	for(int i=0;i<n;i++) {
+      cin>>a[i];
+    }
+  char c;
+  try {
+    cin>>c;
+    if((int)c <=48) {
+      arrayindexoutofbounds a;
+      throw a;
+    }
+  } catch(exception &e) {
+    cout<<e.what();
+    exit(0);
+  }
+    int index = (int)c-48;
+    int x;
+  //cin>>index>>x;
+  cin>>x;
+  try {
+    if(x==0) {
+      dividebyzero d;
+      throw d;
+    }
+    cout<<a[index]/x;
+	return 0;
+  } catch(exception &e) {
+    cout<<e.what();
+  }
+}

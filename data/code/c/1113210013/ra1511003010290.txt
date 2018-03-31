@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdint.h>
+#include <math.h>
+ 
+inline int getInt()
+{
+	char c;
+	int val = 0; 
+	while (!isdigit(c = getchar_unlocked()));
+	do {
+		val = val*10 + (c - '0');
+	} while (isdigit(c = getchar_unlocked()));
+	return val;
+}
+ 
+int getInt();
+ 
+int main()
+{
+	int t = getInt();
+	int right=0;
+	while (t--) {
+		int a1 = getInt();
+		int a2 = getInt();
+ 
+		int b1 = getInt();
+		int b2 = getInt();
+ 
+		int c1 = getInt();
+		int c2 = getInt();
+ 
+		double ab = pow(a1 - b1, 2) + pow(a2 - b2, 2);
+		double ac = pow(a1 - c1, 2) + pow(a2 - c2, 2);
+		double bc = pow(b1 - c1, 2) + pow(b2 - c2, 2);
+ 
+		if (ab == (ac+bc) || (ac == (ab+bc)) || (bc == (ab+ac)))
+			right++;
+	}
+	printf("%d\n", right);
+ 
+ 
+	return 0;
+}

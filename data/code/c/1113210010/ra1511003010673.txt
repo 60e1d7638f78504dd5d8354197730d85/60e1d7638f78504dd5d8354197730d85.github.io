@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main()
+{
+	int j,i,t,n,m,s,swc;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d %d %d",&n,&m,&s);
+		int psarr[m],queue1[n+1],queue2[n+1];
+		for(i=0;i<m;i++)
+			scanf("%d",&psarr[i]);
+		for(i=1;i<=n;i++)
+		{
+			queue1[i]=0;
+			queue2[i]=0;
+		}
+		queue1[s]++;
+		swc=0;
+		for(i=0;i<m;i++)
+		{
+			if(swc==0)
+			{
+				// printf("queue1\n");
+				// for(j=1;j<=n;j++)
+				// 	printf("%d ",queue1[j]);
+				// printf("\n");
+				for(j=1;j<=n;j++)
+				{
+					// printf("%d ",queue1[j]);
+					if(queue1[j])
+					{
+						if(j+psarr[i]<=n)
+						{
+							queue2[j+psarr[i]]=(queue2[j+psarr[i]]+queue1[j])%1000000007;
+						}
+						if(j - psarr[i]>0)
+						{
+							queue2[j - psarr[i]]=(queue2[j - psarr[i]]+queue1[j])%1000000007;
+						}
+						queue1[j]=0;
+					}
+				}
+				// printf("\nqueue2\n");
+				// for(j=1;j<=n;j++)
+				// 	printf("%d ",queue2[j]);
+				swc=1-swc;
+			}
+			else
+			{
+				// printf("queue2\n");
+				// for(j=1;j<=n;j++)
+				// 	printf("%d ",queue2[j]);
+				// printf("\n");
+				for(j=1;j<=n;j++)
+				{
+					// printf("%d ",queue2[j]);
+					if(queue2[j])
+					{
+						if(j+psarr[i]<=n)
+						{
+							queue1[j+psarr[i]]=(queue1[j+psarr[i]]+queue2[j])%1000000007;
+						}
+						if(j - psarr[i]>0)
+						{
+							queue1[j - psarr[i]]=(queue1[j - psarr[i]]+queue2[j])%1000000007;
+						}
+						queue2[j]=0;
+					}
+				}
+				// printf("\nqueue1\n");
+				// for(j=1;j<=n;j++)
+				// 	printf("%d ",queue1[j]);
+				// printf("\n");
+				swc=1-swc;
+			}
+		}
+		if(m%2==0)
+		{
+			for(j=1;j<=n;j++)
+				printf("%d ",queue1[j]);
+			printf("\n");
+		}
+		else
+		{
+			for(j=1;j<=n;j++)
+				printf("%d ",queue2[j]);
+			printf("\n");
+		}
+	}
+	return 0;
+}

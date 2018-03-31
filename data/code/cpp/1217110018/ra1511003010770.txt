@@ -1,0 +1,46 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+double z(double a)
+{
+	return a*a;
+}
+double ar(double a,double b,double c)
+{
+  double s=(a+b+c)/2;
+	return sqrt(s*(s-a)*(s-b)*(s-c));
+}
+int main()
+{
+int t;
+  double a[6],u,U,v,V,w,W;
+  cin>>t;
+  while(t--)
+  {
+  	for(int i=0;i<6;i++)
+    {cin>>a[i];}
+    double S=0;
+    u=a[2];
+      v=a[4];
+      w=a[5];
+      U=a[3];
+      V=a[1];
+      W=a[0];
+    S+=ar(u,V,w);
+    S+=ar(W,u,v);
+    S+=ar(W,V,U);
+    S+=ar(U,v,w);
+    double vol=sqrt(
+    (4*z(u)*z(v)*z(w)
+      -z(u)*z(z(v)+z(w)-z(U))
+      -z(v)*z(z(u)+z(w)-z(V))
+      -z(w)*z(z(u)+z(v)-z(W))
+      +(z(u)+z(v)-z(W))
+      *(z(v)+z(w)-z(U))
+      *(z(u)+z(w)-z(V))
+      )
+    )/12;
+    printf("%.4lf\n",vol*3/S);
+  }
+	return 0;
+}

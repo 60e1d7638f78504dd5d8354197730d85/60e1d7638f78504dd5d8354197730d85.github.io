@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include<string.h>
+
+int tweet[50]={0};
+
+int func(int num,int n)
+{
+  if(tweet[num-1]==0)
+  {
+    tweet[num-1] = 1;
+  }
+  else
+  {
+    tweet[num-1] = 0;
+  }
+  int i,counter=0;
+  for(i=0;i<n;i++)
+  {
+    if(tweet[i]==1)
+    {
+      counter++;
+    }
+  } 
+  return counter;
+}
+
+
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int k,i,j,num;
+  scanf("%d",&k);
+  char click[20];
+  for(i=0;i<k;i++)
+ {
+    scanf("%s",click);
+    scanf("%d",&num);
+    
+    if(strcmp(click,"CLOSEALL")==0)
+    {
+      printf("%d\n",0);
+      for(j=0;j<n;j++)
+      {
+        tweet[j]=0;
+      }
+    }
+    else
+    {
+    printf("%d\n",func(num,n));
+    }     
+  }
+	return 0;
+}

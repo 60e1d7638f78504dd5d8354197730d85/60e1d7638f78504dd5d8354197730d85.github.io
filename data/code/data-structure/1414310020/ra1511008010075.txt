@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+ 
+int partition(int arr[], int p, int r)
+{
+	int key, i, temp, j;
+	key=arr[r];
+	i=p-1;
+	for(j=p;j<=r-1;j++)
+	{
+		if(arr[j]<=key)
+		{
+			i=i+1;
+			temp=arr[j];
+			arr[j]=arr[i];
+			arr[i]=temp;
+		}
+	}
+	temp=arr[i+1];
+	arr[i+1]=arr[r];
+	arr[r]=temp;
+	return i+1;
+}
+ 
+void quick(int arr[], int p, int r)
+{
+	int q;
+	if(p<r)
+	{
+		q=partition(arr, p, r);
+		quick(arr, p, q-1);
+		quick(arr, q+1, r);
+	}
+}
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string str;
+        int a[10000], i, n, j=0;
+        cin>>str;
+        n=str.length();
+        for(i=0;i<n;i++)
+        {
+            a[i]=(int)(str[i]);
+        }
+        quick(a, 0, n-1);
+        for(i=0;i<n/2;i++)
+        {
+            str[i]=(char)a[j];
+            str[n-i-1]=(char)a[j+1];
+            j+=2;
+        }
+        str[(n/2)]=(char)a[n-1];
+        cout<<str;
+        cout<<endl;
+    }
+}

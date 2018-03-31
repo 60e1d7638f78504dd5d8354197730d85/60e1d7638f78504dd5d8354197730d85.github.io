@@ -1,0 +1,68 @@
+#include<stdio.h>
+ 
+struct book
+{
+    int ex;
+    int books;
+    char name[16];
+};
+typedef struct book bk;
+bk s[1000001];
+int scan()
+{
+int flag=0,t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9'){
+if(c=='-')
+flag=1;
+c=getchar_unlocked();
+}
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+if(flag)
+t*=-1;
+return(t);
+}
+int main()
+{
+    int t,top=0,num;
+    s[top].ex=1000000+1;
+    top++;
+    t=scan();
+ 
+    while(t--)
+    {
+        num=scan();
+       
+        if(num>0)
+        {
+            if(num>s[top-1].ex)
+            {
+                 s[top-1].books++;
+ 
+            }
+            else
+            {
+                s[top].ex=num;
+                scanf("%s",s[top].name);
+ 
+                s[top].books=0;
+ 
+                top++;
+ 
+            }
+            }
+         else if(num==-1)
+         {
+             top--;
+ 
+             printf("%d %s\n",s[top].books,s[top].name);
+         }
+        }
+    return 0;
+    }
+  

@@ -1,0 +1,95 @@
+#include<bits/stdc++.h>
+ using namespace std;
+ int dp[55][1<<16];
+ int arr[55];
+ vector<int> v;
+ int pr[55];
+  int n;
+   int sz;
+  int check(int mask,int num)
+   {
+        int reply=0,f=0;
+      for(int i=0;i<sz;i++)
+       {
+          int kk=v[i];
+         if((mask & (1<<i)) && num%kk==0)
+          {
+            f=1;
+            break;
+    }
+    else if(num%kk==0)
+     {
+      reply=   reply | (1<<i);
+     }
+    }
+    if(f==1) return -1;
+    else return reply;
+   }
+ int primes()
+  {
+     pr[1]=0;
+   for(int i=2;i<=55;i++)
+      {
+      if(!pr[i])
+      for(int j=2;j*i<=50;j++)
+       {
+         pr[j*i]=1;
+    }
+    }
+    int j=0;
+    for(int i=2;i<=50;i++)
+     {
+        if(!pr[i])
+        {
+          v.push_back(i);
+           }
+  }
+   sz=v.size();
+  }
+  
+  int solve(int mask,int pos)
+   {
+     if(pos>=n) return 0;
+     if(dp[pos][mask]!=-1) return dp[pos][mask];
+     else
+        {
+          int ret=0;
+          
+     int num=arr[pos];
+     int reply=check(mask,num);
+     if(reply!=-1)
+      {
+       int nm=mask | reply ;
+       ret=max(ret,solve(nm ,pos+1)+1) ;
+      }
+      ret=max(ret,solve(mask,pos+1));
+     dp[pos][mask]=ret;
+     return ret;
+  }
+   }
+ int main()
+  {
+         primes();
+         int t;
+         cin>>t;
+        while(t--)
+         {
+        memset(dp,-1,sizeof dp);
+       cin>>n;
+       int ans=0;
+       int j=0;
+       for(int i=0;i<n;i++)
+        {
+         int a;
+          scanf("%d",&a);
+          if(a==1) ans++;
+          else
+         arr[j++]=a;
+   }
+     n=j;
+    ans+=solve(0,0);
+   cout<<ans<<endl;
+   }
+   
+  }
+

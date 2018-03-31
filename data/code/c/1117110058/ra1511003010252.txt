@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main()
+{
+   int a[1000],i,j,k,N,T,rect,b,c[2],d=0;
+scanf("%d\n",&T);
+   for(i=0;i<T;i++)
+   {  /*Entering*/
+       d=0;c[0]=0;c[1]=0;
+     scanf("%d\n",&N);
+      for(j=0;j<N;j++)
+      {
+ 
+          scanf("%d",&a[j]);
+      }
+      /*Bubble sort*/
+      for(j=0;j<N;j++)
+      {
+          for(k=0;k<j;k++)
+          {
+              if(a[k]<a[j])
+              {
+                  b=a[k];a[k]=a[j];a[j]=b;
+              }
+ 
+          }
+      }
+ 
+ 
+        for(j=0;j<N-1&&d<2;j++)
+        {
+ 
+            if(a[j]==a[j+1])
+            {
+                c[d]=a[j];j++;d++;
+            }
+ 
+        }
+ 
+        if(c[1]==0)
+        {
+            printf("-1\n");
+        }
+        else
+        {
+            rect = c[0] * c[1];printf("%d\n",rect);
+        }
+ 
+ 
+   }
+  return 0;
+}
+ 

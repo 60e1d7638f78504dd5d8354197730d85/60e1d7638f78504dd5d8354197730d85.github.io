@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int arm(int num) {
+	int sum = 0;
+  	while(num) {
+    	int rem = num%10;
+      	sum += pow(rem, 3);
+      	num /= 10;
+    }
+  	return sum;
+}
+
+class Number {
+	int num;
+  	public:
+  		Number(int n): num(n) {}
+  		string isArm();
+};
+
+string Number :: isArm() {
+  	if(num < 0) return "Invalid Input";
+  	int n = num;
+	int sum = 0;
+  	while(n) {
+    	int rem = n%10;
+      	sum += pow(rem, 3);
+      	n /= 10;
+    }
+  	if(sum == num) return (to_string(num) + " is an Armstrong number");
+  	return (to_string(num) + " is not an Armstrong number");
+}
+int main()
+{
+	int num;
+  	cin>>num;
+  	Number num1(num);
+  	cout<<num1.isArm();
+	return 0;
+}

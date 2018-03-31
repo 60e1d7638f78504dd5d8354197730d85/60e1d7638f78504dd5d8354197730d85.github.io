@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,k,a[100],i,j,r,m,s,temp;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d%d",&n,&k);
+    for(j=0;j<n;j++)
+      scanf("%d",&a[j]);
+    for(r=0;r<k;r++)
+    {
+      temp=a[n-1];
+      for(s=n-2;s>=0;s--)
+        a[s+1]=a[s];
+      a[0]=temp;
+    }
+    for(m=0;m<n;m++)
+      printf("%d\n",a[m]);
+  }
+ 
+	return 0;
+}

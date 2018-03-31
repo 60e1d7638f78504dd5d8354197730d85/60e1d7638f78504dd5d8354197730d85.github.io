@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+
+class EvenOdd {
+  Scanner sc=new Scanner(System.in);
+  int[] arr;
+  int[] even;
+  int[] odd;
+  int n;
+  int e;
+  int o;
+ public void getInput(){
+ n=sc.nextInt();
+   arr=new int[n];
+ 
+   for(int i=0;i<n;i++){
+   arr[i]=sc.nextInt();
+   }
+ }
+  public void findOddEven(){
+    o=0;
+   e=0;
+    odd=new int[10];
+    even=new int[10];
+    for(int i=0;i<n;i++){
+    if (arr[i]%2==0)
+   {
+     even[e++]=arr[i];
+   }
+     else
+     {
+       odd[o++]=arr[i];
+     }
+    }
+    System.out.print("Odd :");
+    for(int i=0;i<o;i++)
+      System.out.print(odd[i]+" ");
+    
+    System.out.print("\nEven :");
+    for(int i=0;i<e;i++)
+      System.out.print(even[i]+" ");
+  }
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		EvenOdd obj=new EvenOdd();
+       obj.getInput();
+       obj.findOddEven();
+	}
+}

@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <string.h>
+int BinToDec(int bin)
+{
+int rem,dec=0,base=1;
+int num;
+num=bin;
+while(num>0)
+   {
+  rem = num % 10;
+  dec = dec + rem * base;
+  num = num / 10 ;
+  base = base * 2;
+  }
+return dec;
+}
+int OctToDec(int oct)
+{
+int dec=0,base=1;
+int t;
+t=oct;
+while(t>0)
+{
+dec+=(t%10)*base;
+t/=10;
+base*=8;
+}
+return dec;
+}
+int HexToDec(char* hex)
+{
+int dec=0,base=1,i,d;
+char c;
+i=strlen(hex)-1;
+while(i>=0)
+{
+c=*(hex+i);
+if(c>='A'&&c<='F')
+  d=10+c-'A';
+else if(c>='a'&&c<='f')
+  d=10+c-'a';
+else
+  d=c-'0';
+dec+=d*base;
+base*=16;
+i--;
+}
+return dec;
+}
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  if(n==2||n==8)
+  {
+    int a;
+    scanf("%d",&a);
+    if(n==2)
+    {
+      int d=BinToDec(a);
+      printf("%d",d);
+    }
+    else
+    {
+      int d1=OctToDec(a);
+      printf("%d",d1);
+    }
+  }
+  else
+  {
+    char b[10];
+    scanf("%s",b);
+    int d3=HexToDec(b);
+    printf("%d",d3);
+  }
+    
+
+	return 0;
+}

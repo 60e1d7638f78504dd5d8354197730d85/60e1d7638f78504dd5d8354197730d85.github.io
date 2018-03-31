@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+int main(void) {
+	int T, K, count, i, expcount, ans = 1;
+	scanf("%d", &T);
+ 
+	while (T--) {
+		scanf("%d", &K);
+		expcount = 1;
+ 
+		for (i=1; i<=K; i++) {
+			scanf("%d",&count);
+			expcount -= count;
+			expcount *= 2;
+			if(expcount < 0 && i != K)
+				ans = 0;
+		}
+ 
+		if (expcount == 0 && ans == 1)
+			printf("Yes\n");
+		else
+			printf("No\n");
+	}
+	return 0;
+}

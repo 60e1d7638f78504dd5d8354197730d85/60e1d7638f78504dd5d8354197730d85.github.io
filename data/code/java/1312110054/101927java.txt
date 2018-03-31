@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		String s, temp;
+        int value;
+       int i,j,k,c=0,w;
+       char m; 
+        Scanner sc = new Scanner(System.in);
+       
+        s = sc.nextLine();
+       char[] z=new char[s.length()];
+        for(w=0;w<s.length();w++)
+        z[w]=s.charAt(w);
+           Arrays.sort(z);
+        for(i=0;i<w;i++)
+        {
+            char ch=z[i];
+            for(j=i+1;j<w;j++)
+            {
+                if(z[j]==ch)
+                {
+                    for(k=j;k<(w-1);k++)
+                    z[k]=z[k+1];
+                    w--;
+                    j=i;
+                }
+            }
+        }
+
+
+     // Arrays.sort(z);
+        int[] t=new int[w];
+
+
+        for(i=0;i<w;i++)
+        {
+            for(j=0,c=0;j<s.length();j++)
+            {
+                if(z[i]==s.charAt(j))
+                c++;
+            }
+            t[i]=c ;
+            System.out.println(z[i]+"="+c);
+        } 
+	}
+}

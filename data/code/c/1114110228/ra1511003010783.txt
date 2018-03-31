@@ -1,0 +1,53 @@
+
+
+#include <stdio.h> 
+#include<string.h>
+#define MAX_LIMIT 100 
+int max(int num1, int num2)
+{
+    return (num1 > num2 ) ? num1 : num2;
+}
+
+/**
+ * Find minimum between two numbers.
+ */
+int min(int num1, int num2) 
+{
+    return (num1 > num2 ) ? num2 : num1;
+}
+int main()
+{
+	char str[MAX_LIMIT];
+	int i,j,n,m,l,r,ans;	scanf("%d%d",&n,&m);
+	l=0,r=n+1,ans=0;
+	char huiche,dir;	scanf("%c",&huiche);
+	for(i=0;i<m;i++)
+	{
+		fgets(str, MAX_LIMIT, stdin);
+		int len=strlen(str)-1,num=0,tlen;
+		dir=str[7],tlen=len;
+		//cout<<dir<<endl;
+		while(str[tlen]!=' ')tlen--;
+		for(j=1;j+tlen<=strlen(str)-1;tlen++)
+			num= num*10 + str[tlen+j]-'0';
+		if(dir=='l')
+		{
+			r=min(r,num);
+			if(num<l || num==1) ans=-1;
+		}
+		else if(dir=='r')
+		{
+			l=max(l,num);
+			if(num>r || num==n)	ans=-1;
+		}
+		if(r<l || ans==-1)break;
+	}
+	
+	if(ans==-1 || r-l==1)	printf("-1");
+	else
+	{
+		ans=r-l-1;
+		printf("%d",ans);
+	}
+	return 0;
+}

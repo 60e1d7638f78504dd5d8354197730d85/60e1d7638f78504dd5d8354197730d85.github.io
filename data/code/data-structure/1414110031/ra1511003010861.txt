@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+bool areEqual(int arr1[], int arr2[], int n, int m)
+{
+    if (n != m)
+        return false;
+ 
+    int i,j,temp1,temp2;
+  for(i=0;i<n-1;i++)
+  {
+    for(j=0;j<n-1-i;j++)
+    {
+      if(arr1[j]>arr1[j+1])
+      {
+        temp1=arr1[j];
+        arr1[j]=arr1[j+1];
+        arr1[j+1]=temp1;
+      }
+      if(arr2[j]>arr2[j+1])
+      {
+        temp2=arr2[j];
+        arr2[j]=arr2[j+1];
+        arr2[j+1]=temp2;
+      }
+    }
+  }
+ 
+    for (int i=0; i<n; i++)
+         if (arr1[i] != arr2[i])
+            return false;
+ 
+    return true;
+}
+int main()
+{
+  
+    int arr1[100],t,i,j,k;
+    int arr2[100],n,m;
+  cin>>t;
+  for(i=0;i<t;i++)
+  {
+    cin>>n;
+    for(j=0;j<n;j++)
+    {
+      cin>>arr1[j];
+    }
+    for(k=0;k<n;k++)
+    {
+      cin>>arr2[k];
+    }
+ 
+    if (areEqual(arr1, arr2, n, n))
+        cout << "1"<<endl;
+    else
+        cout << "0"<<endl;
+  }
+
+	return 0;
+}

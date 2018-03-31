@@ -1,0 +1,32 @@
+#include <stdio.h>
+int calcgcd(int n1,int n2){
+  int num,den,rem;
+  if(n1>n2){
+    num=n1;
+    den=n2;
+  }
+  else{
+    num=n2;
+    den=n1;
+  }
+  rem=num%den;
+  while(rem!=0){
+    num=den;
+    den=rem;
+    rem=num%den;
+  }
+  return den;
+}
+
+int main()
+{
+  int i,t,n1,n2;
+  scanf("%d",&t);
+  for(i=0;i<t;i++){
+    scanf("%d %d",&n1,&n2);
+    int gcd=calcgcd(n1,n2);
+    int lcm=n1*n2/gcd;
+    printf("%d %d\n",gcd,lcm);
+  }
+	return 0;
+}

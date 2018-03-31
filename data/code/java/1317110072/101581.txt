@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s=new Scanner(System.in);
+       String str=s.next();
+       int len=str.length();
+       String tmp="";
+       String fin="";
+       int start=0;
+       int finish=0;
+       boolean found=false;
+       if(len<=10)
+         System.out.print("");
+       for(int i=0; i<len-4;i++)
+       {tmp=str.substring(i,i+5);
+        if(tmp.equals("bread")&& found==true)
+          finish=i;
+        if(tmp.equals("bread")&& found==false)
+        {
+          start=i+5;
+          found=true;
+        }}
+       fin=str.substring(start,finish);
+       System.out.print(fin);
+	}
+}

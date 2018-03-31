@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <math.h>
+#include <ctype.h>
+
+#define YES  1
+#define NO   0
+#define SIZE 1000
+
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <string>      // needed for string
+#include <iostream>    // needed for cin, cout
+#include <sstream>     // needed for stringstream
+using namespace std;
+
+#if 0
+
+
+#endif
+
+void getAnswer(void)
+{
+    int i, n, x, ans;
+    vector <int> v;
+    
+    v.clear();
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &x);
+        v.push_back(x);
+    }
+    sort(v.begin(), v.end());
+
+    ans = 1;
+    for (i = 1; i < n; i++)
+    {
+        if ((v[i-1] + 1) != v[i]) ans++;
+    }
+    printf("%d\n", ans);
+}
+
+int main(void)
+{
+	int i, numCases;
+	
+	scanf("%d", &numCases);
+	for (i = 1; i <= numCases; i++) getAnswer();
+	return 0;
+}

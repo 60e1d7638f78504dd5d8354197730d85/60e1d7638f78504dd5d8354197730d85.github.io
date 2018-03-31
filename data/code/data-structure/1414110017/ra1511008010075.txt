@@ -1,0 +1,67 @@
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <vector>
+ 
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
+    int i;
+    for(i = 0; i < size; ++i)
+        std::cout << arr[i] << " ";
+    std::cout << std::endl;
+}
+ 
+void countSort(int arr[], int n, int exp)
+{
+    int output[n];
+    int i = 0, count[10] = {0};
+    
+    for (i = 0; i < n; ++i)
+    {
+        count[(arr[i] / exp) % 10] += 1;
+    }
+    
+    for (i = 1; i < 10; ++i)
+    {
+        count[i] += count[i - 1];
+    }
+    
+    for (i = n - 1; i >= 0; --i)
+    {
+        int digit = (arr[i] / exp) % 10;
+        output[count[digit] - 1] = arr[i];
+        count[digit] -= 1;
+    }
+    
+    std::memcpy(arr, output, sizeof(output));
+}
+ 
+void radixSort(int arr[], int n)
+{
+    int mul = 1;
+    int maxVal = *std::max_element(arr, arr + n);
+    
+    while (maxVal)
+    {
+        countSort(arr, n, mul);
+        mul *= 10;
+        maxVal /= 10;
+        
+        printArray(arr, n);
+    }
+}
+ 
+int main()
+{
+    int n = 0; 
+    std::cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; ++i)
+    {
+        std::cin >> arr[i];
+    }
+    radixSort(arr, n);
+    
+    return 0;
+}

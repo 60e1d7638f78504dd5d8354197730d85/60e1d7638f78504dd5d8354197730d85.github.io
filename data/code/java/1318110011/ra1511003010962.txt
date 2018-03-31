@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+interface Bank {
+  	int rate = 12;
+  	int no_of_years = 3;
+  	public void show();
+}
+class Customer {
+	String name;
+  	int id;
+  	Customer (String n, int b){
+    	name = n;
+      	id = b;
+    }
+  	void display () {
+        System.out.println("Customer Name="+name);
+        System.out.println("Customer Id="+id);
+    }
+}
+class Account extends Customer implements Bank {
+    int acc_no;
+    float acc_bal;
+    Account(String n,int b,int x,float y) {
+      super(n,b);
+      acc_no=x;
+      acc_bal=y;
+    }
+  	public void show(){
+    	super.display();
+        System.out.println("Account No="+acc_no);
+        System.out.println("Account Balance="+acc_bal);
+    }
+ 	public void interest() {
+     show();
+     System.out.println("Interest="+(rate * acc_bal * no_of_years)/100);
+    } 
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       	Scanner in = new Scanner (System.in);
+       	String name = in.nextLine();
+       	int id = in.nextInt();
+       	int acc_no = in.nextInt();
+       	float acc_bal = in.nextFloat();
+		Account obj = new Account(name,id,acc_no,acc_bal);
+       	obj.interest();
+	}
+}

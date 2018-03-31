@@ -1,0 +1,43 @@
+#include <stdio.h>
+ 
+int main(void) {
+	int T;
+	scanf("%d",&T);
+	
+	int x = 0;
+	for(x=0;x<T;x++){
+	    int n;
+	    int Ans=0;
+	    int i,j,A_max=0;
+	    scanf("%d",&n);
+	    
+	    int A[n];
+	    for(i=0;i<n;i++){
+	        scanf("%d",&A[i]);
+	        if(A_max < A[i]){
+	            A_max = A[i];
+	        }
+	    }
+	    for(j=2;j<=A_max;j++){
+	        int count = 0;
+	        int max = 0;
+	        for(i=0;i<n;i++){
+	            count=0;
+	            while(A[i]%j == 0 && A[i]/j >0){
+	                A[i] = A[i]/j;
+	                count++;
+	            }
+	            if(max < count){
+	                max = count;
+	            }
+	        }
+	        //printf("j = %d\t%d\tAns = %d\n",j,max,Ans+max);
+	        
+	        Ans = Ans + max;
+	    }
+	    printf("%d\n",Ans);
+	}
+	
+	return 0;
+}
+ 

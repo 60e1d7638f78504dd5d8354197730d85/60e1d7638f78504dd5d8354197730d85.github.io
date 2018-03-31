@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t,a=0,b=0,c=0,d=0;
+	cin>>t;
+	queue<int>q[5];
+	while(t--)
+	{
+		char type;
+		cin>>type;
+		if(type=='E')
+		{
+			int x,y;
+			cin>>x>>y;
+			if(q[x].size())
+			{
+				q[x].push(y);
+				continue;
+			}
+			q[x].push(y);
+			if(!a)a=x;
+			else if(!b)b=x;
+			else if(!c)c=x;
+			else if(!d)d=x;
+		}
+		else
+		{
+			cout<<a<<" "<<q[a].front()<<"\n";
+			q[a].pop();
+			if(!q[a].size())
+			{
+				a=b;
+				b=c;
+				c=d;
+				d=0;
+			}
+		}
+	}
+	return 0;
+}

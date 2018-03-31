@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main ()
+{
+    int t;
+    scanf("%d",&t);
+    while(t>0)
+    {
+        int n,m,i,j,a=0;
+        scanf("%d%d",&n,&m);
+        char ch[n][m+1];
+        for(i=0;i<n;i++)
+        scanf("%s",ch[i]);
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                if(ch[i][j]=='^')
+                {
+                    if((i-2)>=0 &&(i+2)<n &&(j-2)>=0 &&(j+2)<m)
+                    {
+                        if(ch[i-2][j]=='^' && ch[i-1][j]=='^' && ch[i+1][j]=='^'&& ch[i+2][j]=='^' && ch[i][j-1]=='^'&& ch[i][j-2]=='^' &&ch[i][j+2]=='^'&& ch[i][j+1]=='^')
+                        {
+                            a++;
+                        }
+                    }
+                }
+ 
+            }
+        }
+        printf("%d\n",a);
+ 
+   t--; }
+  return 0;
+}

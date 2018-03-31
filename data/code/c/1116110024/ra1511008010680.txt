@@ -1,0 +1,36 @@
+#include <stdio.h>
+void removeall(char* str,const char tr,int indx)
+{
+  int i;
+  while(str[indx]!='\0')
+  {
+    if(str[indx]==tr)
+    {
+      i=indx;
+      while(str[i]!='\0')
+      {
+        str[i]=str[i+1];
+        i++;
+      }
+    }
+    indx++;
+  }
+}
+void remove_dup(char* str)
+{
+  int i=0;
+  while(str[i]!=0)
+  {
+    removeall(str,str[i],i+1);
+    i++;
+  }
+}
+int main()
+{
+	char a[25];
+  scanf("%s",a);
+  printf("%s\n",a);
+  remove_dup(a);
+  printf("%s",a);
+	return 0;
+}

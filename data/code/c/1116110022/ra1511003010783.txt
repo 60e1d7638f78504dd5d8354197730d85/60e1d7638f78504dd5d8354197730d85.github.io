@@ -1,0 +1,19 @@
+#include<stdio.h> 
+#include<stdlib.h>
+void remove_all_chars(char* str, char c) {
+    char *pr = str, *pw = str;
+    while (*pr) {
+        *pw = *pr++;
+        pw += (*pw != c);
+    }
+    *pw = '\0';
+}
+
+int main() {
+    char str[30],c; 
+ 	scanf ("%[^\n]%*c", str); 
+	scanf ("%c", &c);  
+    remove_all_chars(str, c);
+    printf("%s\n", str);
+    return 0;
+}

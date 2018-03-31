@@ -1,0 +1,121 @@
+#include <stdio.h>
+#define ll long long
+ll x[1000005];
+ll y[1000005];
+ll max(ll a,ll b)
+{
+ if(a>b)
+ return a;
+ else
+ return b;
+}
+ll min(ll a,ll b)
+{
+ if(a<b)
+ return a;
+ else
+ return b;
+}
+int main()
+{
+   ll t,n,a,b,m,flag,sum,num,q,xmax,xnum,ynum,xmin=1,ymax,ymin=1,i,j;
+  scanf("%lld",&t);
+  while(t--)
+   {
+    sum=0;
+    xnum=ynum=0;
+    xmax=0,ymax=0,ymin=99999999,xmin=99999999;
+    scanf("%lld%lld%lld",&n,&m,&q);
+    for(i=0;i<100005;i++)
+       x[i]=y[i]=0;
+    for(i=0;i<q;i++)
+    {
+      scanf("%lld%lld",&a,&b);
+      x[a]++;
+      y[b]++;
+    }
+    x[1]++,y[1]++,x[n]++,y[m]++;
+    for(i=0;i<100005;i++)
+   {
+    flag=0;
+       if(x[i]!=0)
+        {
+          xnum++;
+          if(i==n)
+          flag=1;
+         j=i+1;
+         if(x[j]==0)
+         while(x[j]==0&&j<=n)
+        {
+        j++;
+        }
+        if(flag==0)
+        {
+         xmax=max(xmax,j-i);
+         xmin=min(xmin,j-i);
+         }
+         }
+    }
+    for(i=0;i<100005;i++)
+   {
+    flag=0;
+      if(y[i]!=0)
+        {
+         ynum++;
+         j=i+1;
+         if(i==m)
+         flag=1;
+         if(y[j]==0)
+        while(y[j]==0&&j<=m)
+        {
+          j++;
+         }
+        if(flag==0)
+         {
+       ymax=max(ymax,j-i);
+       ymin=min(ymin,j-i);
+        }
+        }
+        
+   }
+   num=(xnum-1)*(ynum-1);
+   printf("%lld %lld %lld\n",num,xmin*ymin,ymax*xmax);
+  }
+    return 0;
+}
+int partition(int b[],int low,int high)
+{
+    int temp,up,down,t,x;
+    t=low+rand()%(high-low+1);
+    temp=b[t];
+    b[t]=b[low];
+    b[low]=temp;
+    x=b[low];
+    down=low-1;
+    up=high+1;
+    while(1)
+    {
+        do
+        {
+            down++;
+        }while(b[down]<x);
+        do
+        {
+            up--;
+        }while(b[up]>x);
+        if(down<up)
+        {
+            temp=b[down];
+            b[down]=b[up];
+            b[up]=temp;
+        }
+        else
+        {
+            temp=b[low];
+            b[low]=b[up];
+            b[up]=temp;
+            return up;
+            
+        }
+    }
+}

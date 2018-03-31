@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+	Insert obj = new Insert();
+	obj.arrInsert(); 
+	obj.displayArray();  
+	}
+  public static class Insert
+{
+int size, insert, i, pos;
+  int arr[] = new int[50];
+public void arrInsert()
+{
+       Scanner scan = new Scanner(System.in);
+       size = scan.nextInt();
+       for(i=0; i<size; i++)
+       {
+           arr[i] = scan.nextInt();
+       }
+       insert = scan.nextInt();
+       pos = scan.nextInt();      
+       for(i=size; i>pos; i--)
+       {
+           arr[i] = arr[i-1];
+       }	   
+       arr[pos] = insert;
+}
+public void displayArray()
+{
+for(i=0; i<size+1; i++)
+       {
+           System.out.print(arr[i]+ " ");
+       }
+}
+}
+}

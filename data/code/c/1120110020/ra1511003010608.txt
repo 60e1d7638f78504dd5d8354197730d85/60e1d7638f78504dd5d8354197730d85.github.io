@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Distance
+{
+  float feet;
+  float inch;
+};
+int main()
+{
+  struct Distance d1;
+  struct Distance d2;
+  struct Distance sumOfDistances;
+  scanf("%f %f",&d1.feet,&d1.inch);
+  scanf("%f %f",&d2.feet,&d2.inch);
+  sumOfDistances.feet=d1.feet+d2.feet;
+  sumOfDistances.inch=d1.inch+d2.inch;
+  if(sumOfDistances.inch>=12)
+  {
+    sumOfDistances.feet=sumOfDistances.feet+1;
+    sumOfDistances.inch=sumOfDistances.inch-12;
+  }
+  
+  printf("Sum of distances=%0.0f feet and %0.2f inches",sumOfDistances.feet,sumOfDistances.inch);
+     
+      return 0;
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+int fastInput() {
+    int val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+int main()
+{
+ int i, t, n, min, temp;
+    t = fastInput();
+    while (t--) {
+        n = fastInput();
+        min = fastInput();
+        for (i=1; i<n; i++) {
+            temp = fastInput();
+            if (temp < min) min = temp;
+        }
+        long long int ans = (long long int) min * (long long int) (n-1);
+        printf("%lld\n", ans);
+    }
+	return 0;
+}

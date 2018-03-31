@@ -1,0 +1,39 @@
+# include <stdio.h>
+# define BERTH_NAME 3
+# define BERTHS_PER_COMPARTMENT 8
+ 
+int main ( void ) {
+ 
+	int test_cases , seat_number ;
+	char pair [ BERTHS_PER_COMPARTMENT  ] [ BERTH_NAME ] = { "LB" , "MB" , "UB" , "LB" , "MB" , "UB" , "SU" , "SL" } ;
+ 
+	scanf ( "%d" , & test_cases ) ;
+ 
+	while ( test_cases -- ) {
+ 
+		scanf ( "%d" , & seat_number ) ;
+		seat_number -- ;
+ 
+		if ( ( seat_number % BERTHS_PER_COMPARTMENT ) >= 0 && ( seat_number % BERTHS_PER_COMPARTMENT ) <= 2 ) {
+ 
+			printf ( "%d%s" , seat_number + 4 , pair [ seat_number % BERTHS_PER_COMPARTMENT ] ) ;
+		}
+ 
+		else if ( ( seat_number % BERTHS_PER_COMPARTMENT ) >= 3 && ( seat_number % BERTHS_PER_COMPARTMENT ) <= 5 ) {
+ 
+			printf ( "%d%s" , seat_number - 2 , pair [ seat_number % BERTHS_PER_COMPARTMENT ] ) ;
+		}
+ 
+		else if ( ( seat_number % BERTHS_PER_COMPARTMENT ) == 6 ) {
+ 
+			printf ( "%d%s" , seat_number + 2 , pair [ seat_number % BERTHS_PER_COMPARTMENT ] ) ;
+		}
+ 
+		else {
+ 
+			printf ( "%d%s" , seat_number , pair [ seat_number % BERTHS_PER_COMPARTMENT ] ) ;
+		}
+	}
+ 
+	return 0 ;
+}

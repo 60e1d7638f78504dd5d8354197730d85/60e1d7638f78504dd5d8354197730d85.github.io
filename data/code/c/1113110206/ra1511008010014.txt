@@ -1,0 +1,87 @@
+    #include <stdio.h>
+     
+     
+     
+     
+     
+    int sumarray[1550];
+     
+     
+     
+    void init()
+     
+    {
+     
+        
+     
+        sumarray[1]=1;
+     
+        
+     
+        int i;
+     
+        for(i=2;i<1543;i++)
+     
+        {
+     
+            sumarray[i]=sumarray[i-1]+i;
+     
+        }
+     
+        return;
+     
+    }
+     
+     
+     
+    int main() {
+     
+        
+     
+        int t,d,n,ans;
+     
+        
+     
+        scanf("%d",&t);
+     
+        init();
+     
+        while(t--)
+     
+        {
+     
+            scanf("%d%d",&d,&n);
+     
+            ans=sumarray[n];
+     
+            d--;
+     
+            while(d--)
+     
+            {
+     
+                ans=sumarray[ans];
+     
+            }
+     
+            
+     
+            printf("%d\n",ans);
+     
+            
+     
+      
+     
+            
+     
+        }
+     
+        
+     
+        
+     
+        
+     
+        return 0;
+     
+    } 

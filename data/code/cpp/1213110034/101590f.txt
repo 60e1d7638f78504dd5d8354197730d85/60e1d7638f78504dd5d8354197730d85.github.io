@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int maxn = 2005;
+string s,s1;
+string ans[maxn];
+int tot = 0;
+int main()
+{
+    cin>>s;
+    cin>>s1;
+    while(s[0]<s1[0]&&s[1]<s1[1])s[0]++,s[1]++,ans[tot++]="RU";
+    while(s[0]<s1[0]&&s[1]>s1[1])s[0]++,s[1]--,ans[tot++]="RD";
+    while(s[0]>s1[0]&&s[1]<s1[1])s[0]--,s[1]++,ans[tot++]="LU";
+    while(s[0]>s1[0]&&s[1]>s1[1])s[0]--,s[1]--,ans[tot++]="LD";
+    while(s[0]<s1[0])s[0]++,ans[tot++]="R";
+    while(s[0]>s1[0])s[0]--,ans[tot++]="L";
+    while(s[1]<s1[1])s[1]++,ans[tot++]="U";
+    while(s[1]>s1[1])s[1]--,ans[tot++]="D";
+    cout<<tot<<endl;
+    for(int i=0;i<tot;i++)
+        cout<<ans[i]<<endl;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+int t,i,n,m,j,c,p,q=0,k,arr[100][100];
+  scanf("%d",&t);
+  for(i=1;i<=t;i++)
+  {
+    scanf("%d %d",&n,&m);
+     for(j=1;j<=n;j++)
+      {
+           scanf("%d",&p);
+           for(k=1;k<=m;k++)
+                {
+                      arr[j][k]=(int)(p/pow(10,m-k))%10;
+                }
+       }
+   
+     for(j=1;j<=n;j++)
+         {
+                c=0;
+                for(k=1;k<=m;k++)
+                 {
+                   if(arr[j][k]==1)
+                          c++;
+                 }
+                 if(c>1)
+                   q=q+comb(c,2);
+          } 
+      printf("%d\n",q) ; 
+  }
+	return 0;
+}
+int comb(int n,int m)
+{
+  int k=fact(n)/(fact(m)*fact(n-m));
+    return k;
+}
+int fact(int q)
+{
+  int i,w=1;
+  for(i=1;i<=q;i++)
+    w=w*i;
+   return w;
+}

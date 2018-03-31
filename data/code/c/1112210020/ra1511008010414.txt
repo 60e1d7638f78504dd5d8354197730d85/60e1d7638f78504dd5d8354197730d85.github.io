@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+  int t,n;
+  scanf("%d",&t);
+  while(t!=0)
+  {
+    scanf("%d",&n);
+    int arr[n],i,j;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+    int flag;
+    flag=0;
+    for(i=0;i<n;i++)
+    {
+      if(arr[i]>n)
+      {
+        printf("no\n");
+        flag=1;
+        break;
+      } 
+    }
+    if(flag!=1)
+    {
+      for(i=0;i<n;i++)
+      {
+        if(arr[i] == i+1)
+        {
+          flag=1;
+          printf("no\n");
+          break;
+        }
+      }
+    }
+    if(flag!=1)
+      printf("yes\n");
+    t--;
+  }
+
+	return 0;
+}

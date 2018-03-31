@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define MAXLENGTH 10000
+ 
+typedef enum {false, true} boolean;
+ 
+typedef struct
+{
+int frequency1;
+int frequency2;
+} alphabet;
+ 
+int main()
+{
+int testCases, i;
+char inputString[MAXLENGTH], newLineFix;
+alphabet alphabets[26];
+ 
+scanf("%d", &testCases);
+newLineFix = getchar();
+ 
+while(testCases--)
+{
+int endPoint, startPoint;
+ 
+scanf("%s",inputString);
+ 
+//Initialize frequency chart
+for(i = 0 ; i < 26 ; i++)
+{
+alphabets[i].frequency1 = 0;
+alphabets[i].frequency2 = 0;
+}
+ 
+int length = strlen(inputString), middle;
+ 
+endPoint = length / 2 - 1;
+if(length % 2 == 0)
+startPoint = length / 2;
+else
+startPoint = length / 2 + 1;
+ 
+// Prepare frequency mapping
+for(i = 0 ; i <= endPoint ; i++)
+alphabets[inputString[i] - 'a'].frequency1++;
+ 
+for(i = startPoint ; i < length ; i++)
+alphabets[inputString[i] - 'a'].frequency2++;
+ 
+//Check if Lapindrome
+boolean isLapindrome = true;
+for(i = 0 ; i < 26 ; i++)
+{
+if(alphabets[i].frequency1 != alphabets[i].frequency2)
+{
+isLapindrome = false;
+break;
+}
+}
+ 
+// Display Final Result
+if(isLapindrome)
+printf("YES\n");
+else
+printf("NO\n");
+}
+ 
+return 0;
+} 

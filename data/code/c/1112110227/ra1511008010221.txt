@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include <stdlib.h>
+
+int cmpfunc(const void *a, const void *b) {
+    return (*(int *) a - *(int *) b);
+}
+
+int main() {
+    int t, N, K, missingNo[100009], i;
+    int cumSum = 0;
+    int misIndex = 1;
+    int misSum = 0;
+    scanf("%d", &t);
+    while (t--) {
+        scanf("%d %d", &N, &K);
+        cumSum = 1;
+        misIndex = 1;
+        misSum = 0;
+        for (i = 1; i <= K; i++) {
+            scanf("%d", &missingNo[i]);
+        }
+        if (K == 0) {
+            if ((N * (N + 1) / 2) % 2 == 0) {
+                printf("Chef\n");
+            } else {
+                printf("Mom\n");
+            }
+        } else {
+            qsort(missingNo, K, sizeof(int), cmpfunc);
+            if (missingNo[1] == 1) {
+                printf("Chef\n");
+            } else {
+                for (i = 2; i <= N; i++) {
+                    if (i > (cumSum - misSum)) {
+                        break;
+                    } else {
+                        cumSum = cumSum + i;
+                    }
+                    if (missingNo[misIndex] == i) {
+                        misSum += i;
+                        misIndex++;
+                    }
+                }
+                if ((i - 1) % 2 == 0) {
+                    printf("Chef\n");
+                } else {
+                    printf("Mom\n");
+                }
+            }
+        }
+    }
+    return 0;
+}

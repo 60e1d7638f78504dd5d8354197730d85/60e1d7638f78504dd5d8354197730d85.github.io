@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+class matrix
+{
+	public:
+  	int m,n,arr[10][10];
+  		
+  	void get(int x,int y)
+    {	m=x;
+     	n=y;
+    	for(int i=0;i<m;i++)
+          for(int j=0;j<n;j++)
+          	cin>>arr[i][j];
+    }
+  	matrix operator + (matrix &obj)
+    {
+    	if((this->m!=obj.m)||(this->n!=obj.n))
+        {
+        	cout<<"Matrix cannot be added";
+          	exit(1);
+        }
+      	else
+        {	cout<<"The sum of the matrix is"<<endl;
+        	for(int i=0;i<m;i++)
+            {	
+              for(int j=0;j<n;j++)
+              {
+               		this->arr[i][j] += obj.arr[i][j] ;
+        			cout<<this->arr[i][j]<<" ";
+              }    
+            		cout<<"\n";
+            }
+        }
+    }
+};
+int main()
+{
+  	int a,b,c,d;
+  	
+  	cin>>a>>b>>c>>d;
+  	if((a!=c)||(b!=d))
+    {
+    	cout<<"Matrix cannot be added";
+      	return 0;
+    }
+  	matrix g,h;
+  	g.get(a,b);
+  	h.get(c,d);
+  	g+h;
+	return 0;
+}

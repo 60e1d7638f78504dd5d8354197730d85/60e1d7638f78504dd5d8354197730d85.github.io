@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+int CountUniqueCharacters(char *);
+int CountUniqueCharacters(char* str){
+    int i,j,r=0,count = 0; char s[100];
+    for(i=0;i<strlen(str);i++)
+    {
+      if(str[i]=='a'||str[i]=='e'||str[i]=='i'||str[i]=='o'||str[i]=='u')
+       continue;
+      else
+      {
+        s[r]=str[i];
+        r++;
+      }
+    }
+
+    for (i = 0; i < strlen(s); i++){
+         int appears = 0;
+         for (j = 0; j < i; j++){
+              if (s[j] == s[i]){
+                  appears = 1;
+                  break;
+              }
+         }
+
+         if (!appears){
+             count++;
+         }
+    }
+
+    return count;
+}
+int main()
+{
+  int t,ans;
+  char str[100];
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%s",str);
+    ans=CountUniqueCharacters(str);
+    if(ans%2==0)
+      printf("SHE!\n");
+    else
+      printf("HE!\n");
+  }
+	return 0;
+}

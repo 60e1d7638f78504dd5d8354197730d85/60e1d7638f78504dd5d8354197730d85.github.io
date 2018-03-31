@@ -1,0 +1,48 @@
+#include<stdio.h>
+void bubble(int a[],int n)
+{
+	int i,j,t;
+for(j=1;j<=n-1;j++)
+	{
+	for(i=0;i<=n-j-1;i++)
+	{
+	if(a[i]>a[i+1])
+	{
+	t=a[i];
+	a[i]=a[i+1];
+	a[i+1]=t;
+}
+}
+}
+}
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+char s[100];
+int a[26],sum=0,i,j;
+for(i=0;i<26;i++)
+a[i]=0;
+scanf("%s",s);
+for(i=97;i<=122;i++)
+{
+j=0;
+while(s[j]!='\0')
+{
+if(s[j]==i)
+a[i-97]++;
+j++;
+}
+}
+bubble(a,26);
+for(i=0;i<25;i++)
+sum=sum+a[i];
+if(sum==a[25])
+    printf("YES\n");
+else
+    printf("NO\n");
+}
+return 0;
+}

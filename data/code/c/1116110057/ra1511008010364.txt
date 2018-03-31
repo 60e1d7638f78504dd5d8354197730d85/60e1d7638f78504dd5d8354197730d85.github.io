@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include<string.h>
+#define m 1000000007
+long long int fac[100005]={1};
+long long int nc2[100005]={0,0,1};
+char a[100005];
+void fact()
+{
+	long long int i;
+	for(i=1;i<=100001;i++)
+	fac[i]=(fac[i-1]*i)%m;
+}
+void ncr()
+{
+	long long int i;
+	for(i=3;i<=100001;i++)
+	nc2[i]=(nc2[i-1]+i-1)%m;
+}
+long long int swaptwice(long long int x[],long long int n)
+{
+	long long int s=0,i,j,k=0;
+	for(i=0;i<n-2;i++)
+	{
+	k=nc2[n-i-1];
+	for(j=0;j<26;j++)
+	if(x[j]>0)
+	k=(k-nc2[x[j]]+m)%m;
+	for(j=0;j<26;j++)
+	if(j!=(a[i]-97) && x[j]>0)
+	{
+		s=(s+(k*x[j])%m)%m;
+		s=(s-(nc2[x[j]]*(x[a[i]-97]-1))%m+m)%m;
+	}
+	x[a[i]-97]--;
+	}
+	return s;
+}
+long long int power(long long int a,long long int b)
+{
+	if(b==0)
+	return 1;
+	long long int t,ans;
+	t=power(a,b/2);
+	ans=(t*t)%m;
+	if(b%2!=0)
+	ans=(ans*a)%m;
+	return ans;
+}
+int main(void) 
+{
+	int t;
+	scanf("%d",&t);
+	fact();
+	ncr();
+	while(t--)
+	{
+		scanf("%s",a);
+		long long int i,n,s,f,ans;
+		long long int x[26]={0};
+		n=strlen(a);
+		for(i=0;i<n;i++)
+		x[a[i]-97]++;
+		f=fac[n];
+		for(i=0;i<26;i++)
+		if(x[i]>1)
+		f=(f*power(fac[x[i]],m-2))%m;
+		s=nc2[n];
+		for(i=0;i<26;i++)
+		if(x[i]>1)
+		s=(s-nc2[x[i]]+m)%m;
+		s=s+swaptwice(x,n);
+		s=(s*f)%m;
+		ans=(f*(f-1))%m;
+		ans=(ans-s+m)%m;
+		printf("%lld\n",ans);
+		memset(a,0,sizeof(a));
+	}
+	return 0;
+}    

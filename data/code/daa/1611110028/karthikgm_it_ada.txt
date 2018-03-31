@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+ 
+bool substr21(const string & s) {
+    for (int i = 0; i < s.length() - 1; i++)
+        if (s[i] == '2'  and  s[i+1] == '1')
+            return true;
+    return false;
+}
+ 
+int main()
+{
+    int t;
+    cin >> t;
+    string s;
+    int n;
+    while (t) {
+        t--;
+        cin >> s;
+        if (substr21(s))
+            cout << "The streak is broken!" << endl;
+        else if (stoi(s) % 21 == 0)
+            cout << "The streak is broken!" << endl;
+        else
+            cout << "The streak lives still in our heart!" << endl;
+        
+    }
+    return 0;
+}

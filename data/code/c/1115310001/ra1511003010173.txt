@@ -1,0 +1,23 @@
+#include <stdio.h>
+#define inp(a) { a=0; char c=getchar_unlocked(); while(c<'0'|| c>'9') c=getchar_unlocked(); while(c>='0' && c<='9') { a=a*10+c-48; c=getchar_unlocked(); } }
+int main()
+{
+	int n,p,l=0,max=0;
+	inp(n);
+	while(n--)
+	{
+		inp(p);
+		if(p==0)
+		{
+			if(l>max)
+			max=l;
+			l=0;
+		}
+		else
+		l++;
+	}
+	if(l>max)
+	max=l;
+	printf("%d\n",max);
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int l[130],r[130];
+  char in[1001];
+  int n,i,len;
+  scanf("%d",&n);
+  while(n--)
+  {
+    for(i=0;i<130;i++)
+    {
+      l[i]=0;
+      r[i]=0;
+    }
+    scanf("%s",in);
+    len=strlen(in);
+    for(i=0;i<len/2;i++)
+      l[in[i]]++;
+    for(i=((len/2)+(len%2));i<len;i++)
+      r[in[i]]++;
+    for(i=97;i<=125;i++)
+    {
+      if(l[i]!=r[i])
+      {
+        printf("NO\n");
+        break;
+      }
+    }
+    if(i==126)
+      printf("YES\n");
+  }
+
+	return 0;
+}

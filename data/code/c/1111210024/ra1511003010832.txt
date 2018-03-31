@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+ 
+int JePr(int a){
+    int j;
+    int g = sqrt(a);
+    if (a == 2) return 1;
+    if ((a == 1) || (a % 2 == 0)) return 0;  
+    for(j=3;j<=g;j++)
+        if((a % j) == 0) return 0;        
+    return 1;      
+}
+ 
+ 
+ 
+int main()
+{
+   int T;
+   long  i, A, B;
+   scanf("%d", &T); 
+   while (T>0){
+     scanf("%ld %ld", &A, &B);
+     for(i=A;i<=B;i++)
+      if (JePr(i)) printf("%ld\n", i); 
+     printf("\n"); 
+   T--;
+   }
+  
+} 

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int func(int n)
+{
+int count = 1,num=0,rem,res;
+if(n>10000)
+{
+return -1;
+}
+while(n)
+{
+res=n/10;
+rem=n%10;
+if(rem==0)
+{
+num=num+count*5;
+}
+
+else num = num + rem*count;
+count = count*10;
+n=n/10;
+
+}
+return num;
+}
+int main()
+{
+   int i;
+  scanf("%d",&i);
+  int x=func(i);
+  printf("%d",x);
+	return 0;
+}

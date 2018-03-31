@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main()
+{
+	int cases;
+	scanf("%d", &cases);
+	
+	int i = 0;
+	for(i = 0; i < cases; i++)
+	{
+		int a, b;
+		scanf("%d %d", &a, &b);
+		
+		if(a == b)
+		{
+			printf("%d\n", 7);
+			continue;
+		}
+		
+		int allSeq = 0;
+		int winSeq = 0;
+		int lose = 0;
+		int cantControl = 1;
+		
+		while(a != 0)
+		{
+			int setSize = b / a;
+			if(cantControl)
+			{
+				if(setSize == 1)
+				{
+					lose = lose ^ 1;
+				}
+				else
+				{
+					cantControl = 0;
+				}
+			}
+			allSeq += setSize - 1;
+			//cout << "AllSeq = " << allSeq << endl;
+			int temp = a;
+			a = b % a;
+			b = temp;	
+		}
+		winSeq = allSeq  - 1;
+		
+		allSeq = (int)(allSeq * log10(2)) + 1;
+		winSeq = (int)(winSeq * log10(2)) + 1;
+		
+		printf("%d\n", allSeq + winSeq + 5 + lose);
+	}
+	
+	return 0;
+} 

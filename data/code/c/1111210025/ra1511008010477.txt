@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  int i,n,k,x=0,c;
+  char str[10];
+  scanf("%d %d",&n,&k);
+  int arr[n];
+  for(i=0;i<n;i++)
+    arr[i]=0;
+  while(k--)
+  {
+    c=0;
+    x=0;
+   scanf("%s %d",str,&x);
+    if(x!=0)
+    {
+    if(arr[x-1]==0)
+      arr[x-1]=1;
+    else
+      arr[x-1]=0;
+    }
+    else if(x==0)
+    {
+      for(i=0;i<n;i++)
+        arr[i]=0;   
+    }
+    for(i=0;i<n;i++)
+      if(arr[i]!=0)
+        c++;
+    printf("%d\n",c); 
+    
+  }
+
+	return 0;
+}

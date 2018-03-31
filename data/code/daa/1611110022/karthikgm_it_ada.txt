@@ -1,0 +1,82 @@
+#include <iostream>
+#include <stdlib.h>
+#include <algorithm>
+#include <string.h>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+
+#define eps 1e-13
+
+
+template<typename t>
+int cmp(const void *a, const void *b) {
+	t &aa = *(t*)a, &bb = *(t*)b;
+	if (aa < bb) return -1;
+	if (aa > bb) return 1;
+	return 0;
+}
+
+
+
+template<typename t>
+void sort(t *a, int n) {
+	qsort(a, n, sizeof(t), cmp<t>);
+	//heapsort(a, n);
+}
+
+void initprime(int *an, int &len) {
+	int i = 3;
+	while (an[len - 1] < 10000000) {
+		int j = 1;
+		int end = sqrt(i);
+		bool isprime = true;
+		while (j < len && an[j] <= end) {
+			if (i % an[j] == 0) {
+				isprime = false;
+				break;
+			}
+			j++;
+		}
+
+		if (isprime)an[len++] = i;
+		i += 2;
+	}
+
+	i = 0;
+	int j = 2;
+	while (j < len) {
+		if (an[j] == an[j - 1] + 2) {
+			an[i++] = an[j];
+		}
+		j++;
+	}
+
+	len = i;
+}
+
+int main()
+{
+	int prime[670000] = { 2 };
+	int len = 1;
+	initprime(prime, len);
+
+	int t;
+	cin >> t;
+
+	while (t--) {
+		int n;
+		cin >> n;
+
+		int l = 0, h = len - 1;
+		while (l <= h) {
+			int mid = (l + h) / 2;
+			if (prime[mid] <= n) l = mid + 1;
+			else h = mid - 1;
+		}
+		cout << l << endl;
+
+	}
+
+	return 0;
+}

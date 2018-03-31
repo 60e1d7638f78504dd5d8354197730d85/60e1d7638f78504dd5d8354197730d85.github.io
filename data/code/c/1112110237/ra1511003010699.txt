@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+{
+ int t,n,i,j;
+ unsigned long long int a[505],lcm,hcf,min,x,y;
+ scanf("%d",&t);
+ while(t--)
+ { min=1000000000000000001; lcm=0;hcf=0;x=0;y=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+   scanf("%llu",&a[i]);
+  }
+  for(i=0;i<n-1;i++)
+   {
+    for(j=i+1;j<n;j++)
+     {  x=a[i];y=a[j];
+      while(x>0)
+	{
+	 if(x>=y){x=x%y;}
+	 else{y=y%x;}
+	 if(y==0){break;}
+	}
+       if(x==0){hcf=y;}
+       else{hcf=x;}
+      /* printf("\n%llu",hcf); */
+       lcm=(a[i]*a[j])/hcf;
+       if(lcm<min){min=lcm;}
+      }
+    }
+  printf("\n%llu",min);
+ }
+return 0;
+} 

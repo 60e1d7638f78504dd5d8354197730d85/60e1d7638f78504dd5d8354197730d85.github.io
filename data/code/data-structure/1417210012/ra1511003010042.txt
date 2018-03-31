@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+	int t,i,j,k,n,e,u,v;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>n>>e;
+	    
+	    map<int, vector<int> >m1,m2;
+	    for(i=0;i<e;i++)
+	    {
+	        cin>>u>>v;
+	        m1[u].push_back(v);
+	    }
+	    
+	    for(i=0;i<e;i++)
+	    {
+	        cin>>u>>v;
+	        m2[u].push_back(v);
+	    }
+	    
+	    int flag=1;
+	    for(i=1;i<=n;i++)
+	    {
+	        for(j=0,k=m2[i].size()-1;j<m1[i].size(),k>=0;j++,k--)
+	        {
+	           if(m1[i][j]!=m2[i][k])
+			   {
+			   		flag=0;
+			   		break;
+			   } 
+	        }
+	        
+	        if(flag==0)
+	        break;
+	    }
+	    
+	    cout<<flag<<endl;
+	}
+	return 0;
+}

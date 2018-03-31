@@ -1,0 +1,116 @@
+#include<stdio.h>
+#include<string.h>
+#define m 1000000007
+long long f[100009];
+ 
+long long power(long long a,long long b)
+{
+    long long int ans=1;
+    a=a%m;
+    while(b!=0)
+    {
+        if(b%2==1)
+          ans=(ans*a)%m;
+        a=(a*a)%m;
+        b=b/2;
+    }
+    return ans;
+}
+ 
+long long cal(long long n,long long r)
+{
+    long long ans;
+    ans=f[n];
+    if(n<r)
+      return 0;
+    ans = ((ans*power(f[r],m-2))%m);
+    ans=((ans*power(f[n-r],m-2))%m);
+    ans = (ans%m+m)%m;
+    return (ans+m)%m;
+}
+ 
+long long calsingle(int *a,int length)
+{
+    long long ans;
+    int i;
+    ans=cal(length,2);
+    for(i=0;i<26;i++)
+        ans = ans- cal(a[i],2);
+    return ans;
+}
+ 
+long long caldouble(int *a)
+{
+    long long ans=0,r1,r2,r3,r4;
+    int i,j,k,l;
+    for(i=0;i<26;i++)
+    {
+        r1=a[i];
+        for(j=i+1;j<26;j++)
+        {
+            r2=a[j];
+            ans = (ans+ cal(r1,2)*cal(r2,2))%m;
+            for(k=j+1;k<26;k++)
+            {
+                r3=a[k];
+                ans =(ans+r1*r2*r3*(r1+r2+r3-1))%m;
+                for(l=k+1;l<26;l++)
+                {
+                   r4=a[l];
+                   ans=(ans+r1*r2*r3*r4*3)%m;
+                }
+            }
+        }
+    }
+    ans=(ans+1)%m;
+    return ans;
+}
+ 
+ 
+long long total(int *a,int length)
+{
+    int i;
+    long long ans;
+    ans=f[length];
+    for(i=0;i<26;i++)
+    {
+      if(a[i]>1)
+        ans=(ans*power(f[a[i]],m-2))%m;
+    }
+    return ans%m;
+}
+ 
+ 
+void pre()
+{
+    int i;
+    f[0]=1;
+    for(i=1;i<100006;i++)
+       f[i]=(i*f[i-1])%m;
+}
+ 
+int main(){
+    int t;
+    long long tot,s,d,ms,ans;
+    pre();
+    scanf("%d",&t);
+    while(t--){
+        char str[100005];
+        int i,a[26];
+        for(i=0;i<26;i++)
+          a[i]=0;
+        scanf("%s",str);
+        int length=strlen(str);
+        for(i=0;str[i]!='\0';i++)
+          a[str[i]-'a']++;
+        tot=total(a,length);
+        s = calsingle(a,length);
+        d = caldouble(a);
+        ms= ((tot-s-d)%m+m)%m;
+        ans = (ms*tot)%m;
+        printf("%lld\n",ans);
+    }
+    return 0;
+}
+ 
+ 

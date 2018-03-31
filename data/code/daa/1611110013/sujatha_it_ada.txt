@@ -1,0 +1,46 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+void sort(char arr[][20],long m[], int n)
+{
+   int i, j;long tmp;
+  char key[20];
+   for (i = 1; i < n; i++)
+   {
+       strcpy(key,arr[i]);
+     tmp=m[i];
+       j = i-1;
+       while ((j >= 0) && (strcmp(arr[j],key)>0))
+       {
+           strcpy(arr[j+1] , arr[j]);
+           m[j+1]=m[j];
+           j = j-1;
+       }
+       strcpy(arr[j+1] , key);
+     m[j+1]=tmp;
+   }
+}
+
+int main()
+{
+    int N;long m[20],p;
+  char a[20][20];
+    cin>>N;
+    for(int i=0;i<N;i++)
+      cin>>a[i]>>m[i];
+  sort(a,m,N);
+  cout<<"Ordered List\n";
+    for(int i=0;i<N;i++)
+      cout<<a[i]<<" "<<m[i]<<endl;
+  
+  cin>>p;
+  cout<<"\nName Telephone Number\n";
+  for(int i=0;i<N;i++)
+    if (m[i]==p){
+      cout<<a[i]<<" "<<m[i]<<endl;
+      return 0;
+    }
+  cout<<"The Entered Number is not in the Directory";
+	return 0;
+}

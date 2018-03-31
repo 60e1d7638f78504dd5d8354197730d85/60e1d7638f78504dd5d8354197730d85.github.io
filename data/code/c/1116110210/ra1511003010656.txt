@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int i,l,j,k=0,count,m;
+  char s[100],t[100]="";
+  scanf("%[^\n]%*c",s);
+  l = strlen(s);
+  s[l] = ' ';
+  count=0;
+  while(s[k]!='\0')
+  {
+    count++;
+    if(s[k] == ' ')
+    {
+      i=strlen(t)+count-1;
+      j=strlen(t);
+      m=i;
+      while(j<=m)
+      {
+        t[j]=s[i];
+        i--;
+        j++;
+      }
+      count = 0;
+    }
+    k++;
+  }
+  printf("\n%s",t);
+
+  return 0;
+}

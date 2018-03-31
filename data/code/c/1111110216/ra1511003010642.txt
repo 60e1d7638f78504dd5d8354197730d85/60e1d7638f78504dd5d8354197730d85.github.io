@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,gcd,lcm,num,den,r;
+  	scanf("%d %d",&a,&b);
+  	if(a>b){
+    	num=a;
+      	den=b;
+    }
+  	else{
+    	num=b;
+      	den=a;
+    }
+  	r = num%den;
+  	while(r!=0){
+    	num=den;
+      	den=r;
+      	r = num%den;
+    }
+  	gcd = den;
+  	lcm = (a*b)/gcd;
+  	printf("GCD=%d\n",gcd);
+  	printf("LCM=%d",lcm);
+	return 0;
+}

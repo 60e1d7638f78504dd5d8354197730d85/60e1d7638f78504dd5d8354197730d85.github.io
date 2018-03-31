@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main(){
+	long long int n,*a,mod,i,sum,j,k,l,min,max,temp;
+	cin>>n;
+	a=new long long int[n];
+	mod=1000000007;
+	for(i=0;i<n;i++)
+		cin>>a[i];
+	sum=0;
+	for(i=0;i<(n-1);i++){
+		max=a[i];
+		for(j=i;j<(n-1);j++){
+			if(a[j]>max)
+				max=a[j];
+			for(k=j+1;k<n;k++){
+				min=a[k];
+				for(l=k;l<n;l++){
+					if(a[l]<min)
+						min=a[l];
+					temp=min*max;
+					sum = (sum+temp)%mod;
+				}
+ 
+			}
+		}
+	}
+	cout<<sum<<endl;
+	return 0;
+} 

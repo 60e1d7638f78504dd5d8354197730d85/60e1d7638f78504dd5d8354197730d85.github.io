@@ -1,0 +1,292 @@
+#include<stdio.h>
+int c[1000001][2];
+void mer(int p,int q,int r)
+{   static int le[1000001],ri[1000001],i,j,k;
+    int n1=q-p+1,n2=r-q;
+    for(i=0;i<n1;i++)
+       le[i]=c[p+i][0];
+    for(j=0;j<n2;j++)
+       ri[j]=c[q+j+1][0];
+    le[n1]=ri[n2]=1000000001;
+    i=j=0;
+    for(k=p;k<=r;k++)
+    {   if(le[i]<=ri[j])
+        {   c[k][0]=le[i];
+            i++;
+        }
+        else
+        {   c[k][0]=ri[j];
+            j++;
+        }
+    }
+}
+void merge_sort(int p,int r)
+{   int q;
+    if(p<r)
+    {   q=(p+r)/2;
+        merge_sort(p,q);
+        merge_sort(q+1,r);
+        mer(p,q,r);
+    }
+}
+int main()
+{
+   static int n,m,k,i,j,x,y=1,dec,b[1000001],d[1000001][3],z,maxi,mini,avg;
+   long long int a;
+   char s[1000001],ch,op,ch1,ch2;
+   scanf("%d%d",&n,&m);
+ //  printf("\nHello\n");
+   for(i=0;i<n;i++)
+   {
+       scanf("%d",&b[i]);
+       c[i][0]=b[i];
+       c[i][1]=0;
+   }
+   //printf("\nHello\n");
+   merge_sort(0,n-1);
+  // printf("\nHello\n");
+   d[1][0]=b[0];
+   d[1][1]=1;
+   d[1][2]=1;
+   a=(n*(n+1))/2;
+   a=a%2;
+   for(i=1;i<n;i++)
+   {
+       if(d[y][0]<=b[i])
+       {
+           dec=1;
+           d[y][1]=d[y][1]%2;
+           d[y][2]=d[y][2]%2;
+           maxi=n-1;
+           mini=0;
+           while(1)
+           {
+               avg=(maxi+mini)/2;
+               if(c[avg][0]>d[y][0])
+                   maxi=avg-1;
+               else if(c[avg][0]<d[y][0])
+                   mini=avg+1;
+               else
+               {
+                   c[avg][1]+=d[y][1]*d[y][2];
+                   break;
+               }
+           }
+           dec+=d[y][1];
+           if(y>1)
+               d[y-1][2]+=d[y][2];
+           while(y>1 && d[y-1][0]<=b[i])
+           {
+               y--;
+               d[y][1]=d[y][1]%2;
+               d[y][2]=d[y][2]%2;
+               maxi=n-1;
+               mini=0;
+               while(1)
+               {
+                   avg=(maxi+mini)/2;
+                   if(c[avg][0]>d[y][0])
+                       maxi=avg-1;
+                   else if(c[avg][0]<d[y][0])
+                       mini=avg+1;
+                   else
+                   {
+                       c[avg][1]+=d[y][1]*d[y][2];
+                       break;
+                   }
+               }
+               dec+=d[y][1];
+               if(y>1)
+                   d[y-1][2]+=d[y][2];
+           }
+           d[y][0]=b[i];
+           d[y][1]=dec;
+           d[y][2]=1;
+       }
+       else
+       {
+           y++;
+           d[y][0]=b[i];
+           d[y][1]=d[y][2]=1;
+       }
+   }
+  // printf("\nHello\n");
+   
+   for(i=y;i>=1;i--)
+   {
+       d[i][1]=d[i][1]%2;
+       d[i][2]=d[i][2]%2;
+           maxi=n-1;
+           mini=0;
+           while(1)
+           {
+               avg=(maxi+mini)/2;
+               if(c[avg][0]>d[i][0])
+                   maxi=avg-1;
+               else if(c[avg][0]<d[i][0])
+                   mini=avg+1;
+               else
+               {
+                   c[avg][1]+=d[i][1]*d[i][2];
+                   break;
+               }
+           }
+        d[i-1][2]+=d[i][2];
+   }
+//   printf("\nHello\n");
+   for(i=n-2;i>=0;i--)
+   {
+       c[i][1]+=c[i+1][1];
+       if(c[i][0]==c[i+1][0])
+           c[i+1][0]=0;
+   }
+   for(i=1,j=1;i<n;i++)
+   {
+       if(c[i][0])
+       {
+           c[j][0]=c[i][0];
+           c[j][1]=c[i][1];
+           j++;
+       }
+   }
+   n=j;
+   y=c[n-1][0];
+   for(j=0;j<m;j++)
+   {
+       scanf("%c%c%d%c%c",&ch1,&op,&k,&ch2,&ch);
+       if(op=='>')
+       {
+           z=0;
+           if(k>=y)
+               z=0;
+           else
+           {
+               maxi=n-1;
+               mini=0;
+                while((maxi-mini)>10)
+                {
+                    avg=(maxi+mini)/2;
+                    if(c[avg][0]>k)
+                    {
+                        maxi=avg;
+                    }
+                    else if(c[avg][0]<k)
+                    {
+                        mini=avg;
+                    }
+                    else
+                    {
+                        mini=avg-1;
+                        break;
+                    }
+                }
+                for(i=mini;i<=maxi;i++)
+                {
+                    if(c[i][0]>k)
+                    {
+                        z=c[i][1];
+                        break;
+                    }
+                }
+           }
+       }
+       else if(op=='<')
+       {
+           z=0;
+           k--;
+           if(k>=y)
+               z=0;
+           else
+           {
+               maxi=n-1;
+               mini=0;
+                while((maxi-mini)>10)
+                {
+                    avg=(maxi+mini)/2;
+                    if(c[avg][0]>k)
+                    {
+                        maxi=avg;
+                    }
+                    else if(c[avg][0]<k)
+                    {
+                        mini=avg;
+                    }
+                    else
+                    {
+                        mini=avg-1;
+                        break;
+                    }
+                }
+                for(i=mini;i<=maxi;i++)
+                {
+                    if(c[i][0]>k)
+                    {
+                        z=c[i][1];
+                        break;
+                    }
+                }
+ 
+           }
+           z=a-z;
+       }
+       else
+       {
+           z=0;
+           x=k-1;
+           if(k>y)
+               z=0;
+           else
+           {
+               maxi=n-1;
+               mini=0;
+           while((maxi-mini)>10)
+           {
+               avg=(maxi+mini)/2;
+               if(c[avg][0]>k)
+               {
+                   maxi=avg;
+               }
+               else if(c[avg][0]<k)
+               {
+                   mini=avg;
+               }
+               else
+               {
+                   mini=avg-1;
+                   break;
+               }
+           }
+           for(i=mini;i<=maxi;i++)
+           {
+               if(c[i][0]>k)
+               {
+                   z=c[i][1];
+                   break;
+               }
+           }
+           k--;
+           for(i=mini;i<=maxi;i++)
+           {
+               if(c[i][0]>k)
+               {
+                   z=c[i][1]-z;
+                   break;
+               }
+           }
+           }
+       }
+       z=z%2;
+       if(z)
+           s[j]=ch;
+       else
+       {
+            if(ch=='D')
+                s[j]='C';
+            else
+                s[j]='D';
+       }
+   }
+   s[j]='\0';
+   printf("%s",s);
+   return 0;
+}

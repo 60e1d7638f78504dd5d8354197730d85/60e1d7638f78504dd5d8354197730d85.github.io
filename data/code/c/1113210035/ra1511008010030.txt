@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+int rev=0,n,temp=0,i,l=0,j,a[30],k=0;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+    if(n%i==0)
+    { a[k]=i;
+      k++;}
+  int b[k+1];
+  i=0;
+  for(j=0;j<k;j++)
+  { 
+    while(a[j]>0)
+  {
+    rev=(rev*10)+(a[j]%10);
+	a[j]=a[j]/10;
+  }
+    b[i]=rev;
+    rev=0;
+    i++;
+ 
+  }
+  
+  for(i=0;i<k-1;i++)
+    for(j=i+1;j<k;j++)
+      if(b[i]>b[j])
+      {
+        temp=b[i];
+        b[i]=b[j];
+        b[j]=temp;
+      }
+ for(i=0;i<k;i++)
+   printf("%d\n",b[i]);
+    return 0;
+}

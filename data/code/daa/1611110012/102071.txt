@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+struct std
+{
+  char name[20];
+  unsigned long int mob;
+  int yr;
+}s[20];
+
+int main()
+{
+  int i,n,f=0;
+  char str[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%s%lu%d",s[i].name,&s[i].mob,&s[i].yr);
+  /*for(i=0;i<n;i++)
+    printf("%s %ld %d",s[i].name,s[i].mob,s[i].yr);*/
+scanf("%s",str);
+  for(i=0;i<n;i++)
+  {
+    if(strcmp(str,s[i].name)==0)
+    {
+      printf("Name TelephoneNumber Year\n%s %lu %d",s[i].name,s[i].mob,s[i].yr);
+      f=1;
+    }
+  }
+  if(f==0)
+    printf("The Entered Name is not in the Directory");
+	return 0;
+}

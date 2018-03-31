@@ -1,0 +1,39 @@
+#include <iostream>
+#include <set>
+using namespace std;
+ 
+int main() {
+	int t;
+	cin>>t;
+	
+	while(t--){
+		set<char> st1,st2;
+		string s;
+		cin>>s;
+		if(s.size()==1){
+			cout<<"YES"<<endl;
+			continue;
+		}
+		if(s.size()>1){
+			if(s[0]==s[1]){
+				cout<<"NO"<<endl;
+				continue;
+			}
+		}
+		for(int i=0;i<s.size();i++){
+			if(i%2==0){
+				st2.insert(s[i]);
+			}
+			else{
+				st1.insert(s[i]);
+			}
+		}
+		if(st1.size() ==1 && st2.size()==1){
+			cout<<"YES"<<endl;
+		}
+		else{
+			cout<<"NO"<<endl;
+		}
+	}
+	return 0;
+} 

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char str[50];
+  	char rep;
+  	int i,j,cnt,len;
+  	scanf("%s",str);
+  	scanf(" %c",&rep);
+  	len=strlen(str);
+  	cnt=0;
+  	for(i=0;str[i]!='\0';i++)
+    {
+      if(str[i]==rep)
+      {
+        cnt++;
+        if(cnt==1)
+        {
+          for(j=i;str[j]!='\0';j++)
+            str[j]=str[j+1];
+        }
+      }
+    }
+  	str[len-1]='\0';
+  	printf("%s",str);
+	return 0;
+}

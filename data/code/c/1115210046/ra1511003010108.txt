@@ -1,0 +1,37 @@
+#include <stdio.h>
+ 
+int main() 
+{
+ int test, N, x1, x2, y1, y2;
+ long matrix[70][70], ans, maxAns;
+ int i, j;
+ scanf("%d", &test);
+ while(test--)
+  {
+   scanf("%d", &N);
+   for(i = 0; i < N; i++)
+    for(j = 0; j < N; j++)
+     scanf("%ld", &matrix[i][j]);
+   maxAns = 0;
+   for(x1 = 0; x1 < N; x1++)
+   {  
+    for(y1 = 0; y1 < N; y1++)
+    {
+     for(x2 = x1; x2 < N; x2++)
+     { 
+      for(y2 = y1; y2 < N; y2++)
+      {
+	   ans = 0;
+	   for(i = x1; i <= x2; i++)
+	    for(j = y1; j <= y2; j++)
+	     ans ^= matrix[i][j];
+         if( ans > maxAns )
+          maxAns = ans;
+	    }
+       }  
+      }
+	 }
+ printf("%ld\n", maxAns );
+	}
+	return 0;
+} 

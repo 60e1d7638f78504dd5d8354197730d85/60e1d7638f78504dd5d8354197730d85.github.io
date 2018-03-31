@@ -1,0 +1,55 @@
+#include <stdio.h>
+int main()
+{
+  int t,i,size,p;
+  int N,M;
+  long long int h=1000000000;
+  long long int sum;
+  scanf("%d",&t);
+  while(t)
+  {
+    sum=0;
+    scanf("%d %d",&N,&M);
+    long int arr[M+1];
+    for(i=0;i<=M;++i)
+      arr[i]=1;
+    p=2;
+    while(p<=M)
+    {
+      i=1;
+      while(i<=M)
+      {
+        arr[i]=arr[i]+arr[i-1];
+        arr[i]=arr[i]%h;
+        ++i;
+      }
+      ++p;
+    }
+    long int A[M];
+    for(i=0;i<=M;++i)
+      A[i]=1;
+    p=1;
+    while(p<N)
+    {
+      i=0;
+      sum=0;
+      while(i<=M)
+      {
+        sum+=((arr[i]%h)*(A[i]%h))%h;
+        A[i]=sum%h;
+        ++i;
+        
+      }
+      ++p;
+    }
+    sum=0;
+    for(i=0;i<=M;++i)
+    {
+      sum=sum+((arr[i]%h)*(A[i]%h))%h;
+      sum=sum%h;
+    }
+    printf("%lld\n",sum);
+    --t;
+  }
+	return 0;
+}

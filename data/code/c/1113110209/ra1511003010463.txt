@@ -1,0 +1,36 @@
+#include<stdio.h>
+int min(int,int);
+int main()
+{
+	int n,i,sumtime,mintime=0,maxtime=0;
+    scanf("%d %d",&n,&sumtime);
+    int a[n],b[n];
+    for(i=0;i<n;i++)
+    {
+    	scanf("%d %d",&a[i],&b[i]);
+    	mintime+=a[i];
+    	maxtime+=b[i];
+    }
+	if(sumtime<mintime || sumtime>maxtime)
+	{
+		printf("NO\n");
+		return 0;
+	}
+	printf("YES\n");
+	for(i=0;i<n;i++)
+	{
+		printf("%d ",min(b[i],a[i]+sumtime-mintime));
+		sumtime-=min(b[i],a[i]+sumtime-mintime);
+		mintime-=a[i];
+	}
+  return 0;
+}
+int min(int x,int y)
+{
+if(x<y)
+  return x;
+else if(x>y)
+    return y;
+  else
+    return x;
+}

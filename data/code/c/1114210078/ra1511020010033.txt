@@ -1,0 +1,64 @@
+#include <stdio.h>
+ 
+int main() {
+	
+	int t;
+	long long int n,k,m,sum,temp,i,j,score,e,fmarks,marks[10000];
+	
+	scanf("%d",&t);
+	
+	while(t--)
+	{
+	    sum=0;
+	    temp=0;
+	    
+	    scanf("%lld %lld %lld %lld",&n,&k,&e,&m);
+	    
+	    for(i=0;i<n-1;i++)
+	    {
+	        sum=0;
+	        for(j=0;j<e;j++)
+	        {
+	            scanf("%lld",&score);
+	            sum+=score;
+	        }
+	        
+	        marks[i]=sum;
+	    }
+	    sum=0;
+	    for(j=0;j<e-1;j++)
+	    {
+	        scanf("%lld",&score);
+	        sum+=score;
+	    }
+	    
+	    fmarks=sum;
+	    
+	    for(i=0;i<n-2;i++)
+	    {
+	        for(j=i+1;j<n-1;j++)
+	        {
+	            if(marks[i]<marks[j])
+	            {
+	                temp=marks[i];
+	                marks[i]=marks[j];
+	                marks[j]=temp;
+	            }
+	        }
+	    }
+	    
+	    if(fmarks>marks[k-1])
+	        printf("0\n");
+ 
+	    else{
+	    temp=marks[k-1]-fmarks+1;
+	    
+	    if(temp<=m)
+	        printf("%lld\n",temp);
+	   else
+	        printf("Impossible\n");
+	    }
+	}
+	
+	return 0;
+}

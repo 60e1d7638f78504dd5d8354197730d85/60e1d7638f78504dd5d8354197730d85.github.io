@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner in = new Scanner(System.in);
+       	int N, T, y, count=0;
+       	T = in.nextInt();
+       	while(T>0){
+        	N = in.nextInt();
+          	int temp = N;
+          	while(N>0){
+            	y = N%10;
+              	 N = N/10;
+              	
+              	try{
+                  if(temp%y==0){
+                    count++;
+                  }
+                }catch(ArithmeticException ex){
+                  continue;
+                }
+             
+            }
+          System.out.println(count);
+          count = 0;
+          --T;
+        }
+     
+	}
+}

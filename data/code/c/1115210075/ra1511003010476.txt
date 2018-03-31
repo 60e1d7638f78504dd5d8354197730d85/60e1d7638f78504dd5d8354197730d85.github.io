@@ -1,0 +1,57 @@
+#include <stdio.h>
+int Addrow(int array1[10][10], int k, int c);
+int Addcol(int array1[10][10], int k, int r);
+ 
+int main()
+{
+    int arr[10][10];
+    int i, j, row, col, rowsum, colsum, sumall=0;
+    scanf("%d %d", &row, &col);
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < col; j++)
+        {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+
+    /*  computing row sum */
+    for (i = 0; i < row; i++)
+    {
+        rowsum = Addrow(arr, i, col);
+        printf("%d\n",rowsum);
+    }
+    /*  computing col sum */
+    for (j = 0; j < col; j++)
+    {
+        colsum = Addcol(arr, j, row);
+        printf("%d\n",colsum);
+    }
+    /*  computation of all elements */
+    for (j = 0; j < row; j++)
+    {
+        sumall = sumall + Addrow(arr, j, col);
+    }
+  	printf("%d\n", sumall);
+   return 0;
+}
+/*  Function to add each row */
+int Addrow(int array1[10][10], int k, int c)
+{
+    int rsum = 0, i;
+    for (i = 0; i < c; i++)
+    {
+        rsum = rsum + array1[k][i];
+    }
+    return(rsum);
+}
+/*  Function to add each column */
+int Addcol(int array1[10][10], int k, int r)
+{
+    int csum = 0, j;
+    for (j = 0; j < r; j++)
+    {
+        csum = csum + array1[j][k];
+    }
+    return(csum);
+}

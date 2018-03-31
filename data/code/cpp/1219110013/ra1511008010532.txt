@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+class Fraction{
+  int num,den;
+  public:
+  Fraction()
+  {
+    num=0;
+    den=0;
+  }
+  Fraction(int n,int d)
+  {
+    num=n;
+    den=d;
+  }
+  Fraction operator + (Fraction const &obj){
+    Fraction f;
+    f.num= (num*obj.den)+(den*obj.num);
+    f.den= den*obj.den;
+    return f; 
+  }
+  void disp()
+  {
+    cout<<"The addition is="<<num<<"/"<<den;
+  }
+};
+  
+int main()
+{
+  int n1,d1,n2,d2;
+  cin>>n1>>d1>>n2>>d2;
+  Fraction f1(n1,d1),f2(n2,d2);
+  Fraction f3 = f1 + f2;
+  f3.disp();
+	return 0;
+}

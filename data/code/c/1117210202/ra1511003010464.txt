@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int power[20][5000]={0};
+//Function taken from here http://codereview.stackexchange.com/questions/38370/function-to-find-sum-of-digits-in-the-number-ab-where-a-b-are-positive-integer
+void sumdigit(int a, int b) {
+    // numlen = number of digit in a^b
+    // pcount = power of 'a' after ith iteration
+    // dcount = number of digit in a^(pcount)
+ 
+    int numlen = (int) (b * log10(a)) + 1;
+    char *arr = calloc(numlen, sizeof *arr);
+    int pcount = 0;
+    int dcount = 1;
+    arr[numlen - 1] = 1;
+    int i, sum, carry;
+ 
+    while(pcount < b) {
+        pcount += 1;
+        int result=0;
+        sum = 0; 
+        carry = 0;
+ 
+        for(i = numlen - 1; i >= numlen - dcount; --i) {
+            sum = arr[i] * a + carry;
+            carry = sum / 10;
+            arr[i] = sum % 10;
+            result += arr[i];
+        }
+ 
+        while(carry > 0) {
+            dcount += 1;
+            sum = arr[numlen - dcount] + carry;
+            carry = sum / 10;
+            arr[numlen - dcount] = sum % 10;
+            result += arr[i];
+        } 
+        
+    power[a][pcount]=result;
+    }
+    free(arr);
+}
+int main(){
+    int t,i,arr[10]={0};
+	scanf("%d",&t);
+	int x[t+1],y[t+1];
+	for(i=1;i<=t;i++){
+		scanf("%d %d",&x[i],&y[i]);
+		if(arr[x[i]]<y[i])
+		arr[x[i]]=y[i];
+	}
+	for(i=2;i<10;i++)
+	    if(arr[i])
+	       sumdigit(i,arr[i]);
+	for(i=1;i<=t;i++){
+        if(x[i]==1 || y[i]==0)
+        	printf("Case %d: 1\n",i);
+        else
+			printf("Case %d: %d\n",i,power[x[i]][y[i]]);
+	}
+    return 0;
+}
+ 

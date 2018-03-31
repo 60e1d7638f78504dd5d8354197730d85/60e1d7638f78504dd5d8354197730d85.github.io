@@ -1,0 +1,62 @@
+#include <stdio.h>
+int chck(int stck[100],int a,int k)
+{
+ int i,flg=0;
+  for(i=0;i<k;i++)
+  {
+    if(stck[i]==a)
+      return 0;
+  }
+  return 1;
+}
+int calc(int stck[100],int k)
+{
+  int i,j,count=0,flg=0,max=0;
+  for(i=0;i<k;i++)
+    count++;
+  if(count<2)
+    return -1;
+  for(i=0;i<k;i++)
+  {
+   	for(j=i+1;j<k;j++)
+    {
+      if(stck[i]*stck[j]>max)
+        max=stck[i]*stck[j];
+      
+    }
+    
+  }
+  return max;
+}
+int main()
+{
+int ar[106],n,stck[105],i,j,k=0,t,h,flg=0,max=0;
+  scanf("%d",&t);
+  while(t--)
+  {
+   	scanf("%d",&n);
+    if(n<4)
+    {
+      printf("-1");
+        return 0;
+    }
+    for(i=0;i<n;i++)
+    	scanf("%d",&ar[i] );
+    for(i=0;i<n;i++)
+    {
+     	for(j=i+1;j<n;j++)
+        {
+         	if(ar[i]==ar[j]&&chck(stck,ar[i],k))
+            {
+              stck[k++]=ar[i];
+              
+            }
+        }
+    }
+     int count=calc(stck,k);
+    k=0;
+    printf("%d\n",count);
+    
+  }
+	return 0;
+}

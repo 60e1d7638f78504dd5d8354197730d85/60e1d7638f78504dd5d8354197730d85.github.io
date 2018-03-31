@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+int main(void)
+{
+    int t; scanf("%d",&t);
+    while(t--)
+    {
+        char arr[150];
+        scanf("%s",arr);
+        int suvo=0;
+        int suvojit=0;
+        int sz=strlen(arr);
+      int i, j;
+        char s[] = "SUVO";
+        char sj[] = "SUVOJIT";
+        for(i=0; i<sz;i++)
+        {
+            int ok = 0;
+            int k=0;
+            for(j=i; j<i+7; j++)
+            {
+                if(sj[k++]!=arr[j])
+                {
+                    ok = 1;
+                    break;
+                }
+                
+            }
+            if(k>=4)
+                    suvo++;
+            if(!ok)
+            {
+                    suvo--;
+                    suvojit++;
+            }
+        }
+        printf("SUVO=%d, SUVOJIT=%d\n",suvo,suvojit);
+    }
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+    int num, j, flag,i,n;
+  scanf("%d",&n);
+  int a[n];
+  for(i=1;i<=n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+ for(i=1;i<=n;i++)
+ {
+    if (a[i] <= 1)
+    {
+        printf("no\n");
+        exit(1);
+    }
+    flag = 0;
+    for (j = 2; j <= a[i] / 2; j++)
+    {
+        if ((a[i] % j) == 0)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 0)
+        printf("yes\n");
+     else
+        printf("no\n");
+ }
+  return 0;
+}

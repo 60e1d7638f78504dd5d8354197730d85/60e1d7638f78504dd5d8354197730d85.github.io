@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+	Scanner in=new Scanner(System.in);
+       int T=in.nextInt();
+       int N;
+       int g[]=new int[10000];
+       for(int i=0;i<T;i++)
+       {
+         N=in.nextInt();
+         for(int j=0;j<N;j++)
+         {
+           g[j]=in.nextInt();
+         }
+         int ans=0;
+         String s="";
+         
+         for(int j=0;j<N;j++)
+         {
+           String s1="";
+           for(int k=j+1;k<N;k++)
+           {
+             if(g[j]<g[k])
+             {
+               s1=""+g[j]+g[k];
+               if(s.contains(s1))
+                 continue;
+               else
+               {
+                 ans++;
+                 s=s+" "+s1;
+               }
+             }
+             if(g[j]>g[k])
+               break;
+           }
+         }
+         if(ans<1)
+           System.out.println("UNFIT");
+         else
+           System.out.println(ans);
+       }
+     
+	}
+}

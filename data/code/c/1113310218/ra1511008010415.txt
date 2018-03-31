@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  	int i,j;
+	char a[4][20],temp[20];
+  	for(i=0;i<4;i++)
+      scanf(" %s ",a[i]);
+  	for(i=0;i<3;i++)
+    {
+      	for(j=i+1;j<4;j++)
+        {
+          	if(strcmp(a[i],a[j])>0)
+            {
+              	strcpy(temp,a[i]);
+              	strcpy(a[i],a[j]);
+              	strcpy(a[j],temp);
+            }
+        }
+    }
+  	for(i=0;i<4;i++)
+      printf("%s\n",a[i]);
+	return 0;
+}

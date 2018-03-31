@@ -1,0 +1,73 @@
+#include<stdio.h> 
+int main()
+{
+	int t;
+	scanf("%d",&t); 
+	int n,k; 
+	long long int potwo[43];
+	potwo[0]=1;	
+	int i,j;
+	for(i=1;i<43;i++)
+	{
+		potwo[i]=potwo[i-1]*2;
+	} 
+	long long int sum[41]; 
+	int colour; 
+	long long int price;	
+	int number[41]; 
+	struct knap {long long int sumtill;long long int perm;};
+ 	struct knap ar[41][41]; 
+	long long int tempperm; 
+	while(t--)
+	{ 
+		scanf("%d %d",&n,&k); 
+		for(i=0;i<=40;i++){sum[i]=0;number[i]=0;} 
+		for(i=0;i<n;i++)
+		{
+			scanf("%d %lld",&colour,&price); 
+			sum[colour]=2*sum[colour]+potwo[number[colour]]*price; 
+			number[colour]++;
+		} 
+		for(i=1;i<=40;i++)
+        {
+			for(j=1;j<=40;j++)
+			{
+				ar[i][j].sumtill=0;ar[i][j].perm=0;
+			}
+		}
+		ar[1][0].sumtill=0;
+		ar[1][0].perm=1;
+		ar[1][1].sumtill=sum[1];
+		ar[1][1].perm=potwo[number[1]]-1;
+ 
+		for(i=2;i<=40;i++)
+		{
+			tempperm=potwo[number[i]]-1;
+			ar[i][0].sumtill=0;
+			ar[i][0].perm=1;
+			for(j=1;j<i;j++)
+			{
+				ar[i][j].sumtill=ar[i-1][j].sumtill+ar[i-1][j-1].sumtill*tempperm+sum[i]*ar[i-1][j-1].perm;
+				ar[i][j].perm=ar[i-1][j].perm+tempperm*ar[i-1][j-1].perm;
+			}
+ 
+                                ar[i][j].sumtill=ar[i-1][j-1].sumtill*tempperm+sum[i]*ar[i-1][j-1].perm;
+				ar[i][j].perm=tempperm*ar[i-1][j-1].perm;
+ 
+		}
+	
+		long long int nume=0,deno=0;
+ 
+		for(j=k;j<=40;j++)
+		{
+			nume+=ar[40][j].sumtill;
+			deno+=ar[40][j].perm;
+		}
+ 
+		printf("%.9lf\n",(1.0*nume)/deno);
+		
+	}
+ 
+	return 0;
+}
+ 

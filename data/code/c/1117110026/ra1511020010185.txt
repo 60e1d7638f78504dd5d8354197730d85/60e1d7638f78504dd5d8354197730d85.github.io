@@ -1,0 +1,25 @@
+#include <stdio.h>
+int gcdlcm(int a,int b);
+int main()
+{
+    int a,b;
+    scanf("%d%d",&a,&b);
+    gcdlcm(a,b);
+	return 0;
+}
+int gcdlcm(int a,int b)
+{
+  int x,y,t,g,l;
+  x=a;
+  y=b;
+  while(y!=0)
+  {
+    t=y;
+    y=x%y;
+    x=t;
+  }
+  g=x;
+  l=(a*b)/x;
+  printf("GCD=%d",g);
+  printf("\nLCM=%d",l);
+}

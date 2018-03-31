@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+class NUM
+{
+    private:
+        int n;
+    public:
+        void getNum(int x)
+        {
+            n=x;
+        }
+        void dispNum(void)
+        {
+            cout << n<<endl;
+        }
+        NUM operator +(NUM &obj)
+        {
+            NUM x;
+            x.n=this->n + obj.n;
+            return (x);
+        }
+};
+int main()
+{
+    int a,b;
+    NUM num1,num2,sum;
+    cin>>a>>b;
+    num1.getNum(a);
+    num2.getNum(b);
+    num1.dispNum();
+    num2.dispNum();
+    sum=num1+num2;
+    cout<<"Result:";
+    sum.dispNum();
+    cout << endl;
+    return 0;
+}

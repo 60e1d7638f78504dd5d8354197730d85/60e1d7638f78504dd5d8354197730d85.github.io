@@ -1,0 +1,21 @@
+#include <stdio.h>
+int hcf(int a, int b)
+{
+  if(b != 0)
+    return hcf(b, a % b);
+  else
+    return a;
+}
+int lcm(int a, int b)
+{
+  return a * b/hcf(a,b);
+}
+int main()
+{
+	int a, b;
+  	scanf("%d",&a);
+  	scanf("%d",&b);
+  	int l = lcm(a,b);
+  	printf("%d %d", a * b/ l, l);
+	return 0;
+}

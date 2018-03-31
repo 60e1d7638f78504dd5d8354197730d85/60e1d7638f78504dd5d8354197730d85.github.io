@@ -1,0 +1,140 @@
+#include<stdio.h>
+ 
+int arr[31];
+int brr[31];
+int power(int x)
+{
+  int i,s=1;
+  for(i=1;i<=x;i++)
+    {
+      s=s*2;
+    }
+  return s;
+}
+void convert(int x)
+{
+  int i=0;
+  while(x>0)
+    {
+      arr[i]=x%2;
+      x=x/2;
+      i++;
+    }
+}
+void clear()
+{
+  int i;
+  for(i=0;i<=30;i++)
+    {
+      arr[i]=0;
+      brr[i]=0;
+    }
+}
+void convert2(int x)
+{
+  int i=0;
+  while(x>0)
+    {
+      brr[i]=x%2;
+      x=x/2;
+      i++;
+    }
+}
+int main()
+{
+  int k,tc,a,b,c,t,i,s=0;
+  scanf("%d",&tc);
+  while(tc-->0)
+    {
+      s=0;
+      scanf("%d %d %d",&a,&b,&c);
+      if(b>c)
+	{
+	  convert(b);
+	  convert2(c);
+	}
+      else
+	{
+	  convert(c);
+	  convert2(b);
+	}
+       t=0;
+      for(i=0;i<a;i++)
+	{
+	  if(arr[i]==1)
+	    {
+	      t++;
+	    }
+	}
+      for(i=0;i<a;i++)
+	{
+	  if(i<t)
+	    arr[i]=1;
+	  else
+	    arr[i]=0;
+	}
+      t=0;
+      for(i=0;i<a;i++)
+	{
+	  if(brr[i]==1)
+	    {
+	      t++;
+	    }
+	}
+      k=0;
+      for(i=a-1;i>=0;i--)
+	{
+	  if(k<t)
+	    {
+	      k++;
+	      brr[i]=1;
+	    }
+	  else
+	    {
+	      brr[i]=0;
+	    }
+	}
+      /*         for(i=0;i<a;i++)
+	{
+	  printf("%d ",arr[i]);
+	}
+      printf("\n");
+       for(i=0;i<a;i++)
+	{
+	  printf("%d ",brr[i]);
+	  }
+      	printf("\n");*/
+      for(i=0;i<a;i++)
+	{
+	  if((arr[i]==1 &&  brr[i]==0) || (brr[i]==1 && arr[i]==0))
+	    {
+	      arr[i]=1;
+	    }
+	  else
+	    {
+	      arr[i]=0;
+	    }
+	}
+      t=0;
+      for(i=0;i<a;i++)
+	{
+	  if(arr[i]==1)
+	    {
+	      t++;
+	    }
+	}
+      i=a-1;
+      while (t-->0)
+	{
+	  
+	  k=power(i);
+	  i--;
+	  s=s+k;
+	}
+      k=0;
+      printf("%d\n",s);
+      s=0;
+      clear();
+    }
+  return 0;
+}

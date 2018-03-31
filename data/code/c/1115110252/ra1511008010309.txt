@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+int is_uppercase(char *str)
+{
+  int i,n,flag=1;
+  char c;
+  n = strlen(str);
+  for(i=0;i<n;i++)
+  {
+    if(str[i]==' ')
+    {
+      continue;
+    }
+    else
+    {
+      if(isupper(str[i])==0)
+      {
+        flag = 0;
+        break;
+      }
+    }
+  }
+    return flag;
+}
+int main()
+{
+	char str[20];
+  	int f;
+  	fgets(str,20,stdin);
+  	f=is_uppercase(str);
+  if(f==1)
+  {
+    printf("true");
+  }
+  else
+  {
+    printf("false");
+  }
+	return 0;
+}

@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#define MOD 1000000007
+ 
+int power(int x, int y)
+{
+	int res = 1;
+	while(y)
+	{
+		if(y % 2)	res = (1LL * res * x) % MOD;
+		x = (1LL * x * x) % MOD;
+		y = y >> 1;
+	}
+	return res;
+}
+ 
+int less_than(int ar[], int N, int q)
+{
+	int lo, mid, hi;
+	int ans=0;
+	lo = 1;
+	hi = N;
+	while(lo <= hi)
+	{
+		mid = (lo + hi) >> 1;
+		
+		if(ar[mid] < q)
+		{
+			ans = mid;
+			lo = mid + 1;
+		}
+		else hi = mid - 1;
+	}
+	
+	return ans;
+}
+ 
+int less_than_equal_to(int ar[], int N, int q)
+{
+	int lo, mid, hi;
+	int ans=0;
+	lo = 1;
+	hi = N;
+	while(lo <= hi)
+	{
+		mid = (lo + hi) >> 1;
+		
+		if(ar[mid] <= q)
+		{
+			ans = mid;
+			lo = mid + 1;
+		}
+		else hi = mid - 1;
+	}
+	return ans;
+}
+ 
+int cmpfunc(const void * x, const void * y)
+{
+	return *(int *)x - *(int *)y;
+}
+ 
+int main()
+{
+	int N, Q, i, q, ans, total_subsets;
+	int less, less_or_equal;
+	char ch;
+	scanf("%d%d%*c", &N, &Q);
+	int ar[N+1];
+	ar[0] = 0;
+	for(i=1;i<=N;i++)
+		scanf("%d%*c", &ar[i]);
+	qsort(ar, N+1, sizeof(int), cmpfunc);
+	
+	total_subsets = power(2, N);
+	
+	for( ;Q;Q--)
+	{
+		scanf("%c%d%*c", &ch, &q);
+		
+		switch(ch)
+		{	
+			case '<':
+				less = less_than(ar, N, q);
+				
+				ans = power(2, less);
+				break;
+			case '=':
+				less_or_equal = less_than_equal_to(ar, N, q);
+				less = less_than(ar, N, q);
+				
+				ans = power(2, less_or_equal) - power(2, less);
+				break;
+			case '>':
+				less_or_equal = less_than_equal_to(ar, N, q);
+				less = less_than(ar, N, q);
+				
+				ans = total_subsets - power(2, less_or_equal);
+				break;
+		}
+		printf("%d\n", (ans + MOD) % MOD);
+	}
+	return 0;
+}

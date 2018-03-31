@@ -1,0 +1,33 @@
+#include <stdio.h>
+int isPalin(int j){
+	int temp=j,ans=0;
+  	
+  	while(temp!=0){
+    	ans+=temp%10;
+      	
+      	ans*=10;
+      	temp/=10;
+    }
+  	
+  	if(j==ans/10){
+    	return 1;
+    }else{
+    	return 0;
+    }
+}
+int main()
+{
+	int t,i,a,j;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++){
+    	scanf("%d",&a);
+      	for(j=a+1;j<100000;j++){
+        	if(isPalin(j)){
+            	printf("%d\n",j);
+              	break;
+            }
+        }
+    }
+    
+	return 0;
+}

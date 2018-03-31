@@ -1,0 +1,52 @@
+#include<stdio.h>
+int main()
+{
+    int minsum = 0;
+    int maxsum = 0;
+    int maxtime[35], mintime[35];
+    int d, sumtime, account, res[35];
+  int i;
+    scanf("%d%d", &d, &sumtime);
+
+    for ( i=0; i < d; i++)
+    {
+        scanf("%d%d", &mintime[i], &maxtime[i]);
+        minsum += mintime[i];
+        maxsum += maxtime[i];
+    }
+
+    if (sumtime < minsum || sumtime > maxsum)
+    {
+        printf("NO\n");
+    }
+    else
+    {
+        account = sumtime-minsum;
+
+        for ( i=0; i < d; i++)
+        {
+            if (account >= maxtime[i] - mintime[i])
+            {
+                account -= (maxtime[i] - mintime[i]);
+                res[i] = maxtime[i];
+            }
+            else if (account > 0)
+            {
+                res[i] = account + mintime[i];
+                account = 0;
+            }
+            else
+            {
+                res[i] = mintime[i];
+            }
+        }
+        printf("YES\n");
+
+        for ( i=0; i < d-1; i++)
+        {
+            printf("%d ", res[i]);
+        }
+        printf("%d\n", res[d-1]);
+    }
+    return 0;
+}

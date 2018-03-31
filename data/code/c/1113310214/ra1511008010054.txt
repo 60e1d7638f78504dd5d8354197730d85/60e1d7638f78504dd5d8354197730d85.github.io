@@ -1,0 +1,128 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+typedef long long ll;
+ 
+int inp[1000005];
+int n;
+void input()
+{
+	int i;
+	char tmp[1000005];
+	scanf("%s",tmp);
+	n=strlen(tmp);
+	for(i=0;i<n;i++)
+		inp[i] = tmp[i]-'0';
+}
+ 
+int all9()
+{
+	int i;
+	for(i=0;i<n;i++)
+		if(inp[i]!=9)
+			return 0;
+	return 1;
+}
+ 
+int replicate()
+{
+	int i,j;
+	int mid=n/2;
+	if(n%2==0)
+	{
+		i=mid-1;
+		j=mid;
+	}
+	else
+	{
+		i=mid-1;
+		j=mid+1;
+	}
+ 
+	int leftgreater=0;
+	while(i>=0 && inp[i]==inp[j])
+	{
+		i--;
+		j++;
+	}
+ 
+	if(i!=-1 && inp[i]>inp[j])
+		leftgreater=1;
+ 
+	while(i>=0)
+		inp[j++]=inp[i--];
+ 
+	return leftgreater;
+}
+ 
+void solve()
+{
+	int i,j;
+	if(all9()==1)
+	{
+		printf("%d",1);
+		for(i=0;i<n-1;i++)
+			printf("%d",0);
+		printf("%d\n",1);
+		return;
+	}
+ 
+	int leftgreater = replicate();
+	int mid = n/2;
+ 
+	if(leftgreater==1)
+	{
+		for(i=0;i<n;i++)
+			printf("%d",inp[i]);
+		printf("\n");
+		return;
+	}
+ 
+	if(n%2==0)
+	{
+		i=mid-1;
+		j=mid;
+		int car=1;
+		while(i>=0)
+		{
+			inp[i]+=car;
+			car=inp[i]/10;
+			inp[i]%=10;
+			inp[j++]=inp[i--];
+		}
+	}
+	else
+	{
+		i=mid-1;
+		j=mid+1;
+		int car=1;
+		inp[mid]+=car;
+		car=inp[mid]/10;
+		inp[mid]%=10;
+ 
+		while(i>=0)
+		{
+			inp[i]+=car;
+			car=inp[i]/10;
+			inp[i]%=10;
+			inp[j++]=inp[i--];
+		}
+	}
+ 
+	for(i=0;i<n;i++)
+		printf("%d",inp[i]);
+	printf("\n");
+}
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		input();
+		solve();
+	}
+	return 0;
+}

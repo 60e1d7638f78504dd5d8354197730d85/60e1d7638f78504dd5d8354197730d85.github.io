@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int val;
+    struct Node *next;
+}node;
+
+
+struct Node * head=NULL;
+
+void insert(int data)
+{
+    struct Node *temp=(struct Node*) malloc(sizeof(struct Node));
+    struct Node *ptr=head;
+    
+    temp->val=data;
+    temp->next=NULL;
+    
+      if(head==NULL)
+    {
+        head=temp;
+        return ;
+        
+    }
+    while(ptr->next!=NULL)
+        ptr=ptr->next;
+    ptr->next=temp;
+    
+    return ;
+    
+}
+int main() {
+    
+    int n,a,i=0;
+    scanf("%d",&n);
+    
+    for( i=0;i<n;i++)
+    {
+        scanf("%d",&a);
+        insert(a);
+    }
+        i=0;
+       struct  Node *c=head;
+        while(c!=NULL)
+        {
+            
+           printf("%d ",c->val);
+           
+            c=c->next;
+        }
+    
+     
+    return 0;
+}

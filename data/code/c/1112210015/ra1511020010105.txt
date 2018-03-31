@@ -1,0 +1,21 @@
+#include <stdio.h>
+float minDist(float ds,float dt,float d){
+   if(d>ds+dt) return d-ds-dt;
+   if(ds>d+dt) return ds-d-dt;
+   if(dt>d+ds) return dt-d-ds;
+   return 0;
+}
+ 
+int main(){
+	int t;
+	float ds,dt,d;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%f %f %f",&ds,&dt,&d);
+      	if(!minDist(ds,dt,d))
+        printf("0.0\n");
+      	else
+		printf("%f\n",minDist(ds,dt,d));
+	}
+return 0;
+}

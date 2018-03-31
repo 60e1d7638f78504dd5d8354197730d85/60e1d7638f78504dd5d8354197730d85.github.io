@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int n, i, j, len, flag=0; 
+  	char ch[10][10], a, b;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++)
+    {
+       scanf("%s", ch[i]);
+   //  printf("%s\n",ch[i]);
+    }
+	for(i=0; i<n; i++)
+    {
+      len= strlen(ch[i]);
+      a= ch[i][0];
+      b= ch[i][1];
+     // printf("a=%c\n",a);
+     // printf("b=%c\n", b);
+    //  printf("len=%d", len);
+      for(j=2; j<len; j++)
+      {
+        if(j%2==0)
+        {
+          if(ch[i][j]!=a)
+          {
+           flag=1;
+            break;
+          }
+        }
+         else
+         {
+           if(ch[i][j]!=b)
+           {
+             flag=1;
+             break;
+           }
+         }
+      }
+      if(flag==0)
+      printf("YES\n");
+  	else
+      printf("NO\n");
+    }
+	return 0;
+}

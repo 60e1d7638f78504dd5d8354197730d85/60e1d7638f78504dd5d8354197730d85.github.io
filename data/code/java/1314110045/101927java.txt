@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  
+  
+	 public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in);
+       int num = input.nextInt();
+       int[] array = new int[num];
+       for (int i = 0; i < num; i++)
+       {
+         array[i] = input.nextInt();
+       }
+      
+     
+ 
+      int remaining = array.length - 1;
+      for(int x = 0; x < (array.length-1); x++) {
+         for(int y = 0; y < (remaining); y++) {
+            int tmp;
+            if ( array[y] > array[y+1] ) {
+              tmp =  array[y+1]; 
+              array[y+1] = array[y];
+              array[y] = tmp;
+            }
+         }
+         remaining--;
+      }
+ 
+      
+       
+       for (int i = 0; i < num; i++)
+       {
+         System.out.println(array[i]);
+       }
+	}
+  
+}

@@ -1,0 +1,48 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+typedef unsigned long long ll;
+ll b_mod_search(ll *a,ll n,ll d)
+{
+	ll l=*max_element(a,a+n);
+	ll h=accumulate(a,a+n,0);
+	ll m;
+	while(l<h)
+	{
+		m=l+(h-l)/2;
+		ll t=m;
+		ll k=1;
+		for(ll i=0;i<n;i++)
+		{
+			if(k>d)
+			break;
+			if(t>=a[i])
+			t=t-a[i];
+			else
+			{
+				t=m-a[i];
+				k++;
+			}
+		}
+		if(k<=d)
+		{
+			h=m;
+		}
+		else
+		{
+			l=m+1;
+		}
+	}
+	return l;
+}
+int main()
+{
+  ll n,m;
+    cin>>n>>m;
+    ll * a=new ll[n];
+    for(int i=0;i<n;i++)cin>>a[i];
+    cout<<b_mod_search(a,n,m);
+    delete [] a;
+
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+  int num;
+  struct node *next;
+};
+int main()
+{
+  int n,i,inp;
+  struct node *start=0,*head;
+  start = (struct node*)malloc(sizeof(struct node));
+  head = start;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    head->next=(struct node*)malloc(sizeof(struct node));
+    scanf("%d",&inp);
+    head->num=inp;
+    printf("%d ",head->num);
+    head=head->next;
+  }
+
+  head = start;
+//deallocate 
+  while (head != NULL)
+  {
+    struct node *tmp;
+       tmp = head;
+       head = head->next;
+       free(tmp);
+    }
+    return 0;
+}

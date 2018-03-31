@@ -1,0 +1,22 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+    if (b == 0)
+        return a;
+    else
+        return gcd(b, a % b);
+}
+ 
+int main()
+{
+    int t, n, m, sq_side, ans;
+    scanf("%d", &t);
+    while(t--)
+    {
+        scanf("%d%d", &n, &m);
+        sq_side = gcd(n, m);
+        ans = (n * m) / (sq_side * sq_side);
+        printf("%d\n", ans);
+    }
+    return 0;
+} 

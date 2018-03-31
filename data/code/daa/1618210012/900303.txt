@@ -1,0 +1,70 @@
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <queue>
+#include <iostream>
+#include <cmath>
+#include <sstream>
+#include <map>
+#include <set>
+#include <numeric>
+#include <memory.h>
+#include <cstdio>
+#include <assert.h>
+#include <numeric>
+
+using namespace std;
+
+#define pb push_back
+#define INF 1011111111
+#define FOR(i,a,b) for (int _n(b), i(a); i < _n; i++)
+#define rep(i,n) FOR(i,0,n)
+#define ford(i,a,b) for(int i=(a),_b=(b);i>=_b;--i)
+#define CL(a,v) memset((a),(v),sizeof(a))
+#define mp make_pair
+#define X first
+#define Y second
+#define all(c) (c).begin(), (c).end()
+#define SORT(c) sort(all(c))
+
+typedef long long ll;
+typedef vector<int> VI;
+typedef pair<int,int> pii;
+
+vector<ll> z_func(const string &s)
+{
+    int n = s.size();
+    vector<ll> z(n,0);
+    int l = 0,r = 0;
+
+    FOR(i,1,n)
+    {
+        if(i <= r)
+            z[i] = min(z[i-l], (ll)r-i+1);
+
+        while(i+z[i] < n && s[i+z[i]] == s[z[i]]) z[i] ++;
+
+        if(i+z[i]-1 > r)
+            r = i+z[i]-1, l = i;
+    }
+
+    return z;
+}
+
+int main()
+{
+    int T;
+    cin >> T;
+
+    while(T--)
+    {
+        string s;
+        cin >> s;
+
+        vector<ll> z = z_func(s);
+
+        cout << 1LL*s.size() + accumulate(all(z), 0LL) << endl;
+    }
+
+	return 0;
+}

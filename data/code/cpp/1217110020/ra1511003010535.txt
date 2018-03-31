@@ -1,0 +1,62 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+typedef unsigned long long ull;
+const int p[10] = {2,3,5,7,11,13,17,19,23,29};
+ 
+inline ull mul(ull a, ull b, ull md) {
+	ull s = (ull)((long double)a * b / md) - 1;
+	return (a*b - s*md) % md;
+}
+inline ull pow(ull a, ull b, ull md) {
+	ull ans = 1;
+	for (; b; b>>=1) {
+		if (b & 1) ans = mul(ans, a, md);
+		a = mul(a, a, md);
+	}
+	return ans;
+}
+inline bool MR(ull d, ull x) {
+	int r = 0; ull y = x - 1;
+	for (; !(y & 1); y >>= 1, ++r);
+	ull t = pow(d, y, x);
+	if (t == 1 || t == x-1) return true;
+	while (r--) {
+		t = mul(t, t, x);
+		if (t == x-1) return true;
+		if (t == 1) return false;
+	}
+	return false;
+}
+inline bool isprime(ull x) {
+	if (x == 2) return true;
+	for (int i=0; i<10 && p[i]<x; ++i)
+		if (!(x % p[i]))
+			return false;
+	if (x < 900)
+		return true;
+	else {
+		for (int i=0; i<10; ++i)
+			if (!MR(p[i], x))
+				return false;
+		return true;
+	}
+}
+ 
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    ull n;
+    while(t--)
+    {
+              cin>>n;
+              if((isprime(n) && (n!=2 && n!=17))  ||(n==16)||(n==289)||(n==34))
+              cout<<"Tom"<<endl;
+              else
+              cout<<"Mike"<<endl;
+    }
+    return 0;
+}

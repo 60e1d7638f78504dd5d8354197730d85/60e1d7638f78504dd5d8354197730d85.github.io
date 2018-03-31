@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+    int N;
+    scanf("%d",&N);
+    int a[N],num,flag=0,count=0,i,j;
+    for(i=0;i<N;i++)
+      scanf("%d",&a[i]);
+    scanf("%d",&num);
+    for(i=0;i<N;i++)
+      if(a[i]==num){
+        flag++;
+        for(j=i;j<N-1;j++)
+          a[j]=a[j+1];
+        i--;
+        N--;
+      }
+     if(flag>1)
+       printf("invalidoutput");
+     else if(flag==1)
+       for(i=0;i<N;i++)
+         printf("%d\n",a[i]);
+	return 0;
+}

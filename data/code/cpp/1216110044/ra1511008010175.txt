@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+ 
+int lcm(int n1, int n2)
+{
+    int max = (n1 > n2) ? n1 : n2;
+    int max1 = max;
+    do
+    {
+        if (max % n1 == 0 && max % n2 == 0)
+            break;
+        else
+            max=max+max1;
+    } while (max<(n1*n2));
+    
+    return max;
+}
+ 
+int main()
+{
+    int t, n, a[10000], min, k, b[100], z=0;
+    cin>>t;
+    
+    while(t)
+    {
+    	cin>>n;
+    	for(int i=0; i<n; i++)
+    		cin>>a[i];
+    	min=a[0]*a[1];
+    	for(int i=0; i<n; i++)
+    		for(int j=i+1; j<n; j++)
+    		{
+    			k=lcm(a[i], a[j]);
+    			if(k<min)	min=k;
+    		}
+    	b[z++]=min;		
+    	t--;
+    }
+    
+    for(int i=0; i<z; i++)
+    cout<<b[i]<<endl;
+    
+    return 0;
+} 

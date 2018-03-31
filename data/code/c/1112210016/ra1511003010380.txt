@@ -1,0 +1,39 @@
+#include <stdio.h>
+#define P printf
+#define gc getchar_unlocked
+typedef unsigned long long ULL;
+ 
+ULL readint() {
+  char c = gc();
+  while(c<'0' || c>'9') c = gc();
+  ULL ret = 0;
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+ 
+int main(void) {
+	ULL n,m,q,i,minsum,maxsum;
+	long long int diff1,diff2;
+	n=readint();
+	m=readint();
+	minsum=n+2;maxsum=3*n;
+	for(i=0;i<m;i++)
+	{
+		q=readint();
+		if(q<minsum || q>maxsum)
+			P("0\n");
+		else
+		{
+			diff1=q-minsum;
+			diff2=maxsum-q;
+			if(diff1<=diff2)
+				P("%lld\n",diff1+1);
+			else
+				P("%lld\n",diff2+1);
+		}
+	}
+	return 0;
+}

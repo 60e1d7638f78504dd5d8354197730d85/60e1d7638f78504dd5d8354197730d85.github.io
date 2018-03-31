@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+  int gcd(long long int n,long long int m)
+  {
+    long long int k;
+    k=n%m;
+    if(k==0)
+      return m;
+    else
+      return gcd(m,k);
+	}
+
+int lcm(long long int a,long long int b)
+{
+ long long int c,d;
+  c=gcd(a,b);
+  d=(a*b)/c;
+  return d;
+}
+int main()
+{
+  long long int i,t,n,j,k,l;
+   long long int min;
+  scanf("%lld",&t);
+  for(i=1;i<=t;i++)
+  {
+  
+    long long int b=1000000000000000;
+  scanf("%lld",&n);
+  long long int a[n];
+  for(j=0;j<n;j++)
+  {
+    scanf("%lld",&a[j]);
+  }
+  for(j=0;j<n-1;j++)
+  {
+    for(k=j+1;k<n;k++)
+    {
+      l=lcm(a[j],a[k]);
+      if(l<b)
+        b=l;
+    }
+  }
+    printf("%lld\n",b);    
+  }      
+  return 0;
+}

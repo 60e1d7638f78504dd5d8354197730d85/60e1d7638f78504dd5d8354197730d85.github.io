@@ -1,0 +1,27 @@
+import java.util.*;
+class InvalidString extends Exception{
+  InvalidString(String s){
+    super(s);
+  }
+}
+public class TestClass {
+  static void validate(String city)throws InvalidString{
+    if(city==" ")
+      throw new InvalidString("not valid");
+    else
+      System.out.print(city);
+  }
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       String city=in.next();
+       try
+       {
+         validate(city);
+       }
+       catch(Exception e)
+       {
+         System.out.println(e);
+       }
+		
+	}
+}

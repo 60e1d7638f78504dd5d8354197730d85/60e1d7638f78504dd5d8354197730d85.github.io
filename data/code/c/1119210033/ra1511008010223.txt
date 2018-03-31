@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+int ncr(int n,int r)
+{
+	int ans=fac(n)/(fac(n-r)*(fac(r)));
+	return ans;
+}
+int fac(int n)
+{
+	if(n==1||n==0)
+		return 1;
+	return n*(fac(n-1));
+}
+int main()
+{
+	int x,n;
+	scanf("%d %d",&x,&n);
+	unsigned long long int ans=0;
+	char s[54];int i;
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",s);
+		int j=0,k=53,c=0,a=0;
+		while(j!=36&&k!=36)
+		{
+			int count=0;
+			while(c!=4)
+			{
+				if(s[j]=='0')
+					count++;
+				j++;
+				c++;
+			}
+			c=0;
+			while(a!=2)
+			{
+				if(s[k]=='0')
+					count++;
+				k--;
+				a++;
+			}
+			a=0;
+			if(count>=x)
+			{
+				ans+=ncr(count,x);	
+			}
+		}
+	}
+	printf("%llu\n",ans);
+	return 0;
+}
+  

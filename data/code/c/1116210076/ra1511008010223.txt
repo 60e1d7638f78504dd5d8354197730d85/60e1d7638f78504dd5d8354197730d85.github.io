@@ -1,0 +1,50 @@
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #define size 400000
+    struct w {
+    int x, y, z;
+    } e[size];
+    int n, m, u[size], r[size];
+    char tmp[size+10];
+    int comparator(const void *a1, const void *b1)
+    {
+    struct w *a=(struct w*)a1, *b=(struct w*)b1;
+    return a->z-b->z;
+    }
+    inline int top(int k){return u[k]<0?k:(u[k]=top(u[k]));}
+    inline void uu(int t1,int t2)
+    {
+    t1=top(t1);
+    t2=top(t2);
+    if(t1!=t2)
+    {
+    u[t2]=t1;
+    r[t1]|=r[t2];
+    }
+    }
+    main()
+    {
+    int fall, i, t1, t2;
+    long long ret=0;
+    for(scanf("%d",&fall); fall--; printf("%lld\n",ret))
+    {
+    for(i=-!!scanf("%d %d %s",&n,&m,tmp); ++i<n; u[i]=-1,r[i]=(tmp[i]=='R'));
+    for(i=-1; ++i<m; scanf("%d %d %d",&e[i].x,&e[i].y,&e[i].z),e[i].x--,e[i].y--);
+    for(i=ret=0,qsort(e,m,sizeof(e[0]),comparator); i<m; i++)
+    if(e[i].z<0)
+    {
+    ret+=e[i].z;
+    uu(e[i].x,e[i].y);
+    }
+    else
+    {
+    t1=top(e[i].x);
+    t2=top(e[i].y);
+    if(r[t1]&&r[t2]||t1==t2) continue;
+    ret+=e[i].z;
+    uu(t1,t2);
+    }
+    }
+    return 0;
+    }   

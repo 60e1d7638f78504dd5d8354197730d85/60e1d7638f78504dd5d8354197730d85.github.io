@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<limits.h>
+int main()
+{       
+        long long int t,num,i,k,sum,min;
+        scanf("%lld",&t);
+        while(t--)
+        {
+                sum=0;
+                min=LONG_MAX;
+                scanf("%lld",&num);
+                int arr[num];
+                for(i=0;i<num;i++)
+                {
+                        scanf("%d",&arr[i]);
+                        sum+=arr[i];
+                        k=sum/(i+1);
+                        if(k<min)
+                        min=k;
+                }
+                printf("%lld\n",min);
+        }
+        return 0;
+}

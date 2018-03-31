@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+int n,k=0,min,max,i,a[100];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  scanf("%d",&a[i]);
+  
+  for(i=0;i<n;i++)
+  {if(i==0)
+  {min=a[i];
+   max=a[i];
+  }
+  else if(min>a[i])
+    min=a[i];
+  else if(max<a[i])
+    max=a[i];
+  }
+  int diff;
+ diff=max-min;
+  for(i=0;i<n;i++)
+  {if(diff==a[i])
+  {k=1;
+  break;
+  }
+  }
+  if(k==1)
+    printf("%dYes",diff);
+    else
+      printf("%dNo",diff);
+  return 0;
+}

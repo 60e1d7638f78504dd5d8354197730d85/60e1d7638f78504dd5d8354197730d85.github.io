@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int i,j,k,l,m,x[100],y[100],n;
+  float min=32000.00,sum,val;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+    scanf("%d%d",&x[i],&y[i]);
+  for(i=1;i<n;i++)
+  {
+    for(j=i+1;j<=n;j++)
+    {
+      sum=sqrt(((x[i]-x[j])*(x[i]-x[j]))+((y[i]-y[j])*(y[i]-y[j])));
+      if(sum<min)
+        min=sum;
+    }
+  }
+  printf("%f",min);
+      
+
+	return 0;
+}

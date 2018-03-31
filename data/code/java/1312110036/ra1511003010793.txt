@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass
+{
+     public static int sum(int b)
+     {
+        int s=0;
+         while(b!=0)
+         {
+           s=s+(b%10);
+           b=b/10;
+         }
+         s=(s<10)?s:sum(s);
+         
+        return s;
+     }
+	 public static void main(String[] args) 
+     { 
+		Scanner sc=new Scanner(System.in);
+        
+        String a=sc.nextLine();
+        int b=sc.nextInt();
+       char unit=a.charAt(a.length()-1);
+       int ten=sum(b);
+       char hundred=a.charAt(0);
+       int hun=(int)hundred;
+       if(hun>=97 && hun<=122)
+       {
+         hun=hun-32;         
+       }
+       else if(hun>=65 && hun<=90)
+       {
+         hun=hun+32;
+          
+       }
+       String thousand=b+"";
+       String thou=thousand.substring(0,1);
+       String pass=(thou)+((char)hun+"")+(ten+"")+(unit+"");
+       System.out.println(pass);
+     
+	}
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class data{
+private:
+  string names[100];
+  int i=0;
+  int getnextroll(){
+    static int nextroll=1101;
+    return nextroll++;
+  }
+  public:
+  void getname(){
+    cin>>names[i++];
+  }
+  void displaydata(int j){
+    cout<<getnextroll()<<" "<<names[j]<<'\n';
+  }
+}obj;
+int main()
+{
+  int a;
+  cin>>a;
+  for(int i=0;i<a;i++){
+    obj.getname();
+  }
+  for(int j=0;j<a;j++){
+    obj.displaydata(j);
+  }
+	return 0;
+}

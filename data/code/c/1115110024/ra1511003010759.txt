@@ -1,0 +1,52 @@
+#include<stdio.h>
+
+int main() {
+   int a[5][5], i, j, s[10];
+   int sum3=0, sum4=0, sum1, sum2;
+   
+   for(i=1; i<=3; i++)
+   {
+       for(j=1; j<=3; j++)
+       {
+           scanf("%d", &a[i][j]);
+       }
+   }
+   
+   for(i=1; i<=3; i++)
+   {
+       sum1=0;
+       sum2=0;
+       for(j=1; j<=3; j++)
+       {
+           sum1 += a[i][j];
+           sum2 += a[j][i];
+           
+           if(i==j)
+           {
+               sum3 += a[i][j];
+           }
+           
+           if(i+j==4)
+           {
+               sum4+= a[i][j];
+           }
+       }
+       
+       s[i] = sum1;
+       s[i+3] = sum2;
+       s[7] = sum3;
+       s[8] = sum4;
+   }
+   
+   for(i=1; i<8; i++)
+   {
+       if(s[i]!=s[i+1])
+       {
+           printf("No\n");
+           return 0;
+       }
+   }
+   
+   printf("Yes\n");
+   return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+  int a[50], n, i;
+  scanf("%d", &n);
+  for(i=0; i<n; i++){
+    scanf("%d", &a[i]);
+  }
+  int ans;
+  ans = findSum(a, n);
+  printf("%d", ans);
+  return 0;
+}
+
+int findSum(int A[], int N)
+{
+    if (N <= 0)
+        return 0;
+    return (findSum(A, N-1) + A[N-1]);
+}

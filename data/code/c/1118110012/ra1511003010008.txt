@@ -1,0 +1,26 @@
+#include <stdio.h>
+struct time
+{
+  int hour,minute,second;
+};
+int main()
+{
+  struct time t; struct time t1; struct time t2;
+  t2.hour=t2.minute=t2.second=0;
+  scanf("%d %d %d %d %d %d",&t.hour,&t.minute,&t.second,&t1.hour,&t1.minute,&t1.second);
+  t2.second=t.second+t1.second;
+  if(t2.second>=60)
+  {
+    t2.minute+=1;
+    t2.second-=60;
+  }
+  t2.minute=t2.minute+t1.minute+t.minute;
+  if(t2.minute>=60)
+  {
+    t2.hour++;
+    t2.minute-=60;
+  }
+  t2.hour=t1.hour+t.hour+t2.hour;
+  printf("%d hrs\n%d min\n%d sec",t2.hour,t2.minute,t2.second);
+	return 0;
+}

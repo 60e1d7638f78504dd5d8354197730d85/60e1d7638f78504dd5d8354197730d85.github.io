@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+ 
+long long int f[100],count;
+ 
+void fn1(long long int value_remianing, long long int places_remaining, long long int array_position);
+ 
+int main(){
+ 
+	long long int i,q,k,x;
+ 
+ 
+	f[0]=1;
+	f[1]=2;
+ 
+	for(i=2;i<71;i++){
+		f[i]=f[i-1]+f[i-2];
+	}
+ 
+ 
+	scanf("%lld",&q);
+ 
+	while(q--){
+ 
+		count=0;
+		scanf("%lld %lld",&x,&k);
+		fn1(x,k,70);
+		printf("%lld\n",count%1000000007);
+ 
+	}
+ 
+ 
+	return 0;
+}
+ 
+ 
+ 
+void fn1(long long int value_remianing,long long int places_remaining, long long int array_position){
+ 
+	int i;
+ 
+		if(places_remaining==0){
+ 
+			if(value_remianing==0)
+				count++;
+ 
+			return;
+ 
+		}
+ 
+		for(i=array_position;i>=0;i--){
+			
+			if(f[i]>value_remianing){
+				//return;
+			}
+			else{
+ 
+			if(f[i]*places_remaining<value_remianing)
+				return;
+ 
+			fn1(value_remianing-f[i],places_remaining-1,i);
+			//printf("%lld ",f[i]);
+			
+			}
+		
+		}
+ 
+ 
+	return;
+ 
+ 
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char AL[26];
+  char str[100];
+  int i;
+  char freq[26];
+  for(i=0;i<26;i++){
+    static int a=97;
+    freq[i]=0;
+    AL[i]=(char)a;
+    a++;
+  }
+  int al;
+  scanf("%s",str);
+  int size=strlen(str);
+  for(i=0;i<size;i++){
+      al=str[i];
+      freq[al-97]++;
+  }
+  for(i=0;i<26;i++){
+    if(freq[i]==0)
+      continue;
+    else{
+      printf("%c=%d\n",AL[i],freq[i]);
+    }
+  }
+	return 0;
+}

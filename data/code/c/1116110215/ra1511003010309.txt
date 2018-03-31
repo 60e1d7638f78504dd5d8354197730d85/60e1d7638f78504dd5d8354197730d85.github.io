@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,i,j;
+  char let[50][50];
+  char  temp[50];
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+  scanf("%s",let[i]);
+  
+  }
+
+  for(i=0;i<n-1;i++){
+   for(j=0;j<n-i-1;j++)
+   {
+    if(strcmp(let[j],let[j+1])>0)
+    {
+     strcpy(temp,let[j]);
+      strcpy(let[j],let[j+1]);
+      strcpy(let[j+1],temp);
+    
+    }
+   
+   }
+  }
+  
+  for(i=0;i<n;i++){
+  for(j=0;let[i][j]!='\0';j++)
+  {
+  
+  printf("%c",let[i][j]);
+  }
+    printf("\n");
+  }
+	return 0;
+}

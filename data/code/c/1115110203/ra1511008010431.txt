@@ -1,0 +1,36 @@
+#include <stdio.h>
+ 
+int main() {
+    
+	char days[10][10]={"monday","tuesday","wednesday","thursday","friday","saturday","sunday","monday"};
+	int t,year,a,b,c,d,x,y;
+	scanf("%d",&t);
+	while(t--){
+	    scanf("%d",&year);
+	    
+        if(year<2001)
+        a =  2000 - year;
+        else
+        a = year - 2001;
+        
+       
+	    b = a/4;
+	    c = a/100;
+	    d = a/400;
+	    
+	    x = a + b - c + d ;
+        if(year<2001)
+        x = x+ 2;
+        
+	    y = x%7;
+	    
+	    if(year>2001)
+	    printf("%s\n",days[y]);
+	    else
+	    printf("%s\n",days[7-y]);
+	    
+	  
+	    
+	}
+	return 0;
+}

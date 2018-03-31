@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+int p;
+  int flag=0;
+  scanf("%d",&p);
+  int a,b,c=0;
+  int m=2;
+  int n;
+  while(c<1018)
+  {
+  for(n=1;n<m;++n)
+  {
+    a=m*m-n*n;
+    b=2*m*n;
+    c=m*m+n*n;
+    if((a==p) || (b==p) ||(c==p))
+    {
+      flag=1;
+      if(a==p)
+     	 printf("%d %d",b,c);
+      else if(b==p)
+        printf("%d %d",a,c);
+      else
+        printf("%d %d",a,b);
+      break;
+    }
+    
+  }
+    if(flag==1)
+      break;
+    m++;
+  
+  }    
+  if(flag==0)
+  {
+    printf("-1");
+  }
+    
+	return 0;
+}

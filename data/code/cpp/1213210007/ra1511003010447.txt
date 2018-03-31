@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string str;
+  int i=0,countVowels=0,countConsonants=0,digits=0,spaces=0;
+  getline(cin,str);
+  while(str[i]!='\0'){
+    if(isalpha(str[i]))
+    {
+      if(str[i]=='a'||str[i]=='e'||str[i]=='i'||str[i]=='o'||str[i]=='u'||str[i]=='A'||str[i]=='E'||str[i]=='I'||str[i]=='O'||str[i]=='U')
+      countVowels++;
+    else
+      countConsonants++;
+    }
+    else if(isdigit(str[i])){
+    digits++;
+    }else if(str[i]==' ')
+      spaces++;
+    i++;
+  }
+  
+  cout<<"Vowels:"<<countVowels;
+  cout<<"\nConsonants:"<<countConsonants;
+  cout<<"\nDigits:"<<digits;
+  cout<<"\nWhite spaces:"<<spaces;
+	return 0;
+}

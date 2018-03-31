@@ -1,0 +1,29 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+  	if(a==b)return a;
+  	if(a>b)return gcd(a-b,b);
+  	return gcd(a,b-a);
+    
+}
+int getGcd(int a,int b,int c)
+{
+    int result = a;
+  	result=gcd(b,result);
+  	result=gcd(c,result);
+    return result;
+}
+int main()
+{
+	int n,i,j,k;
+  	scanf("%d",&n);
+  	int a[n];
+  	for(i=0;i<n;i++)scanf("%d",&a[i]);
+  	int count=0;
+  	for(i=0;i<n-2;i++)
+      	for(j=i+1;j<n-1;j++)
+          	for(k=j+1;k<n;k++)
+              	if(getGcd(a[i],a[j],a[k])==1)count++;
+  	printf("%d",count);
+	return 0;
+}

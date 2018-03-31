@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+inline int fast_scan()
+{
+    int n=0;
+    int ch=getchar_unlocked();
+    while( ch <48 )ch=getchar_unlocked();
+    while( ch >47 )
+        n = (n<<3)+(n<<1) + ch-'0', ch=getchar_unlocked();
+    return n;
+}
+ 
+void quickSort(int arr[], int left, int right) {
+	int i = left, j = right;
+	int tmp;
+	int pivot = arr[(left + right) / 2];
+ 
+	/* partition */
+	while (i <= j) {
+		while (arr[i] < pivot)
+			i++;
+ 
+		while (arr[j] > pivot)
+			j--;
+ 
+		if (i <= j) {
+			tmp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = tmp;
+			i++;
+			j--;
+		}
+	};
+ 
+	/* recursion */
+ 
+	if (left < j)
+		quickSort(arr, left, j);
+ 
+	if (i < right)
+		quickSort(arr, i, right);
+}
+ 
+int main()
+{
+    int numCases = fast_scan();
+    
+    while(numCases--)
+    {
+        int numSongs = fast_scan();
+        int lengths[numSongs];
+        int i = 0;
+        int j,k,val;
+        
+        j = numSongs;
+        
+        while(j--)
+        {
+            lengths[i++] = fast_scan();
+        }
+        
+        k = fast_scan();
+        val = lengths[k-1];
+        
+        quickSort(lengths, 0, numSongs-1);
+        
+        for(i = 0; i < numSongs; i++)
+        {
+            if(lengths[i] == val)
+            {
+                printf("%d\n",i+1);
+                break;
+            }
+        }
+    }
+    
+    return 0;
+}
+  

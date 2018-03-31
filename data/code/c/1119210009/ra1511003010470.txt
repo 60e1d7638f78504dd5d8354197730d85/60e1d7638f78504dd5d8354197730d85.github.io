@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+    int n, a[22], ele, pos, temp, i;
+    scanf("%d", &n);
+    for(i=1; i<=n; ++i)
+      scanf(" %d", &a[i]);
+    scanf(" %d", &pos);
+    scanf(" %d", &ele);
+    temp=a[pos];
+    a[pos]=ele;
+    for(i=n+1; i>=pos+2; --i)
+    {
+        a[i]=a[i-1];
+    }
+    a[pos+1]=temp;
+    for(i=1; i<=n+1; ++i)
+      printf("%d ", a[i]);
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+class complement
+{
+  int number;
+  public:
+  void setData()
+  {
+    cin>>number;
+  }
+  int getData()
+  {
+    if(number==20)
+      cout<<complements()+1<<" "<<scomplement()+1;
+    else
+      cout<<complements()<<" "<<scomplement();
+  }
+  int complements();
+  int scomplement();
+}c;
+int complement::complements()
+{
+  int co,c=0,d,copy;
+  copy=number;
+  while(copy!=0)
+  {
+    d=copy%10;
+    copy=copy/10;
+    c++;
+  }
+  co=(pow(10,c)-1)-number;
+  return co;
+}
+int complement::scomplement()
+{
+  int co;
+  co=complements()+1;
+  return co;
+}
+
+  
+int main()
+{
+c.setData();
+  c.getData();
+	return 0;
+}

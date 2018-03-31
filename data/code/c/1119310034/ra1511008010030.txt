@@ -1,0 +1,79 @@
+#include<stdio.h>
+void check(const int *n1,const int *k1){
+	int r1=-1;
+	int r2=-1;
+	int a;
+	int j;
+	int c1;
+	int c2;
+	int s=0;
+	scanf("%d %d",&a,&j);
+	if(a%((*k1)+1)==j%((*k1)+1))
+	{
+		c1=2;
+		c2=0;
+		r1=a%((*k1)+1);
+	}
+	else
+	{
+		c1=1;
+		c2=1;
+		r1=a%((*k1)+1);
+		r2=j%((*k1)+1);
+ 
+	}
+	for(j=2; j < (*n1) ;j++)
+	{
+		scanf("%d",&a);
+		if(a%((*k1)+1)==r1)
+		{
+			c1++;
+		}
+		else if(r2==-1)
+		{
+			r2=a%((*k1)+1);
+			c2++;
+		}
+		else if(a%((*k1)+1)==r2)
+		{
+			c2++;
+		}
+		else
+		{
+			s=1;
+			printf("NO\n");
+			break;
+		}
+	}
+	if(s==1)
+	{
+		for(j=j+1;j<(*n1);j++)
+			scanf("%d",&a);
+	}
+	else
+	{
+		if(c1==0||c2==0||c1==1||c2==1)
+			printf("YES\n");
+		else
+		{
+			printf("NO\n");
+		}
+	}
+	return;
+}
+int main()
+{
+	int T;				
+	int k;				
+	int n;				
+	int i;
+	scanf("%d",&T);
+	
+	for(i=0;i<T;i++)
+	{
+		scanf("%d %d",&n,&k);
+		check(&n,&k);
+	}
+	return 0;
+}
+ 

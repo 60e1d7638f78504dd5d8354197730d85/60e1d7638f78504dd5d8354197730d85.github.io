@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+typedef double dbl;
+#define fr(x,a,b) for(ll x=a;x<b;x++)
+#define PB push_back
+#define MP make_pair
+#define mod 1000000007
+#define gmax LLONG_MAX
+#define gmin LLONG_MIN
+#define INF 2e9
+#define N 100001
+#define MAX(a,b,c) max(max(a,b),c)
+#define MIN(a,b,c) min(min(a,b),c)
+
+bool check(ll f1[],ll f2[]){
+  fr(i,0,26) if(f1[i]!=f2[i]) return false;
+  return true;
+}
+
+int main(){
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
+  ll t;
+  cin>>t;
+
+  ll flag;
+  string s1,s2;
+  while(t--){
+    cin>>s1>>s2;
+
+    flag=0;
+    ll f1[26]={0},f2[26]={0};
+
+    fr(i,0,s1.size()) f1[s1[i]-'a']++;
+
+    fr(i,0,s1.size()) f2[s2[i]-'a']++;
+    if(check(f1,f2)){
+      cout<<"YES\n";
+      continue;
+    }
+    else{
+      for(ll i=1;i<s2.size()-s1.size()+1;i++){
+        f2[s2[i-1]-'a']--;
+        f2[s2[i+s1.size()-1]-'a']++;
+        if(check(f1,f2)){
+          flag=1;
+          break;
+        }
+      }
+    }
+
+    if(flag) cout<<"YES\n";
+    else cout<<"NO\n";
+  }
+
+  return 0;
+}

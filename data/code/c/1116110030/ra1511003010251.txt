@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{int i,j,count=0,flag,l1,l2;
+ char c[100],s[20];
+ fgets(c,100,stdin);
+ fgets(s,20,stdin);
+ l1=strlen(c);
+ l2=strlen(s);
+ for(i=0;i<l1-l2;i++)
+ { flag=1; 
+   for(j=0;j<l2;j++)
+   {
+     if(c[i+j]!=s[j])
+     {
+       flag=0;
+       break;
+     }
+   }
+   if(flag==1)
+   {
+     count++;
+   }
+ }
+ printf("%s=%d",s,count);
+
+	return 0;
+}

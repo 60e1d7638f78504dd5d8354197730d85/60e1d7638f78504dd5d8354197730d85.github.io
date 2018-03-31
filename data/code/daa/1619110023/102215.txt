@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define lli long long
+#define M 10000007
+#define MAX (1 << 22)
+using namespace std;
+vector <int> small, big;
+int small_sz, big_sz;
+lli big_cnt[MAX];
+int x;
+bool vis[1002][1 << 12];
+int dp[1002][1 << 12];
+int f(int idx, int xor_sum)
+{
+	if ( idx == small_sz ) return big_cnt[(xor_sum ^ x)];
+	if ( vis[idx][xor_sum] ) return dp[idx][xor_sum];
+	vis[idx][xor_sum] = true;
+	int ans = f(idx + 1, xor_sum);
+	ans += f(idx + 1, xor_sum ^ small[idx]);
+	if ( ans >= M ) ans -= M;
+	dp[idx][xor_sum] = ans;
+	return ans;
+}
+int main()
+{
+	int n, y, cnt = 0;
+	cin >> n >> x;
+	assert(n >= 1 && n <= 1000);
+	assert(x >= 0 && x <= (1<<20));
+	for ( int i = 0; i < n; i++ ) {
+		cin >> y;
+		assert(y >= 0 && y <= (1<<20));
+		if ( y > (1<<10) ) cnt++, big.push_back(y);
+		else small.push_back(y);
+	}
+	assert(cnt <= 20);
+	small_sz = (int)small.size();
+	big_sz = (int)big.size();
+	for ( int i = 0; i < (1 << big_sz); i++ ) {
+		int val = 0;
+		for ( int j = 0; j < big_sz; j++ ) {
+			if ( i & (1 << j) ) val ^= big[j];
+		}
+		big_cnt[val]++;
+	}
+	cout << f(0, 0) << endl;
+	return 0;
+}

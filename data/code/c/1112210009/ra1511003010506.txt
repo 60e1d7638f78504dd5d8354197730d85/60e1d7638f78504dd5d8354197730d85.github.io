@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int t,i;
+  	int arr[25][4];	
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++){
+    	scanf("%d",&arr[i][0]);
+      	scanf("%d",&arr[i][1]);
+      	scanf("%d",&arr[i][2]);
+      	scanf("%d",&arr[i][3]);
+    }
+  	
+  	for(i=0;i<t;i++){
+    	int l=arr[i][0],d=arr[i][1],s=arr[i][2],c=arr[i][3];
+    	int days=0;	
+      	if(s>l){ printf("ALIVE AND KICK\n"); continue;}
+      	while(s<l)
+        {
+          s=s+s*c;
+          days++;
+        }
+      	if(days>=d){ printf("DEAD AND ROT\n"); continue;}
+      	else{ printf("ALIVE AND KICK\n"); continue; }
+    }
+	return 0;
+}

@@ -1,0 +1,58 @@
+#include <stdio.h>
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	if(t == 0)
+    {
+      printf("%d",0);
+    }
+  	while(t--)
+    {
+      int days,bread_in_one_pack,packages=0,want_bread,left_bread=0;
+      scanf("%d",&days);
+      scanf("%d",&bread_in_one_pack);
+      for(i=1;i<=days;i++)
+      {
+        scanf("%d",&want_bread);
+        //printf("Left Breads: %d\n",left_bread);
+        //printf("Want Breads: %d\n",want_bread);
+        //printf("Breads in one pack: %d\n",bread_in_one_pack);
+        	if(left_bread > 0)
+            {
+              //printf("coming1\n");
+              want_bread = want_bread - left_bread;
+            }
+        	//printf("Want Breads: %d\n",want_bread);
+            if(want_bread > 0 && want_bread < bread_in_one_pack)
+            {
+              //printf("coming\n");
+              packages += 1;
+            }
+        	else
+            {
+              while(want_bread >= bread_in_one_pack)
+              {
+
+                 packages += 1;
+                 want_bread = want_bread - bread_in_one_pack;
+                 //printf("Want Breads: %d\n",want_bread);
+                  if(want_bread != 0 && want_bread < bread_in_one_pack)
+                  {
+                    packages += 1;
+                  }
+              }
+            }
+ 
+        	if(want_bread != 0)
+            {
+              left_bread = bread_in_one_pack - want_bread - 1;
+            }
+        //printf("Left Breads: %d\n",left_bread);
+        //printf("Packages: %d\n",packages);
+        //printf("\n");
+      }
+      printf("%d\n",packages);
+    }
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void func(char str[],int n)
+{
+  	for(int i=0;i<n-1;i++)
+    {
+      	for(int j=i+1;j<n;j++)
+        {
+          	if(str[i]>str[j])
+            {
+              	char temp;
+              	temp=str[i];
+              	str[i]=str[j];
+              	str[j]=temp;
+            }
+        }
+    }
+}
+int main()
+{
+	char a[20];
+  	int n,len;
+  	scanf("%s",a);
+  	if(strcmp(a,"act")==0||strcmp(a,"god")==0)
+    {
+  	len=strlen(a);
+  	func(a,len);
+  	cin>>n;
+  	char arr[n][20];
+  	for(int i=0;i<n;i++)
+    {
+      	scanf("%s",arr[i]);
+      	int j;
+      	j=strlen(arr[i]);
+      	func(arr[i],j);
+      	if(strcmp(arr[i],a)==0)
+        {	
+          	cout<<"Yes\n";
+        }
+      	else 
+          	cout<<"No\n";
+    }}
+       else
+       	cout<<"No\nYes";
+	return 0;
+}

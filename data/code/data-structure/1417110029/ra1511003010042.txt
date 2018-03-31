@@ -1,0 +1,23 @@
+#include<iostream>
+#include<map>
+typedef long int lint;
+using namespace std;
+int main()
+{   
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	lint n,m,i,j,k=0;
+	cin>>n>>m;
+	lint a[n];
+	map <lint,lint> m1;
+	map <lint,lint> m2;
+	for(i=0;i<n;i++){
+		cin>>j;
+		m1[j]++;
+		if(m1[j]>k||(m1[j]==k&&j>m2[k])){
+			k=m1[j];
+			m2[k]=j;
+		}
+		cout<<m2[k]<<" "<<m1[m2[k]]<<endl;
+	}
+}

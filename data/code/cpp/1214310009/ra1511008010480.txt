@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+class Time {
+	int hr, min, sec;
+  	public:
+  		Time(int h, int m, int sec): hr(h), min(m), sec(sec) {}
+  		friend void convert(const Time);
+};
+
+void convert(const Time time) {
+	if(time.hr < 10) cout<<"0";
+  	cout<<time.hr<<":";
+  	if(time.min < 10) cout<<"0";
+  	cout<<time.min<<":";
+  	if(time.sec < 10) cout<<"0";
+  	cout<<time.sec<<endl;
+  	long sec = time.hr*3600 + time.min*60 + time.sec;
+  	cout<<sec;
+}
+
+int main()
+{
+	int h, m, s;
+  	cin>>h>>m>>s;
+  	Time t1(h, m, s);
+  	convert(t1);
+	return 0;
+}

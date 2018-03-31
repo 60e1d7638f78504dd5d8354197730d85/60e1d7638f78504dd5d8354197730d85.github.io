@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool ispower(long long int x,long long int y,long long int &i)
+{
+   if (x==1)
+     return (y==1);
+   long long int p;
+   p=1;
+   while (p<y)
+    {
+        p*=x;
+        i++;  
+    }
+   return (p==y);
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int i,j,s;
+        int n,f,x,y,z,c,d;
+        cin>>n;
+        j=n;
+        queue<int>q;
+        unordered_set<int>g;
+        g.insert(n);
+        q.push(n);
+        s=0;
+        while(!q.empty())
+        {
+            n=q.front();
+            q.pop();
+            if(n==1&&j==1)
+              break;
+            if(n==1)
+            {
+                s++;
+                break;
+            }
+            if(n==j-1)
+            {
+                s++;
+                j=j-1;
+            }
+            if((n%3)==0)
+            {
+                z=n/3;
+                c=g.size();
+                g.insert(z);
+                d=g.size();
+                if(c!=d)
+                 q.push(z);
+            }
+            if((n%2)==0)
+            {
+                y=n/2;
+                c=g.size();
+                g.insert(y);
+                d=g.size();
+                if(c!=d)
+                  q.push(y);
+            }
+            x=n-1;
+            q.push(x);
+        }
+        cout<<s<<"\n";
+    }
+    return 0;
+}

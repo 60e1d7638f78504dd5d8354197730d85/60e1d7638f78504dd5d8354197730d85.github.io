@@ -1,0 +1,55 @@
+#include<stdio.h>
+int stack[200001][2];
+main()
+{
+	int n,i,j,t=-1;
+	scanf("%d",&n);
+	int a[n];
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	int max=0;int x=0,check;
+	for(i=n-1;i>=0;i--)
+	{
+		t=-1;
+		if(a[i]<0)
+		{
+			t++;
+			x=0;
+			stack[t][0]=a[i];
+			stack[t][1]=i;
+			for(j=i-1;j>=0;j--)
+			{
+				if(a[j]<0)
+				{
+					t++;
+					check=0;
+					stack[t][0]=a[j];
+					stack[t][1]=j;
+				}
+				else
+				{
+					if((a[j]==-stack[t][0])&&(t>-1))
+					{
+						if((t==0)&&(check==0))
+						x+=stack[t][1]-j+1;
+						else
+						x=stack[t][1]-j+1;
+						t--;
+						check=1;
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			if(x>max)
+			max=x;
+			i=j;
+		}
+	}
+	if(x>max)
+	max=x;
+	printf("%d",max);
+  return 0;
+}

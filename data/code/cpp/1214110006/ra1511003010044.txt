@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class bank
+{ int accno,bal;
+  char name[100],type[10];
+  public: void getdet()
+  		  { cin>>name;
+            cin>>accno;
+            cin>>type;
+            cin>>bal;
+          }
+ 		  void dep()
+          { int amt;
+            cin>>amt;
+            bal=bal+amt;
+          }
+ 		  void with()
+          { int amt;
+            cin>>amt;
+            if (amt>bal)
+               cout<<"Insufficient amount"<<endl;
+            else
+               bal=bal-amt;
+          }
+ 		  void display()
+          { cout<<"NAME="<<name<<endl;
+            cout<<"ACCNO="<<accno<<endl;
+            cout<<"TYPE="<<type<<endl;
+            cout<<"BALANCEAMOUNT="<<bal<<endl;
+          }
+};
+int main()
+{ class bank s;
+  s.getdet();
+  s.dep();
+  s.with();
+  s.display();
+  return 0;
+}

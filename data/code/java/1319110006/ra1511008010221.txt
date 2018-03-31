@@ -1,0 +1,19 @@
+import java.io.*;
+public class TestClass {
+   public static String name;
+   public static void printName(){
+        System.out.println("Hello "+name);
+  }
+  public static void main(String args[])throws Exception{
+    try{
+      BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+      name=br.readLine();
+      if(name.matches("^[ A-Za-z]+$"))
+        printName();
+      else 
+        throw new IOException();
+    }catch(IOException e){
+      System.out.println(e);
+    }
+  }    
+}

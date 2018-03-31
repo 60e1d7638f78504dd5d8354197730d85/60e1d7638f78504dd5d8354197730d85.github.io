@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+	char *s="SUVO",*su="SUVOJIT";
+  	char str[100];
+  	int t;
+  	scanf("%d",&t);
+  	scanf("%s",str);
+  	int a=0,b=0,i=0;
+  	while(str[i])
+    {
+      int j=0;
+      int k=i;
+      while(s[j]&&str[i]==s[j])
+      {
+        i++;
+        j++;
+      }
+      if(j==4&&str[i]!='J')
+      {
+        a++;
+        continue;
+      }
+      i=k;
+      j=0;
+      while(su[j]&&str[i]==su[j])
+      {
+        i++;
+        j++;
+      }
+      if(j==7)
+      {
+        b++;
+      }
+      i++;
+    }
+  printf("SUVO = %d\nSUVOJIT = %d",a,b);
+	return 0;
+}

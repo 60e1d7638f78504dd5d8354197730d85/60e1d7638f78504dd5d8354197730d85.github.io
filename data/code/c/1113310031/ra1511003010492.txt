@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+int t,i,j,temp;
+  scanf("%d",&t);
+  int ar[t],min;
+  for(i=0;i<t;i++)
+  {
+  scanf("%d",&ar[i]);
+  }
+  
+  for(i=0;i<t-1;i++)
+  {
+    min=i;
+   for(j=i+1;j<t;j++)
+  {
+     if(ar[j]<ar[min])
+       min=j;
+     
+  }
+      temp=ar[i];
+     ar[i]=ar[min];
+      ar[min]=temp;
+  }
+  
+  for(i=0;i<t;i++)
+  {
+  printf("%d\n",ar[i]);
+  }
+	return 0;
+}

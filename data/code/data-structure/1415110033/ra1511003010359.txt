@@ -1,0 +1,96 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node* next;
+};
+class LinkedList
+{
+  private:
+  struct node *head,*tail;
+  public:
+   LinkedList()
+   {
+     head=NULL;
+     tail=NULL;
+   }
+   void addData(int n)
+   {
+     node *temp=new node;
+     temp->data=n;
+     temp->next=NULL;
+     if(head==NULL)
+     {
+       head=temp;
+       tail=temp;
+     }
+     else
+     {
+       tail->next=temp;
+       tail=tail->next;
+     }
+   }
+  void display()
+  {
+    node* temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+      cout<<"->"<<temp->data;
+      temp=temp->next;
+    }
+  }
+  void deleteData()
+  {
+    node *temp, *temp1;
+    int status;
+    temp=head;
+    while(temp!=NULL)
+    {
+      status=0;
+      temp1=temp;
+      while(temp1!=NULL)
+      {
+        if(temp->data<temp1->data)
+        {
+          status=1;
+          break;
+        }
+        temp1=temp1->next;
+      }
+      if(status==1 && temp!=head)
+      {
+        node *prev;
+        prev=head;
+          while(prev->next!=NULL && prev->next!=temp)
+          {
+            prev=prev->next;
+          }
+        prev->next=temp->next;
+      }
+      else if(status==1 && temp==head)
+      {
+        head=head->next;
+      }
+      temp=temp->next;
+    }
+  }
+};
+int main()
+{
+  int n,data;
+  cin>>n;
+  LinkedList l;
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    l.addData(data);
+  }
+  cout<<"Given linked list\n";
+  l.display();
+  cout<<"\nModified Linked List\n";
+  l.deleteData();
+  l.display();
+	return 0;
+}

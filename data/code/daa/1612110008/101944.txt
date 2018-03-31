@@ -1,0 +1,65 @@
+#include<iostream>
+#include<string>
+#include<iomanip>
+using namespace std;
+ 
+void swap(char &a, char &b)
+{
+	char tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+ 
+int partition(string &str, int low, int high)
+{
+	int i = low - 1;
+	char pivot = str[high];
+	for (int j = low; j < high; j++)
+	{
+		if (str[j] <= pivot)
+		{
+			i++;
+			swap(str[i], str[j]);
+		}
+	}
+ 
+	swap(str[i + 1], str[high]);
+	return (i + 1);
+}
+string sort(string &str, int left, int right)
+{
+	if (left < right)
+	{
+		int pi_pos = partition(str, left, right);
+		sort(str, left, pi_pos - 1);
+		sort(str, pi_pos + 1, right);
+	}
+	return str;
+}
+ 
+void process(string &str)
+{
+	string tmpStr = str;
+	int counter = 0;
+	for (int i = 0; i < str.length(); i = i + 2)
+		tmpStr[counter++] = str[i];
+	for (int i = str.length() - 2; i > 0 ;i = i - 2)
+		tmpStr[counter++] = str[i];
+	str = tmpStr;
+}
+ 
+int main()
+{
+    int T;
+    cin >> T;
+    int count = 0;
+    while(count < T)
+{	string str;
+	cin >> str;
+	string result = sort(str, 0, str.length() - 1);
+	process(result);
+	cout << result << endl;
+	count++;
+}
+}

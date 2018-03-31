@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+  int data;
+  struct node *next;
+};
+
+struct node* push(struct node *h,int d)
+{
+  if(h==NULL)
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=NULL;
+    h=nn;
+  }
+  else
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=h;
+    h=nn;
+  }
+  return h;
+}
+
+void print(struct node *h)
+{
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    printf("-->%d",t->data);
+    t=t->next;
+  }
+}
+
+void printmid(struct node *h)
+{
+  int cnt=0,i;
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    cnt++;
+    t=t->next;
+  }
+  t=h;
+  for(i=0;i<cnt/2;i++)
+    t=t->next;
+  printf("\nThe middle element is [%d]",t->data);
+}
+
+int main()
+{
+  struct node *head;
+  int n,i,t;
+	scanf("%d",&n);
+  while(n--)
+  {
+    scanf("%d",&t);
+    head=push(head,t);
+  }
+  printf("Linked list\n");
+  print(head);
+  printmid(head);
+	return 0;
+}

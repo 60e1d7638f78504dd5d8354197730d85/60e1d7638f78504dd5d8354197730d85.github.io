@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+public class TestClass {
+ 
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int cases = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+ 
+		while (cases-- > 0) {
+			int temp1[] = new int[256];
+			int temp2[] = new int[256];
+			String j = br.readLine();
+			String s = br.readLine();
+			for (int i = 0; i < j.length(); i++) {
+				temp1[j.charAt(i)]++;
+			}
+ 
+			for (int i = 0; i < s.length(); i++) {
+				temp2[s.charAt(i)]++;
+			}
+			int count = 0;
+			for(int i = 0; i < 256; i++) {
+				if(temp1[i] != 0) {
+					count += temp2[i];
+				}
+			}
+			sb.append(count + "\n");
+		}
+		System.out.println(sb);
+	}
+}
+ 

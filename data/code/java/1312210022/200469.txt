@@ -1,0 +1,92 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	   private int max = 100000;
+    private int primeArray[] = new int[max + 1];
+    
+    public TestClass()
+    {
+        
+        primeArray[1] = 1; 
+        
+        int i = 2;
+        while (i * i <= max) {
+            for (int j = i; j * i <= max; j++) {
+                primeArray[i * j] = 1; 
+            }
+            
+            // next value of i -> 3, 5, 7, 11 so on
+            while (true) {
+                i++;
+                if (primeArray[i] == 0) {
+                    break;
+                }
+            }
+        }
+    }
+    
+    private void checkAndPrintPrime(int j, int n) {
+        int k = 2;
+        boolean isPrime = true;
+        while (k * k <= n) {
+            if (j % k == 0) {
+                isPrime = false;
+                break;
+            }
+ 
+            // next value of k will be next prime i.e. 3, 5, 7, 11, 13
+            while (true) {
+                k++;
+                if (primeArray[k] == 0) {
+                    break;
+                }
+            }
+        }
+ 
+        if (isPrime) {
+            System.out.println(j);
+        }
+    }
+    
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        TestClass prime1 = new TestClass();
+        
+        int t = in.nextInt();
+        
+        for (int i = 0; i < t; i++) {
+            int m = in.nextInt();
+            int n = in.nextInt();
+            
+            if (n < prime1.max) {
+                for (int j = m; j <= n; j++) {
+                    if (prime1.primeArray[j] == 0) {
+                        System.out.println(j);
+                    }
+                }
+            } else if (m < prime1.max) {
+                for (int j = m; j <= prime1.max; j++) {
+                    if (prime1.primeArray[j] == 0) {
+                        System.out.println(j);
+                    }
+                }
+                
+                for (int j = prime1.max + 1; j <= n; j++) {
+                    
+                    // check for each j, if it is prime 
+                    prime1.checkAndPrintPrime(j, n);
+                    
+                }
+            } else {
+                for (int j = m; j <= n; j++) {
+                    
+                    // check for each j, if it is prime 
+                    prime1.checkAndPrintPrime(j, n);
+                }
+            }
+                
+            System.out.println();
+        }
+    }
+}
+ 

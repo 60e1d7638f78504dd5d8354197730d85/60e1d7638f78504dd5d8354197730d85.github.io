@@ -1,0 +1,67 @@
+#include <stdio.h>
+//#include <conio.h>
+
+int main()
+{
+ int arr[10][10];
+ int i, j, row, col, rowsum, colsum,sumall=0;
+
+ /* Function declaration */
+ int Addrow(int A[10][10], int k, int c);
+ int Addcol(int A[10][10], int k, int c);
+
+ //clrscr();
+
+ //printf("Enter the order of the matrixn");
+ scanf("%d %d", &row, &col);
+
+// printf("Enter the elements of the matrixn");
+ for(i=0; i<row; i++)
+ {
+  for(j=0; j< col; j++)
+  {
+   scanf("%d", &arr[i][j]);
+  }
+ }
+
+ //printf("Input matrix isn");
+ for(i=0; i<row; i++)
+ {
+  for(j=0;j<col;j++)
+  {
+  // printf("%3d", arr[i][j]);
+  }
+  //printf("n");
+ }
+
+ /* computation of all elements */
+ for(j=0; j< row; j++)
+ {
+  sumall = sumall + Addrow(arr,j,col);
+ } 
+
+ printf("sum=%d", sumall);
+return 0;
+}
+
+/* Function to add each row */
+int Addrow(int A[10][10], int k, int c)
+{
+ int rsum=0, i;
+ for(i=0; i< c; i++)
+ {
+  rsum = rsum + A[k][i];
+ }
+ return(rsum);
+}
+
+/* Function to add each column */
+int Addcol(int A[10][10], int k, int r)
+{
+ int csum=0, j;
+ for(j=0; j< r; j++)
+ {
+  csum = csum + A[j][k];
+ }
+ return(csum);
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+void printar(int a[], int b[], int c[], int n, int m)
+{
+  	int temp;
+  	for(int i=0; i<n+m; i++)
+    {
+      	for(int j=0; j<n+m; j++)
+        {
+          	if(c[i]<c[j])
+            {
+              	temp=c[i];
+              	c[i]=c[j];
+              	c[j]=temp;
+            }
+        }
+    }
+  	cout<<"The Merged Array in Ascending Order"<<endl;
+  	for(int i=0; i<n+m; i++)
+    {
+      	if(c[i]!=c[i+1])
+      		cout<<c[i]<<" ";
+    }
+}
+int main()
+{
+	int n,m,a[100],b[100],c[100], j;
+  	cin>>n;
+  	j=0;
+  	for(int i=0; i<n; i++)
+    {
+      	cin>>a[i];
+      	c[j]=a[i];
+      	j++;
+    }
+  	cin>>m;
+  	for(int i=0; i<m; i++)
+    {
+      	cin>>b[i];
+      	c[j]=b[i];
+      	j++;
+    }
+  	printar(a,b,c,n,m);
+	return 0;
+}

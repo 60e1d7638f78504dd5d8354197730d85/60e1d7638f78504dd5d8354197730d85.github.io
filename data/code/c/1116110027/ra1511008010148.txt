@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<ctype.h>
+#include<string.h>
+#define MAX_SIZE 100 // Maximum string size
+
+/* Function declaration */
+void replaceAll(char * str, char oldChar, char newChar);
+
+
+int main()
+{
+    char str[MAX_SIZE], oldChar, newChar;
+
+
+    fgets(str,sizeof(str),stdin);
+
+    oldChar = getchar();
+  
+  if(isspace(oldChar)){
+    oldChar = getchar();
+  }
+	getchar();
+    newChar = getchar();
+   if(isspace(newChar)){
+    newChar = getchar();
+   }
+    replaceAll(str, oldChar, newChar);
+
+    printf("%s",str);
+
+    return 0;
+}
+
+
+/**
+ * Replace all occurrence of a character in given string.
+ */
+void replaceAll(char * str, char oldChar, char newChar)
+{
+    int i = 0;
+
+    /* Run till end of string */
+    while(str[i] != '\0')
+    {
+        /* If occurrence of character is found */
+        if(str[i] == oldChar)
+        {
+            str[i] = newChar;
+        }
+
+        i++;
+    }
+}

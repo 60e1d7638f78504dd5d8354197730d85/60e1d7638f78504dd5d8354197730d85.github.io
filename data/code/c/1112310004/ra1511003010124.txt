@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+# define mod 1000000007
+long long int power( int n );
+int main()
+{	
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n;
+		scanf("%d",&n);
+		if( n & 1 )
+		{
+			long long int ans=( power((n+3)/2) - 2 + mod )%mod;
+			printf("%lld\n",ans);
+		}
+		else
+		{
+			long long int ans=( (3*power(n/2))%mod - 2 + mod )%mod;
+			printf("%lld\n",ans);
+		}
+	}
+	return 0;
+}
+long long int power( int n )
+{
+	long long int res=1;
+	long long int x=2;
+	while( n>0 )
+	{
+		if( n & 1 )
+			res=(res*x)%mod;
+		n=n>>1;
+		x=(x*x)%mod;
+	}
+	return res;
+}
+ 

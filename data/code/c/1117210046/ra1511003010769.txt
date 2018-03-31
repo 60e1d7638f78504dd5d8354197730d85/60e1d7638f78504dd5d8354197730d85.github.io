@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+	char ch[100];char gender;
+  int i;
+  scanf("%[^\t\n]s",ch);
+  scanf(" %c",&gender);
+  int flag=0;
+    for(i=0;ch[i]!='\0';i++){
+  if(isdigit(ch[i])){
+    flag=9;
+goto end;
+  }
+    }
+  for(i=0;ch[i]!='\0';i++){
+  if(ch[i]=='.'){
+  flag=1;
+    break;
+  }
+  }
+  
+  if(flag==0)
+    printf("Initial Missing !");
+  else{
+  		
+    	if(gender=='M' || gender=='m')
+        {  printf("Good Morning ");
+        printf("Mr. ");
+        printf("%s",ch);
+        }
+    	else if(gender=='F' || gender=='f'){
+          printf("Good Morning ");
+          printf("Mrs. ");
+        printf("%s",ch);
+        }
+    else
+      printf("Invalid Input");
+  }
+  end:
+  if(flag==9)
+  printf("Invalid Input");
+	return 0;
+}

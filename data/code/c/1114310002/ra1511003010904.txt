@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+#define min(a,b) a<b?a:b
+#define max(a,b) a>b?a:b
+ 
+#define BASE 1000000007
+#define COL 160
+#define ll long long
+ 
+ll rslt[51][51][COL];
+ 
+ll sum(ll A,ll E,ll V)
+{
+	ll m, aa, ee, prod;
+ 
+	if(A<0 || E<0 || V<0)
+		return 0;
+	if(A+E<=1)
+		return (rslt[A][E][V]=(A<=V));
+	if(rslt[A][E][V]!=-1)
+		return rslt[A][E][V];
+	m=(A+E)/2;
+	prod=0;
+	for(aa=0;aa<=m;aa++)
+	{
+		if(aa<=A && (ee=m-aa)<=E)
+			prod=(prod+sum(aa,ee,V-A)*sum(A-aa,E-ee,V-A))%BASE;
+	}
+	return (rslt[A][E][V]=prod);
+}
+ 
+int main()
+{
+	ll T, A, E, V, sum1, sum2;
+	memset(rslt,-1,sizeof(rslt));
+	scanf("%lld",&T);
+	while(T--)
+	{
+		scanf("%lld%lld%lld",&A,&E,&V);
+		sum1=sum(A,E,V);
+		sum2=sum(A,E,V-1);
+		printf("%lld\n",V>152?0:((sum1-sum2+BASE)%BASE));
+	}
+ 
+	return 0;
+} 

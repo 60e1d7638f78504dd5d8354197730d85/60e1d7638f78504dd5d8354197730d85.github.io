@@ -1,0 +1,30 @@
+#include<stdio.h>
+long long int fact(int x,int y);
+main()
+{
+int t,n,k;
+long long result=1;
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d%d",&n,&k);
+result=fact(n-1,k-1);
+printf("%lld",result);
+printf("\n");
+}
+}
+long long int fact(int x,int y)
+{
+    int c,i;
+    long long int f=1;
+    if((x-y)<y)
+        c=x-y;
+    else c=y;
+for(i=1;i<=c;i++)
+{
+    f=f*x;
+    f=f/i;
+    x--;
+}
+return f;
+}

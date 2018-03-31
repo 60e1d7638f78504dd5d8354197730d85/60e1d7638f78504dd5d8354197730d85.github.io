@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+class Votes
+{
+  int count1=0,count2=0,count3=0,count4=0,count5=0,dis=0,i;
+  public void getVotes()
+  {
+    int n,i;
+       Scanner s=new Scanner(System.in);
+       n=s.nextInt();
+       int[] a=new int[n];
+       for(i=0;i<n;i++)
+         a[i]=s.nextInt();
+    for(i=0;i<n;i++)
+      if(a[i]==1)
+        count1++;
+    else if(a[i]==2)
+      count2++;
+    else if(a[i]==3)
+      count3++;
+    else if(a[i]==4)
+      count4++;
+    else if(a[i]==5)
+      count5++;
+    else 
+      dis++;
+  }
+  void displayResults()
+  {
+    System.out.printf("Candidate 1 are: %d\n",count1);
+       System.out.printf("Candidate 2 are: %d\n",count2);
+       System.out.printf("Candidate 3 are: %d\n",count3);
+       System.out.printf("Candidate 4 are: %d\n",count4);
+       System.out.printf("Candidate 5 are: %d\n",count5);
+       System.out.printf("Disqualified=%d\n",dis);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+       Votes obj=new Votes();
+       obj.getVotes();
+       obj.displayResults();
+	}
+}

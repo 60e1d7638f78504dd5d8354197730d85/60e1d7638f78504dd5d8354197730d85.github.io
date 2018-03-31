@@ -1,0 +1,91 @@
+import java.io.*;
+import java.util.Scanner;
+class Passkey
+{
+  public void passKey()
+  {
+   Scanner in=new Scanner(System.in);
+       int i;
+       String str =stripNonDigits(in.nextLine());
+       char[] num = str.toCharArray();
+       int min=0,max=0;          
+       for(i=0;i<num.length;i++)
+       {
+         if(max < Character.getNumericValue(num[i]))
+         {
+          max = Character.getNumericValue(num[i]);
+                }
+             }
+        
+        min = max;
+       for(i=0;i<num.length;i++)
+       {
+           if(min > Character.getNumericValue(num[i]))
+         {      
+           min = Character.getNumericValue(num[i]);
+         }
+         
+       }
+       int a=0,n,sum=0;
+       for(i=0;i<num.length;i++)
+       {
+          a = a + (max * Character.getNumericValue(num[i]));
+              
+         }
+        while(a>0)
+             {
+         n= a % 10;
+         sum = sum + n;
+         a =a/ 10;
+          }
+       while(sum>0)
+             {
+         n= sum % 10;
+         a = a + n;
+         sum =sum/ 10;
+       }
+       
+       int b=1;
+         n =0;sum=0;
+       for(i=0;i<num.length;i++)
+       {
+          b = b * (min + Character.getNumericValue(num[i]));
+                 
+         }
+       	
+       while(b>0)
+             {
+         n= b % 10;
+         sum = sum + n;
+         b =b/ 10;
+         
+       }
+       b=sum;
+       if(a>b)
+       {
+        System.out.println(b*b);
+       }
+    else
+         System.out.println(a*a);
+       
+  }
+  public static String stripNonDigits(final CharSequence input){
+    final StringBuilder sb = new StringBuilder(input.length());
+   int i;
+    for( i = 0; i < input.length(); i++)
+    {
+        final char c = input.charAt(i);
+        if(c > 47 && c < 58){
+            sb.append(c);
+        }
+      }
+    return sb.toString();
+  }
+}
+public class TestClass {
+
+	 public static void main(String[] args) { 
+       Passkey s1=new Passkey();
+       s1.passKey();
+	}
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+int num1[100], num2[100], gcd, lcm, remainder, numerator, denominator,n,i;
+  scanf("%d",&n);
+ 
+    //printf("Enter two numbers\n");
+  for(i=0;i<n;i++)
+  {
+    scanf("%d %d\n", &num1[i], &num2[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    if (num1[i] > num2[i])
+    {
+        numerator = num1[i];
+        denominator = num2[i];
+    }
+    else
+    {
+        numerator = num2[i];
+        denominator = num1[i];
+    }
+    remainder = numerator % denominator;
+    while (remainder != 0)
+    {
+        numerator   = denominator;
+        denominator = remainder;
+        remainder   = numerator % denominator;
+    }
+    gcd = denominator;
+    lcm = num1[i] * num2[i] / gcd;
+    printf("%d %d\n", gcd,lcm);
+  }
+	return 0;
+}

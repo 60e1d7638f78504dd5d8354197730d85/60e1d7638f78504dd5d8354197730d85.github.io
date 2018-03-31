@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{ char str[123],cha;
+ int i,j,l;
+ fgets(str,sizeof str,stdin);
+ l=strlen(str);
+ for(i=0;i<l;i++)
+ {
+   for(j=0;j<l-1;j++)
+   {
+   if(str[j]>str[j+1])
+     {
+       cha=str[j];
+       str[j]=str[j+1];
+       str[j+1]=cha;
+     }
+   }
+ }
+     printf("%s",str);
+	return 0;
+}

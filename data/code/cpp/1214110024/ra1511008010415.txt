@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class library
+{
+  	string name;
+  	int roll,code;
+public:
+  	static int counter;
+  	library(int a,string n,int b)
+    {
+      	roll=a;
+      	name=n;
+      	code=b;
+    }
+  	void show()
+    {
+      	cout<<roll<<", "<<name<<", "<<code<<endl;
+      	counter++;
+    }
+};
+int library :: counter=0;
+int main()
+{
+	int a,b,c,d;
+  	string n,m;
+  	cin>>a>>n>>b>>c>>m>>d;
+  	library l(a,n,b),g(c,m,d);
+  	l.show();
+  	g.show();
+  	cout<<l.counter<<" "<<g.counter;
+	return 0;
+}

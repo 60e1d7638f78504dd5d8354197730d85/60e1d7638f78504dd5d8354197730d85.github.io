@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		int n,k,sum,cnt=0;
+       Scanner s = new Scanner(System.in);
+       n = s.nextInt();
+       int[] a = new int[n];
+       k = s.nextInt();
+       for(int i =0; i<n;i++)
+       {
+       	 a[i] = s.nextInt();
+       }
+       for(int i=0; i<n-1 ;i++)
+       {
+         for (int j=i+1;j<n;j++)
+         {
+           sum = a[i] + a[j];
+           if (sum % k == 0)
+           {
+              cnt=cnt+1;
+           }
+         }
+       }     
+       System.out.println(cnt);
+    }
+}

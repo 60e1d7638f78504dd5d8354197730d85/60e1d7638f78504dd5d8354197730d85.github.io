@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,m,count,ans=0,i,j;
+		scanf("%d %d",&n,&m);
+		char ch[n][m+1];
+		for(i=0;i<n;i++)
+		{
+		  scanf("%s",ch[i]);
+		}
+		for(i=0;i<m;i++)
+		{
+			count=0;
+			for(j=0;j<n;j++)
+			{
+			//	printf("%c",ch[j][i]);
+			   if(ch[j][i]=='1')
+				{
+					count++;
+				}
+			}
+			ans=ans+count*(count-1)/2;
+		}
+		printf("%d\n",ans);
+	}
+	return 0;
+} 

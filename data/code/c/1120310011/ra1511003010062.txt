@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+int main()
+{
+	long long int max = -999999999999 , min = 999999999999;
+	long long int arr[100000];
+	long long int numberOfElementsInTheArray,k,i;
+	long long int minPos , maxPos;
+
+	scanf("%lld%lld",&numberOfElementsInTheArray,&k);
+
+	for( i = 0 ; i < numberOfElementsInTheArray ; i++ )
+	{
+		scanf("%lld",&arr[i]);
+
+		if( arr[i] < min )
+		{	
+			min = arr[i];
+			minPos = i;
+		}
+		if( arr[i] > max )
+		{
+			max = arr[i];
+			maxPos = i;
+		}
+	}
+
+	//printf("Max = %lld, Min = %lld\n",arr[maxPos] , arr[minPos] );
+
+	max = arr[maxPos];
+
+	if( k == 0 )
+	{
+		for( i = 0 ; i < numberOfElementsInTheArray ; i++ )
+		{
+			printf("%lld ",arr[i] );
+		}
+
+		printf("\n");
+	}
+	else
+	{
+		for(  i = 0 ; i < numberOfElementsInTheArray ; i++ )
+		{
+			arr[i] = max - arr[i];
+			//printf("%lld\n",arr[i] );
+		}
+
+		
+		if( k % 2 == 1 )
+		{
+			for( i = 0 ; i < numberOfElementsInTheArray ; i++ )
+			{
+				printf("%lld ",arr[i] );
+			}
+
+			printf("\n");
+		}
+		else
+		{
+			min = arr[minPos];
+
+			for(  i = 0 ; i < numberOfElementsInTheArray ; i++ )
+			{
+				arr[i] = min - arr[i];
+			}
+
+			for( i = 0 ; i < numberOfElementsInTheArray ; i++ )
+			{
+				printf("%lld ",arr[i] );
+			}
+
+			printf("\n");		
+		}
+	}	
+	return 0;
+}

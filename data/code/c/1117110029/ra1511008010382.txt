@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int i,num,summ=0;
+  scanf("%d",&num);
+  
+  int a[num];
+  for(i=0;i<num;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  sum(a,num-1,summ);
+
+	return 0;
+}
+
+int sum( int a[], int num, int summ)
+{
+  if(num>=0)
+  {
+    if((a[num])%2==0)
+    {
+      summ = summ + a[num];
+    }
+    sum( a,num-1,summ);
+  }
+  else
+  {
+    printf("%d",summ);
+    return;
+  }
+}
+  

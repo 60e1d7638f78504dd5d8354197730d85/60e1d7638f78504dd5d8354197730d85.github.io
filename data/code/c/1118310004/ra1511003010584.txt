@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef signed char byte;
+#define REPEAT(token, num) for (token = 0; token < num; token++)
+#define getchar getchar_unlocked
+#define putchar putchar_unlocked
+#define FASTIO(lvalue) (lvalue = getchar())
+#define FASTEX(lvalue, char) (lvalue = lvalue*10+(char-'0'))
+#define FASTEXS(lvalue, char) ((char == '-') ? (-1) : (FASTEX(lvalue, char), 1))
+#define FASTEXN(lvalue, sign, char) (lvalue = lvalue*10+sign*(char-'0'))
+static inline void POPQUEUE(void *arr, size_t length, size_t itemSize) { memmove(arr, arr+itemSize, length*itemSize); }
+static inline void REMOVEELEM(void *arr, size_t offset, size_t length, size_t itemSize) { memmove(arr+(offset*itemSize), arr+((offset+1)*itemSize), (length-offset)*itemSize); }
+static inline void REMOVEELEMS(void *arr, size_t offset, size_t numElems, size_t length, size_t itemSize) { memmove(arr+(offset*itemSize), arr+((offset+numElems)*itemSize), (length-offset)*itemSize); }
+//#define DEBUG
+#ifdef DEBUG
+#define PRINTF printf
+#else
+#define PRINTF(...) 1
+#endif
+ 
+typedef byte test_cases;
+typedef long day;
+typedef long stamp_type;
+typedef struct {
+    day orderDay;
+    stamp_type type1;
+    stamp_type type2;
+} order;
+typedef long num_orders;
+typedef long num_stamps;
+typedef long long stamp_sum;
+ 
+num_stamps numStamps;
+stamp_type stamps[200000], values[50000];
+num_orders numOrders, numOrdersByDay[50000], sortQueue[50000][2], moduloOffset, sortQueueLength;
+order orders[50000];
+stamp_sum answer;
+ 
+static inline int compareOrders(const void *ptr1, const void *ptr2) {
+    order order1 = *(order*)ptr1, order2 = *(order*)ptr2;
+    stamp_type order1value1 = values[order1.type1], order1value2 = values[order1.type2], order2value1 = values[order2.type1], order2value2 = values[order2.type2], temp;
+    if (order1.orderDay != order2.orderDay) return (order1.orderDay < order2.orderDay)-(order1.orderDay > order2.orderDay);
+    if (order1value1 > order1value2) temp = order1value1, order1value1 = order1value2, order1value2 = temp;
+    if (order2value1 > order2value2) temp = order2value1, order2value1 = order2value2, order2value2 = temp;
+    if (order1value1 != order2value1) return (order1value1 < order2value1)-(order1value1 > order2value1);
+    return (order1value2 < order2value2)-(order1value2 > order2value2);
+}
+ 
+int main() {
+    test_cases numTestCases;
+    num_orders i, j;
+    num_stamps k;
+    stamp_type l;
+    scanf("%hhi", &numTestCases);
+ 
+    while (numTestCases--) {
+        REPEAT(l, 50000) values[l] = l+1;
+        memset(numOrdersByDay, 0, 50000*sizeof(num_orders));
+        
+        scanf("%li %li", &numStamps, &numOrders);
+        REPEAT(k, numStamps) scanf("%li", stamps+k), stamps[k]--;
+        REPEAT(i, numOrders) scanf("%li %li %li", &(orders[i].orderDay), &(orders[i].type1), &(orders[i].type2)), orders[i].orderDay--, orders[i].type1--, orders[i].type2--, numOrdersByDay[orders[i].orderDay]++;
+        
+        qsort(orders, numOrders, sizeof(order), compareOrders);
+        REPEAT(i, numOrders) {
+            if (!i || orders[i].orderDay != orders[i-1].orderDay) {
+                qsort(orders+i, numOrdersByDay[orders[i].orderDay], sizeof(order), compareOrders);
+                if (sortQueueLength) fprintf(stderr, "ERROR: %li sorts on queue have been cleared. Found at Order %li.\n", sortQueueLength, i), exit(1);
+                REPEAT(j, numOrdersByDay[orders[i].orderDay]-1) if (!compareOrders(orders+(i+j), orders+(i+j+1))) {
+                    if (sortQueueLength && sortQueue[(moduloOffset+sortQueueLength-1) % 50000][0]+sortQueue[(moduloOffset+sortQueueLength-1) % 50000][1] == i+j+1) sortQueue[(moduloOffset+sortQueueLength-1) % 50000][1]++;
+                    else sortQueue[(moduloOffset+sortQueueLength) % 50000][0] = i+j, sortQueue[(moduloOffset+sortQueueLength) % 50000][1] = 2, sortQueueLength++;
+                }
+            }
+            if (sortQueueLength && sortQueue[moduloOffset % 50000][0] == i) qsort(orders+i, sortQueue[moduloOffset % 50000][1], sizeof(order), compareOrders), moduloOffset++, sortQueueLength--;
+            if (values[orders[i].type1] > values[orders[i].type2]) values[orders[i].type2] = values[orders[i].type1];
+            else values[orders[i].type1] = values[orders[i].type2];
+ 
+            if (i+1 == numOrders || orders[i].orderDay != orders[i+1].orderDay) {
+                REPEAT(j, numOrdersByDay[orders[i].orderDay]) if (values[orders[i-j].type1] != values[orders[i-j].type2]) break;
+                if (j < numOrdersByDay[orders[i].orderDay]) i -= numOrdersByDay[orders[i].orderDay];
+            }
+        }
+        
+        answer = 0;
+        REPEAT(k, numStamps) answer += values[stamps[k]];
+        printf("%lli\n", answer);
+    }
+    
+    exit(0);
+} 

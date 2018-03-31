@@ -1,0 +1,30 @@
+#include <stdio.h>
+int in(int t, int a[], int n)
+{
+  int i;
+  for(i = 0; i < n; i++)
+    if(a[i] == t)
+      return 1;
+  return 0;
+}
+int main()
+{
+	int n, a[100], i, res[100], k = 0, j;
+  	scanf("%d",&n);
+  	for(i = 0; i < n; i++)
+      scanf("%d",&a[i]);
+  	for(i = 0; i < n; i++)
+      if(in(a[i], a, i-1))
+        res[k++] = a[i];
+  	for(i = 0; i < k; i++)
+      for(j = i + 1; j < k; j++)
+        if(res[j] < res[j-1])
+        {
+          int t = res[j];
+          res[j] = res[j-1];
+          res[j-1] = t;
+        }
+  	for(i = 0; i < k; i++)
+      printf("%d ",res[i]);
+	return 0;
+}

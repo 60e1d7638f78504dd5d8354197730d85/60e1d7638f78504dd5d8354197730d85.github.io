@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+long long n,i,j,k,pro1=1,pro2=1,maxx=-9999999999,maxx2=9999999999;
+  cin>>n;
+  j=n;
+  long long a[n];
+  for(i=0;i<n;i++)
+  {
+    cin>>a[i];
+    maxx=max(a[i],maxx);
+    pro1*=a[i];
+  }
+  //cout<<pro1<<endl;
+  //cout<<maxx<<endl;
+  for(i=1;i<=maxx;i++)
+  {
+    while(j!=0)
+    {
+      //cout<<"DSD"<<endl;
+      pro2*=i;
+      j--;
+    }
+    j=n;
+    //cout<<pro2<<endl;
+    if(pro2>pro1)
+    {
+      maxx2=min(maxx2,i);
+    }
+    pro2=1;
+    
+  }
+  cout<<maxx2<<endl;
+    
+    
+  
+  
+	return 0;
+}

@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main() {
+	int count(char *haystack, char *needle) {
+		int total = 0;
+		int strlen_needle = 0;
+		int i;
+
+		for (i = 0; needle[i] != '\0'; i++, strlen_needle++);
+
+		for (i = 0; haystack[i] != '\0'; i++) {
+			int count = 0;
+
+			if (haystack[i] == needle[0]) {
+				int si = i;
+				int j = 0;
+
+				while ( j < strlen_needle && haystack[si] == needle[j]) {
+					si++;
+					j++;
+				}
+
+				if (j == strlen_needle) {
+					printf("%d\n", i);
+
+					i += strlen_needle - 1;
+					total += 1;
+				}
+			}
+		}
+
+		return total;
+	}
+
+	char haystack[256] = {0};
+	char needle[256] = {0};
+	int i;
+
+	fgets(haystack, 256, stdin);
+	fgets(needle, 256, stdin);
+
+	for (i = 0; haystack[i]; i++)
+		if (haystack[i] == '\n') haystack[i] = '\0';
+
+	for (i = 0; needle[i]; i++)
+		if (needle[i] == '\n') needle[i] = '\0';
+
+	count(haystack, needle);
+
+	return 0;
+}

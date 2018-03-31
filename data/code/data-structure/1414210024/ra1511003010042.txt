@@ -1,0 +1,61 @@
+#include<iostream>
+#include <bits/stdc++.h>
+using namespace std;
+/*void sort(long int a[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            if(a[i]>a[j])
+            {
+                long int t=a[i];a[i]=a[j];a[j]=t;
+            }
+        }
+    }
+}*/
+int main()
+{
+    int t;cin>>t;
+    int ans[t];
+    for(int i=0;i<t;i++)
+    {
+        int n;cin>>n;
+        int pct=0;
+        long int pktl[n];long int pktb[n];
+        long int a[n];
+        for(int j=0;j<n;j++)cin>>a[j];
+        int n2=sizeof(a)/sizeof(a[0]);
+        sort(a,a+n2);
+        pktb[0]=a[0];
+        pktl[0]=a[0];
+        int ct=0;
+        for(int j=0,k=1;k<n;j++,k++)
+        {
+            if(a[j]<a[k])pktl[pct]=a[k];
+            if(a[j]==a[k])
+            {
+                pct++;
+                pktb[pct]=a[k];
+                pktl[pct]=a[k];
+            }
+        }
+      //  cout<<endl;
+       // for(int j=0;j<=pct;j++)cout<<pktb[j]<<' '<<pktl[j]<<endl;
+        //cout<<endl;
+        for(int j=0;j<=pct;j++)
+        {
+                for(int k=0;k<=pct;k++)
+                {
+                    if(pktb[j]!=-1)
+                    {
+                        if(pktl[j]<pktb[k]){pktb[k]=pktb[j];pktb[j]=-1;}
+                    }
+                }
+        }
+        for(int j=0;j<=pct;j++)if(pktb[j]!=-1)ct++;
+        ans[i]=ct;
+ 
+    }
+    for(int i=0;i<t;i++)cout<<ans[i]<<endl;
+}

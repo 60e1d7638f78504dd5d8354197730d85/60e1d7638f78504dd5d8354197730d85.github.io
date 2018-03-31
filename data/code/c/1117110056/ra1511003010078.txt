@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+int main()
+{ char s[27];
+   int a[26]={0},i;
+   scanf("%s",s);
+   for(i=0;i<strlen(s);i++)
+     a[s[i]-97]++;
+   int n;
+   scanf("%d",&n);
+   while(n--)
+   {
+     int c=0;
+     char t[15];
+     int b[26]={0};
+     scanf("%s",t);
+     for(i=0;i<strlen(t);i++)
+       b[t[i]-97]++;
+     for(i=0;i<26;i++)
+     {
+       if((b[i]>0)&&(a[i]==0))
+       {
+         c++;
+         break;
+       }
+     }
+     if(c==0)
+       printf("Yes\n");
+     else
+       printf("No\n");
+     
+   }
+
+	return 0;
+}

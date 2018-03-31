@@ -1,0 +1,131 @@
+#include <stdio.h>
+int arr[600001],cont=262144,curr=0,top=0;
+struct d{
+	int a,b,sum,right,left;
+} full[15000000];
+void make_tree(int x,int y){
+	full[top].a=x;
+	full[top].b=y;
+	full[top].sum=0;
+	int i=top;
+	top++;
+	if(full[i].a==full[i].b) {full[i].right=-1;full[i].left=-1; return;}
+	full[i].left=top;
+	make_tree(x,(x+y)/2);
+	full[i].right=top;
+	make_tree((x+y)/2+1,y);
+}
+void make_node(int y,int add){
+	int i=top;
+	full[i].a=full[add].a;
+	full[i].b=full[add].b;
+	full[i].sum=full[add].sum+1;
+	top++;
+	if(full[i].a==full[i].b) {full[i].right=-1;full[i].left=-1; return;}
+	int x=full[i].a;
+	int z=full[i].b;
+	if(y>=x&&y<=(x+z)/2) {
+		full[i].right=full[add].right;
+		full[i].left=top;
+		make_node(y,full[add].left);
+	}else{
+		full[i].left=full[add].left;
+		full[i].right=top;
+		make_node(y,full[add].right);
+	}
+}
+int query(int add,int l,int r){
+//	if(full[add].b<10)printf("q=%d a=%d b=%d sum=%d\n",q,full[add].a,full[add].b,full[add].sum);
+//	if(l>full[add].b|| r<full[add].a) return 0;
+	if(l<=full[add].a&&r>=full[add].b) return full[add].sum;
+	int i=0;
+	if(full[add].left!=-1){
+		if(!((full[add].a+full[add].b)/2<l))
+			i=i+query(full[add].left,l,r);
+	}
+	if(full[add].right!=-1){
+		if(!(((full[add].a+full[add].b)/2+1)>r))
+			i=i+query(full[add].right,l,r);
+	}
+	return i;
+}
+int query2(int add1,int add2,int k){
+	if(full[add1].a==full[add1].b) return full[add1].a;
+    if(full[full[add2].left].sum-full[full[add1].left].sum>=k){
+    	return query2(full[add1].left,full[add2].left,k);
+    }else { return query2(full[add1].right,full[add2].right,k-(full[full[add2].left].sum-full[full[add1].left].sum));}
+}
+ 
+int main(void) {
+	int x,y,i,j,k,m,ans,l,r;
+	arr[curr]=top;
+	make_tree(0,524288-1);
+	scanf("%d",&m);
+	while(m--){
+		scanf("%d",&x);
+		if(x==0){
+			scanf("%d",&y);
+			arr[++curr]=top;
+			make_node(y,arr[curr-1]);
+		}else if(x==2){
+			scanf("%d",&k);
+			curr=curr-k;
+		}else if(x==3){
+			scanf("%d %d %d",&l,&r,&y);
+			ans=query(arr[r],1,y)-query(arr[l-1],1,y);
+			printf("%d\n",ans);
+		}else if(x==4){
+			scanf("%d %d %d",&l,&r,&k);
+			ans=query2(arr[l-1],arr[r],k);
+			printf("%d\n",ans);
+		}else{
+			scanf("%d %d %d",&l,&r,&y);
+			 i=cont;
+			 j=0;
+		//	 int hb=500000,lb=i;
+			 int add1,add2;
+			 add1=arr[l-1];
+			 add2=arr[r];
+			 while(i>0){
+			 	if(i>y){
+			 		if(full[full[add2].right].sum-full[full[add1].right].sum>0){
+			 			j=j+i;
+			 		
+			 			add1=full[add1].right;
+			 			add2=full[add2].right;
+			 		}
+			 		else{
+			 			add1=full[add1].left;
+			 			add2=full[add2].left;
+			 		}
+			 		//lb=j+i;hb=j+i*2-1;
+			 	//	if(lb==0) lb=1;
+			 	//	if((query(arr[r],lb,hb)-query(arr[l-1],lb,hb))>0){
+			 	//		j=j+i;
+			 		
+			 		//	printf("i=%d j=%d y=%d,ans\n",i,j,y);
+			 	}else{
+			 		y=y-i;
+			 		//lb=j;hb=j+i-1;
+			 	//	if(lb==0) lb=1;
+			 	//	if((query(arr[r],lb,hb)-query(arr[l-1],lb,hb))==0){
+			 	//		j=j+i;
+			 		if(full[full[add2].left].sum-full[full[add1].left].sum==0){
+			 				j=j+i;
+			 			add1=full[add1].right;
+			 			add2=full[add2].right;	
+			 		
+			 		}else{
+			 			add1=full[add1].left;
+			 			add2=full[add2].left;
+			 		}
+			 	}
+			 	i=i/2;
+			 	 
+			 }
+				printf("%d\n",j);
+		}
+	}
+	return 0;
+}
+ 

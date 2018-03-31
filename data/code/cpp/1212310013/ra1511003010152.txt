@@ -1,0 +1,58 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+	int t;
+	char s[101];
+	cin>>t;
+	while(t--)
+	{
+		int a[26]={0};
+		int count=0,flag=0;
+		cin>>s;
+		for(int i=0;s[i]!='\0';i++)
+		{
+			a[s[i]-65]++;
+		}
+		/*for(int i=0;i<26;i++)
+		cout<<a[i]<<endl;*/
+		char x,y;
+		for(int i=0;i<26;i++)
+		{
+			if(a[i]!=0)
+			{
+			count++;
+			if(count==1)
+			x=i+65;
+			if(count==2)
+			y=i+65;
+		    }
+			if(count>2)
+			{
+				flag=1;
+			    break;
+		    }
+		}
+		//cout<<count<<endl;
+		if(flag==1)
+		cout<<"NO"<<endl;
+		else
+		{
+		int l=strlen(s);
+		for(int i=0;i<=l-2;i++)
+		{
+			if(s[i]==s[i+1])
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==1)
+		cout<<"NO"<<endl;
+		else
+		cout<<"YES"<<endl;
+	}
+	}
+  return 0;
+} 

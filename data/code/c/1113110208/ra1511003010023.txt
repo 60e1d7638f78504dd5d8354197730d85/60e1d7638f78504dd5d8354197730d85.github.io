@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+long long int count,k;
+ 
+void fibo(long long int arr[],long long int x,long long int *len)
+{
+	long long int i;
+	if(x==1)
+	{
+		arr[0]=1;
+		*len=1;
+	}
+	else
+	{
+	arr[0]=1;
+	arr[1]=2;
+	arr[2]=3;
+	*len=2;
+	i=1;
+	while(arr[i]<x)
+	{
+		//printf("arr[i]- %lld ,len - %lld\n",arr[i],*len);
+		arr[i+1]=arr[i]+arr[i-1];
+		i++;
+		(*len)+=1;
+	}	
+	}	
+}
+ 
+void tot2(long long int target, long long int sum, long long int candidates[], long long int sz, long long int index[], long long int n,long long int tot)
+ {
+ 	long long int i;
+ 	//printf("count in - %lld\n",count);
+  if (sum<0)
+    return;
+  if (sum == 0 && tot==0)
+    count++;
+ 
+  for (i = index[n]; i < sz; i++)
+  {
+    index[n+1] = i;
+    if(tot*(candidates[i])<sum)
+    {
+    	return;
+    }
+	else
+	{
+		//printf("here  \n");
+		tot2(target, sum-candidates[i], candidates, sz, index, n+1,tot-1);
+	}
+  }
+}
+ 
+void tot1(long long int target, long long int candidates[], long long int sz)
+{
+  long long int index[10000];
+  index[0] = 0;
+  tot2(target, target, candidates, sz, index, 0,k);
+}
+ 
+int main(void)
+{
+	long long int q,x,j;
+	scanf("%lld",&q);
+	while(q--)
+	{
+		count=0;
+		scanf("%lld %lld",&x,&k);
+		long long int arr[1000000],len=0,temp,i;
+		fibo(arr,x,&len);
+		// for(j=0;j<len;j++)
+		// {
+		// 	printf("%lld ",arr[j]);
+		// }
+		// printf("\n");
+		//printf("len- %lld\n",len);
+		for(i=len-1,j=0;i>=(len/2);i--,j++)
+		{
+			temp=arr[i];
+			arr[i]=arr[j];
+			arr[j]=temp;
+		}
+		// for(j=0;j<len;j++)
+		// {
+		// 	printf("%lld ",arr[j]);
+		// }
+		//printf("len- %lld\n",len);
+		tot1(x,arr,len);
+		printf("%lld\n",count);
+	}
+ 
+	return 0;
+} 

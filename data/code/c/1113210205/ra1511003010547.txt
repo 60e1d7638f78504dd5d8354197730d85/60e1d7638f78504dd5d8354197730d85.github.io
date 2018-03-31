@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int r,count=0,a[10000],b[10000],c[10000],m=0,i,j,k;
+	float f,p,s;
+	scanf("%d",&r);
+	for(i=1;i<=200;i++)
+		for(j=i;j<=200;j++)
+			for(k=j;k<=200;k++)
+			{
+               s=(float)(i+j+k)/2;
+               f=(float)((s-i)*(s-j)*(s-k))/s;
+               p=r*r;
+               if(p==f)
+               {
+               	count++;
+               	a[m]=i;
+               	b[m]=j;
+               	c[m]=k;
+               	m++;
+               }
+			}
+		printf("%d\n",count);
+		for(i=0;i<count;i++)
+        printf("%d %d %d\n",a[i],b[i],c[i]);
+    return 0;
+} 

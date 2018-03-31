@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+int main()
+{   int m,n;
+    scanf("%d",&m);
+    if (m==16)
+    {char hex[17];
+     long long decimal, place;
+    int i = 0, val, len;
+
+    decimal = 0;
+    place = 1;
+
+    scanf("%s",hex);
+
+    len = strlen(hex);
+    len--;
+
+    for(i=0; hex[i]!='\0'; i++)
+    {
+ 
+        if(hex[i]>='0' && hex[i]<='9')
+        {
+            val = hex[i] - 48;
+        }
+        else if(hex[i]>='a' && hex[i]<='f')
+        {
+            val = hex[i] - 97 + 10;
+        }
+        else if(hex[i]>='A' && hex[i]<='F')
+        {
+            val = hex[i] - 65 + 10;
+        }
+
+        decimal += val * pow(16, len);
+        len--;
+    }
+
+    printf("%lld", decimal);
+    }
+    else if (m==2)
+    {   scanf("%d",&n);
+        int  binary_val, decimal_val = 0, base = 1, rem;
+        binary_val = n;
+    while (n > 0)
+    {
+        rem = n % 10;
+        decimal_val = decimal_val + rem * base;
+        n = n / 10 ;
+        base = base * 2;
+    }
+    printf("%d", decimal_val);
+    }
+   else if (m==8)
+   {
+    long int decimal = 0;
+    int i = 0;
+ 
+    scanf("%d", &n);
+    while (n != 0)
+    {
+        decimal =  decimal +(n % 10)* pow(8, i++);
+        n = n / 10;
+    }
+    printf("%ld",decimal); 
+   }
+     return 0;
+}

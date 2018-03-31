@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+void insert(int a[],int k)
+{
+ int i,j,key;
+ key=a[k];
+ i=k-1;
+ while(i>=0 && a[i]>=key)
+ {
+  a[i+1]=a[i];
+  i--;
+ }
+ a[i+1]=key;
+}
+  void rinsertionsort(int a[],int n)
+{
+  if(n>1)
+    rinsertionsort(a,n-1);
+  insert(a,n);
+  }
+int main()
+{
+int a[100];
+ int i,j,k,l,m,n,item;
+
+ cin>>n;
+ for(i=0;i<=n;i++)
+ cin>>a[i]; 
+ 
+  
+ rinsertionsort(a,n);
+ for(i=1;i<=n;i++)
+  cout<<a[i]<<" ";
+	return 0;
+}

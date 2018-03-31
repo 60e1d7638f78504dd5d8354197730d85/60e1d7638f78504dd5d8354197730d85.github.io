@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define VALUE 1000000000.0
+main()
+{
+	int T,i,j,M;
+	double pp,result;
+	double p, mult;
+	scanf("%d",&T);
+	while (T--)
+	{
+		scanf("%d %lf", &M, &p);
+		mult = pow(-p,M);
+      mult = (1 - mult) / (1+p);
+		result = VALUE * mult;
+		if (M%2)
+		{
+			if (p==0.0) printf("%lf %lf\n", VALUE, 0.0);
+			else if (p==1.0) printf("%lf %lf\n", VALUE, 0.0);
+			else
+				printf("%lf %lf\n", result, VALUE-result);
+		}
+		else
+		{
+			if (p==0.0) printf("%lf %lf\n", VALUE, 0.0);
+			else if (p==1.0) printf("%lf %lf\n", 0.0, VALUE);
+			else
+				printf("%lf %lf\n",  result, VALUE-result);
+		}
+	}
+} 

@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+using namespace std;
+int main()
+{
+	char s[5][30];
+  	int i;
+  	for(i = 0; i < 5; i++)
+      cin>>(s[i]);
+  	for(i = 0; i < 5; i++)
+      for(int j = 0; j < 4 - i; j++)
+        if(strcmp(s[j],s[j + 1]) > 0)
+        {
+          char t[30];
+          strcpy(t,s[j]);
+          strcpy(s[j], s[j + 1]);
+          strcpy(s[j + 1], t);
+        }
+  	for(i = 0; i < 5; i++)
+      cout<<s[i]<<"\n";
+	return 0;
+}

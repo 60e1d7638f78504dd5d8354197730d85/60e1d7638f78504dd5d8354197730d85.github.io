@@ -1,0 +1,48 @@
+#include<stdio.h>
+ 
+int main(){
+    int t,i,n,j,d,x;
+    int p,B[1000];
+    scanf("%d",&t);
+    while(t--){
+        int count=0;
+        scanf("%d",&n);
+        int A[n];
+        for(i=0;i<n;i++){
+                scanf("%d",&A[i]);
+ 
+        }
+ 
+  for(i=0;i<n;i++){
+    for(j=i+1;j<n;j++){
+            if(A[i]!=0){
+        if(A[i]==A[j]){
+            B[count]=A[j];
+            A[i]=0;
+            A[j]=0;
+            count++;
+break;
+        }
+        }
+    }
+  }
+    for(i=0;i<count;i++){
+    for(j=0;j<count-i-1;j++){
+            if(B[j]>B[j+1]){
+        d=B[j+1];
+        B[j+1]=B[j];
+        B[j]=d;
+            }
+    }
+  }
+  if(count<2){
+         printf("-1\n");
+ 
+  }else{
+  x=B[count-1]*B[count-2];
+    printf("%d\n",x);
+  }
+    }
+return 0;
+}
+ 

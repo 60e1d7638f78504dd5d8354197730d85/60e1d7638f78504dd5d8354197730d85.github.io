@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+int t;
+  scanf("%d",&t);
+  
+  int n[t],j,i;
+  for(i=0;i<t;i++)
+  scanf("%d",&n[i]);
+  for(i=0;i<t;i++)
+  {
+    for(j=i+1;j<t;j++)
+    {
+      if(n[i]>n[j])
+      {
+        n[i]=n[i]+n[j];
+        n[j]=n[i]-n[j];
+        n[i]=n[i]-n[j];
+         
+      }
+    }
+  }
+  for(i=0;i<t;i++)
+    printf("%d\n",n[i]);
+  
+	return 0;
+}

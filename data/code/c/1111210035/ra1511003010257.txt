@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int gcd(int a, int b)
+{if(a==0)
+   return b;
+ return gcd(b%a,a);
+}
+
+int main()
+{
+int n1,d1,n2,d2,n,d, cf;
+  
+scanf("%d %d %d %d",&n1,&d1,&n2,&d2);
+  
+d=gcd(d1,d2);
+d=(d1*d2)/d;
+  
+n=n1*(d/d1)+n2*(d/d2);
+cf=gcd(n,d);
+
+printf("%d %d",n/cf,d/cf);
+return 0;
+}

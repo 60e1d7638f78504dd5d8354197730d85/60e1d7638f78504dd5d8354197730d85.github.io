@@ -1,0 +1,40 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+long input() {
+	long n=0;
+	int sign=1;
+	int ch;
+	ch=getchar_unlocked();
+	while(ch<'0' || ch>'9') {
+		if(ch=='-')
+			sign=-1;
+		ch=getchar_unlocked();
+	}
+	while(ch>='0' && ch<='9') {
+		n=(n<<3)+(n<<1)+ch-'0';
+		ch=getchar_unlocked();
+	}
+	return n*sign;
+}
+ 
+int main() {
+	long arr[]={4, 1048576, 499445072, 749218516, 614428880, 175895282, 112246098, 663690304, 860291332, 767822271, 998434054, 442059314, 697784813, 461659580, 378518816, 517405155, 386926526, 7743628, 80065005, 367497848};
+	long t=input();
+	while(t--) {
+		long n=input();
+		long long ans=1;
+		int p=0;
+		while(n) {
+			int r=n%2;
+			if(r)
+				ans=(ans*arr[p])%1000000007;
+			p++;
+			n=n/2;
+		}
+		printf("%lld\n",ans);
+	}
+	
+	return 0;
+}

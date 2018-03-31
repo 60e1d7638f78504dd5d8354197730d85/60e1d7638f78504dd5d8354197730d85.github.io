@@ -1,0 +1,31 @@
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
+#include<stack>
+using namespace std;
+int main()
+{
+char str2[2001];
+cin>>str2;
+int c=0;
+stack<char>q;
+for(int x=0;x<strlen(str2);x++)
+{
+if(str2[x]=='{')
+q.push(str2[x]);
+else if(str2[x]=='}'&&q.size()==0)
+{
+c++;
+q.push('{');
+}
+else
+q.pop();
+}
+int sol=c+(q.size()/2);
+  if(sol==0)
+    cout<<"-1"<<endl;
+  else
+cout<<sol<<endl;
+
+return 0;
+}

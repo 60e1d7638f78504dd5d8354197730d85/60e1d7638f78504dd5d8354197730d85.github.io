@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char a[100],b[100];
+  int i,j,k,c=0;
+  	scanf("%[^\n]%*c",a);
+  	scanf("%s",b);
+  	for(i=0;i<strlen(a);i++)
+    {
+      if(a[i]==b[0]&&(a[i-1]==' '||i==0))
+      {
+        k=i;
+        for(j=0;j<strlen(b)&&a[i]==b[j];j++,i++);
+        if((j==strlen(b))&&((a[i]==' ')||i==strlen(a)))
+        {
+          c=1;
+          break;
+        }
+        else 
+          i--;
+      }
+    }
+  if(c==1)
+    printf("%s is found at %d",b,k);
+  else 
+    printf("%s is not found",b);
+          
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<limits.h>
+int main()
+{
+  int t, p;
+  scanf("%d", &t);
+  while(t--)
+  {
+    p=INT_MAX;
+    int n, j;
+    scanf("%d", &n);
+    int arr[n], i;
+    for(i=0; i<n; i++)
+    {
+      scanf("%d", &arr[i]);
+    }
+    
+    for(i=0; i<n; i++)
+    {
+      for(j=i+1; j<n; j++)
+      {
+        if(p>abs(arr[i]-arr[j]))
+          p=abs(arr[i]-arr[j]);
+      }
+    }
+    
+    printf("%d\n", p);
+  }
+	return 0;
+}

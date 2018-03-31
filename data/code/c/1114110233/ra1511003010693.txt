@@ -1,0 +1,25 @@
+#include<stdio.h>
+#define s(i) scanf("%d",&i);
+int count(int n)
+{   int x;
+    x=0;
+    while(n>0)
+   { x=x+(n&1);
+     n=n>>1;
+   }
+   return x;
+}
+    
+int main()
+{  int t,i;
+   s(t);
+   while(t--)
+   {  int n,c=0;
+     s(n);
+     for(i=1;i<=n;i++)
+     {  c=c+count(i);
+     }
+     printf("%d\n",c);
+   }
+   return 0;
+} 

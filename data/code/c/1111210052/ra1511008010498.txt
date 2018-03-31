@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+	int i,j,T,N,M,flag,fact,sum,arr[10][10];
+	scanf("%d",&T);
+	while(T--)
+	{
+		sum=0;
+		scanf("%d%d",&N,&M);
+		for(i=0;i<N;i++)
+			for(j=0;j<M;j++)
+				scanf("%1d",&arr[i][j]);
+		for(j=0;j<M;j++)
+		{
+			flag=0;
+			for(i=0;i<N;i++)
+			{
+				if(arr[i][j]==1)
+					flag++;
+			}
+			if(flag>=2)
+				fact=(flag*(flag-1))/2;
+			else
+				continue;
+			sum+=fact;
+		}
+		printf("%d\n",sum);
+	}
+	return 0;
+} 

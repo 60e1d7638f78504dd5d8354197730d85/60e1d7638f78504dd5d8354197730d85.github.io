@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+class time
+{
+	int hr,min,sec;
+	public:
+		void get()
+		{
+			cin>>hr>>min>>sec;
+		}
+		void disp()
+		{
+			if(sec == -1)
+              cout<<"Invalid Time";
+          else{
+            cout<<"After Adding\n";
+          cout<<hr<<":"<<min<<":"<<sec;
+        }		
+		}
+		void sum(time,time);
+}t1, t2, t3;
+void time::sum(time t1,time t2)
+{
+	if(t1.sec >=60 || t2.sec>=60 || t1.min >=60 || t2.min >=60)
+      sec=-1;
+  else{
+   	sec=t1.sec+t2.sec;
+	min=sec/60;
+	sec=sec%60;
+	min=min+t1.min+t2.min;
+	hr=min/60;
+	min=min%60;
+	hr=hr+t1.hr+t2.hr;
+  }
+}
+int main()
+{
+	t1.get();
+	t2.get();
+   t3.sum(t1,t2);
+  
+	t3.disp();
+	return 0;
+}

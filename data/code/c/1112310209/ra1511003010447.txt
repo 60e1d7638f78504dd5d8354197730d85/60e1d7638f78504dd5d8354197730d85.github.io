@@ -1,0 +1,60 @@
+#include <stdio.h>
+int main()
+{
+	int t,n,k,e,m,i,j,sumLast=0,temp;
+  int marks[10],sum[105]={0};
+  scanf("%d",&t);
+  while(t-->0){
+  
+  scanf("%d %d %d %d",&n,&k,&e,&m);
+  for(i=0;i<n-1;i++){
+  for(j=0;j<e;j++){
+  scanf("%d",&marks[j]);
+    sum[i]+=marks[j];
+   // printf("%d %d\n",i,sum[i]);
+  }
+  }
+  
+    for(j=0;j<e-1;j++)
+    {  scanf("%d",&marks[j]);
+    sumLast+=marks[j];
+    }
+//    printf("%d\n",sum[0]);
+    
+    for(i=0;i<n-2;i++){
+    for(j=i+1;j<n-1;j++){
+    	if(sum[i]>sum[j]){
+        temp=sum[i];
+          sum[i]=sum[j];
+          sum[j]=temp;
+        }
+    	}
+    }
+    
+   //printf("\n%d\n",sum[0]);
+    //for(i=0;i<n;i++)
+     //   printf(" %d",sum[i]);
+          
+      i=0;
+//      while(i<n-k){
+  //    if(sumLast>sum[i])
+    //  {flag=1;
+      // break;}
+      //  else
+       //   flag=0;
+      //}
+      
+    //printf(" %d %d %d\n",sumLast,n-k-1,sum[n-k-1]);
+    if(sumLast<sum[n-k-1])
+      if(sum[n-k-1]-sumLast>m)
+        printf("Impossible");
+      else
+      printf("%d",sum[n-k-1]-sumLast+1);
+    else
+      printf("0");
+    
+    }
+    
+  
+	return 0;
+}

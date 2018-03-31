@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+long long int t,n,m,in,fi,s,a,b,c,d,a1,b1,c1,d1,i,in1;
+scanf("%lld",&t);
+while(t--)
+{
+s=0;
+scanf("%lld%lld",&n,&m);
+i=1;
+while(1)
+{
+in=n/(i+1);
+fi=n/i;
+if((in+1)==fi)
+break;
+a=in%(30*m);
+b=(in+1)%(30*m);
+c=(2*in+1)%(30*m);
+d=((3*(a*b))%(30*m))-1;
+if(d<0)
+d=d+(30*m);
+a1=fi%(30*m);
+b1=(fi+1)%(30*m);
+c1=(2*fi+1)%(30*m);
+d1=((3*a1*b1)%(30*m))-1;
+if(d1<0)
+d1=d1+(30*m);
+s=(s+i*(((((((a1*b1)%(30*m))*c1)%(30*m))*d1)%(30*m))/30-((((((a*b)%(30*m))*c)%(30*m))*d)%(30*m))/30))%m;
+if(s<0)
+s=s+m;
+i++;
+}
+for(;fi>=1;fi--)
+{
+s=(s+((n/fi)*((((((fi*fi)%m)*fi)%m)*fi)%m))%m)%m;
+}
+printf("%lld\n",s);
+}
+	return 0;
+}

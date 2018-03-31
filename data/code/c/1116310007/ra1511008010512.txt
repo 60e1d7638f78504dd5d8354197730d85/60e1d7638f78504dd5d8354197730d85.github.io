@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+#define MAX_MOD 1000000007
+unsigned char Order[3];
+long long unsigned int Workers[26];
+ 
+int main()
+{
+	int N, n, M, m, a1, a2, a3;
+	 int team;
+	unsigned int data;
+	
+	scanf("%d", &N);
+ 
+	data = fgetc(stdin);
+	for(n=0; n<N; n++)
+	{
+		data = fgetc(stdin);
+		Workers[data-'A']++;
+	}
+	
+	scanf("%d", &M);
+	for(m=0; m<M; m++)
+	{
+		scanf("%s", Order);
+		a1 = Order[0]-'A';
+		a2 = Order[1]-'A';
+		a3 = Order[2]-'A';
+		team = 0;
+		if(Workers[a1]>0 && Workers[a2]>0 && Workers[a3]>0)
+		{
+			team = (Workers[a1]*Workers[a2])%MAX_MOD;
+			team = (team*Workers[a3])%MAX_MOD;
+			Workers[a1]--;
+			Workers[a2]--;
+			Workers[a3]--;
+		}
+		printf("\n%d", team);
+	}
+	
+    return 0;
+}

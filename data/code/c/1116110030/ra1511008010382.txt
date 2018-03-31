@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char a[100];
+  scanf("%[^\n]s",a);
+  int l1;
+  l1=strlen(a);	
+  char b[100];
+  
+  scanf("\n%s",b);
+ 
+  int i,count=0,k,count1=0,j,l2;
+  l2=strlen(b);
+  for(i=0;i<l1;)
+  {
+    j=0;
+    count=0;
+          while(a[i]==b[j])
+          {
+            count++;    
+           i++;
+           j++;
+    }
+      if(count==l2)
+      { 
+        count1++;
+        count=0;
+       
+  }
+    else
+      i++;
+  }
+    printf("%s=%d",b,count1);
+    return 0;
+}

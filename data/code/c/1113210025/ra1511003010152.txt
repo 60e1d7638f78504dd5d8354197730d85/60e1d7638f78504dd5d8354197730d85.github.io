@@ -1,0 +1,49 @@
+#include <stdio.h>
+#define ll long long int
+ll arr[20];
+long long a,b,i,r,j,num,loop_sum;
+void combinationUtil(ll arr[],ll n,ll r,ll index,ll data[],ll i);
+void printCombination(ll arr[], ll n, ll r)
+{
+    ll data[r];
+    combinationUtil(arr, n, r, 0, data, 0);
+}
+ll ans,flag;
+void combinationUtil(ll arr[], ll n, ll r, ll index, ll data[], ll i)
+{
+    if(index == r)
+    {
+        ll sum=0;
+        for (j=0; j<r; j++)//sum up all the items being included in the set
+            sum+=data[j];
+        if(sum==ans)//check against sum 
+            flag=1;
+        return;
+    }
+    if (i >= n)//if number of elements exceeds N
+        return;
+    data[index] = arr[i];//set element
+    combinationUtil(arr, n, r, index+1, data, i+1);//item is being included
+    combinationUtil(arr, n, r, index, data, i+1);//item is not included
+}
+int main()
+{
+
+    int test;
+    scanf("%d",&test);
+    while(test--)
+    {
+        flag=0;
+        scanf("%lld",&num);
+        for(i=0;i<num;i++)
+            scanf("%lld",&arr[i]);
+        scanf("%lld",&ans);
+        for(r=0;r<=num;r++)
+            printCombination(arr,num,r);
+        if(flag==1)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+  return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,c,d,i;
+  	scanf("%d",&a);scanf("%d",&b);scanf("%d",&c);scanf("%d",&d);
+  
+  	int lc = lcm(b,d);
+  	int x=a*(lc/b)+c*(lc/d);  	
+  	int limit = (x<lc) ? x : lc;
+  
+  	for(i=1;i<limit;i++){
+    	if(x%i==0 && lc%i==0){ x/=i;lc/=i; }
+    }
+  	printf("%d %d",x,lc);
+	return 0;
+}
+
+int lcm(int n1, int n2)
+{
+    int minMultiple;
+    minMultiple = (n1>n2) ? n1 : n2;
+    while(1)
+    {
+        if( minMultiple%n1==0 && minMultiple%n2==0 )
+        {
+            return minMultiple;
+        }
+        ++minMultiple;
+    }
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int a[100],n,m,i,s,c,d,t;
+int main()
+{
+    //cin>>n>>m;
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;++i)
+        scanf("%d",&a[i]);
+
+    for (c = 1 ; c <= n - 1; c++) {
+    d = c;
+
+    while ( d > 0 && a[d-1] > a[d]) {
+      t          = a[d];
+      a[d]   = a[d-1];
+      a[d-1] = t;
+
+      d--;
+    }
+    }
+
+
+    for(i=0;i<m&a[i]<0;++i)
+        s=s-a[i];
+    printf("%d",s);
+    return 0;
+    }

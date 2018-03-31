@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+
+	int cases;
+  scanf("%d",&cases);
+  int i,num1,num2,numer,denom,rem,gcd,lcm;
+  int arr[100];
+  int arr1[100];
+  for(i=1;i<=cases;i++)
+  {
+    scanf("%d %d",&num1,&num2);
+    if(num1>num2)
+    {
+     numer=num1;
+      denom=num2;
+    }
+    else
+    {
+      numer=num2;
+      denom=num1;
+    }
+    rem=numer%denom;
+    while(rem!=0)
+    {
+     numer=denom;
+      denom=rem;
+      rem=numer%denom;
+    }
+    gcd=denom;
+    lcm=num1*num2/gcd;
+    arr[i]=gcd;
+    arr1[i]=lcm;
+  }
+  
+  for(i=1;i<=cases;i++)
+  {
+   printf("%d %d\n",arr[i],arr1[i]); 
+  }
+  return 0;
+}

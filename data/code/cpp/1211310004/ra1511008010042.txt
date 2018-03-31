@@ -1,0 +1,121 @@
+#include<iostream>
+using namespace std;
+int gcd(int a,int b)
+{
+    if(!b)
+        return a;
+    gcd(b , a % b);
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        int a,b,c;
+        cin >> a >> b >> c;
+        if(c % gcd(max(a , b) , min(a , b)) || c > max(a , b))
+        {
+            cout << "-1" << endl;
+        }
+        else
+        {
+            int c1 = 0 , c2 = 0 , a1 , b1;
+            a1 = 0;
+            b1 = 0;
+ 
+            while(a1 != c && b1 != c)
+            {
+                /*if(c1 >= 15)
+                    break;
+                cout << a1 << " " << b1 << " " << c1 << endl;*/
+                if(a1 > a)
+                {
+                    a1 -= a;
+                    b1 += a;
+                    c1 += 2;
+                }
+                else if(b1 > b)
+                {
+                    b1 = 0;
+                    c1++;
+                }
+                else if(a1 + a > a)
+                {
+                    if(b1 == b)
+                    {
+                        c1++;
+                        b1 = 0;
+                    }
+                    int t = (b - b1);
+                    if(t >= a1)
+                    {
+                        b1 += a1;
+                        a1 = 0;
+                    }
+                    else
+                    {
+                        b1 += t;
+                        a1 = a1 - t;
+                    }
+                    c1 ++;
+                }
+                else
+                {
+                    a1 += a;
+                    c1++;
+                }
+            }
+            c2 = c1;
+           // cout << c2 << endl;
+ 
+            a1 = 0;
+            b1 = 0;
+            c1 = 0;
+            swap(a,b);
+            while(a1 != c && b1 != c)
+            {
+                if(a1 > a)
+                {
+                    a1 -= a;
+                    b1 += a;
+                    c1 += 2;
+                }
+                else if(b1 > b)
+                {
+                    b1 = 0;
+                    c1++;
+                }
+                else if(a1 + a > a)
+                {
+                    if(b1 == b)
+                    {
+                        c1++;
+                        b1 = 0;
+                    }
+                    int t = (b - b1);
+                    if(t >= a1)
+                    {
+                        b1 += a1;
+                        a1 = 0;
+                    }
+                    else
+                    {
+                        b1 += t;
+                        a1 = a1 - t;
+                    }
+                    c1 ++;
+                }
+                else
+                {
+                    a1 += a;
+                    c1++;
+                }
+                //cout << c1 << endl;
+            }
+            cout << min(c2 , c1) << endl;
+        }
+ 
+    }
+    return 0;
+}

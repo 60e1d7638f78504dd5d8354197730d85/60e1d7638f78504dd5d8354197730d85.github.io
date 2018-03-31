@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define mod 1000000007
+ 
+long long int factorial(int n)
+{
+	int i;
+	long long int fact = 1;
+	for(i = 1; i <= n; ++i)
+	{
+		fact = (fact * i) % mod; 
+	}
+ 
+	return fact;
+}
+ 
+int main(int argc, char const *argv[])
+{
+	int T, i, j, k, l, m, n;
+	long long int fact, sim, ans;
+	char S[100000];
+	int alpha[26];
+	scanf("%d", &T);
+	for(k = 0; k < T; ++k)
+	{
+		scanf("%s", S);
+		n = strlen(S);
+		for(i = 0; i < 26; ++i)
+			alpha[i] = 0;
+ 
+		for(i = 0; i < n; ++i)
+			++alpha[S[i] - 'a'];
+ 
+		for(i = 0; i < 26; ++i)
+			alpha[i] = alpha[i] % mod;
+ 
+		fact = factorial(n);
+		for(i = 0; i < 26; ++i)
+			fact = (fact / factorial(alpha[i])) % mod;
+ 
+		sim = 0;
+ 
+		// zero swaps
+		sim += 1;
+ 
+		//one swaps
+		for(i = 0; i < 26; ++i)
+			for(j = 0; j < 26; ++j)
+				if(i < j)
+					sim += alpha[i] * alpha[j];
+ 
+		//two swaps
+ 
+		//non-overlapping swaps
+		for(i = 0; i < 26; ++i)
+			for(j = 0; j < 26; ++j)
+				for(l = 0; l < 26; ++l)
+					for(m = 0; m < 26; ++m)
+						if(i < j && j < l && l < m)
+							sim += (alpha[i] * alpha[j] * alpha[l] * alpha[m] * 3) % mod;
+ 
+		for(i = 0; i < 26; ++i)
+			for(j = 0; j < 26; ++j)
+				for(l = 0; l < 26; ++l)
+					if(i != j && i != l && j < l)
+						sim += (alpha[i] * (alpha[i] - 1) * alpha[j] * alpha[l]) % mod;
+ 
+		for(i = 0; i < 26; ++i)
+			for(j = 0; j < 26; ++j)
+				if(i < j)
+					sim += (((alpha[i] * (alpha[i] - 1)) / 2) * ((alpha[j] * (alpha[j] - 1)) / 2)) % mod;
+ 
+		//overlapping swaps
+		for(i = 0; i < 26; ++i)
+			for(j = 0; j < 26; ++j)
+				for(l = 0; l < 26; ++l)
+					if(i < j && j < l)
+						sim += (alpha[i] * alpha[j] * alpha[l] * 2) % mod;
+ 
+		ans = (fact * (fact - sim)) % mod;
+ 
+		printf("%lld\n", ans);
+		
+ 
+	}
+ 
+ 
+	return 0;
+} 

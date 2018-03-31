@@ -1,0 +1,48 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+class Hello
+{
+  string name,course,gender;
+  public:
+  void initializeData(string n,string x,string g)
+  {
+    name=n;
+    course=x;
+    gender=g;
+   // cout<<name<<" "<<course<<" "<<gender<<endl;
+  }
+  
+  void speak()
+  {
+    int i;
+    if(gender=="M" || gender=="m")
+    {
+      for(i=0;i<name.size();i++)
+      {
+        cout<<"Hello Mr. "<<name<<" Welcome to "<<course<<endl;
+      }
+    }
+    else if(gender=="F" || gender=="f")
+    {
+       for(i=0;i<name.size();i++)
+       {
+          cout<<"Hello Ms. "<<name<<" Welcome to "<<course<<endl;
+       }
+    }
+    else
+    {
+      exit(0);
+    }
+  }
+};
+  
+int main()
+{
+   string a,b,c;
+   cin>>a>>b>>c;
+   Hello o;
+   o.initializeData(a,b,c);
+   o.speak();
+   return 0;
+}

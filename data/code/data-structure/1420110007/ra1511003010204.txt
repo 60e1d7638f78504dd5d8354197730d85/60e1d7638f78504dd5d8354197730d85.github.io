@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+    int t,i,j,count1=0,count2=0,count3=0,count4=0,l,m;
+    char str[101];
+    
+    scanf("%d",&t);
+    
+    for(i=0;i<t;i++)
+    {
+    	scanf("%s",str);
+    	l=strlen(str);
+    	for(j=0;j<l;j++)
+    	{
+    		if(str[j]=='r')
+    			count1++;
+    		else if(str[j]=='u')
+    			count2++;
+    		else if(str[j]=='b')
+    			count3++;
+    		else if(str[j]=='y')
+    			count4++;
+    		
+    	}
+    //	printf("counts is %d %d %d %d\n",count1,count2,count3,count4);
+    	m=min(count1,count2,count3,count4);
+    	printf("%d\n",m);
+    	count1=0;
+    	count2=0;
+    	count3=0;
+    	count4=0;
+    }
+    
+    return 0;
+}
+ 
+int min(int a,int b,int c,int d)
+{
+	int m=a;
+	if(b<m)
+		m=b;
+	if(c<m)
+		m=c;
+	if(d<m)
+		m=d;
+	return m;
+}

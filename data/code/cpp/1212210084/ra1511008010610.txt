@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int longestPs(string str){
+int n = str.length();
+//cout<<len;
+int i,k,j;
+bool table[n][n];
+memset(table,false, sizeof(table));
+int pos=0;
+int max_len=0;
+// 1 length substring
+max_len=1;
+for(i=0;i<n;i++)
+    table[i][i]=true;
+ 
+ 
+    for(i=0;i<n-1;i++){
+        if(str[i]==str[i+1]){
+            table[i][i+1]=true;
+            pos=i;
+            max_len=2;
+        }
+ 
+    }
+ 
+      //length >3
+     // k is the length
+    for(k=3;k<=n;k++){
+        for(i=0;i<n-k+1;i++)
+        {
+            j=i+k-1;
+            if(str[i]==str[j] && table[i+1][j-1])
+            {
+                table[i][j]=true;
+                if(k>max_len)
+                {
+                    max_len=k;
+                    pos=i;
+                }
+            }
+        }
+    }
+ 
+    return max_len;
+}
+int main(){
+int t;
+cin>>t;
+string str;
+ 
+while(t--){
+cin>>str;
+ 
+if(longestPs(str)>1)
+  cout<<"YES"<<endl;
+  else
+        cout<<"NO"<<endl;
+}
+ 
+ 
+}

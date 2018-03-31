@@ -1,0 +1,43 @@
+import java.util.*;
+import java.util.ArrayList;
+public class TestClass 
+{
+	public static void main(String[] args) 
+	{         
+		Scanner sc=new Scanner(System.in);
+				//System.out.println("Enter the value for N");
+                int n=sc.nextInt();
+                int temp=n;
+                ArrayList<Integer> ar=new ArrayList<Integer>();
+                while(n>0)
+                {
+                	if(n==1) 
+                		break;
+                	else 
+                	{
+                        for(int i=2;i<=9;i++)
+                        {
+                                if(n%i==0)
+                                {
+                                	n=n/i;
+                                	if(ar.indexOf(i)==-1)	
+                                	{
+                                		ar.add(i);
+                                	}
+                                	break;
+                                }
+                        }
+
+                	}
+                }
+                Iterator itr=ar.iterator();
+                System.out.print("The Prime Factors of "+temp+" is: [");
+                String res="";
+                while(itr.hasNext())
+                {
+                	res+=itr.next()+", ";
+                }
+      			res=res.trim();
+                System.out.print(res.substring(0,res.length()-1)+"]");
+        }
+}

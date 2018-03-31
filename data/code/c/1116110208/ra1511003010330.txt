@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+#define max 100
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+int flag=0;
+char str[max];
+int hash[255]={};
+scanf("%s",str);
+int i,a;
+a=strlen(str);
+for(i=0;i<a;i++)
+hash[str[i]]++;
+ 
+for(i=0;i<255;i++)
+{
+if(2*hash[i]==a)
+flag=1;
+}
+if(flag==1)
+printf("YES\n");
+else
+printf("NO\n");
+}
+return 0;
+}  

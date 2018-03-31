@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char *substring(char s[],int l, int r){
+  int length = r-l+1,c=0;
+  char *sub = malloc (sizeof (char) * length);
+  while (c < length) {
+      sub[c] = s[l+c-1];
+      c++;
+   }
+   sub[c] = '\0';
+  return sub;
+}
+
+int main()
+{
+  int t,n,zo,q,l,r,i;
+  char s[100],subs[100],s1[100];
+  scanf("%d",&t);
+  while(t--){
+    scanf("%d %d %d %s",&n,&zo,&q,s1);
+    for(i=0;i<q;i++)
+    {
+      int c=0;
+      scanf("%d %d",&l,&r);
+      strcpy(s,substring(s1,l,r));
+      int j,k,m;
+      for(j=0;j<=r-l+1;j++)
+      {
+        for(k=j;k<=r-l+1;k++)
+        {
+          strcpy(subs,substring(s,j,k));
+          int o=0,z=0;
+          for(m=0;m<=k-j;m++)
+          {
+            if(subs[m]=='0')z++;
+            if(subs[m]=='1')o++;
+          }
+          if(z==0 && o==0)continue;
+          else if(!(z>zo) && !(o>zo))c++;
+        }
+      }
+      printf("%d\n",c);
+    }
+  }
+  return 0;
+}

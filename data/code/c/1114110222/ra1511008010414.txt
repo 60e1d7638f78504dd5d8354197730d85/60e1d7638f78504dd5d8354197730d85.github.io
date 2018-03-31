@@ -1,0 +1,30 @@
+#include <stdio.h>
+int rsum(int d, int n);
+int rsum(int d, int n)
+{
+  int i;
+  int vsum;
+  vsum=0;
+  for(i=1;i<=n;i++)
+  {
+    vsum=vsum+i;
+  }
+  d--;
+  if(d!=0)
+    vsum=rsum(d,vsum);
+  return vsum; 
+}
+int main()
+{
+  int num,dee,t;
+  scanf("%d",&t);
+  while(t!=0)
+  {
+    scanf("%d %d",&dee,&num);
+    int result;
+    result=rsum(dee,num);
+    printf("%d\n",result);
+    t--;
+  }
+	return 0;
+}

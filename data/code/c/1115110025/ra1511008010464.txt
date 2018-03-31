@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+	int n, arr[100][100], i, j;
+  	int isdag=1;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++) {
+      for(j=0; j<n; j++) {
+        scanf("%d", &arr[i][j]);
+        if(i != j && arr[i][j] != 0)
+          isdag = 0;
+      }
+      
+      if(!isdag)
+        break;
+    }
+  	
+  	if(isdag)
+      printf("yes");
+  	else
+      printf("no");
+	return 0;
+}

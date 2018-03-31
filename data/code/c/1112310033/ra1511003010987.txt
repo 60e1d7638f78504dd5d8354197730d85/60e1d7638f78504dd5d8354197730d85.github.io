@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+float distance(int x1,int y1,int x2,int y2);
+int main()
+{
+	int cx,cy,hx,hy,sx,sy,test,maxd;
+	//printf("\nENTER NO. OF TEST CASES: ");
+	scanf("%d",&test);
+	while(test != 0)
+	{
+		//printf("\nENTER MAX DISTANCE: ");
+		scanf("%d",&maxd);
+		//printf("\nENTER COORDINATE OF CHEF: ");
+		scanf("%d %d",&cx,&cy);
+		//printf("\nENTER COORDINATE OF CHEF: ");
+		scanf("%d %d",&hx,&hy);
+		//printf("\nENTER COORDINATE OF CHEF: ");
+		scanf("%d %d",&sx,&sy);
+		if( (distance(cx,cy,hx,hy) <= maxd && distance(hx,hy,sx,sy) <= maxd) || \
+		    (distance(hx,hy,sx,sy) <= maxd && distance(sx,sy,cx,cy) <= maxd) || \
+		    (distance(sx,sy,cx,cy) <= maxd && distance(cx,cy,hx,hy) <= maxd)    \
+		  )	
+			printf("yes\n");	
+		else
+			printf("no\n");
+ 
+		test--;
+	}
+}
+ 
+float distance(int x1,int y1,int x2,int y2)
+{
+	return sqrt( ((x2-x1) * (x2-x1)) + ((y2 - y1) * (y2 - y1)) );
+}

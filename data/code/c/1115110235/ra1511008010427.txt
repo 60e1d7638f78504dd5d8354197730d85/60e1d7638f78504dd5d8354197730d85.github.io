@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main(){
+unsigned long int n=0;
+	unsigned int q=0,i=0,t=0,gd=0,pos=0;
+	unsigned int out[200000];
+	scanf("%d",&t);
+	if(t>=1 && t<=10)
+	{
+		while(t>0)
+		{
+			scanf("%d",&gd);
+			if(gd>=1 && gd<=20000)
+			{
+				while(gd>0)
+				{
+					scanf("%d %ld %d",&i,&n,&q);
+					if((i>=1 && i<=2) && (n>=1 && n<=1000000000) && (q>=1 && q<=2))
+					{
+						if(n%2)
+							(i==q)?(out[pos++]=n>>1):(out[pos++]=(n>>1)+1);
+						else
+							out[pos++]=n>>1;
+					}
+					gd--;
+				}
+			}
+			t--;
+		}
+		for(t=0;t<pos;t++)
+		printf("%d\n",out[t]);
+	}
+	return 0;
+}
+
+	

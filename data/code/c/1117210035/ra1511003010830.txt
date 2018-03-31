@@ -1,0 +1,114 @@
+#include<stdio.h>
+int gcd(int a,int b)
+{ if (b==0)
+	return a;
+	else
+		return gcd(b,a%b);
+}
+int main()
+{
+	int t,i,ca,a,b,c,cb,ch,st,g,min;
+	scanf("%d",&t);
+	for (i=1;i<=t;i++)
+	{ scanf("%d%d%d",&a,&b,&c);
+		if (a<b)
+		{ 
+			ch=a;
+			a=b;
+			b=ch;
+		}
+		g=gcd(a,b);
+		if (c>a && c>b)
+		{ printf("-1\n");
+			continue;
+		}
+		else if (c==a || c==b)
+		{ printf("1\n");
+			continue;
+		}
+		else if (c==0)
+		{ printf("0\n");
+			continue;
+		}
+		else if (c%g!=0)
+		{ printf("-1\n");
+			continue;
+		}
+		else 
+		{   
+			ca=0;
+			cb=b;
+			st=1;
+			while(ca!=c && cb!=c)
+			{ if (a-ca>=b)
+				{ ca=ca+cb;
+				cb=b;
+				st=st+2;
+				if (ca==c)
+					{ st--;
+					break;
+					}
+				}
+				else
+				{  cb=b-(a-ca);
+					ca=a;
+					st++;
+					if (cb==c)
+					{ break;
+					}
+					else
+					{ ca=0;
+						st++;
+					}
+				}
+	//			printf("here\n");
+			}
+			ca=a;
+			min=st;
+			st=1;
+			cb=0;
+			ch=0;
+			while(ca!=c && cb!=c)
+			{ if (ch==1)
+				{ ch=0;
+					ca=ca-(b-cb);
+					st++;
+					if (ca==c)
+						break;
+					else
+					{ cb=0;
+						st++;
+					}
+ 
+				}
+				
+				else if (ca-b>=0)
+				{ ca=ca-b;
+					cb=0;
+					st=st+2;
+					if (ca==c)
+					{ st--;
+						break;
+					}
+				}
+				else
+				{ cb=ca;
+					ch=1;
+					ca=0;
+					st++;
+					if (cb==c)
+					{ break;
+					}
+					else
+					{ ca=a;
+						st++;
+					}
+				}
+			}
+			if (min>st)
+				min=st;
+			printf("%d\n",min);
+		}
+	}
+	return 0;
+} 

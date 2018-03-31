@@ -1,0 +1,63 @@
+#include <stdio.h>
+ 
+#define size 1001
+ 
+#define bigger(a,b) a>b?a:b
+ 
+inline int getno()
+{
+	int i=0;
+	char ch=getchar_unlocked();
+	while(ch>'9'||ch<'0')
+		ch=getchar_unlocked();
+	while(ch<='9'&&ch>='0')
+	{
+		i=(i<<1)+(i<<3)+ch-'0';
+		ch=getchar_unlocked();
+	}
+	return i;
+}
+ 
+int cmpre(const void *a,const void *b)
+{	
+	return (*(int*)b-*(int*)a);
+}
+ 
+int main(void) {
+	int t,n,m,k,orig[size],score[size][size],cost[size][size],i,j,ans;
+	t=getno();
+	while(t--)
+	{
+		int diff[size]={0};ans=0;
+		n=getno();
+		m=getno();
+		k=getno();
+		
+			for(i=1;i<=n;i++)
+				orig[i]=getno();
+				
+			for(i=1;i<=n;i++)
+				for(j=1;j<=m;j++)
+					score[i][j]=getno();
+					
+			for(i=1;i<=n;i++)
+				for(j=1;j<=m;j++)
+					cost[i][j]=getno();
+					
+			for(i=1;i<=n;i++)
+				for(j=1;j<=m;j++)
+					diff[i]=bigger(diff[i],score[i][j]-score[i][orig[i]]-cost[i][j]);
+		
+		qsort(diff+1,n,sizeof(int),cmpre);
+		
+			for(i=1;i<=n;i++)
+				ans+=score[i][orig[i]];
+				
+			for(i=1;i<=k;i++)
+				ans+=diff[i];
+				
+			printf("%d\n",ans);
+		
+	}
+	return 0;
+}

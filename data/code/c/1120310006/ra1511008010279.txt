@@ -1,0 +1,138 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#define gc getchar()
+#define ll long long 
+ll int M,a,ans;
+ll int in()
+{
+  	char c;
+	ll int t=0;
+  	c=gc;
+	while(c<48||c>57)
+    c=gc;
+  	while(c>=48&&c<=57)
+  	{
+    	t=(t<<1)+(t<<3)+c-48;
+    	c=gc;
+  	}
+  	return t;
+}
+ll int power(ll int p,ll int N)
+{
+	a=p;
+	ans=1;
+	while(N)
+	{
+   		if(N&1)
+		ans*=a;
+   		if(ans>=M)
+		ans%=M;
+		N>>=1;
+   		a*=a;
+   		if(a>=M)
+		a%=M;
+	}
+   	return ans;
+}
+ll int func3(ll int A,ll int B)
+{
+	ll int i,j,num=1;
+	for(i=A;i<=B;i++)
+	{
+		for(j=1;j<=i;j++)
+		num*=i;
+	}
+	return num;
+}
+int main()
+{
+//	freopen("POWERMUL.txt","r",stdin);
+	ll int T,flag,i,N,Q,R,num,den,ans,sq;
+	T=in();
+	while(T--)
+	{
+		N=in();
+	    ll int hash[N+2];
+		memset(hash,0,sizeof(hash));
+		M=in();
+		Q=in();
+		flag=0;
+		if(M%2==0)
+		flag=1;
+		else
+		{
+			sq=sqrt(M);
+			for(i=3;i<=sq;i=i+2)
+			{
+				if(M%i==0)
+				{
+					flag=1;
+					break;
+				}
+			}
+		}
+		if(flag==1)
+		{
+			while(Q--)
+			{
+				R=in();
+				if(hash[R]!=0)
+				{
+					printf("%lld\n",hash[R]);
+					continue;
+				}
+				if(hash[N-R]!=0)
+				{
+					printf("%lld\n",hash[N-R]);
+					continue;
+				}
+				if(R>N/2)
+				{
+					num=func3(R+1,N);
+					den=func3(2,N-R);
+				}
+				else
+				{
+					num=func3(N-R+1,N);
+					den=func3(2,R);
+				}
+				num/=den;
+				num%=M;
+				printf("%lld\n",num);
+				hash[R]=num;
+				hash[N-R]=num;
+			}
+			continue;
+		}
+		while(Q--)
+		{
+			R=in();
+			if(hash[R]!=0)
+			{
+				printf("%lld\n",hash[R]);
+				continue;
+			}
+			if(hash[N-R]!=0)
+			{
+				printf("%lld\n",hash[N-R]);
+				continue;
+			}
+			if(R>N/2)
+			{
+				num=func3(R+1,N);
+				den=func3(2,N-R);
+			}
+			else
+			{
+				num=func3(N-R+1,N);
+				den=func3(2,R);
+			}
+			ans=((num%M)*(power(den,M-2)%M))%M;
+			printf("%lld\n",ans);
+			hash[R]=ans;
+			hash[N-R]=ans;
+		}
+	}
+	return 0;
+} 

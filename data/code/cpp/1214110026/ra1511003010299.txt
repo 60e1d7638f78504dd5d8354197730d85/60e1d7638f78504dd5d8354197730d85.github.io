@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  class measure
+  {
+    int feet[3];
+    float inches[3];
+    public:
+    void get()
+    {
+      cin>>feet[0]>>inches[0];
+      cin>>feet[1]>>inches[1];
+    }
+    void display()
+    {
+      cout<<feet[2]<<" feet ";
+      cout<<inches[2]<<" inches";
+    }
+    void sum()
+    {
+      inches[2]=inches[0]+inches[1];
+      if (inches[2]>=12)
+      {
+        feet[2]=feet[0]+feet[1]+1;
+        inches[2]-=12;
+      }
+       else
+         feet[2]=feet[0]+feet[1];
+    }
+  };
+  measure obj;
+  obj.get();
+  obj.sum();
+  obj.display();
+	return 0;
+}

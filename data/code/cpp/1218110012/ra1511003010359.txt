@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+class shape
+{
+  public:
+  int length;
+  int height;
+};
+class rectangle:public shape
+{
+ public:
+ void input(int l, int h)
+ {
+   length=l;
+   height=h;
+ }
+ void output()
+ {
+  cout<<length*height<<endl;
+ }
+};
+class triangle:public shape
+{
+ public:
+ void input(int l, int h)
+ {
+   length=l;
+   height=h;
+ }
+ void output()
+ {
+  cout<<0.5*length*height<<endl;
+ }
+};
+int main()
+{
+   int len,hei;
+   cin>>len>>hei;
+   rectangle rec;
+   rec.input(len,hei);
+   rec.output();
+   triangle tri;
+   tri.input(len,hei);
+   tri.output();
+	return 0;
+}

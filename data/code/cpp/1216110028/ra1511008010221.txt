@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;
+  	cin >> n;
+  	int arr[n];
+  	for (int &i : arr)
+       cin >> i;
+  	int res = 1;
+  	for (int i = 1; i < n; i++) {
+      int count = 0;
+      for (int j = 0;j < i; j++) {
+        if (arr[i] > arr[j])
+          count++;
+      }
+      if (count == i)
+        res++;
+    }
+    cout << res;
+	return 0;
+}

@@ -1,0 +1,96 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+	int parent;
+	int rank;
+	int color;
+};
+ 
+node nd[1000001];
+int n;
+ 
+int find(int v)
+{
+	if(nd[v].parent==-1)
+	return v;
+	
+	else
+	return find(nd[v].parent);
+}
+ 
+void uniun(int v , int u)
+{
+	v = find(v);
+	u = find(u);
+	
+	if(v==u)
+	return;
+	
+	if(nd[v].rank>nd[u].rank)
+	{
+		nd[v].rank+=nd[u].rank;
+		nd[u].parent = v;
+	}
+	
+	else
+	{
+		nd[u].rank+=nd[v].rank;
+		nd[v].parent = u;
+	}
+}
+ 
+ 
+int main()
+{
+	vector<pair<int,int> > X , Y;
+	int t,k,a,b;
+	char ch;
+	cin>>t;
+	while(t--)
+	{
+		cin>>n>>k;
+		
+		for(int i=1;i<=n;i++)
+		{
+			nd[i].parent = -1;
+			nd[i].rank = 1;
+		}
+		
+		bool ans = true;
+		for(int i=1;i<=k;i++)
+		{
+			cin>>a;
+			cin>>ch;
+			if(ch=='!')
+			{
+				cin>>ch>>b;
+				Y.push_back(make_pair(a,b));
+			}
+			
+			else
+			{
+				cin>>b;
+				X.push_back(make_pair(a,b));
+			}
+		}
+		
+		for(int i=0;i<X.size();i++)
+		uniun(X[i].first,X[i].second);
+		
+		for(int i=0;i<Y.size();i++)
+		{
+			if(find(Y[i].first)==find(Y[i].second))
+			{
+				cout<<"NO\n";
+				goto p;
+			}
+		}
+		
+		cout<<"YES\n";
+		p:;
+		X.clear();
+		Y.clear();
+	}
+ 
+	return 0;
+}

@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+inline int scan( );
+char a[2001][2001];
+int adj[2000][2000];
+int len[2002];
+int main()
+{
+	int i,j,k,n;
+	long long int count=0;
+	n=scan();
+	for(i=0;i<n;i++)
+	{
+		k=0;
+		scanf("%s",a[i]);
+		for(j=0;j<n;j++)
+		{
+		
+			if(a[i][j]=='1')
+			{
+				adj[i][k++]=j;
+			}
+		}
+		len[i]=k;
+	}
+ 
+	for(i=0;i<n;i++)
+	{
+		for(j=i+1;j<n;j++)
+		{
+			if(a[i][j]=='0')
+			{
+				
+				for(k=0;k<len[i];k++)
+				{
+					
+					if(a[adj[i][k]][j]=='1')
+					{
+						count++;
+						break;
+					}
+				}
+			}
+		}
+	}
+	printf("%lld\n",2*count);
+return 0;	
+}
+inline int scan( )
+{
+int n = 0;
+char c;
+for( c = getchar_unlocked(); c==' ' || c=='\n' || c == '\t'; c = getchar_unlocked());
+for( ; c > 0x2f && c < 0x3a; c = getchar_unlocked())
+n = (n * 10) + (c & 0x0f);
+return n;
+}
+  

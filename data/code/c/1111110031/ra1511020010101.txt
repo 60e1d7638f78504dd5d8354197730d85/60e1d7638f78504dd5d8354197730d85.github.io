@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+void convert(int n, int b)
+{
+   char s[100],sr[100];int i;
+  for(i=0;i<100;i++)
+  {
+   s[i]='\0'; 
+    sr[i]='\0';
+  }
+  int v=0;int a=n;int h;char c;
+  while(a>0)
+  {
+    h=a%b;
+    if(h<10)
+      c=(char)(48+h);
+    else
+      c=(char)(97+h-10);
+    a=a/b;
+   s[v++]=c;
+  }
+  for(i=strlen(s)-1;i>=0;i--)
+    sr[strlen(s)-i-1]=s[i];
+ printf("%s\n",sr);
+}
+int main()
+{
+  int n;
+	scanf("%d",&n);
+  /*char *hex;
+  char *oct;*/
+  /*oct=convert(n,8);
+  hex=convert(n,16);*/
+  printf("Decimal value:%d\n",n);
+  printf("Octal value:");
+  convert(n,8);
+  printf("Hexadecimal value:");
+  convert(n,16);
+  	return 0;
+  //printf("%s",(convert(10,8)));
+}

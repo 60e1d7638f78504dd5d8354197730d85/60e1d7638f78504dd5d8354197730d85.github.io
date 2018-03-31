@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<string.h>
+int min(int a,int b)
+{
+	if(a>=b)
+	return b;
+	else
+	return a;
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,i,j;
+		scanf("%d",&n);
+	//	int counta=0,countb=0;
+		int mina=200,minb=200;
+		
+		char str[105][105];
+		for(i=0;i<n;i++)
+			scanf("%s",str[i]);
+		int m=strlen(str[0]);
+		for(i=0;i<n;i++)
+		{
+			int  counta=0;
+			int countb=0;
+			for(j=0;j<m;j++)
+			{
+				if(str[i][j]=='a')
+				counta++;
+				else
+				countb++;
+			}
+			if(counta<mina)
+			mina=counta;
+			if(countb<minb)
+			minb=countb;
+		}
+		printf("%d\n",min(mina,minb));
+	}
+  return 0;
+} 

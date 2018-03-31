@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+  int t = 2;
+  while(t--){
+    int n,i;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    int c = (a[0] + a[1])%100;
+    int s = a[0] * a[1];
+    a[1] = c;
+    for(i=2;i<n;i++)
+    {
+      c = (a[i-1] + a[i])%100;
+      int sn = a[i-1] * a[i];
+      s += sn;
+      a[i] = c;
+    }
+    printf("%d\n",s);
+  }
+  return 0;
+}

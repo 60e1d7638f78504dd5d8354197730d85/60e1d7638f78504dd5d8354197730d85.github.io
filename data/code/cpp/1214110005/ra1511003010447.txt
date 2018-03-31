@@ -1,0 +1,51 @@
+#include <iostream>
+#include<string.h>
+#include<algorithm>
+
+using namespace std;
+
+class phone{
+string SCode;
+  string Exchange;
+  string phnum;
+  
+  public:
+  void initialise(){
+  string s;
+ char* a[3]={'\0'};
+    int i;
+    cin>>s;
+//    char * token=strtok(s,"-");
+  //  i=0;
+   // while(token!=NULL){
+   // a[i]=token;
+    //  i++;
+    //}
+    
+    SCode=s.substr(0,3);
+    Exchange=s.substr(4,3);
+    phnum=s.substr(8,5);
+  }
+  
+  void change(){
+  
+    SCode.replace(0,1,"+91");
+   string::iterator it=phnum.begin();
+    string::iterator it1=it++;
+    it1++;
+    it1++;
+   // cout<<*it1;
+ reverse(phnum.begin(),it1);
+   phnum= phnum.substr(0,2);
+    
+    cout<<"Output="<<SCode<<"-"<<Exchange<<"-"<<phnum;
+  }
+};
+
+int main()
+{
+	phone p;
+  p.initialise();
+  p.change();
+	return 0;
+}

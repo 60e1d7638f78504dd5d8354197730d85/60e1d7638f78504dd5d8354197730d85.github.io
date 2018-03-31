@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int max_count(char s[], int j)
+{
+	int a[26],i=26,temp=0,p;
+	while(i--)
+		a[i]=0;
+	for(p=0;p<j;p++)
+		a[(int)s[p]-97]++;
+	i=26;
+	while(i--)
+	{
+		if(a[i]>temp)
+			temp=a[i];
+	}
+	return temp;
+}
+ 
+ 
+void func()
+{
+	char s[10001],s1[10001],s2[10001],s3[10001],s4[10001];
+	s1[0]='\0';
+	s2[0]='\0';
+	s3[0]='\0';
+	s4[0]='\0';
+	scanf("%s",s);
+	
+	int ch=0,c1=0,c2=0;
+	int i,j,k;
+	int p,q,r,x;
+	int l=strlen(s);
+	
+	for(i=0;i<l;i++)
+	{
+		if(s[i]=='#')
+			ch++;
+	}
+	
+	if(ch<3)
+		printf("0\n");
+		
+	else
+	{
+		p=1;
+		while(ch>=3)
+		{
+			c1=3;
+			q=0;x=0;
+			while(q<p)
+			{
+				r=0;
+				while(s[r]!='#')
+					s1[x++]=s[r++];
+				q++;			
+			}
+			c1=3;
+			//("%d\n",x);
+			c1=c1+max_count(s1,x);
+			//printf("%d\t",c1);
+			x=0;r++;
+			while(s[r]!='#')
+				s2[x++]=s[r++];
+			//printf("%s",s2);
+			c1=c1+max_count(s2,x);
+			//printf("%d\t",c1);
+			x=0;r++;
+			while(s[r]!='#')
+				s3[x++]=s[r++];
+			//printf("%s",s3);
+			c1=c1+max_count(s3,x);
+			//printf("%d\t",c1);
+			x=0;r++;
+			while(s[r]!='\0')
+			{
+				if(s[r]!='#')
+					s4[x++]=s[r];
+				r++;	
+			}
+			//printf("%s",s4);
+			c1=c1+max_count(s4,x);
+			//printf("%d\t",c1);
+			
+			if(c1>c2)
+				c2=c1;
+			ch--;
+			p++;
+		}
+		printf("%d\n",c2);
+	}
+}
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+		func();
+	return 0;
+}

@@ -1,0 +1,123 @@
+#include<stdio.h>
+#include<string.h>
+ 
+long int dp_2[10000000];
+long int ec,n;
+ 
+long int encode(int *vec)
+{
+	int i;
+	long int ans=0,v=1;
+	
+	for(i=0;i<n;i++)
+	{
+		ans+=(vec[i] * v);
+		v*=ec;
+	}
+	
+	return ans;
+}
+ 
+long int min(long int a,long int b)
+{
+	return a < b ? a : b;
+}
+ 
+long int calc(int a,int b)
+{
+	return ((a ^ b) * (a + b));
+}
+ 
+int Equal(int *vec,int d)
+{
+	int i;
+	
+	for(i=0;i<n;i++)
+	if(vec[i] != d)
+	return 0;
+	
+	return 1;
+}
+ 
+long int calc_2(int *vec)
+{
+	int i;
+	long int exp1=0,exp2=0;
+	
+	exp1=vec[0];
+	exp2=exp1;
+	
+	for(i=1;i<n;i++)
+	{
+		exp1+=vec[i];
+		exp2^=vec[i];
+	}
+	
+	return (exp1 * exp2);
+}
+ 
+long int recurse(int *vec,int d)
+{
+	if(Equal(vec,d))
+	return 0;
+	
+	long int val=encode(vec),x=1000000000;
+	int i;
+	
+	if(val < 10000000 && dp_2[val] != -1)
+	return dp_2[val];
+	
+	for(i=0;i<n;i++)
+	{
+		if(vec[i] + 1 <= d)
+		{
+			vec[i]++;
+			x=min(x,recurse(vec,d) + calc_2(vec));
+			vec[i]--;
+		}
+	}
+	
+	if(val < 10000000)
+	dp_2[val]=x;
+	
+	return x;
+}
+ 
+ 
+int main()
+{
+	int t,i;
+	
+	scanf("%d",&t);
+	
+	while(t--)
+	{
+		long long int N,D,exp;
+		
+		scanf("%lld%lld",&N,&D);
+		
+		
+		if(N == 1)
+		{
+			N=D-1;
+			exp=(N * (N + 1) * (2*N + 1)) / 6;
+			printf("%lld\n",exp);
+		}
+		
+		else
+		{
+			n=N;
+			memset(dp_2,-1,sizeof(dp_2));
+			
+			ec=D;
+			
+			int vec[N],i;
+			for(i=0;i<N;i++)
+			vec[i]=0;
+			
+			printf("%ld\n",recurse(vec,D-1));
+		}
+	}
+	
+	return 0;
+} 

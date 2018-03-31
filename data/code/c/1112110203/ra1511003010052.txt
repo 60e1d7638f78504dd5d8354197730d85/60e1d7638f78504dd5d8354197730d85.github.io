@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(void)
+{
+ int T,l,i;
+ char c;
+ int a[200];
+ char s[50];
+ scanf("%d",&T);
+ while(T--)
+ {
+     int max,sum,j;
+     char ch;
+     scanf("%s",s);
+     l=strlen(s);
+     for(c='a';c<='z';c++)
+     {
+         a[c]=0;
+     }
+for(j=0;j<l;j++)
+     {
+         a[s[j]]++;
+     }
+     max=0;
+     for(c='a';c<='z';c++)
+     {
+         if(a[c]>max){
+            max=a[c];
+            ch=c;
+         }
+     }
+     sum=0;
+     for(c='a';c<='z';c++)
+     {
+         if(ch!=c)
+         {
+             sum=sum+a[c];
+         }
+     }
+     if(sum==max)
+        printf("YES\n");
+     else
+        printf("NO\n");
+ }
+    return 0;
+}
+ 
+ 
+ 

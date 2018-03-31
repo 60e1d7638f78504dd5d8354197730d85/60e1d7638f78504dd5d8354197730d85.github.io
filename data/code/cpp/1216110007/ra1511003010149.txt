@@ -1,0 +1,40 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  int t,temp,cnt=0;
+  cin>>t;
+  int arr1[t];
+  for(int i=0;i<t;i++) 
+    cin>>arr1[i];
+  cin>>t;
+  int arr2[t];
+  for(int j=0;j<t;j++)
+    cin>>arr2[j];
+  for(int i=0;i<t;i++) {
+    for(int j=0;j<t-i-i;j++) {
+      if(arr1[j]>arr1[j+1]) {
+        temp = arr1[j];
+        arr1[j] = arr1[j+1];
+        arr1[j+1] = temp;
+      }
+       if(arr2[j]>arr2[j+1]) {
+        temp = arr2[j];
+        arr2[j] = arr2[j+1];
+        arr2[j+1] = temp;
+       }
+    }
+  }
+  for(int k=0;k<t;k++) {
+    if(arr1[k]==arr2[k])
+      cnt++;
+  }
+  if(cnt==t)
+  	cout<<"Yes";
+  else
+    cout<<"No";
+
+	return 0;
+}

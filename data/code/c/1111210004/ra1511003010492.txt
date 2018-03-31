@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t>0)
+{
+int a,b,i,ar[100],j,sum=0,sum1=0;
+scanf("%d %d",&a,&b);
+ for(i=0;i<a;i++)
+ {
+ scanf("%d",&ar[i]);
+  sum+=ar[i]; 
+ }
+ for(i=0;i<a-1;i++)
+ {
+   int temp;
+   for(j=0;j<a-i-1;j++)
+   { 
+   if(ar[j]>=ar[j+1])
+   {
+     temp=ar[j+1];
+     ar[j+1]=ar[j];
+     ar[j]=temp;
+   }
+   }
+ 
+ }
+  for(i=0;i<b;i++)
+ {
+ sum1+=ar[i];
+  }
+ int z=sum-sum1-sum1;
+  printf("%d\n",z);
+  t--;
+}
+	return 0;
+}

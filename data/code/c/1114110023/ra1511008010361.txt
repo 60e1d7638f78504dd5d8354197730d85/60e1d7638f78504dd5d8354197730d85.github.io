@@ -1,0 +1,24 @@
+#include <stdio.h>
+long fact(long a);
+int main()
+{
+  int n,k,numerator,den1,den2,result,temp,temp1;
+  scanf("%d",&n);
+  scanf("%d",&k);
+  numerator=fact(n);
+  temp=n-k;
+  temp1=fact(n-k);
+  den1=fact(k);
+  den2=den1*temp1;
+  result=numerator/den2;
+  printf("%d",result);
+  return 0;
+}
+long fact(long a)
+{
+  int i;
+  long int ans=1;
+  for(i=1;i<=a;i++)
+    ans=ans*i;
+  return ans;
+}

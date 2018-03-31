@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main()
+{
+   int array[50] ;
+  	int n,i;
+   int sum;
+  	scanf("%d", &n);
+  for(i=0;i<n;i++)
+  {
+  	scanf("%d", &array[i]);
+  }
+   sum = sum_array_elements(array,n);
+   printf("%d",sum);
+   return 0;
+}
+int sum_array_elements( int arr[], int n ) {
+   if (n < 0) {
+     //base case:
+     return 0;
+   } else{
+     //Recursion: calling itself
+     return arr[n] + sum_array_elements(arr, n-1);
+    }
+}

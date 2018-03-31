@@ -1,0 +1,78 @@
+#include<stdio.h>
+ 
+void printl(int a[],int m,int vis[],int lev,int ele,int vlev[])
+{
+   if(m/2<lev)
+   {
+ 	return;
+   }
+	
+   if(vis[ele]==0 && a[ele]!=0 && vlev[lev]==0)
+   {
+	printf("%d\n",a[ele]);
+	vis[ele]=1;
+	vlev[lev]=1;
+    }
+ 
+    if(ele*2+1<=m && a[ele*2+1]!=0)
+    	printl(a,m,vis,lev+1,ele*2+1,vlev);
+    
+    if(ele*2<=m && a[ele*2]!=0)
+   	printl(a,m,vis,lev+1,ele*2,vlev);
+}
+ 
+void printr(int a[],int m,int vis[],int lev,int ele,int vlev[])
+{
+   if(m/2<lev)
+   {
+ 	return;
+   }
+	
+   if(vis[ele]==0 && a[ele]!=0 && vlev[lev]==0)
+   {
+	printf("%d\n",a[ele]);
+	vis[ele]=1;
+	vlev[lev]=1;
+    }
+ 
+    if(ele*2<=m && a[ele*2]!=0)
+   	printr(a,m,vis,lev+1,ele*2,vlev);
+ 
+    if(ele*2+1<=m && a[ele*2+1]!=0)
+    	printr(a,m,vis,lev+1,ele*2+1,vlev);
+    
+ 
+}
+ 
+ 
+ 
+ 
+ 
+int main()
+{
+int i,n;
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+	int m,j;
+	scanf("%d",&m);
+	int a[10000]={0};
+	for(j=1;j<=m;j++)
+	{
+		scanf("%d",&a[j]);
+	}
+	int vis[10000]={0},vlev[1000]={0};
+	printl(a,m,vis,1,1,vlev);
+	
+	for(j=0;j<1000;j++)
+	vlev[j]=0;
+ 
+	printr(a,m,vis,1,1,vlev);
+	
+	printf("\n");
+	
+}
+ 
+ 
+return 0;
+}

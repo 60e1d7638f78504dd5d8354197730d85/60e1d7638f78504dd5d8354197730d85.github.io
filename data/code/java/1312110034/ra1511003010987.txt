@@ -1,0 +1,30 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int t,n,i,j,marks[],med,temp;
+       t=in.nextInt();
+       while(t>0) {
+         n=in.nextInt();
+         marks=new int[n];
+         for(i=0;i<n;i++)
+           marks[i]=in.nextInt();
+         for(i=0;i<n;i++) {
+           for(j=0;j<n-1;j++) {
+             if(marks[j]>marks[j+1]) {
+               temp=marks[j];
+               marks[j]=marks[j+1];
+               marks[j+1]=temp;
+             }
+           }
+         }
+         if(n%2==0)
+           med=(int)Math.floor((marks[n/2-1]+marks[n/2])/2);
+         else
+           med=marks[n/2];
+         System.out.println(med);
+         t--;
+       }
+         
+	}
+}

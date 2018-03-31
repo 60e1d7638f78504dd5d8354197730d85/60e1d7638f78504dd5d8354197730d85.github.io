@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--){
+    int m,h,i,j,temp,b,c,count=0;
+    scanf("%d %d",&h,&m);
+    for(i=0;i<h;i++){
+      temp=i;
+      b=temp%10;
+      while(temp>0)
+      {
+        if(temp%10==b)
+          temp=temp/10;
+        else
+          break;
+      }
+      if(temp<=0)
+      {
+        for(j=0;j<m;j++)
+        {
+          temp=j;
+          c=temp%10;
+          if(c==b){
+            while(temp>0)
+            {
+              if(temp%10==b)
+                temp=temp/10;
+              else
+                break;
+            }
+            if(temp<=0)
+              count++;
+          }
+        }
+      }
+    }
+    printf("%d\n",count);
+  }
+	return 0;
+}

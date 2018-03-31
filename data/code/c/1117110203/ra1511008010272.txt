@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdbool.h>
+bool Prime(int a) {
+  int i;
+  bool flag = true;
+  for(i=2;i<=a/2;i++) {
+      if(a%i==0) {
+        flag = false;
+        break;
+      }
+  }
+  return flag;
+}
+int main()
+{
+	int a,b,i;
+  	bool flag;
+  	scanf("%d%d",&a,&b);
+  	for(i=a;i<=b;i++) {
+      flag = Prime(i);
+      if(flag)
+        printf("%d\n",i);
+    }
+	return 0;
+}

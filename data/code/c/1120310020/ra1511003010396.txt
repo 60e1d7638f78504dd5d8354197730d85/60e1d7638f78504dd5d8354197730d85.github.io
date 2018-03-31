@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{int tc;
+ scanf("%d",&tc);
+ int i,j,size[10],fact[10];
+ long long int ar[10],k;
+ for(i=0;i<10;i++)
+ {ar[i]=1;
+ fact[i]=0;
+ }
+ for(i=0;i<tc;i++)
+ {  scanf("%d",&size[i]);
+  for(j=0;j<size[i];j++)
+  {scanf("%lld",&k);
+  ar[i]=ar[i]*k;
+  }
+ }
+ for(i=0;i<tc;i++)
+ {for(j=1;j<=ar[i];j++)
+ {if(ar[i]%j==0)
+   fact[i]++;
+ }
+ }
+ for(i=0;i<tc;i++)
+   printf("%d\n",fact[i]);
+ 
+ return 0;
+}

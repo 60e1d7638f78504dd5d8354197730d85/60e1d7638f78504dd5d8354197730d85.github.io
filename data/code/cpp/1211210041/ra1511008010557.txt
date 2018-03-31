@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int sum=0;
+int recur(int n)
+{
+  if(n==1) return 2;
+  if(n==2) return 5;
+  if(n%2==1) sum=2*recur(n/2);
+  else sum=recur(n/2-1)+recur(n/2);
+ return sum;
+}
+int main()
+{
+  int min[35],max,t,n,k,i;
+   cin>>t;
+   while(t--)
+   {
+     sum=0;
+     cin>>n>>k;
+     min[1]=2;
+     min[2]=5;
+    for(i=3;i<=34;i++)
+    {
+      if(i%2==0)
+      {
+         min[i]=(i+1)+min[i/2]+min[i/2-1];
+      }
+     else
+     {
+       min[i]=(i+1)+min[i/2]+min[i/2];
+     }
+   }
+   max=((n+1)*(n+2))/2-1;
+   if(k<min[n])
+      cout<<"-1\n";
+   else if(k>max) 
+     cout<<k-max<<endl;
+   else 
+     cout<<"0\n";
+  }
+	return 0;
+}

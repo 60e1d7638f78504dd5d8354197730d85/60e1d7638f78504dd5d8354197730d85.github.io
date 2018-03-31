@@ -1,0 +1,38 @@
+//DKBoss
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int n;
+  	scanf("%d", &n);
+  	int arr[2] = {0, 0}, score;
+  	char name[2][35], name1[35];
+  	int i, j, flag = 0;
+  	for(i=0; i<n; i++) {
+      	j=0;
+      	scanf("%s %d", name1, &score);
+      	if(i!= 0) {
+        	if(strcmp(name1, name[j])) {
+            	j = 1;
+            }
+        }
+        strcpy(name[j], name1);
+    	//scanf("%s %d", name[i%2], &score);
+      	arr[j] += score;
+        if(arr[j] > arr[(j+1)%2]) {
+        	flag = j;
+        }
+    }
+    printf("%s", name[flag]);
+    return 0;
+  	if(arr[0] > arr[1]) {
+    	printf("%s", name[0]);
+    }
+  	else if(arr[1] > arr[0]) {
+    	printf("%s", name[1]);
+    }
+  	else {
+    	printf("%s", name[n%2]);
+    }
+	return 0;
+}

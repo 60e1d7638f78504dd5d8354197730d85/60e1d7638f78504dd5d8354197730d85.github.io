@@ -1,0 +1,147 @@
+#include<bits/stdc++.h>
+#define lli long long int
+#define pll pair<lli,lli>
+#define mp make_pair
+#define f(i,n) for(lli i=0;i<n;i++)
+#define lp(i,a,b) for(lli i=a;i<b;i++)
+const lli mod1 = 1000000007;
+using namespace std;
+lli s[1000001];
+double x1,y11,x2,y2,v1,v2;
+lli C[1005][1005];
+lli power(lli a,lli b)
+{
+    lli x=1,y=a;
+    while(b>0)
+    {
+        if(b%2==1)
+        {
+            x=(x*y);
+            if(x>mod1) x%=mod1;
+        }
+        y = (y*y);
+        if(y>mod1) y%=mod1;
+        b /= 2;
+    }
+    return x;
+}
+bool is[10001];
+void sieve()
+{
+    is[0]=1;
+    is[1]=1;
+    for(lli i=2;i<=10000;i++)
+    {
+        if(is[i]==0)
+        {
+            for(lli j=i*i;j<=10000;j+=i)
+            {
+                is[j]=1;
+            }
+        }
+    }
+}
+lli gcd(lli a,lli b)
+{
+    if(b==0)
+        return a;
+    else
+       return gcd(b, a%b);
+}
+double distance(double x1,double y1,double x2,double y2)
+{
+    //cout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
+    return sqrt(((x1-x2)*(x1-x2))+((y1-y2)*(y1-y2)));
+}
+lli n,m,a[101],a1[10001];
+lli floorSearch( lli low, lli high, lli x)
+{
+    // If low and high cross each other
+    if (low > high)
+        return -1;
+ 
+    // If last element is smaller than x
+    if (x >= a[high])
+        return high;
+ 
+    // Find the middle point
+    int mid = (low+high)/2;
+ 
+    // If middle point is floor.
+    if (a[mid] == x)
+        return mid;
+ 
+    // If x lies between mid-1 and mid
+    if (mid > 0 && a[mid-1] <= x && x < a[mid])
+        return mid-1;
+ 
+    // If x is smaller than mid, floor must be in
+    // left half.
+    if (x < a[mid])
+        return floorSearch(low, mid-1, x);
+ 
+    // If mid-1 is not floor and x is greater than
+    // arr[mid],
+    return floorSearch(mid+1, high, x);
+}
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    lli tn,t=0;
+    cin >> tn;
+    while(t<tn)
+    {
+        lli n,l;
+        cin >> n >> l;
+        pair<lli,lli> a[n];
+        f(i,n)
+        {
+            lli x,y;
+            cin >> x >> y;
+            a[i].first=x;
+            a[i].second=y;
+        }
+        sort(a,a+n);
+//        f(i,n)
+//        {
+//            cout << a[i].first << " - " << a[i].second << endl;
+//        }
+        lli f=0;
+        f(i,n)
+        {
+            lli rt=a[i].first;
+            lli flag=1;
+            f(j,n)
+            {
+                if(a[j].second <= a[i].first+l && a[j].first>=a[i].first)
+                {
+                    if(a[j].first>rt)
+                    {
+                        flag=0;
+                        break;
+                    }
+                    else
+                    {
+                        rt=max(rt,a[j].second);
+                    }
+                }
+            }
+            if(a[i].first+l!=rt)
+            {
+                flag=0;
+            }
+            if(flag)
+            {
+                f=1;
+                cout << "Yes" << endl;
+                break;
+            }
+        }
+        if(!f)
+        {
+            cout << "No" << endl;
+        }
+        t++;
+    }
+    return 0;
+}

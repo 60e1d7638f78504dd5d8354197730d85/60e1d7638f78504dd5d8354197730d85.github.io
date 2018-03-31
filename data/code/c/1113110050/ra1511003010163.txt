@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+    int t,i;
+   scanf("%d",&t);
+   char s[1000];
+ 
+   while(t > 0) {
+      scanf("%s",s);
+      char chr[2];
+      chr[0]=s[0];
+      chr[1]=s[1];
+ 
+      int flag=1;
+      if(chr[0] == chr[1]) {
+           flag=0;
+      } else {
+          for(i=2;s[i]!='\0';i++){
+              if(s[i] != chr[i%2]){
+                 flag=0;
+                 break;
+              }
+          }
+      }
+ 
+      if(flag == 1)
+          printf("YES\n");
+      else
+          printf("NO\n");
+      t--;
+   }
+	return 0;
+}

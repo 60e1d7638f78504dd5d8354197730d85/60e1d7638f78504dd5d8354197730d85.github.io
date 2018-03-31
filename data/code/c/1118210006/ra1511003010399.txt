@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<malloc.h>
+#define MOD 1000000007
+int visited[100001];
+long long int value=0;
+ struct node
+{
+  int vertex;
+  struct node *next;
+};
+ 
+struct node *g[100001];
+struct node *last[100001];
+ 
+void insert(int a,int b)
+{
+  struct  node *p;
+  p=(struct node*)malloc(sizeof(struct node));
+  p->vertex=b;
+  p->next=NULL;
+   if(g[a]==NULL)
+    {
+     g[a]=p;
+     last[a]=p;
+   
+     }
+    else
+     {
+        last[a]->next=p;
+        last[a]=p;
+ }
+  }
+void dfs(int i)
+ {
+  struct node *p;
+     p=g[i];
+      visited[i]=1;
+       value++;
+    while(p!=NULL)
+     {
+      i=p->vertex;
+        if(!visited[i])
+         dfs(i);
+      p=p->next;
+      }
+}       
+int main()
+{
+  int test,members,relation,a,b,i,count;
+  long long int ans=0;
+   
+   scanf("%d",&test);
+    while(test--)
+     {
+       scanf("%d%d",&members,&relation);
+       ans=1;
+       count=0;
+            for(i=1;i<=members;i++)
+              {
+             visited[i]=0;
+             g[i]=NULL;
+               }
+          for(i=0;i<relation;i++)
+          {
+            scanf("%d%d",&a,&b);
+            insert(a,b);
+            insert(b,a);
+          }
+            for(i=1;i<=members;i++)
+             {
+               if(!visited[i])
+                {
+                   dfs(i);
+                    ans=ans*value;
+                  if(ans>=MOD)
+                   ans%=MOD;
+                     count++;
+                    value=0;
+              }
+           }
+            printf("%d %lld\n",count,ans);
+    }
+       return 0;
+}
+ 

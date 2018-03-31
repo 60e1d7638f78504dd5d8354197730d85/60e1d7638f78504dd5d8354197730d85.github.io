@@ -1,0 +1,46 @@
+#include <stdio.h>
+int gcd(int,int);
+int lcm(int,int);
+int gcd(int a,int b)
+{
+  if(a==0)
+    return b;
+  else
+    gcd(b%a,a);
+}
+int lcm(int a,int b)
+{
+  static int com=1;
+  if(com%a==0 && com%b==0)
+    return com;
+  else
+  {
+    com++;
+    lcm(a,b);
+  }
+}
+int main()
+{
+  int t,a,b,c,hcf,lc;
+  scanf("%d",&t);
+  if(t<1)
+    printf("Invalid Input");
+  else{
+  while(t--)
+  {
+    scanf("%d%d%d",&a,&b,&c);
+    if(c==1)
+    {
+      hcf=gcd(a,b);
+      printf("%d ",hcf);
+    }
+    else if(c==2)
+    {
+      lc=lcm(a,b);
+      printf("%d ",lc);
+    }
+  }
+  }
+
+	return 0;
+}

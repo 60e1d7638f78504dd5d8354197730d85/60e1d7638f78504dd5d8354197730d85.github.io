@@ -1,0 +1,56 @@
+#include<stdio.h>
+int used[17]={};
+int tickets[52][3];
+int n;
+double answer(int index)
+{
+	if(index==n)
+		return 1;
+ 
+	double ANS=0;
+	if(used[tickets[index][1]]==0)
+	{
+		used[tickets[index][1]]=1;
+		ANS+=(double)(tickets[index][0])*answer(index+1);
+		ANS/=100;
+//		printf("%lf\n",ANS );
+		used[tickets[index][1]]=0;
+	}
+	//if(index==0)
+	//	printf("%lf\n",ANS );
+	//if(index==0)
+	//	printf("%d %d\n",used[1],used[2]);
+ 
+if(used[tickets[index][2]]==0)
+	{
+		used[tickets[index][2]]=1;
+		//printf("pehla ka %lf\n",ANS );
+		ANS+=(double)((double)(100-tickets[index][0])/100)*answer(index+1);
+		//printf("baad ka %lf\n",ANS );
+		used[tickets[index][2]]=0;
+	}
+	//if(index==0)
+//printf("%lf\n",ANS );
+return ANS;
+ 
+}
+int main()
+{
+	int T,i;
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+			scanf("%d%d%d",&tickets[i][0],&tickets[i][1],&tickets[i][2]);
+ 
+		if(n>16)
+			printf("0.000000000\n");
+		else
+		{
+			printf("%lf\n",answer(0) );
+		}
+	}
+ return 0;
+} 
+

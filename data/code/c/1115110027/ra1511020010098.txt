@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+
+int main()
+{   int m,n,row,col;
+    scanf("%d %d", &m, &n);
+    int A[3][3];  
+    int B[3][3];  
+    for(row=0; row<3; row++)
+    {
+        for(col=0; col<3; col++)
+        {
+            scanf("%d", &A[row][col]);
+        }
+    }
+
+    for(row=0; row<3; row++)
+    {
+        for(col=0; col<3; col++)
+        {
+            /* Store each row of matrix A to each column of matrix B */
+            B[row][col] = A[col][row];
+        }
+    }
+    int isSymmetric = 1;
+    for(row=0; row<3 && isSymmetric; row++)
+    {
+        for(col=0; col<3; col++)
+        {
+            /* If matrix A is not equal to its transpose */
+            if(A[row][col] != B[row][col])
+            {
+                isSymmetric = 0;
+                break;
+            }
+        }
+    }
+
+   
+    if(isSymmetric == 1)
+    {
+        printf("\nSymmetric");
+    }
+    else
+    {
+        printf("\nNot Symmetric");
+    }
+
+    return 0;
+}

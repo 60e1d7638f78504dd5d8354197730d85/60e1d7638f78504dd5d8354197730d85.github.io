@@ -1,0 +1,62 @@
+#include <stdio.h>
+int main()
+{
+  int t,f1,f2,f3,hrdns,ts,grd;
+  float cc;
+  
+  scanf("%d",&t);
+  
+  while(t)
+  {
+    f1=0;
+    f2=0;
+    f3=0;
+    scanf("%d %f %d",&hrdns,&cc,&ts);
+    if(hrdns>50)
+    {
+      f1=1;
+    }
+    if(cc<0.7)
+    {
+      f2=1;
+    }
+    if(ts>5600)
+    {
+      f3=1;
+    }
+    
+    if(f1==1 && f2==1 && f3==1)
+    {
+      grd=10;
+    }
+    else if(f1==1 && f2==1 && f3==0)
+    {
+      grd=9;
+    }
+    else if(f1==0 && f2==1 && f3==1)
+    {
+      grd=8;
+    }
+   else if(f1==1 && f2==0 && f3==1)
+    {
+      grd=7;
+   }
+     else if(f1==1 || f2==1 || f3==1)
+    {
+      grd=6;
+     }
+     else if(f1==0 && f2==0 && f3==0)
+    {
+      grd=5;
+     }
+    
+    printf("%d\n",grd);
+    
+    t--;
+    
+  }
+     
+        
+
+	return 0;
+}

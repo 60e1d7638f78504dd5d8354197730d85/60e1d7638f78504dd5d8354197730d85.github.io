@@ -1,0 +1,43 @@
+#include<stdio.h>
+#define Get getchar_unlocked()
+int getInt()
+{
+  int a=0,s=1;char c=0;
+  while(c<33)
+    c=Get;
+    if(c=='-')
+    {
+    	s=-1;
+      	c=Get;
+    }  
+  while(c>33)
+  {
+  	a=(a<<3)+(a<<1)+c-'0';
+  	c=Get;
+  }
+  return a*s;
+} 
+int main()
+{
+	int T=getInt();
+  	while(T--)
+    {
+      int N=getInt();
+      int i,valid=0,c=1,v,last=getInt();
+      for(i=0;i<N-1;i++){
+        v=getInt();
+        if(last==v){
+          c++;
+          if(c==3)valid =1;
+        }
+        else
+        {
+        	last=v;
+          	c=1;
+        }
+      }
+	printf("%s\n",valid?"Yes":"No");
+    }
+return 0;
+}
+

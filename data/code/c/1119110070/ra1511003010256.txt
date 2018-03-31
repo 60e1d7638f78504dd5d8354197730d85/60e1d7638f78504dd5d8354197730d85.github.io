@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int T;
+  scanf("%d",&T);
+  if(T>10000||T<0){
+    printf("Invalid Input");
+    return 0;
+  }
+  while(T--){
+    int i,n, e,arr[100],*p,*t;
+    p=arr;
+    scanf("%d",&n);
+    if(n<0||n>100){
+      printf("Invalid Input");
+      return 0;
+    }
+    for(i=0;i<n;i++){
+      scanf("%d",&e);
+      if(e%3==0){
+        *p=e;
+        p++;
+      }
+    }
+    for(t=arr;t<p;t++)
+      printf("%d\n",*t);
+  }
+
+	return 0;
+}

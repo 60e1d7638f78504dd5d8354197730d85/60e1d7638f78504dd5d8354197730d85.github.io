@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.PriorityQueue;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+            for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            int k = sc.nextInt();
+            long sum = 0;
+            PriorityQueue<Long> set = new PriorityQueue<Long>(n,Collections.reverseOrder());
+            for(int j=0;j<n;j++)
+                set.offer(sc.nextLong());
+            for(int j=0;j<k;j++){
+                long x = set.poll();
+                sum += x;
+                x = x/2;
+                set.offer(x);
+            }
+            System.out.println(sum);
+        }
+	}
+}

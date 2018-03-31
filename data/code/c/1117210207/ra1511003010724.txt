@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+#define ll long long
+#define rep(i, a, m) for(i = a; i < m; i++)
+#define s(a); scanf("%lld", &a);
+#define s2(a, b); scanf("%lld%lld", &a, &b);
+#define sd(a); ll a; s(a);
+#define sd2(a, b); ll a, b; s2(a, b);
+#define test sd(t); while(t--)
+#define ps(a); printf(a);
+#define pi(a); printf("%lld ", a)
+#define pin(a); printf("%lld\n", a)
+#define pin2(a, b) printf("%lld %lld\n", a, b);
+#define nl printf("\n");
+#define max(a, b) ((a > b) ? a : b)
+#define min(a, b) ((a < b) ? a : b)
+ 
+/* int check(ll x, ll n){
+	ll j;
+	while(n){
+		j = n % x;
+		n /= x;
+	}
+	pin(j);
+	if (j == 1) return 1;
+	return 0;
+} */
+ 
+/* ll msb(ll a, ll n){
+	return (ll)(a / powl(n, ((ll)(float)(log(a) / log(n)))));
+}
+ 
+int check(ll x, ll n){
+	ll k = n;
+	if (msb(k, x) == 1) return 1;
+	return 0;
+} */
+ 
+int check(ll x, ll n){
+	while(n >= x) n /= x;
+	if (n == 1) return 1;
+	return 0;
+}
+ 
+float x = 0.0, y = 0.0;
+ll c = 0, n, a, p1, po, p2;
+long z;
+int *b;
+ 
+int main(void) {
+	test{
+    	s(n);
+    	
+    	b = calloc(sizeof(int), (sqrt(n) + 5) * sizeof(int));
+    	b[2] = 1;
+		c = 0;
+		po = 2;
+    	if (n == 1){
+    		printf("INFINITY\n");
+    		continue;
+		}
+		else if (n == 0){
+    		printf("0\n");
+    		continue;
+		}
+		else if (n == 2 || n == 3){
+    		printf("%lld\n", n - 1);
+    		continue;
+		}
+		x = powl(n, 1.0 / po);
+		a = (ll)x;
+		p2 = n / 2;
+	    while(1){
+	    	if (a == 2){
+	    		c++;
+	    		break;
+			}
+			y = powl(n / 2.0, 1.0 / po);
+			z = (long)y;
+			c += (a - z - 1 > 0) ? a - z - 1 : 0; // printf("%lld %lld\n", a, z);
+			po++;
+			y = powl(n, 1.0 / po);
+			p1 = (ll)y;
+			while(z >= p1 && !b[z] && check(z, n)){
+				b[z] = 1;
+				c++;
+				z--;
+			}
+			while(a <= p2 && !b[a] && check(a, n)){
+				b[a] = 1;
+				c++;
+				a++;
+			}
+			a = p1;
+			p2 = z;
+		}
+		c = c + n - n / 2;
+		printf("%lld\n", c);
+		free(b);
+	}
+	// your code goes here
+	return 0;
+}
+ 

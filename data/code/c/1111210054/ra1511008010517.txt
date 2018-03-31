@@ -1,0 +1,42 @@
+#include <stdio.h>
+int check(int n,int arr[])
+{
+  int i;
+  for(i=0;i<12;i++)
+  {
+    if(arr[i]==n)
+    {
+      return i;
+    }
+    if(arr[i]>n)
+    {
+      return i-1;
+    }
+  }
+  return 11;
+}
+int main()
+{
+  int i,counter,n,t;
+  scanf("%d",&t);
+  int answer[t];
+  int arr[]={1,2,4,8,16,32,64,128,256,512,1024,2048};
+  for(i=0;i<t;i++)
+  {
+    counter=0;
+    scanf("%d",&n);
+    while(n!=0)
+    {
+      int pos = check(n,arr);
+      n=n-arr[pos];
+      counter++;
+    }
+    answer[i]=counter;
+  }
+  for(i=0;i<t;i++)
+  {
+    printf("%d\n",answer[i]);
+  }
+
+	return 0;
+}

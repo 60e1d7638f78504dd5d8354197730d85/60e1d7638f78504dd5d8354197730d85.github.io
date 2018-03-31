@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+  int n,E=100,k;
+  scanf("%d %d",&n,&k);
+  int a[n],i,j;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  if(a[k]==1)
+    E=E-3;
+  else
+    E=E-1;
+  i=k;
+  while(i!=0)
+  {
+    i=(i+k)%n;
+    if(a[i]==1)
+      E=E-3;
+    else
+      E=E-1;
+  }
+  printf("%d",E);
+	return 0;
+}

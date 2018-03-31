@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int t , n , flag ;
+    cin >> t ;
+ 	while(t--){
+        cin >> n ;
+        long a[n], time;
+ 		cin >> a[0] ;
+        time = a[0];
+        for (int i=1; i<n; i++){
+            cin >> a[i] ;
+ 			if(a[i] < time)
+                time = a[i];
+        }
+ 		flag = 0;
+ 	 	while(flag != 2){
+            flag = 0 ;
+ 			for (int i=0; i<n; i++){
+                if(time % a[i] == 0)
+                    flag++ ;
+                if(flag == 2)
+                    break;
+ 			}
+ 			if(flag != 2)
+                time++;
+ 		}
+        cout << time << endl ;
+    }
+    return 0;
+}

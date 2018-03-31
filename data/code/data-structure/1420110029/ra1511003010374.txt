@@ -1,0 +1,44 @@
+
+#include <stdio.h>
+
+ 
+// Prints first n terms of Recaman sequence
+void recaman(int n)
+{
+    // Create an array to store terms
+    int arr[n];
+ 
+    // First term of the sequence is always 0
+    arr[0] = 0;
+    printf("%d, ", arr[0]);
+ int i;
+    // Fill remaining terms using recursive
+    // formula.
+    for (i=1; i< n; i++)
+    {
+        int curr = arr[i-1] - i;
+        int j;
+        for (j = 0; j < i; j++)
+        {
+            // If arr[i-1] - i is negative or
+            // already exists.
+            if ((arr[j] == curr) || curr < 0)
+            {
+                curr = arr[i-1] + i;
+                break;
+            }
+        }
+ 
+        arr[i] = curr;
+        printf("%d, ", arr[i]);
+    }
+}
+ 
+// Driver code
+int main()
+{
+    int n;
+  scanf("%d",&n);
+    recaman(n);
+    return 0;
+}

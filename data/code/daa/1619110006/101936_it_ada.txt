@@ -1,0 +1,26 @@
+#include <stdio.h>
+ 
+int lower_xor_numbers(int N);
+ 
+int main(int argc, char const *argv[]){
+	int T,N;
+  int i,j;
+	scanf("%d\n",&T);
+	for ( i = 0; i < T; ++i){
+		scanf("%d\n",&N);
+		printf("%d\n",lower_xor_numbers(N));
+	}
+	return 0;
+}
+ 
+int lower_xor_numbers(int N){
+	int count = 0,i,j;
+	for ( i = 2; i <= N; i++){
+		for ( j = 1; j < i; j++){
+			if ((i^j)<=N){
+				count++;
+			}
+		}
+	}
+	return count;
+}

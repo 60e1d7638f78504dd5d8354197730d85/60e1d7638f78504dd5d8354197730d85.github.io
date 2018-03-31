@@ -1,0 +1,19 @@
+#include <stdio.h>
+ 
+char a[1000001], b[1000001];
+int main(){
+  int N, i,j,k, m,n;
+ 
+  scanf("%d\n%s\n%s", &N, a, b);
+ 
+  for(i = m = n = 0; i < N; ++i){
+    if(b[i] != a[0] || b[(i+m)%N] != a[m]) continue;
+    for(j = i, k = 0; k < N; j = (j == N-1) ? 0 : j+1, ++k)
+      if(b[j] != a[k]) break;
+    if(k > m) m = k, n = i;
+  }
+ 
+  printf("%d\n", n);
+  return 0;
+}
+ 

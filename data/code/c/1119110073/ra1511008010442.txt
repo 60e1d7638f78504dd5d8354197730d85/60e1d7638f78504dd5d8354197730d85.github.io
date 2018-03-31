@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+int main()
+{
+  char *p,c;
+  int i,j;
+  p=(char *)malloc(100*sizeof(char));
+  fgets(p,100,stdin);
+  c=getchar();
+  for(i=0;p[i]!='\0';i++)
+  {
+    if(p[i]==c)
+    {
+      for(j=i;p[j+1]!='\0';j++)
+      {
+        p[j]=p[j+1];
+      }
+      p=(char *)realloc(p,(strlen(p)-1)*sizeof(char));
+    }
+  }
+  puts(p);
+  free(p);
+  
+  
+        
+
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int n;
+  	int newIndex, newele;
+  int arr[10] = {0};
+  scanf("%d",&n);
+  int i;
+  for(i = 0; i< n; i++)
+    scanf("%d",&arr[i]);
+  scanf("%d",&newele);
+  scanf("%d",&newIndex);
+  int *p;
+  p= arr;
+  int len = 0;
+  for(len = 0;arr[len];len++);
+  
+  p = p+len;
+  for(i = len;i>newIndex;i--)
+  {
+    *p = *(p-1);
+    p--;
+  }
+  *p = newele;
+  
+  
+  for(i = 0; arr[i];i++)
+  	printf("%d\n",arr[i]);
+	return 0;
+}

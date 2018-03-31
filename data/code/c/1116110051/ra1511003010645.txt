@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main(){
+	int t,n ;
+	scanf("%d",&t);
+	int n = 100000 ;// i am considering maximum string size as 1000
+	int i;
+	char strings[2*t][n];
+	for (i=0;i<2*t;i++){
+		scanf("%s",strings[i]);
+        
+	}
+	int c=0;
+	int j;
+	for (i=0;i<t;i++,c=c+2){
+		for (j=0;j<n&&(strings[c][j]=='W'||strings[c][j]=='B');j++){
+          	if (strings[c][j]!=strings[c+1][j]){
+          		printf ("B");
+          	}
+          	else if (strings[c][j]=='W'){
+          		printf("B");
+          	}
+          	else printf("W");
+		}
+		printf("\n");
+	}
+  return 0;
+ 
+} 

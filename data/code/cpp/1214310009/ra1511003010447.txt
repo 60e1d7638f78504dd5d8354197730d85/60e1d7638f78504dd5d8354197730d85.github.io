@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+class Time{
+int h;
+  int m;
+  int s;
+  int seconds;
+  
+  public:
+  Time(int a,int b,int c){
+  h=a;
+    m=b;
+    s=c;
+  }
+  
+  void calcSeconds(){
+  
+  
+  seconds=0;
+    seconds=((3600*h)+(60*m)+s);
+  }
+  
+  void disp(){
+  if(h>=0 && h<=9){
+  cout<<"0"<<h;
+  }
+    else
+      cout<<h;
+    cout<<":";
+    if(m>=0 && m<=9)
+      cout<<"0"<<m;
+    else
+      cout<<m;
+    cout<<":";
+    if(s>=0 && s<=9)
+      cout<<"0"<<s;
+    else
+      cout<<s;
+    
+    cout<<"\n"<<seconds;
+  }
+
+};
+
+int main()
+{
+  int h,m,s;
+  cin>>h>>m>>s;
+Time t(h,m,s);
+  t.calcSeconds();
+  t.disp();
+	return 0;
+}

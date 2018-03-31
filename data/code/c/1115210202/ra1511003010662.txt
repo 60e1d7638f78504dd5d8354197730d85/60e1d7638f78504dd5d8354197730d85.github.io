@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define GRID_SIDE 101
+#define isPointAt(row, col) (grid[row][col] == 1)
+#define isValid(row, col) (0 <= row && row < GRID_SIDE && 0 <= col && col < GRID_SIDE)
+ 
+int grid[GRID_SIDE][GRID_SIDE];
+ 
+unsigned int getSquaresFrom(const int i, const int j)
+{
+    unsigned int c = 0;
+    int d, shift = 0;
+    int pa[2], pb[2], pc[2], pd[2];
+ 
+    if (!grid[i][j])
+        return c;
+ 
+    pa[0] = i;
+    pa[1] = j;
+ 
+    for (d = 1; i+d < GRID_SIDE; ++d) {
+        for (shift = 0; ; shift++) {
+            pb[0] = pa[0] + d;
+            pb[1] = pa[1] + shift;
+ 
+            pc[0] = pb[0] - shift;
+            pc[1] = pb[1] + d;
+ 
+            pd[0] = pc[0] - d;
+            pd[1] = pc[1] - shift;
+ 
+            if (!isValid(pb[0], pb[1]) || !isValid(pc[0], pc[1])|| !isValid(pd[0], pd[1]))
+                break;
+            else if (isPointAt(pb[0], pb[1]) && isPointAt(pc[0], pc[1]) && isPointAt(pd[0], pd[1]))
+                c++;
+        }
+    }
+ 
+    return c;
+}
+ 
+unsigned int getSquareCount()
+{
+    unsigned int i, j, c = 0;
+ 
+    for (i = 0; i < GRID_SIDE; ++i) {
+        for (j = 0; j < GRID_SIDE; ++j)
+            c += getSquaresFrom(i, j);
+    }
+ 
+    return c;
+}
+ 
+int main (int argc, char **argv)
+{
+    int ncases, npoints, i, j, row, col;
+ 
+    scanf("%d", &ncases);
+ 
+    for (i = 0; i < ncases; ++i) {
+        memset(grid, 0, GRID_SIDE * GRID_SIDE * sizeof(int));
+        scanf("%d", &npoints);
+        for (j = 0; j < npoints; ++j) {
+            scanf("%d %d", &row, &col);
+            grid[row+50][col+50] = 1;
+        }
+        printf("%u\n", getSquareCount());
+    }
+ 
+    return 0;
+}

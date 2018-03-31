@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char s[50];
+  int a[50],i,j;
+  scanf("%s",s);
+  int n=strlen(s);
+  for(i = 0; i < n; i++)
+  {
+    a[i] = s[i];
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<(n-i-1);j++)
+    {
+      if(a[j]>a[j+1])
+      {
+        int t = a[j];
+        a[j] = a[j+1];
+        a[j+1] = t;
+      }
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    s[i] = a[i];
+  }
+  printf("%s",s);
+  return 0;
+}

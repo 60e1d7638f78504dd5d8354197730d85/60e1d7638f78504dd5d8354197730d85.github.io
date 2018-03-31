@@ -1,0 +1,53 @@
+#include <stdio.h>
+#define MAX_SIZE 100 
+
+
+int compare(char * str1, char * str2);
+
+
+int main()
+{
+    char str1[MAX_SIZE], str2[MAX_SIZE];
+    int res;
+
+    
+    scanf("%s",str1);
+    scanf("%s",str2);
+
+
+   
+    res = compare(str1, str2);
+
+    if(res == 0)
+    {
+        printf("Both Strings are Equal");
+    }
+    else if(res < 0)
+    {
+        printf("First String is Less Than Second String");
+    }
+    else
+    {
+        printf("First String is Greater Than Second String");
+    }
+
+    return 0;
+}
+
+
+int compare(char * str1, char * str2)
+{
+    int i = 0;
+
+
+    while(str1[i] == str2[i])
+    {
+        if(str1[i] == '\0' && str2[i] == '\0')
+            break;
+
+        i++;
+    }
+
+    // Return the difference of current characters.
+    return str1[i] - str2[i];
+}

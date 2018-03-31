@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+int min(int n)
+{
+    if(n==0)
+        return 0;
+    if(n==1)
+        return 2;
+    int m=(n-1)/2;
+    return n+1+min(m)+min(n-1-m);
+}
+ 
+int main()
+{
+    int t,n,m,k;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d%d",&n,&m);
+        if(m<min(n))
+        {
+            printf("-1\n");
+            continue;
+        }
+        k=(n*(n+3))/2;
+        if(m<=k)
+            printf("0\n");
+        else
+            printf("%d\n",m-k);
+    }
+    return 0;
+}

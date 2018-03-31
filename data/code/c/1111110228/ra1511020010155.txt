@@ -1,0 +1,31 @@
+#include <stdio.h>
+ 
+int main(void) {
+       
+        float initial_balance=0, amt_debited=0, final_amt=0;
+        int withdraw_amt = 0;
+       
+        // Input withdrawal amount
+        scanf("%d", &withdraw_amt);
+       
+        // Input Initial balance
+        scanf("%f",&initial_balance);
+       
+        // Sanity checks
+        if( ( (withdraw_amt <= 0) && (withdraw_amt > 2000) ) || ( (initial_balance <= 0) && (initial_balance > 2000) ) )
+                return -1;
+               
+        final_amt = initial_balance;
+       
+        if ( 0 == (  withdraw_amt % 5 ) )
+        {
+                amt_debited = withdraw_amt + 0.50;
+               
+                if(  amt_debited <= initial_balance )
+                        final_amt = initial_balance - amt_debited;
+               
+        }
+       
+        printf("%.2f", final_amt );
+        return 0;
+}

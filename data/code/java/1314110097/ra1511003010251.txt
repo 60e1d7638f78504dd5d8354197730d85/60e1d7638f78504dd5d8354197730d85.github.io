@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       int a[][]=new int[n][n];
+       if(n==0)return;
+       int top=0;
+       int down=n-1;
+       int left=0;
+       int right=n-1;
+       int x=1;
+       while(true)
+       {
+         // Top row
+         for(int j=left;j<=right;j++) a[top][j]=x++;
+         top++;
+         if(top>down || left>right) break;
+         // Rightmost column
+         for(int i=top;i<=down;i++) a[i][right]=x++;
+         right--;
+         if(top>down || left>right) break;
+         // Bottom row
+         for(int j=right;j>=left;j--) a[down][j]=x++;
+         down--;
+         if(top>down || left>right) break;
+         // Leftmost column
+         for(int i=down;i>=top;i--) a[i][left]=x++;
+         left++;
+         if(top>down || left>right) break;
+       }
+       for(int i=0;i<n;i++)
+       {
+         for(int j=0;j<n;j++)
+         {
+           System.out.printf("%d ",a[i][j]);
+         }
+         System.out.println("");
+       }
+    }
+}

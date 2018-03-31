@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int is_prime(long long int n){
+  long int i;
+  if(n==0){
+    return 0;
+  }
+  if(n==1){
+    return 0;
+  }
+  if(n==2){
+    return 1;
+  }
+  else if(n%2==0){
+    return 0;
+  }
+  for(i=3;i<=sqrt(n);i++){
+    if(n%i==0){
+      return 0;
+    }}
+  return 1;
+}
+long int no_of_primes(long long int n){
+  long int k=0,i,p;
+  for(i=2;i<=sqrt(n);i++){
+    if(n%i==0){
+      if(is_prime(i)){k++;}
+         p=n/i;
+         if(p!=i && is_prime(p)){k++;}}}return k;}
+int main()
+{int flag;
+ long int t,l,r,p,k,i,j,u,v;
+ long long int q,c;
+ double S;
+ scanf("%ld",&t);
+ while(t--){
+   c=0;
+   scanf("%ld%ld",&l,&r);
+   for(i=l;i<=r;i++){
+     flag=0;
+     q=1+i;
+     for(j=2;j<=sqrt(i);j++){k=j*j;
+                             if(i%k==0){flag=1;
+                                       }
+                             if(i%j==0){q=q+j;
+                                        k=(i/j);
+                                        if(k!=j){q=q+k;
+                                                }}}if(flag!=1){
+       if(is_prime(no_of_primes(q))){c=c+q;}}}
+   printf("%lld\n",c);
+ }return 0;
+}
+
+	

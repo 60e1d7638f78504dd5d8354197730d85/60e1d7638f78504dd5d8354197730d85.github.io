@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+int main()
+{
+	int n,f,l,i,j,w,t;
+	char ch[101];
+	char str[101][101];
+	char max[101];
+	char mini[101][101];
+	scanf("%s",ch);
+	scanf("%d",&n);
+	for (i=0;i<n;i++){
+        scanf("%s",str[i]);
+	}
+	w=strlen(ch);
+	l=0;
+	for (i=0;i<n;i++){
+            f=0;
+        for (j=0;j<w;j++){
+            if (str[i][j]!=ch[j]){
+                f=1;
+                break;
+            }
+        }
+        if (f==0){
+            l=1;
+            break;
+        }
+	}
+	if (l==0){
+        printf("%s",ch);
+	}
+	else{
+            t=0;
+        for (i=0;i<n;i++){
+            f=0;
+            for (j=0;j<w;j++){
+                if (str[i][j]!=ch[j]){
+                    f=1;
+                    break;
+                }
+            }
+            if (f==0){
+                strcpy(mini[t],str[i]);
+                t=t+1;
+            }
+        }
+        strcpy(max,mini[0]);
+        for (i=0;i<t;i++){
+            if (strcmp(mini[i],max)<0){
+                strcpy(max,mini[i]);
+            }
+        }
+        printf("%s",max);
+	}
+	return 0;
+}

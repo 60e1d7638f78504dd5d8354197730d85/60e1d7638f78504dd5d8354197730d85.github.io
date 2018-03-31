@@ -1,0 +1,68 @@
+#include<stdio.h>
+#define Max 120001
+
+typedef long long int64;
+
+int vis[Max], phi[Max], num[Max];
+
+void euler_prime()
+{
+  int i, j;
+  for(i=2; i<Max; i++)
+  {
+    if(!vis[i])
+    {
+      for(j=i; j<Max; j=j+i)
+        vis[j] = i;
+    }
+  }
+
+  phi[1] = 1; num[1] = -1;
+
+  for(i=2; i<Max; i++)
+  {
+    if((i/vis[i])%vis[i] == 0)
+      phi[i] = phi[i/vis[i]] * vis[i];
+    else
+      phi[i] = phi[i/vis[i]]*(vis[i] - 1);
+  }
+
+  for(i=2; i<Max; i++)
+  {
+    num[i] = num[phi[i]] + 1;
+  }
+
+  num[1]++;
+  num[2]++;
+}
+
+int main()
+{
+  int T, m;
+  scanf("%d", &T);
+
+  euler_prime();
+
+  while(T--)
+  {
+    long long int x = 1;
+    int p, k;
+    scanf("%d", &m);
+    while(m--)
+    {
+      scanf("%d", &p);
+      scanf("%d", &k);
+
+      if(p == 2)
+        x--;
+
+      x = x + (long long int)num[p]*(long long int)k;
+    }
+
+    printf("%lld\n", x);
+  }
+
+  return 0;
+}
+     
+

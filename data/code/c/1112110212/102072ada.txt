@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+int main(int argc, char *argv[]) {
+float hardness, carbon_content, tensile_strength;
+int grade, i, t;
+  
+  scanf("%d", &t);
+  for(i=1;i<=t;i++)
+  {
+
+scanf("%f%f%f",&hardness,&carbon_content, &tensile_strength);
+if(hardness>50 && carbon_content<0.7f && tensile_strength>5600)
+grade=10;
+else if(hardness>50 && carbon_content<0.7f)
+grade=9;
+else if(carbon_content<0.7f && tensile_strength>5600)	
+grade=8;
+else if(hardness>50 && tensile_strength>5600)
+grade=7;
+else if(hardness>50 || carbon_content<0.7f || tensile_strength>5600)
+grade=6;
+else
+grade=5;
+printf("%d\n",grade);	
+  }
+return 0;
+}

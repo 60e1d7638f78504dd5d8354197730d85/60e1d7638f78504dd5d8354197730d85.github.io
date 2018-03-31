@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	char str[10];
+  	int i, ch, sum = 0, ch1, ch2;
+  	scanf("%s", str);
+  	for(i = 0; str[i] != '\0'; i++)
+    {
+      	switch(str[i])
+        {
+           case 'I': ch = 1; break;
+           case 'V': ch = 5; break;
+           case 'X': ch = 10; break;
+           case 'L': ch = 50; break;
+           case 'C': ch = 100; break;
+           case 'D': ch = 500; break;
+           case 'M': ch = 1000; break;
+        }
+      	ch1 = ch;
+      	if(i == 0)
+          sum += ch1;
+      	else if(ch2 < ch1)
+          sum += (ch1-ch2) - ch2;
+      	else
+          sum += ch1;
+        ch2 = ch;
+    }  	
+  	printf("%d", sum);
+	return 0;
+}

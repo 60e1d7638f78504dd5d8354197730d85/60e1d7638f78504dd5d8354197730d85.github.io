@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+ios::sync_with_stdio(false);
+ll n;
+cin >> n;
+string s;
+cin >> s;
+multiset<string>S;
+S.insert(s);
+ll i,c=0;
+cout << c << "\n";
+for(i=1;i<n;i++)
+{
+string temp;
+cin >> temp;
+auto it=lower_bound(S.begin(),S.end(),temp);
+c=(distance(S.begin(),it));
+cout << c << "\n";
+S.insert(temp);
+}
+return 0;
+}

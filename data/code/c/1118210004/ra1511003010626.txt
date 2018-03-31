@@ -1,0 +1,119 @@
+#include<stdio.h>
+
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    float min=1000;
+    int xe,ye;
+    char dire;
+    scanf("%d",&xe);
+    scanf("%d",&ye);
+    scanf("%c",&dire);
+    scanf("%c",&dire);
+
+    int n;                 //number of asteroids
+    scanf("%d",&n);
+
+    while(n--)
+    {
+      int xa,ya;
+      char dira;
+      scanf("%d",&xa);
+      scanf("%d",&ya);
+      scanf("%c",&dira);
+      scanf("%c",&dira);
+
+      if(dire=='R')
+      {
+        if(dira=='U')
+        {
+          if(xa>xe && ya<ye)
+            if(xa-xe==ye-ya)
+              min=(xa-xe)<min?(xa-xe):min;
+        }
+        else if(dira=='D')
+        {
+          if(xa>xe && ya>ye)
+            if(xa-xe==ya-ye)
+              min=(xa-xe)<min?(xa-xe):min;
+        }
+        else if(dira=='L')
+        {
+          if(xa>xe && ya==ye)
+            min=(((float)xa-(float)xe)/2)<min?(((float)xa-(float)xe)/2):min;
+        }
+      }
+      else if(dire=='U')
+      {
+        if(dira=='L')
+        {
+          if(xa>xe && ya>ye)
+            if(xa-xe==ya-ye)
+              min=(xa-xe)<min?(xa-xe):min;
+        }
+        else if(dira=='R')
+        {
+          if(xa<xe && ya>ye)
+            if(xe-xa==ya-ye)
+              min=(xe-xa)<min?(xe-xa):min;
+        }
+        else if(dira=='D')
+        {
+          if(ya>ye && xe==xa)
+            min=(((float)ya-(float)ye)/2)<min?(((float)ya-(float)ye)/2):min;
+        }
+      }
+
+      else if(dire=='L')
+      {
+        if(dira=='U')
+        {
+          if(xa<xe && ya<ye)
+            if(xe-xa==ye-ya)
+              min=(xe-xa)<min?(xe-xa):min;
+        }
+        else if(dira=='D')
+        {
+          if(xa<xe && ya>ye)
+            if(xe-xa==ya-ye)
+              min=(xe-xa)<min?(xe-xa):min;
+        }
+        else if(dira=='R')
+        {
+          if(xa<xe && ye==ya)
+            min=(((float)xe-(float)xa)/2)<min?(((float)xe-(float)xa)/2):min;
+        }
+      }
+      else
+      {
+        if(dira=='R')
+        {
+          if(xa<xe && ya<ye)
+            if(xe-xa==ye-ya)
+              min=(xe-xa)<min?(xe-xa):min;
+        }
+        else if(dira=='L')
+        {
+          if(xa>xe && ya<ye)
+            if(xa-xe==ye-ya)
+              min=(xa-xe)<min?(xa-xe):min;
+        }
+        else if(dira=='U')
+        {
+          if(xa==xe && ya<ye)
+            min=(((float)ye-(float)ya)/2)<min?(((float)ye-(float)ya)/2):min;
+        }
+      }
+    }
+    if(min==1000)
+      printf("SAFE\n");
+    else
+      printf("%.1f\n",min);
+
+  }
+  return 0;
+} 
+

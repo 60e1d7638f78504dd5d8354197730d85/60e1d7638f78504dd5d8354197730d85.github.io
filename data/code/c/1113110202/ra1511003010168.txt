@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int n;
+  int a[100], b[100];
+  scanf("%d", &n);
+  int i,j=0;
+  int y,z;
+  int x=1000;
+  for(i=1;i<n;i++)
+  {
+    if((n%i)==0)
+    {
+      a[j]=i;
+      b[j]=(n/i);
+      if(a[j]>b[j])
+      {
+        continue;
+      }
+      else
+      {
+        y=b[j]-a[j];
+      }
+      if(y>x)
+      {
+        continue;
+      }
+      else
+      {
+        x=y;
+        z=j;
+      }
+      j++;
+    }
+  
+  }
+  printf("%d %d", a[z], b[z]);
+	return 0;
+}

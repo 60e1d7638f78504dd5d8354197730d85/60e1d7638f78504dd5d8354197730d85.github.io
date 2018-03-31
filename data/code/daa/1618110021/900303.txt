@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std ;
+#define LL long long int
+#define ft first
+#define sd second
+#define PII pair<int,int>
+#define MAXN 1000001
+#define mp make_pair
+#define f_in(st) freopen(st,"r",stdin)
+#define f_out(st) freopen(st,"w",stdout)
+#define sc(x) scanf("%d",&x)
+#define scll(x) scanf("%lld",&x)
+#define pr(x) printf("%lld\n",x)
+#define pb push_back
+#define MOD 1000000007
+string s1,s2 ;
+int T,M[26];
+int main(){
+    sc(T) ;
+    while(T--){
+        cin >> s1 ;
+        cin >> s2 ;
+        set<char> S1(s1.begin(),s1.end());
+        set<char> S2(s2.begin(),s2.end());
+        memset(M,0,sizeof M) ;
+        while(!S1.empty()){
+            M[*S1.begin()-'a'] = 1 ;
+            S1.erase(S1.begin()) ;
+        }
+        bool ok = 0;
+        while(!S2.empty()){
+            if(M[*S2.begin()-'a'])
+                ok = 1 ;
+            S2.erase(S2.begin()) ;
+        }
+        puts( ok ? "Yes" : "No" ) ;
+    }
+    return 0 ;
+}
+

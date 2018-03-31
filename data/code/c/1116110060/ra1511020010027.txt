@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char s1[100],s2[100];
+    int t,flag=0,l,i;
+    scanf("%d",&t);
+    while(t--)
+    {
+       flag=0;
+        scanf("%s",s1);
+        scanf("%s",s2);
+        l=strlen(s1);
+        for(i=0;i<l;i++)
+        {
+ 
+            if(s1[i]!=s2[i] && s1[i]!='?' && s2[i]!='?')
+            {
+                flag=0;
+                break;
+            }
+            if(s1[i]==s2[i] && s1[i]=='?' && s2[i]=='?')
+            {
+                flag=1;
+            }
+            if(s1[i]==s2[i] && s1[i]!='?' && s2[i]!='?')
+            {
+                flag=1;
+            }
+            if(s1[i]!=s2[i] && s1[i]!='?' && s2[i]=='?')
+                flag=1;
+            if(s1[i]!=s2[i] && s1[i]=='?' && s2[i]!='?')
+               flag=1;
+        }
+        if(flag==1)
+            printf("Yes\n");
+        if(flag==0)
+            printf("No\n");
+        //printf("%d %d\n",min,max);
+ 
+ 
+    }
+    return 0;
+}
+ 

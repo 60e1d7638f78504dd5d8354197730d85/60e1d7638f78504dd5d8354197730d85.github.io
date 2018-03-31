@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int size,size_var=0;
+  	int *arr,*dup,i,j,k=0,temp,flag=0;
+  	scanf("%d",&size);
+  	arr = (int*) malloc(size*sizeof(int));
+  	for(i=0;i<size;++i)
+      scanf("%d ",&arr[i]);
+  	for(i=0;i<size;++i){
+    	for(j=0;j<size;++j){
+        	if(arr[i]==arr[j] && i!=j){
+            	++size_var;
+            }
+              
+            
+        }
+    }
+ 	dup = (int*)malloc(size_var*sizeof(int));	
+  	for(i=0;i<size;++i){
+    	for(j=0;j<size;++j){
+        	if(arr[i]==arr[j] && i!=j){
+            	dup[k] = arr[i];
+              ++k;
+            }
+              
+            
+        }
+    }
+
+    	for (i = 0; i < k-1; i++)  {       
+           for (j = 0; j < k-i-1; j++) {
+               if (dup[j] > dup[j+1]){
+                  temp = dup[j];
+                 dup[j] = dup[j+1];
+                 dup[j+1] = temp;
+               }
+           }
+        }
+
+  for(i =0 ;i<k;++i){
+  	for(j=i+1;j<k;++j){
+    	if(dup[i]==dup[j] && flag!=1 && i!=j) {
+          printf("%d ",dup[i]);
+          flag=1;
+          break;
+        }
+     	else{
+          flag=0;
+        }
+    }
+  }
+	return 0;
+}

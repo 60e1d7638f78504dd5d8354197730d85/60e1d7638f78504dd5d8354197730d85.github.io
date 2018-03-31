@@ -1,0 +1,85 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+ 
+using namespace std;
+ 
+typedef long long ll;
+ 
+vector<string> lucky;
+ 
+void gen()
+{
+    string t;
+    for (int i = 0; i <= 8; ++i)
+    {
+        int podz = pow(2, 9 - i) - 1;
+        for (int mask = 0; mask <= podz; ++mask)
+        {
+            t = "";
+            for (int j = 0; j < i; ++j) t += '0';
+            for (int k = 0; k < 9 - i; ++k)
+            {
+                if ((mask & (1 << k)) > 0) t += '4';
+                else t += '7';
+            }
+            lucky.push_back(t);
+        }
+    }
+}
+ 
+int Nowa(string wzo, string akt, int mask)
+{
+    for (int i = 0; i < 9; ++i) if (wzo[i] == akt[i]) mask |= (1 << (8 - i));
+    return mask;
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    gen();
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; ++i)
+    {
+        int n;
+        cin >> n;
+        vector<string> w(n);
+        for (int j = 0; j < n; ++j)
+        {
+            cin >> w[j];
+            while (w[j].size() != 9) w[j] = '0' + w[j];
+        }
+        ll odp = 0;
+        for (int j = 0; j < lucky.size(); ++j)
+        {
+            vector<string> T;
+            bool db;
+            for (int k = 0; k < n; ++k)
+            {
+                db = true;
+                for (int l = 0; l < 9; ++l) if (w[k][l] > lucky[j][l]) db = false;
+                if (db) T.push_back(w[k]);
+            }
+            if (T.size() == 0) continue;
+            vector< vector<ll> > dp(T.size());
+            for (int k = 0; k < T.size(); ++k) for (int l = 0; l < 512; ++l) dp[k].push_back(0);
+            for (int k = 0; k < T.size(); ++k)
+            {
+                ++dp[k][Nowa(lucky[j], T[k], 0)];
+                for (int l = 0; l < 512; ++l)
+                {
+                    if (dp[k][l] != 0 && k + 1 < T.size())
+                    {
+                        dp[k + 1][Nowa(lucky[j], T[k + 1], l)] += dp[k][l];
+                        dp[k + 1][l] += dp[k][l];
+                    }
+                }
+            }
+            odp += dp[T.size() - 1][511];
+        }
+        cout << odp << endl;
+    }
+    return 0;
+}
+ 

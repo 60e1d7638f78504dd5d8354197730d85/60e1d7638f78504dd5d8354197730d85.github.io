@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+	char buf[256];
+	char *p = buf;
+	fgets(buf, 256, stdin);
+
+	printf("Entered string is: %s\n", buf);
+
+	printf("String after toggle case: ");
+
+
+	while( *p && *p != '\n' ) {
+		putc(  isalpha(*p) ? *p ^ 32 : *p , stdout);
+		p++;
+	}
+
+	return 0;
+}

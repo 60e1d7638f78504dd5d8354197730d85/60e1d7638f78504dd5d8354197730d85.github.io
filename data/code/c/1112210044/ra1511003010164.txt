@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,n,l[10],r[10],a,b,m,count[10],k,c;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      scanf("%d %d",&l[i],&r[i]);
+  	for(i=0;i<n;i++)
+    { count[i]=0;
+    	a=l[i];
+      b=r[i];
+      for(j=a;j<=b;j++)
+      {c=0;
+       for(k=1;k<=j;k++)
+       { if(j%k==0) c++; }
+      		int f=1;
+       if(c==1) f=0;
+       for(m=2;m<c;m++)
+       {
+       		if(c%m==0) f=0;
+       }
+       if(f==1) count[i]++;
+      }
+    }
+  for(i=0;i<n;i++)
+    printf("%d\n",count[i]);
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int ispal(int n)
+{ int a=n,r,s=0;
+ while(n)
+ {  r=n%10;
+   n=n/10;
+   s=r+10*s;
+ }
+ if(a==s)
+   return 1;
+ else return 0;
+}
+
+int main()
+{
+int t,n,i;
+scanf("%d",&t);
+while(t--){
+scanf("%d",&n);
+  
+for(i=n+1;;i++)
+{if(ispal(i))
+  break;
+}
+printf("%d\n",i);
+}  
+return 0;
+}
+

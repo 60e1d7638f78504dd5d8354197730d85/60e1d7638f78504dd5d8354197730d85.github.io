@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+void count_sort(int a[],int n,int mul)
+{
+    int i,*b,c[10] = {0};
+    b = (int *)malloc(n*sizeof(int)) ; 
+    for(i=0;i<n;i++)
+        c[(a[i]/mul)%10] ++ ;
+ 
+    for(i=1;i<10;i++)
+        c[i] += c[i-1] ;
+ 
+    for(i=n-1;i>-1;i--)
+    {
+        b[c[(a[i]/mul)%10]-1] = a[i];
+        c[(a[i]/mul)%10] -- ;
+    }
+    for(i=0;i<n;i++)
+     a[i] = b[i] ;
+    for(i=0;i<n;i++)
+    printf("%d ",a[i]);
+    printf("\n");
+}
+ 
+void radix_sort(int a[],int maxx,int n)
+{
+    int mul = 1;
+    while(maxx)
+    {
+        count_sort(a,n,mul);
+        mul *= 10;
+        maxx /= 10;
+    }
+}
+ 
+int main()
+{
+    int i,n,maxx = 0;
+    scanf("%d",&n);
+    int *a = (int *)malloc(n*sizeof(int));
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+        maxx = maxx > a[i] ? maxx : a[i] ;
+    }
+    radix_sort(a,maxx,n);
+   //for(i=0;i<13;i++)
+   //  cout << a[i] << " ";
+    return 0;
+}

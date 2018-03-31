@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int facto(x) {
+  
+  int c,n, fact = 1;
+  n = x;
+  for (c = 1; c <= n; c++)
+    fact = fact * c;
+
+ 
+  return fact;
+  
+}
+int main()
+{
+
+  int n, i, a[100],b[100],j;
+  scanf("%d", &n);
+  for(i=0;i<n;i++) 
+  {
+    scanf("%d", &a[i]);
+  }
+  int temp;
+  for(i=0;i<n;i++) {
+    b[i] = facto(a[i]);
+  }
+  for(i=0;i< n;i++)
+    {
+        for(j=i+1;j< n;j++)
+        {
+            if(b[i]< b[j])
+            {
+                temp    =b[i];
+                b[i]  =b[j];
+                b[j]  =temp;
+            }
+        }
+    }
+     
+    for(i=0;i< n;i++)
+    {
+        printf("%d ",b[i]);
+    }
+	return 0;
+}

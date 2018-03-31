@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdbool.h>
+int main()
+{
+  int loop,i;
+  scanf("%d",&loop);
+  for(i=1;i<=loop;i++)
+  {
+    int hardness,tensile;
+    double carbon;
+    scanf("%d",&hardness);
+    scanf("%lf",&carbon);
+    scanf("%d",&tensile);
+    bool c1=false,c2=false,c3=false;
+    if(hardness>=50)
+      c1=true;
+    if(carbon<=0.7)
+      c2=true;
+    if(tensile>=5600)
+      c3=true;
+    
+    if(c1==true && c2==true && c3==true)
+      printf("Grade 10\n");
+    else if(c1==true && c2==true)
+      printf("Grade 9\n");
+    else if(c2==true && c3==true)
+      printf("Grade 8\n");
+    else if(c1==true && c3==true)
+      printf("Grade 7\n");
+    else if(c1==true || c2==true || c3==true)
+      printf("Grade 6\n");
+    else
+      printf("Grade 5\n");
+    
+    
+  }
+	return 0;
+}

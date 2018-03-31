@@ -1,0 +1,27 @@
+import java.io.*;
+import java.lang.*;
+public class TestClass
+{
+  public static void main(String[] args)throws IOException
+  {
+  	InputStreamReader is=new InputStreamReader(System.in);
+    BufferedReader br=new BufferedReader(is);
+    int t=Integer.parseInt(br.readLine());
+    for(int i=1;i<=t;i++)
+    {
+      int[] a=new int[2];
+      String  lines = br.readLine();
+      String[] strs = lines.trim().split("\\s+");
+      for (int j = 0; j < strs.length; j++)
+        a[j] = Integer.parseInt(strs[j]);
+      int c=0;
+      for(;a[0]<=a[1];a[0]++)
+      {
+        int sq=(int)Math.sqrt(a[0]);
+        if(sq*sq==a[0])
+          c++;
+      }
+      System.out.println(c);
+    }
+  }
+}

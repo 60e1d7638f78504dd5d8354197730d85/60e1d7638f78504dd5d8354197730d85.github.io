@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+int t,a,b,i,numerator,denominator,remainder,gcd,lcm;
+  scanf("%d",&t);
+  for(i=t;i>0;i--)
+  {
+  scanf("%d",&a);
+    scanf("%d",&b);
+    if(a>b)
+    {
+    numerator=a;
+      denominator=b;
+    }
+    else
+    {
+    numerator=b;
+      denominator=a;
+    }
+    remainder=numerator%denominator;
+    while(remainder!=0)
+    {
+    numerator=denominator;
+      denominator=remainder;
+      remainder=numerator%denominator;
+    }
+    gcd=denominator;
+   lcm=(a*b)/gcd;
+    printf("%d ",gcd);
+    printf("%d",lcm);
+    printf("\n");
+  }
+	return 0;
+}

@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <math.h>
+ 
+long long  a[11] = {1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
+ 
+long long int firstKdigits(long long n,int k)
+ 
+{ long double x, y;
+ 
+x = n*log10(n);
+ 
+y = floor(pow(10,x-floor(x) +k-1));
+ 
+return ((int)y);
+ 
+}
+ 
+void last(long long n,long long k)
+{
+	long long int x = 1;
+	long long y;
+	long long mod;
+	int i;
+	mod = a[k];
+	y = n%mod;
+	while(n > 0) {
+		if(n&1) {
+			x = (x*y)%mod;
+		}
+		y = (y*y)%mod;
+		n>>=1;
+	}
+	for (mod/=10; mod>1 && mod>=x; mod/=10) {
+			printf("0");
+	}
+	printf("%lld\n", x);
+}
+ 
+int main ()
+{
+    long long int n, t, k, i, y, count, sum;
+    long double p;
+    scanf ("%llu", &t);
+    
+    while (t--) {
+          scanf ("%llu%llu", &n, &k);
+          
+          y = firstKdigits (n , k);
+          printf ("%llu ", y);
+          last (n, k);
+          
+    }
+    return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+void swap(int *x,int *y){
+int temp=*x;
+  *x=*y;
+  *y=temp;
+}
+void print(int arr[],int p){
+int i,j;
+  for(i=0;i<p-1;i++){
+  for(j=0;j<p-i-1;j++){
+  if(arr[j]>arr[j+1])
+  {swap(&arr[j],&arr[j+1]);}
+  }
+  }
+  printf("%d",arr[(p/2)-1]+arr[p/2]);;
+
+}
+int main()
+{ int n,a,i,j;
+ scanf("%d",&n);
+ for(i=0;i<n;i++){
+ scanf("%d",&a);
+   int arr[a];
+ for(j=0;j<a;j++){
+ scanf("%d",&arr[j]);
+ }
+   for(j=a;j<(2*a);j++){
+ scanf("%d",&arr[j]);
+   }
+   int p=2*a;
+ print(arr,p);
+ }
+ 
+
+	return 0;
+}

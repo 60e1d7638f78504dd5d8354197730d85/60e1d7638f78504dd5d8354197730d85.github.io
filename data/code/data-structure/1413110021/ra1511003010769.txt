@@ -1,0 +1,52 @@
+#include <stdio.h>
+ 
+int arr[100005];
+int n,k;
+ 
+int bin_search(int low, int high){
+	if(low > high){
+		return low;
+	}
+	int mid = (low + high)/2;
+	int kk = k;
+	int i = 0;
+	int flag = 1;
+	while(i < n){
+		int prev = i;
+		for(;i<n;i++){
+			if(arr[i]-arr[prev] > mid){
+				break;
+			}
+		}
+		if(i == n){
+			kk--;
+			break;
+		}
+		i--;
+		if(i == prev){
+			flag = 0;
+			break;
+		}
+		kk--;
+	}
+	if(flag == 0 || kk < 0){
+		return bin_search(mid+1, high);
+	}
+	else{
+		return bin_search(low, mid-1);
+	}
+}
+ 
+int main()
+{
+	int i,j,l,t;
+
+		scanf("%d %d",&n,&k);
+		for(i=0;i<n;i++){
+			scanf("%d",&arr[i]);
+		}
+		int max = arr[n-1]-arr[0];
+		printf("%d\n",bin_search(1,max));
+	
+    return 0;
+}

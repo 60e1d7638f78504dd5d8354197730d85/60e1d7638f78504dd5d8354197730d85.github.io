@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#include <map>
+using namespace std;
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int size, num_of_queries, query, temp;
+    cin>>size;
+    int array[size];
+    map<int,int> myMap;
+    map<int,int>::iterator it;
+    
+    for(int i=0;i <size;i++)
+    {
+        cin>>temp;
+        it = myMap.find(temp);
+        if(it == myMap.end())
+            myMap.insert(pair<int,int>(temp,1));
+        else
+            it->second++;
+    }
+        
+    cin>>num_of_queries;
+    
+    for(int i=0;i<num_of_queries;i++)
+    {
+        int count=0;
+        cin>>query;
+        
+        it = myMap.find(query);
+        if(it != myMap.end())
+            printf("%d\n",it->second);
+        else
+            printf("NOT PRESENT\n");
+    }
+}

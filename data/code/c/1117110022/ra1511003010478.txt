@@ -1,0 +1,56 @@
+#define gc getchar_unlocked
+#include<stdio.h>
+int getInt() {
+  char c = gc();
+  //while(c<'0' || c>'9') c = gc();
+  int value = 0;
+  while(c>='0' && c<='9') {
+    value = 10 * value + (c - 48);
+    //printf("c = %d\n", c-48);
+    c = gc();
+  }
+  return value;
+}
+ 
+int main()
+{
+	int T, N, A[500][500]={0},bandwidth=0,i,j,element,NZC;
+	T = getInt();
+	while(T--)
+	{
+		N = getInt();
+		NZC = 0;
+		bandwidth = 0;
+		//tking input
+		for(i=0;i<N;i++)
+		{
+			for(j=0;j<N;j++)
+			{
+				//printf("%d ",A[i][j]);
+				element = getInt();
+				if(element)
+				{
+					NZC++;
+				}
+			}
+		}
+		//calculate bandwidth
+		if(NZC<=N)
+		{
+			bandwidth = 0;
+			printf("%d\n",bandwidth);
+			continue;
+		}
+		NZC = NZC - N;
+		for(i=N-1; i>0; i--)
+		{
+			bandwidth++;
+			NZC = NZC - 2*i;
+			if(NZC<=0)
+			break;
+		}
+		//printing result
+		printf("%d\n",bandwidth);
+	}
+  return 0;
+} 

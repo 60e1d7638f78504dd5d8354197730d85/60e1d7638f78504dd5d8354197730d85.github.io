@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+  int test,i,len,j,flag=0;
+  char a[100],ch0,ch1;
+  scanf("%d",&test);
+  for(i=0;i<test;i++)
+  { 
+    flag=0;
+    scanf("%s",a);
+    len=strlen(a);
+    ch0=a[0];
+    ch1=a[1];
+    for(j=0;j<len-1;j++)
+    {
+      if(a[j]==a[j+1])
+      {
+        flag=1;
+      }
+    }
+    if(flag!=1)
+    {
+        for(j=2;j<len;j++)
+        {
+          if(j%2==0)
+          {
+            if(a[j]!=ch0)
+            {
+              flag=1;
+              break;
+            }
+          }
+          else
+          {
+            if(a[j]!=ch1)
+            {
+             flag=1;
+              break;
+            }
+          }
+        }
+    }
+    if(flag==0)
+    {
+      printf("YES\n");
+    }
+    else
+    {
+      printf("NO\n");
+    }
+  } 
+ return 0;
+}

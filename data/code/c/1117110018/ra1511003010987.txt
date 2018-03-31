@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,i,j,flag=0;
+  scanf("%d%d",&m,&n);
+  int m1[m][n],m2[m][n];
+  for(i=0;i<m;i++) {
+    for(j=0;j<n;j++)
+      scanf("%d",&m1[i][j]);
+  }
+  for(i=0;i<m;i++) {
+    for(j=0;j<n;j++) {
+      m2[j][i]=m1[i][j];
+    }
+  }
+  for(i=0;i<m;i++) {
+    for(j=0;j<n;j++) {
+      if(m1[i][j]==m2[i][j])
+        flag=1;
+      else {
+        flag=0;
+        break;
+      }
+    }
+  }
+  if(flag==1)
+    printf("Symmetric");
+  else
+    printf("Not Symmetric");
+  return 0;
+}

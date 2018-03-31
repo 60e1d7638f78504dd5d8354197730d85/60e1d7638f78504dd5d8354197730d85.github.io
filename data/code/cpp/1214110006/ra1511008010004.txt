@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+  class Bank{
+  public:
+    string name;
+    int acc_number;
+    string account;
+    int balance;
+  void initializeData(string a,int b,string c,int bal)
+  {
+    name=a;
+    acc_number=b;
+    account=c;
+    balance=bal;
+  }
+    void deposite(int d)
+    {
+      int deposit;
+      deposit=d;
+      balance=balance+deposit;
+    }
+    void withdrawn(int e)
+    {
+      int withdraw;
+      withdraw=e;
+      if(withdraw>balance)
+        cout<<"Insufficient amount"<<endl;
+      else
+      {
+        balance=balance-withdraw;
+      }
+    }
+    void display()
+    {
+      cout<<"NAME="<<name<<endl;
+      cout<<"ACCNO="<<acc_number<<endl;
+      cout<<"TYPE="<<account<<endl;
+      cout<<"BALANCEAMOUNT="<<balance<<endl;
+    }
+  };
+  int main()
+  {
+    int amt,acc,dep,with;
+    string nm,act;
+    cin>>nm>>acc>>act>>amt>>dep>>with;
+    Bank b;
+    b.initializeData(nm,acc,act,amt);
+    b.deposite(dep);
+    b.withdrawn(with);
+    b.display();
+    return 0;
+  }

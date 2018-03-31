@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main()
+{
+	int n, k, arr[1005], twt=0, i, j, p, l;
+	char text[20], khan[20];
+	scanf("%d %d", &n, &k);
+	getc(stdin);
+  	for(i=0; i<1005; i++)
+	{
+		arr[i]=0;
+	}
+ 
+	for(i=0; i<k; i++)
+	{
+		fgets(text,sizeof(text),stdin);
+		if(text[6]=='L')
+		{
+			twt=0;
+			for(j=0; j<1005; j++)
+			{
+				arr[j]=0;
+			}
+			printf("%d\n", twt);
+		}
+		else
+		{
+			p=0;
+			for(l=6; l<strlen(text); l++)
+			{
+				khan[p]=text[l];
+				p++;
+			}
+			khan[p]='\0';
+			arr[atoi(khan)]++;
+			if(arr[atoi(khan)]==1)
+			{
+				twt++;
+			}
+			else
+			{
+				arr[atoi(khan)]=0;
+				twt--;
+			}
+				
+			printf("%d\n", twt);
+		}
+    }
+	return 0;
+}

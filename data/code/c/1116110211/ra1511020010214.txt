@@ -1,0 +1,98 @@
+#include<stdio.h>
+#define gc getchar_unlocked()
+char str[100005];
+void getstring()
+{int i=0;
+ char ch=gc;
+ while(ch<'0')
+ ch=gc;
+ while(ch>='0')
+ {str[i++]=ch;
+  ch=gc;
+ }
+}
+int getn()
+{ int i=0;
+  char ch=gc;
+  while(ch<'0'||ch>'9')
+  ch=gc;
+  while(ch<='9'&&ch>='0')
+  { i=(i<<1)+(i<<3)+ch-'0';
+    ch=gc;
+  }
+return i;
+}
+int main()
+{int t,n,k,q,i,j,l,r,m,x,y,zero,one;
+ long long int ans,a,b,c;
+ int ra[100005];
+ int abc[100005];
+ long long int sum[100005];
+ t=getn();
+ while(t--)
+ {   
+      n=getn();k=getn();q=getn();
+      getstring();
+      l=1;
+      r=n;
+      one=0;zero=0;m=l-2;
+           ans=0;
+           for(i=l-1;i<r;i++)
+           {  
+              if(str[m+1]=='1')
+              {x=1;y=0;}
+              else
+              {x=0;y=1;
+              }
+              while((m+1)<r&&((zero+y)<=k&&(one+x)<=k))
+              {  zero=zero+y;
+                 one=one+x;
+                 m++;
+                 if(str[m+1]=='1')
+                 {x=1;y=0;}
+                 else
+                 { x=0;y=1;
+                 }
+              }
+              a=m-i+1;
+              abc[i]=a;
+              if(str[i]=='1')
+              one--;
+              else
+              zero--;
+           }
+      sum[0]=0;
+      for(i=1;i<=n;i++)           
+      sum[i]=sum[i-1]+abc[i-1];
+        
+      for(i=0;i<1;i++)
+        { if(abc[i]>(1-i))
+          break;
+        }
+        ra[1]=i;
+      for(r=2;r<=n;r++)
+      { for(i=ra[r-1];i<r;i++)
+        { if(abc[i]>(r-i))
+          break;
+        }
+        ra[r]=i;
+      }
+      while(q--)
+      {    l=getn();r=getn();
+           ans=0; if(l-1<ra[r])
+                 {ans+=(sum[ra[r]]-sum[l-1]);
+                 a=(r-ra[r]);
+                 b=(r-ra[r]+1);
+                 ans+=a*b/2;
+                  }
+                  else
+                  { a=(r-l+1);
+                    b=(r-l+2); 
+                    ans=a*b/2;
+                   }
+                 
+                     printf("%lld\n",ans);
+      }
+ }
+ return 0; 
+}

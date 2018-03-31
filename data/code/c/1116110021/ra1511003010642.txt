@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  	int l,i,count=0,min;
+	char s[100],ch;
+  	scanf("%s\n%c",s,&ch);
+  	l = strlen(s);
+  	for(i=0;i<l;i++){
+    	if(count==0){
+        	if(s[i]==ch){
+            	count++;
+              	s[i]='.';
+              	min = i;
+            }
+        }
+    }
+  	for(i=min;i<l;i++){
+   		s[i] = s[i+1];
+    }
+  	printf("%s",s);
+	return 0;
+}

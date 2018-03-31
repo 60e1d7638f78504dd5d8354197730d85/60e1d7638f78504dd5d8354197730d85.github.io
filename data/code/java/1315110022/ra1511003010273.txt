@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		InsertionSort obj = new InsertionSort();
+       obj.getInput();
+       obj.sortArr();
+	}
+}
+class InsertionSort
+{
+  int a;
+  int mean=0 , sum=0;
+  Scanner no = new Scanner(System.in);
+  int[] aa;
+  public void getInput()
+  {
+    a = no.nextInt();
+    aa = new int[a];
+    for(int i=0;i<aa.length;i++)
+    {
+      aa[i] = no.nextInt();
+    }
+  }
+  public void sortArr()
+  {
+    int n = aa.length;
+        for (int i=1; i<n; ++i)
+        {
+            int key = aa[i];
+            int j = i-1;
+ 
+            while (j>=0 && aa[j] > key)
+            {
+                aa[j+1] = aa[j];
+                j = j-1;
+            }
+            aa[j+1] = key;
+        }
+    for (int i=0; i<n; ++i)
+            System.out.print(aa[i] + " ");
+  }
+}

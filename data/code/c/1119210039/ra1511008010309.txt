@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+#define MOD 1000000007
+#define ll long long int
+
+ll fact(ll n){
+  return n==0||n==1?1:n*fact(n-1);
+}
+ll powMod(ll a,ll b){
+  ll f=1;
+  while(b){
+    f=b&1?(f*a)%MOD:f;
+    a=(a*a)%MOD;
+    b>>=1;
+  }
+  return f;
+}
+ll inverse(ll n){
+  return powMod(n,MOD-2);
+}
+int main(int argc,char const *argv[]){
+ll t;
+  scanf("%lld",&t);
+  while(t--){
+  ll i,ans=1;
+    ll count[52]={0};
+    char str[505];
+    scanf("%s",str);
+    ll len=strlen(str);
+    for(i=0;i<len;i++){
+      ll idx=str[i]>='a' ? str[i]-'a'+26 : str[i]-'A';
+      count[idx]++;
+    }
+    for(i=0;i<52;i++){
+      ans=count[i]?(ans*inverse(fact(count[i])))%MOD:ans;
+    }
+    for(i=1;i<=len;i++)
+    ans=(ans*i)%MOD;
+    printf("%lld\n",ans);
+  }
+	return 0;
+}

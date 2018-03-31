@@ -1,0 +1,54 @@
+#include<stdio.h>
+ 
+int hf(int a,int b)
+{
+    int temp,temp2;
+    if(b>a)
+    {
+           temp=b;
+           b=a;
+           a=temp;
+    }
+    while(a%b!=0)
+    {
+                 temp2=b;
+                 b=a%b;
+                 a=temp2;
+                 //cout<<a<<" "<<b<<endl;
+ 
+    }
+    return b;
+}
+ 
+int main()
+{
+    int t,n,i,hcf,amt[50];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&amt[i]);
+        }
+        hcf=hf(amt[0],amt[1]);
+        for(i=2;i<n;i++)
+        {
+            hcf=hf(hcf,amt[i]);
+        }
+        if(hcf>1)
+        {
+            for(i=0;i<n;i++)
+            {
+                amt[i]/=hcf;
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            printf("%d ",amt[i]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+ 

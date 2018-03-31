@@ -1,0 +1,38 @@
+#include<stdio.h>
+unsigned long mem[35][25];
+int solve(unsigned int ,unsigned int , unsigned int );
+int main()
+{
+    int i,j;
+   
+    unsigned int n,ans;
+    while(scanf("%u",&n)!=EOF)
+    {
+                              for(i=0;i<35;i++)
+                                for(j=0;j<25;j++)
+                                mem[i][j]=0;
+                              ans=solve(n,0,0);
+                              printf("%u\n",ans);
+                              
+    }
+    return 0;
+}
+ 
+int solve(unsigned int num,unsigned int i,unsigned int j)
+{
+    if(num<12)
+    return num;
+    int a,b,c;
+    if(mem[i][j]!=0)
+    return mem[i][j];
+    
+    a=solve(num/2,i+1,j);
+    b=solve(num/3,i,j+1);
+    c=solve(num/4,i+2,j);
+    
+    mem[i][j]=a+b+c;
+    
+    return mem[i][j];
+    
+}
+ 

@@ -1,0 +1,147 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define Mx 100009
+#define mod97 1000000007
+#define mod99 1000000009
+
+struct Z
+{
+    int sum;
+    int i,j;
+    bool friend operator < (Z A, Z B)
+    {
+        return A.sum < B.sum;
+    }
+};
+struct R
+{
+    int a,b,c,d;
+    R() {}
+    R(int _a,int _b,int _c,int _d)
+    {
+        vector<int>V;
+        V.push_back(_a);
+        V.push_back(_b);
+        V.push_back(_c);
+        V.push_back(_d);
+        sort(V.begin(),V.end());
+        a=V[0];
+        b = V[1];
+        c= V[2];
+        d=V[3];
+    }
+    bool friend operator < (R A,R B)
+    {
+        return A.a < B.a ||
+               (A.a == B.a && A.b<B.b) ||
+               (A.a == B.a && A.b==B.b && A.c<B.c) ||
+               (A.a == B.a && A.b==B.b && A.c==B.c && A.d<B.d);
+    }
+};
+
+void check(int a,int b,int c,int d,set<string>&taken,R &cRes,string &sc)
+{
+    sc = "";
+    vector<int>V;
+    V.push_back(a);
+    V.push_back(b);
+    V.push_back(c);
+    V.push_back(d);
+    sort(V.begin(),V.end());
+    for(auto x : V)
+    {
+        sc+=std::to_string(x);
+        sc+=" ";
+    }
+    if(taken.find(sc)==taken.end())
+    {
+        taken.insert(sc);
+        cRes.a = V[0];
+        cRes.b = V[1];
+        cRes.c = V[2];
+        cRes.d = V[3];
+    }
+    else sc = "";
+}
+
+int main()
+{
+    //freopen("out_wa.txt","w",stdout);
+    int kase;
+    scanf("%d",&kase);
+    while(kase--)
+    {
+        int n,m;
+        scanf("%d %d",&n,&m);
+        int A[5001];
+        for(int i=0; i<n; i++)
+        {
+            scanf("%d",&A[i]);
+        }
+        vector<Z>V;
+        for(int i=0; i<n; i++)
+        {
+            for(int j=i+1; j<n; j++)
+            {
+                Z cur;
+                cur.sum = A[i] + A[j];
+                cur.i = i;
+                cur.j = j;
+                V.push_back(cur);
+            }
+        }
+        sort(V.begin(),V.end());
+        vector<R>result;
+        set<string>taken;
+        string sc;
+        //cout << V.size() << "ASD" << endl;
+        for(int i=1; i<V.size(); i++)
+        {
+            int l = 0,h = i-1,mid;
+            int num = m - V[i].sum;
+            //cout << l << " " << h
+            while(l+1<h)
+            {
+                int mid = (l+h)>>1;
+                //cout << l << " " << h  << " " << mid << endl;
+                if(V[mid].sum>num)
+                {
+                    h = mid-1;
+                }
+                else l = mid;
+                //
+
+                //getchar();
+            }
+            h = min(i-1,h+2);
+            //cout << l << " " << h << endl;
+            while(h>=0 && V[h].sum>num)h--;
+            //cout << l << " " << h << "[] " << num << endl;
+            while(h>=0 && V[h].sum==num)
+            {
+                set<int>indices = {V[i].i,V[i].j,V[h].i,V[h].j};
+                if(indices.size()!=4);
+                else
+                {
+                    R cRes;
+                    check(A[V[i].i],A[V[i].j],A[V[h].i],A[V[h].j],taken,cRes,sc);
+                    if(sc!="")
+                    {
+                        result.push_back(cRes);
+                    }
+                }
+                h--;
+            }
+        }
+        if(result.empty())cout << -1 << endl;
+        else
+        {
+            sort(result.begin(),result.end());
+            for(auto rr : result)
+            {
+                cout << rr.a << " " << rr.b << " " << rr.c << " " << rr.d << " $";
+            }
+            cout << endl;
+        }
+    }
+}

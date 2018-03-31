@@ -1,0 +1,39 @@
+
+#include<stdio.h>
+int main()
+{
+  int t,ds,dt,d,i,l,sm,s;
+  float ans;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d %d %d",&ds,&dt,&d);
+    if(ds>dt)
+      s=ds-dt;
+    else
+      s=dt-ds;
+    if(d>(ds+dt))
+      printf("%f\n",(float)d-ds-dt);
+    else if((d<=(ds+dt))&&(d>=s))
+      printf("0.0\n");
+    else
+    {
+      if(ds<dt)
+      {
+        sm=ds;
+        l=dt;
+      }
+      else
+      {
+        sm=dt;
+        l=ds;
+      }
+      if(l>(d+sm))
+        ans=l-d-sm;
+      else
+        ans=(float)d+(float)sm-l;
+      printf("%f\n",ans);
+    }
+  }
+  return 0;
+}

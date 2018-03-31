@@ -1,0 +1,31 @@
+ #include<stdio.h>
+    int compar(const void *a,const void *b)
+    {
+    	return(*(int *)a-*(int *)b);
+    }
+    int main()
+    {
+    	int n,d;
+    	scanf("%d%d",&n,&d);
+    	int i;
+    	int a[n];
+    	for(i=0;i<n;i++)
+    	{
+    		scanf("%d",&a[i]);
+    	}
+    	qsort(a,n,sizeof(int),compar);
+    	i=0;
+    	int j=0;
+    	while(i<n-1)
+    	{
+    		if(a[i+1]-a[i]<=d)
+    		{
+    			j++;
+    			i+=2;
+    		}
+    		else
+    			i++;
+    	}
+    	printf("%d\n",j);
+    	return 0;
+    } 

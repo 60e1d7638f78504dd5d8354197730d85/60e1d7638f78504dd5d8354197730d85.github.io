@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class Sample
+{
+ private: int a,b,c;
+  public:
+  Sample(int e,int f,int g)
+  {
+    a=e;
+    b=f;
+    c=g;
+  }
+  void display()
+  {cout<<a<<" "<<b<<" "<<c;}
+Sample operator- ()
+{
+  a=-a;
+  b=-b;
+  c=-c;
+return Sample(a,b,c);}
+};
+int main()
+{
+  int a,b,c;
+  cin>>a>>b>>c;
+  Sample p(a,b,c);
+  -p;
+  p.display();
+	return 0;
+}

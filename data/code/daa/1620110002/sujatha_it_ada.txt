@@ -1,0 +1,38 @@
+#include <stdio.h>
+ 
+int findMaximum(int arr[], int low, int high)
+{
+   int max = arr[low];
+   int i;
+   for (i = low; i <= high; i++)
+   {
+       if (arr[i] > max)
+          max = arr[i];
+   }
+   return max;
+}
+int findMin(int arr[], int low, int high)
+{
+   int min = arr[low];
+   int i;
+   for (i = low; i <= high; i++)
+   {
+       if (arr[i] < min)
+          min = arr[i];
+   }
+   return min;
+}
+ 
+/* Driver program to check above functions */
+int main()
+{
+   int arr[101],i,n;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+   //int n = sizeof(arr)/sizeof(arr[0]);
+  printf("Minimum : %d\n", findMin(arr, 0, n-1));
+   printf("Maximum : %d", findMaximum(arr, 0, n-1));
+     getchar();
+   return 0;
+}

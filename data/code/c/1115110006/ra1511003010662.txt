@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,i,m;scanf("%d",&n);
+  while(n--){
+      char s[1000];
+    int sum=0,val=0,psum=0;
+  	scanf("%s",s);
+    m=strlen(s);
+    if(m>4){
+      val=m-3;
+      for(i=0;i<val;i++){
+        psum=psum*10+(s[i]-'0');
+      }
+      for(i=val;s[i]!='\0';i++){
+        sum+=s[i]-'0';
+      }
+      sum+=psum;
+    }
+    else{
+    	for(i=0;s[i]!='\0';i++){
+          sum+=s[i]-'0';
+        }
+    }
+    printf("The output is:%d\n",sum);
+  }
+
+	return 0;
+}

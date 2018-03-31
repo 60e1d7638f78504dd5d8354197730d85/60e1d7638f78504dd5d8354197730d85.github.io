@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define REP(i,a,b) for(i=a;i<b;i++)
+#define rep(i,n) REP(i,0,n)
+ 
+#define ll long long
+#define M 100000007
+ 
+ll pw(ll a,ll b){
+  ll r;
+  if(!b) return 1;
+  r = pw(a,b/2);
+  r = (r*r)%M;
+  if(b%2) r = (r*a)%M;
+  return r;
+}
+ 
+int main(){
+  ll n, res1, res2, pw2, pw3, pw4;
+  int size;
+ 
+  scanf("%d",&size);
+  while(size--){
+    scanf("%lld",&n);
+    pw2 = pw(2,n);
+    pw3 = pw(3,n);
+    pw4 = (pw2*pw2)%M;
+    
+    res1 = pw3 - 2*pw2 + 1;
+    res1 %= M; if(res1 < 0) res1 += M;
+    res1 = (res1 * 50000004)%M;
+ 
+    res2 = pw4 - 3*pw3 + 3*pw2 - 1;
+    res2 %= M; if(res2 < 0) res2 += M;
+    res2 = (res2 * 50000004)%M;
+ 
+    printf("%d %d\n",(int)res1,(int)res2);
+  }
+ 
+  return 0;
+}
+ 

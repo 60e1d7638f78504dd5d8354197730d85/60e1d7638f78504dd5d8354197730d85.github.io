@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int t,i;
+  float max=-1;
+  int b[27];
+  char s[100];
+  scanf("%d",&t);
+  while(t--)
+  {  for(i=0;i<27;i++) b[i]=0;
+   max=-1;
+    scanf("%s",s);
+    for(i=0;i<strlen(s);i++)
+    {
+    	b[(s[i]+1)-'a']++;
+    }
+    for(i=1;i<27;i++)
+    {
+    	if(b[i]>max) max=b[i];
+  
+    }
+    if(max==(strlen(s)/2.0)) printf("YES");
+    else printf("NO");
+    printf("\n");
+  }
+	return 0;
+}

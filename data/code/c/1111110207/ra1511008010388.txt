@@ -1,0 +1,33 @@
+#include<stdio.h> 
+#include<malloc.h>
+int main()
+{
+	long *n,*n1,*n2,*m1,*m2,r;
+	n=(long*)malloc(sizeof(long));
+	n1=(long*)malloc(sizeof(long));
+	n2=(long*)malloc(sizeof(long));
+	m1=(long*)malloc(sizeof(long));
+	m2=(long*)malloc(sizeof(long));
+		scanf("%ld\n",n);
+	*n1=*n2=0;
+	*m1=*m2=1;
+	while(*n!=0)
+	{
+		r=*n % 10;
+		*n=*n / 10;
+		if(r % 2 ==0) 
+			{
+			r=r * *m2;
+			*n2=*n2 + r;
+			*m2=*m2 * 10;
+			}
+		else
+		{
+			r=r* *m1;
+			*n1=*n1 + r;
+			*m1=*m1 * 10;
+		}
+    }
+	printf("%ld %ld",*n1,*n2);
+  return 0;
+}

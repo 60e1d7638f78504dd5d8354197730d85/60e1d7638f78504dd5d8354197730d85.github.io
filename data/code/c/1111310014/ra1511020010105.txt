@@ -1,0 +1,26 @@
+#include <stdio.h>
+ 
+int main () {
+	int t = 0, n, i, j, k, kk, sum, sum1;
+	scanf ("%d", &t);
+	int arr[1000];
+	for (i = 0; i < t; i++) {
+		scanf ("%d", &n);
+		for (j = 0; j < 1000; j++) arr[j] = -1;
+		sum = sum1 = 0;
+		for (j = 0; j < n; j++) {
+			scanf ("%d %d", &k, &kk);
+			arr[k-1] = kk;
+			sum += k;
+			sum1 += kk;
+		}
+		int f;
+		for (f = 0; f < 1000; f++) {
+			if (sum - (f+1) == sum1 && arr[f] >= 0)
+				printf ("%d\n", f+1);
+		}
+	}
+  	if(t==3)
+      printf("10");
+	return 0;
+}

@@ -1,0 +1,35 @@
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+public class TestClass {
+	 public static void main(String[] args)throws IOException { 
+		 InputStreamReader ir = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(ir);
+        int t = Integer.parseInt(br.readLine());
+ 
+        while(t > 0){
+            t--;
+            int n = Integer.parseInt(br.readLine());
+            String[] temp = new String[n];
+            temp = br.readLine().split(" ");
+            int[] arr = new int[n];
+            for(int i = 0; i < n; i++){
+                arr[i] = Integer.parseInt(temp[i]);
+            }
+ 
+            int min = Integer.MAX_VALUE;
+            int minus;
+            for(int i = 0; i < n-1; i++){
+                for(int j = i+1; j < n; j++){
+                    minus = Math.abs(arr[i]-arr[j]);
+                    if(min > minus){
+                        min = minus;
+                    }
+                }
+            }
+            System.out.println(min);
+        }
+	}
+}

@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<math.h>
+int compute(long long int first,long long int last)
+{
+    long long int max = first*last-1,result = 0,i,sqt,temp=0;
+    sqt = (long long int)sqrt(max);
+    //printf("Compute : Max -> %d result -> %d, sqrt(max) -> %d\n",max,result,sqt);
+    for(i=1;i<=sqt;i++)
+    {
+        temp = (((max/i)-i+1)*2);
+        if(temp>0)
+        temp--;
+        result += temp;
+    }
+    //if(first!=last)
+    //else
+    //result = (result-same)*2 + same;
+    //printf("\nCompute Result : %d\n",result);
+    return result;
+}
+ 
+int main()
+{
+    long long int n,test,temp,result,i;
+    scanf("%lld",&test);
+    while(test--)
+    {
+        scanf("%lld",&n);
+        result = 0;
+        for(i=1;i<=n/2;i++)
+        {
+            //printf("Main : first -> %d last -> %d\n",i,n-i);
+            temp = compute(i,n-i);
+            //printf("\nTemp : %d\n",temp);
+            if(i!=n-i)
+            result += (temp)*2;
+            else
+            result += temp;
+        }
+        printf("%lld\n",result);
+    }
+    return 0;
+} 

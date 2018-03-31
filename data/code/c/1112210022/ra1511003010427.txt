@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+ 
+/* Function Prototype */
+void swap(int*, int *);
+ 
+int main()
+{
+    int num1, num2;
+    scanf("%d %d", &num1, &num2);
+    swap(&num1, &num2);     
+    printf("\nNumbers after Exchange\nNum1=%d and Num2=%d", num1, num2);
+  return 0;
+}
+ 
+/* Code to swap two numbers using bitwise operator */
+void swap(int *x, int *y)
+{
+    *x = *x ^ *y;
+    *y = *x ^ *y;
+    *x = *x ^ *y;
+}

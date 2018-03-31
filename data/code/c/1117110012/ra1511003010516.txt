@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+    int arr[100];
+    int i, size, num, pos;
+
+    scanf("%d", &size);
+
+     for(i=0; i<size; i++)
+           scanf("%d", &arr[i]);
+      
+    scanf("%d", &pos);
+    scanf("%d", &num);
+    
+    if(pos > size || pos <= 0)
+    {
+        printf("Sorry Invalid Location");
+    }
+    else
+    {
+      
+        for(i=size; i>=pos; i--)
+        {
+            arr[i] = arr[i-1];
+        }
+        
+        arr[pos-1] = num;
+        size++; 
+
+        for(i=0; i<size; i++)
+        {
+            printf("%d\n", arr[i]);
+        }
+    }
+
+    return 0;
+}

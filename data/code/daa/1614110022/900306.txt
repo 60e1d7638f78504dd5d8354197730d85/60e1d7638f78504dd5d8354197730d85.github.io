@@ -1,0 +1,68 @@
+#include<iostream>
+#define ll long long 
+using namespace std;
+int mat[25][25];
+int r,c;
+int valid(int i,int j)
+{
+  if(i>=0&&i<r &&j>=0 && j<c)
+    return 1;
+  return 0;
+}
+int main()
+{
+  int test;
+  cin>>test;
+  while(test--)
+  {
+    char str[25];
+    cin>>r>>c;
+    int i,j,t;
+    for(i=0;i<r;i++)
+    {
+      cin>>str;
+      for(j=0;j<c;j++)
+        mat[i][j]=(str[j]-'0');
+    }
+    
+    int ans=0;
+    int flip;
+    int x,y,z;
+    for(i=(r-1);i>=0;i--)
+    {
+      for(j=(c-1);j>=0;j--)
+      {
+        flip=0;
+        if(valid(i+1,j))
+          x=mat[i+1][j];
+        else
+          x=1;
+        if(valid(i,j+1))
+          y=mat[i][j+1];
+        else
+          y=1;
+        if(valid(i+1,j+1))
+           z=mat[i+1][j+1];
+        else
+          z=1;
+        if(!z)
+        {flip++;
+         x=!x;
+         y=!y;
+        }
+        if(!x) flip++;
+        if(!y) flip++;
+        flip=flip%2;
+        if(flip)
+          t=!mat[i][j];
+        else
+          t=mat[i][j];
+        if(!t)
+          ans++;
+      }
+    }
+    cout<<ans<<endl;
+  }
+  return 0;
+  
+}

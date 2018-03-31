@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int n1;int n2;
+  int sum[2000];
+  int i=0;
+  int rem=0;
+  scanf("%d",&n1);
+  scanf("%d",&n2);
+  while((n1!=0)||(n2!=0)){
+  sum[i++]=(n1 %10  +n2 %10 + rem)%2;
+    rem=(n1 %10 + n2 %10 + rem)/2;
+    n1=n1/10;
+    n2=n2/10;
+  }
+  if(rem!=0){
+  sum[i++]=rem;
+    --i;}
+  while(i>=0){
+  printf("%d",sum[i--]);
+  }
+	return 0;
+}

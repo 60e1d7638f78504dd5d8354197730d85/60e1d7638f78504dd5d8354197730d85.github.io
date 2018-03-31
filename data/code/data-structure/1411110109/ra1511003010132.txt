@@ -1,0 +1,132 @@
+#include <stdlib.h>
+#include <stdio.h>
+ 
+// An Data Structure for node of linked list
+struct node
+{
+    int label;  // The label in a node
+    int index;  // index of node in original list
+    struct node *next;
+};
+ 
+//head and tail of list 
+struct node* head = NULL;
+struct node* tail = NULL;
+ 
+int is_empty(){
+    if (head == NULL){
+        return 1;
+    }
+    else 
+        return 0;
+}
+ 
+// The function to add node to to list from tail
+void enQueue(struct node* k)
+{
+    // If list is empty, then new node is front and rear both
+    if (is_empty())
+    {
+       head = tail = k;
+       return;
+    }
+    tail->next = k;
+    tail = k;
+}
+ 
+// A utility function to create a new linked list node.
+struct node* newNode(int label, int index)
+{
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+	temp->label = label;
+	temp->index = index;
+    temp->next = NULL;
+    return temp; 
+}
+ 
+//deletes the node with the given index
+void delete_node(int index){
+ 
+	struct node* curr;
+	struct node* prev;
+	curr = head;
+	prev = head;
+ 
+	//if head is the node to be deleted
+	if(head->index == index){
+		head = head-> next;
+	}
+	while(curr->index != index){
+		prev = curr;
+		curr = curr->next;
+	}
+	prev->next = curr->next;
+	if(curr->next == NULL){
+		tail = prev;
+	}
+	free(curr);
+}
+ 
+// Driver program to test above function
+int main()
+{
+    int n,x;
+    int i,j;
+    int label;
+    scanf("%d",&n);
+    scanf("%d",&x);
+ 
+    //create the queue
+	for(i=0;i<n;i++){
+		scanf("%d",&label);
+		struct node* newnode = newNode(label,i+1);
+		enQueue(newnode);
+	}
+ 
+	//x iterations
+	for(i=0;i<x;i++){
+		struct node* max;
+		struct node* curr;
+		struct node* curr1;
+		struct node* prev;
+ 
+		curr = head;
+		curr1 = head;
+		prev = head;
+		max = head;
+ 
+		//finds maximum node
+		for(j=0;j<x;j++){
+			if(curr==NULL)
+				break;
+			if(curr->label > max->label){
+				max = curr;
+			}
+			prev= curr;
+			curr= curr->next;			
+		}
+ 
+		//decreament labels of nodes uptil x
+		for(j=0;j<x;j++){
+			if(curr1==NULL)
+				break;
+			curr1->label = curr1->label>0?curr1->label-1:0;
+			curr1= curr1->next;	
+		}
+ 
+		//print max's index
+		printf("%d ",max->index);
+ 
+		//attach the first x nodes to the back of the list
+		prev->next = NULL;
+		if(curr != NULL){
+			tail->next = head;
+			tail = prev;
+			head = curr;			
+		}
+ 
+		//delete max node
+		delete_node(max->index);
+	}
+    return 0;
+}

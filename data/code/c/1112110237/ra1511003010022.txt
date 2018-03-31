@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+#define ll long long;
+unsigned long long int gcd(unsigned long long int a,unsigned long long int b){
+	while(a!=b){
+		if(a==1 || b==1)	return 1;
+		if(a==0)	return b;
+		if(b==0)	return a;
+		(a>b)?(a=a%b):(b=b%a);
+	}
+	return a;
+}
+int main()
+{
+   int t;
+   scanf("%d",&t);
+   while(t--)
+   {
+   int n,i,j;
+ 
+   scanf("%d",&n);
+   unsigned long long int arr[n],min;
+ 
+ 
+   for(i=0;i<n;i++)
+       scanf("%llu",&arr[i]);
+       unsigned long long int lcm;
+   min=pow(10,18);
+   for(i=0;i<n;i++)
+       for(j=i+1;j<n;j++){
+       if(arr[i]>min || arr[j]>min) continue;
+       lcm=(arr[i]*arr[j])/gcd(arr[i],arr[j]);
+       if(lcm<min)
+           min=lcm;}
+   printf("%llu\n",min);
+   }
+}

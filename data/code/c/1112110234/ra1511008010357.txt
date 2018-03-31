@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,k,i=0,j=0,tmp=0;
+  scanf("%d",&t);
+  int a[104];
+  while(t--)
+  {
+    int s=0;
+    float avg=0.0;
+    scanf("%d",&n);
+    scanf("%d",&k);
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    for(i=0;i<n;i++)
+    {
+      for(j=0;j<n-i-1;j++)
+      {
+        if(a[j]>a[j+1])
+        {
+          tmp=a[j];
+          a[j]=a[j+1];
+          a[j+1]=tmp;
+        }
+      }
+    }
+    for(i=k;i<n-k;i++)
+      s+=a[i];
+    avg=(float)s/(float)(n-(2*k));
+    printf("%.6f\n",avg);
+  }
+return 0;
+}

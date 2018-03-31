@@ -1,0 +1,37 @@
+#include <stdio.h> 
+ 
+ 
+int main()
+{
+	int array[20], i, largest1, largest2, temp;
+  	int MAX;
+  	scanf("%d",&MAX);
+	for (i = 0; i < MAX; i++)
+	{
+		scanf("%d", &array[i]);
+	}
+ 
+	largest1 = array[0];
+  	largest2 = array[1];
+	if (largest1 < largest2)
+	{
+		temp = largest1;
+		largest1 = largest2;
+		largest2 = temp;
+	}
+	
+	for (i = 2; i < MAX; i++) { if (array[i] >= largest1)
+		{
+			largest2 = largest1;
+			largest1 = array[i];
+		}
+		else if (array[i] > largest2)
+		{
+			largest2 = array[i];
+		}
+	}
+	printf("First Largest=%d", largest1);
+	printf("\nSecond Largest=%d", largest2);
+	printf("\nAverage=%0.1f",(largest1 + largest2) / 2.0);
+	return 0;
+}

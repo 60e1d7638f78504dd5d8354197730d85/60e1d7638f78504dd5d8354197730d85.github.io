@@ -1,0 +1,44 @@
+import java.util.*;
+class TestClass {
+    public static void main(String[] args) { 
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        String st[]=new String[t];
+        for(int i=0;i<t;i++)
+        {
+            int n=sc.nextInt();
+            int k=sc.nextInt();
+            int ar[]=new int[n];
+            for(int j=0;j<ar.length;j++)
+                ar[j]=sc.nextInt();
+            if(check(ar,k))
+                st[i]="YES";
+            else
+                st[i]="NO";
+        }
+
+        for(int i=0;i<st.length;i++)
+        {
+            System.out.println(st[i]);
+        }
+    }
+
+    public static boolean check(int ar[],int k)
+    {
+        for(int i=0;i<ar.length;i++)
+        {
+            int c=0;
+            for(int j=i;j<ar.length;j++)
+            {
+                if(ar[j]%2!=0)
+                {
+                   break;
+                }
+                c++;
+            }
+            if(c==k)
+                return true;
+        }
+        return false;
+    }
+}

@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int t,n,min,min_idx,x;
+       t=sc.nextInt();
+       for(int m=0;m<t;m++)
+       {
+         n=sc.nextInt();
+         int a[]=new int[n];
+         int b[]=new int[n];
+         for(int i=0;i<n;i++)a[i]=sc.nextInt();
+         min=a[0];
+         min_idx=0;
+         x=0;
+         for(int i=0;i<n;i++)
+         {
+           for(int j=0;j<n;j++)
+           {
+             if(a[j]<min)
+             {
+               min=a[j];
+               min_idx=j;
+             }
+           }
+           a[min_idx]=999999;
+           b[min_idx]=x++;
+           min=a[0];
+           min_idx=0;
+         }
+         for(int i=0;i<n;i++)System.out.printf("%d ",b[i]);
+         System.out.println("");
+       }
+	}
+}

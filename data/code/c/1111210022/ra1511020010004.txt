@@ -1,0 +1,28 @@
+#include <stdio.h>
+ 
+typedef unsigned long long ull;
+ 
+#define MAX 1000000007
+ 
+#define max(a, b) ((a) > (b))?(a):(b)
+#define min(a, b) ((a) < (b))?(a):(b)
+ 
+ 
+int main(void) {
+	int t;
+	scanf("%d", &t);
+	while(t--) {
+		ull a, b, c;
+		scanf("%llu%llu%llu", &a, &b, &c);
+		ull ta = max(a, max(c, b));
+		ull tb = min(a, min(b, c));
+		ull tc = a+b+c - ta - tb;
+		a = min(tb, tc);
+		b = max(tb, tc);
+		c = ta;
+		ull ans = ((a % MAX)*((b-1) % MAX))%MAX;
+		ans = (ans * ((c-2)%MAX))%MAX;
+		printf("%llu\n", ans);
+	}
+	return 0;
+}

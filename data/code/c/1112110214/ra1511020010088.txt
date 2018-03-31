@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define MAX_SIZE 10000
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+ 
+char inp[MAX_SIZE],ans[MAX_SIZE],stack[MAX_SIZE];
+int top=0;
+ 
+void push(char);
+void pop(int);
+ 
+int main()
+{
+    int i=0,j,end;
+    fgets(inp,10000,stdin);
+    while(i<strlen(inp) && inp[i]!='\0')
+    {
+        top=0;
+        for(;inp[i]!=' ' && inp[i]!='\0' && inp[i]!='.';i++)
+            push(inp[i]);
+        end=top;
+        for(j=0;j<end;j++)
+            pop(j);
+        ans[end]='\0';
+        printf("%s%s",ans,inp[i++]=='.'?".":" ");
+    }
+  return 0;
+}
+ 
+void push(char ele)
+{
+    stack[top++]=ele;
+}
+void pop(int ind)
+{
+    ans[ind]=stack[--top];
+} 

@@ -1,0 +1,47 @@
+#include<stdio.h>
+int inp( )
+{
+int n=0;
+int ch=getchar_unlocked();
+while(!( ch >= '0' && ch <= '9' ))
+{
+    ch=getchar_unlocked();
+}
+while( ch >= '0' && ch <= '9' )
+{n = n*10 + (ch-'0');
+ch=getchar_unlocked();};
+return n;
+};
+char h[400010];
+int main()
+{
+    int n,w,c=0,i,d=0;
+    int h1[(n=inp())];
+    w=inp();
+ 
+    for(i=0;i<n;i++)
+    h1[i]=inp();
+    if(w==1)
+    {
+        printf("%d\n",n);
+        return 0;
+    }
+    for(i=0;i<w;i++)
+    {
+        h[h1[i]]=1;
+        d+=h[h1[i]+1]+h[h1[i]-1];
+    }
+    if(d==w-1)
+    c++;
+    for(;i<n;i++)
+    {
+        h[h1[i]]=1;
+        d+=(h[h1[i]+1]+h[h1[i]-1]);
+        h[h1[i-w]]=0;
+        d-=(h[h1[i-w]+1]+h[h1[i-w]-1]);
+        if(d==w-1)
+        c++;
+    }
+    printf("%d\n",c);
+    return 0;
+}

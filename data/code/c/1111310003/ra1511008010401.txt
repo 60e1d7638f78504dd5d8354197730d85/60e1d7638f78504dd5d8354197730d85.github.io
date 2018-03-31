@@ -1,0 +1,40 @@
+#include <stdio.h>
+int val=1000000007;
+int main()
+{
+    int N,M,C,j,k,num,count=0;
+    scanf("%d%d%d",&N,&M,&C);
+    int c1[C+1],c2[C+1],arr[C+1];
+    for(j=0;j<=C;j++)c1[j]=c2[j]=0;
+    for(j=0;j<N;j++)
+    {
+        scanf("%d",&num);
+        c1[num]++;
+    }
+    for(j=0;j<M;j++)
+    {
+        scanf("%d",&num);
+        c2[num]++;
+    }
+    for(j=0;j<=C;j++)
+    {
+        int temp=((long long)c1[j]*c2[j])%val;
+        if(temp){arr[count]=temp;count++;}
+    }
+    int temp[count];
+    temp[count-1]=arr[count-1];
+    for(j=count-2;j>=1;j--)
+    temp[j]=((long long)temp[j+1]+arr[j])%val;
+    for(j=1;j<count;j++)
+    {
+       temp[count-1]=((long long)arr[count-j-1]*temp[count-1])%val;
+       for(k=count-2;k>=j;k--)
+       {
+           temp[k]=((long long)arr[k-j]*temp[k]+temp[k+1])%val;
+       }
+       printf("%d ",temp[j]);
+    }
+    for(;j<=C;j++)printf("0 ");
+    printf("\n");
+    return 0;
+} 

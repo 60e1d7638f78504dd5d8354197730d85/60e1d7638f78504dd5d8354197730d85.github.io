@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void removeAll(char *, const char);
+
+
+int main()
+{
+    char str[100];
+    char toRemove;
+
+    scanf("%s",str);
+
+    
+   scanf(" %c",&toRemove);
+  
+
+    removeAll(str, toRemove);
+
+    printf("%s",str);
+
+    return 0;
+}
+
+void removeAll(char * str1, const char toRemove)
+{
+    int i, j;
+    int len = strlen(str1);
+
+    for(i=0; i<len; i++)
+    {
+        
+        if(str1[i] == toRemove || str1[i] == toRemove + 32)
+        {
+            for(j=i; j<len; j++)
+            {
+                str1[j] = str1[j+1];
+            }
+
+            len--;
+
+            
+            i--;
+        }
+    }
+
+ 
+}

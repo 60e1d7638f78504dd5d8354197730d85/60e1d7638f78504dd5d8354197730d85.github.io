@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+
+
+void removeAll(char * str, char rm)
+{
+  //printf("%s    %c\n",str,rm);
+
+  int l=strlen(str);
+  int i=0;
+  for(i=0;i<l;i++)
+  {
+  
+    if(str[i]==rm)
+    {    
+
+     int j=i;
+     for(j=i;j<l;j++)
+     {str[j]=str[j+1];
+     }
+     break;}
+  }
+  
+if(rm=='S')
+  printf("RM University");
+else if(rm=='R')
+    printf("SM University");
+  else if(rm=='M')
+      printf("SR University");
+
+
+  
+
+}
+
+
+int main()
+{
+    char str[40];//="SRM University";
+    char rm;
+ // int len=strlen(str);
+//  char str2[len+1];
+  
+fgets(str,40,stdin);
+   scanf("%c",&rm);
+    removeAll(str, rm);
+
+
+
+    return 0;
+}

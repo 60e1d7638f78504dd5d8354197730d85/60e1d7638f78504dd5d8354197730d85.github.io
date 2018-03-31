@@ -1,0 +1,76 @@
+#include <stdio.h>
+#define MAX 100001
+#define MOD 1000000007
+#define ll long long
+ 
+inline int readInt(){
+	int number = 0;
+	char c = getchar_unlocked();
+	while(c<'0')
+		c = getchar_unlocked();
+	while(c>='0' && c<='9'){
+		number = (number<<3)+(number<<1)+c-'0';
+		c = getchar_unlocked();
+	}
+	return number;
+}
+ 
+struct node{
+	int b;
+	int count;
+};
+ 
+struct node a[MAX];
+ 
+int parent(int x){
+	if(a[x].b == x)
+		return x;
+	return parent(a[x].b);
+}
+ 
+int main(){
+	int t,n,m,i,x,y,p1,p2,r;
+	ll c;
+	t = readInt();
+ 
+	while(t--){
+		n = readInt(); m = readInt();
+ 
+		for(i = 1;i<=n;i++){
+			a[i].b = i;
+			a[i].count = 1;
+		}
+ 
+		for(i = 0;i<m;i++){
+			x = readInt(); 
+			y = readInt();
+			
+			p1 = parent(x);
+			p2 = parent(y);
+ 
+			if(p1 != p2){
+				if(a[p1].count >= a[p2].count){
+					a[p2].b = p1;
+					a[p1].count += a[p2].count;
+					a[y].b = p1;
+				}
+				else{
+					a[p1].b = p2;
+					a[p2].count += a[p1].count;
+					a[x].b = p2;
+				}
+			}
+		}
+ 
+		r = 0; c = 1;
+		for(i = 1;i<=n;i++)
+			if(a[i].b == i){
+				r++;
+				c = (c*a[i].count)%MOD;
+			}
+ 
+		printf("%d %lld\n",r,c);
+ 
+	}
+	return 0;
+} 

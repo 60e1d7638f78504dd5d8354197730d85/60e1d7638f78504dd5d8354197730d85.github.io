@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<math.h>
+long long int isp(int i);
+int main()
+{
+	int i,k,l,m,n,t,q=0;
+	scanf("%d",&t);
+	long long int a[100001],j;
+for(i=1;i<=100000;i++)
+a[i]=isp(i);
+	while (t--)
+	{
+		j=0;
+		scanf("%d %d",&i,&k);
+		for (l=i;l<=k;l++)
+		{
+			j+=a[l];
+		}
+printf("sum is %lld\n",j);
+	}
+	return 0;
+}
+long long int isp(int i)
+{
+	int j,c=-1,sum=0,k=i;
+	while (i>0)
+	{
+		i/=10;
+		c++;
+	}
+	i=k;
+	while (i>0)
+	{
+		j=i%10;
+		sum+=j*pow(10,c--);
+		i/=10;
+	}
+	if (k==sum)
+	return k;
+	else return 0;
+}

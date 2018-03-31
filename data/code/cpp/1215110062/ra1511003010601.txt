@@ -1,0 +1,42 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+void prime(int n){
+  if (n<2){
+    cout<<"no\n";
+    return;
+  }
+  else if (n<4){
+    cout<<"yes\n";
+    return;
+  }
+  else if (n%2==0||n%3==0){
+    cout<<"no\n";
+    return;
+  }
+  else{
+    int i=5;
+    while (i*i<n){
+      if (n%i==0||n%7==0){ 
+        cout<<"no\n";
+        return;
+      }
+      i+=6;
+    }
+  }
+  
+  cout<<"yes\n";
+}
+ 
+
+int main()
+{
+	int t,n;
+  cin>>t;
+  while(t--){
+  	cin>>n;
+    prime(n);
+    }
+	return 0;
+}

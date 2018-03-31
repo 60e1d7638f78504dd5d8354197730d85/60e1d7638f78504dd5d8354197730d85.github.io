@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int len,i,vowel=0,conso=0,digit=0,space=0,special=0;
+  char s[150];
+  fgets(s,150,stdin);
+  len=strlen(s);
+  for(i=0;i<len;i++)
+  {
+    if (s[i]=='a' || s[i]=='e' || s[i]=='i' || s[i]=='o' || s[i]=='u' || s[i]=='A' || s[i]=='E' || s[i]=='I' || s[i]=='O' || s[i]=='U')
+      vowel++;
+   else if((s[i]>=97 && s[i]<=122) || (s[i]>=65 && s[i]<=90))
+     conso++;
+    else if(s[i]>=48 && s[i]<=57)
+      digit++;
+    else if(s[i]==' ')
+      space++;
+  }
+  printf("Vowels:%d\n",vowel);
+  printf("Consonants:%d\n",conso);
+  printf("Digits:%d\n",digit);
+  printf("White spaces:%d\n",space);
+	return 0;
+}

@@ -1,0 +1,25 @@
+#include<stdio.h>
+int gc(long int,long int);
+int main()
+{
+	long int n,a,b,g,l;
+	scanf("%ld",&n);
+	while(n--)
+	{
+		scanf("%ld %ld",&a,&b);
+		g=gc(a,b);
+		l=a*b/g;
+		printf("%ld %ld\n",g,l);
+	}
+}
+int gc(long int a,long int b)
+{
+	if(b!=0)
+	{
+		return gc(b,a%b);
+	}
+	else
+	{
+		return a;
+	}
+} 

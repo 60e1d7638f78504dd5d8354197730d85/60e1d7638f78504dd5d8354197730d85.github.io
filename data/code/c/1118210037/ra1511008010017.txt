@@ -1,0 +1,51 @@
+#include<stdio.h>
+#define BUF 4096
+char ibuf[BUF];
+int ipt = BUF;
+char chk[400005];
+int a[400005];
+int readInt() {
+    while (ipt < BUF && ibuf[ipt] < '0') ipt++;
+    if (ipt == BUF) {
+	fread(ibuf, 1, BUF, stdin);
+	ipt = 0;
+	while (ipt < BUF && ibuf[ipt] < '0') ipt++;
+    }
+    int n = 0;
+    while (ipt < BUF && ibuf[ipt] >= '0') n = (n*10)+(ibuf[ipt++]-'0');
+    if (ipt == BUF) {
+	fread(ibuf, 1, BUF, stdin);
+	ipt = 0;
+	while (ipt < BUF && ibuf[ipt] >= '0') n = (n*10)+(ibuf[ipt++]-'0');
+    }
+    return n;
+}
+int main()
+{
+    int i,n,w,tmp;
+     int ret=0,cnt=0;
+    scanf("%d %d",&n,&w);
+    for(i=0;i<n;i++)
+    {
+        //scanf("%d",&a[i]);
+        a[i]=readInt();
+        if(i>=w)
+        {
+            tmp = a[i - w];
+            if(chk[tmp+1]=='1')
+            cnt--;
+            if(chk[tmp-1]=='1')
+            cnt--;
+            chk[tmp]=0;
+        }
+        if(chk[a[i]+1]=='1')
+            cnt++;
+        if(chk[a[i]-1]=='1')
+            cnt++;
+        chk[a[i]]='1';
+        if(cnt==(w-1))
+        ret++;
+    }
+    printf("%d\n",ret);
+ return 0;
+} 

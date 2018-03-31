@@ -1,0 +1,26 @@
+#include <stdio.h>
+int add(int d,int n)
+{
+  int sum=0,i;
+  if(d==0)
+    return n;
+  else 
+  {
+      for(i=1;i<=n;i++)
+      sum=sum+i;
+      return add(d-1,sum);
+  }
+}
+int main()
+{
+  int t,d,n,ans[16],i,j;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+  scanf("%d %d",&d,&n);
+  ans[i]=add(d,n);
+  }
+  for(j=0;j<t;j++)
+    printf("%d\n",ans[j]);
+	return 0;
+}

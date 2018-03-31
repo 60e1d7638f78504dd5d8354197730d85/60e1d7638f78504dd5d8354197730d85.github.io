@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+int n,a[300002],d[35],ans;
+void init()
+{
+	scanf("%d",&n);
+	int i;
+	for(i=1;i<=n;i++) scanf("%d",&a[i]);
+}
+void find()
+{
+	int i,j,ct,now=n,t;
+	for(i=30;i>=0;i--)
+	   {ct=0;
+		for(j=1;j<=now;j++)
+	       {if(a[j]&(1<<i)) ct++;}
+	    if(ct<2) continue;
+	    t=0; d[i]=1;
+	    for(j=1;j<=now;j++)
+	       {if(a[j]&(1<<i)) a[++t]=a[j];}
+	    now=t;
+	   }
+	for(i=30;i>=0;i--)
+	   {if(d[i])
+	       ans=ans^(1<<i);
+	   }
+	printf("%d\n",ans);
+}
+int main()
+{
+	init(); find();
+	return 0;
+}

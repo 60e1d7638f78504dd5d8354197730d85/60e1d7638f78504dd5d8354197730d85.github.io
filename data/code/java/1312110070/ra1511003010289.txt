@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.Scanner;
+import static java.lang.StrictMath.pow;
+public class TestClass {
+	 public static void main(String[] args) { 
+		int x, r=0;
+       Scanner sc = new Scanner(System.in);
+       x = sc.nextInt();
+       TestClass ob = new TestClass();
+       r = ob.greycode(x,0);
+       System.out.println(r);
+	}
+    int greycode(int x,int i)
+    {
+      int a, b, r=0;
+      if(x != 0)
+      {
+        a = x%10;
+        x = x/10;
+        b = x%10;
+        if((a & ~b) == 1 || (~a & b) == 1)
+        {
+          r = (int) (r + pow(10,i));
+        }
+        return greycode(x,++i) + r;
+      }
+      return 0;
+    }
+}

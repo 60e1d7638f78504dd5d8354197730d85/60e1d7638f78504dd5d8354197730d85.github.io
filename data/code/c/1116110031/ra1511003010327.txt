@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[50],s[20][20];
+  int i,j=0,k=0;
+    scanf("%[^\n]",str);
+    for(i=0;str[i]!='\0';i++)
+    {
+      if(str[i]==' ')
+      {
+        s[k][j]='\0';
+        k++;
+        j=0;
+      }
+      else
+      {
+        s[k][j]=str[i];
+        j++;
+      }
+    }
+  s[k][j]='\0';
+  char n[10];
+  scanf("%s",n);
+  for(i=0;i<k+1;i++){
+    if(strcmp(s[i],n)==0)
+    {
+      for(j=i;j<k+1;j++)
+        strcpy(s[j],s[j+1]);
+      k--;
+      }
+    }
+  for(i=0;i<k+1;i++)
+    printf("%s",s[i]);
+
+	return 0;
+}

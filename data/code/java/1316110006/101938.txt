@@ -1,0 +1,33 @@
+import java.util.*;
+public class TestClass {
+  static boolean check(String pwd)
+  {
+    boolean flag=true;
+    int len=pwd.length();
+    int dig=0;
+    if(pwd.length()>=10)
+    {
+      for(int i =0;i<len;i++)
+      {
+        char c=pwd.charAt(i);
+        if(Character.isDigit(c))
+          dig++;
+        
+      }
+      if (dig>=2)
+        return true;
+    }
+    else
+      return false;
+    return true;
+  }
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       String pwd=sc.nextLine();
+      
+       if(TestClass.check(pwd))
+         System.out.println("Password is valid");
+       else
+         System.out.println("Not a valid password");
+	}
+}

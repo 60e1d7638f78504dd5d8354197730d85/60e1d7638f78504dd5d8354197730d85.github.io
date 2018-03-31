@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+typedef long long int lli;
+ 
+ 
+int digits(lli N){
+  int dig=0;
+    while(N!=0){
+      dig++;
+      N/=10;
+    }
+    return dig;
+}
+ 
+lli rotright(lli N){
+  lli rem = N%10;
+  lli N1 = N/10+rem*pow(10, digits(N)-1);
+  return N1;
+}
+ 
+lli rotleft(lli N){
+  lli rem = N/pow(10, digits(N)-1);
+  lli N1 = (N%(lli)pow(10, digits(N)-1))*10+rem;
+  return N1;
+}
+ 
+int main(){
+ 
+  int cases, i;
+  lli N, N1;
+  scanf("%d", &cases);
+ 
+  for(i=0;i<cases;i++){
+ 
+    scanf("%lld", &N);
+ 
+    lli max=0;
+ 
+    if(rotright(rotleft(N))>max) max = rotright(rotleft(N));
+    if(rotleft(rotright(N))>max) max = rotleft(rotright(N));
+    if(rotright(N)>max) max = rotright(N);
+    if(rotleft(N)>max) max = rotleft(N);
+ 
+    // check how far can we move right
+ 
+    int j;
+ 
+    N1 = rotright(N);
+    for(j=0;j<20;j++){
+      lli N2 = rotright(N1);
+      if(N2>max) max = N2;
+      N1 = N2;
+    }
+ 
+    // how far left
+    N1 = rotleft(N);
+    for(j=0;j<20;j++){
+      lli N2 = rotleft(N1);
+      if(N2>max) max = N2;
+      N1 = N2;
+    }
+ 
+   printf("%lld\n", max);
+ 
+ 
+  }
+ 
+ 
+return 0;
+ 
+} 

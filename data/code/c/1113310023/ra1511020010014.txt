@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int n,i,j,k,l,p,q,a[10000],b[10000],flag,cnt=0,cnt1=0,d[10000],e,cnt2=0,f,temp;
+	
+	scanf("%d",&n);
+	
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=2;j<=a[i];j++)
+		{
+			flag=1;
+			for(k=2;k<=sqrt(j);k++)
+			{
+				if(j%k==0)
+				{
+					flag=0;
+					break;
+				}
+			}
+			if(flag==1)
+			{
+				b[cnt]=j;
+				cnt++;
+			}
+		}
+		for(p=0;p<cnt-1;p++)
+		{
+			int c=b[p];
+			for(q=p+1;q<cnt;q++)
+			{
+				c=c+b[q];
+				flag=1;
+				for(l=2;l<=sqrt(c);l++)
+				{
+					if(c%l==0)
+					{
+						flag=0;
+						break;
+					}
+				}
+				if(flag==1)
+				{
+					d[cnt1]=c;
+					cnt1++;
+					
+				}
+			}
+		}
+		
+		
+		for(e=0;e<cnt1;e++)
+		{
+			temp=d[e];
+			flag=1;
+			for(f=e+1;f<cnt1;f++)
+			if(temp==d[f])
+			flag=0;
+			if(flag==1)
+			cnt2++;
+			
+		}
+		printf("%d",cnt2);
+		printf("\n");
+			cnt1=0;
+			cnt=0;
+			cnt2=0;
+	}
+
+	return 0;
+}

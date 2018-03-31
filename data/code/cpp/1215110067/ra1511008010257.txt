@@ -1,0 +1,60 @@
+#include<iostream>
+	#include<string.h>
+	#include<math.h>
+	#include<iomanip>
+	#include<algorithm>
+	using namespace std;
+	
+	long long hcf(int x,int y){
+		if(x==0){
+			return y;
+		}else{
+			return hcf(y%x,x);
+		}
+	}
+	
+	
+	long long lcm(int x,int y){
+		return (x*y)/hcf(x,y);
+	}
+	
+	 
+	 
+	 
+	 
+	int main(){
+		
+	
+		int t;
+		cin>>t;
+		
+		while(t-->0){
+			
+			
+			int n;
+			cin>>n;
+			int a[n];
+			for(int i=0;i<n;i++){
+				cin>>a[i];
+			}
+			
+			long long min = 1000000000;
+			
+			for(int i=0;i<n;i++){
+				for(int j=i+1;j<n;j++){
+					long long temp = lcm(a[i],a[j]);
+					if(min>temp){
+						min=temp;
+					}
+				}
+			}
+			
+			cout<<min<<endl;
+			
+			
+		}
+		
+	
+	
+		return 0;
+	}   

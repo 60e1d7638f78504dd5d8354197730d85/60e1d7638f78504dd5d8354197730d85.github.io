@@ -1,0 +1,46 @@
+#include <stdio.h>
+void Sort(int num[],int n)
+{
+	int a,b,tmp;
+	for(a=0;a<=n-1;a++)
+	{
+		int flag = 0;
+		for(b=0;b<n-a-1;b++)
+		{
+			if(num[b]>=num[b+1])
+			{
+				tmp=num[b];
+				num[b]=num[b+1];
+				num[b+1]=tmp;
+				flag = 1;
+			}
+		}
+		if(!flag)
+            break;
+	}
+}
+int main()
+{
+int t,n,i,j,k,l,p;
+	float sum;
+	int num[10000];
+	float arr[100];
+	scanf("%d",&t);
+	for(i=0;i<=t-1;i++)
+	{
+		sum=0;
+		scanf("%d%d",&n,&k);
+		for(j=0;j<=n-1;j++)
+			scanf("%d",&num[j]);
+		Sort(num,n);
+		for(l=k;l<=n-k-1;l++)
+			sum=sum+num[l];
+		arr[i]=sum/(n-2*k);
+	}
+	for(p=0;p<=t-1;p++)
+		printf("\n%f",arr[p]);
+
+ 
+
+	return 0;
+}

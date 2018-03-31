@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+ partition (char arr[],int low,int high)
+{
+    int pivot = arr[high]-97; 
+    int i,j;
+    char k;
+ 
+    i = (low - 1);
+ 
+    for (j = low; j <= high- 1; j++)
+    {
+        
+        if ((arr[j]-97) <= pivot)
+        {
+            i++;
+            k=arr[i];
+            arr[i]=arr[j];
+            arr[j]=k;
+        }
+    }
+    
+    k=arr[i+1];
+    arr[i+1]=arr[high];
+    arr[high]=k;
+    
+    return (i + 1);
+ }
+quickSort(char arr[],int low,int high)
+{
+    int pi;
+    if (low < high)
+    {
+        pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1); 
+        quickSort(arr, pi + 1, high);
+    }
+}
+ int main()
+{
+ int i,j,m,t,n,l;
+ char a[1002],b[1002];
+ scanf("%d",&t);
+ for(i=1;i<=t;i++)
+ {
+     scanf("%s",a);
+     l=strlen(a);
+     
+     quickSort(a,0,l-1);
+     
+     for(j=0;j<l;j=j+2)
+     printf("%c",a[j]);
+     
+     for(j=l-2;j>0;j=j-2)
+     printf("%c",a[j]);
+     
+     printf("\n");
+     
+     //return 0;
+ }
+   return 0;
+}

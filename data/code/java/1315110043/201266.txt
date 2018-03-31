@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+       TestClass objname=new TestClass();
+       
+       Scanner sc=new Scanner(System.in);
+       int size=sc.nextInt();
+       int arr[]=new int[size];
+      for(int i=0;i<size;i++)
+         {
+        arr[i]=sc.nextInt();
+           int sol=objname.Search(arr[i]);
+           System.out.println(sol);
+         }
+       
+       
+	}
+  public int Search(int b)
+       {
+         for (long i = 0; i * i <= b; i++)
+         {
+            for (long j =0; j * j <= b; j++)
+            {
+                if (i * i + j * j == b)
+                {
+                return(1);    
+                }
+        		 
+            }
+         }
+    return(0);
+  }
+}

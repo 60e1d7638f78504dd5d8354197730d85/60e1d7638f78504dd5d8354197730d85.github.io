@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+int f(long int n)
+{
+    long int i;int flag=1;
+    for(i=2;i<=sqrt(n);i++){
+        if(n%i==0) 
+        {
+            flag=0;
+            break;}
+    }
+    return flag;
+}
+int main()
+{
+    int t,p;
+    scanf("%d",&t);
+    for(p=0;p<t;p++){
+        long int n,i;int flag=0;
+        scanf("%ld",&n);
+        for(i=2;i<=n/2;i++){
+            if(f(i)==1 && f(n-i)==1) {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1) printf("Deepa\n");
+        else printf("Arjit\n");
+    }
+    return 0;
+}

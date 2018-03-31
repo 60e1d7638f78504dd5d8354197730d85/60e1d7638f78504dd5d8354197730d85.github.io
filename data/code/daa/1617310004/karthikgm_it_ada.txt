@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define VVI vector<vector<int> >
+#define VI vector<int>
+#define SZ(x) ((int)(x).size())
+#define ALL(x) (x).begin() , (x).end()
+#define REP(i , n) for(int i = 0; i < int(n); i++)
+#define REP1(i , a , b) for(int i = (a); i <= int(b); i++)
+#define PER(i , n) for(int i = (n) - 1; i >= 0; i--)
+#define PER1(i , a , b) for(int i = (a); i >= int(b); i--)
+#define MS(x , v) memset(x , (v) , sizeof(x))
+
+int solve(vector<vector<pair<int, int> > > &G, VI &V, int c, int d){
+    // cout << d << " " << c << endl;
+    if(d <= 0)
+        return 1;
+    V[c] = 1;
+    
+    REP(i, SZ(G[c])){
+        if(V[G[c][i].first] == 0){
+            if(solve(G, V, G[c][i].first, d-G[c][i].second) == 1)
+                return 1;
+        }
+    }
+    V[c] = 0;
+    return 0;
+}
+
+int main(){
+    int t, v, e, k, v1, v2, d;
+    cin >> t;
+    
+    REP(h, t){
+        cin >> v >> e >> k;
+        vector<vector<pair<int, int> > > G(v, vector<pair<int, int> >());
+        VI V(v, 0);
+        REP(i, e){
+            cin >> v1 >> v2 >> d;
+            G[v1].push_back(pair<int, int>(v2, d));
+            G[v2].push_back(pair<int, int>(v1, d));
+        }
+        cout << solve(G, V, 0, k);
+        cout << endl;
+    }
+}

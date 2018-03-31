@@ -1,0 +1,52 @@
+import java.io.*;
+// JAVA Code for Find the missing number
+// in Geometric Progression
+import java.util.*;
+class TestClass {
+      
+    // It returns INT_MAX in case of error
+    public static int findMissingRec(int arr[], int low,
+                       int high, int ratio)
+    {
+        if (low >= high)
+            return Integer.MAX_VALUE;
+        int mid = low + (high - low)/2;
+      
+        // If element next to mid is missing
+        if (arr[mid+1]/arr[mid] != ratio)
+            return (arr[mid] * ratio);
+      
+        // If element previous to mid is missing
+        if ((mid > 0) && (arr[mid]/arr[mid-1]) != ratio)
+            return (arr[mid-1] * ratio);
+      
+        // If missing element is in right half
+        if (arr[mid] == arr[0] * (Math.pow(ratio, mid)) )
+            return findMissingRec(arr, mid+1, high, ratio);
+      
+        return findMissingRec(arr, low, mid-1, ratio);
+    }
+      
+    // Find ration and calls findMissingRec
+    public static int findMissing(int arr[], int n)
+    {
+        // Finding ration assuming that the missing
+        // term is not first or last term of series.
+        int ratio =(int) Math.pow(arr[n-1]/arr[0], 1.0/n);
+      
+        return findMissingRec(arr, 0, n-1, ratio);
+    }    
+     
+    /* Driver program to test above function */
+    public static void main(String[] args) 
+    {
+        Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int arr[]=new int[n];
+      for(int i=0;i<n;i++)
+        arr[i]=sc.nextInt();
+      
+         
+        System.out.print("The missing element of Geometric Progression series is "+findMissing(arr, n));
+    }
+}

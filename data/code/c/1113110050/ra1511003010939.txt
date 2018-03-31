@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+   int test,i,flag;
+   char arr[10],x,y;
+   scanf("%d",&test);
+   while(test>0)
+   {
+       flag=0;
+       scanf("%s",arr);
+       test--;
+       if(strlen(arr)==1)
+        flag=1;
+       else
+       {
+       x=arr[0];
+       y=arr[1];
+       if(x==y)
+        flag=1;
+       for(i=0;i<(strlen(arr));i++)
+       {
+           if(i%2==0)
+           {
+               if(arr[i]!=x)
+                flag=1;
+           }
+ 
+           if(i%2==1)
+           {
+               if(arr[i]!=y)
+                flag=1;
+           }
+ 
+ 
+       }
+       }
+       if(flag==0)
+        printf("YES\n");
+       else
+        printf("NO\n");
+ 
+   }return 0;
+}

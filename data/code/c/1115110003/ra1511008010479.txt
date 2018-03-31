@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int l[5001][5001];
+int main()
+{ 
+  int len1,len2,i,j;
+  char ch[5001],cha[5001];
+  scanf("%s %s",ch,cha);
+  len1=strlen(ch);
+  len2=strlen(cha);
+  for(i=0;i<=len1;i++)
+  {
+    for(j=0;j<=len2;j++)
+    {
+     if(i==0||j==0)
+     l[i][j]=0;
+     else if(ch[i-1]==cha[j-1]&& ch[i-1]!='a'
+     && ch[i-1]!='e' && ch[i-1]!='i' && ch[i-1]!='o' && ch[i-1]!='u')
+     {
+        l[i][j]=l[i-1][j-1]+1;
+     }
+     else
+     {
+     if(l[i-1][j]>l[i][j-1])
+     l[i][j]=l[i-1][j];
+     else
+     l[i][j]=l[i][j-1];
+     }
+    }
+  }
+  printf("%d",l[len1][len2]);
+    return 0;
+}

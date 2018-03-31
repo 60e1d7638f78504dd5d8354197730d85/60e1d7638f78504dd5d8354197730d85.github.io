@@ -1,0 +1,42 @@
+#include <stdio.h>
+int n,a[100],b[100],c[100],h[100],p=0;
+void check(int x, int y)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+    if(a[i] == x && b[i] == y)
+      h[p++] = c[i];
+  }
+}
+int main()
+{
+  int m,i,j,d,a1,a2;
+  scanf("%d %d",&n,&m);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+    scanf("%d",&b[i]);
+    scanf("%d",&c[i]);
+    scanf("%d",&d);
+  }
+  for(i=0;i<m;i++)
+  {
+    scanf("%d%d",&a1,&a2);
+    check(a1,a2);
+  }
+  for(i=0;i<p;i++)
+  {
+    for(j=i+1;j<p;j++)
+    {
+      if(h[i] < h[j])
+      {
+        m = h[i];
+        h[i] = h[j];
+        h[j] = m;
+      }
+    }
+  }
+  printf("%d\n",h[0]);
+  return 0;
+}

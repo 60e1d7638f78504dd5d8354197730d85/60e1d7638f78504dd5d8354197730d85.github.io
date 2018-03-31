@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  public class Sample{
+       public double distanceBetweenTwoPoints(double lat1, double lon1, double lat2, double lon2) {
+       double x1 = Math.toRadians(lat1);
+       double y1 = Math.toRadians(lon1);
+       double x2 = Math.toRadians(lat2);
+       double y2 = Math.toRadians(lon2);
+        double radius = 6371.01; 
+        return radius * Math.acos(Math.sin(x1)*Math.sin(x2) + Math.cos(x1)*Math.cos(x2)*Math.cos(y1 - y2));
+    }
+  }
+    public static void main(String[] args) {
+      TestClass tc=new TestClass();
+     TestClass.Sample sp=tc.new Sample();
+        Scanner input = new Scanner(System.in);
+        double lat1 = input.nextDouble();
+        double lon1 = input.nextDouble();
+        double lat2 = input.nextDouble();
+        double lon2 = input.nextDouble();
+        System.out.println(String.format("%.2f",sp.distanceBetweenTwoPoints(lat1, lon1, lat2, lon2)));
+    }
+}

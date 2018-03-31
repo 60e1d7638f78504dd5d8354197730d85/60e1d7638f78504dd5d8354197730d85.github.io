@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+class parent{
+public:	
+  	int c1;
+  	float c2;
+  	string c3;
+  
+  public:
+  void show(){
+    	cout<<c1<<c2<<c3;}
+	};
+class child1 :public parent{
+  	public:
+	parent seta(parent p,int a){
+    	p.c1=a;
+ 
+      return p;
+    	}
+	};
+class child2 :public parent{
+  public:
+	parent setb (parent p , float b ){
+    	p.c2=b;
+    	return p;}
+	};
+class child3 :public parent{
+  	public:
+	parent setc(parent p, string c){
+      p.c3=c;
+    	return p;
+    }
+	};
+
+int main()
+{
+  int f;
+  float g;
+  string h;
+  cin>>f>>g;
+  cin>>h;
+  parent obj;
+  child1 one;
+  obj=one.seta(obj,f);
+  child2 two;
+  obj=two.setb(obj,g);
+  child3 three;
+  obj=three.setc(obj, h);
+  obj.show();
+
+	return 0;
+}

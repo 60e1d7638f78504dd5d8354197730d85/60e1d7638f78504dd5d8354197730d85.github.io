@@ -1,0 +1,46 @@
+t = int(input())#No of test cases
+
+
+for i in range(t):
+    n = input()#No of rows and cols
+    t = n.split()
+    r = int(t[0])
+    c = int(t[1])
+    tot = r * c
+    mat = []
+    inp = input()
+    form = inp.split()
+    #print(form)
+    inx = 0
+    for i in range(r):
+        tmp = []
+        for j in range(c):
+            e = int(form[inx])
+            inx += 1
+            tmp.append(e)
+        mat.append(tmp)
+    #Matrix ready
+    #print(mat)
+    
+    flag = -999
+    mi = 999
+    #Check for row with min 1s
+    res = -1
+    index = 0
+    for sub in mat:
+        cnt = sub.count(1)
+        if cnt !=0 :
+            if cnt < mi:
+                mi = cnt
+                res = index
+                flag = 0
+                
+        index += 1
+    if flag == -999:
+        print("minus1")
+    else:
+        print(res)
+                
+            
+            
+            

@@ -1,0 +1,111 @@
+#include <iostream>
+
+#include <vector>
+
+using namespace std;
+
+
+int dfs(vector<int> a[],int i,int & c,bool visited[])
+
+{
+    visited[i]=true;
+    
+int count=0,temp;
+  
+//  cout<<i<<endl;
+   
+ int size = a[i].size();
+    
+if(size==1)
+ 
+   {
+      
+  return 1;
+   
+ }
+  
+  for(int j=0;j<size;j++)
+ 
+   {
+       
+ if(!visited[a[i][j]])
+     
+   {
+           
+ temp = dfs(a,a[i][j],c,visited);
+
+//            cout<<a[i][j]<<" returned "<<temp<<" to "<<i<<endl;
+       
+     if(temp%2==0)
+        
+    {
+           
+     c++;
+       
+     }
+else{
+             
+   count+=temp;
+      
+      }
+     
+   }
+  
+  }
+   
+ return count+1;
+}
+
+int main() 
+{
+	
+int t,n,e,x,y,i;
+	
+cin>>t;
+	
+while(t--)
+	
+{
+	    
+cin>>n>>e;
+	    
+vector<int> a[n];
+	   
+ bool visited[n];
+	    
+for(i=0;i<n;i++)
+	   
+ {
+	       
+ visited[i]=false;
+	    
+}
+	   
+ for(i=0;i<e;i++)
+	   
+ {
+	      
+  cin>>x>>y;
+	   
+    x--;
+	      
+  y--;
+	       
+ a[x].push_back(y);
+	  
+      a[y].push_back(x);
+
+	    }
+	
+    int c=0;
+	
+   // if(n%2==0)
+
+	    dfs(a,0,c,visited);
+
+	    cout<<c<<endl;
+
+	}
+	
+return 0;
+}

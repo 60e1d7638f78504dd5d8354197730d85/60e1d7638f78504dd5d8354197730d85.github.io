@@ -1,0 +1,81 @@
+    #include<bits/stdc++.h>
+    using namespace std;
+    typedef long long ll;
+     
+    ll A[101][101],dp[101][101],SUM,N,INF = -1;
+     
+    void initialize()
+    {
+    	for(ll i=0;i<N;i++)
+    	{
+    		for(ll j=0;j<N;j++)
+    		{
+    			A[i][j] = 0;
+    			dp[i][j] = INF;
+    		}
+    	}
+    }
+     
+    void solveR()
+    {
+    	ll i,j;
+     
+    	for(i=N-2;i>=0;i--)
+    	{
+    		for(j=0;j<=i;j++)
+    		{
+    			dp[i][j] = A[i][j] + max( dp[i+1][j], dp[i+1][j+1]);
+    		}
+    	}
+    }
+     
+    /*ll solve(ll i,ll j)
+    {
+     
+    	if(i+1 == N)
+    		return A[i][j];
+     
+    	if(dp[i][j] != INF)
+    		return dp[i][j];
+    	else
+    		return dp[i][j] = A[i][j] + max(solve(i+1,j), solve(i+1 ,j+1 ));
+     
+    }*/
+    int main()
+    {
+    	
+    	ll T;
+     
+    	scanf("%lld ",&T);
+     
+    	while(T--)
+    	{
+    		ll Ans,i,j;
+     
+     
+    		scanf("%lld ",&N);
+     
+    		initialize();
+     
+    		for(i=0;i<N;i++)
+    		{
+    			for(j=0;j<=i;j++)
+    			{
+    				scanf("%lld",&A[i][j]);
+     
+    				if(i == N-1)
+    					dp[i][j] = A[i][j];
+    			}
+     
+    		}
+     
+     
+    	//	SUM = 0;
+    		solveR();
+     
+    		printf("%lld\n",dp[0][0]);
+    	}
+     
+     
+    } 
+

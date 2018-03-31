@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	Scanner sc=new Scanner(System.in);
+      int w=sc.nextInt();
+      while(w-->0)
+      {
+        int n,t,y,c,v,temp;
+        int pos[]=new int[100];
+        int neg[]=new int[100];
+        t=y=0;
+        temp=0;
+        n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+          temp=sc.nextInt();
+          if(temp>=0)
+            pos[t++]=temp;
+          else
+            neg[y++]=temp;
+        }
+        c=t;
+        v=y;
+        t=0;
+        y=0;
+        for(int i=0;i<v+c;i++)
+        {
+          if((i%2==0 && t<c) || (y>=v && t<c))
+          {
+            System.out.print(pos[t++]+" ");
+          }
+          else if(y<v)
+            {
+            System.out.print(neg[y++]+" ");
+          }
+        }
+      System.out.println();
+       }
+       
+      }
+}

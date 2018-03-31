@@ -1,0 +1,46 @@
+#include<stdio.h>
+ 
+int max(int a, int b)
+{
+	return a>b?a:b;
+}
+ 
+int min(int a, int b)
+{
+	return a<b?a:b;
+}
+ 
+int main()
+{
+	int N=0, count=0, a[1001][1001], i=0, j=0, k=0, x=0, y=0, r=0, r2=0, xi=0, yj=0, xi2=0, yj2=0;
+	scanf("%d", &N);
+	for(i=0; i<=1000; i++)
+		for(j=0; j<=1000; j++)
+			a[i][j]=0;
+	for(k=1; k<=N; k++)
+	{
+		scanf("%d%d%d", &x, &y, &r);
+		r2=r*r;
+		for(i=max(1,x-r); i<=min(1000,x+r); i++)
+		{
+			xi=x-i;
+			xi2=xi*xi;
+			for(j=max(1,y-r); j<=min(1000,y+r); j++)
+			{
+				if(a[i][j]<2)
+				{
+					yj=y-j;
+					yj2=yj*yj;
+					if((xi2+yj2)<=r2)
+						a[i][j]++;
+				}
+			}
+		}
+	}
+	for(i=1; i<=1000; i++)
+		for(j=1; j<=1000; j++)
+			if(a[i][j]==2)
+				count++;
+	printf("%d", count);
+	return 0;
+}

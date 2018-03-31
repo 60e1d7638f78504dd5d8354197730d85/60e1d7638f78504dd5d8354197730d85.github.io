@@ -1,0 +1,33 @@
+#include <stdio.h>
+int prime(int x)
+{
+  int flag=0,i;
+  for(i=2;i<x/2;i++)
+  {
+    if(x%i == 0)
+    {
+      flag = 1;
+      break;
+    }
+  }
+  if(flag == 0)
+    return 1;
+  else
+    return 0;
+}
+int main()
+{
+  int n,a[100],i,k;
+  scanf("%d",&n);
+  for(i = 0; i < n; i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+  {
+    k = prime(a[i]);
+    if(k == 1)
+      printf("yes\n");
+    else
+      printf("no\n");
+  }
+  return 0;
+}

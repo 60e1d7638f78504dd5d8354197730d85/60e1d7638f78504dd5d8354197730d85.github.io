@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+    int T,i;
+    scanf("%d",&T);
+    for(i=0;i<T;i++)
+    {
+      int n,done;
+      scanf("%d %d",&n,&done);
+      int arr[n+1],j,val;
+       for(j=0;j<n+1;j++)
+       {
+         arr[j]=0;
+       }
+      for(j=0;j<done;j++)
+      {
+        scanf("%d",&val);
+        arr[val]=1;
+      }
+      int assign=1;
+      for(j=1;j<n+1;j++)
+      {
+        if(arr[j]!=1)
+        {
+          if(assign%2==1)
+          {
+            arr[j]=2;
+          }
+          else
+          {
+            arr[j]=3;
+          }
+          assign+=1;
+        }
+      }
+      for(j=1;j<n+1;j++)
+      {
+        if(arr[j]==2)
+          printf("%d ",j);
+      }
+      printf("\n");
+      for(j=1;j<n+1;j++)
+      {
+        if(arr[j]==3)
+          printf("%d ",j);
+      }
+      printf("\n");
+    }
+	return 0;
+}

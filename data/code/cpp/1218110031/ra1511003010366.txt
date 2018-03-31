@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+class Area{
+  public:
+  	virtual void area(int , int)=0 ;
+} ;
+
+
+
+class Area1 : public Area{
+  public :
+  	void area(int a , int b){
+      cout << "Area of square: " << a*a << endl ;
+      cout << "Area of circle: " << 3.14*b*b ;
+    }
+} ;
+
+int main()
+{
+  	int a, b ;
+  	cin >> a >> b ;
+	Area *ar ;
+  	Area1 ar1 ;
+  	ar = &ar1 ;
+  	ar->area(a,b) ;
+	return 0;
+}

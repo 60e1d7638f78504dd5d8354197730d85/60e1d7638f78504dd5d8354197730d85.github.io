@@ -1,0 +1,29 @@
+#include <iostream>
+#include<stack>
+using namespace std;
+int main()
+{
+  stack<char> S;
+  char a[100];
+  cin.getline(a,100);
+  for(int i = 0; a[i] != '\0'; i++)
+  {
+    if(a[i] != ' ')
+      S.push(a[i]);
+    else
+    {
+      while(!S.empty())
+      {
+        cout<<S.top();
+        S.pop();
+      }
+      cout<<" ";
+    }
+  }
+  while(!S.empty())
+  {
+    cout<<S.top();
+    S.pop();
+  }
+  return 0;
+}

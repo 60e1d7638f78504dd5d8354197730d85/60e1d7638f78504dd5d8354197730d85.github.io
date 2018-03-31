@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int main(void) {
+	int i,l,t,max,pos,sum;
+	scanf("%d",&t);
+	char s[50];
+	while(t--)
+          {
+          	 scanf("%s",s);
+          	 int count[26];
+          	 for(i=0;i<26;i++)
+          	   count[i]=0;
+          	 l=strlen(s);
+          	 for(i=0;i<l;i++)
+          	   count[s[i]-97]++;
+          	 max=count[0];
+          	 pos=0;
+          	 for(i=1;i<26;i++)
+          	   {
+          	   	 if(count[i]>max)
+          	   	   {
+          	   	   	 max=count[i];
+          	   	   	 pos=i;
+          	   	   }
+          	   }
+          	 sum=0;
+          	 for(i=0;i<26;i++)
+          	   {
+          	   	 if(i==pos)
+          	   	   continue;
+          	   	 sum=sum+count[i];
+          	   }
+             if(sum==max)
+                printf("YES\n");
+             else
+                printf("NO\n");
+          }
+	return 0;
+}

@@ -1,0 +1,45 @@
+#include<stdio.h>
+//#include<conio.h>
+#include<malloc.h>
+int findmin(int *a,int size)
+{
+    int index=0,k=0;
+    int temp=a[0];
+    for(k=1;k<size;k++)
+    {
+      if(temp>a[k])
+      {
+      temp=a[k];
+      index=k;
+      }
+    }
+    return index;
+}
+int main()
+{  
+    int testcases=0;
+    int min;
+    int count=0;
+    int workers,i;
+    int *wage;
+    scanf("%d",&testcases);
+    while(testcases--)
+    {
+           count=0;             
+           scanf("%d",&workers);
+           wage=(int *)malloc(sizeof(int)*workers);
+           //if(!wage)
+           //printf("memory error");
+           for(i=0;i<workers;i++)
+           scanf("%d",&wage[i]);
+          min=findmin(wage,workers); 
+          for(i=0;i<workers;i++)
+             {
+                  count=count+(wage[i]-wage[min]);
+             }
+             printf("%d\n",count);
+             free(wage);
+    }
+    //getch();
+    return 0;
+}

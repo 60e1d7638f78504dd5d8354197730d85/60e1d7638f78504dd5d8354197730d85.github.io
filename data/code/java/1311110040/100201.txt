@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+             Scanner input = new Scanner(System.in);  
+        int number1 = input.nextInt();
+        int number2 = input.nextInt(); 
+        System.out.println(gcd(number1, number2));
+        System.out.println(lcm(number1, number2));
+         input.close();  
+  } 
+ public static int gcd(int a,int b)
+ {
+  if(b==0)
+   return a;
+  else
+   return gcd(b,a%b);
+ }
+  public static int lcm(int a,int b)
+ {
+  return a*b/(gcd(a,b));
+ }
+}
+ 

@@ -1,0 +1,33 @@
+#include <stdio.h>
+int binarySearch(int arr[], int l, int r, int x);
+
+int binarySearch(int arr[], int l, int r, int x)
+{
+   if (r >= l)
+   {
+        int mid = l + (r - l)/2;
+ 
+        if (arr[mid] == x)  return mid;
+ 
+        if (arr[mid] > x) return binarySearch(arr, l, mid-1, x);
+ 
+        return binarySearch(arr, mid+1, r, x);
+   }
+   return -1;
+}
+ 
+int main()
+{
+   int t,arr[100],i,s;
+   scanf("%d",&t);
+   for(i=0;i<t;i++)
+     scanf("%d",&arr[i]);
+   scanf("%d",&s);
+   int result = binarySearch(arr, 0, t-1, s);
+   if(result == -1)
+         printf("%d is not present in the list\n",s);
+   else
+     printf("%d found at location %d\n",s,result+1);
+              
+   return 0;
+}

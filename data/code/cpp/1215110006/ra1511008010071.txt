@@ -1,0 +1,67 @@
+#include <iostream>
+
+using namespace std;
+class ishi
+{
+  
+  public:int accno,bal,dep,with,j,i;
+  public: char name[10];
+  
+  void initializeData()
+  {
+    cin>>accno>>name>>bal;
+    cout<<"DEPOSIT"<<"\n"<<"Balance="<<bal<<"\n";
+    //deposit();
+  }
+  void deposit()
+  {
+    cin>>dep;
+    cout<<"Deposited="<<dep<<"\n";
+    bal=bal+dep;
+   cout<<"Balance="<<bal<<"\n";
+   // checkBalance();
+  }
+  void checkBalance()
+  {
+    cin>>with;
+    cout<<"WITHDRAW"<<"\n";
+    cout<<"Balance="<<bal<<"\n";
+    cout<<"Withdraw="<<with<<"\n";
+    if(with>bal)
+    {
+      cout<<"Insufficient balance"<<"\n";
+    }
+    else
+    {
+      
+      bal=bal-with;
+      cout<<"Balance="<<bal<<"\n";
+    }
+    //DisplayDetails();
+  }
+  void DisplayDetails()
+  {
+    
+    cout<<"ACCOUNT DETAILS"<<"\n";
+    cout<<"Account Holders Name:"<<name<<"\n"<<"Account Number:"<<accno<<"\n";
+    if(with>bal)
+    {
+      cout<<"Current Balance:"<<bal;
+    }
+    else
+    {
+     cout <<"Current Balance:"<<bal;
+    }
+  }
+};
+  
+int main()
+{
+  ishi obj;
+ obj.initializeData();
+ obj.deposit();
+ obj.checkBalance();
+ obj.DisplayDetails();
+
+	return 0;
+}

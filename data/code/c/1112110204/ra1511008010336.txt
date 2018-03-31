@@ -1,0 +1,54 @@
+#include <stdio.h>
+int main()
+{
+	int t,a[10][2],b[10][2],rem,gcd,lcm,num,dem;
+  	int i,j;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      for(j=0;j<2;j++)
+      {
+        scanf("%d",&a[i][j]);
+      }
+    }
+  	for(i=0;i<t;i++)
+    {
+      if(a[i][0]>a[i][1])
+      {
+        num = a[i][0];
+        dem = a[i][1];
+      }
+      else
+      {
+        num = a[i][1];
+        dem =a[i][0];
+      }
+      rem = num%dem;
+      while(rem !=0)
+      {
+        num = dem;
+        dem = rem;
+        rem = num%dem;
+      }
+      gcd = dem;
+      lcm = a[i][0]*a[i][1]/gcd;
+      b[i][0] = gcd;
+      b[i][1] = lcm;
+    }
+  	for(i=0;i<t;i++)
+    {
+      for(j=0;j<2;j++)
+      {
+        printf("%d",b[i][j]);
+        if(j<1)
+        {
+          printf(" ");
+        }
+        else
+        {
+          printf("\n");
+        }
+      }
+    }
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  char s[50],s1[50];
+  int l,i,j;
+  i=-1;
+  do {
+    i++;
+    scanf("%c",&s[i]);
+  }while(s[i]!='\n');
+  l=length(s);
+  scanf("%s",s1);
+  for(i=0,j=0;i<l;i++) {
+    if(s1[j]==s[i]) {
+      while(s1[j]==s[i]) {
+        s[i]='*';
+        j++;
+        i++;
+      }
+    }
+  }
+  for(i=0;i<l;i++) {
+    if(s[i]!='*')
+      printf("%c",s[i]);
+  }
+  return 0;
+}
+int length(char c[1000]) {
+  int l=0;
+  while(c[l]!='\0')
+    l++;
+  return l;
+}

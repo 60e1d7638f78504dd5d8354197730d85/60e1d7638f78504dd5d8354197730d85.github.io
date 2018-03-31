@@ -1,0 +1,45 @@
+#include<stdio.h>
+int prime(int);
+int succ(int);
+int main()
+{
+    int n,k,i,m,c=0;
+    scanf("%d %d",&n,&k);
+    for(i=2;i<n;i++)
+    {
+        if(prime(i)==1)
+        {
+            m=succ(i)+i+1;
+            if(prime(m)==1 && m<n)
+                c++;
+        }
+    }
+    if(c>=k)
+        printf("YES");
+    else
+        printf("NO");
+    return 0;
+}
+int prime(int x)
+{
+    int j;
+    for(j=2;j<x;j++)
+    {
+        if(x%j==0)
+            return 0;
+    }
+    return 1;
+}
+int succ(int y)
+{
+    int a;
+    a=y;
+    while(1)
+    {
+        a++;
+        if(prime(a)==1)
+            break;
+    }
+    return a;
+}
+ 

@@ -1,0 +1,27 @@
+#include <stdio.h>
+void insertElement(int arr[],int n);
+void insertElement(int arr[],int n)
+{
+  	int i,index,no;
+  	scanf("%d %d", &index,&no);
+  	if(index<=n)
+    {
+        for(i=n-1;i>=index-1;i--)
+            arr[i+1]=arr[i];
+        arr[index-1]=no;
+        for(i=0;i<=n;i++)
+            printf("\n%d", arr[i]);
+    }
+  	else
+      	printf("Sorry Invalid Location");
+}
+int main()
+{
+	int n,i;
+  	scanf("%d", &n);
+  	int arr[n];
+  	for(i=0;i<n;i++)
+      	scanf("%d", &arr[i]);
+  	insertElement(arr,n);
+	return 0;
+}

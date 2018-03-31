@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int n,i,j,fl;
+  scanf("%d",&n);
+  char s[n][32],temp[32],tem[32];
+  int ar[n];
+  int max=-1000,w,top=-1;
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",temp);
+    scanf("%d",&w);
+    //printf("INPUT: %s %d\n",temp,w);
+    fl=0;
+    for(j=0;j<=top;j++)
+    {
+      if(strcmp(s[j],temp)==0) //Check 1
+      {
+        fl=1;
+        //printf("%s\n",temp);
+        ar[j]=ar[j]+w;
+       // printf("INSIDE CHECK 1: %s %d %d\n",temp,ar[j],w);
+        if(max<ar[j])
+      {
+         max=ar[j];
+      strcpy(tem,s[j]);
+        }
+        break;
+      }
+    }
+    if(fl==0)
+    {
+      strcpy(s[++top],temp);
+      ar[top]=w;
+      //printf("NEW ENTRY: %s %d %d\n",temp,w,ar[top-1]);
+      if(max<ar[top])
+      {
+         max=ar[top];
+      strcpy(tem,s[top]);
+      }
+    }
+  }
+  
+  printf("%s",tem);
+	return 0;
+}

@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  
+int i,j,k,n,t,freq1[26],freq2[26];
+char str1[10]; 
+scanf("%d",&t);
+while(t--)
+{
+char key1[n/2],key2[n/2],key3[n/2];  
+scanf("%s",str1);
+n=strlen(str1); 
+  i=0;
+k=n/2;
+if(n%2==1)
+{
+	k=n/2+1;
+}
+for(j=k;j<n;j++)
+{  
+key2[i]=str1[j];
+++i;
+}
+for(i=0;i<n/2;i++)
+{
+	key3[i]=key2[i];
+}
+//printf("key3:%s",key3);
+for(i=0;i<n/2;i++)
+{	
+  key1[i]=str1[i];
+  //printf("Chutiya:%c",key1[i]);
+}
+
+//printf("key2:%s",key2);
+//printf("key1:%s",key1);
+for(i=0;i<26;i++)
+{
+  	freq1[i]=0;
+   	freq2[i]=0;  
+}
+for(i=0;i<n/2;i++)
+{
+  if(key1[i]>='a' && key1[i]<='z')
+    freq1[(int)key1[i]-97]++;
+  if(key2[i]>='a' && key2[i]<='z')
+    freq2[(int)key2[i]-97]++;
+}
+  for(i=0;i<26;i++)
+ {
+  //printf("%d\n",freq1[i]);
+ }
+  if(memcmp(freq1, freq2, sizeof(freq1)) == 0)
+  {
+  	printf("YES\n");
+  }
+  else
+  {
+  	printf("NO\n");
+  }
+}
+return 0;
+}

@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+  int n,m;
+  scanf("%d", &n);
+  scanf("%d", &m);
+  int arr[n][m];
+  int counter = 0;
+  int i = 0;
+  int j = 0;
+  while(i < n)
+  {
+    while(j < n)
+    {
+      scanf("%d", &arr[i][j]);
+      j = j + 1;
+    }
+    i = i + 1;
+    j = 0; 
+  }
+  i = 0;
+  j = 0;
+  while(i < n)
+  {
+    while(j < m)
+    {
+      if(arr[i][j] != arr[j][i])
+      {
+        counter = 1;
+        break;
+      }
+      j = j + 1;
+    }
+    i = i + 1;
+    j = 0;
+  }
+  
+  if(counter == 0)
+  {
+    printf("Symmetric");
+  }
+  else
+  {
+    printf("Not Symmetric");
+  }
+
+	return 0;
+}

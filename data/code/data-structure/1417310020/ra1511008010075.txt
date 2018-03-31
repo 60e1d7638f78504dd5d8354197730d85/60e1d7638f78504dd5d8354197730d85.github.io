@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int n,i,j;
+char drp[100000];
+
+
+    scanf("%s",drp);
+        for(i=0;i<strlen(drp);i++){
+            if(drp[i]=='f' || drp[i]=='0')
+            continue;
+            for(j=i+1;j<(i+3)&&(j<strlen(drp));j++){
+                if(drp[j]=='0'){
+                    drp[j]='f';
+                }
+            }
+        }
+        int flag=1;
+        for(i=0;i<strlen(drp);i++){
+            if(drp[i]=='0')
+            flag=0;
+        }
+        if(flag)
+        printf("YES\n");
+        else
+        printf("NO\n");
+
+ 
+    
+return 0;    
+} 

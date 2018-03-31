@@ -1,0 +1,33 @@
+#include <stdio.h>
+int calculate(int,int[]);
+int main()
+{
+int a;
+  int arr[100];
+  scanf("%d",&a);
+  int i;
+  for(i=0;i<a;i++)
+    scanf("%d",&arr[i]);
+  int k=calculate(a,arr);
+  if(k==1)
+    printf("The array is Even");
+  else if(k==2)
+    printf("The array is Odd");
+  else
+    printf("The array is Mixed");
+	return 0;
+}
+int calculate(int a,int arr[])
+{
+  int flag=0;
+  int i;
+  for(i=0;i<a;i++)
+  {if(arr[i]%2==0)
+    flag++;
+  }
+  if(flag==0)
+    return 2;
+  else if(flag==a)
+    return 1;
+  else return 3;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<string.h>
+void del(char *,const char); 
+void main()
+{
+  char s[100],toRemove;
+  scanf("%s\n",s);
+  toRemove=getchar();
+  del(s,toRemove);
+  printf("%s",s);
+}
+void del(char * s,const char toRemove)
+{
+int i,j;
+int size;
+  size=strlen(s);
+  for(i=0;i<size;i++)
+  {
+  	if(s[i]== toRemove)
+  		{
+  			for(j=i;j<size;j++)
+  				{
+  					s[j]=s[j+1];
+  				}
+  			size--;
+  			i--;
+  		}
+  }
+}

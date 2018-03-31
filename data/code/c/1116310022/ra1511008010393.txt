@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include <string.h>
+#define DEBUG 0
+#define MAX_SIZE 100005
+char P[MAX_SIZE];
+int N,Q,redcount;
+int parityArr[MAX_SIZE];
+int sizeReduceMap[1<<26];
+long long freqArr[MAX_SIZE];
+long long sums[MAX_SIZE];
+long long squareSums[MAX_SIZE];
+int mapParityValue(int i)
+{
+  if(sizeReduceMap[i]==-1)
+  {
+    sizeReduceMap[i]=redcount;
+    ++redcount;
+  }
+  return sizeReduceMap[i];
+}
+void constructParityArray()
+{
+  int prev;
+  prev=0;
+  sizeReduceMap[prev]=-1;
+  int i=0;
+  for(i=0;i<N;++i)
+  {
+    prev ^=1<<(P[i]-'a');
+    sizeReduceMap[prev]=-1;  
+  }
+  redcount=0;
+  parityArr[0]=mapParityValue(0);
+  if(DEBUG==1)
+   printf("parity Array:%d",parityArr[0]);
+  prev=0;
+  for(i=0;i<N;++i)
+  {
+    parityArr[i+1]=prev ^ (1<<(P[i]-'a'));
+    prev=parityArr[i+1];
+    parityArr[i+1]=mapParityValue(prev);
+    if(DEBUG==1)
+      printf("%d ",parityArr[i+1]);
+  }
+  if(DEBUG==1)
+    printf("\n");
+  return;
+}
+int constructFreqAndSumArray(int L,int R,int type)
+{
+  --L;
+  int i;
+  for(i=0;i<redcount;++i)
+  {
+    freqArr[i]=0;
+    sums[i]=0;
+    squareSums[i]=0;
+  }
+  long long ans0=0,ans1=0,ans2=0;
+  for(i=L;i<=R;++i)
+  {
+    ans2+=freqArr[parityArr[i]]*i*i-
+      2*i*sums[parityArr[i]]+squareSums[parityArr[i]];
+    ans1+=freqArr[parityArr[i]]*i-sums[parityArr[i]];
+    ans0+=freqArr[parityArr[i]];
+    ++freqArr[parityArr[i]];
+    sums[parityArr[i]]+=i;
+    squareSums[parityArr[i]]+=i*i;
+  }
+  if(DEBUG==1)
+  {
+    for(i=0;i<redcount;++i)
+    {
+      printf("%lld ",sums[i]);
+      
+    }
+    printf("\n");
+  }
+  long long ans=0;
+  if(type==0)
+    ans=ans0;
+  else if(type==1)
+    ans=ans1;
+  else 
+    ans=ans2;
+  return ans;
+}
+void decode()
+{
+  long long A=0;
+  long long B=0;
+  int Q;
+  scanf("%d",&Q);
+  while(Q--)
+  {
+    int X,Y,type;
+    scanf("%d %d %d",&X,&Y,&type);
+    int L,R;
+    if(DEBUG==0)
+    {
+      L=(X+A)%N+1;
+      R=(Y+B)%N+1;
+    }
+    else
+    {
+      L=X;
+      R=Y;
+    }
+    if(L>R)
+    {
+      int T=L;
+      L=R;
+      R=T;
+    }
+    long long ans=constructFreqAndSumArray(L,R,type);
+    printf("%lld\n",ans);
+    A=B;
+    B=ans;
+  }
+}
+int main()
+{
+  int T;
+  scanf("%d",&T);
+  while(T--)
+  {
+    scanf("%s",P);
+    N=strlen(P);
+    constructParityArray();
+    decode();
+    
+  }
+
+	return 0;
+}

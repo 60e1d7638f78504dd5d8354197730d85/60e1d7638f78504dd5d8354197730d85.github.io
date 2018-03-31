@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+int main() {
+    long long int t, k, n;
+    scanf("%lld", &t);
+    long long int i;
+    for (i = 0; i < t; i++) {
+        scanf("%lld%lld", &n, &k);
+        long long int sum = 0, number, new = 0;
+        long long int j;
+        for (j = 0; j < n; j++) {
+            scanf("%lld", &number);
+            sum = sum + number;
+        }
+        for (j = 0; j < k; j++) {
+            new = sum + 1;
+            sum = sum + (sum + 1);
+        }
+        if (new % 2 == 0) {
+            printf("even\n");
+        } else {
+            printf("odd\n");
+        }
+    }
+    return 0;
+}

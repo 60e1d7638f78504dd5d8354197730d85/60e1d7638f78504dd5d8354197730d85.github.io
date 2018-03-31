@@ -1,0 +1,54 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t,n,i,j,k,l,flag,ans;
+    scanf("%d",&t);
+    for(i=1;i<=t;i++)
+    {
+    	scanf("%d",&n);
+    	float a[n][2];
+    	char ch[n];
+    	ans=0;
+    	for(j=0;j<n;j++)
+    	scanf("%f %f %c",&a[j][0],&a[j][1],&ch[j]);
+    	ans=n;
+    	for(j=1;j<=4000;j++)
+    	{
+    	    for(k=0;k<n;k++)
+    	    {
+    	        if(ch[k]=='N')
+    	        a[k][1]=a[k][1]+0.5;
+    	        else if(ch[k]=='E')
+    	        a[k][0]=a[k][0]+0.5;
+    	        else if(ch[k]=='S')
+    	        a[k][1]=a[k][1]-0.5;
+    	        else
+    	        a[k][0]=a[k][0]-0.5;
+    	    }
+    	    for(k=0;k<n-1;k++)
+    	    {
+    	        flag=0;
+    	        for(l=k+1;l<n;l++)
+    	        {
+    	            if(a[l][0]==a[k][0] && a[l][1]==a[k][1])
+    	            {
+    	                a[l][0]=ans*5000;
+    	                a[l][1]=ans*5000;
+    	                ans--;
+    	                flag=1;
+    	            }
+    	        }
+    	        if(flag==1)
+    	        {
+    	            a[k][0]=ans*5000;
+    	            a[k][1]=ans*5000;
+    	            ans--;
+    	        }
+    	    }
+    	}
+    	printf("%d\n",ans);
+    }
+    
+    return 0;
+}

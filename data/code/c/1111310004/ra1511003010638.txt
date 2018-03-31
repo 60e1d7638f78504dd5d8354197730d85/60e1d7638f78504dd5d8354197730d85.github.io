@@ -1,0 +1,52 @@
+#include<stdio.h>
+ 
+inline void superFastRead(int *);
+ 
+inline void superFastRead (int *a) 
+{
+	char c = 0;
+	while(c<33)
+		c = fgetc_unlocked(stdin);
+	//fread_unlocked(&c, sizeof(char), 1, stdin);
+	*a = 0;
+	while(c>33) 
+	{
+		*a = *a*10 + c - '0';
+		//fread_unlocked(&c, sizeof(char), 1, stdin);
+		c = fgetc_unlocked(stdin);
+	}
+}
+ 
+int main()
+{
+	int t,g,i,n,q;
+	superFastRead(&t);
+	while(t--)	
+	{
+		superFastRead(&g);
+		while(g--)
+		{
+			superFastRead(&i);
+			superFastRead(&n);
+			superFastRead(&q);
+			int ans = n/2;			
+			if(n%2==0)
+			{
+				printf("%d\n",ans);
+			}
+			else
+			{
+				if(i==q)
+				{
+					printf("%d\n",ans);
+				}
+				else
+				{
+					ans++;
+					printf("%d\n",ans);
+				}
+			}
+		}
+	}
+	return 0;
+}

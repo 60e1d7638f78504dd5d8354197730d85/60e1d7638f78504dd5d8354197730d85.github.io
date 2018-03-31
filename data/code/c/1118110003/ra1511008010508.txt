@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+struct date{
+  int yr;
+};
+
+int main()
+{
+  	struct date year;
+	char str[10],yr[4];
+  	int i;
+  	scanf("%s",str);
+ 	for(i=0;i<4;i++)
+    	yr[i]=str[6+i];
+  	year.yr=atoi(yr);
+  isLeapYear(year.yr);
+  return 0;
+}
+
+int isLeapYear(int year)
+{
+  	if(year%4==0)
+    {
+      if(year%100==0)
+      {
+        if(year%400==0)
+          printf("%d is a leap year",year);
+        else
+          printf("%d is not a leap year",year);
+      }
+      else
+        printf("%d is a leap year",year);
+    }
+  	else
+      printf("%d is not a leap year",year);
+	return 0;
+}

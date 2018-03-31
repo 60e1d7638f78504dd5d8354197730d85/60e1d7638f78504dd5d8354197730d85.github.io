@@ -1,0 +1,54 @@
+ #include<stdio.h>
+    #include<stdlib.h>
+    int n;
+    inline int inp( )
+    {
+    int n=0;
+    int ch=getchar();
+    while( ch >= '0' && ch <= '9' )
+    n = (n<<3)+(n<<1) + ch-'0', ch=getchar();
+    return n;
+    }
+     
+    struct t
+    {
+    int val;
+    int ind;
+    };
+     int cmp(void const *a,void const *b)
+     {
+			struct t *c=(struct t*)a;
+			struct t *d=(struct t*)(b);
+			if(c->val!=d->val)
+			return (c->val-d->val);
+			else return (c->ind-d->ind);
+			
+		}
+    int main()
+    {
+    int i,c=0,min,k,j,index;
+    n=inp();
+    k=inp();
+    struct t a[n];
+    for(i=0;i<n;i++)
+    {
+   scanf("%d",&a[i].val);
+    a[i].ind=i+1;
+    }
+    qsort(a,n,sizeof(struct t),cmp);
+   // for(i=0;i<n;i++)
+   // printf("%d %d\n",a[i].val,a[i].ind);
+    i=0;
+    while(i<n)
+    {
+    c++;
+    min=a[i].val;
+    index=a[i].ind;
+    while(a[i].val==min&&(a[i].ind-index)<k&&i<n)
+    {
+    i++;
+    }
+    }
+    printf("%d\n",c);
+       return 0;
+    }

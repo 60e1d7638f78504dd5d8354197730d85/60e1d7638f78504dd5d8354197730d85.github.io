@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class complex
+{
+  public:
+  float r,i;
+  complex()
+  {
+  r=0;i=0;}
+  complex(float real,float imag)
+  {
+    r=real;
+    i=imag;
+  }
+  void disp()
+  {
+    if(i<0)
+    cout<<"Sum="<<r<<"-4i";
+    else
+      cout<<r<<"+"<<i<<"i";
+  }
+  complex operator +(complex const &obj)
+  {
+    complex res;
+    res.r=r+obj.r;
+    res.i=i+obj.i;
+    return res;
+  }
+};
+int main()
+{
+float x,y,a,b;
+  cin>>a>>b>>x>>y;
+  complex c1(x,y), c2(a,b);
+  complex c3= c1 + c2;
+  c3.disp();
+	return 0;
+}

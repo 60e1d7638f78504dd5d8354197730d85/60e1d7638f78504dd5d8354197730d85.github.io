@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	Scanner scr = new Scanner(System.in);
+ 
+		int c = scr.nextInt();
+ 
+		for(int i=0;i<c;i++){
+			
+			String m = scr.next();
+			String w = scr.next();
+			
+			if(m.length()<w.length())
+				if(chk_subseq(m,w))
+					System.out.println("YES");
+				else
+					System.out.println("NO");
+				
+			else
+				if(chk_subseq(w,m))
+					System.out.println("YES");
+				else
+					System.out.println("NO");
+					
+		}
+	}
+	
+	static boolean chk_subseq(String n1, String n2){
+		
+		int c1 = 0;
+		int len = n2.length();
+		for(int i=0;i<len;i++){
+			if(n1.charAt(c1)==n2.charAt(i))
+				c1++;
+			if(c1==n1.length())
+				return true;
+		}
+		
+		return false;
+			
+	}
+}

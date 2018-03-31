@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main(){
+    int t,n,i,arr[100],s,sum,j;
+    scanf("%d\n",&t);
+    while(t--)
+    {
+        scanf("%d\n",&n);
+        for(i=0;i<n;scanf("%d ",&arr[i++]));
+        scanf("%d\n",&s);
+        i=0;
+        if(s==0)
+        printf("YES\n");
+        for(i=0;i<1<<n;i++)
+        {
+            sum=0;
+            for(j=0;j<n;j++){
+            if(i&(1<<j))
+            sum+=arr[j];
+            }
+            if(sum==s)
+            {
+                printf("YES\n");
+                break;
+            }
+        }
+        if(i==1<<n)
+        printf("NO\n");
+    }
+    return 0;
+}

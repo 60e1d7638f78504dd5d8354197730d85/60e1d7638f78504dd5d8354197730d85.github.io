@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int i,n;
+  int a[50],num=0,j;
+  scanf("%d",&n);
+  for (i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for (i=0;i<n;i++)
+  {
+    num=a[i];
+    if (num!=-999)
+      for (j=i+1;j<n-1;j++)
+      {
+        if (num==a[j]){
+          a[j]=-999;
+        }
+      }
+  }
+  j=0;
+  for (i=0;i<n;i++)
+  {
+    if (a[i]!=-999){
+      j++;}
+  }
+  printf("%d\n",j);
+
+	return 0;
+}

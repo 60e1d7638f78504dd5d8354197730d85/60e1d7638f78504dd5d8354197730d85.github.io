@@ -1,0 +1,41 @@
+#include <iostream>
+#include<algorithm>
+#include<cstring>
+using namespace std;
+int main()
+{
+string str,del;
+  string str1[100];
+  int st=0,e;
+  
+  getline(cin,str);
+  getline(cin,del);
+     int i=0, j = 0, k = 0;
+  size_t p = str.find(" ",0);
+  while(p !=string::npos)
+  {
+    string temp = str.substr(i,p-i);
+   // cout<<temp<<"-";
+    str1[k]=temp;
+    k++;
+    i = p+1;
+    p = str.find(" ",i);
+  }
+  str1[k] = str.substr(i,str.length()-i);
+  //cout<<str1[k];
+  k++;
+  
+    
+	cout<<"The new String after deleting the word:";
+    for (i=0; i<k+1; i++)
+    {
+      if (str1[i] == del)
+      {
+        continue;
+      }
+      else
+        cout<<str1[i]<<" ";
+    }
+    
+    return 0;
+}

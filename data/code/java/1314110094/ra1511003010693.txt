@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner x = new Scanner(System.in);
+       List<String> inp = new ArrayList<String>();
+       int lim = Integer.parseInt(x.nextLine());
+       for(int i = 0; i < lim; i++)
+         inp.add(x.nextLine());
+       List<String> dupp = new ArrayList<String>();
+       List<String> uniq = new ArrayList<String>();
+       for(String s: inp){
+         if(uniq.contains(s)){
+           dupp.add(s);
+         }
+         else{
+           uniq.add(s);
+         }
+       }
+       for(String s: dupp){
+         System.out.println(s);
+       }
+       if(dupp.size() == 0)
+         System.out.println("No Duplicate Element");
+	}
+}

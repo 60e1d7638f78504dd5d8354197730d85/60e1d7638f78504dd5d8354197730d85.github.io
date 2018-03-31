@@ -1,0 +1,31 @@
+    #include <bits/stdc++.h>
+    using namespace std;
+     
+    #define flash ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    typedef long long int ll;
+     
+    ll MAX=1000000007;
+    typedef pair< double, ll> iPair;
+     
+    int main()
+    {
+    	flash;
+    	ll N,K,i;
+    	cin>>N>>K;
+    	ll A[N],ans[N];
+    	double dp[N];
+    	priority_queue < iPair, vector <iPair> , greater<iPair> > q;
+    	for(i=0;i<N;i++) cin>>A[i];
+    	dp[0]=log(A[0]);
+    	ans[0]=A[0]%MAX;
+    	q.push({dp[0],0});
+    	for(i=1;i<N;i++)
+    	{
+    		while((i-q.top().second)>K) q.pop();
+    		dp[i]=q.top().first+log(A[i]);
+    		ans[i]=((A[i]%MAX)*(ans[q.top().second]%MAX))%MAX;
+    		q.push({dp[i],i});
+    	}
+    	cout<<ans[N-1]%MAX<<endl;
+    	return (0);
+    } 

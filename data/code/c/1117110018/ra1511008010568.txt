@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,p,count=0,i,j;
+  scanf("%d%d",&a,&b);
+  int c[a][b];
+  for(i=0;i<a;i++)
+  {
+    for(j=0;j<b;j++)
+    {
+      scanf("%d",&c[i][j]);
+    }
+  }
+  for(i=0;i<a;i++)
+  {
+    for(j=0;j<b;j++)
+    {
+      if(c[i][j]==c[j][i] && i!=j)
+      {
+        count=count+1;
+      }
+    }
+  }
+  p=a*b;
+  p=p-b;
+  if(count==p)
+  {
+    printf("Symmetric");
+    
+  }
+  else
+  {
+    printf("Not Symmetric");
+  }
+  
+
+	return 0;
+}

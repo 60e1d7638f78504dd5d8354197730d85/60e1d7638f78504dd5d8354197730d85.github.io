@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+	int d, i, j, l, is_double, flag;	
+	char s[2000007];
+	scanf("%d", &d);
+	while(d--){
+		scanf("%s", s);
+		l = strlen(s);
+		
+		if(l%2 == 0){
+			i = 0;
+			j = (l/2);
+			while(i < (l/2)){
+				if(s[i] == s[j]){
+					i++;
+					j++;
+				}
+				else{
+					is_double = 0;
+					break;
+				}
+			}
+			if(i == (l/2)){
+				is_double = 1;
+			}
+			if(is_double){
+				printf("YES\n");
+			}
+			else{
+				printf("NO\n");
+			}
+		}
+		else{
+			if(l == 1){
+				printf("NO\n");
+				continue;
+			}
+			//ASSUMING ERROR IN LEFT HALF
+			flag = 0;
+			is_double = 0;
+			i = 0;
+			j = (l/2) + 1;
+			while(j < l){
+				if(s[i] == s[j]){
+					i++;
+					j++;
+				}
+				else{
+					if(flag == 1){
+						break;
+					}
+					i++;
+					flag = 1;
+				}
+			}
+			if(j == l && flag <= 1){
+				printf("YES\n");
+				continue;
+			}
+			
+			//ASSUMING ERROR IN RIGHT HALF
+			flag = 0;
+			i = 0;
+			j = (l/2);
+			while(i < (l/2)){
+				if(s[i] == s[j]){
+					i++;
+					j++;
+				}
+				else{
+					if(flag == 1){
+						break;
+					}
+					j++;
+					flag = 1;
+				}
+			}
+			if(i == (l/2) && flag <= 1){
+				printf("YES\n");
+			}
+			else{
+				printf("NO\n");
+			}
+		}
+	}
+	return 0;
+} 

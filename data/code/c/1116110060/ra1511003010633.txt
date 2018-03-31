@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int t,l1,l2,i;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int flag=0;
+		char x[15];
+		char y[15];
+		scanf("%s",x);
+		scanf("%s",y);
+		l1=strlen(x);
+		l2=strlen(y);
+		if(l1!=l2)
+		{
+			printf("No\n");
+			continue;
+		}
+		for(i=0;i<l1;i++)
+		{
+			if(x[i]!='?'&&y[i]!='?'&&x[i]!=y[i])
+			{
+				printf("No\n");
+				flag=1;
+				break;
+			}
+		}
+		if(flag!=1)
+			printf("Yes\n");
+	}
+	return 0;
+}

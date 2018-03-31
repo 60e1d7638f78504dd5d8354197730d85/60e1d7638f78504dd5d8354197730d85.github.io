@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.Scanner;
+import java.text.*;
+class Reverse
+{
+  int[] a;
+  int n;
+  public void getInput()
+  {
+    Scanner s = new Scanner(System.in);
+    n = s.nextInt();
+    a = new int[n];
+    for (int i = 0; i<a.length;i++)
+    {
+       a[i] = s.nextInt();
+    }
+  }
+  
+  public void arrayReverse()
+  {
+    int j = n-1;
+    int k = 0;
+    
+    while (k<j)
+    {
+      int temp = a[k];
+      a[k] = a[j];
+      a[j] = temp;
+      j--;
+      k++;
+     }
+    
+    for (int l=0; l<n;l++)
+    {
+       System.out.print(a[l] + " ");
+    }
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+	
+       Reverse obj = new Reverse();
+       obj.getInput();
+       obj.arrayReverse();
+}
+}

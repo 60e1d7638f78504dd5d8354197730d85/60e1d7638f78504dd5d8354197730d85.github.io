@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+int n,t,i,j,x,y,a[100][100],max=-1;
+  char str[100];
+  scanf("%d%d",&n,&t);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      a[i][j]=0;
+    }
+  }
+  while(t--)
+  {
+  	scanf("%s",str);
+    scanf("%d%d",&x,&y);
+    
+    if(strcmp(str,"RowAdd")==0)
+    {
+    	for(i=0;i<n;i++)
+        {
+        	a[x-1][i]+=y;
+        }
+    }
+      else
+      {
+        for(i=0;i<n;i++)
+        {a[i][x-1]+=y;}
+      }
+    
+    for(i=0;i<n;i++)
+    {
+    	for(j=0;j<n;j++)
+        {	
+        		if(a[i][j]>max) max=a[i][j];
+          
+        }
+      
+    }
+  }
+  printf("%d",max);
+	return 0;
+}

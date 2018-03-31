@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,num,j,flag=0;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    flag=0;
+    num=a[i];
+    if(num==1)
+    {
+      printf("1 is a prime number\n");
+    }
+    else 
+    {
+      for(j=2;j<=num/2;j++)
+      {
+        if(num%j==0)
+        {
+          flag=1;
+          break;
+        }
+        else
+          flag=0;
+      }
+      if(flag==1)
+        printf("%d is a composite number\n",num);
+      if(flag==0)
+        printf("%d is a prime number\n",num);
+    }
+  }
+	return 0;
+}

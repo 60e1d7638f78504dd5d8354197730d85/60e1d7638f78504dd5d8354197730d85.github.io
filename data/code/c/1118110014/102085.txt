@@ -1,0 +1,29 @@
+#include <stdio.h>
+int comp(float,float);
+struct frac
+  {
+    int num;
+    int den;
+  }f[5];
+  int main()
+  {
+    int i,a;
+    float x[20];
+    for(i=0;i<2;i++)
+      scanf("%d%d",&f[i].num,&f[i].den);
+    for(i=0;i<2;i++)
+      x[i]=f[i].num/f[i].den;
+    a=comp(x[0],x[1]);
+    if(a==1)
+      printf("%d/%d is greater than %d/%d",f[0].num,f[0].den,f[1].num,f[1].den);
+    else
+      printf("%d/%d is smaller than %d/%d",f[0].num,f[0].den,f[1].num,f[1].den);
+    return 0;
+  }
+int comp(float x,float y)
+{
+  if(x>y)
+    return 1;
+  else
+    return 0;
+}

@@ -1,0 +1,28 @@
+  #include <stdio.h>
+  int main()
+  {
+  int t,i;
+  long long int a[100000],n,k,b;
+  scanf("%d",&t);
+  while(t--)
+  {
+  b=0;
+  scanf("%lli %lli",&n,&k);
+  for(i=0;i<n;i++)
+  scanf("%lli",&a[i]);
+  for(i=0;i<n;i++)
+  {
+  b=b+a[i];
+  if((b%k)!=0 && i!=(n-1) && a[i]!=0)
+  {
+  b=b+1;
+  }
+  }
+  if(b%k==0)
+  printf("%lli",(b/k));
+  else
+  printf("%lli",(b/k)+1);
+  printf("\n");
+  }
+  return 0;
+  }

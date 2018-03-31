@@ -1,0 +1,19 @@
+#include<stdio.h>
+int main(){
+	int n,count,t;
+	scanf("%d",&t);
+	while(t--){
+		count=0;
+		scanf("%d",&n);
+		if(n>2048){
+		 count+=n/2048;
+		 n=n%2048;
+		}
+		while(n){
+			if(n&1) count++;
+			n=n>>1;
+		}
+		printf("%d\n",count);
+	}
+	return 0;
+} 

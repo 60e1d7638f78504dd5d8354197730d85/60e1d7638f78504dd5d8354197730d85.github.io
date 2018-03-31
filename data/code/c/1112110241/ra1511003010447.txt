@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int n=0;
+  char tempString[26];
+  int alphabets[26]={0};
+  char words[12];
+  int i;
+  int j=0;
+  int k;
+  int flag;
+  
+  scanf("%s",tempString);
+  tolower(tempString);
+  
+ if(strlen(tempString)!=1){
+  		
+  while(tempString[j]!='\0'){
+  alphabets[tempString[j]-'a']++;
+  
+                          j++;		
+ 	 }
+  	}  scanf("%d",&n);
+ 
+  while(n>0){
+  scanf("%s",words);
+    
+    flag=1;
+    i=0;
+    tolower(words);
+    if(strlen(tempString)==1){
+      //printf("%s %s",tempString,words);
+    	if(strcmp(tempString,words)){
+        		printf("No\n");
+        		}else{
+        		printf("Yes\n");
+        		}
+    	}else{
+  while(words[i]!='\0'){
+    //printf("\nword i%c",words[i]);
+   // printf("%d",flag);
+    if(alphabets[words[i]-'a']==0){
+                  flag=0;
+                  break;}
+    i++;
+  		}
+                  if(flag==0)
+                  printf("No\n");
+                  else
+                  printf("Yes\n");
+  		}
+    
+    n--;
+     }
+	return 0;
+}

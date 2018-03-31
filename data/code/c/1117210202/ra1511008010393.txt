@@ -1,0 +1,69 @@
+#include <stdio.h>
+#define gchar getchar()
+typedef long long int ll;
+int arr[8][4001];
+void inp(int *n)
+{
+  register char c=0;
+  while(c<32)
+    c=gchar;
+  *n=0;
+  while(c>33)
+  {
+    *n= *n*10+c-'0';
+    c=gchar;
+  }
+}
+void strpow(int a,int b,char *str,int tc)
+{
+  int i,carry,m,tmp=b,init=0;
+  int sum=0;
+  str[0]='0'+a;
+  carry=0;
+  arr[a-2][0]=1;
+  arr[a-2][1]=a;
+  b--;
+  while(b--)
+  {
+    sum=0;
+    for(i=0;i<=init;i++)
+    {
+      m=(int)(str[i]-'0')*a+carry;
+      carry=m/10;
+      str[i]='0'+m%10;
+      sum+=m%10;
+    }
+    if(carry)
+      while(carry)
+      {
+        init++;
+        str[init]='0'+carry%10;
+        sum+=carry%10;
+        carry/=10;
+      }
+    arr[a-2][tmp-b]=sum;
+  }
+  return;
+}
+int main()
+{
+ char str[4000];
+  int i,t,tc,a,b;
+  inp(&t);
+  tc=1;
+  for(i=2;i<=9;i++)
+    strpow(i,4000,str,tc);
+  while(tc<=t)
+  {
+    inp(&a);
+    inp(&b);
+    if(a==1)
+    {
+      printf("Case %d: 1\n",tc++);
+      continue;
+    }
+    else
+      printf("Case %d: %d\n",tc++,arr[a-2][b]);
+  }
+	return 0;
+}

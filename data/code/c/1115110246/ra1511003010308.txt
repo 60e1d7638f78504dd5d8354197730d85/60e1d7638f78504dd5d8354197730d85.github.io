@@ -1,0 +1,35 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int m,n,sum,i,j,count,type,c,d,p;
+    scanf("%d%d",&n,&m);
+    char str[1000];
+    scanf("%s",str);
+    for(p=0;p<m;p++)
+    {
+ 
+scanf("%d%d%d",&type,&c,&d);
+if(type==2)
+{
+    count=0;
+   for(i=c-1;i<d;i++)
+   {
+       sum=0;
+       for(j=i;j<d;j++)
+       {
+           sum=sum+(str[j]-'0');
+           if(sum%3==0)
+            count++;
+       }
+   }
+   printf("%d\n",count);
+}
+if(type==1)
+{
+   str[c-1]=d;
+}
+    }
+  return 0;
+}
+ 

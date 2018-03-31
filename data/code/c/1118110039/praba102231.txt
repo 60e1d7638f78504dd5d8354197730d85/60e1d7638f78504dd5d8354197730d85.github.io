@@ -1,0 +1,74 @@
+#include<stdio.h>
+ 
+int prec(char c)
+{
+ switch(c)
+{
+ case '*':
+	return 1;
+ case '^':
+	return 2;
+ case '/':
+	return 1 ;
+ case '+':
+	return 0 ;
+case '-':
+	return 0 ;
+default:
+	return 3;
+}
+}
+ 
+int main(void)
+{
+int x,i,k,l;
+scanf("%d",&x);
+ 
+char a[100][400],b[300]="";
+ 
+for(i=0;i<x;i++)
+  	scanf("%s",a[i]);
+ 
+for(k=0;k<x;k++)
+{
+	int n=0;
+	
+	for(l=0;a[k][l]!='\0';l++)
+	{
+		if(a[k][l]=='(')
+			{
+			 b[n++]=a[k][l];
+			}
+ 
+		else if(a[k][l]==')')
+			{
+				while(b[n-1]!='(')
+					putc(b[--n],stdout);
+				n--;
+			}
+ 
+		else if(a[k][l]=='+'|| a[k][l]=='-'|| a[k][l]=='*'|| a[k][l]=='/' || a[k][l]=='^')
+			{
+			 if(n==0 ||b[n-1]=='(' || prec(a[k][l])>prec(b[n-1]))
+				b[n++]=a[k][l];
+			 else
+				{
+				 do{
+				   putc(b[--n],stdout);
+				   }while(n!=0 &&b[n-1]!='('&& prec(a[k][l])<prec(b[n-1]));
+				 b[n++]=a[k][l];
+				}
+			}
+		else
+			putc(a[k][l],stdout);
+	}
+ 
+	while(n>0)
+		{
+		 putc(b[--n],stdout);
+		}
+printf("\n");
+}
+ 
+return 0;
+} 

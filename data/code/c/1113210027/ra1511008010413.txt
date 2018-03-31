@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+ int n,i,k,z,x,t,ind;
+    int ar[1002];
+    scanf("%d",&t);
+    while(t--)
+    {
+    scanf("%d %d",&z,&n);
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d",&ar[i]);
+    }
+    ind=1;
+    for(i=1;i<=n;i++)
+    {
+        x=0xffffffff;
+        for(k=i;k<=n;k++)
+        {
+            x=(x)&(ar[k]);
+            if((x&z)==0)
+            {
+                printf("Yes\n");
+                ind=0;
+                break;
+            }
+        }
+        if(ind==0)
+        {
+            break;
+        }
+    }
+    if(ind)
+    {
+        printf("No\n");
+    }
+    }
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int callcount,callcost;
+  float l1,l2,l3;
+  l1 = 0.60;
+  l2 = 0.50;
+  l3 = 0.40;
+  
+  int c1,c2,c3;
+  c1 = 100;
+  c2 = 150;
+  c3 = 200;
+  //l1 = 0.60;
+  callcost = 200;
+  cin>>callcount;
+  if(callcount<101)
+  {
+     //callcost=200;
+    cout<<"Your bill is Rs."<< callcost;
+  }
+  else if((callcount>100)&&(callcount<151))
+  {
+      callcost= callcost + (l1 * (callcount - c1));
+    cout<<"Your bill is Rs."<<callcost;
+  }
+  else if((callcount>150)&&(callcount<201))
+  {
+      callcost= callcost + (l1 * (c2 - c1)) + (l2 * (callcount - c2));
+    cout<<"Your bill is Rs."<<callcost;
+  }
+  else 
+  {
+    callcost= callcost + (l1*(c2 - c1)) + (l2 * (c3 - c2))+ (l3 * (callcount - c3));
+    cout<<"Your bill is Rs."<<callcost;
+ 
+  }
+  //cout<<"your bill is Rs."<<callcost;
+  return 0; }

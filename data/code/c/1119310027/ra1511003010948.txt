@@ -1,0 +1,38 @@
+#include<stdio.h>
+//#include<conio.h>
+#include<math.h>
+
+int main()
+{
+    int t,small,d,diff,j,n;
+    scanf ("%d",&t);
+    while (t--)
+    {
+          scanf ("%d",&n);
+          int arr[10010],c=0;diff=0;
+          for (j=1; j<=sqrt((double)n)+1; j++)
+          {
+              if (n%j==0)
+              {
+                 d=n/j;
+                 diff=d-j;
+                 arr[c]=abs(diff);
+                 c++;
+              }
+          }
+          small=arr[0];
+          for (j=0; j<c; j++)
+          {
+              if (small>arr[j])
+              {
+                 small=arr[j];
+              }
+          }
+          if (n!=1)
+          printf ("%d\n",small);
+          else
+          printf ("%d\n",n-1);
+    }          
+    //getch ();
+    return 0;
+} 

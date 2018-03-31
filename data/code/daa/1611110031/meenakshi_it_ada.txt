@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+void sumthree(int[]);
+int main()
+{
+    int i,arr[5];
+for(i=0;i<5;i++)
+  cin>>arr[i];
+    sumthree(arr);
+    return 0;
+}
+void sumthree(int arr[])
+{
+    int found = 0;
+   int i,j,k;
+    for (i=0; i<3; i++)
+    {
+        for (j=i+1; j<4; j++)
+        {
+            for (k=j+1; k<5; k++)
+            {
+                if (arr[i]+arr[j]+arr[k] == 0)
+                {
+                    cout << arr[i] << " "
+                         << arr[j] << " "
+                         << arr[k] <<endl;
+                    found = 1;
+                }
+            }
+        }
+    }
+ 
+    // If no triplet with 0 sum found in array
+    if (found == 0)
+        cout << " not exist "<<endl;
+ 
+}

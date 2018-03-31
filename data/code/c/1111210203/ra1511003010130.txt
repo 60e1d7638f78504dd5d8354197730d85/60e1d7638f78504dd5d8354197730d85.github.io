@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  	int bin, i = 0, num, j;
+	scanf("%d", &bin);
+  	int n = bin;
+  	double er;
+  	int a[10];
+  	while(n!=0){
+    	num = n % 10;
+      	n = n / 10;
+      	a[i] = num;
+      	i = i + 1;
+    }
+  	int h = i - 1;
+  	int mul, sum = 0;
+  	for(j=0;j<i;j++){
+    	er = pow(2,h);
+      	mul = er * a[j];
+      	sum = sum + mul;
+      	h = h-1;
+    }
+  	printf("%d", sum);
+	return 0;
+}

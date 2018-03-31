@@ -1,0 +1,41 @@
+#include <stdio.h>
+    #include <stdint.h>
+    #include <stddef.h>
+    #include <ctype.h>
+    #include <string.h>
+    #include <stdlib.h>
+     
+    char *week[] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"};
+     
+    inline int getInt()
+    {
+    	char c;
+    	int val = 0; 
+    	while (!isdigit(c = getchar_unlocked()));
+    	do {
+    		val = val*10 + (c - '0');
+    	} while (isdigit(c = getchar_unlocked()));
+    	return val;
+    }
+     
+    int getInt();
+     
+     
+    int main()
+    {
+    	int t = getInt();
+     
+    	while (t--) {
+    		int year = getInt();	
+    		int offset = year - 1900;
+    		int i;
+    		for (i=1900; i<year; i++)
+    			if ((((i % 4) == 0) && ((i % 100) != 0)) || ((i % 400) == 0))
+    				offset++;
+    		offset = (offset + 1) % 7;
+    		printf("%s\n", week[offset]);
+    	
+    	}
+     
+    	return 0;
+    }

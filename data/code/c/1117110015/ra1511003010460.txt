@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+    int arr[3][3],i,j,dig1=0,dig2=0,sum1=0,sum2=0,count=0,tot=0;
+    int col[3],row[3],sum=0;
+    for(i=0;i<3;i++)
+    { 
+      sum=0;
+      for(j=0;j<3;j++)
+      {
+        scanf("%d",&arr[i][j]);
+        if(i==j)
+          dig1+=arr[i][j];
+        if((i+j)==2)
+          dig2+=arr[i][j];
+        tot+=arr[i][j];
+        sum+=arr[i][j];
+      }
+      row[i]=sum;
+    }
+  for(i=0;i<3;i++)
+    { 
+      sum=0;
+      for(j=0;j<3;j++)
+      {
+        sum+=arr[j][i];
+      }
+    col[i]=sum;
+  }
+  int f=0;
+  for(i=0;i<3;i++)
+  {
+    if(dig1!=dig2 && dig2!=col[i] && col[i]!=row[i])
+      f=1;
+  }
+  if(f==1)
+    printf("No");
+  else
+    printf("Yes");
+    
+    
+	return 0;
+}

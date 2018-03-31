@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+int foo(char day[])
+{   if (!strcmp(day,"monday"))
+    return 1;
+    else
+    if (!strcmp(day,"tuesday"))
+    return 2;
+    else
+    if (!strcmp(day,"wednesday"))
+    return 3;
+    else
+    if (!strcmp(day,"thursday"))
+    return 4;
+    else
+    if (!strcmp(day,"friday"))
+    return 5;
+    else
+    if (!strcmp(day,"saturday"))
+    return 6;
+    else
+    return 0;
+}
+int main()
+{char day1[10];char day2[10];
+int a,b,c;
+   // printf("Give 2 days of the week: ");
+    scanf("%s %s",day1,day2);
+    a=foo(day1);
+    b=foo(day2);
+    //printf("%d\n",a);
+   // printf("%d\n",b);
+    c=(7+b-a)%7;
+     if (!((28-c)%7) || !((30-c)%7) || !((31-c)%7))
+        printf("YES\n");
+    else printf("NO\n");
+ return 0;
+}

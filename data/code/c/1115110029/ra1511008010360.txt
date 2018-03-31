@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+int t,n,c[100000],f,i,c1=0;
+  scanf("%d",&t);
+  while(t>0)
+  {
+    f=0;
+    scanf("%d",&n);
+    c1=c1+n;
+    if(c1<=500000)
+    {
+      if(n>=2 && n<=100000)
+      {
+        for(i=0;i<n;i++){
+          scanf("%d",&c[i]);
+        }
+        for(i=0;i<n-2;i++)
+        {
+          if(c[i]==c[i+1] && c[i+1]==c[i+2])
+          {
+            f=1;
+            break;
+          }
+        }
+        if(f==1)
+        {
+          printf("Yes\n");
+        }
+        else
+        {
+          printf("No\n");
+        }
+      }
+    }
+    t--;
+  }
+          
+  return 0;
+}

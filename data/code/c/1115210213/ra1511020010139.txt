@@ -1,0 +1,104 @@
+#include <stdio.h>
+ 
+#define maxN 100010
+ 
+typedef struct {
+    int modL[3], modR[3];
+    int rem;
+    long long cnt;
+} node;
+ 
+node t[4 * maxN];
+node Identity;
+ 
+int A[maxN];
+ 
+node merge( node tL, node tR ) {
+    node ret = Identity;
+ 
+    ret.cnt = tL.cnt + tR.cnt;
+ 
+    int i;
+    for( i = 0; i < 3; i++ ) {
+	ret.modL[i] = tL.modL[i] + tR.modL[(i - tL.rem + 3) % 3];
+	ret.modR[i] = tR.modR[i] + tL.modR[(i - tR.rem + 3) % 3];
+	ret.cnt += (long long) tL.modR[i] * tR.modL[(3 - i) % 3];
+    }
+ 
+    ret.rem = (tR.rem + tL.rem) % 3;
+    
+    return ret;
+}
+ 
+void build( int idx, int l, int r ) {
+    if( l == r ) {
+	t[idx].modL[A[l] % 3] = 1;
+	t[idx].modR[A[l] % 3] = 1;
+	t[idx].rem = A[l] % 3;
+	t[idx].cnt = (A[l] % 3) ? 0 : 1;
+ 
+	return;
+    }
+ 
+    int mid = (l + r) / 2;
+    build(2*idx, l, mid);
+    build(2*idx + 1, mid + 1, r); 
+    
+    t[idx] = merge(t[2 * idx], t[2 * idx  + 1]);
+}
+ 
+void update( int idx, int l, int r, int p, int new ) {
+    
+    if( l == r ) {
+	t[idx] = Identity;
+	A[p] = new;
+ 
+	t[idx].modL[new % 3] = 1;
+	t[idx].modR[new % 3] = 1;
+	t[idx].rem = new % 3;
+	t[idx].cnt = (new % 3) ? 0 : 1;
+ 
+	return;
+    }
+ 
+    int mid = (l + r) / 2;
+ 
+    if( p <= mid )
+	update(2 * idx, l, mid, p, new);
+    else
+	update(2 * idx + 1, mid + 1, r, p, new);
+ 
+    t[idx] = merge(t[2 * idx], t[2 * idx + 1]);
+}
+ 
+node query( int idx, int l, int r, int a, int b ) {
+    if( (l > r) || (r < a) || (b < l) )
+	return Identity;
+ 
+    if( (a <= l) && (r <= b) )
+	return t[idx];
+    
+    int mid = (l + r) / 2;
+    
+    return merge(query(2*idx, l, mid, a, b), query(2*idx+1, mid+1, r, a, b));
+}
+ 
+int main( void ) {
+    int n, k; 
+    scanf("%i %i", &n, &k);
+ 
+    int i;
+    for( i = 0; i < n; i++ )
+	scanf("%1i", &A[i]);
+ 
+    build(1, 0, n - 1);
+ 
+    while( k-- ) {
+	int cmd, l, r;
+	scanf("%i %i %i", &cmd, &l, &r);
+ 
+	if( cmd == 1 ) update(1, 0, n - 1, l - 1, r);
+	else	       printf("%lld\n", query(1, 0, n - 1, l - 1, r - 1).cnt);
+    }
+    return 0;
+} 

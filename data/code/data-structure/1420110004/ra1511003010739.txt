@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[1002],ch;
+    int t,i,j,count,a[27];
+    scanf("%d",&t);
+    while(t--)
+    {
+        count=0;
+        scanf("%s",s);
+        for(i=0;i<27;i++)
+        {
+            a[i]=0;
+        }
+        for(i=0;s[i]!='\0';i++)
+        {
+            a[s[i]-'a']++;
+        }
+        
+        for(i=0;i<27;i++)
+        {
+            if(a[i]%2!=0)
+            {
+                count++;
+            }
+        }
+        if(count==0)
+        {
+            printf("0\n");
+        }
+        else
+        {
+            if(strlen(s)%2!=0)
+            {
+                if(count==1)
+                {
+                    printf("0\n");
+                    continue;
+                }
+            }
+            
+            printf("%d\n",count-1);
+            
+        }
+        
+    }
+    return 0;
+}

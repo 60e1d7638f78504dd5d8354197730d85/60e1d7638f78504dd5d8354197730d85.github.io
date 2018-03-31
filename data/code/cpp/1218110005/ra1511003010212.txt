@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+class Rectangle
+{
+   protected:
+  float a,b;
+  public:
+   void get(float i,float j)
+   {
+      a=i;
+     b=j;
+   }
+};
+
+class perimeter:public Rectangle
+{
+    public:
+  void calc()
+  {
+     cout<<2*(a+b)<<endl;
+  }
+};
+
+class area:public Rectangle
+{
+    public:
+  void calc()
+  {
+     cout<<a*b<<endl;
+  }
+};
+int main()
+{
+    area ar;
+  perimeter p;
+  float a,b;
+  cin>>a>>b;
+  ar.get(a,b);
+  p.get(a,b);
+  ar.calc();
+  p.calc();
+	return 0;
+}

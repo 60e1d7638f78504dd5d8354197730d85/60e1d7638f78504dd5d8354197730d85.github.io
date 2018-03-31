@@ -1,0 +1,62 @@
+#include<stdio.h>
+ 
+#include<string.h>
+ 
+int main()
+ 
+{
+ 
+	int t;
+ 
+	scanf("%d",&t);
+ 
+	while(t--)
+ 
+	{
+ 
+		char a[51];
+ 
+	int i,j,b[26],temp,max=0,sum=0;
+ 
+		scanf("%s",a);
+ 
+		for(i=0;i<26;i++)
+ 
+		b[i]=0;
+ 
+		for(i=0;i<strlen(a);i++)
+ 
+		{
+ 
+		    b[a[i]-'a']++;
+ 
+		if(b[a[i]-'a']>max)
+ 
+			{max=b[a[i]-'a'];
+ 
+			temp=a[i]-'a';
+ 
+			}	
+ 
+		}
+ 
+		for(i=0;i<26;i++)
+ 
+		{
+			if(i!=temp)
+ 
+			sum+=b[i];
+ 
+		}
+ 
+		if(sum==b[temp])
+ 
+		printf("YES\n");
+ 
+		else printf("NO\n");
+ 
+	}return 0;
+ 
+} 
+ 
+ 

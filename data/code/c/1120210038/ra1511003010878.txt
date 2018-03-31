@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+#define min(x, y) (x < y ? x : y)
+#define max(x, y) (x > y ? x : y)
+ 
+int gcd(int a, int b) {
+    return (b == 0 ? a : gcd(b, a % b));
+}
+ 
+int pour(int a, int b, int c) {
+    int steps = 0, x = 0, y = 0;
+    while(1) {
+        if(x == 0)
+            x = a;
+        else if(y == b)
+            y = 0;
+        else {
+            int d = min(x, b-y);
+            y += d;
+            x -= d;
+        }
+        steps++;
+        if(x == c || y == c)
+            break;
+    }
+    return steps;
+}
+ 
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while(t--)
+    {
+        int a, b, c;
+        scanf("%d %d %d", &a, &b, &c);
+        if(c > max(a, b) || c % gcd(a, b) != 0) puts("-1");
+        else printf("%d\n", min(pour(a, b, c), pour(b, a, c)));
+    }
+    return 0;
+} 
+

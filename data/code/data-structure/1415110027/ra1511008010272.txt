@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  struct node *next;
+}*head1,*head2,*head3;
+int main()
+{
+	int n1,n2;
+  	cin>>n1>>n2;
+  	struct node *temp;
+  cout<<"List 1\n";
+  	for(int i=0;i<n1;i++) {
+      temp = (struct node*)malloc(sizeof(struct node));
+      cin>>temp->data;
+      temp->next=head1;
+      head1=temp;
+      cout<<"->"<<head1->data;
+    }
+  cout<<"\nList 2\n";
+  	for(int i=0;i<n2;i++) {
+      temp = (struct node*)malloc(sizeof(struct node));
+      cin>>temp->data;
+      temp->next=head2;
+      head2=temp;
+      cout<<"->"<<head2->data;
+    }
+  cout<<"\nCommon list\n";
+  struct node* p1=head1;
+  struct node* p2=head2;
+  struct node *x;
+  while(p1!=NULL && p2!=NULL) {
+    if(p1->data==p2->data) {
+      x = (struct node*)malloc(sizeof(struct node));
+      x->data = p1->data;
+      x->next = head3;
+      head3 = x;
+      p1 = p1->next;
+      p2 = p2->next;
+    }
+    else if(p1->data>p2->data)
+      p1 = p1->next;
+    else
+      p2 = p2->next;
+  }
+  while(head3!=NULL) {
+    cout<<"->"<<head3->data;
+    head3 = head3->next;
+  }
+	return 0;
+}

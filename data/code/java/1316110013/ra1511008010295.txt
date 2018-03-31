@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+class Passkey{
+   public void passKey(){
+    Scanner sc=new Scanner(System.in);
+    String str=sc.nextLine();
+    String s=str.replaceAll("[^0-9]","");
+    int N=s.length();
+    int[]arr=new int[N];
+    for(int i=0;i<N;i++)
+      arr[i]=Character.digit(s.charAt(i),10);
+    int max=arr[0],min=arr[0],sum1=arr[0]; 
+    for(int i=1;i<N;i++){
+      if(arr[i]>max)
+        max=arr[i];
+      if(arr[i]<min)
+        min=arr[i];
+      sum1+=arr[i];
+    };
+    sum1*=max;
+    while((sum1=((sum1%10)+sum1/10))>9);
+    int sum2=arr[0];
+    for(int i=1;i<N;i++)
+      sum2*=(min+arr[i]);
+    while((sum2=((sum2%10)+sum2/10))>9);
+    int digit3=(sum1<sum2?sum1:sum2);
+    System.out.println(digit3*digit3);
+  }
+}
+public class TestClass{
+	 public static void main(String[]args){
+       Passkey s1=new Passkey();
+       s1.passKey();
+	}
+}

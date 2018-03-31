@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,n,q,t[100],s[100],tm,tp,sum,num;
+  scanf("%d",&n);
+  scanf("%d",&q);
+  for(i=0;i<n;i++)
+    scanf("%d",&t[i]);
+  for(i=0;i<n;i++)
+    scanf("%d",&s[i]);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n-i-1;j++)
+    {
+      if(s[j]<s[j+1])
+      {
+        tp=s[j];
+        s[j]=s[j+1];
+        s[j+1]=tp;
+        tm=t[j];
+        t[j]=t[j+1];
+        t[j+1]=tm;
+      }
+    }
+  }
+for(i=0;i<q;i++)
+{
+  sum=0;
+  scanf("%d",&num);
+  for(j=0;j<num;j++)
+    sum=sum+t[j];
+  printf("%d\n",sum);
+}
+	return 0;
+}

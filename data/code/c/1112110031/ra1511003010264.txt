@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main()
+{
+  	int n = 9;
+    char s[n];
+    int i,r,c,row[8] = {0}, col[8] = {0};
+    for (r = 0; r < 8; ++r)
+    {
+        scanf("%s", s);
+        for (c = 0; c < 9; ++c)
+        {
+            if (s[c] == 'W')
+            {
+                row[r] = 1;
+                col[c] = 1;
+            }
+        }
+    }
+  	c=0;
+  for(i=0;i<8;i++) c += row[i]+col[i];
+    int answer = 16 - c;
+    if (answer == 16)
+    {
+        answer = 8;
+    }
+    printf("%d\n", answer);
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,pos,max,second_max;
+    
+    scanf("%d",&n);
+    
+    int arr[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+    max = second_max = arr[0];
+    
+    for(i=0;i<n;i++)
+    {
+        if(max <= arr[i])
+        {
+            max = arr[i];
+            pos = i;
+        }
+    }
+    arr[pos] = -1;
+    
+    for(i=0;i<n;i++)
+    {
+        if(second_max <= arr[i])
+            second_max = arr[i];
+    }
+    printf("%d",second_max);
+
+	return 0;
+}

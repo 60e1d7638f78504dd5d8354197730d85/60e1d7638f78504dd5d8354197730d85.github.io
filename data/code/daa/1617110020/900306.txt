@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+  int np,nd;
+  int i,j;
+  cin>>np>>nd;
+  int gnum[20];
+  bool adj[20][20];
+  for(i=0;i<np;i++)
+  {   for(j=0;j<np;j++)
+      adj[i][j]=false;
+  gnum[i]=-1;
+}
+  for(i=0;i<nd;i++)
+  {
+    int a,b;
+    cin>>a>>b;
+    adj[a][b]=adj[b][a]=true;
+  }
+  
+  gnum[0]=0;
+  queue<int>q;
+  q.push(0);
+  while(!q.empty())
+  {
+    int t=q.front();
+    q.pop();
+    for(i=1;i<np;i++)
+    {
+      if(adj[i][t]&&gnum[i]==-1)
+      {
+        gnum[i]=gnum[t]+1;
+        q.push(i);
+       }           
+    }
+ }
+  for(i=1;i<np;i++)
+    cout<<gnum[i]<<endl;
+	return 0;
+}

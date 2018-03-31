@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main(void) {
+  int t, i, j, k, l;
+  char arr[99];
+  
+  scanf("%d", &t);
+  for (i=0; i<t; i++) {
+    scanf("%s", arr);
+    l = strlen(arr);
+    for (j=0, k=0; j<l; j++) {
+      if (arr[j]=='(') {
+        k++;
+      } else {
+        if (k==0) { k=1; break; }
+        k--;
+      }
+    }
+    if (k>0) {
+      printf("NO\n");
+    } else {
+      printf("YES\n");
+    }
+  }
+	return 0;
+}

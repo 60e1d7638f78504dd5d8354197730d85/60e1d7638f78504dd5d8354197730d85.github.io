@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+ 
+struct student 
+{
+           int feet1,feet2;
+           float inch1,inch2;
+};
+ 
+void func(struct student *record);
+ 
+int main() 
+{
+          struct student record;
+ 
+          scanf("%d",&record.feet1);
+          scanf("%f",&record.inch1);
+          scanf("%d",&record.feet2);
+          scanf("%f",&record.inch2);
+ 
+          func(&record);
+          return 0;
+}
+ 
+void func(struct student *record)
+{
+  int feet;float inch;
+  feet = record->feet1+record->feet2;
+  inch = record->inch1+record->inch2;
+
+
+    if (inch>12.0)
+    {
+        inch = inch-12.0;
+        ++feet;
+    }
+          printf("%dfeet-", feet);
+          printf("%.1finches\n", inch);
+}
+
+

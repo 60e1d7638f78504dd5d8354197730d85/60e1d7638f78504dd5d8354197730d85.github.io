@@ -1,0 +1,48 @@
+import java.util.Arrays;
+import java.util.*;
+import java.io.*;
+ 
+class TestClass {
+     
+    // Returns sum between two kth smallest
+    // element of array
+    static int sumBetweenTwoKth(int arr[], 
+                     int n, int k1, int k2)
+    {
+         
+        // Sort the given array
+        Arrays.sort(arr);
+ 
+        // Below code is equivalent to
+        int result = 0;
+         
+        for (int i = k1; i < k2 - 1; i++)
+            result += arr[i];
+             
+        return result;
+    }
+     
+    // Driver code
+    public static void main(String[] args)
+    {
+      Scanner in=new Scanner(System.in);
+        int n=in.nextInt();
+      for(int i=0;i<n;i++)
+      {
+        int x=in.nextInt();
+        int arr[]=new int[x];
+        for(int j=0;j<x;j++)
+          arr[j]=in.nextInt();
+        int k1=in.nextInt();
+        int k2=in.nextInt();
+        System.out.println(sumBetweenTwoKth(arr, 
+                                    n, k1, k2));
+      }
+         
+       
+        
+         
+      //  System.out.print(sumBetweenTwoKth(arr, 
+       //                             n, k1, k2));
+    }
+}

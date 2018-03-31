@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  public static void binToDecimal() {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    int dec=0,r,i=0;
+    try {
+      int q = n;
+      while(q>0) {
+        r = q%10;
+        if(r>1)
+          throw new NumberFormatException();
+        dec += Math.pow(2,i)*r;
+        q/=10;
+        i++;
+      }
+      System.out.print(dec);
+    }catch(NumberFormatException e) {
+        System.out.print(e);
+    }
+  }
+	 public static void main(String[] args) { 
+		binToDecimal();
+	}
+}

@@ -1,0 +1,27 @@
+#include<stdio.h>
+int sum(int num)
+{
+    if(num==0)
+        return 0;
+    else
+        return num+sum(num-1);
+}
+int main()
+{
+    int test_cases=0;
+    scanf("%d",&test_cases);
+    while(test_cases>0)
+    {
+        int times=0,num=0;
+        scanf("%d%d",&times,&num);
+        while(times>0)
+        {            
+            num=sum(num);
+            times--;
+        }
+        printf("%d\n",num);
+        test_cases--;
+    }
+    return 0;
+}
+ 

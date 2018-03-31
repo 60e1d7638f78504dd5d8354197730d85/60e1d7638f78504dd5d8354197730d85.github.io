@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+{
+	long long int i,t;
+	long long int l,d,s,c,sum;
+	
+	scanf("%lld",&t);
+	
+	while(t>0)
+	{
+		sum=0;
+		scanf("%lld%lld%lld%lld",&l,&d,&s,&c);
+		
+		
+		for(i=0;i<d;i++)
+		{
+			if(i==0)
+			sum=s;
+			else
+			sum=sum+(c*sum);
+			if(sum>=l)
+			{
+				printf("ALIVE AND KICKING\n");
+				break;
+			}
+		}
+		if(sum<l)
+		printf("DEAD AND ROTTING\n");
+		
+		t--;
+	}
+	
+	return 0;
+}

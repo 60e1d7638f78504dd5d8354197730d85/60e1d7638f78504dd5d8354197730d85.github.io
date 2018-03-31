@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+ 
+void del(char [], char, int);
+int main()
+{
+    char str1[20],s;
+    int size;
+    scanf("%[^\n]%*c %c", str1,&s);
+    size = strlen(str1);
+    del(str1, s, size - 1);
+    return 0;
+}
+ 
+void del(char str1[], char index, int size)
+{
+  int i;
+  for(i=0;str1[i]!='\0';i++)
+  {
+	if(str1[i]==index)
+      continue;
+    else
+      printf("%c",str1[i]);
+  }
+}

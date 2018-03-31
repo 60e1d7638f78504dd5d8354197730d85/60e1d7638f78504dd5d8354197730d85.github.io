@@ -1,0 +1,93 @@
+#include<stdio.h>
+#define size 10000
+int cum_f[123],cum_arrL[size+1],cum_arrR[size+1],single_f[123],single_arr[size+1];
+int t;
+char s[size+1];
+int main()
+{
+    int cum_max,single_max,i,idx,max_idx,p1,p2,p3,p4,ans,j;
+    scanf("%d",&t);
+    while(t--)
+    {
+           scanf("%s",s);
+           cum_max=0;
+           single_max=0;
+           for(i=0,idx=0;s[i]!='\0';i++)
+           {
+                                        
+           if(s[i]=='#')
+           {
+                        single_arr[idx]=single_max;
+                        cum_arrL[idx]=cum_max;
+                        single_max=0;
+                        idx++;
+                        for(j=97;j<123;j++)
+                        single_f[j]=0;
+           }
+           else
+           {
+                        cum_f[s[i]]++;
+                        if(cum_f[s[i]]>cum_max)
+                        cum_max=cum_f[s[i]];
+                        
+                        single_f[s[i]]++;
+                        if(single_f[s[i]]>single_max)
+                        single_max=single_f[s[i]];
+           }
+           }
+           
+           single_arr[idx]=single_max;
+           cum_arrL[idx]=cum_max;
+           max_idx=idx;
+           
+           i--;
+           cum_max=0;
+           for(j=97;j<123;j++)
+           cum_f[j]=0;
+           for(;i>=0;i--)
+           {
+                         if(s[i]=='#')
+                         {
+                         cum_arrR[idx]=cum_max;
+                         idx--;
+                         }
+                         else
+                         {
+                         cum_f[s[i]]++;
+                         if(cum_f[s[i]]>cum_max)
+                        cum_max=cum_f[s[i]];
+                        }
+           }
+           
+           ans=0;
+           for(i=0;i+3<=max_idx;i++)
+           {
+           p1=cum_arrL[i];
+           p2=single_arr[i+1];
+           p3=single_arr[i+2];
+           p4=cum_arrR[i+3];
+           
+           if(p1==0 || p2==0 || p3==0 || p4==0)
+           continue;
+           
+           if((p1+p2+p3+p4+3)>ans)
+           ans=(p1+p2+p3+p4+3);
+           }
+           
+           printf("%d\n",ans);
+           
+           for(j=97;j<123;j++){
+           single_f[j]=0;
+           cum_f[j]=0;
+           }
+           
+}
+return 0;
+}
+ 
+           
+           
+           
+           
+           
+           

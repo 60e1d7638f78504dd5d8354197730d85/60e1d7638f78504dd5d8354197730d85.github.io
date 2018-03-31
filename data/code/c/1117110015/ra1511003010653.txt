@@ -1,0 +1,62 @@
+#include <stdio.h>
+int main()
+{
+int a[125][125];
+  int i, j,k, n=3;
+  for(i=0; i<n; i++)
+  {
+    for(j=0; j<n; j++)
+    {
+      scanf("%d", &a[i][j]);
+    }
+  }
+ 
+  int sum=0, s1=0, s2=0, s3=0;
+  for(i=0; i<n; i++)
+  {
+    for(j=0; j<n; j++)
+    {
+     if(i==j)
+       sum= sum + a[i][j]; //forward diagonal
+    }
+  }
+  for(i=0; i<n; i++)
+  {
+    s1=0;
+    for(j=0; j<n; j++)
+    {
+      s1= s1+ a[i][j]; //rows
+    }
+    if(s1!=sum)
+     break;
+  }  
+  for(i=0; i<n; i++)
+  { 
+    for(k=0; k<n; k++)
+    {
+      if((i+k)==((n+1)-2))
+      {
+        s2= s2+ a[i][k]; // minor diagonal
+      }
+    }
+  }
+  
+  for(i=0; i<n; i++)
+  {
+    s3=0;
+    for(j=0; j<n; j++)
+    {
+      s3= s3+ a[j][i]; //columns
+    }
+    if(s3!=sum)
+     break;
+  }  
+   /* printf("%d\n", sum);
+      printf("%d\n", s1);
+      printf("%d\n", s2); */
+    if(s2!=sum || s3!=sum || s2!=s1|| s2!=s3 ||s1!=s3 || s1!=sum)
+      printf("No");
+     if(s2==sum && sum==s1 && s3==sum)
+        printf("Yes");
+	return 0;
+}

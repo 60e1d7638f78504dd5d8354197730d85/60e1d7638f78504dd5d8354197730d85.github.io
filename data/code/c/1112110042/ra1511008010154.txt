@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+ 
+main()
+{
+	int lower[26];
+	int upper[26];
+	char J[110],S[110];
+	int tc;
+	int count,i;
+ 
+	scanf("%d",&tc);
+ 
+	while(tc--)
+	{
+		scanf("%s",J);
+		scanf("%s",S);
+ 
+		count = 0;
+ 
+		for(i=0;i<26;i++)
+			lower[i] = upper[i] = 0;
+		
+		for(i=0;J[i];i++)
+		{	
+			if(islower(J[i]))
+				lower[J[i]-'a'] = 1;
+			else
+				upper[J[i]-'A'] = 1;
+		}
+ 
+		for(i=0; S[i]; i++)
+		{
+			if(islower(S[i]))
+			{
+				if(lower[S[i]-'a'])
+					count++;
+			}
+			else if(upper[S[i]-'A'])
+				count++;
+		}
+ 
+	
+		printf("%d\n",count);
+		
+	}
+	
+	return 0;
+}
+ 

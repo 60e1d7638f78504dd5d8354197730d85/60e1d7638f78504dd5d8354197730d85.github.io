@@ -1,0 +1,53 @@
+#include <stdio.h>
+ 
+int main()
+{
+  long int array[1000],i, n, c, d, swap,t,co;
+  long int prod;
+ 
+  scanf("%ld", &t);
+ for(i=0;i<t;i++)
+ {
+     prod=1;
+     co=0;
+     scanf("%ld",&n);
+  for (c = 0; c < n; c++)
+  {
+    scanf("%ld", &array[c]);
+  }
+ 
+  for (c = 0 ; c < ( n - 1 ); c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (array[d] > array[d+1])
+      {
+        swap       = array[d];
+        array[d]   = array[d+1];
+        array[d+1] = swap;
+      }
+    }
+  }
+  
+  for(c=n-2;c>=0 && co<2;c--)
+  {
+      if(array[c]==array[c+1] && array[c]>0)
+      {
+          prod=prod*array[c];
+          co++;
+          c--;
+      }
+  }
+  if(co<2)
+  {
+      printf("-1\n");
+  
+  }
+  else
+  {
+      printf("%ld\n",prod);
+  }
+ }
+ 
+  return 0;
+} 

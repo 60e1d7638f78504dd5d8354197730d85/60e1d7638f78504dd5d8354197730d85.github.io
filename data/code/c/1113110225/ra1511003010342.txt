@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main()
+{
+	char str[100];
+  	scanf(" %[^\t\n]s", str);
+  	int cv=0, cc=0, cd=0, cw=0, i=0;
+  	while(str[i]!='\0')
+    {
+
+      if((str[i]>='a' && str[i]<='z' )|| (str[i]>='A' && str[i]<='Z'))
+			{
+				if(str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i]=='o' || str[i]=='u'|| str[i]=='A' || str[i]=='E' || str[i]=='I' || str[i]=='O' || str[i]=='U')
+        cv++;
+				else
+				cc++;
+			}
+
+
+      if(str[i]>='0' && str[i]<='9')
+        cd++;
+      if(str[i]==' ')
+        cw++;
+
+      i++;
+    }
+    printf("%d %d %d %d\n", cv, cc, cd, cw);
+	return 0;
+}

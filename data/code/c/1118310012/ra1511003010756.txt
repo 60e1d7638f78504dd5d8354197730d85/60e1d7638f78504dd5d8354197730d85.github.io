@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<limits.h>
+int graph[10001][10001],max;
+int weight[10001][10001];
+int dfs(int *visited,int *size,int p_vertex,int day){
+    visited[p_vertex]=1;
+    if(p_vertex>max) max=p_vertex;
+    int iter;
+    for(iter=0;iter<size[p_vertex];++iter){
+        if(!visited[graph[p_vertex][iter]]&&day<=weight[p_vertex][iter])
+           dfs(visited,size,graph[p_vertex][iter],weight[p_vertex][iter]);
+    }
+    return max;
+}
+int main(){
+    int t,n,m,num,vertex1,vertex2,T,i;
+    scanf("%d",&t);
+    while(t--){
+        int size[50001]={0},mark[50001]={0};
+        scanf("%d %d",&n,&m);
+        for(i=0;i<n;++i){
+            scanf("%d",&num);
+            mark[num]+=1;
+        }
+        for(i=0;i<m;++i){
+            scanf("%d %d %d",&T,&vertex1,&vertex2);
+            graph[vertex1][size[vertex1]]=vertex2;
+            weight[vertex1][size[vertex1]++]=T;
+            graph[vertex2][size[vertex2]]=vertex1;
+            weight[vertex2][size[vertex2]++]=T;
+        }
+        //for(i=1;i<10;++i)
+        //    printf("%d ",mark[i]);
+        //printf("\n");
+        long long int credits=0;
+        for(i=1;i<50001;++i){
+            if(mark[i]!=0){
+               int visited[50001]={0};
+               max=INT_MIN;
+               max=dfs(visited,size,i,0);
+               if(max!=INT_MIN)
+                  credits+=(max*mark[i]);
+            }
+        }
+        printf("%lld\n",credits);
+    }
+    return 0;
+}
+ 

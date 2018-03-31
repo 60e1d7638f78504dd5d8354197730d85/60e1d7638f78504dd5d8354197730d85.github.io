@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+#include<string.h>
+#include<map>
+int main()
+{
+  	map<char, int> mp;
+  	int n,k; 
+  	cin>>n>>k;
+  	char ch[1000];
+  	cin>>ch;
+  	for(int i=0;i<n;i++) mp[ch[i]]++;
+	if(mp.size()==k){
+    	int flag=0;
+      	map<char,int>::iterator it;
+      	for(it=mp.begin();it!=mp.end();it++){
+        	if(it->second >k)
+              	flag=1;
+        }
+      	if(flag==0) cout<<"YES";
+  		else cout<<"NO";
+    }else cout<<"NO";
+  	
+	return 0;
+}

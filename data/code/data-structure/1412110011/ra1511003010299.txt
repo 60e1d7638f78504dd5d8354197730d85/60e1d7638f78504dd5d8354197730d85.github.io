@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+bool compare(string X, string Y ){
+    return X.append(Y) > Y.append(X);
+}
+ 
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+	    int n;
+	    cin>>n;
+	    vector<string>vec(static_cast<unsigned int>(n));
+	    for (int i = 0; i < n ; ++i) {
+	        cin>>vec[i];
+	    }
+	    sort(vec.begin(), vec.end(), compare);
+	
+	    for(auto i:vec){
+	        cout<<i;
+	    }
+	    cout<<endl;
+    }
+} 

@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+   int t,i;
+   int arr[100000],rev[100000];
+   scanf("%d",&t);
+   for(i=0;i<t;i++)
+     scanf("%d",&arr[i]);
+   for(i=0;i<t;i++)
+   {
+     rev[i]=0;
+     while(arr[i]!=0)
+     {
+       rev[i]=rev[i]*10;
+       rev[i]=rev[i]+(arr[i]%10);
+       arr[i]=arr[i]/10;
+     }
+   }
+   for(i=0;i<t;i++)
+   {
+     printf("%d\n",rev[i]);
+   }
+   return 0;
+}

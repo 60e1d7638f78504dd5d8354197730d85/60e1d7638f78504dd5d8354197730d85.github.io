@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+int n,a,b;
+  scanf("%d",&n);
+  int cap=n+1;
+  int s[cap],i;
+  for(i=0;i<n;i++)
+  scanf("%d",&s[i]);
+  scanf("%d",&a);
+  scanf("%d",&b);
+  if(a>n)
+    printf("Sorry Invalid Location");
+  else
+  {
+  for(i=cap;i>=a;i--)
+    s[i]=s[i-1];
+  s[a-1]=b;
+  for(i=0;i<n+1;i++)
+    printf("%d\n",s[i]);
+  }
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int array[20],i,j,temp,n,pos,x;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&array[i]);
+  }
+  scanf("%d %d",&pos,&x);
+  for(i=n-1;i>=pos;i--)
+  {array[i+1]=array[i];
+  }
+  array[pos]=x;
+  printf("Before sorting\n");
+ for(i=0;i<=n;i++)
+   printf("%d\n",array[i]);
+  for(i=0;i<=n;i++)
+  {
+    for(j=i+1;j<=n;j++)
+    {
+      if(array[i]>array[j])
+      {
+        temp=array[i];
+        array[i]=array[j];
+        array[j]=temp;
+      }}}
+  printf("After sorting\n");
+ for(i=0;i<=n;i++)
+   printf("%d\n",array[i]);
+	return 0;
+}

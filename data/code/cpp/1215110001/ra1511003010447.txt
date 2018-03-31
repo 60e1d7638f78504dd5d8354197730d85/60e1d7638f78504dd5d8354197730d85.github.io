@@ -1,0 +1,58 @@
+
+#include <iostream>
+#include<math.h>
+
+using namespace std;
+
+class Building{
+
+int length;
+  int width;
+  int ratePerSqft;
+  
+  public:
+  
+  int getLength(){
+  
+  cin>>length; 
+    return length;
+  }
+  int getWidth(){
+  
+  cin>>width;
+    return width;
+  }
+  
+  int getRatePerSqft(){
+  cin>>ratePerSqft;
+    return ratePerSqft;
+  }
+ long  int calculateCost(){
+  return length*width*ratePerSqft;
+  }
+  
+  void determineSuitability(){
+ 
+    if(abs(length-width)<10)
+      cout<<"suitable";
+    else
+      cout<<"not suitable";
+  }
+  
+};
+int main()
+{
+Building b;
+ int l,B,h;
+  l=b.getLength();
+  B=b.getWidth();
+  h=b.getRatePerSqft();
+  int cost;
+  cost=b.calculateCost();
+  cout<<l<<"\n";
+  cout<<B<<"\n";
+  cout<<h<<"\n";
+  cout<<cost<<"\n";
+  b.determineSuitability();
+	return 0;
+}

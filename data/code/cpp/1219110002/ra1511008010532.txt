@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+class Inc{
+  float x,z;
+  float y;
+  public:
+  Inc()
+  {
+    x=0;
+    y=0;
+    z=0;
+  }
+  Inc(float a,float b,float c)
+  {
+    x=a;
+    y=b;
+    z=c;
+  }
+  Inc operator++()
+  {
+    ++x;
+    ++y;
+    ++z;
+    return Inc(x,y,z);
+  }
+  void display()
+  {
+    cout<<x<<" "<<y<<" "<<z<<endl;
+  }
+};
+
+
+int main()
+{
+  float a,c;
+  float b;
+  cin>>a>>b>>c;
+  Inc t(a,b,c);
+  cout<<"Before overloading"<<endl;
+  t.display();
+  ++t;
+  cout<<"After overloading"<<endl;
+  t.display();
+	return 0;
+}

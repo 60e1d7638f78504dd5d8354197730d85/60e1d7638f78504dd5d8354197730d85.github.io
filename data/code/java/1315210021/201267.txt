@@ -1,0 +1,39 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class TestClass{
+	static private long num ; 
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t-->0){
+			int n = sc.nextInt();
+			long[] in = new long[n];
+ 
+			for(int i=0 ; i<n ; ++i)
+				in[i] = sc.nextLong();
+			Arrays.sort(in);
+ 
+			long min = Long.MAX_VALUE ; 
+			for(int i=0 ; i<n-1 ; ++i){
+				for(int j=i+1 ; j<n ; j++){
+					min = Math.min(min , lcm(in[i] ,in[j]));
+				}
+			}
+			System.out.println(min);
+		}
+	}
+	
+	static private long gcd(long a , long b){
+    while (b > 0)
+    {
+        long temp = b;
+        b = a % b; 
+        a = temp;
+    }
+    return a;
+	}
+	static private long lcm(long a, long b){
+		return a * (b / gcd(a, b));
+	}
+} 

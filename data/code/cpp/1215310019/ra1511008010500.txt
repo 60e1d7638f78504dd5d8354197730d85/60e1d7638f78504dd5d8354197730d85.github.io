@@ -1,0 +1,110 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+bool g[51][51];
+bool visited[51];
+bool mark[51];	
+void initialise(int n)
+{
+	for(int i=0;i<n;i++)
+		for(int j=0;j<n;j++)
+			g[i][j]=false;
+			
+	for(int i=0;i<n;i++)
+	visited[i]=false,mark[i]=false;
+}
+//check whether all employees are visited by marked employees
+bool check(int n)
+{
+	//copy the marked emp's to be as visited
+	for(int i=0;i<n;i++)
+	visited[i]=mark[i];
+	//then find adjacent of marked emp's
+	for(int i=0;i<n;i++)
+	{
+		if(mark[i])
+		{
+			
+			for(int j=0;j<n;j++)
+			{
+				if(!visited[j]&&g[i][j])
+				visited[j]=true;
+			}
+		}
+	}
+	//check whether all emp's are invited or not
+	for(int i=0;i<n;i++)
+	if(visited[i]==false)
+	return false;
+	return true;
+}
+//generates all possible sets(2^n-1) of no of employees to be marked to invite 
+//these marked emp's invite adjacents whcih makes to invite all
+bool emp(int ind,int len,int n)
+{
+	//check no of emp's to mark is zero
+	if(len==0)
+	return check(n);
+	
+	for(int i=ind;i<=n-len;i++)
+	{
+		mark[i]=true;
+		if(emp(i+1,len-1,n))
+		return true;
+		mark[i]=false;
+	}
+	return 	false;
+}	
+int main()
+{
+	initialise(51);
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,m;
+		cin>>n>>m;
+		
+		initialise(n);
+		int a,b;
+		for(int i=0;i<m;i++)
+		{
+			cin>>a>>b;
+			g[a-1][b-1]=true;
+			g[b-1][a-1]=true;
+			
+		}
+		/*for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				cout<<g[i][j]<<" ";
+			}
+			cout<<endl;
+		}*/
+		//if no one is frd of no one ,then invite all
+		//if only one is there ,then invite him
+		//else go forward
+		if(m==0)
+		cout<<n<<endl;
+		else if(n==1)
+		cout<<1<<endl;
+		else
+		{
+			//iterate for min to max no of emp's have to be invited 
+		for(int i=1;i<=n;i++)
+		{
+			//here i means i no of emps can be invited ,whcih makes to be all visited
+			if(emp(0,i,n))
+			{
+				cout<<i<<endl;
+				break;
+			}
+		}
+		}
+		
+	}
+	return 0;
+}
+ 

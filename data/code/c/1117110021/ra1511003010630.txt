@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,n,matrix[10][10],sum_l=0,sum_r=0,diff=0;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+    	for(j=0;j<n;j++)
+        {
+        	scanf("%d",&matrix[i][j]);
+        }
+    }
+  	for(i=0;i<n;i++)
+    {
+    	for(j=0;j<n;j++)
+        {
+        	if(i==j)
+            {
+            	sum_l=sum_l+matrix[i][j];
+            }
+          	if(i+j==n-1)
+            {
+            	sum_r=sum_r+matrix[i][j];
+              	//printf("i:%d j:%d",i,j);
+            }
+        }
+    }
+  	diff=sum_l-sum_r;
+  	if(diff<0)
+    {
+    	diff=diff*(-1);
+    }
+  	printf("%d",diff);
+	return 0;
+}

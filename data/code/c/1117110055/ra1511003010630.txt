@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int rows,ops,i,j,mat[6][6],row,col,add,max;
+  	char roc[6];
+  	for(i=0;i<6;i++)
+    {
+    	for(j=0;j<6;j++)
+        {
+        	mat[i][j]=0;
+        }
+    }
+  	scanf("%d %d",&rows,&ops);
+  	for(i=0;i<ops;i++)
+    {
+      scanf("%s",roc);
+      if(strcmp(roc,"RowAdd")==0)
+      {
+        	scanf("%d %d",&row,&add);
+          for(j=0;j<rows;j++)
+          {
+              mat[row-1][j]=mat[row-1][j]+add;
+          }
+      }
+      if(strcmp(roc,"ColAdd")==0)
+      {
+        	scanf("%d %d",&col,&add);
+          for(j=0;j<rows;j++)
+          {
+              mat[j][col-1]=mat[j][col-1]+add;
+          }
+      }
+    }
+  	max=mat[i][j];
+  	for(i=0;i<rows;i++)
+    {
+    	for(j=0;j<rows;j++)
+        {
+        	if(max<mat[i][j])
+            {
+            	max=mat[i][j];
+            }
+        }
+      //printf("\n");
+    }
+  printf("%d",max);
+	return 0;
+}

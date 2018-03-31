@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+	int n, num, i, min, count = 1;
+  	scanf("%d",&n);
+  	while(n>0)
+    {
+      scanf("%d",&num);
+      int a[num];
+      for(i = 0; i < num; i++)
+        scanf("%d",&a[i]);
+      min = a[0];
+      for(i = 1; i < num; i++)
+        if(a[i-1] >= a[i] && a[i] <= min)
+        {
+          count++;
+          min = a[i];
+        }
+      printf("%d\n",count);
+      count = 1;
+      n--;
+    }
+	return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+   int i,j,k,t,r,n;
+  int arr[20];
+  scanf("%d",&t);
+  if(1<=t<=20)
+  {
+    for(i=0;i<=t-1;i++)
+    {
+      scanf("%d",&n);
+      if(1<=n<=10000)
+      {
+        for(j=2;j<=n;j++)
+        {
+          r=n%j;
+          if(r==0)
+            break;
+          else
+            continue;
+        }
+        if(j==n)
+          arr[i]=1;
+        if(j!=n)
+          arr[i]=0;
+      }
+    }
+    for(k=0;k<=t-1;k++)
+    {
+      if(arr[k]==1)
+        printf("yes\n");
+      if(arr[k]==0)
+        printf("no\n");
+    }
+  }
+	return 0;
+}

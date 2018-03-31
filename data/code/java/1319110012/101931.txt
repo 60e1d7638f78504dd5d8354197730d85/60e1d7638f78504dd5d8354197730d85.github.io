@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+class MyOwnFirstException extends Exception
+{
+	public MyOwnFirstException(String msg)
+    {
+    	super(msg);
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        int age=sc.nextInt();
+        employeeAge(age);       
+        }
+        static void employeeAge(int a)
+        {
+        	if(a<0)
+            {
+            	try
+            	{
+            		throw new MyOwnFirstException("Age cant be less than zero");
+            	}
+                catch(MyOwnFirstException e)
+                {
+                	System.out.println(e);                    
+                }
+            }
+            else
+            	System.out.println("Input is valid");
+         }
+                
+        
+	
+}

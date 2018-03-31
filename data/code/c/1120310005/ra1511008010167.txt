@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<string.h>
+int main(void) {
+	int t,p,high,low,i;
+	char str[1000100];
+	scanf("%d",&t);
+	while(t--)
+	{
+		 int cnt=0;
+		//int flag;
+		scanf("%s",str);
+		int len=strlen(str);
+		for(i=0;i<len;i++)
+		{
+			//int low=i;
+			for(p=2;p<=len-i;p++)
+			{
+				low=i+1;
+				high=p*(i+1);
+				//flag=1;
+				while( low>0 && high<=len && str[low-1]==str[high-1])
+				{
+					cnt++;
+					if(low%p!=0)
+					break;
+					low=low/p;
+					high=high*p;
+					
+				}
+				//flag=1;
+				low=i+1;
+				if(low%p==0)
+				{
+				low=low/p;
+				high=p*(i+1);
+					while(low>0 && high<=len && str[low-1]==str[high-1])
+				{
+					cnt++;
+					if(low%p!=0)
+					break;
+					low=low/p;
+					high=high*p;
+					
+				}
+				}
+			}
+		}
+		printf("%d\n",cnt+len);
+	}
+	return 0;
+}

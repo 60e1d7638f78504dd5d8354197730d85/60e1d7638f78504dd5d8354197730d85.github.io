@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ios::sync_with_stdio(false);
+int r;
+cin>>r;
+int c;
+cin>>c;
+int a[r][c];
+for(int i=0;i<r;i++) {
+for(int j=0;j<c;j++) {
+cin>>a[i][j];
+}
+}
+
+long long int cum[r+1][c+1];
+for(int i=0;i<=r;i++) {
+for(int j=0;j<=c;j++) {
+if(i==0||j==0)
+cum[i][j]=0;
+else
+cum[i][j]=cum[i-1][j]+cum[i][j-1]+a[i-1][j-1]-cum[i-1][j-1];
+}
+}
+int q;
+cin>>q;
+int x1,x2,y1,y2;
+while(q--) {
+cin>>x1>>y1>>x2>>y2;
+long long int ans=cum[x2][y2]+cum[x1-1][y1-1]-cum[x2][y1-1]-cum[x1-1][y2];
+cout<<ans<<endl;
+}
+
+
+return 0;
+}

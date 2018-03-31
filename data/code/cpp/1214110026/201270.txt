@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class Distance
+{
+	int feet; float inch;
+  	public:
+  	Distance();
+    Distance(int a,float b);
+  	void setDistance();
+  	int getFeet();
+  	float getInch();
+  	void add(Distance x,Distance y);
+};
+Distance::Distance()
+{
+	inch=0.0;feet=0;
+}
+Distance::Distance(int a,float b)
+{
+	inch=b;feet=a;
+}
+void Distance::setDistance()
+{
+	cin>>feet>>inch;
+}
+void Distance::add(Distance x,Distance y)
+{
+  	Distance t;
+  	t.feet=x.feet+y.feet;
+  	t.inch=x.inch+y.inch;
+  	
+  	if(t.inch>12.0)
+    {
+    	t.feet=x.feet+y.feet+(t.inch/12.0);
+      	t.inch=t.inch-12;
+    }  
+	cout<<t.feet<<" feet ";
+  	cout<<t.inch<<" inches"<<endl;
+}
+int main()
+{
+	Distance D1,D2;
+  	D1.setDistance();
+  	D2.setDistance();
+	D1.add(D1,D2);                   
+	return 0;
+}

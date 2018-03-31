@@ -1,0 +1,110 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+const int MaxN = 1e6 + 17;
+const int INF = 1e9 + 17;
+unsigned long long int t, a[MaxN];
+unsigned long long int n, l, r;
+vector < int > solve_c ()
+{
+	vector < int > v;
+	unsigned long long x = (n * (n + 1) / 4.0) - n / 4.0;
+    unsigned long long X = x, y = 0;
+    if (n % 2 == 1)
+    	y ++;
+    if (l == (n * (n + 1) / 2))
+    {
+    	for (int i = 0; i < n; ++ i)
+    		v.push_back (i);
+        goto Z;
+    }
+    for (int pos = n / 2 + n % 2 - 1; pos >= 0; -- pos)
+    {
+    	a[pos] = 1;
+    	if (X == l)
+    	{
+    		for (int i = 0; i < n; ++ i)
+    			v.push_back (a[i]);
+    		a[pos] = 0;
+    		goto Z;
+    	}
+    	if (n % 2 == 0)
+    		y += 2;
+    	X += y;
+    	if (n % 2 == 1)
+    		y += 2;	
+    	a[pos] = 0;
+    }
+    v.push_back (-1);
+    Z:;
+    return v;
+}
+vector < int > solve_s ()
+{
+	vector <int > v;
+    	if (l == (n * (n + 1) / 2))
+    	{
+    		for (int i = 0; i < n; ++ i)
+    			v.push_back (0);
+    	    goto L;
+    	}
+    	for (int pos = 0; pos <= n / 2 + n % 2; ++ pos)
+    	{
+    		a[pos] = 1;
+    		int kol1 = 0, kol2 = 0;
+    		for (int i = 0; i < n; ++ i)
+    		{
+    			int Sum = 0;
+    			for (int j = i; j < n; ++ j)
+    			{
+    				Sum += a[j];
+    				if (Sum % 2 == 0)
+    					kol1 ++;
+    				else
+    					kol2 ++;
+    			}
+    		}
+    		if (kol1 == l && kol2 == r)
+    		{
+    			for (int i = 0; i < n; ++ i)
+    				v.push_back (a[i]);
+    			a[pos] = 0;
+    			goto L;
+    		}
+    		a[pos] = 0;
+    	}
+    	v.push_back (-1);
+    	L:;
+    	return v;
+}
+int main ()
+{ 
+    cin >> t;
+    while (t --)
+    {
+    	cin >> n;
+    	cin >> l >> r;
+/*    	for (n = 1; n <= 100; ++ n)
+    	{
+    	int z = (n * (n + 1) / 2);
+    	for (l = 0; l < z; ++ l)
+    	{
+    		r = z - l;
+    		vector < int > ans = solve_c (), Ans = solve_s ();
+    		if (Ans != ans)
+    			cout << "GG" << l << ' ' << r, exit (0);
+    	}
+    	}            */ 
+    	vector < int > ans;
+    	if (n <= 2e4)
+    		ans = solve_s();
+    	else
+	    	ans = solve_c ();
+    	for (int i = 0; i < ans.size(); ++ i)
+    		cout << ans[i] << ' ';
+    	cout << "\n";
+    		
+    }
+    return 0; 
+}  

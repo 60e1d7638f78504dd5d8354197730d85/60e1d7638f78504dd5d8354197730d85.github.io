@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+int gcd(int a,int b)
+{
+  int i,g,max;
+  if(a>b)max=a;else max=b;
+  for(i=1;i<max;i++)
+  {
+    if(a%i==0 && b%i==0)
+      g=i;
+  }
+  return g;
+}
+
+int main()
+{
+	int a,b;
+  	scanf("%d\n",&a);
+  	scanf("%d",&b);
+  	printf("GCD=%d\n",gcd(a,b));
+  	printf("LCM=%d",(a*b)/gcd(a,b) );
+	return 0;
+}

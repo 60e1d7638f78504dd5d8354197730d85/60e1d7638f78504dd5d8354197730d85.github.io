@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Transpose obj=new Transpose();
+        obj.getMatrix();
+       obj.displayTranspose();
+       	}
+}
+class Transpose
+  {
+       
+    int m=2, n=2,i,j;
+      Scanner sc = new Scanner(System.in);
+   int arr[][]=new int[m][n],trn[][]=new int[n][m];
+      //System.out.println("Enter the number of rows and columns of matrix");
+     // m = in.nextInt();
+      //n = in.nextInt();
+    public void getMatrix()
+    {        
+     // int matrix[][] = new int[m][n];
+ 
+   //   System.out.println("Enter the elements of matrix");
+ 
+     // int arr[][]=new int[m][n],trn[][]=new int[n][m];
+ 
+ // System.out.println("nEnter elements of matrix row wise:");
+  
+  for(i=0;i<m;++i)
+   for(j=0;j<n;++j)
+    arr[i][j]=sc.nextInt();
+ 
+  for(i=0;i<m;++i)
+   for(j=0;j<n;++j)
+    trn[j][i]=arr[i][j];
+ 
+    }
+    public void displayTranspose()
+    {
+      //  System.out.println("Transpose of entered matrix:-");
+ 
+   //   System.out.println("nMatrix after transpose:");
+  for(i=0;i<n;++i)
+  {
+   for(j=0;j<m;++j)
+    System.out.print(trn[i][j]+" ");
+   System.out.print("\n");
+  }
+    }
+}

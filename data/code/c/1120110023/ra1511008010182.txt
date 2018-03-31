@@ -1,0 +1,72 @@
+#include <stdio.h>
+int main()
+{
+  int arr[3][3],i,j,sum=0,sump=0,sums=0,rs[3],cs[3],flag=0;
+  
+   for(i=0;i<3;i++)
+  {
+  for(j=0;j<3;j++)
+  {
+    scanf("%d",&arr[i][j]);
+  }
+  }
+  
+  for(i=0;i<3;i++)
+  {
+  for(j=0;j<3;j++)
+  {
+  sum+=arr[i][j];
+  
+  }
+    rs[i]=sum;
+    sum=0;
+  }
+for(i=0;i<3;i++)
+  {
+  for(j=0;j<3;j++)
+  {
+  sum+=arr[j][i];
+  
+  }
+    cs[i]=sum;
+    sum=0;
+  }
+  
+ 	 for(i=0;i<3;i++)
+  {
+  sump+=arr[i][i];
+  }	
+   for(i=0;i<3;i++)
+  {
+  sums+=arr[i][3-i-1];
+  }
+  for(i=0;i<3;i++)
+  {
+  for(j=0;j<3;j++)
+  {
+    printf("%d ",arr[i][j]);
+  }
+      printf("\n");
+    }
+   
+
+  
+if(sump==sums)
+{
+  for(i=0;i<3;i++)
+  {
+    if(rs[i]!=cs[i])
+    {
+      flag=1;
+    }}
+    if(flag)
+      printf("Not a Magic Square");
+    else
+      printf("Magic Square");
+  }
+  else
+    printf("Not a Magic Square");
+ 
+
+	return 0;
+}

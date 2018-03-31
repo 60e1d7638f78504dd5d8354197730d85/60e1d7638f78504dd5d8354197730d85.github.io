@@ -1,0 +1,49 @@
+#include <stdio.h>
+struct emp{
+    char name[30];
+    long year;
+ };
+int main()
+{
+struct emp e[10],temp;
+  int i,j,n,h=0;
+  long k;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  scanf("%s",e[i].name);
+  scanf("%li",&e[i].year);
+  }
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < (n-1-i); j++)
+        {
+            if (strcmp(e[j].name,e[j + 1].name)>0)
+            {
+                temp = e[j];
+                e[j] = e[j + 1];
+                e[j + 1] = temp;
+            } 
+        }
+      }
+   scanf("%li",&k);
+  printf("Ordered List\n");
+  for(i=0;i<n;i++)
+  {
+      printf("%s %li\n",e[i].name,e[i].year);
+  }
+   for(i=0;i<n;i++)
+  {
+  if(k==e[i].year)
+  {
+    h=1;
+    break;
+  }
+  }
+  printf("\nName Telephone Number\n");
+  if(h==1)
+    printf("%s %li",e[i].name,e[i].year);
+  else
+    printf("The Entered Number is not in the Directory");
+	return 0;
+}

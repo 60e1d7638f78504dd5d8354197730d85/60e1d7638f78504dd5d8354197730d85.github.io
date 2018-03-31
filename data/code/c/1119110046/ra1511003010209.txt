@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char buf[256];
+  char *p = buf, *q;
+  int l;
+  
+  fgets(buf, 256, stdin);
+	l = strlen(buf);
+  if (buf[l-1] == '\n') buf[l-1] = '\0';
+  
+  l = strlen(buf);
+  q = buf + l - 1;
+  
+  for ( ; p < q; p++, q--) {
+    	int c;
+    	c= *q;
+    	*q = *p;
+    	*p = c;
+  }
+  
+  printf("%s", buf);
+	return 0;
+}

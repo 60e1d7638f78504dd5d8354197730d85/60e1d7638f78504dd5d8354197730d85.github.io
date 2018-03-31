@@ -1,0 +1,33 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+long long int n,i,j,l;
+long long int k[30];
+long long int ans=0;
+ 
+int main()
+{
+scanf("%lld",&n);
+for(i=0;i<n;i++)
+  {
+   scanf("%lld",&l);
+ 
+   for(j=0;j<30;j++)
+   {
+    if(l & (1<<j))
+     ++k[j];
+   }
+  }
+ 
+ 
+  for(i=0;i<30;i++)
+  {
+    ans+= k[i]*(k[i]-1)* (1<<i);
+ 
+  }
+ 
+  printf("%lld\n",ans/2);
+ 
+return 0;
+}
+  

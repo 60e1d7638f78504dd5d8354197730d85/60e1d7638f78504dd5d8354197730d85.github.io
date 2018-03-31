@@ -1,0 +1,50 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+ 
+ 
+int gcd(int a , int b)
+{
+    if(b==0)return a;
+    return gcd(b,a%b);
+}
+ 
+int main()
+{
+    int t,i;
+    
+    cin>>t;
+    vector<int> v;
+ 
+    while(t--)
+    {
+           
+           cin>>i;
+           for(int j=0;j<i;j++)
+           {       
+                   int t;
+                     cin>>t;
+                     v.push_back(t);
+           }
+          
+           vector<int> temp(v.begin(),v.end());
+           while(temp.size()!=1)
+           {
+               int a=temp.back();
+               temp.pop_back();
+               int b=temp.back();
+               temp.pop_back();
+               temp.push_back(gcd(a,b));
+                                
+           }
+           for(int j=0;j<i;j++)
+           {
+                   v[j]=v[j]/temp[0];
+                   cout<<v[j]<<" ";
+           }
+           temp.clear();
+           v.clear();
+           cout<<endl;           
+    }
+    return 0;
+}

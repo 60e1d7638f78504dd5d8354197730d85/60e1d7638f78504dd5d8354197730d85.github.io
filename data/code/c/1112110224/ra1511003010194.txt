@@ -1,0 +1,41 @@
+#include<stdio.h>
+
+int main()
+{
+  int ceil,prod,test,lb,rb,cond1,cond2,cond3,L,R,n,m,Z,B,mid;
+ scanf("%d",&test);
+ while(test--)
+ {
+  scanf("%d %d %d %d %d %d",&n,&m,&Z,&L,&R,&B);	
+  prod = n*m;	
+  if(L+R+Z>=prod)
+  {
+   printf("%d\n",prod);
+  }
+    else
+   {
+	ceil = m%2 ? m/2 +1:m/2;  	
+	cond1 = prod-L-R-Z;
+	cond2 = n*ceil;
+	cond3 = (prod+n-L-R)/2;
+	lb=0;
+	rb=B+1;
+	while(rb-lb>1)
+	{
+	 mid = (lb+rb)>>1;
+	 if(mid<=cond1 && mid<=cond2 && mid<=cond3)
+     {
+	  lb=mid;
+     }
+       else
+       {
+  	  rb=mid;
+       }
+  	}
+ printf("%d\n",L+R+Z+lb);
+   }
+ }
+		
+    
+  return 0;
+}

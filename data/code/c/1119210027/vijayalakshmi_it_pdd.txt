@@ -1,0 +1,51 @@
+    #include<stdio.h>
+    #define MAX 100010
+    #define getcx getchar_unlocked
+    int arr[MAX];
+    void inp1( int *n )
+    {
+    	*n=0;
+    	int ch=getcx();
+    	int sign=1;
+    	while( ch < '0' || ch > '9' )
+    	{
+    		if(ch=='-')
+    		sign=-1;
+    		ch=getcx();
+    	}
+    	while( ch >= '0' && ch <= '9' )
+    		*n = ((*n)<<3)+((*n)<<1) + ch-'0',ch=getcx();
+    	*n=(*n)*sign;
+    }
+    int main()
+    {
+    	int t,n,i,min,max,ans;
+    	inp1(&t);
+    	while(t--)
+    	{
+    		ans=0;
+    		min=1;
+    		max=1;
+    		inp1(&n);
+    		for(i=1;i<=n;i++)
+    			inp1(&arr[i]);
+    		for(i=2;i<=n;i++)
+    		{
+    			if(arr[i]<arr[min])
+    				min=i;
+    			else if( ( (arr[i]>arr[min])&&(max<min) ) || (arr[i]>arr[max]))
+    				max=i;
+    			if(max>min)
+    			{
+    				if((arr[max]-arr[min])>ans)
+    					ans=arr[max]-arr[min];
+    			}
+    		}
+    		if(ans)
+    			printf("%d\n",ans);
+    		else
+    			printf("UNFIT\n");
+    	}
+    	return 0;
+    }
+     

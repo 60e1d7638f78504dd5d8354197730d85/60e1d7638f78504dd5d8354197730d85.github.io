@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int t,len,n=0,m,i;
+  scanf("%d",&t);
+  while(t--)
+  {
+   int x[27]={0},y[27]={0};
+    char a[30];
+    scanf("%s",a);
+    len=strlen(a);
+    if((len%2)==0) m=len/2;
+    else m=len/2+1;
+   // printf("%d",m);
+    for(i=0;i<len/2;i++)
+    {
+     // printf("%c,%c ",a[i],a[m+i]);
+      x[a[i]-'a']++;
+      y[a[m+i]-'a']++;
+    }
+    for(i=0;i<26;i++)
+    {
+     // printf("%d,%d\n",x[i],y[i]);
+      if(x[i]!=y[i])
+      {
+        printf("NO\n");
+        break;
+      }
+    }
+   if(i==26) printf("YES\n");
+  }
+
+	return 0;
+}

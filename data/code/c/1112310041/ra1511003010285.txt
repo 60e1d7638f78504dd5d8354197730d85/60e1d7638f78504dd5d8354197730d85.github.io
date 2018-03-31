@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define MAX 50
+ 
+int main()
+{
+	int times;
+	scanf("%d", &times);
+	while(times--)
+	{
+		int total_integer, smallest, integer[MAX]={0};
+		int i, j, flag;
+		scanf("%d", &total_integer);
+		for(i=0, flag=1; i<total_integer; i++)
+		{
+			scanf("%d", &integer[i]);
+			if(flag || smallest>integer[i])
+			{
+				smallest = integer[i];
+				flag=0;
+			}
+		}
+		for( ; i>=1; smallest--)
+		{	
+			int total_integer_divided=0;
+			for(j=0; j<total_integer; j++)
+				if(integer[j]%smallest==0) total_integer_divided++;
+			if(total_integer_divided == total_integer) 
+			{
+				for(j=0; j<total_integer; j++)
+				{
+					if(j==total_integer-1)	printf("%d \n", integer[j]/smallest);
+					else printf("%d ", integer[j]/smallest);
+				}
+				break;	
+			}
+		}
+	}
+} 

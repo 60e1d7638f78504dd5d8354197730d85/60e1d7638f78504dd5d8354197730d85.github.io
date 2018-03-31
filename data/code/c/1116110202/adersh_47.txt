@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{
+   char a[100];
+  scanf("%s",a);
+  int n=strlen(a);
+  int i,j,flag=0;
+  if(!isalpha(a[0]))
+     flag=1;
+  for(i=1;i<n;i++)
+  {
+    if(isalnum(a[i])||a[i]=='_')
+    {
+     if(a[i]=='_'&&a[i+1]=='_')
+       flag=1;
+    }
+    else flag=1;
+  }
+     if(flag==0)
+     printf("valid identifier");
+     else
+     printf("not a valid identifier");
+	return 0;
+}

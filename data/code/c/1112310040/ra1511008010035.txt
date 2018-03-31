@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+long int notc,x1,x2,x3,y1,y2,y3;
+     long int r,dist1,dist2,dist3,count=0;
+     scanf("%ld",&notc);
+     while(notc--){
+                   scanf("%ld",&r);
+                   scanf("%ld %ld",&x1,&y1);
+                   scanf("%ld %ld",&x2,&y2);
+                   scanf("%ld %ld",&x3,&y3);
+                   dist1= (x1-x2)*(x1-x2)+ (y1-y2)*(y1-y2);
+                   dist2= (x1-x3)*(x1-x3)+ (y1-y3)*(y1-y3);
+                   dist3= (x3-x2)*(x3-x2)+ (y3-y2)*(y3-y2);
+                   r=r*r;
+                   if(dist1<=r)
+                   count++;
+                   if(dist2<=r)
+                   count++;
+                   if(dist3<=r)
+                   count++;
+                   
+                   if(count>=2){
+                                printf("yes\n");
+                                }
+                                else
+                                printf("no\n");
+                    count=0;
+     }
+	return 0;
+}

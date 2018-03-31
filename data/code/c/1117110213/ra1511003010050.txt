@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+char a[10000];
+int ans[10000];
+int main()
+{
+    int n;
+    while(~scanf("%d",&n))
+    {
+        scanf("%s",a);
+        int cont=0;
+        int contz=0,i,j;
+        for(i=0;i<n;i++)
+        {
+            if(a[i]=='B')
+            {
+                int flag=0;
+                for(j=i;j<n;j++)
+                {
+                    if(a[j]=='B')cont++;
+                    else
+                    {
+                        flag=1;
+                        i=j;break;
+                    }
+                }
+                if(flag==0)break;
+                ans[contz++]=cont;
+                cont=0;
+            }
+        }
+        if(cont!=0)
+        {
+            ans[contz++]=cont;
+        }
+        printf("%d\n",contz);
+        if(contz==0)continue;
+        for( i=0;i<contz;i++)
+        {
+            printf("%d ",ans[i]);
+        }
+        printf("\n");
+    }
+  return 0;
+}

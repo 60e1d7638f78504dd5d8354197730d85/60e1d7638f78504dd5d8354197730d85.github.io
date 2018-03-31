@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+int main()
+{
+  int i,n,total,c;
+  char letter_check;
+  scanf("%d",&total);
+  for(i=0;i<total;i++)
+  {
+    bool done=false;
+    char str[50];
+    int len=0;
+    scanf("%s",str);
+    len=strlen(str);
+    if(len%2!=0)
+    {
+      printf("NO\n");
+    }
+    else
+    {
+    for(n=0;n<len;n++)
+    {
+      int check=1;
+      letter_check=str[n];
+      for(c=0;c<len;c++)
+      {
+        if(c!=n)
+        {
+          if(letter_check==str[c])
+          {
+            check++;
+          }
+        }
+      }
+      if(check==len/2)
+      {
+        printf("YES\n");
+        done=true;
+        break;
+      }
+    }
+      if(done==false)
+      {
+        printf("NO\n");
+      }
+  }
+  }
+
+	return 0;
+}

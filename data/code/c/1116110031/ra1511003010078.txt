@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{ char str[100],sub[50];
+  scanf("%[^\n]%*c",str);
+  scanf("%[^\n]%*c",sub);
+  int i,j,len,removelen;
+ int found=0;
+ len=strlen(str);
+ removelen=strlen(sub);
+ for(i=0;i<len;i++)
+ {
+   found=1;
+   for(j=0;j<removelen;j++)
+   {
+     if(str[i+j]!=sub[j])
+     {
+       found=0;
+       break;
+     }
+   }
+   if(found==1)
+   {
+     for(j=i;j<=len-removelen;j++)
+       str[j]=str[j+removelen];
+     break;
+   }
+ }
+  printf("%s",str);
+
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--) {
+      int n;
+      scanf("%d",&n);
+      int a[n];
+      int i;
+      for(i=0;i<n;i++) {
+        scanf("%d",&a[i]);
+      }
+      int min=a[0];
+      int f=1;
+      for(i=0;i<n;i++) {
+        if(a[i]<min) {
+          min=a[i];
+          f=0;
+        }
+        else if(a[i]==min) {
+          f++;
+        }
+      }
+      if(f%2!=0)
+        printf("Unlucky\n");
+      else
+        printf("Lucky\n");
+    }
+	return 0;
+}

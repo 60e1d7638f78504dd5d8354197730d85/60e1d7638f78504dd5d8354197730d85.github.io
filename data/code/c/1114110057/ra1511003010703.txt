@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n, fdig, ldig, temp, count =0;
+  	scanf("%d", &n);
+  	fdig = n%10;
+  	n = n/10;
+  	temp = n;
+  	while (temp!=0) {
+      ldig = temp%10;
+      count++;
+      temp = temp/10;
+    }
+  	n = n-ldig*pow(10,count-1);
+  	n = n+fdig*pow(10, count-1);
+  	n = n*10;
+  	n = n+ldig;
+    printf("%d", n);
+  return 0;
+}

@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int[] arr = new int[n];
+        
+       for(int i=0; i<n; i++)
+         arr[i] = scan.nextInt();
+       
+       Sample sample = new Sample();
+       System.out.println(sample.adjacentElementsDifference(arr,n));
+	}
+}
+class Sample
+{
+  public int adjacentElementsDifference(int[] arr, int n)
+  {
+    int maxDiff = arr[0] - arr[1];
+    for(int i=1; i<(n-1); i++)
+    {
+      int diff = arr[i] - arr[i+1];        
+        if(diff>maxDiff)
+          maxDiff = diff;
+    }
+    return maxDiff;
+  }
+}

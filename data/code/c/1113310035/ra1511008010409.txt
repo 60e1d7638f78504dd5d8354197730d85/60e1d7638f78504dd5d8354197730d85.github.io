@@ -1,0 +1,46 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int T,a[20][20],N,count;
+    scanf("%d",&T);
+  int i,j,p,q,z;
+    for(z =0 ;z<T;z++)
+    {   
+        count=0; 
+        scanf("%d",&N);
+        for(i=0;i<N;i++)
+        {
+            for(j=0;j<N;j++)
+            {
+                
+              scanf("%d",&a[i][j]);
+                
+            }
+        }
+ 
+        for(i=0;i<N;i++)
+        {
+            for(j=0;j<N;j++)
+            {
+                for(p=0;p<N;p++)
+                {
+                        for(q=0;q<N;q++)
+                        {
+                            if(i<=p&&j<=q)
+                            {
+                                if(a[i][j]>a[p][q])
+                                {
+                                    count++;
+                                }
+                            }
+                        }
+                }
+ 
+            }
+        }
+        printf("%d\n",count);
+    }
+    
+    return 0;
+}

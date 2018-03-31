@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char a[100],c;
+  int q,i,j,t,w,l;
+  scanf("%d",&t);
+  if(t==0)
+  {
+    printf("0");
+    return 0;
+  }
+  for(q=0;q<t;q++)
+  {
+  scanf("%s",a);
+  scanf("%d",&w);
+  l = strlen(a);
+  for(i=0;i<l;i++)
+  {
+    for(j=i+1;j<l;j++)
+    {
+      if(a[i] > a[j])
+      {
+        c = a[i];
+        a[i] = a[j];
+        a[j] = c;
+      }
+    }
+  }
+    for(i=0;i<w;i++)
+      printf("%c",a[i]);
+    printf("\n");
+  }
+  return 0;
+}

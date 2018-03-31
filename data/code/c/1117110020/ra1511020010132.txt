@@ -1,0 +1,38 @@
+ #include<stdio.h>
+ #include<string.h>
+ int checklucky( char *);
+ int main()
+ {
+    int c;
+    char a[100];
+    scanf("%s",a);
+
+    c=checklucky(a);
+
+    if(c==1)
+        printf("%s is lucky\n",a);
+    else
+        printf("%s is not lucky\n",a);
+
+    return 0;
+}
+
+int checklucky(char *a)
+{
+    char *name;
+    int sum=0,len,i;
+    name=a;
+
+
+    len=strlen(name);
+
+    for(i=0;i<len;i++)
+   {
+       sum=sum+name[i];
+   }
+
+   if(sum%2==0)
+       return (1);
+  else
+       return (0);
+}

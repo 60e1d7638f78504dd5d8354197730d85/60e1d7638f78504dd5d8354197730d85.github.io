@@ -1,0 +1,31 @@
+import java.io.*;
+import java.text.DecimalFormat;
+
+import java.util.Scanner;
+public class TestClass {
+  private static DecimalFormat df2 = new DecimalFormat(".#");
+	 public static void main(String[] args) { 
+         
+		double charge;
+       double tax=0.05;
+         double tiprate=0.18;
+         double totalwithtax;
+       double taxamount;
+       double tipamount;
+       double grandtotal;
+       Scanner key=new Scanner(System.in);
+       charge=key.nextDouble();
+       
+       taxamount=charge*tax;
+       totalwithtax=charge+taxamount;
+       tipamount=charge*tiprate;
+       grandtotal=totalwithtax+tipamount;
+      
+       System.out.println("meal="+charge);
+       System.out.println("tax="+taxamount);
+       System.out.println("meal tax=" +totalwithtax);
+       System.out.println("tips="+df2.format(tipamount));
+         System.out.println("total cost="+grandtotal);
+       
+	}
+}

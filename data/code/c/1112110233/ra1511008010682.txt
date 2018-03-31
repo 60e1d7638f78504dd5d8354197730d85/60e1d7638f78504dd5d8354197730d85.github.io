@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	long long int t,i,j,n,m,k;
+	scanf("%lld",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%lld %lld",&n,&m);
+		char a[n][m];
+		long long int sol=0,count;
+		for(j=0;j<n;j++)
+			scanf("%s",a[j]);
+		for(j=0;j<m;j++)
+		{
+			count=0;
+			for(k=0;k<n;k++)
+			{
+				if(a[k][j]=='1')
+					count++;
+			}
+			if(count>=2)
+				sol+=(count*(count-1))/2;
+		}
+		printf("%lld\n",sol);
+    }
+	return 0;
+}

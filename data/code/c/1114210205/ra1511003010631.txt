@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+
+
+int main(){
+    int n,i,j,m;
+    scanf("%d",&n);
+    int arr[n][n];
+
+    long long int d1=0; //First Diagonal
+    long long int d2=0; //Second Diagonal
+
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            scanf("%d",&arr[i][j]);
+            if (i == j) d1 += arr[i][j];
+            if (i == n - j - 1) d2 += arr[i][j];
+        }
+    }
+m =abs(d1-d2);
+    printf("%d",m); //Absolute difference of the sums across the diagonals
+    return 0;
+}

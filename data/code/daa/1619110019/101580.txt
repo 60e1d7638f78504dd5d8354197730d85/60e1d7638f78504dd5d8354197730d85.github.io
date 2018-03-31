@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define rep(j,n) for(int i=j;i<n;i++)
+#define rep2(j,n) for(int i=j;i<n;i--)
+#define pb push_back
+#define mp make_pair
+#define ll long long int
+#define pii pair<int,int> 
+#define gc getchar_unlocked
+#define mod 1000000007
+void read(int &x){
+    x=0;
+    register char c=gc();
+    for(;c<'0' || c>'9';c=gc());
+    	for(;c>='0' && c<='9';c=gc())
+          	x=(x<<3)+(x<<1)+(c-'0');
+}
+void write(int x){
+ 
+    register char buffor[35];
+    register int i=0;
+    do{
+        buffor[i++]=(x%10)+'0';
+        x/=10;
+    } while(x);
+    i--;
+    while(i>=0) putchar_unlocked(buffor[i--]);
+    putchar_unlocked('\n');
+}
+ 
+vector <int> v[64];
+int main(){
+	int t,n,a,c,j;
+	read(t);
+	rep(0,t){
+		read(n);
+		rep(0,n){
+			c=0;
+			read(a);
+			j=a;
+			while(a){
+				if(a&1)
+				c++;
+				a=a>>1;
+			}
+			v[c].pb(j);
+		}
+		rep(0,64){
+			for(int k=0;k<v[i].size();k++){
+				cout<<v[i][k]<<" ";
+			}
+		}
+		cout<<endl;
+		rep(0,64){
+			v[i].clear();
+		}
+	}
+}

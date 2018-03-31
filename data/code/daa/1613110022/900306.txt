@@ -1,0 +1,52 @@
+
+#include<stdio.h>
+#include<limits.h>
+
+struct pair
+{
+  int mi,ma;
+};
+int ma,mi;
+struct pair find(int a[],int l,int n,int max,int min)
+{ int mid;
+ struct pair mm,mml,mmr;
+  if(l==n)
+  { mm.ma=mm.mi=a[l];
+   return mm;
+  }
+  else if(n==l+1){
+  if(a[l]>=a[n])
+  {
+    mm.ma=a[l];
+    mm.mi=a[n];
+}
+  else
+  {
+    mm.ma=a[n];mm.mi=a[l];
+  }
+    return mm;
+      }
+
+     mid=(l+n)/2;
+    mml=find(a,l,mid,mm.ma,mm.mi);
+    mmr=find(a,mid+1,n,mm.ma,mm.mi);
+    if(mml.ma>mmr.ma) mm.ma=mml.ma;  else mm.ma=mmr.ma;
+    if(mml.mi<mmr.mi) mm.mi=mml.mi;else mm.mi=mmr.mi; 
+ 
+ return mm;
+}
+int main()
+{
+int i,n, a[10];
+  struct pair mm;
+scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  mm.ma=a[0];mm.mi=a[0];
+  
+  mm=find(a,0,n-1,mm.ma,mm.mi);
+  printf("Minimum element in an array : %d\n",mm.mi);
+  printf("Maximum element in an array : %d\n",mm.ma);
+  
+	return 0;
+}

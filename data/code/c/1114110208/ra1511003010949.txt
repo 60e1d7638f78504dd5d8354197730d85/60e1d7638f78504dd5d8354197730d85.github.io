@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int r,c,i,j,count,sum;
+  	scanf("%d",&r);
+  	scanf("%d",&c);
+  	int **arr = (int **)malloc(r* sizeof(int *));
+    for (i=0; i<r; i++)
+         arr[i] = (int *)malloc(c * sizeof(int));
+  
+  	for(i=0;i<r;++i){
+    	for(j=0;j<c;++j){
+        	scanf("%d",&arr[i][j]);
+        }
+    }
+ for (i = 0; i < r; i++)
+      for (j = 0; j < c; j++) {
+       
+         if (i < j) {
+            sum = sum + arr[i][j];
+         }
+      }
+  if(r!=c){
+    printf("%s","entered row and columns is not square matrix");
+    return 0;
+  }
+  else
+    printf("%d",sum);
+ 
+   
+	return 0;
+}

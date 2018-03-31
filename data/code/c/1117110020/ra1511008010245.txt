@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+int luck(char *s);
+int main()
+{  
+   char s[100];
+   int sum;
+   scanf("%s",s);
+   sum = luck(s);
+   if ( sum == 1)
+      printf("%s is lucky",s);
+   else
+      printf("%s is not lucky",s);
+   return 0;
+}
+int luck( char *s)
+{  int sum = 0;
+   int i;
+    for( i = 0 ; s[i] != '\0' ; i++)
+    {
+       sum = sum + s[i];
+    }
+     if( sum % 2 == 0 )
+      return 1;
+   else
+      return 0;
+}

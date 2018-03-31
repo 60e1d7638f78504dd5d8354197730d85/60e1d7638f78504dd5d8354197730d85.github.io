@@ -1,0 +1,35 @@
+#include<stdio.h>
+void main()
+{
+    int n,a[100005]={0},i,l,r,s=0,temp,q,row[100005],st[100005][2];
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d %d",&l,&r);
+        st[i][0]=l;
+        st[i][1]=r;
+        row[i]=r-l+1;
+        a[l]+=1;
+        a[r+1]+=-1;
+    }
+    for(i=1;i<n+1;i++)
+    {
+        a[i]+=a[i-1];
+        s+=a[i];
+      //  printf("%d %d\n",i,a[i]);
+    }
+    scanf("%d",&q);
+    while(q--)
+    {
+        scanf("%d %d",&l,&r);
+        temp=s-a[r]-row[l];
+        if(st[l][0]<=r && st[l][1]>=r)
+            temp+=1;
+        if(temp%2==0)
+            printf("E\n");
+        else
+            printf("O\n");
+    }
+ 
+}
+ 

@@ -1,0 +1,52 @@
+#include<stdio.h>
+int main()
+{
+    int t,n,i=0,c[500],j=0,k,key,f,r=0,s=0,d[500],g=1;
+    scanf("%d",&f);
+    for(i=0;i<f;i++)
+    {
+        scanf("%d",&n);
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&c[j]);
+            d[j]=c[j];
+        }
+    for(k=1;k<n;k++)
+    {
+        t=k-1;
+        key=c[k];
+        while(t>=0 && c[t]>key )
+        {
+            c[t+1]=c[t];
+            t=t-1;
+        }
+        c[t+1]=key;
+    }
+    g=1;
+    r=0;
+    /*printf("%d",c[n-1]);*/
+    while(g<=c[n-1])
+    {
+        if(g!=c[g-1])
+        {
+            r++;
+            break;
+        }
+        g++;
+    }
+    s=0;
+    for(j=0;j<n;j++)
+    {
+        if(c[j]==d[j])
+            s++;
+    }
+    if(s==n)
+        r++;
+    if(r==0)
+        printf("yes\n");
+    else
+        printf("no\n");
+ 
+    }
+    return 0;
+}

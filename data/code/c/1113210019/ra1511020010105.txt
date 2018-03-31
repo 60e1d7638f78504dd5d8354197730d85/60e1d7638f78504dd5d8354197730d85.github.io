@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define MAX
+int main()
+{
+   int votes,min,cases,tc=2;
+   char po[5];
+   while(tc--){
+     scanf("%d",&cases);
+      min=0;
+      while(cases--){
+         scanf("%s%d",po,&votes);
+         if(po[0]=='P') votes--;
+         else votes++;
+         if(votes<0) votes*=-1;
+         if((min&1)^(votes&1))min++;
+         if(min<votes) min=votes;
+      }
+      printf("%d\n",min);
+   }
+   return 0;
+}

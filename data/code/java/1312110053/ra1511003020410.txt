@@ -1,0 +1,29 @@
+import java.io.*;
+public class TestClass {
+  	 public int checkzero(int num){
+       int dg;
+       while(num>0){
+         dg=num%10;
+         if(dg==0)
+           return 1;
+         num=num/10;
+       }
+       return 0;
+     }
+  
+	 public static void main(String[] args) throws IOException{ 
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       TestClass ob=new TestClass();	
+       String str=br.readLine();
+       	if(str.charAt(0)=='0')
+          System.out.println("no");
+       	else{
+          int num=Integer.parseInt(str);
+          int flag=ob.checkzero(num);
+          if(flag==1)
+            System.out.println("yes");
+          else
+            System.out.println("no");
+        }
+	}
+}

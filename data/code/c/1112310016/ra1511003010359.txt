@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include <math.h>
+#define ulld unsigned long long int
+inline ulld scan();
+int main()
+{
+ ulld X,K,T;
+ double ans,set,expo,locTimes2;
+ T=scan();
+ while(T--)
+ {
+  X=scan();
+  K=scan();
+  set=floor(log2(K))+1;
+  expo=pow(2.0,set);
+  locTimes2=2*K-expo+2;
+  ans=((locTimes2-1)*X)/expo;
+  printf("%f\n",ans);
+ }
+ return 0;
+}
+ 
+inline ulld scan( )
+{
+ulld n = 0;
+char c;
+for( c = getchar_unlocked(); c==' ' || c=='\n' || c == '\t'; c = getchar_unlocked());
+for( ; c > 0x2f && c < 0x3a; c = getchar_unlocked())
+n = (n * 10) + (c & 0x0f);
+return n;
+}

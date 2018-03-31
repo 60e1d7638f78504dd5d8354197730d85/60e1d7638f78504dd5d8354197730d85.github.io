@@ -1,0 +1,54 @@
+#include<stdio.h>
+#define mod 1000000007
+int hash[1000001];
+int rank[1000001];
+int parent[1000001];
+ 
+int find(int a)
+{
+    while(a!=parent[a])
+        a=parent[a];
+    return a;
+}
+void unite(int a,int b)
+{
+    a=find(a);
+    b=find(b);
+    if(rank[a]>rank[b])
+    parent[b]=a;
+    else if(rank[b]>rank[a])
+    parent[a]=b;
+    else
+    {
+        parent[a]=b;
+        rank[b]++;
+    }
+  //return;
+}
+int main()
+{
+    int n,i,j,rel;
+    long long int ways=1;
+    scanf("%d%d",&n,&rel);
+    for( i=1;i<=n;i++)
+    {
+        parent[i]=i;
+    }
+    for( j=0;j<rel;j++)
+    {
+        int u,v;
+        scanf("%d %d",&u,&v);
+        unite(u,v);
+    }
+    for( i=1;i<=n;i++)
+    {
+        hash[find(i)]++;
+    }
+    for( i=1;i<=n;i++)
+    {
+        if(hash[i]!=0)
+        ways=(ways%mod)*(hash[i]%mod)%mod;
+    }
+    printf("%lld ",ways);
+    return 0;
+}

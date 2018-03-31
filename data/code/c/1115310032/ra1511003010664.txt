@@ -1,0 +1,192 @@
+#include<stdio.h>
+ 
+char paint[51][51],out[51][51],output[2601][6];
+int p=0;
+ 
+void painting(int row,int col,int row_end,int col_end)
+{
+int i,j;
+	for(i=row;i<row_end;i++)
+	{
+		for(j=col;j<col_end;j++)
+				out[i][j]=paint[i][j];
+	}
+}
+ 
+void painting1(int row,int col,int row_end,int col_end)
+{
+int i,j;
+	for(i=row;i<row_end;i++)
+	{
+		for(j=col;j<col_end;j++)
+				out[i][j]=66;
+	}
+}
+ 
+void compute(int row,int col,int n)
+{
+int i,j,m=n,end1,end2;
+ 
+if(paint[row][col]==66)	
+{
+	for(i=row;i<m;i++)
+	{
+		if(paint[i][col]!=66)
+			break;
+		for(j=col+1;j<n;j++)
+		{
+			if(paint[i][j]!=66)
+			{
+				n=j;
+				break;
+			}
+		}
+	
+	}
+}
+else
+{
+	for(i=row;i<m;i++)
+	{
+		if(paint[i][col]!=87)
+			break;
+		for(j=col+1;j<n;j++)
+		{
+			if(paint[i][j]!=87)
+			{
+				n=j;
+				break;
+			}
+		}
+	
+	}			 	
+}
+end1=i;
+end2=n;
+n=m;
+	for(i=row;i<m;i++)
+	{
+		if(paint[i][col]==out[i][col])
+			break;
+		for(j=col+1;j<n;j++)
+		{
+			if(paint[i][j]==out[i][j])
+			{
+				n=j;
+				break;
+			}
+		}
+	
+	}
+	if((end1+end2)>(i+n))
+	{
+		output[p][0]=row;
+		output[p][1]=col;
+		output[p][2]=end1-1;
+		output[p][3]=end2-1;
+		output[p][4]=paint[row][col];
+		p++;
+		painting(row,col,end1,end2);
+	}
+	else
+	{
+		output[p][0]=row;
+		output[p][1]=col;
+		output[p][2]=i-1;
+		output[p][3]=n-1;
+		output[p][4]=70;
+		p++;
+		painting(row,col,i,n);
+	}
+}
+ 
+int main()
+{
+int i,j,row=0,count_col[51],count_row[51],n,start,mid;
+ 
+scanf("%d",&n);
+mid=n/2+3;
+for(i=0;i<n;i++)
+{
+	scanf("%s",paint[i]);
+	count_row[i]=count_col[i]=0;
+}
+ 
+for(i=0;i<n;i++)
+	for(j=0;j<n;j++)
+		out[i][j]=87;	
+	
+for(i=0;i<n;i++)
+{
+	for(j=0;j<n;j++)
+	{
+		if(paint[i][j]==66)
+		{
+			count_row[i]++;
+			count_col[j]++;			
+		}
+	}
+}
+ 
+for(i=0;i<n;i++)
+{
+	if(count_row[i]>=count_col[i])
+		row++;
+}
+ 
+i=0;	
+	if(row>0)
+	{
+		while(i<n)
+		{
+			start=i;
+			while((i<n) && (count_row[i]>mid))
+				i++;
+			if(start!=i)
+			{
+				output[p][0]=start;
+				output[p][1]=0;
+				output[p][2]=i-1;
+				output[p][3]=n-1;
+				output[p][4]=66;
+				p++;
+				painting1(start,0,i,n);
+			}
+			i++;
+		}
+	}
+	else
+	{
+		while(i<n)
+		{
+			start=i;
+			while((i<n) && (count_col[i]>mid))
+				i++;
+			if(start!=i)
+			{
+				output[p][0]=0;
+				output[p][1]=start;
+				output[p][2]=n-1;
+				output[p][3]=i-1;
+				output[p][4]=66;
+				p++;					
+				painting1(0,start,n,i);
+			}
+			i++;
+		}	
+	}
+ 
+for(i=0;i<n;i++)
+{
+	for(j=0;j<n;j++)
+	{
+		if(out[i][j]!=paint[i][j])
+			compute(i,j,n);
+	}
+}
+printf("%d\n",p);
+for(i=0;i<p;i++)
+	printf("%d %d %d %d B\n",output[i][0],output[i][1],output[i][2],output[i][3]);
+ 
+return 0;
+} 

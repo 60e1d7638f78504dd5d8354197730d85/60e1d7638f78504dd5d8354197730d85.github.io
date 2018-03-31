@@ -1,0 +1,30 @@
+#include <stdio.h>
+int n;
+int main()
+{ 
+  int i,a[10],sum=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  printf("%d",addeven(a,0,0));
+  return 0;
+}
+int addeven(int a[],int sum,int i)
+{
+  if(i==n)
+  {
+    return sum;
+  }
+  if((a[i]%2)==0)
+  {
+    sum=sum+a[i];
+    addeven(a,sum,i+1);
+  }
+  else
+  {
+    sum=sum+0;
+    addeven(a,sum,i+1);
+  }
+}

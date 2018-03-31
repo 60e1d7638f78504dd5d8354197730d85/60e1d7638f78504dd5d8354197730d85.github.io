@@ -1,0 +1,56 @@
+#include<stdio.h>
+//#include<conio.h>
+
+struct student
+{
+	char name[30],city[20];
+	int year;
+	float per;
+};
+struct student s[20],t;
+int main()
+{
+  	int i,j,n;
+//clrscr();
+	//printf("\n enter the limit");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		
+		scanf("%s",s[i].name);
+		
+		scanf("%s",s[i].city);
+		
+		scanf("%d",&s[i].year);
+		
+		scanf("%f",&s[i].per);
+	}
+  //printf("sorting1");
+	for(i=0;i<n-1;i++)
+	{
+     // printf("sorting2");
+		for(j=i+1;j<n;j++)
+		{
+          //printf("%s\n",s[j].name);
+			if((int)s[i].name[0]>(int)s[j].name[0])
+				{
+					t=s[i];
+					s[i]=s[j];
+					s[j]=t;
+				}
+			}
+	}
+	//printf("\n display in desending order\n");
+  printf("Details of colleges\n");
+	for(i=0;i<n;i++)
+	{
+		//printf("Details of colleges\n");
+		printf("Name:%s\n",s[i].name);
+		printf("City:%s\n",s[i].city);
+		printf("Year of establishment:%d\n",s[i].year);
+		printf("Pass percentage:%.1f\n",s[i].per);
+	
+	}
+//getch();
+  return 0;
+}

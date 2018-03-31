@@ -1,0 +1,61 @@
+#include <iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+class Complement
+{
+  private:
+  	int x;
+  	public:
+	void setData(int a)
+	{
+ 		 x=a;
+	}
+  	int getData()
+  	{
+    	return x;
+  	}
+  	long long findNinescomplement(long long r)
+  	{
+      if(r<0)
+        r=abs(r);
+      if(r==0)
+        return 9;
+      else
+      {
+      	long long rev=0,c=0;
+        string s="";
+    	while(r)
+    	{
+      		int y=r%10;
+   	 		 y=abs(y-9);
+          	rev=rev*10 +y;
+      		r/=10;
+          c++;
+    	}
+    	return rev;
+  	 }
+    }
+  void findTenscomplement(long long x)
+  {
+    cout<<x+1;
+  }
+};
+int main()
+{
+  long long n,rev=0;
+  cin>>n;
+  Complement a;
+  a.setData(n);
+  long long r=a.findNinescomplement(n);
+  //cout<<r.reverse()<<endl;
+  while(r)
+  {
+    long long x=r%10;
+    rev=(rev*10)+x;
+    r/=10;
+  }
+  cout<<rev<<" ";
+  a.findTenscomplement(rev);
+  
+}

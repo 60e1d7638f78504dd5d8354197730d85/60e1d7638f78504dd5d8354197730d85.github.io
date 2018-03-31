@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define MOD 1000000007
+ 
+long long int fact(int n){
+	long long int f=1;
+	while(n>0){
+		f=(f*(long long int)n)%MOD;
+		n--;
+	}
+	return f;
+}
+ 
+long long int powers(int b,int n){
+	long long int f=1;
+	while(n--){
+		f=(f*(long long int)b)%MOD;
+	}
+	return f;
+}
+ 
+long long int inverse(int a){
+    long long int m0=MOD,m=MOD,t,q;
+    long long int x0=0,x1=1;
+	while(a>1){
+    	q=a/m;
+		t=m;
+		m=a%m,a=t;
+        t=x0;
+		x0=x1-q*x0;
+		x1=t;
+	}
+	if (x1<0)x1+=m0;
+	return x1;
+}
+ 
+long long int fn(int b, int n){
+	long long int A=fact(n);
+	long long int B=((long long int)(b-1)*powers(b,n-1))%MOD;
+	long long int C=inverse(A);
+	return (B*C)%MOD;
+}
+ 
+int main(){
+	int T,b,n;
+	scanf("%d",&T);
+	while(T--){
+		scanf("%d%d",&b,&n);
+		if(n>100)printf("0\n");
+		else printf("%lld\n",fn(b,n));
+	}
+	return 0;
+} 

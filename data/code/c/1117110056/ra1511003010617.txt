@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(void){
+	char a[26]; char word[20]; int i,j; int n; int flag;
+	fgets(a,1000,stdin);
+	scanf("%d\n", &n);
+	while(n--){
+		flag = 0;
+		fgets(word,1000,stdin);
+		for(i=0;i<strlen(word);i++){
+			for(j=0;j<strlen(a);j++){
+				if(word[i] == a[j]){
+					flag++;
+					j = strlen(a);
+				}
+			}
+		}
+		if(flag==strlen(word)){
+			printf("Yes\n");
+		}
+		else{
+			printf("No\n");
+		}
+	}
+	return 0;
+}

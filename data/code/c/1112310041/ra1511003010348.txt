@@ -1,0 +1,62 @@
+#include<stdio.h>
+int main()
+{
+    int T,N,arr[50],i,j,min,n,k;
+    FILE *fw,*fr;
+//    int  ;
+/*    if((fw=fopen("opcuttingrecipes.txt","w"))==NULL)
+    {
+//                                             exit(1);
+                                             }
+    if((fr=fopen("ipccuttingrecipes.txt","r"))==NULL)
+    {
+                                              printf("File not found...");
+                                              getch();
+  //                                           exit(1);
+                                             }
+*/
+    scanf(" %d",&T);
+    
+    while(T--)
+    {
+              scanf(" %d",&n);
+              min=1000;
+             for(i=0;i<n;i++)
+             {
+                                    scanf(" %d",&arr[i]);
+                                    if(min>arr[i])
+                                                  min=arr[i];
+                                                 // printf("min=%d\n",min);
+                                                  }
+             j=2;
+             while(j<=min)
+             {
+                 if(min%j==0)
+                 {
+             //                          fprintf(fw,"j=%d\n",j);
+                 for(i=0;i<n;i++)
+                 {
+                                 if(arr[i]%j==0)
+                                                ;
+                                 else
+                                 break;
+                                 }
+                 if(i==n)
+                 {
+                         k=j;
+                         j--;
+                         for(i=0;i<n;i++)
+                                         arr[i]=arr[i]/k;
+                                         }
+                                         }
+                 j++;
+                 //if(j==(int)min/2)
+                 //                 j=min;
+                 }
+                 for(i=0;i<n;i++)
+                                 printf("%d ",arr[i]);
+                 printf("\n");
+             }
+//getch();
+return 0;
+}

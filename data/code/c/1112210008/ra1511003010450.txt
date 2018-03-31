@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int n,i,j,cnt=0,x,flag=0;
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+      for(j=i+1;j<=n;j++)
+      {
+        flag=0;
+        if(j%i!=0)
+        {
+          for(x=2;x<=i;x++)
+         	{
+            if(i%x==0 && j%x==0)
+            {
+              flag=1;
+              break;
+            }
+            }
+          if(flag==1)
+            continue;
+          //printf("%d-%d\n",i,j);
+          cnt++;
+        }
+        else if(i==1 && j!=1)
+        {
+         //printf("%d-%d\n",i,j);
+           cnt++;
+        }
+      }
+    }
+    printf("%d\n",cnt);
+  }
+
+	return 0;
+}

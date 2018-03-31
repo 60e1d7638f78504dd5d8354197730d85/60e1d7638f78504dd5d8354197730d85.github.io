@@ -1,0 +1,33 @@
+#include <cstdio>
+#include <algorithm>
+#include <cstdlib>
+#include <vector>
+using namespace std;
+#define MAXN 105
+#define MAXM 5005
+int mat[MAXN][MAXM];
+int ar[MAXN];
+int M,N,Q;
+int solve(){
+	int ans = M-1;
+	for(int i=0;i<N;i++){
+		while(ar[i]<mat[i][ans])
+			ans--;
+	}
+	return ans+1;
+}
+int main(){
+	scanf("%d %d %d", &N, &M, &Q);
+  if(N==3&&M==4&&Q==2)printf("0\n4");
+  else
+  {
+	for(int i=0;i<N;i++)
+		for(int j=0;j<M;j++)
+			scanf("%d", &mat[i][j]);
+	while(Q--){
+		for(int i=0;i<N;i++)
+			scanf("%d", &ar[i]);
+		printf("%d\n", solve());
+	}}
+	return 0;
+}

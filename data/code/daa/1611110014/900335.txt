@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+struct book
+{
+char name[30];
+  int year;
+}bk[10];
+int main()
+{
+  int i,j,temp,n;
+  char na[30];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  scanf("%s%d",bk[i].name,&bk[i].year);
+  }
+  for(i=0;i<n;i++)
+  {
+  for(j=0;j<n;j++)
+  {
+  if(bk[j].year<bk[j+1].year)
+  {
+  temp=bk[j].year;
+    bk[j].year=bk[j+1].year;
+    bk[j+1].year=temp;
+    strcpy(na,bk[j].name);
+    strcpy(bk[j].name,bk[j+1].name);
+    strcpy(bk[j+1].name,na);
+  }
+  }
+  }
+  printf("Name Year\n");
+  for(i=0;i<n;i++)
+  {
+    printf("%s %d\n",bk[i].name,bk[i].year);
+  }
+  printf("\nName Year");
+  printf("\n%s %d",bk[4].name,bk[4].year);
+	return 0;
+}

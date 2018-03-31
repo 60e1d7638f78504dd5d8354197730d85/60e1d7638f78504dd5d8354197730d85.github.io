@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<string.h>
+#define MOD 1000000007
+long alpha[27]={0};
+char str[100005];
+long fact[100001]={0};
+long b[27]={0};
+long c[27]={0};
+long d[27]={0};
+long sumb[27]={0};
+long pow1(long a,long m)
+{
+  register long i;
+  long ans=1;
+  while(m)
+  {if(m&1)
+  {m--;
+   ans=(ans*a)%MOD;continue;}
+   m/=2;
+   a=(a*a)%MOD;}
+  return ans%MOD;
+}
+long ncr(long n,long r)
+{
+  register long i=0,j,k;
+  long num,den=1;
+  if((r==0)||(n==r))return 1;
+  if(n<r) return 0;
+  num=1;
+  j=r;
+  while(j--)
+    num=(num*(n--))%MOD;
+  den=pow1(fact[r],MOD-2);
+  return ((num*den)%MOD);}
+
+int main()
+{
+  int t;
+  register long i=0,k,j,l;
+  long total=0,totalq,temp,temp1,temp2,temp3,temp4;
+  long len;
+  fact[0]=1;fact[1]=1;
+  fact[2]=2;
+  for(i=3;i<=100000;i++)fact[i]=(i*fact[i-1])%MOD;
+  scanf("%d",&t);
+  getchar();
+  while(t--)
+  {
+    scanf("%s",str);
+    for(i=0;i<=26;i++)alpha[i]=0;
+    len=strlen(str);
+    total=fact[len];
+    totalq=total;
+    for(i=0;i<len;i++)alpha[str[i]-96]++;
+    for(i=1;i<=26;i++)if(alpha[i]>1)total=(total*pow1(fact[alpha[i]],(MOD-2)))%MOD;
+    totalq=total;
+    for(i=1;i<=26;i++)b[i]=ncr(alpha[i],2);
+    temp=0;
+    for(i=1;i<=26;i++)
+      for(j=i+1;j<=26;j++)
+        temp=(temp+(alpha[i]*alpha[j])%MOD)%MOD;
+    total=(total-temp+MOD)%MOD;
+    temp1=0;
+    for(i=1;i<=26;i++)
+      for(j=i+1;j<=26;j++)
+        for(k=j+1;k<=26;k++)
+          temp1=(temp1+(alpha[i]*alpha[j]*alpha[k]*2)%MOD)%MOD;
+    total=(total-temp1+MOD)%MOD;
+
+    temp2=0;
+    for(i=1;i<=26;i++)
+      for(j=i+1;j<=26;j++)
+        for(k=j+1;k<=26;k++)
+          for(l=k+1;l<=26;l++)
+            temp2=(temp2+((alpha[i]*alpha[j])%MOD*(alpha[k]*alpha[l]*3)%MOD)%MOD)%MOD;
+    total=(total-temp2+MOD)%MOD;
+
+    temp3=0;
+    for(i=1;i<=26;i++)
+      for(j=i+1;j<=26;j++)
+        temp3=(temp3+(b[i]*b[j])%MOD)%MOD;
+    total=(total-temp3+MOD)%MOD;
+
+    temp4=0;
+    for(i=1;i<=26;i++)
+      for(j=1;j<=26;j++)
+      {
+        if(j==i)continue;
+        for(k=j+1;k<=26;k++)
+        {if(k==i)continue;
+         temp4=(temp4+(alpha[i]*(alpha[i]-1)%MOD*(alpha[j]*alpha[k])%MOD)%MOD)%MOD;
+        }}total=(total-temp4+MOD)%MOD;
+    total=(total-1)%MOD;
+    total=(total*totalq)%MOD;
+    printf("%ld\n",total);
+
+  }
+  return 0;} 

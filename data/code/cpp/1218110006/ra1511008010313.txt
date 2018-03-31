@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+class shape
+{	
+	public:
+  		int a,b; 
+};
+class rect: public shape
+{	
+	public:
+        	void get(int x, int y)
+            {
+            	this->a = x;
+                this->b = y;
+            }
+        void disp()
+        {
+        	cout<<a*b<<endl;
+        }
+}robj;
+class tri: public shape
+{
+  		public:
+        	void get(int x, int y)
+            {
+            	this->a = x;
+                this->b = y;
+            }
+        void disp()
+        {
+        	cout<<0.5*a*b<<endl;
+        }
+}tobj;
+int main()
+{	
+  	int j,k;
+	cin>>j>>k;
+  	robj.get(j,k);
+  	tobj.get(j,k);
+  	robj.disp();
+  	tobj.disp();
+	return 0;
+}

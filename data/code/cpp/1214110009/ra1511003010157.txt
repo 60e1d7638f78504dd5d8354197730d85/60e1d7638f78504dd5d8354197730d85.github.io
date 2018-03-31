@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+class date
+{
+int day, month, year;
+  public:
+  friend istream &operator >>(istream &put,date &d)
+  {
+  put>>d.day>>d.month>>d.year;
+    return put;
+  }
+  friend ostream &operator << (ostream &give, date &d)
+  {
+  if(d.month==1)
+    give<<"January"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==2)
+      give<<"February"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==3)
+      give<<"March"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==4)
+      give<<"April"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==5)
+      give<<"May"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==6)
+      give<<"June"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==7)
+      give<<"July"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==8)
+      give<<"AUgust"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==9)
+      give<<"September"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==10)
+      give<<"October"<<" "<<d.day<<" "<<d.year;
+    else if(d.month==11)
+      give<<"November"<<" "<<d.day<<" "<<d.year;
+    else
+      give<<"December"<<" "<<d.day<<" "<<d.year;
+    return give;
+  }
+};
+
+
+int main()
+{
+date dd;
+  cin>>dd;
+  cout<<dd;
+	return 0;
+}

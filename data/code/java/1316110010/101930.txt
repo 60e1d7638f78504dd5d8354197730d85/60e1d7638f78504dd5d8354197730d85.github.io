@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.Scanner;
+ class sample
+{
+      public int great(int gcd,int lcm)
+ {
+        if (gcd == 0)
+                return lcm;
+             return great(lcm%gcd, gcd);
+    }
+    }
+public class TestClass 
+{
+	 public static void main(String[] args)
+     { 
+       Scanner scanner = new Scanner(System.in);
+        int i,j,gcd = 0,l;
+        sample objname=new sample();
+        int b,c;
+        int a = scanner.nextInt();
+         for (i = 0; i < a; i++) 
+         {
+          b = scanner.nextInt();
+          c = scanner.nextInt();
+          System.out.println(objname.great(b,c) +" "+ ((b*c)/objname.great(b,c)));
+         }
+      	}
+}

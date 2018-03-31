@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       	int t=sc.nextInt();
+       	for(int i=0;i<t;i++){
+          	int s1=sc.nextInt();
+          	int s2=sc.nextInt();
+          	int a[]=new int[s1];	
+          	int b[]=new int[s2];
+          
+          	for(int j=0;j<s1;j++)
+              a[j]=sc.nextInt();
+          	for(int j=0;j<s2;j++)
+              b[j]=sc.nextInt();
+          
+          	Arrays.sort(a);
+          	Arrays.sort(b);
+          
+          	int r[]=new int[s1+s2];
+          	int j=s1-1,k=s2-1,p=0;
+          	while(j>=0 && k>=0){
+              if(a[j]>=b[k])
+                r[p++]=a[j--];
+              else
+                r[p++]=b[k--];
+            }
+          	while(j>=0)
+              r[p++]=a[j--];
+          	while(k>=0)
+              r[p++]=b[k--];
+          
+          	for(int q=0;q<p;q++){
+              System.out.print(r[q]+" ");
+            }
+          	System.out.println();
+        }
+	}
+}

@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+int main()
+{
+    int ar[100],i,n,j,count=0,*ptr;
+     scanf("%d",&n);
+     for(i=0;i<n;i++)
+     {
+          scanf("%d",&ar[i]);
+     }  
+  ptr=ar;
+     for(i=0;i<n;i++)
+     {    count=0;
+           for(j=2;j<ar[i];j++)
+           {
+                 if(*ptr%j==0)
+                 {
+                       count=1;
+                       break;
+                 }
+           }
+      ptr++;
+
+           if(count==0)
+           {
+                 printf("%d is a prime number\n",ar[i]);
+           }
+      else
+        printf("%d is a composite number\n",ar[i]);
+
+     }
+
+     return 0;
+
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+
+  	long decimalnum, remainder, quotient;
+    int octalNumber[100], i = 1, j;
+    scanf("%ld", &decimalnum);
+  	printf("Decimal value:%ld\n", decimalnum);
+    quotient = decimalnum;
+    while (quotient != 0)
+    {
+        octalNumber[i++] = quotient % 8;
+        quotient = quotient / 8;
+    }
+    printf("Octal value:");
+    for (j = i - 1; j > 0; j--)
+        printf("%d", octalNumber[j]);
+    
+    int temp; i=1;
+  	printf("\n");
+	char hexadecimalNumber[100];
+	quotient = decimalnum;
+	while(quotient!=0) {
+		temp = quotient % 16;
+		if( temp < 10)
+		           temp =temp + 48; else
+		         temp = temp + 55;
+		hexadecimalNumber[i++]= temp;
+		quotient = quotient / 16;
+	}
+	printf("Hexadecimal value:");
+	for (j = i -1 ;j> 0;j--)
+	      printf("%c",tolower(hexadecimalNumber[j]));
+	return 0;
+}

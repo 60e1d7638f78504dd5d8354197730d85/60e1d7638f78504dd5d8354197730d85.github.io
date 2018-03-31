@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+void compare(int *a1, int *a2, int n)
+{
+	int i, flag = 0;
+	for(i = 0; i < n; i++)
+	{
+		if(*a1 != *a2)
+		{
+			flag = 1;
+			break;
+		}
+		a1++;
+		a2++;
+	}
+	if(flag == 1)
+		printf("Arrays are not equal");
+	else
+		printf("Arrays are equal");
+}
+ 
+int main(int argc, char **argv)
+{
+	int a1[10], a2[10];
+	int n1,n2, i;
+	//printf("Enter a number between 1 and 10: ");
+	scanf("%d", &n1);
+	//printf("Enter %d numbers for array 1: ", n);
+	for(i = 0; i < n1; i++)
+		scanf("%d", &a1[i]);
+  scanf("%d", &n2);
+	//printf("Enter %d numbers for array 2: ", n);
+	for(i = 0; i < n2; i++)
+		scanf("%d", &a2[i]);
+	compare(a1, a2, n1);
+    return 0;
+}

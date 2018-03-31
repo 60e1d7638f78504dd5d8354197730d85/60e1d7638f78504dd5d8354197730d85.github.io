@@ -1,0 +1,41 @@
+#include<string.h>
+#include<stdio.h>
+
+int main()
+{
+    char s1[10],s2[10],temp;
+    scanf("%s",s1);
+    int len2,n,i,j,ran,len1=strlen(s1);
+   for (i = 0; i < len1-1; i++) {
+      for (j = i+1; j < len1; j++) {
+         if (s1[i] > s1[j]) {
+            temp = s1[i];
+            s1[i] = s1[j];
+            s1[j] = temp;
+         }
+      }
+   }
+  
+  scanf("%d",&n);
+  for(ran=0;ran<n;ran++)
+  {  
+      scanf("%s",s2);
+    len2=strlen(s2);
+  
+       for (i= 0; i < len2-1; i++) {
+      for (j = i+1; j < len2; j++) {
+         if (s2[i] > s2[j]) {
+            temp = s2[i];
+            s2[i] = s2[j];
+            s2[j] = temp;
+         }
+      }
+   }
+  
+    if(strcmp(s1,s2)==0)
+      printf("Yes\n");
+   else
+     printf("No\n");
+}
+  return 0;
+}

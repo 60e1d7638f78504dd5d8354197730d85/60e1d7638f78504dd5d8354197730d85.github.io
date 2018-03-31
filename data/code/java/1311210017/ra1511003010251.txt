@@ -1,0 +1,84 @@
+import java.io.*;
+import java.util.*;
+ 
+public class TestClass
+{
+    public static void main(String[] args) throws IOException
+    {
+        try{
+            Scanner scn = new Scanner(System.in);
+ 
+		int t = scn.nextInt();
+ 
+		while (t != 0) {
+			int m = scn.nextInt();
+			int n = scn.nextInt();
+			int ans = 0;
+			int[][] grid = new int[m][n];
+ 
+			if (m == 1 && n == 1) {
+				System.out.println(0);
+				continue;
+			}
+ 
+			if (m == 1) {
+				System.out.println(n - 1);
+				continue;
+			}
+ 
+			if (n == 1) {
+				System.out.println(m - 1);
+				continue;
+			}
+ 
+			grid[0][0] = 1;
+			
+			grid[m - 1][n - 1] = 1;
+			
+			if(grid[0][n-2] == 1) {
+				ans+=1;
+			}
+			if(grid[1][n-1] == 1) {
+				ans+=1;
+			}
+			grid[0][n - 1] = 1;
+			if(grid[m-1][1] == 1) {
+				ans+=1;
+			}
+			if(grid[m-2][0] == 1) {
+				ans+=1;
+			}
+			grid[m - 1][0] = 1;
+ 
+			for (int i = 0; i < grid.length; i++) {
+				for (int j = 0; j < grid[i].length; j++) {
+					if (grid[i][j] != 1) {
+						int count = 0;
+		if(j < grid[0].length-1 && grid[i][j+1] == 1) {
+			count++;
+		}
+		if(j > 0 && grid[i][j-1] == 1) {
+			count++;
+		}
+		if(i<grid.length-1 && grid[i+1][j] == 1) {
+			count++;
+		}
+		if(i>0 && grid[i-1][j] == 1) {
+			count++;
+		}
+		
+		ans+=count;
+						
+						
+						grid[i][j] = 1;
+					}
+				}
+			}
+			System.out.println(ans);
+			t--;
+		}
+        }catch(Exception e){
+            return;
+        }
+    }
+} 

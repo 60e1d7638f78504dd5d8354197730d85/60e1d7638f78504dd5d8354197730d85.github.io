@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int n1,n2,num,dem,rem,gcd;
+  	float lcm;
+  	scanf("%d %d",&n1,&n2);
+  	if(n1>n2)
+    {
+      num=n1;
+      dem=n2;
+    }
+  	else
+    {
+      num=n2;
+      dem=n1;
+    }
+  	rem=num%dem;
+  	while(rem!=0)
+    {
+      num=dem;
+      dem=rem;
+      rem=num%dem;
+    }
+  	gcd = dem;
+  	lcm = n1*n2/gcd;
+  	printf("%.0f",lcm);
+	return 0;
+}

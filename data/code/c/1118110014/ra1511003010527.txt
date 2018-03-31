@@ -1,0 +1,40 @@
+#include <stdio.h>
+struct fraction
+{
+  int n,d;
+  float x;
+};
+int cmp(float a,float b)
+{
+  if(a>b)
+  {
+    return 1;
+  }
+  else if(a<b)
+  {
+    return -1;
+  }
+  else
+    return 1;
+}
+int main()
+{
+  struct fraction d1;
+  struct fraction d2;
+  scanf("%d",&(d1.n));
+  scanf("%d",&(d1.d));
+  scanf("%d",&(d2.n));
+  scanf("%d",&(d2.d));
+  d1.x=(d1.n)/(d1.d);
+  d2.x=(d2.n)/(d2.d);
+  int r=cmp(d1.x,d2.x);
+  if(r>0)
+  {
+    printf("%d/%d is greater than %d/%d",d1.n,d1.d,d2.n,d2.d);
+  }
+  else if(r<0)
+  {
+    printf("%d/%d is smaller than %d/%d",d1.n,d1.d,d2.n,d2.d);
+  }
+	return 0;
+}

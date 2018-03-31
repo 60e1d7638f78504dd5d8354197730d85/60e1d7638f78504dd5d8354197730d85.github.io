@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<math.h>
+ 
+void dec_hex(long int num)
+{
+long int rem[50],i=0,length=0;
+ while(num>0)
+   {
+      rem[i]=num%16;
+      num=num/16;
+      i++;
+      length++;
+   }
+printf("\nHexadecimal value:");
+for(i=length-1;i>=0;i--)
+  {
+    switch(rem[i])
+    {
+      case 10:
+          printf("a");
+          break;
+      case 11:
+          printf("b");
+          break;
+      case 12:
+          printf("c");
+          break;
+      case 13:
+          printf("d");
+          break;
+      case 14:
+          printf("e");
+          break;
+      case 15:
+          printf("f");
+          break;
+      default :
+         printf("%ld",rem[i]);
+    }
+  }
+}
+
+void dec_oct(long int num)
+{
+long int rem[50],i=0,length=0;
+while(num>0)
+ {
+ rem[i]=num%8;
+ num=num/8;
+ i++;
+ length++;
+ }
+printf("\nOctal value:");
+     for(i=length-1;i>=0;i--)
+             printf("%ld",rem[i]);
+}
+int main()
+{
+long int num;
+  //printf("Enter the decimal number : ");
+ scanf("%ld",&num);
+  printf("Decimal value:%ld",num);
+  dec_oct(num);
+ dec_hex(num);
+ return 0;
+}

@@ -1,0 +1,50 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define ll unsigned long long
+#define md 1000000007
+using namespace std;
+ 
+int main() {
+	int n;
+	cin >> n;
+	vector<ll> a(n);
+	for(int i = 0; i < n; i++)
+	    cin >> a[i];
+    
+    vector<ll> maxSum(n), minSum(n), minCumSum(n);
+    
+    for(int i = 0; i < n - 1; i++){
+        ll mx = a[i], s = 0;
+        for(int j = i; j >= 0; j--){
+            mx = max(mx, a[j]);
+            s = (s + mx) % md;
+        }
+        maxSum[i] = s;
+    }
+    
+    for(int i = 1; i < n; i++){
+        ll mn = a[i], s = 0;
+        for(int j = i; j < n; j++){
+            mn = min(mn, a[j]);
+            s  = (s + mn) % md;
+        }
+        minSum[i] = s;
+    }
+    
+    minCumSum[n-1] = minSum[n-1];
+    for(int i = n-2; i >= 1; i--)
+        minCumSum[i] = (minCumSum[i+1] + minSum[i]) % md;
+    
+    ll res = 0;
+    for(int i = 0; i < n - 1; i++){
+        ll val = (maxSum[i] % md) * (minCumSum[i+1] % md);
+        val %= md;
+        // cout << maxSum[i] << " " << minCumSum[i+1] << " " << val << endl;
+        res = (res + val) % md;
+    }
+    
+    cout << res << endl;
+    
+	return 0;
+}
+ 

@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+ 
+    int n,x;
+    cin>>n>>x;
+    int a;
+    queue<pair<int,int> > q;
+    for(int i=0;i<n;++i)
+    {
+        cin>>a;
+        q.push(make_pair(a,i));
+    }
+    int ch=0;
+    while(ch<x)
+    {
+        vector<pair<int,int> > ar(x);
+        int max=INT_MIN,pos;
+        int num=q.size();
+        for(int i=0;i<min(x,num);++i)
+        {
+            ar[i]=q.front();
+            if(max<ar[i].first)
+            {
+                max=ar[i].first;
+                pos=ar[i].second;
+            }
+            q.pop();
+        }
+        cout<<pos+1<<" ";
+        for(int i=0;i<ar.size();++i)
+        {
+            if(ar[i].second!=pos)
+            {
+                if(ar[i].first>0)
+                {
+                    q.push(make_pair(ar[i].first-1,ar[i].second));
+                }
+                else
+                {
+                    q.push(ar[i]);
+                }
+            }
+        }
+        ++ch;
+    }
+ 
+return(0);
+}

@@ -1,0 +1,71 @@
+
+#include <iostream>
+using namespace std;
+ 
+#define V 4
+ 
+
+int countwalks(int graph[10][10], int u, int v, int k)
+{
+ 
+    int count[V][V][k+1],i,a,j,e;
+ 
+ 
+    for (e = 0; e <= k; e++)
+    {
+        for (i = 0; i < V; i++)  
+        {
+            for (j = 0; j < V; j++) 
+            {
+          
+                count[i][j][e] = 0;
+ 
+              
+                if (e == 0 && i == j)
+                    count[i][j][e] = 1;
+                if (e == 1 && graph[i][j])
+                    count[i][j][e] = 1;
+ 
+        
+                if (e > 1)
+                {
+                    for (a = 0; a < V; a++) 
+                        if (graph[i][a])
+                            count[i][j][e] += count[a][j][e-1];
+                }
+           }
+        }
+    }
+
+    return count[u][v][k];
+}
+ 
+
+int main()
+{
+ 
+    int u, v, k,i,m,j,tc,ver,graph[10][10],res;
+  	
+  cin>>tc;
+    for(m=0;m<tc;m++)
+    {
+ 
+      cin>>ver;
+    for(i=0;i<ver;i++)
+    {
+      for(j=0;j<ver;j++)
+      {
+    
+        cin>>graph[i][j];
+      
+      }
+     }
+
+    
+      cin>>u>>v>>k;
+
+      cout<<countwalks(graph,u,v,k)<<endl;
+    }
+    return 0;
+}
+

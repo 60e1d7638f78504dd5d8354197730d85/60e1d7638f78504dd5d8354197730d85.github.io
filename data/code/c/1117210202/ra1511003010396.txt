@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{long long int n,i,j;
+ scanf("%lld",&n);
+ long long int base[n],pow[n],sum[n],sim[n];
+ for(i=0;i<n;i++)
+ {scanf("%lld%lld",&base[i],&pow[i]);
+ sim[i]=1;
+ sum[i]=0;
+ }
+ for(i=0;i<n;i++)
+ {for(j=0;j<pow[i];j++)
+ sim[i]=sim[i]*base[i];
+ }
+  
+  for(i=0;i<n;i++)
+  {
+while(sim[i]>0)
+{sum[i]=sum[i]+sim[i]%10;
+ sim[i]=sim[i]/10;
+}
+  }
+ 
+ for(i=0;i<n;i++)
+    printf("Case %lld: %lld\n",i+1,sum[i]);
+	return 0;
+}

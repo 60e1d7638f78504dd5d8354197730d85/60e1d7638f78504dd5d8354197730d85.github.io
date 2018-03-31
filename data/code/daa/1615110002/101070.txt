@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+ static int add(int a) {
+  if(a==0||a==1) return 1;
+  else if(a==2||a==3) return 2;
+  else return 5;
+ }
+ public static void main(String[]args) {
+  Scanner s = new Scanner(System.in);
+  int n = s.nextInt();
+  for(int i=1;i<=n;i++) {
+   int count = 0;
+   int num = s.nextInt();
+   int[] co = new int[num];
+   for(int j=0;j<num;j++) co[j] = s.nextInt();
+   Arrays.sort(co);
+   while(co[0]!=co[num-1]) {
+    int a = co[num-1]-co[0];
+    int b = add(a);
+    co[num-1] = co[num-1]-b;
+    count++;
+    Arrays.sort(co);
+   }
+   System.out.println(count);
+  }
+ }
+}

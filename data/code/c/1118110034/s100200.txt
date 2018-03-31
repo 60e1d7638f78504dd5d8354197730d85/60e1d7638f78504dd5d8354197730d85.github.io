@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+ 
+struct Books {
+   char  title[50];
+   char  author[50];
+   char  subject[100];
+   int   book_id;
+}Book[10];
+ 
+int main( ) 
+{
+
+  int n,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  scanf(" %[^\n]s",Book[i].title);
+  scanf(" %[^\n]s",Book[i].author);
+  scanf(" %[^\n]s",Book[i].subject);
+  scanf(" %d",&Book[i].book_id);
+  }
+   for(i=0;i<n;i++)
+  {
+  printf("Book %d title=%s\n",i+1,Book[i].title);
+  printf("Book %d author=%s\n",i+1,Book[i].author);
+  printf("Book %d subject=%s\n",i+1,Book[i].subject);
+  printf("Book %d bookid=%d\n",i+1,Book[i].book_id);
+   }
+   return 0;
+}

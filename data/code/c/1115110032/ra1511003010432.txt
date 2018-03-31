@@ -1,0 +1,33 @@
+#include <stdio.h>
+int arr[50],set[50],len,i,j,ctr=0;
+
+int hasnum(int num){
+	for(j=0;j<ctr;j++){
+    	if(set[j] == num){
+         	//printf("found %d in arr[%d]",num,j);
+        	return 1;
+        }
+    }
+  	return 0;
+}
+int main()
+{	
+  	int tmp;
+	scanf("%d",&len);
+  	for(i=0;i<len;i++){
+    	scanf("%d",&arr[i]);
+      	//printf("%d",arr[i]);
+    }
+  
+  	for(i=0;i<len;i++){
+    	if(hasnum(arr[i])==0){
+        	set[ctr]=arr[i];
+          ctr++;
+        }
+    }
+  
+  	for(i=0;i<ctr;i++){
+    	printf("%d ",set[i]);
+    }
+	return 0;
+}

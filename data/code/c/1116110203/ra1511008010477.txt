@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[20];
+  scanf("%s",str);
+  int i=0,f=0;
+  int j=strlen(str)-1;
+  
+  while(j>i)
+  {
+   if(str[i]==str[j])
+   {
+     i++;
+     j--;
+   }
+    else
+      if(str[i]==str[j] && str[i]=='.')
+      {
+        str[i]='a';
+        i++;
+        j--;
+      }
+    else
+      if(str[i]!='.' && str[j]=='.')
+      {
+        str[j]=str[i];
+        i++;
+        j--;
+      }
+        else
+          if(str[i]=='.' && str[j]!='.')
+          {
+            str[i]=str[j];
+            i++;
+            j--;
+          }
+        else if(str[i]!=str[j])
+        {
+				f=1;
+				break;
+        }
+  }
+    if(i==j&&str[i]=='.')
+			str[i]='a';
+ 
+		if(f==0)
+			printf("%s\n",str);
+		else
+			printf("-1\n");
+
+	return 0;
+}

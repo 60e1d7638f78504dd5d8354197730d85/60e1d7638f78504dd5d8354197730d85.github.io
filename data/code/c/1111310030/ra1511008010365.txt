@@ -1,0 +1,34 @@
+#include<stdio.h>
+	int main(void){
+		int t;
+	//printf("Enter the test case");
+	scanf("%d", &t);
+	int f;
+	for(f = 0;f<t;f++){
+	int N;
+	//printf("Enter no of students");
+	scanf("%d",&N);
+ 
+	int sch[N];
+	int i,j,k;
+	for(i=0;i<N;i++)   //for students
+	scanf("%d",&sch[i]);
+ 
+	int dur[N];
+	for(j=0;j<N;j++)         //for schedule 
+		scanf("%d",&dur[j]);
+ 
+	int count=0;
+	if(dur[0] <= sch[0]){
+		//printf("work can be done");
+		count=1;
+		}
+	for(k=1;k<N;k++){
+		if(sch[k] - sch[k-1] >= dur[k]){
+ 			//printf("Work can be done");
+ 			count++;}
+	}
+	printf("%d\n", count);
+	}
+return 0;
+} 

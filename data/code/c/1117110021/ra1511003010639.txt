@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int n,i,j;
+  scanf("%d",&n);
+   int A[n][n];
+  for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+      scanf("%d",&A[i][j]);
+    }
+  }
+  int c1,c2;
+  c1=0;c2=0;
+  for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+      if(i==j)
+        c1+=A[i][j];
+      if((i+j)==(n-1))
+        c2+=A[i][j];
+      }
+  }
+  printf("%d",abs(c1-c2));
+	return 0;
+}

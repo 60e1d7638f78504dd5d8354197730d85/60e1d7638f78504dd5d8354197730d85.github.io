@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define MAXN 100010
+#define INF 0x3f3f3f3f
+#define vi vector<int>
+#define pb push_back
+#define pii pair<int, int>
+#define mp make_pair
+#define f first
+#define s second
+using namespace std;
+ 
+int T;
+string a, b;
+bool flag, letters[26];
+ 
+int main () {
+    cin.sync_with_stdio(0);
+    cin.tie(0);
+    cin >> T;
+    while (T--) {
+        flag = 0;
+        cin >> a >> b;
+        memset(letters, 0, sizeof(letters));
+        for (int i=0; i<a.size(); i++) letters[a[i] - 'a'] = 1;
+        for (int i=0; i<b.size(); i++) {
+          if (letters[b[i] - 'a']) {
+            cout << "Yes" << endl;
+            flag = 1;
+            break;
+          }
+        }
+        if (!flag) cout << "No" << endl;
+    }
+    return 0;
+}

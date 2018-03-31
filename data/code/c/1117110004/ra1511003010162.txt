@@ -1,0 +1,43 @@
+#include <stdio.h>
+ 
+int func(int array[10], int n, int a)
+{
+  int c, flag=0;
+  
+ 
+   for (c = 0; c < n; c++)
+   {
+      if(array[c] == a)     
+      {
+         flag=1;
+         break;
+      }
+   }
+  return flag;
+}
+
+int main()
+{
+   int array[100], a, c, n, flag;
+ 
+ 
+   scanf("%d",&n);
+	if(n==0)
+    		printf("0");
+  else
+  {
+  
+    for (c = 0; c < n; c++)
+      scanf("%d", &array[c]);
+ 
+ 
+   scanf("%d", &a);
+  flag=func(array,n,a);
+   
+  if (flag==0)
+      printf("%d is not present in the array", a);
+ 	else
+      printf("%d is present in the array", a);
+  }
+   return 0;
+}

@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+long long int max(long int a, long int b) { return (a > b)? a : b; }
+ 
+int insertsort(long long int a[],long long int b[],int n)
+{
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            if(a[j]>a[i])
+            {
+                int temp = a[j];
+                a[j]=a[i];
+                a[i]=temp;
+                temp = b[j];
+                b[j]=b[i];
+                b[i]=temp;
+            }
+ 
+        }
+    }
+}
+
+long long int knapSack(long long int W, long long int wt[], long long int val[], int n)
+{
+   if (n == 0 || W == 0)
+       return 0;
+  
+   if (wt[n-1] > W)
+       return knapSack(W, wt, val, n-1);
+
+   else return max( val[n-1] + knapSack(W-wt[n-1], wt, val, n-1),
+                    knapSack(W, wt, val, n-1)
+                  );
+}
+ 
+int main()
+{
+ 
+    int test;
+    scanf("%d",&test);
+    while(test--)
+    {
+        int n,i;
+        long long int k;
+        scanf("%d %lld",&n,&k);
+        long long int wt[n],val[n];
+        for(i=0;i<n;i++)
+        {
+            scanf("%lld %lld",&wt[i],&val[i]);
+        }
+        insertsort(val,wt,n);
+        printf("%lld\n", knapSack(k, wt, val, n));
+    }
+    return 0;
+}

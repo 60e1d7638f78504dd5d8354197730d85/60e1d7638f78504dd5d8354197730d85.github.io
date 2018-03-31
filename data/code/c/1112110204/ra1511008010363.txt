@@ -1,0 +1,35 @@
+#include <stdio.h>
+int gcd(a,b)
+{
+  if(a==0)
+  {
+    return b;
+  }
+  return gcd(b%a,a);
+}
+int main()
+{
+int a,b,c[20][20],i,j,lcm,gc,n,x=0,y=0,d[20],e[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<2;j++)
+    {
+      scanf("%d",&c[i][j]);
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    a=c[i][0];
+    b=c[i][1];
+    gc=gcd(a,b);
+    lcm=a*b/gc;
+    d[x++]=gc;
+    e[y++]=lcm;
+  }
+ for(i=0;i<n;i++)
+ {
+   printf("%d %d\n",d[i],e[i]);
+ }
+	return 0;
+}

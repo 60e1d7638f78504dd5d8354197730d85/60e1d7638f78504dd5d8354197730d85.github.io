@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{ int t,year,i,ch,num,leap ;
+  scanf("%d",&t) ;
+	while(t--)
+	 { leap=0 ;
+		scanf("%d",&year) ;
+		ch = year-1900 ;
+		  for(i=1904;i<year;i++)
+		  { if(((i%4==0)&&i%100!=0)||(i%400==0))
+			  leap++ ;
+			}
+		  ch = ch+leap ;
+		 num = ch%7 ;
+		 switch(num)
+		 { case 0: printf("monday\n") ;
+					  break ;
+			case 1: printf("tuesday\n") ;
+						break ;
+			case 2: printf("wednesday\n") ;
+						break ;
+			case 3: printf("thursday\n") ;
+						break ;
+			case 4: printf("friday\n") ;
+						break ;
+			case 5: printf("saturday\n") ;
+						break ;
+			case 6: printf("sunday\n") ;
+						break ;
+		  }
+		}
+	 return 0 ;
+} 

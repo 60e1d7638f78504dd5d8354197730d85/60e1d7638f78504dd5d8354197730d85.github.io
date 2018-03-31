@@ -1,0 +1,32 @@
+#include <stdio.h>
+int hcf(int a,int b)
+{
+  if(a==b)
+  {
+    return a;
+  }
+  if(a>b)
+  {
+    return hcf(a-b,a);
+  }
+  else
+  {
+    return hcf(a,b-a);
+  }
+}
+int lcm(int a,int b)
+{
+  return((a*b)/hcf(a,b));
+}
+int main()
+{
+	int t,i;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    int a,b,min;
+    scanf("%d%d",&a,&b);
+    printf("%d %d\n",hcf(a,b),lcm(a,b));
+  }
+	return 0;
+}

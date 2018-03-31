@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+const int ma = 2e6+5;
+vector <int> lis, v;
+pair < pair <int, int> , pair <int, int> > clen[ma];
+int main()
+{   
+  int n,q,x;
+  scanf("%d%d",&n,&q);
+  for(int i=1;i<=n;i++)
+  {
+    scanf("%d",&x);
+    v.push_back(x);
+  }
+  lis.push_back(v[0]);
+  clen[0] = make_pair(make_pair(v[0],0), make_pair (1,0));
+  int len=1, el;
+  for(int i=1;i<n;i++)
+  {
+      if(v[i]>lis[len-1])
+      {
+        lis.push_back(v[i]);
+        clen[i] = make_pair(make_pair(v[i],len), make_pair(1,len));
+        len++;
+      }
+      else if(v[i]<lis[0])
+      {
+        clen[i] = make_pair(make_pair(lis[0],0), make_pair(0,len));
+        lis[0] = v[i];        
+      }
+      else
+      {
+         int ind = lower_bound(lis.begin(),lis.end(), v[i]) - lis.begin();
+         if(ind!=lis.size())
+         {
+          clen[i] = make_pair(make_pair(lis[ind],ind), make_pair(0,len));
+          lis[ind] = v[i];
+         }
+      } 
+  }
+  int k=n;
+  for(int i=0;i<q;i++)
+  {
+    scanf("%d",&x);
+    if(x==1)
+    {
+      scanf("%d",&el);
+      if(lis.size()==0)
+      {
+        lis.push_back(el);
+        clen[k++] = make_pair(make_pair(el,len), make_pair(1,len));
+        len++;
+      }
+      else if(el > lis[lis.size()-1])
+      {
+        lis.push_back(el);
+        clen[k++] = make_pair(make_pair(el,len), make_pair(1,len));
+        len++;
+      }
+      else if(el < lis[0])
+      {
+        clen[k++] = make_pair(make_pair(lis[0],0), make_pair(0,len));
+        lis[0] =  el;
+      }
+      else
+      {
+        int ind = lower_bound(lis.begin(),lis.end(), el) - lis.begin();
+         if(ind!=lis.size())
+         {
+          clen[k++] = make_pair(make_pair(lis[ind],ind), make_pair(0,len));
+          lis[ind] = el;
+         }
+      }
+      printf("%d\n",len);
+    }
+    else
+    {
+      printf("%d\n",clen[k-1].second.second);
+      if(clen[k-1].second.first==1)
+      {
+        lis.pop_back();
+        len--;
+      }
+      else
+      {
+        lis[clen[k-1].first.second] = clen[k-1].first.first;
+      }
+      k--;
+    }
+  }
+  return 0;
+}
+

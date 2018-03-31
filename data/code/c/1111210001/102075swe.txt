@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+int a[20],m,n,i,j,k,p=0,t;
+  scanf("%d",&m);
+  scanf("%d",&n);
+  for(i=0;i<m;i++)
+    scanf("%d",&a[i]);
+  if(n<=a[m-1])
+  {
+    p+=n*a[m-1];
+    n=0;
+  }
+  else if(n>a[m-1])
+  {
+    t=n-a[m-1];
+    n=n-t;
+    p+=n*a[m-1];
+    p+=t*(m-1);
+    n=0;
+  }
+  //p++;
+  printf("%d",p);
+  return 0;
+}

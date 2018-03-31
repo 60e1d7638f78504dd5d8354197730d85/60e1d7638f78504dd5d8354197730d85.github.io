@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int func_rev(int n);
+int main()
+{ int n;
+ cin>>n;
+ int b=(n*n);
+ int c=func_rev(n);
+ int i=c*c;
+ int d=func_rev(b);
+ if(d==i)
+   cout<<"Adam Number";
+ else
+   cout<<"Not an Adam Number";
+ return 0;
+}
+int func_rev(int n)
+{
+  int temp,num,rev=0;
+  temp=n;
+  while(temp>0)
+  {
+    num=temp%10;
+    temp=temp/10;
+    rev=rev*10+num;
+  }
+	return rev;
+}

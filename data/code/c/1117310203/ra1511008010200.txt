@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int t,n,k;
+  long long int y;
+  long double x;
+  scanf("%d",&t);
+  while(t--){
+    scanf("%d %d",&n,&k);
+    x = (long double)n * log10l(n);
+    y = (pow(10,(long double)x - (long long int)x +k-1));
+    printf("\n%lld ",(long long int)y);
+    long long int i=n,mod = pow(10,k);
+    long long int ans=1,last=n;
+    while(i){
+      if(i&1)
+      {
+        ans = (ans*last)%mod;
+      }
+      last = (last*last)%mod;
+      i>>=1;
+    }
+    if(floor(log10(ans))==k-1)printf("%lld",ans);
+    else{
+      int req = k - ans;
+      while(req--)printf("%d",0);
+      printf("%lld",ans);
+    }
+  }
+  return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+    long a1,a2;
+  int i=0,sum[20],r=0;
+  	scanf("%ld %ld",&a1,&a2);
+  	
+  	while(a1!=0 || a2!=0){
+    	sum[i++] = (a1%10 + a2%10 + r)%2;
+      	r = (a1%10 + a2%10 + r)/2;
+      	a1 =a1/10;
+      	a2 = a2/10;
+    }
+  if(r!=0)
+    sum[i++] =r;
+  --i;
+  while(i>=0)
+    printf("%d",sum[i--]);;
+      		return 0;
+}

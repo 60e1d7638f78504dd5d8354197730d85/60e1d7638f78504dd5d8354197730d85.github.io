@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class library{
+  
+string name;
+  int rollno;
+  int book;
+  public:
+  static int counter;
+  library(int roll,string n,int b){
+  	name=n;
+    rollno=roll;
+    book=b;
+  	}
+  void display(){
+  	cout<<rollno<<", "<<name<<", "<<book<<endl;
+ 	counter++;
+    }
+  void call_me(){
+  cout<<counter<<" ";	
+  }
+
+};
+ library::counter=0;
+int main()
+{string a;
+ int roll;int code;
+  cin>>roll>>a>>code;
+ library obj(roll,a,code);
+ cin>>roll>>a>>code;
+ library obj2(roll,a,code);
+ obj.display();
+ obj2.display();
+ obj.call_me();
+ obj2.call_me();
+	return 0;
+}

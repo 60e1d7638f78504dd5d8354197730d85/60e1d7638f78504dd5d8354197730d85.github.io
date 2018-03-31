@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	Scanner scanner = new Scanner(System.in);
+           //System.out.print("Enter number of rows/columns in matrix : ");    //rows and columns in matrix must be same.
+           int rows = scanner.nextInt();
+           int columns= rows;
+           int[][] matrix = new int[rows][columns];
+           
+           //System.out.println("Enter the elements in matrix :");
+           for (int i = 0; i < rows; i++) {
+                  for (int j = 0; j < columns; j++) {
+                        matrix[i][j] = scanner.nextInt();
+                  }
+           }
+      
+      int k = 0, j = 0;
+		int sum1 = 0, sum2 = 0;
+		for (j = 0; j < matrix.length; j++) {
+			for (k = 0; k < matrix.length; k++)
+				System.out.print(matrix[j][k] + " ");
+			System.out.println();
+		}
+		for (j = 0; j < matrix.length; j++) {
+			sum1 = sum1 +matrix[j][j];
+		}
+		k = matrix.length - 1;
+		for (j = 0; j < matrix.length; j++) {
+			if (k >= 0) {
+				sum2 = sum2 + matrix[j][k];
+				k--;
+			}
+		}
+		System.out.println(sum1);
+    }}

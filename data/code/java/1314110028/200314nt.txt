@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.*;
+public class TestClass
+{
+		public static void main (String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		
+		while(t!=0)
+		{
+		    int n = sc.nextInt();
+		    int k = sc.nextInt();
+		    int[] a = new int[n];
+		    int min_result=0,max_result=0,start=0,end=n;
+		    
+		    for(int i=0;i<n;i++)
+		    a[i]= sc.nextInt();
+		    
+		    java.util.Arrays.sort(a);
+		    
+		    for(int i=0;i<end;i++)
+		    {
+		        min_result +=a[i];
+		        end -=k;
+		    }
+		    for(int i=n-1;i>=start;i--)
+		    {
+		        max_result +=a[i];
+		        start +=k;
+		    }
+		    System.out.println(min_result+" "+max_result);
+		    t--;
+		}
+	}
+}

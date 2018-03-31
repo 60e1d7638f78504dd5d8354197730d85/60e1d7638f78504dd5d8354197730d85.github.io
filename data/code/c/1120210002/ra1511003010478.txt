@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+int a[27][27][27][27][27],b[10],i,p,j;
+int main()
+{
+    int n,count=0;
+    char s[100100];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        
+        scanf("%s",s);
+        int l=strlen(s);
+        for(j=l;j<5;j++)
+        {
+            s[j]='a'-1;
+        }
+        s[5]='0';
+        if(!a[s[0]-'a'+1][s[1]-'a'+1][s[2]-'a'+1][s[3]-'a'+1][s[4]-'a'+1])
+        {
+            count++;
+            a[s[0]-'a'+1][s[1]-'a'+1][s[2]-'a'+1][s[3]-'a'+1][s[4]-'a'+1]=1;
+        }
+    }
+    printf("%d\n",count);
+    for(b[0]=0;b[0]<27;b[0]++)
+    {
+        for(b[1]=0;b[1]<27;b[1]++)
+        {
+            for(b[2]=0;b[2]<27;b[2]++)
+            {
+                for(b[3]=0;b[3]<27;b[3]++)
+                {
+                    for(b[4]=0;b[4]<27;b[4]++)
+                    {
+                        if(a[b[0]][b[1]][b[2]][b[3]][b[4]])
+                        {
+                            for(p=0;p<5;p++)
+                            {
+                                if(b[p]!=0)
+                                printf("%c",b[p]+'a'-1);
+                            }
+                            printf("\n");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return(0);
+}

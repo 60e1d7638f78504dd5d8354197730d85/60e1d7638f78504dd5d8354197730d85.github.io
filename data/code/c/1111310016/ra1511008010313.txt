@@ -1,0 +1,117 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <limits.h>
+#define MX 100007
+ 
+struct node
+{
+	int nh, nt, lazy;
+};
+struct node st[4 * MX];
+ 
+void swap(int *x, int *y)
+{
+	int temp;
+	temp = *x;
+	*x = *y;
+	*y = temp;
+	return;
+}
+ 
+void merge(struct node *n, struct node *ln, struct node *rn)
+{
+	n->nh = ln->nh + rn->nh;
+	n->nt = ln->nt + rn->nt;
+	return;
+}
+ 
+void push(struct node *n, struct node *ln, struct node *rn)
+{
+	if (1 == n->lazy)
+	{
+		n->lazy = 0;
+		swap(&(n->nh), &(n->nt));
+		rn->lazy ^= 1;
+		ln->lazy ^= 1;
+	}
+	return;
+}
+ 
+void st_build(int ni, int ss, int se)
+{
+	if (ss == se)
+	{
+		st[ni].nt = 1;
+		st[ni].nh = 0;
+		st[ni].lazy = 0;
+		return;
+	}
+	int mid = (ss + se) / 2;
+	st_build(2 * ni + 1, ss, mid);
+	st_build(2 * ni + 2, mid + 1, se);
+	merge(&st[ni] , & st[2 * ni + 1], &st[2 * ni + 2]);
+}
+ 
+int st_rq(int ni, int ss, int se, int qs, int qe)
+{
+	if (ss != se)
+		push(&st[ni] , & st[2 * ni + 1], &st[2 * ni + 2]);
+	else if (st[ni].lazy == 1)
+	{
+		swap(&st[ni].nh, &st[ni].nt);
+		st[ni].lazy = 0;
+	}
+ 
+	if (qe < ss || se < qs)
+		return 0;
+	if (qs <= ss && se <= qe)
+		return st[ni].nh;
+	int lcnt, rcnt, mid = (ss + se) / 2;
+	lcnt = st_rq(2 * ni + 1, ss, mid, qs, qe);
+	rcnt = st_rq(2 * ni + 2, mid + 1, se, qs, qe);
+	merge(&st[ni] , & st[2 * ni + 1], &st[2 * ni + 2]);
+	return (lcnt + rcnt);
+}
+ 
+void st_rup(int ni, int ss, int se, int qs, int qe)
+{
+	if (ss != se)
+		push(&st[ni] , & st[2 * ni + 1], &st[2 * ni + 2]);
+	else if (st[ni].lazy == 1)
+	{
+		swap(&st[ni].nh, &st[ni].nt);
+		st[ni].lazy = 0;
+	}
+ 
+	if (qe < ss || se < qs)
+		return;
+	if (qs <= ss && se <= qe)
+	{
+		swap(&st[ni].nh, &st[ni].nt);
+		if (ss == se)
+			return;
+		st[2 * ni + 1].lazy ^= 1;
+		st[2 * ni + 2].lazy ^= 1;
+		return;
+	}
+	int mid = (ss + se) / 2;
+	st_rup(2 * ni + 1, ss, mid, qs, qe);
+	st_rup(2 * ni + 2, mid + 1, se, qs, qe);
+	merge(&st[ni] , &st[2 * ni + 1], &st[2 * ni + 2]);
+}
+int main()
+{
+	int n, m, type, a, b,i;
+	scanf("%d %d", &n, &m);
+	st_build(0, 0, n - 1);
+ 
+	for ( i = 0; i < m; i++)
+	{
+		scanf("%d %d %d", &type, &a, &b);
+		if (type == 0)
+			st_rup(0, 0, n - 1, a, b);
+		else
+			printf("%d\n", st_rq(0, 0, n - 1, a, b));
+	}
+	return 0;
+} 

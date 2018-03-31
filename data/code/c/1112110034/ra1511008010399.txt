@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+  int i;
+  char s[20];
+  scanf("%s",s);
+  int c=sizeof(s);
+  int a[c];
+  for(i=0;i<c;i++)
+    a[i]=0;
+  for(i=0;s[i]!='\0';i++)
+  {
+    switch(s[i])
+    {
+      case 'I':a[i]=1;
+        break;
+      case 'V':a[i]=5;
+        break;
+        case 'X':a[i]=10;
+        break;
+        case 'L':a[i]=50;
+        break;
+        case 'C':a[i]=100;
+        break;
+        case 'D':a[i]=500;
+        break;
+        case 'M':a[i]=1000;
+        break;
+    }
+  }
+  int sum=0;
+  for(i=0;a[i]!=0;i++)
+  {
+    if(a[i]<a[i+1])
+    {
+      sum=sum+a[i+1]-a[i];
+      i++;
+    }
+    else
+      sum=sum+a[i];
+  }
+  printf("%d",sum);
+	return 0;
+}
+	

@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main() {
+
+    int T, R, C, num;
+    int i, j;
+    char arr[50][50];
+
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%d %d", &R, &C);
+        num = 0;
+        for (i = 0; i < R; i++) {
+            scanf("%s", arr[i]);
+        }
+
+        for (i = 0; i < R; i++) {
+            for (j = 0; j < C; j++) {
+                if (arr[i][j] == '#') {
+                    num++;
+                    continue;
+                }
+                if (i <= 1 || arr[i - 1][j] == '#' || arr[i - 2][j] == '#') {
+                    num++;
+                    continue;
+                }
+                if (i >= R - 2 || arr[i + 1][j] == '#' || arr[i + 2][j] == '#') {
+                    num++;
+                    continue;
+                }
+                if (j <= 1 || arr[i][j - 1] == '#' || arr[i][j - 2] == '#') {
+                    num++;
+                    continue;
+                }
+                if (j >= C - 2 || arr[i][j + 1] == '#' || arr[i][j + 2] == '#') {
+                    num++;
+                    continue;
+                }
+            }
+        }
+        printf("%d\n", R * C - num);
+    }
+    return 0;
+} 

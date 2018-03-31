@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+struct names{
+char name[30];
+};
+int main()
+{int x,i,j;
+ char temp[30];
+ struct names n[100];
+ scanf("%d",&x);
+ for(i=0;i<x;i++)
+ {
+   scanf("%s",n[i].name);
+ }
+for(i=0;i<x;i++)
+{
+  for(j=i+1;j<x;j++)
+  {
+  if(strcmp(n[i].name,n[j].name)>0)
+{
+ strcpy(temp,n[i].name);
+  strcpy(n[i].name,n[j].name);
+  strcpy(n[j].name,temp);
+}
+  }}
+ for(i=0;i<x;i++)
+ {printf("%s\n",n[i].name);
+ }
+
+  
+	return 0;
+}

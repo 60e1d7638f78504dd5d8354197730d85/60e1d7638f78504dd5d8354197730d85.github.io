@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+   int i;
+   float n,std,sum=0.0,sumsqr=0.0,mean,value,variance=0.0,a[10];
+   scanf("%f",&n);
+   for(i=0;i<n;i++)
+   {
+      scanf("%f",&a[i]);
+      sum=sum+a[i];
+   }
+   mean=sum/n;
+   for(i=0;i<n;i++)
+   {
+     value=a[i]-mean;
+     sumsqr=sumsqr+((value*value)/(n));
+     
+    }
+    std=sqrt(sumsqr);
+     printf("Mean=%.2f\n",mean);
+     printf("SD=%.2f\n",std);
+     return 0;
+}

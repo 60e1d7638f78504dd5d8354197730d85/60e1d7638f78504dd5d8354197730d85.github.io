@@ -1,0 +1,49 @@
+#include <stdio.h>
+ 
+int main() {
+	int t;
+	scanf("%d",&t);
+	int i,n,j,a,l,w=0,sq,cou=0;
+    int c[10] = { 0 }; 
+    int b[10];
+	for(i=0;i<t;i++)
+	{
+	    scanf("%d",&b[i]);
+	    sq=b[i]*b[i];
+	    cou=0;
+	    for(j=0;j<sq;j++)
+	    {
+	        scanf("%d",&a);
+	        if(a==1)
+	        cou++;
+	        
+	    }
+	    c[i]=cou;
+	}
+	for(i=0;i<t;i++)
+	{
+	    w=0;
+	    
+	    
+	    if(c[i]<=b[i])
+	    {
+	        printf("0\n");
+	        continue;
+	    }
+	    
+	    else
+	    {
+	        w=b[i];
+	     for(l=1;l<b[i];l++)
+	     {
+	            w+=2*(b[i]-l);
+	     if(c[i]<=w)
+	     {
+	       printf("%d\n",l);
+	       break;
+	     }
+	    }
+	  }
+	}
+	return 0;
+}  

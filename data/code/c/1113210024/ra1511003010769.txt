@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int t,i,n,arr[1000],j,counter,a,b,z;
+  	scanf("%d",&t);
+  int ans;
+  	int pow_set_size;
+  	for(i=0;i<t;i++){
+    scanf("%n",&n);
+      ans=0;
+      for(j=0;j<n;j++)
+        scanf("%d",&arr[j]);
+      pow_set_size=pow(2,n);
+      for(counter=0;counter<pow_set_size;counter++){
+      for(j=0;j<n;j++){
+      if(counter && (1<<j))
+      {
+      	a=(ans & arr[j]);
+        b=(~ans & ~arr[j]);
+        z=~a & ~b;
+        ans=z;
+      }
+      }
+      }
+      printf("%d\n",ans);
+    }
+	return 0;
+}

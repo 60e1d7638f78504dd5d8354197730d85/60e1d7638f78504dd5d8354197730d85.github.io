@@ -1,0 +1,18 @@
+#include <cctype>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+bool predicate(char c){return !std::isalpha(c);}
+
+int main()
+{
+
+std::string s;
+  std::getline(std::cin, s);
+  s.erase(std::remove_if(s.begin(), s.end(), predicate), s.end());
+std::cout <<"Output String:" << s << std::endl;
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{int n;
+ int b[20];
+ int i,j;
+ scanf("%d",&n);
+ int c,d;
+ for (c = 0; c < n; c++)
+    scanf("%d", &b[c]);
+ 
+  for (c = 0 ; c < ( n - 1 ); c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (b[d] > b[d+1]) /* For decreasing order use < */
+      {
+        int swap       = b[d];
+        b[d]   = b[d+1];
+        b[d+1] = swap;
+      }
+    }
+  }
+ 
+printf("%d\n",b[n-1]);
+ printf("%d",b[0]);
+
+	return 0;
+}

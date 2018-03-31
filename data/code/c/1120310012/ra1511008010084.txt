@@ -1,0 +1,30 @@
+#include<stdio.h>
+#define MOD 1000000007
+#define nums 100005
+char c;
+unsigned long i;
+unsigned long fast_in()
+{
+    for(c=getchar_unlocked(); c<'0'||c>'9'; c=getchar_unlocked());
+    for(i=0; c>='0'&&c<='9'; c=getchar_unlocked())
+        i=(i<<1)+(i<<3)+(c-'0');
+    return i;
+}
+int main()
+{
+    unsigned long t, n, i, a[nums];
+    unsigned long long ans, sum[nums], pow[nums];
+    for(pow[0]=1, i=1; i<nums; i++)
+        pow[i]=(pow[i-1]<<1)%MOD;
+    for(t=fast_in(); t; t--)
+        {
+        for(n=fast_in(), i=0; i<=n; i++)
+            a[i]=fast_in();
+        for(sum[0]=(a[0]<<1)%MOD, i=1; i<=n; i++)
+            sum[i]=(sum[i-1]+a[i]*pow[i])%MOD;
+        for(ans=0,i=1; i<=n; i++)
+            ans=((ans<<1)+(a[i]*sum[i-1])%MOD)%MOD;
+        printf("%llu\n",ans);
+    }
+    return 0;
+}

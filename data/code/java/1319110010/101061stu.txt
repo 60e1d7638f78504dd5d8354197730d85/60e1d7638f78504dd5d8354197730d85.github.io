@@ -1,0 +1,43 @@
+import java.io.*; 
+import java.util.Scanner;
+class InvalidTestScore extends Exception 
+{
+public InvalidTestScore(String msg)
+{
+super(msg);
+}
+public static void InTestScore(int testScore[])throws InvalidTestScore
+{
+int le=testScore.length;
+int sum=0;
+double aver=0;
+for(int i=0;i<le;i++)
+{
+if(testScore[i] < 0 || testScore[i] > 100) throw new InvalidTestScore("Invalid Test Score");
+else
+sum+=testScore[i];
+}
+aver=sum*1.0/le;
+System.out.println(aver);
+} 
+}
+
+public class TestClass
+{
+public static void main(String[] args)
+{
+Scanner keyboard = new Scanner(System.in);
+int no = keyboard.nextInt();
+int testScore[] =new int[no];
+for(int i=0;i<no;i++)
+{
+ testScore[i] = keyboard.nextInt();
+}
+try
+{
+  InvalidTestScore.InTestScore(testScore);
+}
+catch(InvalidTestScore e)  
+{System.out.println(e);}
+}  
+}  

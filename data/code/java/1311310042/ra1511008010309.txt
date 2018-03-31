@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+static int countElements(int arr[], int n)
+    {
+       
+        int result = 1;
+      
+        int max_ele = arr[0];
+      
+        for (int i=1; i<n; i++)
+        {
+            // Compare current element with the maximum
+            // value if it is true otherwise continue
+            if (arr[i] > max_ele)
+            {
+                // Update the maximum value
+                max_ele = arr[i];
+      
+                // Increment the result
+                result++;
+            }
+        }
+      
+        return result;
+    }
+     
+    // Driver method
+    public static void main(String[] args) 
+    {        Scanner sc = new Scanner(System.in);
+	int test=sc.nextInt();
+     for(int j=0;j<test;j++){
+     int n=sc.nextInt();
+        int arr[] =new int[n];
+       for(int i=0;i<n;i++){
+         arr[i]=sc.nextInt();
+       }
+        System.out.println(countElements(arr, arr.length));		
+     }
+	}
+}

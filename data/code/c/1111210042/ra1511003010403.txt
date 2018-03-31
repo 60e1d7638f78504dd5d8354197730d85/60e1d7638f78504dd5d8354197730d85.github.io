@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{int m[100],i,j,max=0,min=0,temp,temp2=0,n;
+ m[0]=1;
+ for(i=1;i<100;i++)
+   m[i]=0;
+ i=0;
+ scanf("%d",&n);
+do
+{++i;
+  scanf("%d",&m[i]);
+}
+ while(m[i]!=0);
+ 
+ j=i-1;
+ i=1;
+ max=m[1];
+ min=m[1];
+while(m[i]!=0)
+{if(max<m[i])
+max=m[i];
+ if(min>m[i])
+   min=m[i];
+ i++;
+ 
+ 
+}
+ 
+ temp=max-min;
+ printf("%d",temp);
+ i=1;
+ while(m[i]!=0)
+ {if(temp==m[i])
+     temp2++;
+ i++;
+ }
+ 
+ if(temp2==0)
+   printf("No");
+ else  
+   printf("Yes");
+	return 0;
+}

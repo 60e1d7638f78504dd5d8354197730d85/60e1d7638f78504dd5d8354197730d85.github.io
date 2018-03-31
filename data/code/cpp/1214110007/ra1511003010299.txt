@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  class toll
+  {
+    int n;
+    int tol;
+    public:
+    toll()
+    {
+      n=0;
+      tol=0;
+    }
+    void payingcar(int x)
+    {
+      n=n+1;
+      tol=tol+x;
+    }
+    void nonpayingcar()
+    {
+      n=n+1;
+    }
+    void display()
+    {
+      cout<<"Total number of cars passed="<<n;
+      cout<<endl;
+      cout<<"Total amount collected="<<tol;
+    }
+  }ob;
+  
+  int tot;
+  char name[10];
+  int val;
+  cin>>tot;
+  for(int i=0;i<tot;i++)
+  {
+    cin>>name;
+    cin>>val;
+    if(val>0)
+      ob.payingcar(val);
+    else
+      ob.nonpayingcar();
+  }
+  ob.display();
+  
+	return 0;
+}

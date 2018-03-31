@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int maxi(int a, int b)
+{
+    return (a>b)?a:b;
+}
+ 
+int func(long int mask, int offer, int total, int m, long int conflict[])
+{
+    if(offer==m+1)
+        return total;
+    int val= func(mask,offer+1,total,m,conflict);
+    if(mask >> offer & 1);
+    else
+    {
+        val = maxi(val, func(mask | conflict[offer], offer+1, total+1, m,conflict));
+    }
+    return val;
+}
+ 
+int main()
+{
+    int n,m,k,i,j;
+    scanf("%d %d",&n,&m);
+    int arr[m+5][20005];
+    int last[m+5];
+    for(i=1;i<=m;i++)
+    {
+        scanf("%d",&k);
+        last[i] = k;
+        for(j=0;j<k;j++)
+            scanf("%d",&arr[i][j]);
+    }
+    long int conflict[25]={0};
+    int found[m+5];
+        for(i=1;i<=n;i++)
+        {
+                        long int mask = 0;
+                        for(j=1;j<=m;j++)
+                        {
+                        found[j]=0;
+                        int low=0,high=last[j]-1;
+                        while(low<=high)
+                        {
+                            int mid =(low+high)/2;
+                            if(arr[j][mid]==i)
+                                break;
+                            else if(arr[j][mid]>i)
+                                high=mid-1;
+                            else
+                                low=mid+1;
+                        }
+                        if(low<=high)
+                        {
+                            found[j]=1;
+                            mask |= 1LL << j;
+                        }
+                        }
+                        for(j=1;j<=m;j++)
+                        {
+                            if(found[j])
+                                conflict[j] |= mask;
+                        }
+                    }
+    int ans = func(0,1,0,m,conflict);
+    printf("%d\n",ans);
+    return 0;
+}

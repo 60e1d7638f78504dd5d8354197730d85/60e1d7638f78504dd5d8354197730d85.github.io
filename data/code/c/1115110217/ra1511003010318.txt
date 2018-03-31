@@ -1,0 +1,61 @@
+ #include<stdio.h>
+    #include<stdlib.h>
+    #define MAX 1001
+    long long int MOD = 1000000080798150871;
+    int elem[MAX][4];
+    long long int W[MAX][MAX];
+    void init(){
+    int i, j;
+    for(i=0;i<=1000;i++)
+    for(j=0;j<=1000;j++){
+    if(j>i) W[i][j]=0;
+    else if(j==0 || j==i) W[i][j]=1;
+    else W[i][j] = W[i-1][j] + W[i-1][j-1];
+    if(W[i][j]>=MOD) W[i][j]-=MOD;
+    }
+    }
+    int main(){
+    init();
+    int cases, i, j, i1, p,q,r;
+    char str[10];
+    scanf("%d", &cases);
+    for(i1=0;i1<cases;i1++)
+    {
+    int n, m, l, k;
+    scanf("%d%d%d%d", &n, &m, &l, &k);
+    for(i=1;i<=n;i++){
+    scanf("%s", str);
+    for(j=1;j<=m;j++)
+    elem[i][j] = str[j-1] - '0';
+    for(;j<=3;j++)
+    elem[i][j] = 0;
+    }
+    int c1=0,c2=0,c3=0,c12=0,c23=0,c31=0,c123=0;
+    long long int ans;
+    if(k==1){
+    for(p=1;p<=n;p++){
+    if(elem[p][1]) c1++;
+    if(elem[p][2]) c2++;
+    if(elem[p][3]) c3++;
+    }
+    ans = (W[c1][l] + W[c2][l] + W[c3][l])%MOD;
+    }
+    if(k==3){
+    for(p=1;p<=n;p++)
+    if(elem[p][1] && elem[p][2] && elem[p][3])
+    c123++;
+    ans = W[c123][l];
+    }
+    if(k==2){
+    for(p=1;p<=n;p++){
+    if(elem[p][1] && elem[p][2]) c12++;
+    if(elem[p][2] && elem[p][3]) c23++;
+    if(elem[p][3] && elem[p][1]) c31++;
+    }
+    ans = (W[c12][l]+W[c23][l]+W[c31][l])%MOD;
+    }
+    printf("%lld\n", ans);
+    }
+    return 0;
+    }
+ 

@@ -1,0 +1,102 @@
+#include<stdio.h>
+
+int natural_sum(int n)
+{
+  int prod = (n*(n+1))/2;
+  
+  return prod;
+}
+
+int main()
+{ 
+  int t;
+
+  scanf("%d",&t);
+  
+  while(t--)
+  {
+    int k, n, num, sum, i, flag, min, a;
+    int s[100];
+    
+    scanf("%d",&n);
+    
+    min=n+1;
+    
+    scanf("%d",&k);
+  
+    for(i=0;i<k;i++)
+    {
+      
+      scanf("%d",&num);
+      
+      if(num<min)
+        min=num;
+      
+      s[i]=num;
+    }
+    
+ if(k==0)
+ {
+    if(((n*(n+1))/2)%2==1)
+       printf("Mom\n");
+    else
+       printf("Chef\n");
+ }
+ else
+ {
+     if(min==1)
+       printf("Chef\n");
+     else if(min==2)
+       printf("Mom\n");
+     else
+     {
+       flag=0;
+       
+       for(i=0; i<k; i++)
+       {
+         int swap=0, j;
+         for(j=0; j<k-i-1; j++)
+         {
+           if(s[j]>s[j+1])
+           {
+             s[j]=s[j]+s[j+1];
+             s[j+1]=s[j]-s[j+1];
+             s[j]=s[j]-s[j+1];
+             
+             swap++;
+           }
+         }
+         if(swap==0)
+           break;
+       }
+       
+       a=0;
+       sum=1;
+       
+       for(i=0; i<k; i++)
+       {
+         sum=sum-natural_sum(a)+natural_sum(s[i]-1);
+         a=s[i];
+          
+         if(sum<=s[i])
+         {
+           flag=1;
+           break;
+         }
+       }
+       
+        if(flag==0)
+        {
+            sum=sum-natural_sum(a)+natural_sum(n);
+        }
+        if(((sum)%2)==1)
+          printf("Chef\n");
+        else
+          printf("Mom\n");
+     }
+ }
+ 
+}
+ 
+return 0;
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+ #include<stdlib.h>
+#include<string.h>
+int main ()
+{
+    int i,t;
+char str [12346];
+   fflush(stdin);
+    scanf ("%s",str);
+        int l=strlen (str);
+        int j=0,c=0;
+        while (j<=l/2)
+        {  
+            if (str [j]!='.'&&str [l-j-1]!='.'&&str [j]!=str [l-j-1])
+          {
+              printf ("-1\n");
+              c++;
+              break;
+          }
+          if (str [j]=='.'&&str [l-j-1]!='.')
+          str [j]=str [l-j-1];
+          if (str [j]!='.'&&str [l-j-1]=='.')
+          str [l-j-1]=str [j];
+          if (str [j]=='.'&&str [l-j-1]=='.')
+          {
+              str [j]='a';
+              str [l-j-1]='a';
+          }
+ 
+        j++;
+        }
+        if(c==0)
+        printf("%s\n",str);
+
+return 0;
+}

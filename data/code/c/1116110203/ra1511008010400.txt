@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include <string.h>
+//int palindrome(char[],int);
+int main(){
+	int j,length,flag;
+
+	char str[100001];
+	scanf("%s",str);
+	length=strlen(str);
+	//quo=length/2;
+	flag=0;
+		for(j=0;j<length;j++){
+			
+			if(str[j]=='.' && str[length-j-1]=='.'){
+				str[j]=str[length-j-1]='a';
+			}
+			else if(str[j]=='.' || str[length-j-1]=='.'){
+				//str[j]=str[length-j-1]='a';
+				if(str[j]=='.'){
+					str[j]=str[length-j-1];	
+				}else{
+					str[length-j-1]=str[j];
+				}
+			}else if(str[j] != str[length-j-1]){
+	            		flag = 1;
+		            	break;
+			}
+		}
+	if(flag){
+		printf("-1\n");
+	}else{
+		printf("%s\n",str);
+	}
+	
+	return 0;
+} 

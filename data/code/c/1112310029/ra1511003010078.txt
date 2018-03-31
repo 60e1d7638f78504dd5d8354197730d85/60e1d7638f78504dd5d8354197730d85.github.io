@@ -1,0 +1,103 @@
+#include <stdio.h>
+   char A[17]="GCTCGTGACCATTAAG";
+    char R[17]="aofphjdgcklibnem";
+    void p1(int update,int update1,int r,int m)
+    {
+    int i,j;
+    for(i=0;i<=update-1;i++)
+    {
+    for(j=0;j<m;j++)
+    printf("%c",A[(j+R[i]-97)%16]);
+    printf("\n");
+    }
+    for(j=0;j<=update1;j++)
+    printf("%c",A[(j+R[i]-97)%16]);
+    for(j=update1+1;j<m;j++)
+    printf("A");
+    printf("\n");
+    for(i=update+1;i<r;i++)
+    {
+    for(j=0;j<m;j++)
+    printf("A");
+    printf("\n");
+    }
+    return;
+    }
+     
+     
+    void p2(int update,int update1,int r,int m)
+    {
+    int i,j;
+    for(i=0;i<r;i++)
+    {
+    for(j=0;j<m;j++)
+    { if(i<update && j<update1)
+    printf("G");
+    //else if (i==1 && j==0)
+    // printf("%c",a[1]);
+    else
+    printf("A");
+    }
+    printf("\n");
+    }
+    return ;
+    }
+    int main()
+    {
+    int l[15],b[15],c[15][15],i,j,m,r,x,a,s,update,update1,mod,t=5,min,k;
+    int minq,updateq,update1q,xq,aq,sq;
+    scanf("%d",&t);
+    while(t--)
+    {
+    update1=update=0;
+    scanf("%d%d%d",&r,&m,&k);
+    if(3*r*m>=2*k)
+    {
+    for(i=0;i<r;i++)
+    {
+    for(j=0;j<m;j++)
+    printf("A");
+    printf("\n");
+    }
+    continue;
+    }
+     
+    l[0]=m;
+    for(i=1;i<m;i++)
+    l[i]=l[i-1]+(m-i);
+    b[0]=r;
+    for(i=1;i<r;i++)
+    b[i]=b[i-1]+(r-i);
+    min=k-r*m>0?k-r*m:r*m-k;
+    for(i=0;i<r;i++)
+    {
+    for(j=0;j<m;j++)
+    {
+    c[i][j]=(r-i)*l[j];
+    if(i>0)c[i][j]+=(b[i-1]*l[m-1]);
+    mod=c[i][j]-k>0?c[i][j]-k:k-c[i][j];
+    if(mod<min){ update=i; update1=j; min=mod; }
+    // printf("%d ",c[i][j]);
+    }
+    // printf("\n");
+    }
+    minq=k-r*m>0?k-r*m:r*m-k;
+    updateq=0; update1q=0;
+    for(xq=1;xq<=r;xq++)
+    {
+    for(aq=1;aq<=m;aq++)
+    {
+    sq=(r-xq)*m + (m-aq)*xq +r*m + (r-xq)*(m-aq)*(aq*xq-1) - k ;
+    sq=sq>0?sq:0-sq;
+    // printf("%d\n",minq);
+    if(sq<minq){ updateq=xq; update1q=aq; minq=sq; }
+    }
+    }
+    // printf("%d %d\n",updateq,update1q);
+    if(min<minq)
+    p1(update,update1,r,m);
+    else
+    p2(updateq,update1q,r,m);
+    }
+    return 0;
+    }  

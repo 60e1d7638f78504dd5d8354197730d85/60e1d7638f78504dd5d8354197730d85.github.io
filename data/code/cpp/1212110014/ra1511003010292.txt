@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int a,b;
+cin>>a>>b;
+  int x=1;
+  if(a<b && b%a==0)
+    cout<<"The lcm is "<<b;
+  else
+  {int com = 0;
+    while(com!=1)
+    {
+      for(int i = a ; i>=1 ; i--)
+      {
+        if(a%i == 0 && b%i==0)
+        {com = i;
+         x = x *com;
+         a = a/i;
+         b = b/i;
+         break;}
+      }
+    }
+   x = x *a *b;
+   cout<<"The lcm is "<<x;
+  }
+	return 0;
+}

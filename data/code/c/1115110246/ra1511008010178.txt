@@ -1,0 +1,185 @@
+#include <stdio.h>
+typedef long long int LLI;
+#define inchar getchar_unlocked
+inline int inIntPos() {
+	int n, ch;
+	while ((ch = inchar()) < '0');
+	n=(ch-'0');
+	while((ch = inchar()) >= '0')
+		n=(n<<3)+(n<<1)+(ch-'0');
+	return n;
+}
+ 
+int mod3[]={ 0,1,2,0,1,2,0,1,2,0,1,2 };
+ 
+void inIntDigits(char *s) {
+	int n=1, ch;
+	while ((ch = inchar()) < '0');
+	s[n++]=mod3[(ch-'0')];
+	while((ch = inchar()) >= '0')
+		s[n++]=mod3[(ch-'0')];
+}
+ 
+#define MAX_N 100002
+char s[MAX_N];
+int n;
+ 
+typedef struct Data {
+	int d[3];
+	char sum;
+} Data;
+Data st[4*MAX_N];
+ 
+
+void build( int v, int tl, int tr) {
+	if (tl == tr) {
+		st[v].d[0]=st[v].d[1]=st[v].d[2]=0;
+		++st[v].d[s[tl]];
+		st[v].sum=s[tl];
+		return;
+	}
+	int tm,vL,vR;
+	tm = (tl + tr) >> 1;
+	vL = v<<1;
+	vR = vL+1;
+ 
+	build( vL,   tl, tm);
+	build( vR, tm+1, tr);
+ 
+	if(st[vL].sum==0) {
+		st[v].d[0]=st[vL].d[0] + st[vR].d[0];
+		st[v].d[1]=st[vL].d[1] + st[vR].d[1];
+		st[v].d[2]=st[vL].d[2] + st[vR].d[2];
+	}
+	else if(st[vL].sum==1) {
+		st[v].d[0]=st[vL].d[0] + st[vR].d[2];
+		st[v].d[1]=st[vL].d[1] + st[vR].d[0];
+		st[v].d[2]=st[vL].d[2] + st[vR].d[1];
+	}
+	else { 
+		st[v].d[0]=st[vL].d[0] + st[vR].d[1];
+		st[v].d[1]=st[vL].d[1] + st[vR].d[2];
+		st[v].d[2]=st[vL].d[2] + st[vR].d[0];
+	}
+	st[v].sum = mod3[st[vL].sum + st[vR].sum];
+}
+ 
+
+Data getSum( int v, int tl, int tr, int l, int r) {
+	if (l == tl && r == tr) {
+		return st[v];
+	}
+ 
+	int tm,vL,vR, nr, nl;
+	tm = (tl + tr) >> 1;
+	vL = v<<1;
+	vR = vL+1;
+	nr = (r<=tm?r:tm); 
+	nl = (l<tm+1?tm+1:l); 
+	
+	if(l>nr) {
+		return getSum(vR, tm+1, tr, nl, r);
+	}
+	else if(nl>r) {
+		return getSum(vL, tl, tm, l, nr);
+	}
+	else {
+		Data dl = getSum(vL, tl, tm, l, nr);
+		Data dr = getSum(vR, tm+1, tr, nl, r);
+		Data res;
+ 
+		if(dl.sum==0) {
+			res.d[0]=dl.d[0] + dr.d[0];
+			res.d[1]=dl.d[1] + dr.d[1];
+			res.d[2]=dl.d[2] + dr.d[2];
+		}
+		else if(dl.sum==1) {
+			res.d[0]=dl.d[0] + dr.d[2];
+			res.d[1]=dl.d[1] + dr.d[0];
+			res.d[2]=dl.d[2] + dr.d[1];
+		}
+		else { 
+			res.d[0]=dl.d[0] + dr.d[1];
+			res.d[1]=dl.d[1] + dr.d[2];
+			res.d[2]=dl.d[2] + dr.d[0];
+		}
+		res.sum = mod3[dl.sum + dr.sum];
+		return res;
+	}
+}
+
+void updateST(int v, int tl, int tr, int pos, int val) {
+	if (tl == tr) {
+		st[v].d[0]=st[v].d[1]=st[v].d[2]=0;
+		++st[v].d[s[tl]];
+		st[v].sum=s[tl];
+		return;
+	}
+ 
+	int tm,vL,vR;
+	tm = (tl + tr) >> 1;
+	vL = v<<1;
+	vR = vL+1;
+ 
+	if(pos<=tm)
+		updateST( vL, tl, tm, pos, val);
+	else
+		updateST( vR, tm+1, tr, pos, val);
+ 
+	if(st[vL].sum==0) {
+		st[v].d[0]=st[vL].d[0] + st[vR].d[0];
+		st[v].d[1]=st[vL].d[1] + st[vR].d[1];
+		st[v].d[2]=st[vL].d[2] + st[vR].d[2];
+	}
+	else if(st[vL].sum==1) {
+		st[v].d[0]=st[vL].d[0] + st[vR].d[2];
+		st[v].d[1]=st[vL].d[1] + st[vR].d[0];
+		st[v].d[2]=st[vL].d[2] + st[vR].d[1];
+	}
+	else { 
+		st[v].d[0]=st[vL].d[0] + st[vR].d[1];
+		st[v].d[1]=st[vL].d[1] + st[vR].d[2];
+		st[v].d[2]=st[vL].d[2] + st[vR].d[0];
+	}
+	st[v].sum = mod3[st[vL].sum + st[vR].sum];
+}
+ 
+LLI calc(int l, int r) {
+	LLI res;
+	Data da = getSum(1,1,n, l, r);
+	res  = ((LLI)da.d[0]*(da.d[0]+1))>>1;
+	res += ((LLI)da.d[1]*(da.d[1]-1))>>1;
+	res += ((LLI)da.d[2]*(da.d[2]-1))>>1;
+	return res;
+}
+ 
+void update(int i, int v) {
+	int nv = mod3[v];
+	if(s[i]==nv) return;
+	s[i]=nv;
+	updateST(1,1,n,i,nv);
+}
+ 
+int main(void) {
+	int m,i,t,x,y;
+ 
+	n=inIntPos();
+	m=inIntPos();
+	inIntDigits(s);
+ 
+	build(1, 1,n);
+ 
+	for(i=0; i<m; ++i) {
+		t=inIntPos();
+		x=inIntPos();
+		y=inIntPos();
+ 
+		if(t==1) {
+			update(x,y);
+		}
+		else {
+			printf("%lld\n",calc(x,y));
+		}
+	}
+	return 0;
+}

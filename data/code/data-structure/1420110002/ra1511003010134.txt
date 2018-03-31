@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+bool comp(pair<int,char> a, pair<int,char> b)
+{ 
+ if ( a.first < b.first )
+  return true;
+ else if (a.first == b.first)
+  return (a.second > b.second ? true:false);
+ else
+  return false;
+}
+int main()
+{
+ int t;cin>>t;
+ while(t--)
+ {
+  string str;
+  cin>>str;
+  vector< pair<int,char> > v;
+  for (int i = 0; i < 26; ++i)
+  {
+   v.push_back(make_pair(0,'a'+i));
+  }
+  for (int i = 0; i < str.size(); ++i)
+  {
+   (v[str[i]-'a'].first)++;
+  }
+  sort(v.begin(), v.end(),comp);
+  for (int i = 0; i < 26; ++i)
+  {
+   cout<<v[i].second<<" ";
+  }
+  cout<<endl;
+ }
+ return 0;
+}

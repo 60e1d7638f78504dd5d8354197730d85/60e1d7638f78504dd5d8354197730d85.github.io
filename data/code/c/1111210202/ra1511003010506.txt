@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int days,n,i,j,flag=0;
+  	scanf("%d",&days); scanf("%d",&n);
+  	int sch[50][2];
+  	int water[50]={0};
+  	
+  	for(i=0;i<n;i++){
+    	scanf("%d",&sch[i][0]);
+        scanf("%d",&sch[i][1]);
+    }
+  
+  	for(i=0;i<n;i++){
+    	for(j=sch[i][0];j<=sch[i][1];j++){
+        	water[j]++;
+        }
+    }
+  	
+  	for(i=0;i<days;i++){
+  		if(water[i+1]!=1){ printf("%d %d",i+1,water[i+1]); return 0; }  	
+    }
+  
+  	if(flag==0){ printf("OK"); }
+	return 0;
+}

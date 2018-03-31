@@ -1,0 +1,51 @@
+#include <iostream>  
+  using namespace std;
+  class Shape {  
+  protected:  
+    double x, y;  
+  public:  
+    void set_dim(double i, double j=0) {  
+      x = i;  
+      y = j;  
+    }  
+    virtual void show_area(void) {  
+      cout << "No area computation defined ";  
+      cout << "for this class.\n";  
+    }  
+  } ;  
+   
+  class square : public Shape {  
+    public:  
+      void show_area(void) {  
+        cout << "Area of square: "<<x*x<<endl;  
+       }  
+  };  
+       
+  class circle : public Shape {  
+    public:  
+      void show_area(void) {  
+        cout << "Area of circle: "<<3.14*x*x<<endl;
+      }  
+  } ;  
+       
+  main(void)  
+  {  
+    Shape *p;  
+    //triangle t; 
+    square s;  
+    circle c;  
+    
+    float a,b;
+    cin>>a;
+    cin>>b;
+       
+    p = &s;  
+    p->set_dim(a, a);  
+    p->show_area();  
+       
+    p = &c;  
+    p->set_dim(b);  
+    p->show_area();  
+       
+    return 0;  
+  }

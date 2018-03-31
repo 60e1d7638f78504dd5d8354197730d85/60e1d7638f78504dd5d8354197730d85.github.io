@@ -1,0 +1,19 @@
+#include <stdio.h>
+void swp(int *c,int *d)
+{
+  int e;
+  e=*d;
+  *d=*c;
+  *c=e;
+}
+void (*foo)(int *,int *);
+int main()
+{	
+  int a,b,e;
+  scanf("%d",&a);
+  scanf("%d",&b);
+	foo= &swp;
+  	foo(&a,&b);
+  	printf("m=%d\nn=%d",a,b);
+	return 0;
+}

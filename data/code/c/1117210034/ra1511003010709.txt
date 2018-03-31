@@ -1,0 +1,31 @@
+#include <stdio.h>
+void read(int[],int);
+int main()
+{
+int t,a[10],i;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  read(a,t);
+	return 0;
+}
+void read(int x[10],int n)
+{
+  int j,k,b[40],y=0,max=0;
+  for(j=0;j<n;j++)
+  {
+     for(k=0;k<n;k++)
+     {
+        b[y]=(x[j]&x[k]);
+       if(max<b[y-1])
+       {
+         max=b[y-1];
+       }
+         y++;
+     }
+       
+  }
+  printf("%d",max);
+}

@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+  string a,b,c;
+  cin>>a>>b>>c;
+  int s,e,f=0;
+  for(int i=0;i<a.length();i++)
+  {
+    if(a[i]==b[0])
+    {
+      f=1;
+      for(int j=0;j<b.length();j++)
+      {
+        if(a[i+j]!=b[j]){
+          f=0;
+          break;
+        }
+      }
+    }
+    if(f==1)
+    {
+      s=i;
+      e=i+b.length();
+      break;
+    }
+  }
+  a.replace(s,e,c);
+  cout<<a;
+  return 0;
+}

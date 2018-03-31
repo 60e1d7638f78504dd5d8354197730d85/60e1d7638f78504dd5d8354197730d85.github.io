@@ -1,0 +1,30 @@
+#include<stdio.h>
+long long int power(int a,long long int b);
+int main()
+{
+long long int n,k;
+int t;
+scanf("%d",&t);
+while(t--)
+{
+scanf("%lld",&n);
+k=n/2;
+if(n%2==0)
+printf("%lld\n",(power(2,k+2)-2-power(2,k)+1000000007)%1000000007);
+else
+printf("%lld\n",(power(2,k+2)-2+1000000007)%1000000007);
+}
+return 0;
+}
+long long int power(int a,long long int b)
+{
+long long int k;
+if(b==0)
+return 1;
+k=power(a,b/2);
+if(b%2==0)
+return ((k)*(k))%1000000007;
+else
+return (a*(k)*(k))%1000000007;
+}
+ 

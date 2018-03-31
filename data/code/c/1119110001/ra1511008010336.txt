@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<malloc.h>
+int main()
+{
+	int *a1,*a2;
+  	int n1,n2,i,flag=0;
+  	scanf("%d",&n1);
+  	a1 = (int *)malloc(n1 *sizeof(int));
+  	for(i=0;i<n1;i++)
+    {
+      scanf("%d",&a1[i]);
+    }
+  	scanf("%d",&n2);
+  	a2 = (int *)malloc(n2 *sizeof(int));
+  	for(i=0;i<n2;i++)
+    {
+      scanf("%d",&a2[i]);
+    }
+  for(i=0;i<n1;i++)
+  {
+  	if(*a1 != *a2)
+    {
+      flag = 1;
+      break;
+    }
+    a1++;
+    a2++;
+  }
+  if(flag == 0)
+  {
+    printf("Arrays are equal");
+  }
+  else
+  {
+    printf("Arrays are not equal");
+  }
+	return 0;
+}

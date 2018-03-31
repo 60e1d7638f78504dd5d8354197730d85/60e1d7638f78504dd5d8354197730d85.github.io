@@ -1,0 +1,40 @@
+#include<stdio.h>
+int cmp(const void *a, const void *b)
+{
+	return (*(int*)a-*(int*)b);
+}
+ 
+int lcm(int a,int b)
+{
+	int	n1=a,n2=b;
+	while(n1!=n2)
+	{
+		if(n1>n2)
+		n1=n1-n2;
+		else
+		n2=n2-n1;
+	}
+	return ((a*b)/n1);
+}
+int main()
+{
+	int i,j,t,n,ft,s,c=0;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		int k[n];
+		for(i=0;i<n;i++)
+		scanf("%d",&k[i]);
+			
+			ft=lcm(k[0],k[1]);	
+			for(i=0;i<n;i++)
+			{  
+				for(j=i+1;j<n;j++)
+					ft = (lcm(k[i],k[j])<ft)?(lcm(k[i],k[j])):ft;
+			}
+	
+		printf("%d\n",ft);
+	}
+	return 0;
+} 

@@ -1,0 +1,24 @@
+import java.util.*;
+import java.text.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int t=sc.nextInt();
+      	double ls,bs,min,max;
+      	DecimalFormat df=new DecimalFormat("#.#####");
+      	for(int i=0;i<t;i++)
+        {
+          	bs=sc.nextDouble();
+          	ls=sc.nextDouble();
+          	max=Math.sqrt(Math.pow(bs,2)+Math.pow(ls,2));
+          	if(ls>bs)
+              min=Math.sqrt(Math.pow(ls,2)-Math.pow(bs,2));
+          	else
+              min=Math.sqrt(Math.pow(bs,2)-Math.pow(ls,2));
+          
+          System.out.println(df.format(min) + " "+df.format(max));
+        }
+	}
+}

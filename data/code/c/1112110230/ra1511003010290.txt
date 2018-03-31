@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+int binaryOctal(long binary)
+{
+	int octal = 0, a = 0, i= 0;
+  	while(binary!=0)
+    {
+    	a += (binary%10)*pow(2, i);
+      	i++;
+      	binary /= 10;
+    }
+  	i = 1;
+  	while(a!=0)
+    {
+    	octal += (a%8)*i;
+      	a /= 8;
+      	i *= 10;
+    }
+  	return octal;
+}
+int main()
+{
+  	long binary;
+  	scanf("%ld", &binary);
+  	printf("%d", binaryOctal(binary));
+	return 0;
+}

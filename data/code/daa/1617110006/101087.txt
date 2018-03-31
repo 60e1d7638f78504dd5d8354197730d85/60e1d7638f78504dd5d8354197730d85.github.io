@@ -1,0 +1,60 @@
+#include <iostream>
+#include<vector>
+#include<climits>
+using namespace std;
+
+vector<int> arr[1001];
+int visited[1001]={0};
+
+void dfs(int s,int length)
+{
+    visited[s]=length;
+
+    for(int i=0;i<arr[s].size();i++)
+    {
+        if(visited[arr[s][i]]==0)
+        {
+            dfs(arr[s][i],length+1);
+        }
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+
+    for(int i=0;i<n-1;i++)
+    {
+        int x,y;
+        cin>>x>>y;
+
+        arr[x].push_back(y);
+        arr[y].push_back(x);
+    }
+
+    int length=1;
+
+    dfs(1,length);
+
+    int q;
+    cin>>q;
+
+    int minIndex=INT_MAX;
+    int minNum=0;
+
+    while(q-->0){
+
+        int num;
+
+        cin>>num;
+
+        if(minIndex>visited[num]){
+
+            minIndex = visited[num];
+            minNum=num;
+        }
+    }
+    cout<<minNum<<endl;
+
+    return 0;
+}

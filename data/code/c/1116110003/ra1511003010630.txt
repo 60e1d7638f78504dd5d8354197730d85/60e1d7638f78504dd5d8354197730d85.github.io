@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char s[100],temp;
+  	int i,j,as[100],last_i;
+  	scanf("%[^\n]",s);
+  	j=strlen(s);
+  	for(i=0;s[i]!='\0';++i)
+    {
+    	as[i]=(int)s[i];
+      	last_i=i;
+      	for(j=0;j<i;j++)
+        {
+        	if(as[i]>as[j])
+            {
+            	temp=as[i];
+              	as[i]=as[j];
+              	as[j]=temp;
+            }
+        }
+    }
+  	for(i=last_i;i>=0;--i)
+    {
+    	printf("%c",as[i]);
+    }
+	return 0;
+}

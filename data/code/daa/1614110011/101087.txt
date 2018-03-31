@@ -1,0 +1,84 @@
+//package greedy;
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.Scanner;
+
+
+ class TestClass {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO Auto-generated method stub
+		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Scanner br = new Scanner(System.in);
+		String s;
+        int N;
+		StringTokenizer st;
+		int T=br.nextInt();
+		while(T>0)
+		{
+			N=br.nextInt();
+            char arr[][]=new char[N][N];
+			int i=0;
+			while(i<N)
+			{
+              s=br.next();
+				if(s!=null)
+				{
+					
+					for(int j=0;j<N;j++)
+					{
+						arr[i][j]=s.charAt(j);
+					}
+					i++;
+				}
+			}
+			for(i=0;i<N;i++)
+			{
+				for(int j=0;j<N-1;j++)
+				{
+					for(int k=0;k<N-j-1;k++)
+					{
+						if(arr[i][k]>arr[i][k+1])
+						{
+							char temp;
+							temp=arr[i][k];
+							arr[i][k]=arr[i][k+1];
+							arr[i][k+1]=temp;
+						}
+					}
+				}
+			}
+			if(check(arr))
+			{
+				System.out.println("YES");
+			}
+			else
+			{
+				System.out.println("NO");
+			}
+			T--;	
+		}
+	}
+
+	private static boolean check(char[][] arr) {
+		// TODO Auto-generated method stub
+		int N=arr.length;
+		for(int j=0;j<N;j++)
+		{
+			for(int k=0;k<N-1;k++)
+			{
+				if(arr[k][j]>arr[k+1][j])
+				{
+					return false;
+				}
+			}
+		
+		}
+		return true;
+	}
+
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{int t,c1,n,count,max;
+ t=fastread();
+ while(t>0)
+ {
+   count=1;
+   n=fastread();
+   c1=fastread();
+   max=c1;
+   while(n>1)
+   {
+     c1=fastread();
+     if(c1<=max)
+     {
+       count++;
+       max=c1;
+     }
+     n--;
+   }
+   printf("\n%d",count);
+   t--;
+ }
+ 
+	return 0;
+}
+int fastread()
+{
+  int input;
+  char c=0;
+  while(c<33)
+    c=getchar_unlocked();
+  input=0;
+  while(c>33)
+  {
+    input=input*10+c-'0';
+    c=getchar_unlocked();
+  }
+  return input;
+}

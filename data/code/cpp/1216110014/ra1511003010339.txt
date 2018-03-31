@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+
+  int no;
+  cin>>no;
+  int flg=0;
+  int arr[no];
+  for(int i=0;i<no;i++)
+  {
+    cin>>arr[i];
+  }
+  int a=arr[0];
+  int r=pow((arr[no-1]/a),(1.0/(no)));
+  for(int l=1;l<no;l++)
+  {
+    //cout<<a*pow(r,l)<<endl;
+    flg=0;
+  for(int k=1;k<no;k++)
+  {
+    
+    if((a*pow(r,l))==arr[k])
+    {
+      
+      flg=1;
+      break;
+    }
+  }
+   if(flg==0)
+   {
+     cout<<a*pow(r,l);
+     break;
+  }
+  }
+  
+	return 0;
+}

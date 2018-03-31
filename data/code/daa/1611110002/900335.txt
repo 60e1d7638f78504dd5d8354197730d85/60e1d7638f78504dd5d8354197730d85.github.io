@@ -1,0 +1,62 @@
+#include <stdio.h>
+void sort(int a[]);
+int search();
+int main()
+{
+  int a[10],k,i;
+  for(i=0;i<10;i++)
+  {
+  scanf("%d",&a[i]);
+  }
+  sort(a);
+  printf("Sorted Rollnumber list is\n");
+  for(i=0;i<10;i++)
+  {
+  printf("%d ",a[i]);
+  }
+  k=search(a);
+  if(k==1)
+  {
+    printf("\nRoll no 5 belongs to the list");
+  }
+  else
+  {
+    printf("\nRoll no 5 does not belong to the list");
+  }
+	return 0;
+}
+void sort(int a[])
+{
+  int i,j,temp;
+  for(i=0;i<10;i++)
+  {
+  for(j=i+1;j<10;j++)
+  {
+  if(a[i]>a[j])
+  {
+    temp=a[i];
+    a[i]=a[j];
+    a[j]=temp;
+  }
+  }
+  }
+  }
+int search(int a[])
+{
+int beg,end,mid;
+  beg=0;
+  end=9;
+  while(beg<=end)
+  {
+    mid=(beg+end)/2;
+    if(a[mid]==5)
+    {
+      return 1;
+    }
+    else if(5<a[mid])
+      end=mid-1;
+    else
+      beg=mid+1;
+  }
+  return 0;
+}

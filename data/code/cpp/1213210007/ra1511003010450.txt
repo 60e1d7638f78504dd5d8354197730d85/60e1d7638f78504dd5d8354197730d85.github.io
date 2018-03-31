@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+int isalpha(char c)
+{
+  if(c-'a'>=0 && c-'a'<26)
+    return 1;
+  if(c-'A'>=0 && c-'A'<26)
+    return 1;
+  return 0;
+}
+
+int isvowel(char c)
+{
+  if(c=='u'||c=='o'||c=='i'||c=='e'||c=='a'||c=='U'||c=='O'||c=='I'||c=='E'||c=='A')
+    return 1;
+  return 0;
+}
+
+int isdigit(char c)
+{
+  if(c-'0'>=0 && c-'0'<10)
+    return 1;
+  return 0;
+}
+
+
+int main()
+{
+  string s;
+  int dig=0,con=0,vow=0,ws=0;
+  getline(cin,s);
+  int l=s.length();
+  for(int i=0;i<l;i++)
+  {
+    if(isalpha(s[i])==1)
+    {
+      if(isvowel(s[i])==1)
+        vow++;
+      else
+        con++;
+    }
+    else if(isdigit(s[i])==1)
+      dig++;
+    else if(s[i]==' ')
+      ws++;
+  }
+  cout<<"Vowels:"<<vow<<endl;
+  cout<<"Consonants:"<<con<<endl;
+  cout<<"Digits:"<<dig<<endl;
+  cout<<"White spaces:"<<ws<<endl;
+  
+
+	return 0;
+}

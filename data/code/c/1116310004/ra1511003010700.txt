@@ -1,0 +1,117 @@
+#include <stdio.h>
+long long int sum_natural(int n);
+ 
+int array[100010];
+char str[100010];
+long long int sum[100010];
+ 
+int fastread()
+{
+int t=0;
+char ch=getchar_unlocked();
+while(ch<33)
+ch=getchar_unlocked();
+while(ch>33)
+{t=t*10+ch-'0';
+ch=getchar_unlocked();
+}
+return t;
+}
+ 
+int main(void) {
+	
+	int t,n,k,q,i,l,r,diff,a,b,zero_count,one_count;
+	long long int count=0;
+	int ch;
+	t=fastread();
+//	scanf("%d",&t);
+	sum[0]=0;
+//	for(i=1;i<100002;i++)
+//		sum[i]=sum[i-1]+i;
+	while(t--)
+	{
+		n=fastread();
+		k=fastread();
+		q=fastread();
+	//	scanf("%d%d%d",&n,&k,&q);
+	//	ch=getchar();
+	
+		for(i=1;i<=n;i++)
+		{
+			ch=getchar_unlocked();
+			array[i]=ch-'0';
+		}
+		ch=getchar_unlocked();
+		
+		/*
+		scanf("%s",str);
+		i=0;
+		while(str[i]!='\0')
+		{
+			array[i+1]=str[i]-'0';
+			i++;
+		}*/
+		array[0]=0;
+		for(i=1;i<=n;i++)
+			array[i]=array[i]+array[i-1];
+			
+	//	for(i=0;i<n;i++)
+	//		printf("%d ",array[i]);
+		
+		while(q--)
+		{
+			//scanf("%d%d",&l,&r);
+			l=fastread();
+			r=fastread();
+			diff=r-l;
+			
+			if(diff+1<=k)
+			{
+				//count=sum[diff+1];
+				count=sum_natural(diff+1);
+				printf("%lld\n",count);
+			}
+			else
+			{
+				//count=sum_natural(k);
+				count=sum_natural(diff+1)-sum_natural(diff-k+1);
+				//count=sum[diff+1]-sum[diff-k+1];
+				for(a=l;a<=(r-k);a++)
+				{
+					for(b=k;b<2*k;b++)
+					{
+						
+						if(a+b>r)
+							break;
+						one_count=array[a+b]-array[a-1];
+						zero_count=b-one_count+1;
+						if(one_count>k || zero_count >k)
+							break;
+						//printf("%d %d\n",a,a+b);
+						count++;
+					}
+				}
+				printf("%lld\n",count);
+				
+			}
+		}
+	}
+		
+	return 0;
+}
+ 
+long long int sum_natural(int n)
+{
+	long long int count;
+	if(n&1)
+	{
+		count=(n+1)/2;
+		count=count*n;
+	}
+	else
+	{
+		count=n/2;
+		count=count*(n+1);
+	}
+	return count;
+} 

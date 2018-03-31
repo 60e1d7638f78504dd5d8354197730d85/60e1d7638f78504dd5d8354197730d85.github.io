@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+
+void isPalindrome(char str[])
+
+{
+  	int count = 0;
+  	if(str=="malayalam")
+    { 
+      count++;
+      return;
+    }
+  	//int count = 0;
+  	int s = sizeof(str);
+    // Start from leftmost and rightmost corners of str
+  	for (int j=0;j<9;j++)
+      {
+      if(isalpha(str[j]))
+         {
+           count++;
+         }
+ 	   }
+  	//cout<<count<<endl;
+  	  int l = 0;
+    // Keep comparing characters while they are same
+    while (count >= l)
+    {
+        if (str[l++] != str[--count])
+        {
+            cout<<str<<" string is not a palindrome";
+            return;
+        }
+    }
+    cout<<str<<" string is a palindrome"<<endl;
+}
+ 
+// Driver program to test above function
+int main()
+{
+    char a[30];
+  	cin>>a;
+    isPalindrome(a);
+    return 0;
+}

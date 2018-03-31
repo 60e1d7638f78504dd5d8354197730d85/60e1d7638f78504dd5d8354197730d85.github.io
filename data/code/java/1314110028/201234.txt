@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        int t;
+		t=sc.nextInt();
+		for(int i=0;i<t;i++)
+		{
+		    int n=sc.nextInt();int k=sc.nextInt();
+		    LinkedList<Integer> l=new LinkedList<Integer>();
+		    LinkedList<Integer> temp=new LinkedList<Integer>();
+		    for(int j=0;j<n;j++)
+		      { l.add(sc.nextInt());temp.add(l.get(j));}
+		    Collections.sort(l);Collections.sort(temp);
+		    int min=0;int max=0;int ll=0;
+		    
+		    for(int j=0;j<n&&!l.isEmpty();j++)
+		    {
+		        min+=l.removeFirst();
+		        for(int q=0;q<k&&!l.isEmpty();q++)
+		            l.removeLast();
+		    }
+		    for(int j=0;j<n&&!temp.isEmpty();j++)
+		    {
+		        max+=temp.removeLast();
+		        for(int q=0;q<k&&!temp.isEmpty();q++)
+		            temp.removeFirst();
+		    }
+		    System.out.println(min+" "+max+"");
+        }
+	}
+}

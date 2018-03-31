@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int T;
+  scanf("%d",&T);
+  while(T--){
+char c[10][10];
+  int m,n,t=999,b=-1,l=999,r=-1,i,j,max;
+  scanf("%d%d",&m,&n);
+  for(i=0;i<m;i++)
+    scanf("%s",c[i]);
+  for(i=0;i<m;i++)
+    for(j=0;j<n;j++){
+    	if(c[i][j]=='*'){
+          if(t>i)
+            t=i;
+          if(b<i)
+            b=i;
+          if(l>j)
+            l=j;
+          if(r<j)
+            r=j;
+        }
+    }
+  if(b==-1)
+       printf("0\n");
+  else{
+    max=(b-t>r-l)?b-t:r-l;
+    //printf("%d,%d,%d,%d,%d:",t,b,l,r,max);
+    max=ceil(max/2.0)+1;
+    printf("%d\n",max);
+  }
+}
+	return 0;
+}

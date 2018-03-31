@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int occ[1001],i,cost,cnt,k,n,t,temp;
+  scanf("%d",&t);
+  while(t--)
+  {
+    
+    
+    for(i=0;i<100;i++)
+      occ[i]=0;
+    scanf("%d %d",&n,&k);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&temp);
+      occ[temp]=1;
+    }
+    for(cost=0,i=temp-1,cnt=0;i+cnt>=n;i--)
+    {
+      if(occ[i])
+        cnt++;
+      else
+      {
+        if(cnt>=k)
+        {
+          occ[i]=1;
+          occ[i+k]=0;
+          i+=k+1;
+          cnt-=k;
+        }
+        else
+        {
+          occ[i]=1;
+          occ[i+cnt+1]=0;
+        }
+        cost++;
+      }
+    }
+    printf("%d\n",cost);
+  }
+           
+
+  
+	return 0;
+}

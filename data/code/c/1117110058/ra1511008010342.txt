@@ -1,0 +1,63 @@
+#include <stdio.h>
+ 
+void quicksort(int array[], int firstIndex, int lastIndex)
+{
+    int pivotIndex, temp, index1, index2;
+    if(firstIndex < lastIndex)
+    {
+        pivotIndex = firstIndex;
+        index1 = firstIndex;
+        index2 = lastIndex;
+        while(index1 < index2)
+        {
+            while(array[index1] <= array[pivotIndex] && index1 < lastIndex)
+            {
+                index1++;
+            }
+            while(array[index2]>array[pivotIndex])
+            {
+                index2--;
+            }
+ 
+            if(index1<index2)
+            {
+                temp = array[index1];
+                array[index1] = array[index2];
+                array[index2] = temp;
+            }
+        }
+        temp = array[pivotIndex];
+        array[pivotIndex] = array[index2];
+        array[index2] = temp;
+ 
+        quicksort(array, firstIndex, index2-1);
+        quicksort(array, index2+1, lastIndex);
+        }
+    }
+     
+    int main(void) {
+    	int testcases,len,i,j,a,b;
+    	scanf("%d",&testcases);
+    	for (i=0;i<testcases;i++){
+    	    a = 0; b = 0;
+    	    scanf("%d",&len);
+    	    int arr[1000];
+    	    for (j=0;j<len;j++){
+    	        scanf("%d",&arr[j]);
+    	    }
+    	    quicksort(arr,0,len-1);
+    	    for(j=0;j<len-1;j++){
+    	        if(arr[j] == arr[j+1]){
+    	            a = b;
+    	            b = arr[j];
+    	            j += 1;
+    	        }
+    	    }
+    	    if(a>0 && b>0)printf("%d\n",a*b);
+    	    else printf("-1\n");
+    	}
+    	return 0;
+    }
+     
+ 
+ 

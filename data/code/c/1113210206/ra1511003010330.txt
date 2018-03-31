@@ -1,0 +1,47 @@
+#include <stdio.h>
+#define N 1000000
+int temp[N+1] = {0};
+long long result[N+1] ={0};
+int main()
+{
+	int i,j,k;
+	int numcases,num;
+	temp[0] = 0;
+	temp[1] = 1;
+	for(i=0;i<N+1;i++)
+	{
+		temp[i] = i;
+	}
+ 
+	for(i=2;i<=N;i++)
+	{
+		if(temp[i]==i)
+		{
+			temp[i]=i-1;
+			for(j=2;j*i<=N;j++)
+			{
+				if(temp[i*j]==i*j&&temp[j]!=j)
+				{
+					if(j%i==0)
+						temp[i*j]=i*temp[j];
+					else
+						temp[i*j]=(i-1)*temp[j];
+				}
+			}
+		}
+	}
+ 
+	temp[1]=0;
+	for(i=2;i<=N;i++)
+		result[i]=result[i-1]+temp[i];
+ 
+ 
+	scanf("%d",&numcases);
+	for(i=0;i<numcases;i++)
+	{
+		scanf("%d",&num);
+		printf("%lld\n",result[num]);
+	}
+		
+	return 0;
+} 

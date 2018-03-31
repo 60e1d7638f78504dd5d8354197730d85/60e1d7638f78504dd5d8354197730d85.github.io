@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int test,i,i1,j;
+  char s[100];
+  scanf("%d",&test);
+  for(i=0;i<test;i++)
+  {
+    //printf("h");
+    scanf("%s",s);
+    int len=strlen(s);
+    int flag[len];
+    for(i1=0;i1<len;i1++)
+    {
+      flag[i1]=0;
+      for(j=i1;j<len;j++)
+      {
+        if(s[i1]==s[j])
+        flag[i1]++;
+      }
+  
+    }
+   int max=0;
+    int k;
+    for(k=0;k<len;k++)
+   {
+      if(flag[k]>max)
+       max=flag[k];
+    }
+    int diff=len-max;
+    if(max==diff)
+    {
+    printf("YES\n");
+    }
+    else
+    {
+    printf("NO\n");
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<string.h>
+#define MOD 1000000007
+ 
+long long count[27]={0};
+char str[100005];
+long long fact[100001]={0};
+long long ncr[27]={0};
+ 
+long long power(long long a,long long m)
+{ //long i;
+long long ans=1;
+while(m)
+{if(m&1)
+{m--;
+ans=(ans*a)%MOD;continue;}
+m/=2;
+a=(a*a)%MOD;}
+return ans%MOD;}
+ 
+long long calculateNCR(long long n,long long r)
+{ long long j;
+long long num,den=1;
+if((r==0)||(n==r))return 1;
+if(n<r) return 0;
+num=1;
+j=r;
+while(j--)
+num=(num*(n--))%MOD;
+den=power(fact[r],MOD-2);
+return ((num*den)%MOD);}
+ 
+int main(){
+	int t;
+	long long int i=0,j=0,k=0,l=0;
+	long long int result = 0,perm = 0, temp = 0;
+	long long size;
+	fact[0]=1;fact[1]=1;fact[2]=2;
+	for(i=3;i<=100000;i++)
+		fact[i]=(i*fact[i-1])%MOD;
+	scanf("%d",&t);	
+	while(t--){
+		scanf("%s",str);
+	for(i=0;i<=26;i++)
+		count[i]=0;
+	size=strlen(str);
+	result=fact[size];
+//	int num = result;
+	for(i=0;i<size;i++)
+		count[str[i]-96]++;
+	for(i=1;i<=26;i++)
+		if(count[i]>1)
+			result=(result*power(fact[count[i]],(MOD-2)))%MOD;
+		perm = result;
+	for(i=1;i<=26;i++)
+		ncr[i]=calculateNCR(count[i],2);
+	temp=0;
+	for(i=1;i<=26;i++)
+    	for(j=i+1;j<=26;j++)
+    	temp=(temp+(count[i]*count[j])%MOD)%MOD;
+    result=(result-temp+MOD)%MOD;
+	temp=0;
+	for(i=1;i<=26;i++)
+    	for(j=i+1;j<=26;j++)
+    		for(k=j+1;k<=26;k++)
+    temp=(temp+(count[i]*count[j]*count[k]*2)%MOD)%MOD;
+    result=(result-temp+MOD)%MOD;
+    temp=0;
+    for(i=1;i<=26;i++)
+    	for(j=i+1;j<=26;j++)
+    		for(k=j+1;k<=26;k++)
+      			for(l=k+1;l<=26;l++)
+        temp=(temp+((count[i]*count[j])%MOD*(count[k]*count[l]*3)%MOD)%MOD)%MOD;
+    result=(result-temp+MOD)%MOD;
+    temp = 0;
+    for(i=1;i<=26;i++)
+    	for(j=i+1;j<=26;j++)
+         temp=(temp+(ncr[i]*ncr[j])%MOD)%MOD;
+   result=(result-temp+MOD)%MOD;
+   temp=0;
+    for(i=1;i<=26;i++)
+   		for(j=1;j<=26;j++){
+     if(j==i)continue;
+   		for(k=j+1;k<=26;k++)
+   			{
+   				if(k==i)continue;
+	temp=(temp+(count[i]*(count[i]-1)%MOD*(count[j]*count[k])%MOD)%MOD)%MOD;}
+		}
+	result=(result-temp+MOD)%MOD;
+	result=(result-1)%MOD;
+	result=(result*perm)%MOD;
+    printf("%lld\n",result);
+ 
+}
+return 0;
+}  

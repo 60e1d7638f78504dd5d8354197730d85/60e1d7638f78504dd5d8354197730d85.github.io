@@ -1,0 +1,38 @@
+# include<stdio.h>
+# include<string.h>
+int main()
+{
+int i,t;
+char s[100];
+scanf("%d",&t);
+while(t!=0)
+{
+	scanf("%s",s);
+	if(s[0]==s[1])
+		printf("NO\n");
+	else
+	{
+		if(s[2]=='\0')
+			printf("YES\n");
+		else
+		{
+			for(i=2;s[i]!='\0';i++)
+			{
+				if(i%2==0&&s[i]!=s[0])
+				{
+					break;
+				}
+				else if(i%2!=0&&s[i]!=s[1])
+					break;
+			}
+			if(s[i]=='\0')
+				printf("YES\n");
+			else
+				printf("NO\n");
+		}
+	}
+t--;
+}
+return(0);
+}
+ 

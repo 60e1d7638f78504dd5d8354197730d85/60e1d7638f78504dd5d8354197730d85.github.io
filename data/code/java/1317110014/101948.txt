@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	public int search(int i,String a[])
+    {
+
+       for(int j=0;j<a.length;j++)
+       {
+
+           if(Integer.parseInt(a[j])==i)
+           {
+
+               return j+1;
+           }
+
+       }
+        return 0;
+    }
+    public static void main(String[] args)throws IOException {
+
+        int count=1;
+        TestClass ob = new TestClass();
+        BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+
+        while(true)
+        {
+
+            if(Integer.parseInt(br.readLine()) ==0)
+            {
+                break;
+            }
+            String str = br.readLine();
+            String a[] =  str.split(" ");
+
+         for(int i=0;i<a.length;i++)   
+         {
+
+             if(Integer.parseInt(a[i])==ob.search(i+1, a))
+             {
+                 count=1;
+                 continue;
+
+             }
+             count=0;
+         }
+
+         if(count==1)
+         {
+             System.out.println("ambiguous");
+         }
+         else
+         {
+             System.out.println("not ambiguous");
+         }
+
+        }
+
+    }
+}

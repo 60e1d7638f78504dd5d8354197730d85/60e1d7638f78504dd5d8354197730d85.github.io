@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<math.h>
+#define max 1000000007
+long long int power(int base,long long int n)
+{
+long long int c=1,temp;
+	if(n==0)
+	return 1;
+	if(n==1)
+	return base;
+	temp = power(base, n/2);
+	if (n%2 == 0)
+        return ((temp%max)*(temp%max))%(max);
+    	else
+        return (((base*temp)%max)*(temp%max))%(max);
+return c;
+}
+int main()
+{
+int tc;
+scanf("%d",&tc);
+while(tc--)
+{
+	long long  int n;
+	scanf("%lld",&n);
+	if(n%2==0)
+	{
+		printf("%lld\n",((3*power(2,n/2)) -2) %max);
+	}
+	else
+	{
+		printf("%lld\n",((4*power(2,n/2)) -2) %max);
+	}
+}
+return 0;
+} 

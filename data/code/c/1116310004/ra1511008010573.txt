@@ -1,0 +1,56 @@
+   #include<stdio.h>
+    #include<string.h>
+    int fun(char *s,int x,int k)
+    {
+    //printf("%s\n",s);
+    int i,cnt=0,cant=0;
+    for(i=0;i<x;i++)
+    {
+    if(s[i]=='1')
+    cnt++;
+    else
+    cant++;
+    }
+    if(cnt<=k && cant<=k)
+    return 1;
+    else
+    return 0;
+    }
+    int main()
+    {
+    int t,n,k,q,i,j,l,r,z=0,p;
+    char a[100001],b[100001];
+    scanf("%d",&t);
+    while(t--)
+    {
+    z=0;
+    scanf("%d%d%d",&n,&k,&q);
+    scanf("%s",a);
+    while(q--)
+    {
+    j=0;
+    z=0;
+    scanf("%d%d",&l,&r);
+    if(k>n || l>n || r>n){
+        printf("0\n");
+        continue;
+    }
+    for(i=l-1;i<r;i++)
+    {
+    b[j]=a[i];
+    j++;
+    }
+    b[j]='\0';
+    for(i=0;i<strlen(b);i++)
+    {
+    for(j=1;j<=strlen(b)-i;j++)
+    {
+    p=fun((b+i),j,k);
+    z+=p;
+    }
+    }
+    printf("%d\n",z);
+    }
+    }
+    return 0;
+    } 

@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+ 
+string solve(int n) {
+	int v[n], copy[n];
+	for(int i=0; i<n; i++) {
+		cin >> v[i];
+		copy[v[i]-1] = i+1;
+	}
+	for(int i=0; i<n; i++) 
+		if(v[i] != copy[i]) return "not ambiguous";
+	return "ambiguous";
+}
+ 
+int main(void) {
+	for(;;) {
+		int n; cin >> n;
+		if(!n) break;
+		cout << solve(n) << endl;
+	}
+	return 0;
+}

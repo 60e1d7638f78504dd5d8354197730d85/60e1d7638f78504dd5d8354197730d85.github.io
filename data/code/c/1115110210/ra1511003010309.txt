@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{ char word[30];
+  int test,i,j,size,mid,t,c,temp,ans[20];
+ c=0;
+ scanf("%d",&test);
+  temp=test;
+  while(test!=0)
+  {
+   scanf("%s",word); 
+    size= strlen(word);
+    
+    mid= size/2;
+
+      for(i=0;i<mid;i++){
+        if(size%2!=0)
+        {
+          j=mid+1;        
+        }
+        else{
+         j=mid;
+        }
+      t=0;
+      for(;j<size;j++){
+      // printf("%d",t);
+         if(word[i]==word[j] && t==0 ){
+          
+             t++;
+              word[j]='0';
+         }
+      }
+    }
+   // printf("%s",word);
+     if(size%2!=0){
+      j=mid+1;
+     }
+    else{
+     j=mid;
+    }
+    for(;j<size;j++){
+     if (word[j]!='0'){
+        break;
+     }
+    }
+    
+    if(j==size)
+    {
+       ans[c]=1;
+      c++;
+    }
+    else
+    {
+      ans[c]=0;
+      c++;
+    }
+  test--;
+  }
+ 
+  for(i=0;i<temp;i++){
+   if(ans[i]==1){
+     printf("YES\n");
+   }
+    else{
+     printf("NO\n");}
+  }
+	return 0;
+}

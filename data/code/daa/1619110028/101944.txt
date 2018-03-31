@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+#define MOD 1000000007
+ 
+long long lpower(int a, int n)
+{
+    int i = 0;
+    long long an = 1;
+    while(n > 0)
+    {
+        an = (an * a) % MOD;
+        n -= 1;
+    }
+    return an;
+}
+int main()
+{
+    int T = 0;
+    scanf ("%d", &T);
+    int i = 0;
+    int N = 0;
+    unsigned long long s;
+ 
+    while (i < T)
+    {
+    	i++;
+    	scanf("%d", &N);
+    	//printf("%d\n", lpower(2,2));
+    	s = lpower(4, N) - lpower(2,N);
+    	s = (s+MOD) % MOD;
+    	printf("%lld\n", s);
+    }
+    return 0;
+}

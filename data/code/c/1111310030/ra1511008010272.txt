@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  scanf("%d",&t);
+  while(t--) {
+    int n,i,sum=0;
+    scanf("%d",&n);
+    int a[n],b[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    for(i=0;i<n;i++)
+      scanf("%d",&b[i]);
+    if(a[0]==b[0])
+      sum++;
+    for(i=1;i<n;i++) {
+      if(a[i]-a[i-1]>=b[i])
+        sum++;
+    }
+    printf("%d\n",sum);
+  }
+	return 0;
+}

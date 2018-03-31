@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+int MAX, i, l1,l2,temp;
+  float oi;
+scanf("%d",&MAX);
+  int a[MAX];
+
+
+
+for (i=0; i < MAX; i++)
+{
+scanf("%d", &a[i]);
+}
+
+
+l1 = a[0]; 
+l2 = a[1];
+
+if (l1 < l2)
+{
+temp = l1;
+l1 = l2;
+l2 = temp;
+}
+
+for (i=2;i<MAX;i++)
+{
+if (a[i] >= l1)
+{
+l2 = l1;
+l1 = a[i];
+}
+else if(a[i] > l2)
+{
+l2= a[i];
+}
+}
+oi=l1+l2;
+  oi=oi/2;
+printf("First Largest=%d\n", l1);
+printf("Second Largest=%d\n", l2);
+printf("Average=%0.1f\n",oi);
+return 0;
+}

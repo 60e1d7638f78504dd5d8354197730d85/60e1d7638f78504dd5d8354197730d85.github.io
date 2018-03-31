@@ -1,0 +1,86 @@
+#include<stdio.h>
+ 
+#define gc getchar_unlocked
+ 
+int read_int() {
+  char c = gc();
+ 
+  while(c<'0' || c>'9') c = gc();
+ 
+   int ret = 0;
+ 
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+ 
+void qsort(int *,int,int);
+ 
+int main()
+{
+ int test,n,k,i,arr[100],temp;
+ 
+ test=read_int();
+ 
+  while(test--)
+ {
+    n=read_int();
+  
+     for(i=0;i<n;i++)
+   {
+      arr[i]=read_int();
+   }
+   
+    k=read_int();
+    temp=arr[k-1];
+ 
+          qsort(arr,0,n-1);
+  
+       for(i=0;i<n;i++)
+      {
+            if(arr[i]==temp)
+          {
+             break;
+          }
+      }
+	
+      printf("%d\n",i+1);
+ 
+ }
+ 
+ 
+ return(0);
+}
+ 
+ 
+void qsort(int *x,int first,int last){
+  int pivot,j,temp,i;
+ 
+   if(first<last){
+   pivot=first;
+   i=first;
+    j=last;
+ 
+      while(i<j){
+           while(x[i]<=x[pivot]&&i<last)
+           i++;
+           while(x[j]>x[pivot])
+            j--;
+              if(i<j){
+               temp=x[i];
+               x[i]=x[j];
+               x[j]=temp;
+             }
+       }
+ 
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         qsort(x,first,j-1);
+         qsort(x,j+1,last);
+        
+     }
+ 
+}

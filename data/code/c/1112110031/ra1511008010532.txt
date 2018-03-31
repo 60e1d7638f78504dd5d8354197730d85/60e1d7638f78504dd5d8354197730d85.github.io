@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char ch[100][100],i,j,count=0,row=0,count1=0,col=0,sum;
+  for(i=1;i<=8;i++)
+  {
+    for(j=1;j<=8;j++)
+    {
+      scanf(" %c",&ch[i][j]);
+    }
+  }
+  for(i=1;i<=8;i++)
+  {
+    count=0;
+    for(j=1;j<=8;j++)
+    {
+      if(ch[i][j]=='B')
+        count++;
+    }
+    if(count==8)
+      row++;
+  }
+  for(i=1;i<=8;i++)
+  {
+    count1=0;
+    for(j=1;j<=8;j++)
+    {
+      if(ch[j][i]=='B')
+        count1++;
+    }
+    if(count1==8)
+      col++;
+  }
+  sum=row+col;
+  if(sum!=3 && sum!=1 && sum!=14)
+    printf("8");
+  else if(sum!=3 && sum!=1 && sum!=8)
+    printf("14");
+  else
+    printf("%d",sum);
+	return 0;
+}

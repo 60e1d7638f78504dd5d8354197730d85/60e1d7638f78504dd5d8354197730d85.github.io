@@ -1,0 +1,105 @@
+    #include<stdio.h>
+    #define INF 1000000000.0
+    int main()
+    {
+        float t,t2,tmin;
+        int x,y,vx,n,vy,x1,test,y1,vx1,vy1;
+        char c,c1;
+        scanf("%d",&test);
+        while(test--)
+        {
+            tmin=INF;
+            scanf("%d %d %c",&x,&y,&c);
+            switch(c)
+            {
+                case 'U':
+                 vx=0;
+                 vy=1;
+                 break;
+     
+                case 'D':
+                 vx=0;
+                 vy=-1;
+                 break;
+     
+                case 'R':
+                 vx=1;
+                 vy=0;
+                 break;
+     
+                case 'L':
+                 vx=-1;
+                 vy=0;
+                 break;
+            }
+            scanf("%d",&n);
+            while(n--)
+            {
+                scanf("%d %d %c",&x1,&y1,&c1);
+                switch(c1)
+                {
+                case 'U':
+                 vx1=0;
+                 vy1=1;
+                 break;
+     
+                case 'D':
+                 vx1=0;
+                 vy1=-1;
+                 break;
+     
+                case 'R':
+                 vx1=1;
+                 vy1=0;
+                 break;
+     
+                case 'L':
+                 vx1=-1;
+                 vy1=0;
+                 break;
+                }
+     
+                if(vx==vx1&&!vx)//vx=vx1==0
+                {
+                    if(x==x1)
+                    {
+                        if(vy!=vy1)
+                        {
+                            t=(float)(y1-y)/(vy-vy1);
+                            if(t>0&&tmin>t)
+                             tmin=t;
+                        }
+                    }
+                }
+     
+                if(vy==vy1&&!vy)//vx=vx1==0
+                {
+                    if(y==y1)
+                    {
+                        if(vx!=vx1)
+                        {
+                            t=(float)(x1-x)/(vx-vx1);
+                            if(t>0&&tmin>t)
+                             tmin=t;
+                        }
+                    }
+                }
+     
+                if(vx!=vx1&&vy!=vy1)
+                {
+                    t=(float)(x1-x)/(vx-vx1);
+                    t2=(float)(y1-y)/(vy-vy1);
+                    if(t>=0&&t==t2&&tmin>t)
+                    {
+                        tmin=t;
+                    }
+                }
+            }
+            if(tmin<INF)
+             printf("%.1f\n",tmin);
+            else
+             printf("SAFE\n");
+        }
+        return 0;
+    }
+     

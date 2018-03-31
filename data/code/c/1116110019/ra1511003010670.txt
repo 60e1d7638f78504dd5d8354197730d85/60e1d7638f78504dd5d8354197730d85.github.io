@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int ascii(char ch)
+{
+  int i=ch;
+  return i;
+}
+int main()
+{
+int freq[100]={};
+  char c[100];
+  scanf("%s",c);
+  int i=0;
+  
+  for(i=0;i<strlen(c);i++)
+  {
+    freq[ascii(c[i])-97]++;
+    
+  }
+  
+int j=0,min=999,pos=0;
+  for(j=0;j<strlen(c);j++)
+  {
+    if(freq[j]<min && freq[j]!=0)
+    {
+      min=freq[j];
+      pos=j;
+    }
+  }
+  
+  printf("%c=%d",(pos+97),min);
+  return 0;
+}

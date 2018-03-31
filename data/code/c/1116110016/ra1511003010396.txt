@@ -1,0 +1,29 @@
+#include <string.h>
+#include<stdio.h>
+void reverse(char str1[], int index, int size)
+{
+    char temp;
+    temp = str1[index];
+    str1[index] = str1[size - index];
+    str1[size - index] = temp;
+    if (index == size / 2)
+    {
+        return;
+    }
+    reverse(str1, index + 1, size);
+}
+int main()
+{
+    char str2[20],str1[20];
+    int size;
+    scanf("%s", str1);
+  int i;
+  for(i=0;str1[i]!='\0';i++)
+    str2[i]=str1[i];
+  
+    size = strlen(str1);
+    reverse(str1, 0, size - 1);
+    printf("%s\n%s",str2, str1);
+    return 0;
+}
+ 

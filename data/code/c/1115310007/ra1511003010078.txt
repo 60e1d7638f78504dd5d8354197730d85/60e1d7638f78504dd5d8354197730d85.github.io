@@ -1,0 +1,34 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int freq[26]={0},c_freq[26]={0},C_freq[26]={0},i,flag=1,c_flag=1;
+		char R[1005],S[1005];
+		scanf("%s %s",R,S);
+		for(i=0;R[i]!='\0';i++)
+		{
+			freq[R[i]-'a']++;
+			c_freq[R[i]-'a']=1;
+		}
+		for(i=0;S[i]!='\0';i++)
+		{
+			freq[S[i]-'a']--;
+			C_freq[S[i]-'a']=1;
+		}
+		for(i=0;i<26;i++)
+		{
+			if(freq[i])
+			flag=0;
+			if((c_freq[i])!=(C_freq[i]))
+			c_flag=0;
+		}
+		if((c_flag)==(flag))
+		printf("YES\n");
+		else printf("NO\n");
+	}
+	return 0;
+} 

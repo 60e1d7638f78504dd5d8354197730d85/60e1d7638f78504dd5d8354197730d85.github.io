@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       EvenOdd obj=new EvenOdd();
+		obj.getInput();
+       obj.findOddEven();
+	}
+}
+
+class EvenOdd
+{
+  int[] a;int n;
+   public void getInput()
+    {
+       Scanner sc=new Scanner(System.in);
+      n=sc.nextInt();
+	  a=new int[n];
+      for(int i=0;i<n;i++)
+      {
+        a[i]=sc.nextInt();
+      }
+    }
+  public void findOddEven()
+  { 
+    ArrayList<Integer> eve=new ArrayList<Integer>();
+    ArrayList<Integer> odd=new ArrayList<Integer>();
+    
+    for(int i=0;i<n;i++)
+     {
+        if(a[i]%2!=0)
+        {
+          odd.add(a[i]);
+        }
+      	else
+        	eve.add(a[i]);
+     }
+    System.out.print("Odd :");
+    for(int i=0;i<odd.size();i++)
+      System.out.print(odd.get(i)+" ");
+    System.out.print("\nEven :");
+    for(int i=0;i<eve.size();i++)
+      System.out.print(eve.get(i)+" ");
+    
+  }
+}

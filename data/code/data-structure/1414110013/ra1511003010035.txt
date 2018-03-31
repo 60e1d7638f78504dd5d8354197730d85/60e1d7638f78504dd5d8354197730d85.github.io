@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+int main() {
+	int T;
+	cin >> T;
+	for (int t = 0; t < T; t++) {
+	    int m, s, n, ele, temp, count = 0;
+	    cin >> m >> s >> n;
+	    vector<int> v;
+	    for (int i = 0; i < n; i++) {
+	        cin >> ele;
+	        v.push_back(ele);
+	    }
+	    for (int i = 0; i < n; i++) {
+	        for (int j = 0; j < n - 1; j++) {
+	            if (v[j] > v[j+1]) {
+	                temp = v[j];
+	                v[j] = v[j+1];
+	                v[j+1] = temp;
+	                count = count + 1;
+	            }
+	        }
+	    }
+	    if ((s * count) <= (m * 60)) cout << "1" << endl;
+	    else cout << "0" << endl;
+	    v.clear();
+	}
+	return 0;
+}

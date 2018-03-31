@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<string.h>
+struct stud
+    {
+      char name[30];
+      char dept[20];
+      int year;
+      float cgpa;
+    }stu[100];
+int main()
+{
+  	int i,n,j;
+  	int yr;
+  	char na[100]="",de[100]="";
+  	float cg;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%s%s",stu[i].name,stu[i].dept);
+      scanf("%d%f",&stu[i].year,&stu[i].cgpa);
+      
+    }
+  	for(i=0;i<n;i++)
+    {
+      for(j=i+1;j<n;j++)
+      {
+        if(stu[i].name[0]<stu[j].name[0])
+        {
+          cg=stu[i].cgpa;
+          stu[i].cgpa=stu[j].cgpa;
+          stu[j].cgpa=cg;
+          yr=stu[i].year;
+          stu[i].year=stu[j].year;
+          stu[j].year=yr;
+          strcpy(na,stu[i].name);
+          strcpy(stu[i].name,stu[j].name);
+          strcpy(stu[j].name,na);
+          strcpy(de,stu[i].dept);
+          strcpy(stu[i].dept,stu[j].dept);
+          strcpy(stu[j].dept,de);
+        }
+      }
+    }
+          
+  	for(i=n-1;i>=0;i--)
+    {
+      
+      printf("Name:%s\nDepartment:%s\nYear of study:%d\nCGPA:%.1f\n",stu[i].name,stu[i].dept,stu[i].year,stu[i].cgpa);
+    }
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class String{
+  private : char word[50] ;
+  public : 
+  	void input(){
+      cin >> word ;
+    }
+  
+  	void output(){
+      cout << word ;
+    }
+  
+  	String operator+( String str1 ){
+      String s1 ;
+      strcat(word,"+") ;
+      strcat(word,str1.word) ;
+      strcpy(s1.word,word) ;
+      return s1 ;
+    }
+};
+      
+int main()
+{
+	String str1 , str2 , str3 ;
+  	str1.input() ;
+  	str2.input() ;
+  	str3 = str1+str2 ;
+  	str3.output() ;
+	return 0;
+}

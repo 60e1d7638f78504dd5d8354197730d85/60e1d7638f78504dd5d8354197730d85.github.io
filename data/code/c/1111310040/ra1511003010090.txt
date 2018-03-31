@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int x, i, p;
+  	scanf("%d", &x);
+  	int a[x];
+  	long sum=0;
+  	for(i=0; i<x; i++)
+      scanf("%d", &a[i]);
+  	for(i=1; i<x; i++)
+    {
+      if(a[i] == 0)
+      {
+        for(p=i-1; p>=0; p--)
+        {
+          if(a[p] != -1)
+          {
+            a[p] = -1;
+            break;
+          }
+        }
+        a[i] = -1;
+      }
+    }
+  	for(i=0; i<x; i++)
+    {
+      if(a[i] != -1)
+        sum += a[i];
+    }
+  	printf("%ld",sum);
+	return 0;
+}

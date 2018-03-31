@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+
+void fun(char *str,char character){
+  int i,pos,j;
+  char *q,*p;
+  for(i=0;*str!='\0';i++,str++){
+    if(*str==character)
+    {
+      pos=i;
+      for(p=str;*p!='\0';p++)
+      *p=*(p+1);
+      str--;
+    }   
+  }
+}
+int main()
+{
+    char str[30],character,*a;
+    fgets(str,sizeof(str),stdin);
+    scanf("%s",&character);
+    a=str;
+    fun(a,character);
+    printf("%s",str);
+	return 0;
+}

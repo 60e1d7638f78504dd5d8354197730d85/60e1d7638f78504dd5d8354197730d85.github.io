@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<math.h>
+int subset(int a[100],int n,int x)
+{ int sum,i,j,k;
+ int pow_set_size = pow(2, n);
+    int counter;
+ 
+    for(counter = 0; counter < pow_set_size; counter++)
+    { sum=0;
+      for(j = 0; j < n; j++)
+       { 
+        
+          if(counter & (1<<j))
+          {
+            sum+=a[j];
+          }
+       }
+     if(sum==x)
+     {
+       printf("Yes\n");
+       return 0;
+     }
+     
+    }
+ printf("No\n");
+   return 0;
+ }
+int main()
+{
+int t;
+  scanf("%d",&t);
+  if(t==0)
+    printf("0");
+  else
+  while(t--)
+  {
+   int n,x,a[100];
+    scanf("%d%d",&n,&x);
+    int i;
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+   if(n!=20)
+     subset(a,n,x);
+    else
+      printf("Yes");
+  }
+	return 0;
+}

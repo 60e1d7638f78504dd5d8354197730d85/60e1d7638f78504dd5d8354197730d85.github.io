@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define MAX 2000000
+int main() 
+{ 
+  int a,m[MAX],i,j,temp;
+  scanf("%d\n", &a);
+  printf("\n");
+  for(i=0;i<a;i++)
+  {
+    scanf("%d", &m[i]);
+  }
+  for(i=0;i<a;i++)
+  {
+    for(j=0;j<(a-i-1);j++)
+    {
+      if(m[j]>m[j+1])
+      {
+       temp=m[j];
+       m[j]=m[j+1];
+       m[j+1]=temp;
+    }
+  }
+  }
+  for(i=0;i<a;i++)
+  {
+  printf("%d\n", m[i]);
+  }
+	return 0;
+}

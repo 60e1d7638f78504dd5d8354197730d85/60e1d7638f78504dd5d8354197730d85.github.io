@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int num,original;
+  	cin>>num;
+  	original = num;
+  	int digit=0,rev=0;
+  	try
+    {
+      if(num == 0)
+        throw num;
+      else
+      {
+       	 while(num != 0)
+         {
+          	digit = num %10;
+           	rev = (rev * 10) + digit;
+           	num = num / 10;
+         }
+        if(rev == original)
+        	cout<<original<<" is a palindrome no.";
+        else
+          cout<<original<<" is not a palindrome no.";
+      }
+    }
+  	catch(int num)
+    {
+      cout<<"Exception occured";
+    }
+	return 0;
+}

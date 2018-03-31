@@ -1,0 +1,40 @@
+#include <stdio.h>
+int d(int a[100][100],int s)
+{
+  int i,j,c=0;
+  for(i=0;i<s;i++)
+  {
+    for(j=0;j<s;j++)
+    {
+		if(i!=j&&a[i][j]!=0)
+        {
+          c=1;
+          break;
+        }
+    }
+  }
+  if(c==1)
+    return 1;
+  else 
+    return 0;
+}
+
+int main()
+{
+  int s,a[100][100],i,j,c;
+  scanf("%d",&s);
+  for(i=0;i<s;i++)
+  {
+    for(j=0;j<s;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  c=d(a,s);
+  if(c==1)
+    printf("no");
+  else
+    printf("yes");
+
+	return 0;
+}

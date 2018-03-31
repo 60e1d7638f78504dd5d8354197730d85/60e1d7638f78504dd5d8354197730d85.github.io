@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *left;
+  struct node *right;
+};
+
+void postorder(struct node *root)
+{
+  if(root!=NULL)
+  {
+  postorder(root->left);
+  postorder(root->right);
+  printf("%d ",root->data);
+  }
+}
+
+struct node *ct(struct node *root,int val)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  struct node *ptr=root;
+  struct node *parent;
+  nn->data=val;
+  nn->left=NULL;
+  nn->right=NULL;
+  
+  if(root==NULL)
+  {
+    root=nn;
+  }
+  
+  else
+  {
+    while(ptr!=NULL)
+    {
+      parent=ptr;
+      if(val<ptr->data)ptr=ptr->left;
+      else ptr=ptr->right;
+    }
+    if(val<parent->data)parent->left=nn;
+    else parent->right=nn;
+  }
+  return root;
+  
+}
+
+int main()
+{
+  struct node *root=NULL;
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+  for(i=0;i<size;i++)root=ct(root,a[i]);
+  
+  printf("Postorder Traversal: ");
+  postorder(root);
+  
+
+	return 0;
+}

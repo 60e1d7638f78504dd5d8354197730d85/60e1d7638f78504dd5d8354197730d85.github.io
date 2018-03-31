@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+   static int getOddOccurrence(int arr[], int n)
+    {
+        HashMap<Integer,Integer> hmap = new HashMap<>();
+        for(int i = 0; i < n; i++)
+        {
+            if(hmap.containsKey(arr[i]))
+            {
+                int val = hmap.get(arr[i]);
+                hmap.put(arr[i], val + 1); 
+            }
+            else
+                hmap.put(arr[i], 1); 
+        }
+        for(Integer a:hmap.keySet())
+        {
+            if(hmap.get(a) % 2 != 0)
+                return a;
+        }
+        return -1;
+   }
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       while(t>0)
+       {
+       int n=sc.nextInt();
+        int[] a=new int[n];
+         for(int i=0;i<n;i++)
+         {
+         a[i]=sc.nextInt();
+         }
+         System.out.println(getOddOccurrence(a, n));
+         t=t-1;
+       }
+	}
+}

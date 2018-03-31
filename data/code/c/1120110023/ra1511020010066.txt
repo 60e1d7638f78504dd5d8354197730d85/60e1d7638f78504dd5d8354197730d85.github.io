@@ -1,0 +1,70 @@
+#include <stdio.h>
+int main()
+{
+	int size=3;
+  int matrix[3][3];
+  int r,c=0;
+  int sum,sum1,sum2;
+  int f=0;
+  
+  for(r=0;r<size;r++){
+    for(c=0;c<size;c++)
+      scanf("%d",&matrix[r][c]);
+  }
+  //printf("\n
+   for(r=0;r<size;r++){
+    for(c=0;c<size;c++){
+      printf("%d ",matrix[r][c]);
+    }
+      printf("\n");
+   
+   }
+  sum=0;
+  for(r=0;r<size;r++){
+    for(c=0;c<size;c++){
+     if(r==c)
+       sum=sum+matrix[r][c];
+   }
+  }
+  
+   for(r=0;r<size;r++){
+     sum1=0;
+       for(c=0;c<size;c++){
+  		sum1=sum1+matrix[r][c];
+       }
+     if(sum==sum1)
+       f=1;
+     else{
+       f=0;
+       break;
+     }
+   }
+  
+  
+    for(r=0;r<size;r++){
+     sum2=0;
+       for(c=0;c<size;c++){
+  		sum2=sum2+matrix[c][r];
+       }
+     if(sum==sum2)
+       f=1;
+     else{
+       f=0;
+       break;
+     }
+    }
+  
+  
+  if(f==1)
+    printf("Magic Square");
+  else
+    printf("Not a Magic Square");
+  
+  
+  
+  
+  
+  
+  
+	return 0;
+}

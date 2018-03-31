@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		
+		{
+			int n = s.nextInt();
+			int k = s.nextInt();
+			int ch[] = new int[n];
+			for (int i = 0; i < n; i++) {
+				ch[i] = s.nextInt();
+			}
+
+			int pages = 0;
+			int cnt = 0;
+			for (int i = 0; i < ch.length; i++) {
+				int pc = ch[i] / k;
+
+				if (ch[i] % k != 0) {
+					pc++;
+				}
+
+				for (int j = 1; j <= pc; j++) {
+					int st = (((j - 1) * k) + 1);
+					int et = Math.min(j * k, ch[i]);
+					if ((((pages + j) <= et) && ((pages + j) >= st))) {
+						cnt++;
+					}
+				}
+				pages += pc;
+			}
+			System.out.println(cnt);
+		}
+		s.close();
+	}
+}

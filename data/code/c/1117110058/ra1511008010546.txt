@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+int main() {
+ 
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    int T, N, i, max1, max2, a[1005], temp;
+    scanf("%d", &T);
+    while(T--){
+        for(i=0;i<1005;i++){
+            a[i]=0;
+        }
+        scanf("%d", &N);
+        for(i=0;i<N;i++){
+            scanf("%d", &temp);
+            a[temp]++;
+        }
+        max1=0;
+        max2=0;
+        for(i=1000;i>0;i--){
+            if(a[i]>1){
+                max1=i;
+                a[i]-=2;
+                break;
+            }
+        }
+//        printf("%d\n", max1);
+        for(i=max1;i>0;i--){
+            if(a[i]>1){
+                max2=i;
+                break;
+            }
+        }
+        
+        if(max2==0){
+            printf("-1\n");
+        }
+        else{
+            printf("%d\n", max1*max2);
+        }
+    }
+    return 0;
+}
+  

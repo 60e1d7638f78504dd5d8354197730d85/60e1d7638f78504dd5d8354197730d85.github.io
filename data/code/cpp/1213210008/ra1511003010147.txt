@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	char ch[100];
+  	char x[5][20];
+  	int r=0,c=0;
+  	fgets(ch,sizeof(ch),stdin);
+  	for(int i=0;ch[i]!='\0';i++)
+    {
+      if(ch[i]==' ')
+      {
+        x[r][c]='\0';
+        c=0;
+        r++;
+      }
+      else
+      {
+        x[r][c]=ch[i];
+        c++;
+      }
+    }
+  	x[r][c]='\0';
+  	for(int i=0;i<=r;i++)
+    {
+      int j=0;
+      for(j=0;x[i][j]!='\0';j++);
+      for(int k=j-1;k>=0;k--)
+        cout<<x[i][k];
+	  cout<<" ";
+    }
+	return 0;
+}

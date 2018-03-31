@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+int i,n,a[100];
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+  scanf("%d\n",&a[i]);
+  }
+  int j,sum=0;
+  for(j=0;j<n;j++){
+   printf("a[%d]=%d\n",j,a[j]);
+    sum += a[j];
+  }
+  int temp,length=0,result;
+  temp = sum;
+    while (temp != 0)
+    {
+        length++;
+        temp = temp / 10;
+    }
+    result = rev(sum, length);
+  printf("Sum=%d rev=%d",sum,result);
+	return 0;
+}
+
+int rev(int sum, int len)
+{
+    if (len == 1)
+    {
+        return sum;
+    }
+    else
+    {
+        return (((sum % 10) * pow(10, len - 1)) + rev(sum / 10, --len));
+    }
+}

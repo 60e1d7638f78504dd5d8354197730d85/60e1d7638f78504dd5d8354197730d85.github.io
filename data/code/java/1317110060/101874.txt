@@ -1,0 +1,38 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int t=sc.nextInt();
+      	for(int j=0;j<t;j++)
+        {
+          	//System.out.println("Test");
+          	String s1=sc.next();
+          	boolean flag=true;
+          	int len=s1.length();
+          	StringBuilder sb=new StringBuilder();
+          	sb.append(s1);
+          	String r=new String(sb.reverse());
+          	char[] st1=s1.toCharArray();
+          	char[] rev=r.toCharArray();
+          
+            for(int i=1;i<len;i++)
+            {
+              //System.out.println((st1[i]-st1[i-1]));
+              //System.out.println((rev[i-1]-rev[i]));
+              if((st1[i]-st1[i-1])!=(rev[i-1]-rev[i]))
+              {
+                flag=false;
+                break;
+              
+              }
+            }
+          	if(flag)
+              	System.out.println("Funny");
+          	else
+              	System.out.println("Not Funny");
+          	
+        }
+	}
+}

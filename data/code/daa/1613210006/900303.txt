@@ -1,0 +1,57 @@
+
+
+    #include<bits/stdc++.h>
+    using namespace std;
+    bool compare(pair<int,int> a,pair<int,int> b)
+    {
+    	if(a.first != b.first)
+    		return a.first > b.first;
+    	else
+    		return a.second < b.second;
+    }
+    int main()
+    {
+    	int n;
+    	int priority[100005];
+    	scanf("%d",&n);
+    	for(int i=1;i<=n;i++)
+    		scanf("%d",&priority[i]);
+    	int t;
+    	scanf("%d",&t);
+    	while(t--)
+    	{
+    		int nfcation,q;
+    		scanf("%d%d",&nfcation,&q);
+    		vector<int>v;
+    		vector<pair<int,int> >vec;
+    		int freq[100005]={0};
+    		for(int i=1;i<=nfcation;i++)
+    		{
+    			int temp;
+    			scanf("%d",&temp);
+    			if(!freq[temp])
+    			{
+    				freq[temp]++;
+    				v.push_back(temp);
+    			}
+    		}
+    		while(q--)
+    		{
+    			int index,pr;
+    			scanf("%d%d",&index,&pr);
+    			priority[index]=pr;
+    		}
+    		int val[100005];
+    		for(int i=0;i<v.size();i++)
+    		{
+    			val[i]=v[i];
+    			vec.push_back(pair<int,int>(priority[v[i]],i));
+    		}
+    		sort(vec.begin(),vec.end(),compare);
+    		for(int i=0;i<vec.size();i++)
+    			printf("%d ",val[vec[i].second]);
+    		printf("\n");
+    	}
+    	return 0;
+    }
+

@@ -1,0 +1,36 @@
+#include<stdio.h>
+typedef struct name
+{
+  char name[105];                                                                                                                                                                  
+}name;
+int main()
+{
+  name yourString[1000];                                                                                                                                                                    
+  int t,i,j,N,M,A[1000],f[1000],p[1000],ind[1000],flag,k=0,l=0;
+  scanf("%d %d",&N,&M);
+  for(i=0;i<N;i++)
+    scanf("%d",&A[i]);
+  for(i=0;i<M;i++){
+    scanf("%d %d %s",&f[i],&p[i],yourString[i].name);ind[i]=i;
+  }
+  for(i=0;i<M-1;i++){
+    for(j=0;j<M-i-1;j++){
+      if(p[ind[j]]<p[ind[j+1]]){
+        t=ind[j];
+        ind[j]=ind[j+1];
+        ind[j+1]=t;
+      }
+    }
+  }
+
+  for(i=0;i<M;i++)
+    for(j=0;j<N;j++)
+      if(A[j]==f[ind[i]]){
+        printf("%s\n",yourString[ind[i]].name);
+        p[ind[i]]=-1;
+      }
+  for(i=0;i<M;i++)
+    if(p[ind[i]]>=0)
+      printf("%s\n",yourString[ind[i]].name);
+ return 0;
+}

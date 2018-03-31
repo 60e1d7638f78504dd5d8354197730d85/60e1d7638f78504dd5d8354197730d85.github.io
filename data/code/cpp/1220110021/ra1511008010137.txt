@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string str;
+  	getline(cin,str);
+  	int i;
+  	int count1,count2;
+  	try
+    {
+      	for(i=0;i<str.length();i++)
+        {
+          	if(isdigit(str[i]))
+              	count1++;
+          	else
+              	count2++;
+        }
+      	if(count1>0 || str.length()<2)
+          	throw "Number format exception";
+      	else
+          throw "Valid Input";
+    }
+  	catch(const char * msg)
+    {
+      	cout<<msg;
+    }
+	return 0;
+}

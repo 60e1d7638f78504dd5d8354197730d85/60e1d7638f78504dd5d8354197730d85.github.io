@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+void mx(int a,int b)
+{
+  int z=a>b?a:b;
+  cout<<"Greatest of first two numbers="<<z<<endl;
+}
+void mx(int a,int b,int c)
+{
+  int z;
+  if(a>b&&a>c)
+    z=a;
+  else if(b>a&&b>c)
+    z=b;
+  else
+    z=c;
+  cout<<"Greatest of first three numbers="<<z<<endl;
+}
+void mx(int a[],int n)
+{
+  int i,j,temp;
+  for(i=0;i<n;i++)
+  {
+    for(j=i;j<n-i-1;j++)
+    {
+      if(a[j]>a[j+1])
+      {
+        temp=a[j];
+        a[j]=a[j+1];
+        a[j+1]=temp;
+      }
+    }
+  }
+  int z;
+  for(i=0;i<n;i++)
+    z=a[n-1];
+  cout<<"Greatest Number="<<z<<endl;
+  
+}
+int main()
+{
+  int n,i;
+  cin>>n;
+  int a[n];
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  mx(a[0],a[1]);
+  mx(a[0],a[1],a[2]);
+  mx(a,n);
+	return 0;
+}

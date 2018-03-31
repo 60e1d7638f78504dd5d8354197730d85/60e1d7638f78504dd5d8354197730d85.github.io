@@ -1,0 +1,32 @@
+#include <stdio.h>
+int palin(int n)
+{
+  int n1=n,rev=0;
+  while(n1>0)
+  {
+    rev=rev*10+n1%10;
+    n1=n1/10;
+  }
+  if(rev==n)
+    return 1;
+  else
+    return 0;
+}
+int main()
+{
+	int n,i,L[10],R[10],s[10]={};
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d %d",&L[i],&R[i]);
+       while(L[i]<=R[i])
+       {
+         if(palin(L[i]))
+            s[i]=s[i]+L[i];
+          L[i]++;
+       }
+    }
+    for(i=0;i<n;i++)
+            printf("sum is %d\n",s[i]);
+	return 0;
+}

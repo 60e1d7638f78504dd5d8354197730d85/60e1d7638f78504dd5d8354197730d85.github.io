@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+string s1 = "aeiou";
+bool isVowel(char c)
+{
+    for(int i = 0;i < 5;i++)
+        if(c == s1[i])
+            return true;
+    return false;
+}
+int main(int argc, char *argv[])
+{
+    if(argc == 2 or argc == 3) freopen(argv[1], "r", stdin);
+    if(argc == 3) freopen(argv[2], "w", stdout);
+    int n, y, cnt, ans;
+    string s;
+    cin >> s;
+    n = s.length();
+    ans = 0;
+    for(int i = 0;i < n;++i)
+    {
+        if(isVowel(s[i]))
+        {
+            y = i;
+            cnt = 0;
+            while(y < n and isVowel(s[y]))
+            {
+                cnt++;
+                y++;
+            }
+            i = y-1;
+            ans = max(ans, cnt);
+        }
+    }
+    cout << ans << endl;
+    return 0;
+}

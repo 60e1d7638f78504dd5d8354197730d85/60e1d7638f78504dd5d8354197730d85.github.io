@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+int t;
+  long int a,b,lcm,rem,hcf,temp,div;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%ld %ld",&a,&b);
+    
+    if(a<b)
+    {
+      rem=b;
+      div=a;
+    }
+    else
+    {
+      rem=a;
+      div=b;
+    }
+    while(div>0)
+    {
+      hcf=rem/div;
+      temp=div;
+      
+      if(rem%div==0)
+      {
+        hcf=div;
+        break;
+      }
+      else
+        div=rem%div;
+      
+      rem=temp;
+    }
+    lcm=(a*b)/hcf;
+    printf("%ld %ld\n",hcf,lcm);
+  }
+	return 0;
+}

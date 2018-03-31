@@ -1,0 +1,61 @@
+#include <stdio.h>
+int main()
+{
+	int total,ans[100],inc=0,i,j,boys,girls,col[100];
+  	int milap[100][100];
+  	scanf("%d",&total);
+  
+  for(i=0;i<100;i++)
+    {
+      col[i]=0;
+      ans[i]=0;
+    }
+  	while(inc<total)
+    {
+      scanf("%d %d",&boys,&girls);
+      for (i=0;i<boys;i++)
+      {
+        for(j=0;j<girls;j++)
+        {
+          scanf("%1d",&milap[i][j]);
+          if (milap[i][j]==1)
+          {
+            col[j]=col[j]+1;
+          }
+        }
+      }
+      for(i=0;i<100;i++)
+      {
+       // printf("%d",col[i]);
+      }
+      for(i=0;i<100;i++)
+      {
+        if(col[i]==3)
+        {
+          //likes>1 for girl
+        	ans[inc]=ans[inc]+3;
+        }
+        if(col[i]==2)
+        {
+        	ans[inc]=ans[inc]+1;
+        }
+        if(col[i]==1||col[i]==0)
+        {
+        	ans[inc]=ans[inc];
+        }
+        //ans[inc]=ans[inc]+1;
+      }
+      inc++;
+      for(j=0;j<100;j++)
+      {
+        col[j]=0;
+      }
+    }
+  //printf("Boys:%d\nGirls:%d",boys,girls);
+  for(i=0;i<inc;i++)
+  {
+    printf("%d\n",ans[i]);
+  }
+  
+	return 0;
+}

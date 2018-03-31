@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{	
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int n,k;
+    scanf("\n%d %d\n",&n,&k);
+    int ai[n];int pi[n];
+    int i=0;
+    for(;i<n;i++)
+    {
+      scanf("%d ",&ai[i]);
+
+    }scanf("\n");
+    for(i=0;i<n;i++)
+    {scanf("%d",&pi[i]);
+
+    }
+     float maxd=(float)pi[0]/ai[0];int pos=0;
+    for(i=1;i<n;i++)
+    {
+      float x=(float)pi[i]/ai[i];
+      if(x>maxd)
+      {maxd=x;pos=0;};
+    }
+   // printf("%f",maxd);
+    int count=0;
+    int left=k%ai[pos];
+    count=(k-left)/ai[pos];
+    printf("%d",count*pi[pos]);
+  }
+	return 0;
+}

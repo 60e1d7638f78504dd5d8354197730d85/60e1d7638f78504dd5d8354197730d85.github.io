@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int i=0,j,k,n,t;
+  	long int S[5000],min,f,g;
+  	scanf("%d",&t);
+  	do{
+      scanf("%d",&n);
+      min=999999999;
+      j=0;
+      do{
+        scanf("%li",&S[j]);
+      }while(++j<n);
+      j=0;
+      do{
+        k=0;
+        do{
+          f=(S[j]>S[k]?S[j]:S[k]);
+          g=(S[j]<S[k]?S[j]:S[k]);
+          if(f-g<min&&S[j]!=S[k])
+            min =f-g;
+        }while(++k<n);
+      }while(++j<n);
+      printf("%li\n",min);
+    }while(++i<t);
+	return 0;
+}

@@ -1,0 +1,42 @@
+#include<stdio.h>
+long rank[100001]={0},parent[100001]={0},size[100001]={0};
+long rp(long num)
+{
+if(parent[num]!=num)
+return (parent[num]=rp(parent[num]));
+else return num;
+}
+ 
+void uni(long a,long b)
+{long parenta,parentb;
+parenta=rp(a);
+parentb=rp(b);
+if(parenta==parentb)
+{size[parenta]++;return;}
+if(rank[parenta]==rank[parentb])
+{parent[parentb]=parenta;
+size[parenta]+=size[parentb]+1;
+rank[parenta]++;}
+else if(rank[parentb]>rank[parenta])
+{parent[parenta]=parentb;
+size[parentb]+=size[parenta]+1;}
+else if(rank[parenta]>rank[parentb])
+{parent[parentb]=parenta;
+size[parenta]+=size[parentb]+1;}
+}
+int main()
+{
+ 
+long i,n,m,a,b,max=-1,j;
+for(i=1;i<=100000;i++)
+parent[i]=i;
+scanf("%ld%ld",&n,&m);
+for(i=1;i<=m;i++)
+{scanf("%ld%ld",&a,&b);
+uni(a,b);}
+for(i=1;i<=n;i++)
+if(size[i]>max)
+{max=size[i];
+j=i;}
+printf("%ld\n",max);
+return 0;}

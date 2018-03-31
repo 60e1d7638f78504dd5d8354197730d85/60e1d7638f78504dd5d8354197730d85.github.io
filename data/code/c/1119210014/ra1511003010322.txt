@@ -1,0 +1,70 @@
+#include <stdio.h>
+int main()
+{
+int a[3][3],f=0,i,j,st,s;
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      scanf("%d",&a[i][j]);   
+    }
+   }
+            st=a[0][0]+a[0][1]+a[0][2];
+ 
+            
+    for(i=0;i<3;i++)
+            {
+              s=0;
+              for(j=0;j<3;j++)
+              {
+                s=s+a[i][j];
+              }
+      
+              if(st!=s)
+              {
+                f=1;
+                break;
+              }
+            }
+             for(i=0;i<3;i++)
+            {
+              s=0;
+              for(j=0;j<3;j++)
+              {
+                s=s+a[j][i];
+              }
+              
+              if(st!=s)
+              {
+                f=1;
+                break;
+              }
+            }
+ 
+  s=0;
+            for(i=0;i<3;i++)
+            {
+             s=s+ a[i][i];
+            }
+  
+             if(st!=s)
+              {
+                f=1;
+              }
+  s=0;
+            for(i=0;i<3;i++)
+            {
+              s=s+a[i][2-i];
+            }
+ 
+            if(st!=s)
+              {
+                f=1;
+              }
+            if(f==1)
+            printf("No");
+             else
+             printf("Yes");
+            
+	return 0;
+}

@@ -1,0 +1,51 @@
+    #include<stdio.h>
+    typedef struct key
+    {
+      char key[105]; // 100 character array                                                                                                                                                                    
+    }key;
+    int main()
+    {
+    	key s[1000];
+    	int n,m,i,j,t,f[1000],p[1000],ind[1000];
+    	scanf("%d %d",&n,&m);
+    	int a[1000];
+    	for(i=0;i<n;i++)
+    	{
+    		scanf("%d",&a[i]);
+    		
+    	}
+    	for(j=0;j<m;j++)
+    	{
+    		scanf("%d %d %s",&f[j],&p[j],s[j].key);
+    		ind[j]=j;
+    	}
+    	for(i=0;i<m-1;i++)
+    	{
+    		for(j=0;j<m-i-1;j++)
+    		{
+    			if(p[ind[j]]<p[ind[j+1]])
+    			{
+    				t=ind[j];
+    				ind[j]=ind[j+1];
+    				ind[j+1]=t;
+    			}
+    		}
+    	}
+    	for(i=0;i<m;i++)
+    	{
+    		for(j=0;j<n;j++)
+    		{
+    			if(a[j]==f[ind[i]])
+    			{
+    			
+    			printf("%s\n",s[ind[i]].key);
+    			p[ind[i]]=-1;
+    			}
+    		}
+    		
+    	}
+    	for(i=0;i<m;i++)
+    	if(p[ind[i]]>=0)
+    	printf("%s\n",s[ind[i]].key);
+    	return 0;
+    } 

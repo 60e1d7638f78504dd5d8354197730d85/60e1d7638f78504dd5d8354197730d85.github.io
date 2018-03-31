@@ -1,0 +1,30 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+int num,a,arr[100],i,j,k,l;
+  cin>>num;
+  for(i=0;i<num;i++)
+  {
+  cin>>a;
+    arr[i]=pow(a,2);
+  }
+  for(j=0;j<num-1;j++)
+  {
+    for(k=0;k<num-j-1;k++)
+    {
+      if(arr[k]>arr[k+1])
+      {
+      int temp=arr[k];
+      arr[k]=arr[k+1];
+        arr[k+1]=temp;
+      }
+    }
+  }
+  for(l=0;l<num;l++)
+  {
+  cout<<arr[l]<<" ";
+  }
+	return 0;
+}

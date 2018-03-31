@@ -1,0 +1,22 @@
+#include <stdio.h>
+int cal(int n,int s)
+{
+  int r;
+  while(n!=0)
+  {
+    r=n%10;
+    s=s+r;
+    n=n/10;
+    cal(n,s);
+  }
+  return s;
+}
+int main()
+{
+  int sm,no;
+  scanf("%d",&no);
+  sm=cal(no,0);
+  printf("The sum of digits in %d is %d",no,sm);
+
+	return 0;
+}

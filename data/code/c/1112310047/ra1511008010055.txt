@@ -1,0 +1,31 @@
+#include<stdio.h>
+int main()
+{
+	int T;
+	long long int L,R,temp,current,ans;
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%lld %lld",&L,&R);
+		temp=2;
+		ans=0;
+		while(temp<=R)
+		{
+			current=temp;
+			while(current<=R)
+			{
+				if(L<=current&&current<=R)
+				{
+					ans++;
+				}
+				current*=3;
+			}
+			temp*=2;			
+		}
+		if(L<=1&&1<=R)
+			ans++;
+		printf("%lld\n",ans);
+	}
+	return 0;
+}
+  

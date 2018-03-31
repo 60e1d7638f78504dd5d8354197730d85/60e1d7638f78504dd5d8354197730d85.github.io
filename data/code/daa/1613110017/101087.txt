@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    int N,M,K;
+    cin>>N>>M>>K;
+    int Ai;
+    int occupied[15], nextrow[15], ans=0;
+    for(int i=1;i<=M;i++)
+    {
+        nextrow[i]=i;
+        occupied[i]=0;
+    }
+    bool flag=0;
+    for(int i=0;i<N;i++)
+    {
+        cin>>Ai;
+        if(!flag)
+        {
+            if(occupied[Ai]<K)
+            {
+                occupied[Ai]++;
+            }
+            else
+            {
+                if(occupied[nextrow[Ai]]<K)
+                {
+                    occupied[nextrow[Ai]]++;
+                    ans++;
+                }
+                else
+                {
+                    int start=(nextrow[Ai])%N+1;
+                    while(true)
+                    {
+                        if(start==Ai)
+                        {
+                            flag=1;
+                            ans++;
+                            break;
+                        }
+                        else
+                        {
+                            if(occupied[start]<K)
+                            {
+                                occupied[start]++;
+                                ans++;
+                                while(Ai!=start)
+                                {
+                                    nextrow[Ai]=start;
+                                    Ai=(Ai)%N+1;
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                start=start%N+1;
+                            }
+                        }
+                    }
+               }
+            }
+        }
+        else
+        {
+            ans++;
+        }
+    }
+    cout<<ans;
+  	cout<<endl;
+    return 0;
+}

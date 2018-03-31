@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+#define rep(i,n) for(i=0;i<n;i++)
+int main(void)
+{
+  int n,m,i,p,l,r;
+  char t[10],tt[10],s[10],ttt[10];
+  scanf("%d%d",&n,&m);
+  l=1; r=n;
+  rep(i,m){
+    scanf("%s %s %s %s %d",t,tt,s,ttt,&p);
+    if(s[0]=='r'){
+      if(l<p+1)l=p+1;
+    }
+    else{
+      if(r>p-1)r=p-1;
+    }
+  }
+  if(r-l<0)puts("-1");
+  else
+    printf("%d\n",r-l+1);
+  return 0;
+}

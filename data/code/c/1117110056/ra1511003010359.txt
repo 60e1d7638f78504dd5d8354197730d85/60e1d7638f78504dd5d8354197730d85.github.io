@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char wor[20],word[20],i,j,status,found;
+  int n;
+  scanf("%s",wor);
+  scanf("%d",&n);
+  while(n--)
+  {
+    scanf("%s",word);
+    status=1;
+    for(i=0; i<strlen(word); i++)
+    {
+      found=0;
+      for(j=0; j<strlen(wor); j++)
+      {
+        if(word[i]==wor[j])
+          found=1;
+      }
+      if(found==0)
+        status=0;
+  }
+    if(status==1)
+      printf("Yes\n");
+    else
+       printf("No\n");
+  }
+	return 0;
+}

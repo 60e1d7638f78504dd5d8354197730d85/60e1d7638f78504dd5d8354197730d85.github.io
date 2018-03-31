@@ -1,0 +1,21 @@
+#include <stdio.h>
+int r;
+int sumfunc(int n,int sum,int i)
+{
+  if(n<1)
+    return sum;
+  else
+  { r=n%10;
+   sum+=r;
+   n=n/10;
+    sum=sumfunc(n,sum,i+1);
+  }
+}
+int main()
+{
+ int n;
+  scanf("%d",&n);
+  printf("The sum of digits in %d is %d",n,sumfunc(n,0,0));
+  
+	return 0;
+}

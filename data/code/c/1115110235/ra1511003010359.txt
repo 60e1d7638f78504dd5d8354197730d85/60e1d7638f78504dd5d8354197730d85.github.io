@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#define getcx getchar_unlocked
+    inline void inp( int *n )
+    {
+    *n=0;
+    int ch=getcx();
+    while( ch < '0' || ch > '9' ){ ch=getcx();}
+ 
+    while( ch >= '0' && ch <= '9' )
+    *n = (*n<<3)+(*n<<1) + ch-'0', ch=getcx();
+    }
+ 
+int main()
+{	
+int t,n,gm,r,in;
+inp(&t);
+ 
+while(t--)
+	{
+	inp(&gm);
+	while(gm--)
+	{
+	inp(&in);inp(&n);inp(&r);
+	if(n%2)
+	{
+	if(in==r)
+	printf("%d\n",n/2);
+	else
+	printf("%d\n",n/2+1);
+	}
+	else
+	{
+	printf("%d\n",n/2);
+	}
+	}
+	}	
+return 0;
+}

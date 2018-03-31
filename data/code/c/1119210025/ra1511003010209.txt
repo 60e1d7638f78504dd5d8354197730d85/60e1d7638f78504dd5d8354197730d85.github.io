@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int k;
+        scanf("%d",&k);
+        int a[k+1],i;
+        a[0]=103993;
+        for(i=0;i<=k;i++)
+        {
+            a[i+1]=(a[i]%33102)*10;
+            a[i]/=33102;
+        }
+        printf("%d",a[0]);
+        if(k!=0)
+            printf(".");
+        for(i=1;i<=k;i++)
+            printf("%d",a[i]);
+        printf("\n");
+    }
+    return 0;
+}

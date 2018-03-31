@@ -1,0 +1,105 @@
+#include <stdio.h>
+int main()
+{
+	long i,n,m,special[1010],idspe[1010],idn[1010],mnospe[1010],mnon[1010],pspe[1010],pn[1010],id,p,count1,count2,found,temp,max,index,j;
+	char messages[1010][110];
+	scanf("%ld %ld",&n,&m);
+	for(i=0;i<n;i++)
+	{
+		scanf("%ld",&special[i]);
+	}
+	count1=0;
+	count2=0;
+	for(i=0;i<m;i++)
+	{	
+		scanf("%ld %ld %s",&id,&p,messages[i]);
+		found =0;
+		for(j=0;j<n;j++)
+		{
+			if(special[j] == id)
+				found =1;
+		}
+		if(found ==1)
+		{
+			idspe[count1] = id;
+			mnospe[count1] = i;
+			pspe[count1] = p;
+			count1++;
+		}
+		else
+		{
+			idn[count2] = id;
+			mnon[count2] = i;
+			pn[count2] = p;
+			count2++;
+		}	
+	}
+	count2--;
+	count1--;
+	
+	
+	
+	
+	
+	for(i=0;i<=count1;i++)
+	{
+		max=pspe[i];
+		index = i;
+		for(j=i+1;j<=count1;j++)
+		{
+			if(max<pspe[j])
+			{
+				index = j;
+				max = pspe[j];
+			}
+		}
+		temp  = pspe[i];
+		pspe[i] = pspe[index];
+		pspe[index] = temp;
+		temp = mnospe[i];
+		mnospe[i] = mnospe[index];
+		mnospe[index] = temp;
+	}
+	
+	for(i=0;i<=count2;i++)
+	{
+		max=pn[i];
+		index = i;
+		for(j=i+1;j<=count2;j++)
+		{
+			if(max<pn[j])
+			{
+				index = j;
+				max = pn[j];
+			}
+		}
+		temp  = pn[i];
+		pn[i] = pn[index];
+		pn[index] = temp;
+		
+		
+		temp = mnon[i];
+		mnon[i] = mnon[index];
+		mnon[index] = temp;
+	}
+	
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	for(i=0;i<=count1;i++)
+	{
+		printf("%s\n",messages[mnospe[i]]);
+	}
+	for(i=0;i<=count2;i++)
+	{
+		printf("%s\n",messages[mnon[i]]);
+	}
+	return 0;
+}
+	

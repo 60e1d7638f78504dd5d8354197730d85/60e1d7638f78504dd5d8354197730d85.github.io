@@ -1,0 +1,78 @@
+#include <cstring>
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
+
+using namespace std;
+typedef long long int64;
+typedef pair<int, int> PII;
+const int MOD = 1000000007;
+const double EPSILON = 1e-10;
+
+#define FORU(i, a, b) for (int i = (a); i <= (b); ++i)
+#define FORD(i, a, b) for (int i = (a); i >= (b); --i)
+#define REPU(i, a, b) for (int i = (a); i < (b); ++i)
+#define REPD(i, a, b) for (int i = (a); i > (b); --i)
+#define SIZE(A) ((int) A.size())
+#define PB(X) push_back(X)
+#define MP(A, B) make_pair(A, B)
+
+template<class T> inline T tmin(T a, T b) {return (a < b) ? a : b;}
+template<class T> inline T tmax(T a, T b) {return (a > b) ? a : b;}
+template<class T> inline T tabs(T a) {return (a > 0) ? a : -a;}
+template<class T> T gcd(T a, T b) {if (b == 0) return a; return gcd(b, a % b);}
+
+struct Point {
+    int ind, type, val;
+};
+
+Point pt[400001];
+
+bool comp(Point x, Point y)
+{
+    if (x.ind != y.ind) return x.ind < y.ind;
+    return x.type < y.type;
+}
+
+int main(int argc, char const *argv[])
+{	
+	ios_base::sync_with_stdio(false);
+	int N, M, k, x, y;
+    
+	cin >> N >> M;
+    int cnt = 0;
+    REPU(i, 0, M) {
+        cin >> x >> y >> k;
+        pt[cnt].ind = x;
+        pt[cnt].type = 1;
+        pt[cnt++].val = k;
+        pt[cnt].ind = y+1;
+        pt[cnt].type = -1;
+        pt[cnt++].val = -k;
+    }
+    sort(pt, pt + cnt, comp);
+    int64 ans = 0, tot = 0;
+    REPU(i, 0, cnt) {
+        tot += pt[i].val;
+        ans = tmax(ans, tot);
+    }
+    cout << ans << endl;
+	return 0;
+}

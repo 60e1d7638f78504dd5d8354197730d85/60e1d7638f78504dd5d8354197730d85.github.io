@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       int n=inp.nextInt();
+       int[][] a=new int[n][n];
+       for(int i=0;i<n;i++){
+         String x=inp.next();
+         char[] x1=x.toCharArray();
+         for(int j=0;j<n;j++)
+         {
+           String abc=x1[j]+"";
+           a[i][j]=Integer.parseInt(abc);
+         }
+       }
+		for(int i=0;i<n;i++){
+          for(int j=0;j<n;j++){
+         if(j!=0 && j!=(n-1) && i!=0 && i!=(n-1))
+         {
+           if(a[i][j]>a[i-1][j] && a[i][j]>a[i+1][j] && a[i][j]>a[i][j-1] && a[i][j]>a[i][j+1])
+           {
+             a[i][j]=101;
+           }
+         }
+          }
+        }
+       for(int i=0;i<n;i++)
+       {
+         String str="";
+         for(int j=0;j<n;j++){
+           if(a[i][j]==101)
+           {
+             str=str+"X";
+           }
+           else
+           {
+             str=str+a[i][j];
+           }
+         }
+         System.out.println(str);
+       }
+	}
+}

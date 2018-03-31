@@ -1,0 +1,40 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+ 
+        int n,m;
+        cin>>n>>m;
+        char a[10][10],count2[10];
+        memset(count2,0,sizeof(count2));
+        long long sum=0;
+        int i,j;
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+ 
+                cin>>a[i][j];
+                if(a[i][j]=='1')
+                    count2[j]++;
+            }
+ 
+        }
+        int temp;
+        for(j=0;j<m;j++)
+        {
+             temp=count2[j]*(count2[j]-1);
+            temp=temp/2;
+ 
+            sum+=temp;
+        }
+    cout<<sum<<endl;}
+ 
+return 0;}
+ 

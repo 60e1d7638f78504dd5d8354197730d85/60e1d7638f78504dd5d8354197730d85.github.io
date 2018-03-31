@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       String s=sc.nextLine();
+       int count=0;
+       HashMap<Character,Integer> counter = new HashMap<Character,Integer>();
+       for(int i=0;i<s.length();i++)
+       { 
+         if (counter.containsKey(s.charAt(i)))counter.put(s.charAt(i),counter.get(s.charAt(i))+1);
+         else
+         {
+           counter.put(s.charAt(i),1);
+         }
+       }
+       for(int i=97;i<123;i++)
+       {
+         if(counter.containsKey((char)i))
+         {
+         System.out.println((char)i+"="+counter.get((char)i));
+         }
+       }
+	}
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+  int T;
+   scanf("%d",&T);
+  while(T--){
+  int n,i,j,k,a[109],b[109],c=0;
+  scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+    scanf("%d",&a[i]);
+    }
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&b[j]);
+    }
+    for(k=0;k<n;k++)
+    {
+      if(k==0)
+      {
+         if(b[k]<=a[k])
+           c++;
+      }
+      else if(k>0){
+    if(b[k]<=abs(a[k]-a[k-1]))
+      {
+      c++;
+      }
+     }
+    }
+    printf("%d\n",c);
+  }
+	return 0;
+}

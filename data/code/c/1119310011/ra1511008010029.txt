@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define SORT(a,n) qsort(a,n,sizeof(int),intcmp)
+#define s(n)                        scanf("%d",&n)
+#define sc(n)                       scanf("%c",&n)
+#define sl(n)                       scanf("%I64d",&n)
+#define sf(n)                       scanf("%lf",&n)
+#define ss(n)                       scanf("%s",n)
+#define fill(a,v)                   memset(a, v, sizeof(a))
+int intcmp(const void *f,const void *s)
+{
+   return (*(int *)f -*(int *)s);
+}
+int gcd(int a,int b){ return ((b==0)?a:gcd(b,a%b));}
+ 
+#define MAX 812345
+#define MODBY 1000000007
+ 
+typedef long long int lld;
+typedef long double Lf;
+int powmod(int a,int b,int p)
+{
+   lld ans=1,mult=a;
+   while(b){
+      if(b&1)
+         ans=(ans*mult)%p;
+      mult=(mult*mult)%p;
+      b>>=1;
+   }
+   return (int) ans;
+}
+lld fact[MAX],invfact[MAX];
+void init()
+{
+   fact[0]=1;
+   int i;
+   for(i=1;i<MAX;++i)
+      fact[i]=(fact[i-1]*i)%MODBY;
+   invfact[MAX-1]=powmod(fact[MAX-1],MODBY-2,MODBY);
+   for(i=MAX-2;i>=0;--i){
+      invfact[i]=(invfact[i+1]*(i+1))%MODBY;
+      //if((invfact[i]*fact[i])%MODBY!=1) printf("error\n");
+   }
+}
+lld ways(int m,int n)
+{
+//   if(m>=MAX) exit(0);   if(n>=MAX) exit(0);
+   lld ans= (((invfact[m]*invfact[n])%MODBY)*fact[m+n])%MODBY;
+   return ans;
+}
+ 
+int main()
+{
+   int cases;
+   init();
+   for(scanf("%d",&cases);cases;--cases){
+      lld ans=0;
+      int m,n,a,b,y;
+      s(n);s(m);s(a);s(b);
+      for(y=b;y<=m;++y)
+         ans+=(ways(y,n-a)*ways(m-y,a-1))%MODBY;
+      
+      printf("%lld\n",ans%MODBY);
+   }
+   return 0;
+}
+ 

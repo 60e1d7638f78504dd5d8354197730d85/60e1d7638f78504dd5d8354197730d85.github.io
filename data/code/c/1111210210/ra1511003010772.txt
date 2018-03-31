@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int t,i;
+  char a[100],b,c,flag;
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    flag = 0;
+    scanf("%[^\n]s",a);
+    b = a[0];
+    c = a[1];
+    //printf("%c %c",b,c);
+    if(b == c)
+    {
+      printf("NO\n");
+      continue;
+    }
+    for(i=2;a[i]!='\0';i++)
+    {
+      if(i%2 == 0)
+      {
+        if(a[i] != b)
+        {printf("NO\n");
+         flag = 1;
+         goto label;}
+      }
+      else if(i%2 == 1)
+      {
+        if(a[i] != c)
+        {printf("NO\n");
+         flag = 1;
+         goto label;}
+      }
+    }
+    label:
+    if(flag == 0)
+      printf("YES\n");
+  }
+  return 0;
+}

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include<string.h>
+int prime[32001];
+int p[100001];
+void sieve()
+{
+prime[1]=1;
+int i,j;
+for(i=2;i*i<=32000;i++)
+if(!prime[i])
+for(j=2*i;j<=32000;j+=i)
+prime[j]=1;
+ 
+}
+ 
+int main()
+{
+int i,j,t,m,n,v;
+sieve();
+ 
+scanf("%d",&t);
+while(t--){
+scanf("%d%d",&m,&n);
+if(m<2)
+m=2;
+ 
+memset(p,0,sizeof(p));
+for(i=2; i*i<=n; i++)
+if(!prime[i])
+{
+v=((m-1)/i+1)*i;
+for(j=v==i?i<<1:v; j<=n; j+=i)
+p[j-m]=1;
+}
+for(i=0; i<=n-m; i++)
+if(!p[i])
+printf("%d\n",i+m);
+printf("\n");
+}
+
+
+	return 0;
+}

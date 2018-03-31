@@ -1,0 +1,32 @@
+    #include <stdio.h>
+    int main() {
+    	int T, N, chap[499], i, j, f1, f2;
+    	scanf("%d", &T);
+    	while( T-- ) {
+    		for(i = 0;i < 499;i++)
+    			chap[i] = 1000;
+    		scanf("%d", &N);
+    		f1 = 0;
+    		f2 = 0;
+    		for(i = 0;i < N;i++) {
+    			scanf("%d", &j);
+    			if(j > N || chap[j - 1] != 1000) {
+    				f1 = 1;
+    				break;
+    			}
+    			else
+    				chap[j - 1] = j;	
+    			if(chap[j - 1] != i + 1)
+    				f2 = 1;	
+    		}
+    		if(f2 == 1 && f1 == 0)
+    			printf("yes\n");
+    		else
+    			printf("no\n");
+    		if(f1 == 1) {
+    			i++;
+    			for(;i < N;i++)
+    				scanf("%d", &j);
+    		}
+    	}
+    }  

@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool prime[10000000+5];
+vector<int> ans;
+void sieve(){
+    ans.reserve(100000);
+    //res.resize(100000);
+    prime[0]=prime[1]=1;
+    for(int i=2;i<=sqrt(10000000+5);i++){
+        if(prime[i]==0)
+        for(int j=i*2;j<10000000+5;j+=i){
+            prime[j]=1;
+        }
+    }
+    int last=2;
+    for(int i=3;i<=10000000;i++){
+        if(prime[i]==0)
+        {
+            if(!prime[i-last])
+            ans.push_back(i);
+            
+            last=i;
+        }
+    }
+    
+    return;
+}
+int main() {
+	//code
+	sieve();
+	int t;
+	cin>>t;
+	while(t--){
+	    int n;
+	    cin>>n;
+	    cout<<abs(lower_bound(ans.begin(),ans.end(),2)-upper_bound(ans.begin(),ans.end(),n))<<endl;
+	}
+	return 0;
+}

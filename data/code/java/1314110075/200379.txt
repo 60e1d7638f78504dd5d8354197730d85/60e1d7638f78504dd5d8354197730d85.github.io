@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		 int t;
+        Scanner scan=new Scanner(System.in);
+        t=scan.nextInt();
+        while(t-->0){
+            int A,B;
+            A=scan.nextInt();
+            B=scan.nextInt();
+            int i;
+            long sum=0;
+            for(i=A;i<=B;i++){
+                String s=Integer.toString(i);
+                int len=s.length();
+                Boolean flag=true;
+                for(int j=0;j<len/2;j++){
+                    if(s.charAt(j)==s.charAt(len-1-j))
+                    {
+                        continue;
+                    }
+                    else{
+                        flag=false;
+                        break;
+                    }
+                }
+                if(flag)sum+=i;
+            }
+            System.out.println(""+sum);
+        }
+	}
+}

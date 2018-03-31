@@ -1,0 +1,41 @@
+
+#include <stdio.h>
+int main()
+{
+ int n, ar[1000],newar[100], i,temp,max,j,teo;
+  scanf("%d", &max);
+  for (i = 0; i < max; i++) {
+    scanf("%d", &ar[i]);
+  }
+ scanf("%d%d",&n,&temp);
+  for (i =0 ; i < n; i++) {
+    newar[i]=ar[i];
+  }
+  newar[n]=temp;
+  for(i=n;i<=max;i++)
+  {
+    newar[i+1]=ar[i];
+  }
+  for(i=0;i<=max;i++){
+   // printf("%d\n",ar[i]);
+    printf("Before sorting\n");
+    for(i=0;i<=max;i++)
+       printf("%d\n",newar[i]);
+  } 
+  
+  
+   for(i=max-1;i>=0;i--){
+      for(j=0;j<=i;j++){
+        if(newar[j]>newar[j+1]){
+           teo=newar[j];
+           newar[j]=newar[j+1];
+           newar[j+1]=teo;
+        }
+      }
+   }
+
+   printf("After sorting\n");
+   for(i=0;i<=max;i++)
+      printf("%d\n",newar[i]);
+	return 0;
+}

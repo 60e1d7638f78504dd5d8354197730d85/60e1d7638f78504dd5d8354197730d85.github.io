@@ -1,0 +1,35 @@
+#include <string.h>
+#include <stdio.h> 
+int main(void) {
+	int n,i,j,asc;
+	scanf("%d",&n);
+	while(n--)
+	{
+	    char a[50];
+	    int counter[26],len,max=0,sum=0;
+	    scanf("%s",a);
+	    len=strlen(a);
+	    for(i=0;i<26;i++)
+	    counter[i]=0;
+	    for(j=0;j<len;j++)
+	    {
+	      asc=a[j];
+	      counter[asc-97]++;
+	    }
+	    for(i=0;i<26;i++)
+	    {
+	       if(max<counter[i])
+	       max=counter[i];
+	       sum=sum+ counter[i];
+	    }
+	    if(sum==2*max)
+	    printf("YES\n");
+	    else
+	    printf("NO\n");
+	    
+	    
+	    
+	    
+	}
+	return 0;
+}

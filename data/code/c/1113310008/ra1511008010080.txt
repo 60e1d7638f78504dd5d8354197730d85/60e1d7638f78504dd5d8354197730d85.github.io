@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>  
+int cmpfunc (const void * a, const void * b)
+	{
+		return ( *(int*)a - *(int*)b );
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+	int n,values[t];
+   for( n = 0 ; n < t; n++ ) {
+      scanf("%d ",&values[n]);
+   }
+  qsort (values, t, sizeof(int), cmpfunc );
+  for( n = 0 ; n < t; n++ ) {
+      printf("%d ", values[n]);
+  }
+	return 0;
+}

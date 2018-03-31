@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+int findmax(int a[],int n)
+{
+  int m=-99999;
+  int i,sum[n];
+  sum[0]=a[0];
+  sum[1]=a[1]+a[0];
+  sum[2]=max(sum[1],max(sum[0]+a[2],a[1]+a[2]));
+  
+  for(i=3;i<n;i++)
+  {
+    sum[i]=max(sum[i-1],max(sum[i-2]+a[i],sum[i-3]+a[i-1]+a[i]));
+  }
+  /*for(i=0;i<n;i++)
+  {
+    if(m < sum[i])
+      m=sum[i];
+  }*/
+  return sum[n-1];
+}
+
+int main()
+{
+  int n,i,ma;
+  cin>>n;
+  int b[10];
+  for(i=0;i<n;i++)
+    cin>>b[i];
+  
+  ma=findmax(b,n);
+  
+  cout<<ma;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{int n1,n2,gcd,lcm,rem,numo,deno;
+ scanf("%d",&n1);
+ scanf("%d",&n2);
+ if(n1>n2)
+ {
+   numo=n1;
+   deno=n2;
+ }
+ else 
+ {
+   numo=n2;
+   deno=n1;
+ }
+ rem=numo%deno;
+ while(rem!=0)
+ {
+   numo=deno;
+   deno=rem;
+   rem=numo%deno;
+ }
+ gcd=deno;
+ lcm=n1*n2/gcd;
+ printf("%d ",gcd);
+ printf("%d",lcm);
+
+	return 0;
+}

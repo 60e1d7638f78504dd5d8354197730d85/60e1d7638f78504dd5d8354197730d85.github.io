@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int array[100], i, temp,n;
+   float large1, large2;
+  
+  scanf("%d",&n);
+ 
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&array[i]);
+    }
+   
+    large1=array[0];
+   
+    large2=array[1];
+    if (large1<large2)
+    {
+        temp=large1;
+        large1=large2;
+        large2=temp;
+    }
+    for (i = 2; i < n;	i++)
+    {
+        if (array[i]>=large1)
+        {
+            large2=large1;
+            large1=array[i];
+        }
+        else if(array[i]>large2)
+        {
+            large2=array[i];
+        }
+    }
+  float avg=((large1+large2)/2);
+  
+    printf("First Largest=%0.f\n", large1);
+    printf("Second Largest=%0.f\n", large2);
+    printf("Average=%0.1f\n",avg);
+	return 0;
+}

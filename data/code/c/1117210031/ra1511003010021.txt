@@ -1,0 +1,39 @@
+ #include<stdio.h>
+    inline int read()
+    {
+    char c=0;
+    int a=0;
+    while((c=getchar())<48);
+    a=a*10+c-48;
+    while((c=getchar())>=48)
+    a=a*10+c-48;
+    return a;
+    }
+    int main()
+    {
+    int i,n,t,a,sum=0,arr[100000];
+    t=read();
+    while(t--)
+    { sum=0;
+     a=0;
+    n=read();
+    for(i=0;i<n;i++)
+    {arr[i]=read();
+    if(!arr[i])
+    a++;
+    sum+=arr[i];
+    }
+    if(sum<100)
+    printf("NO\n");
+    else
+    {
+    sum-=100;
+    if(sum/(n-a)<1)
+    printf("YES\n");
+    else
+    printf("NO\n");
+    }
+    }
+    return 0;
+    }
+ 

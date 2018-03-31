@@ -1,0 +1,32 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define lld long double
+#define pb push_back
+#define mp make_pair
+
+int main(){
+    ll t;cin>>t;
+    while(t--){
+        ll n,k;
+        cin>>n>>k;
+        ll nou = 0;
+        ll cnt = 0;
+        for(ll i=0;i<n;i++){
+            ll x;
+            cin>>x;
+            if(x>=k){
+                nou += x-k;
+                k+=x-k;
+            }
+            else{
+                cnt++;
+            }
+        }
+        if(cnt!=n)
+        cout<<nou<<endl;
+        else cout<<"-1"<<endl;
+    }
+    return 0;
+}

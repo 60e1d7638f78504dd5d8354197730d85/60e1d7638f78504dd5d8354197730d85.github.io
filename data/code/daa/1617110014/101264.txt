@@ -1,0 +1,111 @@
+#include <bits/stdc++.h>
+#define mp make_pair
+#define pb push_back
+#define MOD 1000000007
+#define PI 3.14159265359
+#define ff first
+#define ss second
+#define inf INT_MAX
+using namespace std;
+ 
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int,int> pi;
+typedef vector<pi > vpi;
+ 
+int p[1000002];
+int r[1000002];
+typedef struct{
+    int x,y;
+    ll wt;
+} edge;
+ 
+edge f(int a,int b,ll c){
+    edge e; e.x=a; e.y=b; e.wt=c; return e;
+}
+ 
+bool cmp(edge a,edge b){
+    return a.wt<b.wt;
+}
+ 
+void make_set(int v){
+    p[v]=v;
+    r[v]=0;
+}
+int find_set(int v){
+    if(p[v]==v)
+        return v;
+    else return p[v]=find_set(p[v]);    
+}
+void union_sets(int a,int b){
+    a=find_set(a);
+    b=find_set(b);
+    if(a==b)
+        return;
+    if(r[b]>r[a]) 
+        swap(a,b);
+    p[b]=a;
+    if(r[b]==r[a])
+        r[a]++;
+}
+ 
+void MST(vector<edge> v,int n){
+    for(int i=1;i<=n;i++){
+        make_set(i);
+    }
+    sort(v.begin(),v.end(),cmp);
+    int a,b;
+    ll ans=0;
+    for(int i=0;i<v.size();i++){
+        a=find_set(v[i].x);
+        b=find_set(v[i].y);
+        if(a!=b){
+            union_sets(a,b);
+            ans=ans+v[i].wt;
+        }
+    }
+    cout<<ans<<endl;
+}
+ 
+ll sd[102][102];
+ 
+int main() {
+    
+    ios:: sync_with_stdio(0);
+    cin.tie(NULL),cout.tie(NULL);
+    int T;
+    cin>>T;
+    while(T--){
+        int n,m,k,i,a,b,c,j,sh;
+        cin>>n>>m>>sh;
+        
+        for(i=1;i<=n;i++){
+            for(j=1;j<=n;j++){
+                sd[i][j]=(i==j)? 0:inf;
+            }
+        }
+        
+        for(i=1;i<=m;i++){
+            cin>>a>>b>>c;
+            sd[a][b]=sd[b][a]=c;
+        }
+            
+        for(k=1;k<=n;k++){
+            for(i=1;i<=n;i++){
+                for(j=1;j<=n;j++){
+                    if(sd[i][k]+sd[k][j]<sd[i][j])
+                        sd[i][j]=sd[i][k]+sd[k][j];
+                }
+            }
+        }
+        vector<edge> v;
+        for(i=1;i<=sh;i++){
+            for(j=i+1;j<=sh;j++){
+                if(sd[i][j]!=inf)
+                    v.pb(f(i,j,sd[i][j]));
+            }
+        }
+        MST(v,sh);
+    }
+ return 0;
+}

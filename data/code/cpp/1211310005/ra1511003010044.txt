@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<int> vi;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<pii> vii;
+const double EPS=(double)1e-9;
+const double PI=(double)acos(-1.0);
+#define fi first
+#define se second
+#define mp make_pair
+#define pb push_back
+#define pob pop_back
+#define pf push_front
+#define pof pop_front
+#define FOR(i,n) for(int i=0;i<n;i++)
+#define REPP(i,l,r,c) for(int i=l;i<=r;i+=c)
+#define REP(i,l,r) REPP(i,l,r,1)
+#define FORD(i,n) for(int i=n-1;i>=0;i--)
+#define REVV(i,l,r,c) for(int i=l;i>=r;i-=c)
+#define REV(i,l,r) REVV(i,l,r,1)
+//random
+int irand(int lo, int hi){
+	return (((double)rand())/(RAND_MAX+1.0)) * (hi-lo+1) + lo;
+}
+//ll to string
+string toString(ll x) {
+	stringstream ss;
+	ss << x;
+	return ss.str();
+}
+//string to ll
+ll toNumber(string S) {
+	ll ret; 
+	sscanf(S.c_str(),"%lld",&ret); 
+	return ret;
+}
+// std::fill(start, end, value);
+// for(auto it: DS){}
+ 
+const int INF=(int)2e9;
+const ll MOD=(ll)1e9+7;
+/*==========================================================*/
+/*                     END OF TEMPLATE                      */
+/* DOMINUS pascit me, et nihil mihi deerit (Psalmorum 23:1) */
+/*==========================================================*/
+ 
+inline int get2Area(pii a, pii b, pii c){
+	return (a.fi*b.se+b.fi*c.se+c.fi*a.se) - (c.fi*b.se+b.fi*a.se+a.fi*c.se);
+}
+ 
+int main(){
+	int n;
+	pii minn=mp(INF,0), maxx=mp(0,0);
+	scanf("%d",&n);
+	REP(i,1,n){
+		pii a,b,c;
+		scanf("%d %d %d %d %d %d",&a.fi,&a.se,&b.fi,&b.se,&c.fi,&c.se);
+		int area=abs(get2Area(a,b,c));
+		if(maxx.fi<=area)maxx=mp(area,i);
+		if(minn.fi>=area)minn=mp(area,i);
+	}
+	printf("%d %d\n",minn.se,maxx.se);
+	return 0;
+} 

@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+	int n,i;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+    
+    	int numb;
+      	scanf("%d",&numb);
+      	int temp = numb;
+      	int tot = 0;
+      	int zs = 0;
+      	int os = 0;
+      	while(temp > 0){
+        	
+          int digit = temp % 10;
+          tot++;
+          if(digit == 0){
+            zs++;
+          }
+          else if(digit == 1){
+          	os++;
+          }
+          temp = temp/10;
+        }
+      
+      	int max = os>zs?os:zs;
+      	if(tot - max == 1){
+        	printf("Yes\n");
+        }
+      	else{
+        	printf("No\n");
+        }
+      
+    }
+	return 0;
+}

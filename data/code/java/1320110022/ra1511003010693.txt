@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       String[] s = sc.nextLine().split(" ");
+       Map<String,String> map = new TreeMap<String,String>();
+       String[] keys = new String[s.length];
+       for(int i = 0; i < s.length; i++){
+         keys[i] = String.valueOf(s[i].charAt(0));
+         if(map.containsKey(keys[i]))
+           map.put(keys[i], map.get(keys[i]) + s[i]);
+         else
+           map.put(keys[i], s[i]);
+       }
+       for(Map.Entry e: map.entrySet())
+         System.out.println(e.getKey() + " " + e.getValue());
+	}
+}

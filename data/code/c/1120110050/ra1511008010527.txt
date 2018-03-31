@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+int finput() {
+    unsigned int p=0;
+    char c;
+    c=getchar_unlocked();
+    while(c<'0' || c>'9')
+        c=getchar_unlocked();
+    while(c>='0' && c<='9') {
+        p=(p<<3)+(p<<1)+c-'0';
+        c=getchar_unlocked();
+    }
+    return(p);
+}
+ 
+int main() {
+	unsigned int t;
+	t=finput();
+	while(t--) {
+		unsigned int count=0, n, i, speed, limit=2147483647;
+		n=finput();
+		for(i=0;i<n;i++) {
+			speed=finput();
+			if(speed<=limit) {
+				count++;
+				limit=speed;
+			}
+		}
+		printf("%d\n", count);
+	}
+	return 0;
+} 

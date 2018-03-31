@@ -1,0 +1,34 @@
+//DKBoss
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Prime {
+	public:
+  	int number;
+  	Prime();
+  	string isPrime();
+};
+
+Prime :: Prime() {
+	number = 0;
+}
+
+string Prime :: isPrime() {
+	if(number <= 1) return "Not a prime number";
+  	if(number == 2) return "Prime number";
+  	if(number %2 == 0) return "Not a prime number";
+  	int val = sqrt(number);
+  	for(int i=3; i<=val; i+=2) {
+    	if(number % i == 0) return "Not a prime number";
+    }
+  	return "Prime number";
+}
+
+int main()
+{
+  	Prime prime;
+  	cin>>prime.number;
+  	cout<<prime.isPrime();
+	return 0;
+}

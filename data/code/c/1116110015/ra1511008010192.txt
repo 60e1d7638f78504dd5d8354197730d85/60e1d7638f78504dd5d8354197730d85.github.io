@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define MAX_SIZE 100 // Maximum string size
+
+
+int main()
+{
+    char str[MAX_SIZE];
+    char * s = str;
+    int alphabets, digits, others;
+
+    alphabets = digits = others = 0;
+
+   scanf("%s",str);
+
+    while(*s)
+    {
+        if((*s >= 'a' && *s <= 'z') || (*s >= 'A' && *s <= 'Z'))
+            alphabets++;
+        else if(*s>='0' && *s<='9')
+            digits++;
+        else
+            others++;
+
+        s++;
+    }
+
+    printf("Alphabets=%d\n", alphabets);
+    printf("Digits=%d\n", digits);
+    printf("Special characters=%d", others);
+
+    return 0;
+}

@@ -1,0 +1,38 @@
+#include<stdio.h>
+int arr[1003][1003];
+int ar1[1003][1003];
+int main()
+{
+	int i,j;
+	for(i=0;i<1003;i++)
+	{
+		for(j=0;j<1003;j++)
+		{
+			arr[i][j]=-1;
+			ar1[i][j]=-1;
+		}
+	}
+	int n,m;
+	scanf("%d%d",&n,&m);
+	while(n--)
+	{
+		int id,attr,val,prt;
+		scanf("%d%d%d%d",&id,&attr,&val,&prt);
+		if(arr[attr][id]==-1)
+		{
+			arr[attr][id]=val;
+			ar1[attr][id]=prt;
+		}
+		else if(ar1[attr][id]<=prt)
+		{
+			arr[attr][id]=val;
+			ar1[attr][id]=prt;
+		}
+	}
+	while(m--)
+	{
+		int attr,id;
+		scanf("%d%d",&id,&attr);
+		printf("%d\n",arr[attr][id]);
+	}
+} 

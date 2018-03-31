@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class overload {
+  string str;
+  public: overload(){}
+  public: overload(string s){
+    str = s;
+ }
+  void operator! () {
+    for(int i=0; i<this->str.size(); i++){
+      if(islower(this->str[i]))
+        cout<< (char)toupper(this->str[i]);
+      if(isupper(this->str[i]))
+        cout<< (char)tolower(this->str[i]);
+    }
+  }
+    
+};
+int main()
+{
+  string str;
+  cin>>str;
+  overload obj(str);
+  !obj;
+	return 0;
+}

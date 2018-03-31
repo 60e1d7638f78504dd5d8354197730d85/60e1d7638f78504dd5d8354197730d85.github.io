@@ -1,0 +1,36 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class TestClass {
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int cases = sc.nextInt();
+		while(cases>0) {
+			int n = sc.nextInt();
+			int k = sc.nextInt();
+			int[] arr = new int[n];
+			for(int i = 0; i < n; i++) {
+				arr[i] = sc.nextInt();
+			}
+			Arrays.sort(arr);
+			int maxAns = 0;
+			int minAns = 0;
+			int i = 0;
+			int j = n;
+			while(i<j) {
+				minAns = minAns + arr[i];
+				j = j-k;
+				i++;
+			}
+			i = n-1;
+			j = -1;
+			while(i>j) {
+				maxAns = maxAns + arr[i];
+				j = j+k;
+				i--;
+			}
+			System.out.println(minAns+" "+maxAns);
+			cases--;
+		}
+	}
+}

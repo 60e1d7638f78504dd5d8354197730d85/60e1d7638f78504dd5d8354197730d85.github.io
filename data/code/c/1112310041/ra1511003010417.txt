@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main(){
+	int T,i,min,N;
+	scanf("%d",&T);
+	while(T--){
+		scanf("%d",&N);
+		int arr[N];
+		for(i=0;i<N;i++){
+			scanf("%d",&arr[i]);
+		}
+		min=arr[0];
+		for(i=0;i<N;i++){
+			if(arr[i]<min)
+				min=arr[i];
+		}
+		while(min>1){
+			for(i=0;i<N;i++){
+				if(arr[i]%min!=0){
+					min--;
+					break;
+				}
+			}
+			if(i==N){
+				break;
+			}
+		}
+		for(i=0;i<N;i++){
+			printf("%d ",arr[i]/min);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+ 
+ 
+

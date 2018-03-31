@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include<stdlib.h>
+inline int inp( )
+{
+int n=0;
+int ch=getchar();
+while(!(ch >= '0' && ch <= '9') )ch=getchar();
+while( ch >= '0' && ch <= '9' )
+n = (n<<3)+(n<<1) + ch-'0', ch=getchar();
+return n;
+}
+int divd(int num)
+{
+	int i=1;
+	while(num!=0)
+	{
+		i=i*10;
+		num /=10;
+	}
+	i=i/10;
+	return i;
+}
+int fun1(int num)
+{
+	int div= divd(num);
+	int mod= num%div;
+	int j,val;
+	j= (num- mod) / div;
+	val=mod*10 + j;
+	return val;
+}
+int fun2(int num)
+{
+	int mod,j,val, div=divd(num);
+	mod=num%10;
+	j=num/10;
+	val=mod*div + j;
+	return val;
+}
+int main()
+{
+	int no,i,max,t,a,count;	
+	t=inp();
+	while(t--)
+	{
+		count=0;
+		no=inp();
+		a=no;
+		while(a!=0)
+		{ 
+			count++;
+			a=a/10;
+		}
+		a=no;
+		max=fun1(fun2(no));
+		a= fun2(fun1(no));
+		if(a>max)
+		max=a;
+		a=no;
+		for(i=0;i<count;i++)
+		{
+			a=fun1(a);
+			if(a>max)
+			max=a;
+		}
+		a=no;
+		for(i=0;i<count;i++)
+		{
+			a=fun2(a);
+			if(a>max)
+			max=a;
+		}
+		printf("%d\n",max);
+	}
+	return(0); 
+} 

@@ -1,0 +1,44 @@
+#include <stdio.h>
+int isSubset(int a[], int b[], int n, int m)
+{
+  int i,j;
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(b[i]==a[j])
+        break;
+    }
+    if(j==n)
+      return 0;
+  }
+  return 1;
+}
+int main()
+{
+int n,l,t,k,i,j;
+  
+  scanf("%d",&n);
+  int a[n],b[n];
+  
+  while(n--)
+  {
+    scanf("%d",&l);
+    for(i=0;i<l;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+      scanf("%d",&b[i]);
+    }
+    int p=isSubset(a,b,l,t);
+   
+           if(p==1)
+       printf("Yes\n"); 
+    else
+      printf("No\n");
+  }
+	return 0;
+}

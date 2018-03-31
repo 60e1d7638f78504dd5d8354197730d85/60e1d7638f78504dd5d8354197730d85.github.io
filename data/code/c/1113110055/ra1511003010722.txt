@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int p;
+  scanf("%d",&p);
+  while(p--)
+  {
+int n,sum=0,minsum=0,i,j;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  minsum=a[0]+a[1];
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      sum=a[i]+a[j];
+      if(sum<minsum)
+        minsum=sum;
+    }
+  }
+  printf("%d",minsum);
+  }
+	return 0;
+}

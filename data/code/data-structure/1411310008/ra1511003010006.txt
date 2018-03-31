@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+/* A linked list node */
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+ 
+struct Node *node;
+void push(struct Node** head_ref, int new_data)
+{
+    /* allocate node */
+    struct Node* new_node =
+        (struct Node*) malloc(sizeof(struct Node));
+ 
+    /* put in the data  */
+    new_node->data  = new_data;
+ 
+    /* link the old list off the new node */
+    new_node->next = (*head_ref);
+ 
+    /* move the head to point to the new node */
+    (*head_ref)    = new_node;
+}
+ 
+/* Function to print nodes in a given linked list */
+int printList(int n)
+{ 	
+  	int a;
+        a=node->data;
+        node = node->next;
+  return a;
+}
+ 
+
+int main()
+{
+    struct Node *start = NULL;
+	int n,a[10],b,c,i,k[20];
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+  	for(i=n-1;i>=0;i--)
+    {
+      push(&start,a[i]);
+    }
+  	node=start;
+	scanf("%d %d",&b,&c);
+	for(i=0;i<n;i++)
+    	k[i]=printList(n);
+  	for(i=n-1;i>=0;i--)
+      printf("%d ",k[i]);
+ 
+    return 0;
+}

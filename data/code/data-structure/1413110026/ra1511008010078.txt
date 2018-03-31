@@ -1,0 +1,31 @@
+#include <stdio.h>
+ 
+int main()
+{
+    long long int n,x,k,i,j;
+    scanf("%lld %lld",&n,&x);
+    long long int a[n];
+    k=n;
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld",&a[i]);
+        if(i>0)
+        a[i]+=a[i-1];
+    }
+    j=0;
+    while(a[j]<=x && j<n)
+    j++;
+    if(j<k && j!=n)
+    k=j;
+    j--;
+    for(i=1;i<n;i++)
+    {
+        while(a[j]-a[i-1]<=x && j<n)
+        j++;
+        if(j-i<k && j!=n)
+        k=j-i;
+        j--;
+    }
+    printf("%lld",k);
+    return 0;
+}

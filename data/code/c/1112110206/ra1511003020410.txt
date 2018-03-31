@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int salary[100],i,test;
+  	int gross[100];
+  	int hra[100],da[100];
+  	scanf("%d",&test);
+  	for(i=0;i<test;i++){
+  		scanf("%d",&salary[i]);
+  	}
+  	for(i=0;i<test;i++){
+  		if(salary[i]<1500){
+     		hra[i]=0.10*salary[i];
+      		da[i]=0.90*salary[i];
+    	}
+  		else{
+      		hra[i]=500;
+      		da[i]=0.98*salary[i];
+    	}
+  		gross[i]=salary[i]+hra[i]+da[i];
+    }
+  	for(i=0;i<test;i++){
+      printf("%d\n",gross[i]);
+    }
+	return 0;
+}

@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int t,arr[20],i,j,k;
+   scanf("%d",&t);
+   for(i=0;i<t;i++) 
+     scanf("%d",&arr[i]);
+  for (i = 0; i < t; i++) {
+      for (j = i + 1; j < t;) {
+         if (arr[j] == arr[i]) {
+            for (k = j; k < t; k++) {
+               arr[k] = arr[k + 1];
+            }
+            t--;
+         } else
+            j++;
+      }
+   }
+ 
+   for (i = 0; i < t; i++) {
+      printf("%d ", arr[i]);
+   }
+
+	return 0;
+}

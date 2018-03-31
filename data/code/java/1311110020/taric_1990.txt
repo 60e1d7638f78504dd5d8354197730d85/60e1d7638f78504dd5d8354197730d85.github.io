@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in);
+       int a = input.nextInt();
+       int b = input.nextInt();
+       int c = input.nextInt();
+       int gcd = greatestCommonFactor(a,b,c);
+       System.out.println(+gcd);
+	}
+  public static int greatestCommonFactor(int a, int b, int c)
+{
+    int limit = Math.min(a, b);
+    limit = Math.min(limit, c);
+    for(int n = limit; n >= 2; n--)
+    {
+        if ( (a % n == 0) && (b % n == 0) && (c % n == 0) ) {
+            return n;
+        }
+    }
+
+    return 1;
+  }
+}

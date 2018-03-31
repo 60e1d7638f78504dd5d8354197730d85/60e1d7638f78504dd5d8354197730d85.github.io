@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <malloc.h>
+#define MAX 10
+int main()
+{
+	int n,countp=0,countn=0,countz=0,a[MAX],i,*ptr;
+  	scanf("%d",&n);
+    ptr=(int *)malloc(sizeof(int)*n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d",&ptr[i]); 
+      if(ptr[i]>0)
+      {  
+      	countn++;
+        printf("%d=Positive\n",ptr[i]);
+      } 
+      else if(ptr[i]<0)
+      {
+        countz++;
+        printf("%d=Negative\n",ptr[i]);
+      }  
+      else
+      {
+        countp++;
+        printf("%d=Zero\n",ptr[i]);
+      } 
+    }
+  	
+	return 0;
+}

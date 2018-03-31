@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#define ll long long int
+ll freq[2000005];
+int main()
+{
+    ll t,n,i,temp,res;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        memset(freq,0,2000005*sizeof(ll));
+        res = 0;
+        scanf("%lld",&n);
+        for(i=0;i<n;++i)
+        {
+            scanf("%lld",&temp);
+            temp+=1000000;
+            res+=++freq[temp];
+        }
+        printf("%lld\n",res);
+    }
+    return 0;
+}

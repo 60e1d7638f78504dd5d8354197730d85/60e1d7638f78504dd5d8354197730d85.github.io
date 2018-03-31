@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+int palindrome(int n)
+{
+  int i=0,c=n;
+  while(c>0)
+  {
+   i=i*10 + c%10;
+    c=c/10;
+  }
+  if(i==n)
+    return 0;
+  else
+    return 1;
+}
+int base(int n,int b)
+{
+ int c=n,k=0,i=0;
+  while(c>0)
+  {
+    k=k+(c%b)*pow(10,i++);
+    c=c/b;
+  }
+  return k;
+}
+int main()
+{
+	int T, n,i;
+scanf("%d",&T);
+  while(T>0){
+   i=2;
+    scanf("%d",&n);
+    //printf("%d",n);
+  while(palindrome(base(n,i)))
+          {
+           i++; 
+          }
+          printf("%d\n",i);
+   T--; 
+  }
+	return 0;
+}

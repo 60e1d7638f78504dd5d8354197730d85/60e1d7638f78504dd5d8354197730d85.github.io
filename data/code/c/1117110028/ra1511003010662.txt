@@ -1,0 +1,15 @@
+#include <stdio.h>
+int max=-999;
+int main()
+{
+  int i,n;scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)scanf("%d",&a[i]);
+printf("Maximum element in the array is %d",funmax(a,n));
+	return 0;
+}
+int funmax(int *a,int n){
+if(max<*(a+n-1))max=*(a+n-1);	
+  if(n==1)return max; 	
+  funmax(a,--n);
+}

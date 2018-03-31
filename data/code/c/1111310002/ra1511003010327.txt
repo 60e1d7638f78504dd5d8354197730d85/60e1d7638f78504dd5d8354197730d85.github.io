@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+    int sum=0,a[20][20],s[20],months=0,i,t,w,c;
+    scanf("%d %d %d",&t,&w,&c);
+  if(t==0)
+  {
+    printf("0");
+    return 0;
+  }
+           
+    for(i=0;i<t;i++)
+    {
+      scanf("%d %d",&a[i][0],&a[i][1]);
+      s[i]=a[i][0];
+    }
+  while(sum<w)
+  {
+    i=0;
+    sum=0;
+    for(i=0;i<t;i++)
+    {
+      s[i]=s[i]+a[i][1];
+      if(s[i]>=c)
+        sum=sum+s[i];
+      
+    }
+    months++;
+  }
+  printf("%d",months);
+    
+	return 0;
+}

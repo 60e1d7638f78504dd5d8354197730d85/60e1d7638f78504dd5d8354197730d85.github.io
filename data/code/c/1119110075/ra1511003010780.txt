@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	long long int a[100],x,n,i;
+	a[1]=9;
+	n=90;
+	for(i=2;a[i-1]<=2000000000;i++)
+	{
+		a[i]=a[i-1]+i*n;
+		n=n*10;
+		//printf("%lld\t",a[i]);
+	}
+	while(1)
+	{
+		i=n;
+		scanf("%lld",&n);
+		if(n==i)
+			break;
+		if(n<=9)
+		{
+			printf("%lld\n",n);
+			continue;
+		}
+		i=1;
+		while(a[i++]<=n);
+		i--;
+		x=n-a[i-1];
+		if(x%i==0)
+		{
+			x=pow(10,i-1)-1+x/i;
+			printf("%lld\n",x);
+		}
+		else
+		{
+			printf("Impossible\n");
+		}
+	}
+	return 0;
+}
+

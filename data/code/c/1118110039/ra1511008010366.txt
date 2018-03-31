@@ -1,0 +1,65 @@
+#include<stdio.h>
+ 
+int rpm(char[], int);
+void doit()
+{
+	char inlines[400];
+	int pointer = 0;
+ 
+	scanf("%s", inlines);
+ 
+	     pointer = rpm(inlines, pointer);
+	printf("\n");
+ 
+}
+int rpm(char inlines[], int pointer)
+{
+ 
+	int index;
+	char sign;
+ 
+	index = pointer;
+ 
+	while(inlines[index] != '\0')
+	{
+		if(inlines[index] == '(')
+			{
+				index++;
+				index = rpm(inlines, index);
+				continue;
+			}
+		switch(inlines[index])
+		{
+			case '+':
+			case '-':
+			case '*':
+			case '/':
+			case '^':
+				sign = inlines[index];
+				break;
+			case ')':
+				printf("%c",sign);
+				return ++index;
+ 
+ 
+			default:
+				printf("%c", inlines[index]);
+				break;
+		}
+		index++;
+ 
+	}
+	return index;
+}
+ 
+int main(void)
+ 
+{
+	int i, n;
+ 
+	scanf("%d", &n);
+ 
+	for(i = 0; i < n; i++)
+		doit();
+ 
+	return 0;}

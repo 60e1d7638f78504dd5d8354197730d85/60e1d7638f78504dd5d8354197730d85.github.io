@@ -1,0 +1,19 @@
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+#define N 100010
+
+int n,k,num[N];  
+char st[N];  
+bool flag=true;  
+
+int main()
+{  
+    scanf("%d%d",&n,&k);  
+    scanf("%s",st);  
+    for(int i=0;i<strlen(st);++i) num[st[i]-'a']++;    
+    for(int i=0;i<26;++i) if(num[i]>k) flag=false;    
+    puts((!flag)?"NO":"YES");
+    return 0;  
+}

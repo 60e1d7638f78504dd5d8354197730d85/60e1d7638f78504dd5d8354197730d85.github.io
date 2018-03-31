@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int findRoot(int p[],int e){
+
+	int root=e;
+  
+  while(root!=p[root])
+    root=p[root];
+  p[e]=root;
+  return root;
+  
+}
+
+int main()
+{
+	int n,i,j,f,e,f1,f2,p1,p2,max,r1,r2;
+  int p[105],r[105],flag[105];
+  scanf("%d",&n);
+  scanf("%d",&f);
+  
+  for(i=1;i<=n;i++){
+  p[i]=i;
+    r[i]=1;
+  }
+  
+  for(i=0;i<f;i++){
+  scanf("%d %d",&f1,&f2);
+    
+    p1=findRoot(p,f1);
+    p2=findRoot(p,f2);
+    
+    if(r[p1]>r[p2]){
+    
+    r[p2]+=r[p1];
+      p[p1]=p2;
+    }
+    else{
+    
+    r[p1]+=r[p2];
+      p[p2]=p1;
+    }
+  }
+  
+  scanf("%d",&e);
+  
+  max=0;
+  for(i=1;i<=n;i++)
+    flag[i]=1;
+  
+  for(i=0;i<e;i++){
+  
+  scanf("%d %d",&p1,&p2);
+    
+    r1=findRoot(p,p1);
+    r2=findRoot(p,p2);
+    
+    if(r1==r2)
+      flag[r1]=0;
+  }
+  
+  for(i=1;i<=n;i++){
+  	if(findRoot(p,i)==i && flag[i]!=0 && r[i]>max)
+      max=r[i];
+  }
+  
+  printf("%d",max);
+	return 0;
+}

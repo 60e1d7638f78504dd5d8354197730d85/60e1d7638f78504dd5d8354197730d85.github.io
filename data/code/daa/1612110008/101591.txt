@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int T;
+  cin>>T;
+ for(int i=0;i<T;i++)
+ {
+   char str[1001],str2[1001];
+   int len=0;
+   cin>>str;
+   for(int j=0; str[j]!='\0'; j++)
+	{
+     len++;
+		for(int k=j+1; str[k]!='\0'; k++)
+		{
+			if(str[j]>str[k])
+			{
+              char temp;
+				temp=str[j];
+				str[j]=str[k];
+				str[k]=temp;
+			}
+		}
+   	}
+   for(int j=0,k=0,l=len-1;j<len-1;j+=2,k++,l--)
+   {
+     str2[k]=str[j];
+     str2[l]=str[j+1];
+   }
+   str2[len/2]=str[len-1];
+   str2[len]='\0';
+   cout<<str2<<endl;
+ }
+	return 0;
+}

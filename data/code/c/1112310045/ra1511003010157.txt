@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	setvbuf(stdout,NULL,_IONBF,0);
+	int t,k;
+	long long int n,b,m,nb2,time=0;
+	scanf("%d",&t);
+	for(k=0;k<t;k++)
+	{
+		scanf("%lld%lld%lld",&n,&b,&m);
+		while(n>0)
+		{
+			time=time+b;
+			if(n%2==0)
+				nb2=n/2;
+			else
+				nb2=(n+1)/2;
+			time=time+nb2*m;
+			
+			m=m*2;
+			n=n-nb2;
+		}
+		time=time-b;
+		printf("%lld\n",time);
+		time=0;
+	}
+	return 0;
+}	

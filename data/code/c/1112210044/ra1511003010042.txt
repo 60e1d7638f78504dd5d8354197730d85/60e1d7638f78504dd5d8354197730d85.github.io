@@ -1,0 +1,225 @@
+#include<stdio.h>
+#include<limits.h>
+#include<ctype.h>
+#include<math.h>
+#include<string.h>
+#include<stdlib.h>
+#include<ctype.h>
+#define gc getchar_unlocked
+#define MOD 1000000007
+#define Max(a,b) (((a)>=(b))?(a):(b))
+#define Min(a,b) (((a)<=(b))?(a):(b))
+#define Abs(x) (((x)<0)?(-(x)):(x))
+ 
+typedef long long ll;
+typedef unsigned long long ull;
+ 
+ll getnum()
+{
+	char ch;
+	ll num=0;
+	
+	while(!isdigit(ch=gc()));
+	
+	do
+	{
+		num=num*10+(ch-'0');
+	
+	}while(isdigit(ch=gc()));
+	
+	return num;
+}
+ 
+ll calc(ll base ,ll power)
+{
+		ll ans =1;
+		
+		while(power)
+		{
+				if(power%2==1)
+				{
+						--power;
+						ans=(ans*base)%MOD;
+				}
+				else
+				{	
+						power=power/2;
+						base = (base*base)%MOD;
+				}
+			
+		}
+		
+		return ans;
+	
+}
+ 
+void sort(int a[] , int begin , int mid , int end)
+{
+	int i=begin,j=mid+1,k=0,temp[end-begin+1];
+	
+	while(i<=mid && j<=end)
+	{
+		if(a[i] >= a[j])
+			temp[k++] =a[i++];
+		else
+			temp[k++]=a[j++];
+	
+	}
+	
+	
+	for(;i<=mid;++i)
+		temp[k++]=a[i];
+	
+	for(;j<=end;++j)
+		temp[k++]=a[j];
+	
+	for(i=0;i<k;++i)
+		a[begin+i]= temp[i];
+	
+	
+}
+ 
+void partition(int a[] , int begin ,int end)
+{
+	if(begin==end)
+		return ;
+	
+	int mid= (begin+end)/2;
+	
+	partition(a,begin,mid);
+	partition(a,mid+1,end);
+	
+	
+	sort(a,begin,mid,end);
+ 
+ 
+}
+ 
+ll gcd(ll a , ll b)
+{
+		if(b==0)
+			return a;
+		
+		return gcd(b,a%b);
+	
+}
+ 
+ll divisor[1000001], touch[1000001];
+#define LIMIT 1000001
+int primes[1000000],count;
+char composite[LIMIT/CHAR_BIT +1];
+ 
+void setbit(char composite[] ,int pos ,int val)
+{
+	int cell = pos/CHAR_BIT;
+	int shift = pos%CHAR_BIT;
+	
+	if(val==1)
+		composite[cell] = composite[cell] | (1<<shift);
+	else
+		composite[cell] = composite[cell] & (~(1<<shift));	
+	
+}
+ 
+int getbit(char composite[] ,int pos)
+{
+	int cell =pos/CHAR_BIT;
+	int shift = pos%CHAR_BIT;
+	
+	if(composite[cell] & (1<<shift))
+		return 1;
+	else 
+		return 0; 
+	
+ 
+}
+ 
+void fillprimes()
+{
+	int i,j;
+	
+	setbit(composite, 0,1);
+	setbit(composite,1,1);
+	
+	for(i=2;i<=LIMIT;++i)
+	{
+		
+		if(getbit(composite,i) == 0)
+		{
+		
+			primes[count++]=i;
+			
+			for(j=2*i ; j<=LIMIT;j=j+i)
+				setbit(composite,j,1);
+		
+		} 
+		
+		
+	
+	}
+ 
+ 
+}
+ 
+int main()
+{
+		int t=getnum();
+		fillprimes();
+		
+		while(t--)
+		{
+				ll l=getnum(),r=getnum(),i,j,ans=0;
+				
+				for(i=l;i<=r;++i)
+				{
+						divisor[i-l]=1;
+						touch[i-l]=i;
+				}
+				
+				
+				
+				for(i=0;i<count && primes[i]*primes[i]<=r ;++i)
+				{
+						
+						j=((l-1)/primes[i] + 1)*primes[i];
+						
+						
+						for(;j<=r;j=j+primes[i])
+						{
+										if(touch[j-l]!=j)
+											divisor[j-l]=0;
+										
+										int count =0;
+										
+										while(touch[j-l]%primes[i]==0)
+										{
+												touch[j-l]/=primes[i];
+												++count;
+										}
+																			
+										divisor[j-l] *= (1+count);
+																
+						}
+						
+					
+				}
+				
+				
+				for(i=l;i<=r;++i)
+					if(touch[i-l]>1)
+						divisor[i-l] *=2;
+					
+				for(i=l;i<=r;++i)
+					if(getbit(composite , divisor[i-l])==0)
+							++ans;
+					
+					
+				printf("%lld\n",ans);
+				
+				
+		}
+		
+		return 0;
+ 
+	
+} 

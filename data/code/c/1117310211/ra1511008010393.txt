@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct item
+{
+  int key,val;
+  struct item *next;
+} *htab;
+int n;
+int hash(int key)
+{
+  return 1000000007LL*key%1000000009LL%n;
+  
+}
+int get(int key,int val)
+{
+  int h=hash(key);
+  struct item *x;
+  for(x=htab[h].next;x!=NULL;x=x->next)
+    if(x->key==key)
+      break;
+  return x==NULL?val:x->val;
+}
+void put(int key,int val)
+{
+  int h=hash(key);
+  struct item *x;
+  for(x=htab[h].next;x!=NULL;x=x->next)
+    if(x->key==key)
+      break;
+  if(x==NULL)
+  {
+    x=malloc(sizeof(*x));
+    x->key=key;
+    x->next=htab[h].next;
+    htab[h].next=x;
+  }
+  x->val=val;
+}
+int main()
+{
+  int i,j,a;
+  long long cnt;
+  scanf("%d",&n);
+  htab=calloc(n,sizeof(*htab));
+  cnt=0;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a);
+    for(j=1;j<=30;j++)
+    if(1<<j>=a)
+      cnt+=get((1<<j)-a,0);
+    put(a,get(a,0)+1);
+    
+  }
+  printf("%lld\n",cnt);
+	return 0;
+}

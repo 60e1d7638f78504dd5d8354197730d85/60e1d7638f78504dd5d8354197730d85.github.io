@@ -1,0 +1,140 @@
+#include <stdio.h>
+#include <string.h>
+ 
+char in_str[BUFSIZ];
+int i_offset = BUFSIZ;
+int i_max = 0;
+char rc()
+{
+    if( i_offset == BUFSIZ )
+    {
+        i_offset = 0;
+        i_max = fread( in_str, sizeof(char ), BUFSIZ, stdin );
+    }
+    return in_str[i_offset++];
+}
+ 
+int ri()
+{
+    int N = 0;
+    char ch = rc();
+    while( ch == ' ' || ch == '\n' )
+        ch = rc();
+    while( ch >= '0' && ch <= '9' )
+    {
+        N = (N*10) + ch - '0';
+        ch = rc();
+    }
+    return N;
+}
+ 
+int m[501][501], w[501][501];
+int pref[ 501 ];
+int mc[501] = {0};
+int wc[501] = {0};
+ 
+int read_data()
+{
+    int n, i, idx,j,val;
+    n = ri();
+    for( i = 1; i <= n ; ++i )
+    {
+        idx = ri();
+        for( j = 1 ; j <= n;++j )
+        {
+            val = ri();
+            w[ idx ][ j ] = val;
+        }
+    }
+    for( i = 0; i <n ; ++i )
+    {
+        idx = ri();
+        for( j = 1 ; j <= n;++j )
+        {
+            val = ri();
+            m[ idx ][ j ] = val;
+        }
+    }
+    return n;
+}
+ 
+int WomanPrefersManOverMan1( int wi, int mi, int mi1, int n )
+{
+    int i;
+    for( i = 0 ; i < n; ++i )
+    {
+        if( w[wi][i] == mi )
+            return 1;
+        else if( w[wi][i] == mi1 )
+            return 0;
+    }
+    return 0;
+}
+ 
+void Process( int n )
+{
+    int i, k;
+    int stillToProcess = n;
+    int wx;
+    int mi1;
+    for (i = 1; i <= n; i++)
+    {
+        pref[ i ] = 0;
+    }
+ 
+ 
+    while (stillToProcess)
+    {
+        for( k = 1; k <= n; k++)
+        {
+            if( pref[k] == 0 )
+                break;
+        }
+        for ( i = 1; i <= n && pref[k] == 0; i++)
+        {
+            wx = m[k][i];
+            if( wc[wx] == 0 )
+            {
+                wc[wx] = k;
+                pref[k] = 1;
+                stillToProcess--;
+            }
+            else
+            {
+                mi1 = wc[wx];
+                if( WomanPrefersManOverMan1( wx, k, mi1, n ) )
+                {
+                    wc[wx] = k;
+                    pref[ k ] = 1;
+                    pref[mi1] = 0;
+                }
+            }
+        }
+    }
+}
+ 
+int main()
+{
+    int t,n;
+    int i;
+
+    t = ri();
+    while( t-- )
+    {
+        memset( wc, 0, sizeof( wc ) );
+        memset( mc, 0, sizeof( mc ) );
+ 
+        n = read_data();
+        Process( n );
+ 
+        for( i = 1; i <= n; ++i )
+        {
+            mc[ wc[i] ] = i;
+        }
+        for( i = 1; i <= n; ++i )
+        {
+            printf("%d %d\n", i, mc[i] );
+        }
+    }
+    return 0;
+} 

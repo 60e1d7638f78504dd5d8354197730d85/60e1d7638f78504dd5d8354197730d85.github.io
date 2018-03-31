@@ -1,0 +1,51 @@
+#include <stdio.h>
+ 
+int read_int()
+{
+    int n = 0;
+    char c = getchar_unlocked();
+    
+    while (!('0' <= c && c <= '9'))
+        c = getchar_unlocked();
+    
+    while ('0' <= c && c <= '9') {
+        n = (n << 3) + (n << 1) + (c - '0');
+        c = getchar_unlocked();
+    }
+    
+    return n;
+}
+ 
+int main(int argc, const char* argv[])
+{
+    int t, n;
+    unsigned long long k, a, b, c;
+        
+    t = read_int();
+    
+    while (t--) {
+        n = read_int();
+        scanf("%llu", &k);
+        c = b = 0;
+        
+        while (n--) {
+            a = read_int();
+            
+            if (b)
+                --b;
+ 
+            if (a > b) {
+                a -= b;
+                c += (a%k == 0? a/k:a/k+1);
+                b = a%k?k - a%k:0;
+            } else {
+                b -= a;
+            }
+        }
+        
+        printf("%llu\n", c);
+    }
+    
+    return 0;
+} 
+ 

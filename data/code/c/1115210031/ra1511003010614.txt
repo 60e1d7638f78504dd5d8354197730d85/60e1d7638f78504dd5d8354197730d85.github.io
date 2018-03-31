@@ -1,0 +1,41 @@
+#include<stdio.h>
+int main()
+{
+int t,i,n,m,a,b,j;
+scanf("%d",&t);
+for(i=0;i<t;i++)
+{
+scanf("%d %d",&n,&m);
+if(m<=81)
+{
+a=m/10;
+b=m%10;
+if(b<2)
+{
+b=b+a-1;
+a++;
+}
+else
+{
+b+=a;
+a+=1+b/10;
+b%=10;
+}
+for(j=0;j<n;j++)
+{
+if(j%2==0)
+printf("%d",a);
+else
+printf("%d",b);
+}
+printf("\n");
+}
+else
+{
+printf("-1");
+printf("\n");
+}
+ 
+}
+  return 0;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+
+  	int a[20],b[20],n,k=0,flag=0,i,j,temp;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    flag=0;
+    for(j=2;j<a[i]/2;j++)
+    {
+      if(a[i]%j==0)
+      { flag=1;
+       break;
+      }
+    }
+    if(flag==0)
+      b[k++]=a[i];
+  }
+  if(k==0)
+    printf("No prime numbers found");
+    
+  for(i=0;i<k;i++)
+  {
+    for(j=0;j<(k-i-1);j++)
+    {
+		if(b[j]>b[j+1])
+        {
+          temp=b[j];
+          b[j]=b[j+1];
+          b[j+1]=temp;
+        }
+    }
+  }
+  
+  for(i=0;i<k;i++)
+    printf("%d ",b[i]);
+  if(b[0]=='\0')
+    printf("No prime numbers found");
+      
+      return 0;
+}

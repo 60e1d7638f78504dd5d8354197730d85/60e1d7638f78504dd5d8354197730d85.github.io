@@ -1,0 +1,40 @@
+#include<stdio.h>
+ int min=100001;
+void func(int arr[],int arrsize,int index,int sum,int target,int cnt)
+{
+         if(target==sum)
+         {
+                if(min>cnt)
+                min=cnt;
+                return;        
+         }
+         if(target>sum)
+                       return;
+         if(index==arrsize)
+                       return;
+         func(arr,arrsize,index+1,sum,target+arr[index],cnt+1);
+         func(arr,arrsize,index+1,sum,target,cnt);
+         
+}
+ int main()
+ {
+     int i,n,t;
+     int arr[]={1,2,4,8,16,32,64,128,256,512,1024,2048};
+     scanf("%d",&t);
+     for(i=0;i<t;i++)
+     {
+            min = 100001;
+      scanf("%d",&n);
+      if(n>2048)
+      {
+        func(arr,12,0,n%2048,0,0);
+              printf("%d\n",(n/2048)+min);
+              continue;
+      }
+      func(arr,12,0,n,0,0);
+      printf("%d\n",min);
+      
+     }
+     return 0;
+ }
+ 

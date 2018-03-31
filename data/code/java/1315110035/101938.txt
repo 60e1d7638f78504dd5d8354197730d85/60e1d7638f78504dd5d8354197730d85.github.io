@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+import java.text.DecimalFormat;
+public class TestClass {
+private int basicSalary; 
+private int daPercentage; 
+private int hraPercentage; 
+private float taxAmount; 
+private float takeHomeSalary;  
+  public TestClass()
+  {
+  }
+  public void initializeData(int basic,int da,int hra)
+  {
+    basicSalary=basic;
+    daPercentage=da;
+    hraPercentage=hra;
+  }
+  public void calculateTaxAmount(int taxPercen)
+  {
+    float total=basicSalary+(basicSalary*daPercentage/100)+(basicSalary*hraPercentage/100);
+    taxAmount=total*taxPercen/100;
+     
+  }
+  public void  takeHomeSalary()
+  {
+           DecimalFormat df=new DecimalFormat("#0.00");
+       //df.setMaximumFractionDigits(2);
+
+    float total=basicSalary+(basicSalary*daPercentage/100)+(basicSalary*hraPercentage/100);
+    takeHomeSalary=total-taxAmount;
+    System.out.println("Basic Salary is "+(int)basicSalary);
+    System.out.println("DA amount is "+df.format(basicSalary*daPercentage/100));
+    System.out.println("HRA amount is "+df.format(basicSalary*hraPercentage/100));
+    System.out.println("Total Salary is "+df.format(total));
+    System.out.println("Tax to be paid is "+df.format(taxAmount));
+    System.out.println("Take Home Salary is "+df.format(takeHomeSalary));
+  }
+	 public static void main(String[] args) { 
+		TestClass e1=new TestClass();
+       TestClass e2=new TestClass();
+       
+       Scanner sc=new Scanner(System.in);
+       int basic=sc.nextInt();
+       int da1=sc.nextInt();
+       int hra1=sc.nextInt();
+       e1.initializeData(basic,da1,hra1);
+       e1.calculateTaxAmount(5);
+       e1.takeHomeSalary();
+       int basic2=sc.nextInt();
+       int da2=sc.nextInt();
+       int hra2=sc.nextInt();
+       int taxper=sc.nextInt();
+      e2.initializeData(basic2,da2,hra2);  
+       e2.calculateTaxAmount(taxper);
+       e2.takeHomeSalary();
+	}
+}

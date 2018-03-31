@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int hrs,hrs1,min,sec;
+  bool status=true;
+  cin>>hrs>>min>>sec;
+  if(hrs<00 || hrs>23)
+  {
+    cout<<"Invalid Time";
+    status=false;
+    exit(0);
+  }
+  if(min<00 || min>59)
+  {
+    cout<<"Invalid Time";
+    status=false;
+    exit(0);
+  }
+  if(sec<00 || sec>59)
+  {
+    cout<<"Invalid Time";
+    status=false;
+    exit(0);
+  }
+  if(status)
+  {
+    if(hrs>12)
+    {
+      cout<<"24 Hours Format"<<"\n";cout<<hrs<<":"<<min<<":"<<sec;
+      cout<<"\n";hrs1=hrs-12;cout<<"12 Hours Format\n";
+      cout<<hrs1<<":"<<min<<":"<<sec<<"pm"<<endl;
+    }
+    else if(hrs==12)
+    {
+      cout<<"24 Hours Format"<<"\n";
+      cout<<hrs<<":"<<min<<":"<<sec<<"\n";
+      cout<<"12 Hours Format"<<"\n";
+      cout<<hrs<<":"<<min<<":"<<sec<<"pm";
+    }
+    else
+    {
+      cout<<"24 Hours Format"<<"\n";
+      cout<<hrs<<":"<<min<<":"<<sec;
+      cout<<"\n";
+      cout<<"12 Hours Format\n";
+      cout<<hrs<<":"<<min<<":"<<sec<<"am"<<endl;
+    }
+  }
+  return 0;
+}

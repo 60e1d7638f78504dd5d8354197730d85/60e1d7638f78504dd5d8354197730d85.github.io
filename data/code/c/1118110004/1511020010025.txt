@@ -1,0 +1,44 @@
+#include <stdio.h>
+int flag=0;
+struct date
+{int dd;
+ int mm;
+ int yy;
+};
+void valday(struct date d1)
+{
+if(d1.yy>=0000 && d1.yy<=2999)
+    {if(d1.mm>=1 && d1.mm<=12)
+        {
+            if((d1.dd>=1 && d1.dd<=31) && (d1.mm==1 || d1.mm==3 || d1.mm==5 || d1.mm==7 || d1.mm==8 || d1.mm==10 || d1.mm==12))
+                d1.dd=d1.dd+1;
+            else if((d1.dd>=1 && d1.dd<=30) && (d1.mm==4 || d1.mm==6 || d1.mm==9 || d1.mm==11))
+                d1.dd=d1.dd+1;
+            else if((d1.dd>=1 && d1.dd<=28) && (d1.mm==2))
+                d1.dd=d1.dd+1;
+            else if(d1.dd==29 && d1.mm==2 && (d1.yy%400==0 ||(d1.yy%4==0 && d1.yy%100!=0)))
+                d1.dd=d1.dd+1;
+            else
+            {printf("Invalid Day\n");flag=1;}
+        }
+        else
+        {
+            printf("Invalid Month\n");
+          flag=1;
+        }
+    }
+    else
+    {
+        printf("Invalid Year\n");
+      flag=1;
+    }
+}
+int main()
+{
+struct date di;
+  scanf("%d %d %d",&di.dd,&di.mm,&di.yy);
+  valday(di);
+  if(flag!=1)
+  printf("New Date=%d %d %d",di.dd+1,di.mm,di.yy);
+	return 0;
+}

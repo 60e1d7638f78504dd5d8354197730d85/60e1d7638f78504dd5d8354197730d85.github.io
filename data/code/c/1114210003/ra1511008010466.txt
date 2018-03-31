@@ -1,0 +1,60 @@
+/*
+// Sample code to perform I/O:
+ 
+scanf("%s", name);              // Reading input from STDIN
+printf("Hi, %s.\n", name);      // Writing output to STDOUT
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+ 
+// Write your code here
+#include<stdio.h>
+#include<math.h>
+ 
+int relativlyPrime(int a,int h){
+        int temp; 
+    while(1)
+    {
+        temp = a%h;
+        if(temp==0)
+        return h;
+        a = h;
+        h = temp;
+    }
+}
+ 
+int prime(int a){
+    if(a == 1)
+    return 0;
+    int i;
+    for(i=2;i<a;i++){
+        if(a%i == 0)
+        return 0;
+    }
+    return 1;
+}
+ 
+int main(){
+    int test;
+    scanf("%d",&test);
+    int i;
+    for(i=0;i<test;i++){
+        int temp;
+        scanf("%d",&temp);
+        int j;
+        int count =1;
+        for(j=2;j<temp;j++){
+            int bol;
+            bol = relativlyPrime(j,temp);
+            if(bol == 1)
+            count++;
+        }
+        int result = prime(count);
+        if(result == 1)
+        printf("TRUE\n");
+        else 
+        printf("FALSE\n");
+    }
+    
+    return 0;
+}

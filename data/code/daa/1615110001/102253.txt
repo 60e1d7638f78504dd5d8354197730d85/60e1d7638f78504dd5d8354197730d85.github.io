@@ -1,0 +1,26 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main() {
+
+    int i,N, K, un=999999999;
+    
+cin >> N >> K;
+    int candies[N];
+    
+  for (int i=0; i<N; i++)
+        cin >> candies[i];
+  
+  sort(candies,candies+N);  
+
+  for(i=0; i+K < N ;i++){
+    if(  candies[i+K-1]-candies[i] < un )
+      un = candies[i+K-1]-candies[i] ;
+  }
+   
+    cout << un << "\n";
+    return 0;
+}

@@ -1,0 +1,72 @@
+#include  <stdio.h>
+
+
+int main()
+{
+  int  x[10][10] , nr , nc,n , r , c , flag ,sum,sum1,sum2;
+
+  
+
+  
+  //scanf("%d\n", &n) ;
+	nr=3;
+  nc=3;
+  if(nr==nc)  		
+  {
+   
+    for(r=0 ; r<nr ; r++){
+      for(c=0 ; c<nc ; c++){
+        scanf("%d" , &x[r][c]) ;
+      }
+      printf("\n");
+    }
+
+   //For diagonal elements
+   sum = 0;
+   for (r = 0; r < nr; r++) {
+      for (c = 0; c < nc; c++) {
+         if (r == c)
+            sum = sum + x[r][c];
+      }
+   }
+ 
+   //For Rows
+   for (r = 0; r < nr; r++) {
+      sum1 = 0;
+      for (c = 0; c < nc; c++) {
+         sum1 = sum1 + x[r][c];
+      }
+      if (sum == sum1)
+         flag = 1;
+      else {
+         flag = 0;
+         break;
+      }
+   }
+ 
+   //For Columns
+   for (r = 0;  r< nr; r++) {
+      sum2 = 0;
+      for (c = 0; c < nc; c++) {
+         sum2 = sum2 + x[r][c];
+      }
+      if (sum == sum2)
+         flag = 1;
+      else {
+         flag = 0;
+         break;
+      }
+   }
+        
+        
+        
+    if(flag==1)
+      printf("Yes") ;
+    else
+      printf("No") ; 
+  }
+  else
+    printf("No") ;
+
+ return 0; 
+}

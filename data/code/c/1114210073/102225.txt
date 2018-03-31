@@ -1,0 +1,33 @@
+#include <stdio.h>
+unsigned long long int fun(unsigned long long int );
+int main()
+{ unsigned long long int t;
+scanf("%llu",&t);
+while(t--)
+{
+	unsigned long long int b;
+	scanf("%llu",&b);
+	b++;
+	int temp=1;
+		while(temp)
+		{
+		//	cout<<fun(b)<<" ";
+			if(b==fun(b))
+			{
+			printf("%llu\n",b);
+			temp=0;
+		    }
+		    b++;
+		}
+	}
+}
+unsigned long long int fun(unsigned long long int n)
+{
+	unsigned long long int rev=0;
+	while(n>0)
+	{
+	rev=rev*10+n%10;
+	n=n/10;	
+	}
+	return rev;
+} 

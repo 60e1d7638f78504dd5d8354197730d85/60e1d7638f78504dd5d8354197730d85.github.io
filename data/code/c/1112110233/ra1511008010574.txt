@@ -1,0 +1,51 @@
+#include<stdio.h>
+int s(int);
+int f(int);
+int main()
+{
+int t;
+int i,j,p,k,g,x,y;
+char a[12][12];
+scanf("%d",&t);
+for(i=0;i<t;i++)
+{
+g=0;
+scanf("%d%d",&x,&y);
+for(p=1;p<=x;p++)
+scanf("%s",a[p]);
+for(j=0;j<y;j++)
+{
+k=0;
+for(p=1;p<=x;p++)
+{
+if(a[p][j]=='1')
+k++;
+}
+if(k>1)
+g+=s(k);
+}
+printf("%d\n",g);
+}
+ 
+return 0;
+}
+int s(int k)
+{
+int z;
+z=f(k)/(2*f(k-2));
+return z;
+}
+int f(int k)
+{
+int p;
+p=1;
+while(k)
+{
+ 
+p=p*k;
+k--;
+ 
+}
+return p;
+ 
+}

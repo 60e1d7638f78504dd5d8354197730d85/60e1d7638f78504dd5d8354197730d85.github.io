@@ -1,0 +1,38 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,m,i,max=0,sum=0,k,flag=0;
+		scanf("%d%d",&n,&m);
+		int arr[n];
+		for(i=0;i<n;i++)
+		{
+			scanf("%d",&arr[i]);
+			if(arr[i]>max)
+			max=arr[i];
+		}
+//		printf("%d\n",max);
+		for(i=0;i<n;i++)
+		{
+			sum+=(max-arr[i]);
+		}
+		k=0;
+		while(sum+k<=m)
+		{
+			if(sum+k==m)
+			{
+				flag=1;
+				break;
+			}
+			k+=n;
+		}
+		if(flag==1)
+		printf("Yes\n");
+		else
+		printf("No\n");
+	}
+return 0;
+} 

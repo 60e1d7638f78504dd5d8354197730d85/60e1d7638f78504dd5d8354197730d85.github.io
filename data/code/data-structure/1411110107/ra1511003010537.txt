@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+
+int func(int c[], int val, int end){
+	for(int j=0; j<=end; j++){
+		if(c[j]==val){
+			return -1;
+      		break;
+        }
+	}
+  	return 1;
+}
+
+int main(){
+	int n, c[100], i, x, k=0, flag;
+	cin>>n;
+	for(i=0; i<n; i++){
+		cin>>x;
+		flag=func(c, x, i);
+		if(flag==1)
+			c[k++]=x;
+	}
+	for(i=0; i<k; i++)
+      	cout<<c[i]<<endl;
+  	
+  	return 0;
+}

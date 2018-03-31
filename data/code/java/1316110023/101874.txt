@@ -1,0 +1,32 @@
+import java.util.*;
+class Sample
+{
+  	public int adajcentElementsDifference(int[] arr,int n)
+    {
+      int maxSum=0,diff;
+      for(int i=0;i<(arr.length-1);i++)
+      {
+        	diff =arr[i]-arr[i+1];
+        	if(diff>maxSum)
+              maxSum=diff;
+      }
+      return maxSum;
+    }
+  
+}
+public class TestClass {
+	public static void main(String[] args) 
+    { 
+			Scanner sc=new Scanner(System.in);
+      		int n=sc.nextInt();
+      		int[] arr=new int[n];
+      		for(int i=0;i<n;i++)
+            {
+              	arr[i]=sc.nextInt();
+              	//System.out.print(arr[i]+ " ");
+            }
+      		Sample objname=new Sample();
+      		int diff=objname.adajcentElementsDifference(arr,n);
+      		System.out.println(diff);
+	}
+}

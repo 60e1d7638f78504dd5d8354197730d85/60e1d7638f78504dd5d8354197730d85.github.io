@@ -1,0 +1,49 @@
+#include <stdio.h>
+long int octalconv(int n)
+{
+  int octal[100];
+  int i=0, j;
+  while(n!=0)
+  {
+    octal[i] = n%8;
+    n = n/8;
+    i++;
+  }
+  for(j = i-1; j>=0; j--)
+    printf("%d",octal[j]);
+}
+
+void hexaconv(int n)
+{
+  char hexa[100];
+  int i=0, j;
+  while(n!=0)
+  {
+    int temp = 0;
+    temp = n % 16;
+    if(temp < 10 )
+    {
+      hexa[i] = temp + 48;
+      i++;
+    }
+    else
+    {
+      hexa[i] = temp + 87;
+      i++;
+    }
+    n = n/16;
+  }
+  for(j=i-1; j>=0;j--)
+    printf("%c", hexa[j]);
+}
+int main()
+{
+	int num;
+  	scanf("%d", &num);
+  	printf("Decimal value:%d", num);
+  printf("\nOctal value:");
+  octalconv(num);
+  printf("\nHexadecimal value:");
+  hexaconv(num);
+	return 0;
+}

@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		int val;
+       Scanner sc=new Scanner(System.in);
+       val=sc.nextInt();
+       String name[]=new String[val];String temp="";
+       for(int i=0;i<val;i++)
+       {
+          name[i]=sc.next();
+       }
+       for(int i=0;i<val;i++)
+       {
+          for(int j=0;j<val-1-i;j++)
+          {
+              char c=name[j].charAt(0);
+              char c1=name[j+1].charAt(0);
+              int a1=c;int a2=c1;
+            if(a1>97)
+              a1=a1-32;
+            if(a2>97)
+              a2=a2-32;
+              if(a2<a1)
+              {
+              	temp=name[j];
+                name[j]=name[j+1];
+                name[j+1]=temp;
+              }
+          }
+       }
+       
+       for(int i=0;i<val;i++)
+       {
+          System.out.println(name[i]);
+       }
+	}
+}

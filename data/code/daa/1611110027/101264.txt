@@ -1,0 +1,25 @@
+import java.util.*;
+ 
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        int testCase = scan.nextInt();
+        while(testCase--!=0){
+            char[] arr = scan.next().toCharArray();
+            int suvo = 0;
+            int jit = 0;
+            for(int i = 0;i<arr.length-3;i++){
+                if(arr[i] == 'S' && arr[i+1] == 'U' && arr[i+2] == 'V' && arr[i+3] == 'O'){
+                    suvo++;
+                    if(i<arr.length-6){
+                        if(arr[i+4] == 'J' && arr[i+5] == 'I' && arr[i+6] == 'T'){
+                            jit++;
+                            suvo--;
+                        }
+                    }
+                }
+            }
+            System.out.println("SUVO = " + suvo + ", SUVOJIT = "+jit);
+        }
+    }
+}

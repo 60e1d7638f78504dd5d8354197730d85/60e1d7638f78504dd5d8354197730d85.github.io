@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class bank
+{
+	char name[10]  ;
+  	int accno;
+  	char type[5];
+  	int bal;
+  	int amt_deposited;
+  	int amt_withdrawn;
+  	public:
+  		void getdata()
+        {
+          cin>>name;
+          cin>>accno;
+          cin>>type;
+          cin>>bal;
+        }
+  		void deposit_withdrawn()
+        {
+          cin>>amt_deposited;
+          cin>>amt_withdrawn;
+        }
+  		void display()
+        {
+          if(amt_withdrawn>amt_deposited+bal){
+          cout<<"Insufficient amount\n";
+          cout<<"NAME="<<name<<"\n"<<"ACCNO="<<accno<<"\n"<<"TYPE="<<type<<"\n"<<"BALANCEAMOUNT="<<(bal+amt_deposited)<<"\n";
+          }
+          else{
+            cout<<"NAME="<<name<<"\n"<<"ACCNO="<<accno<<"\n"<<"TYPE="<<type<<"\n"<<"BALANCEAMOUNT="<<((bal+amt_deposited)-amt_withdrawn)<<"\n";
+          }
+        }
+};
+int main()
+{
+  bank b;
+  b.getdata();
+  b.deposit_withdrawn();
+  b.display();
+	return 0;
+}

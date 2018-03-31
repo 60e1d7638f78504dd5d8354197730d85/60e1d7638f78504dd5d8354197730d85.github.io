@@ -1,0 +1,123 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void func(int n,int m,vector<int> xpos,vector<int> ypos,char ans[][21]){
+    
+    int minx=INT_MAX,maxx=INT_MIN,miny=INT_MAX,maxy=INT_MIN;
+    for(int i=0;i<xpos.size();i++){
+        if(xpos[i]<minx)
+        minx=xpos[i];
+        if(ypos[i]<miny)
+        miny=ypos[i];
+        if(xpos[i]>maxx)
+        maxx=xpos[i];
+        if(ypos[i]>maxy)
+        maxy=ypos[i];
+        
+    }
+    
+    if(minx!=0&&miny!=0&&maxx!=n-1&&maxy!=m-1){
+        
+        for(int i=0;i<xpos.size();i++){
+            
+            ans[xpos[i]][ypos[i]]='X';
+            
+        }
+        
+    }
+    
+    
+}
+
+int main() {
+	//code
+	
+	int t;
+
+	cin>>t;
+	while(t--){
+	    
+	    	vector<pair<int,int>> v;
+	    	bool visited[21][21]={0};
+	        char str[21][21],ans[21][21];
+	        int n,m,count1=0;
+	        cin>>n>>m;
+	        for(int i=0;i<n;i++){
+	            for(int j=0;j<m;j++){
+	                cin>>str[i][j];
+	                ans[i][j]=str[i][j];
+	                if(str[i][j]=='O'){
+	                v.push_back(make_pair(i,j));
+	                count1++;
+	                }
+	            }
+	        }
+	        int shape=0,count2=0;
+	        queue<pair<int,int>> q;
+	    while(1){
+	        
+	    for(int i=0;i<v.size();i++){
+	        if(!visited[v[i].first][v[i].second]){
+	            q.push({v[i].first,v[i].second});
+	            visited[v[i].first][v[i].second]=true;
+	            count2++;
+	            break;
+	        }
+	    }
+	    
+	       vector<int> xpos;
+	       vector<int> ypos;
+	    
+	    while(!q.empty()){
+	      
+	       pair<int,int> p=q.front();
+	       int x=p.first;
+	       int y=p.second;
+	       xpos.push_back(x);
+	       ypos.push_back(y);
+	       q.pop();
+	   
+	       if(x+1<n&&str[x+1][y]=='O'&&visited[x+1][y]==false){
+	           q.push({x+1,y});
+	           visited[x+1][y]=true;
+	           count2++;
+	       }
+	       
+	       if(x-1>=0&&str[x-1][y]=='O'&&visited[x-1][y]==false){
+	           q.push({x-1,y});
+	           visited[x-1][y]=true;
+	           count2++;
+	       }
+	       
+	       if(y+1<m&&str[x][y+1]=='O'&&visited[x][y+1]==false){
+	           q.push({x,y+1});
+	           visited[x][y+1]=true;
+	           count2++;
+	       }
+	       
+	       if(y-1>=0&&str[x][y-1]=='O'&&visited[x][y-1]==false){
+	           q.push({x,y-1});
+	           visited[x][y-1]=true;
+	           count2++;
+	       }
+	       
+	       
+	    }
+	    
+	    func(n,m,xpos,ypos,ans);
+	    
+	    if(count2==count1){
+	        for(int i=0;i<n;i++){
+	            for(int j=0;j<m;j++){
+	                cout<<ans[i][j]<<" ";
+	            }
+	        }
+	        cout<<endl;
+	        break;
+	    }
+	    
+	    
+	}
+	}
+	return 0;
+}

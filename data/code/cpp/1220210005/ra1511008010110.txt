@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int Add(int x, int y)
+{  
+    while (y != 0)
+    {
+        int carry = x & y;  
+        x = x ^ y; 
+        y = carry << 1;
+    }
+    return x;
+}
+
+int main()
+{
+	int num1,num2;
+  	cin>>num1>>num2;
+  	int sum = Add(num1,num2);
+  	cout<<"sum is: "<<sum;
+  
+  	try{
+      if(sum<0)
+      	throw sum;
+    }catch(int sum)
+    {
+     cout<<"\nU Entered "<<sum<<" A & B Value as a Negative Number"; 
+    }
+  
+	return 0;
+}
+
+//U Entered -10 A & B Value as a Negative Number

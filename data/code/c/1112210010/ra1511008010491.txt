@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  int arr[10];
+  scanf("%d",&n);
+  int i;
+  int num;
+  int j;
+  int flag=0;
+  for(i=1;i<=n;i++)
+  {
+    scanf("%d",&num);
+    
+    for(j=0;j<num;j++)
+    {
+      scanf("%d",&arr[j]);
+    }
+    for(j=0;j<num;j++)
+    {
+      if ((arr[j+1]-arr[j])==1&&(arr[j+2]-arr[j+1])==1)
+      {
+        flag=1;
+        break;
+      }
+      else
+      {
+        flag=0;
+        break;
+      }
+    }
+  if(flag==1)
+  {
+    printf("Yes\n");
+  }
+  else
+  {
+    printf("No\n");
+  }
+  }
+	return 0;
+}

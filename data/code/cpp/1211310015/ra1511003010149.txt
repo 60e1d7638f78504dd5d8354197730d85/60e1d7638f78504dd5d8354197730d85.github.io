@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+long minPyramidCost(long arr[], long N)
+{
+    // Store the maximum possible pyramid height
+    long *left = new long[N];
+    long *right = new long[N];
+ 
+    // Maximum height at start is 1
+    left[0] = min(arr[0], (long)1);
+ 
+    // For each position calculate maximum height
+    for (int i = 1; i < N; ++i)
+        left[i] = min(arr[i],
+                      min(left[i - 1] + 1, (long)i + 1));
+ 
+    // Maximum height at end is 1
+    right[N - 1] = min(arr[N - 1], (long)1);
+ 
+    // For each position calculate maximum height
+    for (int i = N - 2; i >= 0; --i)
+        right[i] = min(arr[i],min(right[i + 1] + 1, N - i));
+ 
+    // Find minimum possible among calculated values
+    long tot[N];
+    for (int i = 0; i < N; ++i)
+        tot[i] = min(right[i], left[i]);
+ 
+    // Find maximum height of pyramid
+    long max_ind = 0;
+    for (int i = 0; i < N; ++i)
+        if (tot[i] > tot[max_ind])
+            max_ind = i;
+ 
+    // Calculate cost of this pyramid
+    long cost = 0;
+    long height = tot[max_ind];
+ 
+    // Calculate cost of left half
+    for (int x = max_ind; x >= 0; --x)
+    {
+        cost += arr[x] - height;
+        if (height > 0)
+            --height;
+    }
+ 
+    // Calculate cost of right half
+    height = tot[max_ind] - 1;
+    for (int x = max_ind + 1; x < N; ++x)
+    {
+        cost += arr[x] - height;
+        if (height > 0)
+            --height;
+    }
+    return cost;
+}
+ 
+// Driver code
+int main()
+{
+    long arr[10],m[10];
+    long N,t;
+  	cin>>t;
+  	for(int i=0;i<t;i++)
+    {
+      cin>>N;
+      for(int j=0;j<N;j++)
+        cin>>arr[j];
+      m[i]=minPyramidCost(arr,N);
+    }
+    for(int i=0;i<t;i++)
+      cout<<m[i]<<"\n";
+    return 0;
+}

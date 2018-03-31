@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int i,bs[10];
+  for(i=0;i<n;i++)
+    scanf("%d",&bs[i]);
+  float hra[10],da[10],gs[10];
+  for(i=0;i<n;i++)
+  {
+    if(bs[i]<1500)
+    {
+      hra[i]=0.1*bs[i];
+      da[i]=0.9*bs[i];
+    }
+    else
+    {
+      hra[i]=500;
+      da[i]=0.98*bs[i];
+    }
+    gs[i]=bs[i]+hra[i]+da[i];
+    printf("%.2f\n",gs[i]);
+  }
+
+	return 0;
+}

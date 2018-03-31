@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{ int a;scanf("%d",&a);
+while (a--)
+{ int n,m;
+scanf("%d %d",&n,&m);  int i,j,count=0;
+char c[n][m+1];
+for (i=0;i<n;i++)  scanf("%s",c[i]);
+for (i=0;i<n;i++)
+{ for(j=0;j<m;j++)
+      { if (c[i][j]=='#') continue;
+             else
+             {  int q=0,r=0,s=0,t=0; int l;
+                    l=j+1; while (l<m)  { if (c[i][l]=='#') break; else q++;  l++;   } if (q<=1) continue;
+                       l=j-1; while (l>=0) { if (c[i][l]=='#') break; else r++;  l--;   }  if (r<=1) continue;
+                       l=i+1; while (l<n) { if (c[l][j]=='#') break; else s++;  l++;   }  if (s<=1) continue;
+                       l=i-1; while (l>=0) { if (c[l][j]=='#') break; else t++;  l--;   } if (t<=1) continue;
+                       if (q>1&&r>1&&s>1&&t>1)  count++;
+             }
+          }}
+    printf("%d\n",count);
+}
+    return 0;
+}
+ 

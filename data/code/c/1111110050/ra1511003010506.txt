@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+
+char *strr(char *str, int len)
+{
+  char *p1=str;
+  char *p2=str+len-1;
+  
+  while (p1<p2) {
+    char tmp=*p1;
+    *p1++ = *p2;
+    *p2-- = tmp;
+  }
+  return str;
+}
+
+int main()
+{
+	char a[20];
+	scanf("%s",a);
+    printf("%s",strr(a,strlen(a)));
+	return 0;
+}

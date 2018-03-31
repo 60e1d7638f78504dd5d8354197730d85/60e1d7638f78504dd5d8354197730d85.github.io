@@ -1,0 +1,33 @@
+#include <stdio.h>
+    #define inp getchar_unlocked
+     
+     
+    typedef long long int lld;
+     
+    inline lld input()
+    {
+        lld num = 0;
+        char s = inp();
+        while(s<'0'||s>'9') s = inp();
+        while(s>='0'&&s<='9') num = (num<<3) + (num<<1) + (s-'0'), s = inp();
+        return num;
+    }
+     
+    int main() 
+    {
+        lld t;
+        t = input();
+        while (t--)
+        {
+            lld n; n= input();
+            lld temp, min = input(),i;
+            for (i = 1; i < n; i++) {
+                temp= input();
+                if(temp<min)
+                    min = temp;
+            }
+            lld ans = (min*(n-1));
+            printf("%lld\n",ans);
+        }
+    	return 0;
+    }  

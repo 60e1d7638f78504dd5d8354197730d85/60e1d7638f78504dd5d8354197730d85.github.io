@@ -1,0 +1,69 @@
+#include <stdio.h>
+int main()
+{
+	int a,digit,dig;
+  	int arr[100],arr2[100];
+  	int k;
+  	for(k=0;k<100;k++)
+    {
+      arr2[k]=0;
+    }
+  	int i = 0, j = 0;
+  	scanf("%d",&a);
+  	int b;
+  	printf("Decimal value:%d\n",a);
+  	b=a;
+  	while(a!=0)
+    {
+      digit = a % 8;
+     // printf("%d",digit);
+      arr[i] = digit;
+      i++;
+      a = a / 8;
+	}
+  	printf("Octal value:");
+  	for(i=1;i>=0;i--)
+    {
+      printf("%d",arr[i]);
+    }
+  	printf("\n");
+ 	 while(b>0)
+    {
+    	dig = b % 16;
+       	//printf(" %d ",dig);
+       	arr2[j] = dig;
+       	j++;
+       	b = b / 16;
+    }
+  	printf("Hexadecimal value:");
+  	for(j=1;j>=0;j--)
+    {
+      switch(arr2[j]){
+      case 0:
+          break;
+      case 10:
+      	printf("a");
+      	break;
+      case 11:
+      	printf("b");
+      	break;
+      case 12:
+      	printf("c");
+      	break;
+      case 13:
+        printf("d");
+        break;
+      case 14:
+            printf("e");
+            break;
+      case 15:
+            printf("f");
+            break;
+      default:
+      		printf("%d",arr2[j]);
+            break;
+        }
+    }
+      
+	return 0;
+}

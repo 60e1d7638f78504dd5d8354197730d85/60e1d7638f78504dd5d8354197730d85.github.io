@@ -1,0 +1,24 @@
+//DKBoss
+#include <stdio.h>
+
+int getRange(int* ptr, int n) {
+	int min = 9999;
+  	int max = -9999;
+  	int i=0;
+  	for(i; i<n; i++) {
+    	if(min > *(ptr+i)) min = *(ptr+i);
+      	if(max < *(ptr+i)) max = *(ptr+i);
+    }
+  	return max-min;
+}
+
+int main()
+{
+  	int n;
+  	scanf("%d", &n);
+  	int arr[n];
+  	int i=0;
+  	for(i; i<n; i++) scanf("%d", &arr[i]);
+  	printf("%d", getRange(&arr[0], n));
+	return 0;
+}

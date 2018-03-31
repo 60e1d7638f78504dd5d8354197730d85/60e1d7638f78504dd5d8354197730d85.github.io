@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int printr(string s, int index){
+  int oindex = index;
+  for(int i=oindex;i<s.length();i++)
+    if(s[i]==' '){
+      index = i;
+      break;
+    }
+  for(int i=index;i>=oindex;i--)
+    cout<<s[i];
+  return index;
+}
+int main()
+{
+  string s;int sindex=-1;
+  getline(cin,s);
+  s+=' ';
+  while(sindex!=s.length()-1){
+    sindex = printr(s,sindex+1);
+    //if(sindex!=s.length()-1)cout<<"-";
+  }
+  return 0;
+}

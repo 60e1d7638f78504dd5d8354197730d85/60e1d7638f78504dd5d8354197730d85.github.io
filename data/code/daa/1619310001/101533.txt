@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main() {
+	int t;
+	scanf("%d", &t);
+	
+	while(t--) {
+		char s[1000001];
+		int k;
+		scanf("%s%d", s, &k);
+		int len = strlen(s);
+        int arr[1000001], j = 0, i = 1, m, temp, l, p, count;
+        arr[0] = 0;
+        while(i < len) {
+            if(s[j] == s[i]) {
+                arr[i++] = j + 1;
+                j++;
+            } else if(s[j] != s[i] && j >= 1) {
+                j = 0;
+            } else if(s[j] != s[i] && j == 0) {
+                arr[i++] = 0;
+            }
+        }
+        int max = arr[0];
+        for (m = 1; m < k; m++) {
+            if (max < arr[m]) {
+                max = arr[m];
+            }
+        }
+        count = arr[len - 1];
+        while (count > max) {
+            count = arr[count - 1];
+        }
+        if (count) {
+            for (p = 0; p < count; p++) {
+        		printf("%c",s[p]);
+        	}
+        	printf("\n");
+        } else {
+            printf("Puchi is a cheat!\n");
+        }
+    }
+    return 0;
+}

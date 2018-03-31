@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char X[11],Y[11];
+	int t,c=0,i;
+	scanf("%d",&t);
+	while(t>0)
+	{
+		c=0;
+		scanf("%s",X);
+		scanf("%s",Y);
+		for(i=0;i<strlen(X);i++)
+		{
+			if(X[i]==Y[i])
+			c++;
+			else
+			{
+				if(X[i]=='?'||Y[i]=='?')
+				c++;
+				else
+				break;
+			}
+		}
+		if(c==strlen(X))
+		printf("Yes\n");
+		else
+		printf("No\n");
+		t--;
+	}
+	return 0;
+}

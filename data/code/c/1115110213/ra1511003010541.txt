@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int fact(int z)
+{
+    int f = 1, i;
+    if (z == 0)
+    {
+        return(f);
+    }
+    else
+    {
+        for (i = 1; i <= z; i++)
+	{
+            f = f * i;
+	}
+    }
+    return(f);
+}
+
+int co(int a,int b)
+{
+  int ans;
+  ans=fact(a)/(fact(a-b)*fact(b));
+  return ans;
+}
+int main()
+{
+  int t;
+  int a[50];
+  int c,r,g,n,cnt,i;
+  scanf("%d",&t);
+  while(t--)
+  {
+    cnt=0;
+    scanf("%d%d%d",&r,&c,&g);
+    if(c==1)
+    {
+      printf("1");
+      printf("%d",g);
+      continue;
+    }
+    while(g>0)
+    {
+      n=c;
+       while(co(n,c)<=g)
+       {
+         n=n+1;
+       }
+      cnt++;
+      a[cnt]=co(n-1,c);
+      g=g-co(n-1,c);
+      c=c-1;
+    }
+    
+    printf("%d\n",cnt);
+    for(i=1;i<=cnt;i++)
+      printf("%d ",a[i]);
+    printf("\n");
+  }
+
+	return 0;
+}

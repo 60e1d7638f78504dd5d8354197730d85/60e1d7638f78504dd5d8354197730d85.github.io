@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+       int n,sum=0;
+       n=sc.nextInt();
+       int a[]=new int[n]; 
+       //n=sc.nextInt();
+       for(int i=0;i<n;i++)
+       {
+         a[i]=sc.nextInt();
+       }
+       Sample s=new Sample();
+      sum= s.adjacentElementsSum(a,n);
+       System.out.println(sum);
+		
+	}
+}
+
+class Sample
+{
+   int adjacentElementsSum(int arr[],int n)
+   {
+     int sum=0;
+       for(int i=0;i<n-1;i++)
+       {
+         int sum1=arr[i]+arr[i+1];
+         if(sum1>sum)
+           sum=sum1;
+       }
+     return sum;
+       //System.out.println(sum);
+		
+   }
+}

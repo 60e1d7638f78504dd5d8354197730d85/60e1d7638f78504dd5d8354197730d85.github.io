@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main(){
+    long long int i, num, total, n, p;
+    char s[100];
+    scanf("%s",s);
+         
+          num=0;
+          i=0;
+          while (s[i]){
+                num=num*10+(s[i]-'0');
+                i++;
+          }
+          i=1, p=9, total=0;
+          while (1){
+                n=p*i;
+                if(total+n>num)
+                   break;
+                total=total+p*i;
+                p*=10, i++;
+          }
+          num-=total;
+          if(num%i)
+             printf("Impossible\n");
+          else {
+               total=pow(10,i-1)-1;
+               p=num/i;
+               printf("%lld\n",total+p);
+          }
+    
+    return 0;
+}  

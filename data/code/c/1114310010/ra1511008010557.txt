@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<malloc.h>
+int main()
+{
+    long long *arr;
+    int *right,*left;
+    long long  i,j,k,n,m;
+    long long  ans;
+    char sign,player,c;
+    scanf("%lld%lld",&n,&m);
+    arr=(long long*)malloc(n*sizeof(long long));
+    right=(int*)malloc(n*sizeof(int));
+    left=(int*)malloc(n*sizeof(int));
+    for(i=0;i<n;i++)
+    {
+        right[i]=1;
+        left[i]=1;
+    }
+    for(i=0;i<n;i++)
+        scanf("%lld",&arr[i]);
+    for(i=0;i<n;i++)
+    {
+            for(j=i+1;j<n;j++)
+            {
+                if(arr[j]<=arr[i])
+                    right[i]=!right[i];
+                else
+                {
+                    break;
+                }
+            }
+ 
+            for(j=i-1;j>=0;j--)
+            {
+                if(arr[j]<arr[i])
+                    left[i]=!left[i];
+                else
+                {
+                    break;
+                }
+            }
+        right[i]*=left[i];
+    }
+    while(m--)
+    {
+        scanf("%c",&c);
+        scanf("%c%lld",&sign,&k);
+        scanf("%c%c",&c,&player);
+        ans=0;
+        if(sign=='=')
+        {
+            for(i=0;i<n;i++)
+            {
+                if(arr[i]==k)
+                {
+                    ans+=right[i];
+                }
+            }
+        }
+        else if(sign=='>')
+        {
+            for(i=0;i<n;i++)
+            {
+                if(arr[i]>k)
+                {
+                    ans+=right[i];
+                }
+            }
+        }
+        else if(sign=='<')
+        {
+            for(i=0;i<n;i++)
+            {
+                if(arr[i]<k)
+                {
+                    ans+=right[i];
+                }
+            }
+        }
+ 
+        if(player=='D')
+        {
+            if(ans%2==0)
+                printf("C");
+            else
+                printf("D");
+        }
+        else
+        {
+            if(ans%2==0)
+                printf("D");
+            else
+                printf("C");
+        }
+    }
+    return(0);
+}
+ 

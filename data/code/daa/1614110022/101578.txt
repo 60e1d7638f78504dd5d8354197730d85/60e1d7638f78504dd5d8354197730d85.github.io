@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+ 
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int m,n;
+        cin>>n>>m;
+        
+        vector<string> arr(n);
+        for(int i=0;i<n;i++){
+            
+            cin>>arr[i];
+            
+        }
+        
+        int count=0;
+        for(int i=n-1;i>=0;i--){
+            for(int j=m-1;j>=0;j--){
+                if(arr[i][j]=='0'){
+                    count++;
+                    for(int k=0;k<=i;k++){
+                        for(int l=0;l<=j;l++){
+                            if(arr[k][l]=='0'){
+                                arr[k][l]='1';
+                            }
+                            else{
+                                arr[k][l]='0';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        cout<<count<<endl;
+    }
+}

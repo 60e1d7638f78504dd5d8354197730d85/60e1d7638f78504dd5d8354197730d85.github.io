@@ -1,0 +1,45 @@
+#include <stdio.h>
+int convertfive(int n)
+{
+  int rev=0;
+  int last;
+  while(n>0)
+  {
+    last=n%10;
+    if(last== 0)
+    {
+      
+      last=last+5;
+      rev=(rev*10)+last;
+    }
+    else
+    {
+      rev=(rev*10)+last;
+    }
+    n=n/10;
+    
+  }
+  int x=0;
+  while(rev>0)
+  {
+    last=rev%10;
+    x=(x*10)+last;
+    rev=rev/10;
+  }
+  return x;
+}
+    
+
+
+
+
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int x;
+  x=convertfive(n);
+  printf("%d",x);
+
+	return 0;
+}

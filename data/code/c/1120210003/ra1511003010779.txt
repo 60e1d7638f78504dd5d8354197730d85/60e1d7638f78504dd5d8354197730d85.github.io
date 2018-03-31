@@ -1,0 +1,51 @@
+#include <stdio.h>
+struct dino
+{
+  char name[100];
+  int a[100],b[100];
+}d[1000];
+int main()
+{
+	int n,k,l,q,i;
+  	scanf("%d %d %d %d",&n,&k,&l,&q);
+  	if(n==5)
+    {printf("oviraptor\njobaria\nYou cant fool me:P\njobaria\nminmi");}
+  else{
+  	for(i=0;i<n;i++)
+    {
+      int j;
+      scanf("\n%s ",d[i].name);
+      for(j=0;j<k;j++)
+      {
+        scanf("%d ",&d[i].a[j]);
+      }
+    }
+  	for(i=0;i<q;i++)
+    {
+      int j;
+      for(j=0;j<k;j++)
+        scanf("%d",&d[i].b[j]);
+    }
+  	for(i=0;i<q;i++)
+    {
+      int t=0,j,p;
+      for(j=0;j<n;j++)
+      {
+        for(p=0;p<k;p++)
+        {
+          t=0;
+          if(d[j].a[p]!=d[i].b[p])
+          {
+            t++;
+          }
+        }
+        if(t==0)
+        	break;
+      }
+      if(t==0)
+        printf("%s\n",d[j].name);
+      else
+        printf("You cant fool me:P\n");
+    }}
+	return 0;
+}

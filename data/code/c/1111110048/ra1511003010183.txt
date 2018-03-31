@@ -1,0 +1,37 @@
+#include <stdio.h>
+  #define HOURTOSEC 3600
+  #define MINTOSEC 60
+
+  int main() {
+        int seconds, hour = 0, min = 0;
+
+        /* get the input in seconds */
+       
+        scanf("%d", &seconds);
+
+       
+
+        /* calculate number of hours */
+        if (seconds >= HOURTOSEC) {
+                while (1) {
+                        hour++;
+                        seconds = seconds - HOURTOSEC;
+                        if (seconds < HOURTOSEC)
+                                break;
+                }
+        }
+
+        /* calculate no of minutes */
+        if (seconds >= MINTOSEC) {
+                while (1) {
+                        min++;
+                        seconds = seconds - MINTOSEC;
+                        if (seconds < MINTOSEC)
+                                break;
+                }
+        }
+
+   
+        printf("%d %d %d", hour, min, seconds);
+        return 0;
+  }

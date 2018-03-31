@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	
+int t;
+int y,z,i,j;
+char m[50002],n[25001],l[25001];
+scanf("%d",&t);
+getchar();
+while(t--)
+{
+	
+scanf ("%[^\n]%*c", m);
+for(i=0;m[i]!=' ';i++)
+{
+n[i]=m[i];
+}
+n[i]='\0';
+i++;
+for(j=0;m[i+j]!='\0';j++)
+{
+l[j]=m[i+j];
+}
+l[j]='\0';
+y=strlen(n);
+z=strlen(l);
+j=0;
+if(y>=z)
+{
+for(i=0;i<y && j<z;i++)
+{
+if(l[j]==n[i])
+j++;
+}
+			
+if(j==z)
+printf("YES\n");
+else
+printf("NO\n");	
+}
+else
+{
+for(i=0;i<z && j<y;i++)
+{
+if(n[j]==l[i])
+j++;
+}
+if(j==y)
+printf("YES\n");
+else
+printf("NO\n");				
+}		
+}
+  return 0;
+} 

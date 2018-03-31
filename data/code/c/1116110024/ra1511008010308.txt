@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ 	char arr[100],ch;
+  	int i=0,j,k;
+  	scanf("%s",arr);
+  	printf("%s",arr);
+    arr[strlen(arr)]='\0';
+    while(arr[i]!='\0')
+    {
+      ch=arr[i];
+      j=i+1;
+      while(arr[j]!='\0')
+      {
+        if(arr[j]==ch)
+        { k=j;
+          while(arr[k]!='\0')
+          {
+            arr[k]=arr[k+1];
+            k++;
+          }
+        }
+        else
+        { j++;
+        }
+      }
+      i++;
+    }
+  printf("\n%s",arr);
+	return 0;
+}

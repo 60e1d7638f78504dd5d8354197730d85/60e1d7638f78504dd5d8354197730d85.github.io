@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int t,a[50],i,j,temp,pos,val;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+      scanf("%d",&a[i]);
+  	scanf("%d",&pos);
+  	scanf("%d",&val);
+  	for(i=t;i>=pos;i--){
+      a[i+1] = a[i];
+    }
+  	a[pos] = val;
+  	printf("Before sorting\n");
+  	for(i=0;i<=t;i++)
+      printf("%d\n",a[i]);
+  	for(i=0;i<=t;i++){
+      for(j=i+1;j<=t;j++){
+        if(a[j]<a[i]){
+          temp = a[j];
+          a[j] = a[i];
+          a[i] = temp;
+        }
+      }
+    }
+  	printf("After sorting\n");
+  	for(i=0;i<=t;i++)
+      printf("%d\n",a[i]);
+	return 0;
+}

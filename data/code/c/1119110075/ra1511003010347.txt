@@ -1,0 +1,49 @@
+#include<string.h>
+#include<stdio.h>
+int main()
+{
+    long long int n,l,d,i,j,count,a,flag;
+        char c[15];
+        scanf("%s",c);
+        l=strlen(c);
+        j=1;
+        n=0;
+        for(i=l-1;i>=0;i--)
+        {
+            n=n+(c[i]-48)*j;
+            j=j*10;
+        }
+        a=n;
+        i=1;
+        j=1;
+        flag=0;
+        count=0,d=0;
+        while(a>0)
+        {   
+            if(a>9*i*j)
+            {
+            d=9*i;
+            count=count+9*i;
+            }
+            else if(a%j==0)
+            {
+            count=count+a/j;
+            break;
+            }
+            else
+            {
+                printf("Impossible\n");
+                flag=1;
+                break;
+            }
+            i=i*10;
+            if(a-d*j>0)
+            {
+            a=a-d*j;
+            j=j+1;
+            }
+        }
+        if(flag==0)
+        printf("%lld\n",count);
+    return 0;
+}

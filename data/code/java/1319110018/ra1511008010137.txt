@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	static void hexCharToDecimal(String c)
+    {
+      try{
+       boolean isNumeric = c.matches("\\p{XDigit}+");
+       if(isNumeric)
+       System.out.println(Integer.parseInt(c,16));
+       else
+        throw new NumberFormatException();
+      }catch(NumberFormatException e)
+      {
+       System.out.println(e);
+      } 
+    }
+	 public static void main(String[] args) { 
+	Scanner sc=new Scanner(System.in);
+    hexCharToDecimal(sc.nextLine());
+	}
+}

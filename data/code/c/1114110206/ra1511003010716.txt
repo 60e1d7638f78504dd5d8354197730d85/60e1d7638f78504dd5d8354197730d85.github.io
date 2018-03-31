@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int i=0;
+  for(;i<t;i++)
+  {
+    int n;
+    scanf("%d",&n);
+    int arr[n];
+    int j=0;
+    for(;j<n;j++)
+    scanf("%d",&arr[j]);
+    
+    for(j=0;j<n;j++)
+    {
+      int k;
+      for(k=0;k<n-j;k++)
+      {
+        if(arr[k]>arr[k+1])
+        {
+          arr[k+1]=arr[k]+arr[k+1];
+          arr[k]=arr[k+1]-arr[k];
+          arr[k+1]=arr[k+1]-arr[k];
+        }
+      }
+    }
+   int min=arr[1]-arr[0];
+    for(j=1;j<n-1;j++)
+    {
+      if((arr[j+1]-arr[j])<min)
+         min=arr[j+1]-arr[j];
+    }
+         printf("%d",min);
+  }
+
+	return 0;
+}

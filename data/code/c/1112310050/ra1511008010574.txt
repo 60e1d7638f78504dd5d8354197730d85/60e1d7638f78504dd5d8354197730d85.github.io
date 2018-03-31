@@ -1,0 +1,55 @@
+#include<stdio.h>
+ int main()
+ {
+ 	int j,flag,count=0,l;
+ 	int nom,no_m,no_s,n;
+ 	scanf("%d",&n);
+ 	char a[n],b[2*n];
+ 	scanf("%s%s",a,b);
+ 	char c=a[0];
+    
+ 	l=0;
+	 no_m=0;
+ 	flag=0;
+ 	nom=0;
+ 	for(j=0;j<2*n;j++)
+ 	{ 
+ 		if(flag==0)
+ 		{    
+ 		  
+ 		  
+ 			if(b[j]==c)
+ 			{   l=0;
+ 				no_s=j;
+ 				no_m=1;
+ 				flag=1;
+			 }
+		 
+		 }
+		 else
+		 {
+		 	if(b[j]==a[++l])
+		 	no_m++;
+		 	else
+		 	{   
+		 	  j--;
+		 	 	flag=0;
+		 		if(no_m>nom)
+		 		{nom=no_m;
+		 		count=no_s;
+				 }
+			 }
+		 }
+		 
+		 
+	 }
+	 if(flag==1)
+	 {  if(no_m>nom)
+       {
+		nom=no_m;
+		count=no_s;	
+	}
+	 }
+    printf("%d",count);
+	return 0;	 
+ }

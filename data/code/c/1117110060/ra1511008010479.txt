@@ -1,0 +1,34 @@
+#include <stdio.h>
+void save(int *arr,int size)
+{
+  int i,j,count=0,save;
+  //int n = sizeof(arr);
+ // printf("\nsize=%d",size);
+  for(i=0; i<size; i++)
+  {
+    for(j=i+1; j<size; j++)
+    {
+      if(arr[i]==arr[j])
+        count++;
+    }
+  }
+  save = size - count;
+  printf("%d\n",save);
+}
+int main()
+{
+  int T,i,j;
+  scanf("%d",&T);
+  for(i=0; i<T; i++)
+  {
+    int frn_num;
+    scanf("%d",&frn_num);
+    int arr[frn_num];
+    //printf("frn_num=%d",frn_num);
+    for(j=0; j<frn_num; j++)
+      scanf("%d",&arr[j]);
+    save(arr,frn_num);
+  }
+
+	return 0;
+}

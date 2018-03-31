@@ -1,0 +1,26 @@
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+int main()
+{
+	string str,str_dup,str_rev;
+  	int count=0;
+  	cin>>str;
+  
+  	str_dup = str;
+  
+  	for(int i=0;i<=str.length();i++)
+    {
+  		rotate(str.begin(),str.begin()+1,str.end());
+		rotate(str_dup.begin(),str_dup.begin()+1,str_dup.end());
+        reverse( str_dup.begin() , str_dup.end()); 
+    
+      	if(str ==  str_dup)
+          count++;
+      	//cout<<str<<" ";
+    }
+  	cout<<count;
+  	
+	return 0;
+}

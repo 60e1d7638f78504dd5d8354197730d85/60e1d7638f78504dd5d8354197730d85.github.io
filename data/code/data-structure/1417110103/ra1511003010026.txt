@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+int queue[5],front=-1,rear=-1;
+void insert()
+{
+    int add_item;
+    if (rear == 4)
+    cout<<"Queue Full"<<endl;
+    else
+    {
+        if (front == - 1)
+        front = 0;
+        cin>>add_item;
+        rear = rear + 1;
+        queue[rear]=add_item;
+      cout<<"Element : Successfully Insert"<<endl;
+    }
+} 
+void deletion()
+{
+     if(front==0)
+     {
+                    printf("\nQueue Empty");
+           
+     }
+     int item=queue[front];
+     if(front==rear)
+     {
+               front=0;
+               rear=0;
+     }
+     
+     else if (front=5)
+     front=1;
+ 		else
+     front=front+1;
+     
+      cout<<"Queue Empty"<<endl;
+ }  
+int main()
+{
+  int opt; 
+  cin>>opt;
+  if(opt==1)
+    insert();
+  else
+    deletion();
+	return 0;
+}

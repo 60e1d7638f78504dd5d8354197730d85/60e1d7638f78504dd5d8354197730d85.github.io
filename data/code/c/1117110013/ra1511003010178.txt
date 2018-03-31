@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+
+  int flag, temp, i, n, *arr;
+  
+  scanf("%d", &n);
+  arr = (int *)malloc(sizeof(int)*n);
+  
+  printf("The array is ");
+  
+  scanf("%d", &arr[0]);
+  
+  if(arr[0]%2 == 0)
+    flag = 0;
+  else
+    flag = 1;
+  
+  
+  //printf("%d\n", flag);
+  for(i=1; i<n; i++)
+  {
+    scanf("%d", &arr[i]);
+  	if(arr[i]%2 == 0)
+      temp = 0;
+    else
+      temp = 1;
+    
+    if(flag != temp)
+    {
+      printf("Mixed");
+      return 0;
+    }
+  }
+  
+  
+  if(flag == 0)
+    printf("Even");
+  else
+    printf("Odd");
+	return 0;
+}

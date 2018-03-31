@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <limits.h> 
+void print2largest(int arr[], int arr_size)
+{
+    int i, first, second;
+    if (arr_size < 2)
+    {
+        printf(" Invalid Input ");
+        return;
+    }
+ 
+    first = second = INT_MIN;
+    for (i = 0; i < arr_size ; i ++)
+    {
+        /* If current element is smaller than first
+           then update both first and second */
+        if (arr[i] > first)
+        {
+            second = first;
+            first = arr[i];
+        }
+ 
+        /* If arr[i] is in between first and 
+           second then update second  */
+        else if (arr[i] > second && arr[i] != first)
+            second = arr[i];
+    }
+    if (second == INT_MIN)
+        printf("There is no second largest element\n");
+    else
+        printf("%d",second);
+}
+ 
+/* Driver program to test above function */
+int main()
+{
+  int z,x,y;
+  scanf("%d",&x);
+  int arr[x];
+  for(y=0;y<x;y++)
+  {
+    scanf("%d",&arr[y]);
+  }
+    
+    print2largest(arr, x);
+    return 0;
+}

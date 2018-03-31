@@ -1,0 +1,41 @@
+#include<stdio.h>
+ 
+int n,q,r[314159]={0},c[314159]={0},i,max=0,max2=0,x,y;
+ 
+int scan(int *a)
+{
+	int x=0;
+	int c = getchar_unlocked();
+	for( ;c>47&&c<58;c=getchar_unlocked())
+	x = (x<<3) + (x<<1) + c - 48;
+	*a = x;
+}
+ 
+int main()
+{
+	char ch;
+	scan(&n);
+	scan(&q);
+	while(q--)
+	{
+		ch = getchar_unlocked();
+		while(getchar_unlocked()!=' ');
+		scan(&x);
+		scan(&y);	
+		if(ch=='R')
+		{
+			r[x] += y;
+		}
+		else
+			c[x] += y;
+	}
+	for(i=0;i<n;i++)
+	{	
+		if(r[i]>max)
+			max = r[i];
+		if(c[i]>max2)
+			max2 = c[i];
+	}
+	printf("%d",max+max2);					
+	return 0;
+} 

@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define llc long long int
+#define gc getchar_unlocked
+llc get_c();
+int main()
+{
+	llc ans1,ans,n,t,i;
+	t=get_c();
+	while(t--)
+	{
+		ans=9999999;
+		n=get_c();
+		for(i=1;i<=n;i++)
+		{
+			ans1=get_c();
+			ans=ans1<ans?ans1:(ans);
+		}
+		printf("%lld\n",(n-1)*ans);
+	}
+}
+llc get_c()
+{
+	char c;
+	llc value=0;
+	c=gc();
+	while(c<='0'||c>='c')
+	{
+		c=gc();
+	}
+	while(c>='0'&&c<='9')
+	{
+		value=value*10+c-'0';
+		c=gc();
+	}
+	return value;	
+} 

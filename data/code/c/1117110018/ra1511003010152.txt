@@ -1,0 +1,34 @@
+#include <stdio.h>
+void symmetric(int x,int y, int b[10][10])
+{
+  int c,d;
+  if(x==y)
+  {
+    for(c=0;c<x;c++)
+    {
+      for(d=0;d<y;d++)
+      {
+        if(b[c][d]!=b[d][c])
+          break;
+      }
+      if(d!=y)
+        break;
+    }
+    if(c==x)
+      printf("Symmetric");
+    else 
+      printf("Not Symmetric");
+  }
+  else
+    printf("Not Symmetric");
+}
+int main()
+{
+  int m,n,i,j,a[10][10];
+  scanf("%d %d",&m,&n);
+  for(i=0;i<m;i++)
+    for(j=0;j<n;j++)
+      scanf("%d",&a[i][j]);
+  symmetric(m,n,a);
+	return 0;
+}

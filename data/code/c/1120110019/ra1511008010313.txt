@@ -1,0 +1,116 @@
+#include <stdio.h>
+#include <string.h>
+void ones(int x)
+{   //printf("here");
+ 	switch(x)
+    {
+  	case 49: printf("ONE");
+  		break;
+    case 50:	printf("TWO");
+  		break;
+    case 51:	printf("THREE");
+  		break;
+    case 52: printf("FOUR");
+  		break;
+    case 53: printf("FIVE");
+  		break;
+    case 54: printf("SIX");
+  		break;
+    case 55: printf("SEVEN");
+  		break;
+    case 56: printf("EIGHT");
+  		break;
+    case 57: printf("NINE");
+  		break;
+  default:
+  		break;
+    }
+}
+
+void tens(int x)
+{
+    switch(x)
+    {
+  	case 49: printf("TEN");
+  		break;
+    case 50:	printf("TWENTY");
+  		break;
+    case 51:	printf("THIRTY");
+  		break;
+    case 52: printf("FORTY");
+  		break;
+    case 53: printf("FIFTY");
+  		break;
+    case 54: printf("SIXTY");
+  		break;
+    case 55: printf("SEVENTY");
+  		break;
+    case 56: printf("EIGHTY");
+  		break;
+    case 57: printf("NINTY");
+  		break;
+  default:
+  		break;
+    }
+}
+
+
+int main()
+{
+	char num[6] = {'\0'};
+
+	scanf("%s",num);
+
+	int len ;
+  	len = strlen(num);
+
+	int bdec=0,adec,i;
+
+
+	for(i=0;i<=len;i++)
+	{
+		if(num[i] == '.')
+		{
+			break;
+		}
+		++bdec;
+	}
+
+	adec = len - bdec ;
+	--adec;
+
+	//printf("Bdec : %d \n Adec : %d",bdec,adec);
+	
+    
+    if(bdec == 3)
+    {
+        ones(num[0]);
+        printf(" HUNDRED ");
+        if(num[1]=='0')
+        {
+           ones(num[2]);
+        }
+        else
+        {
+            tens(num[1]);
+            ones(num[2]);
+        }
+    }
+    if(bdec == 1)
+      ones(num[0]);
+  
+    printf(" AND PAISE ");
+    
+    if(adec == 2)
+    {
+        tens(num[len-2]);
+        ones(num[len-1]);
+    }
+    else{
+        tens(num[len-1]);
+    }
+    
+    
+
+	return 0;
+}

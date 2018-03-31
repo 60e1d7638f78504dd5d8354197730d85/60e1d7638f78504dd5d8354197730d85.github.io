@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct student
+{
+char name[15];
+  int year;
+}st[5];
+int main()
+{
+  int i,j,n,temp;
+  char ch[15];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s%d",st[i].name,&st[i].year);
+  }
+  for(i=0;i<n-1;i++)
+  {
+  for(j=0;j<n-1;j++)
+  {
+  if(st[j].year>st[j+1].year)
+  {
+  temp=st[j].year;
+    st[j].year=st[j+1].year;
+    st[j+1].year=temp;
+    strcpy(ch,st[j].name);
+    strcpy(st[j].name,st[j+1].name);
+    strcpy(st[j+1].name,ch);
+  }
+  }
+  }
+  printf("After sorting\n");
+  for(i=0;i<n;i++)
+  {
+  printf("%s %d\n",st[i].name,st[i].year);
+  }
+	return 0;
+}

@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int i,j,len,count=0;
+  int number[30],k=0,min=999;
+  char ch,str[30],result,temp;
+  scanf("%[^\n]%*c",str);
+  len=strlen(str);
+ 
+
+  
+  for(i=0;i<len;i++)
+  {
+    for(j=i;j<len;j++)
+    {
+      if(str[i]>str[j])
+      {
+        temp=str[i];
+        str[i]=str[j];
+        str[j]=temp;
+      }
+    }
+  }
+  
+ 
+  
+  for(i=0;i<len;i++)
+  {
+   for(j=i;j<len;j++)
+   {
+    if(str[i]==str[j])
+    {
+      count++;
+     number[k]=count; 
+    }
+     else
+     {
+      break; 
+     }
+   }
+  
+    if(number[k]<min)
+    {
+       
+     min=number[k];
+      result=str[i];
+
+    }
+    k++;
+    count=0;
+    i=j-1;
+ 
+    printf("\n");
+  }
+  printf("%c=%d",result,min);
+ 
+	return 0;
+}

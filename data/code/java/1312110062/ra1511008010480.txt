@@ -1,0 +1,18 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		int num;
+       	Scanner sc = new Scanner(System.in);
+       	num = sc.nextInt();
+       	System.out.println(digitSum(num));
+	}
+  	public static int digitSum(int num) {
+    	if(num < 10) return num;
+      	return digitSum(getSum(num));
+    }
+  	private static int getSum(int num) {
+    	if(num == 0) return 0;
+      	return (num%10 + getSum(num/10));
+    }
+}

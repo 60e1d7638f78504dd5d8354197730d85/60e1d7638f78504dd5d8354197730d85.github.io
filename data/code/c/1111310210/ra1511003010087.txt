@@ -1,0 +1,54 @@
+#include<stdio.h>
+int a[100001][2]={0};
+int main()
+{
+    int n,i,j,k,count=-1,max=0,flag=0,half;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        int a1,b;
+        scanf("%d%d",&a1,&b);
+        if(a1!=b)
+        {a[a1][0]++;
+        a[b][1]++;}
+        else
+        {
+            a[a1][0]++;
+        }
+    }
+    half=(n+1)/2;
+    for(i=1;i<=100000;i++)
+    {
+ 
+        {
+            if(a[i][0]>=half)
+            {
+                flag=1;
+                count=0;
+            }
+            else if((a[i][0]+a[i][1])>=(half))
+            {
+                if(count==-1)
+                {
+                    count=half-a[i][0];
+                    flag=1;
+                }
+                else if((half-a[i][0])<count)
+                {
+                    count=half-a[i][0];
+                }
+            }
+        }
+    }
+    if(flag==0)
+    {
+        printf("Impossible\n");
+    }
+    else
+    {
+        printf("%d\n",count);
+    }
+return 0;}
+ 
+ 
+ 

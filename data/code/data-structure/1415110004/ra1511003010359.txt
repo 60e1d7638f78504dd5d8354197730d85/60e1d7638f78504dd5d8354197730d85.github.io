@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node* next;
+};
+class LinkedList
+{
+  private:
+  struct node *head,*tail;
+  public:
+   LinkedList()
+   {
+     head=NULL;
+     tail=NULL;
+   }
+   void addData(int n)
+   {
+     struct node* temp=new node;
+     temp->data=n;
+     temp->next=NULL;
+     if(head==NULL)
+     {
+       head=temp;
+       tail=temp;
+     }
+     else
+     {
+       tail->next=temp;
+       tail=temp;
+     }
+   }
+  void display()
+  {
+    node* temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+      cout<<"->"<<temp->data;
+      temp=temp->next;
+    }
+  }
+  void addBefore(int beforenode, int value)
+  {
+    node *temp;
+    node *newnode=new node;
+    newnode->data=value;
+    temp=head;
+    while(temp->next!=NULL && temp->next->data!=beforenode)
+      temp=temp->next;
+    if(temp->next==NULL)
+      cout<<"Node not found!"<<endl;
+    else
+    {
+    newnode->next=temp->next;
+    temp->next=newnode;
+    }
+  }
+};
+int main()
+{ 
+  int n,data,beforenode,value;
+  cin>>n;
+  LinkedList l;
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    l.addData(data);
+  }
+  cin>>beforenode>>value;
+  l.addBefore(beforenode,value);
+  cout<<"Linked List :\n";
+  l.display();
+	return 0;
+}

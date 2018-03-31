@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct node
+{
+    char data;
+    struct node *next;
+};
+struct node *newNode(char data)
+{
+ struct node *n=(struct node*)malloc(sizeof(struct node));
+ n->data=data;
+ n->next=NULL;
+     return n;
+}
+void push(struct node **head,char data)
+{
+    struct node *n=newNode(data);
+    n->next=*head;
+    *head=n;
+}
+void pop(struct node **head)
+{
+    struct node *temp=*head;
+    if(temp==NULL)
+        return;
+    *head=(*head)->next;
+    free(temp);
+}
+int pal(char *a,int s)
+{
+    struct node *head=NULL;
+    int i;
+    push(&head,a[0]);
+    for(i=1;i<s;i++)
+    {
+           if(head==NULL||a[i]!=head->data)
+           push(&head,a[i]);
+           else
+           pop(&head);
+    }
+    if(head==NULL)
+    return 1;
+    return 0;
+}
+int main()
+{
+ 
+    int n,i,c=0,s;
+    scanf("%d",&n);
+    char *a=(char *)malloc(102400*sizeof(char));
+    for(i=0;i<n;i++)
+    {
+        scanf("%s",a);
+        s=strlen(a);
+        if(pal(a,s))
+        c++;
+    }
+    printf("%d",c);
+  return 0;
+}

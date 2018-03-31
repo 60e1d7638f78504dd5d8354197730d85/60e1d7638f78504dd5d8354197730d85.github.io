@@ -1,0 +1,48 @@
+#include<stdio.h>
+long int num[100001]={0},b,min=10000000,max=0,q,a;
+int main()
+{scanf("%ld",&q);
+register long int i=0;
+while(q--)
+{scanf("%ld",&b);
+switch(b)
+{
+case 1:
+{scanf("%ld",&a);
+num[a]++;
+if(a<min)
+min=a;
+if(a>max)
+max=a;
+break;}
+case 3:
+{printf("%ld\n",max);
+break;}
+case 4:
+{if(min==10000000)
+{printf("-1\n");break;}
+else
+    printf("%ld\n",min);
+break;}
+case 2:
+{scanf("%ld",&a);
+if(num[a])
+{num[a]--;
+if(max==a)
+{for(i=100000;i>=0;i--)
+if(num[i])
+{max=i;break;}
+if(i<0)
+max=-1;}
+if(min==a)
+{for(i=0;i<=100000;i++)
+if(num[i])
+{min=i;break;}
+if(i>100000)
+min=10000000;}}
+else printf("-1\n");
+break ;}
+}
+}
+return 0;}
+ 

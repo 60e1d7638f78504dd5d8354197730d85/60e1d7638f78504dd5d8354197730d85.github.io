@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <math.h>
+typedef struct{
+	int avail;
+	int times[6];
+ 
+}time;
+ float func(int h,int m)
+ {
+	float x=h*30+m/2.0;
+	float y=6*m;
+	float ans=fabs(x-y);
+	if (ans>=180)
+		ans=360-ans;
+	return ans;	
+ }
+int main()
+{
+ int h,m,y,i,j,x,t,temp2;
+ float input,temp;
+ float e=1.0/60;
+ time arr[361];
+ for (i=0;i<=360;i++)
+	arr[i].avail=0;
+ for (h=0;h<=11;h++)
+ {
+  for (m=0;m<=59;m++)
+  {
+	y=func(h,m)*2;
+	x=arr[y].avail;
+	arr[y].times[x]=h*60+m;
+	arr[y].avail++;
+  }	
+ }
+ scanf("%d",&t);
+ while (t--)
+ {
+  scanf("%f",&input);
+  temp=input*2;
+  temp2=temp;
+  if ((temp==temp2) ||(temp-e<=temp2 && temp2<=temp+e))
+  {
+	for(i=0;i<arr[temp2].avail;i++)
+    {
+	 h=arr[temp2].times[i]/60;
+	 m=arr[temp2].times[i]%60;
+	 if(h<10)
+	  printf("0");
+	 printf("%d:",h);
+	 if(m<10)
+	  printf("0");
+	 printf("%d\n",m);	
+	}
+   }
+  }
+  return 0;
+}

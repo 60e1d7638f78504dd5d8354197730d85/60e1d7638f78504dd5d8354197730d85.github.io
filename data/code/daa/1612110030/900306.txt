@@ -1,0 +1,54 @@
+#include <stdio.h>
+void print(int arr[],int n);
+int getMax(int arr[],int n)
+{
+  int mx=arr[0];
+  int i;
+  for(i=1;i<n;i++)
+    if(arr[i]>mx)
+      mx=arr[i];
+  return mx;
+}
+void countSort(int arr[],int n,int exp)
+{
+  int cnt[20]={0},out[20],i;
+  for(i=0;i<n;i++)
+    cnt[(arr[i]/exp)%10]++;
+  for(i=1;i<10;i++)
+    cnt[i]+=cnt[i-1];
+  for(i=n-1;i>=0;i--)
+  {
+    out[cnt[(arr[i]/exp)%10]-1]=arr[i];
+    cnt[(arr[i]/exp)%10]--;
+}
+  for(i=0;i<n;i++)
+    arr[i]=out[i];
+}
+void radixSort(int arr[],int n)
+{int mul=1;
+ int m=getMax(arr,n);
+ while(m)
+ {
+   countSort(arr,n,mul);
+   mul*=10;
+   m=m/10;
+   print(arr,n);
+ }
+ }
+
+void print(int arr[],int n)
+{
+  int i ;
+  for(i=0;i<n;i++)
+    printf("%d ",arr[i]);
+  printf("\n"); 
+}
+int main()
+{
+   int n,arr[20],i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  radixSort(arr,n);
+	return 0;
+}

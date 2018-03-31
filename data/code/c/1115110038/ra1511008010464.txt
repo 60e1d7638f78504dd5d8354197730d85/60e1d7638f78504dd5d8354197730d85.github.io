@@ -1,0 +1,27 @@
+#include <stdio.h>
+int sort(int *a, int size) {
+  int i, j, tmp;
+  for(i=0; i<size; i++) {
+    tmp = a[i];
+    for(j=i; j>0 && a[j-1] > tmp; j--)
+      a[j] = a[j-1];
+    a[j] = tmp;
+  }
+}
+
+int main()
+{
+	int n, arr[100], min1 = 999999, min2, i;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++) {
+      scanf("%d", &arr[i]);
+      if(arr[i] < min1){
+        min2 = min1;
+        min1 = arr[i];
+      }
+    }
+  	
+  	printf("%d", min2);
+  
+	return 0;
+}

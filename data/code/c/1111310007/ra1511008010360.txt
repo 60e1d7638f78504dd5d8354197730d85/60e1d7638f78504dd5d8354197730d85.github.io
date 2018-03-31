@@ -1,0 +1,35 @@
+#include<stdio.h>
+#define ABS(x) (x>0?x:-x)
+int main()
+{
+    int a[100];
+    int n,m,i,j,mx,mxi;
+    int t;
+    scanf("%d",&t);
+    while(t)
+    {
+        scanf("%d %d",&n,&m);
+        for(i=0;i<n;i++)
+            scanf("%d",&a[i]);
+        mx=a[0];
+        mxi=0;
+        for(i=1;i<n;i++)
+        {
+            if(a[i]>mx)
+            {
+                mx=a[i];
+                mxi=i;
+            }
+        }
+            for(i=0;i<n;i++)
+            {
+                m=m-(mx-a[i]);
+            }
+            if((m>=0)&&(m%n==0))
+            printf("Yes\n");
+            else
+                printf("No\n");
+            t--;
+    }
+    return 0;
+}

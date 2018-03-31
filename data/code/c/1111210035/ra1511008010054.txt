@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int n1,d1,n2,d2,num,den,i;
+  scanf("%d %d %d %d",&n1,&d1,&n2,&d2);
+  if(d1==d2)
+  {
+    num=n1+n2;
+    den=d1;
+  }
+  else
+  {
+  num=n1*d2+n2*d1;
+  den=d2*d1;
+  }
+  for(i=2;i<=9;i++)
+  {
+    if(num%i==0&&den%i==0)
+    {
+      num=num/i;
+      den=den/i;
+    }
+  }
+  printf("%d %d",num,den);
+
+	return 0;
+}

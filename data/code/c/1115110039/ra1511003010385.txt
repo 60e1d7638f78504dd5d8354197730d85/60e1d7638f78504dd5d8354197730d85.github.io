@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+void swap(int *a,int *b)
+{
+  int tmp = *a;
+  *a = *b;
+  *b = tmp;
+}
+
+int partition(int *arr,int start,int end)
+{
+  int i = start+1;
+  int pivot = arr[start];
+  int j;
+  for(j=start+1;j<=end;j++)
+  {
+    if(arr[j] < pivot)
+    {
+      swap(&arr[i],&arr[j]);
+      i++;
+    }
+  }
+  swap(&arr[i-1],&arr[start]);
+  return i-1;
+}
+
+void sort(int *arr,int start,int end)
+{
+  if(start<end)
+  {
+    int p = partition(arr,start,end);
+    sort(arr,start,p-1);
+    sort(arr,p+1,end);
+  }
+}
+
+int main()
+{
+	int n,i;
+  	scanf("%d",&n);
+	int *a = malloc(sizeof(int)*n);
+  	for(i=0;i<n;i++)	
+     	scanf("%d",(a+i));
+  	sort(a,0,n-1);
+  	for(i=0;i<n;i++)
+      	printf("%d ",a[i]);
+  	return 0;
+}

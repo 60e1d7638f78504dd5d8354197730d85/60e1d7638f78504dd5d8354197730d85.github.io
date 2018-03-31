@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+class integer{
+  int x;
+  public:
+  static int s;
+  integer(){x=0;}
+  void get(){cin>>x;}
+  void display(){cout<<x;}
+  void sum(){s+=x;}
+};
+int integer::s=0;
+int main()
+{
+  integer I[10];
+int n;
+  cin>>n;
+  if(n>10){
+    cout<<"Objects must be less than 10";
+    return 0;
+  }
+  for(int i=0;i<n;i++){
+    I[i].get();
+    I[i].sum();
+  }
+  cout<<integer::s;
+	return 0;
+}

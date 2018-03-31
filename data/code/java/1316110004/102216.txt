@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+class Chef
+{
+  public void keyboard()
+  {
+    int t;
+	long n,m,c,i,count;
+	Scanner s=new Scanner(System.in);
+    t=s.nextInt();
+	while((t--)>0)
+	{
+	    count=0;
+	    n=s.nextInt();
+      	m=s.nextInt();
+      	c=s.nextInt();
+      	int d=(int)Math.sqrt(c);
+	    for(i=1;i<=d;i++)
+	    {
+	        if(c%i ==0)
+	        {
+	            if(i<=n && c/i<=m)
+	            count++;
+	            if(i<=m && c/i<=n && i!=c/i)
+	            count++;
+	        }
+        }
+      System.out.println(count);
+    }
+  }
+};
+public class TestClass {
+	 public static void main(String[] args) { 
+       Chef objname=new Chef();
+       objname.keyboard();
+		
+	}
+}

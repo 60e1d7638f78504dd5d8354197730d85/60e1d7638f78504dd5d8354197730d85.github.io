@@ -1,0 +1,187 @@
+#include<stdio.h>
+ 
+ long long  binarysearch(long long a[], long long  low, long long  high, long long target) {
+    while (low <= high) {
+        long long  middle = low + (high - low)/2;
+        if (target < a[middle])
+            high = middle - 1;
+        else if (target > a[middle])
+            low = middle + 1;
+        else
+            return middle;
+    }
+    return -1;
+}
+ 
+ 
+main()
+{
+    long long n,j;
+    scanf("%lld",&n);
+    long long i;
+    long long xcopy[n],ycopy[n];
+    long long  x1,x2,x3,x4,y1,y2,y3,y4,xc,yc,xd,yd;
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld%lld",&xcopy[i],&ycopy[i]);
+ 
+    }
+    if( n== 0)
+    {
+        printf("4\n");
+        return 0;
+    }
+    if( n== 1)
+    {
+        printf("3\n");
+        return 0;
+    }
+    if ( n== 2){
+        if( xcopy[0] != xcopy[1] || ycopy[0] != ycopy[1])
+ 
+        printf("2\n");
+        else
+            printf("3\n");
+        return 0;
+    }
+ 
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n-i-1;j++)
+        {
+            if(xcopy[j]>xcopy[j+1])
+            {
+                long long temp = xcopy[j];
+                xcopy[j] = xcopy[j+1];
+                xcopy[j+1] = temp;
+                temp = ycopy[j+1];
+                ycopy[j+1] = ycopy[j];
+                ycopy[j] = temp;
+            }
+ 
+        }
+ 
+    }
+ 
+ 
+ 
+ 
+    long long  min =4;
+    long long checkx3,checkx4, flag3 = 0, flag4 = 0, flag ;
+    for(i =0;i<n-1;i++)
+    {
+        for(j =i+1;j<n;j++)
+ 
+        {
+            x1 = xcopy[i] ;  y1 = ycopy[i] ;    // First diagonal point
+            x2 = xcopy[j]  ;  y2 = ycopy[j] ;    // Second diagonal point
+ 
+            xc = (x1 + x2)  ;  yc = (y1 + y2)  ;    // Center point
+            xd = (x1 - x2)  ;  yd = (y1 - y2)  ;    // Half-diagonal
+ 
+            if( (xc - yd) % 2== 1 || (yc + xd) % 2 ==1 || (yc - xd)% 2 ==1  ||
+               (xc - yd)% 2 == 1)
+                continue;
+ 
+            x3 = (xc - yd )/2 ;  y3 = (yc + xd)/2;    // Third corner
+            x4 = (xc + yd)/2  ;  y4 = (yc - xd)/2;    // Fourth corner
+ 
+ 
+           flag3 = 0;
+           flag4 =0;
+            checkx3 = binarysearch(xcopy, 0 ,n-1, x3);
+ 
+            if(checkx3 != -1 && ycopy[checkx3]== y3)
+            {
+                flag3 =1;
+            }
+            else
+            {
+                long long  temp = checkx3;
+                if(checkx3 != -1)
+                {
+                    while(xcopy[temp] == x3 && temp < n)
+                    {
+                        if(ycopy[temp] == y3)
+                        {
+                            flag3 =1;
+                            break;
+                        }
+                        temp++;
+                    }
+                    temp = checkx3;
+                    while (xcopy[temp] == x3 && temp >=0)
+                    {
+                        if(ycopy[temp] == y3)
+                        {
+                            flag3 =1;
+                            break;
+                        }
+                        temp--;
+                    }
+                }
+            }
+ 
+            checkx4 = binarysearch(xcopy, 0, n-1, x4);
+            if(checkx4 != -1 && ycopy[checkx4] == y4)
+            {
+                flag4 =1;
+            }
+            else
+            {
+                long long  temp = checkx4;
+                if(checkx4 != -1)
+                {
+                    while(xcopy[temp] == x4 && temp < n)
+                    {
+                        if(ycopy[temp] == y4)
+                        {
+                            flag4 =1;
+                            break;
+                        }
+                        temp++;
+                    }
+                    temp = checkx4;
+                    while (xcopy[temp] == x4 && temp >=0)
+                    {
+ 
+ 
+                        if(ycopy[temp] == y4)
+                        {
+                            flag4 =1;
+                            break;
+                        }
+                        temp--;
+                    }
+                }
+            }
+ 
+ 
+            if(flag3 == 1 && flag4 == 1)
+            {
+                printf("0\n");
+                return 0;
+            }
+            else if( flag3 == 1 || flag4 == 1)
+            {
+                flag =1;
+                if(flag  < min )
+                {
+                    min = flag;
+                }
+            }
+            else
+            {
+                flag = 2;
+                if(flag < min )
+                {
+                    min = flag;
+                }
+            }
+        }
+ 
+    }
+    printf("%lld\n",min);
+    return 0;
+}
+ 

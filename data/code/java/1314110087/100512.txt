@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int T,N,pospos=0,negpos=0;
+       int []a=new int[100];
+       T=sc.nextInt();
+       for(int i=0;i<T;i++)
+       {
+         N=sc.nextInt();
+         for(int j=0;j<N;j++)
+         {
+           a[j]=sc.nextInt();
+         }
+         for(int j=0;j<N/2+1;j++)
+         {
+           while ((a[pospos]<0)&&(pospos<N))pospos++;
+           System.out.print(a[pospos]+" ");
+           pospos++;
+           if((j==N/2)&&(N%2==1))break;
+           while ((a[negpos]>=0)&&(negpos<N))negpos++;
+           System.out.print(a[negpos]+" ");
+           negpos++;
+         
+         }
+       }
+	}
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+
+int main()
+{
+    int array[MAX_SIZE];
+    int size;
+    int i, j, temp;
+
+   
+    scanf("%d", &size);
+
+    for(i=0; i<size; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+
+    for(i=0; i<size; i++)
+    {
+       
+        for(j=i+1; j<size; j++)
+        {
+           
+            if(array[i] > array[j])
+            {
+                temp     = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+
+   
+    for(i=0; i<size; i++)
+    {
+        printf("%d ", array[i]);
+    }
+
+    return 0;
+}

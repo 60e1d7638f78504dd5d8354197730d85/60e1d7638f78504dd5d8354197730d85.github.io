@@ -1,0 +1,40 @@
+#include<stdio.h>
+int d[2001],a[2001][2001];
+char s[2001][2001];
+int main()
+{
+    int n,i,j,ans=0,k=0,x;
+    scanf("%d",&n);
+    for(i=0;i<n;++i)
+        scanf("%s",s[i]);
+    for(i=0;i<n;++i)
+    {
+        k=0;
+        for(j=0;j<n;++j)
+        {
+            if(s[i][j]=='1')
+                a[i][k++]=j;
+        }
+        d[i]=k;
+    }
+    for(i=0;i<n;++i)
+    {
+        for(j=i+1;j<n;++j)
+        {
+            if(s[i][j]=='0')
+            {
+                for(x=0;x<d[i];++x)
+                {
+                    if(s[a[i][x]][j]=='1')
+                    {
+                        ++ans;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    printf("%d",2*ans);
+    return 0;
+}
+ 

@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+  int t,i,j,k,c,sum,n,m,p,q;
+  char a[100][100];
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;i++)
+      scanf("%s",a[i]);
+    sum=0;
+    for(j=0;j<m;j++)
+    {
+      c=0;
+      for(k=0;k<n;k++)
+        if(a[k][j]=='1')
+          c++;
+      if(c==2) sum+=1;
+      if(c>2){
+        for(p=0;p<c;p++)
+          for(q=p+1;q<c;q++)
+            sum+=1;
+      }
+    }
+    printf("%d\n",sum);
+  } 
+  return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int T,L,R,i,x,h,sum=0,rev,rem;
+  	scanf("%d", &T);
+  	if(T>=1 && T<=100)
+    {
+      	for(x=0;x<T;x++)
+        {
+          	sum=0;
+          	scanf("%d %d", &L,&R);
+          	for(i=L;i<=R;i++)
+            {
+              	h=i;
+              	rev=0;
+              	while(h>0)
+                {
+                 	rem=h%10;
+                  	rev=rev*10+rem;
+                  	h=h/10;
+                }
+              	if(i==rev)
+                  	sum+=i;
+            }
+          	printf("\nsum is %d", sum);
+        }
+    }
+	return 0;
+}

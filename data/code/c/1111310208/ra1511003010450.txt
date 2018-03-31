@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int chef=0,opp=0,temp,i=0;
+  	char s[100];
+  	scanf("%s",s);
+  	while(1)
+    {
+      temp=s[i]-48;
+      i++;
+      if(temp == 0)
+        opp++;
+      else
+        chef++;
+      if (chef==11 && opp < 10)
+      {
+        printf("WIN");
+        break;
+      }
+      else if (chef<10 && opp == 11)
+      {
+      	printf("LOSE");
+        break;
+      }
+      else if(chef>=10 && opp>=10)
+      {
+        if(chef-opp==2)
+        {
+        	printf("WIN");
+          break;
+        }
+        else if(opp-chef==2)
+        {
+         printf("LOSE");
+          break;
+        }
+      
+      }
+    }
+	return 0;
+}

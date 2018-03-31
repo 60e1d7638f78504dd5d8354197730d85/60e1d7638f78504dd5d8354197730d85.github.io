@@ -1,0 +1,37 @@
+#include <stdio.h>
+ 
+#define MOD 1000000007
+	int test, n, m, i, j, k, x[110], y[110], dp[110][110];
+int main()
+{
+ 
+	scanf("%d", &test);
+	while(test--)
+	 {
+		scanf("%d%d",&n,&m);
+		for (i = 0; i < m; ++i)
+		scanf("%d%d", &x[i], &y[i]);
+ 
+		for (i = 0; i <= m; ++i)
+			for (j = 0; j <= n; ++j)
+				dp[i][j] = 0;
+ 
+		dp[0][0] = 1;
+ 
+		for (i = 0; i < m; ++i)
+ 
+			for (j = 0; j <= n; ++j)
+ 
+				for (k = x[i]; k <= y[i] && j + k <= n; ++k)
+				 {
+					dp[i+1][j+k] += dp[i][j];
+					if (dp[i+1][j+k] >= MOD)
+                        dp[i+1][j+k] -= MOD;
+				}
+ 
+		printf("%d\n", dp[m][n]);
+	}
+ 
+	return 0;
+}
+ 

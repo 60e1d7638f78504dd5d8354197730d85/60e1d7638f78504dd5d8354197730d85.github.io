@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,q,arr[1000];
+  float a,b,max;
+  
+  scanf("%d",&n);
+  
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  
+  a=arr[0];
+  
+  for(i=0;i<n;i++)
+    if(a<arr[i])
+    {
+      a=arr[i];
+      q=i;
+    }
+  arr[q]=0;
+  
+  b=arr[0];
+  for(i=0;i<n;i++)
+    if(b<arr[i])
+      b=arr[i];
+  
+  max=(a+b)/2;
+  printf("First Largest=%0.0f\n",a);
+  printf("Second Largest=%0.0f\n",b);
+  printf("Average=%0.1f",max);
+  	return 0;
+}

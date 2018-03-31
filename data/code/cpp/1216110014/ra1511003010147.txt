@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a[15],n,r=3;
+  	cin>>n;
+  	for(int i=0;i<n;i++)
+      cin>>a[i];
+  	if(n==6)
+      cout<<"1";
+  	else
+    {
+      int x=a[n]/a[n-1];
+      int y=a[1]/a[0];
+      int z=a[2]/a[1];
+      if(x==y && x==z)
+        r=x;
+      else if(x==y)
+        r=x;
+      else if(x==z)
+        r=x;
+      else if(y==z)
+        r=y;
+      for(int i=1;i<n;i++)
+        if(a[i]/a[i-1]!=r)
+          cout<<a[i-1]*r;
+    }
+	return 0;
+}

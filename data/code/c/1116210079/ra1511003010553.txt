@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int n,q,i,j,l,a[50][50],m,x,p=0;
+  char s[50];
+  scanf("%d%d",&n,&q);
+  for(i=1;i<=n;i++)
+    for(j=1;j<=n;j++)
+      a[i][j]=0;
+  while(q--)
+  {
+    scanf("%s%d%d",s,&m,&x);
+    if(strcmp(s,"RowAdd")==0)
+    {
+       for(j=1;j<=n;j++)
+          a[m][j]=a[m][j]+x;
+    }
+    else
+    {
+      for(i=1;i<=n;i++)
+        a[i][m]=a[i][m]+x;
+    }
+  }
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+    {
+      p++;
+      if(p==1)
+        l=a[i][j];
+      if(a[i][j]>l)
+        l=a[i][j];
+    }
+  printf("%d",l);
+
+	return 0;
+}

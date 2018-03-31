@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define fo(i,n)   for(i=0;i<n;++i)
+	int t,n,i,x;
+	long long int *r,*c;
+	char ty[8];
+ 
+ 
+int main(void) {
+	scanf("%d %d ",&n,&t);
+	r=(long long int *)(malloc(sizeof(long long int)*(n+1)));
+	c=(long long int *)(malloc(sizeof(long long int)*(n+1)));
+	fo(i,n+1)
+	{
+	    r[i]=c[i]=0;
+	}
+	while(t--)
+	{
+	    scanf("%s ",ty);
+	    scanf("%d %d ",&i,&x);
+	    if(ty[0]=='R')
+	    {
+	        r[i]+=x;
+	        if(r[i]>r[0])       r[0]=r[i];
+	    }
+	    else
+	    {
+	        c[i]+=x;
+	        if(c[i]>c[0])       c[0]=c[i];
+	    }
+	}
+ 
+	printf("%lld\n",r[0]+c[0]);
+	return 0;
+} 

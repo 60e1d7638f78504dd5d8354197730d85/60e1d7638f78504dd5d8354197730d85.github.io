@@ -1,0 +1,126 @@
+#include<stdio.h>
+#include<string.h>
+struct node
+{
+    long long l[3],r[3],ans;
+    int s;
+};
+struct node seg[262150],tem[1000]; 
+int indx,qs,qe;
+char arr[100010];
+inline int inp()
+{
+    register int noRead=0;
+    register char p=getchar_unlocked();
+    for(;p<48 || p>57;p=getchar_unlocked());
+    while(p>47 && p<58){ noRead = (noRead << 3) + (noRead << 1) + (p - '0');p=getchar_unlocked();}
+    return noRead;
+} 
+void build(int i,int j,int ind)
+{
+    if(i==j)
+    {
+        seg[ind].s = arr[i]%3;
+        seg[ind].l[arr[i]%3] = 1;
+        seg[ind].r[arr[i]%3] = 1;
+        seg[ind].ans = (arr[i]%3)?0:1;
+        return;
+    }
+    int mid,l,r;
+    mid=(i+j)/2;
+    l=(ind*2);
+    r=l+1;
+    build(i,mid,l);
+    build(mid+1,j,r);
+    seg[ind].s = (seg[l].s + seg[r].s)%3;
+    seg[ind].ans = seg[l].ans + seg[r].ans + seg[l].r[0]*seg[r].l[0] + seg[l].r[1]*seg[r].l[2] + seg[l].r[2]*seg[r].l[1];
+    seg[ind].l[0] = seg[l].l[0] + seg[r].l[(3-seg[l].s)%3];
+    seg[ind].l[1] = seg[l].l[1] + seg[r].l[(4-seg[l].s)%3];
+    seg[ind].l[2] = seg[l].l[2] + seg[r].l[(5-seg[l].s)%3];
+    seg[ind].r[0] = seg[r].r[0] + seg[l].r[(3-seg[r].s)%3];
+    seg[ind].r[1] = seg[r].r[1] + seg[l].r[(4-seg[r].s)%3];
+    seg[ind].r[2] = seg[r].r[2] + seg[l].r[(5-seg[r].s)%3];
+}
+int query(int i,int j,int ind)
+{
+    if(i>=qs && j<=qe)
+    {
+        tem[indx] = seg[ind];
+        return indx++;
+    }
+    int mid,l,r;
+    mid=(i+j)/2;
+    l=(ind*2);
+    r=l+1;
+    if(qs > mid)
+    {
+        return query(mid+1,j,r);
+    }
+    if(qe <= mid)
+        return query(i,mid,l);
+    int lf,rt;
+    lf = query(i,mid,l);
+    rt = query(mid+1,j,r);
+    tem[indx].s = (tem[lf].s + tem[rt].s)%3;
+    tem[indx].ans = tem[lf].ans + tem[rt].ans + tem[lf].r[0]*tem[rt].l[0] + tem[lf].r[1]*tem[rt].l[2] + tem[lf].r[2]*tem[rt].l[1];
+    tem[indx].l[0] = tem[lf].l[0] + tem[rt].l[(3-tem[lf].s)%3];
+    tem[indx].l[1] = tem[lf].l[1] + tem[rt].l[(4-tem[lf].s)%3];
+    tem[indx].l[2] = tem[lf].l[2] + tem[rt].l[(5-tem[lf].s)%3];
+    tem[indx].r[0] = tem[rt].r[0] + tem[lf].r[(3-tem[rt].s)%3];
+    tem[indx].r[1] = tem[rt].r[1] + tem[lf].r[(4-tem[rt].s)%3];
+    tem[indx].r[2] = tem[rt].r[2] + tem[lf].r[(5-tem[rt].s)%3];
+    return indx++;
+}
+void update(int i,int j, int ind)
+{
+    if(qs>j || qs<i)
+        return;
+    if(i==j)
+    {
+        seg[ind].s = qe%3;
+        memset(seg[ind].l,0,sizeof(seg[ind].l));
+        memset(seg[ind].r,0,sizeof(seg[ind].r));
+        seg[ind].l[qe%3] = 1;
+        seg[ind].r[qe%3] = 1;
+        seg[ind].ans = (qe%3)?0:1;
+        return;
+    }
+    int mid,l,r;
+    mid=(i+j)/2;
+    l=(ind*2);
+    r=l+1;
+    update(i,mid,l);
+    update(mid+1,j,r);
+    seg[ind].s = (seg[l].s + seg[r].s)%3;
+    seg[ind].ans = seg[l].ans + seg[r].ans + seg[l].r[0]*seg[r].l[0] + seg[l].r[1]*seg[r].l[2] + seg[l].r[2]*seg[r].l[1];
+    seg[ind].l[0] = seg[l].l[0] + seg[r].l[(3-seg[l].s)%3];
+    seg[ind].l[1] = seg[l].l[1] + seg[r].l[(4-seg[l].s)%3];
+    seg[ind].l[2] = seg[l].l[2] + seg[r].l[(5-seg[l].s)%3];
+    seg[ind].r[0] = seg[r].r[0] + seg[l].r[(3-seg[r].s)%3];
+    seg[ind].r[1] = seg[r].r[1] + seg[l].r[(4-seg[r].s)%3];
+    seg[ind].r[2] = seg[r].r[2] + seg[l].r[(5-seg[r].s)%3];
+}
+int main()
+{
+    int n,m,t;
+    n = inp();
+    m = inp();
+    scanf("%s",arr+1);
+    build(1,n,1);
+    while(m--)
+    {
+        t = inp();
+        qs =inp();
+        qe = inp();
+        if(t==1)
+        {
+            update(1,n,1);
+        }
+        else
+        {
+            indx=0;
+            printf("%lld\n",tem[query(1,n,1)].ans);
+        }
+    }
+    return 0;
+} 

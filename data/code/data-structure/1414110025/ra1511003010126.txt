@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner myScanner = new Scanner(System.in);
+       	int num = myScanner.nextInt();
+       	int[] arr = new int[num];
+       	for(int i = 0; i<num;i++){
+         	arr[i] = myScanner.nextInt(); 
+        }
+       	  for (int i = 0; i < num-1; i++)
+        {
+            int min_idx = i;
+            for (int j = i+1; j < num; j++)
+                if (arr[j] < arr[min_idx])
+                    min_idx = j;
+ 
+            int temp = arr[min_idx];
+            arr[min_idx] = arr[i];
+            arr[i] = temp;
+            if(i==1){
+              for(int j=0;j<num;j++){
+             	System.out.print(arr[j]+" ");
+              }
+              System.out.print("\n");
+            }
+          }
+       	System.out.print("Sorted Array:");
+     	for(int i=0;i<num;i++){
+          System.out.print(arr[i]+" ");
+        }
+	}
+}

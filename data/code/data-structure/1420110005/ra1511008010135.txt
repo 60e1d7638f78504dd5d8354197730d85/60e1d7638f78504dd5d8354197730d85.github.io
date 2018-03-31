@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+int t;
+  cin>>t;
+  while(t--)
+  {
+    
+    string s,t;
+    cin>>s>>t;
+    int hashs[26]={0};
+    int hasht[26]={0};
+    
+    for(int i=0;i<s.size();i++)
+      hashs[s[i]-'a']++;
+    for(int i=0;i<t.size();i++)
+      hasht[t[i]-'a']++;
+    
+    int c=0;
+    for(int i=0;i<26;i++)
+    {
+      if(hashs[i]-hasht[i]>0)
+      {
+      c+=hashs[i]-hasht[i];
+    }
+      if(hashs[i]-hasht[i]<0)
+      {
+        c+=hasht[i]-hashs[i];
+      }
+    }
+    cout<<c<<endl;
+  }
+      
+	return 0;
+}

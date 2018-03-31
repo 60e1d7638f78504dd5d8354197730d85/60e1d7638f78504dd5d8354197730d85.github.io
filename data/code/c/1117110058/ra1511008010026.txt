@@ -1,0 +1,48 @@
+#include<stdio.h>
+int main()
+{
+    int a[1001];
+    int b,c,i,j;
+     int temp,e;
+    scanf("%d",&b);
+    while(b--)
+    {
+        scanf("%d",&c);
+        for(i=0;i<c;i++)
+        scanf("%d",&a[i]);
+        for(i=0;i<c-1;i++)
+        {
+            for(e=0,j=i+1;j<c;j++)
+            {
+                if(a[i]<a[j])
+                {
+                    temp=a[i];
+                    a[i]=a[j];
+                    a[j]=temp;
+                }
+            }
+        }
+       
+       for(i=0,j=0;i<(c-1)&&j<=2;i++)
+        {
+            if(a[i]==a[i+1]&&j==0)
+            {
+                temp=a[i];
+                j++;
+                i++;
+            }
+            else if(a[i]==a[i+1]&&j==1)
+            {
+                e=a[i];
+                j++;
+                break;
+            }
+        }
+        
+        if(j==2)
+        printf("%d\n",temp*e);
+        else 
+        printf("-1\n");       
+         }
+   return 0;
+} 

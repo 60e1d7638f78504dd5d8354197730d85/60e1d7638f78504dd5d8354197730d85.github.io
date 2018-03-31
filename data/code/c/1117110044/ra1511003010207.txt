@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+	int f ( int n ) {
+		if (n == 1)
+			return 1;
+		else
+			return n * f ( n - 1 );
+	}
+
+	int ncr(int n, int r) {
+		return f(n)/(f(r) * f(n-r));
+	}
+
+	int n, r;
+
+	scanf("%d %d", &n, &r);
+	printf("%d", ncr(n, r));
+
+	return 0;
+}

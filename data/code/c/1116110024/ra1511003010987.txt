@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+  char s[50];
+  int i,c='\0',j;
+  scanf("%s",s);
+  printf("%s\n",s);
+  for(i=0;s[i]!='\0';i++) {
+    if(c!='*') {
+      c=s[i];
+      for(j=i+1;s[j]!='\0';j++) {
+        if(s[j]==c)
+          s[j]='*';
+      }
+    }
+  }
+  for(i=0;s[i]!='\0';i++)
+    if(s[i]!='*')
+      printf("%c",s[i]);
+  return 0;
+}

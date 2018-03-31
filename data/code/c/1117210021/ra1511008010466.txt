@@ -1,0 +1,105 @@
+#include <stdio.h>
+#define gt getchar_unlocked()
+int k[21][20001],a[21],ar[20][20],m;
+int input()
+{
+	char c;
+	int n;
+ 
+	for(c=gt;!(c>='0'&&c<='9');c=gt);
+	n=0;
+	for(;c>='0'&&c<='9';c=gt)
+    {
+    	n=(n<<3)+(n<<1)+c-'0';
+    }
+    //cout<<n<<" ";
+    return(n);
+}
+int calc(int i,int n)
+{
+	int max=0,p=0,j;
+	for(j=0;j<n;j++)
+	{
+		if(ar[i][a[j]]==0)
+			return(0);
+	}
+	for(j=i+1;j<m;j++)
+	{
+		if(ar[i][j]==1)
+		{
+			a[n]=i;
+			p=calc(j,n+1);
+			if(p>max)
+				max=p;
+		}
+	}
+	return(max+1);
+}
+int main(void) {
+	int i,j,n,p,q,t,max;
+	n=input();
+	m=input();
+	//	printf("%d %d ",n,m);
+	for(i=0;i<m;i++)
+	{
+		k[i][0]=input();
+		for(j=1;j<=k[i][0];j++)
+		{	k[i][j]=input();//	printf("%d ",k[i][j+1]);
+		} 
+	}
+/*	for(i=0;i<m;i++)
+	{
+		for(j=0;j<k[i][0];j++)
+			printf("%d ",k[i][j+1]);
+		printf("\n");
+	}*/
+	for(i=0;i<m;i++)
+	{
+		ar[i][i]=0;
+		for(j=i+1;j<m;j++)
+		{p=1;q=1;t=0;
+			while(p<=k[i][0]&&q<=k[j][0])
+			{
+				if(k[i][p]==k[j][q])
+				{
+					t=1;
+					break;
+				}
+				while(k[i][p]<k[j][q]&&p<=k[i][0])
+					p++;
+				//printf("ipjq%d %d %d %d ",k[i][p],k[j][q],i,j);
+				if(k[i][p]==k[j][q])
+				{
+					t=1;
+					break;
+				}	
+				while(k[i][p]>k[j][q]&&q<=k[j][0])
+					q++;
+			}
+			if(t==1)
+			{	ar[j][i]=0;
+				ar[i][j]=0;	}
+			else
+			{
+				ar[i][j]=1;
+				ar[j][i]=1;
+			}	
+		}
+	}
+	max=0;
+	p=0;
+	for(i=0;i<m;i++)
+	{
+		p=calc(i,0);
+		if(p>max)
+			max=p;
+	}
+	printf("%d\n",max);
+/*	for(i=0;i<m;i++)
+	{
+		for(j=0;j<m;j++)
+			printf("%d ",ar[i][j]);
+		printf("\n");
+	}*/
+	return 0;
+}

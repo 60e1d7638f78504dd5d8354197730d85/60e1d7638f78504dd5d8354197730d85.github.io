@@ -1,0 +1,91 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+
+#define CHUNK_SIZE 320
+#define MAX 100005
+#define MAX_STRING_SIZE 10
+
+struct query{
+	long long hashValue;
+	pair<int,int> range;
+	int id;
+};
+
+map<long long,int> counts;
+long long initialValues[MAX];
+int answer[MAX];
+query queries[MAX];
+
+inline bool cmp(query a,query b){
+	a.range.first/=CHUNK_SIZE;
+	b.range.first/=CHUNK_SIZE;
+	return a.range<b.range;
+}
+
+inline long long getHashValue(char *string){
+	int j;
+	long long hashValue = 0;
+	for(j=0;string[j];j++){
+		hashValue*=27;
+		hashValue+=string[j]-'a';
+	}
+	for(;j<10;j++)
+		hashValue*27;
+	return hashValue;
+}
+
+int main(){
+	ios::sync_with_stdio(false);
+	int n;
+	cin>>n;
+	
+	char currentString[MAX_STRING_SIZE];
+	for(int i=0;i<n;i++){
+		cin>>currentString;
+		initialValues[i]=getHashValue(currentString);
+	}
+		
+	
+	int q;
+	cin>>q;
+	char queryString[MAX_STRING_SIZE];
+	for(int i=0;i<q;i++){
+		cin>>queries[i].range.first>>queries[i].range.second>>queryString;
+	
+		queries[i].hashValue=getHashValue(queryString);
+		queries[i].range.first--;
+		queries[i].range.second--;
+		queries[i].id=i;
+	}
+	
+	sort(queries,queries+q,cmp);
+	
+	int l=0,r=-1;
+	
+	for(int i=0;i<q;i++){
+	
+		while(l>queries[i].range.first){
+			l--;
+			counts[initialValues[l]]++;
+		}
+		while(r<queries[i].range.second){
+			r++;
+			counts[initialValues[r]]++;
+		}
+		while(r>queries[i].range.second){
+			counts[initialValues[r]]--;
+			r--;
+		}
+		while(l<queries[i].range.first){
+			counts[initialValues[l]]--;
+			l++;
+		}
+		answer[queries[i].id]=counts[queries[i].hashValue];
+	}
+	
+	for(int i=0;i<q;i++)
+		cout<<answer[i]<<"\n";
+}

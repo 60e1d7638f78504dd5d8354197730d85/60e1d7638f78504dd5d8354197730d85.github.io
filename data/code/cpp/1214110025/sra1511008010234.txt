@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class Complex
+{
+  private:
+  	int real,imag;
+  public:
+   Complex(int r=0,int i=0):real(r),imag(i){};
+  void getdata()
+  {
+    cin>>real>>imag;
+  }
+  void displaydata()
+  {
+    cout<<real<<endl;
+    cout<<imag;
+  }
+  Complex add(const Complex &c)
+  {
+    Complex comp;
+    comp.real=real+c.real;
+    comp.imag=imag+c.imag;
+    return comp;
+  }
+};
+int main()
+{
+  Complex c1,c2,c3;
+  c1.getdata();
+  c2.getdata();
+  c3=c1.add(c2);
+  c3.displaydata();
+	return 0;
+}

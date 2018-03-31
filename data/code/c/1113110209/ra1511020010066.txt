@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+int main() {
+	int i,j,k,l,sum,d;
+	scanf("%d %d",&d,&sum);
+	int a[d],b[d];
+
+	for(i=0;i<d;i++) {
+		scanf("%d %d",&a[i],&b[i]);
+		sum -= a[i];
+	}
+	if(sum < 0) { printf("NO\n"); return;}
+	
+	for(i=0;i<d;i++) {
+		if(sum>0) {
+			j = b[i] - a[i];
+			k = j > sum ? sum : j;
+			sum -= k;
+			a[i] += k;
+		}
+	}
+	if(sum > 0) {
+		printf("NO\n");
+		return;
+	}
+	printf("YES\n");
+	for(i=0;i<d;i++) printf("%d ",a[i]);
+	return 0;
+}

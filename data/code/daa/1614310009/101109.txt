@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <deque>
+#include <algorithm>
+ 
+using namespace std;
+ 
+typedef long long int z;
+ 
+int main()
+{
+    z numberOfTests;
+    cin >> numberOfTests;
+ 
+    deque<z> deq;
+ 
+    for(z i = 0; i < numberOfTests; i++){
+        z decSize;
+        z totalTime = 0;
+        cin >> decSize;
+        for(z x = 0; x < decSize; x++){
+            z temp;
+            cin >> temp;
+            deq.push_back(temp);
+        }
+ 
+        sort(deq.begin(), deq.end());
+ 
+        while(deq.size() > 1){
+            z a = deq.back();
+            deq.pop_back();
+            z b = deq.back();
+            deq.pop_back();
+            deq.push_back(a + b);
+            totalTime += (a + b);
+        }
+ 
+        cout << totalTime << endl;
+        deq.pop_back();
+ 
+    }
+ 
+    return 0;
+}

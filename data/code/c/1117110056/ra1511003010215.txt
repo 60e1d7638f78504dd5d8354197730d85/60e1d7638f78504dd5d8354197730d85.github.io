@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+void sort(char a[]){
+  int l=strlen(a),i,j,t;
+  for(j=0;j<l-1;++j){
+  for(t=j,i=j+1;i<l;++i)
+    if(a[i]<a[t])
+      t=i;
+    char temp=a[t];
+    a[t]=a[j];
+    a[j]=temp;
+  }
+}
+int substr(char a[],char b[]){
+  int i,j;
+  char *s1,*s2;
+  if(strlen(a)<strlen(b))s1=a,s2=b;
+  else s1=b,s2=a;
+  for(i=0,j=0;s1[i]&&s2[j];++j)
+    if(s1[i]==s2[j])i++;
+  if(s1[i])return 0;
+  else return 1;
+}
+int main()
+{
+	char s[20],w[20];
+  	int n;
+  	scanf("%s%d",s,&n);
+  	sort(s);
+  //printf("%s",s);
+  	while(n--){
+    	scanf("%s",w); 	
+      	sort(w);
+      	if(substr(s,w))printf("Yes\n");
+      	else printf("No\n");
+    }
+	return 0;
+}

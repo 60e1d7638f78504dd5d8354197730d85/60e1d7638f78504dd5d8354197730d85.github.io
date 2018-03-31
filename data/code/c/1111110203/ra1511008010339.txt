@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+	int n, i = 1, j = 1, mindiff, diff = 1000, col = 0, row = 0;
+  	scanf("%d", &n);
+  	for(i = 1; i<=n; i++)
+    {
+      	for(j = i; j<=n; j++)
+        {
+          	if( (i*j) == n)
+            {
+              	mindiff = j-i;
+              	if(mindiff < diff)
+                {
+                  	diff = mindiff;
+                  	col = j;
+                  	row = i;
+                }
+            }
+        }
+    }
+  	printf("%d %d", row, col);
+	return 0;
+}

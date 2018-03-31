@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class TestClass {
+
+    static public void main(String args[]) {
+
+        Election obj = new Election();
+        obj.getVotes();
+        obj.displayResults();
+    }
+}
+
+class Election {
+
+    int res[] = new int[6];
+
+    public void displayResults() {
+        System.out.printf("Candidate 1 are: %d\n" +
+                "Candidate 2 are: %d\n" +
+                "Candidate 3 are: %d\n" +
+                "Candidate 4 are: %d\n" +
+                "Candidate 5 are: %d\n" +
+                "Disqualified=%d", res[0], res[1], res[2], res[3], res[4], res[5]);
+    }
+
+    public void getVotes() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+            switch (arr[i]) {
+                case 1:
+                    res[0]++;
+                    break;
+                case 2:
+                    res[1]++;
+                    break;
+                case 3:
+                    res[2]++;
+                    break;
+                case 4:
+                    res[3]++;
+                    break;
+                case 5:
+                    res[4]++;
+                    break;
+                default:
+                    res[5]++;
+                    break;
+            }
+        }
+    }
+}

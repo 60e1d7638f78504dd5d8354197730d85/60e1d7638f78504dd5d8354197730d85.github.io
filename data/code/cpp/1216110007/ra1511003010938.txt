@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n;
+  cin>>n;
+  int a1[n];
+  
+  for(int i=0;i<n;i++){
+  	cin>>a1[i];
+  }
+  
+  int m;
+  cin>>m;
+  int a2[m];
+  
+  for(int i=0;i<m;i++){
+  	cin>>a2[i];
+  }
+  
+  for(int i=0;i<n;i++){
+  for(int j=i;j<n;j++){
+  	if (a1[i]>a1[j]){
+    	int temp = a1[i];
+      	a1[i] = a1[j];
+      	a1[j] = temp;
+    }
+    
+    if (a2[i]>a2[j]){
+    	int temp = a2[i];
+      	a2[i] = a2[j];
+      	a2[j] = temp;
+    }
+    
+  }
+  }
+  
+  for(int i=0;i<n;i++){
+  	if (a1[i] != a2[i]){
+    	cout<<"No";
+      break;
+    }else if (i==n-1 && a1[i]==a2[i]){
+    	cout<<"Yes";
+    }
+  }
+
+	return 0;
+}

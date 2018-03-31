@@ -1,0 +1,29 @@
+#include <stdio.h>
+int day(int y,int m,int d)
+{
+int t[]={0,3,2,5,0,3,5,1,4,6,2,4};
+  y-=m<3;
+  return (y+y/4-y/100+y/400+t[m-1]+d)%7;
+
+}
+int main()
+{
+int d,m,y,g;
+  scanf("%d%d%d",&d,&m,&y);
+  g=day(y,m,d);
+  if(g==0)
+    printf("Sunday");
+  else if(g==1)
+    printf("Monday");
+  else if(g==2)
+    printf("Tuesday");
+  else if(g==3)
+    printf("Wednesday");
+  else if(g==4)
+    printf("Thursday");
+  else if(g==5)
+    printf("Friday");
+  else
+    printf("Saturday");
+	return 0;
+}

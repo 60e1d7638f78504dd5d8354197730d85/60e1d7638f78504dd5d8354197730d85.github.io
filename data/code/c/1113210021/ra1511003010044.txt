@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+    long long int inline inp()
+    {
+    int n=0;
+    char c=getchar_unlocked();
+    while(c < '0' || c >'9') {c=getchar_unlocked();}
+    while(c>='0' && c<='9')
+    {
+    n=(n<<3)+(n<<1)+c-'0';
+    c=getchar_unlocked();
+    }
+    return n;
+    }
+int main(){
+	long long int a[1000009],temp=0,rem=0,n,i,j,l,t,ans,k;
+	
+	scanf("%lld",&t);
+	while(t-- > 0){
+		ans = 0;
+		rem = 0;
+		//scanf("%lld%lld",&n,&k);
+		n=inp();
+		k=inp();
+		for(i=0;i<n;i++){
+			//scanf("%lld",&a[i]);
+			a[i]=inp();
+		}
+		for(i=0;i<n;i++){
+			if(a[i] <= rem ){
+				rem = rem-a[i];
+			}
+			else if(a[i]>rem){
+				a[i]= a[i]-rem;
+				rem =0;
+				if(k>a[i]){
+					ans++;
+					rem = k-a[i];
+				}
+				else{
+					ans = ans +(a[i]/k);
+					temp = a[i]/k;
+					a[i]=a[i]-(temp*k);
+					if(a[i]!=0){
+						ans++;
+						rem = k-a[i];
+					}
+					else{
+					rem = a[i]%k;
+					}
+				}
+			}
+			else{
+				
+			}
+			if(rem >=1){
+				rem--;
+			}
+			//printf("%lld\t%lld\n",rem,ans);
+		}
+		printf("%lld\n",ans);
+	}
+	return 0;
+} 

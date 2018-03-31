@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class number
+{
+  public:
+   long int decnum, rem, quot;
+  void get_item()
+  {
+    cin>>decnum;
+    quot=decnum;
+  }
+};
+class octal: public number
+{
+	public:
+  
+    int i=1;
+    int j,octnum[100];
+    void cal()
+    {
+    while(quot!=0)
+	{
+		octnum[i++]=quot%8;
+		quot=quot/8;
+	}
+	cout<<"Octal Equivalent of "<<decnum<<" is ";
+	for(j=i-1;j>0;j--)
+	{
+		cout<<octnum[j];
+	}
+    }
+};
+int main()
+{
+	octal obj;
+  	obj.get_item();
+  obj.cal();
+	return 0;
+}

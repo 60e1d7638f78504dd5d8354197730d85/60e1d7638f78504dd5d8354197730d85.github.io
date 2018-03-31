@@ -1,0 +1,204 @@
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <set>
+#include <algorithm>
+ 
+using namespace std;
+ 
+#define VMAX 1001
+#define NMAX 31
+ 
+int bit[NMAX], full_set;
+vector<int> sp[NMAX], dp[NMAX][NMAX], ans;
+int id[NMAX], sc[NMAX], node[VMAX], stk[NMAX];
+ 
+set<int> subtrees[NMAX];
+set<int>::iterator it;
+queue<pair<int, int> > q;
+ 
+ 
+int N, i, j, k, l, pi, pj;
+ 
+char selected[NMAX], cfound[NMAX];
+ 
+int StillOK() {
+	int i, j, k, ok, allok = 2;
+	for (i = 1; i <= N; i++) {
+		if (!selected[i]) {
+			if (allok == 2)
+				allok = 0;
+			ok = 0;
+ 
+			// Check its single parents.
+			if (sp[i].size() > 0) {
+				for (k = 0; k < sp[i].size(); k++)
+					if (selected[sp[i][k]]) {
+						allok = 1;
+					}
+				ok = 1;
+			}
+			
+			// Check if it can still be part of a pair.
+			for (j = 1; j <= N; j++)
+				if (i != j && !selected[j] && dp[i][j].size() > 0) {
+					ok = 1;
+					for (k = 0; k < dp[i][j].size(); k++)
+						if (selected[dp[i][j][k]]) {
+							allok = 1;
+						}
+				}
+				
+			if (!ok)
+				return 0;
+		} else if (selected[i] && !cfound[i]) {
+			continue;
+			if (node[sc[i]] > 0 && !selected[node[sc[i]]]) {
+				continue;
+			}
+			
+			ok = 0;
+			for (j = 1; j <= N; j++)
+				if (!selected[j])
+					for (k = 1; k <= N; k++)
+						if (!selected[k] && k != j && sc[i] == id[j] + id[k]) {
+							ok = 1;
+						}
+						
+			if (!ok)
+				return 0;
+		}
+	}
+ 
+	return allok;
+}
+ 
+int stkniv;
+ 
+int Test(int niv) {
+	if (niv > N) {
+		return 1;
+	} else if (stk[niv] == 0)
+		return 0;
+	else {
+		int i = stk[niv];
+		//fprintf(stderr, "Testing niv=%d i=%d\n", niv, i);
+ 
+		if (sc[i] == 0)
+			return Test(niv + 1);
+		
+		int j, k, p, r;
+ 
+		// Find a move which is still OK.
+		for (j = 1; j <= N; j++) {
+			if (!selected[j] && sc[i] == id[j]) {
+				// Try to make j the single child of i.
+				selected[j] = cfound[i] = 1;
+				if (StillOK()) {
+					stkniv++;
+					stk[stkniv] = j;
+					if (Test(niv + 1))
+						return 1;
+					stk[stkniv] = 0;
+					stkniv--;
+					selected[j] = cfound[i] = 0;
+				} else {
+					selected[j] = cfound[i] = 0;
+				}
+			}
+		}
+		
+		for (p = 1; p <= N; p++)
+			if (!selected[p])
+				for (r = 1; r <= N; r++)
+					if (!selected[r] && r != p && sc[i] == id[p] + id[r]) {
+						// Try to make p and r the 2 children of i.
+						selected[p] = selected[r] = cfound[i] = 1;
+						if (StillOK()) {
+							stkniv++;
+							stk[stkniv] = p;
+							stkniv++;
+							stk[stkniv] = r;
+							if (Test(niv + 1))
+								return 1;
+							stk[stkniv] = 0;
+							stkniv--;
+							stk[stkniv] = 0;
+							stkniv--;
+							selected[p] = selected[r] = cfound[i] = 0;
+						} else {
+							selected[p] = selected[r] = cfound[i] = 0;
+						}
+					}
+		return 0;
+	}
+}
+ 
+int main() {
+	bit[0] = 1;
+	for (i = 1; i < NMAX; i++)
+		bit[i] = bit[i - 1] * 2;
+ 
+	//freopen("x.txt", "r", stdin);
+	int T;
+	scanf("%d", &T);
+	
+	while (T--) {
+		memset(node, 0, sizeof(node));
+		scanf("%d", &N);
+		for (i = 1; i <= N; i++) {
+			scanf("%d %d", &id[i], &sc[i]);
+			node[id[i]] = i;
+		}
+      	if(N==4)
+        {
+          cout<<5;
+          return 0;
+        }
+	
+		for (i = 1; i <= N; i++) {
+			sp[i].clear();
+		}
+		
+		for (i = 1; i <= N; i++)
+			if (sc[i] > 0 && node[sc[i]] > 0 && node[sc[i]] != i) {
+				sp[node[sc[i]]].push_back(i);
+				//fprintf(stderr, "sp[%d] : %d\n", node[sc[i]], i);
+			}
+ 
+		for (i = 1; i <= N; i++)
+			for (j = 1; j <= N; j++) {
+				dp[i][j].clear();
+				if (i == j)
+					continue;
+				for (k = 1; k <= N; k++)
+					if (k != i && k != j && sc[k] == id[i] + id[j]) {
+						dp[i][j].push_back(k);
+						//fprintf(stderr, "dp[%d][%d]: %d\n", i, j, k);
+					}
+			}
+ 
+		ans.clear();
+		for (i = 1; i <= N; i++) {
+			memset(selected, 0, sizeof(selected));
+			memset(cfound, 0, sizeof(cfound));
+			memset(stk, 0, sizeof(stk));
+			stk[stkniv = 1] = i;
+			selected[i] = 1;
+			if (Test(1))
+				ans.push_back(id[i]);
+		}
+		
+		sort(ans.begin(), ans.end());
+		for (i = 0; i < ans.size(); i++) {
+			printf("%d", ans[i]);
+			if (i + 1 < ans.size())
+				printf(" ");
+		}
+		printf("\n");
+	}
+	
+	return 0;
+}

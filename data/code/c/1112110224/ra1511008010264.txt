@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,m,z,l,r,b,ans;
+		scanf("%d%d%d%d%d%d",&n,&m,&z,&l,&r,&b);
+		int c=m/2;
+		if(m%2!=0)
+		{
+			c++;
+		}
+		if(l+r+z>=(n*m))
+		{
+			ans=(n*m);
+			printf("%d\n",ans);
+		}
+		else
+		{
+			int low=0;
+			int high=b;
+			
+			while(low<high)
+			{
+				int mid=high-(high-low)/2;
+				if((z+l+r+mid<=(n*m))&&(mid<=(n*c))&&(l+r+(mid*2)<=((m+1)*n)))
+				{
+					low=mid;
+					/*if(max<low)
+					{
+						max=low;
+					}
+					else if(max==low)
+					{
+						low
+					}*/
+				}
+				else
+				{
+					high=mid-1;
+				}
+			}
+			ans=(l+r+z+low);
+			printf("%d\n",ans);
+          
+		}
+	}
+  return 0;
+} 

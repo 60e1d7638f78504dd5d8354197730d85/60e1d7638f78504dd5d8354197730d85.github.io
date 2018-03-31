@@ -1,0 +1,112 @@
+#include<stdio.h>
+#define mod 1000000007
+int get()
+{ 
+int t=0;
+char ch=getchar();
+while(ch<'0'||ch>'9')
+   ch=getchar();
+while(ch>='0'&&ch<='9')
+   t=(t<<3)+(t<<1)+ch-'0',ch=getchar();
+return t;    
+}
+ 
+long long int me(long long int base, long long int expo)
+{
+    long long int result = 1;
+    while (expo > 0)
+    {
+        if (expo % 2 == 1)
+           result = (result * base) % mod;
+        expo = expo >> 1;
+        base = (base * base) %mod;
+    }
+    return result;
+}
+ 
+long long fact(int n)
+{ long long int f=1,i;
+  
+  for(i=1;i<=n;i++)  
+    {
+     f=f*i;                
+     f=f%mod;                
+    }
+   return f; 
+}
+ 
+long long div(long long a,long long b)
+{
+  a=a%mod;
+  b=b%mod;  
+  
+  return a/b;
+    
+}
+ 
+long long calculate(int power)
+{  
+   long long int num=1;
+   int i;
+   int rem=(1<<30)%mod;  
+ 
+  
+   int len=power/30;  
+   int extra=power%30;    
+       
+   for(i=1;i<=len;i++)
+    {
+      num=num*rem;                    
+      num=num%mod;
+    }         
+         
+    num=  (num* (1<<(extra)))%mod;  
+     
+return num;
+ 
+}
+ 
+ 
+int main()
+{
+    
+long long no,a,b;    
+int n,i;
+ 
+int t=get();
+ 
+    
+while(t--)
+{ 
+   n=get();       
+             
+  for(i=1;i<=n;i++)
+   { 
+     get();                                    
+   } 
+       
+  
+  if(n%2==0)
+  {
+              
+            no=calculate(n-1);
+            b=fact(n/2);
+            a=(fact(n)*me(b*b%mod,mod-2))%mod;
+            a=(a*me(2,mod-2))%mod;
+            no=no-a;
+            if(no<0)
+             no=(mod+no)%mod;
+            
+            printf("%lld\n",no);
+  }
+  else
+  {
+    no=calculate(n-1);
+    printf("%lld\n",no);
+  } 
+   
+   
+}    
+    
+ return 0;
+}

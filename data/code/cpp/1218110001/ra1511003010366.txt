@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class Shape
+{
+protected:
+	float width, height;
+public:
+	void set_data (float a, float b)
+	{
+		width = a;
+		height = b;
+	}
+};
+
+class Rectangle: public Shape
+{
+public:
+	float area ()
+	{
+		return (width * height);
+	}
+};
+
+class Triangle: public Shape
+{
+public:
+	float area ()
+	{
+		return (width * height / 2);
+	}
+};
+
+int main (){
+	int a , b ;
+  	cin >> a >> b ;
+	Rectangle rect;
+	Triangle tri;
+	rect.set_data (a,b);
+	tri.set_data (a,b);
+	cout << "Rectangle area=" << rect.area() << endl;
+	cout << "Triangle area=" << tri.area() << endl;
+	return 0;
+}

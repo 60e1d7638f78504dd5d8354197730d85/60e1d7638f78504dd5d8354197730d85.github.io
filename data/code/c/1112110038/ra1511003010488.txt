@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int x,i,flag=0;
+  	scanf("%d",&x);
+  	
+  	for(i=2;i<=x/2;i++)
+    {
+      if((isprime(i))&&(isprime(x-i)))
+      {
+        printf("%d = %d + %d\n",x,i,x-i);
+        flag=1;
+      }
+    }
+  	if(flag==0)
+    {
+      printf("NOT");
+    }
+	return 0;
+}
+int isprime(int n)
+{
+  int i=2;
+  while(i<=sqrt(n))
+  {
+    if(n%i==0)
+    {
+      return 0;
+    }
+    i++;
+  }
+
+  return 1;
+}
+  

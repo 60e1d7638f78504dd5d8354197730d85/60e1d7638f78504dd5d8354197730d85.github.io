@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char s[20];
+  int i,j,l,temp;
+  scanf("%s",s);
+  l=strlen(s);
+  int arr[l];
+  for(i=0;i<l;i++)
+  {
+    arr[i]=(int)s[i];
+  }  
+  
+  for(i=0;i<l;i++)
+  {
+    for(j=i+1;j<l;j++)
+    {
+      if(arr[j]<arr[i]){
+      temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+      }
+    }
+  }
+  for(i=0;i<l;i++)
+  {
+    char c=arr[i];
+    printf("%c",c);
+  }
+
+	return 0;
+}

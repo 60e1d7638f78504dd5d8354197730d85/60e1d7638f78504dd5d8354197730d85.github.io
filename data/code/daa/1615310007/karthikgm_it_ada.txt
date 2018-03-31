@@ -1,0 +1,56 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#define mod 100000007
+
+int a[500005];
+inline void ADD(int & x, int y) {
+    x += y; if (x >= mod) x -= mod;
+}
+int S(int l, int r) {
+    int answer = 0;
+    for (int i = l; i <= r; i ++) {
+        ADD(answer, a[i]);
+    }
+    return answer;
+}
+void calc(int n, vector<int> & coeff) {
+    // lo: [1..n/2]
+    // hi: [n/2+1..n]
+    a[0] = 0;
+    for (int i = 1; i <= n; i ++) {
+        a[i] = 1;
+    }
+    coeff[1] = S(n/2+1, n);
+    for (int le = 2; coeff[le - 1] != 0; le ++) {
+        for (int i = 1; i <= n; i ++) ADD(a[i], a[i - 1]);
+        for (int i = n; i >= 1; i --) {
+            a[i] = a[i / 2];
+        }
+        coeff[le] = S(n/2+1, n);
+    }
+}
+
+int v[500005];
+int main() {
+    int tc; cin >> tc;
+    for (; tc > 0; tc --) {
+        int n, m;
+        cin >> n >> m;
+        vector<int> coeff (22);
+        calc(n, coeff);
+        v[0] = 1;
+        for (int i = 1; i <= m; i ++) {
+            v[i] = 0;
+            for (int k = 0; k <= i and k <= 20; k ++) {
+                v[i] = (v[i] + (long long) v[i - k] * coeff[k]) % mod;
+            }
+        }
+        cout << v[m] << endl;
+    }
+    return 0;
+}

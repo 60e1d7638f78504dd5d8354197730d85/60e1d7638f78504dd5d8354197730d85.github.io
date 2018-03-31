@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int n,i,mid_num,original_num;
+  int sum=0;
+  int count = 0;
+  int num[100];
+  int m;
+    scanf("%d",&n);
+  m=n;
+  original_num = n;
+  
+   while(m != 0)
+    {
+       
+        m /= 10;
+        ++count;
+    }
+
+ 
+  for(i=count;i>0;i--){
+    
+  	num[i]=n/(pow(10,i-1));
+    mid_num = pow(10,i-1);
+    n=n%mid_num;
+    
+   
+    
+    
+  }
+  
+  for(i=1;i<count+1;i++){
+    m = pow(num[i],count);
+    sum = sum+m;
+    
+}
+
+  if(sum==original_num)
+    printf("Narcissistic Number");
+  else
+    printf("NOT Narcissistic Number");
+  return 0;
+}

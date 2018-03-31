@@ -1,0 +1,22 @@
+#include <stdio.h>
+int stack[1000], top=-1;
+int main()
+{
+    int n,q,l,i;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&q);
+      if(q==1){
+        if(top==-1)
+          printf("No Food\n");
+        else
+          printf("%d\n",stack[top--]);
+      }
+      else if(q==2){
+        scanf("%d",&l);
+        stack[++top]=l;
+      }
+    }
+	return 0;
+}

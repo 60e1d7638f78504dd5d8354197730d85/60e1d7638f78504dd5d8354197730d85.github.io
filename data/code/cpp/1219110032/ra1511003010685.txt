@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+class ccpp{
+		int re,im;
+  		public:
+  			ccpp(int r,int i){
+            	re=r;
+              	im=i;
+            	}
+  		
+		friend  void operator << (ostream & ct ,  ccpp  obj);
+	};	
+
+	void  operator << (ostream  &ct , ccpp  obj){
+        		ct << obj.re;
+          		ct << "+i"<<obj.im;
+          		
+        }
+int main()
+{	int r,i;
+ 	cin>>r>>i;
+	ccpp obj(r,i);
+ 	cout << obj;
+	return 0;
+}

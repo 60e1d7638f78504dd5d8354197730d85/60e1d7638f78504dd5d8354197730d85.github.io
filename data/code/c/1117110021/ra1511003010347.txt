@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+ int n,arr[10][10],i,j,s1=0,s2=0,o;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      scanf("%d",&arr[i][j]);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i==j)
+        s1+=arr[i][j];
+      if((i+j)==(n-1))
+        s2+=arr[i][j];
+    }
+  }
+  o=s1-s2;
+  o=abs(o);
+  printf("%d",o);
+	return 0;
+}

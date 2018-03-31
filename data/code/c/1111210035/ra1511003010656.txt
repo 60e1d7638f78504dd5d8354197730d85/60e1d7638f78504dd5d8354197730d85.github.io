@@ -1,0 +1,36 @@
+#include <stdio.h>
+int gcd(int,int);
+int main()
+{
+  int num1,den1,num2,den2,num3,den3,m;
+  scanf("%d%d%d%d",&num1,&den1,&num2,&den2);
+  den3 = den1>den2?den1:den2;
+  while(1)
+  {
+    if(den3%den1==0 && den3%den2==0)
+    {
+      break;
+    }
+    else
+    {
+      den3++;
+    }
+  }
+      
+  num3 = (num1*(den3/den1)) + (num2 *(den3/den2));
+  m = gcd(num3,den3);
+  printf("%d %d",num3/m,den3/m);
+
+	return 0;
+}
+int gcd(int a,int b)
+{
+  if (b==0)
+  {
+    return a;
+  }
+  else
+  {
+    return gcd(b,a%b);
+  }
+}

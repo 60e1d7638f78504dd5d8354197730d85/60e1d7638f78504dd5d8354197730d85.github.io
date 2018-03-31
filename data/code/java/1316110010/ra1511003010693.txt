@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       demo objname = new demo();
+       int n = sc.nextInt();
+       int x = 0;
+       for(int i = 0; i < n; i++)
+         x = objname.great(sc.nextInt(), sc.nextInt());
+	}
+}
+class demo{
+	public int great(int gcd,int lcm){
+      int r = 0, a, b;
+      a = (gcd > lcm) ? gcd : lcm;
+      b = (gcd < lcm) ? gcd : lcm;
+      r = b;
+      while(a % b != 0){
+        r = a % b;
+        a = b;
+        b = r;
+      }
+      a = (gcd > lcm) ? gcd : lcm;
+      while(true){
+        if(a % gcd == 0 && a % lcm == 0){
+          System.out.println(r + " " + a);
+          break;
+        }
+        a++;
+      }
+      return 1;
+    }
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+using namespace std;
+int main()
+{	
+  	char str[1000];
+  	char ch;
+  	int v=0,c=0,d=0,w=0;
+	scanf("%[^\n]s",str);
+  	
+  	int len = strlen(str);
+  
+  	for(int i=0;i<len;i++)
+    {
+    	str[i] = tolower(str[i]);
+      
+      	if(str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i]=='o' || str[i]=='u' )
+          ++v;
+      	else if(str[i] >= 'a' && str[i] <= 'z')
+          ++c;
+      	else if(str[i] == ' ')
+          ++w;
+      	else if(str[i]=='0' || str[i]=='1' || str[i]=='2' || str[i]=='3' || str[i]=='4' || str[i]=='5' || str[i]=='6' || str[i]=='7' || str[i]=='8' || str[i]=='9'  )
+    		++d;
+     }
+  	cout<<"Vowels:"<<v<<"\nConsonants:"<<c<<"\nDigits:"<<d<<"\nWhite spaces:"<<w;
+	return 0;
+}

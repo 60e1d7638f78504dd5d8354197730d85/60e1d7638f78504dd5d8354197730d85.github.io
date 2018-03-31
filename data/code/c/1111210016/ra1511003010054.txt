@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    float t,area,p,x1,x2,x3,y1,y2,y3,a,b,c,max,min;
+    int i,s,l;
+    scanf("%f",&t);
+    for(i=0;i<t;i++){
+        scanf("%f %f %f %f %f %f",&x1,&y1,&x2,&y2,&x3,&y3);
+        a=sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+        b=sqrt((x2-x3)*(x2-x3)+(y2-y3)*(y2-y3));
+        c=sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3));
+        p=(a+b+c)/2;
+        area=sqrt(p*(p-a)*(p-b)*(p-c));
+        if(i==0){
+            max=min=area;s=l=0;}
+        else{
+            if(area>=max)
+                {max=area;l=i;}
+            if(area<=min)
+                {min=area;s=i;}
+            }
+        }
+        printf("%d %d\n",s+1,l+1);
+return 0;
+}
+ 
+ 

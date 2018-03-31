@@ -1,0 +1,28 @@
+// C++ program to find sum of absolutre differences
+// in all pairs in a sorted array of distinct numbers
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Function to calculate sum of absolute difference
+// of all pairs in array
+// arr[]  --> array of elements
+int sumPairs(int arr[],int n)
+{
+    // final result
+    int sum = 0;
+    for (int i=n-1; i>=0; i--)
+        sum += i*arr[i] - (n-1-i)*arr[i];
+    return sum;
+}
+ 
+// Driver program to run the case
+int main()
+{
+  	int n;
+  cin>>n;
+  int arr[n];
+  for(int i=0;i<n;i++)
+    cin>>arr[i];
+    cout << sumPairs(arr, n);
+    return 0;
+}

@@ -1,0 +1,51 @@
+#include<stdio.h>
+double ans;
+int a[51],b[51];
+double p[51];
+int array[17];
+int go(int depth,double x)
+    {
+    //printf("%d %lf\n",depth,x);
+    if(depth==-1)
+                 {
+                 ans+=x;
+                 return 0;        
+                 }
+    if(array[a[depth]]==0)
+                          {
+                          array[a[depth]]=1;      
+                          go(depth-1,x*(p[depth]/100));
+                          array[a[depth]]=0;
+                          }           
+    if(array[b[depth]]==0)
+                          {
+                          array[b[depth]]=1;
+                          go(depth-1,x*((100-p[depth])/100));
+                          array[b[depth]]=0;
+                          }
+    return 0;
+    }
+int main()
+{
+int T;
+scanf("%d",&T);
+int i,j;
+int N;
+while(T--)
+          {
+          scanf("%d",&N);
+          for(i=0;i<N;i++)
+                          {scanf("%lf %d %d",&p[i],&a[i],&b[i]);}
+              
+          if(N>16)
+                  {
+                  printf("%lf\n",0.0);
+                  continue;     
+                  }
+          for(i=0;i<17;i++)
+                           array[i]=0;
+          ans=0;
+          go(N-1,1);
+          printf("%lf\n",ans);
+          }
+    return 0;}

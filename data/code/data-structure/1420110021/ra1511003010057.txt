@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+int qual [ 10002 ];
+int main () {
+    int n,i ;
+    scanf ( "%d" , & n );
+    for (i = 0 ; i < n ; i ++) {
+        int ele ;
+        scanf ( "%d" , & ele );
+        qual [ ele ] = 1 ;
+    }
+    int m , ans = 0 ;
+    scanf ( "%d" , & m );
+    for (i = 0 ; i < m ; i ++) {
+        int st = 0 ; 
+        int q ;
+        char ch ;
+        scanf ( "%d" , & q );
+        ch = getc ( stdin );
+        if ( qual [ q ]) st ++;
+        while ( ch!='\n' && ch!=EOF ) {
+            scanf ( "%d" , & q );
+            ch = getc ( stdin );
+            if ( qual [ q ]) st ++;
+        }
+        if ( st>=n )
+            ans ++;
+    }
+    printf ( "%d " , ans );
+    return 0 ; 
+}

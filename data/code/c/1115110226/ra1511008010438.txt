@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<string.h>
+ 
+#define sentinel   -1
+#define insertcost  1
+#define deletecost  1
+#define replacecost 1
+ 
+static long long int color[41] = {0}, cost[41] = {0};
+static long long int dp1[41][41] = {0}, dp2[41][41] = {0};
+ 
+int main(){
+ 
+  int t, n, m, i, j, a, b;
+  double a1, a2;
+ 
+  scanf("%d", &t);
+  while(t--){
+    for(i = 0; i<41; i++){
+      cost[i] = 0;
+      color[i] = 0;
+      for(j = 0; j<41; j++){
+	dp1[i][j] = 0;
+	dp2[i][j] = 0;
+      }
+    }
+ 
+    scanf("%d", &n);
+    scanf("%d", &m);
+ 
+    for(i = 0; i<n; i++){
+      scanf("%d", &a);
+      scanf("%d", &b);
+      color[a]++;
+      cost[a]+=b;
+    }
+ 
+    dp1[0][0] = 1;
+ 
+    for(i = 1; i<41; i++){
+      dp1[i][0] = 1;
+      for(j = 1; j<(i+1); j++){
+	dp1[i][j] = (color[i]>0) ? dp1[i-1][j] + dp1[i-1][j-1]*((1LL<<color[i])-1) : dp1[i-1][j];
+      }
+    }
+ 
+    for(i = 1; i<41; i++){
+      for(j = 1; j<(i+1); j++){
+	dp2[i][j] = (color[i]>0) ? dp2[i-1][j] + dp2[i-1][j-1]*((1LL<<color[i])-1) + dp1[i-1][j-1]*cost[i]*(1LL<<(color[i]-1)) : dp2[i-1][j];
+      }
+    }
+ 
+    a1 = 0; a2 = 0;
+ 
+    for(i=m; i<=n; i++){
+      a1 += dp2[40][i];
+      a2 += dp1[40][i];
+    }
+ 
+    printf("%.9lf\n",(double)a1/a2);
+ 
+  }
+ 
+  return 0;
+}
+ 

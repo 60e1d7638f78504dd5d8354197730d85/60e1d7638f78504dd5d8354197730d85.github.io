@@ -1,0 +1,59 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,k;
+        scanf("%d%d",&n,&k);
+    int a[n];
+    int i,j;
+    long long int r,e=0,d, u=((long long int)n*(n+1))/2;
+   // printf("%lld\n",u);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+ 
+        }
+    long long int sum=0;
+    for(i=0;i<n;i++)
+    {
+        sum=0;
+        for(j=i;j<n;j++)
+        {
+       sum=sum|a[j];
+ 
+        if(sum>=k)
+        {
+            d=j-i;
+ 
+            if(a[j]>=k)
+            {
+                 e=e+((long long int)d*(d+1))/2;
+                i=j;
+            }
+            else
+            {
+                 e=e+((long long int)d*(d+1))/2+(long long int)(j-i-1);
+                i=j-1;
+            }
+            break;
+        }
+ 
+        }
+        if(j==n)
+        {
+            d=j-i;
+             e=e+((long long int)d*(d+1))/2;
+             break;
+ 
+        }
+    }
+   // printf("%lld  %lld\n",u,e);
+r=u-e;
+ 
+  printf("%lld\n",r);
+}
+return(0);
+}

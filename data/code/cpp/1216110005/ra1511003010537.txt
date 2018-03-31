@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n, i, j, k, ma=-1000, arr[100], sum=0;
+  	cin>>n;
+	for(i=0; i<n; i++)
+		cin>>arr[i];
+	cin>>k;
+  	int flag=-1;
+  	if(k>n){
+      	cout<<"Invalid";
+      	flag=0;
+    }
+ 	
+	for(i=0; i<=n-k; i++){
+		sum = 0;
+		for(j=i; j<i+k; j++){
+			sum += arr[j];
+		}
+		if(sum>ma){
+          	flag=1;
+			ma = sum;
+        }
+	}
+  	if(flag==1)
+		cout<<ma;	
+	return 0;
+}

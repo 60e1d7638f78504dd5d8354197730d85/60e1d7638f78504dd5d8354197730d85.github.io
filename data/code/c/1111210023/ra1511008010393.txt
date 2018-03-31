@@ -1,0 +1,37 @@
+#include <stdio.h>
+long long a[10000000];
+long long int myfn(long long int n)
+{
+  if((n/2+n/3+n/4)>n)
+  {
+    if(n<10000000)
+    {
+      if(a[n]!=0)
+      {
+        return a[n];
+      }
+      else
+      {
+        a[n]=myfn(n/2)+myfn(n/3)+myfn(n/4);
+        return a[n];
+      }
+    }
+    else
+    {
+      return myfn(n/2)+myfn(n/3)+myfn(n/4);
+    }
+  }
+  else
+  {
+    return n;
+  }
+}
+int main()
+{
+  long long int n;
+  while(scanf("%lld",&n)!=EOF)
+  {
+    printf("%lld ",myfn(n));
+  }
+	return 0;
+}

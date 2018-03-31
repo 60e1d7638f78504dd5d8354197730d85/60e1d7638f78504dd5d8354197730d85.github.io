@@ -1,0 +1,27 @@
+#include<stdio.h>
+int phi(int n)
+{    
+    int p,result = n;   
+    for (p=2; p*p<=n; ++p)
+    {
+        if (n % p == 0){ 
+            while (n % p == 0)
+                n /= p;
+            result -= result / p;
+        }
+    }
+    if (n > 1)
+        result -= result / n;
+    
+    return result;
+}
+int main()
+{
+    int i,n,x;
+    scanf("%d",&n);
+    for(i = 0; i < n; i++){
+        scanf("%d",&x);
+        printf("%d\n",phi(x));
+    }
+    return 0;
+}

@@ -1,0 +1,42 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int r=sc.nextInt();
+       int c=sc.nextInt();
+       int ar[][]=new int[r][c];
+       for(int i=0;i<ar.length;i++)
+       {
+         for(int j=0;j<ar[i].length;j++)
+         {
+         	ar[i][j]=sc.nextInt();
+         }
+       }
+       
+        for(int i=0;i<ar.length;i++)
+        {
+            for(int j=0;j<ar[i].length;j++)
+            {
+                System.out.print(ar[i][j]+"\t");
+            }
+            System.out.println();
+        }
+       if(check(ar))
+         System.out.println("The given matrix is symmetric");
+       else
+         System.out.println("The given matrix is not symmetric");
+	}
+	
+  	public static boolean check(int ar[][])
+    {
+      for(int i=0;i<ar.length;i++)
+      {
+        for(int j=0;j<ar[i].length;j++)
+        {
+          if(ar[i][j]!=ar[j][i])
+            return false;
+        }
+      }
+      return true;
+    }
+}

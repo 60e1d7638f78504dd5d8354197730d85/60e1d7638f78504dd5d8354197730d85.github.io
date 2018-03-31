@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+    int T,i;
+    scanf("%d",&T);
+    int grade[T];
+    float hardness[T],carbon[T],tensile[T];
+    for(i=0;i<T;i++)
+    scanf("%f %f %f",&hardness[i],&carbon[i],&tensile[i]);
+    for(i=0;i<T;i++)
+    {
+      if(hardness[i]>50 && carbon[i]<0.7 && tensile[i]>5600)
+        grade[i]=10;
+      else if(hardness[i]>50 && carbon[i]<0.7)
+        grade[i]=9;
+      else if(carbon[i]<0.7 && tensile[i]>5600)
+        grade[i]=8;
+      else if(carbon[i]>50 && tensile[i]>5600)
+        grade[i]=7;
+      else if(hardness[i]>50 || carbon[i]<0.7 || tensile[i]>5600)
+        grade[i]=6;
+      else
+        grade[i]=5;
+    }
+    for(i=0;i<T;i++)
+      printf("Grade %d\n",grade[i]);
+	return 0;
+}

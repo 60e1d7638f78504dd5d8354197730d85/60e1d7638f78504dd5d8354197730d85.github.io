@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void random_part(long int *A,long int start,long int end)
+{
+    long int rand_ind=start+rand()%(end-start+1);
+    long int temp;
+    temp=A[rand_ind];
+    A[rand_ind]=A[end];
+    A[end]=temp;
+}
+ 
+long int partition(long int *A,long int start,long int end)
+{
+    random_part(A,start,end);
+    long int piviot=A[end];
+    long int p_ind=start;
+    long int i;
+    long int temp;
+    for(i=start;i<=end-1;i++)
+    {
+        if(A[i]<=piviot)
+        {
+            temp=A[p_ind];
+            A[p_ind]=A[i];
+            A[i]=temp;
+            p_ind++;
+        }
+    }
+    temp=A[end];
+    A[end]=A[p_ind];
+    A[p_ind]=temp;
+    //printArray(A);
+    return p_ind;
+}
+ 
+void quicksort(long int *A, long int start,long int end)
+{
+    long int part;
+    while(start<end)
+    {
+        part=partition(A,start,end);
+        if(part-start<end-part)
+        {
+            quicksort(A,start,part-1);
+            //quicksort(A,part+1,end);
+            start=part+1;
+        }
+        else
+        {
+            //quicksort(A,start,part-1);
+            quicksort(A,part+1,end);
+            end=part-1;
+        }
+    }
+}
+int main()
+{
+	long int N,K;
+	long int A[100000];
+	scanf("%ld",&N);
+	long int i;
+	for(i=0;i<N;i++)
+		scanf("%ld",&A[i]);
+	quicksort(A,0,N-1);
+	for(i=1;i<N;i++)
+		A[i]+=A[i-1];
+	long int Q;
+	long int sum;
+	scanf("%ld",&Q);
+	while(Q--)
+	{
+		sum=0;
+		scanf("%ld",&K);
+		sum=A[((N%(K+1)==0)?N/(K+1):(N/(K+1))+1)-1];
+		printf("%ld\n",sum);
+	}
+    return 0;
+} 

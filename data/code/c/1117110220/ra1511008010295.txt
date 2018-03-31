@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<limits.h>
+ 
+char is_server_used[20] = { 0 };
+int adj[20][20];
+int server_index[20], server_slot[20];
+int min_wire_length;
+ 
+void find_min_wire_length(int, int, int);
+ 
+int main()
+{
+	int a, b, degree, i, j, M, N, slot;
+	scanf("%d %d", &N, &M);
+	for (i = 0; i < M; i++)
+	{
+		scanf("%d %d", &a, &b);
+		a--;
+		b--;
+		adj[a][b] = adj[b][a] = 1;
+	}
+	if (M == N * (N - 1) / 2)
+		printf("%d\n", (N * N * (N - 1) / 2) - ((N - 1) * N * (2 * N - 1) / 6));
+	else
+	{
+		min_wire_length = INT_MAX;
+		slot = 0;
+		for (i = 0; i < N; i++)
+		{
+			degree = 0;
+			for (j = 0; j < N; j++)
+				if (adj[i][j])
+					degree++;
+			if (degree == 0)
+			{
+				is_server_used[i] = 1;
+				server_index[slot] = i;
+				server_slot[i] = slot;
+				slot++;
+			}
+		}
+		find_min_wire_length(N, slot, 0);
+		printf("%d\n", min_wire_length);
+	}
+	return 0;
+}
+ 
+void find_min_wire_length(int N, int slot, int current_length)
+{
+	int i, j, length;
+	if (slot == N)
+	{
+		if (current_length < min_wire_length)
+			min_wire_length = current_length;
+		return;
+	}
+	if (current_length >= min_wire_length)
+		return;
+	for (i = 0; i < N; i++)
+	{
+		if (!is_server_used[i])
+		{
+			is_server_used[i] = 1;
+			server_index[slot] = i;
+			server_slot[i] = slot;
+			length = 0;
+			for (j = 0; j < N; j++)
+				if ((adj[i][j]) && (is_server_used[j]))
+					length += server_slot[i] - server_slot[j];
+			find_min_wire_length(N, slot + 1, current_length + length);
+			is_server_used[i] = 0;
+		}
+	}
+} 

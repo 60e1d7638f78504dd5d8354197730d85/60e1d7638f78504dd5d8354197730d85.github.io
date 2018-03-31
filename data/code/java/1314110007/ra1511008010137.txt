@@ -1,0 +1,63 @@
+import java.util.*;
+import java.io.*;
+public class TestClass
+{
+    public static void main(String ar[])
+    {
+        Scanner sc=new Scanner(System.in);
+        PrintWriter out = new PrintWriter(System.out);
+        //System.out.println("hcshhdh");
+        int t=sc.nextInt();
+        while(t-->0)
+        {
+            int n,a,b,c,d,x,y,j=0,k,i;
+            a=sc.nextInt();
+            b=sc.nextInt();
+            c=sc.nextInt();
+            d=sc.nextInt();
+            long s=0;
+            if(a<=b&&b<c&&c<=d)
+            {
+            s=(long)(b-a+1)*(d-c+1);
+            out.println(s);
+            continue;
+            }
+            else if(a>=d||a>b||c>d)
+            {
+            s=0;
+            out.println(s);
+            continue;
+            }
+            else if(b==c&&a!=b&&a!=d)
+            {
+               s=(long)((long)(d-c+1)*(c-a))+d-c;
+               
+            }
+            else if(c<=b&&c>a)
+            {
+            s=(long)(c-a)*(d-c+1);
+            
+            for(x=c;x<=b;x++)
+            {
+                if(x>=d)
+                break;
+                j++;
+                s=(long)((long)s+(d-c+1)-j);
+            }
+            }
+            else
+            {
+                j=a-c;
+                for(x=a;x<=b;x++)
+                {
+                    if(x>=d)
+                    break;
+                    j++;
+                    s=(long)((long)s+(d-c+1)-j);
+                }
+            }
+            out.println(s);
+            }
+        out.close();
+    }
+}

@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  public int adjacentElementsSum(int arr[],int n)
+  {
+    int i=1,j=2,maxsum;
+    if(n==2)return (arr[0]+arr[1]);
+    maxsum=arr[0]+arr[1];
+    while(j<n)
+    {
+      if(arr[i]+arr[j]>maxsum)maxsum=arr[i]+arr[j];
+      i++;
+      j++;
+    }
+    return maxsum;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       Sample objname=new Sample();
+       int n=sc.nextInt();
+       int arr[]=new int[n];
+       for(int i=0;i<n;i++)arr[i]=sc.nextInt();
+       int output=objname.adjacentElementsSum(arr,n);
+       System.out.println(output);
+	}
+}

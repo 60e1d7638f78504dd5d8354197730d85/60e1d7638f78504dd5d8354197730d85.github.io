@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,i,j,ans[20],a,b,size,k,t;
+  
+  k=0;
+ char balloon[20];
+  scanf("%d",&n);
+  t=n;
+  while(n!=0)
+  {
+  a=0;b=0;
+    scanf("%s",balloon);
+    size= strlen(balloon);
+    for(i=0;i<size;i++)
+    {
+      if(balloon[i]=='a')
+      {
+       a++;
+      }
+      else
+      {
+       b++;
+      }
+    }
+     
+   
+    if(a!=size && b!=size)
+    {
+       if(a>b)
+       {
+         ans[k]=b;
+         k++;
+       }
+      else{
+        ans[k]=a;
+        k++;
+      }
+    }
+    else
+    {
+     ans[k]=0;
+      k++;
+    }
+    
+  n--;
+  }
+ 
+  for(i=0;i<t;i++){
+  printf("%d\n",ans[i]);
+  }
+  
+	return 0;
+}

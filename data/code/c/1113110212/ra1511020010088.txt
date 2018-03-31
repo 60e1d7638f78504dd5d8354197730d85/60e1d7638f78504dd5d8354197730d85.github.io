@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+long long int memo1[45][45];
+long long int memo2[45][45];
+long long int P[45];
+long long int colors[45];
+long long int DP1(long long int i,long long int j)
+{
+    //printf("i = %d,j = %d\n",i,j);
+    if(i == 0 && j == 0)
+    {
+        memo1[i][j] = 1;
+        return 1;
+    }
+    if(j == 0)
+    {
+        memo1[i][j] = 0;
+        return 0;
+    }
+    if(i == 0)
+    {
+        memo1[i][j] = 1;
+        return 1;
+    }
+    if(memo1[i][j] != -1)
+        return memo1[i][j];
+    memo1[i][j] = DP1(i ,j - 1) + DP1(i - 1 , j - 1) * ( ( (long long int)1 << colors[j] ) - 1 );
+    //printf("pow = %d\n",(1 << colors[i]) - 1);
+    return memo1[i][j];
+}
+long long int DP2(long long int i,long long int j)
+{
+    //printf("i = %d,j = %d\n",i,j);
+    if(i == 0 && j == 0)
+    {
+        memo2[i][j] = 0;
+        return 0;
+    }
+    if(j == 0)
+    {
+        memo2[i][j] = 0;
+        return 0;
+    }
+    if(i == 0)
+    {
+        memo2[i][j] = 0;
+        return 0;
+    }
+    if(memo2[i][j] != -1)
+        return memo2[i][j];
+    memo2[i][j] = DP2(i ,j - 1) + DP2(i - 1 , j - 1) * ( ( (long long int)1 << colors[j] ) - 1 ) + ((long long int)1 << (colors[j] - 1)) * DP1(i - 1,j - 1) * P[j];
+    //printf("pow = %d\n",(1 << colors[i]) - 1);
+    return memo2[i][j];
+}
+void init_memo()
+{
+   long long int i,j;
+    for(i = 0;i < 45;i++)
+        for(j = 0;j < 45;j++)
+            memo1[i][j] = -1;
+    for(i = 0;i < 45;i++)
+        for(j = 0;j < 45;j++)
+            memo2[i][j] = -1;
+}
+int main()
+{
+    long long int t,i,n,m,num,den,x,y;
+  double ans;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld%lld",&n,&m);
+        memset(colors,0,sizeof(colors));
+		memset(P,0,sizeof(P));
+        for(i = 1;i <= n;i++)
+        {
+            scanf("%lld%lld",&x,&y);
+            //printf("%d increment",C[i]);
+            colors[x]++;
+            P[x] += y;
+        }
+        init_memo();
+        num = 0;
+        den = 0;
+        for(i = 40; i >= m;i--)
+            den += DP1(i,40);
+        for(i = 40; i >= m;i--)
+            num += DP2(i,40);
+            ans = (double)num /(double) den;
+            printf("%0.9lf\n",ans );
+      // ans = num / den;
+      // printf("DP = %d %d",DP(40,40,0),DP(40,40,1));
+        //printf("%0.7f\n",ans);
+    }
+    return 0;
+} 

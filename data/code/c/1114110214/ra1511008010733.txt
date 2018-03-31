@@ -1,0 +1,186 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define get getchar_unlocked
+        
+    inline int scan()
+    {
+	    int n=0,s=1;
+	    char p=get();
+	    if(p=='-') s=-1;
+	    while((p<'0'||p>'9')&&p!=EOF&&p!='-') p=get();
+	    if(p=='-') s=-1,p=get();
+	    while(p>='0'&& p<='9') { n = (n<< 3) + (n<< 1) + (p - '0'); p=get(); }
+	    return n*s;
+    }
+ 
+    inline unsigned long  scan2(){
+	    unsigned long  n=0,s=1;
+	    char p=get();
+	    if(p=='-') s=-1;
+	    while((p<'0'||p>'9')&&p!=EOF&&p!='-') p=get();
+	    if(p=='-') s=-1,p=get();
+	    while(p>='0'&&p<='9') { n = (n<< 3) + (n<< 1) + (p - '0'); p=get(); }
+	    return n*s;
+    }
+ 
+        
+    inline unsigned long long  scan3(){
+	    unsigned long long  n=0,s=1;
+	    char p=get();
+	    if(p=='-') s=-1;
+	    while((p<'0'||p>'9')&&p!=EOF&&p!='-') p=get();
+	    if(p=='-') s=-1,p=get();
+	    while(p>='0'&&p<='9') { n = (n<< 3) + (n<< 1) + (p - '0'); p=get(); }
+	    return n*s;
+    }
+ 
+       inline long long  scan4(){
+	    long long  n=0,s=1;
+	    char p=get();
+	    if(p=='-') s=-1;
+	    while((p<'0'||p>'9')&&p!=EOF&&p!='-') p=get();
+	    if(p=='-') s=-1,p=get();
+	    while(p>='0'&&p<='9') { n = (n<< 3) + (n<< 1) + (p - '0'); p=get(); }
+	    return n*s;
+    }
+ 
+ 
+
+#define MAX (100000)       
+unsigned long long E[100001];       
+ 
+
+#include<stdlib.h>
+#include<stdio.h>
+ 
+
+void merge(unsigned long long arr[], unsigned long long l, unsigned long long m, unsigned long long r)
+{
+    unsigned long long i, j, k;
+    unsigned long long n1 = m - l + 1;
+    unsigned long long n2 =  r - m;
+ 
+    unsigned long long L[n1], R[n2];
+ 
+
+    for(i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for(j = 0; j < n2; j++)
+        R[j] = arr[m + 1+ j];
+ 
+ 
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+ 
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+void mergeSort(unsigned long long arr[], unsigned long long l, unsigned long long r)
+{
+    if (l < r)
+    {
+        unsigned long long m = l+(r-l)/2; 
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }
+}
+ 
+int main(int argc, char** argv) {
+    unsigned long long T,N,K,i,tmp;
+    unsigned long long Sum,R,ltemp;
+    T=scan();
+    while(T--){
+        N=scan3();
+        K=scan3();
+        for(i=0;i<K;i++){
+            E[i]=scan();
+        }
+        if(K==0){
+            Sum=N*(1+N);
+            Sum>>=1;
+            R=Sum+1;
+            if((R%2)==0){
+                printf("Mom");
+            }else{
+                printf("Chef");
+            }
+            printf("\n");
+            continue;
+        }
+        mergeSort(E,0,K-1);
+        Sum=0;
+        Sum=E[0]*(E[0]-1);
+        Sum>>=1;
+        if(Sum<E[0]){
+            R=Sum+1;
+            if((R%2)==0){
+                printf("Mom");
+            }else{
+                printf("Chef");
+            }
+             printf("\n");
+            continue;
+        }
+        
+        for(i=1;i<K;i++){     
+            
+            if((E[i]-E[i-1])>1){
+                ltemp=(E[i]+E[i-1]);
+                ltemp*=(E[i]-E[i-1]-1);
+                ltemp>>=1;
+                Sum+=ltemp;
+            }
+            if(Sum<E[i]){
+                R=Sum+1;
+                break;
+            }
+            
+        }
+        if(i==K){
+            ltemp=(N-E[i-1]);
+            ltemp*=(N+E[i-1]+1);
+            ltemp>>=1;
+            Sum+=ltemp;
+            R=Sum+1;
+        }
+        
+        
+        if((R%2)==0){
+            printf("Mom");
+        }else{
+            printf("Chef");
+        }
+        printf("\n");
+        
+        
+    }
+    return (EXIT_SUCCESS);
+}
+ 

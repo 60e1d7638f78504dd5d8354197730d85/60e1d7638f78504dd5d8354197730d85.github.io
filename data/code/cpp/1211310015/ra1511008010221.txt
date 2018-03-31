@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+#define ull unsigned long long
+
+ull minPyramidCost(ull arr[], ull N)
+{
+    ull *left = new ull[N];
+    ull *right = new ull[N];
+
+    left[0] = min(arr[0], (ull)1);
+
+    for (int i = 1; i < N; ++i)
+        left[i] = min(arr[i],
+                      min(left[i - 1] + 1, (ull)i + 1));
+
+    right[N - 1] = min(arr[N - 1], (ull)1);
+
+    for (int i = N - 2; i >= 0; --i)
+        right[i] = min(arr[i],
+                       min(right[i + 1] + 1, N - i));
+
+    ull tot[N];
+    for (int i = 0; i < N; ++i)
+        tot[i] = min(right[i], left[i]);
+
+    ull max_ind = 0;
+    for (int i = 0; i < N; ++i)
+        if (tot[i] > tot[max_ind])
+            max_ind = i;
+
+    ull cost = 0;
+    ull height = tot[max_ind];
+
+    for (int x = max_ind; x >= 0; --x)
+    {
+        cost += arr[x] - height;
+        if (height > 0)
+            --height;
+    }
+
+    height = tot[max_ind] - 1;
+    for (int x = max_ind + 1; x < N; ++x)
+    {
+        cost += arr[x] - height;
+        if (height > 0)
+            --height;
+    }
+    return cost;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        ull arr[n];
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        ull N = sizeof(arr)/sizeof(arr[0]);
+        cout << minPyramidCost(arr, N) << endl;
+    }
+    return 0;
+}

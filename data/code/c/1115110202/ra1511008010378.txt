@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,x,a[500],count=0;
+  scanf("%d",&x);
+  for(i=0;i<x;i++)
+  scanf("%d",&a[i]);
+  
+  for(i=0;i<x;i++){
+    for(j=i+1;j<x;j++){
+      if(a[i]==a[j]){
+        count++;
+      for(k=j;k<x;k++)
+        a[k]=a[k+1];
+      x--;  
+      }
+    }
+    printf("%d occurs %d times\n",a[i],count+1);
+    count=0;
+  }
+
+	return 0;
+}

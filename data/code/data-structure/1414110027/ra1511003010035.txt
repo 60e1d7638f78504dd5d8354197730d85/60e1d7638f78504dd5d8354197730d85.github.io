@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#define MAXN 100000
+#define INF INT_MIN
+ 
+typedef struct _SCORE {
+  int time; 
+  int score;
+} SCORE;
+SCORE a[MAXN];
+void merge(int p, int q, int r); 
+ 
+void merge_sort(int p, int r)
+{
+  int q;
+  if (p < r) {     
+    q = (p + r) / 2;                   
+    merge_sort(p, q);     
+    merge_sort(q + 1, r);   
+    merge(p, q, r);                 
+  }     
+}
+ 
+void merge(int p, int q, int r)
+{
+  SCORE *left, *right; 
+  int i, j, k; 
+ 
+  left = (SCORE *) malloc(sizeof(SCORE) * (q - p + 2));
+  right = (SCORE *) malloc(sizeof(SCORE) * (r - q + 1));
+    
+  for (i = 0; i < q - p + 1; i++)
+    left[i] = a[p + i]; 
+  for (i = 0; i < r - q; i++)  
+    right[i] = a[q + 1 + i];
+  left[q - p + 1].score = right[r - q].score = INF; 
+ 
+  i = j = 0;
+  for (k = p; k <= r; k++) {     
+    if (left[i].score >= right[j].score)  
+      a[k] = left[i++]; 
+    else                   
+      a[k] = right[j++];
+  }     
+ 
+  free(left);
+  free(right);
+}
+ 
+int main()
+{
+  int i, j;
+  int n, q, k, sum;
+ 
+  scanf("%d %d", &n, &q);
+  for (i = 0; i < n; i++)
+    scanf("%d", &a[i].time);
+  for (i = 0; i < n; i++)
+    scanf("%d", &a[i].score);
+ 
+  merge_sort(0, n - 1);
+ 
+  for (i = 0; i < q; i++) {
+    scanf("%d", &k);
+    sum = 0;
+    for (j = 0; j < k; j++)
+      sum += a[j].time;
+    printf("%d\n", sum);
+  }
+  return 0;}

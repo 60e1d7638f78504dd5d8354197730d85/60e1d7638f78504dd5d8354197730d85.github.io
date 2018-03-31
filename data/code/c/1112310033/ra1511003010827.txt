@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<math.h>
+main()
+{
+	int t,r,i;
+	double x[3],y[3],a,b,c;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&r);
+		for(i=0;i<3;i++)
+		 scanf("%lf %lf",&x[i],&y[i]);
+		a=sqrt(pow(x[0]-x[1],2)+pow(y[0]-y[1],2));
+		b=sqrt(pow(x[1]-x[2],2)+pow(y[1]-y[2],2));
+		c=sqrt(pow(x[0]-x[2],2)+pow(y[0]-y[2],2));
+		if(a>r&&b>r||a>r&&c>r||b>r&&c>r)
+		 printf("no\n");
+		else printf("yes\n"); 
+	}
+} 

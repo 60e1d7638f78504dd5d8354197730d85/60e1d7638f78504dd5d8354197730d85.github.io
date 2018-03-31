@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+
+int main()
+{
+  int r;
+  scanf("%d",&r);
+    int array[r][r];
+    int row, col, isUpper;
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<r; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    
+    isUpper = 1;
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<r; col++)
+        {
+            
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    if(isUpper == 1)
+    {
+        printf("yes");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

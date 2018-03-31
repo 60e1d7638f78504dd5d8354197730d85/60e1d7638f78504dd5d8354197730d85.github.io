@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int l,i,n,k=0;
+char a[101],c[100][101],b[101];
+scanf("%s",a);
+strcpy(b,a);
+scanf("%d",&n);
+l=strlen(a);
+for(i=0;i<n;i++)
+{
+scanf("%s",c[i]);
+if(strncmp(c[i],a,l)==0)
+{
+if(k==0)
+{
+strcpy(b,c[i]);
+k++;
+}
+if(strcmp(b,c[i])>0)
+strcpy(b,c[i]);
+}
+}
+printf("%s",b);
+
+return(0);
+}

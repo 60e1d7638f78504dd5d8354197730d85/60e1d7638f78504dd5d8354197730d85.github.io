@@ -1,0 +1,28 @@
+#include <stdio.h>
+void getmin(int a[], int n)
+{
+  int min=99999, i, t;
+  for(i=0;i<n;i++)
+    if(a[i]<min)
+      min=a[i];
+  printf("%d", min);
+}
+  
+int main()
+{
+  int n, i, t, min=99999;
+  scanf("%d", &n);
+  int a[n];
+  for(i=0;i<n;i++)
+    scanf("%d ", &a[i]);
+  for(i=0;i<n;i++)
+    if(a[i]<min)
+    {
+      min=a[i];
+      t=i;
+    }
+  a[t]=99999;
+  getmin(a, n);
+
+	return 0;
+}

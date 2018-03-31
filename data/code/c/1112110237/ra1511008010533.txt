@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<limits.h>
+ 
+unsigned long long lcm1(unsigned long long a, unsigned long long b)
+{
+    if (a==0 || b==0)
+        return 0;
+    else
+    {
+ 
+        unsigned long long a1=a,b1=b,r,lcm;
+        while(b1!=0)
+        {
+            r=a1%b1;
+            a1=b1;
+            b1=r;
+        }
+ 
+        return ((a*b)/a1);
+    }
+}
+unsigned long long lcm(int count)
+{
+    int i,j;
+    unsigned long long int time[count],result,t;
+    result=1000000000000000000;
+    for(i=0;i<count;i++)
+        scanf("%lld",&time[i]);
+    for(i=0;i<count;i++)
+    {
+        for(j=i+1;j<count;j++)
+        {
+            if(time[i]>result || time[j]>result)
+                continue;
+            t=lcm1(time[i],time[j]);
+ 
+            if(result>t)
+                result=t;
+        }
+    }
+    return result;
+ 
+}
+int main()
+{
+    int itr,i,j;
+    scanf("%d",&itr);
+    int count;
+    unsigned long long result[itr];
+    for(i=0;i<itr;i++)
+    {
+        scanf("%d",&count);
+        result[i]=lcm(count);
+    }
+    for(i=0;i<itr;i++)
+    {
+        printf("%lld\n",result[i]);
+    }
+  return 0;
+}
+ 
+ 
+      

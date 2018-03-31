@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int a[100],n,freq=1,i;
+  cin>>n;
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  int j;
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(a[i]==a[j] && i!=j && a[i]!=-1)
+      {
+        freq++;
+        a[j]=-1;
+      }
+    }
+    if(a[i]>=0)
+    cout<<a[i]<<" occurs "<<freq<<" times"<<endl;
+    freq=1;
+  }
+	return 0;
+}

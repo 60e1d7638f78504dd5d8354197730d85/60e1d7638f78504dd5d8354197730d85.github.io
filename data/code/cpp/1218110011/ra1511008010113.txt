@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class C1{
+  float length;
+  float breadth;
+  public:
+  void get(){
+    cin>>length>>breadth;
+  }
+  float get_length(){
+    return length;
+  }
+  float get_breadth(){
+    return breadth;
+  }
+};
+class C2:public C1{
+  float peri;
+  public:
+  void calc_peri(){
+    peri=2*(get_length()+get_breadth());
+  }
+  float get_peri(){
+    calc_peri();
+    return peri;
+  }
+};
+class C3:public C2{
+  float cost;
+  public:
+  void calc_cost(){
+    cost=get_peri()*5;
+    cout<<cost;
+  }
+};
+int main()
+{
+    C3 c;
+    c.get();
+    c.calc_cost();
+	return 0;
+}

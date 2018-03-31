@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{	
+	int t;
+ 	int counter = 0;
+  	int pointer = 0;
+  	int a, b;
+  	int pairs[100];
+  
+  	scanf("%d", &t);
+  
+  	while(counter < t) {
+      scanf("%d %d", &a, &b);
+      
+      pairs[counter + pointer] = a;
+      pointer += 1;
+      pairs[counter + pointer] = b;
+      
+      counter++;
+    }
+  
+  	counter = 0;
+  	pointer = 0;
+  	while(counter < t) {
+      a = pairs[counter + pointer];
+      pointer += 1;
+      b = pairs[counter + pointer];
+      
+      if(a < b) printf("<\n");
+      else if(a > b) printf(">\n");
+      else printf("=\n");
+      
+      counter++;
+    }
+	return 0;
+}

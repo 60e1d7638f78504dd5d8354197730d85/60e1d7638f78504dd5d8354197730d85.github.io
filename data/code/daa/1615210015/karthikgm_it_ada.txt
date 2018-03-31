@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int **cache;
+ 
+int max(int a,int b,int c)
+{
+  if(a>b)
+  {
+    if(a>c)
+    {
+      return a;
+    }
+    else
+    {
+      return c;
+    }
+  }
+  else
+  {
+    if(b>c)
+    {
+      return b;
+    }
+    else
+    {
+      return c;
+    }
+  }
+}
+ 
+int maxchoc(int** c,int n,int i,int j)
+{
+  if(i==n-1)
+  {
+    return c[i][j];
+  }
+  else if(cache[i][j]!=-1)
+  {
+    return cache[i][j];
+  }
+  else
+  {
+    if(j==0)
+    {
+      return(cache[i][j]=c[i][j]+max(-1,maxchoc(c,n,i+1,j),maxchoc(c,n,i+1,j+1)));
+    }
+    else if(j==n-1)
+    {
+      return(cache[i][j]=c[i][j]+max(maxchoc(c,n,i+1,j-1),maxchoc(c,n,i+1,j),-1));
+    }
+    else 
+    {
+      return(cache[i][j]=c[i][j]+max(maxchoc(c,n,i+1,j-1),maxchoc(c,n,i+1,j),maxchoc(c,n,i+1,j+1)));
+    }
+ 
+  }
+}
+ 
+int main()
+{
+  int n,**c,i,j,choc,maxch=0;
+  scanf("%d",&n);
+  c=(int**)malloc(sizeof(int*)*n);
+  cache=(int**)malloc(sizeof(int*)*n);
+  for(i=0;i<n;i++)
+  {
+    c[i]=(int*)malloc(sizeof(int)*n);
+    cache[i]=(int*)malloc(sizeof(int)*n);
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&c[i][j]);
+      cache[i][j]=-1;
+    }
+  }
+  for(j=0;j<n;j++)
+  {
+    choc=maxchoc(c,n,0,j);
+    if(choc>maxch)
+    {
+      maxch=choc;
+    }
+  }
+ 
+  printf("%d\n",maxch);
+  return 0;
+}

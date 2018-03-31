@@ -1,0 +1,43 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+class TestClass
+{   public static long gcd(long a, long b)
+    {
+       if (b==0){
+         return a;   
+       }
+       return gcd(b, a%b);
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc1 = new Scanner(System.in);
+		int tc = sc1.nextInt();
+		int ch=0;
+		while(ch<tc){
+		    int n = sc1.nextInt();
+		    long[] arr = new long[n];
+		    for(int i=0;i<n;i++){
+		        arr[i]=sc1.nextLong();
+		    }
+		    long min = -1;
+		    for(int i=0;i<n;i++){
+		        for(int j=i+1;j<n;j++){
+		            if(i==0&&j==1){
+		                min = (arr[i]*arr[j])/gcd(Math.max(arr[i],arr[j]),Math.min(arr[i],arr[j]));
+		            } 
+		            else{
+		                long val =(arr[i]*arr[j])/gcd(Math.max(arr[i],arr[j]),Math.min(arr[i],arr[j]));
+		                if(val<min){
+		                    min=val;
+		                }
+		            }
+		        }
+		    }
+		    System.out.println(min);
+		    ch++;
+		}
+	}
+}

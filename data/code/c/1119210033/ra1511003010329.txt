@@ -1,0 +1,77 @@
+#include <stdio.h>
+ 
+#define COMPARTMENTS 9
+ 
+int comp[55];
+int free_seats[COMPARTMENTS];
+ 
+long long int combination(int a, int b)
+{
+	int c, d = 1;
+	long long int ans = 1;
+	
+	if (a < b)
+		return 0;
+	else if (a == b)
+		return 1;
+		
+	c = a - b + 1;
+	
+	while (c <= a)
+	{
+		ans *= c;
+		ans /= d;
+		d++;
+		c++;
+	}
+	
+	return ans;
+}
+ 
+long long int cal_booking_ways(char car[], int friends)
+{
+	int i;
+	long long int ans = 0;
+	
+	for (i=0; i<COMPARTMENTS; i++)
+		free_seats[i] = 0;
+	
+	i = 0;
+	
+	while (car[i])
+	{
+		if (car[i] == '0')
+			free_seats[comp[i+1] - 1]++;
+		i++;
+	}
+	
+	for (i=0; i<COMPARTMENTS; i++)
+		ans += combination(free_seats[i], friends);
+	
+	return ans;
+}
+ 
+int main ()
+{
+	int i, x, n;
+	long long int ans = 0LL;
+	char car[100];
+	
+	for (i=1; i<=36; i++)
+		comp[i] = (i + 3) / 4;
+	
+	for (; i<=54; i++)
+		comp[i] = 10 - (i - 35) / 2;
+	
+	scanf ("%d %d", &x, &n);
+	
+	for (i=0; i<n; i++)
+	{
+		scanf ("%s", car);
+		
+		ans += cal_booking_ways(car, x);
+	}
+	
+	printf ("%lld\n", ans);
+	return 0;
+} 

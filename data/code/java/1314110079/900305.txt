@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+        int large=0;
+		Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int[] a = new int[n];
+        for(int i =0;i<n;i++)
+        {
+           a[i] = s.nextInt();
+        }
+       int seclarge= 0, small=a[0],secsmall=a[0];
+       for(int i=0;i<n;i++)
+       {
+       if ( a[i] > large)
+       {
+          //System.out.println(a[i]);
+          seclarge=large;
+          large=a[i];
+       }
+         else if (a[i] > seclarge)
+         {
+           seclarge=a[i];
+         }
+         
+         if (a[i] < small)
+         {
+           secsmall = small;
+            small = a[i];
+         }
+         else if (a[i] < small)
+         {
+           secsmall = a[i];
+         }
+       }
+       
+       System.out.println("Second Largest:" + seclarge);
+       System.out.println("Smallest:"+small);
+	}
+}

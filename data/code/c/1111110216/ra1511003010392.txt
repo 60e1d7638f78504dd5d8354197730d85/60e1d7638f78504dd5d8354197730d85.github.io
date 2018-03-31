@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+int a,b,numerator,denominator,gcd,lcm,remainder;
+  scanf("%d%d",&a,&b);
+  if(a>b)
+  {
+    numerator = a;
+    denominator = b;
+  }
+  else
+  {
+    numerator = b;
+    denominator = a;
+  }
+  remainder = numerator%denominator;
+  while(remainder!=0)
+  {
+    numerator = denominator;
+    denominator = remainder;
+    remainder = numerator%denominator;
+  }
+  gcd = denominator;
+  lcm = a*b/gcd;
+  printf("%d %d",gcd,lcm);
+	return 0;
+}

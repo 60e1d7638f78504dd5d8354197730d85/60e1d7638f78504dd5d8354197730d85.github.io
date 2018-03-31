@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+struct student
+{
+char name[20];
+  int roll;
+}st[15];
+int main()
+{
+int i,j,n,temp;
+  char ch[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  scanf("%s%d",st[i].name,&st[i].roll);
+  }
+  for(i=0;i<n-1;i++)
+  {
+  for(j=0;j<n-1;j++)
+  {
+  if(strcmp(st[j].name,st[j+1].name)>0)
+  {
+  strcpy(ch,st[j].name);
+    strcpy(st[j].name,st[j+1].name);
+    strcpy(st[j+1].name,ch);
+    temp=st[j].roll;
+    st[j].roll=st[j+1].roll;
+    st[j+1].roll=temp;
+  }
+  }
+  }
+  printf("After sorting\nName ID\n");
+  for(i=0;i<n;i++)
+  {
+  printf("%s %d\n",st[i].name,st[i].roll);
+  }
+	return 0;
+}

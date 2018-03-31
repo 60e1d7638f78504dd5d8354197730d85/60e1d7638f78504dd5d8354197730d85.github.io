@@ -1,0 +1,38 @@
+#include <stdio.h>
+void maxele(int);
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    maxele(n);
+	return 0;
+}
+void maxele(int n)
+{
+    long long int a[100],i,j,k=0,max=0,b[500];
+    for(i=1;i<=n;i++)
+    {
+        scanf("%lld",&a[i]);
+    }
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            b[k]=(a[i]%a[j]);
+            //printf("%lld %lld\n",b[k],k);
+            k++;
+        }
+    }
+     max=b[0];
+    //printf("%lld\n",k);
+    for(i=1;i<k;i++)
+    {
+       if(max<b[i])
+       {
+           max=b[i];
+       }
+      //printf("%lld\n",max);
+       
+    }
+    printf("\n%lld",max);
+}

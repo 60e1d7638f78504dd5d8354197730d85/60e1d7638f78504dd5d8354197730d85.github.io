@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        Scanner bucky=new Scanner(System.in);
+        int tc=bucky.nextInt();
+        for(int i=0;i<tc;i++){
+            long first=bucky.nextLong();
+            long second=bucky.nextLong();
+            int count=carries(first,second);
+            if(count==0){
+                System.out.println("0");
+            }else{
+                if(count==1){
+                    System.out.println("1");
+                }else{
+                    System.out.println(count);
+                }
+            }
+        }
+    }
+    public static int carries(long first,long second){
+        int count=0;
+        int carry=0;
+        while(first>0 && second >0){
+            int f=(int)(first%10);
+            int s=(int)(second%10);
+            if((f+s+carry)>9){
+                count++;
+            }
+            carry=(f+s+carry)/10;
+            first=first/10;
+            second=second/10;
+        }
+        while(first>0){
+            int f=(int)(first%10);
+            if((f+carry)>9){
+                count++;
+            }
+            carry=(f+carry)/10;
+            first=first/10;
+ 
+        }
+        while(second>0){
+            int s=(int)(second%10);
+            if((s+carry)>9){
+                count++;
+            }
+            carry=(s+carry)/10;
+            second=second/10;
+        }
+ 
+        return count;
+    }
+}
+ 
+ 

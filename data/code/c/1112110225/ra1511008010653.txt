@@ -1,0 +1,34 @@
+#include <stdio.h>
+int hcf(int a,int b)
+{
+  int c;
+  while(a!=b)
+  {
+    a=a-b;
+    if(a<b)
+    {
+      c=a;a=b;b=c;
+    }
+  }
+  return (a);
+}
+int main()
+{
+  int t,s1,s2,p,q;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&s1);
+    scanf("%d",&s2);
+    q=abs(s1-s2);
+    s1=abs(s1);
+    s2=abs(s2);
+    if (s1>s2)
+      p=hcf(s1,s2);
+    else
+      p=hcf(s2,s1);
+    printf("%d\n",q/p);
+  }
+   
+	return 0;
+}

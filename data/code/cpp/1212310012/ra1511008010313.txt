@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+#define FIO ios_base::sync_with_stdio(0); cin.tie(0);
+#define T() int tt; cin>>tt; while(tt--)
+#define mp make_pair
+#define pb push_back
+#define lchild (2*node+1)
+#define rchild (2*node+2)
+#define f first
+#define s second
+#define br cout<<endl
+#define MOD (1000000007LL)
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int, int> ii;
+ 
+ll gcd(ll a, ll b){
+    if(b==0)return a;
+    else gcd(b, a%b);
+}
+ 
+ull pwr(ull base, ull p, ull mod=MOD){
+    ull ans = 1;
+    while(p){
+        if(p&1)ans=((ans%mod) * (base%mod))%mod;
+        base=((base%mod) * (base%mod))%mod;
+        p/=2;
+    }
+    return ans;
+}
+ 
+ 
+int main(){
+    FIO
+    T(){
+ 
+        ull a, b, n, n1, n2, res, res1, res2;
+        cin >> a >> b >> n;
+        n1 = n/2 + 1;
+        n2 = n/2;
+        if(!(n&1)){
+           res = max(a,b)/min(a,b);
+           cout << res << endl;
+        }
+        else{
+            res1 = (pow(2,n1-n2) * a)/b;
+            res2 = (pow(2,n2-n1) * b)/a;
+            cout << max(res1,res2) << endl;
+        }
+ 
+ 
+    }
+ 
+ 
+return 0;
+}

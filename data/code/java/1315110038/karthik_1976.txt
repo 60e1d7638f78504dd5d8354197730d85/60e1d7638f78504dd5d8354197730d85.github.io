@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Election obj = new Election();
+       obj.getVotes();
+       obj.displayResults();
+	}
+}
+
+class Election
+{
+  public int arr [];
+  int disqualified = 0;
+  public Election()
+  {
+    arr = new int[5];
+  }
+  public void getVotes()
+  {
+     Scanner sc = new Scanner(System.in);
+     int size = sc.nextInt();
+    
+    for(int i = 0; i < size; i++)
+    {
+      int num = sc.nextInt();
+      if(num >=1 && num <=5)
+          arr[num - 1]++;
+      else
+          disqualified++;
+        
+    }  
+  }
+  
+  public void displayResults()
+  {
+    for(int i = 0; i < 5; i++)
+    {
+      System.out.println("Candidate " + (i + 1) + " are: "+arr[i]);
+    }
+    System.out.println("Disqualified="+disqualified);
+  }
+}

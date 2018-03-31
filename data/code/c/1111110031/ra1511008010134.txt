@@ -1,0 +1,39 @@
+#include <stdio.h>
+void dec_oct(long int num)   
+{
+long int rem[50],i=0,length=0;
+while(num>0)
+ {
+ rem[i]=num%8;
+ num=num/8;
+ i++;
+ length++;
+ }
+printf("Octal value:");
+     for(i=length-1;i>=0;i--)
+             printf("%ld",rem[i]);
+}
+
+int main()
+{
+	long int a;
+  	long int remainder,quotient;
+	int i=1,j,temp;
+	char hexadecimalNumber[100];
+  	scanf("%ld",&a);
+  	printf("Decimal value:%ld\n",a);
+	dec_oct(a);
+  	quotient = a;
+	while(quotient!=0) {
+		temp = quotient % 16;
+		if( temp < 10)
+		           temp =temp + 48; else
+		         temp = temp + 87;
+		hexadecimalNumber[i++]= temp;
+		quotient = quotient / 16;
+	}
+	printf("\nHexadecimal value:");
+	for (j = i -1 ;j> 0;j--)
+	      printf("%c",hexadecimalNumber[j]);
+	return 0;
+}

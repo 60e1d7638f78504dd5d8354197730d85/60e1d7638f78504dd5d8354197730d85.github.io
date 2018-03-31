@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+int t,h,m,s,i,j;
+scanf("%d",&t);
+while(t--)
+    {
+    scanf("%d%d",&h,&m);
+    s=0;
+    for(i=0; i<h && i<10; i++)
+        {
+        for(j=0; j<m && j<10; j++)
+            if(i==j)
+                s++;
+        }
+    for(i=1,j=11; j<m && i<h ; j+=11,i++)
+                s++;
+    for(i=11,j=1; j<m && i<h ; i+=11,j++)
+                s++;
+    for(i=11; i<h;i+=11)
+        for(j=11; j<m && j<100 ; j+=11)
+            if(i==j)
+                s++;
+        printf("%d\n",s);
+    }
+return 0;
+}

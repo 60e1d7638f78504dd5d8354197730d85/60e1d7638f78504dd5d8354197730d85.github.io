@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int array[100], pos, c, n, value,d,t;
+   scanf("%d", &n);
+ 
+   for (c = 0; c < n; c++)
+      scanf("%d", &array[c]);
+   scanf("%d", &pos);
+   scanf("%d", &value);
+ 
+   for (c = n - 1; c >= pos; c--)
+      array[c+1] = array[c];
+ 
+   array[pos] = value;
+ 
+   printf("\nBefore sorting");
+ 
+   for (c = 0; c <= n; c++)
+      printf("\n%d", array[c]);
+ for (c = 1 ; c <= n; c++) {
+    d = c;
+ 
+    while ( d > 0 && array[d-1] > array[d]) {
+      t          = array[d];
+      array[d]   = array[d-1];
+      array[d-1] = t;
+ 
+      d--;
+    }
+  }
+ 
+  printf("\nAfter sorting");
+ 
+  for (c = 0; c <= n; c++) {
+    printf("\n%d", array[c]);
+  }
+
+	return 0;
+}

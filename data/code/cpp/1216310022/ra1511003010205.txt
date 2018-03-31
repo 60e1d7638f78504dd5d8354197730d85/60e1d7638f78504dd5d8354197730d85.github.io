@@ -1,0 +1,128 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+// Swapping two values.
+void swap(int *a, int *b)
+{
+	int temp; 
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+ 
+// Partitioning the array on the basis of values at high as pivot value.
+int Partition(int a[], int low, int high)
+{
+	int pivot, index, i;
+	index = low;
+	pivot = high;
+ 
+	// Getting index of pivot.
+	for(i=low; i < high; i++)
+	{
+		if(a[i] < a[pivot])
+		{
+			swap(&a[i], &a[index]);
+			index++;
+		}
+	}
+	// Swapping value at high and at the index obtained.
+	swap(&a[pivot], &a[index]);
+ 
+	return index;
+}
+ 
+// Implementing QuickSort algorithm.
+int QuickSort(int a[], int low, int high)
+{
+	int pindex;
+	if(low < high)
+	{
+		// Partitioning array using randomized pivot.
+		pindex = Partition(a, low, high);
+		// Recursively implementing QuickSort.
+		QuickSort(a, low, pindex-1);
+		QuickSort(a, pindex+1, high);
+	}
+	return 0;
+}
+ 
+int main()
+{
+	int n, i, high, low, k;
+	double d1,d2, median;
+
+	cin>>n;
+ 
+	int a[n];
+	// Taking input of the data set.
+	for(i = 0; i < n; i++)
+	{
+		
+		cin>>a[i];
+	}
+ 
+	
+	cin>>k;
+ 
+	// Sort the data.
+	QuickSort(a, 0, n-1);
+ 
+	
+	if(n%2 == 1)
+	{
+		median = a[n/2];
+		high = n/2+1;
+		low = n/2;
+ 
+		// Loop to search for the next element generating minimum difference from median.
+		while(k > 0)
+		{
+			// If difference from the first half element is minimum.
+			if((median-a[low] <= a[high]-median) && low >= 0)
+			{
+				cout<<" "<<a[low];
+				low--;
+				k--;
+			}
+			// If difference from the Second half element is minimum.
+			else if((median-a[low] > a[high]-median) && high <= n-1)
+			{
+				cout<<" "<<a[high];
+				high++;
+				k--;
+			}
+		}
+	}
+	else
+	{
+		// Need to use floating variable since the median can be in the fractional form.
+		d1 = a[n/2];
+		d2 = a[n/2-1];
+		median = (d1+d2)/2;
+		high = n/2;
+		low = n/2-1;
+		while(k > 0)
+		{
+			d1 = a[low];
+			d2 = a[high];
+			// If difference from the first half element is minimum.
+			if((median-d2 <= d1-median) && low >= 0)
+			{
+				cout<<" "<<a[low];
+				low--;
+				k--;
+			}
+			// If difference from the Second half element is minimum.
+			else if((median-d2 > d1-median) && high <= n-1)
+			{
+				cout<<" "<<a[high];
+				high++;
+				k--;
+			}
+		}
+	}
+ 
+	return 0;
+}

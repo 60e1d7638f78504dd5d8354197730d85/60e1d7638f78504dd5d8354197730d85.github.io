@@ -1,0 +1,59 @@
+#include <iostream>
+#include <sstream>
+
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    string res;
+    int count = 0;
+    while (n > 0) {
+        switch (n % 10) {
+            case 1:
+                res += "One ";
+                break;
+            case 2:
+                res += "Two ";
+                break;
+            case 3:
+                res += "Three ";
+                break;
+            case 4:
+                res += "Four ";
+                break;
+            case 5:
+                res += "Five ";
+                break;
+            case 6:
+                res += "Six ";
+                break;
+            case 7:
+                res += "Seven ";
+                break;
+            case 8 :
+                res += "Eight ";
+                break;
+            case 9:
+                res += "Nine ";
+                break;
+            default:
+                res += "Zero ";
+                break;
+        }
+        n /= 10;
+        count++;
+    }
+    string arr[count];
+    int i = 0;
+    stringstream ssin(res);
+    while (ssin.good() && i < count) {
+        ssin >> arr[i];
+        ++i;
+    }
+    for (i = count - 1; i >= 0; i--) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}

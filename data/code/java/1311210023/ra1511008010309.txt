@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	 public static void main(String[] args) throws Exception { 
+		  BufferedReader in = new BufferedReader(
+         new InputStreamReader( System.in )
+      );
+      PrintWriter out = new PrintWriter( System.out );
+      StringBuilder sb = new StringBuilder();
+      
+      int t = Integer.parseInt( in.readLine().trim() );
+      while ( t-- > 0 )
+      {
+         int n = Integer.parseInt( in.readLine().trim() );
+         String correct = in.readLine().trim();
+         String guesses = in.readLine().trim();
+         StringTokenizer st = new StringTokenizer( in.readLine().trim() );
+         int[] points = new int[n + 1];
+         for ( int i = 0; i < points.length; i++ )
+            points[i] = Integer.parseInt( st.nextToken() );
+         int total = 0;
+         for ( int i = 0; i < correct.length(); i++ )
+            if ( correct.charAt(i) == guesses.charAt(i) ) 
+               total += 1;
+         if ( total == correct.length() )
+            sb.append( points[ points.length - 1 ] ).append( "\n" );
+         else
+         {
+            int[] values = Arrays.copyOf( points, total + 1 );
+            Arrays.sort( values );
+            sb.append( values[ values.length - 1 ] ).append( "\n" );
+         }
+      }
+      
+      out.print( sb.toString() );
+      out.flush();
+	}
+}

@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair < int, int > pi;
+ 
+const int MAX_N = (int)3e5 + 123;
+ 
+int n;
+int a[505];
+ 
+ll gcd(int a, int b) {
+	while(a) {
+		swap(a, b);
+		a %= b;
+	}
+	return b;
+}
+ 
+int main() {
+	#ifdef Nick
+	freopen(".in","r",stdin);
+	freopen(".out","w",stdout);
+	#endif
+	int t;
+	cin >> t;
+	while(t--) {
+		cin >> n;
+		for (int i = 1; i <= n; i++)
+			cin >> a[i];
+		ll ans = (ll)1e18 + 123;
+		for (int i = 1; i <= n; i++)
+			for (int j = i + 1; j <= n; j++)
+				ans = min(ans, 1ll * a[i] * a[j] / gcd(a[i], a[j]));
+		cout << ans << endl;
+	}	   	
+	return 0;							
+}

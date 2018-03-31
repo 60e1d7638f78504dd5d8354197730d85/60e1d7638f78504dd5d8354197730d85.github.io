@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+	int i, t;
+	scanf("%d", &t);
+	for(i=0;i<t;i++)
+    {
+        double r, x1,y1, x2, y2, x3, y3, d1, d2, d3;
+        scanf("%lf", &r);
+        scanf("%lf%lf\n%lf%lf\n%lf%lf", &x1, &y1,  &x2, &y2, &x3, &y3);
+        d1=sqrt(pow(x2-x1,2) + pow(y2-y1,2));
+        d2=sqrt(pow(x3-x2,2) + pow(y3-y2,2));
+        d3=sqrt(pow(x3-x1,2) + pow(y3-y1,2));
+        if((d1<=r && d2<=r) || (d2<=r && d3<=r) || (d3<=r && d1<=r))
+            printf("yes\n");
+        else
+            printf("no\n");
+    }
+	return 0;
+}

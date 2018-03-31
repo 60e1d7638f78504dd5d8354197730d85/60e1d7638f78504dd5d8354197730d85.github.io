@@ -1,0 +1,39 @@
+#include<stdio.h>
+#define scan(x) scanf("%d",&x)
+#define f(x,y,z) for(x=y;x<z;x++)
+int ans;
+int main(){
+	int t;
+	scan(t);
+	while(t--){ans=0;
+	int n,stick[1001]={0};
+		scan(n);
+		int a[n],i;
+		f(i,0,n){
+			scan(a[i]);
+			stick[a[i]]++;
+			//printf("stick[%d]=%d \n",a[i],stick[a[i]]);
+		}
+		int side1=0,side2=0;
+		for(i=1000;i>0;i--){
+			if(stick[i]>=4&&(side1==0)){
+				ans=i;
+				ans=ans*ans;
+				break;
+			}
+			if(stick[i]>=2){
+				if(side1==0)
+				side1=i;
+				else {	side2=i;
+				//printf("side1=%d side2=%d \n",side1,side2);
+						ans=side1*side2;
+						break;
+					}
+				}
+			}
+			if(ans==0)
+			printf("-1\n");
+			else printf("%d\n",ans);
+		}
+		return 0;
+	} 

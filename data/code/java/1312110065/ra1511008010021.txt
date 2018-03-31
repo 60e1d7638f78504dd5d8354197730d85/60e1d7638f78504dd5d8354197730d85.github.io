@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class TestClass {
+    public static int calculateYears(double principal, double interest,  double tax, double desired) {
+    // your code
+    int count = 0;
+    while (principal < desired) {
+      double i = principal*interest;
+      i -= i*tax;
+      principal += i;
+      count++;
+    }
+    return count;
+  }
+	 public static void main(String[] args) { 
+             Scanner scan=new Scanner(System.in);
+             double principle,i_rate,t_rate,desired_sum;
+             int time;
+             principle=scan.nextDouble();
+             i_rate=scan.nextDouble();
+             t_rate=scan.nextDouble();
+             desired_sum=scan.nextDouble();
+             time=calculateYears(principle,i_rate,t_rate,desired_sum);
+             System.out.println(time);
+		
+	}
+}

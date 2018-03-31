@@ -1,0 +1,58 @@
+#include <iostream>
+#define SIZE 1000000 + 1
+
+using namespace std ;
+
+int Stack [ SIZE ] ;
+
+int main ( )
+{
+    int i , J , N, t , Top , temp, length ;
+
+    cin >> t;
+
+    while(t--){
+
+        cin >> N ;
+
+        for(int i = 0; i <= N; i++) Stack[i] = 0;          
+        Top =  0 ;
+
+        Stack [ 0 ]  =  - 1 ;
+        for  ( i =  0 ; i < N ; i ++ )
+        {
+            cin >> temp ;
+
+            if  ( temp > Stack [ Top ] )
+            {
+                Stack [ ++ Top ]  = temp ;                  
+            }
+            else                                            
+            {
+                int low =  1 , High = Top ;
+                int mid ;
+
+                while ( low <= High )                       
+                {
+                    mid =  ( low + High )  /  2 ;
+                    if  ( temp > Stack [ mid ] )
+                    {
+                        low = mid +  1 ;
+                    }
+                    else
+                    {
+                        High = mid -  1 ;
+                    }
+                }
+
+                Stack [ low ]  = temp ;
+            }
+        }
+
+        cin >> length;
+        if(length > Top) cout << "-1\n";            
+        else cout  << Stack[length] << "\n" ;
+    }
+
+    return  0 ;
+}

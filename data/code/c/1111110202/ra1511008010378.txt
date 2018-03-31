@@ -1,0 +1,56 @@
+#include <stdio.h>
+ 
+int main ()
+{
+  	int i;
+    char string [10];
+    scanf ("%s", string);
+     
+    //unsigned long length = strlen (string) - 1;
+  	int length=10;
+     
+    // true -> if we found any letter
+    int letter = 0;
+     
+    // checking if the first character is a capital letter 
+    if ( string [0] >= 'A' && string [0] <= 'Z' )
+        letter = 1;
+     
+    // checking if the first character is a small letter 
+    if ( string [0] >= 'a' && string [0] <= 'z' )
+        letter = 1;
+     
+    // true -> if there is no underscore at the end
+    int underScore = 1;
+     
+    // checking if there is any underscore at the end 
+    if ( string [length] == '_' )
+        underScore = 0;
+     
+    int flag = 0;
+     
+    // we have already checked the first character
+    // so starting the loop from 1 
+    for (i = 1; i <= length; i++ ) {
+         
+        // if we found an underscore, its a warning, flag++ 
+        if ( string [i] == '_' )
+            flag++;
+        else
+            flag = 0;
+         
+        // if flag == 2, we have two consecutive underscore 
+        if ( flag == 2 ) {
+            underScore = 0;
+            break;
+        }
+    }
+     
+    // if letter and uderscore both are true, then our identifier is clear
+    if ( letter==1 && underScore==1 )
+        printf ("valid identifier");
+    else
+        printf ("not a valid identifier\n");
+     
+    return 0;
+}

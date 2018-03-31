@@ -1,0 +1,31 @@
+#include<stdio.h>
+int main(){	
+	int t,i;
+	scanf("%d",&t);
+	for(i=1;i<=t;i++){
+        long  a,b,j;
+        scanf("%ld %ld",&a,&b);
+        long g,p,hcf,lcm;
+        p =a*b;
+        if(a>b){
+            g=b;
+        }
+        else{
+            g=a;
+        }
+        if(g % (p/g) == 0){
+        	hcf = p/g;
+       	}
+       	else{
+	     for(j = g;j >= 1;j--){
+	           if(a % j == 0 && b % j == 0){
+	               hcf=j;
+	               break;
+	           }
+	     }
+        }
+        lcm = p /hcf;
+        printf("%ld %ld\n",hcf,lcm);
+	}
+	return 0;
+} 

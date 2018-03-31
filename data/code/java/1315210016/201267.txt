@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+    public static void main(String args[]) {
+       Scanner sc = new Scanner(System.in);
+   
+       int T = sc.nextInt();
+       for(int i=0; i<T; i++){
+           int N = sc.nextInt();
+           int maxSpeed[] = new int[N];
+           int speed[] = new int[N];
+           for(int a=0; a<N; a++){
+               maxSpeed[a] = sc.nextInt();
+           }
+           speed[0] = maxSpeed[0];
+           for(int j=1; j<N; j++){
+               speed[j] = Math.min(maxSpeed[j], speed[j-1]);
+               
+           }
+           int answer =0;
+           for(int k=0; k<N; k++){
+               if(speed[k]==maxSpeed[k]){
+                   answer = answer + 1;
+               }
+           }
+           System.out.println(answer);
+       }
+    }
+ }

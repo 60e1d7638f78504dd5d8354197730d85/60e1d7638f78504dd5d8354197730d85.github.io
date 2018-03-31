@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+	int nums[] = {2048,1024,512,256,128,64,32,16,8,4,2,1};
+  	int T,t;
+  	scanf("%d",&T);
+  	for(t=0;t<T;t++) {
+     	int n;
+      	scanf("%d",&n);
+      	int sum = 0;
+      	int i;
+      	for(i=0;i<12;i++) {
+         	if(nums[i] <= n) {
+             	sum += n/nums[i];
+              	n %= nums[i];
+            }
+        }
+          	printf("%d\n",sum);
+    }
+	return 0;
+}

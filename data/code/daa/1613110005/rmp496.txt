@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+ios::sync_with_stdio(false);
+int T;
+cin>>T;
+while(T--)
+{
+int N;
+cin>>N;
+pair<int,int> happy[N],sad[N],indexwise[N];
+long long int netsad=0;
+for(int i=0;i<N;i++)
+{
+int x,y;
+cin>>x>>y;
+happy[i]=make_pair(x+y,i);
+indexwise[i]=make_pair(x,y);
+netsad+=y;
+}
+sort(happy,happy+N);
+cout<<happy[N-1].first+happy[N-2].first-netsad<<endl;
+}
+}

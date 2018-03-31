@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include<stdbool.h> 
+#define mod 1000000007
+ 
+static long long int a[110][110],b[110];
+ 
+long long int aa(int start,int end)
+{if(end<start)
+    return 0;
+ if(a[start][end]!=0)
+     return a[start][end];
+ int i,j,k;
+ long long int ans=0,f,f1;
+ ans=aa(start+1,end);
+ for(i=start+1;i<=end;i++)
+ { if(b[i]==-b[start])
+       {
+        f=aa(start+1,i-1)+1;
+         f=f%mod;
+         ans=ans+f;
+         ans%=mod;
+        f1=aa(i+1,end);
+        f=(f1*f)%mod;
+        ans=ans+f;
+        ans%=mod;
+       
+      }
+     
+ }
+ 
+ a[start][end]=ans;
+ return ans;
+}    
+int main(){
+ int i,j,k,n,x,y;
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {scanf("%lld",&b[i]);
+    }
+    if(n==1)
+        {printf("1");return 0;
+        }
+    
+    long long int ans=aa(1,n)+1;ans%=mod;
+     printf("%lld",ans);
+  return 0;
+}    

@@ -1,0 +1,50 @@
+#include <iostream>
+#include<math.h>
+#include<cstring>
+using namespace std;
+
+int SignedDecimalToBinary()
+{
+    long decimal = 1;
+    long remainder = 1;
+    long i = 1;
+    long sum = 0;
+
+    
+    cin >> decimal;
+
+    do
+    {
+
+        remainder = decimal %2;
+        sum = sum + (i * remainder);
+        decimal = decimal / 2;
+        i = i * 10;
+    }while (decimal < 0 || decimal > 0);
+
+    cout << sum;
+
+    return 0;
+}
+
+int binary_decimal(int n)
+{
+    int decimal = 0, i = 0, remainder;
+
+
+    while (n != 0)
+    {
+        remainder = n % 10;
+        n /= 10;
+        decimal += remainder * pow(2,i);
+        ++i;
+    }
+    return decimal;
+}
+
+
+int main()
+{
+    SignedDecimalToBinary();
+	 return 0;
+}

@@ -1,0 +1,28 @@
+#include<stdio.h>
+int conv(int num)
+{
+    if(num==0)
+    return 0;
+    
+    int digit=num%10;
+    if(digit==6)
+    digit=5;
+    
+   return conv(num/10)*10+digit;
+}
+int conv1(int num)
+{
+    if(num==0)
+    return 0;
+    int digit=num%10;
+    if(digit==5)
+    digit=6;
+    return conv1(num/10)*10+digit;
+}
+int main()
+{
+    int n,m;
+    scanf("%d %d",&n,&m);
+    printf("%d %d",conv(n)+conv(m),conv1(n)+conv1(m)); 
+  return 0;
+}

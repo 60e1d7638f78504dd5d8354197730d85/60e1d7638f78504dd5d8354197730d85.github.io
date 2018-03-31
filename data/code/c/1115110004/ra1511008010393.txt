@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+ 
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+ 
+#define MA 1000000000000000000
+#define M  1000000007
+#define MM 2000000000
+#define N  21
+#define K  100001
+typedef long long ll;
+typedef long double ld;
+ll n,m;
+char a[N];
+ll s[N][5]; 
+ll num(ll i, ll j) {
+  ll r=0, k, p;
+ 
+  if (i>j) return -1;
+  if (i!=j && a[i]=='0')
+    return -1;
+  for(k=i;k<=j;k++) {
+    p = a[k] - '0';
+    r=r*10 + p;
+  }
+  if (r > 1000000000000) return -1;
+  return r;
+}
+ll find(ll j, ll k) {
+  ll i,r, q;
+  if (k==1) {
+    q = num(0, j);
+    return q;
+  }
+  if (s[j][k]!=-1) return s[j][k];
+  s[j][k]=-1;
+  for(i=0;i<j;i++) {
+    r=find(i, k-1);
+    if (r==-1) continue;
+    q=num(i+1, j);
+    if (q==-1) continue;
+    s[j][k]=MAX(s[j][k], r + q);
+  }
+  return s[j][k];
+}
+int main() {
+  ll t;
+  ll i,j,k,h,l,q,r,b,c,d;
+ 
+  t=1;
+  scanf("%lld ", &t);
+while(t--) {
+    scanf("%s", a);
+    n=strlen(a);
+ memset(s, -1, sizeof(s));
+    r = find(n-1, 4);
+    if (r==-1)
+      puts("The output is:unlucky");
+    else
+      printf("The output is:%lld\n", r);
+  }
+}

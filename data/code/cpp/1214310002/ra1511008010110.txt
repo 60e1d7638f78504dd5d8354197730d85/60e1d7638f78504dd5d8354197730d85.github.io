@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class Perfect{
+ public:
+  int num1,num2;
+  void getnum()
+  {
+   	cin>>num1>>num2; 
+  }
+  
+  void calc()
+  {
+    int sum = 0;
+    for(int i=num1;i<=num2;i++)
+    {
+    	for(int j=1;j<i;j++)
+    	{
+     		if(i%j==0)
+          	  sum += j;
+    	}
+      	if(sum == i)
+          cout<<sum<<" ";
+      
+      	sum =0;
+    }
+  }
+};
+
+int main()
+{
+	Perfect p;
+  	p.getnum();
+  	p.calc();
+	return 0;
+}

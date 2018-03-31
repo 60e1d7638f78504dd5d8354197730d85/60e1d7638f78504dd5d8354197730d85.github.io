@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MOD 1000000007
+#define gc getchar_unlocked()												
+inline int inp(){register int n=0,s=1,c=gc;if(c=='-')s=-1;while(c<48)c=gc;while(c>47)n=(n<<3)+(n<<1)+c-'0',c = gc;return n*s;}
+#define pc(x) putchar_unlocked(x)
+inline void writeInt (int n)
+{register int N = n, rev, count = 0;rev = N; if (N == 0) { pc('0'); pc('\n'); return ;}						
+while ((rev % 10) == 0) { count++; rev /= 10;}rev = 0; while (N != 0) { rev = (rev<<3) + (rev<<1) + N % 10; N /= 10;}
+while (rev != 0) { pc(rev % 10 + '0'); rev /= 10;}while (count--) pc('0'); pc(' ');}
+#define endl '\n'
+#define ll long long
+#define vi vector<int>
+#define vll vector<ll>
+#define mp make_pair
+#define pb push_back
+#define p2i pair<int,int>
+#define p3i pair<int,p2i>
+#define mp3(i,j,k) mp(i,mp(j,k))
+ 
+int main()
+{
+	ios::sync_with_stdio(false);
+	int i,t,N,temp,ret;
+	t=inp();
+	int mid,begin,end;
+ 
+	while(t--)
+	{
+		vi A;
+		N=inp();
+		for(i=0;i<N;i++)
+		{
+			temp=inp();
+			if(i==0 || temp>=A[A.size()-1])
+				A.pb(temp);
+			else
+			{
+				begin=0;
+				end=A.size()-1;
+				while(1)
+				{
+					if(begin==end)
+					{
+						ret=begin;
+						break;
+					}
+					else if(begin+1==end)
+					{
+						if(A[begin]>temp)
+							ret= begin;
+						else
+							ret= end;
+						break;
+					}
+					mid=(begin+end)/2;
+					if(A[mid]<=temp)
+						begin = mid+1;
+					else
+						end = mid;
+				}
+				if(A[0]==A[ret])
+					ret = 0;
+				else while(A[ret]==A[ret-1])
+					ret--;
+				A[ret]=temp;
+			}
+		}
+		writeInt((int)A.size());
+		for(i=0;i<A.size();i++)
+			writeInt(A[i]);
+		pc('\n');
+	}
+	return 0;
+} 

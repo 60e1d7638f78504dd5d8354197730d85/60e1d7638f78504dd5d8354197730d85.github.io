@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <malloc.h>
+struct List {
+  int n;
+  struct List *next;
+}*start;
+int main()
+{
+  start=NULL;
+  struct List *end = start;
+  int n,i;
+  scanf("%d",&n);
+  int x;
+  struct List *temp = (struct List*) malloc(sizeof(struct List));
+  for(i=0;i<n;i++) {
+    scanf("%d",&x);
+    temp = (struct List*) malloc(sizeof(struct List));
+    temp->n = x;
+    temp->next = NULL;
+    if(start==NULL) {
+      start = temp;
+      end = temp;
+    }
+    else {
+      end->next = temp;
+      end = temp;
+    }
+  }
+  scanf("%d",&x);
+  int count=0;
+  temp = start;
+  printf("Linked list\n");
+  int a[n];
+  i=0;
+  while(temp!=NULL) {
+    if(temp->n==x) {
+      count++;
+    }
+    a[i] = temp->n;
+    i++;
+    temp = temp->next;
+  }
+  int j;
+  for(j=i-1;j>=0;j--) {
+    printf("-->%d",a[j]);
+  }
+  printf("\nCount of %d : %d",x,count);
+	return 0;
+}

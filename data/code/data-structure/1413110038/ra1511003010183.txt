@@ -1,0 +1,162 @@
+import java.io.*;
+import java.util.*;
+ 
+class TestClass {
+    
+    final static int len = 1414213;
+    
+    public static int lowerBound(long[] a, int l, int r, long k)
+    {
+        
+        int mid = 0, o = r;
+        while (l<=r)
+        {
+            mid = (l+r)/2;
+            if (mid == o) return mid;
+            if (a[mid] >= k) r = mid - 1;
+            else l = mid + 1;
+        }
+        return l;
+    }
+    
+    public static int upperBound(long[] a,int l, int r, long k)
+    {
+        
+        int mid = 0, o = r;
+        while (l<=r)
+        {
+            mid = (l+r)/2;
+            if (mid == o) return mid;
+            if (a[mid] > k) r = mid - 1;
+            else l = mid + 1;
+        }
+        return l;
+    }
+    
+    
+                   
+    public static void main(String args[] ) throws Exception {
+        
+        PrintWriter out = new PrintWriter(System.out);
+        Reader reader = new Reader(System.in);
+        
+        int t = reader.nextInt();
+        long a[] = new long[len];
+        for (int i=1; i<=len; i++)
+            a[i-1] = (long) i*(i+1)/2;
+        
+        for (int t_i=0; t_i<t; t_i++)
+        {
+            long l = reader.nextLong();
+            long r = reader.nextLong();
+            long count = 0;
+            for (int i=0; i<len; i++)
+            {
+                if (a[i]<=r)
+                {
+                    count += upperBound(a,0,i,r-a[i])-lowerBound(a,0,i,l-a[i]);
+                    count += (2*a[i]<=r && 2*a[i]>=l)?1:0;
+                }
+            }
+            out.println(count);
+                           
+        }
+        out.close();
+    }
+    static class Reader {
+ 
+        private InputStream stream;
+        private byte[] buf = new byte[8192];
+        private int curChar, snumChars;
+        private Reader.SpaceCharFilter filter;
+ 
+        public Reader(InputStream stream) {
+            this.stream = stream;
+        }
+ 
+        public int snext() {
+            if (snumChars == -1)
+                throw new InputMismatchException();
+            if (curChar >= snumChars) {
+                curChar = 0;
+                try {
+                    snumChars = stream.read(buf);
+                } catch (IOException e) {
+                    throw new InputMismatchException();
+                }
+                if (snumChars <= 0)
+                    return -1;
+            }
+            return buf[curChar++];
+        }
+ 
+        public int nextInt() {
+            int c = snext();
+            while (isSpaceChar(c))
+                c = snext();
+            int sgn = 1;
+            if (c == '-') {
+                sgn = -1;
+                c = snext();
+            }
+            int res = 0;
+            do {
+                if (c < '0' || c > '9')
+                    throw new InputMismatchException();
+                res *= 10;
+                res += c - '0';
+                c = snext();
+            } while (!isSpaceChar(c));
+            return res * sgn;
+        }
+ 
+        public long nextLong() {
+            int c = snext();
+            while (isSpaceChar(c))
+                c = snext();
+            int sgn = 1;
+            if (c == '-') {
+                sgn = -1;
+                c = snext();
+            }
+            long res = 0;
+            do {
+                if (c < '0' || c > '9')
+                    throw new InputMismatchException();
+                res *= 10;
+                res += c - '0';
+                c = snext();
+            } while (!isSpaceChar(c));
+            return res * sgn;
+        }
+ 
+        public int[] nextIntArray(int n) {
+            int a[] = new int[n];
+            for (int i = 0; i < n; i++)
+                a[i] = nextInt();
+            return a;
+        }
+ 
+        public String readString() {
+            int c = snext();
+            while (isSpaceChar(c))
+                c = snext();
+            StringBuilder res = new StringBuilder();
+            do {
+                res.appendCodePoint(c);
+                c = snext();
+            } while (!isSpaceChar(c));
+            return res.toString();
+        }
+ 
+        public boolean isSpaceChar(int c) {
+            if (filter != null)
+                return filter.isSpaceChar(c);
+            return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+        }
+ 
+        public interface SpaceCharFilter {
+            public boolean isSpaceChar(int ch);
+        }
+    }
+}

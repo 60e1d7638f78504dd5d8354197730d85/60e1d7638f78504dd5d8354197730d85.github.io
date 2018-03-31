@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int t,i;
+  char ticket[100];
+  scanf("%d",&t);
+  while(t--){
+    scanf("%s",ticket);
+    int successful=1;
+    char first_character = ticket[0];
+    char second_character = ticket[1];
+    if(first_character == second_character)
+      successful = 0;
+    for(i = 2; ticket[i] != '\0'; i++)
+    {
+      if( (i%2 == 0 && ticket[i] != first_character) || (i%2 == 1 && ticket[i] != second_character) )
+      {
+        successful = 0;
+        break;
+      }
+    }
+    printf(successful ? "YES\n" : "NO\n");
+  }
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define MAX_SIZE 100 // Maximum string size
+
+/* Function declaration */
+void replaceFirst(char * str, char oldChar, char newChar);
+
+
+int main()
+{
+char str[MAX_SIZE],oldChar,ncvn;
+
+    
+scanf("%s\n",str);
+scanf("%c\n",&oldChar);
+scanf("%c",&ncvn);
+    replaceFirst(str,oldChar,ncvn);
+
+    printf("%s",str);
+
+    return 0;
+}
+
+
+/**
+ * Replace first occurrence of a character with
+ * another in given string.
+ */
+void replaceFirst(char * str, char oldChar, char ncvn)
+{
+    int i=0;
+    while(str[i] != '\0')
+    {
+        /* If an occurrence of character is found */
+        if(str[i] == oldChar)
+        {
+            str[i] = ncvn;
+            break;
+        }
+        i++;
+  }
+}

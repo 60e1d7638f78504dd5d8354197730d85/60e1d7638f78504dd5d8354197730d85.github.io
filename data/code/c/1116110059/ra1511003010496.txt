@@ -1,0 +1,32 @@
+#include<stdio.h>
+int main(){
+    int t,i,j;
+    scanf("%d",&t);
+    while(t--){
+        int a[26]={0};
+        char s[10000]={'\0'},r[10000]={'\0'};
+        scanf("\n%s",s);
+    for(i=0;s[i]!='\0';i++)
+    a[s[i]-97]=1;
+    //for(i=0;i<26;i++)
+    //printf("%d ",a[i]);
+    //printf("\n");
+    int f=0;
+    scanf("\n%s",r);
+    for(i=0;r[i]!='\0';i++){
+        if(a[r[i]-97]==1)
+        a[r[i]-97]++;
+    }
+    //for(i=0;i<26;i++)
+    //printf("%d ",a[i]);
+    for(i=0;i<26;i++){
+        if(a[i]>1)
+        f=1;
+    }
+    if(f==1)
+    printf("Yes\n");
+    else
+    printf("No\n");
+}
+return 0;
+} 

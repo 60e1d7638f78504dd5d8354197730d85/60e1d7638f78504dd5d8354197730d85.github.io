@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[100];
+    char toSearch[100];
+    scanf("%[^\n]s",str);
+    scanf("%s",toSearch);
+    int i, j, found, count;
+    int stringLen, searchLen;
+
+    stringLen = strlen(str);
+    searchLen = strlen(toSearch);
+  count = 0;
+
+    for(i=0; i <= stringLen-searchLen; i++)
+    {
+        found = 1;
+        for(j=0; j<searchLen; j++)
+        {
+            if(str[i + j] != toSearch[j])
+            {
+                found = 0;
+              break;
+            }
+        }
+
+        if(found == 1)
+        {
+            count++;
+        }
+    }
+  printf("%s=%d",toSearch,count);
+  return 0;
+}

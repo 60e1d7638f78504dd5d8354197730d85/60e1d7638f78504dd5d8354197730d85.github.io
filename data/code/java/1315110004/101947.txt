@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  public Scanner in=new Scanner(System.in);
+  int a=in.nextInt();
+  double average[]=new double[a];
+  public void getDetails()
+  {
+    for (int i=0;i<a;i++)
+    {
+      int sum=0;
+    int b=in.nextInt();
+    int c=in.nextInt();
+    int d[]=new int[b];
+    for(int j=0;j<b;j++)
+    {
+    d[j]=in.nextInt();  
+    }
+      for (int k=0;k<b;k++)
+      {
+     for( int j=k+1;j<b;j++)
+     {
+     if(d[k]>d[j])
+     {
+       int temp=d[j];
+       d[j]=d[k];
+       d[k]=temp;
+     }
+    }
+      }
+      for(int j=c;j<b-c;j++)
+      {
+        sum=sum+d[j];
+      }
+      average[i]=(double)sum/(double)(b-(2*c));
+  }
+  }
+  public void displayDetails()
+  {
+    for(int i=0;i<a;i++)
+    {
+ System.out.println(String.format( "%.6f",average[i]));
+  }
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+	Sample objname=new Sample();
+       objname.getDetails();
+       objname.displayDetails();
+	}
+}

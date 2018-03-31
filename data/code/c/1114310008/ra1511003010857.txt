@@ -1,0 +1,96 @@
+#include<stdio.h>
+ 
+void merge(long int arr[],long int l,long int m,long int r)
+{
+    long int i, j, k;
+    long int n1 = m - l + 1;
+    long int n2 =  r - m;
+ 
+    /* create temp arrays */
+    long int L[n1], R[n2];
+ 
+    /* Copy data to temp arrays L[] and R[] */
+    for(i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for(j = 0; j < n2; j++)
+        R[j] = arr[m + 1+ j];
+ 
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+ 
+    /* Copy the remaining elements of L[], if there are any */
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+ 
+    /* Copy the remaining elements of R[], if there are any */
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+ 
+void mergeSort(long int arr[],long int l,long int r)
+{
+    if (l < r)
+    {
+        long int m = l+(r-l)/2; 
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }
+}
+int main()
+{
+	long int n,i,q,k,a[100005],ans,m,x,s[100005];
+	scanf("%ld",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%ld",&a[i]);
+		s[i]=0;
+	}
+	scanf("%ld",&q);
+	mergeSort(a,0,n-1);
+	s[0]=a[0];
+	for(i=1;i<n;i++)
+	{
+		s[i]=a[i]+s[i-1];
+	}
+	while(q--)
+	{
+		scanf("%ld",&k);
+		x=n/(k+1);
+		m=n%(k+1);
+		if(m==0)
+		{
+			ans=s[x-1];
+		}
+		else
+		{
+			ans=s[x];
+		}
+		printf("%ld\n",ans);
+	}
+	return 0;
+} 

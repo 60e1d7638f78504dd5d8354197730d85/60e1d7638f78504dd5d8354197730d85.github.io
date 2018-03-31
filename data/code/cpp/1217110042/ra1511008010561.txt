@@ -1,0 +1,40 @@
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+using namespace std;
+ int a[105],b[105];
+    int na[10],nb[10];
+int ch[10];
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++){
+        scanf("%d",&a[i]);
+        na[a[i]]++;
+    }
+    for(int i=1;i<=n;i++){
+        scanf("%d",&b[i]);
+        nb[b[i]]++;
+    }
+    int flag=1;
+    int sum=0;
+    for(int i=1;i<=5;i++){
+        int t=na[i]+nb[i];
+        if(t&1) flag=0;
+        ch[i]=na[i]-nb[i];
+        sum+=ch[i];
+    }
+    if(flag==0){
+        puts("-1");
+    }else{
+        if(sum!=0) puts("-1");
+        else{
+            int ans=0;
+            for(int i=1;i<=5;i++) if(ch[i]<0) ans-=ch[i]/2;else ans+=ch[i]/2;
+            printf("%d\n",ans/2);
+        }
+
+    }
+    return 0;
+}

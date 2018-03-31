@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+class InvalidTestScore extends Exception{
+  public InvalidTestScore(String msg){
+    super(msg);
+  }
+}
+public class TestClass {
+	 public static void InTestScore(int[] number){
+try{
+  int sum=0;
+  float avg;
+  for(int j=0;j<number.length;j++)
+  {
+    if(number[j]<=0 && number[j]>-100)
+    {
+      throw new InvalidTestScore("Invalid Test Score");
+    }
+    else
+    {
+      sum=sum+number[j];
+    }
+  }
+  avg=(float)sum/number.length;
+  System.out.println(avg);
+}catch(InvalidTestScore e){
+  System.out.println(e);
+}
+     }
+ public static void main(String[] args){
+   Scanner inp=new Scanner(System.in);
+   int size=inp.nextInt();
+   int[] a=new int[size];
+   for(int i=0;i<size;i++)
+   {
+     a[i]=inp.nextInt();
+   }
+   InTestScore(a);
+       
+	}
+}

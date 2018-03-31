@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+struct distance
+{
+  int feet,inch;
+};
+struct distance add(struct distance x,struct distance y)
+{
+  struct distance z;
+  z.feet=x.feet+y.feet;
+  z.inch=x.inch+y.inch;
+  return z;
+}
+struct distance subtract(struct distance x,struct distance y)
+{
+  struct distance z;
+  z.feet=abs(x.feet-y.feet);
+  z.inch=abs(x.inch-y.inch);
+  return z;
+}
+int main()
+{
+	struct distance a,b,r;
+  	scanf("%d %d",&a.feet,&a.inch);
+  	scanf("%d %d",&b.feet,&b.inch);
+  	r=add(a,b);
+  	printf("%d ft %d inch",r.feet,r.inch);
+  	r=subtract(a,b);
+  	printf("\n%d ft %d inch",r.feet,r.inch);
+	return 0;
+}

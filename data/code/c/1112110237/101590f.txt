@@ -1,0 +1,68 @@
+#include<stdio.h>
+long int hcf(long int,long int);
+int main()
+{
+ 
+    int a,b;
+    scanf("%d",&a);
+    //int common=1;
+    for(b=0;b<a;b++)
+    {
+    unsigned long long int temp;
+    int c,d,i,j;
+    int k=0;
+   long long int m[1000000];
+     scanf("%d",&c);
+    unsigned long long int e[c];
+     for(d=0;d<c;d++)
+     {
+         scanf("%llu",&e[d]);
+     }
+ 
+    for(i=0;i<c;i++)
+    {
+        for(j=i+1;j<c;j++)
+        {
+             m[k]=((e[i]*e[j])/(hcf(e[i],e[j])));
+             //printf("%llu",m[k]);
+            k++;
+ 
+ 
+        }
+    }
+ 
+unsigned long long int f=m[0];
+   for(i=1;i<k;i++)
+    {
+ 
+            if(f>m[i])
+            {
+                temp=f;
+                f=m[i];
+                m[i]=temp;
+            }
+ 
+    }
+ 
+   printf("%llu\n",f);
+    }
+ 
+    return 0;
+}
+  long int hcf(long int x,long int y)
+    {
+        //printf("bsnsns");
+         long int common = x%y;
+ 
+  if (common == 0)
+  {
+     // printf("%d",y);
+    return y;
+ 
+  }
+ 
+    else
+    return(hcf(y,common));
+    }
+ 
+ 

@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+void findFourElements(int A[], int n, int X)
+{
+  int i,j,k,l;
+  // Fix the first element and find other three
+  for (i = 0; i < n-3; i++)
+  {
+    // Fix the second element and find other two
+    for (j = i+1; j < n-2; j++)
+    {
+      // Fix the third element and find the fourth
+      for (k = j+1; k < n-1; k++)
+      {
+        // find the fourth
+        for (l = k+1; l < n; l++)
+           if (A[i] + A[j] + A[k] + A[l] == X)
+              printf("%d\n%d\n%d\n%d", A[i], A[j], A[k], A[l]);
+      }
+    }
+  }
+}
+int main()
+{
+  int n,i,X;
+  scanf("%d",&n);
+  int arr[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  scanf("%d",&X);
+  
+    findFourElements (arr, n, X);
+    return 0;
+}

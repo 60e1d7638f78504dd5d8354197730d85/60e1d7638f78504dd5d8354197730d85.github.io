@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define MAX 2000000000
+ 
+int cmp(const void *a, const void *b)
+{
+  return *(int *)a - *(int *)b;
+}
+ 
+int main()
+{
+  int T, t, N, M, i, j;
+  int L[1003], R1[1003], R2[1003];
+ 
+  scanf("%d", &T);
+  for (t = 0; t < T; t++)
+  {
+    scanf("%d", &N);
+    for (i = 0; i < N; i++)
+    {
+      scanf("%d",&L[i]);
+      L[i] *= 7;
+    }
+    scanf("%d", &M);
+    for (i = 0; i < M; i++)
+    {
+      scanf("%d %d",&R1[i], &R2[i]);
+      R1[i] *= 11;
+      R2[i] *= 11;
+    }
+    qsort(L, N, sizeof(int), cmp);
+    int cnt = 0;
+    for (i = 0; i < N; i++)
+    {
+      int p = L[i];
+      int mi = MAX;
+      int mj = 0;
+      for (j = 0; j < M ; j++)
+      {
+        int a = R1[j];
+        int b = R2[j];
+        if (a != 0 || b != 0)
+        {
+          if (a <= p && p <= b)
+          {
+            if (b < mi)
+            {
+              mi = b;
+              mj = j;
+            }
+          }
+        }
+      }
+      if (mi != MAX)
+      {
+        cnt += 1;
+        R1[mj] = 0;
+        R2[mj] = 0;
+      }
+    }
+    printf("%d\n", cnt);
+  }
+  return 0;
+}

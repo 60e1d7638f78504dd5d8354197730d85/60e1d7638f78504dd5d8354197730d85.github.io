@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{
+  int T;
+  scanf("%d",&T);
+  int z;
+  for(z=0; z<T; z++)
+  {
+    int n1,n2;
+    int rem;
+    scanf("%d %d",&n1,&n2);
+    int smaller,greater;
+    if(n1 == n2)
+    {
+      int a;
+      a = 0;
+      printf("%d\n",a);
+    }
+    else if((n1 > 0 && n2 > 0)||(n1<0 && n2<0))
+    {
+      if(n1<n2)
+      {
+        smaller = n1;
+        greater = n2;
+      }
+      else if(n1 > n2)
+      {
+        smaller = n2;
+        greater = n1;
+      }
+      int temp = 9999;
+      while (temp!=0)
+      {
+        temp = greater%smaller;
+        if(temp == 0)
+          break;
+        greater = smaller;
+        smaller = temp;
+      }
+      printf("%d\n",smaller);
+    }
+    else if(n1<0 || n2<0)
+    {
+      int hcf;
+      hcf = abs(n1) + abs(n2);
+      printf("%d\n",hcf);
+    }
+    
+  }
+  return 0;
+}

@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{
+	long n,m,a[100001],c[100001],d[100001],i,b;
+	scanf("%ld%ld",&n,&m);
+	for(i=0;i<100001;i++)
+	{
+		a[i]=0;
+		c[i]=-1;
+		d[i]=-1;
+	}
+	for(i=0;i<n;i++)
+	{
+		scanf("%ld",&b);
+		a[b]=b;
+	}
+	long f[m],p[m];
+	char st[m][101];
+	for(i=0;i<m;i++)
+	{
+		scanf("%ld%ld",&f[i],&p[i]);
+		scanf("%s",st[i]);
+		if(a[f[i]]!=0)
+		{
+			c[p[i]]=i;
+		}
+		else
+		{
+			d[p[i]]=i;
+		}
+	}
+	
+	
+	
+	
+	for(i=100000;i>=0;i--)
+	{
+		if(c[i]!=-1)
+		{
+			printf("%s\n",st[c[i]]);
+		}
+	}
+	for(i=100000;i>=0;i--)
+	{
+		if(d[i]!=-1)
+		{
+			printf("%s\n",st[d[i]]);
+		}
+	}
+	return 0;   
+} 

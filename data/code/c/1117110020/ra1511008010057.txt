@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+int lucky(char *string)
+{
+  char str1[10000];
+  strcpy(str1,string);
+  int i,length,sum=0;
+  length=strlen(str1);
+  for(i=0;i<length;i++)
+  {
+  sum=sum+str1[i];
+  }
+  //printf("%d",sum);
+  //printf("%s",str1);
+  if(sum%2!=0)
+  {
+  return 0;
+  }
+  else{
+  return 1;
+  }
+}
+
+int main()
+{
+  char str[20];
+  int value;
+  scanf("%s",str);
+	value=lucky(str);
+  if(value==0)
+  {
+  printf("%s is not lucky",str);
+  }
+  else{
+  printf("%s is lucky",str);
+  }
+	return 0;
+}

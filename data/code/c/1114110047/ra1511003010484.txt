@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+int main()
+{
+    char a[100],b[100],c[100];
+    int l,i,n=0,m=0,t=0;
+    scanf("%s ",a);
+    scanf("%s ",b);
+    l= strlen(a);
+    for(i=l-1;i>=0;i--)
+    {
+        if(a[i]=='1')
+        {
+            n+= pow(2,l-i-1);
+        }
+    }
+    l= strlen(b);
+    for(i=l-1;i>=0;i--)
+    {
+        if(b[i]=='1')
+        {
+            m+= pow(2,l-i-1);
+        }
+    }
+    l=m+n;
+    while(l>0)
+    {
+        if(l%2==1)
+        {
+            c[t] ='1';
+        }
+        else
+        {
+            c[t]='0';
+        }
+      t++;
+        l/=2;
+    }
+    for(i=t-1;i>=0;i--)
+    {
+        printf("%c",c[i]);
+    }
+    return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  scanf("%d", &n);
+  int arr[n];
+  int smallest = 99999;
+  int ans = 99999;
+  int i = 0;
+  while(i < n)
+  {
+    scanf("%d", &arr[i]);
+    i = i + 1;    
+  }
+  i = 0;
+  while(i < n)
+  {
+    if(arr[i] < smallest)
+    {
+      ans = smallest;
+      smallest = arr[i];
+    }
+    if(arr[i] > smallest && arr[i] < ans)
+    {
+      ans = arr[i];
+    }
+    i = i + 1;
+  }
+  printf("%d", ans);
+
+	return 0;
+}

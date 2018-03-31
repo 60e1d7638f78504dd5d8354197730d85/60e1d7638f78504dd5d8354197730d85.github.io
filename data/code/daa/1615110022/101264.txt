@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+#define ll long long
+ 
+ll n = 0;
+ll cache[100010] = {};
+ 
+int main() {
+    ll t = 0, i = 0, j = 0, ls = 0;
+    ll temp = 0;
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+ 
+    for (i = 0; i <= 9; ++i) cache[i] = INT_MAX;
+ 
+    cache[10] = 1;
+    cache[11] = INT_MAX;
+    cache[12] = 1;
+    ls = 13;
+ 
+    for (i = ls; i <= 120; ++i) {
+        temp = min(cache[i-10], cache[i-12]);
+        if (temp != INT_MAX) cache[i] = 1+temp;
+        else cache[i] = INT_MAX;
+    }
+ 
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        if (cache[n] != INT_MAX) cout << cache[n] << "\n";
+        else cout << "-1\n";
+    
+    }
+ 
+ 
+ 
+    return 0;
+}

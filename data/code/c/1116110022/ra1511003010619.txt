@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+#define MAX_SIZE 100
+void removeAll(char *,const char);
+int main()
+{
+  char str[MAX_SIZE];
+  char toRemove;
+  scanf("%s",str);
+  scanf("\n%c",&toRemove);
+  removeAll(str,toRemove);
+  printf("%s",str);
+  return 0;
+	}
+void removeAll(char * str,const char toRemove)
+{
+  int i,j;
+  int len=strlen(str);
+  for(i=0;i<len;i++)
+  {
+    if(str[i]==toRemove)
+    {
+      for(j=i;j<len;j++)
+      {
+        str[j]=str[j+1];
+      }
+      len--;
+      i--;
+    }
+  }
+}

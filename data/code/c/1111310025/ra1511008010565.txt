@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N	100000
+void update(int *tt, int i, int n, int x) {
+	while (i < n) {
+		tt[i] += x;
+		i |= (i + 1);
+	}
+}
+ 
+int query(int *tt, int i) {
+	int sum = 0;
+ 
+	while (i >= 0) {
+		sum += tt[i];
+		i &= (i + 1);
+		i--;
+	}
+	return sum;
+}
+ 
+struct element {
+	int h, h_, i;
+} hh[N];
+ 
+int hcompare(const void *a, const void *b) {
+	struct element *pa = (struct element *) a;
+	struct element *pb = (struct element *) b;
+ 
+	return pa->h - pb->h;
+}
+ 
+int icompare(const void *a, const void *b) {
+	struct element *pa = (struct element *) a;
+	struct element *pb = (struct element *) b;
+ 
+	return pa->i - pb->i;
+}
+ 
+int main() {
+	int n, i, j, up, k, cntmax;
+	static int tt[N];
+ 
+	scanf("%d", &n);
+	for (i = 0; i < n; i++) {
+		scanf("%d", &hh[i].h);
+		hh[i].i = i;
+	}
+	qsort(hh, n, sizeof *hh, hcompare);
+	for (i = 0; i < n; i++)
+		hh[i].h_ = i == 0 ? 0 : hh[i - 1].h_ + (hh[i].h != hh[i - 1].h ? 1 : 0);
+	k = hh[n - 1].h_ + 1;
+	qsort(hh, n, sizeof *hh, icompare);
+	for (i = 0, up = 1; i < n - 1; up = 1 - up) {
+		int l, r;
+ 
+		if (up) {
+			j = i + 1;
+			while (j < n && hh[j].h - hh[j - 1].h > 0)
+				j++;
+			j--;
+			l = hh[i].h_;
+			r = hh[j].h_;
+		} else {
+			j = i + 1;
+			while (j < n && hh[j].h - hh[j - 1].h < 0)
+				j++;
+			j--;
+			l = hh[j].h_;
+			r = hh[i].h_;
+		}
+		if (i < j) {
+			update(tt, l, k, 1);
+			update(tt, r + 1, k, -1);
+		}
+		i = j;
+	}
+	cntmax = 1;
+	for (i = 0; i < k; i++) {
+		int cnt = query(tt, i);
+ 
+		if (cntmax < cnt)
+			cntmax = cnt;
+	}
+	printf("%d\n", cntmax);
+	return 0;
+}

@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *next;
+}*head;
+void insert(int a)
+{
+  struct node *temp,*r;
+ 
+  temp=(struct node*)malloc(sizeof(struct node));
+  r=(struct node*)malloc(sizeof(struct node));
+
+  temp->data=a;
+   if(head!=NULL)
+      {
+r=head;
+while(r->next != NULL){
+r=r->next;}
+
+r->next=temp;
+r=temp;
+r->next=NULL;
+      }
+      else
+      {
+           head=temp;
+         head->next=NULL;
+        
+       }
+}
+void del(int n,int c)
+{
+int count=0,i;
+  struct node *t,*t1;
+ 
+  t=(struct node*)malloc(sizeof(struct node));
+  t1=(struct node*)malloc(sizeof(struct node));
+  t=head;
+ 
+  for(i=0;i<c;i++)
+{
+if(t->data==n)
+{
+count++;
+break;
+}
+t=t->next;
+}
+if(count==1)
+{
+ 
+  t1=t;
+  
+  while(t->next!=NULL){
+ 
+    t1=t->next;
+    t->next=NULL;
+  free(t1);
+ }  
+}else
+{
+printf("Invalid Node!\n");
+}
+  
+}
+
+void display()
+{
+  struct node *t;
+  t=head;
+ printf("Linked List\n"); 
+  while(t!=NULL)
+  {
+    printf("->%d",t->data);
+  t=t->next;
+  }
+}
+int main()
+{
+
+  head=NULL;
+  
+  int n,i,a,j;
+  scanf("%d",&n);
+  
+    for(i=1;i<=n;i++)
+    {
+    scanf("%d",&a);
+      insert(a);
+    }
+  scanf("%d",&j);
+  del(j,n);
+  display();
+	return 0;
+}

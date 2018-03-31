@@ -1,0 +1,25 @@
+#include<stdio.h>
+int calculateSum(int);
+int main(){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+   int i,d,num;
+   scanf("%d %d",&d,&num);
+   while(d--){
+   num = calculateSum(num);
+   }
+   printf("%d\n",num);
+  }
+   return 0;
+}
+ 
+int calculateSum(int num){
+   int res;
+   if (num == 1) {
+      return (1);
+   } else {
+      res = num+calculateSum(num-1);
+   }
+   return (res);
+}

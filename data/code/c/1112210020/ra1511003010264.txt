@@ -1,0 +1,101 @@
+#include<stdio.h>
+
+void merge(int ar[],int m1,int n1,int m2,int n2)
+{
+		int j,t[100],p1,p2,i=0;
+		p1=m1;
+		p2=m2;
+		while(p1<=n1&&p2<=n2)
+		{
+			if(ar[p1]<=ar[p2])
+			{
+				t[i]=ar[p1];
+				p1++;
+			}
+			else
+			{
+				t[i]=ar[p2];
+				p2++;
+			}
+			i++;
+	
+		}
+		if(p1>n1)
+		{
+			while(p2<=n2)
+			{
+				t[i]=ar[p2];
+				p2++;
+				i++;	
+			}
+		}
+		if(p2>n2)
+		{
+			while(p1<=n1)
+			{
+				t[i]=ar[p1];
+				p1++;
+				i++;
+			}
+		}
+		i=0;
+		for(j=m1;j<=n2;j++)
+		{
+			ar[j]=t[i];
+			i++;
+		}
+}
+void divide(int ar[],int m,int n)
+{
+	int mid;
+	if(m<n)
+	{
+		mid=(m+n)/2;
+		divide(ar,m,mid);
+		divide(ar,mid+1,n);
+		merge(ar,m,mid,mid+1,n);
+	}
+}
+
+int main(void)
+{
+		int o,t,ar[100],org[100],i,n;
+		scanf("%d",&t);
+		while(t--)
+		{
+			scanf("%d",&n);
+			for(i=0;i<n;i++)
+			{
+				scanf("%d",&ar[i]);
+				org[i]=ar[i];
+			}
+			divide(ar,0,n-1);
+			//for(i=0;i<n;i++)
+			//printf("%d ",ar[i]);
+			for(i=0;i<n;i++)
+			{
+				if(org[i]!=ar[i])
+				{
+					o=1;
+					break;
+				}
+				o=0;
+			}
+			if(o)
+			{
+				for(i=0;i<n;i++)
+				{
+					if(ar[i]!=(i+1))
+					{
+						o=0;
+						break;
+					}
+				}
+			}
+			if(o==0)
+			printf("no\n");
+			else
+			printf("yes\n");
+		}
+		return 0;
+} 

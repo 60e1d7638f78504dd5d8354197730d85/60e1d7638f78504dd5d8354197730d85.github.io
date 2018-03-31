@@ -1,0 +1,109 @@
+#include<stdio.h>
+	int number;
+	int pus=0;
+	int po;
+	int n;
+	void push(void);
+	void pop(void);
+	int find(int);
+	int sumcheck(void);
+	int sum(void);
+	int p[2][20];
+	int a[20];
+	int main()
+	{
+		int times,i,l,o;
+		scanf("%d",&times);
+		while(times--!=0)
+		{	
+		scanf("%d",&n);
+	
+		scanf("%d",&number);
+		for(i=0;i<n;i++)
+		{
+ 
+			scanf("%d",&a[i]);
+		}
+ 
+	
+ 
+		while(9)
+			{
+			
+ 
+			push();
+			if(sumcheck()==1)
+				{
+					pop();
+					if(!p[0][0]&&pus==n)
+					{
+ 
+						printf("No\n");
+						
+						break;
+					}
+				}
+			if(sumcheck()==2)
+				{
+					printf("Yes\n");
+					break;
+				}
+			if(pus==n)
+                                pop();
+			}
+		for(i=0;i<20;i++)
+						{	a[i]=0;
+							p[1][i]=0;
+						}	p[0][i]=0;
+			pus=0;
+			po=0;					
+						
+ 
+			
+		}
+	}
+	int sumcheck(void)
+	{
+		        int i,r,m=0;
+				for(i=pus;i<(n);i++)
+        			  {
+					if(sum()==number)
+						return 2;
+						     r=sum()+a[i];
+        		             if(r>=number)
+         		             	m++;
+						     if(r==number)
+								return 2;
+        			  }
+       				if(m==(n-pus))
+					return 1;	
+				return 0;
+					
+ 	}
+	void push(void)
+	{
+			
+			 p[0][po]=*(a+pus);
+			 p[1][po]=pus;
+			 po++;
+			 pus++;
+	}
+ 
+ 
+	void pop(void)
+	{
+			pus=p[1][po-1]+1;
+	 
+			p[0][po-1]=0;
+			po--; 
+	}
+	
+	int sum(void)
+	{
+		int i,su=0;
+		for(i=0;i<po;i++)
+			{
+				su=su+p[0][i];
+            		}
+                return su;
+	}

@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int isPrime( int a , int i)
+{
+  if(i==1)
+    return 1;
+  else
+  {
+    if( a%i == 0)
+      return 0;
+    else
+      return isPrime( a , --i);
+  }
+}
+int main()
+{
+  int a , b ;
+  cin>>a>>b;
+  cout<<"Prime numbers between "<<a<<" and "<<b<<" are: ";
+  for( int i = a+1 ; i<b ; i++)
+    if(isPrime(i,i-1)==1)
+      cout<<i<<" ";
+	return 0;
+}

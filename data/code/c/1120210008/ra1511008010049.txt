@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+int a=9999,b=10000,n,j,i,x[10000],y;
+  scanf("%d",&y);
+  while(y--)
+  {
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&x[i]);
+      if(x[i]<=a)
+        a=x[i];
+      if(x[i]<=b && x[i]>a)
+        b=x[i];
+     for(j=0;j<i;j++)
+     {
+      
+       if((x[j]<b) && (x[j]>a))
+         b=x[j];
+     }
+      
+    }
+    
+      
+    printf("%d",b-a);
+    
+    
+  }
+    
+  return 0;
+}

@@ -1,0 +1,25 @@
+# include <stdio.h>
+# include <stdlib.h>
+int main()
+{
+	int t,n,i,j,a;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		int x[n*n],y[n*n];
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				scanf("%d",&a);
+				x[a-1]=i;
+				y[a-1]=j;
+			}
+		} 
+		for(i=1,a=0;i<n*n;i++)
+		a=a+abs(y[i]-y[i-1])+abs(x[i]-x[i-1]);
+		printf("%d\n",a);
+	}
+	return 0;
+} 

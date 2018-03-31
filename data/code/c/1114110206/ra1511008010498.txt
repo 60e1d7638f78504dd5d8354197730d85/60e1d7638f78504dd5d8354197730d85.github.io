@@ -1,0 +1,58 @@
+ 
+#include<stdio.h>
+void merge_sort(int a[],int from,int to);
+void merge(int a[],int from,int mid,int to);
+int main()
+{
+    int t,i;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n;
+        scanf("%d",&n);
+        int a[n],min;
+        for(i=0;i<n;i++)
+            scanf("%d",&a[i]);
+            merge_sort(a,0,n-1);
+            for(i=0;i<n-1;i++)
+            {
+                if(i==0)
+                min=a[i+1]-a[i];
+              else if((a[i+1]-a[i])<min)
+                    min=a[i+1]-a[i];
+            }
+            printf("%d\n",min);
+    }
+    return 0;
+}
+void merge_sort(int a[],int from,int to)
+{
+    int mid;
+    mid=(from+to)/2;
+    if(from<to)
+    {
+    merge_sort(a,from,mid);
+    merge_sort(a,mid+1,to);
+    merge(a,from,mid,to);
+    }
+}
+void merge(int a[],int from,int mid,int to)
+{
+    int b[to-from+1];
+    int pos=0;
+    int pos1=from,pos2=mid+1;
+    while(pos1<=mid&&pos2<=to)
+    {
+        if(a[pos1]<a[pos2])
+            b[pos++]=a[pos1++];
+            else
+                b[pos++]=a[pos2++];
+    }
+    while(pos1<=mid)
+       b[pos++]=a[pos1++];
+    while(pos2<=to)
+        b[pos++]=a[pos2++];
+    int i,j=from;
+    for(i=0;i<pos;i++)
+        a[j++]=b[i];
+}

@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+typedef unsigned long long int ull;
+#define ms(a, n) memset(a,n,sizeof(a))
+#define pb push_back
+#define mp make_pair
+#define f first
+#define se second
+const int MOD=(int)1e9+7;
+ull ipow(ull base,int exp){ull res=1ULL;while(exp){if(exp&1){res*=(ull)base;}exp>>=1;base*=base;}return res;}
+ 
+int main()
+{
+	ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+	int tc;
+	cin>>tc;
+	while(tc--)
+	{
+		ll a[26];
+		for(int i=0;i<26;i++)
+		cin>>a[i];
+		string s;
+		cin>>s;
+		int occ[26]={0};
+		for(int i=0;i<s.length();i++)
+		occ[s[i]-'a']++;
+		
+		ll ans=0;
+		
+		for(int i=0;i<26;i++)
+		{
+			if(occ[i]==0)
+			{
+				ans+=a[i];
+			}
+		}
+		cout<<ans<<"\n";
+	}
+}

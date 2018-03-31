@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+ 
+#define MAX 100010
+#define clr(ar) memset(ar, 0, sizeof(ar))
+#define read() freopen("lol.txt", "r", stdin)
+ 
+char str[MAX];
+long long S[MAX << 2][3], P[MAX << 2][3], R[MAX << 2];
+int n, q, len, ar[MAX], stack[MAX], counter[MAX << 2][10];
+ 
+void brute(){
+    int i, j, k, l, r, x;
+ 
+    while (q--){
+        scanf("%d %d %d", &k, &l, &r);
+        if (k == 1) ar[l] = r;
+        else{
+            long long res = 0;
+            for (i = l; i <= r; i++){
+                for (j = i, x = 0; j <= r; j++){
+                    x = (x + ar[j]) % 3;
+                    if (!x) res++;
+                }
+            }
+            printf("%lld\n", res);
+        }
+    }
+}
+ 
+void update(int idx, int a, int b, int k, int v){
+    int p = idx << 1, q = p | 1;
+    int s, i, c = (a + b) >> 1, d = c + 1;
+ 
+    if (a == b){
+        ar[k] = v;
+        for (c = 0; c < 10; c++) counter[idx][c] = 0;
+        for (c = 0; c < 3; c++) P[idx][c] = S[idx][c] = 0;
+ 
+        R[idx] = 0;
+        if ((v % 3) == 0) R[idx]++;
+        P[idx][v % 3]++, S[idx][v % 3]++, counter[idx][v]++;
+        return;
+    }
+ 
+    if (k <= c) update(p, a, c, k, v);
+    else update(q, d, b, k, v);
+ 
+    R[idx] = R[p] + R[q];
+    R[idx] += (S[p][0] * P[q][0]) + (S[p][1] * P[q][2]) + (S[p][2] * P[q][1]);
+ 
+    for (i = 0; i < 3; i++){
+        P[idx][i] = P[p][i];
+        S[idx][i] = S[q][i];
+    }
+    for (i = 0; i < 10; i++) counter[idx][i] = counter[p][i] + counter[q][i];
+ 
+    for (i = 0, s = 0; i < 10; i++) s += (counter[p][i] * i);
+    for (i = 0; i < 3; i++) P[idx][ (s + i) % 3] += P[q][i];
+ 
+    for (i = 0, s = 0; i < 10; i++) s += (counter[q][i] * i);
+    for (i = 0; i < 3; i++) S[idx][ (s + i) % 3] += S[p][i];
+}
+ 
+long long query(int idx, int a, int b, int l, int r){
+    int p = (idx << 1), q = p + 1;
+    int c = (a + b) >> 1, d = c + 1;
+ 
+    if (a == l && b == r){
+        stack[len++] = idx;
+        return R[idx];
+    }
+    if (r <= c) return query(p, a, c, l, r);
+    else if (l >= d) return query(q, d, b, l, r);
+    else{
+        long long x = query(p, a, c, l, c);
+        long long y = query(q, d, b, d, r);
+        return (x + y);
+    }
+}
+ 
+void run(){
+    int i, j, k, l, s, r = 0;
+    clr(S), clr(P), clr(R), clr(counter);
+    for (i = 1; i <= n; i++) update(1, 1, n, i, ar[i]);
+ 
+    while (q--){
+        scanf("%d %d %d", &k, &l, &r);
+        if (k == 1) update(1, 1, n, l, r);
+        else{
+            len = 0;
+            long long res = query(1, 1, n, l, r);
+ 
+            int fuck = (MAX << 2) - 1;
+            for (i = 0; i < 3; i++) S[0][i] = S[ stack[0]][i];
+ 
+            for (j = 1; j < len; j++){
+                i = stack[j];
+ 
+                res += (S[0][0] * P[i][0]) + (S[0][1] * P[i][2]) + (S[0][2] * P[i][1]);
+ 
+                for (s = 0, k = 0; k < 10; k++) s += (counter[i][k] * k);
+                for (k = 0; k < 3; k++) S[fuck][k] = S[0][k];
+                for (k = 0; k < 3; k++) S[0][ (k + s) % 3] = S[fuck][k];
+                for (k = 0; k < 3; k++) S[0][k] += S[i][k];
+            }
+ 
+            printf("%lld\n", res);
+        }
+    }
+}
+ 
+int main(){
+    int i;
+ 
+    while (scanf("%d %d", &n, &q) != EOF){
+        scanf("%s", str);
+        for (i = 1; i <= n; i++) ar[i] = str[i - 1] - 48;
+ 
+        run();
+    }
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int i,n,p,e;
+  scanf("%d\n",&n);
+	int a[n],b[n+1];
+  for(i=0;i<n;i++){
+    scanf("%d",&a[i]);
+  }
+  scanf("\n%d",&p);
+  if(p>(n-1)){
+    printf("Sorry Invalid Location");
+    return;
+  }
+  scanf("\n%d",&e);
+  b[p-1]=e;
+  for(i=0;i<p-1;i++){
+    b[i]=a[i];
+  }
+  for(i=p;i<n+1;i++){
+    b[i]=a[i-1];
+  }
+    
+  for(i=0;i<n+1;i++){
+    printf("%d\n" ,b[i]);
+  }
+  
+	return 0;
+}

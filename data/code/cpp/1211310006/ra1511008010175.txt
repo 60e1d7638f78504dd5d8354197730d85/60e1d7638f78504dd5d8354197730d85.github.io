@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+#define ff first
+#define ss second
+#define pb push_back
+#define MOD (1000000007LL)
+ 
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> ii;
+ 
+ 
+int r, c, arr[1003][1003];
+int sieve[200003], nearest[200003];
+ 
+ 
+int main()
+{
+    ios_base::sync_with_stdio(0);
+ 
+    sieve[0] = sieve[1] = 1;
+    for(int i=2;i<=200000;i++)
+        if(!sieve[i]){
+            for(int j=2*i;j<=200000;j+=i){
+                sieve[j] = 1;
+            }
+        }
+ 
+    int last = -1;
+    for(int i=200000;i>=0;i--){
+        if(!sieve[i])   last = i;
+        nearest[i] = last;
+    }
+ 
+// cin>>r>>c;
+    while(cin>>r>>c){
+ 
+        for(int i=1;i<=r;i++)
+            for(int j=1;j<=c;j++)
+                cin>>arr[i][j];
+ 
+        int ans = INT_MAX;
+        for(int j=1;j<=c;j++){
+            int cost = 0;
+            for(int i=1;i<=r;i++)
+                cost += nearest[arr[i][j]] - arr[i][j];
+            ans = min(ans, cost);
+        }
+ 
+ 
+        for(int i=1;i<=r;i++){
+            int cost = 0;
+            for(int j=1;j<=c;j++)
+                cost += nearest[arr[i][j]] - arr[i][j];
+            ans = min(ans, cost);
+        }
+        cout<<ans<<endl;
+    }
+ 
+    return 0;
+}

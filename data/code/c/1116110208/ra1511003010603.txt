@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+int count_max(char arr[]);
+int main()
+{
+	int t,n,i,j,l;
+	char arr[101];
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%s",arr);
+		l=count_max(arr);
+		if(strlen(arr)-2*l==0)
+            printf("YES\n");
+        else
+            printf("NO\n");
+	}
+	return 0;
+}
+int count_max(char arr[])
+{
+ 	int c=1,max=0,i,j;
+	for(i=0;i<strlen(arr);i++)
+	{
+		for(j=i+1;j<=strlen(arr);j++)
+		{
+			if(arr[i]==arr[j])
+				c++;
+		}
+		if(c>max)
+		{
+			max=c;
+		}
+		c=1;
+	}
+	return max;
+} 

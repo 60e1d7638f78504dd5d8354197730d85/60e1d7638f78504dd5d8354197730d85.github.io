@@ -1,0 +1,54 @@
+#include <stdio.h>
+int count=0;
+int n,m;
+int a[1005][1005];
+void func(int x,int y)
+{
+  if(a[x][y] == 1)
+  {
+    a[x][y]=0;
+    count--;
+    if(x<(n-1))
+    {
+      func(x+1,y);
+    }
+    if(x>0)
+    {
+      func(x-1,y);
+    }
+    if(y<(m-1))
+    {
+      func(x,y+1);
+    }
+    if(y>0)
+    {
+      func(x,y-1);
+    }
+  }
+}
+int main()
+{
+  int q;
+  scanf("%d %d %d",&n,&m,&q);
+  int i,j;
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<m;j++)
+    {
+      scanf("%d",&a[i][j]);
+      if(a[i][j]==1)
+        count++;
+      
+    }
+  }
+	for(i=0;i<q;i++)
+    {
+      int x,y;
+      scanf("%d %d",&x,&y);
+      x--;
+      y--;
+      func(x,y);
+      printf("%d\n",count);
+    }
+	return 0;
+}

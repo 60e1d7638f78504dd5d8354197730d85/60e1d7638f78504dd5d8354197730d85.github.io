@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+int a,b,i,j,k=0,l=0;
+  scanf("%d%d",&a,&b);
+  int z[10][10];
+
+  for(i=0;i<a;i++)
+  {
+    for(j=0;j<b;j++)
+    {
+      scanf("%d ",&z[i][j]);
+    }
+  }
+ 
+  while((k<a) && (l<b))
+  {
+    for(i=l;i<b;++i)
+    {
+      printf("%d ",z[k][i]);
+    }
+    k++;
+    for(i=k;i<a;++i)
+    {
+      printf("%d ",z[i][b-1]);
+    }
+    b--;
+    if(k<a)
+    {
+      for(i=b-1;i>=l;--i)
+      {
+        printf("%d ",z[a-1][i]);
+      }
+      a--;
+    }
+    if(l<b)
+    {
+      for(i=a-1;i>=k;--i)
+      {
+        printf("%d ",z[i][l]);
+      }
+      l++;
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+	int m,n,i,j,k,startR=0,startC=0;
+  int a[25][25];
+  char ch;
+  scanf("%d\n%d\n",&m,&n);
+  //ch=getchar();
+	for(i=0;i<m;i++)
+      for(j=0;j<n;j++)
+      scanf("%d",&a[i][j]);
+  while(startR<m && startC<n){
+  for(i=startC;i<n-1;i++){
+  	printf("%d ",a[startR][i]);
+  	}
+    startR++;
+    for(i=startC;i<m;i++){
+    	printf("%d ",a[i][n-1]);
+    }
+    n--;
+    if(startR<m){
+    for(i=n-1;i>=startC;i--){
+    		printf("%d ",a[m-1][i]);
+    	}
+      m--;
+    }
+    
+    if(startC<n){
+    	for(i=m-1;i>=startR;i--){
+        	printf("%d ",a[i][startC]);
+        }
+    	startC++;
+    }
+  
+  }
+  
+  return 0;
+}

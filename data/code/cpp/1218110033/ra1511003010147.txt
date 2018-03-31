@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+template <class t>
+void swap(t *x,t *y)
+{
+  t temp;
+  temp=*x;
+  *x=*y;
+  *y=&temp;
+}
+int main()
+{
+	int a,b;
+  	float c,d;
+  	char e,f;
+  	cin>>a>>b>>c>>d>>e>>f;
+  	cout<<"Before passing data to function template.\n";
+  	cout<<"i1 = "<<a<<"\ni2 = "<<b<<"\nf1 = "<<c<<"\nf2 = "<<d<<"\nc1 = "<<e<<"\nc2 = "<<f;
+  	swap<int>(a,b);
+  	swap<float>(c,d);
+  	swap<char>(e,f);
+  	cout<<"\n\nAfter passing data to function template.\n";
+  	cout<<"i1 = "<<a<<"\ni2 = "<<b<<"\nf1 = "<<c<<"\nf2 = "<<d<<"\nc1 = "<<e<<"\nc2 = "<<f;
+  
+	return 0;
+}

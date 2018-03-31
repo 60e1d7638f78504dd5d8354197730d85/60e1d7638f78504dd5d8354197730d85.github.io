@@ -1,0 +1,67 @@
+   #include<stdio.h>
+    #include<stdlib.h>
+    #include<math.h>
+    int main(){
+    	int tests;
+    	scanf(" %d",&tests);
+    	while(tests--){
+    		int n;
+    		scanf("%d",&n);
+    		int anum[300],prime[300],count[30],ans,r=0,k,l=0,m;
+    		int i,j;
+    		for(j=0;j<30;j++){
+    			anum[j]=-1;
+    			count[j]=0;
+    			prime[j]=0;
+    		}
+    		ans=1;
+    		r=0;l=0;
+    		
+    		for(i=0;i<n;i++){
+    			int a;
+    			scanf("%d",&a);
+    			int d=sqrt(a);
+    			for(k=2;k<=(d+1);k++){
+    				if(a%k==0){
+    					for(m=0;m<r;m++){
+    						if(prime[m]==k){
+    							l=anum[m];
+    							break;
+    						}
+    					}
+    					if(m==r){
+    						prime[r]=k;
+    						anum[r]=r;
+    						l=r;r++;
+    					}
+    					while(a%k==0){
+    						count[l]=count[l]+1;
+    						a=a/k;
+    					}
+    				}
+    			}
+    			if(a>1){
+    				for(m=0;m<r;m++){
+    					if(prime[m]==a){
+    						l=anum[m];
+    						break;
+    					}
+    				}
+    				if(m==r){
+    					prime[r]=a;
+    					anum[r]=r;
+    					l=r;r++;
+    				}
+    				count[l]++;
+    			}
+    		}
+    			
+    		for(j=0;j<r;j++){
+    			count[j]=count[j]+1;
+    			ans=ans*count[j];
+    		}
+    		printf("%d\n",ans);
+    		
+    	}
+    	return 0;
+    } 

@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main()
+{
+  int i,j,k,l,n,q;
+  int m[100],smoke[100][100],mix[100][100];
+  while(scanf("%d",&n)!=EOF)
+  {
+    for(i=1;i<=n;i++)
+    {
+      scanf("%d",&m[i]);
+    }
+    for(i=1;i<=n;i++)
+    {
+      smoke[i][i]=0;
+      mix[i][i]=m[i];
+    }
+    for(l=2;l<=n;l++)
+    {
+      for(i=1;i<=(n-l+1);i++)
+      {
+        j=i+l-1;
+        smoke[i][j]=1000000;
+      for(k=i;k<j;k++)
+      {
+        q=smoke[i][k]+smoke[k+1][j]+mix[i][k]*mix[k+1][j];
+        if(q<smoke[i][j])
+        {
+          smoke[i][j]=q;
+          mix[i][j]=(mix[i][k]+mix[k+1][j])%100;
+        }
+      }
+      }
+      
+    }
+    printf("%d\n",smoke[1][n]);
+  }    
+  return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+ 
+#ifndef ONLINE_JUDGE
+#define getcx getchar
+#else
+#define getcx getchar_unlocked
+#endif
+ 
+inline long getint (void) {
+	long x = 0;
+	char ch = getcx();
+	while ((ch<48)||(ch>57))
+		ch = getcx();
+	while ((48<=ch)&&(ch<=57)) {
+		x = x*10+ch-48;
+		ch = getcx();
+	}
+	return x;
+}
+ 
+long n, k, pk, count;
+ 
+int main (void) {
+
+	long t = getint();
+ 
+	while (t--) {
+ 
+		n = getint();
+ 
+		count = 1;
+		pk = getint();
+		while (n-->1) {
+			k = getint();
+			if (k<=pk) {
+				count++;
+				pk = k;
+			}
+		}
+ 
+		printf( "%ld\n", count );
+	}
+ 
+	return 0;
+} 

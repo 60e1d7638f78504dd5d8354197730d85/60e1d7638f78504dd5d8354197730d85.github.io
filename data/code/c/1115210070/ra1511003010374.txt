@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+
+#define sd(x) scanf("%d",&x);
+ 
+int main()
+{
+    int t;
+    long int n,i,p,b;
+    long long int m,time;
+    scanf("%d",&t);
+    for(i=0;i<n;i++)
+    {
+        scanf("%ld%ld%lld",&n,&b,&m);
+        time=0;
+        while(n!=0)
+        {
+            if(n%2==0)
+            {
+                p=n/2;
+                n=n-p;
+                time+=p*m;
+                if(n!=0)
+                    time+=b;
+                m=2*m;
+            }
+            else
+            {
+                p=(n+1)/2;
+                time+=p*m;
+                n=n-p;
+                if(n!=0)
+                    time+=b;
+                m=2*m;
+            }
+        }
+        printf("%lld\n",time);
+    }
+} 

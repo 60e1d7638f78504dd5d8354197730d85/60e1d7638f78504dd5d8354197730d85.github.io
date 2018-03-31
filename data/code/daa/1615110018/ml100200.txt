@@ -1,0 +1,48 @@
+#include <iostream>
+typedef long long int ll;
+using namespace std;
+bool pass[10001];
+ll  p[10000],ans[10001];
+ll cnt=0;
+void sieve(){
+    for (ll i=2;i<=10000;i++){
+        if (pass[i]==false){
+            for(ll j=i;i*j<=10000;j++){
+                pass[i*j]=true;
+            }
+        }
+    }
+    pass[4]=false;
+    pass[27]=false;
+    pass[3125]=false;
+    for (ll i=2;i<=10000;i++) 
+        if (pass[i]==false){
+            cnt++;
+            p[cnt]=i;
+            ans[i]=1;
+        }
+        else ans[i]=100000;
+}
+void process(){
+    ll j=1;
+ 
+    for(ll i=2;i<=10000;i++){
+        j=1;
+        while (p[j]+i<=10000 && j<=cnt){
+            ll tmp=p[j]+i;
+            ans[tmp]=min(ans[tmp],ans[i]+1);
+            j++;
+        }
+    }
+}
+int main()
+{
+    sieve();
+    process();
+    ll t,n;
+    cin >> t;
+    for(ll i=1;i<=t;i++){
+        cin >> n;
+        cout << ans[n] << endl;
+    }
+}

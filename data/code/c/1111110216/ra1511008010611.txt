@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int n1,n2,numerator,denom,GCD,LCM,rem;
+  scanf("%d %d",&n1,&n2);
+  if(n1>n2)
+  {
+    numerator=n1;
+    denom=n2;
+  }
+  else
+  {
+    numerator=n2;
+    denom=n1;
+  }
+  rem=numerator%denom;
+  while(rem!=0)
+  {
+    numerator=denom;
+    denom=rem;
+    rem=numerator%denom;
+  }
+  GCD=denom;
+  LCM=n1*n2/GCD;
+  printf("GCD=%d",GCD);
+  printf("\nLCM=%d",LCM);
+  
+
+	return 0;
+}

@@ -1,0 +1,89 @@
+#include <stdio.h>
+#define max 505
+int men[max][max],women[max][max],mmark[max],wc[max],mc[max];
+int scan_f()
+{
+  char c=getchar_unlocked();
+  int ans=0;
+  while(c<'0'||c>'9')
+    c=getchar_unlocked();
+  while(c>='0'&&c<='9')
+  {
+    ans=ans*10+c-'0';
+    c=getchar_unlocked();
+  }
+  return ans;
+}
+int wprefersmoverm1(int w,int m,int m1,int n)
+{
+  int i;
+  for(i=1;i<=n;i++)
+  {
+    if(women[w][i]==m)
+      return 1;
+    else if(women[w][i]==m1)
+      return 0;
+  }
+}
+void stablemarriage(int n)
+{
+  int i,freecount;
+  for(i=0;i<max;i++)
+  {
+    mmark[i]=0;
+    wc[i]=-1;
+  }
+  freecount=n;
+  while(freecount>0)
+  {
+    int m;
+    for(m=1;m<=n;m++)
+      if(mmark[m]==0)
+        break;
+    for(i=1;i<=n && mmark[m]==0;i++)
+    {
+      int w=men[m][i];
+      if(wc[w]==-1)
+      {
+        wc[w]=m;
+        mmark[m]=1;
+        freecount--;
+      }
+      else
+      {
+        int m1=wc[w];
+        if(wprefersmoverm1(w,m,m1,n))
+        {
+          wc[w]=m;
+          mmark[m]=1;
+          mmark[m1]=0;
+        }
+      }
+    }
+  }
+}
+int main()
+{
+  int n,t,i,j;
+  t=scan_f();
+  while(t--)
+  {
+    n=scan_f();
+    for(i=1;i<=n;i++)
+    {
+      for(j=0;j<=n;j++)
+        women[i][j]=scan_f();
+    }
+    for(i=1;i<=n;i++)
+    {
+      for(j=0;j<=n;j++)
+        men[i][j]=scan_f();
+    }
+    stablemarriage(n);
+    for(i=1;i<=n;i++)
+      mc[wc[i]]=i;
+    for(i=1;i<=n;i++)
+      printf("%d %d\n",i,mc[i]);
+  }
+  return 0;
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+bool areEqual(int arr1[], int arr2[], int n, int m)
+{
+       if (n != m)
+        return false;
+     sort(arr1, arr1+n);
+    sort(arr2, arr2+m);
+       for (int i=0; i<n; i++)
+         if (arr1[i] != arr2[i])
+            return false;
+     return true;
+}
+int main()
+{
+ int r,c,arr1[10],arr2[10];
+  cin>>r;
+  for(int i=0;i<r;i++)
+  {
+    cin>>arr1[i];
+  }
+  cin>>c;
+  for(int i=0;i<c;i++)
+  {
+    cin>>arr2[i];
+  }
+  //int arr1[] = { 3, 5, 2, 5, 2};
+  //  int arr2[] = { 2, 3, 5, 5, 2};
+    int n = sizeof(arr1)/sizeof(int);
+    int m = sizeof(arr2)/sizeof(int);
+     if (areEqual(arr1, arr2, r, c))
+        cout << "Yes";
+    else
+        cout << "No";
+	return 0;
+}

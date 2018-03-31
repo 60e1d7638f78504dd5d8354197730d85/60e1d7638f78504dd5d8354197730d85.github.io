@@ -1,0 +1,36 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int tCase=sc.nextInt();
+      	for(int i=0;i<tCase;i++)
+        {
+          	int n=sc.nextInt();
+          	int[] ar=new int[n];
+          	for(int j=0;j<n;j++)
+            {
+              ar[j]=sc.nextInt();
+            }
+          	int max=0,min=ar[0];
+          	for(int x=0;x<n;x++)
+            {
+              if(max<ar[x])
+                max=ar[x];
+              if(min>ar[x])
+                min=ar[x];
+            }
+          	int temp=0,lcm=0;
+          	for(int z=0;z<n;z++)
+            {
+            	temp= z*max;
+              	if(temp%min==0)
+                  lcm=temp;
+            }
+          	System.out.println(lcm);
+          
+        }
+      
+	}
+}

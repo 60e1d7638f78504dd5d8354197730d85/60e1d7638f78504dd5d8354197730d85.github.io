@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define MAX_N 100001
+#define DIVISOR 1000000007
+ 
+#define READ_INT(_x)					\
+  {							\
+    int _tmp = 0;					\
+    register int _ch = getchar_unlocked();		\
+    while (_ch < 48 || _ch > 57)			\
+      _ch = getchar_unlocked();				\
+    while (48 <= _ch && _ch <= 57)			\
+      {							\
+	_tmp = (_tmp << 3) + (_tmp << 1) + _ch - 48;	\
+	_ch = getchar_unlocked();			\
+      }							\
+    (_x) = _tmp;					\
+  }							\
+ 
+char _str[10];
+#define WRITE_INT(_x)				\
+  {						\
+    register int _i = 0;			\
+    int _tmp = (_x);				\
+    do						\
+      {						\
+	*(_str + _i++) = _tmp % 10 + 48;	\
+	_tmp /= 10;				\
+      } while (_tmp != 0);			\
+    for (_i--; _i >= 0; _i--)			\
+      putchar_unlocked(*(_str + _i));		\
+  }						\
+ 
+#define ROOT(x, y)				\
+  {						\
+    register int _i = (x), _j = _i, _t;		\
+    while (*(id + _i) != _i)			\
+      _i = *(id + _i);				\
+    (y) = _i; 					\
+						\
+    while (*(id + _j) != _i)			\
+      {						\
+	_t = *(id + _j);			\
+	*(id + _j) = _i;			\
+	_j = _t;				\
+      }						\
+  }						\
+ 
+int main(void)
+{
+  int *id, *size;
+  long long ans;
+  int i, j, m, n, p, q, routes, t;
+ 
+  id = malloc(MAX_N * sizeof *id);
+  size = malloc(MAX_N * sizeof *size);
+  if (id == NULL || size == NULL)
+    {
+      perror("malloc");
+      return 1;
+    }
+ 
+  READ_INT(t);
+  while (t--)
+    {
+      READ_INT(n);
+      READ_INT(m);
+ 
+      for (i = 1; i <= n; i++)
+	{
+	  *(id + i) = i;
+	  *(size + i) = 1;
+	}
+      routes = n;
+ 
+      while (m-- > 0)
+	{
+	  READ_INT(i);
+	  READ_INT(j);
+ 
+	  ROOT(i, p);
+	  ROOT(j, q);
+	  if (p != q)
+	    {
+	      if (*(size + p) < *(size + q))
+		{
+		  *(id + p) = q;
+		  *(size + q) += *(size + p);
+		}
+	      else
+		{
+		  *(id + q) = p;
+		  *(size + p) += *(size + q);
+		}
+	      routes--;
+	    }
+	}
+      for (ans = i = 1; i <= n; i++)
+	if (*(id + i) == i)
+	  ans = ans * *(size + i) % DIVISOR;
+ 
+      WRITE_INT(routes);
+      putchar_unlocked(' ');
+      WRITE_INT(ans);
+      putchar_unlocked('\n');
+    }
+ 
+  free(id);
+  free(size);
+  return 0;
+}
+ 

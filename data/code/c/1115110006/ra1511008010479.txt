@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int arr[5][5];
+  int day,city,c_max,d_max;
+  int temp_max = -9999,temp_min = 9999,c_min,d_min;
+  for(day=0; day<5; day++)
+  {
+    for(city=0; city<5; city++)
+    {
+      scanf("%d",&arr[day][city]);
+      if(arr[day][city] > temp_max)
+      { temp_max = arr[day][city];
+        c_max = city;
+       	d_max = day;
+      }
+      if(arr[day][city] < temp_min)
+      {
+        temp_min = arr[day][city];
+        c_min = city;
+        d_min = day;
+      }
+    }
+  }
+  printf("Max=%d city=%d day=%d",temp_max,c_max+1,d_max+1);
+  printf("\nMin=%d city=%d day=%d",temp_min,c_min+1,d_min+1);
+	return 0;
+}

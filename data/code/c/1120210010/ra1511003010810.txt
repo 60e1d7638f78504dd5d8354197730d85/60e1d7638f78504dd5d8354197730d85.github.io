@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+    int t,n,i,a,count,j,rem,pack_required;
+    scanf("%d",&t);
+    long long int quant;
+ 
+    for(i=0;i<t;i++)
+    {
+        count=0;
+        rem=0;
+        scanf("%d %lld",&n,&quant);
+ 
+        for(j=0;j<n;j++)
+        {
+ 
+            scanf("%d",&a);
+ 
+ 
+            if(rem>=a)
+            {
+                pack_required=0;
+                rem=rem-a;
+            }
+            else
+            {
+                pack_required=(int)ceil((double)(a-rem)/(double)quant);
+                rem=rem+(pack_required*quant)-a;
+ 
+            }
+ 
+ 
+            count=count+pack_required;
+ 
+            if(rem>0)
+                rem=rem-1;
+        }
+        printf("%d\n",count);
+ 
+    }
+ 
+    return 0;
+}

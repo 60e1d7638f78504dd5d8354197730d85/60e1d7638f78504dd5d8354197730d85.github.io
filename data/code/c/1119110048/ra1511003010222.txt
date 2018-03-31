@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <ctype.h>
+int isvowel(char c)
+{
+  switch(tolower(c))
+  {
+    case 'a': case 'e': case 'i': case 'o': case 'u': return 1;
+    default: return 0;
+  }
+}
+int main()
+{
+	char s[100];
+  	int v = 0, c = 0, i;
+  	scanf("%s",s);
+  	for(i = 0; s[i] != '\0'; i++)
+      if(isvowel(s[i]))
+        v++;
+  	  else
+        c++;
+  	printf("%d %d",v,c);
+	return 0;
+}

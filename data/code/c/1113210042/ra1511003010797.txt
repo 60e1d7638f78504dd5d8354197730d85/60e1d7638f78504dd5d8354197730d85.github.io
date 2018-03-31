@@ -1,0 +1,31 @@
+#include <stdio.h>
+int gcd(a,b)
+{
+  int small,big,i,temp=1;
+  if(a<b)
+  {
+    small = a;
+    big = b; 
+  }
+  else
+  {
+    big = a;
+    small = b;
+  }  
+  for(i=2;i<=small;i++)
+  {
+    if(big%i == 0 && small%i == 0)
+    {
+      temp = i;
+    }
+  }
+  return temp;
+}
+int main()
+{
+  	int a,b;
+	scanf("%d",&a);
+  	scanf("%d",&b);
+  	printf("%d",gcd(a,b));
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int a, b, i, N, flag = 0;
+  	double num;
+  	scanf("%lf", &num);
+  	N = (int)(num);
+  	a = sqrt(num);
+  	if(a*a == num)
+      printf("%d %d", a, a);
+  	else
+    {
+      	for(i = 2; i < N; i++)
+        {
+          	if(N % i == 0)
+            {
+              	a = i;
+              	flag = 1;
+              	break;
+            }
+        }
+      	if(flag == 1)
+        {
+      		b = N/a;
+      		printf("%d %d", a, b);
+        }
+      	else
+          printf("%d %d", 1, N);
+    }
+	return 0;
+}

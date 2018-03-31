@@ -1,0 +1,81 @@
+#include<stdio.h>
+ 
+void merge(int *a,int p,int q,int r){
+    int t[r-p+1];
+    int i,j,k=0;
+    i=p;
+    j=q+1;
+    while(i<=q && j<=r){
+        if(a[i]<a[j])
+        t[k++]=a[i++];
+        else
+        t[k++]=a[j++];
+    }
+    if(i>q)
+    for(i=j;i<=r;i++)
+    t[k++]=a[i];
+    else
+    for(j=i;j<=q;j++)
+    t[k++]=a[j];
+ 
+    for(k=0,i=p;i<=r;i++,k++)
+    a[i]=t[k];
+}
+ 
+void mergesort(int *a,int p,int r){
+    int q;
+    if(p<r){
+        q=(p+r)/2;
+        mergesort(a,p,q);
+        mergesort(a,q+1,r);
+        merge(a,p,q,r);
+    }
+}
+ 
+int main(){
+    int n,i,j,k=0;
+    int a[101],b[5000],copy[5000],f[101]={};
+    int max=0,maxb=0,count=0;
+ 
+    scanf("%d",&n);
+ 
+    for(i=1;i<=n;i++)
+    scanf("%d",&a[i]);
+ 
+    mergesort(a,1,n);
+ 
+    for(i=1;i<=n;i++)
+    for(j=i+1;j<=n;j++)
+    b[++k]=a[i]+a[j];
+ 
+    for(i=1;i<=k;i++)
+    copy[i]=b[i];
+ 
+    mergesort(b,1,k);
+ 
+    for(i=2;i<=k;i++){
+        j=1;
+        while(b[i-1]==b[i] && i<k){
+            j++;
+            i++;
+        }
+        if(j>max){
+            maxb=b[i-1];
+            max=j;
+        }
+    }
+ 
+    k=0;
+    for(i=1;i<=n;i++)
+    for(j=i+1;j<=n;j++)
+    if(copy[++k]==maxb && !f[i] && !f[j])
+    f[i]=f[j]=1;
+ 
+    for(i=1;i<=n;i++)
+    if(f[i])
+    count++;
+ 
+    printf("%d\n",count);
+ 
+return 0;
+}

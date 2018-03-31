@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <limits.h>
+enum {false, true};
+ 
+#define ll long long int
+#define gll(x) get_int(&x)
+ 
+ll get_int(ll *i) {
+	register int a, sign;
+	*i = 0;
+	sign = 0;
+	
+	while((a = getchar()) < 33);
+	if(a == '-') {
+		sign = 1;
+	} else {
+		*i = a - '0';
+	}
+	while((a = getchar()) > 33) {
+		*i = (*i << 1) + (*i << 3) + a - '0';
+ 	}
+ 	*i = sign?-*i:*i;
+ 	return *i;
+}
+int main(void) {
+	ll T;
+	gll(T);
+	while(T--) {
+		ll N;
+		gll(N);
+		ll i, t1, t2, flag = 0, count = 0;
+		gll(t1);
+		count++;
+		for(i = 1; i < N; i++) {
+			gll(t2);
+			if(t2 == t1) count++;
+			else count = 1;
+			
+			if(count == 3) flag = 1;
+			
+			t1 = t2;
+		}
+		if(flag == 0) {
+			printf("No\n");
+		} else {
+			printf("Yes\n");
+		}
+	}
+	return 0;
+}

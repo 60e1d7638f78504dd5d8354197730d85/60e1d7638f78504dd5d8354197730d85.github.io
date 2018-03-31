@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+ 
+// function to find out the maximum repeating
+// character in given string
+char maxRepeating(string str)
+{
+    int len = str.length();
+    int count = 0;
+ 
+    // Find the maximum repeating character
+    // starting from str[i]
+    char res = str[0];
+    for (int i=0; i<len; i++)
+    {
+        int cur_count = 1;
+        for (int j=i+1; j<len; j++)
+        {
+            if (str[i] != str[j])
+                break;
+            cur_count++;
+        }
+ 
+        // Update result if required
+        if (cur_count > count)
+        {
+            count = cur_count;
+            res = str[i];
+        }
+    }
+    return res;
+}
+ 
+// Driver code
+int main()
+{
+ 
+   char str[20];
+    
+    int i,k=0,c=0;
+  cin>>str;
+  
+ int m=strlen(str);
+  char a= maxRepeating(str);
+  
+    for(i=0;i<m;i++)
+      if(str[i]==a)
+        k++;
+      else
+      {
+        if(k>c)
+          c=k;
+          k=0;
+      }
+        cout<<c;
+    return 0;
+}

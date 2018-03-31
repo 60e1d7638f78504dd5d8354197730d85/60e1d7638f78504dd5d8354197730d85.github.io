@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int i,month[12]={0,3,3,6,1,4,6,2,5,0,3,5};
+  int day,mon,year,year1,rem;
+  char days[7][10]={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+  scanf("%d %d %d",&day,&mon,&year);
+  year=year%100;
+  mon=mon-1;
+  year1=year/4;
+  for(i=0;i<12;i++)
+  {
+    if(i==mon)
+    {
+      mon=month[i];break;
+    }
+  }
+  rem=year+year1+day+mon;
+  rem=rem%7;
+  rem=rem-1;
+  
+  for(i=0;i<7;i++)
+  {
+    if(i==rem)
+    {
+      printf("%s",days[i]);
+      break;
+    }
+  }
+	return 0;
+}

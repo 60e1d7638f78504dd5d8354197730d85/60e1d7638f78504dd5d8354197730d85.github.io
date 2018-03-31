@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isprime(int x);
+
+int main()
+{
+  int x,y,sum=0,i;
+  scanf("%d%d",&x,&y);
+  for(i=x;i<=y;i++){
+    if(isprime(i))
+      printf("%d\n",i);
+  }
+  return 0;
+}
+  
+bool isprime(int x){
+    int i,sum=0;
+    for(i=1;i<=x;i++){
+      if(x%i == 0)
+        sum++;
+    }
+    if(sum==2)
+      return true;
+    else
+      return false;
+  }

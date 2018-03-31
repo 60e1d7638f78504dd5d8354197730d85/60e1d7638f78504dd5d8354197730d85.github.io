@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+class HexFormatException extends NumberFormatException{
+public HexFormatException(String msg){
+super(msg);
+}}
+    
+public class TestClass {
+   
+  public static void hexCharToDecimal(char[] x){
+
+    String s=new String(x);
+      try{
+     int x1=Integer.parseInt(s,16);
+        System.out.println(x1);
+
+    }catch(Exception e){
+    
+      throw new HexFormatException("Number is not Hexadecimal");
+    }}
+       
+	 public static void main(String[] args) { 
+        Scanner obj=new Scanner(System.in);
+  char x[]=obj.nextLine().toCharArray();
+       try{
+        hexCharToDecimal(x);}
+          catch(HexFormatException e){
+       System.out.println(e);
+       }
+		
+	}
+}

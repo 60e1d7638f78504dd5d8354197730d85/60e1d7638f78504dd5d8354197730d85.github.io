@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+	int i, found=0, search, n, pos;
+
+
+   // printf("enter the number of elements\n");
+    scanf("%d",&n);
+	int num[n];
+
+
+    //printf("enter array elements\n");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&num[i]);
+    }
+
+
+
+    //printf("enter element to search\n");
+    scanf("%d",&search);
+
+
+
+    for(i=0; i<n; i++)
+    {
+        if(search==*(num+i))
+        {
+            found++;
+          pos = i;
+            break;
+        }
+    }
+
+
+
+    if(found==1)
+        printf("\n%d is found in the array at position=%d",search, pos);
+    else
+        printf("\n%d Does not exist in the array",search);
+
+
+	return 0;
+}

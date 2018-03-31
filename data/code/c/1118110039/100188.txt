@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        char st[401],arr[400];
+        int i,top=-1;
+        scanf("%s",st);
+        for(i=0;st[i]!='\0';i++){
+            if(isalpha(st[i]))
+                printf("%c",st[i]);
+            else if(st[i]=='(')
+                continue;
+            else if(st[i]==')'){
+                printf("%c",arr[top]);
+                top--;
+            }
+            else
+                arr[++top]=st[i];
+        }
+        printf("\n");
+    }
+    return 0;
+}
+ 
+ 
+

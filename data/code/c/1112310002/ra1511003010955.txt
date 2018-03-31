@@ -1,0 +1,30 @@
+#include<stdio.h>
+ 
+long long int cmpfunc (const void * a, const void * b)
+{
+   return ( *(long long int*)a - *(long long int*)b );
+}
+ 
+int main()
+{
+	int n,count=0;
+	long long int i,d;
+	scanf("%d %lld",&n,&d);
+	long long int l[n];
+	for(i=0;i<n;i++){
+		scanf("%lld",&l[i]);
+	}
+	qsort(l, n, sizeof(long long int), cmpfunc);
+	i=0;
+	while(i<n-1){
+		if((l[i+1]-l[i])<=d){
+			count++;
+			i+=2;
+		}
+		else{
+			i+=1;
+		}
+	}
+	printf("%d\n",count);
+	return 0;
+} 

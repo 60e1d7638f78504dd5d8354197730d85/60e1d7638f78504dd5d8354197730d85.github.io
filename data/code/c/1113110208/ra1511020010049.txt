@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MOD 1000000007
+long long solve(int idx,int num,int K);
+long long dp[43];
+ 
+int main(){
+  int Q,X,K,i;
+  dp[0]=1;
+  dp[1]=2;
+  for(i=2;i<43;i++)
+    dp[i]=dp[i-1]+dp[i-2];
+  scanf("%d",&Q);
+  while(Q--){
+    scanf("%d%d",&X,&K);
+    printf("%lld\n",solve(42,X,K));
+  }
+  return 0;
+}
+long long solve(int idx,int num,int K){
+  int i;
+  long long ans=0;
+  if(!num && !K)
+    return 1;
+  if(num<=0 || K<=0)
+    return 0;
+  if(!idx){
+    if(K==num)
+      return 1;
+    return 0;
+  }
+  long long t=K*dp[idx];
+  if(num>t)
+    return 0;
+  if(num==t)
+    return 1;
+  for(i=0;num>=0 && K-i>=0;i++){
+    ans=(ans+solve(idx-1,num,K-i))%MOD;
+    num-=dp[idx];
+  }
+  return ans;
+}
+ 

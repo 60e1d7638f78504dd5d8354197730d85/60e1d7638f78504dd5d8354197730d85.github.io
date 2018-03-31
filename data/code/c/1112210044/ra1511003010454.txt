@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int t,l,r,i,j,k,flag=0, flag1=0,cnt=0;
+  scanf("%d",&t);
+  for(k=1;k<=t;k++){
+  scanf("%d%d",&l,&r);
+  for(i=l; i<=r; i++){
+    flag=0;flag1=0;
+    if(i==1){
+      flag=2;
+      flag1=1;}
+    for(j=2; j<i; j++){
+      if(i%j == 0){
+        flag++;
+      }
+    }
+    for(j=2; j<(flag+2); j++){
+      if((flag+2)%j == 0){
+        flag1=1;
+        break;
+      }
+    }
+    if(flag == 0 || flag1 == 0)
+      cnt++;
+  }
+  printf("%d\n",cnt);
+    cnt=0;
+  }
+
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+    int t,n;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        if(n%2!=0)
+            printf("-1\n");
+        else
+        {
+            if(n%12==0)
+                printf("%d\n",n/12);
+            else
+            {
+                int x=(n%10)/2;
+                while(x*12<n)
+                    x+=5;
+                x-=5;
+                if(x<0)
+                    printf("-1\n");
+                else
+                {
+                    n-=x*12;
+                    printf("%d\n",x+n/10);
+                }
+            }
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  
+  scanf("%d", &n);
+  n=convertFive(n);
+  printf("%d",n);
+  return 0;
+}
+
+int convertFive(int n)
+{
+  int n1=0, base=1, rem;
+  
+  while(n>0)
+  {
+    //n=n/10;
+    rem=n%10;
+    if(rem == 0)
+    {
+      n1=n1+(base*5);
+    }
+    else n1=n1+(base*rem);
+    base=base*10;
+    n=n/10;
+  }
+  
+  return n1;
+}
+ 

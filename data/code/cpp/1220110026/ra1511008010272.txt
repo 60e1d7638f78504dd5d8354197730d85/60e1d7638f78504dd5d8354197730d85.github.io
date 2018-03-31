@@ -1,0 +1,21 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main()
+{
+	int a,b,c;
+  	cin>>a>>b>>c;
+  	fstream file;
+  	file.open("time.txt",ios::out);
+  	file<<a<<endl<<b<<endl<<c;
+    file.close();
+  	cout<<"Time "<<a<<":"<<b<<":"<<c<<" has been written into file"<<endl;
+  	fstream rf;
+  	rf.open("time.txt",ios::in);
+  	rf>>a;
+  	rf>>b;
+  	rf>>c;
+  	cout<<"The time is "<<a<<":"<<b<<":"<<c;
+  	rf.close();
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<string.h>
+int n,m,i,x,y,color[41],sum[41],j;
+long long int a,b;
+long long int dp[41][41],dp1[41][41];
+void fun()
+{
+	for(i=1;i<=40;i++)
+	{
+		a = (((long long int)1)<<color[i])-1;
+		b = ((long long int)1)<<(color[i]-1);
+		for(j=1;j<=i;j++)
+		{
+			dp[i][j]=dp[i-1][j]+dp[i-1][j-1]*a;
+			dp1[i][j] = dp1[i-1][j]+dp1[i-1][j-1]*a+dp[i-1][j-1]*sum[i]*b;}
+	}
+	/*for(i=1;i<=40;i++)
+	{
+		a = (((long long int)1)<<color[i])-1;
+		b = ((long long int)1)<<(color[i]-1);
+		for(j=1;j<=i;j++)
+			dp1[i][j] = dp1[i-1][j]+dp1[i-1][j-1]*a+dp[i-1][j-1]*sum[i]*b;
+	}*/
+	a=0;b=0;
+	for(i=m;i<=40;i++)
+	{
+		a+=dp1[40][i];
+		b+=dp[40][i];
+	}
+  double l;
+  l=((double)a/(double)b);
+	printf("%0.9lf\n",l);
+	return;
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	for(i=0;i<41;i++)
+		dp[i][0]=1;
+	while(t--)
+	{
+		scanf("%d%d",&n,&m);
+		for(i=0;i<n;i++)
+		{
+			scanf("%d%d",&x,&y);
+			color[x]++;
+			sum[x]+=y;
+		}
+		fun();
+		memset(color,0,sizeof(color));
+		memset(sum,0,sizeof(sum));
+	}
+	return 0;
+}

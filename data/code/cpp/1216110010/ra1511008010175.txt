@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int getPassingCars(int* A, int N)
+{
+    unsigned long count = 0;
+    int totalOfZeros = 0;
+    for(int i = 0; i < N; i++)
+    {
+        if(A[i]==0)
+        {
+            totalOfZeros ++;
+        }
+        else if (A[i]==1)
+        {
+            count = count + totalOfZeros;
+        }
+        if(count > 1000000000) 
+          	return -1;
+    }
+    return count;
+}
+ 
+int main()
+{
+  	int n;
+  	cin>>n;
+  	int A[n];
+   	for(int i=0;i<n;i++)
+  		cin>>A[i];
+   int numPasses = getPassingCars(A,n);
+   cout  << numPasses << endl;
+}

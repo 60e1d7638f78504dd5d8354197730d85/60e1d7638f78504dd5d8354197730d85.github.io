@@ -1,0 +1,221 @@
+#include<cstdio>
+#include<cstring>
+#include<cstdlib>
+#include<cctype>
+#include<cmath>
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<queue>
+#include<map>
+#include<algorithm>
+#include<set>
+#include<sstream>
+#include<stack>
+#define maxim 100
+#define LLD long long int
+#define LLU long long unsigned
+#define HD short int
+#define HU short unsigned
+#define ui unsigned
+#define pi acos(-1.0)
+#define inf (1<<29)
+#define CLR(a) memset(a,0,sizeof(a))
+#define SET(a) memset(a,-1,sizeof(a))
+#define pb push_back
+#define sz(a) ((int)a.size())
+#define all(a) a.begin(),a.end()
+#define eps 1e-9
+#define rep(i,init,n) for(i=init;i<n;i++)
+#define rem(i,init,n) for(i=init;i>n;i--)
+#define foreach(i, c) for( __typeof( (c).begin() ) i = (c).begin(); i != (c).end(); ++i )
+#define _abs(a) ((a)<0?(-(a)):(a))
+#define area(x1,y1,x2,y2,x3,y3) ( x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2) )
+#define sqr(x) ((x)*(x))
+#define distSqr(x1,y1,x2,y2) ( sqr(x1-x2) + sqr(y1-y2) )
+#define spDist(lat1,long1,lat2,long2,r) ( r * acos( sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(long1-long2) ) )
+#define isEq(a,b) (fabs(a-b)<eps)
+#define STR string
+#define LF double
+#define IT iterator
+#define VI vector<int>
+#define VLLD vector<LLD>
+#define VS vector<STR>
+#define VLF vector<LF>
+#define MII map<int,int>
+#define MIB map<int,bool>
+#define MSI map<STR,int>
+#define MSB map<STR,bool>
+#define MSS map<STR,STR>
+#define M2dII map<int,map<int,int> >
+#define QI queue<int>
+#define SI stack<int>
+#define PII pair< int, int >
+#define PPI pair< PII, int >
+#define ff first
+#define ss second
+#define VPII vector<PII>
+#define MP make_pair
+ 
+#define chk(a,k) ((bool)(a&(1<<(k))))
+#define set0(a,k) (a&(~(1<<(k))))
+#define set1(a,k) (a|(1<<(k)))
+ 
+#define chkA(a,k) (bool)(a[(k)>>5] & (1<<((k)&31)))
+#define setA0(a,k) (a[(k)>>5] &= ~(1<<((k)&31)))
+#define setA1(a,k) (a[(k)>>5] |= (1<<((k)&31)))
+ 
+#define SD(a) scanf("%d",&a)
+#define SU(a) scanf("%u",&a)
+#define SHD(a) scanf("%hd",&a)
+#define SHU(a) scanf("%hu",&a)
+#define SLLD(a) scanf("%lld",&a)
+#define SLLU(a) scanf("%llu",&a)
+#define SF(a) scanf("%f",&a)
+#define SLF(a) scanf("%lf",&a)
+#define SC(a) scanf("%c",&a)
+#define SS(a) scanf("%s",a)
+ 
+int diru[] = {-1,-1,-1,0,0,1,1,1};
+int dirv[] = {-1,0,1,-1,1,-1,0,1};
+ 
+using namespace std;
+ 
+#define DEB(args...) {dbg,args; cerr<<endl;}
+struct debugger { template<typename T> debugger& operator,(const T& v) { cerr<<v<<" "; return *this; } } dbg ;
+ 
+template< class T > T sq(T n) { return n*n; }
+template< class T > T gcd(T a, T b) { return (b != 0 ? gcd<T>(b, a%b) : a); }
+template< class T > T lcm(T a, T b) { return (a / gcd<T>(a, b) * b); }
+template< class T > bool inside(T a, T b, T c) { return a<=b && b<=c; }
+template< class T > void setmax(T &a, T b) { if(a < b) a = b; }
+template< class T > void setmin(T &a, T b) { if(b < a) a = b; }
+template< class T > T power(T N,T P){  return (P==0)?  1: N*power(N,P-1); }
+ 
+char in[10] ;
+char S[10] ;
+char M[10] ;
+char canAford[10] ;
+VI can[300] ;
+int m,s ;
+ 
+int solve()
+{
+          bool f = 1 ;
+          int ret = 0,i,j ;
+ 
+         // puts("") ;
+ 
+          canAford[m] = 1 ;
+ 
+          rem(i,m-1,-1)
+          {
+                    if(can[in[i]][0]<M[i])        canAford[i] = 1 ;
+                    else if(can[in[i]][0]==M[i])
+                    {
+                              canAford[i] = canAford[i+1] ;
+                    }
+                    else
+                    {
+                              canAford[i] = 0 ;
+                    }
+          }
+ 
+          rep(i,0,m)
+          {
+                    //printf("%d\n",in[i]) ;
+ 
+                    if(f)
+                              rem(j,sz(can[in[i]])-1,-1)
+                              {
+                                        if(f && can[in[i]][j] == M[i])
+                                        {
+                                                  if(canAford[i+1])   break ;
+                                        }
+                                        else if( can[in[i]][j] <= M[i] )
+                                                  break ;
+                              }
+                    else j = sz(can[in[i]])-1 ;
+ 
+                    if(j==-1)           return -1 ;
+ 
+                    if( can[in[i]][j] < M[i] )             f = 0 ;
+ 
+                    ret *= 10 ;
+                    ret += (int)(can[in[i]][j]-'0') ;
+          }
+ 
+          return ret ;
+}
+ 
+void init()
+{
+          int i ;
+          rep(i,0,10)         can[0].pb(i+'0') ;
+ 
+          rep(i,0,10)         can[i+'0'].pb(i+'0') ;
+ 
+          can['0'].pb('8') ;
+          can['1'].pb('0') ;can['1'].pb('3') ;can['1'].pb('4') ;can['1'].pb('7') ;can['1'].pb('8') ;can['1'].pb('9') ;
+          can['2'].pb('8') ;
+          can['3'].pb('8') ;can['3'].pb('9') ;
+          can['4'].pb('8') ;can['4'].pb('9') ;
+          can['5'].pb('6') ;can['5'].pb('8') ;can['5'].pb('9') ;
+          can['6'].pb('8') ;
+          can['7'].pb('0') ;can['7'].pb('3') ;can['7'].pb('8') ;can['7'].pb('9') ;
+          can['9'].pb('8') ;
+ 
+          rep(i,0,10)         sort(all(can[i+'0'])) ;
+}
+ 
+int main()
+{
+	int n,T,t=1,i,j,k;
+	//freopen("in.txt","r",stdin);
+	//freopen("out.txt","w",stdout);
+          init() ;
+	scanf("%d",&T);
+	for(t=1;t<=T;t++)
+	//while(scanf("%d",&n)==1)
+	{
+	          SS(S) ;
+	          SS(M) ;
+ 
+	          m = strlen(M) ;
+	          s = strlen(S) ;
+ 
+	          int ans = 0 ;
+ 
+	          if(s<m)
+	          {
+                              ans = power(10,m-s-1)-1 ;
+ 
+                              rep(i,0,s)
+                              {
+                                        ans *= 10 ;
+                                        j = sz(can[S[i]])-1 ;
+                                        ans += (int)(can[S[i]][j]-'0') ;
+                              }
+	          }
+ 
+	          rep(i,0,m-s+1)
+	          {
+	                    CLR(in) ;
+ 
+	                    rep(j,0,s)
+                                        in[i+j] = S[j] ;
+ 
+                              ans = max(ans,solve()) ;
+ 
+                              //DEB(solve()) ;
+	          }
+ 
+		//rep(i,0,n)
+			//scanf("%d",&m);
+		printf("%d\n",ans) ;
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,47 @@
+#include<stdio.h>
+int main(void) {
+	
+	int t,n,a,i,j,total;
+	int primeNo[10000];
+	scanf("%d",&t);
+	while(t--){
+	    scanf("%d",&n);
+	    j=0;
+	    int prime[1000005]={0};
+	    while(n--){
+	        scanf("%d",&a);
+	        if(prime[2]==0 && a%2==0){
+	            primeNo[j]=2;
+	            j++;
+	        }
+	        while(a%2==0){
+	            a=a>>1;
+	            prime[2]++;
+	        }
+	        for(i=3;i*i<=a;i=i+2){
+	            if( prime[i]==0 && a%i==0){
+	                primeNo[j]=i;
+	                j++;
+	            }
+                while(a%i==0){
+                    a=a/i;
+                    prime[i]++;
+                }
+	        }
+	        if(a>1){
+	            if(prime[a]==0){
+	                primeNo[j]=a;
+	                j++;
+	            }
+	            prime[a]++;
+	        }
+	    }
+	    total=1;
+	    for(i=0;i<j;i++){
+	        total*=1+prime[primeNo[i]];
+	    }
+	    printf("%d\n",total);
+	}
+	return 0;
+}
+ 

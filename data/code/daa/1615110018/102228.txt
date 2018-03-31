@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+bool isprimatic(int n)
+{
+    int i;
+    if(n==4||n==27||n==3125)
+    return true;
+    if(n==1)
+    return false;
+    for(i=2;i*i<=n;i++)
+    {
+        if(n%i==0)
+        return false;
+    }
+    return true;
+}
+int o[10001];
+int main()
+{
+    ios::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
+    int t,i,n,j,flag,k;
+    scanf("%d",&t);
+    if(t<10000)
+    for(i=2;i<1001;i++)
+    {
+        flag=1;
+        if(isprimatic(i))
+        o[i]=1;
+        else
+        {
+        for(j=2;j<(i/2)+1;j++)
+        {
+        if(isprimatic(i-j)&&isprimatic(j))
+        {
+            o[i]=2;
+            flag=0;
+            break;
+        }
+        }
+        if(flag!=0)
+        o[i]=3;
+        }
+    }
+    else
+    for(i=2;i<10001;i++)
+    {
+        flag=1;
+        if(isprimatic(i))
+        o[i]=1;
+        else
+        {
+        for(j=2;j<(i/2)+1;j++)
+        {
+        if(isprimatic(i-j)&&isprimatic(j))
+        {
+            o[i]=2;
+            flag=0;
+            break;
+        }
+        }
+        if(flag!=0)
+        o[i]=3;
+        }
+    }
+    
+    while(t--)
+    {
+        
+        scanf("%d",&n);
+        printf("%d\n",o[n]);
+    }
+        
+       
+    
+    return 0;
+}

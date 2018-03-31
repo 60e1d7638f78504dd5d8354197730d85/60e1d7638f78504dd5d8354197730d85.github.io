@@ -1,0 +1,65 @@
+#include<stdio.h>		
+ 
+int main()	
+{	
+	char a[50][50];
+	int z,ro,co,t,i,j,k,fin,r,l,b,ooper,x;
+	scanf("%d",&t);
+	while(t--)
+	{
+		fin=0;
+		scanf("%d",&ro);
+		scanf("%d",&co);
+		for(i=0;i<ro;++i)
+		scanf("%s",a[i]);
+		{
+			for(i=0;i<ro;++i)
+				{
+					for(j=0;j<co;++j)
+					{	b=ooper=r=l=-1;
+						if(a[i][j]=='^')
+						{
+							for(x=j;x>=0;--x)
+								{
+									if(a[i][x]=='#')
+									break;
+									else
+									l++;
+								}
+							
+							for(x=j;x<co;++x)
+								{
+									if(a[i][x]=='#')
+									break;
+									else
+									r++;
+								}
+							
+							for(x=i;x>=0;--x)
+								{
+									if(a[x][j]=='#')
+									break;
+									else
+									ooper++;
+								}
+							
+							for(x=i;x<ro	;++x)
+								{
+									if(a[x][j]=='#')
+									break;
+									else
+									b++;
+								}
+							z=l>r?r:l;
+							z=z>ooper?ooper:z;
+							z=z>b?b:z;
+							if(z>=2)
+							fin++;
+							}
+					}
+				}
+		}
+				printf("%d\n",fin);
+	}
+    return 0;
+}   

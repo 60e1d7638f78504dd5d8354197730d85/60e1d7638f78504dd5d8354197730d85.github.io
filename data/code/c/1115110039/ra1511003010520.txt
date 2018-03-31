@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int a,i,j;
+  scanf("%d",&a);
+  
+  int b[100];
+  
+  for(i=0;i<a;i++)
+  {
+    scanf("%d",&b[i]);
+  }
+
+  for (i = 0; i < a-1; i++) 
+  {
+  for (j = 0; j < a-i-1; j++) 
+  {
+   if(b[j]>b[j+1])
+   {
+     int temp;
+     temp=b[j];
+     b[j]=b[j+1];
+     b[j+1]=temp;
+   }
+  }
+  }
+  for(i=0;i<a;i++)
+  {
+    printf("%d ",b[i]);
+  }
+	return 0;
+}

@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int temp[10];
+
+void findElements(int arr[],int n)
+{
+  int k=0,i,c,d,swap,j,key;
+    for (i=0;i<n;i++)
+    {
+        int count=0;
+        for(int j=0;j<n;j++)
+            if(arr[j]>arr[i])
+                count++;
+ 
+        if(count>=2)
+        {
+          temp[k++]=arr[i];
+   //         cout << arr[i] << " ";
+        }
+    }
+ //    for (j=0;j<k;j++)
+   //     cout<<temp[j]<<" ";
+  
+     for(i=1;i<k;i++)
+     {
+       key=temp[i];
+       j=i-1;
+
+       while(j>=0&&temp[j]>key)
+       {
+           temp[j+1]=temp[j];
+           j=j-1;
+       }
+       temp[j+1]=key;
+     }
+  for(i=0;i<k;i++)
+  {
+   // if(i!=k-1)
+    cout<<temp[i]<<" ";
+ //   else
+  //    cout<<temp[i];
+  }
+}
+
+  
+int main()
+{
+  // int arr[] = { 2, -6, 3, 5, 1};
+   // int n = sizeof(arr) / sizeof(arr[0]);
+  	int tc,i,num,j,A[15];
+  	cin>>tc;
+  	for(i=0;i<tc;i++)
+    {
+      cin>>num;
+      for(j=0;j<num;j++)
+        cin>>A[j];
+      
+   //   for(j=0;j<num;j++)
+     //   cout<<arr[j]<<" ";
+   //   cout<<endl;
+    findElements(A,num);
+      cout<<endl;
+    }
+	return 0;
+}

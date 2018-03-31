@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+int cntA[1001];
+int cntB[1001];
+
+int MAIN()
+{
+	memset(cntA, 0, sizeof(cntA));
+	memset(cntB, 0, sizeof(cntB));
+	cin >> n;
+	for(int i = 1; i <= n; i++)
+	{
+		int t;
+		cin >> t;
+		cntA[t] ++;
+	}
+	for(int i = 1; i <= n; i++)
+	{
+		int t;
+		cin >> t;
+		cntB[t] ++;
+	}
+	int ans = 0;
+	for(int i = 1; i <= 1000; i++)
+		ans += min(cntA[i], cntB[i]);
+	if(ans == n)
+		ans --;
+	else
+		ans ++;
+	cout << ans << endl;
+	
+	return 0;
+}
+
+int main()
+{
+	int start = clock();
+	#ifdef LOCAL_TEST
+		freopen("in.txt", "r", stdin);
+		freopen("out.txt", "w", stdout);
+	#endif
+	ios :: sync_with_stdio(false);
+	cout << fixed << setprecision(16);
+	int ret = MAIN();
+	#ifdef LOCAL_TEST
+		cout << "[Finished in " << clock() - start << " ms]" << endl;
+	#endif
+	return ret;
+}

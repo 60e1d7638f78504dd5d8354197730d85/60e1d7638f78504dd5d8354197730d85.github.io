@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+void swap(int arr[], int i1, int i2, int d)
+{
+   for(int i = 0; i<d; ++i)
+   {
+     int temp = arr[i1 + i];
+     arr[i1 + i] = arr[i2 + i];
+     arr[i2 + i] = temp;
+   }
+}
+void rotate_blockswap(int arr[], int d, int size)
+{
+    if(d == 0 || d == size)
+        return;
+    if(size-d == d)
+    {
+        swap(arr, 0, size - d, d);
+        return;
+    }
+    if(d < size-d)
+    {
+        swap(arr, 0, size - d, d);
+        rotate_blockswap(arr, d, size - d);
+    }
+    else
+    {
+        swap(arr, 0, d, size - d);
+        rotate_blockswap(arr + size - d, (2*d) - size, d);
+    }
+}
+int main() {
+    int n,d,arr[100];
+  	cin>>n;
+  	for(int i=0; i<n; i++)
+      cin>>arr[i];
+    int size = n;
+    cin>>d;
+    rotate_blockswap(arr, d, size);
+    for(int i = 0; i<size; ++i)
+        cout<<arr[i]<<" ";
+    return 0;
+}

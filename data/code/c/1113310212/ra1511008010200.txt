@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+int main()
+{
+  char s[81];
+  scanf("%s",s);
+  int l = strlen(s);
+  int upperL = ceil(sqrt(l));
+  int lowerL = floor(sqrt(l));
+  int i,j,minArea = 99999999,x,y;
+  for (i = lowerL; i <= upperL; i++) {
+    for (j = lowerL; j <= upperL; j++) {
+      if (i * j >= l) {
+        if (minArea >= i * j) {
+          if(i<j){x=i;y=j;}
+          else {x=j;y=i;}
+        }
+        if(minArea>i*j)minArea = i*j;
+      }
+    }
+  }
+  char grid[x][y];
+  int pos = 0;
+  for(i=0;i<x;i++)
+    for(j=0;j<y;j++)
+      grid[i][j] = s[pos++];
+  for(i=0;i<y;i++){
+    for(j=0;j<x;j++)
+      printf("%c",grid[j][i]);
+    printf(" ");
+  }
+  return 0;
+}

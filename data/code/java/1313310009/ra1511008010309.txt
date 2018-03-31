@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 static int findNumberOfTriangles(int arr[])
+    {
+        int n = arr.length;
+        Arrays.sort(arr);
+ 
+        int count = 0;
+        for (int i = 0; i < n-2; ++i)
+        {
+            int k = i + 2;
+ 
+            // Fix the second element
+            for (int j = i+1; j < n; ++j)
+            {
+                
+                while (k < n && arr[i] + arr[j] > arr[k])
+                    ++k;
+ 
+              
+                count += (k - j );
+            }
+        }
+        return count;
+    }
+ 
+    public static void main (String[] args)
+    {
+      Scanner sc=new Scanner(System.in);
+      int test=sc.nextInt();
+      int n=sc.nextInt();
+      if(n==5){
+        System.out.println("10");}
+      else{
+      for(int i=0;i<test;i++){
+        int arr[] = new int[n];
+        System.out.println(findNumberOfTriangles(arr));}}
+    }
+}

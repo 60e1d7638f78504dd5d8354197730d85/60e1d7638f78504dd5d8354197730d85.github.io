@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+int t,n,i,l,r,a[100],count=0,sum=0,task,j;
+char s[100];  
+scanf("%d",&n);
+scanf("%d",&t);
+scanf("%s",s);
+  for(i=0;i<=n;i++)
+    {
+      a[i]=s[i]-'0';
+  }  
+  while(t--)
+  {
+    count=0;
+  
+    scanf("%d",&task);
+    if(task==1)
+    {
+      scanf("%d",&l);
+      scanf("%d",&r);
+      a[l-1]=r;
+    }
+    else if(task==2)
+    {
+       scanf("%d",&l);
+      scanf("%d",&r);
+      for(i=l-1;i<r;i++)
+      {
+        sum=0;
+        for(j=i;j<r;j++)
+        {
+          sum=sum+a[j];
+          if(sum%3==0){++count;}
+        }
+      }
+      printf("%d\n",count);
+    }
+  }
+	return 0;
+}

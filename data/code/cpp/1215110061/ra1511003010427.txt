@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+ll a[100002];
+ll n,k;
+int main()
+{
+	
+	cin>>n>>k;
+	   for(ll i=0;i<n;i++)
+	   	cin>>a[i];
+	   double dp[n];
+	   dp[0]=log(a[0]);
+	   set<pair<double,ll> >s;
+	   s.insert(make_pair(dp[0],0));
+	   vector<ll>  ans(n);
+	   ans[0]=a[0];
+	   for(ll i=1;i<n;i++)
+	   {
+	   	while(i-s.begin()->second>k)
+	   		s.erase(s.begin());
+	   	dp[i]=(log(a[i])+(s.begin()->first));
+	   	ans[i]=(ans[s.begin()->second]*a[i])%1000000007;
+	   	s.insert(make_pair(dp[i],i));
+	   }
+	   cout<<ans[n-1];
+	
+	return 0;
+} 

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int n,x,arr[1000],i;
+  	scanf("%d %d",&n,&x);
+  	for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  int score=0;
+  int max=-999;
+  int skip_opt=0;
+  	for(i=0;i<n;i++){
+    if(arr[i]<=x)
+      score++;
+    else if(skip_opt==0 && arr[i]>x)
+    {skip_opt++;
+    continue;
+    }
+      else if(skip_opt==1 && arr[i]>x)
+      {   if(score>max)
+          max=score;
+        score=0;   }
+    }
+  if(max==-999)
+  printf("%d",score);
+  else
+    printf("%d",max);
+	return 0;
+}

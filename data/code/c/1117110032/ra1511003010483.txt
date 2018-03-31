@@ -1,0 +1,63 @@
+#include<stdio.h>
+void print(int lar,int str[],int j);
+
+void print(int lar,int str[],int j)
+{
+if(lar==1)
+	{
+		printf("none");
+	}
+	else if(lar>1)
+	{
+		printf("Mode=%d",str[j]);
+	}	
+}
+
+int main()
+{
+	int str[20];
+	int len[20];
+	int n,i,c=1,j;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&str[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		if(str[i]=='*')
+		{
+			len[i]=-1;
+		 continue;
+	    }
+	    else
+	    {
+	     for(j=i+1;j<n;j++)
+	    	{
+		    	if(str[j]=='*')
+			    {
+			     continue;
+			    }
+			    else if(str[i]==str[j])
+			    {
+			    c=c+1;
+			   	str[j]='*';
+		       	}
+	       	}
+		    len[i]=c;
+		    c=1;
+		}
+	}
+	int lar=len[0];
+	j=0;
+	for(i=1;i<n;i++)
+	{
+		if(lar<=len[i])
+		{
+			j=i;
+			lar=len[i];
+		}
+	}
+	print(lar,str,j);
+	return 0;
+}

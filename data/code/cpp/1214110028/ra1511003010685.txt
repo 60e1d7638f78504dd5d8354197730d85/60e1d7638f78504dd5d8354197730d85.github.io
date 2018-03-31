@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+class outer{
+public:	 
+  int x;
+  	 void get(){
+  		cin>>x;
+  		}
+  	class inner {
+      		public:
+  			int y;
+      		inner(int k){
+            	y=k;
+            	}
+      		int  sum(){
+              	outer obj;
+              	obj.get();
+          		return (obj.x+y);
+            }
+  		};
+	};
+int main()
+{	int x;
+ 	cin>>x;
+  outer ::inner obj(x);
+  int mc=obj.sum();
+  cout<<mc;
+	return 0;
+}

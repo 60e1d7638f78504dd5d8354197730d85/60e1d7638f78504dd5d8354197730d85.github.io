@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+class A {
+	public:
+	int y, w, d, val;
+	void getval(){
+      cin>>val;
+    }
+  	void putval(){
+      cout<<y<<" "<<w<<" "<<d;
+    }
+  	void calculate(A);
+};
+
+void A::calculate(A obj1){
+	y= obj1.val / 365;
+	w= obj1.val %365;
+	d= w % 7;
+	w= w / 7;
+}
+
+int main() {
+	A obj1;
+	obj1.getval();
+  	obj1.calculate(obj1);
+  	obj1.putval();
+
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+ 
+int main()
+{
+int t,p,n,i,q,s;
+scanf("%d",&t);
+while(t--)
+{
+	n=0,q=0,s=0;
+	scanf("%d",&p);
+	if(!(p&(p-1))&&p<=2048)
+		printf("1\n");
+	else
+	{
+	for(i=0;pow(2,i)<p && i<12;i++);
+	q=i-1;
+	while(p!=0 && q>=0)
+	{
+		s=pow(2,q);
+		if((p/s)>=1)
+		{
+			n=n+(p/s);
+			p=p%s;
+		}
+		q--;
+	}
+	printf("%d\n",n);
+	}
+}
+return 0;
+}
+ 
+

@@ -1,0 +1,108 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+struct Node
+{
+    int v1, v2;
+};
+Node cur, tmp;
+queue<Node> g;
+map<pair<int, int>, int> lev;
+//vector<int> lev[40005];
+int a, b, c, rem, t;
+int siz[2], pour[2], siz_g;
+int BFS()
+{
+    cur.v1 = 0;
+    cur.v2 = 0;
+    int i = 0;
+    g.push(cur);
+    while (g.size())
+    {
+        siz_g = g.size();
+        while (siz_g--)
+        {
+            cur = g.front();
+            g.pop();
+            if ((lev.count(make_pair(cur.v1, cur.v2)) != 0))
+                continue;
+            lev[make_pair(cur.v1, cur.v2)] = i;
+            if (cur.v1 == c || cur.v2 == c)
+                return i;
+            if (cur.v1 == 0)
+            {
+                tmp.v1 = a;
+                tmp.v2 = cur.v2;
+                g.push(tmp);
+            }
+            if (cur.v2 == 0)
+            {
+                tmp.v1 = cur.v1;
+                tmp.v2 = b;
+                g.push(tmp);
+            }
+            if (cur.v1 == a)
+            {
+                tmp.v1 = 0;
+                tmp.v2 = cur.v2;
+                g.push(tmp);
+            }
+            if (cur.v2 == b)
+            {
+                tmp.v1 = cur.v1;
+                tmp.v2 = 0;
+                g.push(tmp);
+            }
+            for (int j = 0; j < 2; j++)
+                for (int k = 0; k < 2; k++)
+                {
+                    pour[0] = cur.v1, pour[1] = cur.v2;
+                    if (j == k) continue;
+                    rem = siz[j] - pour[j];
+                    if (rem >= pour[k])
+                    {
+                        pour[j] = pour[j] + pour[k];
+                        pour[k] = 0;
+                    }
+                    else
+                    {
+                        pour[j] += rem;
+                        pour[k] -= rem;
+                    }
+                    tmp.v1 = pour[0];
+                    tmp.v2 = pour[1];
+                    g.push(tmp);
+                }
+        }
+        i++;
+    }
+}
+int GCD(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return GCD(b, a % b);
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin >> t;
+    t++;
+    while (t > 1)
+    {
+        cin >> a >> b >> c;
+        int len = max(a, b) + 8;
+        while(g.size())
+            g.pop();
+        lev.clear();
+        siz[0] = a, siz[1] = b;
+        if (c % GCD(a, b))
+            cout << "-1\n";
+        else if (c > a && c > b)
+            cout << "-1\n";
+        else
+            cout << BFS() << "\n";
+        t--;
+    }
+    return 0;
+}

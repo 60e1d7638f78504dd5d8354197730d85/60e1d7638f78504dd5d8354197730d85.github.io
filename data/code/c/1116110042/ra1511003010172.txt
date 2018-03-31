@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main()
+{
+    char str[50];
+    int vowels = 0, i = 0;
+    scanf("%s", str);
+    while(str[i] != '\0')
+      {
+         if(str[i]=='A' || str[i]=='a' || str[i]=='E' || str[i]=='e' || str[i]=='I' || str[i]=='i' ||
+         str[i]=='O' || str[i]=='o' || str[i]=='U' || str[i]=='u')
+         vowels++;
+         i++;
+       }
+    printf("%d", vowels);
+	return 0;
+}

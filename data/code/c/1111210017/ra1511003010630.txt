@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int total,numbers[100],i,attempt=0,sum[3],lol=0;
+  	scanf("%d",&total);
+  	for(i=0;i<total;i++)
+    {
+      scanf("%d",&numbers[i]);
+    }
+  for(i=total;i<100;i++)
+  {
+    numbers[i]=0;
+  }
+  	while(attempt<3)
+    {
+  		for(i=attempt;i<=total;i=i+3)
+    	{
+      		lol=lol+numbers[i];
+          	//printf("Running for: %d Total is:%d\n",i,total);
+    	}
+      	sum[attempt]=lol;
+      	lol=0;
+      	attempt=attempt+1;
+    }
+  	for(i=0;i<3;i++)
+    {
+      printf("%d \t",sum[i]);
+    }
+	return 0;
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	float n,bill=0,temp;
+  	cin>>n;
+  	temp=n;
+  	if(n<=100){
+     cout<<"Your bill is Rs.200";
+    }else{
+      	bill=200;     
+    	temp-=100;
+      	if(temp<=50){
+         bill+=0.6*temp;
+        }else if(temp<=100){
+         bill+=0.6*50;
+         temp-=50;
+         bill+=0.5*temp;
+        }else {
+         bill+=0.6*50;
+         temp-=50;
+         bill+=0.5*50;
+         temp-=50;
+         bill+=0.4*temp;
+        }
+      cout<<"Your bill is Rs."<<bill;
+    }
+	return 0;
+}

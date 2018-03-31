@@ -1,0 +1,75 @@
+#include<stdio.h>
+int inline scan()
+{
+    register int  N = 0, C;
+    while ((C = getchar_unlocked()) < '0');
+    do
+    {
+        N = (N<<3) + (N<<1) + C - '0';
+    }while ((C = getchar_unlocked()) >= '0');
+    
+    return N;
+}
+long inline scanl()
+{
+    register long  N = 0, C;
+    while ((C = getchar_unlocked()) < '0');
+    do
+    {
+        N = (N<<3) + (N<<1) + C - '0';
+    }while ((C = getchar_unlocked()) >= '0');
+    
+    return N;
+}
+void inline print( long *res)
+{
+    register  long  N = * res , rev, count = 0;
+    rev = N;
+    if (N == 0)
+    {
+          putchar_unlocked('0');
+         putchar_unlocked('\n');
+          return ;
+    }
+    while ((rev % 10) == 0)
+    {
+          count++;
+          rev /= 10;
+    }
+    rev = 0;
+    while (N != 0)
+    {
+          rev = (rev<<3) + (rev<<1) + N % 10;
+          N /= 10;
+    }
+    while (rev != 0)
+    {
+          putchar_unlocked(rev%10 + '0');
+          rev /= 10;
+    }
+    while (count--)
+          putchar_unlocked('0');
+    putchar_unlocked('\n');
+    return ;
+}
+ 
+int main() {
+	int t,g,i,q;
+	long n,ans;
+	t = scan();
+	while(t--) {
+		g = scan();
+		while(g--) {
+			i = scan();
+			n = scanl();
+			q = scan();
+			if(i == q)
+				ans = n/2;
+			else ans = n-(n/2);
+			print(&ans);
+		}
+	}
+	return 0;
+	
+}				
+	

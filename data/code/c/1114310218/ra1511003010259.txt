@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main()
+{
+	int left[26];
+	int right[26];
+	char str[1100];
+	int T, i, leftmost, rightmost;
+ 
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%s",str);
+		memset(left,0,sizeof(left));
+		memset(right,0,sizeof(right));
+ 
+		leftmost=(strlen(str)-2)/2;
+		for(i=0;i<=leftmost;i++)
+		{
+			left[str[i]-'a']++;
+		}
+ 
+		rightmost=(strlen(str)+1)/2;
+		for(i=rightmost;i<strlen(str);i++)
+		{
+			right[str[i]-'a']++;
+		}
+ 
+		for(i=0;i<26;i++)
+		{
+			if(left[i]!=right[i])
+				break;
+		}
+ 
+		if(i<26)
+			printf("NO\n");
+		else
+			printf("YES\n");
+	}
+	
+	return 0;
+} 

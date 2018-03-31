@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdlib>
+ 
+using namespace std;
+#define SIZE 1000005
+ 
+int arr[SIZE], inv[SIZE], n, tmp[SIZE], c[SIZE];
+ 
+void merge_sort(int, int);
+void merge(int, int, int);
+ 
+int main()
+{
+	int t, i, j, k, l;
+	cin >> t;
+ 
+	for (; t; --t) {
+		cin >> n;
+		for (i = 0; i < n; ++i) {
+			cin >> arr[i];
+			inv[arr[i]] = 0;
+			c[i] = arr[i];
+		}
+ 
+		merge_sort(0, n-1);
+ 
+		for (i = 0; i < n; ++i) {
+			cout << inv[c[i]] << " ";
+		}
+		cout << endl;
+	}
+ 
+	return 0;
+}
+ 
+void merge_sort(int p, int q)
+{
+	if (p < q) {
+		int r = p + (q-p) / 2;
+		merge_sort(p, r);
+		merge_sort(r+1, q);
+		merge(p, r+1, q);
+	}
+}
+ 
+void merge(int p, int r, int q)
+{
+	int i, j, k, a;
+	i = p;
+	j = r;
+	k = p;
+	while ((i < r) && (j <= q)) {
+		if (arr[i] > arr[j]) {
+			inv[arr[i]] += q - j + 1;
+			tmp[k++] = arr[i++];
+		} else {
+			tmp[k++] = arr[j++];
+		}
+	}
+	while (i < r) {
+		tmp[k++] = arr[i++];
+	}
+	while (j <= q) {
+		tmp[k++] = arr[j++];
+	}
+ 
+	for (i = p; i <= q; ++i) {
+		arr[i] = tmp[i];
+	}
+}

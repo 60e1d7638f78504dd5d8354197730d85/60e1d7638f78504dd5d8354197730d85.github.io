@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int count=0;
+class C{
+  public:
+  C(){cout<<"Constructing object number "<<count<<"\n"; count++;}
+  ~C() {
+    try{
+      if(count==0)
+    	throw 4;
+    cout<<"Destructing object number "<<count-1<<"\n"; 
+    count--;
+    }catch(int e){
+      cout<<"Caught "<<e;
+    }
+    }
+};
+int main()
+{
+    int n;  
+    cin>>n;
+    C c0,c1,c2,c3,c4;
+    count--;
+	return 0;
+}

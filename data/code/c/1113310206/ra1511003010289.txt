@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define ll long long int
+#define MAX 105
+ 
+char str[MAX];
+ 
+int main(int argc, char const *argv[])
+{
+	int t,n,i,len,count,copy;
+	scanf("%d",&t);
+	while(t--)
+	{		
+		ll ans = 0;
+		count = 0;
+		scanf("%s",str);
+		scanf("%d",&n);
+ 
+		n = n*12;
+ 
+		len = strlen(str);
+ 
+		// printf("%s(%d)\n",str,len );
+ 
+		for ( i = 0; i < len; ++i)
+		{
+			if( str[i] == 'T' || str[i] == 't' )
+			{
+				count+=2;
+			}
+			else
+			{
+				count+=1;
+			}
+		}
+ 
+		copy = count;
+ 
+		while( count < (n) )
+		{
+			ans+=(n-count);
+			count+=copy;
+		}
+ 
+		printf("%lld\n",ans );
+	}
+ 
+	return 0;
+} 

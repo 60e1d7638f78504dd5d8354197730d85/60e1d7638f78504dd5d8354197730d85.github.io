@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+
+    public static void main(String[] args) {
+        Result r = new Result();
+        r.getRollno();
+        r.putRollNo();
+        r.getMarks();
+        r.putMarks();
+        r.computeDisplay();
+    }
+}
+
+class Student {
+    private int rollno;
+    private String name;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    public void getRollno() {
+        try {
+            name = br.readLine();
+            rollno = Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void putRollNo() {
+        System.out.println("Name=" + name);
+        System.out.println("Regno=" + rollno);
+    }
+}
+
+class Marks extends Student {
+    protected int Marks1, Marks2, Marks3;
+
+    public void getMarks() {
+        try {
+            Marks1 = Integer.parseInt(br.readLine());
+            Marks2 = Integer.parseInt(br.readLine());
+            Marks3 = Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void putMarks() {
+        System.out.println("Mark1=" + Marks1);
+        System.out.println("Mark2=" + Marks2);
+        System.out.println("Mark3=" + Marks3);
+    }
+}
+
+class Result extends Marks {
+    private float total;
+
+    void computeDisplay() {
+        System.out.println("Total=" + (Marks1 + Marks2 + Marks3));
+    }
+}

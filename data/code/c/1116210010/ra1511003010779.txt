@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char s[100],c;
+  	int count,i,j,x;
+  	scanf("%s",s);
+  	int n=strlen(s);
+  	for(i=0;i<n-1;i++)
+    {
+      for(j=0;j<n-i-1;j++)
+      {
+        if((int)s[j]>(int)s[j+1])
+        {
+          c=s[j];
+          s[j]=s[j+1];
+          s[j+1]=c;
+        }
+      }
+    }
+  	//printf("%s",s);
+  	for(i=0;i<n;i++)
+    {
+      count=1;
+      while(s[i]==s[i+1])
+      {
+        i++;
+        count++;
+      }
+      printf("%c=%d\n",s[i],count);
+    }
+  	return 0;
+}

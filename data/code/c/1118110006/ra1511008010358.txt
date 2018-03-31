@@ -1,0 +1,67 @@
+#include <stdio.h>
+struct calendar
+{
+  	int day;
+  	int month;
+  	int year;
+}cal;
+int main()
+{
+	scanf("%d %d %d", &cal.day,&cal.month,&cal.year);
+  	if(cal.year>=0000 && cal.year<3000)
+    {
+      	if(cal.month<=12)
+        {
+          	switch(cal.month)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                  {
+                  	if(cal.day<31)
+                    {
+                       	cal.day++;
+                       	printf("%d %d %d", cal.day,cal.month,cal.year);
+                    }
+                   	else
+                       	printf("Invalid Day");
+                   	break;
+                  }
+                case 2:
+                  {
+                   	if(cal.day<28)
+                    {
+                       	cal.day++;
+                       	printf("%d %d %d", cal.day,cal.month,cal.year);
+                    }
+                  	else
+                       	printf("Invalid Day");
+                  	break;
+                  }
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                  {
+                   	if(cal.day<30)
+                    {
+                       	cal.day++;
+                      	printf("%d %d %d", cal.day,cal.month,cal.year);
+                    }
+                   	else
+                       	printf("Invalid Day");
+                   	break;
+                  }
+            }
+        }
+      	else
+          	printf("Invalid Month");
+    }
+  	else
+      	printf("Invalid Year");
+	return 0;
+}

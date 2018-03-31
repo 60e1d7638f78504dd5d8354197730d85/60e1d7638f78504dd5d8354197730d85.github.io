@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+struct node {
+  int data;
+  struct node *next;
+}*head;
+int main()
+{
+  	int n;
+  	cin>>n;
+  	int a[n];
+  	struct node *temp;
+  	for(int i=0;i<n;i++) {
+      temp = (struct node*)malloc(sizeof(struct node));
+      cin>>temp->data;
+      a[i]=temp->data;
+      temp->next=NULL;
+      if(head==NULL)
+        head=temp;
+      else {
+        struct node *p=head;
+        while(p->next!=NULL) {
+          p = p->next;
+        }
+        p->next = temp;
+      }
+    }
+    cout<<"Linked list before moving last to front\n";
+    for(int i=n-1;i>=0;i--) {
+      cout<<"->"<<a[i];
+    }
+    struct node *p = head;
+  	while(p->next->next!=NULL) {
+      p = p->next;
+    }
+  	p->next->next = head;
+  	head = p->next;
+ 	 p->next = NULL;
+    cout<<"\nLinked list after removing last to front\n";
+  	cout<<"->"<<a[0];
+  	for(int i=n-1;i>0;i--) {
+      cout<<"->"<<a[i];
+    }
+	return 0;
+}

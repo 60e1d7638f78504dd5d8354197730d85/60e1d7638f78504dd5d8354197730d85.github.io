@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdbool.h>
+int main()
+{
+  bool check=false;
+  int original,one,two,a,b;
+  scanf("%d",&original);
+  for(one=0;one<=original/2;one++)
+  {
+    int check_one=0,check_two=0;
+    two=original-one;
+    for(a=1;a<=one;a++)
+    {
+      if(one%a==0)
+      {
+        check_one++;
+      }
+    }
+    for(b=1;b<=two;b++)
+    {
+      if(two%b==0)
+      {
+        check_two++;
+      }
+    }
+    if(check_one==2 && check_two==2)
+    {
+      printf("%d",original);
+      printf(" = %d",one);
+      printf(" + ");
+      printf("%d",two);
+      printf("\n");
+      check=true;
+    }
+  }
+  if(check==false)
+  {
+    printf("NOT");
+  }
+
+	return 0;
+}

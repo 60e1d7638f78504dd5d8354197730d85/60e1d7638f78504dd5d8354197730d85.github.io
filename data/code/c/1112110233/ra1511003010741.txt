@@ -1,0 +1,42 @@
+#include <stdio.h>
+unsigned long long int ncr(unsigned long long int n);
+int main(void)
+{
+  unsigned long long int sumf,n,m,t,i,j,sum,count,a[1000];
+  scanf("%llu",&t);
+  while(t--)
+  {
+    sumf=0;
+    scanf("%llu %llu",&n,&m);
+    
+    for(i=0;i<n;i++)
+    {
+      scanf("%llu",&a[i]);
+    }
+    for(j=0;j<m;j++)
+    {
+      for(i=0,sum=0;i<n;i++)
+      {
+        count=a[i]%10;
+        if(count)
+          sum++;
+        a[i]=a[i]/10;
+      }
+      sumf+=ncr(sum);
+    }
+    printf("%llu\n",sumf);
+  }
+return 0;
+}
+unsigned long long int ncr(unsigned long long int n)
+{
+  if(n<2)
+    return 0;
+  int i;
+  float s=1.0;
+  for(i=0;i<2;i++)
+  {
+    s*=(1.0)*(n-i)/(2-i);
+  }
+  return (int)s;
+}

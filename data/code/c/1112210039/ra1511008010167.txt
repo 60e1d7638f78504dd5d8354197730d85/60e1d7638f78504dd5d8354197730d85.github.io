@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+#define max(a,b) a>b?a:b
+/*int fastio()
+{
+	int t=0;
+	char c=getchar();
+	while(c<'0'||c>'9')
+	c=getchar();
+	while(c>='0'&&c<='9')
+	{
+		t=(t<<3)+(t<<1)+c-'0';
+		c=getchar();
+	}
+	return t;
+}*/
+ 
+int main()
+{
+	long long int t,l,d,s,c,i;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		/*l=fastio();
+		d=fastio();
+		s=fastio();
+		c=fastio();*/
+		scanf("%lld",&l);
+		scanf("%lld",&d);
+		scanf("%lld",&s);
+		scanf("%lld",&c);
+		long long int ans;
+		ans=s;
+		for(i=1;i<d;i++)
+		{
+			ans=ans*(c+1);
+			if(ans>=l)
+			{
+				break;
+			}
+		}
+		if(ans>=l)
+			printf("ALIVE AND KICKING\n");
+		else
+			printf("DEAD AND ROTTING\n");
+	}	
+	return 0;
+} 

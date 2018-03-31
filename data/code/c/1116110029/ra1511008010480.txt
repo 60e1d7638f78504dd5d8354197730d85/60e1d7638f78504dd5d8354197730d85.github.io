@@ -1,0 +1,43 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  	char str[50];
+  	char subStr[10];
+  	//int z=0;
+  	scanf("%[^\n]", str);
+  	//printf("%s\n", str);
+  	getchar();
+  	scanf("%[^\n]", subStr);
+  	//printf("%s\n", subStr);
+  	//while((subStr[z++]=getchar())!='\n');
+  	//subStr[z] = '\0';
+  	int i=0, j=0,k;
+  	int size = 0, flag = 0;
+  	while(subStr[j] != '\0') {
+    	size++; j++;
+    }
+  	//printf("%d\n", size);
+  	while(str[i] != '\0') {
+    	if(str[i] == subStr[0]) {
+          	j=i;
+        	for(k=0; k<size; k++) {
+            	if(str[i] != subStr[k]) {
+                	flag = 1; i++;
+                  	break;
+                }
+              	else i++;
+            }
+          	if(flag == 0) {
+            	if(str[i] == ' ' || str[i] == '\0') {
+                	printf("%d\n", j);
+                }
+            }
+          	flag = 0;
+        }
+      	else {
+        	i++;
+        }
+    }
+	return 0;
+}

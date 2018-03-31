@@ -1,0 +1,89 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<set>
+#include<algorithm>
+#include<utility>
+ 
+using namespace std;
+ 
+int compute_height(int N) {
+  int h = 0;
+  while((1 << h) < N) h++;
+  return h;
+}
+ 
+int T;
+int N;
+int H;
+int tree[1<<22];
+int delta[1<<21];
+int ranks[1<<21];
+int size;
+int offset;
+ 
+ 
+int find_nth(int n, int node=0, int h=0) {
+  if(h==H) {
+    return node-offset + 1;
+  }
+  // internal node
+  int left = node*2+1;
+  int right = left+1;
+  int left_count = tree[left];
+  if(left_count >= n) {
+    return find_nth(n, left, h+1);
+  }
+  return find_nth(n-left_count, right, h+1);
+}
+ 
+void reset_tree() {
+  H = compute_height(N);
+ 
+  size = (1 << (H+1));
+  fill_n(tree, size, 0);
+ 
+  offset = (1 << H) - 1;
+  for (int i = 0; i < N; i++) {
+    tree[offset+i] = 1;
+  }
+ 
+  for (int j = offset-1; j>=0; j--) {
+    tree[j] = tree[2*j+1] + tree[2*j+2];
+  }
+}
+ 
+void remove(int n) {
+  int node = offset + n - 1;
+  while(node) {
+    tree[node]--;
+    node = (node-1)>>1;
+  }
+  tree[node]--;
+}
+ 
+void codechef();
+ 
+int main() {
+  codechef();
+}
+ 
+void codechef() {
+  cin >> T;
+  while(T--) {
+    cin >> N;
+    reset_tree();
+    for (int i = 0; i <N; i++) {
+      cin >> delta[i];
+    }
+    for (int j = N-1; j>=0; j--) {
+      int n = j+1 - delta[j];
+      int rank = find_nth(n);
+      remove(rank);
+      ranks[j] = rank;
+    }
+    for (int j=0; j < N; j++)
+      cout << ranks[j] << ' ';
+    cout << '\n';
+  }
+}

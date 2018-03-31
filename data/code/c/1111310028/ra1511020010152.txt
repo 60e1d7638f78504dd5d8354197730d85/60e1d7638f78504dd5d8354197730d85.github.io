@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include<math.h>
+#define TEST 0
+#define MOD 1000000007
+char num1[100005], num2[100005], result_arr[300005];
+void multiply(int N, int D){
+    	int i, j, left_shift = 0;
+	for(i=0; i<=N; i++)
+		num1[i]=num2[i]=D+'0';
+	num1[N+1]=num2[N+1]='\0';
+	for(i=0; i<2*N+5; i++)
+		result_arr[i]='\0';
+    	size_t n1 = strlen(num1);
+    	size_t n2 = strlen(num2);   
+    	for(i = n2-2; i >= 0; i--){
+        	int carry = 0, k = left_shift;
+        	for(j = n1-2; j >= 0; j--){
+        	    int partial_result = (num1[j] - '0')*(num2[i] - '0') + carry;
+        	    if(result_arr[k])
+        	        partial_result += result_arr[k] - '0';
+        	    result_arr[k++] = partial_result%10 + '0';
+        	    carry = partial_result/10;  
+        	}
+        	if(carry > 0)  result_arr[k] = carry +'0'; 
+        	left_shift++;
+    	}
+	if(TEST){
+    		size_t len = strlen(result_arr);
+		for(i = len-1; i >= 0; i-- )
+        		printf("%c", result_arr[i]);
+    		printf("\n");
+	}  
+}
+long long powL(long long k){
+	if(k==0)
+		return 1;
+	else{
+		int i;
+		long long ans=1;
+		for(i=0; i<k; i++)
+			ans= ((ans*23)%MOD);
+		return ans;
+	}
+}
+int main(){
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		int i, n, d, k=0;
+		long long ans=0;
+		scanf("%d%d",&n,&d);
+		multiply(n,d);
+		for(i=strlen(result_arr)-1; i>=0; i--){
+			ans+=(long long)powL(k)*(result_arr[i]-'0');
+			ans%=MOD;
+			k++;
+		}
+		printf("%lld\n",ans);
+	}
+	return 0;
+} 

@@ -1,0 +1,38 @@
+#include <stdio.h>
+int value(char r)
+{
+  if(r=='I')
+    return 1;
+  if(r=='V')
+    return 5;
+  if(r=='X')
+    return 10;
+  if(r=='L')
+    return 50;
+  if(r=='C')
+    return 100;
+  if(r=='D')
+    return 500;
+  if(r=='M')
+    return 1000;
+}
+int main()
+{
+  char roman[1000];
+  int i=0;
+  long int number =0;
+  scanf("%s",roman);
+  while(roman[i])
+  {
+    if(value(roman[i])>=value(roman[i+1]))
+       number = number+value(roman[i]);
+    else
+    {
+      number = number + (value(roman[i+1])-value(roman[i]));
+      i++;
+    }
+    i++;
+  }
+  printf("%ld",number);
+  return 0;
+}

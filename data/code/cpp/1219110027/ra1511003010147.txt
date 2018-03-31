@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class ad
+{
+  int x;
+  public:
+  void get(int a)
+  {
+    x=a;
+  }
+  void disp()
+  {
+    cout<<"Result:"<<x;
+  }
+  ad operator +(ad &obj)
+  {
+    ad y;  
+    y.x=this->x + obj.x;
+    return (y); //return object
+  }
+};
+int main()
+{
+	int a,b;
+  	cin>>a>>b;
+  	cout<<a<<"\n"<<b<<"\n";
+  	ad a1a;
+  	a1a.get(a);
+  	ad a1b;
+  	a1b.get(b);
+  	ad a3=a1a+a1b;
+  	a3.disp();
+	return 0;
+}

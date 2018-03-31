@@ -1,0 +1,34 @@
+#include <stdio.h>
+unsigned long long int func(unsigned long long int x,unsigned long long int a,unsigned long long int b,unsigned long long int c)
+{
+	return a*x*x+b*x+c;
+}
+int main()
+{
+    unsigned long long int t,a,b,c,k,l,u,mid;
+    scanf("%llu",&t);
+    while(t--)
+    {
+    	scanf("%llu %llu %llu %llu",&a,&b,&c,&k);
+    	if(c>=k)
+    	{
+    	printf("0\n");
+    	continue;
+    	}
+    	l=1;
+    	u=100000;
+    	while(l<=u)
+    	{
+    		mid=(l+u)/2;
+    		//printf("mid==%llu\n",mid);
+    		if(func(mid,a,b,c)>=k && (func(mid-1,a,b,c)<k))
+    		break;
+    		if(func(mid,a,b,c)>k)
+    		u=mid-1;
+    		else
+    		l=mid+1;
+    	}
+    	printf("%llu\n",mid);
+    }
+    return 0;
+}

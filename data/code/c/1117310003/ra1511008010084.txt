@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdbool.h>
+int findprime(int prime[],int n)
+{
+ int i,j,k=0;bool flag[n+1];
+ flag[0]=flag[1]=false;
+ for(i=2;i<n+1;i++)
+ flag[i]=true;
+ for(i=2;i*i<=n;i++)
+ {
+    if(flag[i])
+    {
+        prime[k]=i;
+        k++;
+        for(j=i*i;j<=n;)
+        {
+        flag[j]=false;
+        if(i==2)j+=i;
+        else j+=(2*i);
+        }
+    }
+ }
+ for(;i<=n;i++){if(flag[i]){prime[k]=i;k++;}}
+ return(k);
+}
+int isprime(int prime[],int num,int totprimes)
+{
+    int j;
+        for(j=0;j<totprimes;j++)
+        {
+            if(prime[j]==num)return(1);
+            else if(prime[j]>num)return(0);
+        }
+        return(0);
+}
+int main()
+{
+    int T,i,j,l;
+    long long R,L,k;
+    scanf("%d",&T);
+    int prime[1000000],count;
+    int totprimes=findprime(prime,1000000);
+    for(i=1;i<=T;i++)
+    {
+        count=0;
+        scanf("%lld%lld",&L,&R);
+        for(j=0;j<totprimes;j++)
+        {
+            if(prime[j]>R)break;
+            k=prime[j];
+            for(l=1;;k*=prime[j],l++)
+            {
+                if(k>R)break;
+                else if(k>=L && isprime(prime,l+1,totprimes))count++;
+            }
+        }
+        if(R>1000000)
+        {
+            if(L<=1000000)L=1000001;
+             int n=R-L+1;
+             long long j;
+             bool flag[n];
+             for(j=0;j<n;j++)
+             flag[j]=true;
+             for(k=0;k<totprimes && (long long)prime[k]*prime[k]<=R;k++)
+             {
+                 if(L%prime[k]==0)j=L;
+                 else
+                 j=L+prime[k]-(L%prime[k]);
+                 for(;j<=R;j+=prime[k])
+                 {
+                     flag[j-L]=false;
+                 }
+             }
+             for(j=0;j<n;j++)
+             {
+                 if(flag[j])count++;
+             }
+        }
+        printf("%d\n",count);
+    }
+    return 0;
+}   

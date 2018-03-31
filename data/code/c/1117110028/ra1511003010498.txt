@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int largest(int list[], int lower, int upper);
+
+int main()
+{
+    int array[10],n,i;
+  scanf("%d", &n);
+  
+  for(i=0; i<n;i++)
+    scanf("%d",&array[i]);
+  		
+    
+    printf("Maximum element in the array is %d", largest(array, 0, n-1));
+    return 0;
+}
+
+int largest(int list[], int lower, int upper)
+{
+    int max;
+    if (lower == upper)
+        return list[lower];
+    else
+    {
+        max = largest(list, lower + 1, upper);
+ 
+        if (list[lower] >= max)
+            return list[lower];
+        else
+            return max;
+    }
+}

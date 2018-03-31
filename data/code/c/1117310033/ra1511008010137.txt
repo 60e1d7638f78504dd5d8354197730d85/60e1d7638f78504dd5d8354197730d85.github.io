@@ -1,0 +1,103 @@
+#include<stdio.h>
+int main()
+{int t,i,j,k,l;
+char e[400],st[100],r[405];
+scanf("%d",&t);
+while(t--)
+{scanf("%s",e);
+k=0;i=0;j=0;l=0;
+while(e[k]!='\0')
+{switch(e[k])
+{case '(':st[i]=e[k];
+            k++;
+            i++;
+            break;
+ case '+':j=i;
+          j--;
+          while(st[j]!='(')
+          {if(st[j]=='+'|| st[j]=='-'||st[j]=='*'||st[j]=='/'||st[j]=='^')
+          {r[l]=st[j];
+          st[j]=0;
+          l++;
+          }j--;}
+          st[i]='+';
+          i++;
+          k++;
+          break;
+ case '-':j=i;
+          j--;
+          while(st[j]!='(')
+          {if(st[j]=='-'||st[j]=='+'||st[j]=='*'||st[j]=='/'||st[j]=='^')
+          {r[l]=st[j];
+          st[j]=0;
+          l++;
+          }j--;}
+          st[i]='-';
+          i++;
+          k++;
+          break;
+ case '*':j=i;
+          j--;
+          while(st[j]!='(')
+          {if(st[j]=='*'||st[j]=='/'||st[j]=='^')
+          {r[l]=st[j];
+          st[j]=0;
+          l++;
+          }j--;}
+          st[i]='*';
+          i++;
+          k++;
+          break;
+ case '/':j=i;
+          j--;
+          while(st[j]!='(')
+          {if(st[j]=='/'||st[j]=='*' ||st[j]=='^')
+          {r[l]=st[j];
+          st[j]=0;
+          l++;
+          }j--;}
+          st[i]='/';
+          i++;
+          k++;
+          break;
+ 
+case '^':j=i;
+          j--;
+          while(st[j]!='(')
+          {if(st[j]=='^')
+          {r[l]=st[j];
+          st[j]=0;
+          l++;
+          }j--;}
+          st[i]='^';
+           i++;
+           k++;
+           break;
+ case ')':j=i;
+          j--;
+          while(st[j]!='(')
+          {if(st[j]!=0)
+           {
+            r[l]=st[j];
+          st[j]=0;
+          l++;
+ 
+          }j--;}
+          st[j]=0;
+          st[i]=0;
+          i++;
+          k++;
+          break;
+ default: r[l]=e[k];
+            l++;
+            k++;
+            }
+ 
+  }
+r[l]='\0';
+  printf("%s",r);
+  
+  printf("\n");
+  }
+  return 0;
+}

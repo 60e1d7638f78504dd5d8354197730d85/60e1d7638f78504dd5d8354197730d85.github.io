@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+char str[1005];
+int c[27];
+int main()
+{
+ 
+int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+     scanf("%s",str);
+     int l=strlen(str);
+    int flag=0;
+     if(l%2==1)
+        flag=1;
+     l/=2;
+     int i=0;
+         while(i<l)
+         {
+             c[str[i]-'a']++;
+             // printf(" %d",c[str[i]-'a']);
+             i++;
+         }
+         if(flag)
+         {
+            i++;
+         }
+         int j=0;
+         //printf("%d",i);
+         while(j<l)
+         {
+             c[str[i]-'a']-=1;
+             j++;
+             i++;
+         }
+         flag=0;
+         for(i=0;i<26;i++)
+         {
+             if(c[i]!=0)
+                flag=1;
+ 
+                c[i]=0;
+         }
+         if(flag)
+            printf("NO\n");
+         else
+            printf("YES\n");
+  }
+  return 0;
+}
+ 

@@ -1,0 +1,37 @@
+#include <stdio.h>
+int gcd(int c , int d)
+{
+  if(c==0)
+    return d;
+  else gcd(d%c , c);
+}
+  
+int lcm(int a , int b)
+{
+  int r , o;
+  r=gcd(a ,b);
+  o=(a*b)/r;
+  return o;
+}
+  
+    
+  
+int main()
+{
+  int n ;
+  scanf("%d",&n);
+  
+  int i , a[10] , value=1;
+  for(i=0 ; i<n ; i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=0 ; i<n ; i++)
+  {
+    value=lcm(value,a[i]);
+  }
+  printf("%d",value);
+  
+
+	return 0;
+}

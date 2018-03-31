@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main()
+  {int i,j;
+  void sort(int* arr,int n){
+  for (i = 0; i < n-1; i++)
+       for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+           {int t=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=t;}
+}
+  
+  
+  int N,n,k;
+ scanf("%d",&N);
+   while(N>0){
+ scanf("%d %d",&n,&k);
+ int a[n];
+     int e;
+ for(e=0;e<n;e++){
+   scanf("%d",&a[e]);
+ }
+
+     sort(a,n);
+
+ int x=0,y=n-1;
+ while(k>0){
+   a[x]=0;
+   a[y]=0;
+   x++;y--;
+   k--;
+ }
+  
+ int s=0.0,p,n1=0;
+ for( p=0;p<n;p++){
+   s+=a[p];
+ if(a[p]!=0)
+ 	n1++;
+ }
+     
+     float avg=(float)s/n1;
+ printf("%f\n",avg);
+   N--;
+   }
+	return 0;
+  }

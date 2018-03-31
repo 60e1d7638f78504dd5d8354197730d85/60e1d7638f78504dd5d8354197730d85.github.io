@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define get getchar
+int fr();
+int main()
+{
+int t,n,c1,count,max;
+  t=fr();
+  while(t>0)
+  {
+    count=1;
+    n=fr();
+    c1=fr();
+    max=c1;
+    while(n>1)
+    {
+      c1=fr();
+      if(c1<=max)
+      {
+        count++;
+        max=c1;
+      }
+      n--;
+    }
+    printf("\n%d",count);
+           t--;
+           }
+	return 0;
+}
+           int fr()
+           {
+             int input;
+             char c=0;
+             while (c<33)
+               c=getchar_unlocked();
+             input=0;
+             while (c>33)
+             {
+               input=input*10+c-'0';
+               c=getchar_unlocked();
+             }
+             return input;
+           }
+             

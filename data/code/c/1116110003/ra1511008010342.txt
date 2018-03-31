@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char a[100],ch,output[100];
+  int no[26]={0};
+  	scanf("%[^\n]%*c",a);
+  	int i,n,t,x;
+  	n=strlen(a);
+  	for(i=0;i<n;i++)
+    {
+      ch=a[i]-'a';
+      no[ch]++;
+    }
+  t=0;
+  for(ch='a';ch<='z';ch++)
+  {
+    x=ch-'a';
+    for(i=0;i<no[x];i++)
+    {
+      output[t]=ch;
+      t++;
+    }
+  }
+  output[t]='\0';
+  printf("%s",output);
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+struct time
+{
+  int hr;
+  int mn;
+  int s;
+};
+
+int isValid(int h, int m, int s)
+{
+  if (h > 23 || h < 0 || m > 59 || m < 0 || s > 59 || s < 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return 1;
+  }
+}
+
+int main()
+{
+  struct time t;
+  scanf("%d%d%d", &t.hr, &t.mn, &t.s);
+  
+  if (isValid(t.hr, t.mn, t.s) == 1)
+  {
+    printf("24 Hours Format\n%d:%d:%d\n", t.hr, t.mn, t.s);
+    if (t.hr > 12)
+    {
+      printf("12 Hours Format\n%d:%d:%d pm\n", t.hr-12 , t.mn, t.s);
+    }
+    else
+    {
+      printf("12 Hours Format\n%d:%d:%d am\n", t.hr, t.mn, t.s);
+    }
+  }
+  else
+  {
+    printf("Invalid Time");
+  }
+
+	return 0;
+}

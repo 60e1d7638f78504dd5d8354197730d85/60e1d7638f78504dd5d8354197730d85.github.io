@@ -1,0 +1,103 @@
+#include <stdio.h>
+//#include <iostream.h>
+void merge(int Shelves[],int Low,int Mid,int High)
+{
+ 
+   int i=Low,j=Mid+1,k=0;
+  
+  int Ar[100000];
+   while(i<=Mid&&j<=High)
+   {
+   if(Shelves[i]<=Shelves[j])
+   {
+     Ar[k]=Shelves[i];
+     
+     i++;
+     k++;
+    
+   }
+   else
+   {
+     Ar[k]=Shelves[j];
+      
+     j++;
+     k++;
+   }
+  }
+  if(i<=Mid)
+  {
+    int I;
+    for(I=i;I<=Mid;I++)
+    {Ar[k]=Shelves[I];k++;}
+  }
+  else if(j<=High)
+  {
+    int I;
+    for(I=j;I<=High;I++)
+    {Ar[k]=Shelves[I];k++;}
+  }
+  k=0;
+  for(i=Low;i<=High;i++)
+  {
+    
+   
+     Shelves[i]=Ar[k];
+     k++;
+  }
+  
+}
+void divide(int Shelves[],int Low,int High)
+{
+  if(Low<High)
+  {
+     int Mid=(Low+High)/2;
+  
+     divide(Shelves,Low,Mid);
+     divide(Shelves,Mid+1,High);
+     merge(Shelves,Low,Mid,High);
+  }  
+}
+int main()
+{
+   
+    int N_T,N_B,i,j,Max1,Max,k;
+    int Boxes[10000],Trucks[10000];
+    scanf("%d",&N_B);
+    scanf("%d",&N_T);
+    for(i=0;i<N_B;i++)
+    scanf("%d",&Boxes[i]);
+    for(i=0;i<N_T;i++)
+    scanf("%d",&Trucks[i]);
+    divide(Boxes,0,N_B-1);
+    divide(Trucks,0,N_T-1);
+    
+    Max=N_B/N_T;
+    if(N_B%N_T!=0)
+    Max++;
+    Max1=Max;
+    
+    i=0;k=0;
+    while(i<N_B)
+    {
+      	j=i;
+      
+      	while(j<i+Max1&&Trucks[k]>=Boxes[j])
+      	{j++;}
+      	
+      	k++;
+        i=j;
+        if(N_T-k>0)
+        {
+         Max1=(N_B-i)/(N_T-k);
+         if((N_B-i)%(N_T-k)!=0)
+         Max1++;
+         if(Max1>Max)
+         Max=Max1;
+        }
+      		
+    }
+   
+    printf("%d",Max*2-1);
+    //system("pause");
+    return 0;
+}

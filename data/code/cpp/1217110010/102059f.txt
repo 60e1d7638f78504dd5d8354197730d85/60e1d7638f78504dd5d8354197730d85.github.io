@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+void HowMany(int *numbers);
+void CalculateFibonacci(int *numbers);
+
+int main() {
+
+int numbers = 0;
+cin>>numbers;
+//HowMany(&numbers);
+CalculateFibonacci(&numbers);
+
+return 0;
+}
+
+void CalculateFibonacci(int *numbers) 
+{
+	int i = 0;
+
+	unsigned long a = 1;
+	unsigned long b = 0;
+
+	unsigned long fibonacci_number = 0;
+
+	while(i < *numbers) {
+		b= fibonacci_number;
+
+		fibonacci_number = a + b;
+		std::cout << fibonacci_number << " ";
+
+		a = b;
+		i++;
+	}
+	std::cout << std::endl;
+}

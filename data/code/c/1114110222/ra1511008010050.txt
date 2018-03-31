@@ -1,0 +1,29 @@
+#include <stdio.h>
+int sum(int D, int N);
+int main()
+{
+	int t,i,x;
+  	fscanf(stdin,"%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      int a,b;
+      fscanf(stdin,"%d %d",&a,&b);
+      x=sum(a,b);
+      printf("%d\n",x);
+    }
+	return 0;
+}
+int sum(int D, int N)
+{
+  if(D<=0)
+    return N;
+  int i;
+  int sum1=0;
+  for(i=0;i<=N;i++)
+  {
+    sum1=sum1+i;
+  }
+  if(D>0){
+    return sum(D-1,sum1);
+  }
+}

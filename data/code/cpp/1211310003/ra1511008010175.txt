@@ -1,0 +1,47 @@
+   #include<stdio.h>
+    #define getchar getchar_unlocked
+    int scan_f( int *location)
+    {
+    	register int digit;
+    	register int result = 0;
+        while((digit = getchar()) < '0') {}
+        result=digit-'0';
+    	while( (digit = getchar()) >= '0')
+    		result = (result << 3) + (result << 1) + digit - '0';
+     
+    	*location = result;
+     
+    	return 0;
+    }
+    int a[100001];
+    int b[100001];
+    int ar[2001];
+    int main()
+    {
+        int i,t,n,count1,max;
+        scan_f(&t);
+        while(t--)
+        {
+            scan_f(&n);
+     
+            for(i=0;i<=2000;i++)ar[i]=-2;
+            for(i=1;i<=n;i++)
+            {
+                scan_f(&a[i]);
+                scan_f(&b[i]);
+                ar[b[i]]=ar[b[i]]>a[i]?ar[b[i]]:a[i];
+            }
+            count1=0;
+            max=-1;
+            for(i=0;i<=2000;i++)
+            {
+                if(max<ar[i])
+                {
+                    count1++;
+                    max=i;
+                }
+            }
+            printf("\n%d",count1);
+        }
+        return 0;
+    }   

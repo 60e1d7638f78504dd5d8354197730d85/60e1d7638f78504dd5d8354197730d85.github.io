@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+class stackClass
+{
+  private:
+  int *stack,top,curr,no;
+  public:
+  stackClass(int n)
+  {
+    stack=new int[n];
+    top=curr=0;
+    no=n;
+  }
+  void push(int num)
+  {
+    stack[curr]=num;
+    curr++;
+  }
+  static void checkSum(stackClass s1, stackClass s2, stackClass s3)
+  {
+    int sum1=0,sum2=0,sum3=0;
+    for(int i=s1.top; i<s1.no; i++)
+      sum1+=s1.stack[i];
+    for(int i=s2.top; i<s2.no; i++)
+      sum2+=s2.stack[i];
+    for(int i=s3.top; i<s3.no; i++)
+      sum3+=s3.stack[i];
+    while(true)
+    {
+      if(s1.top==s1.no || s2.top==s2.no ||s3.top==s3.no)
+      {
+        cout<<"0";
+        break;
+      }
+      if(sum1==sum2 && sum2==sum3)
+      {
+        cout<<sum1;
+        break;
+      }
+      else if(sum1>=sum2 && sum1>=sum3)
+        sum1-=s1.stack[s1.top++];
+      else if(sum2>=sum1 && sum2>=sum3)
+        sum2-=s2.stack[s2.top++];
+      else if(sum3>=sum3 && sum3>=sum2)
+        sum3-=s3.stack[s3.top++];
+    }
+  }
+};
+int main()
+{
+  int n1,n2,n3,data;
+  cin>>n1>>n2>>n3;
+  stackClass s1(n1);
+  stackClass s2(n2);
+  stackClass s3(n3);
+  for(int i=0; i<n1; i++)
+  {
+    cin>>data;
+    s1.push(data);
+  }
+  for(int i=0; i<n2; i++)
+  {
+    cin>>data;
+    s2.push(data);
+  }
+  for(int i=0; i<n3; i++)
+  {
+    cin>>data;
+    s3.push(data);
+  }
+  stackClass::checkSum(s1,s2,s3);
+	return 0;
+}

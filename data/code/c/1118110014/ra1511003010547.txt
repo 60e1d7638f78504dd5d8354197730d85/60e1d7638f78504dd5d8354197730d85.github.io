@@ -1,0 +1,30 @@
+#include<stdio.h>
+struct Fraction
+{ int num;
+int deno;
+ };
+int get_Fraction(struct Fraction *f)
+                 {
+scanf("%d %d", &f->num, &f->deno);
+return 0;
+                 
+}
+int compare(struct Fraction *f1, struct Fraction *f2)
+ {float a,b;
+a = (float)((f1->num)/(f1->deno));
+b = (float)((f2->num)/(f2->deno));
+if(a==b)
+printf("\n %d/%d is equal to %d/%d",f1->num,f1->deno,f2->num,f2->deno);
+else if (a-b > 0)
+printf("\n %d/%d is greater than %d/%d",f1->num,f1->deno,f2->num,f2->deno);
+else
+printf("\n %d/%d is smaller than %d/%d",f1->num,f1->deno,f2->num,f2->deno);
+return 0;
+ }
+int main()
+ {struct Fraction f1,f2;
+get_Fraction(&f1);
+get_Fraction(&f2);
+compare(&f1,&f2);
+return 0;
+ }

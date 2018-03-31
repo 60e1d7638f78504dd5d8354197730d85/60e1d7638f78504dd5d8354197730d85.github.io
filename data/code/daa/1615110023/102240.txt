@@ -1,0 +1,74 @@
+#include <cassert>
+#include <cctype>
+#include <cmath>
+#include <climits>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+
+#include <algorithm>
+#include <deque>
+#include <functional>
+#include <iterator>
+#include <list>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
+#include <ext/numeric>
+
+using namespace std;
+using namespace __gnu_cxx;
+// }}}
+
+typedef long long int64;
+const int INF = 0x3f3f3f3f;
+template <class T> inline int len (const T &a) { return a.size (); }
+
+// Generate all substrings.
+vector <string>
+allSubstring (string s) {
+    int len = s.size ();
+    vector <string> subs;
+    for (int i = 0; i < len; i++)
+        for (int j = i + 1; j <= len; j++)
+            subs.push_back (s.substr (i, j - i));
+    return subs;
+}
+
+// Check whether string is a palindome.
+bool
+isPalin (string &s) {
+    string t = s;
+    reverse (t.begin (), t.end ());
+    return s == t;
+}
+
+int
+main () {
+#ifdef LOCALHOST
+    freopen ("test.in", "r", stdin);
+    // freopen ("test.out", "w", stdout);
+#endif
+    char buff [55];
+    scanf ("%s", buff);
+    vector <string> v = allSubstring (string (buff));
+
+    int ret = 0;
+    for (int i = 0; i < len (v); i++)
+        ret += isPalin (v [i]);
+
+    printf ("%d\n", ret);
+
+    return 0;
+}

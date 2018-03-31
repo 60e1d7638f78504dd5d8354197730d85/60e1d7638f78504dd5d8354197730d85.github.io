@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+	int num,i=1,j=0,arr[20],rev,rem,temp,k;
+  	scanf("%d",&num);
+  	while(i<=num)
+    {
+    	if(num%i==0)
+        {
+        	arr[j]=i;
+          	j++;
+        }
+      i++;
+    }
+  	i=0;
+  	while(i<j)
+    {
+      rev=0;
+      rem=arr[i];
+    	while(rem!=0)
+        {
+          	rev=rev*10+rem%10;
+          	rem=rem/10;
+        }
+      arr[i]=rev;
+      i++;
+    }
+  	for(i=0;i<j;i++)
+    {
+    	for(k=i+1;k<j;k++)
+        {
+        	if(arr[k]<arr[i])
+            {
+            	temp=arr[i];
+              	arr[i]=arr[k];
+              	arr[k]=temp;
+            }
+        }
+    }
+  	i=0;
+  	while(i<j)
+    {
+    	printf("%d\n",arr[i]);
+      	i++;
+    }
+	return 0;
+}

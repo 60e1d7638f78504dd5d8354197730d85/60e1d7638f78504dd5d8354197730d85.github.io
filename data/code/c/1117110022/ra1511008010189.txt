@@ -1,0 +1,43 @@
+#include<stdio.h>
+int main()
+{
+	int t,i;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		int n,j,sum,one=0,k;
+		scanf("%d",&n);
+		int a[n][n];
+		for(j=0;j<n;j++)
+		for(k=0;k<n;k++)
+		{
+			scanf("%d",&a[j][k]);
+			if(a[j][k]==1)
+			{one++;}
+			
+		}
+			/*if(one==(n*n))
+		{
+			printf("%d\n",n-1);
+		}*/
+		if(one<=n)
+		{
+			printf("0\n");
+		}
+	
+		else /*if((one!=n) && (one!=0) && (one!=(n*n)))*/
+		{
+		sum=n;
+		for(j=1;j<n;j++)
+		{
+			sum=sum+(2*(n-j));
+			if(one<=sum)
+			{
+				printf("%d\n",j);break;
+			}
+		}
+}
+	
+	
+}
+return 0;}

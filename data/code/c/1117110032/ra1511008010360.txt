@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  int a[n],c[n];
+  for(i=0;i<n;i++)
+    c[i]=0;
+  int j;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+    for(j=i;j<n;j++)
+      if(a[i]==a[j])
+        c[i]++;
+ //int max=c[0];
+  int pos;
+  int f=1;
+  for(i=0;i<n;i++)
+  {
+    if(c[i]==1)
+     f=0;
+  else
+  {
+    f=1;
+    pos=i;
+    break;
+  }
+  }
+  if(f==0)
+    printf("none");
+  else
+    printf("Mode=%d",a[pos]);
+	return 0;
+}

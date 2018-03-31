@@ -1,0 +1,50 @@
+
+#include <stdio.h>
+ 
+ 
+int number_of_test,i,j,temp,count,temp2,prev_value,temp1,temp4;
+int main()
+{
+int number_of_student;
+scanf("%d\n",&number_of_test);
+ 
+for(i = 0;i < number_of_test;i++){
+		scanf("%d\n",&number_of_student);
+		int array[number_of_student];
+		prev_value = 0;
+		for(j = 0;j < number_of_student-1;j++){
+				scanf("%d",&temp1);
+				//printf("%d ",temp1);
+				temp2 = temp1;
+				temp2 = temp2 - prev_value;
+				prev_value = temp1;
+				array[j] = temp2;
+				
+		}
+		scanf("%d",&temp1);
+		//printf("%d\n",temp1);
+		temp2 = temp1;
+		temp2 = temp2 - prev_value;
+		prev_value = 0;
+		array[j] = temp2;
+		
+		for(j = 0;j < number_of_student-1;j++){
+				scanf("%d",&temp);
+				//printf("%d ",temp);
+				temp4 = temp - array[j];
+				if(temp4 <= 0){
+						count++;
+				}
+		}
+		scanf("%d",&temp);
+		//printf("%d ",temp);
+		temp4 = temp - array[j];
+		if(temp4 <= 0){
+			count++;
+		}
+		//printf("done\n");
+	printf("%d\n",count);
+	count = 0;
+}
+return 0;
+}

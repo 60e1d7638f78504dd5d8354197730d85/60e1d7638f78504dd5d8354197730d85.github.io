@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+   struct even
+   {
+    int n;
+   }a[10],t[10];
+  
+  int i,j=0,temp=0,x=0;
+  for(i=0;i<10;i++)
+  {
+    scanf("%d",&a[i].n);
+    if(a[i].n%2==0)
+    {
+        t[j].n=a[i].n;
+        x++;
+        j++;
+    }
+    
+  }
+  //for(i=0;i<x;i++)
+  //{
+   // printf("%d ",t[i].n);
+  //}
+
+  for(i=0; i<x; i++)
+    {
+        for(j=i+1; j<x; j++)
+        {
+          //printf("%d%d%d%d",i,j,t[i].n,t[j].n);
+            if(t[i].n > t[j].n)
+            {
+                temp = t[i].n;
+              //printf("%d ",temp);
+                t[i].n = t[j].n;
+              //printf("%d ",t[i].n);
+                t[j].n = temp;
+             //printf("%d ",t[j].n);
+            }
+        }
+  //printf("%d ",t[i].n);
+  }
+  
+  for(i=0; i<x; i++)
+    {
+      printf("%d ", t[i].n);
+  }
+	return 0;
+}

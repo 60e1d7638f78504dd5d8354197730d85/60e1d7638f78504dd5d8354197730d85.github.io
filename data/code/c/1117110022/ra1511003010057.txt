@@ -1,0 +1,39 @@
+#include<stdio.h>
+int bandwidthmatrix()
+{
+	int test,t,n,ones,i,j,total,ans;
+	scanf("%d",&test);
+	while(test--)
+	{
+		scanf("%d",&n);
+		ones=0;
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				scanf("%d",&t);
+				if(t==1)
+					ones++;
+			}
+		}
+		total=n*n;
+		total=total-n;
+		ones=ones-n;
+		ans=0;
+		while(ones>0)
+		{
+			n--;
+			total=total-2*n;
+			ones=ones-2*n;
+			ans++;
+		}
+		printf("%d\n",ans);
+		
+    }
+	return 0;
+}
+int main()
+{
+  bandwidthmatrix();
+  return 0;
+}

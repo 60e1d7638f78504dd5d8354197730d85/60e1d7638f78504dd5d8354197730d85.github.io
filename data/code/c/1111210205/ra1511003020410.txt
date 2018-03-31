@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  	int i,j,r=0,c=0,row,column,maxvalue=999;
+  	int matrix[10][10];
+  	scanf("%d%d",&row,&column);
+  	for(i=0;i<row;i++){
+      for(j=0;j<column;j++){
+        scanf("%d",&matrix[i][j]);
+      }
+    }
+  	while(r<row && c<column){     
+      for(i=c;i<column;i++){
+        if(matrix[c][i]!=maxvalue){
+          printf("%d ",matrix[c][i]);
+          matrix[c][i]=maxvalue;
+        }
+      }
+      for(i=r;i<row;i++){
+		if(matrix[i][column-1]!=maxvalue){
+          printf("%d ",matrix[i][column-1]);
+          matrix[i][column-1]=maxvalue;
+        }
+      }
+      for(i=column-1;i>=c;i--){
+        if(matrix[row-1][i]!=maxvalue){
+          printf("%d ",matrix[row-1][i]);
+          matrix[row-1][i]=maxvalue;
+        }
+      }
+      for(i=row-1;i>=r;i--){
+        if(matrix[i][r]!=maxvalue){
+          printf("%d ",matrix[i][r]);
+          matrix[i][r]=maxvalue;
+        }
+      }
+      r++;
+      c++;
+    }
+	return 0;
+}

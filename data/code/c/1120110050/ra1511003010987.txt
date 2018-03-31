@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,i,c;
+  scanf("%d",&t);
+  while(t--)
+  {
+    c=1;
+    scanf("%d",&n);
+    int speed[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&speed[i]);
+    if(n==1)
+      c=1;
+    else
+    {
+      for(i=1;i<n;i++)
+      {
+        if(speed[i]<speed[i-1])
+          c++;
+        else
+          speed[i]=speed[i-1]-1;
+      }
+    }
+    printf("%d\n",c);
+  }
+  return 0;
+}

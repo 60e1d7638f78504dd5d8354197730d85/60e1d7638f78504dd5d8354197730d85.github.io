@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       int T = sc.nextInt();
+       for(int i = 0; i < T; i++){
+         int X = sc.nextInt();
+         int[] P = new int[X];
+         int Y = sc.nextInt();
+         int[] Q = new int[Y];
+         for(int j = 0; j < X; j++)
+           P[j] = sc.nextInt();
+         for(int j = 0; j < Y; j++)
+           Q[j] = sc.nextInt();
+         int[] R = new int[X + Y];
+         for(int j = 0; j < X; j++)
+           R[j] = P[j];
+         for(int j = 0; j < Y; j++)
+           R[j + X] = Q[j];
+         Arrays.sort(R);
+         for(int j = X + Y; j > 0; j--)
+           System.out.print(R[j - 1] + " ");
+         System.out.println();
+       } 
+	}
+}

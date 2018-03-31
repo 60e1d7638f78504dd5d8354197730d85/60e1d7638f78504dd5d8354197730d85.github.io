@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+  long a,b;
+  int i=0,r=0,s[100];
+  
+  scanf("%ld %ld",&a,&b);
+  while(a!=0 || b!=0)
+  {
+    s[i++] =(a%10 + b%10+ r) % 2;
+    r=(a%10+b%10+r)/2;
+    a=a/10;
+    b=b/10;
+  }
+  if (r!=0)
+    s[i++]=r;
+    --i;
+    while(i>=0)
+     printf("%d",s[i--]);
+     return 0;
+}

@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+ 
+#define mod 1000000007
+#define inf 1000000000000LL
+#define root2 1.41421
+#define root3 1.73205
+#define pi 3.14159
+#define MAX 100001
+#define cntbit __builtin_popcountll
+#define ll long long int
+#define PII pair<int, int>
+#define f first
+#define s second
+#define mk make_pair
+#define PLL pair<ll, ll>
+#define gc getchar
+#define pb push_back
+using namespace std;
+int n, h;
+ll A[MAX], sum;
+ll fsum(ll x)
+{
+    return (x*(x+1))/2;
+}
+ll g(ll k, ll i)
+{
+    return sum*k + A[i-1] + fsum(n*k+i);
+}
+int main()
+{
+    sum=0;
+    ll ans=10000000000LL;
+    cin>>n>>h;
+    for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+        if(i!=0)A[i]+=A[i-1];
+        if(ans>i&&A[i]+fsum(i+1)>=h){ans=i+1;}
+    }
+    sum=A[n-1];
+    if(ans>n)
+    for(ll i=1;i<=n;i++)
+    {
+        ll lo=0, hi=2000000000LL, mid, k=-1;
+        hi/=n;
+        while(lo<=hi)
+        {
+            mid=(lo+hi)>>1;
+            ll x=g(mid, i);
+            if(x>=h)
+            {
+                k=mid;
+                hi=mid-1;
+            }
+            else lo=mid+1;
+        }
+        if(k!=-1)
+        ans=min(ans, n*k+i);
+    }
+    cout<<ans<<endl;
+}

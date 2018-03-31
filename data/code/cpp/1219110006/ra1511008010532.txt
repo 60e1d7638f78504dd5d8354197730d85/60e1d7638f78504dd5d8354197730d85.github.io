@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+class Cat
+{
+  string s;
+  public:
+  Cat()
+  {
+    s="";
+  }
+  Cat(string a)
+  {
+    s=""+a;
+  }
+  Cat operator + (Cat const &obj)
+  {
+    Cat c;
+    c.s=s+obj.s;
+    return c;
+  }
+  void disp()
+  {
+    cout<<s;
+  }
+};
+
+int main()
+{
+  string a,b;
+  cin>>a>>b;
+  Cat c1(a),c2(b);
+  Cat c3 = c1 + c2;
+  c3.disp();
+	return 0;
+}

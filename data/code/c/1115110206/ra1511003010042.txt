@@ -1,0 +1,124 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define M 100021
+#define mod 1000000007
+long long tree[4*M+1][2];
+long long A[M];
+struct item
+{
+	long long sum;
+	long long x;
+	long long y;
+};
+long long fibo(long long n)
+{
+    long long fib[2][2]= {{1,1},{1,0}},ret[2][2]= {{1,0},{0,1}},tmp[2][2]= {{0,0},{0,0}};
+    long long i,j,k;
+    while(n)
+    {
+        if(n&1)
+        {
+            memset(tmp,0,sizeof tmp);
+            for(i=0; i<2; i++) for(j=0; j<2; j++) for(k=0; k<2; k++){
+                        tmp[i][j]=(tmp[i][j]+ret[i][k]*fib[k][j]);   
+						tmp[i][j] = tmp[i][j]%mod;
+			}															  
+            for(i=0; i<2; i++) for(j=0; j<2; j++) ret[i][j]=tmp[i][j];
+        }
+        memset(tmp,0,sizeof tmp);
+        for(i=0; i<2; i++) for(j=0; j<2; j++) for(k=0; k<2; k++){
+                    tmp[i][j]=(tmp[i][j]+fib[i][k]*fib[k][j]);
+					tmp[i][j] = tmp[i][j]%mod; 
+			}      
+        for(i=0; i<2; i++) for(j=0; j<2; j++) fib[i][j]=tmp[i][j];   
+        n/=2;
+    }
+    return (ret[0][1]);
+}
+void build(long long node, long long start, long long end)
+{
+    if(start == end)
+    {
+        tree[node][0] = fibo(A[start]);
+        tree[node][1] = fibo(A[start]-1)+1;
+    }
+    else
+    {
+        build(2*node, start, start+(end-start)/2);
+        build(2*node+1, start+(end-start)/2+1, end);
+        tree[node][0] = ((tree[node<<1][0]*(tree[node<<1|1][0]+tree[node<<1|1][1])%mod)%mod + (tree[node<<1][1]*tree[node<<1|1][0])%mod)%mod;
+        tree[node][1] = ((tree[node<<1][0]*tree[node<<1|1][0])%mod + (tree[node<<1][1]*tree[node<<1|1][1])%mod)%mod;
+    }
+}
+void update(long long node, long long start, long long end, long long idx, long long val)
+{
+    if(start == end)
+    {
+        A[idx] = val;
+        tree[node][0] = fibo(A[idx]);
+        tree[node][1] = fibo(A[idx]-1)+1;
+    }
+    else
+    {
+        long long mid = start+(end-start)/2;
+        if(start <= idx && idx <= mid)
+        {
+            update(2*node, start, mid, idx, val);
+        }
+        else
+        {
+            update(2*node+1, mid+1, end, idx, val);
+        }
+      	 tree[node][0] = ((tree[node<<1][0]*(tree[node<<1|1][0]+tree[node<<1|1][1])%mod)%mod + (tree[node<<1][1]*tree[node<<1|1][0])%mod)%mod;
+        tree[node][1] = ((tree[node<<1][0]*tree[node<<1|1][0])%mod + (tree[node<<1][1]*tree[node<<1|1][1])%mod)%mod;
+    }
+}
+struct item *query(long long node, long long start, long long end, long long l, long long r)
+{
+	struct item *s,*p1,*p2;
+	s = (struct item *)malloc(sizeof(struct item));
+    if(start > end || start > r || end < l){
+		s->x = 0;
+		s->y = 1;
+		s->sum=0;
+        return s;    
+    }
+    if(start >= l && end <= r){
+    	s->sum=1;
+    	s->x=tree[node][0];
+    	s->y=tree[node][1];             
+        return s;
+    }
+    long long mid = start+(end-start)/2;
+    p1 = query(node*2, start, mid, l, r);      
+    p2 = query(node*2+1, mid + 1, end, l, r);
+    s->sum=1; 
+    s->x=((p1->x*(p2->x+p2->y))%mod+(p1->y*p2->x)%mod)%mod;
+    s->y=((p1->x*p2->x)%mod+(p1->y*p2->y)%mod)%mod;
+    return s;
+}
+ 
+int main()
+{
+	long long n,q,l,r,i;
+	char ch;
+	struct item *ans;
+	scanf("%lld%lld",&n,&q);
+	for(i=0;i<n;i++)
+		scanf("%lld",&A[i]);
+	build(1,0,n-1);
+	for(i=0;i<q;i++){
+		scanf(" %c%lld%lld",&ch,&l,&r);
+		if(ch=='C')
+		{
+			update(1,0,n-1,l-1,r);
+		}
+		else
+		{
+			ans = query(1,0,n-1,l-1,r-1);
+			printf("%lld\n",ans->x);
+		}
+	}	
+	return 0;
+} 

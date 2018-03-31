@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+ 
+void search(char* pat, char* txt)
+{
+    int M = strlen(pat);
+    int N = strlen(txt);
+ int i,j;
+    for ( i = 0; i <= N - M; i++) {
+        for (j = 0; j < M; j++)
+            if (txt[i + j] != pat[j])
+                break;
+ 
+        if (j == M)
+        printf("Pattern starts at posn %d", i+1);
+    }
+}
+ 
+/* Driver program to test above function */
+int main()
+{
+    char txt[MAX];
+    char pat[MAX];
+        fgets(txt, MAX, stdin);
+        fgets(pat, MAX, stdin);
+   printf("Text: %s",txt);
+    printf("Pattern: %s\n",pat);
+    search(pat, txt);
+    return 0;
+}

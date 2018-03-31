@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+int size;
+  scanf("%d",&size);
+  
+  int arr[size];
+  int i;
+  for(i=0;i<size;i++)
+    scanf("%d",&arr[i]);
+  
+  int j;
+  for(i=0;i<size;i++)
+  {
+    for(j=0;j<size-i;j++)
+    {
+   if(arr[j]>arr[j+1])
+   {
+    int temp=arr[j];
+     arr[j]=arr[j+1];
+     arr[j+1]=temp;
+   }
+    }
+  }
+  printf("%d",arr[size-1]-arr[0]);
+	return 0;
+}

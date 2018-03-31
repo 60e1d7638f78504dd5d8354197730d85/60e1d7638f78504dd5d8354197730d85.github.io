@@ -1,0 +1,38 @@
+#include <stdio.h>
+int s;
+int main()
+{
+    int T,D,N,i,a;
+    scanf("%d",&T);
+    for(i=0;i<T;i++)
+    {
+      s=0;
+      scanf("%d %d",&D,&N);
+      a=sum(D,N);
+      printf("%d\n",a);
+    }
+  
+	return 0;
+}
+
+int sum(int d,int n)
+{
+  int j;
+  for(j=0;j<d;j++)
+  {
+    sum1(n);
+    n=sum1(n);
+  }
+  return n;
+}
+
+int sum1(int n)
+{
+  int k;
+  s=0;
+  for(k=1;k<=n;k++)
+  {
+    s=s+k;
+  }
+  return s;
+}

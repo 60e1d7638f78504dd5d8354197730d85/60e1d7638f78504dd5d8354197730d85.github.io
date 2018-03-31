@@ -1,0 +1,198 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+ 
+class TestClass{
+ 
+	static final BigInteger modul = new BigInteger(String.valueOf(1000000007));
+	static final BigInteger SIX = new BigInteger(String.valueOf(6));
+	static final BigInteger TWO = new BigInteger(String.valueOf(2));
+	static int nNew,kNew;
+	private static final ExecutorService workers = Executors.newCachedThreadPool();
+	public static void main(String[] args) throws InterruptedException, ExecutionException, IOException{
+		
+		int tc, n,k,l;
+		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter out=new PrintWriter(System.out);
+		StringTokenizer st = new StringTokenizer(sc.readLine());
+		tc=Integer.valueOf(st.nextToken());
+		//long lStartTime = System.currentTimeMillis();
+		BigInteger[] results  = new BigInteger[tc];
+		for(int i=0;i<tc;i++){
+			 st = new StringTokenizer(sc.readLine());
+			nNew=n=Integer.parseInt(st.nextToken());
+			kNew=Integer.parseInt(st.nextToken());
+			Collection<Callable<BigInteger>> tasks = new ArrayList<Callable<BigInteger>>();
+			tasks.add(
+					new Callable<BigInteger>()
+					{
+ 
+						public BigInteger call()
+								throws Exception
+								{
+							BigInteger[] t4= new BigInteger[nNew+1];
+ 
+							BigInteger finalt4;
+							finalt4=BigInteger.ZERO;
+							for(int l=1;l<=nNew;l++){
+ 
+								Arrays.fill(t4,BigInteger.ZERO);
+								long a1= (long) Math.pow(kNew, l);
+								t4[l]=new BigInteger(String.valueOf(a1));
+								for(int m=l+1;m<=nNew;m++){
+									long a2 = (long) Math.pow(kNew,m-l);
+									long a3 = (long) (Math.pow(kNew, m)- a2);
+									if(nNew>2){
+										t4[m]=(new BigInteger(String.valueOf(a3)).multiply(t4[l])).mod(modul);
+										for(int o=m+1;o<=nNew;o++){
+ 
+											t4[o]=(new BigInteger(String.valueOf((long)(Math.pow(kNew, o)-(Math.pow(kNew,o-l)+Math.pow(kNew,o-m))))).multiply(t4[m])).mod(modul);
+											finalt4=finalt4.add(t4[o]);
+										}
+ 
+									}
+									else{
+										t4[l]=BigInteger.ZERO;
+									}
+								}
+							}
+							return finalt4;
+								}
+					});
+ 
+			tasks.add(
+					new Callable<BigInteger>()
+					{
+ 
+						public BigInteger call()
+								throws Exception
+								{
+							BigInteger[] t1= new BigInteger[nNew+1];
+							Arrays.fill(t1,BigInteger.ZERO);
+							for(int l=1;l<=nNew;l++){
+								///find all three strings at one level
+								long a1= (long) Math.pow(kNew, l);
+								t1[l]=(combination(a1,3).add(t1[l-1])).mod(modul);
+ 
+							}
+							return t1[nNew];
+								}});
+ 
+			tasks.add(
+					new Callable<BigInteger>()
+					{
+						public BigInteger call()
+								throws Exception
+								{
+							BigInteger[] t2= new BigInteger[nNew+1];
+							BigInteger finalt2=BigInteger.ZERO;
+							for(int l=1;l<=nNew;l++){
+ 
+								Arrays.fill(t2,BigInteger.ZERO);
+								if(l!=nNew){
+									//find 1  2 
+									t2[l]=new BigInteger(String.valueOf((long) Math.pow(kNew, l))).mod(modul);
+								}
+								for(int m=l+1;m<=nNew;m++){
+									long a2 = (long) Math.pow(kNew,m-l);
+									long a3 = (long) (Math.pow(kNew, m)- a2);
+									t2[m]=combination(a3, 2).multiply(t2[l]);
+								}
+								for(int a=l+1; a<=nNew;a++){
+									finalt2=finalt2.add(t2[a]);
+								}
+							}
+							return finalt2;
+								}});
+ 
+ 
+			tasks.add(
+					new Callable<BigInteger>()
+					{
+						public BigInteger call()
+								throws Exception
+								{
+							BigInteger[] t3= new BigInteger[nNew+1];
+							BigInteger finalt3=BigInteger.ZERO;
+							for(int l=1;l<=nNew;l++){
+ 
+								Arrays.fill(t3,BigInteger.ZERO);
+								long a1= (long) Math.pow(kNew, l);
+								if(l!=nNew){
+									//find 2  1
+									t3[l]=combination(a1, 2).mod(modul);
+								}
+								for(int m=l+1;m<=nNew;m++){
+									long a2 = (long) Math.pow(kNew,m-l);
+									long a3 = (long) (Math.pow(kNew, m)- a2);
+									t3[m]=new BigInteger(String.valueOf(a3-a2)).multiply(t3[l]);
+								}
+								for(int a=l+1; a<=nNew;a++){
+									finalt3=finalt3.add(t3[a]);
+								}
+							}
+							return finalt3;
+								}});
+			List<Future<BigInteger>> resultthreads = workers.invokeAll(tasks);
+			BigInteger sum = BigInteger.ZERO;
+			for (Future<BigInteger> f : resultthreads) {
+				sum = sum.add(f.get());
+			}
+			results[i] = (SIX.multiply(sum).mod(modul));
+				}
+		sc.close();
+		
+		for(int i=0; i<tc;i++){
+			out.println(results[i]);
+		}
+		
+/*		long lEndTime = System.currentTimeMillis();
+		long difference = lEndTime - lStartTime;
+		out.println("Elapsed milliseconds: " + difference);
+*/		out.flush();
+		out.close();
+		System.exit(0);
+	}
+ 
+ 
+ 
+	private static BigInteger combination(long n, int r){
+		BigInteger num = BigInteger.ONE;
+		long lim =n-r+1l;
+		BigInteger lim1 = new BigInteger(String.valueOf(lim));
+		for (BigInteger i=new BigInteger(String.valueOf(n)); i.compareTo(lim1)>=0;i=i.subtract(BigInteger.ONE)){
+			num = num.multiply(i);
+		}
+		BigInteger k ;
+		/*for(int j=1; j<=r;j++){
+			k=k*j;
+		}*/
+ 
+		if(r==2){
+			k=TWO;
+		}
+		else{
+			k=SIX;
+		}
+ 
+		return num.divide(k).mod(modul);
+ 
+	}
+} 

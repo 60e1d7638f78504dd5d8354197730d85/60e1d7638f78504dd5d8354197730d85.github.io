@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int c=0;
+       String s=sc.nextLine();
+       String a="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+       for(int i=0;i<(a.length()/2);i++)
+       {         
+         for(int j=0;j<s.length();j++)
+         {
+      		 if((a.charAt(i)==s.charAt(j))||(a.charAt(i+26)==s.charAt(j)))
+             {
+               c++;         
+             }
+         }
+       }
+    
+       if(c==s.length())      		
+         System.out.println("pangram");
+       else
+        System.out.println("not pangram");      
+   	}
+}

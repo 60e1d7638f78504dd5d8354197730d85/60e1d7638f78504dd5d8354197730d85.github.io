@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+union String 
+{
+  char s[100];
+};
+int main()
+{
+  int n,i,j;
+  scanf("%d",&n);
+  union String str[n];
+  union String temp;
+  for(i=0;i<n;i++)
+  {
+	scanf("%s",str[i].s);
+  }
+  for(i=0;i<n-1;i++)
+  {
+    for(j=i;j<n;j++)
+    {
+	  if(strcmp(str[i].s,str[j].s)>0)
+      {
+        temp=str[i];
+        str[i]=str[j];
+        str[j]=temp;
+      }
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+	printf("%s\n",str[i].s);
+  }
+  
+
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int n,ar[100][100],i,j,flag = 0;
+  
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&ar[i][j]);
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i != j && ar[i][j] != 0)
+       {
+          flag = flag + 1;
+          break;	
+       }
+    }
+   }
+  flag = flag - 1;
+  //printf("%d",flag);
+  if(flag == 1)
+    printf("no");
+  else
+    printf("yes");
+  return 0;
+}

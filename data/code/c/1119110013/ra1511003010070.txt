@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main()
+{
+    int array[50], position, c, n, value,i=0,flag=0;
+    scanf("%d", &n);  
+    for (c = 0; c < n; c++)    
+    	scanf("%d", &array[c]);
+   	scanf("%d", &value); 
+    scanf("%d", &position);
+  	int res[n+1];
+    for (c=0; c<n; c++)
+    {
+      	if(c==position && flag==0)
+        {
+          	res[i++]=value;
+          	flag=1;
+          	c--;
+        }
+     	else
+          	res[i++]=array[c];
+    }
+    for (c = 0; c <= n; c++)    
+		printf("%d\n", res[c]);    
+    return 0;
+}

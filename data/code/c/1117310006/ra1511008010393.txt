@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define mod 1000000007
+long long int pp(long long int a,long long int b)
+{
+  if(b==1)
+    return a;
+  else if(b%2==0)
+  {
+    long long int y=pp(a,b/2);
+    return (y*y)%mod;
+  }
+  else 
+    return (a*pp(a,b-1))%mod;
+}
+static long long int x[10010],y[10010];
+long long int aa(int n,int k)
+{
+  n=n+k-1;
+  long long int ans;
+  ans=x[n];
+  ans=(ans*y[n-k])%mod;
+  ans=(ans*y[k])%mod;
+  return ans;
+}
+
+int main()
+{
+  int t,i,j,k,n,f;
+  x[0]=1;
+  y[0]=1;
+  for(i=1;i<=10000;i++)
+  {
+    x[i]=(x[i-1]*(long long int)i)%mod;
+    y[i]=(y[i-1]*pp(i,mod-2))%mod;
+  }
+  long long int ans;
+  while(1)
+  {
+    scanf("%d %d",&n,&k);
+    if(n==0 && k==0)
+      break;
+    if(k==1)
+    {
+      printf("2\n");
+      continue;
+    }
+    if(k%2==0)
+    {
+      ans=(aa(k/2,n-k/2-1)*aa(k/2+1,n-k/2-2))%mod;
+      ans=(ans*2)%mod;
+    }
+    else
+    {
+      ans=(aa(k/2+1,n-k/2-2)*aa(k/2+1,n-k/2-2))%mod;
+      ans=(ans*2)%mod;
+    }
+    printf("%lld\n",ans);
+  }
+	return 0;
+}

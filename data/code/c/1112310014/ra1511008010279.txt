@@ -1,0 +1,73 @@
+#include <stdio.h>
+
+
+int nums[100*1000+20];
+int d[100*1000+20];
+int e[100*1000+20];
+int dah[100*1000+20];
+
+int main()
+{
+    int n,q;
+    scanf("%d%d",&n,&q);
+    int h;
+    for(h=0;h<n;h++)
+        {d[h/100]++; e[h/1000]++; dah[h/10]++;}
+    int test;
+    for(test=0;test<q;test++)
+    {
+        int op,start,end;
+        scanf("%d%d%d",&op,&start,&end);
+        if(0==op)
+        {
+            int x;
+            for(x=start;x<=end;x++)
+            {
+                nums[x]++;
+                nums[x]%=3;
+                if(nums[x]==0)
+                {
+                    d[x/100]++;
+                    e[x/1000]++;
+                    dah[x/10]++;
+                }
+                else if(nums[x]==1)
+                {
+                    d[x/100]--;
+                    e[x/1000]--;
+                    dah[x/10]--;
+                }
+            }
+        }
+        else if(1==op)
+        {
+            int f;
+            int ans=0;
+            for(f=start;f<=end;)
+            {
+                if(f%1000==0&&f+1000<end)
+                {
+                    ans+=e[f/1000];
+                    f+=1000;
+                }
+                else if(f%100==0&&f+100<end)
+                {
+                    ans+=d[f/100];
+                    f+=100;
+                }
+                else if(f%10==0&&f+10<end)
+                {
+                    ans+=dah[f/10];
+                    f+=10;
+                }
+                else
+                {
+                    ans+=(nums[f]==0);
+                    f++;
+                }
+            }
+            printf("%d\n",ans);
+        }
+    }
+    return 0;
+}

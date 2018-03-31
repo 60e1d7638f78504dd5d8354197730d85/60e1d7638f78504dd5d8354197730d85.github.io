@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  char *s = malloc(sizeof(char)*256), *ptr, temp;
+  int i, j, length = 0;
+  scanf("%255s",s);
+  ptr = s;
+  while(*ptr++ != '\0')
+    length++;
+  for(i = 0; i < length; i++)
+  {
+    for(j = 0; j < length; j++)
+    {
+      if((int) *(s+i) < (int) *(s+j))
+      {
+        temp = *(s+i);
+        *(s+i) = *(s+j);
+        *(s+j) = temp;
+      }
+    }
+  }
+  ptr = s;
+  while(*ptr != '\0')
+    printf("%c",*ptr++);
+  return 0;
+}

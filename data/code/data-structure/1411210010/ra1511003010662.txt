@@ -1,0 +1,39 @@
+#include <iostream>
+#include<climits>
+#include<deque>
+using namespace std;
+void print(int arr[],int n,int k)
+{
+    deque<int> d;
+    for(int i=0;i<k;i++)
+    if(arr[i]<0)
+    d.push_back(i);
+    for(int i=k;i<n;i++)
+    {
+        if(!d.empty())
+        cout<<arr[d.front()]<<" ";
+        else
+        cout<<"0 ";
+        while(!d.empty() && d.front()<(i-k+1))
+        d.pop_front();
+        if(arr[i]<0)
+        d.push_back(i);
+    }
+    if(!d.empty())
+    cout<<arr[d.front()]<<" ";
+    else
+    cout<<"0 ";
+}
+int main()
+{
+    int Length;
+  
+        cin>>Length;
+        int arr[Length];
+        for(int i=0;i<Length;i++)
+        cin>>arr[i];
+        print(arr,Length,3);
+        cout<<endl;
+    
+    return 0;
+}

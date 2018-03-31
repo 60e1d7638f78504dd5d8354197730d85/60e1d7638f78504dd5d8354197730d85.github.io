@@ -1,0 +1,66 @@
+#include <stdio.h>
+int fastread(int *p) {
+	char c = getchar_unlocked();
+	*p = 0;
+	while (c >= 48 && c <= 57) {
+		*p = (*p*10)+c-'0';
+		c = getchar_unlocked();
+	}
+}
+void quicksort(int x[],int first,int last){
+	int pivot,j,temp,i;
+	if(first<last){
+		pivot=first;
+		i=first;
+		j=last;
+		while(i<j){
+			while(x[i]<=x[pivot]&&i<last)
+				i++;
+			while(x[j]>x[pivot])
+				j--;
+			if(i<j){
+				temp=x[i];
+				x[i]=x[j];
+				x[j]=temp;
+			}
+		}
+ 
+		temp=x[pivot];
+		x[pivot]=x[j];
+		x[j]=temp;
+		quicksort(x,first,j-1);
+		quicksort(x,j+1,last);
+	}
+}
+main() {
+	int t;fastread(&t);
+	while (t--) {
+		int n;fastread(&n);
+		int i,k[n],x,max=0;
+		long long a[n];
+		for (i = 0; i < n; i++) {
+			fastread(&k[i]);
+			a[i] = 1000000009;
+		}
+		quicksort(k,0,n-1);
+		for (i = n-1; i >= 0; i--) {
+			x = 0;
+			if (a[x] > k[i]) {
+				a[x] = k[i];
+				continue;
+			}
+			else {
+			while (a[x] <= k[i]) {
+				x++;
+			}
+				a[x] = k[i];
+			}
+			if (max < x) {
+				max = x;
+			}
+		}
+		printf("%d\n",max+1);
+ 
+	}
+		return 0;
+}

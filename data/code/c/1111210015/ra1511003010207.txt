@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <math.h>
+
+#define MOD_OF 1000000007
+
+int main() {
+	double *a, p = 1;
+	int n, i;
+	scanf("%d", &n);
+
+	a = malloc(sizeof(double) * n);
+
+	for ( i = 0; i < n; i++ )
+		scanf("%lf", &a[i]);
+
+	for ( i = 0; i < n; i++ )
+		p = fmod((p * fmod(a[i], (double)MOD_OF)), (double)MOD_OF);
+
+	printf("%.0lf", p);
+
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+struct time
+{
+  int h,m,s;
+};
+
+void diff(struct time t1, struct time t2, struct time *c);
+
+int main()
+{
+  struct time a,b,c;
+  
+  scanf("%d %d %d",&a.h,&a.m,&a.s);
+  scanf("%d %d %d",&b.h,&b.m,&b.s);
+  
+  diff(a,b,&c);
+  
+  printf("%d:%d:%d",c.h,c.m,c.s);
+  
+
+	return 0;
+}
+
+
+void diff(struct time a, struct time b, struct time *c)
+{
+  if(b.s>a.s)
+  {
+    --a.m;
+    a.s += 60;
+  }
+ 
+  c->s=a.s-b.s;
+  if( b.m>a.m)
+  {
+    --a.h;
+    a.m+=60;
+  }
+  
+  c->m=a.m-b.m;
+  c->h=a.h-b.h;
+}
+  

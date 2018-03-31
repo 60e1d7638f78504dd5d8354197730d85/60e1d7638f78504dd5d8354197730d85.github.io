@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+    int n,i,fl=0;
+    scanf("%d",&n);
+    for(i=1;i<=n/2;i++)
+    {
+      if(prime(i)!=0)
+      {
+        if(prime(n-i)!=0)
+        {
+          printf("%d = %d + %d\n",n,i,n-i);
+          fl=1;
+        }
+      }
+    }
+  if(fl==0)
+    printf("NOT");
+  return 0;
+}
+int prime(int n)
+{
+  int i,fl=1;
+  for(i=2;i<=n/2;i++)
+    if(n%i==0)
+      fl=0;
+   return fl;
+}
+  

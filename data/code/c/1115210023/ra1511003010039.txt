@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+unsigned long maxGained(unsigned long);
+unsigned long memory[100000000] = {0};
+ 
+int main(void) {
+    unsigned long n;
+    while(scanf("%lu", &n) != EOF) {
+        printf("%lu\n", maxGained(n));
+    }
+    return 0;
+}
+ 
+unsigned long maxGained(unsigned long n) {
+    if(n < 100000000 && memory[n] != 0)
+        return memory[n];
+    
+    if(n / 2 + n / 3 + n / 4 > n) {
+        if(n < 100000000) {
+            memory[n] = maxGained(n / 2) + maxGained(n / 3) + maxGained(n / 4);
+            return memory[n];
+        } else {
+            return maxGained(n / 2) + maxGained(n / 3) + maxGained(n / 4);
+        }
+    } else {
+        if(n < 100000000)
+            memory[n] = n;
+        return n;
+    }
+}

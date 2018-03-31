@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,k,l,m,c,size,mat[100][100];
+  scanf("%d",&n);
+  k=0; l=0;   c=n; size=n=m=2*n-1;
+  while(k<n && l<m)
+  {
+    for(i=l; i<m; i++)
+      mat[k][i]=c;
+    k++;
+    for(i=k; i<n; i++)
+      mat[i][m-1]=c;
+    m--;
+    if(k<n)
+    {
+      for(i=m-1; i>=l; i--)
+        mat[n-1][i]=c;
+      n--;
+    }
+    if(l<m)
+    {
+      for(i=n-1; i>=k; i--)
+        mat[i][l]=c;
+      l++;
+    }
+    c--;
+  }
+  for(i=0; i<size; i++)
+  {
+    for(j=0; j<size; j++)
+        printf("%d ",mat[i][j]);
+    printf("\n");
+  }
+	return 0;
+}

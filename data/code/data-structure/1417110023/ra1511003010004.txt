@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int ar[100006];
+int size = 0;
+ 
+void insertSorted(int x)
+{
+    if(size == 0)
+    {
+        ar[size++] = x;
+    }
+    else
+    {
+        int s = size;
+        while(s>=0 && ar[s-1]>x)
+        {
+            ar[s] = ar[s-1];
+            s--;
+        }
+        ar[s] = x;
+        size++;
+    }
+}
+ 
+int main()
+{
+    int n;
+    cin>>n;
+ 
+    while(n--)
+    {
+        int type;
+        cin>>type;
+        if(type == 1)
+        {
+            int x;
+            cin>>x;
+            insertSorted(x);
+        }
+        else if(type ==2)
+        {
+            int x;
+            cin>>x;
+            int i;
+            for(i=0;i<size;i++)
+            {
+                if(ar[i] == x)
+                    break;
+            }
+            if(i == size)
+            {
+                cout<<"-1\n";
+            }
+            else
+            {
+                for(int j = i;j<size-1;j++)
+                    ar[j] = ar[j+1];
+                size--;
+            }
+        }
+        else if(type == 3)
+        {
+            if(size == 0)
+                cout<<"-1\n";
+            else
+                cout<<ar[size-1]<<endl;
+        }
+        else
+        {
+            if(size == 0)
+                cout<<"-1\n";
+            else
+                cout<<ar[0]<<endl;
+        }
+    }
+    return 0;
+}

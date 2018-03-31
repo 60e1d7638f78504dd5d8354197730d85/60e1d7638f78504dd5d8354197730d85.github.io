@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(){
+	int i, j, n, x=-1, f=1, arr[30][30];
+	scanf("%d",&n);
+	for(i=0; i<n; i++)
+		for(j=0; j<n; j++)
+			scanf("%d",&arr[i][j]);
+	if(arr[0][0]%2 ==0)
+		x=0;
+	else
+		x=1;
+	for(i=0;i<n;i++){
+		for(j=1;j<n;j++){
+			if(x==0 && arr[i][j]%2!=0){
+				f=0;
+            }
+			else if(x==1 && arr[i][j]%2==0)
+				f=0;
+		}
+	}
+  	if(f==1)
+      	printf("yes");
+	else
+      	printf("no");
+	return 0;
+}

@@ -1,0 +1,23 @@
+#include <stdio.h>
+typedef long long LL;
+int n, m, l, d;
+ 
+int main() { 
+  	int i;
+    scanf("%d%d%d%d", &n, &d, &m, &l);
+    for (i = 1; i <= n; i++)
+    {
+        LL dis = (LL)(i - 1)*m + l;
+        LL nt = (LL)i*m;
+        if (dis - dis % d + d < nt)
+        {
+            printf("%lld\n", dis - dis % d + d);
+            return 0;
+        }
+        else if (i == n)
+        {
+            printf("%lld\n", nt - (nt - 1) % d + d - 1);
+        }
+    }
+    return 0;
+}

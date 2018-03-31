@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+ 
+struct Node
+{
+    int key;
+    struct Node* next;
+};
+ 
+
+void push(struct Node** head_ref, int new_key)
+{
+   
+    struct Node* new_node =
+            (struct Node*) malloc(sizeof(struct Node));
+ 
+   
+    new_node->key  = new_key;
+ 
+    
+    new_node->next = (*head_ref);
+ 
+    
+    (*head_ref)    = new_node;
+}
+ 
+
+bool search(struct Node* head, int x)
+{
+    struct Node* current = head;  
+    while (current != NULL)
+    {
+        if (current->key == x)
+            return true;
+        current = current->next;
+    }
+    return false;
+}
+ 
+
+int main()
+{
+    
+    struct Node* head = NULL;
+    int n;
+    scanf("%d",&n);
+    int a[10];
+    int i;
+   for(i=0;i<n;i++)
+     scanf("%d",&a[i]);
+    int x ;
+    scanf("%d",&x);
+   for(i=n-1;i>=0;i--)
+    push(&head, a[i]);
+
+    search(head, x)? printf("Yes") : printf("No");
+    return 0;
+}

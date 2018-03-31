@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
+struct NODE
+{
+  int data;
+  struct NODE *link;
+}*start;
+typedef struct NODE node;
+void insert(int x)
+{
+  node *temp = (node *)malloc(sizeof(node));
+  temp -> data = x;
+  temp -> link =NULL;
+  if(start==NULL)
+    start = temp;
+  else
+  {temp -> link = start;
+   start = temp;
+  }
+}
+int main()
+{
+  node *temp1;
+int n , a , ele , i , flag ;
+  flag = 0;
+  scanf("%d",&n);
+  for(i = 0 ; i < n ; i++)
+  {
+    scanf("%d",&a);
+    insert(a);
+  }
+  scanf("%d",&ele);
+  temp1 = start;
+  while(temp1 != NULL)
+  {
+    if(temp1-> data == ele)
+    {
+      printf("Yes");
+      flag = 1;
+      break;
+    }
+    temp1 = temp1 -> link ;
+  }
+  if(flag==0)
+    printf("No");
+	return 0;
+}

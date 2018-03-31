@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+int cmpfun(const void * a,const void * b)
+{
+	return(*(int*)a-*(int*)b);
+}
+int main()
+{
+	long long int n,a[1000000],s,j,i,p;
+	scanf("%lld",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%lld",&a[i]);
+	} 
+	qsort(a,n,sizeof(long long int),cmpfun);
+	
+	for(i=1;i<n;i++)
+	{
+		if(a[n-1]!=a[n-1-i])
+		{
+			printf("%lld",a[n-1-i]%a[n-1]);
+			break;
+		}
+	}
+	if(i==n)
+	{
+		printf("0");
+	}
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+  int T,lenJ,lenS,j,s,count;
+  char J[100],S[100];
+  scanf("%d",&T);
+  
+  while(T--)
+  {
+    count=0;
+    scanf("%s",J);
+    scanf("%s",S);
+    
+    lenJ=strlen(J);
+    lenS=strlen(S);
+    
+    for(s=0;s<lenS;s++)
+    {
+      char t1= S[s];
+      for(j=0;j<lenJ;j++)
+      {
+        char t2=J[j];
+        if(t1==t2)
+        {
+          count++;
+          break;
+        }
+      }
+    }
+    printf("%d\n",count);
+  }
+	return 0;
+}

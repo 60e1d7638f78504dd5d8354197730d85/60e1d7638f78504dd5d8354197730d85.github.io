@@ -1,0 +1,28 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+void swap(int *a, int* b, int* c) {
+	*a += *b + *c;
+  	*b = *a - *b - *c;
+  	*c = *a - *b - *c;
+  	*a = *a - *b - *c;
+}
+
+void display(int a, int  b, int c) {
+	cout<<"a="<<a;
+  	cout<<"\nb="<<b;
+  	cout<<"\nc="<<c<<endl;
+}
+
+int main()
+{
+  	int a, b, c;
+  	cin>>a>>b>>c;
+  	cout<<"Value before swapping: \n";
+  	display(a, b, c);
+  	swap(&a, &b, &c);
+  	cout<<"Value after swapping numbers in cycle: \n";
+  	display(a, b, c);
+	return 0;
+}

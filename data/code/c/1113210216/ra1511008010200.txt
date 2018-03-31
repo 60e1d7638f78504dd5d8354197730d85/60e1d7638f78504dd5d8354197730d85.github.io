@@ -1,0 +1,31 @@
+#include <stdio.h>
+char *check(int x1,int v1,int x2,int v2){
+  if(x2>x1 && v2>v1)return "NO";
+  if(x1>x2 && v1>v2)return "NO";
+  if(v1==v2 && (x1>x2 || x2>x1))return "NO";
+  if(x1>x2){
+    while(x1>x2)
+    {
+      if(x1+v1 == x2+v2)return "YES";
+      x1 += v1;
+      x2 +=v2;
+    }
+    return "NO";
+  }
+  if(x1<x2){
+    while(x1<x2)
+    {
+      if(x1+v1 == x2+v2)return "YES";
+      x1 += v1;
+      x2 +=v2;
+    }
+    return "NO";
+  }
+}
+int main()
+{
+  int x1,v1,x2,v2;
+  scanf("%d%d%d%d",&x1,&v1,&x2,&v2);
+  printf("%s",check(x1,v1,x2,v2));
+  return 0;
+}

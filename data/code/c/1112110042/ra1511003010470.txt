@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int T, i, count, s, j, d,alrd;
+    scanf("%d", &T);
+    char J[100][100], S[100][100];
+    for (i=0; i<T; ++i)
+    {
+        scanf("%s", J[i]);
+        scanf("%s", S[i]);
+    }
+    for(i=0; i<T; ++i)
+    {
+        count=0;
+        for(s=0; s<strlen(S[i]);++s)
+        {
+
+            for(j=0; j<strlen(J[i]); ++j)
+            {
+
+                alrd=0;
+
+                if(S[i][s]==J[i][j])
+                {
+
+                    d=j-1;
+                    while(d>=0)
+                    {
+
+                        if(J[i][j]==J[i][d])
+                        {
+
+                            alrd=1;
+                            break;
+                        }
+                       --d;
+                    }
+
+                    if(alrd!=1)
+                    {
+
+                    ++count;}
+                }
+            }
+        }
+        printf("%d\n", count);
+    }
+	return 0;
+
+}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+float days;
+int year,diff,leap,type,n,i;
+long int days1;
+scanf("%d",&n);
+for(i=0;i<n;i++){
+scanf("%d",&year);
+year=year-1;
+diff=year-1900;
+
+if(diff<100)
+{
+leap=diff/4;
+days=(366.0*leap)+((diff-leap)
+*365+365+1);
+days1=days;
+type=days1%7;
+}
+
+if(diff>=100)
+{
+leap=(diff/4)-(diff/100)+1+
+((year-2000)/400);
+days=(366.0*leap)+((diff-leap)
+*365+365+1);
+days1=days;
+type=days1%7;
+}
+
+if(type==0)
+printf("sunday\n");
+if(type==1)
+printf("monday\n");
+if(type==2)
+printf("tuesday\n");
+if(type==3)
+printf("wednesday\n");
+if(type==4)
+printf("thursday\n");
+if(type==5)
+printf("friday\n");
+if(type==6)
+printf("saturday\n");
+}
+	return 0;
+
+}

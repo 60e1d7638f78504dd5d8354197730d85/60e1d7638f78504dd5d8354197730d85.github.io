@@ -1,0 +1,93 @@
+#include<stdio.h>
+void merge(int a[],int low,int high)
+{
+	//printf("\n*\n");
+	int p;
+	p=(low+high)/2;
+	int h,i,k;
+	h=low;
+	i=0;
+	k=p+1;
+	int b[high-low+1];
+	while((h<=p)&&(k<=high))
+	{
+		if(a[h]<a[k])
+		{
+			b[i]=a[h];
+			i++;
+			h++;
+		}	
+		else
+		{
+			b[i]=a[k];
+			i++;
+			k++;
+		}
+	}
+	while(k<=high)
+	{	
+		b[i]=a[k];
+		i++;
+		k++;
+	}
+	while(h<=p)
+	{
+		b[i]=a[h];
+		i++;
+		h++;
+	}
+	int m;
+	for(m=low;m<=high;m++)
+	a[m]=b[m-low];
+	//printf("low: %d high: %d\n",low,high);
+}	
+void mergesort(int a[],int low,int high)
+{
+	//printf("\n*\n");
+	if(low<high)
+	{
+		int p;
+		p=(low+high)/2;
+		mergesort(a,low,p);
+		mergesort(a,p+1,high);
+		//printf("IN mergesort low: %d high %d\n",low,high);
+		merge(a,low,high);
+	}
+}
+int main()
+{
+	int n,i,j,k,l,m,length,max,sum,a[1000];
+	scanf("%d",&n);
+	sum=0;
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	//printf("\n*\n");	
+	mergesort(a,0,n-1);
+	//printf("\n*\n");
+	max=1;
+	for(i=0;i<n-1;i++)
+	{
+		for(j=n-1;j>i;j--)
+		{
+			sum=a[i]+a[j];
+			length=1;
+			m=j-1;
+			for(k=i+1;k<m;k++)
+			{
+				for(l=m;l>k;l--)
+				{
+					if(a[k]+a[l]==sum)
+					{
+						length++;
+						m=l-1;
+						break;
+					}
+				}
+			}
+			if(length>max)
+			max=length;
+		}
+	}
+	printf("%d\n",2*max);	
+	return 0;
+}

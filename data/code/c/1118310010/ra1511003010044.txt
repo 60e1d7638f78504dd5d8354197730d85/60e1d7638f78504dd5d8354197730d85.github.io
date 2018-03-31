@@ -1,0 +1,57 @@
+#include<stdio.h>
+int ab[100001];
+int main()
+{
+	int n,q,i,j,k,x,y,z,a[100001],l[100001],r[100001],b,c;long long int f[100001],result;
+	scanf("%d",&n);
+	for(i=1;i<=n;i++)
+		scanf("%d",&a[i]);
+	for(i=1;i<=n;i++)
+	{
+		ab[i]=0;
+	}
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d%d",&l[i],&r[i]);
+	}
+	scanf("%d",&q);
+	while(q--)
+	{
+		result=0;
+		scanf("%d%d%d",&j,&x,&y);
+		if(j==1)
+		{
+			z=a[x];
+			a[x]=y;
+			z=y-z;
+			for(i=1;i<=n;i++)
+			{
+				if(x>=l[i] && x<=r[i])
+					f[i]+=z;
+			}
+		//testing
+		}
+		else
+		{
+			for(i=x;i<=y;i++)
+			{
+				if(ab[i]==0)
+				{
+					ab[i]=1;f[i]=0;
+					if(l[i]>r[i])
+					{
+						c=l[i];l[i]=r[i];r[i]=c;
+					}
+					for(b=l[i];b<=r[i];b++)
+					{
+						f[i]+=a[b];
+					}
+				}
+					//printf("%d\n",f[i]);
+				result+=f[i];
+			}
+			printf("%lld\n",result);
+		}
+	}
+	return 0;
+}

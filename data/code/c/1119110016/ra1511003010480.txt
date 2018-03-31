@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,i;
+  int *p1,*p2;
+  scanf("%d",&a);
+  int arr1[a];
+  int flag=0;
+  for(i=0;i<a;i++)
+  {
+    scanf("%d",&arr1[i]);
+  }
+  
+  scanf("%d",&b);
+  int arr2[b];
+  for(i=0;i<b;i++)
+  {
+    scanf("%d",&arr2[i]);
+  }
+  
+  p1=arr1;
+  p2=arr2;
+  
+  for(i=0;i<a;i++)
+  {
+    if(*p1!=*p2)
+    {
+      flag=1;
+      break;
+    }
+    p1++;
+    p2++;
+  }
+  
+  if(flag==1)
+  {
+    printf("Arrays are not equal");
+  }
+  else
+  {
+    printf("Arrays are equal");
+  }
+  
+  return 0;
+}

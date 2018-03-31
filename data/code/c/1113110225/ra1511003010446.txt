@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+int c_vowels=0,c_consonants=0,c_digits=0,c_whitespaces=0;
+  char s[50];
+  int i =0 ;
+  fgets(s,50,stdin);
+	while(s[i]){
+      if(isalpha(s[i])){
+       	if(s[i]=='a'||s[i]=='A'||s[i]=='e'||s[i]=='E'||s[i]=='i'||s[i]=='I'||s[i]=='o'||s[i]=='O'||s[i]=='u'||s[i]=='U')
+          c_vowels++;
+        else
+          c_consonants++;
+      }
+      else if(isdigit(s[i]))
+              c_digits++;
+      else
+              c_whitespaces++;
+              
+      i++;
+    }
+     
+  	printf("%d %d %d %d",c_vowels,c_consonants,c_digits,c_whitespaces);
+              
+	return 0;
+}

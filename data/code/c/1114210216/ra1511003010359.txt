@@ -1,0 +1,76 @@
+#include <stdio.h>
+    inline int abs(int x)
+    {
+    return x < 0 ? -1*x : x;
+    }
+    inline void scanint(int* x)
+    {
+    register char c = getchar_unlocked();
+    *x = 0;
+    for(; (c<48)||(c>57);c = getchar_unlocked());
+    for(; (c>47)&&(c<58);c = getchar_unlocked())
+    *x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+    }
+    inline void printint(int n)
+    {
+    if(n == 0)
+    {
+    putchar_unlocked('0');
+    putchar_unlocked('\n');
+    }
+    else
+    {
+    char buf[11];
+    buf[10] = '\n';
+    int i = 9;
+    while(n)
+    {
+    buf[i--] = n % 10 + '0';
+    n /= 10;
+    }
+    while(buf[i] != '\n')
+    putchar_unlocked(buf[++i]);
+    }	
+    }
+    int main()
+    {	
+    int T;
+    scanint(&T);
+    long long int ans;
+    while(T--)
+    {
+    int x,y;
+    scanint(&x);
+    scanint(&y);
+    ans = 0;
+    x = abs(x);
+    y = abs(y);
+    if(x == y) ans = 2*x;
+    else if(y > x)
+    {
+    ans += 2*x;
+    int k = y - x;
+    if(k % 2)
+    {
+    int l = k/2;
+    ans += (k - l) + (3*l);
+    }
+    else
+    ans += 2*k;
+    }
+    else
+    {
+    ans += 2*y;
+    int k = x - y;
+    if(k % 2)
+    {
+    int l = k/2;
+    ans += 3*(k - l) + l;
+    }
+    else
+    ans += 2*k;
+    }
+    printint(ans);
+    }
+    return 0;
+    }  

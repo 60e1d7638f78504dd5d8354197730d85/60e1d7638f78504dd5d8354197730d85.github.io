@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{	char line[150];
+ int v,c,d,w,i;
+ v=c=d=w=0;
+ scanf("%[^\n]",line);
+ for(i=0;line[i]!='\0';i++){
+ 
+   if(line[i]=='a' || line[i]=='A' || line[i]=='e'||line[i]=='E'||line[i]=='i'||line[i]=='I'||line[i]=='o'||line[i]=='O'||line[i]=='u'||line[i]=='U'){
+   	++v;
+   } else if (line[i]>='a'&& line[i]<='z'||line[i]>='A'&& line[i]<='Z'){
+    ++c;
+   }
+   else if(line[i]==' '){
+   		++w;
+   }
+   if(line[i]>='0'&&line[i]<='9'){
+    ++d;
+   }
+   
+ 
+ }
+ //c = strlen(line) - (v+w+d); 
+printf("%d %d %d %d",v,c,d,w);
+	return 0;
+}

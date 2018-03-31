@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  int arr1[100],arr2[100];
+  int *ptr1=arr1;
+  int * ptr2=arr2;
+  int flag=0;
+  int n1,n2,i;
+  scanf("%d",&n1);
+  for(i=0;i<n1;i++){
+  scanf("%d",&arr1[i]);
+  }
+    scanf("%d",&n2);
+  for(i=0;i<n2;i++){
+  scanf("%d",&arr2[i]);
+  }
+  
+  if(n1<n2 || n1>n2)
+    printf("Arrays are not equal");
+  else
+  {
+		for(i=0;i<n1;i++){
+        if(*ptr1!=*ptr2){
+        flag=1;
+          break;
+        }
+          ptr1++;
+          ptr2++;
+        }  
+    if(flag==1)
+      printf("Arrays are not equal");
+      else
+        printf("Arrays are equal");
+  }
+
+	return 0;
+}

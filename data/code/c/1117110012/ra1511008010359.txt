@@ -1,0 +1,36 @@
+#include <stdio.h>
+void insert(int a[], int n, int x, int v)
+{
+  int temp, i;
+  for(i=0;i<n;i++)
+  {
+    if(i==(x-1))
+    {
+      temp=a[i];
+      a[i]=v;
+    }
+    if(i>(x-1))
+    {
+      v=temp;
+      temp=a[i];
+      a[i]=v;
+    }
+    printf("%d\n", a[i]);
+  }
+}
+
+int main()
+{
+  int i, n, x, v;
+  scanf("%d", &n);
+  int a[n+1];
+  for(i=0;i<n;i++)
+    scanf("%d ", &a[i]);
+  scanf("%d %d", &x, &v);
+  if(x>n ||x<0)
+    printf("Sorry Invalid Location");
+  else
+    insert(a, n+1, x, v);
+
+	return 0;
+}

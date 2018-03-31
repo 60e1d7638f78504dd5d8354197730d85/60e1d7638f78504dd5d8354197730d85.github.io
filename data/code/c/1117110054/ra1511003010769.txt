@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+int arr [100000 + 10];
+
+int main()
+{
+    int t , n ,  m , k, ans,i;
+
+    scanf("%d",&t);
+
+    while(t--){
+
+        scanf("%d",&n);
+      	scanf("%d",&arr[0]);
+
+        ans = 1;
+
+        for(i = 1; i < n; i++){
+
+            scanf("%d",&arr[i]);
+            if(arr[i] <= arr[i - 1]) ans++;     // increase the number of cars with Maximum Moving Speed
+            else arr[i] = arr[i - 1];           // update the limit for following cars
+
+        }
+
+        printf("%d\n",ans);
+    }
+
+    return 0;
+}

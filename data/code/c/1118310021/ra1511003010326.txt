@@ -1,0 +1,31 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+    if (a == b)
+        return a;
+ 	if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+int lcm(int a, int b)
+{
+    return (a*b)/gcd(a, b);
+}
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--){
+    	int n;
+      	scanf("%d",&n);
+      	int a[n],i,j;
+      	for(i=0;i<n;i++)scanf("%d",&a[i]);
+      	int low=1000000;
+      	for(i=0;i<n-1;i++){
+        	for(j=i+1;j<n;j++)
+              	if(lcm(a[i],a[j])<low)low=lcm(a[i],a[j]);
+        }
+    	printf("%d\n",low);
+    }
+	return 0;
+}

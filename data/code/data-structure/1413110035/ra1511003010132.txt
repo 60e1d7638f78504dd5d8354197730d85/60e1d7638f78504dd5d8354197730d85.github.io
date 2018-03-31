@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+#include<string.h>
+ 
+using namespace std;
+int a[1005],b[1005];
+int main()
+{
+    int n,i;
+  
+   
+        cin>>n;
+        for(i=0;i<n;i++)
+            cin>>a[i];
+        int st=0,en=1000000000,ans=0;
+        while(st<=en)
+        {
+            int mid=st+(en-st)/2;
+            int temp=max(1,a[0]-mid);
+            int f=1;
+            for(i=1;i<n;i++)
+            {
+                if(a[i]+mid<=temp)
+                    f=0;
+                temp=max(temp+1,a[i]-mid);
+            }
+            if(f==0)
+            {
+                st=mid+1;
+            }
+            else
+            {
+                ans=mid;
+                en=mid-1;
+            }
+ 
+        }
+        cout<<ans<<endl;
+    
+    return 0;
+}

@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        vector<pair<int,int>> a;
+        for(int i=0;i<n;i++)
+        {
+            int p,q;
+            cin>>p>>q;
+            a.push_back(make_pair(p,q));
+        }
+        sort(a.begin(),a.end());
+        int second=a[0].second;
+        int c=1;
+        for(int i=1;i<n;i++)
+        {
+            if(a[i].first<=second)
+            {
+                second=min(second,a[i].second);
+            }
+            else
+            {
+                c++;
+                second=a[i].second;
+            }
+        }
+        cout<<c<<endl;
+    }
+    return 0;
+}

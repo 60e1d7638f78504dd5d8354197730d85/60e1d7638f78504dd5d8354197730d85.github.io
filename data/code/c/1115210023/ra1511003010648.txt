@@ -1,0 +1,23 @@
+#include <stdio.h>
+    #include <stdlib.h>
+     
+    unsigned long exchange(unsigned long gold){
+    	unsigned long rec = 0, d2 = gold / 2, d3 = gold / 3, d4 = gold / 4;
+    	
+    	rec += d2 >= 12 ? exchange(d2) : d2;
+    	rec += d3 >= 12 ? exchange(d3) : d3;
+    	rec += d4 >= 12 ? exchange(d4) : d4;
+     
+    	if(gold > rec)
+    		return gold;
+    	else
+    		return rec;
+    }
+     
+    int main (void){
+    	unsigned long gold;
+    	while(scanf("%lu", &gold) > 0){
+    		printf("%lu\n",exchange(gold));
+    	}
+    	return 0;
+    } 

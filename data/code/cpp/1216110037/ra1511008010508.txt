@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n,i,j,freq=0,max=0,val;
+  	cin>>n;
+  	int a[n];
+  	for(i=0;i<n;i++)
+      cin>>a[i];
+  	for(i=0;i<n;i++)
+    {
+      for(j=0;j<i;j++)
+      {
+        if(a[i]==a[j])
+          freq++;
+      }
+      if(max<freq)
+      {
+        max=freq;
+        val=a[i];
+      }
+      freq=0;
+    }
+  cout<<val;
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include<stdio.h>
+ 
+ 
+int main()
+{
+int t,n,x;
+int a[100];
+int i,j,sum;
+int b,c,d,e,check;
+scanf("%d",&t);
+for(i=0;i<t;i++)
+{check=0;
+    sum=0;
+    scanf("%d",&n);
+scanf("%d",&x);
+ 
+ 
+for(j=0;j<n;j++)
+{
+scanf("%d",&a[j]);
+sum+=a[j];
+}
+ 
+b=(int)(sum%x);
+c=(int)(sum/x);
+ 
+ 
+if(b>=0)
+{
+for(j=0;j<n;j++)
+{
+    d=(sum-a[j]);
+    e=(int)(d/x);
+if(e==c)
+    {
+    check=1;
+    if(i<t-1)
+    printf("-1\n");
+    else
+    printf("-1");
+    break;
+    }
+}
+if(check==0)
+ {
+     if(i<t-1)
+    printf("%d\n",c);
+    else
+    printf("%d",c);
+ }
+}
+}
+return 0;
+}
+ 

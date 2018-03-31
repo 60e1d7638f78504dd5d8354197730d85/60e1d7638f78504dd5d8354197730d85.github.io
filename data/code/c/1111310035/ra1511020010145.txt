@@ -1,0 +1,36 @@
+
+#include <stdio.h>
+typedef unsigned long long int ll;
+#define MAX 100000
+
+int min(int x,int y)
+{
+ return x<y?x:y;
+}
+
+int main()
+{
+    ll T;
+    ll N;
+    ll a[MAX];
+    ll cars;
+    ll i;
+    scanf("%llu",&T);
+    while(T--)
+    {
+     cars=1;
+     scanf("%llu",&N);
+     for(i=0;i<N;i++)
+     {
+      scanf("%llu",(a+i));
+      if(i>0)
+      {
+       if(a[i]<a[i-1])
+        cars++;
+       a[i] = min(a[i],a[i-1]);
+      }
+     }
+     printf("%llu\n",cars);
+    }
+    return 0;
+}

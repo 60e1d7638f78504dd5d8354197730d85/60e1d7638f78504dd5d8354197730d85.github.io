@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  	string str1, str2;
+  	cin>>str1>>str2;
+  	int arr[26] = {0};
+  	int i=0;
+  	while(str1[i] != '\0') {
+    	arr[int(str1[i])-65]++;
+      	i++;
+    }
+  	int count = 0;
+  	i=0;
+  	while(str2[i] != '\0') {
+    	if(arr[int(str2[i])-65] > 0) {
+        	arr[int(str2[i])-65]--;
+          	count++;
+        }
+      	i++;
+    }
+  	cout<<count;
+	return 0;
+}

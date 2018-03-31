@@ -1,0 +1,37 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+class conc
+{
+  char a[100];
+  char b[100];
+  public:
+  void get()
+  {
+    cin>>a>>b;
+  }
+  void operator+();
+};
+void conc::operator+()
+{
+  int l1=strlen(a);
+  int l2=strlen(b);
+  int i,j=0;
+  char d[100];
+  for(i=0;i<l1;i++)
+    d[i]=a[i];
+  for(i=l1;i<l1+l2;i++)
+  {
+    d[i]=b[j];
+    j++;
+  }
+  cout<<d;
+}
+
+int main()
+{ conc e;
+ e.get();
+ +e;
+
+	return 0;
+}

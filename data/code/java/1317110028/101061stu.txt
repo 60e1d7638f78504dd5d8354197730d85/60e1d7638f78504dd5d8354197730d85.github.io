@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+public class TestClass
+{
+ public static void main(String[] args) {
+ Scanner sc=new Scanner(System.in);
+ String n=sc.nextLine();
+ int no=Integer.parseInt(n);
+ int i,j;
+ String[] str=new String[no];
+//sc.nextLine();
+ for(i=0;i<no;i++)
+ {
+  str[i]=sc.nextLine();
+ }
+ for(i=0;i<str.length;i++)
+ {
+  if(str[i].indexOf(".") > 0 )
+ {
+ try
+ {
+ Double.parseDouble(str[i]);
+ System.out.println("Valid Decimal Number");
+ }
+ catch(NumberFormatException nme)
+ {
+ System.out.println("Invalid");
+ }
+ }
+ else
+ {
+ try
+ {
+ Integer.parseInt(str[i]);
+ System.out.println("Valid Integer Number");
+ }
+ catch(NumberFormatException nme)
+ {
+ System.out.println("Invalid");
+ }
+ }
+ }
+ 
+ }
+}
+ 

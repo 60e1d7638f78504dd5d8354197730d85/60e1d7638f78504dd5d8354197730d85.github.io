@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+  int data;
+  struct node *next;
+};
+
+struct node * push(struct node *h,int d)
+{
+  if(h==NULL)
+  {
+    struct node *nn=(struct node *)malloc(sizeof(struct node));;
+    nn->data=d;
+    nn->next=NULL;
+    return nn;
+  }
+  else
+  {
+    struct node *t=h;
+    struct node *nn=(struct node *)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=NULL;
+    while(t->next!=NULL)
+      t=t->next;
+    t->next=nn;
+    return h;
+  }
+}
+
+void print(struct node *h)
+{
+  while(h!=NULL)
+  {
+    printf("->%d",h->data);
+    h=h->next;
+  }
+}
+
+struct node * delete(struct node *h,int n,int x)
+{
+  struct node *t=h;
+  int cnt=0;
+  if(n<=x)
+    return NULL;
+  while(cnt<n-x-1)
+  {
+    t=t->next;
+    cnt++;
+  }
+  t->next=NULL;
+  return h;
+}
+
+int main()
+{
+  int n,t,i,x;
+  struct node *head=NULL;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t);
+    head=push(head,t);
+  }
+scanf("%d",&x);
+  head=delete(head,n,x);
+  printf("Linked List\n");
+  print(head);
+	return 0;
+}

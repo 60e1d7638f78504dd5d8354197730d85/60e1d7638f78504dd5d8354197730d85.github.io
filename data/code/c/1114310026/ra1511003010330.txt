@@ -1,0 +1,83 @@
+#include<stdio.h>
+ 
+#define inchar getchar_unlocked
+ 
+inline int inPos() 
+{
+	int n = 0;
+	register char ch = inchar();
+	while (ch < '0' || ch > '9') ch = inchar();
+	while (ch >= '0' && ch <= '9') 
+	{
+		n = (n << 3) + (n << 1) + (ch - '0');
+		ch = inchar();
+	}
+	return n;
+}
+ 
+int cmp(int *a, int *b)
+{
+    return (*a>*b);
+}
+ 
+int binary(int *a,int req,int i,int j)
+{
+    if(i>j) 
+        return -1;
+    int mid=(i+j)/2;
+    if(a[mid]==req)
+    {
+        int pos=mid;
+        while(pos>=0 && a[pos]==req) pos--;
+        return pos+1;
+    }
+    if(a[mid]<req)  
+        return binary(a,req,mid+1,j);
+    return binary(a,req,i,mid-1);
+}
+ 
+int main()
+{
+    int t,n,f,i,a[10010],req,req2,pos,same,count,count1=0;
+    t = inPos();
+    while(t--)
+    {
+        n = inPos();
+        f = inPos();
+        for(i=0;i<n;i++)
+            a[i] = inPos();
+        qsort(a,n,sizeof(int),cmp);
+        count = 0;
+        same = 0;
+        for(i=n-1;i>0;i--)
+        {
+            req = a[i];
+            count1 = 0;
+            while(req>0)
+            {
+                pos = binary(a,req,0,n-1);
+                if(pos!=-1 && a[i]==a[pos])
+                {
+                    count += ((i-pos+1)*(i-pos))/2;
+                    same = i-pos+1;
+                }
+                else
+                {
+                    while(pos!=-1 && pos<i && a[pos]==req)
+                    {
+                        pos++;
+                        count1++;
+                    }
+                }
+                if(req%f == 0)
+                    req/=f;
+                else 
+                    break;
+            }
+            count += count1*same;
+            i = i-same+1;
+        }
+        printf("%d\n",count);
+    }
+    return 0;
+} 

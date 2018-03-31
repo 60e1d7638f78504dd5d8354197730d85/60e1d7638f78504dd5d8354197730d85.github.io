@@ -1,0 +1,127 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+ import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+         InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        Task solver = new Task();
+        int testcases = in.nextInt();
+        for (int testcase = 1; testcase <= testcases ; testcase++) {
+            solver.solve(testcase, in, out);
+		
+	}
+               out.close();
+
+}
+  
+    static class Task {
+        private static long MOD = (long)(1e9+7);
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int N = in.nextInt();
+            int[] arr = in.nextIntArray(N);
+            GCD gcd = new GCD();
+            int max = -1;
+            int b = arr[N-1];
+            for (int i = N-2; i >= 0; i--) {
+                int a = arr[i];
+                int val = gcd.getGCD(a,b);
+                if(val == 1)
+                    max = N - i;
+                b = val;
+            }
+            out.println(max);
+        }
+    }
+ 
+    
+    static class GCD {
+ 
+        public GCD() {
+        }
+ 
+        public int getGCD(int a, int b){
+            if(a < b)
+                return getGCD(b,a);
+ 
+            while(b != 0){
+                int r = a%b;
+                a = b;
+                b = r;
+            }
+ 
+            return a;
+        }
+ 
+        public long getGCD(long a, long b){
+            if(a < b)
+                return getGCD(b,a);
+ 
+            while(b != 0){
+                long r = a%b;
+                a = b;
+                b = r;
+            }
+ 
+            return a;
+        }
+    }
+ 
+ 
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+ 
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+ 
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+ 
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+ 
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+ 
+        public double nextDouble() {
+            return Double.parseDouble(next());
+        }
+ 
+        public int[] nextIntArray(int n){
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = nextInt();
+            }
+            return arr;
+        }
+ 
+        public long[] nextLongArray(int n){
+            long[] arr = new long[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = nextLong();
+            }
+            return arr;
+        }
+    }
+}
+ 

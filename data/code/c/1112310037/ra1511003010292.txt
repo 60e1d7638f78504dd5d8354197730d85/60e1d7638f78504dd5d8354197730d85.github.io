@@ -1,0 +1,31 @@
+#include <stdio.h>
+int cnt(int n)
+{int conut = 0;
+  while(n!=0)
+  {
+    if(n%2==1)
+     conut++;
+    n = n/2;
+  }
+ return conut;
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int n , count = 0 , fact = 1 , x ;
+    scanf("%d",&n);
+    if(n>2048)
+    {
+      fact = n/2048;
+      x = n - fact*2048;
+      count = count + cnt(x) + fact;
+    }
+    else
+      count = cnt(n);
+    printf("%d\n",count);
+  }
+	return 0;
+}

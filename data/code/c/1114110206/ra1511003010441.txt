@@ -1,0 +1,36 @@
+
+#include <stdio.h>
+ 
+int findMinDiff(int arr[], int n)
+{
+  
+   int diff,i,j ;
+ 
+   
+   for ( i=0; i<n-1; i++)
+      for ( j=i+1; j<n; j++)
+          if (abs(arr[i] - arr[j]) < diff)
+                diff = abs(arr[i] - arr[j]);
+ 
+ 
+   return diff;
+}
+ 
+
+int main()
+{
+  int test,elem,i,j;
+  scanf("%d",&test);
+  for(i=0;i<test;i++);
+  {
+    scanf("%d",&elem);
+    int arr[elem];
+    for(j=0;j<elem;j++)
+    {
+    	scanf("%d",&arr[j]);
+    }
+   int n = sizeof(arr)/sizeof(arr[0]);
+   printf("%d",findMinDiff(arr, n)) ;
+  }
+    return 0;
+}

@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n,i;
+  	float sum1=0,sum2=0,temp,m,sd;
+  	scanf("%d",&n);
+  	float arr[n],dum[n];
+  	for(i=0;i<n;i++){
+    	scanf("%f",&arr[i]);
+      	sum1+=arr[i];
+    }
+  	m=sum1/n;
+  	for(i=0;i<n;i++){
+    	temp=arr[i]-m;
+      	dum[i]=temp*temp;
+      	sum2+=dum[i];
+    }
+  	sd=sqrt(sum2/n);
+  	printf("Mean=%0.02f\nSD=%0.02f",m,sd);
+	return 0;
+}

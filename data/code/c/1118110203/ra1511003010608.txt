@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct distance
+{
+  float feet;
+  float inches;
+};
+int main()
+{
+  int n,i,j,k;
+  float f=0,in=0;
+  struct distance *ptr;
+  ptr=(struct distance*)malloc(2*sizeof(struct distance));
+  for(i=0;i<2;i++)
+  {
+  scanf("%f %f",&(ptr+i)->feet,&(ptr+i)->inches);
+  }
+  for(i=0;i<2;i++)
+  {
+    f+=(ptr+i)->feet;
+    in+=(ptr+i)->inches;
+  }
+  printf("%0.0ffeet\n",f);
+  printf("%0.1finches\n",in);
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+    int  num,num2,remainder,binary, binary_val, binary_val2, decimal_val = 0,decimal_val2=0, base = 1, rem;
+ 
+    
+    scanf("%d%d", &num,&num2); 
+    
+  binary_val = num;
+    while (num > 0)
+    {
+        rem = num % 10;
+        decimal_val = decimal_val + rem * base;
+        num = num / 10 ;
+        base = base * 2;
+    }
+   binary_val2 = num2;
+  base=1;
+    while (num2 > 0)
+    {
+        rem = num2 % 10;
+        decimal_val2 = decimal_val2 + rem * base;
+        num2 = num2 / 10 ;
+        base = base * 2;
+    }
+  num=decimal_val+decimal_val2;
+  base=1;
+  binary=0;
+    while (num > 0)
+    {
+        remainder = num % 2;
+
+        if (remainder == 1)
+        {
+            
+        }
+        binary = binary + remainder * base;
+        num = num / 2;
+        base = base * 10;
+    }
+    printf("%d",binary);
+
+return 0;
+}

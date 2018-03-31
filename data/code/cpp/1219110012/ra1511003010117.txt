@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+class cl{
+public:
+  int m,n,o;
+  friend ostream & operator << (ostream &out,const cl &c);
+  friend istream & operator >> (istream &in,cl &g);
+}a;
+ostream & operator << (ostream &out,const cl &c){
+  out<<c.m<<" Hours "<<c.n<<" Mins "<<c.o<<" secs";
+  return out;
+}
+istream & operator >> (istream &in,cl &g){
+  in>>g.m>>g.n>>g.o;
+  return in;
+}
+int main()
+{cin>>a;
+ cout<<"The Time is\n";
+ cout<<a;
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include<stdio.h>
+ 
+int count=0,X;
+long long int Y;
+ 
+void recursion(int x, long long int y, int go)
+{
+	int mine;
+	if (go == 0)
+		return;
+	if(y>Y || y<1)
+	{
+		return;
+	}
+	if(x==X)
+	{
+		count++;
+		return;
+	}
+	mine = (x+y)%2;
+	if(x%2 == 1)
+		{
+			recursion(x+1, y, ((x+1+y)%2==mine)?1:0);
+			recursion(x+1, y+1, 1);
+			recursion(x+1, y-1, 1);
+		}
+	else
+		{	
+			recursion(x+1, y, 1);
+			recursion(x+1, y+1, 1);
+			recursion(x+1, y-1, 1);
+		}
+}
+int main()
+{
+	long long int j;
+	int t,i;
+	scanf("%d",&t);
+	for( i =0; i<t;i++)
+	{	count = 0;
+		scanf("%d",&X);
+		scanf("%lld",&Y);
+		for(j=1; j<=Y;j++)
+			recursion(1,j,1);
+		printf("%d\n",count%1000000007);
+	}
+  return 0;
+}		  

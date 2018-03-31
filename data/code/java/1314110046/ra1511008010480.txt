@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       	int n = sc.nextInt();
+       	int[] arr = new int[n];
+       	for(int i=0; i<n; i++) {
+        	int temp = sc.nextInt();
+          	for(int j=0; j<=i; j++) {
+              	if(i == 0) {
+                	arr[0] = temp;
+                  	continue;
+                }
+              	if(arr[j] > temp) {
+                	while(j <=i ) {
+                    	int temp2 = arr[j];
+                      	arr[j] = temp;
+                      	temp = temp2;
+                      	j++;
+                    }
+                  	continue;
+                }
+              	if(j == i) {
+                	arr[j] = temp;
+                }
+            }
+        }
+       	for(int i=0; i<n; i++) System.out.print(arr[i] + " ");
+	}
+}

@@ -1,0 +1,116 @@
+
+#include<stdio.h>
+#include<math.h>
+#define g 1000000007
+#define h 1000000
+ 
+ 
+unsigned long long int n,m,a[100006],l,r,i,j,f,d,k,p,b[1000009],o,c[1000009]={0},arr[1000009]={0};
+unsigned long long int s;
+char type;
+void multiply(unsigned long long int R[2][2],unsigned long long int M[2][2]);
+ 
+void power(unsigned long long int R[2][2],unsigned long long int n);
+void printPowerSet(unsigned long long int set[],long int set_size);
+ 
+ 
+ 
+unsigned long long int fibo(unsigned long long int n)
+{
+  unsigned long long int R[2][2] = {{1,1},{1,0}};
+  if (n == 0)
+    return 0;
+  power(R, n-1);
+  return R[0][0];
+}
+ 
+void power(unsigned long long int R[2][2],unsigned long long int n)
+{
+  if( n == 0 || n == 1)
+      return;
+  unsigned long long int M[2][2] = {{1,1},{1,0}};
+ 
+  power(R, n/2);
+  multiply(R, R);
+ 
+  if (n%2 != 0)
+     multiply(R, M);
+}
+ 
+void multiply(unsigned long long int R[2][2],unsigned long long int M[2][2])
+{
+  unsigned long long int x =  R[0][0]*M[0][0] + R[0][1]*M[1][0];
+  unsigned long long int y =  R[0][0]*M[0][1] + R[0][1]*M[1][1];
+  unsigned long long int z =  R[1][0]*M[0][0] + R[1][1]*M[1][0];
+  unsigned long long int w =  R[1][0]*M[0][1] + R[1][1]*M[1][1];
+ 
+  R[0][0] = x;
+  R[0][1] = y;
+  R[1][0] = z;
+  R[1][1] = w;
+}
+ 
+void printPowerSet(unsigned long long int set[],long int set_size)
+{
+    unsigned long long int pow_set_size = pow(2,set_size);
+    long int counter, j;s=0;
+ 
+    for(counter = 0; counter < pow_set_size; counter++)
+    {
+      for(j = 0; j< set_size; j++)
+       {
+         
+          if(counter & (1<<j))
+           {
+           	d=(d+set[j])%g;
+           }
+       }
+       if(arr[d%h]==0&&d>=1000000){
+       	arr[d%h]=fibo(d)%g;
+       	s=s+arr[d%h];
+       }
+       else if(arr[d%h]>0&&d>=1000000)
+       {
+       	s=(s+arr[d%h])%g;
+       }
+       else if(c[d]>0&&d <1000000)
+       {
+       	s=(s+c[d])%g;
+       }
+       else if(c[d]==0&&d <1000000){
+       	c[d]=fibo(d)%g;
+       	s=s+c[d];
+       }
+       d=0;
+    }
+    printf("%llu\n",s%g);
+}
+ 
+int main()
+{
+	scanf("%llu%llu",&n,&m);
+	
+	for(i=1;i<=n;i++)
+	{
+		scanf("%llu",&a[i]);
+	}
+	
+	for(p=0;p<m;p++)
+	{
+		scanf("%s",&type);
+		scanf("%llu %llu",&l,&r);
+		
+		if(type=='C')
+		a[l]=r;
+		
+		else if(type=='Q'){
+			o=0;
+			for(i=l;i<=r;i++)
+			{
+				b[o++]=a[i];
+			}
+		printPowerSet(b,r-l+1);
+		}	
+	}
+	return 0;
+}   

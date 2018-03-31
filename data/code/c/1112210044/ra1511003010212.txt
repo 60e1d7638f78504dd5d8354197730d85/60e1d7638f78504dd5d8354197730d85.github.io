@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int t,m,n,i,j,k,c,f,s;
+  scanf("%d",&t);
+  
+  for(k=0;k<t;k++)
+  {
+     scanf("%d %d",&m,&n);
+    s=0;
+    for(i=m;i<=n;i++)
+    {
+        c=0,f=0;
+      for(j=1;j<=i;j++)
+      {
+         if(i%j==0)
+           c++;
+      } 
+      for(j=2;j<=c/2;j++)
+      {
+         if(c%j==0)
+         {
+           f=1;
+           break;
+         }
+      }
+      
+      if(f==0 && c!=1)
+          s++;
+      
+    }
+    printf("%d\n",s);
+  }
+
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+typedef unsigned int ui;
+ui next(ui x)
+{
+  ui rightOne;
+  ui nextHigherOneBit;
+  ui rightOnesPattern;
+  ui next = 0;
+  if(x){
+    rightOne = x & -(signed)x;
+    nextHigherOneBit = x + rightOne;
+    rightOnesPattern = x ^ nextHigherOneBit;
+    rightOnesPattern = (rightOnesPattern)/rightOne;
+    rightOnesPattern >>= 2;
+    next = nextHigherOneBit | rightOnesPattern;
+  }
+  return next;
+}
+ 
+int main()
+{
+  ui x; cin >> x;
+  cout<< next(x);
+  return 0;
+}

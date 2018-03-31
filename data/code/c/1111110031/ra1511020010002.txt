@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+	int n,s,temp;
+  	char c;
+  	scanf("%d",&n);
+  	printf("Decimal value:%d\n",n);
+  	//to find octal
+  	s=0;
+  	temp=n;
+  	while(temp>0)
+    {
+      if(temp>=8)
+      {
+      s=s*10+temp/8;
+      temp=temp%8;
+      }
+      else
+      {
+        s=s*10+temp;
+        temp=0;
+      }
+    }
+  printf("Octal value:%d\n",s);
+  //to find hexadecimal
+  printf("Hexadecimal value:");
+  	s=0;
+  	temp=n;
+  	while(temp>0)
+    {
+      if(temp>=16)
+      {
+        s=temp/16;
+        temp=temp%16;
+      }
+      else
+      {
+        s=temp;
+        temp=0;
+      }
+      if(s>=10)
+      {
+        c=s+87;
+        printf("%c",c);
+      }
+      else
+        printf("%d",s);
+    }
+	return 0;
+}

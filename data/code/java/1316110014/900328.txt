@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+
+class Sample
+{
+  int n;
+  int ctr=0;
+  public void getInput()
+  {
+    Scanner inp=new Scanner(System.in);
+    n=inp.nextInt(); 
+  }
+  public void displayFib()
+  {
+    int n1=1;
+    int n2=1;
+    ctr=1;
+    System.out.print(n1+" "+n2);
+    fib(n1,n2);
+  }
+  public void fib(int n1, int n2)
+  {
+    ctr++;
+    int sum=n1+n2;
+    //System.out.print(" "+sum);
+    n1=n2;
+    n2=sum;
+    if(ctr<n)
+    {
+      System.out.print(" "+sum);
+      fib(n1,n2);
+    }
+   }
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample s=new Sample();
+       s.getInput();
+       s.displayFib();
+	}
+}

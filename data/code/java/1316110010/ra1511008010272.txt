@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.Scanner;
+class calculate {
+  public int great(int gcd,int lcm){
+    int max,min;
+    if(gcd>lcm) {
+      max=gcd;
+      min=lcm;
+    }
+    else {
+      max=lcm;
+      min=gcd;
+    }
+    int tmp;
+    while(max%min!=0) {
+      tmp=min;
+      min=max%min;
+      max=tmp;
+    }
+    int g=min;
+    int l = (int)((gcd*lcm)/g);
+    System.out.println(g+" "+l);
+    return 0;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		calculate objname = new calculate();
+       Scanner s = new Scanner(System.in);
+       int t = s.nextInt();
+       while( (t--)>0 ) {
+         int A = s.nextInt();
+         int B = s.nextInt();
+         objname.great(A,B);
+       }
+	}
+}

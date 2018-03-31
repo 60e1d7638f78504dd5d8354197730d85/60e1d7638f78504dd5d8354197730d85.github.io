@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int a, b, i, j ,k ,sum, temp;
+  scanf("%d\n%d", &a, &b);
+  int ch[10];
+  for(i=0; i<a; i++){
+    scanf("%d", &ch[i]);
+  }
+  for(j=0; j<a; j++){
+    for(k=j; k<a; k++){
+      if(ch[k]<ch[j]){
+        temp = ch[j];
+        ch[j] = ch[k];
+        ch[k] = temp;
+      }
+    }
+  }
+  sum = ch[0]+ ch[1]+ ch[2];
+  printf("%d", -sum);
+
+	return 0;
+}

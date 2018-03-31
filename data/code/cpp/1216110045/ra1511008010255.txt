@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int T;
+  cin >> T;
+  string s;
+  	for(int t=0;t<T;t++) {
+      int arr[100];
+      int filled[100];
+      for(int i=0;i<26;i++) {
+        cin >> arr[i];
+        filled[i] = 0;
+      }
+      
+     cin >> s;
+      
+      int sum = 0;
+      for(char ch = 'a'; ch <= 'z';ch++) {
+       	sum += arr[ch - 'a']; 
+      }
+      
+      int dsum = 0;
+      for(int i=0;i<s.length();i++) {
+        if(filled[s[i] - 'a'] == 0) {
+        	dsum += arr[s[i] - 'a'];
+          	filled[s[i]-'a'] = 1;
+        }
+      }
+      
+      cout << sum - dsum << endl;
+    
+      
+    }
+	return 0;
+}

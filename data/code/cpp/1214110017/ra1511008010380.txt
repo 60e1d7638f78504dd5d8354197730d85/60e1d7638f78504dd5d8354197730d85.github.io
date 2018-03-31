@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+void largest(int c[],double p[],int size)
+{
+  int i=0;
+  double max=p[0];
+  double sum;
+  for(i=0;i<size;i++)
+  {
+    sum+=p[i];
+  }
+  for(i=0;i<size;i++)
+  {
+    if(max<p[i]){max=p[i];}
+  }
+  cout<<"Largest Price="<<max<<endl;
+  cout<<"Sum of Prices="<<sum<<endl;
+  cout<<"Code and Price"<<endl;
+  for(i=0;i<size;i++)
+  {
+    cout<<c[i]<<" and "<<p[i]<<endl;
+  }
+}
+int main()
+{
+  int codes[9];
+  double price[9];
+int n;
+  cin>>n;
+  if(n>=10)
+  {
+    cout<<"Sorry.Items should be less than 10";
+  }
+  else
+  {
+    int temp;
+    int i=0;
+    while(n>0)
+    {
+     cin>>codes[i]>>price[i];
+      i++;
+      n--;
+    }
+    largest(codes,price,i);
+  }
+	return 0;
+}

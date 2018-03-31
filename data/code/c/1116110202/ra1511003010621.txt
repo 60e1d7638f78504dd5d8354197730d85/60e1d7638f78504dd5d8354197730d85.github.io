@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdbool.h>
+
+bool first(char ch)
+{
+  int x=ch;
+  if(ch=='_')
+    return true;
+  if(x>=48&&x<=58)
+    return true;
+  else
+    return false;
+}
+
+bool check(char x, char y)
+{
+  if(x=='_'&&y=='_')
+    return true;
+  else
+    return false;
+}
+
+int main()
+{
+  char str[100];
+  int i,len;
+  scanf("%s",str);
+  len=strlen(str);
+  if(first(str[0]))
+  {
+    printf("not a valid identifier");
+    return 0;
+  }
+  for(i=0;i<len-1;i++)
+  {
+    if(check(str[i],str[i+1]))
+    {
+      printf("not a valid identifier");
+      return 0;
+    }
+  }
+  printf("valid identifier");
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  char str[20];
+  int i=0,asc;
+  int c[26]={0};
+  scanf("%s",str);
+  while(str[i]!='\0')
+  {
+    asc=str[i]-'a';
+    c[asc]+=1;
+    i++;
+  }
+  int min=0;
+  for(i=0;i<26;i++)
+    if(c[i]!=0)
+    {
+      if(c[min]==0 ||c[i]<c[min])
+      {
+      min=i;
+    }
+    }
+  printf("%c=%d",min+97,c[min]);
+
+	return 0;
+}

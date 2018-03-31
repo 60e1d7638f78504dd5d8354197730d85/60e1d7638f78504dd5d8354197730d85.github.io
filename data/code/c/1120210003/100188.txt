@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+	char s[1048576][15];
+int main()
+{
+	long int n,i,j;
+	int k,l,flag;;
+	long int q,id;
+	int arr;
+	char a[15];
+ 
+	scanf("%ld%d%d%ld",&n,&k,&l,&q);
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",a);
+		id=0;		
+		for(j=0;j<k;j++)
+		{
+		scanf("%d",&arr);
+		id=(id*(l+1))+arr;
+		}
+		strcpy(s[id%1048576],a);
+	}
+	while(q--)
+	{
+		flag=0;id=0;
+		for(i=0;i<k;i++)
+		{
+			scanf("%d",&arr);
+			id=(id*(l+1)) + arr;
+		}
+		if(strlen(s[id%1048576])!=0)
+			printf("%s\n",s[id%1048576]);
+		else printf("You cant fool me:P\n");
+	}
+}

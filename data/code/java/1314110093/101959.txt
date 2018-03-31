@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+	 int t;
+    long n,m,result,c;
+      t=sc.nextInt();
+    while(t>0)
+    {
+        result=0;
+       n=sc.nextInt();
+      m=sc.nextInt();
+      c=sc.nextInt();
+        if(n<m)
+        {
+            if(n<c)
+            {
+                for(int i=1;i<=n;i++)
+                {
+                    if(((c%i)==0) && ((c/i)<=m))
+                    {
+                        result+=1;
+                    }
+                }
+            }
+            else
+            {
+                for(int i=1;i<=c;i++)
+                {
+                    if(((c%i)==0) && ((c/i)<=m))
+                    {
+                        result+=1;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(m<c)
+            {
+                for(int i=1;i<=m;i++)
+                {
+                    if(((c%i)==0) && ((c/i)<=n))
+                    {
+                        result+=1;
+                    }
+                }
+            }
+            else
+            {
+                for(int i=1;i<=c;i++)
+                {
+                    if(((c%i)==0) && ((c/i)<=n))
+                    {
+                        result+=1;
+                    }
+                }
+            }
+        }
+          System.out.println(result);
+      t--;
+	}
+}
+}

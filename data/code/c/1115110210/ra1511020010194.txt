@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+	int t,i,j,k,chrs[26];
+	char s[1001];
+	scanf("%d",&t);
+	while(t--)
+	{
+		for(i=0;i<26;i++)
+			chrs[i] = 0;
+		scanf("%s",s);
+		j = strlen(s);
+		for(i=0;i<j/2;i++)
+		{
+			chrs[s[i]-'a']++;
+			chrs[s[j-1-i]-'a']--;
+		}
+		k=1;
+		for(i=0;i<26;i++)
+		{
+			if(chrs[i]!=0)
+			{
+				k=0;
+			}
+		}
+		if(k==1)
+			printf("YES\n");
+		else
+			printf("NO\n");
+	}
+	return 0;
+}

@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char org[30];
+  char sub[30];
+  int i=0,j,k,max=0,count=0,temp=0,match2=-1,count2=0;
+  scanf("%s",sub);
+  scanf("%s",org);
+  while(i<strlen(org))
+  {
+    count=0;
+    temp=i;
+    for(j=0;j<strlen(sub);j++)
+    {
+      if(sub[j]==org[temp])
+      {
+        //printf("Matching sub[%d]=%c and org[%d]=%c\n",j,sub[j],temp,org[temp]);
+        ++count;
+        ++temp;
+      }
+      else if(sub[j]!=org[temp] && match2==-1)
+      {
+         //printf("Not Matching sub[%d]=%c and org[%d]=%c\n",j,sub[j],temp,org[temp]);
+        temp--;
+        match2++;
+        i=temp;
+        break;
+      }
+      else if(match2!=-1)
+      {
+      	//printf("Not Matching sub[%d]=%c and org[%d]=%c\n",j,sub[j],i,org[i]);
+        break;
+      }
+      
+    }
+    if(count==strlen(sub))
+    {
+      max=count;
+      break;
+    }
+    else
+    {
+      if(max<count)
+      {
+        max=count;
+      }
+    }
+    ++i;
+  }
+//printf("%d",max);
+  
+  for(i=0;i<max;i++)
+  {
+  	if(sub[i]!='a' && sub[i]!='e' && sub[i]!='i' && sub[i]!='o' && sub[i]!='u')
+    count2++;
+  }
+  printf("%d",count2);
+	return 0;
+}

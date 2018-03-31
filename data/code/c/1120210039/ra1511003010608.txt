@@ -1,0 +1,125 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<malloc.h>
+#define abs(x) ((x<0)?-x:x)
+int partition(int A[],int index[],int start,int end);
+int randomPartition(int A[],int index[],int start,int end);
+ 
+void quickSort(int A[],int index[],int start,int end)
+{
+    if(start >= end)
+        return;
+    int q = partition(A,index,start,end);
+    quickSort(A,index,start,q-1);
+    quickSort(A,index,q+1,end);
+}
+ 
+
+ 
+void random_quickSort(int A[],int index[],int start,int end)
+{
+    if(start >= end)
+        return;
+    int q = randomPartition(A,index,start,end);
+    random_quickSort(A,index,start,q-1);
+    random_quickSort(A,index,q+1,end);
+}
+int partition(int A[],int index[],int start,int end)
+{
+    int pivot,i,j;
+    pivot = A[end];
+    i = start -1;
+    for(j = start; j<=end -1; j++)
+    {
+        if(abs(A[j])<=abs(pivot))
+        {
+            i++;
+            int tmp = A[i];
+            A[i] = A[j];
+            A[j] = tmp;
+            tmp = index[i];
+            index[i] = index[j];
+            index[j] = tmp;
+        }
+    }
+    int tmp = index[end];
+    A[end] = A[i+1];
+    index[end] = index[i+1];
+    A[i+1] = pivot;
+    index[i+1] = tmp;
+    return i+1;
+}
+ 
+ 
+int randomPartition(int A[],int index[],int start,int end)
+{
+    int i = rand()%(end - start +1) + start;
+    int tmp = A[i];
+    A[i]= A[end];
+    A[end] = tmp;
+    tmp = index[i];
+    index[i] = index[end];
+    index[end ] = tmp;
+    return partition(A,index,start,end);
+}
+ 
+int main()
+{
+ 
+    int n,x,y,i;
+    int sum = 0;
+    int A[100010],B[100010],diff[100010],index[100010];
+    scanf("%d%d%d",&n,&x,&y);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&B[i]);
+        diff[i] = (A[i] - B[i]);
+        index[i] = i;
+        
+    }
+ 
+    random_quickSort(diff,index,0,n-1);
+ 
+    for(i=n-1;i>=0;i--)
+    {
+ 
+        if(diff[i] > 0)
+        {
+           
+            if(x > 0)
+            {
+                sum += A[index[i]];
+                x--;
+            }
+            else
+            {
+                sum += B[index[i]];
+                y--;
+            }
+ 
+        }
+        else
+        {
+         
+            if(y > 0)
+            {
+                sum += B[index[i]];
+                y--;
+            }
+            else
+            {
+                sum += A[index[i]];
+                x--;
+            }
+        }
+    }
+    printf("%d\n",sum);
+    return 0;
+}
+ 
+ 

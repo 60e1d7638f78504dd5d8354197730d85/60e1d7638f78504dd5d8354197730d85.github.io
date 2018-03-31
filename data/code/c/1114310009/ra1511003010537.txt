@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int *a,n,info[50003][2],q[50003],*b,m,flag,*c;
+ 
+void add(int in, int s, int e, int k, int l){
+	if(k<=s && e<=l){
+		a[in]++;
+		return;
+	}
+	int m=(s+e)/2;
+	if(s<=l && k<=m)
+		add(in*2,s,m,k,l);
+	m++;
+	if(m<=l && k<=e)
+		add(in*2+1,m,e,k,l);	
+}
+ 
+int query(int in, int s, int e, int k, int cnt){
+	if(s==k && e==k)
+		return cnt+a[in];
+	
+	int m=(s+e)/2;
+	if(s<=k && k<=m)
+		return query(in*2,s,m,k,cnt+a[in]);
+	m++;
+	if(m<=k && k<=e)
+		return query(in*2+1,m,e,k,cnt+a[in]);
+}
+ 
+void init(int in, int s, int e){
+	if(s==e){
+		b[in]=1;
+		return;
+	}
+	int mid=(s+e)/2;
+	init(in*2,s,mid);
+	init(in*2+1,mid+1,e);
+	b[in]=e-s+1;
+}
+ 
+void ordsub(int in, int s, int e, int k, int l){
+	if(k>q[e] || l<q[s])
+		return;
+	if(b[in]==0)
+		return;
+	if((k<=q[s] && q[e]<=l)){
+		if(b[in]!=0){
+			b[in]=0;
+			c[in]=flag;
+		}
+		return;
+	}
+	int m=(s+e)/2;
+	if(k<=q[m] && l>=q[s] && b[in*2]!=0)
+		ordsub(in*2,s,m,k,l);
+	m++;
+	if(k<=q[e] && l>=q[m] && b[in*2+1]!=0)
+		ordsub(in*2+1,m,e,k,l);
+	if(b[in]!=b[in*2]+b[in*2+1]){
+		b[in]=b[in*2]+b[in*2+1];
+		c[in]=flag;
+	}
+}
+ 
+void ordadd(int in, int s, int e, int k, int l){
+	if(k>q[e] || l<q[s])
+		return;
+ 
+	if(k<=q[s] && q[e]<=l){
+		if(c[in]==flag)
+			b[in]=e-s+1;
+		return;
+	}
+	int m=(s+e)/2;
+	if(k<=q[m] && l>=q[s])
+		ordadd(in*2,s,m,k,l);
+	m++;
+	if(k<=q[e] && l>=q[m])
+		ordadd(in*2+1,m,e,k,l);
+	if(c[in]==flag)
+		b[in]=b[in*2]+b[in*2+1];
+}
+ 
+ 
+int main(){
+	int i,j,k,T,count,  up,lo,val1,val2,solup,sollo,mid,size;
+	scanf("%d",&T);
+	while(T--){
+		scanf("%d",&n);
+		size=1;
+		j=n;
+		while(j/2>0){
+			size*=2;
+			j/=2;
+		}
+		size*=4;
+		a=(int*)calloc(size,sizeof(int));
+		for(i=0;i<n;i++){
+			scanf("%d%d",&info[i][0],&info[i][1]);
+			add(1,0,n,info[i][0],info[i][1]);
+		}
+ 
+		count=j=0;
+ 
+		for(i=0;i<=n;i++){
+			if(i==query(1,0,n,i,0)){
+				count++;
+				q[j++]=i;
+			}
+		}
+		printf("%d\n",count);
+		free(a);
+		b=(int*)malloc(size*sizeof(int));
+		c=(int*)calloc(size,sizeof(int));
+ 
+		m=j-1;
+		init(1,0,m);		
+ 
+		for(i=0;i<n;i++){
+			flag=i;
+		
+			ordsub(1,0,m,info[i][0],info[i][1]);
+			if(b[1]>=1){
+				printf("0");
+			}
+			else{
+				ordadd(1,0,m,info[i][0],info[i][1]);
+				printf("1");
+			}
+		}
+		printf("\n");
+ 
+		free(b);
+		free(c);
+ 
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,27 @@
+import java.util.*;
+public class TestClass{
+  public static void main(String[] args){
+    String str = new Scanner(System.in).nextLine();
+    HashMap<Character, Integer> list = new HashMap<>();
+    char c='a';
+    for(int i=0;i<str.length();i++)
+      list.put(c++, 1);
+    str=str.toLowerCase();
+    for(int i=0;i<str.length();i++){
+      char ch = str.charAt(i);
+      if(list.containsKey(ch))
+        list.remove(ch);
+    }
+    boolean b=true;
+    for(char ch:list.keySet()){
+      if("abcdefghijklmnopqrstuvwxyz".contains(ch+"")){
+        b=false;
+        break;
+      }
+    }
+    if(b)
+      System.out.println("pangram");
+    else
+      System.out.println("not pangram");
+  }
+}

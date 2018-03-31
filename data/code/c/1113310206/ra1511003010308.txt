@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+    int j,t,n,i,x;
+    char s[100];
+    scanf("%d",&t);
+    while(t--)
+    {
+        x=0;
+        scanf("%s",s);
+        scanf("%d",&n);
+        for(i=0;i<strlen(s);i++)
+        {
+            if(s[i]=='S')
+               x=x+1;
+            else
+                x=x+2;
+        }
+        int c=1;
+        int sum=0;
+        while(12*n-c*x>0)
+        {
+            j=12*n-c*x;
+            sum+=j;
+            c++;
+        }
+        printf("%d\n",sum);
+    }
+    return 0;
+} 

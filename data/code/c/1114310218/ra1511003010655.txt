@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+   int t;
+   scanf("%d",&t);
+   while(t--)
+   {
+       int n,x=0,y=0,i,j,z=2;
+       char s[1000];
+       scanf("%s",s);
+       n=strlen(s);
+       if(n%2==0)
+       {
+           for(i=97;i<=122;i++)
+           {
+               for(j=0;j<n/2;j++)
+               {
+                   if(s[j]==i)
+                   x++;
+               }
+            for(j=n/2;j<n;j++)
+               {
+                   if(s[j]==i)
+                   y++;
+               }
+               if(x!=y)
+               {
+                   printf("NO\n");
+                   z=1;
+                   break;
+               }
+           }
+       }
+       else 
+       {
+            for(i=97;i<=122;i++)
+           {
+               for(j=0;j<n/2;j++)
+               {
+                   if(s[j]==i)
+                   x++;
+               }
+            for(j=n/2+1;j<n;j++)
+               {
+                   if(s[j]==i)
+                   y++;
+               }
+               if(x!=y)
+               {
+                   printf("NO\n");
+                   z=1;
+                   break;
+               }
+           }
+       }
+       if(z==2)
+       printf("YES\n");
+   }
+ 
+    return 0;
+}

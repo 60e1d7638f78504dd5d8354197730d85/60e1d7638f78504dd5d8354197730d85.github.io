@@ -1,0 +1,19 @@
+#include <string>
+#include <algorithm>
+#include <cctype>
+#include <iostream>
+using namespace std;
+char change_case (char c) {
+    if (std::isupper(c)) 
+        return std::tolower(c); 
+    else
+        return std::toupper(c); 
+}
+
+int main() {
+    std::string str;
+    cin>>str;
+    std::transform(str.begin(), str.end(), str.begin(), change_case);
+    std::cout << str;
+    return 0;
+}

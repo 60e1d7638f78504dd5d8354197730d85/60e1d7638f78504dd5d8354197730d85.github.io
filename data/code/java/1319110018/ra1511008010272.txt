@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  public void hexToDecimal() {
+    Scanner s = new Scanner(System.in);
+    String S = s.next();
+    try {
+      for(int i=0;i<S.length()-1;i++) {
+        if( !((S.charAt(i)>='A' && S.charAt(i)<='Z') || (S.charAt(i)>='0' && S.charAt(i)<='9') || (S.charAt(i)>='a' && S.charAt(i)<='z')) )
+          throw new NumberFormatException();
+      }
+      int d = Integer.parseInt(S,16);
+      System.out.print(d);
+    } catch(NumberFormatException e) {
+      System.out.print("java.lang.NumberFormatException");
+    }
+  }
+	 public static void main(String[] args) { 
+		TestClass t = new TestClass();
+       t.hexToDecimal();
+	}
+}

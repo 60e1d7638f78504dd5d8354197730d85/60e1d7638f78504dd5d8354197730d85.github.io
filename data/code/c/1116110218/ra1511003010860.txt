@@ -1,0 +1,46 @@
+#include<stdio.h>
+char str[10000];
+int max(int *s,int l)
+{
+	int i,max=0;
+	for(i=0;i<l;i++)
+	{
+		if(*(s + i)>max)max=*(s+i);
+	}
+	return max;
+}
+int find(int start,int last)
+{
+	int i=0,j,alpha[26];
+	if(start==last)return i;
+	for(i=0;i<26;i++)
+	{  alpha[i]=0;
+		for(j=start;j<last;j++)
+		{
+			if(str[j]=='a'+i)alpha[i]++;
+		}
+	}
+	return max(alpha,26);
+}	
+int main()
+{
+	int t,i,len,hash[5000],lol,k,len1=0,len2=0,len3=0,len4=0,l,sum[5000];
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{  k=0;lol=0;
+		scanf("%s",str);
+		for(len=0;str[len]!='\0';len++)if(str[len]=='#'){hash[k]=len;k++;};
+      if(k<3){printf("%d\n",lol);continue;}
+      for(l=0;l+2<k;l++)
+      {
+	     len1=find(0,hash[l]);
+	     len2=find(hash[l],hash[l+1]);
+	     len3=find(hash[l+1],hash[l+2]);
+	     len4=find(hash[l+2],len+1);
+	     sum[l]=len1+len2+len3+len4+3;
+	   }
+	   if(len1==0||len2==0||len3==0||len4==0 && k==3)printf("%d\n",lol);
+      else {lol=max(sum,l); printf("%d\n",lol);}
+   }
+	return 0;
+} 

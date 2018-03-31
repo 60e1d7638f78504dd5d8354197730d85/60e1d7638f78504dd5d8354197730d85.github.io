@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    struct College
+    {
+      char n[100];
+      int y;
+     }c[20];
+    int n,i,t,j;
+    float t1;
+    char temp[20],temp1[20];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%s %d\n",c[i].n,&c[i].y);
+  for(i=0;i<n;i++)
+  {
+      for(j=i+1;j<n;j++)
+      {
+           if(strcmp(c[i].n,c[j].n)>0)
+           {
+               strcpy(temp,c[i].n);
+               strcpy(c[i].n,c[j].n);
+               strcpy(c[j].n,temp);
+               t=c[i].y;
+               c[i].y=c[j].y;
+               c[j].y=t;
+              
+           }
+      }
+  }
+  printf("After sorting");
+  printf("\nName ID");
+  for(i=0;i<n;i++)
+  {
+      printf("\n%s %d",c[i].n,c[i].y);
+   }
+     
+                
+   
+	return 0;
+}

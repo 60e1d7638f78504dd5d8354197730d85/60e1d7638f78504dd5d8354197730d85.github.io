@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+  int n,m,i,j,k,p;
+  int sum1=0,sum2=0;
+  scanf("%d %d",&n,&m);
+  int a[n+1][m+1];
+  for(i=1;i<=n;i++)
+  {
+    for(j=1;j<=m;j++)
+      scanf("%d",&a[i][j]);
+  }
+  scanf("%d",&p);
+  int x[p],y[p];
+  for(k=0;k<p;k++)
+  {
+    scanf("%d %d",&x[k],&y[k]);
+    if(x[k]>n || y[k]>m)
+      sum1=-1;
+    if(x[k]>m || y[k]>n)
+      sum2=-1;
+  }
+  if(sum1==0)
+  {
+    for(k=0;k<p;k++)
+    {
+      sum1+=a[x[k]][y[k]];
+    }
+  }
+  if(sum2==0)
+  {
+    for(k=0;k<p;k++)
+    {
+      sum2+=a[y[k]][x[k]];
+    }
+  }
+  
+      
+    if(sum1>sum2)
+      printf("%d",sum1);
+    else
+      printf("%d",sum2);
+  return 0;
+}

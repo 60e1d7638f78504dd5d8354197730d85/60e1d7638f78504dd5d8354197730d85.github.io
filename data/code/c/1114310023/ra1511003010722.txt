@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include<math.h>
+ 
+ 
+struct factor
+{
+       long long int num;
+       int power;
+}prime[101];
+long long llscan()
+{
+long long t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+return(t);
+}
+int scan()
+{
+int t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+return(t);
+} 
+int main(void)
+{
+    long long int n, n1, t1;
+    int q, count=0, num, sum, totfact=1,i;
+    n=llscan();
+    q=scan();
+    num=sqrt(n);
+    n1=n;
+    if(n!=1)
+    {
+        i=2;
+        sum=0;
+            if(n1%i==0)
+            {
+                                       while(n1%i==0)
+                                       {sum++;n1/=i;}
+                                       prime[count].num=i;
+                                       prime[count++].power=sum;                                                      
+            }
+            if(sum>0)
+                             totfact*=sum+1;
+    if(n1!=1){
+    for(i=2;i<num+1;i++)
+    {
+            sum=0;
+            if(n1%i==0)
+            {
+                                       while(n1%i==0)
+                                       {sum++;n1/=i;}
+                                       prime[count].num=i;
+                                       prime[count++].power=sum;                                                      
+            }
+            if(sum>0)
+                             totfact*=sum+1;
+            if(n1==1)
+                       break;
+    }   }
+    }
+    if(n1!=1||n==1)
+    {
+               prime[count].num=n1;
+               prime[count++].power=1; 
+               totfact*=2;
+               if(n==1)
+                       totfact=1;
+    }
+    int length=count;
+    while(q--)
+    {
+              int t, ans;
+              long long int k;
+              t=scan();
+              k=llscan();
+              switch(t)
+              {
+                       case 1:
+                            ans=1;
+                            t1=k;
+                            if(k%n==0)
+                                      ans=totfact;
+                            else
+                            {
+                            for(i=0;i<length;i++)
+                            {
+                                    sum=0;
+                                    if(t1%prime[i].num==0)
+                                    {
+                                                       while(t1%prime[i].num==0)
+                                                       {
+                                                                             sum++;
+                                                                             t1/=prime[i].num;   
+                                                                             if(t1==1||prime[i].power<=sum)
+                                                                                         break;                   
+                                                       }
+                                        ans*=sum+1;
+                                    }
+                                    if(t1==1)
+                                                break;
+                            }
+                            }
+                            break;
+                       default:
+                            ans=0;
+                            t1=k;
+                            if(n%k!=0)
+                            {
+                                      if(t==3)
+                                              ans=totfact-ans;
+                                      break;
+                            }
+                            for(i=0;i<length;i++)
+                            {
+                                    sum=0;
+                                    if(t1%prime[i].num==0)
+                                    {
+                                                       while(t1%prime[i].num==0)
+                                                       {
+                                                                             sum++;
+                                                                             t1/=prime[i].num;     
+                                                                             if(t1==1||prime[i].power<sum)
+                                                                                         break;                  
+                                                       }
+                                    }
+                                    if(sum>prime[i].power)
+                                                           {ans=0;break;}
+                                    if(ans==0)
+                                              ans=(prime[i].power-sum+1);
+                                    else
+                                        ans*=(prime[i].power-sum+1);
+                            }
+                            if(t==3)
+                                    ans=totfact-ans;
+                            break;
+              }
+              
+              printf("%d\n", ans);
+    }
+    return 0;
+} 

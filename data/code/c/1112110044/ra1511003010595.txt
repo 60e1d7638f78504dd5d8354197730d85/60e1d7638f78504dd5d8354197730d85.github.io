@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{char M[30],W[30];
+ int i,j,k,T,count,len1,len2;
+ scanf("%d",&T);
+ for(i=0;i<T;i++)
+ {scanf("%s %s",M,W);
+  len1=strlen(M);
+  len2=strlen(W);
+  count=j=k=0;
+  if(len1<=len2)
+  {while(count!=len1&&k<len2)
+   {if(M[j]==W[k])
+    {count++;
+     j++;
+     k++;
+    }
+    else
+     k++;
+   }
+   if(count==len1)
+     printf("YES\n");
+    else 
+      printf("NO\n");
+  }
+  else
+  {while(count!=len2&&j<len1)
+   {if(M[j]==W[k])
+    {count++;
+     j++;
+     k++;
+    }
+    else
+      j++;
+   }
+  if(count==len2)
+    printf("YES\n");
+  else
+    printf("NO\n");
+  }
+ }
+ 
+ 
+
+	return 0;
+}

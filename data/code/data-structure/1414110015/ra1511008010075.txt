@@ -1,0 +1,61 @@
+#include <iostream>
+#include <tuple>
+#include <sstream>
+#include <vector>
+#include <cmath>
+#include <ctime>
+#include <bitset>
+#include <cassert>
+#include <cstdio>
+#include <queue>
+#include <set>
+#include <map>
+#include <fstream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
+#include <algorithm>
+#include <numeric>
+ 
+#define xrange(i, a, b) for(int i=(a); i<=(b); ++i)
+#define rrange(i, a, b) for(int i=(a); i>=(b); --i)
+#define read(i) scanf("%d", &i);
+ 
+using namespace std;
+ 
+#define MAX 1000005
+ 
+int A[MAX];
+int main() {
+ 
+   	ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.precision(10);
+    cout << fixed;
+ 
+#ifdef LOCAL_DEFINE
+    freopen("in", "rt", stdin);
+#endif
+ 
+    // solution Here
+ 
+    int n; cin >> n;
+    xrange(i, 0, n-1) cin >> A[i];
+    sort(A, A+n);
+ 
+    long long ans = 0;
+ 
+    int cnt = 0;
+    xrange(i, 0, n-1){
+ 
+    	if(i && A[i] == A[i-1]) continue;
+    	ans += cnt;
+    	++ cnt;
+    } cout << ans << endl;
+ 
+#ifdef LOCAL_DEFINE
+    cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n";
+#endif
+ 
+    return 0;
+}

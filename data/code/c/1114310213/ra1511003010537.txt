@@ -1,0 +1,167 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef long long tip;
+ 
+tip zapis[1000000];
+ 
+tip *pok[1000000];
+int koliko;
+ 
+ 
+ 
+int pot[7]={1,10,100,1000,10000,100000,1000000};
+long long zbr[13];
+ 
+int fja(const void *a, const void *b)
+{
+    tip *p1,*p2;
+    p1=*(tip **)a;
+    p2=*(tip **)b;
+ 
+    if (*p1 < *p2)
+        return -1;
+    if (*p1 > *p2)
+        return 1;
+ 
+    if (p1 < p2)
+        return -1;
+    if (p1 > p2)
+        return 1;
+ 
+    return 0;
+}
+ 
+ 
+long long ost(long long a, long long b, long long m)
+{
+    long long temp;
+ 
+    a%=m;
+    temp=0;
+    while(b)
+    {
+        if (b&1)
+        {
+            temp=temp+a;
+            if (temp>=m)
+                temp-=m;
+        }
+        a<<=1;
+        if (a>=m)
+            a-=m;
+        b>>=1;
+    }
+ 
+    return temp;
+}
+ 
+ 
+void rek(long long x, int n, long long a, long long b, int dubina)
+{
+    int i;
+    if (dubina==0)
+    {
+        zapis[n]=x;
+        return;
+    }
+ 
+    n*=10;dubina--;
+    for(i=0;i<10;i++)
+    {
+        rek(x,n,a,b,dubina);
+        x+=zbr[dubina];
+        if (x>=b)
+            x-=b;
+        n++;
+    }
+}
+ 
+int trazi(long long n)
+{
+    int donja,gornja,srednja;
+ 
+    donja=0;
+    gornja=koliko-1;
+ 
+    while(donja<gornja)
+    {
+        srednja=(donja+gornja+1)/2;
+        if (*pok[srednja]>n)
+            gornja=srednja-1;
+        else
+            donja=srednja;
+    }
+ 
+    if (*pok[donja]==n)
+        return pok[donja]-zapis;
+    else
+        return -1;
+}
+ 
+ 
+int main()
+{
+    int n,n1,n2,d1,d2;
+    int i,j;
+    long long a,b,g,gg,temp;
+    int x,y;
+    char niz[20];
+ 
+    scanf("%d %lld %lld %lld",&n,&a,&b,&g);
+    n1=n/2;
+    n2=n-n1;
+ 
+    d1=pot[n1];
+    d2=pot[n2];
+ 
+ 
+    temp=1;
+    for(i=0;i<=n2;i++)
+    {
+        zbr[i]=temp;
+        temp=ost(temp,a,b);
+    }
+ 
+ 
+    for(i=0;i<d2;i++)
+        pok[i]=zapis+i;
+    rek(0,0,a,b,n2);
+ 
+    qsort(pok,d2,sizeof(tip *),fja);
+ 
+ 
+    x=0;y=0;
+    while(y<d2)
+    {
+        pok[x]=pok[y];
+ 
+        y++;
+ 
+        while(y<d2 && *pok[y]==*pok[x])
+            y++;
+        x++;
+    }
+    koliko=x;
+ 
+    temp=zbr[n2];
+ 
+    for(i=0;i<d1;i++)
+    {
+        gg=g-ost(temp,zapis[i],b);
+        if (gg<0)
+            gg+=b;
+        j=trazi(gg);
+        if (j==-1)
+            continue;
+        if (n1)
+        {
+            sprintf(niz,"%%0%dd",n1);
+            printf(niz,i);
+        }
+        sprintf(niz,"%%0%dd\n",n2);
+        printf(niz,j);
+        break;
+    }
+    return 0;
+}

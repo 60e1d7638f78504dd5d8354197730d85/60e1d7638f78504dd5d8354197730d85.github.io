@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  static int func(int[] arr,int n)
+  {
+    int left_sum,right_sum;
+    
+    for(int i=1;i<n-1;i++)
+       {
+         left_sum=0;
+         right_sum=0;
+         for(int j=0;j<i;j++)
+         {
+           left_sum=left_sum+arr[j];
+         }
+         for(int k=i+1;k<n;k++)
+         {
+           right_sum=right_sum+arr[k];
+         }
+         if(left_sum==right_sum)
+           return i;
+    }
+    return -1;
+  }
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+       for(int i=0;i<n;i++)
+       {
+         arr[i]=sc.nextInt();
+       }
+       int x=TestClass.func(arr,n);
+       System.out.println(x);
+	}
+}

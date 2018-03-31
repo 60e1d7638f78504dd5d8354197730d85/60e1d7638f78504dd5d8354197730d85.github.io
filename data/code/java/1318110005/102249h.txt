@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.Scanner;
+interface Exam
+{
+  void percent_cal();
+  
+}
+class Student
+{
+  String name;
+  int roll_no,mark1,mark2,mark3,mark4,mark5;
+  
+  Student(String n,int r,int m1,int m2,int m3,int m4,int m5)
+  {
+    name=n;
+    roll_no=r;
+    mark1=m1;
+    mark2=m2;
+    mark3=m3;
+    mark4=m4;
+    mark5=m5;
+    }
+  public void display()
+  {
+    System.out.println("Name of Student="+name + "\n" +"Roll No of Student=" +roll_no+"\n" +"Marks of Subject 1="+ mark1 +"\n"+"Marks of Subject 2="+mark2 +"\n" + "Marks of Subject 3="+mark3+ "\n" + "Marks of Subject 4="+mark4+"\n"+"Marks of Subject 5="+mark5);
+   }
+}
+class Result extends Student implements Exam
+{
+Result(String n,int r,int m1,int m2,int m3,int m4,int m5)
+{
+    super(n,r,m1,m2,m3,m4,m5);
+}
+public void percent_cal()
+{
+int total;
+total=mark1+mark2+mark3+mark4+mark5;
+System.out.println("Total="+total);
+}
+public void display()
+{
+super.display();
+}
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+     String name;
+     int regno,mark1,mark2,mark3,mark4,mark5;
+     Scanner in=new Scanner(System.in);
+     name=in.next();
+     regno=in.nextInt();
+     mark1=in.nextInt();
+      mark2=in.nextInt();
+       mark3=in.nextInt();
+        mark4=in.nextInt();
+         mark5=in.nextInt();
+         Result R=new Result(name,regno,mark1,mark2,mark3,mark4,mark5);
+		R.display();
+        R.percent_cal();
+	}
+}

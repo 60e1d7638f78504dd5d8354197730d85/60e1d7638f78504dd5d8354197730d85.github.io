@@ -1,0 +1,35 @@
+#include <stdio.h>
+#define N 10
+int a[N][N];
+int findmax(int a[N][N],int m,int n){
+  	int max = a[0][0];
+  	
+  	int i,j;
+	for(i=0;i<m;i++){
+    	for(j=0;j<n;j++){
+    
+          	if(a[i][j]>max){
+            	max=a[i][j];
+              	
+            }
+        }
+    }
+  	return max;
+
+}
+int main()
+{
+	int m,n,i,j;
+  	scanf("%d%d",&m,&n);
+  	printf("The matrix is\n");
+  	for(i=0;i<m;i++){
+    	for(j=0;j<n;j++){
+        	scanf("%d",&a[i][j]);
+          	printf("%d ",a[i][j]);
+        }
+      	printf("\n");
+    }
+  	int ans = findmax(a,m,n);
+  	printf("The maximum element in the matrix is:%d",ans);
+	return 0;
+}

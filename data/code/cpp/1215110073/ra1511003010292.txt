@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int a,b,x=1;
+  cin>>a>>b;
+  if(a<b && b%a==0)
+    cout<<"LCM = "<<b;
+  else
+  {
+    int com = 0;
+    while(com!=1)
+    {
+      for(int i = a ; i>=1 ; i--)
+      {
+        if(a%i == 0 && b%i==0 )
+        {
+          com = i;
+          x = x * i;
+          a = a / i;
+          b = b / i;
+          break;
+        }
+      }
+    }
+    x = x*a*b;
+    cout<<"LCM = "<<x;
+  }
+	return 0;
+}

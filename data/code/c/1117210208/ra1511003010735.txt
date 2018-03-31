@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char z[100], k=0, max=0, i;
+  fgets(z, 100, stdin);
+  for(i=0; i<strlen(z); i++){
+    if(z[i]==' '){
+      if(k>max)
+        max=k;
+      k=0;
+      continue;
+    }
+    k++;
+  }
+  if(k>max)
+    max=k;
+  printf("%d", max);
+
+	return 0;
+}

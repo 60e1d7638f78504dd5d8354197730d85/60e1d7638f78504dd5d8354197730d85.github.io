@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+vector<long long int>v[47];
+ 
+int main()
+{
+	long long int i,j;
+ 
+	for(i=2;i<=(int)1e6;i++)
+	{
+		long long int tem=i;
+		for(j=2;j<=40;j++)
+		{
+			tem=tem*i;
+			if(tem>(long long int)1e12)
+				break;
+			v[j].push_back(tem);
+		}
+	}
+ 
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		long long int m;
+		scanf("%lld",&m);
+ 
+		if(m==1)
+		{
+			printf("INFINITY\n");
+			continue;
+		}
+ 
+		long long int ans=(m+1)/2;
+		long long int p=m/2+1;
+ 
+ 
+		for(i=2;i<=40;i++)
+                ans=ans+(lower_bound(v[i].begin(),v[i].end(),m+1)-lower_bound(v[i].begin(),v[i].end(),p));
+ 
+		printf("%lld\n",ans);
+	}
+	return 0;
+}

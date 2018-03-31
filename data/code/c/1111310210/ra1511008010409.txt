@@ -1,0 +1,55 @@
+#include<stdio.h>
+inline int inp()
+{
+int noRead=0;
+char p=getchar_unlocked();
+for(;p<33;)
+{
+p=getchar_unlocked();
+};
+while(p>32)
+{
+noRead = (noRead << 3) + (noRead << 1) + (p - '0');
+p=getchar_unlocked();
+}
+return noRead;
+}
+ 
+ 
+ 
+int main()
+{
+int n,i,t[100001]={},b[100001]={},x,y,ex=1,ans,tem;
+n=inp();
+for(i=0;i<n;i++)
+{
+	x=inp();y=inp();
+	t[x]++;
+	if(x!=y)
+		b[y]++;
+}
+unsigned long long  h=(n/2.0)>(n/2)?(n/2)+1:(n/2);
+for(i=0;i<100001;i++)
+	if(t[i]>=h)
+	{
+		printf("%d\n",0);
+		ex=0;
+		break;
+	}
+if(ex)
+{
+ans=100000;
+for(i=0;i<100001;i++)
+{
+	tem=h-t[i];
+	if(b[i]-tem>=0 && ans>tem)
+		ans=tem;
+}
+if(ans==100000)
+	printf("Impossible\n");
+else 
+printf("%d\n",ans);
+}		
+return 0;
+}
+ 

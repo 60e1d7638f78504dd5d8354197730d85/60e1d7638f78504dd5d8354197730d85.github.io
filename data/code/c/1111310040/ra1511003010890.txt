@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{int n,i,k,a[5000],sum=0;
+scanf("%d\n",&n);
+for(i=0;i<n;i++)
+{
+scanf("%d\n",&a[i]);
+}
+i=0;
+while(i<n)
+{if(a[i]==0)
+{ for(k=i;k<n;k++)
+{a[k]=a[k+1];}
+n--;
+for(k=i-1;k<n;k++)
+{a[k]=a[k+1];}
+n--;
+i=0;
+}
+else i++;
+}
+for(i=0;i<n;i++)
+{sum=sum+a[i];}
+
+printf("%d",sum);
+return 0;
+}

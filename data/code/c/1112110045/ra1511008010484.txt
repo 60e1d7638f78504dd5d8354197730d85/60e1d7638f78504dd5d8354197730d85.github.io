@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+	int test;
+  	scanf("%d",&test);
+  	while(test--)
+    {
+      int n1,n2,i,j,k=0,count=0;
+      scanf("%d",&n1);
+      int st1[n1];
+      for(i=0;i<n1;i++)
+      {
+        scanf("%d",&st1[i]);
+      }
+      scanf("%d",&n2);
+      int st2[n2];
+      for(i=0;i<n2;i++)
+      {
+        scanf("%d",&st2[i]);
+      }
+      for(i=0;i<n2;i++)
+      {
+        for(j=k;j<n1;j++)
+        {
+          if(st1[j]==st2[i])
+          {
+            k=j+1;
+            count++;
+            break;
+          }
+        }
+      }
+      if(count==n2)
+      {
+        printf("Yes\n");
+      }
+      else
+      {
+      printf("No\n");
+      }
+    }
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+int check(char *ptr)
+{
+  int i, sum=0;
+  while(*ptr!='\0')
+  {
+    sum+=(int)*ptr;
+    ptr++;
+  }
+  if(sum%2==0)
+    return 1;
+  else
+    return 0;
+}
+int main()
+{
+  char a[1000];  
+  scanf("%s",a);
+  char *ptr;
+  ptr=a;
+  if(check(ptr))
+    printf("%s is lucky", a);
+  else
+    printf("%s is not lucky", a);
+  return 0;
+}

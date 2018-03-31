@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<math.h>
+int digits(int n)
+{
+  int count=0;
+  while(n!=0)
+  {
+    count++;
+    n=n/10;
+    
+  }
+  return count;
+  
+}
+int swap(int n)
+{
+  int ans;
+  int digit=digits(n);
+  ans=(n%10)*(int)pow(10,digit-1)+n%(int)pow(10,digit-1)-(n%10)+n/(int)pow(10,digit-1);
+  return ans;
+}
+
+int main()
+{
+  int num,res;
+   scanf("%d",&num);    
+   res=swap(num);
+  printf("%d",res);
+	return 0;
+}

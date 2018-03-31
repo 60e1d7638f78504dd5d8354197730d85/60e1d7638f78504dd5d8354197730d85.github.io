@@ -1,0 +1,58 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <algorithm>
+#include <numeric>
+#include <set>
+#include <map>
+#include <queue>
+#include <sstream>
+#include <ctime>
+#include <cstring>
+#include <cctype>
+#include <cassert>
+#include <bits/stdc++.h>
+#include <limits>
+#define fl(i,n) for(int (i)=0;(i)<(int)(n);(i)++)
+#define  ll long long
+#define MOD 1000000007
+
+using namespace std;
+
+
+struct match{
+        int val;
+        int imp;
+};
+
+bool strSort(match a,match b){
+        return (b.val>a.val);
+}
+
+
+int main() {
+        int N,K,i,oc=0,ans;
+        cin>>N>>K;
+        match arr[100];
+        for(i=0;i<N;i++){
+                cin>>arr[i].val>>arr[i].imp;
+                if(arr[i].imp==1)
+                        oc++;
+        }
+        sort(arr,arr+N,strSort);
+        int j = 0;
+        ans = 0;
+        for(i=0;i<N;i++){
+                if(arr[i].imp==1&&j<oc-K){
+                        ans-=arr[i].val;
+                        j++;
+                }else{
+                        ans+=arr[i].val;
+                }
+        }
+        cout<<ans;
+        return 0;
+}

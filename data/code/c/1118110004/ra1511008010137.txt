@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<stdbool.h>
+bool isValidDate(int d, int m, int y)
+{
+    if (y > 2999)
+    {
+      printf("Invalid Year");
+      return false;
+    }
+    if (m < 1 || m > 12)
+      {
+      printf("Invalid Month");
+      return false;
+    }
+    if (d < 1 || d > 31)
+     {
+      printf("Invalid Day");
+      return false;
+    }
+  
+    if (m == 2)
+    {
+           return (d <= 28);
+    }
+  
+    if (m==4 || m==6 || m==9 || m==11)
+      {
+      printf("Invalid Day");
+       return (d <= 30);
+    }
+ 
+    return true;
+}
+int main()
+{
+    int a,b,c;
+    scanf("%d%d%d",&a,&b,&c);
+       isValidDate(a, b, c)? printf("New Date=%d-%d-%d",a+1,b,c) :
+                             12;
+	return 0;
+}

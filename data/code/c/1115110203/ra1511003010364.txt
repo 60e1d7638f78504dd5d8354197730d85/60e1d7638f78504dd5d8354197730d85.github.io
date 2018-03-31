@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include<string.h>
+void date(int d,int m,int y)
+{
+  int i,j,t=0,v,n=y,k[12]={1,4,4,0,2,5,0,3,6,1,4,6},c[4]={4,2,0,6};
+  t=y%100;
+  t=t/4;
+  t=t+d;
+  t=t+k[m-1];
+  if(y%4==0)
+    t=t-1;
+  if(y>=1700&&y<1800)
+    t=t+4;
+  else if(y>=1800&&y<1900)
+    t=t+2;
+  else if(y>=1900&&y<2000)
+    t=t+0;
+  else if(y>=2000&&y<2100)
+  {
+    t=t+6;
+  }
+  else if(y>=2100)
+  {v=y;
+    while(v>=2100)
+    {
+      v=v-400;
+    }
+   	y=v;
+   if(y>=1700&&y<1800)
+    t=t+4;
+  else if(y>=1800&&y<1900)
+    t=t+2;
+  else if(y>=1900&&y<2000)
+    t=t+0;
+  else if(y>2000&&y<2100)
+    t=t+6;
+  }
+  i=n%100;
+  t=t+i;
+  t=t%7;
+  if(t==0)
+    printf("saturday\n");
+  else if(t==1)
+    printf("sunday\n");
+  else if(t==2)
+    printf("monday\n");
+  else if(t==3)
+    printf("tuesday\n");
+  else if(t==4)
+    printf("wednesday\n");
+  else if(t==5)
+    printf("thursday\n");
+  else if(t==6)
+    printf("friday\n");
+  
+}
+int main()
+{
+	int d,m,t,i,j,y;
+  	scanf("%d",&t);
+    d =1;
+    m = 1;
+  	while(t--)
+    {
+     scanf("%d",&y);
+      date(d,m,y);
+    }
+	return 0;
+} 

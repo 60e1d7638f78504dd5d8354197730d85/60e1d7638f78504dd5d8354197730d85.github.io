@@ -1,0 +1,43 @@
+#include<stdio.h>
+#define p 1000000007;
+ 
+int main(){
+ 
+     int T,N,i;
+     unsigned long ans,tn,tn1,tn2,fn,fn1,fn2,fn3;
+ 
+     scanf("%d",&T);
+     while(T--)
+     {
+         scanf("%d",&N);
+         tn1 = 1;
+         tn2 = 0;
+         fn1 = 3;
+         fn2 = 2;
+         fn3 = 1;
+         for(i=3;i<=N;i++)
+         {
+             tn = (tn1 + tn2 + fn3);
+             tn %= p;
+             tn2 = tn1;
+             tn1 = tn;
+             fn = fn1 + fn2;
+             fn %= p;
+             fn3 = fn2;
+             fn2 = fn1;
+             fn1 = fn;
+         }
+         if(N==1) ans = 0 ;
+         else if(N == 2) ans = 1;
+            else ans = tn;
+       printf("%li\n",ans);
+ 
+     }
+     return 0;
+ 
+}
+ 
+ 
+ 
+ 
+ 

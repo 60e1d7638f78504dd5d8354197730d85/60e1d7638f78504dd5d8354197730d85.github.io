@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+void Remove(char arr[], char c)
+{
+  int i,j;
+	int len = strlen(arr);
+  for(i = 0; i<len; i++)
+  {
+    if(arr[i] == c)
+    {
+      for(j = i; arr[j];j++)
+          arr[j] = arr[j+1];
+      arr[j] = '\0';
+    }
+  }
+}
+int main()
+{
+	char string[20];
+  char ch;
+  scanf("%[^\n]s",string);
+  ch = getchar();
+  ch = getchar();
+
+  Remove(string, ch);
+  int i;
+  for(i = 0; string[i]; i++)
+    printf("%c",string[i]);
+	return 0;
+}

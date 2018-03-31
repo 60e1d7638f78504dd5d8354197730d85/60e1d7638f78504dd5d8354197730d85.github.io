@@ -1,0 +1,59 @@
+
+#include<iostream>
+using namespace std;
+class electricity
+{
+char name[20];
+int unit;
+float Rs;
+public:
+void get()
+{
+
+cin>>name>>unit;
+}
+void check()
+{ int x=0,y=0;
+if(unit<=100)
+{
+Rs=unit*0.40;
+
+}
+else if(unit<=200 && unit>100 || unit>200 &&  unit<300)
+{
+    x=40;
+    y=unit-100;
+Rs=x+(y)*0.50;
+
+}
+else if(unit<=300 ||unit>200)
+{
+
+    y=140;
+
+
+Rs=y+(unit-300)*0.60;
+
+}
+}
+void disp()
+{
+
+cout<<"Name="<<name<<endl;
+cout<<"Bill="<<Rs+500;
+}
+};
+int main()
+{
+int n,i;
+electricity e;
+
+
+e.get();
+e.check();
+
+
+e.disp();
+
+return 0;
+}

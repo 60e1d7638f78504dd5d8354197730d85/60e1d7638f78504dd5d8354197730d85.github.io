@@ -1,0 +1,22 @@
+#include <stdio.h>
+void even(int a[],int num,int sum);
+int main()
+{
+int a[100],i,num,sum=0;
+scanf("%d",&num);
+for(i=0;i<num;i++){scanf("%d",&a[i]);}
+even(a,num-1,sum); 
+return 0;
+}
+
+void even(int a[],int num,int sum){
+if(num>=0)
+{  if(a[num]%2==0)
+ sum=sum+a[num];
+  even(a,num-1,sum);
+}
+
+else
+  printf("%d",sum);
+
+}

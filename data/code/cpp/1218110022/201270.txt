@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class A
+{
+  protected:
+  	int m1,m2,m3;
+public:
+  	void get(){
+    cin>>m1>>m2>>m3;
+    }
+};
+class B: public A
+{
+protected:
+	int total;
+public:
+	void calcm(){
+    total=m1+m2+m3;
+    }
+};
+class C: public B
+{
+public:
+	int per;
+    void calcp(){
+    per=total/3;
+    }
+	void display(){
+    cout<<per;
+    }
+};
+int main()
+{
+	C obj;
+  	obj.get();
+  	obj.calcm();obj.calcp();
+  	obj.display();
+	return 0;
+}

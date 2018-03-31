@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int h1,h2,m1,m2,s1,s2,hour,mins,sec;
+	cin>>h1>>m1>>s1;
+  	cin>>h2>>m2>>s2;
+  	if(m1==60||m2==60||s1==60||s2==60)
+    {
+    	cout<<"Invalid Time";
+    }
+  	else if(s1+s2>=60)
+    {
+      	sec=s1+s2-60;
+    	mins=m1+m2+1;
+      	if(mins>=60)
+        {
+        	mins=mins-60;
+          	hour=h1+h2+1;
+        }
+      else
+        hour=h1+h2;
+       cout<<"After Adding\n"<<hour<<":"<<mins<<":"<<sec;
+    }
+  else if(s1+s2<=60)
+  {
+  	sec=s1+s2;
+    mins=m1+m2;
+    if(mins>=60)
+        {
+        	mins=mins-60;
+          	hour=h1+h2+1;
+    	}
+    else
+      hour=h1+h2;
+     cout<<"After Adding\n"<<hour<<":"<<mins<<":"<<sec;
+  }
+	return 0;
+}

@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <math.h>
+
+struct point
+{
+    float x;
+    float y;
+};
+
+struct line
+{
+    struct point start;
+    struct point end;
+};
+
+struct point midPoint(struct line);
+float findDistance(struct line);
+
+int main()
+{
+    struct point p;
+    struct line myLine;
+    float distance;
+
+    //printf("Enter x coordinate of starting point: ");
+    scanf("%f", &myLine.start.x);
+    //printf("Enter y coordinate of starting point: ");
+    scanf("%f", &myLine.start.y);
+    //printf("Enter x coordinate of ending point: ");
+    scanf("%f \n", &myLine.end.x);
+    //printf("Enter y coordinate of ending point: ");
+    scanf("%f \n", &myLine.end.y);
+
+    p = midPoint(myLine);
+   printf("\n Binoys house is located at(%.1f,%.1f)\n",
+         p.x, p.y);
+
+     // distance = findDistance(myLine);
+    //printf("The distance between (%.2f,%.2f) & (%.2f,%.2f) is %.f\n",
+        //myLine.start.x, myLine.start.y, myLine.end.x, myLine.end.y, distance);
+
+    return 0;
+} 
+
+struct point midPoint(struct line myLine)
+{
+    struct point temp;
+    temp.x = (myLine.start.x + myLine.end.x) / 2.0;
+    temp.y = (myLine.start.y + myLine.end.y) / 2.0;
+    return temp;
+} 
+
+float findDistance(struct line myLine)
+{
+    float distance;
+    distance = sqrt((myLine.start.x - myLine.end.x) * (myLine.start.x -
+        myLine.end.x) + (myLine.start.y - myLine.end.y) * (myLine.start.y -
+        myLine.end.y));
+
+    return distance;
+}

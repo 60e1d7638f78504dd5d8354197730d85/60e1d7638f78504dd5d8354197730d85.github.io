@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    unsigned long long int s,num;
+    int t,b,d,i,p,k,q,w,ch,e;
+    scanf("%d",&t);
+    while(t--)
+    {
+        s=0;
+        scanf("%d%d",&b,&d);
+        p=pow(b,d);
+        w=pow(b,d-1);
+        for(i=w;i<p;++i)
+        {
+            num=0,ch=1;
+            q=i;
+            e=1;
+            int count=0;
+            while(q!=0)
+            {
+                ++count;
+                k=q%b;
+                num=num+k*e;
+                if(num%count!=0)
+                {
+                    ch=0;
+                    break;
+                }
+                e=e*10;
+                q=q/b;
+            }
+            if(ch==1)
+            {
+                ++s;
+            }
+        }
+        printf("%llu\n",s);
+    }
+    return 0;
+}

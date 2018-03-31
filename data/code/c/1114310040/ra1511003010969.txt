@@ -1,0 +1,143 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int count[1000001]={0};
+int fact[1000001][10];
+int A[100000];
+int primes[100000];
+int C[1000001]={0};
+int dp[1000001]={0};
+ 
+inline void fastread(int* a)
+{
+register char c = 0;
+while (c < 33)
+c = getchar();
+*a = 0;
+while (c > 33)
+{
+*a = (*a <<1)+(*a<<3) + c - '0';
+c = getchar();
+}
+}
+ 
+void calcprimes()
+{
+    int i,j;
+    for (i=2;i<=1000;++i)
+    {
+        if (C[i]==0)
+        {
+            int k=1000000/i;
+            for(j=2;j<=k;++j)
+            {
+                C[i*j]=1;
+            }
+        }
+    }
+    j=0;
+    for(i=2;i<=1000000;++i)
+        if(C[i]==0)
+            primes[j++]=i;
+}
+ 
+void factorize()
+{
+    int j,i;
+    for (j=0;j<78498;++j)
+    {
+        int i;
+        int k=1000000/primes[j];
+        for (i=1;i<=k;++i)
+            fact[i*primes[j]][count[i*primes[j]]++]=primes[j];
+    }
+}
+ 
+void clr(int n)
+{
+    int i;
+    for (i=0;i<=n;++i)
+        C[i]=-1;
+}
+ 
+/*int calculate(int n)
+{
+    int t=0,i,j,max=0;
+    clr(n);
+    for (i=0;i<n;++i)
+    {
+        int flag=1;
+        for (j=0;j<count[A[i]];++j)
+        {
+            //printf("%d %d\n",count[A[i]],C[fact[A[i]][j]]);
+            if (C[fact[A[i]][j]]!=0)
+            {
+                flag=0;
+                clr(n);
+                if (t>max)
+                    max=t;
+                t=0;
+            }
+            else
+                C[fact[A[i]][j]]=1;
+        }
+        if (flag==1)
+        {
+            t++;
+        }
+    }
+    if (t>max)
+        max=t;
+    return max;
+}*/
+ 
+int calculate(int n)
+{
+    int i;
+    int leftindex=0;
+    dp[0]=1;
+    int max=-1;
+    int j,k,x=-1;
+    clr(1000001);
+    for (i=0;i<n;++i)
+    {
+        for (k=0;k<count[A[i]];++k)
+        {
+            //printf("%d ",C[fact[A[i]][k]]);
+            if (C[fact[A[i]][k]]!=-1)
+            {
+                if (C[fact[A[i]][k]]>x)
+                    x=C[fact[A[i]][k]];
+            }
+            C[fact[A[i]][k]]=i;
+        }
+        //printf("\n");
+        dp[i]=i-x;
+        if (max<dp[i])
+            max=dp[i];
+    }
+    return max;
+}
+ 
+int main()
+{
+    calcprimes();
+    factorize();
+    int t;
+    fastread(&t);
+    int k;
+    for (k=0;k<t;++k)
+    {
+        int n;
+        fastread(&n);
+        int i;
+        for (i=0;i<n;++i)
+            fastread(&A[i]);
+        int ans=calculate(n);
+        if (ans==0||ans==1)
+            printf("-1\n");
+        else
+            printf("%d\n",ans);
+    }
+    return (0);
+} 

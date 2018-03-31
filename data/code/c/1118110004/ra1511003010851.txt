@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include<time.h>
+struct Date
+{};
+int main()
+{
+  int dd,mm,yy;
+  struct tm t={0};
+  scanf("%d %d %d",&dd,&mm,&yy);
+  if(yy>=1900&&yy<2999)
+  {
+    if(mm>=1&&mm<=12)
+    {
+      if((dd>=1&&dd<=31)&&(mm==1||mm==2||mm==5||mm==7||mm==8||mm==10||mm==12))
+      {
+        t.tm_mday = dd;
+        t.tm_mon = mm-1;
+        t.tm_year = yy-1900;
+        t.tm_mday+=1;
+        mktime(&t);
+        printf("New Date=%d %d %d",t.tm_mday,t.tm_mon+1,t.tm_year+1900);
+      }
+      else if((dd>=1&&dd<=30)&&(mm==4||mm==6||mm==8||mm==11))
+      {
+        t.tm_mday=dd;
+        t.tm_mon=mm-1;
+        t.tm_year=yy-1900;
+        t.tm_mday+=1;
+        mktime(&t);
+        printf("New Date=%d %d %d",t.tm_mday,t.tm_mon+1,t.tm_year+1900);
+      }
+      else if((dd>=1 && dd<=28)&&(mm==2))
+      {
+        t.tm_mday=dd;
+        t.tm_mon=mm-1;
+        t.tm_year=yy-1900;
+        t.tm_mday+=1;
+        mktime(&t);
+        printf("New Date=%d %d %d",t.tm_mday,t.tm_mon+1,t.tm_year+1900);
+      }
+      else if(dd==29&&mm==2&&(yy%400==0||(yy%4==0&&yy%100!=0)))
+      {
+        t.tm_mday=dd;
+        t.tm_mon=mm-1;
+        t.tm_year=yy-1900;
+        t.tm_mday+=1;
+        mktime(&t);
+        printf("New Date=%d %d %d",t.tm_mday,t.tm_mon+1,t.tm_year+1900);
+      }
+      else
+        printf("Invalid Day\n");
+    }
+    else
+    {
+      printf("Invalid Month\n");
+    }
+  }
+  else
+  {
+    printf("Invalid Year\n");
+  }
+	return 0;
+}

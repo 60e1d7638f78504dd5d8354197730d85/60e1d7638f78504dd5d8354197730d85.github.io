@@ -1,0 +1,35 @@
+#include <stdio.h>
+int n;
+int find(int arr[]){
+  int i,min=arr[0];
+  
+  for(i=0;i<n;i++)
+    if(arr[i]<min)
+      min=arr[i];
+  return min;
+}
+int main()
+{
+  int t,i,min,cnt=0;
+  scanf("%d",&t);
+  
+  while(t--){
+    cnt=0;
+    
+    scanf("%d",&n);
+    int arr[n];
+    
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    
+    min=find(arr);
+    
+    for(i=0;i<n;i++)
+      if(arr[i]==min)
+        cnt++;
+    
+    printf(cnt%2==0?"Unlucky\n":"Lucky\n");
+    
+  }
+	return 0;
+}

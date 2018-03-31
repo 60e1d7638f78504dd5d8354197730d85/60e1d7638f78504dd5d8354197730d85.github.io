@@ -1,0 +1,40 @@
+#include <stdio.h>
+long long int func(long long int n){
+  int s=0;
+  while(n>0){
+   	s=10*s+n%10;
+    n/=10; 
+  }
+  return s;
+  
+  
+}
+int main()
+{
+	long long int a[100],n,a2[100],i,j=0,temp,c,d,s,num;
+  	scanf("%lld",&n);
+  num=n;
+  for(i=1;i<=n;i++){
+   if(n%i==0){
+    a2[j]=func(i);
+     j++;
+   }
+  }
+  
+ 
+  for(c=0;c<(j-1);c++){
+    for(d=0;d<j-c-1;d++){
+     if(a2[d+1]<a2[d]){
+      temp=a2[d+1];
+       a2[d+1]=a2[d];
+       a2[d]=temp;
+       
+     }
+    }
+}
+  
+  for(i=0;i<j;i++){
+   printf("%lld\n",a2[i]); 
+  }
+	return 0;
+}

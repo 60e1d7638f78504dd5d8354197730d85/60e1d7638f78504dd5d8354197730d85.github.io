@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define N 1000
+ 
+struct element {
+ int a, i;
+} aa[N][N];
+ 
+int compare(const void *a, const void *b) {
+ struct element *ia = (struct element *) a;
+ struct element *ib = (struct element *) b;
+ 
+ return ib->a != ia->a ? ib->a - ia->a : ib->i - ia->i;
+}
+ 
+int main() {
+ int i, n, m, k;
+ static int val[N], cnt[N];
+ 
+ scanf("%d%d%d", &n, &m, &k);
+ k--;
+ for (i = 0; i < n; i++)
+  scanf("%d", &val[i]);
+ while (m-- > 0) {
+  int x, y;
+ 
+  scanf("%d%d", &x, &y);
+  x--, y--;
+  aa[x][cnt[x]].a = val[y];
+  aa[x][cnt[x]++].i = y;
+  aa[y][cnt[y]].a = val[x];
+  aa[y][cnt[y]++].i = x;
+ }
+ for (i = 0; i < n; i++)
+  qsort(aa[i], cnt[i], sizeof *aa[i], compare);
+ for (i = 0; i < n; i++)
+  printf("%d\n", k >= cnt[i] ? -1 : aa[i][k].i + 1);
+ return 0;
+}

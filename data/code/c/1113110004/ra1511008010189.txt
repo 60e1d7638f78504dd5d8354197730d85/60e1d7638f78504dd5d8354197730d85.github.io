@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+#include <string.h>
+
+#include <math.h>
+#pragma comment(linker,"/STACK:116777216")
+#define MAXN 100100
+
+int readline() {
+        int c = getchar();
+        while (c < 33)
+                c = getchar();
+        int k=0;
+        while (c > 32) {
+                k = k*10 + (int)c-48;
+                c = getchar();
+        }
+        return k;
+}
+void print(int x) {
+     static char c[30];
+     int len = 0;
+     if (x == 0) {
+             c[0] = '0';
+             len = 1;
+     }
+     while (x > 0) {
+             int y = x / 10;
+             c[len++] = (x - y * 10) + '0';
+             x = y;
+     }
+     while (len > 0) {
+             --len;
+             putchar(c[len]);
+     }
+}
+int t,n,a[1000001],x,maxi,i;
+int main()
+{
+    t=readline();
+    while(t--){
+        maxi=0;
+        n=readline();
+        for(i=0;i<n;i++)
+        {
+            x=readline();
+            a[x]++;
+            if(maxi<a[x])
+                maxi=a[x];
+        }
+        for(i=1000000;i>0;i--)
+            if(a[i]==maxi)
+                {
+                    print(i);
+                    putchar(' ');
+                }
+        putchar('\n');
+        memset(a,0,sizeof(a));
+    }
+    return 0;
+}

@@ -1,0 +1,78 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+bool isDigit(char ch)
+{
+  return(ch>='0'&& ch<='9');
+}
+int main()
+{
+  int T;
+  cin>>T;
+  while(T--)
+  {
+    string str;
+    cin>>str;
+    stack<int>s1;
+    stack<char>s2;
+    string ans="";
+    for(int i=0;i<str.length();i++)
+    {
+      char c=str.at(i);
+      if(isDigit(c))
+      {
+        int temp=0;
+        while(isDigit(str.at(i)))
+        {
+          temp=10*temp+str.at(i)-'0';
+          i++;
+        }
+        s1.push(temp);
+        i--;
+      }
+      else if(c=='[')
+      {
+        s2.push(c);
+      }
+      else if (c==']')
+      {
+        string temp1="";
+        while(s2.top()!='[')
+        {
+          temp1=s2.top()+temp1;
+          s2.pop();
+        }
+        s2.pop();
+        int temp=s1.top();
+        s1.pop();
+        string temp3="";
+        for(int i=0;i<temp;i++)
+        {
+          temp3=temp3+ "" + temp1;
+        }
+        for(int i=0;i<temp3.length();i++)
+        {
+          s2.push(temp3.at(i));
+        }
+      }
+        else
+        {
+          s2.push(c);
+        }
+      }
+      while(!s2.empty())
+      {
+        ans=ans+"" +s2.top();
+        s2.pop();
+      }
+      for(int i=ans.length()-1;i>=0;i--)
+      {
+        cout<<ans.at(i);
+      }
+      cout<<endl;
+    }
+    return 0;
+  }
+      
+        
+         

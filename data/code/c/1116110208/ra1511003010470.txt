@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[1000][51], visit[51];
+    int T, i, j, count[51], equal, k, max;
+    scanf("%d", &T);
+    for(i=0; i<T; i++)
+    {
+      scanf("%s", str[i]);
+    }
+    for(i=0; i<T; i++)
+    {
+        memset(visit, '\0', sizeof(visit));
+        for(j=0; j<strlen(str[i]); j++)
+        {
+            if(strlen(visit)==0)
+              visit[0]=str[i][j];
+            else
+            {  equal=0;
+               for(k=0; k<strlen(visit); ++k)
+               {
+                   if(str[i][j]==visit[k])
+                   {
+                       equal=1;
+                   }
+               }
+               if(equal==0)
+               {
+                  visit[strlen(visit)]=str[i][j];
+               }
+
+            }
+        }
+        for(j=0; j<strlen(visit); ++j)
+        {
+            count[j]=0;
+            for(k=0; k<strlen(str[i]); ++k)
+            {
+                if(visit[j]==str[i][k])
+                  ++count[j];
+            }
+        }
+        max=count[0];
+        for(j=1; j<strlen(visit); ++j)
+        {
+            if(count[j]>max)
+              max=count[j];
+        }
+        if(max==((strlen(str[i]))-max))
+          printf("YES\n");
+        else
+          printf("NO\n");
+    }
+	return 0;
+}

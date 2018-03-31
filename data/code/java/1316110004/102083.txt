@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Keyboard objname = new Keyboard();
+       objname.keyboard();
+	}
+}
+class Keyboard
+{
+  public void keyboard()
+  {
+    Scanner scan = new Scanner(System.in);
+    int T = scan.nextInt();
+    for(int j=0; j<T; j++)
+    {
+      int n = scan.nextInt();
+      int m = scan.nextInt();
+      int c = scan.nextInt();
+      
+      int count = 0,n1=0,m1=0;
+ 
+      if (n*m <c ) 
+            System.out.println("0");	   
+      else if (n*m == c ) 
+            System.out.println("1");
+	  else 
+      {
+            for (int i = 1; i<=c; i++) 
+            {
+               if (c%i == 0) 
+               {
+                  n1 = i;
+                  m1 = c/i;                               
+                  if (n1 <= n && m1 <= m)
+                    count++;                           
+               }
+               if (i > n && i > m) 
+                 break;
+            }
+            System.out.println(count);
+      }
+  }
+}
+}

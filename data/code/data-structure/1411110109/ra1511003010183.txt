@@ -1,0 +1,88 @@
+#include<stdio.h>
+int front,rear,N,t_rear,t_front,count,t_count;
+void Enqueue(int Queue[][2],int value,int index)
+{
+    Queue[rear][0]=value;
+    Queue[rear][1]=index;
+    rear=(rear+1)%N;
+    count++;
+}
+void Temp_Enqueue(int Temp_Queue[][2],int value,int index)
+{
+    Temp_Queue[t_rear][0]=value;
+    Temp_Queue[t_rear][1]=index;
+    t_rear=(t_rear+1)%N;
+    t_count++;
+}
+void Dequeue(int Queue[][2])
+{
+    Queue[front][0]=0;
+    front=(front+1)%N;
+    count--;
+}
+void Temp_Dequeue(int Temp_Queue[][2])
+{
+    Temp_Queue[t_front][0]=0;
+    t_front=(t_front+1)%N;
+    t_count--;
+}
+int IsEmpty()
+{
+    if(count==0)
+        return 1;
+    return 0;
+}
+int t_IsEmpty()
+{
+    if(t_count==0)
+        return 1;
+    return 0;
+}
+int main()
+{
+    int X,i,max_index,value,j,ind;
+    scanf("%d%d",&N,&X);
+    int Queue[N][2],Temp_Queue[N][2];
+    for(i=0;i<N;i++)
+    {
+        scanf("%d",&value);
+        Enqueue(Queue,value,i);
+    }
+    for(i=0;i<X;i++)
+    {
+        int max=-1;
+        for(j=0;j<X;j++)
+        {
+            if(!IsEmpty())
+            {
+                Temp_Enqueue(Temp_Queue,Queue[front][0],Queue[front][1]);
+                if(Queue[front][0]>max)
+                {
+                    max=Queue[front][0];
+                    max_index=Queue[front][1];
+                }
+                Dequeue(Queue);
+            }
+            else
+                break;
+        }
+        while(!t_IsEmpty())
+        {
+            ind=Temp_Queue[t_front][1];
+            if(ind==max_index)
+            {
+                printf("%d ",ind+1);
+            }
+            else
+            {
+                if(Temp_Queue[t_front][0]>0)
+                {
+                    Temp_Queue[t_front][0]--;
+                }
+                Enqueue(Queue,Temp_Queue[t_front][0],Temp_Queue[t_front][1]);
+            }
+            Temp_Dequeue(Temp_Queue);
+        }
+    }
+    return 0;
+}

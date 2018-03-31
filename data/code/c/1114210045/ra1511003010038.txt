@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+ 
+#define MAX_DIGITS 7
+ 
+int main()
+{
+    int first, second;
+    
+    char firstString[MAX_DIGITS], secondString[MAX_DIGITS];
+    
+    scanf("%s %s", firstString, secondString);
+    
+    int firstMin, secondMin;
+    int firstMax, secondMax;
+    
+    firstMin = getMin(firstString);
+    secondMin = getMin(secondString);
+    
+    firstMax = getMax(firstString);
+    secondMax = getMax(secondString);
+    
+    int totalMin = firstMin + secondMin;
+    int totalMax = firstMax + secondMax;
+    
+    printf("%d %d", totalMin, totalMax);
+  	return 0;
+}
+ 
+ 
+int getMax(char *string) {
+    char newNumber[MAX_DIGITS];
+    int i;
+    for (i = 0; i < strlen(string); i++) {
+        if (string[i] == '5') {
+            newNumber[i] = '6';
+        } else {
+            newNumber[i] = string[i];
+        }
+    }
+    
+    newNumber[strlen(string)] = '\0';
+    
+    return atoi(newNumber);
+}
+ 
+int getMin(char *string) {
+    char newNumber[MAX_DIGITS];
+    int i;
+    for (i = 0; i < strlen(string); i++) {
+        if (string[i] == '6') {
+            newNumber[i] = '5';
+        } else {
+            newNumber[i] = string[i];
+        }
+    }
+    
+    newNumber[strlen(string)] = '\0';
+    
+    return atoi(newNumber);
+}

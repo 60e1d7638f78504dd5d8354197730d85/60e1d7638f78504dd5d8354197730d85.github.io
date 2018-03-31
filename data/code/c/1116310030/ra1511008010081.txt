@@ -1,0 +1,73 @@
+#include <stdio.h>
+int abs(int num){
+		if(num<0)
+				return -num;
+		else return num;
+}
+int maxOfAbsDiff(int rc,int cc, int cmin, int cmax, int rmin, int rmax){
+	int a = abs(rc-rmin);
+	int b = abs(rc-rmax);
+	int c = abs(cc-cmin);
+	int d = abs(cc-cmax);
+	int largest = a;
+	if(b>largest)
+			largest = b;
+	if(c>largest)
+			largest = c;
+	if(d>largest)
+			largest = d;
+	return largest;
+}
+int main()
+{
+		int t;
+		scanf("%d",&t);
+		while(t--){
+				int r,c;
+				scanf("%d %d",&r,&c);
+				char arr[r][c];
+				int rmin=1010;
+				int cmin=1010;
+				int rmax=-1;
+				int cmax=-1;
+				int i,j;
+				getchar();
+				for(i=0;i<r;i++){
+						for(j=0;j<c;j++){
+								scanf(" %c",&arr[i][j]);
+								if(arr[i][j]=='*'){
+											if(i>rmax)
+													rmax = i;
+											if(i<rmin)
+													rmin = i;
+											if(j>cmax)
+													cmax = j;
+											if(j<cmin)
+													cmin = j;
+								}		
+						}
+						
+				}
+				int ans=-10000;
+				int cavg = (cmin+cmax)/2;
+				int ravg = (rmin+rmax)/2;
+				int ans1 = (cavg-cmin);
+				int ans2 = (cmax-cavg);
+				int ans3 = (rmax-ravg);
+				int ans4 = (ravg-rmin);
+				if(ans1>ans)
+					ans=ans1;
+				if(ans2>ans)
+					ans=ans2;
+				if(ans3>ans)
+					ans=ans3;
+				if(ans4>ans)
+					ans=ans4;
+				
+				if(ans>=0 && ans<=1000){
+				printf("%d\n",ans+1);
+				}
+				else printf("0\n");
+		}
+		return 0;
+}  

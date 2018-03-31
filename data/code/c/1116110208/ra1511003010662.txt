@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int t;scanf("%d",&t);
+  while(t--){
+  char a[100];scanf("%s",a);
+    int i,l=strlen(a);
+    int b[26]={0};
+  	for(i=0;i<l;i++){
+  		b[a[i]-'a']++;
+    }
+    int max=0,sum=0;
+	    for(i=1;i<26;i++){
+	        if(b[i]>b[max])
+	            max=i;
+	    }
+	    for(i=0;i<26;i++){
+	        if(i!=max){
+	            sum+=b[i];
+	        }
+	    }
+	    if(sum==b[max]){
+	        printf("YES\n");
+	    }else
+	        printf("NO\n");  
+  }
+
+	return 0;
+}

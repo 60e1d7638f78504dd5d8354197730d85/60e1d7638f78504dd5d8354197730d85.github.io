@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+#define MAX(a,b) ((a) > (b) ? a : b)
+int a[100], n;
+
+int main()
+{
+  int i;
+  scanf("%d", &n);
+    for( i = 0; i < n; ++i){
+        scanf("%d", a + i);
+    }
+    int sum = 0, maxa = 0;
+    for(i = 0; i < n; ++i){
+        maxa = MAX(maxa, a[i]);
+    }
+    for(i = 0; i < n; ++i){
+        sum += (maxa - a[i]);
+    }
+    printf("%d",sum);
+	return 0;
+}

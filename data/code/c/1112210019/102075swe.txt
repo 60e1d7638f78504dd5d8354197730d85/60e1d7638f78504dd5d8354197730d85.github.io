@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+  int a[20],b[20],i,j,n,t,*p,*p1;
+  scanf("%d",&t);
+  scanf("%d",&n);
+  for(i=0;i<t;i++)
+  {
+    for(j=0;j<n;j++)
+      scanf("%d",&a[j]);
+    for(j=0;j<n;j++)
+      scanf("%d",&b[j]);
+    p=a;
+    p1=b;
+    encodeArray(p,p1,n);
+  }
+  return 0;
+}
+int encodeInteger(int x,int n)
+{
+  n=n<<(1<<(1<<(1<<1)));
+  x=x|n;
+  return x;
+}
+int encodeArray(int *A,int *B,int n)
+{
+  int i;
+  for(i=0;i<n;i++) 
+  {
+    A[i]=encodeInteger(A[i],B[i]);
+    printf("%d\n",A[i]);
+  }
+  return 0;
+}

@@ -1,0 +1,47 @@
+#include <stdio.h>
+struct Student{
+  char name[30];
+  char department[20];
+  int yearofstudy;
+  float cgpa;
+};
+int main()
+{
+  int n,i,j,a,b,big;
+  scanf("%d",&n);
+  struct Student s[n],temp;
+  for(i=0;i<n;i++){
+    scanf("%s",s[i].name);
+    scanf("%s",s[i].department);
+    scanf("%d",&s[i].yearofstudy);
+    scanf("%f",&s[i].cgpa);}
+  for(i=0;i<n;i++){
+    for(j=i+1;j<n;j++){
+      for(a=0,b=0;s[i].name[a]!='\0'||s[j].name[b]!='\0';a++,b++){
+        if(s[i].name[a]>s[j].name[b]){big=1;break;}
+        else if(s[i].name[a]<s[j].name[b]){big=2;break;}
+        else big=0;}
+      if(big==1){
+        temp=s[i];
+        s[i]=s[j];
+        s[j]=temp;
+      }
+      else if(big==2){
+      }
+      else if(big==0){
+        if(s[i].name[a]!='\0'&&s[j].name[b]=='\0')
+        {temp=s[i];
+         s[j]=s[i];
+         s[j]=temp;
+        }
+      }
+    }
+  }
+  for(i=0;i<n;i++){
+    printf("Name:%s\n",s[i].name);
+    printf("Department:%s\n",s[i].department);
+    printf("Year of study:%d\n",s[i].yearofstudy);
+    printf("CGPA:%.1f\n",s[i].cgpa);
+  }
+	return 0;
+}

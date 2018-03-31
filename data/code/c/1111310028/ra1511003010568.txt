@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdbool.h>
+int sq[2000020]={0};
+int main(){
+    int t,d,n,c,x,m,i,j;
+    long long ans; bool f;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d%d",&n,&d);
+        ans=0; c = 0; m=0; f=1;
+        for(i=0;i<2*n-1;i++){
+            if(f) m++;
+            else m--;
+ 
+            if(m==n) f=0;
+ 
+            x = m*d*d + c;
+            c=x/10;
+            sq[i] = x%10;
+        }
+ 
+        if(c) sq[i++] = c;
+ 
+        for(j=0;j<i;++j){
+            ans = (ans*23 + sq[j])%1000000007;
+        }
+        printf("%lld\n",ans);
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,105 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<string.h>
+#include<limits.h>
+#define fori(a) for(i=0;i<a;i++)
+#define forj(a) for(j=0;j<a;j++)
+#define fork(a,b) for(k=a;k<b;k++)
+#define min(a,b) a<b?a:b
+int readint()
+{
+    int t=0;
+    char c,ch;
+    ch=getchar();
+    if (ch=='-') c=getchar();
+    else c=ch;
+    while(c<'0' || c>'9')
+        c=getchar();
+    while(c>='0' && c<='9')
+    {
+        t=(t<<3)+(t<<1)+c-'0';
+        c=getchar();
+    }
+    if (ch=='-' ) return -t;
+    else return t;
+}
+/*int fun(int i,int x)
+{
+    int a,b;
+    if (i==0)
+    {
+        dp[i][x]=arr[i][x];
+        return dp[i][x];
+    }
+    else
+    {
+        if (x==0)
+        {
+            if (dp[i-1][1]!=0) {a=arr[i][0]+dp[i-1][1];}
+            else a=arr[i][0]+fun(i-1,1);
+            if (dp[i-1][0]!=0)  b=arr[i][0]+dp[i-1][0]-dis[i-1][0];
+            else b=arr[i][0]+fun(i-1,0)-dis[i-1][0];
+            //printf("b=%d\n",arr[i][0]+fun(i-1,0)-dis[i-1][0]);
+            //printf("b=%d\n",b);
+            if (b<0) b=0;
+            //printf("%d %d %d %d\n",i,x,a,b);
+            dp[i][0]=min(a,b);
+            return dp[i][0];
+        }
+        else if (x==1)
+        {
+            if (dp[i-1][0]!=0) a=arr[i][1]+dp[i-1][0];
+            else a=arr[i][1]+fun(i-1,0);
+            if (dp[i-1][1]!=0)  b=arr[i][1]+dp[i-1][1]-dis[i-1][1];
+            else b=arr[i][1]+fun(i-1,1)-dis[i-1][1];
+            if (b<0) b=0;
+            //printf("%d %d %d %d\n",i,x,a,b);
+            dp[i][1]=min(a,b);
+            return dp[i][1];
+        }
+    }
+}*/
+int main()
+{
+    int i,j,k,t,n,m;
+    unsigned long long mint=0;
+    long long int a,b;
+    t=readint();
+    while(t--)
+    {
+        n=readint();
+        m=readint();
+        int arr[n][m],dis[n][m];
+        unsigned long long int dp[n][m];
+        fori(n)
+        {
+            forj(m) {arr[i][j]=readint();if (i==0) dp[i][j]=arr[i][j];}
+ 
+        }
+        fori(n)
+        {
+            forj(m) dis[i][j]=readint();
+        }
+        for (i=1;i<n;i++)
+        {
+            for (j=0;j<m;j++)
+            {
+                mint=INT_MAX;
+                for (k=0;k<m;k++)
+                {
+                    if (k==j) {a=arr[i][j]-dis[i-i][j];if (a<0) a=0;a+=dp[i-1][j];}
+                    else a=arr[i][j]+dp[i-1][k];
+                    if (a<mint) {mint=a;dp[i][j]=a;}
+                }
+            }
+        }
+        mint=dp[n-1][0];
+        fori(m) if(dp[n-1][i]<mint) mint=dp[n-1][i];
+        printf("%llu\n",mint);
+    }
+ 
+ 
+    return 0;
+}
+ 

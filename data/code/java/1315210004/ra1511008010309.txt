@@ -1,0 +1,323 @@
+import java.io.*;
+import java.io.DataInputStream;
+ 
+import java.io.InputStream;
+ 
+  class Test {final private int BUFFER_SIZE = 1 << 17;
+ 
+ 
+ 
+	private DataInputStream din;
+ 
+	private byte[] buffer;
+ 
+	private int bufferPointer, bytesRead;
+ 
+ 
+ 
+	public Test(InputStream in) {
+ 
+		din = new DataInputStream(in);
+ 
+		buffer = new byte[BUFFER_SIZE];
+ 
+		bufferPointer = bytesRead = 0;
+ 
+	}
+ 
+ 
+ 
+	public String nextString() throws Exception {
+ 
+		StringBuffer sb = new StringBuffer("");
+ 
+		byte c = read();
+ 
+		while (c <= ' ')
+ 
+			c = read();
+ 
+		do {
+ 
+			sb.append((char) c);
+ 
+			c = read();
+ 
+		} while (c > ' ');
+ 
+		return sb.toString();
+ 
+	}
+ 
+ 
+ 
+	public char nextChar() throws Exception {
+ 
+		byte c = read();
+ 
+		while (c <= ' ')
+ 
+			c = read();
+ 
+		return (char) c;
+ 
+	}
+ 
+ 
+ 
+	public int nextInt() throws Exception {
+ 
+		int ret = 0;
+ 
+		byte c = read();
+ 
+		while (c <= ' ')
+ 
+			c = read();
+ 
+		boolean neg = c == '-';
+ 
+		if (neg)
+ 
+			c = read();
+ 
+		do {
+ 
+			ret = ret * 10 + c - '0';
+ 
+			c = read();
+ 
+		} while (c > ' ');
+ 
+		if (neg)
+ 
+			return -ret;
+ 
+		return ret;
+ 
+	}
+ 
+ 
+ 
+	public long nextLong() throws Exception {
+ 
+		long ret = 0;
+ 
+		byte c = read();
+ 
+		while (c <= ' ')
+ 
+			c = read();
+ 
+		boolean neg = c == '-';
+ 
+		if (neg)
+ 
+			c = read();
+ 
+		do {
+ 
+			ret = ret * 10 + c - '0';
+ 
+			c = read();
+ 
+		} while (c > ' ');
+ 
+		if (neg)
+ 
+			return -ret;
+ 
+		return ret;
+ 
+	}
+ 
+ 
+ 
+	private void fillBuffer() throws Exception {
+ 
+		bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);
+ 
+		if (bytesRead == -1)
+ 
+			buffer[0] = -1;
+ 
+	}
+ 
+ 
+ 
+	private byte read() throws Exception {
+ 
+		if (bufferPointer == bytesRead)
+ 
+			fillBuffer();
+ 
+		return buffer[bufferPointer++];
+ 
+	}
+ 
+}
+ 
+ 
+ 
+ public class TestClass {
+ 
+ 
+ 
+	static boolean flag = false;
+ 
+	static boolean exit = false;;
+ 
+	static long[] precompute1 = { 0, 9, 90, 738 , 5274, 32490 , 168570 , 712890 , 2345850 , 5611770 , 8877690};
+ 
+	static long[] preCompute = { 1, 9, 72, 504 , 3024 , 15120 , 60480 , 181440 , 362880 , 362880};
+ 
+ 
+ 
+	public static void main(String RGS[]) throws Exception {
+ 
+		Test in = new Test(System.in);
+ 
+		int cases = in.nextInt();
+ 
+		StringBuffer sb = new StringBuffer();
+ 
+ 
+ 
+		for (int i = 0; i < cases; i++) {
+ 
+			
+			String value1 = in.nextString();
+ 
+			long temp = Long.parseLong(value1);
+ 
+			value1 = temp-1 + "";
+ 
+			String value2 = in.nextString();
+ 
+			long count1 = find_answer(sb, value1);
+ 
+			long count2  = find_answer(sb, value2);
+ 
+			sb.append(count2 - count1 + "\n");
+ 
+		}
+ 
+		System.out.println(sb);
+ 
+	}
+ 
+ 
+ 
+	public static long find_answer(StringBuffer sb, String value) throws Exception {
+ 
+		char[] c2 = value.toCharArray();
+ 
+		int n2 = value.length();
+ 
+		long ans2 = 0;
+ 
+		
+		if(value == "0"){
+ 
+			return 0;
+ 
+		}
+ 
+		if (n2 > 10) {
+ 
+			ans2 = precompute1[10];
+ 
+		} else {
+ 
+			ans2 = precompute1[n2 - 1];
+ 
+			for (int i = 0; i < n2; i++) {
+ 
+				if (i == 0) {
+ 
+					ans2 = ans2 + (c2[i] - '1') * preCompute[n2 - 1];
+ 
+				} else {
+ 
+					int l = check(c2, i);
+ 
+					ans2 = ans2 + (c2[i] - '0' - l) * mul(9 - i, n2 - 1 - i);
+ 
+					if (flag) {
+ 
+						flag = false;
+ 
+						exit = true;
+ 
+						break;
+ 
+					}
+ 
+				}
+ 
+			}
+ 
+			check(c2, n2 - 1);
+ 
+			if (!flag && !exit) {
+ 
+				ans2 = ans2 + 1;
+ 
+			} else {
+ 
+				flag = false;
+ 
+			}
+ 
+		}
+ 
+        
+		exit = false;
+ 
+		return ans2;
+ 
+ 
+	}
+ 
+ 
+ 
+	static int check(char[] c, int n) {
+ 
+		int count = 0;
+ 
+		for (int i = 0; i < n; i++) {
+ 
+			if (c[i] < c[n])
+ 
+				count++;
+ 
+			else if (c[i] == c[n]) {
+ 
+				flag = true;
+ 
+			}
+ 
+		}
+ 
+		return count;
+ 
+	}
+ 
+ 
+ 
+	static long mul(int i, int j) {
+ 
+		long count = 1;
+ 
+		for (int k = 0; k < j; k++) {
+ 
+			count = count * i;
+ 
+			i--;
+		}
+ 
+		return count;
+ 
+	}
+ 
+} 

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int T, i, j, N[100], c[100][10000], count;
+    scanf("%d", &T);
+    for(i=0; i<T; ++i)
+    {
+        scanf(" %d", &N[i]);
+        for(j=0; j<N[i]; ++j)
+        {
+            scanf(" %d", &c[i][j]);
+        }
+    }
+    for(i=0; i<T; ++i)
+    {
+       count=1;
+        for(j=0; j<N[i]-1; ++j)
+        {
+            if(c[i][j]>c[i][j+1])
+            {++count;}
+           else
+             c[i][j+1]=c[i][j];
+        }
+        printf("%d\n", count);
+    }
+	return 0;
+}

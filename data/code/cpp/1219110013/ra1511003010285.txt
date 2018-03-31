@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class Fraction
+{
+  public:
+ int numerator;
+ int denominator;
+ public: 
+  Fraction()
+  {
+   numerator=0;
+   denominator=0; 
+  }
+
+
+  Fraction(int num,int den)
+ {
+   numerator=num;
+   denominator=den;
+ }
+
+
+Fraction operator+(Fraction f){
+  Fraction r;
+  r.numerator=(numerator*f.denominator)+(denominator*f.numerator);
+  r.denominator=denominator*f.denominator;
+  return(r);
+}
+
+void printF()
+{
+  cout<<"The addition is="<<numerator<<"/"<<denominator<<endl;
+}
+
+
+};
+
+int main()
+{
+Fraction f1;
+Fraction f2;
+  
+  cin>>f1.numerator;
+  cin>>f1.denominator;
+  cin>>f2.numerator;
+  cin>>f2.denominator;
+  
+Fraction resultAdd=f1+f2;
+
+resultAdd.printF();
+
+
+return 0;
+}

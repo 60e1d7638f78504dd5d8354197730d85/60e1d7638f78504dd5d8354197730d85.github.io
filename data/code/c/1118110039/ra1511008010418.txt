@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<string.h>
+void push(char);
+void pop();
+
+char stack[400];
+unsigned long top=0;
+int main()
+{
+ long long int len,i=0,j=0;
+  long long int test_case;
+  char expr[400];
+  scanf("%lld\n",&test_case);
+  for(j=0;j<test_case;j++)
+  {
+    scanf("%s\n",expr);
+    len=strlen(expr);
+    for(i=0;i<len;i++)
+    {
+      if(expr[i]=='+'||expr[i]=='-'||expr[i]=='*'||expr[i]=='/'||expr[i]=='^')
+          push(expr[i]);
+      else if(expr[i]==')'){
+        pop();}
+      else if(expr[i]=='(')
+         continue;
+      else
+          printf("%c",expr[i]);
+    }printf("\n");
+      
+  }
+  
+  return 0;
+}
+void pop()
+{
+  if(top==-1){
+    return;}
+  else{
+    printf("%c",stack[top]);
+    top=top-1;
+  }
+}
+void push(char x)
+{
+  if(top==400){
+    return;
+  }
+  else
+  {
+    stack[++top]=x;
+  }}
+      
+	

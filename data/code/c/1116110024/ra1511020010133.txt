@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+  int tail=1;
+  char str[200],str2[100];
+  
+  int d=0,i;
+
+  scanf("%s",str);
+  strcpy(str2,str);
+  d=strlen(str);
+  for(i=1;i<d;++i)
+  {
+    int j;
+    for(j=0;j<tail;++j)
+    {
+      if(str[i]==str[j])
+	  break;
+    }
+
+    if(j==tail)
+    {
+      str[tail]=str[i];
+      ++tail;
+    }
+  }
+  str[tail]=0;
+  printf("%s\n",str2);
+  printf("%s",str);
+  return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin >> t;
+    for(int tt = 1; tt <= t; tt++)
+    {
+        int n;
+        cin >> n;
+        int v[n + 1];
+        long long dp[n + 1];
+        for(int i = 1; i <= n; i++)
+            cin >> v[i];
+        
+        for(int i = 1; i <= n; i++)
+        {
+            if(i == 1)
+                dp[i] = v[i];
+            else if(i == 2)
+                dp[i] = max(v[i], v[i - 1]);
+            else
+                dp[i] = max(dp[i - 1], v[i] + dp[i - 2]);
+        }
+        
+        cout << "Case " << tt << ": " << dp[n] << "\n";
+    }
+    return 0;
+}

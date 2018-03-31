@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int a[10],b[10],n,m,*p[10],*q[10],k,i,j;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  { scanf("%d",&a[i]);
+    p[i]=&a[i];
+  }
+  scanf("%d",&m);
+  for(i=0;i<m;i++)
+  {scanf("%d",&b[i]);
+    q[i]=&b[i];
+  }
+  k=0;
+  for(i=0;i<n;i++)
+    for(j=0;j<m;j++)
+    {
+      if(*p[i]==*q[i])
+        k++;
+    }
+  if(k==n)
+    printf("Arrays are not equal");
+  else
+    printf("Arrays are equal");
+
+	return 0;
+}

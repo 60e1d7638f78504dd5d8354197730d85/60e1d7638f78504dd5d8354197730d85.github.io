@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main(){
+long long int t,n,k,i,j,d;
+scanf("%lld",&t);
+    while(t--){j=k=d=0;
+        scanf("%lld",&n);
+        long long int a[n];
+        for(i=0;i<n;i++){
+            scanf("%lld",&a[i]);
+            if(a[i]==2)
+                k++;
+            else if(a[i]==1 || a[i]==0){
+               j=j+n-1-d;
+               d++;
+            }
+        }
+        if(k>0)
+        printf("%lld\n",((n*(n-1))/2)-j-(k*(k-1))/2);
+        else
+        printf("%lld\n",(n*(n-1))/2-j);
+    }
+    return 0;
+}

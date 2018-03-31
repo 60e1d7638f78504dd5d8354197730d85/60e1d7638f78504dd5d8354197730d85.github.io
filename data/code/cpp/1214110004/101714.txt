@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class Complex
+{
+  private:
+  int real;
+  int imag;
+ public:
+  Complex(int r = 0, int i = 0): real(r),imag(i){};
+  
+  void setComplex(void)
+  {
+    cin>> this->real;
+    cin>> this->imag;
+    cout << this->real<<"+"<<this->imag<<"i"<<endl;
+  }
+ 
+  Complex add(const Complex& c)
+  {
+    Complex comp;
+    comp.real =  this->real + c.real;
+    comp.imag = this->imag + c.imag;
+    return comp;
+  }
+  void print(void)
+  {
+    cout<<this->real << "+" << this->imag<<"i";
+  }
+};
+int main()
+{
+Complex a,b,c;
+  a.setComplex();
+  b.setComplex();
+  c = a.add(b);
+  c.print();
+	return 0;
+}

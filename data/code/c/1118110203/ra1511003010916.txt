@@ -1,0 +1,35 @@
+#include <stdio.h>
+struct dis
+{
+ int a,b;
+ float c,d;
+};
+void func(struct dis rec);
+  
+int main()
+{
+    struct dis rec;
+    int x,y;
+    float g,h;
+    scanf("%d%f",&x,&g);
+    scanf("%d%f",&y,&h);
+    rec.a=x;
+    rec.b=y;
+    rec.c=g;
+    rec.d=h;
+   func(rec);
+	return 0;
+}
+void func(struct dis rec)
+{
+ int ans1=(rec.a+rec.b); 
+  float ans2=rec.c+rec.d;
+  // ans2=(ans2)%12;
+  if(ans2>12.00)
+  {
+   ans2=ans2-12;
+    ans1=ans1+1;
+  }
+  printf("%dfeet\n",ans1);
+  printf("%0.1finches",ans2);
+}

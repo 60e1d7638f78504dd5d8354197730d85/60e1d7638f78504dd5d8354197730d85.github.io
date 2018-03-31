@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define NUM 200000014
+#define NUM1 100000007
+void find_soln(long long int n);
+long long int find_pow(int n,long long int r);
+ 
+long long int find_pow(int n,long long int r)
+{
+    long long int t1,t2,t3;
+    if(r == 0)
+    {
+        return 1;
+    }
+    else if(r == 1)
+    {
+        return n;
+    }
+    else if(r%2 == 0)
+    {
+        t1 = find_pow(n,r/2);
+        t2 = t1%NUM;
+        t3 = (t2*t2)%NUM;
+        return t3;
+    }
+    else
+    {
+        t1 = find_pow(n,r/2);
+        t2 = t1%NUM;
+        t3 = (t2*t2*n)%NUM;
+        return t3;
+    }
+}
+ 
+void find_soln(long long int n)
+{
+    long long int p_2,p_3,p_4,p_21;
+    long long int t1;
+    long long int sol1,sol2;
+    p_2 = find_pow(2,n);
+    p_3 = find_pow(3,n);
+    p_4 = find_pow(4,n);
+    t1 = (p_3+1)/2 - p_2;
+    t1 = t1%NUM;
+    if(t1 < 0)
+    {
+        t1 += NUM;
+    }
+    sol1 = t1;
+    t1 = p_4/2 + p_2/2 - p_3 - sol1;
+    t1 = t1%NUM;
+    if(t1 < 0)
+    {
+        t1 += NUM;
+    }
+    sol2 = t1;
+ 
+    sol1 = sol1%NUM1;
+    sol2 = sol2%NUM1;
+    printf("%lld %lld\n",sol1,sol2);
+    return;
+}
+ 
+int main()
+{
+    
+    int i,t;
+    long long int N;
+    scanf("%d",&t);
+    for(i=0; i<t; i++)
+    {
+        scanf("%lld",&N);
+        find_soln(N);
+    }
+    return 0;
+}

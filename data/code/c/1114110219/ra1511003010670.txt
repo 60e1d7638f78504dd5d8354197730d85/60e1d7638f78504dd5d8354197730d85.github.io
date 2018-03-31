@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int t,n[100];
+  scanf("%d",&t);
+ int j,i=0;
+  while(i<t)
+  {scanf("%d",&n[i]);
+i++;
+  }
+ 
+ i=0;
+ while(i<t)
+ {
+if(n[i]%2==0)
+{
+  printf("no\n");
+  i++;
+}
+   else
+   {
+     for(j=3;j<=sqrt(n[i]);j+=2)
+     {
+       if(n[i]%j==0 && j!=n[i])
+       {
+         printf("no\n");
+      i++;
+       }
+     }
+     if(n[i]>sqrt(n[i]))
+     { printf("yes\n");
+     i++;}
+   }
+ }    
+  
+	return 0;
+}

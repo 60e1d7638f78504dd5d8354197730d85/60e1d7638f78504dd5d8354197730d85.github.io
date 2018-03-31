@@ -1,0 +1,23 @@
+#include <stdio.h>
+int count=0;
+int countDigits(int num)
+{
+    if(num>0)
+    {
+      	num=num/10;
+        count=1+countDigits(num);
+    }
+    else
+    {
+        return count;
+    }
+}
+int main()
+{
+    int number;
+    int count=0;
+    scanf("%d",&number);
+    count=countDigits(number);
+    printf("The number of digits in %d is %d\n",number,count);
+    return 0;
+}

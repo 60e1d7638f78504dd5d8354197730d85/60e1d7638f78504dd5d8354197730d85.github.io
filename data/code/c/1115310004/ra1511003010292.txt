@@ -1,0 +1,46 @@
+#include <stdio.h>
+int isthere(int a , int m[] , int i)
+{
+  if(i==-1)
+    return 1;
+  else
+    if(m[i] == a)
+      return 0;
+    else
+      return isthere(a,m,i-1);
+}
+int main()
+{
+  int n,i,j,x,y,k;
+  scanf("%d",&n);
+  int arr[n][n];
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      scanf("%d",&arr[i][j]);
+  int q;
+  scanf("%d",&q);
+  for(k=0;k<q;k++)
+  {
+    scanf("%d%d%d%d",&i,&x,&j,&y);
+    int m[(j-i+1)*(y-x+1)];
+    i--;
+    x--;
+    j--;
+    y--;
+    int z = x;
+    int l = -1 , count = 0;
+    for( ; i<=j ; i++)
+    {
+      for(z = x ; z<=y ; z++)
+      {
+        if(isthere(arr[i][z],m,l)==1)
+        {
+          m[++l] = arr[i][z];
+          count++;
+        }
+      }
+    }
+    printf("%d\n",count);
+  }
+	return 0;
+}

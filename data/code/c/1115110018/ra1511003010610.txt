@@ -1,0 +1,24 @@
+#include <stdio.h>
+int getInvCount(int arr[], int n)
+{
+  int inv_count = 0;
+  int i,j;
+  for (i = 0; i < n - 1; i++)
+    for (j = i+1; j < n; j++)
+      if (arr[i] > arr[j])
+        inv_count++;
+ 
+  return inv_count;
+}
+ 
+/* Driver progra to test above functions */
+int main(int argv, char** args)
+{int i,m;
+ scanf("%d",&m);
+  int arr[10];
+ for(i=0;i<m;i++)
+  scanf("%d",&arr[i]);
+  //int n = sizeof(arr)/sizeof(arr[0]);
+  printf("%d \n", getInvCount(arr, m));
+  return 0;
+}

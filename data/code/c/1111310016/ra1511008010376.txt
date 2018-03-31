@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int n,q,i,arr[50],a,b,ch,h=0;
+  scanf("%d %d",&n,&q);
+  for(i=0;i<n;i++)
+    arr[i]=0;
+  while(q>0)
+  {
+    scanf("%d %d %d",&ch,&a,&b);
+    switch(ch)
+    {
+      case 0:
+        for(i=a;i<=b;i++)
+        {
+          if(arr[i]==1)
+            arr[i]=0;
+          else
+            arr[i]=1;
+        }
+        break;
+      case 1:
+        for(i=a;i<=b;i++)
+        {
+          if(arr[i]==1)
+            h++;
+        }
+        break;
+      default:
+        break;
+    }
+    if(ch==1)
+      printf("%d\n",h);
+    h=0;
+    q--;
+  }
+	return 0;
+}

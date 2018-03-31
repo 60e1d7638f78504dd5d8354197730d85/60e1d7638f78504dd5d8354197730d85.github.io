@@ -1,0 +1,35 @@
+#include <stdio.h>
+struct fraction
+{
+  int numerator;
+  int denominator;
+};
+int check(struct fraction f1,struct fraction f2);
+int main()
+{
+  struct fraction f1;
+  struct fraction f2;
+  scanf("%d%d",&f1.numerator,&f1.denominator);
+  scanf("%d%d",&f2.numerator,&f2.denominator);
+  int n;
+  n=check(f1,f2);
+  if(n==0)
+    printf("%d/%d is equal to %d/%d",f1.numerator,f1.denominator,f2.numerator,f2.denominator);
+  else if(n==1)
+    printf("%d/%d is greater than %d/%d",f1.numerator,f1.denominator,f2.numerator,f2.denominator);
+  else
+    printf("%d/%d is smaller than %d/%d",f1.numerator,f1.denominator,f2.numerator,f2.denominator);
+	return 0;
+}
+int check(struct fraction f1,struct fraction f2)
+{
+  float n1,n2;
+  n1=(float)f1.numerator/(float)f1.denominator;
+  n2=(float)f2.numerator/(float)f2.denominator;
+  if(n1==n2)
+    return 0;
+  else if(n1<n2)
+    return -1;
+  else
+    return 1;
+}

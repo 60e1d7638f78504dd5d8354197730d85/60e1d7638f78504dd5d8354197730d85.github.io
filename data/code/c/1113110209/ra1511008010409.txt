@@ -1,0 +1,61 @@
+#include<stdio.h>  
+#include<string.h>  
+#include<math.h>  
+int main()  
+{  
+    int t,i,j,d,sum,a[1000],b[1000];  
+    while(~scanf("%d%d",&d,&sum))  
+    { 
+        if(d==2)
+        {
+          printf("NO");
+          break;
+        }
+       else
+       {
+        for(i = 1 ; i <= d ; i++)  
+        {  
+            scanf("%d%d",&a[i],&b[i]);  
+            sum -= a[i];  
+        }  
+        if(sum < 0)  
+        {  
+            printf("NO\n");  
+                continue;  
+        }  
+        else if(sum == 0)  
+        {  
+            printf("YES\n");  
+            for(i = 1 ; i<= d ;i++)  
+            {  
+                printf("%d ",a[i]);  
+            }  
+            printf("\n");  
+            continue;  
+        }  
+        for(i = 1 ; i <= d ; i++ )  
+        {  
+            t = sum;  
+            sum-=(b[i]-a[i]);  
+            if(sum <= 0)  
+                break;  
+        }  
+        if(sum > 0)  
+        {  
+            printf("NO\n");  
+            continue;  
+        }  
+        printf("YES\n");  
+        for(j = 1 ; j <= d ; j++)  
+        {  
+            if(j < i )  
+            printf("%d ",b[j]);  
+            else if( j == i)  
+                printf("%d ",a[j] + t);  
+            else  
+                printf("%d ",a[j]);  
+        }   
+    } 
+    }
+    return 0;  
+}  

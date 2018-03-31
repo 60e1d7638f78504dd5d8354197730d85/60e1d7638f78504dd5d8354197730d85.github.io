@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+import java.lang.IllegalArgumentException;
+
+public class TestClass {
+  
+  static int p = 0;
+  static int n = 0;
+  static int r = 0;
+	 public static void main(String[] args) { 
+		
+       try{
+       getData();
+       }
+       catch(IllegalArgumentException e){
+        System.out.println(e);
+        System.exit(0);
+       }
+       
+       System.out.println(p * n * r / 100);
+	}
+  
+  static void getData() throws IllegalArgumentException{
+  Scanner sc = new Scanner(System.in);
+		p = sc.nextInt();
+      n = sc.nextInt();
+      r = sc.nextInt();
+    
+    if(p <= 0 || n <= 0 || r <= 0){
+    throw new IllegalArgumentException();
+    }
+  }
+}

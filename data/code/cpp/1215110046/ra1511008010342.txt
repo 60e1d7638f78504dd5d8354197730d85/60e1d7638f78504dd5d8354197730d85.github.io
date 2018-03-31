@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+template<class bubble>
+void bubbles(bubble a[], int n)
+{
+    int i, j;
+    for(i=0;i<n-1;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(a[i]>a[j])
+            {
+                bubble element;
+                element = a[i];
+                a[i] = a[j];
+                a[j] = element;
+            }
+        }
+    }
+}
+
+int main()
+{
+  int n,a[10];
+  char b[10];
+  cin>>n;
+   for(int i=0;i<n;i++)
+     cin>>a[i];
+  for(int i=0;i<n;i++)
+     cin>>b[i];
+  
+
+    bubbles(a,n);
+    
+    for(int i=0;i<n;i++)
+        cout<<a[i]<<endl;
+    bubbles(b,n);
+
+   
+    for(int j=0;j<n;j++)
+        cout<<b[j];
+    return 0;
+}

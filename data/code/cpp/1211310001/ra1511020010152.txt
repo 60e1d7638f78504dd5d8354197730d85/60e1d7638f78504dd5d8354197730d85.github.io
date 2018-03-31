@@ -1,0 +1,28 @@
+ #include<iostream>
+    #include<vector>
+    using namespace std;
+    int main()
+    {
+        ios_base::sync_with_stdio(false);
+        int t; cin >> t;
+        while(t--)
+        {
+            int n,a;
+            cin >> n;
+            vector<int> ans;
+            vector<int> x(n);
+            cin >> a;
+            ans.push_back(0);
+            for(int i=1;i<n;i++)
+            {
+                cin >> a;
+                ans.insert(ans.end()-a,i);
+            }
+            for(int i=0;i<n;i++) x[ans[i]] = i+1;
+            for(int i=0;i<n;i++) cout << x[i] << " ";
+            cout << '\n';
+            ans.clear();
+            x.clear();
+        }
+        return 0;
+    }  

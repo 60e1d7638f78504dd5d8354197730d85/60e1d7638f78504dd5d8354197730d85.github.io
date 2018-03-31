@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+ 
+
+static void reverse(struct Node** head_ref)
+{
+    struct Node* prev   = NULL;
+    struct Node* current = *head_ref;
+    struct Node* next = NULL;
+    while (current != NULL)
+    {
+        next  = current->next;  
+        current->next = prev;   
+        prev = current;
+        current = next;
+    }
+    *head_ref = prev;
+}
+void push(struct Node** head_ref, int new_data)
+{
+    
+    struct Node* new_node =
+            (struct Node*) malloc(sizeof(struct Node));
+ 
+    
+    new_node->data  = new_data;
+ 
+    
+    new_node->next = (*head_ref);    
+ 
+    (*head_ref)    = new_node;
+}
+
+void printList(struct Node *node)
+{
+    while (node != NULL)
+    {
+        printf("->%d", node->data);
+        node = node->next;
+    }
+}    
+ 
+void swap(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void pairWiseSwap(struct Node *head)
+{
+    struct Node *temp = head;
+ 
+    /* Traverse further only if there are at-least two nodes left */
+    while (temp != NULL && temp->next != NULL)
+    {
+        /* Swap data of node with its next node's data */
+        swap(&temp->data, &temp->next->data);
+ 
+        /* Move temp by 2 for the next pair */
+        temp = temp->next->next;
+    }
+}
+
+int main()
+{
+    int N1,i,k;
+  
+    struct Node* head = NULL;
+  scanf("%d",&N1);
+  int arr[N1];
+  for(i=0;i<N1;i++)
+    scanf("%d",&arr[i]);
+  for(i=N1-1;i>=0;i--)
+    push(&head,arr[i]);
+     
+     printf("Linked list before swap\n");
+     
+     reverse(&head);
+     
+	 printList(head);
+     pairWiseSwap(head);
+ 
+    printf("\nLinked list after swap\n");
+    printList(head);
+  
+    
+ 
+     return 0;
+}

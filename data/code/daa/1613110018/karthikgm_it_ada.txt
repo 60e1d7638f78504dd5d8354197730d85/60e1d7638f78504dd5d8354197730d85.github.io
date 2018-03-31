@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() 
+{
+	vector <int> v;
+	int n, q,x;
+	scanf("%d %d\n",&n,&q);
+	for(int i=0;i<n;i++)
+	{
+	cin>>x;
+	v.push_back(x);
+	}
+	
+	sort(v.begin(),v.end());
+	
+	for(int i=0;i<q;i++)
+	{
+		scanf("%d",&x);
+		int k=binary_search(v.begin(),v.end(),x);
+		if(k)
+		printf("YES\n");
+		else
+		printf("NO\n");
+	}
+	return 0;
+}

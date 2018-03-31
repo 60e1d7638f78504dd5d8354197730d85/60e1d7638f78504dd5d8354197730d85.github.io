@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main()
+{
+    int i, j, start, end;
+    int isPrime;
+
+    /* Input upper and lower limit to print prime */
+    scanf("%d", &start);
+    scanf("%d", &end);
+
+    // Make sure that lowerlimit does not go below 2
+    // Since 2 is first prime number
+    if(start < 2) 
+        start = 2;
+
+    /* Find all Prime numbers between 1 to n */
+    for(i=start; i<=end; i++)
+    {
+        /* Assume that the current number is Prime */
+        isPrime = 1; 
+
+        /* Check if the current number i is prime or not */
+        for(j=2; j<=i/2; j++)
+        {
+            if(i%j==0)
+            {
+                isPrime = 0;
+                break;
+            }
+        }
+        if(isPrime==1)
+        {
+            printf("%d\n", i);
+        }
+    }
+
+    return 0;
+}

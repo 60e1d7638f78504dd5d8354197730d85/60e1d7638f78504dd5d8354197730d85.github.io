@@ -1,0 +1,40 @@
+ #include<stdio.h>
+    int main()
+    {
+        int t,n,k,q,c=0,l,r,i,j=0,o,c1,c2;
+        char a[100001];
+        scanf("%d",&t);
+        while(t--)
+        {
+            c=0;
+            scanf("%d %d %d",&n,&k,&q);
+            scanf("%s",a);
+            while(q--)
+            {
+                c1=0;
+                c2=0;
+                j=0;
+               scanf("%d %d",&l,&r);
+               c=(r-l+1)*(r-l+2)/2;
+             for(o=l-1;o<r;o++)
+             {
+                for(i=r;i>k+o;i--)
+                {
+                    c1=0;
+                    c2=0;
+                  for(j=o;j<i;j++)
+                  {
+                    if(a[j]=='0')
+                        c1++;
+                    else
+                        c2++;
+                  }
+                  if(c1>k||c2>k)
+                    c--;
+                }
+             }
+             printf("%d\n",c);
+            }
+        }
+      return 0;
+    }  

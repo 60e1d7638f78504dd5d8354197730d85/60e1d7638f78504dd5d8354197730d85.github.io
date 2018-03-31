@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+ 
+void patTOkmp(char *pat, int M, int *lps){ //funciÃ³n que calcula la clave KMP de un patron
+    int len = 0;  
+    int i;
+ 
+    lps[0] = 0; 
+    i = 1;
+    while (i < M){
+       if (pat[i] == pat[len]){
+         len++;
+         lps[i] = len;
+         i++;
+       }else{
+        
+         if (len != 0){
+           len = lps[len-1];
+ 
+         }else{
+           lps[i] = 0;
+           i++;
+         }
+       }
+    }
+}
+int busqKMP(char *pat, char *txt){
+    int M = strlen(pat);
+    int N = strlen(txt);
+    int *lps = (int *)malloc(sizeof(int)*M); //guarda los prefijos y sufijos mÃ¡s largos
+    int j  = 0;
+    int k=0,best=0,aux=0;
+    patTOkmp(pat, M, lps);
+ 
+    int i = 0;
+    while (i < N) {
+        if (pat[j] == txt[i]){
+          j++;
+          i++;best++;
+        }
+       if(k<best){
+       	k=best;
+       	aux=i-j;
+       }
+        if (j == M){
+        break;
+        }
+ 
+      
+      else if (i < N && pat[j] != txt[i]){// se rompe el patrÃ³n luego de varias iteraciones
+        best=0;
+        if (j != 0)
+         j = lps[j-1];
+        else
+         i = i+1;
+      }
+    }
+    return aux;
+}
+ 
+ 
+ 
+int main(){
+   int n,i;
+   scanf("%d",&n);
+   char a[1000000];
+   char b[2000000];
+   scanf("%s",a);
+   
+   scanf("%s",b);int la=strlen(b);
+   for(i=la;i<(2*la-1);i++) {
+   	b[i]=b[i-la];
+  }
+  printf("%d",busqKMP(a, b));
+  return 0;
+}  

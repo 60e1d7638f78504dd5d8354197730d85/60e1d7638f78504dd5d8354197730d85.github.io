@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	char c[5][100];
+  	char s[100];
+  	for(int i=0;i<5;i++) {
+      cin>>c[i];
+    }
+  	for(int i=0;i<5;i++) {
+      for(int j=0;j<5-i-1;j++) {
+        if(strcmp(c[j],c[j+1])>0) {
+          strcpy(s,c[j+1]);
+          strcpy(c[j+1],c[j]);
+          strcpy(c[j],s);
+        }
+      }
+    }
+  	//cout<<"Strings (Names) in alphabetical order :\n";
+  	for(int i=0;i<5;i++) {
+      cout<<c[i]<<endl;
+    }
+	return 0;
+}

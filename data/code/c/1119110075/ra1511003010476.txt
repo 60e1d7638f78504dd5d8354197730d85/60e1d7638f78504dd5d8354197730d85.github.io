@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+    char s[20];
+    long long int n, pages, k, chk, a;
+    //while(1)
+    //{
+            scanf("%s", s);
+            
+            if ((strcmp(s, "#"))==0) return 0;
+            
+            n = atoll (s); 
+            
+            pages = 0;
+            k = 9;
+            a = chk = 1;
+            
+            while (n>0)
+            { 
+                  if ((n-k*a)<0)
+                  {
+                              if ((n%a)!=0)
+                              {
+                                           printf("Impossible\n"); 
+                                           chk = 0; 
+                                           break;
+                              }
+                              else
+                              pages += n/a;
+                              n = 0;
+                  }
+                  
+                  else
+                  
+                  {
+                              pages += k;
+                              n = n - k*a;
+                              a++;
+                              k *= 10;
+                  }
+            }
+            
+            if (chk) printf("%lld\n", pages); 
+    //}
+  return 0;
+}

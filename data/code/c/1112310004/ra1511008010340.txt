@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define M 1000000007
+long long int twopow(int n)
+{
+
+	if(n==1)
+		return 2;
+	if(n==0)
+		return 1;
+	long long int a=twopow(n/2);
+	a=a*a;
+	a=a%M;
+	if(!(n&1))
+	return a;
+	else
+	return (a<<1)%M;
+}
+int main()
+{
+	int t,n,a;
+	long long int pow,ans;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		pow=twopow(n/2);
+
+		if(n%2==0)
+			ans=(2*(2*pow-1))-pow;
+		else
+			ans=(2*(2*pow-1));
+		ans=ans%M;
+		printf("%lld\n",ans);
+		
+	}
+	
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,n,d,remainder=0,gcd=0,lcm=0;
+  	scanf("%d%d",&a,&b);
+  	if(a>b)
+    {
+      n=a;
+      d=b;
+    }
+  	else
+    {
+      n=b;
+      d=a;
+    }
+  	remainder = n%d;
+    while (remainder != 0)
+    {
+        n=d;
+        d=remainder;
+        remainder=n%d;
+    }
+    gcd = d;
+    lcm = a*b / gcd;
+  	printf("GCD=%d\n",gcd);
+  	printf("LCM=%d\n",lcm);
+	return 0;
+}

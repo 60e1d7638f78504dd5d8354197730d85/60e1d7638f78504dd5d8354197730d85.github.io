@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+struct node {
+  int data;
+  struct node* next;
+}*head;
+int main()
+{
+	int n;
+  	cin>>n;
+  	struct node *temp;
+  	for(int i=0;i<n;i++) {
+      temp = (struct node*)malloc(sizeof(struct node));
+      cin>>temp->data;
+      temp->next = head;
+      head = temp;
+    }
+  	int k;
+  	cin>>k;
+  	int flag;
+  	struct node *p=head;
+    if(p==NULL)
+    flag=0;
+  	while(p->next!=NULL) {
+      if(p->data==k) {
+      	flag=1;
+        break;
+      }
+      p=p->next;
+    }
+  	(flag)?cout<<"Yes":cout<<"No";
+	return 0;
+}

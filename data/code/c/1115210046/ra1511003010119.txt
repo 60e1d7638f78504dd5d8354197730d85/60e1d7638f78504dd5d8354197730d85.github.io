@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int a[70][70];
+    int i, j, k, t, c,n,d,max;
+    int **b;
+    b=(int**)malloc(70*sizeof(int*));
+ 
+    for(i=0;i<70;i++)
+        b[i]=(int*)malloc(4900*sizeof(int));
+ 
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+                scanf("%d",&a[i][j]);
+        }
+        d=0;
+        for(k=0;k<n;k++)
+        {
+            d=0;
+          for(i=0;i<n;i++)
+          {
+              b[k][d]=a[k][i];
+              d++;
+            for(j=i+1;j<n;j++)
+            {
+                b[k][d]=a[k][j]^b[k][d-1];
+                d++;
+            }
+          }
+        }
+ 
+        max=0;
+        for(k=0;k<d;k++)
+        {
+          for(i=0;i<n;i++)
+          {
+              c=b[i][k];
+              if(max<c)
+                max=c;
+ 
+            for(j=i+1;j<n;j++)
+            {
+                c=b[j][k]^c;
+                if(c>max)
+                    max=c;
+            }
+          }
+        }
+ 
+        printf("%d\n",max);
+    }
+  return 0;
+} 

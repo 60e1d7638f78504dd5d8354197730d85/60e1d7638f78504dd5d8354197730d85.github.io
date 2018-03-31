@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+//import java.math.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int x = sc.nextInt();
+       
+       while(x-- > 0)
+       {
+         int n = sc.nextInt();
+         int a[] = new int[n];
+         for(int i=0; i<n; i++)
+           a[i] = sc.nextInt();
+         
+         int c = 0;
+         HashSet<Integer> set = new HashSet<Integer>();
+         
+         for(int i=0; i<n; i++)
+         {
+           int t = Math.abs(a[i]);
+           if(!set.contains(t))
+           {
+             set.add(t);
+             c++;
+           }
+         }
+         System.out.println(c);
+       }
+	}
+}

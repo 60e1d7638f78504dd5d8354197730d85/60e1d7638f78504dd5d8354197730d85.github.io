@@ -1,0 +1,122 @@
+#include <iostream>  
+#include <cstdio>  
+#include <cstring>  
+#include <algorithm>  
+#include <cmath>  
+#include <string>  
+#include <map>  
+#include <stack>  
+#include <vector>  
+#include <set>  
+#include <queue>  
+#pragma comment (linker,"/STACK:102400000,102400000")  
+#define maxn 1005  
+#define MAXN 2005  
+#define mod 1000000009  
+#define INF 0x3f3f3f3f  
+#define pi acos(-1.0)  
+#define eps 1e-6  
+typedef long long ll;  
+using namespace std;  
+  
+int N;  
+int nextval[1000010];  
+char str[1000010],pstr[1000010];  
+  
+int get_nextval()  
+{  
+    int i=0;  
+    int len=strlen(str);  
+    int j=-1;  
+    nextval[i]=-1;  
+    while (i<len)  
+    {  
+        if (j==-1||str[i]==str[j])  
+        {  
+            i++;  
+            j++;  
+            nextval[i]=j;  
+        }  
+        else  
+            j=nextval[j];  
+    }  
+//    for (int i=0;i<=len;i++)  
+//        printf("%d ",nextval[i]);  
+//    printf("\n");  
+//    printf("%d\n",nextval[len]);  
+    return nextval[len];  
+}  
+  
+int kmp_search()  
+{  
+    int ans=0;  
+    int plen=strlen(pstr);  
+    int slen=strlen(str);  
+    int i=0;  
+    int j=0;  
+    while (i<slen)  
+    {  
+        if (j==-1||pstr[j]==str[i])  
+        {  
+            i++;  
+            j++;  
+            if (j==plen)  
+            {  
+                ans++;  
+                j=nextval[j];  
+            }  
+        }  
+        else  
+            j=nextval[j];  
+    }  
+    return ans;  
+}  
+  
+int main()  
+{  
+    while (~scanf("%s",str))  
+    {  
+        int len=strlen(str);  
+        int ma=get_nextval();  
+        for (int i=0;i<ma;i++)  
+            pstr[i]=str[i];  
+        pstr[ma]='\0';  
+        if (ma==0)  
+        {  
+            printf("Just a legend\n");  
+            continue;  
+        }  
+//        printf("ma=%d\n",ma);  
+        if (ma>=2&&ma==len-1)  
+        {  
+            for (int i=0;i<len-2;i++)  
+                printf("%c",str[i]);  
+            printf("\n");  
+            continue;  
+        }  
+        int j=ma;  
+        int ok=0;  
+        while (j!=-1)  
+        {  
+            int ans=kmp_search();  
+//            printf("ans=%d\n",ans);  
+            if (ans>2)  
+            {  
+                for (int t=0;t<j;t++)  
+                    printf("%c",str[t]);  
+                printf("\n");  
+                ok=1;  
+                break;  
+            }  
+//            printf("j=%d\n",j);  
+            j=nextval[j];  
+            if (j==0)  
+                break;  
+            pstr[j]='\0';  
+        }  
+//        printf("ok=%d\n",ok);  
+        if (!ok)  
+            printf("Just a legend\n");  
+    }  
+    return 0;  
+} 

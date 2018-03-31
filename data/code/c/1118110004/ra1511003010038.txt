@@ -1,0 +1,65 @@
+#include <stdio.h>
+struct Date
+{ int date,month,year;
+};
+int main()
+{ struct Date D;
+  scanf("%d",&D.date);
+  scanf("%d",&D.month);
+  scanf("%d",&D.year);
+  if (D.month>12)
+     printf("Invalid Month");
+  else if (D.year>=3000)
+     printf("Invalid Year");
+  else
+  { switch(D.month)
+    { case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12: if (D.date>31)
+                  printf("Invalid Day");
+        		 else
+                 { D.date=D.date+1;
+                   if (D.date>31)
+                      { D.date=1;
+                        D.month=D.month+1;
+                        if (D.month>12)
+                           { D.month=1;
+                             D.year=D.year+1;
+                           }
+                       }
+                  printf("New Date=%d %d %d",D.date,D.month,D.year);
+                  }
+   			   	break;
+    case 4:
+    case 6:
+    case 9:
+    case 11: if (D.date>30)
+       			printf("Invalid Day");
+   			 else
+                { D.date=D.date+1;
+                  if (D.date>30)
+                     { D.date=1;
+                       D.month=D.month+1;
+                     }
+                  printf("New Date=%d %d %d",D.date,D.month,D.year);
+                }
+    		 break;	
+    case 2: if (D.date>28)
+               printf("Invalid Day");
+     		else
+               { D.date=D.date+1;
+                 if (D.date>28)
+                    { D.date=1;
+                      D.month=3;
+                    }
+                 printf("New Date=%d %d %d",D.date,D.month,D.year);
+               } 
+    	  	 break;
+  }
+  }
+	return 0;
+}

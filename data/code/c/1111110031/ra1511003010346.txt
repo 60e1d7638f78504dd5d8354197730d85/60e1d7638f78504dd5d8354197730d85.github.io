@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<string.h>
+void octal(int a){
+  char c[10];
+  int i=0;
+while(a>0){
+c[i]=a%8;
+  a=a/8;
+  i++;
+}
+  int j;
+  printf("Octal value:");
+  for(j=strlen(c)-2;j>=0;j--){
+  printf("%d",c[j]);
+  }
+  printf("\n");
+}
+void hexa(int a){
+  char c[10];
+  int i=1;
+  int j=0;
+  int t;
+while(a!=0) {
+		t =a%16;
+		if(t<10){
+		t=t+48;} 
+  		else{
+		t = t+55;}
+		c[i++]= t;
+		a=a/16;
+	}
+	printf("Hexadecimal value:");
+	for (j = i -1 ;j> 0;j--)
+	      printf("%c",tolower(c[j]));
+}
+int main()
+{
+ int n;
+  scanf("%d",&n);
+  printf("Decimal value:%d\n",n);
+  octal(n);
+  hexa(n);
+	return 0;
+}

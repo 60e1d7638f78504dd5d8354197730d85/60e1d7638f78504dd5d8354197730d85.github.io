@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+ int t;
+  scanf("%d", &t);
+  while(t--)
+  {
+    int l, i, j;
+    scanf("%d", &l);
+    char s[l], temp;
+    
+    scanf("%s", s);
+    for(i=0; i<l; i++)
+    {
+      for(j=0; j<l-i-1; j++)
+      {
+        if(s[j]>s[j+1])
+        {
+          //printf("%d %d %c ", i, j, s[j]);
+          temp = s[j];
+          //printf("%c ", temp);
+          s[j] = s[j+1];
+          s[j+1] = temp;
+          //printf("%s\n", s);
+        }
+      }
+    }
+    printf("%s\n", s);
+  }
+    
+	return 0;
+}

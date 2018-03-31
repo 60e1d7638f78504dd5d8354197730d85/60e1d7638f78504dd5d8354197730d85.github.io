@@ -1,0 +1,38 @@
+#include <stdio.h>
+struct num
+{
+ int n; 
+};
+int main()
+{
+  struct num s1;
+int i,j,arr[20],arr1[20];
+  int k=0;
+  scanf("%d",&s1.n);
+  for(i=0;i<s1.n;i++)
+  {
+   scanf("%d",&arr[i]);
+    if((arr[i])%2==0)
+    {
+     arr1[k]=arr[i];
+      k++;
+    }
+  }
+  for(i=0;i<k-1;i++)
+  {
+   for(j=0;j<k-1;j++)
+   {
+    if(arr1[j]>arr1[j+1])
+    {
+     int temp=arr1[j];
+      arr1[j]=arr1[j+1];
+      arr1[j+1]=temp;
+    }
+   }
+  }
+  for(i=0;i<k;i++)
+  {
+   printf("%d ",arr1[i]); 
+  }
+	return 0;
+}

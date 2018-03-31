@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int n,i;
+  float basic[10],hra,da,gross=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%f",&basic[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    if(basic[i]<1500)
+    {
+      hra = 0.1*basic[i];
+      da = 0.9*basic[i];
+      gross = basic[i]+hra+da;
+      printf("%.0f\n",gross);
+    }
+    if(basic[i]>=1500)
+    {
+      hra = 500;
+      da = 0.98*basic[i];
+      gross = basic[i]+hra+da;
+      printf("%.0f\n",gross);
+    }
+  }  
+  return 0;
+}

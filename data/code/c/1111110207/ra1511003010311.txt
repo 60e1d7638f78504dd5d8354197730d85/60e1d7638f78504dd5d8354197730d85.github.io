@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  long int n,n1[10],n2[10],r,i=0,j=0,x;
+  scanf("%li",&n);
+  while(n!=0)
+  {
+    r=n%10;
+    n=n/10;
+    if(r%2==0)
+    {
+      *(n1+i)=r;
+      i++;
+    }
+    else
+    {
+      *(n2+j)=r;
+      j++;
+    }
+  }
+  for(x=j-1;x>=0;x--)
+    printf("%li",*(n2+x));
+  printf(" ");
+  for(x=i-1;x>=0;x--)
+    printf("%li",*(n1+x));
+
+	return 0;
+}

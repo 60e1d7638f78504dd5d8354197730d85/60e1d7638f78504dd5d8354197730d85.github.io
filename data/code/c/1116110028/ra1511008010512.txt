@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+      char str[2000] , pat[2000] ;
+      int i=0,j,k=0 ;
+      scanf(" %[^\n]s", str);
+
+      scanf(" %[^\n]s", pat);
+
+
+      while(str[i]!='\0')
+      {
+        if(str[i]==pat[0])
+        {
+          j=1;
+          while(pat[j]!='\0' && str[j+i]!='\0' && pat[j]== str[j+i]) 
+          {
+          j++;
+          k = 1;
+          }
+          if(pat[j]=='\0')
+          {
+            printf("%s is found at %d" , pat, i);
+          }
+        }
+        i++;
+        
+      }
+  return 0;
+}

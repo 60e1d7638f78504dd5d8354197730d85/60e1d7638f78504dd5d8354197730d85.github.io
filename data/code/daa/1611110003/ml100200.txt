@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Student {
+public:
+  string name;
+  int marks;
+  void set() {
+  	cin >> name >> marks;
+  }
+  void print() {
+  	cout << name << " " << marks << endl;
+  }
+  int getMarks() {
+  	return marks;
+  }
+};
+int main()
+{
+	Student pupils[10];
+  	for (int i = 0; i < 10; i++) pupils[i].set();
+  	for (int i = 0; i < 10; i++){
+		for (int j = i; j < 10; j++){
+    		if (pupils[i].marks < pupils[j].marks) {
+            	Student temp = pupils[i];
+              	pupils[i]    = pupils[j];
+              	pupils[j]    = temp;
+            }
+        }    
+    }
+  	cout << "Ordered List\n";
+  	for (int i = 0; i < 10; i++) pupils[i].print();
+  	cout << "Second Highest mark is " << pupils[1].getMarks();
+	return 0;
+}

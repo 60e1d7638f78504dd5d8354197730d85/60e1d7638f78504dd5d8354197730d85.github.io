@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+
+{
+  int nod(int);
+  int primenumber(int );
+  int s[50],l[50],t,i,su=0,test,p;
+  scanf("%d",&test);
+ for(p=0;p<test;p++)
+ scanf("%d%d",&s[p],&l[p]);
+ for(p=0;p<test;p++)
+ {su=0;
+  for(i=s[p];i<=l[p];i++)
+  {
+    t=nod(i);
+ 
+    su=su+primenumber(t);
+  }
+  printf("%d\n",su);
+  
+ }
+	return 0;
+}
+int primenumber(int a)
+{int i,temp=0;
+for(i=1;i<a;i++)
+{if(a%i==0)
+ temp++;
+ else
+ {}
+}
+ if(temp==1)
+   return 1;
+ else 
+   return 0;
+
+}
+int nod(int l)
+{int i,temp=0;
+for(i=1;i<=l;i++)
+{if(l%i==0)
+  temp++;
+ else
+ {}
+}
+ 
+ 
+ return temp;
+
+}

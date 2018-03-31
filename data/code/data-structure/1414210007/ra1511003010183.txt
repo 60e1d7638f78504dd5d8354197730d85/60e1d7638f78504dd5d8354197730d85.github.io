@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include<string.h>
+
+int compute(int a[],int n)
+{
+    int i,j,x,y;
+    for(i=1;i<n;i++)
+    {
+        if(a[i]<a[i-1])
+        break;
+    }
+    if(i==n)
+    return -1;
+    for(j=0;j<i;j++)
+    {
+        if(a[j]>a[i])
+        {
+            y=j;
+            break;
+        }
+    }
+    x=a[y];
+    a[y]=a[i];
+    a[i]=x;
+    y=0; j=i-1;
+    while(y<j)
+    {
+        x=a[y];
+        a[y]=a[j];
+        a[j]=x;
+        y++; j--;
+    }
+    return (a[0]%2==0)? 1:0;
+}
+
+int main() {
+	//code
+	long long int t,n,i,j,x,y;
+	scanf("%lld",&t);
+	while(t--)
+	{
+	    scanf("%lld",&n);
+	    x=n; y=0;
+	    int a[100];
+	    while(x)
+	    {
+	        a[y++]=x%10;
+	        x/=10;
+	    }
+	    n=y; x=0;
+	    while(x==0)
+	    {
+	        x=compute(a,n);
+	    }
+	    if(x==-1)
+	    printf("-1\n");
+	    else
+	    {
+	        for(i=n-1;i>=0;i--)
+	        printf("%d",a[i]);
+	        printf("\n");
+	    }
+	}
+	return 0;
+}

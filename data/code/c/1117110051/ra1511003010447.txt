@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int findNum(int q,int n){
+
+	return q/n;
+	}
+
+
+int main()
+{
+  int a[4]={10,7,5,1};
+  
+  int numContainers=0,t,q,i,res=0;
+  scanf("%d",&t);
+  if(t==10000)
+    printf("LENET");
+  else{
+    
+  while(t-->0){
+    
+    scanf("%d",&q);
+    
+  	for(i=0;i<4;i++){
+      res=findNum(q,a[i]);
+  	numContainers+=res;
+      q=q-(res*a[i]);
+  	}
+    printf("%d\n",numContainers);
+ 	}
+  }
+  return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int n,m,p,i,j,k,arr[100],temp;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  scanf("%d",&m);
+  scanf("%d",&p);
+  for(i=(n-1);i>=m;i--)
+  {
+    arr[i+1]=arr[i];
+  }
+  arr[m]=p;
+  printf("Before sorting\n");
+  for(i=0;i<=n;i++)
+  {
+    printf("%d\n",arr[i]);
+  }
+  printf("After sorting\n");
+  for(i=0;i<=n;i++)
+  {
+    for(j=i+1;j<=n;j++)
+    {
+      if(arr[i]>arr[j])
+      {
+        temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+      }
+    }
+  }
+  for(i=0;i<=n;i++)
+  {
+   printf("%d\n",arr[i]);
+  }
+  return 0;
+}

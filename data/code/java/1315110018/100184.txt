@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+    public static void main(String[] args) {
+         Insert obj = new Insert();
+         obj.arrInsert();
+         obj.displayArray();
+    }
+}
+class Insert{
+  int a[], n;
+  public void arrInsert() {
+  int pos, x;
+  Scanner s = new Scanner(System.in);
+  n = s.nextInt();
+  a = new int[n+1];
+  for(int i = 0; i < n; i++)
+  {
+     a[i] = s.nextInt();
+  }
+  x = s.nextInt();
+  pos = s.nextInt();
+  for(int i = (n-1); i >= (pos); i--)
+  {
+      a[i+1] = a[i];
+  }
+  a[pos] = x;
+ }
+
+ public void displayArray(){
+    for(int i = 0; i < n; i++)
+    {
+       System.out.print(a[i]+" ");
+    }
+    System.out.print(a[n]);
+ }
+}

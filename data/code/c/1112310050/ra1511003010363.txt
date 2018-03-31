@@ -1,0 +1,51 @@
+#include<stdio.h>
+ 
+#include<malloc.h>
+int main()
+{
+	long long n,max1=0,max=0,i,l,j,opr=0,d,c;
+	scanf("%lld",&n);
+    char *a=(char*)malloc((n+2)*sizeof(char));
+	char *b=(char*)malloc((n+2)*sizeof(char));
+    scanf("%s",a);
+	scanf("%s",b);
+    for(i=0;i<n;i++)
+    {
+    	if(b[i]==a[0])
+    	{
+    		  d=i+max;
+    		if(d>=n)
+    		d=d-n;
+    		c=max;
+    		if(a[c]==b[d])
+    		{
+    		
+    	
+    		     max1=0;
+    		     for(j=i,l=0;l<n;)
+    		   {
+    		     	if(a[l]==b[j])
+    		    	{
+    		    		l++;j++;max1++;
+    		    	}
+    		    	else
+    		    	break;
+    		    	if(j==n)
+    		    	j=0;
+    	       }
+    		   if(max1>max)
+    		   {
+    		    	max=max1;
+    		    	opr=i;
+    		   }
+    		
+    	    
+    	    }
+    	}
+    }
+    printf("%lld\n",opr);
+    free(a);free(b);
+	return 0;	
+ 
+}
+ 

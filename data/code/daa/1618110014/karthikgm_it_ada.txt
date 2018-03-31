@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int match(const char *s, const char *p, int overlap)
+{
+        int c = 0, l = strlen(p);
+ 
+        while (*s != '\0') {
+                if (strncmp(s++, p, l)) continue;
+                if (!overlap) s += l - 1;
+                c++;
+        }
+        return c;
+}
+ 
+int main()
+{
+        char str[10],sub[10];
+  		scanf("%s",sub); 
+        scanf("%s",str);
+        printf("%d", match(str, sub, 0));
+       
+        return 0;
+}

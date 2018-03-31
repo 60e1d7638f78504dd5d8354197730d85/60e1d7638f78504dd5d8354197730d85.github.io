@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+struct Book{
+	char book[100],author[100],sub[100];
+  	long int bookid;
+};
+void print(struct Book *b){
+	printf("Book title : %s\n",b->book);
+  	printf("Book author : %s\n",b->author);
+  	printf("Book subject : %s\n",b->sub);
+  	printf("Book book_id : %ld\n",b->bookid);
+}
+
+int main()
+{	
+  	struct Book b1;
+  	struct Book b2;
+  	strcpy(b1.book,"C Programming");
+  	strcpy(b1.author,"Nuha Ali");
+  	strcpy(b1.sub,"C Programming Tutorial");
+  	b1.bookid = 6495407;
+	
+  	strcpy(b2.book,"Telecom Billing");
+  	strcpy(b2.author,"Zara Ali");
+  	strcpy(b2.sub,"Telecom Billing Tutorial");
+  	b2.bookid = 6495700;
+  
+  	print(&b1);
+  	print(&b2);
+	return 0;
+}

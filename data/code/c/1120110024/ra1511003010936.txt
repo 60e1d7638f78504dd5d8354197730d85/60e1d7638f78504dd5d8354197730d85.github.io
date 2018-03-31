@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+void delChar(const char *, char *, char);  
+   
+int main ()
+{
+    char str[100], str2[100];
+  char ch;
+    fgets(str,100,stdin);
+  scanf("%c",&ch);
+          
+    delChar(str, str2, ch);
+      
+    printf("%s\n", str2);
+   
+    return 0;
+}
+ 
+ 
+void delChar(const char *src, char *dst, char c)
+{    
+    while (*(src) != '\0') {
+        if (*(src) != c && *(src)!=toupper(c) && *(src)!=tolower(c))
+            *(dst++) = *(src);    
+        src++;
+    }
+    *(dst) = '\0';
+}

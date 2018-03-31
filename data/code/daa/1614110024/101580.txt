@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+int cmp(const void *a,const void *b)
+{
+	return *(int*)a-*(int*)b;	
+}
+int main()
+{
+    int n,k,arr[10005],i,c=0;
+    scanf("%d %d",&n,&k);
+    for(i=0;i<n;i++)
+    {
+    	scanf("%d",&arr[i]);
+    	
+    }
+    qsort(arr,n,sizeof(int),cmp);
+    for(i=0;i<n;i++)
+    {
+    	if(k-arr[i] < 0)
+    		break;
+    	else
+    	{
+    		c++;
+    		k=k-arr[i];
+    	}	
+    	
+    }
+    printf("%d",c);
+    return 0;
+}

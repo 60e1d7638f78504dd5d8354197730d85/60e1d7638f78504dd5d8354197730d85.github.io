@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int d,m,y,f=0;
+  scanf("%d/%d/%d",&d,&m,&y);
+  if(y!=0 && (m>=1 && m<=12)){
+    if(d<=30 && d>=0 && m!=2){
+      f=1;
+    }
+    else if((d==31) && (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12)){
+      f=1;
+    }else if(m==2){
+      if( (d==29) && ( (y%400==0) || ( (y%100!=0) && (y%4==0) ) ) ){
+        f=1;
+      }else if(d>=1 && d<=28){
+        f=1;
+      }
+    }
+    
+    if(f){
+      printf("S");
+      return 0;
+    }
+  }
+	printf("N");
+	return 0;
+}

@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int x,k,res=0;;
+  	scanf("%d %d",&x,&k);
+  	int i;
+  	int f=1,temp=x;
+  	while(temp){f*=10;temp/=10;} f/=10;
+   
+  for(i=0;i<k;i++)
+  {
+  	if(floor(x/f)!=9)
+    {
+    	res+=9*f;
+    }
+    f/=10;
+  }
+  res+=x%(f*10);
+  printf("%d",res);
+	return 0;
+}

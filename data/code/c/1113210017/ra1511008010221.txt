@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+
+void checkPrime(int num) {
+    int i;
+    bool primeFlag = true;
+    for (i = 2; i < num / 2; i++) {
+        if (num % i == 0) {
+            printf("%d id divisible by %d\n", num, i);
+            primeFlag = false;
+        }
+    }
+    if (primeFlag) {
+        printf("Prime");
+    } else {
+        printf("Not Prime");
+    }
+}
+
+int getPrime(int num) {
+    int m = num;
+    num++;
+
+    while (1) {
+        int i;
+        bool primeFlag = true;
+        for (i = 2; i < num / 2; i++) {
+            if (num % i == 0) {
+                //printf("%d id divisible by %d\n", num, i);
+                primeFlag = false;
+            }
+        }
+        if (primeFlag) {
+            break;
+        } else {
+            //printf("Not Prime");
+        }
+        num++;
+    }
+    return num - m;
+}
+
+int main(void) {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int x, y;
+        scanf("%d %d", &x, &y);
+        printf("%d\n", getPrime(x + y));
+    }
+    return 0;
+}

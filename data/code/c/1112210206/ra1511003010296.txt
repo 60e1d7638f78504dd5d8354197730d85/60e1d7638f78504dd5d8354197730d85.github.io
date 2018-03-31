@@ -1,0 +1,53 @@
+#include <stdio.h>
+int main()
+{
+
+  int h1, m1, s1, h2, m2, s2, h, m, s, mc, flags, flagm, hc;
+  scanf("%d %d %d %d %d %d", &h1, &m1, &s1, &h2, &m2, &s2);
+  if(s1-s2<0){
+    flags=1;
+    s=60+s1-s2;
+    mc=1;
+  }
+  else{
+    flags=0;
+    s = s1-s2;
+  }
+  if(m1-m2<0){
+    flagm=1;
+    hc=1;
+    if(flags){
+      m=60+m1-m2-1;
+    }
+    else{
+      m=60+m1-m2;
+    }
+  }
+  else{
+    flagm=0;
+    if(flags){
+      m=m1-m2-1;
+    }
+    else{
+      m=m1-m2;
+    }
+  }
+  if(h1-h2<0){
+    if(flagm){
+      h=h1-h2-1;
+    }
+    else{
+      h=h1-h2;
+    }
+  }
+  else{
+    if(flagm){
+      h=h1-h2-1;
+    }
+    else{
+      h=h1-h2;
+    }
+  }
+  printf("%d:%d:%d", h, m, s);
+	return 0;
+}

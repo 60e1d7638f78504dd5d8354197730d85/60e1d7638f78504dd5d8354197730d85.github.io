@@ -1,0 +1,150 @@
+#include <stdio.h>
+typedef long long int LLI;
+#define inchar getchar_unlocked
+inline int inIntPos() {
+	int n, ch;
+	while ((ch = inchar()) < '0');
+	n = (ch - '0');
+	while ((ch = inchar()) >= '0')
+		n = (n << 3) + (n << 1) + (ch - '0');
+	return n;
+}
+ 
+#define MAX_N 41
+#define MAX_COL 41
+int colHash[MAX_COL];
+int costHash[MAX_COL];
+int col[MAX_N];
+int cost[MAX_N];
+ 
+LLI countEqual[MAX_N];
+LLI countGreaterEqual[MAX_N];
+LLI costEqual[MAX_N];
+LLI costGreaterEqual[MAX_N];
+ 
+void calcCounts(int n, int m) {
+	LLI sum,cc;
+	int i,j;
+	int a_n;
+	LLI a[MAX_COL],a_rec[MAX_COL];
+ 
+ 
+	countEqual[0]=1;
+	sum = 0;
+	a_n = 0;
+	for(i=1; i<MAX_COL; ++i) {
+		if(colHash[i]) {
+			cc = 1;
+			cc <<= colHash[i];
+			cc-=1;
+			sum+=cc;
+			a[a_n++] = cc;
+		}
+	}
+	countEqual[1]=sum;
+ 
+	for(i=0; i<a_n; ++i) a_rec[i]=sum-a[i];
+ 
+	for(j=2; j<=m; ++j) {
+		sum = 0;
+		for(i=0; i<a_n; ++i) sum += a[i]*a_rec[i];
+		sum/=j;
+		countEqual[j]=sum;
+ 
+		for(i=0; i<a_n; ++i)
+			a_rec[i]=countEqual[j]-a[i]*a_rec[i];
+	}
+ 
+	sum = 1;
+	sum <<= n;
+ 
+	countGreaterEqual[0]=sum;
+	countGreaterEqual[1]=sum-1;
+ 
+	for(j=2; j<=m; ++j)
+		countGreaterEqual[j]=countGreaterEqual[j-1]-countEqual[j-1];
+}
+ 
+void calcCosts(int n,int m) {
+	LLI sum,cc,sum_count;
+	int i,j;
+	int a_n;
+	LLI a[MAX_COL],a_rec[MAX_COL],a_count[MAX_COL];
+ 
+	costEqual[0]=0;
+	sum = 0;
+	sum_count = 0;
+	a_n = 0;
+	for(i=1; i<MAX_COL; ++i) {
+		if(colHash[i]) {
+			cc = 1;
+			cc <<= (colHash[i]-1);
+			a_count[a_n] = (1<<colHash[i])-1;
+			sum_count += a_count[a_n];
+			a[a_n] = cc*costHash[i];
+			sum += a[a_n];
+			++a_n;
+		}
+	}
+	costEqual[1]=sum;
+ 
+	for(i=0; i<a_n; ++i) a_rec[i]=sum_count-a_count[i];
+ 
+	for(j=2; j<=m; ++j) {
+		sum = 0; for(i=0; i<a_n; ++i) sum += a_rec[i]*a[i];
+		costEqual[j]=sum;
+ 
+		sum_count=0;
+		for(i=0; i<a_n; ++i) sum_count += a_count[i]*a_rec[i];
+		sum_count /= j;
+		for(i=0; i<a_n; ++i) a_rec[i]=sum_count-a_count[i]*a_rec[i];
+	}
+ 
+	costGreaterEqual[m]=sum;
+	for(j=m-1; j>=0; --j)
+		costGreaterEqual[j]=costGreaterEqual[j+1]+costEqual[j];
+}
+ 
+int main() {
+	int t,n,m,i,c,p,sum,diffCol;
+	double res;
+ 
+	t = inIntPos();
+	while(t--) {
+		n = inIntPos();
+		m = inIntPos();
+ 
+		for(i=1; i<MAX_COL; ++i) {
+			colHash[i]=0;
+			costHash[i]=0;
+		}
+ 
+		sum=0;
+		for(i=0;i<n;++i) {
+			c = inIntPos();
+			p = inIntPos();
+			col[i] = c;
+			cost[i] = p;
+ 
+			sum += p;
+			++colHash[c];
+			costHash[c]+=p;
+		}
+ 
+		if(m==0) {
+			printf("%.9f\n",(double)sum/2);
+			continue;
+		}
+ 
+		diffCol = 0;
+		for(i=1; i<MAX_COL; ++i) diffCol += (colHash[i]>0 ? 1 : 0);
+ 
+		calcCounts(n,diffCol);
+		calcCosts(n,diffCol);
+		res = (double)costGreaterEqual[m]/countGreaterEqual[m];
+ 
+		printf("%.9f\n",res);
+	}
+	return 0;
+}
+ 

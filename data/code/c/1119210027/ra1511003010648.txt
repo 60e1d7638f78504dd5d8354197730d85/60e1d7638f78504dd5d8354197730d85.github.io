@@ -1,0 +1,33 @@
+#include<stdio.h>
+ 
+int main()
+{
+      int i,j,t,n,min,max,ans,globalAns,a[100000];
+      scanf("%d",&t);
+      for(i=0;i<t;i++) {
+	    scanf("%d",&n);
+	    for(j=0;j<n;j++)
+		  scanf("%d",&a[j]);
+	    max = min = a[0];
+	    ans = globalAns = 0;
+	    for(j=1;j<n;j++){
+		  if(a[j]>max) {
+			max = a[j];
+			ans = max-min;
+			if(ans > globalAns)
+			      globalAns = ans;
+		  }
+		  else if(a[j]<min) {
+			min = max = a[j];
+			ans = 0;
+			if(ans > globalAns)
+			      globalAns = ans;
+		  }
+	    }
+	    if(globalAns)
+		  printf("%d\n",globalAns);
+	    else 
+		  printf("UNFIT\n");
+      }
+      return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int countElements(int arr[], int n)
+{
+    // First element will always be considered as greater
+    // than previous ones
+    int result = 1;
+ 
+    // Store the arr[0] as maximum
+    int max_ele = arr[0];
+ 
+    // Traverse array starting from second element
+    for (int i=1; i<n; i++)
+    {
+        // Compare current element with the maximum
+        // value if it is true otherwise continue
+        if (arr[i] > max_ele)
+        {
+            // Update the maximum value
+            max_ele = arr[i];
+ 
+            // Increment the result
+            result++;
+        }
+    }
+ 
+    return result;
+}
+int main()
+{
+ int n;
+  cin>>n;
+  int i=0;
+  int arr[n];
+  for(i=0;i<n;i++){cin>>arr[i];}
+  int res;
+  res=countElements(arr,n);
+  cout<<res;
+	return 0;
+}

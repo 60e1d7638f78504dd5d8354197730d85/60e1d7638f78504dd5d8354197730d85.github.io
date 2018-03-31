@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class Student
+{
+  public:
+  int rno,ns,m[100];
+  float p;
+  string name;
+  Student()
+  { 
+       int sum=0;
+    cin>>name>>rno>>ns;
+    for(int i=0;i<ns;i++)
+    {
+      cin>>m[i];
+      sum=sum+m[i];
+    }
+    p=(float)sum/ns;
+    display();
+  }
+  void display()
+  {
+    cout<<name<<" "<<rno<<" "<<p<<" ";
+    if(p>=80)
+      cout<<"Class A"<<endl;
+    else if(p>=70)
+      cout<<"Class B"<<endl;
+    else
+      cout<<"Class C"<<endl;
+  }
+};
+int main()
+{
+	int a;
+    cin>>a;
+    while(a--)
+      Student s;
+	return 0;
+}

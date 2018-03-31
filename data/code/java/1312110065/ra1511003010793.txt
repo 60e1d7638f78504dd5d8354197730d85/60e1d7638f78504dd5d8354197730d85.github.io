@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Scanner sc=new Scanner(System.in);
+          float principal=sc.nextFloat();
+          float rate=sc.nextFloat();
+          float tax_rate=sc.nextFloat();
+          float desired=sc.nextFloat();
+          int time=0;
+          while(principal<desired)
+          {
+             time=time+1;
+             float interest=principal*rate;
+             float tax=interest*tax_rate;
+             principal=principal+(interest-tax);
+             
+             if(principal > desired)
+             {
+               System.out.println(time);
+             }
+          }
+	}
+}

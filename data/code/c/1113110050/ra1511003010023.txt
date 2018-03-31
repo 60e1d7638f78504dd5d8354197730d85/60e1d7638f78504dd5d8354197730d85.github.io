@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+	int T, i;
+	char S[100], x, y;
+	scanf("%d", &T);
+	while(T--) {
+		scanf("%s", S);
+		x = S[0];
+		if(S[0] == S[1]){
+			printf("NO\n");
+			goto cnt;
+		}
+		else
+			y = S[1];
+		for(i = 2; S[i] != '\0'; i++){
+			if((!(i % 2) && S[i] == x) || ((i % 2) && S[i] == y));
+			else {
+				printf("NO\n");
+				goto cnt;
+			}
+		}
+		printf("YES\n");
+		cnt:;
+	}
+	return 0;
+}

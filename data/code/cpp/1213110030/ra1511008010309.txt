@@ -1,0 +1,41 @@
+#include<stdio.h>
+ #include<iostream>
+using namespace std;
+int main()
+{
+    int i,j,temp;
+    char str[100];
+    char substr[20];
+  cin>>str;
+  cin>>substr;
+ 
+    for(i=0;str[i]!='\0';i++)
+    {
+        j=0;
+        if(str[i]==substr[j])
+        {
+            temp=i+1;
+            while(str[i]==substr[j])
+            {
+                i++;
+                j++;
+            }
+ 
+            if(substr[j]=='\0')
+            {
+                printf("Best Friends");
+               break;
+            }
+            else
+            {
+                i=temp;
+                temp=0;
+            }
+        }
+    }
+ 
+    if(temp==0)
+        printf("Try Again");
+ 
+    return 0;
+}

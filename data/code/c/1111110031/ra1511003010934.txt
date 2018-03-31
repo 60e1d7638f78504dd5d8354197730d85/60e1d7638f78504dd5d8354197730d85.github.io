@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char * reverse(char* str)
+{
+  int l=strlen(str);int i;int k;
+  char *New=(char*)malloc(l*sizeof(char));
+  k=l-1;
+  for(i=0;i<l;i++)
+  	New[i]=str[k--];
+  return New;
+}
+void convert(int n,int base)
+{
+  int m=n;int z=0;int i=1;
+  char * res=(char *)malloc(sizeof(char));
+  char* d=(char*)malloc(sizeof(char));
+  while(m!=0)
+  {
+    z=m%base;
+    res=(char *)realloc(res,(i++)*sizeof(char));
+    if(z>=10)
+      d[0]=(char)(z+87);
+    else
+      d[0]=(char)(z+48);
+    strcat(res,d);
+    m=m/base;
+  }
+  res=reverse(res);
+  printf("%s\n",res);
+}
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	printf("Decimal value:%d\n",n);
+    printf("Octal value:");convert(n,8);
+  	printf("Hexadecimal value:");convert(n,16);
+	return 0;
+}

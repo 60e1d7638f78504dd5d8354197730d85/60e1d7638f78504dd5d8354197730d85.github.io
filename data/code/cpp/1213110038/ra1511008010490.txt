@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string s;
+  cin>>s;
+  string sub;
+  cin>>sub;
+  int len1=s.length();
+  int len2=sub.length();
+  int i;
+  for(i=0;i<len1;i++){
+  	if(s[i]==sub[0])
+       {
+       	int j=0,count=0;
+         for(j=0;j<len2;j++){
+         	if(s[i++]==sub[j]){
+            	count++;
+            }
+           if(count==len2){
+           	cout<<"Substring found at position "<<i-len2+1;
+             return 0;
+           }
+         }
+       }
+  }
+    cout<<"Substring not found";
+	return 0;
+}

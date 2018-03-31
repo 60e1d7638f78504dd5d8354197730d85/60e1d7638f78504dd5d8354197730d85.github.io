@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+
+  	long i,x,p1=0,p2=0;
+  	char a[40];
+  	scanf("%s", a);
+  	x=strlen(a);
+  	for(i=0;i<x-1;i++){
+    
+      if(i%2==0){
+      
+        if(a[i]=='1')
+          p1++;
+      }
+      if(i%2!=0){
+      
+        if(a[i]=='1')
+          p2++;
+      }
+    }
+  	//printf("%ld,%ld", p1,p2);
+  	if(p1>=6 && (p1-p2)>=2)
+      printf("WIN");
+  	else if(p1==3)
+      printf("WIN");
+  	else
+      printf("LOSE");
+	return 0;
+}

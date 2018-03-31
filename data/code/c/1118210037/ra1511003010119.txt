@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<malloc.h>
+struct Deque
+{
+   int *brr;
+   int n;
+   int Front,Rear;
+};
+void insertAtFront(struct Deque *D,int data)
+{
+   if(D->Rear==-1)
+   {
+      D->Front=D->Rear=0;
+      D->brr[D->Front]=data;
+      return ;
+   }
+   D->Front=(D->Front-1+D->n)%D->n;
+   D->brr[D->Front]=data;
+}
+void insertAtRear(struct Deque *D,int data)
+{
+   if(D->Rear==-1)
+   {
+      D->Front=D->Rear=0;
+      D->brr[0]=data;
+      return ;
+   }
+   D->Rear=(D->Rear+1)%D->n;
+   D->brr[D->Rear]=data;
+}
+int deleteFromFront(struct Deque *D)
+{
+   int data=D->brr[D->Front];
+   if(D->Front==D->Rear)
+   {
+      D->Front=D->Rear=-1;
+      return data;
+   }
+   D->Front=(D->Front+1)%D->n;
+   return data;
+}
+int deleteFromRear(struct Deque *D)
+{
+   int data=D->brr[D->Rear];
+   if(D->Front==D->Rear)
+   {
+      D->Front=D->Rear=-1;
+      return data;
+   }
+   D->Rear=(D->Rear-1+D->n)%D->n;
+   return data;
+}
+int main()
+{
+   int N,W,*arr,i,ans;
+   scanf("%d %d",&N,&W);
+ 
+   struct Deque Min,Max;
+   Max.brr=(int*)malloc(W*sizeof(int));
+   Min.brr=(int*)malloc(W*sizeof(int));
+   Max.n=Min.n=W;
+   Max.Front=Min.Front=Max.Rear=Min.Rear=-1;
+ 
+   arr=(int*)malloc(N*sizeof(int));
+   for(i=0;i<W;i++)
+   {
+      scanf("%d",arr+i);
+      while(Min.Front!=-1&&arr[Min.brr[Min.Rear]]>arr[i])
+         deleteFromRear(&Min);
+      insertAtRear(&Min,i);
+ 
+      while(Max.Front!=-1&&arr[Max.brr[Max.Rear]]<arr[i])
+         deleteFromRear(&Max);
+      insertAtRear(&Max,i);
+   }
+ 
+   for(ans=0;i<N;i++)
+   {
+      scanf("%d",arr+i);
+      if(arr[Max.brr[Max.Front]]-arr[Min.brr[Min.Front]]==W-1)
+         ans++;
+      if(Max.brr[Max.Front]==i-W)
+         deleteFromFront(&Max);
+      if(Min.brr[Min.Front]==i-W)
+         deleteFromFront(&Min);
+      while(Min.Front!=-1&&arr[Min.brr[Min.Rear]]>arr[i])
+         deleteFromRear(&Min);
+      insertAtRear(&Min,i);
+ 
+      while(Max.Front!=-1&&arr[Max.brr[Max.Rear]]<arr[i])
+         deleteFromRear(&Max);
+      insertAtRear(&Max,i);
+   }
+   if(arr[Max.brr[Max.Front]]-arr[Min.brr[Min.Front]]==W-1)
+         ans++;
+   printf("%d\n",ans);
+return 0;
+}
+ 

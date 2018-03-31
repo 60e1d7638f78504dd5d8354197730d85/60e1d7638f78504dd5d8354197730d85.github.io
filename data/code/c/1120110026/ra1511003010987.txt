@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int i;
+  char s[50],*p;
+  i=-1;
+  do {
+    i++;
+    scanf("%c",&s[i]);
+  }while(s[i]!='\n');
+  p=s;
+  for(i=0;i<50;i++) {
+    if(*p=='\0')
+      break;
+    p++;
+  }
+  p--;
+  int l=length(s);
+  for(i=l;i>=0;i--)
+    printf("%c",*p--);
+  return 0;
+}
+int length(char c[1000]) {
+  int l=0;
+  while(c[l]!='\0')
+    l++;
+  return l;
+}

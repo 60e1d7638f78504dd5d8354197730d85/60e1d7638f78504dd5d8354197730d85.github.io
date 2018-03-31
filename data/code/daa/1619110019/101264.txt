@@ -1,0 +1,92 @@
+#include<bits/stdc++.h>
+#define opt  ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+//=====================================================================
+#define li  int32_t
+#define lli  int64_t
+#define ulli      uint64_t
+//=====================================================================
+#define sd(n)  scanf("%d",&n)
+#define sld(n)  scanf("%I32d",&n)
+#define slld(n)  scanf("%I64d",&n)
+#define pd(n)  printf("%d\n",n)
+#define pld(n)  printf("%I32d\n",n)
+#define plld(n)  printf("%I64d\n",n)
+#define pn  printf("\n")
+#define nl  cout<<'\n'
+//=====================================================================
+#define rep(i,a,b) for(i=a;i<b;i++)
+#define repr(i,a,b) for(i=a;i>b;i--)
+#define repi(i,v) for(i=v.begin();i!=v.end();i++)
+#define elif  else if
+#define mset(a,b) memset(a,b,sizeof(a))
+//=====================================================================
+#define vi  vector<int>
+#define vli  vector<li>
+#define vlli  vector<lli>
+//=====================================================================
+#define pb  push_back
+#define pob  pop_back
+#define pf  push_front
+#define pof  pop_front
+#define all(v)  v.begin(),v.end()
+#define itr  iterator
+#define sz  size()
+#define lb  lower_bound
+#define ub  upper_bound
+#define mp  make_pair
+#define pii  pair<int,int>
+#define pll  pair<li,li>
+#define vpi  vector<pii >
+#define vpl  vector<pll >
+#define F  first
+#define S  second
+//=====================================================================
+#define mod  100000000000007
+#define MX1  100005
+#define MX2  1000005
+#define pi  acos(-1)
+//=====================================================================
+using namespace std;
+//=====================================================================
+lli power(lli a,lli b){lli ans=1;while(b){if(b&1){ans=(ans*a)%mod;}a=(a*a)%mod;b>>=1;}return ans;}
+//=====================================================================
+lli mmi(lli n){return power(n,mod-2);}
+//=====================================================================
+lli gcd(lli a, lli b){return b?gcd(b,a%b):a;}
+//=====================================================================
+void fs(int &x){bool neg=false;register int c;x=0;c=getchar();if(c=='-'){neg = true;c=getchar();}for(;(c>47 && c<58);c=getchar()){x=(x<<1)+(x<<3)+c-48;}if(neg){x*=-1;}}
+//=====================================================================
+/*-----------------MAIN CODE BEGINS NOW!-----------------*/
+ 
+lli count_one(lli n){
+    lli cnt=0;
+    while(n){
+        n=n&(n-1);
+        cnt++;
+    }
+    return cnt;
+}
+ 
+void solve(){
+    li i,n;cin>>n;
+    map<lli,vector<lli> > mpp;
+    vector<lli>::itr it2;
+    map<lli,vector<lli> >::itr it;
+    rep(i,0,n){
+        lli x;cin>>x;
+        mpp[count_one(x)].pb(x);
+    }
+    repi(it,mpp){
+        repi(it2,it->S)
+            cout<<*(it2)<<" ";
+    }
+    nl;
+}
+ 
+int main(){
+    opt
+    int t;cin>>t;while(t--){
+        solve();
+    }
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{int terms,i=0;
+ scanf("%d",&terms);
+ int num[terms];
+ for(i=0;i<terms;i++)
+   scanf("%d",num+i);
+int j=0,largest=-1;
+ float avg=0;
+ int flag=0;
+ for(j=1;j<=2;j++){
+ for(i=0;i<terms;i++){
+ if(num[i]>=largest){
+ largest=num[i];
+   
+ flag=i;
+ }
+   
+ }
+   num[flag]=-999;
+   if(j==1)
+     printf("First Largest=%d\n",largest);
+   if(j==2)
+     printf("Second Largest=%d\n",largest);
+   avg+=largest;
+   largest=-1;
+   
+ }
+ printf("Average=%.1f",avg/2);
+	return 0;
+}

@@ -1,0 +1,43 @@
+#include <stdio.h>
+void qsort(int a[], int first, int last)
+{
+    int pivot, j, temp, i;
+ 
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j){
+             while(a[i]<=a[pivot]&&i<last)
+                 i++;
+             while(a[j]>a[pivot])
+                 j--;
+             if(i<j){
+                 temp=a[i];
+                  a[i]=a[j];
+                  a[j]=temp;
+             }
+         }
+         temp=a[pivot];
+         a[pivot]=a[j];
+         a[j]=temp;
+         qsort(a,first,j-1);
+         qsort(a,j+1,last);
+    }
+}
+int main()
+{
+    int n, i, d=0;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+    qsort(a,0,n-1);
+    d=a[n-1]-a[n-3];
+    for(i=n-2;i>=2;i--)
+    if(d<(a[i]-a[i-2]))
+    d=a[i]-a[i-2];
+    printf("%d",d);
+return 0;
+}

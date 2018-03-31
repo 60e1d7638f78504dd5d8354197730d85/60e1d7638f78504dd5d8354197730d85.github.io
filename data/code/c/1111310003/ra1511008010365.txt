@@ -1,0 +1,18 @@
+#include<stdio.h>
+long long int arr1[100010],arr2[100010],hash1[1010],hash2[1010],dp[1005][1010],r,c,t,mul[1010],i,j;
+#define mod 1000000007
+int main() {
+        scanf("%lld%lld%lld",&r,&c,&t);
+        for(i=0;i<r;i++)
+                scanf("%lld",&arr1[i]) ,  hash1[arr1[i]]++;
+        for(i=0;i<c;i++)
+                scanf("%lld",&arr2[i]) ,  hash2[arr2[i]]++;
+        for(i=1;i<1010;i++)
+                mul[i] = hash1[i]*hash2[i] , dp[1][i] = mul[i] + dp[1][i-1];
+        for(i=2;i<=t+1;i++)
+                for(j=1;j<1010;j++)
+                                dp[i][j] = ((mul[j]%mod)*(dp[i-1][j-1]%mod))%mod  ,  dp[i][j] = ((dp[i][j]%mod) + (dp[i][j-1]%mod));
+        for(i=2;i<=t+1;i++)
+                printf("%lld ",dp[i][1009]);
+        return 0;
+} 

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <limits.h>
+ 
+#define BITS_UNSIGNED ( (unsigned) (sizeof(unsigned) / CHAR_BIT) )
+ 
+unsigned
+closest(unsigned n)
+{
+  unsigned i = 0;
+  unsigned max = UINT_MAX;
+ 
+  if (n > 2048)
+    return 2048;
+ 
+  while (n)
+  {
+    if (n & 1)
+      max = i;
+    n >>= 1;
+    i++;
+  }
+ 
+  if (max == UINT_MAX)
+    return 0;
+ 
+  return 1 << max;
+}
+ 
+int
+main(void)
+{
+  unsigned t, n, count, x; 
+ 
+  scanf("%u", &t);
+  while (t--)
+  {
+    scanf("%u", &n);
+    for (count = 0; n; x = closest(n), count++, n -= x) 
+      ; 
+    printf("%u\n", count);
+  }
+  return 0;
+}

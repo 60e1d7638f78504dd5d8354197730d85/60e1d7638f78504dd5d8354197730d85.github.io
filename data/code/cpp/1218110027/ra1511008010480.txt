@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Number {
+	protected:
+  		int num;
+  	public:
+  		Number(int n) : num(n) {}
+};
+
+class Square : public Number {
+  	public:
+  		Square(int n) : Number(n) {}
+  		int getSquare() {
+    		return (num*num);
+        }
+};
+
+class SquareRoot : public Number {
+  	public:
+  		SquareRoot(int n) : Number(n) {}
+  		float getSquareRoot() {
+            return sqrt(num);
+        }
+};
+
+int main()
+{
+  	int num1, num2;
+  	cin>>num1>>num2;
+  	Square sq(num1);
+  	SquareRoot rt(num2);
+  	cout<<sq.getSquare()<<rt.getSquareRoot();
+	
+	return 0;
+}

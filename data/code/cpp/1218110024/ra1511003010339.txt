@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+class person
+{
+  public:
+  string name;
+  int age;
+  string gender;
+  void getdata(string a,int b,string c)
+  {
+    name=a;
+    age=b;
+    gender=c;
+  }
+};
+class employee : public person
+{
+public:
+string company;
+int salary;
+void getcom(string comp,int s)
+{
+company=comp;
+salary=s;
+}
+};
+class programmer : public employee
+{
+public:
+int plk;
+void getpk(int pk)
+{
+plk=pk;
+}
+void disp()
+{
+cout<<"Name: "<<name<<endl;
+cout<<"Age: "<<age<<endl;
+cout<<"Gender: "<<gender<<endl;
+cout<<"Name of Company: "<<company<<endl;
+cout<<"Salary: Rs."<<salary<<endl;
+cout<<"Number of programming language known: "<<plk<<endl;
+}
+};
+
+int main()
+{
+  string a;
+  int b;
+  string c,d;
+  int e;
+  int f;
+  cin>>a>>b>>c>>d>>e>>f;
+  programmer p;
+  p.getdata(a,b,c);
+  p.getcom(d,e);
+  p.getpk(f);
+  p.disp();
+
+	return 0;
+}

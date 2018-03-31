@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+  char str[300],temp[10];
+  int t,x,s,l,q,i,j,k,num,sum,f;
+  scanf("%d",&t);
+  while(t>0)
+  {
+    f=0;
+    s=0;
+    scanf("%s",str);
+    l=strlen(str);
+    sscanf(str,"%d",&x);
+    if(str[0]=='0')
+    {
+      f=1;
+    }
+    if(l==4)
+    {
+      while(x>0)
+      {
+        s=s+x%10;
+        x=x/10;
+      }
+      if(f!=1)
+      printf("The output is:%d\n",s);
+    }
+    else
+    {
+      for(k=0;k<l;k++)
+      {
+       temp[k]=x%10;
+        x=x/10;       
+      }
+      for(k=0;k<l;k++)
+      {
+        for(j=k+1;j<l;j++)
+        {
+          if(temp[k]<temp[j])
+          {
+           q=temp[k];
+            temp[k]=temp[j];
+            temp[j]=q;
+            
+          }
+        }
+      }
+      num=0;
+      for(k=0;k<l/2;k++)
+      {
+       num=num+temp[k]*pow(10,((l/2)-1-k));
+        
+        
+      }
+      
+    //  printf("%d\n",num);
+      sum=num;
+      for(i=l/2;i<l;i++)
+      {
+        sum=sum+temp[i];
+      }
+      if(f!=1)
+      printf("The output is:%d\n",sum);
+    }
+    
+    if(f==1)
+      printf("The output is:unlucky\n");
+    
+    t--;
+  }
+  
+
+	return 0;
+}

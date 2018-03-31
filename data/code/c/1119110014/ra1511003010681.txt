@@ -1,0 +1,59 @@
+#include <stdio.h>
+void inputArray(int * arr, int size);
+int search(int * arr, int size, int toSearch);
+
+int main()
+{
+    int array[100];
+    int size, toSearch, searchIndex;
+
+    scanf("%d", &size);
+
+    inputArray(array, size);
+
+    scanf("%d", &toSearch);
+
+
+    // Call search funtion to search element in array
+    searchIndex = search(array, size, toSearch);
+
+
+    // Print search results
+    if(searchIndex == -1)
+        printf("%d Does not exist in the array", toSearch);
+    else
+        printf("%d is found in the array at position=%d", toSearch, searchIndex);
+
+
+    return 0;
+}
+void inputArray(int * arr, int size)
+{
+    int * arrEnd = (arr + size - 1);
+
+    while(arr <= arrEnd)
+    {
+        scanf("%d", arr++);
+    }
+}
+
+
+
+
+int search(int * arr, int size, int toSearch)
+{
+    int index = 0;
+
+    // Pointer to last array element arr[size - 1]
+    int * arrEnd = (arr + size - 1);
+
+    while(arr <= arrEnd && *arr != toSearch) {
+        arr++;
+        index++;
+    }
+
+    if(arr <= arrEnd)
+        return index;
+    
+    return -1;
+}

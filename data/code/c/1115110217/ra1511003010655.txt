@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+int main() {
+
+    int n,i,j;
+    scanf("%d", &n);
+
+    char names[1000][33];
+    int points[1000];
+    
+    int peopleNum = 0;
+    char people[1000][33];
+    int score[1000];
+    for (i = 0; i < n; ++i) {
+        scanf("%s %d", names[i], &points[i]);
+
+        int found = 0;
+        for ( j = 0; j < peopleNum; ++j) {
+            if (!strcmp(people[j], names[i])) {
+                score[j] += points[i];
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            strcpy(people[peopleNum], names[i]);
+            score[peopleNum] = points[i];
+            ++peopleNum;
+        }
+    }
+
+    int maxPoint = -999999999;
+    for ( i = 0; i < peopleNum; ++i) {
+        if (score[i] > maxPoint) {
+            maxPoint = score[i];
+        }
+    }
+
+    int winner[1000];
+    memset(winner, 0, sizeof(winner));
+    for (i = 0; i < peopleNum; ++i) {
+        if (score[i] == maxPoint) {
+            winner[i] = 1;
+        }
+    }
+
+    peopleNum = 0;
+    memset(score, 0, sizeof(score));
+    memset(people, 0, sizeof(people));
+    for (i = 0; i < n; ++i) {
+        int found = 0;
+        for (j = 0; j < peopleNum; ++j) {
+            if (!strcmp(people[j], names[i])) {
+                score[j] += points[i];
+                if (maxPoint <= score[j] && winner[j]) {
+                    printf("%s", people[j]);
+                    goto end;
+                }
+
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            strcpy(people[peopleNum], names[i]);
+            score[peopleNum] = points[i];
+            if (maxPoint <= score[peopleNum] && winner[peopleNum]) {
+                printf("%s", people[peopleNum]);
+                goto end;
+            }
+        
+            ++peopleNum;
+        }
+    }
+
+end:   
+    return 0;
+}

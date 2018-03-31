@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector <int> v[2001];
+int com[2001][2001] = {0};
+int main()
+{
+    int n,i,j,k,x;
+    cin>>n;
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+        {
+            cin>>x;
+            if(x)
+                v[i].push_back(j);
+        }
+    for(i=0;i<n;i++)
+        {for(j=0;j<v[i].size()-1;j++)
+            {
+                //cout<<j<<" ";
+                for(k=j+1;k<v[i].size();k++)
+                    {
+                        //cout<<k<<" ";
+                        //cout<<v[i][j]<<" "<<v[i][k]<<"  ";
+                        com[v[i][j]][v[i][k]]++;
+                    }  
+                //cout<<endl;    
+            }
+        //cout<<endl<<endl;
+        }    
+    long long ans=0;
+    /*
+    cout<<v[7][0]<<v[7][1]<<v[7][2];
+    for(i=0;i<n;i++)
+        {for(j=0;j<n;j++)
+            cout<<com[i][j]<<" ";
+        cout<<endl;
+        }*/
+        
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+            ans += (long long)(com[i][j]*(com[i][j]-1))/2;
+    
+    cout<<ans/2;
+}

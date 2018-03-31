@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+    int n,res;
+    scanf("%d",&n);
+    printf("%d",conv0To5(n));
+	return 0;
+}
+int conv(int n)
+{
+  int r;
+  if(n==0)
+  	return 0;
+  r=n%10;
+  if(r==0)
+    r=5;
+  return conv(n/10)*10+r; 
+}  
+int conv0To5(int n)
+{
+  if(n==0)
+    return 5;
+  else
+    return conv(n);
+} 

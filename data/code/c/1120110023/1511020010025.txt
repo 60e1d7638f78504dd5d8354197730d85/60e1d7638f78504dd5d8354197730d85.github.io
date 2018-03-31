@@ -1,0 +1,47 @@
+#include <stdio.h>
+int row(int a[10][10],int n,int r)
+{ int i=0,sum=0;
+ for(i=0;i<n;i++)
+   sum=sum+a[r][i];
+ return sum;
+}
+int col(int a[10][10],int n,int c)
+{ int i=0,sum=0;
+ for(i=0;i<n;i++)
+   sum=sum+a[i][c];
+ return sum;
+}
+int dia(int a[10][10], int n)
+{
+  int i=0,sum=0;
+  while(i<n)
+  {sum=sum+a[i][i];
+   i++;
+  }
+  return sum;
+}
+int main()
+{
+int a[10][10],r[3],i,j,c[3];
+  for(i=0;i<3;i++)
+    for(j=0;j<3;j++)
+    scanf("%d",&a[i][j]);
+  for(i=0;i<3;i++)
+    {r[i]=row(a,3,i);
+     c[i]=col(a,3,i);
+    }
+  int d=dia(a,3),flag=0;
+  for(i=0;i<3;i++)
+    if(r[i]!=d || c[i]!=d)
+      flag++;
+  for(i=0;i<3;i++)
+  {for(j=0;j<3;j++)
+    printf("%d ",a[i][j]);
+   printf("\n");
+  }
+    if(flag==0)
+  printf("Magic Square");
+  else
+   printf("Not a Magic Square"); 
+	return 0;
+}

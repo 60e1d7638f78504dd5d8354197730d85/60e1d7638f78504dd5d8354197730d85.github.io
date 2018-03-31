@@ -1,0 +1,27 @@
+#include <iostream>
+#include<string.h>
+using namespace std; int main()
+{
+int month[12] = {31, 28,31,30, 31,30,31, 31,30,31,30,31};
+char week[7][10] ;
+int date, mon, year, i, r, s = 0 ;
+
+strcpy(week[0],"1") ;
+strcpy(week[1],"2") ;
+strcpy(week[2],"3") ;
+strcpy(week[3],"4") ;
+strcpy(week[4],"5") ;
+strcpy(week[5],"6") ;
+strcpy(week[6],"7") ;
+
+cin>>date>>mon>>year ;
+if( (year % 400 == 0) || ((year % 4 == 0) && (year % 100!= 0)) ) 
+  month[1] = 29 ;
+for(i = 0 ; i< mon - 1 ;i++)   
+  s = s + month[i] ;
+s = s + (date + year + (year / 4) - 2) ;
+s = s% 7 ;
+cout<<week[s];
+
+return 0;
+                       }

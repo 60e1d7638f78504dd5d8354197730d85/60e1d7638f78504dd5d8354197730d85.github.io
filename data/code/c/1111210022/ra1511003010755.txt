@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int a[20][3],n,i,j,k,l,m,count=0;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+    	for(j=0;j<3;j++){
+        	scanf("%d",&a[i][j]);
+        }
+    }
+  
+  	for (i=0;i<n;i++){
+        	for(k=1;k<=a[i][0];k++){
+            	for(l=1;l<=a[i][1];l++){
+                  	if(k==l){
+                    	continue;
+                    }
+                	for(m=1;m<=a[i][2];m++){
+                      	if(l==m||k==m){
+                        	continue;
+                        }
+                        	count++;
+                    }
+                }
+            }
+      	printf("%d\n",count);
+      	count=0;
+    }
+  
+  	
+	return 0;
+}

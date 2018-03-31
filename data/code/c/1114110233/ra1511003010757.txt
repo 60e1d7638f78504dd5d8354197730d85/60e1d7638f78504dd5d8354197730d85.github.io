@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+ int t,i,n,A[1001],ones;
+  A[0]=0;
+  for(i=1;i<1001;i++)
+  {
+    n=i;
+    ones=0;
+    while(n)
+    {
+      if(n&1)
+        ones++;
+      n>>=1;
+    }
+    A[i]=ones+A[i-1];
+  }
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    printf("%d\n",A[n]);
+  }
+
+	return 0;
+}

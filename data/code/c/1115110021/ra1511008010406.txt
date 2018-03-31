@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+  
+    int size, pos,i;
+
+    /* Input size and element in array */
+   
+    scanf("%d", &size);
+  int arr[size];
+   
+    for(i=0; i<size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    /* Input element position to delete */
+   
+    scanf("%d", &pos);
+
+
+    /* If delete position is invalid */
+    if(pos==size || pos<0)
+    {
+        printf("Invalid Input");
+    }
+ 
+    else
+    {
+       printf("%d",arr[pos]);
+        /* Copy next element value to current element */
+        for(i=pos-1; i<size-1; i++)
+        {
+            arr[i] = arr[i + 1];
+        }
+
+        /* Decrement array size by 1 */
+        size--;
+    }
+
+
+    return 0;
+}

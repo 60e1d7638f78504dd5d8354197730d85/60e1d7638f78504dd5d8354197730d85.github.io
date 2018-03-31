@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<string.h>
+char stack[403];
+int top=-1;
+void push(char c)
+{
+	stack[++top]=c;
+}
+char pop()
+{
+	return stack[top--];
+}
+int precedence(char c)
+{
+	switch(c)
+	{
+		case '^':return 3;
+				break;
+		case '%':
+		case '/':
+		case '*':return 2;
+				break;
+		case '+':
+		case '-':return 1;
+				break;
+	}
+	return -1;
+}
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		int len;
+		int i;
+		int k=0;
+		char infix[403];
+		char postfix[403];
+		scanf("%s",infix);
+		len=strlen(infix);
+		infix[len]=')';
+		push('(');
+		for(i=0;i<len+1;i++)
+		{
+			if(infix[i]>='a'&&infix[i]<='z')
+			{
+				postfix[k]=infix[i];
+				k++;
+			}
+			else if(infix[i]=='+'||infix[i]=='-'||infix[i]=='/'||infix[i]=='*'||infix[i]=='%'||infix[i]=='^')
+			{
+				while(precedence(infix[i])<=precedence(stack[top]))
+				{
+					postfix[k]=pop();
+					k++;
+				}
+				push(infix[i]);
+			}
+			else if(infix[i]=='(')
+				push(infix[i]);
+			else if(infix[i]==')')
+			{
+				while(stack[top]!='(')
+				{
+					postfix[k]=pop();
+					k++;
+				}
+				pop();
+			}
+		}
+		postfix[k]='\0';
+		printf("%s\n", postfix);
+	}
+	return 0;
+}
+ 

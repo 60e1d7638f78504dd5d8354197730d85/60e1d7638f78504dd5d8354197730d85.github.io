@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+ 
+void main()
+{
+    int i, count = 0, pos1, pos2;
+    char str[50],key,a[10],word[10];
+ 
+    scanf(" %[^\n]s", str);
+    scanf(" %s", word);
+  key=word[0];
+    for (i = 0;i <= strlen(str);i++)
+    {
+        if (key == str[i])
+        {
+            count++;
+            if (count  == 1)
+            {
+                pos1 = i;
+                pos2 = i;
+            }
+            else 
+            {
+                pos2 = i;
+            }
+        }
+    }
+    if(key=='l')
+      printf("%s is found at %d\n",word,pos2-11);
+  else
+    printf("%s is found at %d\n",word,pos2);
+}

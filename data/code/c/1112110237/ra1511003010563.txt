@@ -1,0 +1,40 @@
+#include <stdio.h>
+int _hcf(int a,int b){
+       if(a%b==0)
+          return b;
+	   else
+         return _hcf(b,a%b);
+}
+
+int _lcm(int a,int b){
+    int hcf;     
+    if(a>b)
+          hcf= _hcf(a,b);
+    else
+          hcf= _hcf(b,a);
+    return (a*b)/hcf;
+}
+
+int main()
+{   int i,j,t,n;
+    scanf("%d",&t);
+ 	while(t--){
+        scanf("%d",&n);
+        int l,a[500],lcm[112275],index=0,min=9999999;
+      	for(i=0;i<n;i++){
+              scanf("%d",&a[i]);
+        }
+        for(i=0;i<n-1;i++)
+           for(j=i+1;j<n;j++){
+             l= _lcm(a[i],a[j]);
+             lcm[index++]=l;
+           }
+        for(i=0;i<index;i++){
+               if(lcm[i]<min)
+                    min=lcm[i];
+        }
+        printf("%d\n",min);
+    }
+
+	return 0;
+}

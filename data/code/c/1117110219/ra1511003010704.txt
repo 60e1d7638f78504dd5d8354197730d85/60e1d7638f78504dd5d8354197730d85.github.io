@@ -1,0 +1,32 @@
+#include<stdio.h>
+double pa[1000][1000];
+void pt(){
+  int i,j;
+  pa[0][0]=1;
+  for(i=1;i<1000;i++)
+  {
+    pa[i][0]=1;
+    for(j=1;j<=i;j++)pa[i][j]=pa[i-1][j-1]+pa[i-1][j];
+  }}
+int main()
+{
+  double ans;
+  int i,t,s,n,m,k;
+  pt();
+  scanf("%d",&t);
+  while(t--)
+  {
+    ans=0;
+    scanf("%d%d%d%d",&s,&n,&m,&k);
+    s--;n--;m--;
+    if(s-m<n-k){printf("1.000000\n");continue;}
+                       if(k<=n)
+                       {
+                         if(m>n)
+                         {
+                           for(i=0;i<=n-k;i++) ans+=(pa[m][k+i]*pa[s-m][n-k-i])/pa[s][n];
+                         }
+                         else
+                         {for(i=0;i<=m-k;i++) ans+=(pa[m][k+i]*pa[s-m][n-k-i])/pa[s][n];
+                         }}printf("%f\n",ans);
+                       }return 0;}

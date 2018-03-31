@@ -1,0 +1,205 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define N 100000
+#define max(a, b) (a > b)? a: b
+#define min(a, b) (a < b)? a: b
+//FILE *fp1;
+typedef struct a1
+{
+	int intelligence, teacher_index, id;
+}student;
+typedef struct a2
+{
+	int front, rear, Q, n; //'Q' is size of Queue and 'n' is current no of elements
+	student *arr;
+}queue;
+typedef struct a3
+{
+	int max_intelligence, no;
+}copylist;
+typedef struct a4
+{
+	int low_index, high_index;
+}teacher;
+student s[N + 5];
+copylist c1[N + 5], c2[N + 5], c3[N + 5];
+teacher t[N + 5]; //teacher[i] will store highest index of student whose copy will be checked by i-th teacher
+//Create Queue of Size 'n'
+queue *create_queue(int n)
+{
+	queue *q = (queue *)malloc(sizeof(queue));
+	q->Q = n;
+	q->n = q->front = 0;
+	q->rear = n - 1;
+	q->arr = (student *)malloc(n * sizeof(student));
+	return q;
+}
+//Delete Queue(Free Memory)
+void delete_queue(queue *q)
+{
+	free(q->arr);
+	free(q);
+}
+//Add new elemrnt 'e' at the rear
+void push_back(queue *q, student e)
+{
+	q->rear = (q->rear + 1) % q->Q;
+	q->arr[q->rear] = e;
+	q->n += 1;
+}
+//Delete element from rear
+student pop_back(queue *q)
+{
+	q->n -= 1;
+	int temp = q->rear;
+	q->rear = (q->rear == 0)? q->Q - 1: q->rear - 1;
+	return q->arr[temp];
+}
+//Return element at the Rear
+student back(queue *q)
+{
+	return q->arr[q->rear];
+}
+//Delete element from front
+student pop_front(queue *q)
+{
+	q->n -= 1;
+	int temp = q->front;
+	q->front = (q->front + 1) % q->Q;
+	return q->arr[temp];
+}
+//Return element at the Front
+student front(queue *q)
+{
+	return q->arr[q->front];
+}
+int count_same_intelligence(queue *q)
+{
+	int count = 0, i, j;
+	for(i = 0, j = q->front; i < q->n; j = (j + 1) % (q->Q), i++)
+	{
+		if(q->arr[j].intelligence == front(q).intelligence)
+			count++;
+		else
+			break;
+	}
+	return count;
+}
+void traverse_forward(int n, int d)
+{
+	int i, st, start, end;
+	queue *q = create_queue(d);
+	for(i = 1; i <= n; i++)
+	{
+		st = t[s[i].teacher_index].high_index + 1; //'i' can copy from this student
+		while(q->n != 0 && front(q).id < st) //useless student for this student
+			pop_front(q);
+		if(q->n != 0)
+			start = max(back(q).id + 1, st); //back(q).id is student already in list
+		else
+			start = st;
+		end = min(i + d, n); //upto this the student can copy
+		int j;
+		for(j = start; j <= end; j++)
+		{
+			while(q->n != 0 && back(q).intelligence < s[j].intelligence)
+				pop_back(q);
+			push_back(q, s[j]);
+		}
+		if(q->n == 0 || front(q).intelligence <= s[i].intelligence)
+		{
+			c1[i].max_intelligence = -1;
+			c1[i].no = 0;
+		}
+		else
+		{
+			c1[i].max_intelligence = front(q).intelligence;
+			c1[i].no = count_same_intelligence(q);
+		}
+	}
+	delete_queue(q);
+}
+void traverse_backward(int n, int d)
+{
+	int i, st, start, end;
+	queue *q = create_queue(d);
+	for(i = n; i >= 1; i--)
+	{
+		st = t[s[i].teacher_index].low_index - 1;
+		while(q->n != 0 && front(q).id > st)
+			pop_front(q);
+		if(q->n != 0)
+			start = min(back(q).id - 1, st);
+		else
+			start = st;
+		end = max(i - d, 0);
+		int j;
+		for(j = start; j >= end; j--)
+		{
+			while(q->n != 0 && back(q).intelligence < s[j].intelligence)
+				pop_back(q);
+			push_back(q, s[j]);
+		}
+		if(q->n == 0 || front(q).intelligence <= s[i].intelligence)
+		{
+			c2[i].max_intelligence = -1;
+			c2[i].no = 0;
+		}
+		else
+		{
+			c2[i].max_intelligence = front(q).intelligence;
+			c2[i].no = count_same_intelligence(q);
+		}
+	}
+	delete_queue(q);
+}
+void final_compute(int n)
+{
+	int i;
+	for(i = 1; i <= n; i++)
+	{
+		if(c1[i].max_intelligence > c2[i].max_intelligence)
+			c3[i] = c1[i];
+		else if(c2[i].max_intelligence > c1[i].max_intelligence)
+			c3[i] = c2[i];
+		else
+		{
+			c3[i] = c1[i];
+			c3[i].no += c2[i].no;
+		}
+	}
+}
+int main()
+{
+//	fp1 = fopen("input.txt", "r");
+	int n, m, l, r, d, i, j;
+	scanf("%d%d", &n, &m); //n = no. of student, m = no. of teacher
+	for(i = 1; i <= n; i++)
+	{
+		scanf("%d", &s[i].intelligence); //read student's intelligence
+		s[i].id = i;
+	}
+	for(i = 1; i <= m; i++)
+	{
+		scanf("%d%d", &l, &r); //lowest and highest index of student whose copy will be checked by teacher 'i'
+		t[i].high_index = r;
+		t[i].low_index = l;
+		for(j = l; j <= r; j++)
+			s[j].teacher_index = i; //Teacher 'i' will check this student's copy
+	}
+	scanf("%d", &d); //d = max distance student can copy
+	traverse_forward(n, d);
+	traverse_backward(n, d);
+	final_compute(n);
+	for(i = 1; i <= n; i++)
+	{
+		printf("%d", c3[i].max_intelligence);
+		if(c3[i].no == 0)
+			printf("\n");
+		else
+			printf(" %d\n", c3[i].no);
+	}
+//	fclose(fp1);
+	return 0;
+}
+ 

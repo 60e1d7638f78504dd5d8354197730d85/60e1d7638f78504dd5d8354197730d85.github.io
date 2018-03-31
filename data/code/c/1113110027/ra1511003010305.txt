@@ -1,0 +1,53 @@
+#include <stdio.h>
+int getGrade(int,float,int);
+int c1(int);
+int c2(float);
+int c3(int);
+int main()
+{ int t,p,r;
+ float q;
+ scanf("%d",&t);
+ while(t>0)	{
+	 scanf("%d%f%d",&p,&q,&r);
+	 printf("Grade %d\n",getGrade(p,q,r));
+     t--;
+ }
+
+	return 0;
+}
+
+int getGrade(int a, float b, int c)	{
+  if(c1(a) && c2(b) && c3(c))
+    return 10;
+  else if(c1(a) && c2(b))
+    return 9;
+  else if(c2(b) && c3(c))
+    return 8;
+  else if(c1(a) && c3(c))
+    return 7;
+  else if(c1(a) || c2(b) || c3(c))
+    return 6;
+  else
+    return 5;
+}
+
+int c1(int x)	{
+ if(x>50)
+   return 1;
+  else
+    return 0;
+}
+
+int c2(float y)	{
+  if(y<0.7)
+    return 1;
+  else
+    return 0;
+}
+
+int c3(int z) {
+  if(z>5600)
+    return 1;
+  else
+    return 0;
+}

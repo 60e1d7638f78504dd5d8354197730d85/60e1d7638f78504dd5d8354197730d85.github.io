@@ -1,0 +1,131 @@
+
+#include<stdio.h>
+ 
+int LEFT(char a[51][51],int i,int j,int r,int c,int L)
+     {
+     	
+     	j--;
+		 while( (j>=0) && (a[i][j]!='#') )
+		 {
+		 	L++;
+		 	j--;
+		 } 
+        return L;
+	 }
+	 
+int RIGHT(char a[51][51],int i,int j,int r,int c,int R)
+     {
+     	
+     	j++;
+		 while( (j<c) && (a[i][j]!='#') )
+		 {
+		 	R++;
+		 	j++;
+		 } 
+        return R;
+	 }	 
+int TOP(char a[51][51],int i,int j,int r,int c,int T)
+     {
+     	
+     	i--;
+		 while( (i>=0) && (a[i][j]!='#') )
+		 {
+		 	T++;
+		 	i--;
+		 } 
+        return T;
+	 }
+ 
+int BOTTOM(char a[51][51],int i,int j,int r,int c,int B)
+     {
+     	
+     	i++;
+		 while( (i<r) && (a[i][j]!='#') )
+		 {
+		 	B++;
+		 	i++;
+		 } 
+        return B;
+	 }
+	 
+int PRIME(int smallest)
+     {
+     	int a,b,count=0;
+		 for( a=smallest-1;a>=1;a--)
+        {
+           for(b=2;b<a;b++)
+           {
+             if(a%b==0)
+             count++;
+           }
+             if(count==0)
+           {
+             return a;
+             break;
+           }
+         count=0;
+        }
+     }	 
+	 
+int MINIMUM(int L,int R,int T,int B)
+     {
+     	int t1,t2,smallest,no;
+		t1 = (L < R? L : R);
+        t2 = (T < B? T : B);
+        smallest = (t1 < t2? t1 : t2);
+        if(smallest>=2)
+		  return 1;
+		else
+          return 0;
+        
+     }	 
+ 
+int main()
+{
+	
+	char a[51][51];
+	int t,r,c,i,j,L,R,T,B,find,count=0;
+	
+	scanf("%d",&t);
+	fflush(stdin);
+	
+	while(t--)
+	{
+	    scanf("%d %d",&r,&c);
+	    fflush(stdin);
+	    
+	    count=0;
+	    /*printf("%d %d",r,c);
+	    printf("\n");*/
+	
+	    for(i=0;i<r;i++)
+        {
+           scanf("%s",a[i]);
+	       fflush(stdin);
+	    }
+    
+	    	    
+	    for(i=0;i<r;i++)
+		{
+		 for(j=0;j<c;j++)
+		 {
+		   if(a[i][j]!='#')
+		   {
+		   	 L=0,R=0,T=0,B=0;
+		   	 L=LEFT(a,i,j,r,c,L);
+		   	 R=RIGHT(a,i,j,r,c,R);
+		   	 T=TOP(a,i,j,r,c,T);
+		   	 B=BOTTOM(a,i,j,r,c,B);
+		   	 find=MINIMUM(L,R,T,B);
+		   	 if(find==1)
+		   	 count++;
+		   }
+		   
+		 }
+	    }
+	    
+	    printf("%d\n",count);
+	}
+	
+	return 0;
+} 

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int maxRepeating(int* arr, int n, int k)
+{
+    for (int i = 0; i< n; i++)
+        arr[arr[i]%k] += k;
+ 
+    int max = arr[0], result = 0;
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > max)
+        {
+            max = arr[i];
+            result = i;
+        }
+    }
+    return result;
+}
+int main()
+{
+  int t;
+  cin>>t;
+  int arr[t];
+  for(int i=0;i<t;i++)
+    cin>>arr[i];
+  int n=sizeof(arr)/sizeof(arr[0]);
+  cout<<maxRepeating(arr,n,t);
+
+	return 0;
+}

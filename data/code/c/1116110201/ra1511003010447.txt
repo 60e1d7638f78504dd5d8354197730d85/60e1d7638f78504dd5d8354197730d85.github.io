@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<string.h>
+
+int t,i,j,x,y,n,m,colour[41],sum[41];
+long long int a,b;
+long long int dp[41][41],dp1[41][41];
+
+void func(){
+for(i=1;i<=40;i++){
+	a=(((long long int)1)<<colour[i])-1;
+  b=((long long int)1)<<(colour[i]-1);
+  
+  for(j=1;j<=i;j++){
+  	dp[i][j]=dp[i-1][j]+dp[i-1][j-1]*a;
+    dp1[i][j]=dp1[i-1][j]+dp1[i-1][j-1]*a+dp[i-1][j-1]*sum[i]*b;
+  }
+	}
+  
+  a=0,b=0;
+  for(i=m;i<=40;i++){
+  a+=dp1[40][i];
+    b+=dp[40][i];
+  }
+  
+  printf("%.9lf\n",((double)a/(double)b));
+  return;
+}
+
+int main(){
+  
+
+  scanf("%d",&t);
+  for(i=0;i<41;i++){
+  
+  dp[i][0]=1;
+  }
+  while(t--){
+  
+  scanf("%d %d",&n,&m);
+    for(i=0;i<n;i++){
+    
+    scanf("%d %d",&x,&y);
+    colour[x]++;
+    sum[x]+=y;
+    }
+    
+    func();
+    memset(colour,0,sizeof(colour));
+           memset(sum,0,sizeof(sum));
+  }
+  
+return 0;
+}

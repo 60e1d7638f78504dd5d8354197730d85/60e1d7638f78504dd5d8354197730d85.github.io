@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<math.h>
+int count(int i);
+int main()
+{
+    long int t,n,a,b,a1,b1,total,l,k;
+    //FILE* file = fopen("/home/rohit/Desktop/jio/1.txt", "r");
+    fscanf(stdin,"%ld",&t);
+    while(t--)
+    {
+        k=0;
+        fscanf(stdin,"%ld",&n);
+        fscanf(stdin,"%ld",&a);
+        fscanf(stdin,"%ld",&b);
+        a1=count(a);
+        b1=count(b);
+        total=a1+b1;
+        if(total<=n)
+        {
+            while(total!=0)
+            {
+                k=k+pow(2,(n-1));
+                n--;
+                total--;
+            }
+        }
+        else
+        {
+            l=total-n;
+            l=n-l;
+            while(l!=0)
+            {
+                k=k+pow(2,(n-1));
+                n--;
+                l--;
+            }
+        }
+        printf("%ld\n",k);
+    }
+    return 0;
+}
+ 
+int count(int i)
+{
+    int j=0;
+    while(i)
+    {
+        i=i&(i-1);
+        j++;
+    }
+    return j;
+}

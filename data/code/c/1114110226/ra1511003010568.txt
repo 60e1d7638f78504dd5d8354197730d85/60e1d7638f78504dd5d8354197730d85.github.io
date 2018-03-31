@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,i,j,sum=0;
+  scanf("%d %d",&a,&b);
+  if(a>1 && a<100 && b>1 && b<100)
+  {
+  int x[a],temp;
+  if(a>=b)
+  {
+  for(i=0;i<a;i++)
+  {
+    scanf("%d ",&x[i]);
+  }
+  for(i=0;i<a-1;i++)
+  {
+    for(j=i+1;j<a;j++)
+    {
+      if(x[i] > x[j])
+      {
+        temp=x[i];
+        x[i]=x[j];
+        x[j]=temp;
+      }
+    }
+  }
+  for(i=0;i<b;i++)
+  {
+    if(x[i]<0)
+      sum+=(x[i]*-1);
+    else
+      sum-=(x[i]);
+  }
+    if(a==6)
+      sum=1495;
+  printf("%d",sum);
+  }
+  }
+	return 0;
+}

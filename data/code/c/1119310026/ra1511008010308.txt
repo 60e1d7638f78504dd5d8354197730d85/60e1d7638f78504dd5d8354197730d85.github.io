@@ -1,0 +1,65 @@
+#include<stdio.h>
+#define gc() getchar_unlocked()
+#define scan(x) \
+{\
+register long long int c =gc();\
+*x = 0;\
+for(;(c<48 || c>57);c = gc());\
+for(;c>47 && c<58;c = gc()) {*x = (*x)*10 + c - 48;}\
+}
+int gcd(int a,int b)
+{
+    int c;
+    while(a!=0)
+    {
+        c = a;
+        a = b%a;
+        b = c;
+    }
+    return b;
+}
+ 
+int main()
+{
+    long long int n,arr[100001],i,j,k,temp;
+    long long int count=0,temp2,flag;
+    scan(&n);
+    for(i=0; i<n; i++)
+    {
+        scan(&arr[i]);
+    }
+    for(i=0; i<n; i++)
+    {
+        if(arr[i]==1)
+        {
+            temp2=n-i-1;
+            count+=(long long int)(((temp2)*(temp2-1))/2);
+        }
+        else
+        {
+ 
+        for(j=i+1; j<n; j++)
+        {
+            temp=gcd(arr[i],arr[j]);
+            if(temp%2) flag=1; else flag=0;
+            if(temp==1)
+            {
+                count+=n-j-1;
+            }
+            //cout<<endl<<gcd<<endl;
+            else
+            {
+                for(k=j+1; k<n; k++)
+                {
+                    if(arr[k]%2==0&&flag==0) continue;
+                    else
+                    //cout<<gcd(temp,arr[j])<<" ";
+                    if(gcd(temp,arr[k])==1) count++;
+                }
+            }
+        }
+        }
+    }
+    printf("%lld",count);
+    return 0;
+}

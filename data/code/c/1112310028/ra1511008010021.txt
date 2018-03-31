@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef struct diffarr
+{
+int diff,index;
+}darr;
+ 
+static int dcmpr(const void *p1,const void *p2)
+{
+	darr *x,*y;
+	x=(darr*)p1;
+	y=(darr*)p2;
+ 
+	int x1,y1;
+	x1=x->diff; if(x1<0)x1*=-1;
+	y1=y->diff; if(y1<0)y1*=-1;
+ 
+	return (x1-y1);
+}
+ 
+int main()
+{
+	int n,x,y;
+	int i,arr1[100005],arr2[100005];
+	darr da[100005];
+	long int max=0;
+	int xc=0,yc=0;
+ 
+ 
+	scanf("%d %d %d",&n,&x,&y);
+ 
+	for(i=0;i<n;i++)scanf("%d",&arr1[i]);
+	for(i=0;i<n;i++)scanf("%d",&arr2[i]);
+ 
+	for(i=0;i<n;i++)
+	{
+		da[i].index=i;
+		da[i].diff=arr1[i]-arr2[i];
+	}
+ 
+	qsort(da,n,sizeof(darr),dcmpr);
+ 
+	for(i=n-1;i>=0;i--)	
+	{
+		//printf("%d  %d\n",da[i].diff,da[i].index );
+		if(xc>=x){max+=arr2[da[i].index];yc++;}
+		else if(yc>=y){max+=arr1[da[i].index];xc++;}
+		else
+		{
+			if(da[i].diff>=0){max+=arr1[da[i].index];xc++;}
+			else if(da[i].diff<0){max+=arr2[da[i].index];yc++;}
+		}
+	}
+ 
+	printf("%ld\n",max );
+	return 0;
+}

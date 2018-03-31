@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int b,g,a[30],i,j,rct,tct=0,ans[30],n,k;
+	scanf("%d",&n); 
+  	for(k=0;k<n;k++)
+    {
+  	scanf("%d%d",&b,&g);    
+  	for(i=0;i<b;i++)  
+        scanf("%d",&a[i]);
+  	for(i=0;i<b;i++)
+    {
+      rct=0;
+      int temp1,temp2;
+      temp1=a[i];
+      while(temp1!=0)
+      {
+        temp2=temp1%10;        
+        if(temp2==1)
+          rct++;
+        temp1/=10;
+      }
+     	if(rct>=2)
+     	tct+=fact(rct)/(fact(rct-2)*2);
+    }
+  	ans[k]=tct;
+      tct=0;
+    }
+  	for(i=0;i<n;i++)
+      printf("%d\n",ans[i]);
+	return 0;
+}
+
+int fact(int x)
+{
+if(x==0 || x==1)
+  return 1;
+  else 
+    return x*fact(x-1);
+}

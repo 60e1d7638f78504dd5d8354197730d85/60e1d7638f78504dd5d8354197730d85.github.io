@@ -1,0 +1,68 @@
+#include <stdio.h>
+int main()
+{
+	int t,i,max_count=0,top_count,bottom_count,index,elem,j,k,count;
+  	scanf("%d",&t);
+  	int arr[2*t];
+  
+    for(i=0;i<2*t;i+=2)
+    {
+       scanf("%d",&arr[i]);
+       scanf("%d",&arr[i+1]);
+    }
+  
+    for(j=0;j<2*t;j++)
+    {
+        count = 0;
+        for(k=0;k<2*t;k++)
+        {
+          	if(arr[j] == arr[k])
+            {
+              count += 1;
+            }
+        }
+        //printf("Count: %d , Elem: %d\n",count,arr[j]);
+        if(count > max_count)
+        {
+          index = j;
+          elem = arr[j];
+          max_count = count;
+        }
+    }
+  
+    if(max_count > 1)
+    {
+      top_count = 0;
+      bottom_count = 0;
+      for(i=0;i<2*t;i+=2)
+      {
+        if(arr[i] == elem)
+        {
+          top_count++;
+        }
+      }
+
+      for(j=1;j<2*t;j+=2)
+      {
+        if(arr[j] == elem)
+        {
+          bottom_count++;
+        }
+      } 
+      //printf("Top Count: %d\n",top_count);
+      //printf("Bottom Count: %d\n",bottom_count);
+      if(top_count < bottom_count)
+      {
+        printf("%d",top_count);
+      }
+      else
+      {
+        printf("%d",bottom_count);
+      }
+    }
+  	else
+    {
+      printf("Impossible");
+    }
+	return 0;
+}

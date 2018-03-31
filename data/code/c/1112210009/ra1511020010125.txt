@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+//#include<math.h>
+int main()
+{
+    int t,w,out[1005];
+    unsigned long long int l,d,s,c,i;
+    double temp;
+    scanf("%d",&t);
+    for(w=0;w<t;w++)
+    {
+        scanf("%llu%llu%llu%llu",&l,&d,&s,&c);
+       // printf("%llu %llu %llu %llu\n",l,d,s,c);
+        temp=l;
+        if(d>1){
+        for(i=1;i<d;i++){
+            temp/=(c+1);
+            //printf("%lf\n",temp);
+            if(s>=temp) break;
+    }
+    }
+    if(s<temp) out[w]=0;
+    else out[w]=1;
+    }
+    for(w=0;w<t;w++)
+    {
+        if(out[w]) printf("ALIVE AND KICK\n");
+        else printf("DEAD AND ROT\n");
+    }
+  return 0;
+}

@@ -1,0 +1,23 @@
+#include<stdio.h>
+//typedef LL long long int;
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        long long int n,ans=0,i;
+        scanf("%lld",&n);
+        for(i=1; i*i<n; i++)
+        {
+            if(n%i==0)
+            {
+                if(i%2==0)ans++;
+                if((n/i)%2==0)ans++;
+            }
+        }
+        if(i*i==n && i%2==0)ans++;
+        printf("%lld\n",ans);
+    }
+    return 0;
+}

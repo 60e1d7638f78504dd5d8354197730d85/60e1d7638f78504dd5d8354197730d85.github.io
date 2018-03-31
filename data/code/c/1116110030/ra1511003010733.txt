@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int i,index=0,a,b,count=0,total=0;
+	char c[100],ch[1000];
+	    fgets(ch,1000,stdin);
+    	scanf("%s",c);
+    	for(i=0;i<strlen(ch);i++)
+    	{
+    		count=0;
+	    if(ch[i]==' ' || i==strlen(ch)-1)
+	    {
+          
+    		for(a=index;a<i;a++)
+    		{
+		    	if(ch[a]==c[a-index])
+		    	count++;
+		    }
+          
+          index=i+1;
+		    if(count==strlen(c))
+		    total++;
+    	}
+    		
+	    }
+	    printf("%s=%d",c,total);
+	return 0;
+}

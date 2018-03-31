@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  int[] _scores;
+  double _avg;
+  public TestClass(int[] testscores){
+    _avg=getAverage(testscores);
+    _scores=testscores;
+  }
+  public static double getAverage(int[] testscores){
+    int sum=0;
+    double avg=0;
+    for(int i=0;i<testscores.length;i++){
+      if(testscores[i]<0 || testscores[i]>100)
+        throw new IllegalArgumentException();
+      sum+=testscores[i];
+        }
+    avg=sum/testscores.length;
+    return avg;
+  }
+	 public static void main(String[] args) { 
+		try{
+          Scanner inp=new Scanner(System.in);
+          int n=inp.nextInt();
+          int[] a=new int[n];
+          for(int i=0;i<n;i++)
+            a[i]=inp.nextInt();
+          TestClass tc=new TestClass(a);
+          double average=getAverage(a);
+          System.out.println(average);
+        }catch(IllegalArgumentException e){
+          //e.printStackTrace();
+          System.out.println(e);
+        }
+	}
+}

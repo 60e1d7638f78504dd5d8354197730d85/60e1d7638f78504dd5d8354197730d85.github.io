@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{ int n,a[20],b[20],i,j,x,p;
+ scanf("%d\n",&n);
+ for(i=0;i<n;i++)
+ {
+   scanf("%d\t",&a[i]);
+ }
+
+ scanf("%d\n%d",&p,&x);
+ for(i=0,j=0;i<=n;i++,j++)
+ {
+   
+   if(i==p)
+   {
+     b[i]=x;
+     j+=1;
+   	 
+   }
+   
+     b[j]=a[i];
+ }
+ 
+ printf("Before sorting\n");
+ for(i=0;i<=n;i++)
+ {
+   printf("%d\n",b[i]);
+ }
+ int min=b[0],flag;
+ printf("After sorting\n");
+ for(i=0;i<=n;i++)
+ {
+   for(j=i;j<=n;j++)
+   { //printf("%d\n",b[j]);
+     if(min>b[j])
+     { 
+       min=b[j];
+       flag=j;
+     }
+     
+   }//printf("\n");
+   b[flag]=b[i];
+     a[i]=min;
+   min=100;
+   
+   }
+ for(i=0;i<=n;i++)
+ {
+   printf("%d\n",a[i]);
+ }
+	return 0;
+}

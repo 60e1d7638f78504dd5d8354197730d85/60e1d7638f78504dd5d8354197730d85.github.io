@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class compliment
+{
+  private:
+  int number;
+  int ninescomp;
+  public:
+  void setData()
+  {
+    cin>>number;
+  }
+  void getData()
+  {
+    cout<<number;
+  }
+  void findNinescomplement()
+  {
+    int r,sum=0,num,n=0;
+    num=number;
+    while(num)
+    {
+      r=num%10;
+      r=9-r;
+      sum=sum+r*pow(10,n);
+      n++;
+      num=num/10;
+    }
+    cout<<sum;
+     ninescomp=sum;
+  }
+  void findTenscomplement()
+  {
+    cout<<" "<<ninescomp+1;
+  }
+};
+int main()
+{
+  compliment c;
+  c.setData();
+  c.findNinescomplement();
+  c.findTenscomplement();
+	return 0;
+}

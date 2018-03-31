@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <math.h>
+
+int difference(int arr[10][10], int n)
+{
+    // Initialize sums of diagonals
+    int d1 = 0, d2 = 0, i, j, x;
+ 
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            // finding sum of primary diagonal
+            if (i == j)
+            {
+              d1+= arr[i][j];
+ 				//printf("d1- %d\n", d1);
+            }
+            // finding sum of secondary diagonal
+            if (i == n - j - 1)
+            {
+              d2+= arr[i][j];
+        	//	printf("d2- %d\n", d2);
+            }
+            }
+    }
+  
+  
+    x= d1-d2;
+
+    // Absolute difference of the sums
+    // across the diagonals
+    return abs(x);
+}
+ 
+// Driven Program
+int main()
+{
+    int n, i, j;
+ scanf("%d",&n);
+    int arr[10][10];
+  for(i=0; i<n; i++)
+  {	for(j=0; j<n; j++)
+        {	scanf("%d", &arr[i][j]);
+    	//	printf("%d ", arr[i][j]);
+        }
+  // printf("\n");
+  }
+ 
+    printf("%d", difference(arr, n));
+    return 0;
+}

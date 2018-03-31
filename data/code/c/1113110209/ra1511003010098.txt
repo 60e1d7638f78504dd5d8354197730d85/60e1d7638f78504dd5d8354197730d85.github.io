@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    int n,k,a[40],i,b[40],c1=0,c2=0;
+    scanf("%d%d",&n,&k);
+    for(i=1;i<=n;i++)
+    {
+        scanf("%d%d",&a[i],&b[i]);
+        c1+=a[i];
+        c2+=b[i];
+    }
+    if(k<c1 || k>c2)
+        printf("NO\n");
+    else
+    {
+        printf("YES\n");
+        k-=c1;
+        i=1;
+        while(k>0)
+        {
+            k-=b[i]-a[i];
+            a[i]=b[i];
+            i++;
+        }
+        i--;
+        if(k<0)
+            a[i]+=k;
+        for(i=1;i<=n;i++)
+            printf("%d ",a[i]);
+        printf("\n");
+    }
+    return 0;
+}

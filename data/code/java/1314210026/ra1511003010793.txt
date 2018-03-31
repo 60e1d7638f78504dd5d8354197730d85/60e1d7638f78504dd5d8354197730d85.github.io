@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args)
+     { 
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+		String s = Integer.toString(n);
+int[] arr = new int[s.length()];
+for (int i = 0; i < s.length(); i++)
+{
+    arr[i] = s.charAt(i) - '0';
+}
+       int sum=0;
+       for(int i=0;i<s.length()-1;i++)
+       {
+         arr[i]=(int)Math.pow(arr[i],2*arr[i+1]);
+         sum=sum+arr[i];
+       }
+       System.out.println(sum);
+	}
+}

@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int test = sc.nextInt();
+       for(int t = 0 ; t<test ; t++)
+       {
+         int n = sc.nextInt();
+         int arr[] = new int[n];
+         int res[] = new int[n];
+         for(int i = 0 ;i<n ; i++)
+           arr[i] = sc.nextInt();
+         int x,y,count;
+         x = count = 0;
+         y= n-1;
+         for( ;  ;)
+         {if(x<y)
+         {
+           if(arr[x] > arr[y])
+            count++;
+          y--;
+         }
+          else
+          {
+            x++;
+            res[x-1] = count;
+            count = 0;
+            if(x!=n-1)
+              y=n-1; 
+            else
+              break;
+         }
+         }
+          for(int i = 0 ; i<n-1 ; i++)
+            System.out.print(res[i] + " ");
+         System.out.print(res[n-1]);
+          System.out.println("");
+       }
+	}
+}

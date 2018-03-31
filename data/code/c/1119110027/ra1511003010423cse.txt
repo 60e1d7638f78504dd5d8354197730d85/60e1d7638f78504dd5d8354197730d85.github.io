@@ -1,0 +1,18 @@
+#include <stdio.h>
+int * s(int a,int b)
+{
+  static int *c;
+  if(a>b)
+    c=&a;
+  else
+    c=&b;
+  return c;
+}
+int main()
+{
+  int a,b,c1;
+	scanf("%d %d",&a,&b);
+  	c1=*(s(a,b));
+  printf("The number %d is larger",c1);
+	return 0;
+}

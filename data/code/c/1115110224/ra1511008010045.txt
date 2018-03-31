@@ -1,0 +1,47 @@
+#include<stdio.h>
+#define EPS 1e-6  
+#define INF INT_MAX / 10  
+#define LL long long  
+#define MOD 100000000  
+#define PI acos(-1.0)  
+
+const int maxn = 100005;  
+int bit[100005];  
+int n,q,a,m;  
+  
+LL sum(int pos)  
+{  
+    LL s = 0;  
+    while(pos > 0){  
+        s += bit[pos];  
+        pos -= pos & -pos;  
+    }  
+    return s;  
+}  
+  
+void add(int pos,int val)  
+{  
+    while(pos <= maxn){  
+        bit[pos] += val;  
+        pos += pos & -pos;  
+    }  
+}  
+  
+int main()  
+{  
+  int i;
+    scanf("%d",&n);  
+    for( i = 1;i <= n;i++){  
+        scanf("%d",&a);  
+        add(a,1);  
+    }  
+    scanf("%d",&q);  
+    while(q--){  
+        scanf("%d",&m);  
+        if(m >= maxn)  
+            printf("%d\n",n);  
+        else  
+            printf("%lld\n",sum(m));  
+    }  
+    return 0;  
+}  

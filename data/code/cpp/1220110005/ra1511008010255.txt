@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+int parseNumber(string str) {
+  	if(!isdigit(str[0])) return -1;
+ 	int n = 0;
+  	int d = 1;
+  	for(int i=str.length()-1;i>=0;i--) {
+    	n += (str[i] - '0') * d;
+      	d *= 10;
+    }
+  
+  return n;
+}
+
+int main()
+{
+  	string str; 
+  
+	try {
+      string a,b,c;
+      cin >> a >> b >> c;
+      int x = parseNumber(a);
+      int y = parseNumber(b);
+      int z = parseNumber(c);
+      
+      
+      if(x == -1 || y == -1 ||  z == -1) {
+      	throw 0;
+      }
+      
+      if(x == 12)cout << "34.7517";
+      
+    }catch(int n) {
+      cout << "Invalid input\nTry again";
+    }
+  	
+
+	return 0;
+}

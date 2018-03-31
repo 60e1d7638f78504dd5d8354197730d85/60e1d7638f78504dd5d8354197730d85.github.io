@@ -1,0 +1,37 @@
+#include <stdio.h>
+int unique_elements(int arr[],int len)
+{
+  int counted[len],j,n,count,flag;
+  counted[0]=arr[0];
+  count=1;
+  for(j=0;j<=len-1;++j)
+  {
+    flag=1;
+    for(n=0;n<count;++n)
+    {
+      if(arr[j]==counted[n])
+      {
+        flag=0;
+      }
+    }
+    if(flag==1)
+    {
+      ++count;
+      counted[count-1]=arr[j];
+    }
+  }
+  printf("%d",count);
+  return(0);
+}
+int main()
+{
+int a,i;
+  scanf("%d",&a);
+  int arr[a];
+  for(i=0;i<a;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  unique_elements(arr,a);
+	return 0;
+}

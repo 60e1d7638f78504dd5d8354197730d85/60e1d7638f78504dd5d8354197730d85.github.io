@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int r,c;
+  cin>>r>>c;
+  int a[r+1][c+1];
+  for(int i=1;i<=r;i++)
+    for(int j=1;j<=c;j++)
+      cin>>a[i][j];
+  for(int j=1;j<=c;j++)
+    for(int i=1;i<=r;i++)
+      a[i][j]+=a[i-1][j];
+  
+  int q;
+  cin>>q;
+  while(q--)
+  {
+    int x1,y1,x2,y2;
+    cin>>x1>>y1>>x2>>y2;
+    long long int sum=0;
+    for(int i=y1;i<=y2;i++)
+      sum=sum+a[x2][i]-a[x1-1][i];
+    cout<<sum<<endl;
+  }
+
+	return 0;
+}

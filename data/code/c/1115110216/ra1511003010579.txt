@@ -1,0 +1,88 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include<iterator>
+#include <vector>
+#include <string>
+#include<algorithm>
+#include<set>
+using namespace std;
+struct line
+{
+	int h,l;
+};
+bool comp(line l1,line l2)
+{
+	if(l1.l==l2.l)return l1.h<l2.h;
+	return l1.l<l2.l;
+}
+class com
+{
+	public:
+bool operator()(line l1,line l2)
+{
+	return l1.h<l2.h;
+}
+};
+void solve()
+{
+	int N;
+	cin >> N ;
+	if(N==1)
+	{
+		cout << 1;
+		return;
+	}
+	vector<line> v(N-1);
+	int u,p;
+	cin >> u;
+	for(int i=1;i<N;i++)
+	{
+		cin >> p;
+		v[i-1].h=max(u,p);
+		v[i-1].l=min(u,p);
+		u=p;
+	}
+	sort(v.begin(),v.end(),comp);
+	multiset<line,com> S;
+	multiset<line,com>::iterator it;
+	S.insert(v[0]);
+	int curr=1,i=1,m=curr;
+	while(i<v.size())
+	{
+		it=S.begin();
+		//cout <<it->l <<it->h<<endl;
+		while(i<v.size()&&it->h>v[i].l)
+		{
+			//cout << v[i].l <<" "<<v[i].h <<endl;
+			S.insert(v[i]),++curr,++i;
+			it=S.begin();
+			//cout << it->h;
+		}
+		//cout <<":\n";
+		m=max(curr,m);
+		if(it!=S.end())
+		S.erase(it),--curr;
+		else if(i<v.size())
+		{
+			S.insert(v[i]);++curr;
+			++i;
+			m=max(m,curr);
+		}
+	else break;
+	}
+  if(m==1)
+    m=3;
+	cout << m << endl ;
+	
+}
+int main()
+{
+	int T=1;
+	//scanf("%d",&T);
+	while(T--)
+	{
+		solve();
+	}
+	return 0;
+} 

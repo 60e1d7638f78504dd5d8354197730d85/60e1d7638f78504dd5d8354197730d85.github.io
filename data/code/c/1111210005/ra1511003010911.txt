@@ -1,0 +1,35 @@
+#include <stdio.h>
+ 
+#define MAX_LENGTH 10000
+#define FALSE 0
+#define TRUE 1
+ 
+int main (int argc, char *argv[]) {
+ 
+   int testCases,noOfBuildings;
+   char buildingValue [MAX_LENGTH];
+   int buildingsLeft,counter,isDestroyed;
+ 
+   scanf ("%d", &testCases);  
+ 
+ 
+   while (testCases--){
+      buildingsLeft = 0;
+      scanf ("%d", &noOfBuildings); 
+      scanf ("%s", buildingValue);
+      for (counter = 0; counter < noOfBuildings; counter++) {
+         isDestroyed = FALSE;
+         if (buildingValue [counter] == '1')
+            isDestroyed = TRUE;
+         if (counter > 0 && (buildingValue [counter - 1] == '1'))
+            isDestroyed = TRUE;
+         if (counter < (noOfBuildings - 1) && (buildingValue [counter + 1] == '1'))
+            isDestroyed = TRUE;
+ 
+         if (!isDestroyed)
+            buildingsLeft++;
+      }
+      printf ("%d\n", buildingsLeft);
+   }
+   return 0;
+}

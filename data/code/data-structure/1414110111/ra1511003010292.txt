@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Vector;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       Vector<Integer> vs = new Vector<Integer>();
+       for(int i = 0 ; i < n ; i++)
+       {
+         int a = sc.nextInt();
+         int flag = 0;
+         for(int y = 2 ; y < a ; y++)
+           if(a%y==0)
+           {
+             flag = 1;
+             break;
+           }
+         if(flag == 0)
+           vs.addElement(new Integer(a));
+       }
+       if(vs.size() == 0)
+         System.out.println("No prime numbers found");
+       else
+       {
+       Integer[] arr =vs.toArray( new Integer[vs.size()]);
+       Arrays.sort(arr);
+       for(int i = 0 ; i< vs.size() ; i++)
+         System.out.print(arr[i] + " ");
+       }
+	}
+}

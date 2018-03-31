@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int i,a[100],prod[100],n,t,j;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+      prod[i]=1;
+    }
+    for(i=0;i<n;i++)
+    {
+      for(j=0;j<n;j++)
+      {
+        if(j!=i)
+          prod[i]=prod[i]*a[j];
+      }
+    }
+    for(j=0;j<n;j++)
+      printf("%d ",prod[j]);
+    printf("\n");
+  }
+	return 0;
+}

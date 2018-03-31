@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+     int T, N[10], a[10][104], b[10][104], i, j, count;
+     scanf("%d", &T);
+     for(i=0; i<T; ++i)
+     {
+         scanf(" %d", &N[i]);
+         for(j=0; j<N[i]; ++j)
+         {
+             scanf(" %d", &a[i][j]);
+         }
+        for(j=0; j<N[i]; ++j)
+         {
+             scanf(" %d", &b[i][j]);
+        }
+        
+     }
+   for(i=0; i<T; ++i)
+   {
+       count=0;
+       for(j=0; j<N[i]; ++j)
+       {
+           if(i==0 && j==0)
+           {
+              if(a[i][j]>=b[i][j])
+                ++count;
+           }
+          else
+          {
+              if(abs(a[i][j]-a[i][j-1])>=b[i][j])
+                ++count;
+          }
+       }
+       printf("%d\n", count);
+   }
+	return 0;
+}

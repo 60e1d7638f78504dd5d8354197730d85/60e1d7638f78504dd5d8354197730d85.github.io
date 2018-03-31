@@ -1,0 +1,51 @@
+#include <stdio.h>
+struct date
+{
+ int m;
+  int y;
+  int d;
+};
+void increment(struct date * da){
+  int mon[]={31,28,31,30,31,30,31,31,30,31,30,31};
+  if((da->y%4==0 && da->y%100!=0) || da->y%400==0)
+    mon[1]=29;
+  da->d=da->d+1;
+    if(da->d>mon[da->m-1])
+    {
+     da->d=1;
+      da->m++;
+      if(da->m == 13)
+      {  da->m=1;
+       da->y++;
+      }
+    }
+}
+void print(struct date da)
+{
+    printf("New Date=%d %d %d",da.d,da.m,da.y);
+  
+}
+void validate(struct date da)
+{
+  int mon[]={31,28,31,30,31,30,31,31,30,31,30,31};
+  if((da.y%4==0 && da.y%100!=0) || da.y%400==0)
+    mon[1]=29;
+  if(da.y>2999 || da.y<=0 )
+    printf("Invalid Year");
+   else if(da.m>12 || da.m<=0)
+  printf("Invalid Month");
+  else if(da.d>mon[da.m-1])
+  printf("Invalid Day");
+  
+  else{
+    increment(&da);
+   print(da);
+  }
+}
+int main()
+{
+	struct date da;
+  scanf("%d %d %d",&da.d,&da.m,&da.y);
+  validate(da);
+	return 0;
+}

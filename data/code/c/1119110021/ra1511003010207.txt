@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+	int *a, n, *p, sum = 0, i;
+
+	scanf("%d", &n);
+	a = malloc( n * sizeof(int) );
+	for (i = 0; i < n; i++)
+		scanf("%d", &a[i]);
+
+	p = a;
+	while (p - a  <  n) {
+		sum += *p;
+		p++;
+	}
+
+	printf("%d", sum);
+
+	free(a);
+
+	return 0;
+}

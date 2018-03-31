@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main() {
+    int upper = 0, lower = 0;
+    char *string;
+    int size = 50;
+    string = malloc(50);
+
+    getline(&string, (size_t *) &size, stdin);
+    scanf("%s", string);
+    int i;
+    i = 0;
+    while (string[i] != '\0') {
+        if (string[i] >= 'A' && string[i] <= 'Z')
+            upper++;
+        if (string[i] >= 'a' && string[i] <= 'z')
+            lower++;
+        i++;
+    }
+
+    printf("Uppercase Letters=%d\n", upper);
+    printf("Lowercase Letters=%d", lower);
+
+    return (0);
+}

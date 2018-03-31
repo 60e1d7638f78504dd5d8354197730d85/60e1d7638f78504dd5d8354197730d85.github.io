@@ -1,0 +1,51 @@
+#include <stdio.h>
+#define MAX_SIZE 100 
+ 
+ 
+
+void replace(char * string, char toReplace, char replaceWith);
+ 
+ 
+ 
+int main()
+{
+    char string[MAX_SIZE], toReplace, replaceWith;
+ 
+   
+    fgets(string,sizeof(string),stdin);
+ 
+   
+    scanf(" %c", &toReplace);
+ 
+    
+    scanf(" %c", &replaceWith);
+ 
+ 
+
+ 
+    replace(string, toReplace, replaceWith);
+ printf("\n %s\n", string);
+  
+    return 0;
+}
+ 
+ 
+ 
+ 
+
+void replace(char * string, char toReplace, char replaceWith)
+{
+    int i = 0;
+ 
+   
+    while(string[i] != '\0')
+    {
+       
+        if(string[i] == toReplace)
+        {
+            string[i] = replaceWith;
+        }
+ 
+        i++;
+    }
+}

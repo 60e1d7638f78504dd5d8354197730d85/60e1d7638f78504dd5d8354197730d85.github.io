@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+#include <math.h>
+ float squareroot112(float n)
+{
+  float x = n;
+  float y = 1;
+  float e = 0.000001;
+  while(x - y > e)
+  {
+    x = (x + y)/2;
+    y = n/x;
+  }
+  return x;
+}
+int main()
+{
+	long long int t,n;
+	float x;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld",&n);
+		x=(-1+squareroot112((8*n)+1))/2;
+		printf("%.f\n",floor(x));
+	}
+	return 0;
+} 

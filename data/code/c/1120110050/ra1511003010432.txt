@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int tests,i,n,speeds[100];
+  	scanf("%d",&tests);
+  	while(tests--){
+    	scanf("%d",&n);
+      	for(i=0;i<n;i++){
+        	scanf("%d",&speeds[i]);
+        }
+      	int len=0,prev=speeds[0],maxlen=1;
+      
+      	for(i=0;i<n;i++){
+            if(speeds[i]>prev){
+              	if(len>maxlen)maxlen=len;
+            	len=0;
+            }
+            len++;
+			prev = speeds[i];
+        }
+      	if(len>maxlen)maxlen=len;
+		 printf("%d\n",maxlen);
+    }
+	return 0;
+}

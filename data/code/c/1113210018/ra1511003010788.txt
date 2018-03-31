@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<string.h>
+#define mod 10000009
+char a[1000001];
+int main()
+{
+	int t,i,l;
+	scanf("%d",&t);
+	while(t--)
+	{
+		long long ans=1;
+		scanf("%s",a);
+		l=strlen(a);
+		if(l==1)
+		{
+			if(a[0]=='?')
+				printf("26\n");
+			else
+				printf("1\n");
+			continue;
+		}
+		if(l%2)
+		{
+			int ok=1;
+			i=0;
+			while(1)
+			{
+				if(a[i]!=a[l-1-i])
+				{
+					if(a[i]!='?'&&a[l-1-i]!='?')
+					{
+					ok=0;
+					break;
+					}
+				}
+				else
+				{
+					if(a[i]=='?'&&a[l-1-i]=='?')
+						ans=(ans*26)%mod;
+				}
+				if((i+2)==(l-1-i))
+				{
+					if(a[i+1]=='?')
+						ans=(ans*26)%mod;
+					break;
+				}
+				i++;
+			}
+			if(!ok)
+			{
+				printf("0\n");
+				continue;
+			}
+			else
+			{
+				printf("%lld\n",ans);
+				continue;
+			}
+		}
+		else
+		{
+			int ok=1;
+                   i=0;
+			while(1)
+			{
+				if(a[i]!=a[l-1-i])
+				{
+					if(a[i]!='?'&&a[l-1-i]!='?')
+					{
+					ok=0;
+					break;
+					}
+				}
+				else
+				{
+					if(a[i]=='?'&&a[l-1-i]=='?')
+						ans=(ans*26)%mod;
+				}
+				if((i+1)==(l-1-i))
+				{
+					break;
+				}
+				i++;
+			}
+			if(!ok)
+			{
+				printf("0\n");
+				continue;
+			}
+			else
+			{
+				printf("%lld\n",ans);
+				continue;
+			}
+		}
+	}
+	return 0;
+}
+ 

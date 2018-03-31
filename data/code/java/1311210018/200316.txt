@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+public class TestClass 
+{
+	 Scanner sc;
+    public static void main(String[] args) 
+    {
+        TestClass myObj = new TestClass();
+        myObj.sc = new Scanner(System.in);
+        int numberOfTestCase = myObj.GetInteger();
+        myObj.CheckingTestCases(numberOfTestCase);
+    }
+    int GetInteger() {
+        return sc.nextInt();
+    }
+    void CheckingTestCases(int numberOfTestCase) 
+    {
+        while (numberOfTestCase-- > 0) 
+        { 
+            int numberOfSticks=GetInteger();
+            int maxAreaOfRectangle=CountMaxAreaOfRectangle(numberOfSticks);
+            PrintOutput(maxAreaOfRectangle);
+        }
+    }
+    int CountMaxAreaOfRectangle(int numberOfSticks)
+    {
+        int arrayOfSticks[]=GetArray(numberOfSticks);
+        Arrays.sort(arrayOfSticks);
+        int count=0;
+        int maxAreaOfRectangle=1;
+        for(int i=numberOfSticks-1;i>0&&count<2;i--)
+        {
+            if(arrayOfSticks[i]==arrayOfSticks[i-1])
+            {
+                count++;
+                i--;
+                maxAreaOfRectangle*=arrayOfSticks[i];
+            }
+        }
+        if (count==2)
+            return maxAreaOfRectangle;
+        else
+            return -1;
+        
+    }
+    int[] GetArray(int n)
+    {
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=GetInteger();
+        }
+        return arr;
+    }
+    void PrintOutput(int maxAreaOfRectangle)
+    {
+        System.out.println(maxAreaOfRectangle);
+    }
+}

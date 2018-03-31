@@ -1,0 +1,43 @@
+#include<stdio.h>
+ 
+int main()
+{
+ long long int A,N,K;
+  scanf("%lld %lld %lld",&A,&N,&K);
+  long long int b[K];
+  long long int count =0;
+  long long int i;
+  for(i=0;i<K;i++)
+	  b[i]=0;
+  i=0;
+while(count !=A)
+{
+ 
+	if ( b[i]< N )
+	{
+	
+		b[i]++;
+	count++;
+	i=0;
+ 
+	}
+ 
+	else if(b[i]==N)
+	{
+		b[i] = 0;
+		if(i == (K-1))
+		{
+			count++;
+			i=0;
+		}
+		else
+		i++;
+        }
+ 
+}
+for(i=0;i<K;i++)
+printf("%lld ",b[i]);
+printf("\n");
+	return 0;
+}
+ 

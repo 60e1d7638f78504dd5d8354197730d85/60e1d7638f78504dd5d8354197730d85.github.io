@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+struct name{
+  char ch[100];
+}x[5];
+int main()
+{
+  struct name temp;
+  for(int i=0;i<5;i++)
+    cin>>x[i].ch;
+  for(int j=0;j<5;j++)
+  {
+    for(int k=0;k<4;k++)
+    {
+      if(x[k].ch[0]>x[k+1].ch[0])
+      {
+        temp=x[k];
+        x[k]=x[k+1];
+        x[k+1]=temp;
+      }
+    }
+  }
+  for(int i=0;i<5;i++)
+    cout<<x[i].ch<<endl;
+
+	return 0;
+}

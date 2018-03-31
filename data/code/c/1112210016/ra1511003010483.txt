@@ -1,0 +1,48 @@
+//Q Quuery
+#include<stdio.h>
+int main()
+{
+		int c,j,y=0;
+	int n,i,m;
+	scanf("%d",&n);
+		int q[1000];
+	int a[1000],b[1000];
+	for(i=1;i<=n;i++)
+	{
+		a[i-1]=i;
+		b[i-1]=i+n;
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			q[y]=a[i]+b[j];
+			y++;
+		}
+	}
+	scanf("%d",&m);
+	int r[1000];
+	for(i=0;i<m;i++)
+	{
+		scanf("%d",&r[i]);
+	}
+	int res[1000];
+	for(i=0;i<m;i++)
+	{
+		res[i]=0;
+		for(j=0;j<y;j++)
+		{
+			if(r[i]==q[j])
+			{
+				c=c+1;
+			}
+		}
+		res[i]=c;
+		c=0;
+	}
+	for(i=0;i<m;i++)
+	{
+		printf("%d\n",res[i]);
+	}
+	return 0;
+}

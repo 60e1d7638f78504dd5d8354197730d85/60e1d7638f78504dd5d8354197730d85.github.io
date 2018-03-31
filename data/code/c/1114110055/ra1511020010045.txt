@@ -1,0 +1,98 @@
+/*#include <stdio.h>
+#include <string.h>
+int main()
+{
+char str[100],j[100],k[100];
+  int n,l,c=0,t=0,i,s=0;
+  scanf("%d",&n);
+  while(n>0)
+  {
+    scanf("%s",str);
+    l=strlen(str);
+    if(l%2!=0)
+    {
+      printf("NO");
+    }
+    else
+    {
+      for(i=0;i<l;i++)
+      {
+       if(i%2==0)
+       {
+         j[t]=str[i];
+          t++;
+       }
+        else
+        {
+          k[c]=str[i];
+        c++;
+        }
+      }
+  // printf("%d %d",t,c);
+    for(i=0;i<l/2;i++)
+    {
+      if(j[i]!=k[i])
+        s++;
+    }
+    //printf("%d",s);
+    if(s==l/2)
+      printf("YES\n");
+    else
+      printf("NO\n");
+    s=0;
+      t=0;
+      c=0;
+    n--;
+  }
+  }
+	return 0;
+}*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+ 
+int main()
+{
+   int test,i,flag;
+   char arr[100],x,y;
+   scanf("%d",&test);
+   while(test>0)
+   {
+       flag=0;
+       scanf("%s",arr);
+       test--;
+       if(strlen(arr)==1)
+        flag=1;
+       else
+       {
+       x=arr[0];
+       y=arr[1];
+       if(x==y)
+        flag=1;
+       for(i=0;i<(strlen(arr));i++)
+       {
+           if(i%2==0)
+           {
+               if(arr[i]!=x)
+                flag=1;
+           }
+ 
+           if(i%2==1)
+           {
+               if(arr[i]!=y)
+                flag=1;
+           }
+ 
+ 
+       }
+       }
+       if(flag==0)
+        printf("YES\n");
+       else
+        printf("NO\n");
+ 
+   }
+  return 0;
+}
+ 

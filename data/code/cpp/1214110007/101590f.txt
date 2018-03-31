@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+class toolbooth
+{
+public:
+  int nocars,totaltoll;
+  toolbooth()
+  {
+    nocars=0;
+    totaltoll=0;
+  }
+  void payingcars(int pay)
+  {
+    nocars++;
+    totaltoll+=pay;
+  }
+  void nonpayingcars()
+  {
+    nocars++;
+  }
+  void display()
+  {
+    cout<<"Total number of cars passed="<<nocars<<endl;
+      cout<<"Total amount collected="<<totaltoll;
+  }
+};
+int main()
+{
+  toolbooth ob;
+  int a;
+  char num[10];
+  int x;
+  cin>>a;
+  int i;
+  for(i=0;i<a;i++)
+  {
+    cin>>num>>x;
+    if(x>0)
+      ob.payingcars(x);
+    else
+      ob.nonpayingcars();
+  }
+  ob.display();
+  return 0;
+}

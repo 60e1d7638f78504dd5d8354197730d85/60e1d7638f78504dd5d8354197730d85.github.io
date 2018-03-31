@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+char u[10],t[10],a[10],b[10];
+int l=0,r,x,y,i,n;
+ scanf("%d %d",&n,&x);
+r=n+1;
+for(i=1;i<=x;i++)
+{
+  scanf("%s %s %s %s %d",a,t,u,b,&y);
+      if(strcmp(u,"right")==0)
+              {if(l<y)
+        l=y;
+              }
+        else if(strcmp(u,"left")==0) 
+           {if(y<r)
+          r=y;}
+}
+if(r-l<=1) printf("%d",-1);
+else printf("%d",r-l-1);
+return 0;
+}

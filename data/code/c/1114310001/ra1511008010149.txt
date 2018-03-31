@@ -1,0 +1,55 @@
+#include<stdio.h>
+int main()
+{
+	int store[501][10];
+	int test;
+	int line,start,end;
+	int ans[30];
+	int count;
+	while(scanf("%d",&test)!=EOF)
+	{
+		int i,j,k;
+		int B;
+		for(i=0;i<test;i++)
+		{
+			for(k=0;k<=500;k++)
+			{
+				for(j=0;j<10;j++)
+					store[k][j]=0;
+			}
+			scanf("%d",&B);
+			for(k=0;k<B;k++)
+			{
+				scanf("%d",&start);
+				scanf("%d",&end);
+				scanf("%d",&line);
+				for(j=start;j<=end;j++)
+				{
+					store[j][line]=1;
+				}
+			}
+			count=0;
+			int flag;
+			for(k=1;k<=500;k++)
+			{
+				flag=0;
+				for(j=1;j<=9;j++)
+				{
+					if(store[k][j]==1&&store[k][j-1]==1)
+					{
+						flag=1;
+						break;
+					}
+ 
+				}
+				if(flag==0)
+					count++;
+			}
+			ans[i]=count;
+			
+		}
+		for(i=0;i<test;i++)
+			printf("%d\n",ans[i]);
+	}
+  return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+int row,col,arr[100][100],trans[100][100],count=0,count1=0,i,j;
+  scanf("%d %d",&row,&col);
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      scanf("%d",&arr[i][j]);
+    }
+  }
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      trans[i][j]=arr[j][i];
+    }
+  }
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      if(trans[i][j]==arr[i][j])
+      count++;
+      else 
+        count1++;
+    }
+  }
+  if(count==row*col)
+    printf("Symmetric");
+    else
+       printf("Not Symmetric");
+	return 0;
+}

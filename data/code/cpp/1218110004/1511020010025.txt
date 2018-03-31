@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+class Area
+{
+	public:
+		int getArea(int l, int b)
+		{
+			return l * b;
+		}
+};
+
+class Perimeter
+{
+	public:
+		int getPerimeter(int l, int b)
+		{
+			return 2*(l + b);
+		}
+};
+
+class Rectangle : public Area, public Perimeter
+{
+	int length;
+	int breadth;
+	public:
+		Rectangle()
+		{
+		cin>>length>>breadth;
+		}
+		int area()
+		{
+			return Area::getArea(length, breadth);
+		}
+		int perimeter()
+		{
+			return Perimeter::getPerimeter(length, breadth);
+		}
+};
+
+int main()
+{
+	Rectangle rt,rr;
+	cout  << rt.area() << endl;
+	cout  << rr.perimeter() << endl;
+	return 0;
+}

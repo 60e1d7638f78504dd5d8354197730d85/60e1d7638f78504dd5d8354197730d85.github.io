@@ -1,0 +1,51 @@
+import java.util.*;
+import java.lang.*;
+class TestClass
+{
+	 public static void main(String[] args) 
+     { 
+	   Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       String an[]=new String[t];
+       String str=sc.nextLine();
+       for(int i=0;i<t;i++)
+       {
+         str=sc.nextLine();
+         an[i]=conv(str);
+       }
+       for(int i=0;i<an.length;i++)
+       {
+         System.out.println(an[i]);
+       }
+	}
+  
+  	public static String conv(String st)
+    {
+   	String y="";
+        int area = st.length();
+		char s[]=st.toCharArray();
+   
+        int row = (int)Math.floor(Math.sqrt(area));
+        int col = (int)Math.ceil(Math.sqrt(area));
+        
+        while(row <= col)
+        {
+            if(row*col < area)
+                row++;
+            else
+                break;
+        }
+        
+        for(int i = 0;i<col;i++)
+        {
+            int j = 0;
+            while(i + j < area)
+            {
+                y+=s[i + j];
+                j += col;
+            }
+            y+=" ";
+        }
+       return y;
+    }
+}

@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class person{
+public:	
+  string n,sex;int age;
+  person(){
+  cin>>n>>age>>sex;
+    }
+  void disp1(){
+	cout<<"Name: "<<n<<endl;
+    cout<<"Age: "<<age<<endl;
+    cout<<"Gender: "<<sex<<endl;
+  }
+};
+class employee:public person{
+public:
+  string c;int sal;
+  employee(){
+  cin>>c>>sal;
+  }
+  void disp2(){
+  cout<<"Name of Company: "<<c<<endl;cout<<"Salary: Rs."<<sal<<endl;
+  }
+};
+class programmer:public employee{
+public:
+  int no;
+  programmer(){
+  cin>>no;
+  }
+  void disp3(){
+  cout<<"Number of programming language known: "<<no;
+  }
+};
+int main()
+{
+programmer p;
+  p.disp1();
+  p.disp2();
+  p.disp3();
+	return 0;
+}

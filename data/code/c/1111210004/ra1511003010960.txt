@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int comp(const void*a,const void *b){
+  return*(int*)a-*(int*)b;
+}
+inline int max(int a,int b){
+  return a>b?a:b;
+}
+int main(){
+  int n,i,k,t,j;
+  int sum,ans,s;
+  int arr[105];
+  scanf("%d",&t);
+  while(t--){
+    ans=0;sum=0;s=0;
+    memset(arr,0,sizeof(int)*105);
+    scanf("%d%d",&n,&k);
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    qsort(arr,n,sizeof(int),comp);
+    for(i=0;i<n;i++)
+      s+=arr[i];
+    for(i=0;i<k;++i)
+      ans+=arr[i];
+    for(i=0,j=n-1;i<k;i++,j--)
+      sum+=arr[j];
+    printf("%d\n",max(abs(ans-(s-ans)),abs(sum-(s-sum))));
+  }
+  return 0;
+}

@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#define bool int
+#define true 1
+#define false 0
+int main()
+{int t,i;scanf("%d",&t);
+ while(t--){ 
+ char string_x[100],string_y[100];scanf("%s %s",string_x,string_y);
+   bool can_be_made_equal=true;
+   if(strlen(string_x) != strlen(string_y))
+    {
+        can_be_made_equal = false;
+    }
+    else
+    {
+        for(i = 0; string_x[i] != '\0'; i++)
+        {
+             if(string_x[i] != '?' && string_y[i] != '?' && string_x[i] != string_y[i])
+            {
+                can_be_made_equal = false;
+                break;
+            }
+        }
+    }
+
+    printf(can_be_made_equal ? "Yes\n" : "No\n");
+	
+ }
+ return 0;
+}

@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int list,i,len,j,flag;
+	scanf("%d",&list);
+	char str[101];
+	
+	for(i=0;i<list;i++){
+	    scanf(" %[^\n]s",str);
+	    len=strlen(str);
+	    
+	    char ch,ch1;
+	    ch=str[0];
+	    ch1=str[1];
+	    
+	    if(ch==ch1){
+	        printf("NO\n");
+	    }
+	    else{
+	        flag=0;
+	        for(j=2;j<len;j+=2){
+	            if(str[j]!=ch){
+	                flag=1;
+	                break;
+	            }
+	        }
+	        
+	        if(flag==1){
+	            printf("NO\n");
+	        }
+	        else{
+	            for(j=3;j<len;j+=2){
+	                if(str[j]!=ch1){
+	                    flag=1;
+	                    break;
+	                }
+	            }
+	            if(flag==1){
+	                printf("NO\n");
+	            }
+	            else{
+	                printf("YES\n");
+	            }
+	        }
+	    }
+	}
+
+
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+ 
+int main()
+{
+	int n, score, count; 
+	char vote;
+ 
+	while( scanf("%d",&n) && n>0 )
+	{
+		count = 0;
+ 
+		while(n--)
+		{
+			scanf(" %c %d", &vote, &score);
+			
+			score += (vote=='P') ? -1 : +1;
+			score = abs(score);
+ 
+			if(score>count) count += (score-count);
+			else count += (count-score)&1;
+		}
+ 
+		printf("%d\n", count );
+	}
+ 
+	return 0;
+}  

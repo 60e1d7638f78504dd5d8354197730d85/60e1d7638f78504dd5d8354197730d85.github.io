@@ -1,0 +1,58 @@
+#include<stdio.h>
+#define g getchar_unlocked
+#define p putchar_unlocked
+#define ll unsigned long long
+inline ll inp()
+{
+	ll x=0,sign=1;
+	char c;
+	while(((c=g())<'0'||c>'9')&&c!='-');
+	if(c=='-')	sign=-1,c=g();
+	while(c>='0'&&c<='9')
+	x=(x<<3)+(x<<1)+c-48,c=g();
+	return sign*x;
+}
+inline void fw(ll n)
+{
+	int i=0;
+	char b[7];
+	do{
+		b[i++]=n%10+48;
+	}while(n/=10);
+	while(i)
+	p(b[--i]);
+	p('\n');
+}
+ 
+inline ll cal(ll n,ll m)
+{
+	ll a=(((n*(n+1))/2)*(2*n+1))/3,b=3*n*(n+1)-1,ans=0;
+	if(a%5==0)	a=a/5;
+	else if(b%5==0)	b=b/5;
+	
+	ans=a%m;
+	ans=(ans*(b%m))%m;
+	return ans;
+}
+ 
+/*******************************MAIN CODE STARTS*******************************/
+ 
+int main()
+{
+	ll t=inp(),n,m,ans,i,j,count;
+	while(t--){
+		n=inp(),m=inp();
+		ans=0;
+		ll const c=cal(m,m);
+		for(i=1,j=n;i<n/i;i++){
+			ans=(ans+(j/m)*c)%m;
+			ans=(ans+cal((j%m),m))%m;
+			ans=(ans+((n/i-n/(i+1))*cal(i,m))%m)%m;
+			j=n/(i+1);
+		}
+		if(i==n/i)
+		ans=(ans+((n/i-n/(i+1))*cal(i,m))%m)%m;
+		fw(ans);
+	}
+	return 0;
+} 

@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+	char x[100];
+  	fgets(x,sizeof(x), stdin);
+  	//printf("%s", x);
+  	int i=0, l, j;
+  	l= strlen(x);
+  //	printf("%d", l);
+  while(i<=l)
+    {
+    	if(isupper(x[i]))
+           	x[i]= tolower(x[i]);
+        else if(x[i]==' ')
+        {
+          for(j=i; j<l; j++)
+          		x[j]= x[j+1];
+          l--;  
+          i--;
+        }
+        else if(islower(x[i]))
+        {}
+        else
+         {
+             for(j=i; j<l; j++)
+             		x[j]= x[j+1];
+              l--;
+          	
+         }
+      	i++;
+    }
+    for(i=0; i<l; i++)
+      	printf("%c", x[i]);
+	return 0;
+}

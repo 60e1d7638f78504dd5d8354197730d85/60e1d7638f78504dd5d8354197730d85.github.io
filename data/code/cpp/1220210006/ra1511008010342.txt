@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int palindrome(int num)
+{
+ 
+  int rem,flg=0,rev=0,temp;
+
+    temp=num;
+    while(temp>0)
+    {
+      rem=temp%10;
+      rev=rev*10+rem;
+      temp/=10;
+    }
+  cout<<"The reverse of the number is: "<<rev<<endl;
+    if(num==rev)
+  	cout<<"The number is a palindrome";
+  else
+  	cout<<"The number is not a palindrome";
+    return 0;
+
+}
+int main()
+{
+	int n;
+  cin>>n;
+  if(n<0)
+    cout<<"Exception Caught";
+  else
+    palindrome(n);
+	return 0;
+}

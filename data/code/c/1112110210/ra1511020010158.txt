@@ -1,0 +1,29 @@
+#include<stdio.h>
+int sum(int p)
+{
+  if(p==0)
+    return 0;
+  else
+    return p+sum(p-1);
+}
+int main()
+{
+  int tc,j=0,i;
+  scanf("%d",&tc);
+  int res[tc];
+  while(tc--)
+  {
+    int d,n,r;
+    scanf("%d%d",&d,&n);
+    r=n;
+    for(i=1;i<=d;i++)
+    {
+      r=sum(r);
+    }
+    res[j]=r;
+    j++;
+  }
+  for(i=0;i<j;i++)
+    printf("%d\n",res[i]);
+  return 0;
+}

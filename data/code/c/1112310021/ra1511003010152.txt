@@ -1,0 +1,39 @@
+#include<stdio.h>
+int min;
+void calc(int n)
+{
+     if(n!=1)
+     {
+             min=min+n;
+             calc(n/2);
+             calc(n/2+n%2);
+     }
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+            int max;
+            int n,m;
+            scanf("%d %d",&n,&m);
+            max=0;
+            max=(((n+2)*(n+1))/2)-1;
+            if(max<=m)
+            {
+                      printf("%d\n",m-max);
+            }
+            else
+            {
+                min=0;
+                calc(n+1);
+                if(min<=m)
+                    printf("0\n");
+                else
+                    printf("-1\n");
+            }
+    }
+    return 0;
+}
+ 

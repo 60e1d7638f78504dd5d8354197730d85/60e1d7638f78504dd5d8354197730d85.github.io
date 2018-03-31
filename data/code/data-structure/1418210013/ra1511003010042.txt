@@ -1,0 +1,40 @@
+#include<iostream>
+#include<algorithm>
+//#include<fstream>
+typedef long int lint;
+using namespace std;
+int main(){
+	//ifstream(f);
+	//f.open("C:/Users/Arpan Godiyal/Desktop/1.txt");
+	lint i,j,k,q,t,x,y;
+	cin>>q>>k;
+	lint a[k];
+	for(i=0;i<k;i++){
+		cin>>t>>x>>y;
+		a[i]=x*x+y*y;
+	}
+	sort(a,a+k);
+	q-=k;
+	while(q--){
+		cin>>t;
+		if(t==1){
+			cin>>x>>y;
+			j=x*x+y*y;
+			i=k-1;
+			if(j<a[i]){
+				i--;
+				while(j<a[i]&&i>=0){
+					a[i+1]=a[i];
+					i--;
+				}
+				a[i+1]=j;
+			}
+		}
+		if(t==2)
+			cout<<a[k-1]<<endl;
+		/*
+		for(i=0;i<k;i++)
+			cout<<a[i]<<" ";
+		cout<<endl;*/
+	}
+}

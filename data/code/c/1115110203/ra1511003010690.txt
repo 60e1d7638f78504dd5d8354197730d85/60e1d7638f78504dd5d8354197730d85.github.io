@@ -1,0 +1,51 @@
+#include <stdio.h>
+int isleap(int year)
+{
+  if ( year%400 == 0) 
+    return 1;
+  else if ( year%100 == 0) 
+    return 0;
+  else if ( year%4 == 0 ) 
+    return 1;
+  else 
+    return 0; 
+ 
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+ int yr;
+  scanf("%d",&yr);
+  int i,count=6;
+    yr=yr-1600;
+  for(i=0;i<yr;i++)
+  {
+    if(isleap(i))
+    { count+=2;
+   
+  }  else
+      {
+        
+      count++;
+  }}
+  if(count%7==0)
+    printf("sunday");
+    if(count%7==1)
+      printf("monday");
+      if(count%7==2)
+        printf("tuesday");
+        if(count%7==3)
+          printf("wednesday");
+          if(count%7==4)
+            printf("thursday");
+            if(count%7==5)
+              printf("friday");
+              if(count%7==6)
+                printf("saturday");
+ printf("\n");
+  }
+    return 0;
+}

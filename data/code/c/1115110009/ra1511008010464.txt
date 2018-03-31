@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+void swap(int *x, int *y) {
+  int tmp = *x;
+  *x = *y;
+  *y = tmp;
+}
+
+int main()
+{
+	int n, arr[100], min_idx, i, j;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++)
+      scanf("%d", &arr[i]);
+  
+  	// selection sort
+  	int tmp;
+  	for(i=0; i<n-1; i++) {
+      min_idx = i;
+      for(j=i+1; j<n; j++)
+        if(arr[j] < arr[min_idx])
+          min_idx = j;
+      swap(&arr[min_idx], &arr[i]);
+    }
+  
+  	for(i=0; i<n; i++)
+      printf("%d ", arr[i]);
+      
+	return 0;
+}

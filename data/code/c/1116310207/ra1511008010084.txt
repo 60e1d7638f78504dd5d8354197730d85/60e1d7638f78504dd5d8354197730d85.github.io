@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+char s[1005];
+int dp[1005][1005];
+int w[1005];
+int mod = 1000000007;
+int main()
+{
+    w[0] = 1;
+    int i,j;
+    scanf("%s",s+1);
+    
+    int n = strlen(s+1);
+    for(i = 1; i <= n; i++) {
+        for(j = 0; i - j > 0 && i + j <= n; j++) {
+            if(s[i-j] == s[i+j] ) {
+                dp[i-j-1][i+j] = 1;
+            }
+            else break;
+        }
+        for(j = 0; i - j - 1 > 0 && i + j <= n; j++) {
+            if(s[i-j-1] == s[i+j] ) {
+                dp[i-j-2][i+j] = 1;
+            }
+            else break;
+            
+        }
+    }
+    for(i = 1; i <= n; i++) {
+        for(j = 0; j < i; j++) {
+            if(dp[j][i]) {
+           //     printf("%d %d\n",j,i);
+                w[i] += w[j];
+                if( w[i] >= mod ) w[i] -= mod;
+            }
+        }
+    }
+    printf("%d\n",w[n]);
+   return 0;
+}

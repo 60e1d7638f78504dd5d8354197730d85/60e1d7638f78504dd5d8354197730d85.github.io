@@ -1,0 +1,123 @@
+#include <stdio.h>
+struct node{
+    int d[3];
+   // int flip;
+}t[500050];
+int f;
+int lazy[500050]={0};
+void build(int id,int l,int r)
+{
+    int mid;
+    if(l>r)
+        return ;
+    if(l==r){
+        t[id].d[0]=1;
+        t[id].d[1]=0;
+        t[id].d[2]=0;
+        //t[id].flip=0;
+        return;
+    }
+    t[id].d[0]=r-l+1;
+    t[id].d[1]=0;
+    t[id].d[2]=0;
+    mid = (l+r)/2;
+    build(2*id,l,mid);
+    build(2*id+1,mid+1,r);
+}
+ 
+void update(int x,int y,int id,int l,int r)
+{
+	int j;
+    int mid,k;
+    f=1;
+    
+    if(lazy[id]!=0)
+    {
+        //t[id].val += 1;
+        for(j=1;j<=lazy[id]%3;j++){
+        k=t[id].d[1];
+        t[id].d[1]=t[id].d[0];
+        t[id].d[0]=t[id].d[2];
+        t[id].d[2]=k;
+        }
+        if(l!=r)
+        {
+            //t[id].val = t[id].d[0];
+            lazy[2*id] += lazy[id];
+            lazy[2*id+1] += lazy[id];
+        }
+        lazy[id]=0;
+    }
+   if((x >r)||(y < l))
+        return ;
+    if((x <= l)&&(r <= y))
+    {
+        k=t[id].d[1];
+        t[id].d[1]=t[id].d[0];
+        t[id].d[0]=t[id].d[2];
+        t[id].d[2]=k;
+        if(l!=r){
+        	lazy[2*id] += 1;
+        	lazy[2*id+1] += 1;
+        }
+        return ;
+    }
+    mid = (l+r)/2;
+    update(x,y,2*id,l,mid);
+    update(x,y,2*id+1,mid+1,r);
+    t[id].d[0] = t[2*id].d[0] + t[2*id+1].d[0];
+    t[id].d[1] = t[2*id].d[1] + t[2*id+1].d[1];
+    t[id].d[2] = t[2*id].d[2] + t[2*id+1].d[2];
+}
+int query(int x,int y,int id,int l,int r)
+{
+    int mid,k,j;
+    if( (x > r) || (y < l))
+        return 0;
+    if(lazy[id]!=0)
+    {
+        //t[id].val += 1;
+        for(j=1;j<=lazy[id]%3;j++){
+        k=t[id].d[1];
+        t[id].d[1]=t[id].d[0];
+        t[id].d[0]=t[id].d[2];
+        t[id].d[2]=k;
+        }
+        if(l!=r)
+        {
+            
+            lazy[2*id] += lazy[id];
+            lazy[2*id+1] += lazy[id];
+        }
+        lazy[id]=0;
+    }
+    if( (x <= l) &&(r<=y))
+	{
+		return t[id].d[0];
+	}
+    mid = (l+r)/2;
+    return(query(x,y,2*id,l,mid)+query(x,y,2*id+1,mid+1,r)) ;
+}
+int main()
+{
+    int n,q,i,a,b,x;
+    scanf("%d%d",&n,&q);
+    build(1,0,n-1);
+	f=0;
+    while(q--)
+    {
+        scanf("%d%d%d",&x,&a,&b);
+        if(x==1)
+        {
+            if(f==0)
+                printf("%d\n",b-a+1);
+            else{
+                printf("%d\n",query(a,b,1,0,n-1));
+            }
+        }
+        else{
+            update(a,b,1,0,n-1);
+             }
+    }
+ 
+}

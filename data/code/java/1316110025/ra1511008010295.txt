@@ -1,0 +1,72 @@
+import java.io.*;
+import java.util.*;
+import java.lang.Math.*;
+
+abstract class Shape {
+    String shapeName;
+    abstract double area();
+    public String toString() {
+        return shapeName;
+    }
+}
+class Sphere extends Shape {
+    public double radius;
+    Sphere(double r) {
+        shapeName = "Sphere";
+        radius = r;
+    }
+    double area() {
+        return (4 * Math.PI * radius * radius);
+    }
+}
+class Rectangle extends Shape {
+    public double width, length;
+    Rectangle(double l, double w) {
+        width = w;
+        length = l;
+        shapeName = "Rectangle";
+    }
+    double area() {
+        return (length * width);
+    }
+}
+class Cylinder extends Shape {
+    public double radius, height;
+    Cylinder(double r, double h) {
+        radius = r;
+        height = h;
+        shapeName = "Cylinder";
+    }
+    double area() {
+        return(Math.PI * radius * radius * height);
+    }
+}
+class Paint {
+    public static double coverage;
+    double amt;
+    public double amount(Shape obj) {
+        double d;
+        d = obj.area();
+        amt = d / coverage;
+        return amt;
+    }
+}
+public class TestClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Paint.coverage = sc.nextDouble();
+        Rectangle deck = new Rectangle(20, 35);
+        Sphere bigBall = new Sphere(15);
+        Cylinder tank = new Cylinder(10, 30);
+        deck.area();
+        bigBall.area();
+        tank.area();
+        Paint p1 = new Paint();
+        double pr1 = p1.amount(deck);
+        System.out.println("Amount for " + deck + " of length " + deck.length + " and width " + deck.width + " is " + String.format("%.2f", pr1));
+        pr1 = p1.amount(bigBall);
+        System.out.println("Amount for " + bigBall + " of radius " + bigBall.radius + " is " + String.format("%.2f", pr1));
+        pr1 = p1.amount(tank);
+        System.out.println("Amount for " + tank + " of radius " + tank.radius + " and height " + tank.height + " is " + String.format("%.2f", pr1));
+    }
+}

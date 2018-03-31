@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Result R = new Result(sc.nextLine(), sc.nextInt(), sc.nextInt(), sc.nextInt());
+        R.display();
+        R.percent_cal();
+    }
+}
+
+interface Exam {
+    void percent_cal();
+}
+
+class Student {
+    String name;
+    int roll_no, mark1, mark2;
+
+    Student(String n, int r, int m1, int m2) {
+        this.name = n;
+        this.roll_no = r;
+        this.mark1 = m1;
+        this.mark2 = m2;
+    }
+
+    void display() {
+        System.out.printf("Name of Student=%s\n" + "Roll No of Student=%d\n" +
+                "Marks of Subject 1=%d\n" + "Marks of Subject 2=%d\n",
+                name, roll_no, mark1, mark2);
+    }
+}
+
+class Result extends Student implements Exam {
+
+    int total;
+    float percentage;
+
+    Result(String n, int r, int m1, int m2) {
+        super(n,r,m1,m2);
+    }
+
+    @Override
+    public void percent_cal() {
+        total = mark1+mark2;
+        percentage = (float)total/2;
+        System.out.printf("Percentage=%.1f", percentage);
+        System.out.print("%");
+    }
+
+    @Override
+    void display() {
+        super.display();
+    }
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<math.h>
+ 
+long long int a[100];
+ 
+int main()
+{
+ long long int t;
+ scanf("%lld",&t);
+ 
+ while(t!=0)
+ {
+  long long int num,q,r,i,count=0,rev=0;
+  scanf("%lld",&num);
+  
+  q=num;
+  for(i=0;q!=0;i++)
+  {
+   a[i]=q%10;
+   q=q/10;
+   count++;
+   }
+   
+   for(i=0;i<count;i++)
+   {
+    rev=rev+a[i]*pow(10,(count-i-1));
+    }
+    printf("%lld\n",rev);
+    t--;
+    }  
+	return 0;
+}

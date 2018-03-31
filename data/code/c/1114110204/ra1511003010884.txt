@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include <malloc.h>
+ 
+struct node
+{
+int data;
+struct node *next;
+}*head,*p;
+ 
+void insertatend(int dat)
+{
+ 
+if(head==NULL)
+{
+	
+	p=(struct node *)malloc(sizeof(struct node));
+	
+	p->data=dat;
+	p->next=NULL;
+	head=p;
+}
+else
+{
+	struct node *q=(struct node *)malloc(sizeof(struct node));
+	p->next=q;
+	q->data=dat;
+	q->next=NULL;
+	p=q;
+}
+ 
+}
+ 
+void display()
+{
+	struct node *temp=NULL;
+	temp=head;
+	while(temp!=NULL)
+	{
+		printf("%d\n",temp->data);
+		temp=temp->next;
+	}
+}
+ 
+int main(int argc, char *argv[])
+{
+	int no=0;
+	int count=0;
+	p=NULL;
+	head=NULL;
+ 
+	
+	while(no!=42)
+	{
+		if(count!=0)
+		{
+			insertatend(no);
+		}
+		
+		scanf("%d",&no);
+		count++;
+	}
+	
+	
+	display();
+	return 0;
+}

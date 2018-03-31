@@ -1,0 +1,35 @@
+import java.util.Scanner;
+ public class TestClass 
+{
+public static void main(String[] args) 
+    {
+        Scanner scan = new Scanner( System.in );        
+              int n, i;
+                  n = scan.nextInt();
+                int arr[] = new int[ n ];
+               for (i = 0; i < n; i++)
+            arr[i] = scan.nextInt();
+               n = arr.length;
+        for (int j = 1; j < n; j++) 
+        {
+            int key = arr[j];
+             i = j-1;
+            while ( (i > -1) && ( arr [i] > key ) ) 
+            {
+                arr [i+1] = arr [i];
+                i--;
+            }
+            arr[i+1] = key;
+           for ( i = 0; i < arr.length; i++)
+           {
+            System.out.print(arr[i] + " " );
+                  }
+          
+       System.out.print("\n");
+        }
+      System.out.println("Sorted Array:");
+      for (i = 0; i < n; i++)
+            System.out.print(arr[i]+" ");            
+        System.out.println();                     
+ 
+    }}

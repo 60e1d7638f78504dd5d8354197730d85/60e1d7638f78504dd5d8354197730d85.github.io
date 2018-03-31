@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class prime {
+    //Member Variable Declaration
+    int a, k, i;
+public:
+
+    prime(int x) {
+        a = x;
+    }
+
+    // Object Creation For Class
+
+    void calculate() {
+        k = 1;
+        {
+            for (i = 2; i <= a / 2; i++)
+                if (a % i == 0) {
+                    k = 0;
+                    break;
+                } else {
+                    k = 1;
+                }
+        }
+    }
+
+    void show() {
+        if (k == 1)
+            cout<< "Prime number";
+        else
+            cout<< "Not a prime number";
+    }
+};
+int main()
+{
+  int a;
+  cin>>a;
+
+    // Object Creation For Class
+    prime obj(a);
+
+    // Call Member Functions
+    obj.calculate();
+    obj.show();
+
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <stdint.h>
+using namespace std;
+ 
+int main ()
+{
+	int N;
+	cin>>N;
+	vector<uint64_t> v(N, 0);
+	for (int i = 0; i < N; ++i)
+		cin>>v[i];
+	vector<uint64_t> counts (100, 0);
+	for (int i = 0; i < N; ++i)
+	{
+		uint64_t tmp = v[i];
+		int j = 0;
+		while(tmp)
+		{
+			counts[j++] += tmp % 2;
+			tmp /= 2;
+		}
+	}
+	for (int i = 0; i < counts.size(); ++i)
+		counts[i] = (counts[i] * (counts[i] - 1)) / 2;
+	
+	uint64_t out = 0;
+	uint64_t p = 1;
+	for (int i = 0; i < counts.size(); ++i)
+	{
+		out = out + (p * counts[i]);
+		p *= 2;
+	}
+	cout<<out;
+}

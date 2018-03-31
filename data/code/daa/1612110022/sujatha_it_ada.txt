@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Check wheather any permutation exists which
+// satisfy the condition.
+bool isPossible(int a[], int b[], int n, int k)
+{
+    // Sort the array a[] in decreasing order.
+    sort(a, a + n);
+ 
+    // Sort the array b[] in increasing order.
+    sort(b, b + n, greater<int>());
+ 
+    // Checking condition on each index.
+    for (int i = 0; i < n; i++)
+        if (a[i] + b[i] < k)
+            return false;
+ 
+    return true;
+}
+ 
+// Driven Program
+int main()
+{
+  int a[101],b[101],i,n,t,x=0,k,j;
+  scanf("%d",&t);
+  while(x<t)
+  {
+    scanf("%d",&n);
+    scanf("%d",&k);
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    for(i=0;i<n;i++)
+      scanf("%d",&b[i]);
+ 
+    isPossible(a, b, n, k) ? cout << "1" :
+                             cout << "0";
+    cout<<endl;
+    x=x+1;
+  }
+    return 0;
+}

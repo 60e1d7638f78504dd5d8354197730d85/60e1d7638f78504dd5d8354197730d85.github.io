@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<string.h>
+void selectionsort(char name[][100],int n)
+{
+  int i,j,min_indx;
+  char min_str[100],temp[100];
+  for(i=0;i<n-1;i++)
+  {
+    min_indx=i;
+    strcpy(min_str,name[i]);
+    for(j=i+1;j<n;j++)
+    {
+      if(strcmp(min_str,name[j])>0){
+      min_indx=j;
+        strcpy(min_str,name[j]);
+      }
+    }
+    if(min_indx!=i)
+    {
+      strcpy(temp,name[i]);
+      strcpy(name[i],name[min_indx]);
+      strcpy(name[min_indx],temp);
+    }
+  }
+}
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	char name[t][100];
+  	for(i=0;i<t;i++)
+    {
+      scanf("%s",name[i]);
+    }
+     selectionsort(name,t);    
+  for(i=0;i<t;i++)
+  {
+    printf("%s\n",name[i]);
+  }
+	return 0;
+}

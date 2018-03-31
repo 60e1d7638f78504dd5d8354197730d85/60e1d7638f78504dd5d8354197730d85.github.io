@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+ 
+public class TestClass{
+	public static void main(String[]args)throws IOException{
+	int testCases, nums, num1,num2, value;
+	ArrayList<Integer> number = new ArrayList<Integer>();
+	BufferedReader f = new BufferedReader(new InputStreamReader(System.in));                                            
+    StringTokenizer st = new StringTokenizer(f.readLine());
+    testCases = Integer.parseInt(st.nextToken());
+    for(int i = 0; i < testCases; i++){
+    	number = new ArrayList<Integer>();
+    	st = new StringTokenizer(f.readLine());
+    	nums = Integer.parseInt(st.nextToken());
+    	st = new StringTokenizer(f.readLine());
+    	for(int j = 0; j < nums; j++){
+    		number.add(Integer.parseInt(st.nextToken()));
+    	}
+    	value = number.get(0);
+		for(int l = 1; l < number.size();l++){
+			if(value == 1){
+				break;
+			}
+			num2 = number.get(l);
+				if(num2%value != 0){
+					num2 = num2 - (num2/value) * value;
+				}else{
+					num2 = value;
+				}
+		    	while(value != num2){
+					if(value>num2){
+						value -= num2;
+					}else{
+						num2 -= value;
+					}
+				}
+			}
+    	System.out.println(value);
+	}
+}
+} 

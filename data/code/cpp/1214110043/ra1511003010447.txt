@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class complex{
+int real;
+  int imag;
+  
+  public:
+  void initialise(){
+  cin>>real;
+    cin>>imag;
+  }
+  
+  complex operator-(const complex&)const;
+  
+  void print(){
+  cout<<"Output Complex number: "<<real<<"+"<<imag<<"i";
+  }
+};
+
+complex complex::operator-(const complex& c)const{
+complex res;
+  res.real=real-c.real;
+  res.imag=imag-c.imag;
+  return res;
+}
+
+int main()
+{
+complex a,b,c;
+  a.initialise();
+  b.initialise();
+  c=a-b;
+  c.print();
+	return 0;
+}

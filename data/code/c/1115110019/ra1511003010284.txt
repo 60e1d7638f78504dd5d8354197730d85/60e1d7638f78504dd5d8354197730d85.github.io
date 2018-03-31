@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int arr1[100], arr2[100], pos, value, swap, count=0, n, i, j;
+  scanf("%d", &n);
+  for(i=0; i<n; i++)
+     scanf("%d", &arr1[i]);
+  scanf("%d %d", &pos, &value);
+  for(i=0, j=0; i<n, j<n; i++, j++)
+  {
+    if(i==pos)
+    {
+      arr2[i] = value;
+      i++;
+      count++;
+    }
+    arr2[i] = arr1[j];
+  }
+  printf("Before sorting\n");
+  for(i=0; i<(n+count); i++)
+    printf("%d\n", arr2[i]);
+  for(i=0; i<(n+count)-1; i++)
+  {
+    for(j=0; j<(n+count)-i-1; j++)
+    {
+      if(arr2[j]>arr2[j+1])
+      {
+        swap = arr2[j];
+        arr2[j] = arr2[j+1];
+        arr2[j+1] = swap;
+      }
+    }
+  }
+  printf("After sorting\n");
+  for(i=0; i<(n+count); i++)
+      printf("%d\n", arr2[i]);
+	return 0;
+}

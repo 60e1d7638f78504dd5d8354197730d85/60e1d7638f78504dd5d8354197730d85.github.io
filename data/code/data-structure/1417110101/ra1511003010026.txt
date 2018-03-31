@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int queue[100],size,front=-1,rear=-1;
+void enqueue()
+{
+    int add_item;
+    if (rear == size - 1)
+    cout<<"Queue overflow"<<endl;
+    else
+    {
+        if (front == - 1)
+        front = 0;
+        cin>>add_item;
+        rear++;
+        queue[rear] = add_item;
+    }
+} 
+void print()
+{
+  int i;
+  for(i=front;i<=rear;i++)
+  {
+    if(i!=rear)
+      cout<<queue[i]<<" ";
+    else
+      cout<<queue[i];
+  }
+  cout<<"\nFront element="<<queue[front];
+}
+int main()
+{
+  cin>>size;
+  int i;
+  for(i=0;i<size;i++)
+    enqueue();
+  print();
+  return 0;
+}

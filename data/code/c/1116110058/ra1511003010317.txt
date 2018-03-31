@@ -1,0 +1,45 @@
+#include <stdio.h>
+int min(int a,int b)
+{
+    if(a>b)
+    return b;
+    
+    return a;
+}
+int main(void) {
+	// your code goes here
+	int n;
+	int i,j;
+	int f[26]={0};
+	char temp[101];
+	scanf("%d",&n);
+	scanf("%s",temp);
+	for(i=0;temp[i];i++)
+	 f[temp[i]-'a']++;
+	 
+	for(i=1;i<n;i++)
+	{   int f1[26]={0};
+	    scanf("%s",temp);
+	    	for(j=0;temp[j];j++)
+	           f1[temp[j]-'a']++;
+	           
+	   for(j=0;j<26;j++)
+	   f[j]=min(f[j],f1[j]);
+	}
+	int flag=1;
+	for(i=0;i<26;i++)
+	  {
+	      while(f[i])
+	       {printf("%c",i+97);
+	        f[i]--;
+	        flag=0;
+	       }
+	  }
+	  
+	  
+	  if(flag)
+	  printf("no such string");
+	return 0;
+}
+ 
+ 

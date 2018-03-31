@@ -1,0 +1,35 @@
+#include <assert.h>
+#include <stdio.h>
+ 
+const char *day[] = { "sunday",
+                      "monday",
+                      "tuesday",
+                      "wednesday",
+                      "thursday",
+                      "friday",
+                      "saturday" };
+ 
+ 
+int main(int argc, char **argv)
+{
+    int t;
+    int i;
+    int res;
+    int year;
+    int days;
+ 
+    res = scanf("%u\n", &t);
+    assert(res == 1);
+ 
+    for (i = 0; i < t; i++) {
+        res = scanf("%u\n", &year);
+        assert(res == 1);
+        days = year * 365
+            + (year - 1) / 4
+            - (year - 1) / 100
+            + (year - 1) / 400;
+        printf("%s\n", day[days % 7]);
+    }
+ 
+    return 0;
+}

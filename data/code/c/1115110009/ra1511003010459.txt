@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{	int arr[100],n,i,c,pos,j,swap;
+ 	scanf("%d",&n);
+ 	for(c=0;c<n;c++){
+    	scanf("%d",&arr[c]);
+    }
+ 	
+ 	for(i=0;i<n-1;i++){
+      	pos=i;
+    	for(j=i+1;j<n;j++){
+        	if(arr[pos]>arr[j]){
+            	pos = j;
+            }
+        }
+      if(pos!=i){
+      	swap = arr[i];
+        arr[i] = arr[pos];
+        arr[pos] = swap;
+      }
+    }
+	
+ 	for(c=0;c<n;c++){
+    	printf("%d ",arr[c]);
+    }
+	return 0;
+}

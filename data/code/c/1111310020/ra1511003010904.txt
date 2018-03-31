@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+        long long i,n,a,b[32]={0},j,k=1;
+        long long sum=0;
+        scanf("%lld",&n);
+        for(i=0;i<n;i++)
+        {
+                scanf("%lld",&a);
+                j=0;
+                while(a)
+                {
+                        if(a&1)
+                        b[j]++;
+                        a=a>>1;
+                        j++;
+                }
+        }
+        for(i=0;i<32;i++)
+        {
+                if(b[i])
+                sum=sum+(b[i]*(b[i]-1))/2*k;
+                k*=2;
+        }
+        printf("%lld",sum);
+        return 0;
+}

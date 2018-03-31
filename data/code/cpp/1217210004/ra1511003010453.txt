@@ -1,0 +1,33 @@
+#include <cstdio>  
+#include <string>  
+#include <cstring>   
+#include <iostream>  
+#include <algorithm>  
+using namespace std;  
+typedef long long ll;  
+int x,y,turn;  
+int main()  
+{  
+    turn=1;
+    cin>>x>>y;  
+    while(turn)  
+    {  
+        if(y<2 || 100*x+10*y<220) break;  
+        if(turn==1)  
+        {  
+            if(x>=2)x-=2,y-=2;  
+            else if(x==1)x-=1,y-=12;  
+            else if(x==0)y-=22;  
+        }  
+        else if(turn==2)  
+        {  
+            if(y>=22)y-=22;  
+            else if(y>=12)y-=12,x-=1;  
+            else if(y>=2)y-=2,x-=2;  
+        }  
+        turn = 3-turn;  
+    }  
+    if(turn==1)printf("Hanako");  
+    else printf("Ciel");  
+    return 0;  
+} 

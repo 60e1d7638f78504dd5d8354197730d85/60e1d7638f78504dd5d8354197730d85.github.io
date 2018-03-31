@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--){
+    	int n;
+      	int i;
+      	int time[100],tr[100];
+      	scanf("%d",&n);
+      	for(i=1;i<=n;i++){
+        	scanf("%d",&time[i]);
+        }
+      	for(i=1;i<=n;i++)
+          scanf("%d",&tr[i]);
+      	time[0]=0;
+      	int count;
+      	count=0;
+      	for(i=1;i<=n;i++){
+        	if((time[i]-time[i-1])>=tr[i])
+               count++;
+        }
+      	printf("%d\n",count);
+    }
+	return 0;
+}

@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+void sort(int x[],int y);
+int counter = 0;
+int main()
+{
+    int n,i;
+    int * a;
+    scanf("%d",&n);
+    a = (int*)malloc(n*sizeof(int));
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    sort(a,n);
+    printf("\n%d",counter);
+    return 0;
+}
+ 
+void sort(int a[],int n)
+{
+   int pivot,i,p,q,mid;
+   int *less,*high;
+   less =(int *)malloc(n*sizeof(int));
+   high =(int *)malloc(n*sizeof(int));
+   i=p=q=0;
+   mid = (n-1)/2;
+   pivot =a[mid];
+   if(n>1)
+   {
+       for(i=0;i<n;i++)
+       {
+            counter++;
+ 
+            if(a[i]<pivot)
+            {
+                less[p]=a[i];
+                p++;
+            }
+            else if(a[i]>pivot)
+            {
+                high[q]=a[i];
+                q++;
+            }
+ 
+       }
+       sort(less,p);
+       sort(high,q);
+   }
+}
+ 

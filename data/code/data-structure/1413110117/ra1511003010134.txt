@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#define  ll long long
+using namespace std;
+// ll func(ll a,ll b,ll c,ll d,int m)
+// {  
+//     return();
+    
+// }
+ll b_search(ll a,ll b,ll c,ll d,ll k,int lo,int hi)
+{ int m;
+  ll fVal;
+  m=(lo+hi)/2;
+  fVal=a*m*m*m+b*m*m+c*m+d;
+  if(fVal==k)
+  return m;
+  else if(fVal>k)
+  { 
+      return b_search(a,b,c,d,k,0,m-1);
+  }
+  else if(fVal<k)
+  { 
+    //   ll temp=a*(m+1)*(m+1)*(m+1)+b*(m+1)*(m+1)+c*(m+1)+d;
+    //  if(temp>k)
+    //  return m;
+    //  else if(temp==k)
+    //  return m+1;
+    //  else
+    //  return  b_search(a,b,c,d,k,m+1,hi);
+    
+      if(lo==hi)
+      return lo;
+      else
+      return  b_search(a,b,c,d,k,m+1,hi);
+         
+     
+  }
+    
+}
+int main()
+{ ios_base::sync_with_stdio(false);
+  cin.tie(NULL); 
+  cout.tie(NULL);
+  
+ ll  a,b,c,d,k,r;
+     cin>>a>>b>>c>>d>>k;
+     if(d>k)
+     cout<<"0"<<endl;
+     else{
+     r=b_search(a,b,c,d,k,0,10000000);
+     cout<<r<<endl;}
+  
+return 0;
+}

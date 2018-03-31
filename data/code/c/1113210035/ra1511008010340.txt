@@ -1,0 +1,41 @@
+#include <stdio.h>
+int rev(int n)
+{
+  int r=0,m;
+  while(n!=0)
+  {
+    m=n%10;
+    r=r*10+m;
+    n=n/10;
+  }
+  return r;
+}
+int main()
+{
+int n,i,a[20],k=0,key,j;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    if(n%i==0)
+    {  a[k]=rev(i);
+        k++;
+    }
+   }
+  
+  for (i = 1; i < k; i++)
+   {
+       key = a[i];
+       j = i-1;
+       while (j >= 0 && a[j] > key)
+       {
+           a[j+1] = a[j];
+           j = j-1;
+       }
+       a[j+1] = key;
+  }
+  for(i=0;i<k;i++)
+  {
+    printf("%d\n",a[i]);
+  }
+	return 0;
+}

@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<string.h>
+#define  mod 1000000009
+#define maxlen 100002
+#define gc getchar_unlocked
+ 
+inline int readl(void)
+{
+register int c = gc();
+int x = 0;
+for(;(c<48 || c>57);c = gc());
+for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+return x;
+}
+ 
+inline char readC(void)
+{
+register char c = gc();
+for(;(c<65 || c>90);c = gc());
+return c;
+}
+ 
+ 
+int main()
+{
+	int t;
+	t=readl();
+	while(t>0)
+	{
+		int n,m;
+		int i;
+		n=readl();
+		m=readl();
+		int pos[maxlen]={0},val=m;
+		char color[maxlen];
+		char tchar;
+		long int tint;
+		for(i=0;i<m;i++)
+		{ 
+//			getchar();
+//			scanf("%c %lu",&tchar,&tint);
+			tchar=readC();
+			tint=readl();
+			if(pos[tint]!=1)
+			{
+				pos[tint]=1;
+				color[tint]=tchar;
+			}
+		}
+		long long int count=1;
+		int is_first=1,update=0,cur,prev;
+		for(i=0;i<maxlen;i++)
+		{
+			if(is_first==1 && pos[i]!=0)
+			{
+				prev=i;
+				is_first=0;
+			}
+			else if(is_first==0 && pos[i]!=0)
+			{
+				cur=i;
+				update=1;
+			}
+			if (update == 1)
+			{
+				if(color[prev]!=color[cur])
+				{
+				 	count=(count*(cur-prev));
+				 	if(count >= mod)
+				 		count=count%mod;
+			 	}
+				update=0;
+				prev=cur;
+			}
+		}
+		printf("%llu\n",count);
+	t--;	
+	}
+return 0;
+}  

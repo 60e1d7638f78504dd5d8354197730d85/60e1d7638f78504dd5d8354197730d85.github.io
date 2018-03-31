@@ -1,0 +1,51 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,i,j,count=0;
+        long area=1;
+        scanf("%d",&n);
+        int a[n];
+        for(i=0;i<n;i++)
+            scanf("%d",&a[i]);
+        int m;
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                if(a[i]<a[j])
+                {
+                    m=a[i];
+                    a[i]=a[j];
+                    a[j]=m;
+                }
+                
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            if(count<2)
+            {
+             for(j=1+i;j<n;j++)
+                if(a[i]==a[j])
+                {
+                    area*=a[i];
+                    i++;
+                    count++;
+                    break;
+                }
+            }
+            else
+                break;
+        }
+        if(count==2)
+          printf("%ld\n",area);
+        else
+            printf("-1\n");
+    }
+    return 0;
+} 

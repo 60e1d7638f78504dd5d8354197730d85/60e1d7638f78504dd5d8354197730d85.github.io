@@ -1,0 +1,126 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+/*
+Chef is sitting in a very boring lecture, waiting for it to end. He has recently asked his friend about the time, and instead of the straightforward answer, his friend, being an absolute jerk, told him the absolute value of angle between hour and minute hands.
+But that is obviously not what he wanted to know, so he asks you to help him, by writing down all valid values of time (in hours and minutes, both non-negative integers) from midnight (inclusive) to noon (not inclusive) which satisfy the information Chef's friend has provided. Keep in mind that a time value is considered valid if the angle between the clock's hands for that value and the angle Chef's friend has described differ by less than 1/120 degrees.
+Note that the movement of the minute hand influences the hour hand. That is, every minute, it moves by 1/60th of the angular distance between two consecutive hour marks.
+Input
+The first line of the input contains an integer T denoting the number of test cases.
+The only line of each test case contain a single real number A in decimal notation, denoting the angle between minute and hour hands. The fractional part won't contain more than 4 digits.
+Output
+For each test case print all valid values of time as described in the statement in the format "hh:mm" (without quotes), where hh means number of hours, and mm the number of minutes. Times should be printed in chronological order.
+Constraints and Subtasks
+1 â�¤ T â�¤ 105
+0 â�¤ A â�¤ 180
+Output won't exceed 1 MB.
+Subtask 1: (30 points)
+A is an integer from the set {0, 90, 180}.
+Subtask 2: (30 points)
+A is an integer.
+Subtask 3: (40 points)
+No additional constraints.
+Example
+Input:
+2
+0
+30
+Output:
+00:00
+01:00
+11:00
+*/
+float val[721],f,num=0.0,num1,num2,num3,val1,val2,val3;
+int i,arr[362][3],n1,count[362]={0},flag,num4,ans,ans1,ans2,t;
+val[0]=num;
+for(i=1;i<720;i++)
+{
+val[i]=fmod(num+5.5,360);
+num+=5.5;
+}
+for(i=0;i<720;i++)
+{
+if(val[i]>180)
+val[i]=(float)(360.0-val[i]);
+n1=val[i]*2;
+arr[n1][count[n1]]=i;
+count[n1]++;
+//if(val[i]==90)
+//printf("i = %d\n",i);
+}
+//for(i=0;i<=720;i++)
+//printf("%f\n",val[i]);
+/*for(i=0;i<=360;i++)
+{
+if(count[i]==1)
+printf("%d\n",count[i]);
+}*/
+/*for(i=0;i<15;i++)
+{
+for(j=0;j<count[i];j++)
+{
+printf("%d ",arr[i][j]);
+}
+printf("\n");
+}*/
+//printf("Enter the no. of cases");
+scanf("%d",&t);
+while(t--)
+{
+flag=0;
+//printf("Enter the angle between the hands");
+scanf("%f",&f);
+num1=(int)f;
+num2=num1+1;
+//printf("Num1 = %f\n",num1);
+if(num1==f)
+{
+flag=1;
+num3=num1;
+}
+else
+{
+val1=f-num1;
+val2=f-num1-0.5;
+val3=num2-f;
+if(val1<(1.0/120.0))
+{
+flag=1;
+num3=num1;
+}
+else if(val2<(1.0/120.0)&&val2>(-1.0/120.0))
+{
+flag=1;
+num3=num1+0.5;
+}
+else if(val3<(1.0/120.0))
+{
+flag=1;
+num3=num2;
+}
+}
+//printf("Flag = %d\n",flag);
+if(flag==1)
+{
+//printf("Number = %f\n",num3);
+num3=num3*2;
+num4=num3;
+for(i=0;i<count[num4];i++)
+{
+//printf("%d ",arr[num4][i]);
+ans=arr[num4][i];
+ans1=ans/60;
+ans2=ans%60;
+if(ans1<10)
+printf("0");
+printf("%d:",ans1);
+if(ans2<10)
+printf("0");
+printf("%d\n",ans2);
+}
+}
+}
+return 0;
+}
+ 

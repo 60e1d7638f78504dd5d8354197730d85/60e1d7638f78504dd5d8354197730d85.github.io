@@ -1,0 +1,64 @@
+#include<stdio.h>
+struct complex
+{
+	float real,img;
+}a,b,c;
+
+struct complex read(void)
+{
+	struct complex t;
+	scanf("%f",&t.real);
+	scanf("%f",&t.img);
+	return t;
+}
+struct complex write(struct complex a)
+{
+	if(a.img>0)
+	{
+	printf("%.0f+%.0fi",a.real,a.img);
+    }
+    else
+    {
+    	printf("%.0f%.0fi",a.real,a.img);
+	}
+	printf("\n");
+}
+
+struct complex add(struct complex p,struct complex q)
+{
+	struct complex t;
+	t.real=(p.real+q.real);
+	t.img=(p.img+q.img);
+	return t;
+}
+struct complex sub(struct complex p,struct complex q)
+{
+	struct complex t;
+	t.real=(p.real-q.real);
+	t.img=(p.img-q.img);
+	return t;
+}
+struct complex mul(struct complex p,struct complex q)
+{
+	struct complex t;
+    t.real=(p.real * q.real) - (p.img * q.img);
+    t.img=(p.real * q.img) + (p.img * q.real);
+    return t;
+}
+
+
+
+int main()
+{
+	a=read();
+
+	b=read();
+
+	c=add(a,b);
+	write(c);
+	c=sub(a,b);
+	write(c);
+	c=mul(a,b);
+	write(c);
+return 0;
+}

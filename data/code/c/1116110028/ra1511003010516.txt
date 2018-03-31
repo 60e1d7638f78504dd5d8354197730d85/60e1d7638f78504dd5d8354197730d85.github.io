@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[100],substr[100];
+  int i,j,k,flag=0;
+  scanf ("%[^\n]%*c", str);
+  scanf ("%[^\n]%*c", substr);
+  //printf("%s\n%s",str,substr);
+  for(i=0;i<strlen(str);i++)
+  {
+    if(str[i] == substr[0])
+    {
+      //printf("%c",str[i]);
+      j=0;
+      k=i;
+      while(substr[j] != '\0')
+      {
+        if(substr[j] != str[k]){
+          break;
+        }
+        j++;
+        k++;
+      }
+      if(j == strlen(substr))
+        flag = 1;
+      //printf("%d",flag);
+    }
+    if(flag){
+      printf("%s is found at %d",substr,i);
+      break;
+   }
+  }
+  //printf("%s\n%s",str,substr);
+  
+      
+
+	return 0;
+}

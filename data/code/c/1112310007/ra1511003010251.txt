@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<math.h>
+unsigned long long int n,a[10000001],num,carry,i,j,k,m,p,len,b;
+int main()
+{
+ int t;
+ scanf("%d",&t);
+ while(t--)
+ {
+  scanf("%llu",&n);
+  if(n<=2)
+  {
+   printf("%llu\n",n+1);
+   continue;
+  }
+  b=1;     
+  for(i=2;i<=sqrt(n);i++)
+  {
+    if((n%i==0) && ((n/i)-i>=2))
+     b=i;
+	num=n;j=10000000;
+	while(num>0)
+	{
+	 carry=num%i;
+     a[j--]=carry;
+	 num/=i;
+	}
+	j=j+1;
+	len=10000000-j+1;
+     len/=2;
+     p=10000000; 
+    for(m=1;m<=len;m++)
+     if(a[j++]!=a[p--])
+      goto x; 
+     printf("%llu\n",i);
+     goto y;
+     break;
+    x:;     
+  }
+   printf("%llu\n",(n/b)-1);
+   y:; 
+ }
+ return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+
+{
+
+  int i,j;
+  int n; scanf("%d",&n);
+    char str[n][10];
+
+  int l[n];
+  for(i=0;i<n;i++)
+  { scanf("%s",str[i]);l[i]=strlen(str[i]);}
+
+
+
+  int k,temp=0;
+  for(k=0;k<n;k++)
+  {
+for(i=0,j=i+2;j<l[k]-1,i<l[k]-2;i++,j++)
+  {
+  //printf("%c\t %c\n",str[k][i],str[k][j]);
+    if(str[k][i]==str[k][i+1])
+      temp++;
+  else if(str[k][i]==str[k][j])
+    continue;
+    else
+      temp++;
+
+}
+ if(temp!=0)
+      printf("NO\n");
+    else 
+      printf("YES\n");
+    
+    temp=0;
+  }
+
+	return 0;
+}

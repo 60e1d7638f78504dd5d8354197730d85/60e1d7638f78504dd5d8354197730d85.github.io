@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{	int a,b[50],i=0,k,sum=0,j,temp,l;
+	scanf("%d",&a);
+     l=a;
+ 	while(a!=0)
+    {
+      b[i]=a%10;
+      i++;
+      a=a/10;
+    }
+ 	for(k=0;k<i;k++)
+    {
+      temp=b[k];
+      for(j=0;j<i-1;j++)
+      {
+     	
+        b[k]*=temp;
+      }
+    }
+ for(k=0;k<i;k++)
+ {
+   sum=sum+b[k];
+ }
+ if(l==sum)
+   printf("Narcissistic Number");
+   else
+   printf("NOT Narcissistic Number");
+	return 0;
+}

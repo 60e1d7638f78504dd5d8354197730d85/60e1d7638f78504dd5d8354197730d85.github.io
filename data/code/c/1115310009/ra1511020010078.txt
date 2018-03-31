@@ -1,0 +1,63 @@
+#include<stdio.h>
+long long int temp[100022];
+ 
+void merge(long long int a[],long long int i1,long long int j1,long long int i2,long long int j2)
+{
+	long long int i,j,k;
+	i=i1;
+	j=i2;
+	k=0;
+	while(i<=j1&&j<=j2)
+	{
+		if(a[i]<a[j])
+		temp[k++]=a[i++];
+		else
+		temp[k++]=a[j++];
+	}
+	while(i<=j1)
+	temp[k++]=a[i++];
+	while(j<=j2)
+	temp[k++]=a[j++];
+	for(i=i1,j=0;i<=j2;i++,j++)
+	a[i]=temp[j];
+	
+}
+void mergesort(long long int a[],long long int i,long long int j)
+{
+	long long int mid;
+	if(i<j)
+	{
+		mid=(i+j)/2;
+		mergesort(a,i,mid);
+		mergesort(a,mid+1,j);
+		merge(a,i,mid,mid+1,j);
+	}
+}
+int main()
+{
+	long long int t,n,d,i,j,sum,diff;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld%lld",&n,&d);
+		long long int a[n];
+		for(i=0;i<n;i++)
+		{
+			scanf("%lld",&a[i]);
+		}
+		mergesort(a,0,n-1);
+		sum=0;
+		for(i=n-1;i>=1;i--)
+		{
+			diff=a[i]-a[i-1];
+			if(diff<d)
+			{
+			
+			sum=sum+a[i]+a[i-1];
+			i--;}
+		}
+		printf("%lld\n",sum);
+		
+	}
+	return 0;
+} 

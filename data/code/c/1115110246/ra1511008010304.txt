@@ -1,0 +1,168 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
+ 
+typedef struct bucket
+{
+	int counts[3];
+	int toA;
+}bucket;
+ 
+char *str;
+int *digM;
+int *digs;
+bucket *bucks;
+int N, bs, tb;
+int Cs[3];
+ 
+long long int C2(int X)
+{
+	return (long long int)X*(X-1)/2;
+}
+ 
+int getIndA(int toA)
+{
+	int indA;
+ 
+	switch(toA)
+	{
+		case 0 : indA = 0;
+				  break;
+		case 1 : indA = 2;
+				  break;
+		case 2 : indA = 1;
+				  break;
+	}
+ 
+	return indA;
+}
+ 
+void updatebucks(int i, int toa)
+{
+	int bi = i/bs;
+	if(toa < 0) toa += 3;
+	do
+	{
+		--bucks[bi].counts[digM[i]];
+		digM[i] = (digM[i] + toa) % 3;
+		++bucks[bi].counts[digM[i]];
+		++i;
+	}
+	while(str[i] != '\0' && i % bs);
+ 
+	++bi;
+ 
+	while(bi < tb)
+	{
+		bucks[bi].toA = (bucks[bi].toA + toa) % 3;
+		++bi;
+	}
+}
+ 
+void getVal(int i, int j)
+{
+	int bi = i/bs, bj = j/bs;
+	do
+	{
+		++Cs[(digM[i] + bucks[bi].toA) % 3];
+		++i;
+	}
+	while(i <= j && i % bs);
+ 
+	++bi;
+ 
+	while(bi < bj)
+	{
+		int indA = getIndA(bucks[bi].toA);
+		Cs[0] += bucks[bi].counts[indA];
+		Cs[1] += bucks[bi].counts[(1 + indA) % 3];
+		Cs[2] += bucks[bi].counts[(2 + indA) % 3];
+		++bi;
+		i += bs;
+	}
+ 
+	while(i <= j)
+	{
+		++Cs[(digM[i] + bucks[bi].toA) % 3];
+		++i;
+	}
+}
+ 
+int main()
+{
+	int M,i,x,y;
+	scanf("%d",&N);
+	scanf("%d",&M);
+ 	bs = sqrt(N);
+ 
+	str = (char*)malloc(sizeof(char)*(N+10));
+	digM = (int*)malloc(sizeof(int)*(N+1));
+	digs = (int*)malloc(sizeof(int)*(N+1));
+	bucks = (bucket*)malloc(sizeof(bucket)*(N+1));
+ 
+	scanf("%s", str);
+ 	
+ 	for(i = 0; i < N; ++i)
+ 	{
+ 		bucks[i].toA = 0;
+		bucks[i].counts[0] = 0;
+		bucks[i].counts[1] = 0;
+		bucks[i].counts[2] = 0;
+ 	}
+ 
+	digs[0] = str[0] - '0';
+	digM[0] = digs[0] % 3; 	
+	++bucks[0].counts[digM[0]];
+ 
+	for(x = 0, y = 1, i = 1; i < N; ++i)
+	{
+		digs[i] = str[i] - '0';
+		digM[i] = (digM[i-1] + digs[i]) % 3;
+ 
+		++bucks[x].counts[digM[i]];
+		++y;
+		if(y == bs)
+		{
+			y = 0;
+			++x;
+		}
+	}
+ 
+	tb = x+1;
+	
+	while(M--)
+	{
+		scanf("%d", &i);
+		scanf("%d", &x);
+		scanf("%d", &y);
+		--x;
+ 
+		if(i == 1)
+		{
+			updatebucks(x, (y-digs[x]) % 3);
+			digs[x] = y;
+		}
+		else
+		{
+			Cs[0] = 0;
+			Cs[1] = 0;
+			Cs[2] = 0;
+			--y;
+			if(x != 0) getVal(x-1,y);
+			else
+			{
+				getVal(x,y);
+				++Cs[0];
+			}
+ 
+			printf("%lld\n", C2(Cs[0]) + C2(Cs[1]) + C2(Cs[2]));
+		}
+	}
+ 
+	free(str);
+	free(digM);
+	free(digs);
+	free(bucks);
+	return 0;
+} 

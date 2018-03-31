@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+import static java.lang.Math.*;
+
+class TestClass {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(in.readLine());
+ 
+		while (t-- > 0) {
+			int n = Integer.parseInt(in.readLine());
+			StringTokenizer tok = new StringTokenizer(in.readLine());
+			int ans = 0;
+			int min = Integer.MAX_VALUE;
+			for (int i = 1; i <= n; i++) {
+				int a = Integer.parseInt(tok.nextToken());
+				min = min(min, a);
+				ans = max(ans, a- min);
+			}
+			System.out.println(ans == 0 ? "UNFIT" : ans);
+		}
+	}
+}
+ 

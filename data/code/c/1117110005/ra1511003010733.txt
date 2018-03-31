@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct Node {
+    int key;
+    struct Node *next;
+}*pre=NULL,*temp=NULL,*head=NULL;
+int main()
+{
+	int i,index=0,n,j,flag=0,count=0;
+	scanf("%d",&n);
+	for( i=0;i<n;i++)
+	{
+		int t;
+		scanf("%d",&t);
+		temp = (struct Node*)malloc(sizeof(struct Node));
+		if(head==NULL)
+		{
+			temp->key=t;
+			temp->next=NULL;
+			head=temp;
+			count++;
+		}
+		else
+		{
+			temp->key=t;
+			temp->next=NULL;
+			pre=head;
+			while(pre!=NULL)
+			{
+				if(pre->key==t)
+				{
+					break;
+				}
+				else
+				{
+					pre=pre->next;
+					count++;
+				}
+			}
+		}
+	}
+	printf("%d",count);
+	return 0;
+}

@@ -1,0 +1,64 @@
+#include <stdio.h>
+ 
+long int search(long int beg,long int end,long int n,long int a[])
+{
+    long int mid,flag1,flag2,i;
+    mid=(beg+end)/2;
+    flag1=1;
+    flag2=1;
+    long int b[n],c[n];
+    for(i=0;i<n;i++)
+    {
+        if(i==0)
+        {
+            b[i]=a[i]-mid;
+            if(b[i]<=0)
+            b[i]=1;
+            c[i]=a[i]-mid+1;
+            if(c[i]<=0)
+            c[i]=1;
+        }
+        else
+        {
+            if(a[i]-mid>b[i-1])
+            b[i]=a[i]-mid;
+            else if(a[i]-mid<=b[i-1] && a[i]+mid>b[i-1])
+            b[i]=b[i-1]+1;
+            else
+            flag1=0;
+            if(a[i]-mid+1>c[i-1])
+            c[i]=a[i]-mid+1;
+            else if(a[i]-mid+1<=c[i-1] && a[i]+mid-1>c[i-1])
+            c[i]=c[i-1]+1;
+            else
+            flag2=0;
+        }
+    }
+    //printf("%ld %ld %ld %ld %ld\n",flag1,flag2,beg,mid,end);
+    if(flag1==1 && flag2==0)
+    return mid;
+    else if(flag1==1)
+    return search(beg,mid,n,a);
+    else
+    return search(mid+1,end,n,a);
+    
+}
+ 
+int main()
+{
+    long int n,j,flag;
+        scanf("%ld",&n);
+        long int a[n];
+        flag=1;
+        for(j=0;j<n;j++)
+        {
+            scanf("%ld",&a[j]);
+            if(j>0 && a[j]<=a[j-1])
+            flag=0;
+        }
+        if(flag==1)
+        printf("0\n");
+        else
+        printf("%ld\n",search(0,1000000000,n,a));
+    return 0;
+}

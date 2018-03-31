@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	char a[10][100];
+  	for(int i=0;i<10;i++)
+      cin>>a[i];
+  	for(int i=0;i<10;i++)
+    	for(int j=0;j<10;j++)
+        {
+        	if(strcmp(a[i],a[j])<0)
+            {
+            	char temp[100];
+              	strcpy(temp,a[i]);
+              	strcpy(a[i],a[j]);
+              	strcpy(a[j],temp);
+            }
+        }
+  	cout<<"In lexicographical order:\n";
+  	for(int i=0;i<10;i++)
+      cout<<a[i]<<endl;
+	return 0;
+}

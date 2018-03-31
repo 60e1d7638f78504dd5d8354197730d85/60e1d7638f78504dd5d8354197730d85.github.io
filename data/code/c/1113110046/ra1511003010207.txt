@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+	#define m2(a, b)       ((a) < (b) ? (a) : (b))
+	#define m3(a, b, c)    m2(m2(a, b), m2(b, c))
+	#define m4(a, b, c, d) m3(m3(a, b, c), m3(b, c, d), m3(a, c, d))
+
+	int a, b, c, d;
+	scanf("%d %d %d %d", &a, &b, &c, &d);
+	printf("%d", m4(a,b,c,d));
+
+	return 0;
+}

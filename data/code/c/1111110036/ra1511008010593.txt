@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{
+	int n;
+	
+	scanf("%d", &n);
+	
+	int s;
+	for(s = 1; s*s <= n; s++);
+	s--;
+	
+	double x;
+    double d;
+	for(d = 0.001; d < 1.0; d+= 0.001)
+	{
+		x = (double)s + d;
+		if((x*x > (double)n))
+		{
+			x -= 0.001;
+			break;
+		}
+	}
+	
+	printf("%.0f\n", x);
+	
+	return 0;
+}

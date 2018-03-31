@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char array[5000]={0};
+    register int i=0,j,len,pos;
+    fread(array,1,5000,stdin);
+    len=strlen(array);
+    while(i<len)
+    {
+                pos=i;
+                while(((array[i]>=48 && array[i]<=57) || (array[i]>=65 && array[i]<=90) || (array[i]>=97 && array[i]<=122)) && i<len)
+                i++;
+                j=i-1;
+                while(j>=pos)
+                printf("%c",array[j--]);
+                while(!((array[i]>=48 && array[i]<=57) || (array[i]>=65 && array[i]<=90) || (array[i]>=97 && array[i]<=122)) && i<len)
+                printf("%c",array[i++]);
+    }
+    return 0;
+}

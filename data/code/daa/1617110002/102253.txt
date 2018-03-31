@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    while((t--)&&t<=100)
+    {
+        int e;
+        cin>>e;
+        if(!(e>=1&&e<=1000))
+            return 0;
+        int count=0;
+        vector<int> visited(10000,0);
+        for(int i=0;i<e;i++)
+        {
+            int a1,a2;
+            cin>>a1>>a2;
+            visited[a2]=1;
+            visited[a1]=1;
+        }
+        int b[]={1};
+        vector<int>::iterator x=find_end(visited.begin(),visited.end(),b,b+1);
+        for(vector<int>::iterator i=visited.begin();i<x+1;i++)
+            if(*i==1)
+                count++;
+        cout<<count<<endl;
+    }
+   return 0;
+}

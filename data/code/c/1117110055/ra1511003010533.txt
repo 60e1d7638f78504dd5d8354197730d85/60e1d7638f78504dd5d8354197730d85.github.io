@@ -1,0 +1,48 @@
+#include <stdio.h>
+ 
+#define getcx getchar_unlocked
+ 
+ 
+inline long getint (void) {
+	long x = 0; char ch = getcx();
+	while (ch<'0' ||  ch>'9')
+		ch = getcx();
+	while ('0'<=ch && ch<='9') {
+		x = x*10+ch-'0';
+		ch = getcx();
+	}
+	return x;
+}
+ 
+long int n, q, i, x, maxcol = 0, maxrow = 0, ch, ck;
+long col [314160];
+long row [314160];
+ 
+int main (void) {
+ 
+	n = getint();
+	q = getint();
+ 
+	while (q--) {
+		ch = getcx();
+		while (ch!='R' && ch!='C')
+			ch = getcx();
+		while(getcx()!=' ');
+		i = getint();
+		x = getint();
+		if (ch=='R') {
+			row[i] += x;
+			if (row[i]>maxrow)
+				maxrow = row[i];
+		} else {
+			col[i] += x;
+			if (col[i]>maxcol)
+				maxcol = col[i];
+		}
+ 
+	}
+ 
+	printf( "%ld\n", maxcol+maxrow );
+ 
+	return 0;
+}  

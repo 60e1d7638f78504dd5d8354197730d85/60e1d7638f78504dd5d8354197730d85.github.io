@@ -1,0 +1,61 @@
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+public class TestClass {
+	 	static double len(double x1, double y1, double x2, double y2)
+	{
+		double ans=0;
+		
+		ans=Math.sqrt(Math.pow((x2-x1), 2)+Math.pow((y2-y1), 2));
+		
+		return ans;
+		
+	}
+	
+	public static void main(String arg[]) 
+	{
+		 BufferedReader inp=new BufferedReader(new InputStreamReader(System.in));
+		 PrintStream ps = new PrintStream(System.out);
+		 try{
+		 
+		 int cases=Integer.parseInt(inp.readLine());
+		 String s;
+		 
+		 for(int i=0; i<cases; i++)
+		 {
+			 int dist=Integer.parseInt(inp.readLine());
+			 
+			 s=inp.readLine();
+				
+			 String in[]=(s.split(" "));
+			 double a1=Double.parseDouble(in[0]);
+			 double a2=Double.parseDouble(in[1]);
+			 
+			 s=inp.readLine();
+				
+			  in=(s.split(" "));
+			 double b1=Double.parseDouble(in[0]);
+			 double b2=Double.parseDouble(in[1]);
+			 
+			 s=inp.readLine();
+				
+			  in=(s.split(" "));
+			 double c1=Double.parseDouble(in[0]);
+			 double c2=Double.parseDouble(in[1]);
+			 
+			 if(((len(a1, a2, b1, b2)<=dist) && (len(a1, a2, c1, c2)<=dist)) || ((len(a1, a2, b1, b2)<=dist) && (len(b1, b2, c1, c2)<=dist))|| ((len(a1, a2, c1, c2)<=dist) && (len(b1, b2, c1, c2)<=dist)))
+				 ps.println("yes");
+			 else
+				 ps.println("no");
+			 
+		 }
+		 
+		
+		 
+		 inp.close();
+		 ps.close();
+		 }
+		 catch(Exception e){}	
+	}
+}

@@ -1,0 +1,27 @@
+#include<stdio.h>
+#define HELL 1000000007
+#define MAX 100005
+char fast_c;
+unsigned long long fast_j;
+unsigned long long fast_in(){
+	for(fast_c=getchar_unlocked(); fast_c<'0'||fast_c>'9'; fast_c=getchar_unlocked());
+	for(fast_j=0; fast_c>='0'&&fast_c<='9'; fast_c=getchar_unlocked())
+		fast_j=(fast_j<<1)+(fast_j<<3)+(fast_c-'0');
+	return fast_j;
+}
+int main(){
+	unsigned long long t, n, i, a[MAX], pow[MAX];
+	unsigned long long ans, sum[MAX];
+	for(pow[0]=1, i=1; i<MAX; i++)
+		pow[i]=(pow[i-1]<<1)%HELL;
+	for(t=fast_in(); t; t--){
+		for(n=fast_in(), i=0; i<=n; i++)
+			a[i]=fast_in();
+		for(sum[0]=(a[0]<<1)%HELL, i=1; i<=n; i++)
+			sum[i]=(sum[i-1]+a[i]*pow[i])%HELL;
+		for(ans=0,i=1; i<=n; i++)
+			ans=((ans<<1)+(a[i]*sum[i-1])%HELL)%HELL;
+		printf("%llu\n",ans);
+	}
+	return 0;
+} 

@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+double SQ(double a)
+{ return (a)*(a);}
+double area(double a1, double a2, double a3)
+{double s = (a1 + a2 + a3)/2.0;
+  return sqrt(s*(s-a1)*(s-a2)*(s-a3));}
+int main()
+{ double a[6], u, U, v, V, w, W, vol, S;
+  int n,i;
+  scanf("%d", &n);
+  while(n--) {
+    S = 0;
+    for (i = 0; i < 6; ++i) {
+      scanf("%lf", &a[i]);}
+    u = a[2]; U = a[3];
+    v = a[4]; V = a[1];
+    w = a[5]; W = a[0];
+    S += area(a[2],a[1],a[5]);
+    S += area(a[0],a[2],a[4]);
+    S += area(a[0],a[1],a[3]);
+    S += area(a[3],a[4],a[5]);
+    vol = sqrt(
+           (4*SQ(u)*SQ(v)*SQ(w)
+            -SQ(u)*SQ(SQ(v)+SQ(w)-SQ(U))
+            - SQ(v)*SQ(SQ(w)+SQ(u)-SQ(V))
+            - SQ(w)*SQ(SQ(u)+SQ(v)-SQ(W)) 
+            + (SQ(v)+SQ(w)-SQ(U))
+              *(SQ(w)+SQ(u)-SQ(V))
+              *(SQ(u)+SQ(v)-SQ(W))
+           ))/12.0;
+    printf("%.4lf\n", vol*3.0/S);}
+  return 0;
+}

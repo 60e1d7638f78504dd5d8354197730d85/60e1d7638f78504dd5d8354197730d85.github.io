@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int n,i,j,c=0,flag=0,num=0;
+  cin>>n;
+  int a[n];
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  for(i=0;i<n;i++)
+  {
+    int l=i;
+    for(j=0;j<n;j++)
+    {
+      if(a[i]==a[j])
+        c++;
+    }
+    if(c>n/2)
+    {
+      flag=l;
+    num++;
+    }
+    else
+    {
+      flag=0;
+    }
+    l=0;
+    c=0;
+  }
+  if(num>0)
+    cout<<a[flag];
+  else
+    cout<<"NONE";
+	return 0;
+}

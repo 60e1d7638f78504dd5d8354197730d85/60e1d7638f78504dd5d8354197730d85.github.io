@@ -1,0 +1,43 @@
+#include <stdio.h>
+void symmetric(int m,int n,int num[10][10])
+{
+  int i,j,transpose[10][10];
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      transpose[j][i]=num[i][j];
+    }
+  }
+  if(m==n)
+  {
+    for(i=0;i<m;i++)
+    {
+      for(j=0;j<n;j++)
+      {
+        if(num[i][j]!=transpose[i][j])
+          break;
+      }
+      if(j!=m)
+        break;
+    }
+    if(i==m)
+      printf("Symmetric\n");
+    else
+      printf("Not Symmetric\n");
+  }
+}
+int main()
+{
+  int arr[10][10];
+  int m,n,i,j;
+  scanf("%d",&m);
+  scanf("%d",&n);
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+      scanf("%d",&arr[i][j]);
+  }
+  symmetric(m,n,arr);
+  return 0;
+}

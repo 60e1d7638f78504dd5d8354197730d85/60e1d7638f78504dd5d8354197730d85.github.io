@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+int x,a[20],b[20],i,n[20],d[20],r[20],g[20],l[20];
+  scanf("%d",&x);
+  for(i=0;i<x;i++)
+{
+  scanf("%d %d",&a[i],&b[i]);
+    if(a[i]>b[i])
+    {
+      n[i]=a[i];
+         d[i]=b[i];
+    }
+    else
+    {
+    n[i]=b[i];
+      d[i]=a[i];
+     }
+  r[i]=n[i]%d[i];
+    while(r[i]!=0)
+    {
+    n[i]=d[i];
+      d[i]=r[i];
+      r[i]=n[i]%d[i];
+    }
+    g[i]=d[i];
+    l[i]=a[i]*b[i]/g[i];
+    }
+  
+     for(i=0;i<x;i++)
+     {   printf("%d %d\n",g[i],l[i]);
+     }
+      return 0;
+}

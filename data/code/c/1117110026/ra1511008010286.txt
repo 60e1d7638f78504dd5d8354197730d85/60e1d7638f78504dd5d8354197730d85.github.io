@@ -1,0 +1,40 @@
+#include <stdio.h>
+int gcd(int ,int);
+int lcm(int ,int);
+int gcd(int n1, int n2)
+{
+while(n1!=n2)
+{if(n1>n2)
+  return gcd(n1-n2,n2);
+ else
+   return gcd(n1,n2-n1);
+}
+return n1;
+}
+int lcm(int n1,int n2)
+{
+static int temp=1;
+  if(temp%n2==0 && temp%n1 ==0)
+    return temp;
+  temp++;
+  lcm(n1,n2);
+  
+  return temp;
+}
+int main()
+{
+  int num1,num2,g,l;
+scanf("%d %d",&num1,&num2);
+
+g=gcd(num1,num2);
+if(num1>num2)
+  l=lcm(num1,num2);
+else
+  l=lcm(num2,num1);
+
+
+printf("GCD=%d\n",g);
+printf("LCM=%d",l);
+
+	return 0;
+}

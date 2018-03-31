@@ -1,0 +1,27 @@
+ import java.util.Scanner;
+
+public class TestClass {
+	
+	public static void main(String[] args) {
+		final Scanner in = new Scanner(System.in);
+		final int N = in.nextInt();
+		final int[] sticks = new int[1000];
+		for(int i = 0; i < N; i++) {
+			final int stickLen = in.nextInt();
+			sticks[stickLen]++;
+		}
+int remainingSticks =N;
+		System.out.println(remainingSticks);
+		for(int i = 0; i <sticks.length; i++) {
+			if(sticks[i] > 0) {
+				remainingSticks -= sticks[i];
+				if(remainingSticks == 0) {
+					break;
+				}
+				System.out.println(remainingSticks);
+			}
+		}
+		
+		in.close();
+	}
+}

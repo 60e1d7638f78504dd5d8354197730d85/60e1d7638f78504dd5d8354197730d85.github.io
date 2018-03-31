@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+class addition{
+  int real, imag;
+  public: addition(){}
+  public: addition(int z, int y){
+    real = z;
+    imag = y;
+  }
+  
+  addition operator+ (const addition &ob){
+    addition obj;
+    obj.real = this->real + ob.real;
+    obj.imag = this->imag + ob.imag;
+    return obj;
+  }
+  
+  addition operator- (const addition &ob){
+    addition obz;
+    obz.real = this->real - ob.real;
+    obz.imag = this->imag - ob.imag;
+    return obz;
+  }
+  
+  public: void show(){
+    cout<<real<<"+"<<imag<<"i"<<endl;
+  }
+};
+
+int main()
+{
+  int a, b, c, d;
+  cin>>a>>b>>c>>d;
+  addition z1(a, b);
+  addition z2(c, d);
+  addition z3;
+  cout<<"Sum : ";
+  z3 = z1 + z2;
+  z3.show();
+  z3 = z1 - z2;
+  cout<<"difference : ";
+  z3.show();
+
+	return 0;
+}

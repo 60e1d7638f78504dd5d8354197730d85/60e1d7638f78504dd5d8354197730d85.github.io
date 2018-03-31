@@ -1,0 +1,32 @@
+#include <iostream>
+#include <map>
+#include <array>
+#include <algorithm>
+#include <cstdio>
+
+using namespace std;
+
+int main()
+{
+    long n, c = 0;
+    array<long long, 3> val;
+    map<array<long long, 3>, long> cnt;
+
+    scanf("%ld", &n);
+
+    while (n--) {           
+        scanf("%lld %lld %lld", &val[0], &val[1], &val[2]);
+        sort(val.begin(), val.end());
+        cnt[val]++;
+    }
+
+    for (auto i = cnt.begin(); i != cnt.end(); i++) {
+        if (i->second == 1L) {
+            c++;
+        }
+    }
+
+    printf("%ld", c);
+
+    return 0;
+}

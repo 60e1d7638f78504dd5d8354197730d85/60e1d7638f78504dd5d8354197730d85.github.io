@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+ 
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        Scanner sc= new Scanner(System.in);
+        int len=sc.nextInt();
+        int arr[]= new int[len];
+        for(int i=0;i<len;i++){
+            arr[i]=sc.nextInt();
+        }
+       // Arrays.sort(arr);
+        int max=0,index=0;
+        for(int i=0;i<len;i++){
+            int count=0;
+            for(int j=0;j<len;j++){
+                if(arr[i]==arr[j])
+                count++;
+            }
+            if(count>max){
+                max=count;
+                index=i;
+            }
+           
+        }
+         System.out.print(arr[index]);
+    }
+}

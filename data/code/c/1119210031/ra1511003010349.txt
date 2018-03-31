@@ -1,0 +1,28 @@
+#include<stdio.h>
+float fac(int N);
+int main(void)
+{
+	float fact[21]={0};
+	int T, N;
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%d",&N);
+		if(fact[N]!=0)
+			printf("%.0f\n",fact[N]);
+		else
+		{
+			fact[N]=fac(N);
+			printf("%.0f\n",fact[N]);
+		}
+	}
+	return 0;
+}
+float fac(int N)
+{
+	int i;
+	float result;
+	for(i=N, result=1; i>1; i--)
+		result=result*i;
+	return result;
+} 

@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+int prime[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
+int isprime(int n){
+    int i;
+    for(i=0;i<16;i++){
+        if(prime[i]==n)return 1;
+    
+    }
+    return 0;
+ 
+}
+int main(){
+    int t,R,C,i,j,Left,Right,Top,Bottom,k,min,flag,count;
+    char S[50][50];
+    scanf("%d",&t);
+    while(t--){
+        count=0;
+        scanf("%d %d",&R,&C);
+        for(i=0;i<R;i++){
+            scanf("%s",S[i]);
+        
+        }
+      //  printf("scaning finished\n");
+        for(i=0;i<R;i++)
+            for(j=0;j<C;j++){
+                if(S[i][j]=='^'){
+                   // printf("Entered %d %d\n",i,j);   
+                    flag=0;
+                    Left=0;
+                    for(k=j-1;k>=0;k--){
+                        if(S[i][k]!='^')break;
+                        Left++;
+                    
+                    }
+                  //  printf("Finished left\n");
+                    Right=0;
+                     for(k=j+1;k<C;k++){
+                        if(S[i][k]!='^')break;
+                        Right++;
+                    
+                    }
+                  // printf("Finished Right\n");
+                    Top=0;
+                      for(k=i-1;k>=0;k--){
+                        if(S[k][j]!='^')break;
+                        Top++;
+                    
+                    }
+                  // printf("Finished Top\n");
+                     Bottom=0;
+                      for(k=i+1;k<R;k++){
+                        if(S[k][j]!='^')break;
+                        Bottom++;
+                    
+                    }
+                  // printf("Finished Bottom\n");
+                    
+                     min=Top;
+                     if(Bottom<min)min=Bottom;
+                     if(Left<min)min=Left;
+                     if(Right<min)min=Right;
+                     for(k=2;k<=min;k++){
+                         if(isprime(k)){flag=1;break;
+                         }
+                     }
+               // printf("Finished Prime finding\n");
+                     if(flag==1)count++;
+                
+                }
+            
+            }
+        printf("%d\n",count);
+    }
+ 
+ 
+ 
+ 
+    return 0;
+} 

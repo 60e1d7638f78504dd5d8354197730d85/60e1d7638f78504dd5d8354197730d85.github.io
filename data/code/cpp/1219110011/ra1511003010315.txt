@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class Distance
+{
+  int feet,inches;
+  
+  public:void get()
+  {
+    cin>>feet>>inches;
+  }
+  
+  void operator <(Distance d)
+  {
+    if(d.feet==feet)
+    {
+      if(inches<d.inches)
+        cout<<"Second One is Greater";
+      else if(d.inches<inches)
+        cout<<"First One is Greater";
+      else
+      {
+        cout<<"Both are equal";
+      }
+    }
+    else{
+     if(feet<d.feet)
+       cout<<"Second One is Greater";
+    else if(d.feet<feet)
+      cout<<"First One is Greater";
+    else
+      cout<<"Both are equal";
+  }
+  }
+  
+};
+
+int main()
+{
+    Distance d1,d2;
+  d1.get();
+  d2.get();
+    d1<d2;
+	return 0;
+}

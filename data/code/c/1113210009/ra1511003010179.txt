@@ -1,0 +1,22 @@
+#include <stdio.h>
+int gcd(int a, int b)	{
+	if(b==0)	{
+    	return a;
+    }
+  	else
+      gcd(b,a%b);
+}
+int main()
+{
+	int i,j,k,l,m;
+  	scanf("%d", &i);
+  	for(j=0;j<i;j++)	{
+    	scanf("%d %d", &k, &l);
+      	int diff,gcdab,res;
+      	diff= abs(k-l);
+      	gcdab = gcd(abs(k),abs(l));
+      	res = diff/gcdab;
+      	printf("%d\n", res);
+    }
+	return 0;
+}

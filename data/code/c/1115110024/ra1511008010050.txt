@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+	int a[3][3];
+  	int x,x1,i,j,k,b,c,d,e,f,g,h,counter=0;
+  	for(i=0;i<3;i++)
+    {
+      for(j=0;j<1;j++)
+      {
+        fscanf(stdin,"%d %d %d",&a[i][j],&a[i][j+1],&a[i][j+2]);
+      }
+    }
+  	k=a[0][0]+a[0][1]+a[0][2];
+  	b=a[1][0]+a[1][1]+a[1][2];
+  	c=a[2][0]+a[2][1]+a[2][2];
+  	d=a[0][0]+a[1][0]+a[2][0];
+  	e=a[0][1]+a[1][1]+a[2][1];
+  	f=a[0][2]+a[1][2]+a[2][2];
+  	g=a[0][0]+a[1][1]+a[2][2];
+  	h=a[0][2]+a[1][1]+a[2][0];
+  	int arr[8]={k,b,c,d,e,f,g,h};
+  	//printf("%d %d %d %d %d %d %d %d",k,b,c,d,e,f,g,h);
+  	for(x=0;x<8;x++)
+    {
+      for(x1=x+1;x1<8;x1++)
+      {
+        if(arr[x]==arr[x1])
+          counter=counter+1;
+      }
+    }
+
+ 
+  if(counter==28)
+    printf("Yes");
+  else
+    printf("No");
+  	
+	return 0;
+          }

@@ -1,0 +1,109 @@
+    #include<stdio.h>
+    #include<string.h>
+    #define LL long long
+    #define M 1000000007
+    LL arr[100005];
+    LL b[34];
+     
+    LL calc()
+    {
+    	LL i,num=0,pow=1;
+    	for(i=0;i<=29;i++)
+    	{
+    		if(b[i]!=0)
+    		{
+    			num=num+(pow);
+    		}
+    		pow*=2;
+    	}
+    	return num;
+    }
+     
+    void print()
+    {
+    	LL i;
+    	for(i=0;i<=32;i++)
+    	{
+    		printf("%lld ",b[i]);
+    	}
+    	printf("\n");
+    	calc();
+    }
+     
+    void binadd(LL num)
+    {
+    	LL t[34]={0},i;
+    	LL pos=0;
+    	while(num>0)
+    	{
+    		t[pos++]=num%2;
+    		num/=2;
+    	}
+    	for(i=0;i<=pos;i++)
+    	{
+    		b[i]+=t[i];
+    	}
+    }
+     
+    void binsub(LL num)
+    {
+    	LL t[34]={0},i;
+    	LL pos=0;
+    	while(num>0)
+    	{
+    		t[pos++]=num%2;
+    		num/=2;
+    	}
+    	for(i=0;i<=pos;i++)
+    	{
+    		b[i]-=t[i];
+    	}
+    }
+     
+    int main()
+    {
+     LL t,n,i,k,start,end,ans;
+     scanf("%lld",&t);
+     while(t--)
+     {
+     	ans=0;
+      scanf("%lld %lld",&n,&k);
+      for(i=0;i<n;i++)
+      scanf("%lld",&arr[i]);
+      for(i=0;i<=32;i++)
+      {
+      	b[i]=0;
+      }
+      binadd(arr[0]);
+      start=0;
+      end=0;
+      
+      while(end<n-1)
+      {
+      	//printf("%lld\n",calc());
+      	if(calc()>=k)
+      	{
+      		ans+=n-end;
+      		binsub(arr[start]);
+      		start++;
+      	}
+      	else
+      	{
+      		binadd(arr[end+1]);
+      		end++;
+      	}
+      } 
+      if(end==n-1)
+      {
+      	while(calc()>=k && start<=n-1)
+      	{
+      		ans+=n-end;
+      		binsub(arr[start]);
+      		start++;
+      	}
+      } 
+      printf("%lld\n",ans);
+     }
+    return 0;
+    }
+     

@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class rectangle
+{
+public:
+  int length, breadth;
+  rectangle();
+  rectangle(int a, int b) 
+   {
+    this->length=a;
+    this->breadth=b;
+   } 
+  rectangle(rectangle *p) 
+    {
+    this->length=p->length;
+    this->breadth=p->breadth;
+  }
+    void calcarea()
+    {
+      cout<<length*breadth<<"\n";
+    }
+} ;
+int main()
+{
+int a,b;
+  cin>>a>>b;
+  rectangle r1(a,b);
+  rectangle r2(r1.length,r1.breadth);
+  rectangle r3=r1;
+  r1.calcarea();
+  r2.calcarea();
+  r3.calcarea();
+	return 0;
+}

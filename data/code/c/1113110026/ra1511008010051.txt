@@ -1,0 +1,47 @@
+#include <stdio.h>
+int i=0,ii=0,iii=0;
+int main()
+{ int n,m,j,k,num1[10],num2[10],dj[10],num=0,tt=1;
+  scanf("%d",&n);
+  int oo=n;
+ 	while (n > 0) {
+        num1[i] = n % 2;
+        n = n / 2;
+        i++;
+  }
+ scanf("%d",&m);
+ n=m;
+  while (m > 0) {
+        num2[ii] = m % 2;
+        m=m / 2;
+        ii++;
+  }
+ for(j=9,k=9;j>=0,k>=0;j--,k--){
+ 	if(num1[j]==1 || num2[k]==1){
+    	dj[iii]=1;
+      	iii++;
+    }
+   	else{
+    	dj[iii]=0;
+      	iii++;
+    }
+ }
+ for(j=9;j>=0;j--) {
+ 	if(num1[j]!=1)num1[j]=0;
+ }
+ for(j=9;j>=0;j--) {
+ 	if(num2[j]!=1)num2[j]=0;
+   if(j>ii) num2[j]=0;
+ }
+ for(j=9;j>=0;j--) {
+ 	if(dj[j]!=1)dj[j]=0;
+     if(j<ii) dj[j]=0;
+ }
+
+for(j=9;j>=0;j--){
+	num=dj[j]*tt+num;
+  	tt=tt*2;
+}
+ printf("Bitwise OR of %d and %d is=%d",oo,n,num);
+ return 0;
+}

@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int divideTill(int n,int m){
+  if(n%m==0){
+    n /= m;
+    divideTill(n,m);
+  }
+  else
+    return n;
+}
+int main()
+{
+  int n;
+  cin>>n;
+  n = divideTill(n,2);
+  n = divideTill(n,3);
+  n = divideTill(n,5);
+  if(n==-1)
+    cout<<"Invalid Input";
+  else if(n==1)
+    cout<<"UGLY";
+  else
+    cout<<"NOT UGLY";
+  return 0;
+}

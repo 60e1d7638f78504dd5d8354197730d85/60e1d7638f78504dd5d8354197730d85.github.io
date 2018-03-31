@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+ 
+typedef struct {
+  int num;
+  char side;
+} Type;
+ 
+int main() {
+  int T,t,N,n,M,m,h,v,curr;
+  char in[102][102];
+  Type d[101][101];
+ 
+  scanf("%d", &T);
+  for (t=0; t<T; t++) {
+    memset(in,0,sizeof(in));
+    memset(d,0,sizeof(d));
+    scanf("%d %d", &N, &M); 
+    for (n=0; n<N; n++) {
+      scanf("%s", &in[n][0]);
+      for(m=0; m<M; m++)
+        in[n][m]=(in[n][m]=='0')?0:1;
+    }
+    d[0][0].num=in[0][0]+in[1][0]+in[0][1];
+    d[0][0].side='*';
+    for (m=1; m<M; m++) {
+      d[0][m].num=d[0][m-1].num+in[1][m]+in[0][m+1];
+      d[0][m].side='h';
+    }
+    for (n=1; n<N; n++) {
+      d[n][0].num=d[n-1][0].num+in[n][1]+in[n+1][0];
+      d[n][0].side='v';
+    }
+    for (n=1; n<N; n++) {
+      for (m=1; m<M; m++) {
+        h=d[n][m-1].num;
+        if (d[n][m-1].side=='h')
+          h+=in[n-1][m];
+        v=d[n-1][m].num;
+        if (d[n-1][m].side=='v')
+          v+=in[n][m-1];
+        curr = in[n+1][m]+in[n][m+1];
+        if (h<v) {
+          d[n][m].num=h+curr;
+          d[n][m].side='h';
+        } else if(h>v) {
+          d[n][m].num=v+curr;
+          d[n][m].side='v';
+        } else {
+          d[n][m].num=v+curr;
+          d[n][m].side='*';
+        }
+      }
+    }
+    printf("%d\n",d[N-1][M-1].num);
+  }
+  return 0;
+}

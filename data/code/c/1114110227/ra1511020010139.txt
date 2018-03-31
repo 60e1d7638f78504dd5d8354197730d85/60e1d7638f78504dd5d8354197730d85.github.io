@@ -1,0 +1,23 @@
+#include <stdio.h>
+int sum=1, n;
+void dfs(int x);
+int main()
+{
+    scanf("%d",&n);
+    dfs(1);
+    printf("%d", sum);
+	return 0;
+}
+void dfs(int x)
+{
+    if(x*10<=n)
+    {
+        sum++;
+        dfs(x*10);
+    }
+    if(x*10+1<=n)
+    {
+        sum++;
+        dfs(x*10+1);
+    }
+}

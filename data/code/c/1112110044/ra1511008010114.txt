@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<string.h>
+int main(void)
+{
+    int t,p;
+    scanf("%d\n",&t);
+    for(p=0;p<t;p++)
+    {
+        char str1[25020],str2[25020];
+        scanf("%s %s\n",str1,str2);
+        int m=strlen(str1);
+        int n=strlen(str2);
+        int i,j=0,k=0,count=0,count3=0,count2=0;
+        if(m>n)
+        {
+            for(i=0;i<m;i++)
+            {
+                if(str2[j]==str1[i])
+                {
+                    j++;
+                    count++;
+                    if(count==n)break;
+                }
+            }
+        }
+            else if(m<n)
+            {
+                for(i=0;i<n;i++)
+                {
+                    if(str1[k]==str2[i])
+                    {
+                        k++;
+                        count2++;
+                        if(count2==m)break;
+                    }
+                }
+            }
+            else
+            {
+                for(i=0;i<m;i++)
+                {
+                    if(str1[i]==str2[i])
+                    count3++;
+                    else break;
+                }
+            }
+            if(count==n||count2==m||(count3==m&&count3==n))
+            {
+                printf("YES\n");
+            }
+            else printf("NO\n");
+        
+    }
+    return 0;
+} 

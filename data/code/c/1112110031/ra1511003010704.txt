@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+int n,fla=0,flag=0,d,i,j,sol=0;
+  scanf("%d",&n);
+  for(i=2;i<=n/2;i++)
+  {
+    for(j=2;j<=i/2;j++)
+    {
+    if(i%j==0)
+    {
+      fla=1;
+    }
+    }
+    
+    if(fla==0)
+    {
+    d=n-i;
+    }
+    
+    for(j=2;j<=d/2;j++)
+    {
+    if(d%j==0)
+    {
+      flag=1;
+    }
+    }
+    
+  if(fla==0 && flag==0)
+  {
+    printf("%d = %d + %d\n",n,i,d);
+    sol++;
+  }
+    
+    fla=0;flag=0;
+  }
+  if(sol==0)
+  {
+    printf("NOT\n");
+  }
+	return 0;
+}

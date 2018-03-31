@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<malloc.h>
+#include<string.h>
+struct student
+{
+  int r_no;
+  char name[20];
+  char course[20];
+  int fees;
+};
+int display(struct student*);
+int main()
+{
+  struct student *ptr;
+  ptr=(struct student*)malloc(sizeof(struct student));
+  scanf("%d",&ptr->r_no);
+  scanf("%s",ptr->name);
+  scanf("%s",ptr->course);
+  scanf("%d",&ptr->fees);
+  display(ptr);
+	return 0;
+}
+int display(struct student*ptr)
+{
+  printf("\nDetails of student");
+  printf("\nRoll Number=%d",ptr->r_no);
+  printf("\nName=%s",ptr->name);
+  printf("\nCourse=%s",ptr->course);
+  printf("\nFees=%d",ptr->fees);
+}

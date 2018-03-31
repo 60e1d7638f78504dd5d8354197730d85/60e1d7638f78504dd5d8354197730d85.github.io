@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+void sort(int n,int a[]){
+  	int t;
+	for(int i=0;i<n-1;i++){
+    	for(int j=i+1;j<n;j++){
+        	if(a[i]>a[j]){
+            	t=a[i];
+              	a[i]=a[j];
+              	a[j]=t;
+            }	
+        }
+    }
+	for(int i=0;i<n;i++)
+      cout<<a[i]<<endl;
+}
+void sort(int n,string s){
+  	char t;
+	for(int i=0;i<s.length()-1;i++){
+    	for(int j=i+1;j<s.length();j++){
+        	if(s[i]>s[j]){
+            	t=s[i];
+            	s[i]=s[j];
+              	s[j]=t;
+            }
+        }
+    }
+  for(int i=0;i<s.length();i++)
+    	cout<<s[i];
+}
+int main()
+{
+  int n;
+  cin>>n;
+  int a[n];
+  string s;
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  sort(n,a);
+  cin>>s;
+  sort(n,s);
+
+	return 0;
+}

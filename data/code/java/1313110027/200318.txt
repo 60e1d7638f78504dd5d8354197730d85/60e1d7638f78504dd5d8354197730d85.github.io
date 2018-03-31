@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+ 
+public class TestClass{
+    public static int serviceLane(int[] width, int start, int end){
+        int min = 3;
+        for(int j=start;j<=end;j++){
+            if(width[j]<min){
+                min = width[j];
+            }
+        }
+        return min;
+    }
+     
+    public static void main(String[] args){
+        int N = 0;
+        int T = 0;
+        Scanner reader = new Scanner(System.in);
+        N = reader.nextInt();
+        T = reader.nextInt();
+        int[] width = new int[N];
+        for(int i=0;i<N;i++){
+            width[i] = reader.nextInt();
+        }
+        for(int i=0;i<T;i++){
+            int start = reader.nextInt();
+            int end = reader.nextInt();
+            System.out.println(serviceLane(width,start,end));
+        }
+        reader.close();
+    }
+}

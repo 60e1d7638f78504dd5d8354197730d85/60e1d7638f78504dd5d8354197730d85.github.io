@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+	int t,p,rem,n,i,flag;
+	scanf("%d",&t);
+	xu:
+	while(t--)
+	{
+		rem=-1;
+		int a[1000]={-1};
+		scanf("%d",&n);
+		for(i=1;i<=n;i++)
+		{
+			scanf("%d",&p);
+			a[p]++;
+		}
+		flag=0;
+		for(i=n;i>0;i--)
+		{
+			
+				if(a[i]==2 || a[i]==3)
+				{
+					
+					if(flag==1)
+					{
+						printf("%d\n",rem*i);goto xu;
+					}rem=i;
+					flag=1;
+					continue;
+				}
+			
+			 if(a[i]>=4)
+			{
+				if(rem!=-1)
+				{
+					printf("%d\n",rem*i);goto xu;
+				}
+				printf("%d\n",i*i);goto xu;
+				
+			
+			}
+		}
+		printf("-1\n");
+    }
+	return 0;
+}

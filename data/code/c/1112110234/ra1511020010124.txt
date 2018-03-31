@@ -1,0 +1,26 @@
+#include <stdio.h>
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+int main(void) {
+	long long int n,k,i,t,j;
+	int a[100000];
+	double sum;
+	scanf("%lld",&t);
+	while(t--)
+	{
+      sum=0.0;	
+	  scanf("%lld %lld",&n,&k);
+	  for(i=0;i<n;i++)
+	  scanf("%d",&a[i]);
+	  qsort(a, n, sizeof(int), cmpfunc);
+	  i=k;
+	  j=n-k;
+	  for(i=k;i<j;i++)
+	  sum=sum+a[i];
+	  n=j-k;
+	  n=(double)n;
+	 	printf("%lf\n",sum/n);
+	}
+	return 0;
+}

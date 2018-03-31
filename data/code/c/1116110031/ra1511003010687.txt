@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  char input[100], word[100];
+  scanf("%[^\n]%*c", input);
+  scanf("%s", word);
+  
+  int pos = strstr(input, word) - input;
+  int length = strlen(word);
+  
+  int i = 0;
+  for(; i < strlen(input); i++){
+    if(i < pos || i >= pos + length){
+      printf("%c", input[i]);
+    }
+  }
+  
+  return 0;
+}

@@ -1,0 +1,102 @@
+#include <stdio.h>
+
+struct Date {
+  int date;
+  int month;
+  int year;
+  
+}D;  
+
+void inp(){
+  scanf("%d %d %d",&D.date,&D.month,&D.year);
+  
+}
+int main()
+{
+ inp();
+  int flag=0;
+ switch(D.month) {
+   case 1: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 2: {
+     if(D.year%4==0 || (D.year%400==0 && D.year%100==0))
+     {
+       if(D.date>29)
+       { printf("Invalid Day");
+         flag++; }
+     }
+     else
+     {
+       if(D.date>28)
+       { printf("Invalid Day");
+         flag++; }
+     }
+     break; }
+   case 3: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 4: {
+     if(D.date>30)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 5: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 6: {
+     if(D.date>30)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 7: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 8: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 9: {
+     if(D.date>30)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 10: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 11: {
+     if(D.date>30)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   case 12: {
+     if(D.date>31)
+     {printf("Invalid Day");
+     flag++; }
+     break; }
+   default:  {printf("Invalid Month"); 
+              flag++;
+              break; }
+ }
+ if(flag==0){
+   if(D.year>=2999 || D.year<=0) {
+     printf("Invalid Year");
+     flag++; }
+ }
+  if(flag==0)
+  {
+    printf("New Date=%d %d %d",D.date +1,D.month,D.year);
+  }
+	return 0;
+}

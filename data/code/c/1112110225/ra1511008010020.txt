@@ -1,0 +1,31 @@
+#include<stdio.h>
+int gcd(int a,int b)
+{
+	
+	if(b==0)
+	return a;
+	
+	else gcd(b,a%b);
+}
+int abs(int a)
+{
+	if(a<0) return -a;
+	else return a;
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int a,b,diff,gcdab,res;
+		scanf("%d%d",&a,&b);
+		 diff = a-b;
+		 
+		 gcdab = gcd(abs(a),abs(b));
+		
+		 res = diff/gcdab;
+		printf("%d\n",abs(res));	
+	}
+	return 0;
+	}  

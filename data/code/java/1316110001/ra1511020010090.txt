@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+       Sample.getInput();
+	}
+}
+
+class Sample{
+
+  public static void getInput(){
+  
+    Scanner s = new Scanner(System.in);
+    int num = s.nextInt();
+    int digit = s.nextInt();
+    getLLessThanN(num,digit);
+  }
+  
+  public static int getLLessThanN(int num,int digit){
+  
+    
+    int d=0,a=num,b,sum=0;
+    while(a>0){
+    
+      b=a%10;
+      if(b==digit)
+        break;
+      sum=sum+(b*(int)(Math.pow(10,d)));
+      d++;
+      a=a/10;
+    }
+    num=num-(sum+1);
+    System.out.print(""+num);
+    return num;
+  }
+  
+}

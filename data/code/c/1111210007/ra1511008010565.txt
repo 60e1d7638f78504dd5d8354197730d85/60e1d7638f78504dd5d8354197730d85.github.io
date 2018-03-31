@@ -1,0 +1,28 @@
+#include <stdio.h>
+ 
+#define gc getchar_unlocked
+inline int getn(){
+	int n = 0, c = gc();
+	while(c < '0' || c > '9') c = gc();
+	while(c >= '0' && c <= '9')
+		n = (n<<3) + (n<<1) + c - '0', c = gc();
+	return n;
+}
+ 
+int main(){
+	int T = getn(),N,C,Q,L,R;
+	while(T--){
+		N = getn(), C = getn(), Q = getn();
+		while(Q--){
+			L = getn(), R = getn();
+			if(C >= L && C <= R){
+				if(C <= L + (R - L)/2)
+					C += (R-L) - (C-L)*2;
+				else
+					C -= (R-L) - (R-C)*2;
+			}
+		}
+		printf("%d\n",C);
+	}
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,area,n,a[100];
+  int t;
+  scanf("%d",&t);
+  while(t--){
+    	int b[104]={0};
+    	int c[100]={0};
+  		scanf("%d",&n);
+  	
+    	for(i=0;i<n;i++){
+      		scanf("%d",&a[i]);
+    	}
+  	
+    	if(n<4)
+    		printf("-1");
+  		else{
+  			for(i=0;i<n;i++){
+      			for(j=1;j<=103;j++){
+        			if(a[i]==j){
+          				b[j]++;
+                    }
+                }
+            }
+          	
+  			i=0;
+  			for(j=1;j<=103;j++){
+      			if(b[j]%2==0 && b[j]>0){
+        			c[i]=j;
+        			i++;
+      			}
+            }
+  			
+          	if(i<2)
+      			printf("-1");
+  			else{
+      			if(c[i-1]>=4)
+        			area=c[i-1]*c[i-1];
+      			else
+        			area=c[i-1]*c[i-2];
+      			printf("%d",area);
+    		}
+  		}
+    printf("\n");
+  }
+  return 0;
+}

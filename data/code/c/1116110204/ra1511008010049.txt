@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,t,f_r,f_l;
+    char str1[10000],str2[10000];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%s %s",str1,str2);
+        i=0;j=0;
+        while(i<strlen(str1))
+        {
+            if(str2[j]==str1[i])
+            {
+                j++;
+                i++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        if(j>=strlen(str2))
+        {
+            f_r=1;
+        }
+        else
+        {
+            f_r=0;
+        }
+        i=strlen(str1)-1;
+        j=0;
+        while(i>=0)
+        {
+            if(str2[j]==str1[i])
+            {
+                j++;
+                i--;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        if(j>=strlen(str2))
+        {
+            f_l=1;
+        }
+        else
+        {
+            f_l=0;
+        }
+        if(f_l==1&&f_r==1)
+        printf("3\n");
+        else if(f_r==1)
+        printf("1\n");
+        else if(f_l==1)
+        printf("2\n");
+        else
+        printf("0\n");
+    }
+    return 0;
+}
+ 
+

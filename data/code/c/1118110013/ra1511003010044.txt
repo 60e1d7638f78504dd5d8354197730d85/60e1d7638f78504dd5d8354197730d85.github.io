@@ -1,0 +1,25 @@
+#include <stdio.h>
+typedef int km;
+typedef int m;
+struct dist
+{ km x;
+  m y;
+};
+int calc(struct dist a,struct dist b);
+int main()
+{ struct dist a;
+  struct dist b;
+  scanf("%d %d",&a.x,&a.y);
+  scanf("%d %d",&b.x,&b.y);
+  calc(a,b);
+	return 0;
+}
+int calc(struct dist a,struct dist b)
+{ struct dist c;
+  c.x=a.x+b.x;
+  c.y=a.y+b.y;
+  printf("%d ft %d inch\n",c.x,c.y);
+  c.x=abs(a.x-b.x);
+  c.y=abs(a.y-b.y);
+  printf("%d ft %d inch",c.x,c.y);
+}

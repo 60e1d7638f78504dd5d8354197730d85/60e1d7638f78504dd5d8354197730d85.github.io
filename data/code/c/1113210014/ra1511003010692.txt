@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main ()
+{
+    int t;
+    long long int n;
+    long long int p;
+    //int i;
+    scanf ( "%d",&t);
+    while (t-- ){
+          scanf ( "%lld",&n);
+          p = llrintl(sqrt(n));
+          if ( n % p == 0 ) {
+               if ( p > n/p ) {
+                    printf ( "%lld\n",p-(n/p));
+                    } else printf ( "%lld\n",(n/p) - p);
+                    } else {
+                           p--;
+                           while ( n % p != 0 ) {
+                                 p--;
+                                 }
+                    
+               if ( p > n/p ) {
+                    printf ( "%lld\n",p-(n/p));
+                    } else printf ( "%lld\n",(n/p) - p);
+                    }
+                    }
+          return 0;
+}

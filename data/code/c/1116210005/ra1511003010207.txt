@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+
+#define C "It is correct"
+#define W "It is wrong"
+
+int main() {
+	char a[256], b[256];
+	int la, lb;
+
+	fgets(a, 256, stdin);
+	fgets(b, 256, stdin);
+
+	la = strlen(a);
+	if (a[la-1] == '\n') a[la-1] = '\0';
+
+	lb = strlen(b);
+	if (b[lb-1] == '\n') b[lb-1] = '\0';
+
+	if (strcmp(a, b))
+		puts(W);
+	else
+		puts(C);
+
+	return 0;
+}

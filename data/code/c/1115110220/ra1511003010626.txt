@@ -1,0 +1,32 @@
+#include<stdio.h>
+
+int dayofweek(int d, int m, int y)
+{
+    static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+    y -= m < 3;
+    return ( y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
+}
+
+int main()
+{
+  	int a,b,c,day;
+  	scanf("%d %d %d",&a,&b,&c);
+    day = dayofweek(a, b, c);
+ 	if(day == 0)
+    	printf("Sunday");
+  	else if(day == 1)
+      	printf("Monday");
+  	else if(day == 2)
+      	printf("Tuesday");
+  	else if(day == 3)
+      	printf("Wednesday");
+  	else if(day == 4)
+      	printf("Thursday");
+  	else if(day == 5)
+      	printf("Friday");
+  	else if(day == 6)
+      	printf("Saturday");
+  	else
+    	printf(" ");
+    return 0;
+}

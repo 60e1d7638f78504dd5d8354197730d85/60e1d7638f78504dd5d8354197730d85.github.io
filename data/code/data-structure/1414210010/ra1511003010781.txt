@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+int col[100005];
+long double f(long long int x1, long long int y1, long long int x2, long long int y2)
+{
+ return sqrtl(powl(x1-x2,2) + powl(y1-y2,2));
+}
+int main()
+{
+ int t;
+ scanf("%d", &t);
+ while(t--)
+ {
+  int n,m;
+  scanf("%d %d", &n, &m);
+  for (int i = 0; i < n; ++i)
+  {
+   scanf("%d", &col[i]);
+  }
+  sort(col, col+n);
+  long double temp_ans = 0;
+  temp_ans+=f(col[0],col[1],col[0],col[n-1]);
+  temp_ans+=f(col[0],col[n-1],col[n-2],col[n-1]);
+  temp_ans+=f(col[n-2],col[n-1],col[n-1],col[n-2]);
+  temp_ans+=f(col[n-1],col[n-2],col[n-1],col[0]);
+  temp_ans+=f(col[n-1],col[0],col[1],col[0]);
+  temp_ans+=f(col[1],col[0],col[0],col[1]);
+  long long int fans = ceill(temp_ans);
+  fans*=m;
+  printf("%lld\n", fans);
+ 
+ }
+ return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{ 	
+	int a,b,gcd,lcm,rem,nume,deno,t,n;
+  scanf("%d",&n);
+  for(t=1;t<=n;t++)
+  {
+  	scanf("%d%d",&a,&b);
+  
+  if(a>b)
+  {
+    nume=a;
+    deno=b;
+  }
+  else
+  {
+    nume=b;
+    deno=a;
+  }
+  rem= nume%deno;
+  while(rem !=0)
+  {
+    nume=deno;
+    deno=rem;
+    rem= nume%deno;
+  }
+  gcd= deno;
+  lcm=a*b/gcd;
+  printf("%d %d\n",gcd,lcm);	
+  }
+    return 0;
+}

@@ -1,0 +1,42 @@
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{
+	int n,m,a[10][10];
+	int t;
+	scanf("%d\n",&t);
+	int i,j;
+	int bsum=0;
+	int tsum=0; //bigsum: holds the total collisions
+	int temp=0;
+	//printf("%d%d",n,m);
+	while(temp<t)
+	{
+		scanf("%d %d",&n,&m);
+		for(i=0;i<n;i++)
+		{	for (j=0;j<m;j++)
+			{
+				scanf("%1d",&a[i][j]);
+			}
+		}
+		
+		for(j=0;j<m;j++)
+		{
+			for(i=0;i<n;i++)
+			{
+				if(a[i][j]==1)
+					tsum++;
+			}
+			if(tsum>=2)
+			{
+				bsum=bsum+tsum*(tsum-1)/2;
+			}
+			tsum=0;
+		}
+		printf("%d",bsum);
+		printf("\n");
+		bsum=0;
+		temp++;
+	}
+	return 0;
+} 

@@ -1,0 +1,49 @@
+#include<stdlib.h>
+#include<string.h>
+#include<stdio.h>
+ 
+main()
+{
+    int t,len,flag;
+    char str[1001];
+    int cntl[26],cntr[26];
+    int i,j,k;
+    scanf("%d",&t);
+    while(--t >= 0)
+    {
+        flag=1;
+        scanf("%s",str);
+        len=strlen(str);
+        k=len/2;
+        for(i=0;i<26;i++)
+            cntl[i]=0;
+        for(i=0;i<26;i++)
+            cntr[i]=0;
+        if(len%2==0)
+        {
+            for(i=0;i<k;i++)
+                cntl[str[i]-'a']++;
+            for(j=k;j<len;j++)
+                cntr[str[j]-'a']++;
+        }
+        else
+        {
+            for(i=0;i<k;i++)
+                cntl[str[i]-'a']++;
+            for(j=k+1;j<len;j++)
+                cntr[str[j]-'a']++;
+        }
+        for(i=0;i<26;i++)
+            if(cntl[i]!=cntr[i])
+            {
+                flag=0;
+                break;
+            }
+        if(flag==0)
+            printf("NO\n");
+        else
+            printf("YES\n");
+ 
+    }
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <iterator>
+#include <algorithm>
+#include <cctype>
+using namespace std;
+int main()
+{
+    string str;
+  getline(cin,str);
+    std::string result;
+    auto it = str.begin();
+
+    while (it != str.end()) {
+
+        while (it != str.end() && isspace(*it)) {
+            result += *it;
+            ++it;
+        }
+
+        auto begin = it;
+        while (it != str.end() && !isspace(*it)) {
+            ++it;
+        }
+        auto end = it;
+
+        result.append(std::reverse_iterator<decltype(end)>(end),
+                      std::reverse_iterator<decltype(begin)>(begin));
+
+        // if you want to modify original string instead, just do this:
+        std::reverse(begin, end);
+    }
+
+    std::cout << result <<'\n';
+}

@@ -1,0 +1,67 @@
+   #include<string.h>
+    #include<stdio.h>
+    #include<math.h>
+    int main()
+    {
+     
+        int t,temp;
+        scanf("%d",&t);
+        char yesno[4];
+        int arr[t];
+        char string[t+1][t+1];
+        int i,j;
+        for(i=0;i<t;i++)
+        {
+            temp = 0;
+            for(j=0;j<t;j++)
+            {
+                scanf("%s",yesno);
+                if(strcmp(yesno,"YES")==0)
+                    {
+                    string[i][j]='1';
+                    temp += pow(2,t-j-1);
+                    }
+                else
+                    string[i][j]='0';
+                     
+            }
+            string[i][j]='\0';
+            arr[i]=temp;
+        }
+        int flag=-1;
+        for(i=0;i<t;i++)
+        {
+            temp =0;
+            for(j=0;j<t;j++)
+            {
+                if(strcmp(string[i],string[j])==0)
+                    temp += pow(2,t-j-1);
+     
+            }
+            if(temp==arr[i])
+            {
+                flag=i;
+                break;
+            }
+        }
+     
+        if(flag==-1)
+        {
+            while(t--)
+                printf("NO\n");
+        }
+        else
+        {
+            int k;
+            for(k=0;k<t;k++)
+            {
+                if(string[i][k]=='0')
+                    printf("NO\n");
+                else
+                    printf("YES\n");
+            }
+     
+        }
+        return 0;
+     
+    }

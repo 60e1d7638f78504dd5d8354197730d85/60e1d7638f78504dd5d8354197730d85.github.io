@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+class student {
+protected:
+    int rno, m1, m2;
+public:
+
+    void get() {
+        cin>>rno;
+        cin >> m1>>m2;
+    }
+};
+
+class sports {
+protected:
+    int sm;
+public:
+
+    void getsm() {
+
+        cin>>sm;
+
+    }
+};
+
+class statement : public student, public sports {
+    float tot;
+  float avg;
+public:
+
+    void display() {
+        tot = (m1 + m2 + sm);
+        avg = tot / 3;
+        cout << "\n" << rno << "\n" << tot;
+        cout << "\n" << avg;
+    }
+};
+
+int main() {
+    
+    statement obj;
+    obj.get();
+    obj.getsm();
+    obj.display();
+    return 0;
+}

@@ -1,0 +1,55 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+  int t,t1;
+  char name[100][20];
+  long nu[100],sear;
+  cin>>t;
+  t1=t;
+  while(t>0)
+  {
+    cin>>name[t]>>nu[t];
+    t--;
+  }
+  cout<<"Ordered List\n";
+  for(int i=1;i<t1;i++)
+  {
+    for(int j=i+1;j<=t1;j++)
+    {
+      if(strcmp(name[i],name[j])>0)
+      {
+        //cout<<name[i]<<" "<<name[j];
+        char temp[20];
+        long temp1;
+        strcpy(temp,name[i]);
+        //cout<<temp;
+        strcpy(name[i],name[j]);
+        strcpy(name[j],temp);
+        //cout<<name[i];
+        temp1=nu[i];
+        nu[i]=nu[j];
+        nu[j]=temp1;
+      }
+    }
+    cout<<name[i]<<" "<<nu[i]<<"\n";
+  }
+  cout<<name[t1]<<" "<<nu[t1]<<"\n";
+  cin>>sear;
+  //cout<<sear;
+  //cout<<t1;
+  cout<<"\nName Telephone Number\n";
+  for(int i=1;i<=t1;i++)
+  {
+    //cout<<nu[i];
+    if(nu[i]==sear)
+    {
+      cout<<name[i]<<" "<<nu[i];
+      return 0;
+    }
+  }
+  cout<<"The Entered Number is not in the Directory";
+
+	return 0;
+}

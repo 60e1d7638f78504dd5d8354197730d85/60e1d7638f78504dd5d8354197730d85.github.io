@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+    int lcm,j,i,k,l,T,N,num,temp;
+  scanf("%d",&T);
+  for(i=0;i<T;i++)
+  {
+  scanf("%d",&num);
+    int arr[num];
+    for(j=0;j<num;j++)
+    {
+      scanf("%d",&arr[j]);
+    }
+    for(k=0;k<num;k++)
+    {
+      for(j=k+1;j<num;j++)
+        if(arr[k]>arr[j])
+        {
+          temp=arr[j];
+          arr[j]=arr[k];
+          arr[k]=temp;
+        }
+    }
+   if(arr[0]==arr[1])
+      printf("%d\n",arr[0]);
+    else if((arr[0]%2==0)&&(arr[1]%2==0))
+      printf("%d\n",arr[1]);
+    else
+      printf("%d\n",arr[0]*arr[1]);
+ }
+	return 0;
+}

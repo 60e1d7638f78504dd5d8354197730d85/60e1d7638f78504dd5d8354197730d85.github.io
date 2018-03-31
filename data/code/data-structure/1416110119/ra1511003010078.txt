@@ -1,0 +1,85 @@
+#include <iostream>
+using namespace std;
+#define MAX 1000
+ 
+class Stack
+{
+    int top;
+public:
+    int a[MAX];    //Maximum size of Stack
+ 
+    Stack()  { top = -1; }
+    bool push(int x);
+    int pop();
+    void print();
+    bool isEmpty();
+};
+ 
+bool Stack::push(int x)
+{
+    if (top >= MAX)
+    {
+        cout << "Stack Overflow";
+        return false;
+    }
+    else
+    {
+        a[++top] = x;
+        return true;
+    }
+}
+ 
+int Stack::pop()
+{
+    if (top < 0)
+    {
+        cout << "Stack Underflow";
+        return 0;
+    }
+    else
+    {
+         top--;
+    }
+}
+ void Stack::print()
+ {
+   for(int i=0;i<=top;i++)
+     cout<<a[i]<<" ";
+   cout<<"\n";
+ }
+bool Stack::isEmpty()
+{
+    return (top < 0);
+}
+ 
+// Driver program to test above functions
+int main()
+{
+    struct Stack s;
+    int a[100],size,ch;
+  cin>>ch;
+  while(ch!=0)
+  {
+    switch(ch)
+    {
+      case 1: cin>>size;
+              for(int i=0;i<size;i++)
+              {
+                cin>>a[i];
+              
+             
+                s.push(a[i]);
+              }
+              break;
+      case 2: 
+               s.pop();
+                break;
+      case 3: s.print(); 
+               break;
+       
+    }
+    cin>>ch;
+  }
+    return 0;
+}
+

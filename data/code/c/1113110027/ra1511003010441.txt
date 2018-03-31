@@ -1,0 +1,33 @@
+#include <stdio.h>
+unsigned hard,str;
+float cont;
+int cond1(){
+  return (hard>50?1:0);
+}
+int cond2(){
+	return(cont<0.7?1:0);
+}
+int cond3(){
+	return(str>5600?1:0);
+}
+int main()
+{
+	unsigned tests,c1,c2,c3;
+  	scanf("%u",&tests);
+  	while(tests--){
+    	scanf("%u",&hard);
+      	scanf("%f",&cont);
+      	scanf("%u",&str);
+      	c1=cond1();
+      	c2=cond2();
+      	c3=cond3();
+      	if(c1&&c2&&c3){printf("Grade 10");}
+      	else if(c1 && c2){printf("Grade 9");}
+      	else if(c2 && c3)printf("Grade 8");
+      	else if(c1 && c3)printf("Grade 7");
+      	else if(c1 || c2 || c3) printf("Grade 6");
+      	else printf("Grade 5");
+      printf("\n");
+    }
+	return 0;
+}

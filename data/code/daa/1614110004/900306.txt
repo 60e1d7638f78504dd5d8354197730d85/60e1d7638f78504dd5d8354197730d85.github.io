@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+void permu(int a[],int n,int k)
+{
+  int pos[n+1];
+  for(int i=0;i<n;i++)
+  pos[a[i]]=i;
+  for(int i=0;i<n&&k;i++)
+  {
+    if(a[i]==n-i)
+      continue;
+        pos[a[i]]=pos[n-i];
+    a[pos[n-i]]=a[i];
+    a[i]=n-i;
+    
+    --k;
+  }
+}
+
+int main()
+{
+int n,k;
+  cin>>n>>k;
+  int i,a[10];;
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  permu(a,n,k);
+  for(i=0;i<n;i++)
+    cout<<a[i]<<" ";
+  
+	return 0;
+}

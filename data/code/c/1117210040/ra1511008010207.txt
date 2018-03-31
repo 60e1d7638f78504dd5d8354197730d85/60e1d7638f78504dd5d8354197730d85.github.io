@@ -1,0 +1,159 @@
+#include<stdio.h>
+long long int ANS[200011];
+void mergesort(int [],int ,int);
+void merge(int A[],int,int,int);
+void mergesort(int A[],int p, int r)
+{
+int q;
+if(p<r)
+{
+q=(p+r)/2;
+mergesort(A,p,q);
+mergesort(A,q+1,r);
+merge(A,p,q,r);
+}
+}
+ 
+void merge(int A[],int p,int q, int r)
+{int i,j,k;
+    int n1=q-p+1;
+    int n2=r-q;
+    int L[n1+1],R[n2+1];
+    for(i=0;i<n1;i++)
+    {
+        L[i]=A[p+i];
+ 
+    }
+    for(j=0;j<n2;j++)
+    {
+        R[j]=A[q+j+1];
+    }
+    i=0;j=0;
+    L[n1]=2147483644;R[n2]=2147483644;
+    for(k=p;k<=r;k++)
+    {
+        if(L[i]<=R[j])
+        {
+            A[k]=L[i];
+            i++;
+        }
+        else{ A[k]=R[j];j++;}
+    }
+ 
+ 
+}
+ 
+int main()
+{
+    int n,A[100011],B[100011],i,j,k,count,w,c,flag,cost1,cost2,size1,size2;long long int ans;
+    scanf("%d",&n);
+    j=0;
+    k=0;
+    count=0;
+    for(i=0;i<n;i++)
+    {
+        scanf("%d%d",&w,&c);
+        if(w==1){A[j]=c;j++;}
+        else if(w==2){B[k]=c;k++;}
+        count+=w;
+    }
+    size1=j;
+    size2=k;
+    mergesort(A,0,j-1);
+    mergesort(B,0,k-1);
+    ans=0;
+    for(i=2;i<=count;i=i+2)
+    {
+         cost1=0;
+         cost2=0;
+        if(k>=1)
+        {
+            cost2=B[k-1];
+        }
+        flag=1;
+        if(j>=2)
+        {
+            cost1=A[j-1];
+            cost1+=A[j-2];
+        }
+        else if(j>=1)
+        {
+            flag=2;
+            cost1=A[j-1];
+        }
+        if(cost2>cost1)
+        {
+            ans+=cost2;
+            k--;
+        }
+        else
+        {
+             ans+=cost1;
+            if(flag==2)
+            {
+ 
+                j--;
+            }
+            else
+            {
+ 
+                j=j-2;
+            }
+        }
+        ANS[i]=ans;
+    }
+    j=size1;
+    k=size2;
+    ans=0;
+    if(j>=1)
+    {
+        ans=A[j-1];
+        j--;
+    }
+    ANS[1]=ans;
+    for(i=3;i<=count;i=i+2)
+    {
+        cost1=0;
+         cost2=0;
+        if(k>=1)
+        {
+            cost2=B[k-1];
+        }
+        flag=1;
+        if(j>=2)
+        {
+            cost1=A[j-1];
+            cost1+=A[j-2];
+        }
+        else if(j>=1)
+        {
+            flag=2;
+            cost1=A[j-1];
+        }
+        if(cost2>cost1)
+        {
+            ans+=cost2;
+            k--;
+        }
+        else
+        {
+            if(flag==2)
+            {
+                ans+=cost1;
+                j--;
+            }
+            else
+            {
+                ans+=cost1;
+                j=j-2;
+            }
+        }
+        ANS[i]=ans;
+    }
+ 
+    for(i=1;i<=count;i++)
+    {
+        printf("%lld ",ANS[i]);
+    }
+    return 0;
+}  

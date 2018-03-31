@@ -1,0 +1,58 @@
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
+#include <vector>
+#include <cstring>
+#include <iomanip>
+#include <utility>
+#include <iterator>
+#include <set>
+#include <map>
+
+using namespace std;
+
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+
+const int N = 100500;
+
+int n;
+int val;
+int a[N];
+
+int main() {
+    scanf("%d", &n);
+    multiset<int> ms;
+    for (int i = 1; i <= n; i++) {
+        scanf("%d", &a[i]);
+        if (a[i] > 1000 || n > 1000) return 228;
+    }
+    for (int i = 1; i <= n; i++) {
+        scanf("%d", &val);
+        if (val > 1000) return 228;
+        ms.insert(val);
+    }
+    int sz = 0;
+    int ans = 0;
+    multiset<int> :: iterator it;
+    for (int i = 1; i <= n; i++) {
+        it = ms.find(a[i]);
+        if (it == ms.end()) {
+            continue;
+        } else {
+            ms.erase(it);
+            ++ans;
+        }
+    }
+    if ((int)ms.size() == 0) {
+        --ans;
+    } else {
+        ++ans;
+    }
+    printf("%d\n", ans);
+    return 0;
+}

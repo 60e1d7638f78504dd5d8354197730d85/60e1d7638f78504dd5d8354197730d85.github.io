@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main()
+{
+	int t, n, m, c, p, j, i;
+  	long long count;
+  	double cost;
+  	scanf("%d", &t);
+  	while(t--)
+    {
+      scanf("%d%d", &n, &m);
+      long long bcount[41]={0};
+      double bcost[41]={0};
+      for(i=1; i<=n; i++)
+      {
+        scanf("%d%d", &c, &p);
+        bcount[c]++;
+        bcost[c] += p;
+      }
+      for(i=1; i<=n; i++)
+      {
+        bcost[i] *= (1<<(bcount[i]-1));
+        bcount[i] = (1<<bcount[i])-1;
+      }
+      long long dpcount[41][41]={0};
+      double dpcost[41][41]={0};
+      {
+        dpcount[1][40] = bcount[40];
+        dpcost[1][40] = bcost[40];
+      }
+      for(i=39; i>0; i--)
+      {
+        dpcount[1][i] = dpcount[1][i+1]+bcount[i];
+        dpcost[1][i] = dpcost[1][i+1]+bcost[i];
+      }
+      for(i=2; i<41; i++)
+        for(j=41-i; j>0; j--)
+        {
+          dpcost[i][j] = bcost[j]*dpcount[i-1][j+1]+dpcost[i-1][j+1]*bcount[j]+dpcost[i][j+1];
+          dpcount[i][j] = bcount[j]*dpcount[i-1][j+1]+dpcount[i][j+1];
+        }
+      cost = count = 0;
+      if(m == 0)
+      {
+        count++;
+        m = 1;
+      }
+      for(i=m; i<41; i++)
+      {
+        cost += dpcost[i][1];
+        count += dpcount[i][1];
+      }
+      cost /= count;
+      printf("%.9f\n", cost);
+    }
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+class A
+{
+  public:
+  void decide(int);
+};
+void A::decide(int b)
+{
+  if(b<0)
+  {
+    cout<<"Not a Mersenne number";
+    return;
+  }
+  int d,i=1;
+  while(b > d)
+  {
+    d = pow(2,i);
+    i++;
+  }
+  if(b == (d-1))
+  {
+    cout<<"Mersenne number";
+  }
+  else
+    cout<<"Not a Mersenne number";
+}
+int main()
+{
+  int x;
+  cin>>x;
+  A obj;
+  obj.decide(x);
+  return 0;
+}

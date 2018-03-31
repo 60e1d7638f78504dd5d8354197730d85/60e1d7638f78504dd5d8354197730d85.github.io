@@ -1,0 +1,55 @@
+#include <stdio.h>
+char s[9];
+int row[8], col[8], i, j,r ,c;
+int crow(int r, int l, int val)
+{
+    int i, count=0;
+    for(i=r; i<l; i++)
+    {
+        if(row[i]==val)
+        {
+            count++;
+        }
+    }
+    return count;
+
+}
+int ccol(int c, int l, int val)
+{
+    int i, count=0;
+    for(i=c; i<l; i++)
+    {
+        if(col[i]==val)
+            count++;
+
+    }
+    return count;
+}
+int main()
+{
+
+    for(i=0; i<8; i++)
+    {
+        row[i] = 0;
+        col[i] = 0;
+    }
+    for (r = 0; r < 8; ++r)
+    {
+        scanf("%s", s);
+        for (c = 0; c < 9; ++c)
+        {
+            if (s[c] == 'W')
+            {
+                row[r] = 1;
+                col[c] = 1;
+            }
+        }
+    }
+    int answer = 16 - crow(0, 8, 1) - ccol(0, 9, 1);
+    if (answer == 16)
+    {
+        answer = 8;
+    }
+    printf("%d\n", answer);
+    return 0;
+}

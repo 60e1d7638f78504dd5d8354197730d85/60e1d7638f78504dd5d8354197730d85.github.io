@@ -1,0 +1,44 @@
+
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       Duplicate obj=new Duplicate();
+       obj.getInput();
+         obj.displayResult();
+		
+	}
+}
+class Duplicate{
+  Scanner in=new Scanner(System.in);
+  int flag=0;
+  int n;
+  int ar[]=new int[20];
+  public void getInput(){
+     n=in.nextInt();
+    for(int i=0;i<n;i++)
+    {
+      ar[i]=in.nextInt();
+    }
+  
+  }
+  public void displayResult(){
+    for(int i=0;i<n;i++)
+    {
+      for(int j=0;j<n;j++)
+      {
+        if(i!=j)
+        {
+          if(ar[i]==ar[j])
+            flag=ar[i];
+        }
+      }
+    }
+    if(flag==0)
+      System.out.println("No Duplicate elements found");
+    else
+      System.out.println(flag);
+  }
+
+}

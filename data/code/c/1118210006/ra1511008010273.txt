@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<limits.h>
+#include<ctype.h>
+inline void si(int* x)
+{
+	register char c = getchar_unlocked();
+	*x = 0;
+	int neg = 0;
+	for(; ((c<48 || c>57) && c != '-');c = getchar_unlocked());
+	if(c=='-') {
+        neg = 1;
+        c = getchar_unlocked();
+    }
+	for(; (c>47)&&(c<58);c = getchar_unlocked())
+		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+    if(neg)
+        *x = -*x;
+}
+int Find(int A[],int x)
+{
+    int root=x,tmp;
+    while(A[root]>=0)
+        root=A[root];
+    while(x!=root)
+    {
+        tmp=x;
+        x=A[x];
+        A[tmp]=root;
+    }
+    return root;
+}
+void Union(int A[],int a,int b)
+{
+    int x=Find(A,a),y=Find(A,b),tmp;
+    if(x!=y)
+    {
+        if(x>y)
+        {
+            tmp=x;
+            x=y;
+            y=tmp;
+        }
+        A[x]+=A[y];
+        A[y]=x;
+    }
+}
+int main()
+{
+    int t,n,m,a,b,i,rt;
+    long long int cap;
+    si(&t);
+    while(t--)
+    {
+        si(&n);
+        si(&m);
+        int A[n];
+        for(i=0;i<n;i++)
+            A[i]=-1;
+        while(m--)
+        {
+            si(&a);
+            si(&b);
+            Union(A,a-1,b-1);
+        }
+        for(i=rt=0,cap=1;i<n;i++)
+        {
+            if(A[i]<0)
+            {
+                rt++;
+                cap*=(-A[i]);
+                cap%=1000000007;
+            }
+        }
+        printf("%d %lld\n",rt,cap);
+    }
+    return 0;
+} 

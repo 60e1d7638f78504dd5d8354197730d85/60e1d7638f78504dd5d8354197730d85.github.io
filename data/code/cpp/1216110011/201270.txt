@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+void rec_insert(int,int  []);
+int main()
+{	
+	int a[10],i,n;
+  	cin>>n;
+  
+  	for(i=0;i<n;i++)
+      cin>>a[i];
+  
+  	rec_insert(n-1,a);
+  	for(i=0;i<n;i++)
+      cout<<a[i]<<" ";
+	return 0;
+}
+void rec_insert(int i,int a[])
+{
+	int j,t;
+  	if(i>0)
+    {
+    	rec_insert(i-1,a);
+    	t=a[i];
+    	j=i-1;
+      	while(a[j]>t && j>=0)
+        {
+        	a[j+1]=a[j];
+          	j--;
+        }
+      	a[j+1]=t;
+    }
+}

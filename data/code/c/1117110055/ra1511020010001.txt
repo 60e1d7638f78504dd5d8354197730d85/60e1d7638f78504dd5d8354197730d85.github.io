@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int cmp(const void *a,const void *b)
+{
+    return(*(int*)a-*(int*)b);
+}
+int main()
+{
+    int n,t,i;
+    scanf("%d%d",&n,&t);
+    int r[n];
+    int c[n];
+    for(i=0;i<n;i++)
+    {
+        r[i]=0;
+        c[i]=0;
+    }
+    while(t--)
+    {
+        char s[100];
+        int x,y;
+        scanf("%s%d%d",s,&x,&y);
+        if(!strcmp(s,"RowAdd"))
+        r[x-1]+=y;
+        else
+        c[x-1]+=y;
+    }
+    qsort(r,n,sizeof(int),cmp);
+    qsort(c,n,sizeof(int),cmp);
+    printf("%d",r[n-1]+c[n-1]);
+    return 0;
+}

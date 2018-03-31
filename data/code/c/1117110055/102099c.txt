@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+int n,q;
+	scanf("%d%d",&n,&q);
+	int rowElement[n],colElement[n];
+	int i;
+	for(i=0;i<n;i++)
+	{
+		rowElement[i]=0;
+		colElement[i]=0;
+	}
+	while(q--)
+	{
+		char s[10];
+		int k,x;
+		scanf("%s%d%d",s,&k,&x);
+		if(s[0]=='R')
+		{
+			k=k-1;
+			rowElement[k]+=x;
+		}
+		else
+		{
+			k=k-1;
+			colElement[k]+=x;
+		}
+	}
+	int rowMax=0;
+	for(i=0;i<n;i++)
+	{
+		if(rowElement[i]>rowMax)
+			rowMax=rowElement[i];
+	}
+	int colMax=0;
+	for(i=0;i<n;i++)
+	{
+		if(colElement[i]>colMax)
+			colMax=colElement[i];
+	}
+	printf("%d",colMax+rowMax);
+	return 0;
+}

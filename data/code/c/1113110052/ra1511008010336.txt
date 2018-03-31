@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<malloc.h>
+int main()
+{
+	int z=0,o=0,i,n,l,r;
+  	int *a;
+  	scanf("%d",&n);
+  	a=(int *)malloc(n*sizeof(int));
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+  	for(i=0;i<n;i++)
+    {
+      l=a[i];
+      z=0;
+      o=0;
+      while(l)
+      {
+        r=l%10;
+        l=l/10;
+		if(r==0)
+        {
+          z++;
+        }
+        else
+        {
+          o++;
+        }
+      }
+      if(z==o==1)
+      {
+        printf("\nYes");
+      }
+     else if(z-o==1||z-o==-1)
+     {
+       printf("\nYes");
+     }
+      else
+      {
+        printf("\nNo");
+      }
+    }
+  	return 0;
+}

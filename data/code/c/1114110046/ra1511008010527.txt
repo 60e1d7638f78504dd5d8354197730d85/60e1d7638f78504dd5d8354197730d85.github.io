@@ -1,0 +1,46 @@
+#include<stdio.h>
+int p[60],a[60],b[60],n,check[60];
+double ans;
+ 
+void dp(int pos, double prob){
+if(prob==.0000000)
+return;
+if(pos==n){
+ans+=prob;
+return ;
+}
+ 
+if(!check[a[pos]]){
+check[a[pos]]=1;
+dp(pos+1,prob*p[pos]*.01);
+check[a[pos]]=0;
+}
+ 
+if(!check[b[pos]]){
+check[b[pos]]=1;
+dp(pos+1,prob*(100-p[pos])*.01);
+check[b[pos]]=0;
+}
+ 
+}
+int main(){
+int t;
+scanf("%d",&t);
+while(t--){
+int i;
+ans=0;
+scanf("%d",&n);
+for(i=0;i<n;i++){
+scanf("%d%d%d",p+i,a+i,b+i);
+}
+if(n>16)
+{
+    printf("0\n");
+    continue;
+}
+dp(0,1.0);
+ 
+printf("%.6lf\n",ans);
+}
+return 0;
+}

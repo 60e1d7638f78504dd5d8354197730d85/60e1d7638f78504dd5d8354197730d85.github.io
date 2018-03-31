@@ -1,0 +1,46 @@
+#include<stdio.h>
+//#include<conio.h>
+#include<stdlib.h>
+#include<limits.h>
+int fastread()
+{
+int input;
+char c=0;
+while (c<33) c=getchar_unlocked();
+input=0;
+while (c>33)
+{
+input=input*10+c-'0';
+c=getchar_unlocked();
+}
+return input;
+}
+int int_cmp(const void *a, const void *b)
+{
+    const int *ia = (const int *)a;
+    const int *ib = (const int *)b;
+    return *ia  - *ib;
+}
+int main()
+{int t=fastread();
+int n,j,min;
+int arr[5002],diff;
+while(t--)
+{
+n=fastread();
+for(j=0;j<n;j++)
+arr[j]=fastread();
+ 
+qsort(arr, n, sizeof(int), int_cmp );
+min=INT_MAX;
+for(j=0;j<n-1;j++)
+{
+diff=arr[j+1]-arr[j];
+if(diff<min)
+min=diff;
+}
+printf("%d\n",min);
+}
+//getch();
+return 0;
+}

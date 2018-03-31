@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int sumofeven(int a[],int index,int last,int sum){
+  if(index<=last){
+  	if(a[index]%2==0){
+    	sumofeven(a,index+1,last,sum+a[index]);
+  	}
+    else
+      sumofeven(a,index+1,last,sum);
+  }
+  else
+    return sum;
+}
+  
+int main()
+{
+	int n,i,a[100],sum;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+  	sum=sumofeven(a,0,n-1,0);
+  	printf("%d",sum);
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+  char s[20];
+  int i,j;
+  fgets(s,20,stdin);
+  int n = strlen(s);
+
+  char x,y,*p;
+  p=s;
+  cin>>x;
+  y = tolower(x);
+  for(i=0;i<n;i++){
+    if(*(p+i)==x || *(p+i)==y ){
+      for(j=i;j<n;j++)
+        *(p+j) = *(p+j+1);
+      n--;
+    }
+  }
+  
+  for(i=0;i<=n;i++)
+  	cout<<*(p+i);
+
+	return 0;
+}

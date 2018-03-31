@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+  int test,i,j;
+  scanf("%d",&test);
+  for(i=1;i<=test;i++)
+  {
+    double numerator=0,num_sum=0;
+    double area;
+    int num,n_one,n_two;
+    scanf("%d",&num);
+    int x_cor[num], y_cor[num];
+    for(n_two=0;n_two<num;n_two++)
+    {
+      int x;
+      scanf("%d",&x);
+      x_cor[n_two]=x;
+    }
+    for(n_one=0;n_one<num;n_one++)
+    {
+      int y;
+      scanf("%d",&y);
+      y_cor[n_one]=y;
+    }
+    for(j=0;j<num;j++)
+    {
+      if(j!=num-1)
+      {
+        numerator=(x_cor[j]*y_cor[j+1])-(y_cor[j]*x_cor[j+1]);
+        num_sum+=numerator;
+      }
+      else if(j==num-1)
+      {
+        numerator=(x_cor[j]*y_cor[0])-(y_cor[j]*x_cor[0]);
+        num_sum+=numerator;
+      }
+    }
+    area=num_sum/2;
+    if(area<0)
+    {
+      area=(area*-1.0);
+    }
+    printf("%0.1f\n",area);
+  
+  }
+
+	return 0;
+}

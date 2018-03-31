@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args)
+     { 
+		
+       int[] a=new int[100];
+       Scanner sc=new Scanner(System.in);
+	int times=sc.nextInt();
+	for(int u=0;u<times;u++) {
+		int n, k;
+		n=sc.nextInt();
+                k=sc.nextInt();
+		int cntEven = 0;
+		for (int i = 0; i < n; i++) {
+			a[i]=sc.nextInt();
+			if (a[i] % 2 == 0) {
+				cntEven ++;
+			}			
+		}
+		boolean ok = false;
+		for (int i = 0; i < n; i++) {
+			for (int j = i; j < n; j++) {
+				int cnt = 0;
+				for (int k1 = i; k1 <= j; k1++) {
+					if (a[k1] % 2 == 0) {
+						cnt ++;
+					}
+				}
+				if (cnt == k) {
+					ok = true;
+				}
+			}
+		}
+		if (ok) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+		}
+    }
+	}
+}

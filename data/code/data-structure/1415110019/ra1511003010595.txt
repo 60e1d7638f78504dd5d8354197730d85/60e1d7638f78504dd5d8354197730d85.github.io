@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+struct node{
+  int num;
+  node *next;
+};
+
+int main()
+{node *temp,*head=NULL;
+ int n,t;
+ cin>>n;
+ for(int i=0;i<n;i++)
+ {cin>>t;
+  temp=new node;
+  temp->num=t;
+  temp->next=head;
+  head=temp;
+ }
+ int count=0,key;
+ cin>>key;
+ temp=head;
+ while(temp!=NULL)
+ {if(temp->num==key)
+   count++;
+  temp=temp->next;
+ }
+ cout<<"Linked list\n";
+ temp=head;
+ while(temp!=NULL)
+ {cout<<"-->"<<temp->num;
+  temp=temp->next;
+ }
+ cout<<"\nCount of "<<key<<" : "<<count;
+ 
+
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define MAX 15
+void readArray(int a[],int n);
+char compareArray(int a[],int b[],int n);
+int main()
+{
+	int a[MAX],b[MAX],n;
+    scanf("%d",&n);
+  	readArray(a,n);
+  	readArray(b,n);
+    if(compareArray(a,b,n)==0)
+      printf("yes");
+  	else
+      printf("no");
+	return 0;
+}
+void readArray(int a[],int n)
+{
+  	int i;
+  	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+}  
+char compareArray(int a[],int b[],int n)
+{
+  	int i;
+	for(i=0;i<n;i++)
+    {
+      if(a[i]!=b[i])
+        return 1;
+    }  
+    return 0;
+}
+ 

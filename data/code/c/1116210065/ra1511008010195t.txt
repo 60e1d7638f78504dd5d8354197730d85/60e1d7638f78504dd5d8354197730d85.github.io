@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int getptr(int ptr,int val,int slen){
+    if(!ptr)
+    ptr=slen-val;
+ 
+    else if((ptr-val)<0)
+    ptr=slen-val+ptr;
+ 
+    else
+    ptr=ptr-val;
+return ptr;
+}
+ 
+int check(char *s,int ptr,int slen){
+    int i,end,omid,mid;
+ 
+    if(!ptr)
+    end=slen-1;
+    else
+    end=ptr-1;
+ 
+    if(slen%2 && slen>=5){
+        omid=slen/2;
+        if((ptr+slen/2)>=slen)
+        mid=end-slen/2;
+        else
+        mid=ptr+slen/2;
+ 
+        for(i=0;i<=slen/2 && s[i]==s[ptr++] && s[slen-1-i]==s[end--];i++){
+            if(omid<slen && s[omid++]!=s[mid++])
+            break;
+ 
+            if(ptr>=slen)
+            ptr=0;
+ 
+            if(mid>=slen)
+            mid=0;
+ 
+            if(end<0)
+            end=slen-1;
+        }
+    }
+    else{
+        for(i=0;i<=slen/2 && s[i]==s[ptr++] && s[slen-1-i]==s[end--];i++){
+            if(ptr>=slen)
+            ptr=0;
+            if(end<0)
+            end=slen-1;
+        }
+    }
+    if(i>slen/2)
+    return 1;
+    else
+    return 0;
+}
+ 
+int main(){
+    int t,m,p;
+    char s[500005];
+    int count,ptr,mf,pf,val,slen;
+ 
+    scanf("%d",&t);
+ 
+    while(t--){
+        count=ptr=mf=pf=0;
+ 
+        scanf("%s",s);
+        scanf("%d %d",&m,&p);
+ 
+        slen=strlen(s);
+        count++;
+        val=m;
+        mf=1;
+ 
+        ptr=getptr(ptr,val,slen);
+ 
+        while(!check(s,ptr,slen)){
+            count++;
+            if(mf){
+                val=p;
+                mf=0;
+                pf=1;
+            }
+            else{
+                val=m;
+                mf=1;
+                pf=0;
+            }
+            ptr=getptr(ptr,val,slen);
+        }
+        printf("%d\n",count);
+    }
+return 0;
+}
+ 

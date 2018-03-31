@@ -1,0 +1,84 @@
+#include<stdio.h>
+ 
+int main()
+{
+int it,i,j,T,N,a,b,c,d;
+int sqCnt,y3,dx;
+int x[501],y[501],p[101][101];
+scanf("%d",&T);
+while(T--)
+{
+	scanf("%d",&N);
+	sqCnt=0;
+	for(i=0; i<101; i++)
+	{
+		for(j=0; j<101; j++)
+		{
+			p[i][j]=0;
+		}
+	}
+ 
+	for(j=0; j<N; j++)
+	{
+		scanf("%d %d",&a,&b);
+		x[j]=a+50;	
+		y[j]=b+50;
+		p[a+50][b+50]=1;
+	}
+	for(i=0; i<N-1; i++)
+	{
+		a=x[i]; b=y[i];
+		for(j=i+1; j<N; j++)
+		{
+			c=x[j]; d=y[j];
+			if(b==d)
+			{
+				dx=a-c;
+				if(c>a) dx=c-a;
+					y3=b+dx;
+				if(y3<101)
+				{
+					if((p[a][y3]==1)&&(p[c][y3]==1))
+					{
+						sqCnt++;
+					}
+				}
+			}
+			else if((a<c)&&(b>d))
+			{
+				if(((a+b-d)<101)&&((b+c-a)<101))
+				{
+						if(p[a+b-d][b+c-a]==1)
+						{
+							if(((c+b-d)<101)&&((d+c-a)<101))
+							{
+								if(p[c+b-d][d+c-a]==1)
+								{
+									sqCnt++;
+								}
+							}
+						}
+				}
+			}
+			else if((a>c)&&(b<d))
+			{
+				if(((d+a-c)<101)&&((c+d-b)<101))
+				{
+					if(p[c+d-b][d+a-c]==1)
+					{
+						if(((a+d-b)<101)&&((b+a-c)<101))
+						{
+							if(p[a+d-b][b+a-c]==1)
+								{
+									sqCnt++;
+								}
+						}
+					}
+				}
+			}
+		}
+	}
+	printf("%d\n",sqCnt);
+}
+	return 0;
+}  

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int t,year,a,b,rem,rem1,yr,odd=0,quo;
+  	char str[7][10]={"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      odd=0;
+      scanf("%d",&year);
+      a=year-1;
+      rem=a%100;
+      a=a-rem;
+      rem1=a%400;
+      quo=a-rem1;
+      if(rem1==100)
+        yr=5;
+      else if(rem1==200)
+        yr=3;
+      else if(rem1==300)
+        yr=1;
+      else
+        yr=0;
+      b=rem/4;
+      rem=rem-b;
+      b*=2;
+      odd=odd+rem+yr+b;
+      if(odd>7)
+        odd%=7;
+      odd+=1;
+      if((odd+1)>7)
+        odd=0;
+      printf("%s\n",str[odd]);
+    }
+	return 0;
+}

@@ -1,0 +1,171 @@
+#include<stdio.h>
+ 
+#define gc getchar_unlocked
+ 
+int read()
+{
+	int temp;
+	char ch;
+	ch=gc();
+	while(ch<'0')
+		ch=gc();
+	temp=ch-'0';
+	ch=gc();
+	while(ch>='0')
+	{
+		temp=(temp<<3)+(temp<<1)+(ch-'0');
+		ch=gc();
+	}
+	return temp;
+}
+ 
+struct node{
+	int value;
+	int fallback;
+	};
+ 
+struct node heap[1000];
+int num_ele;
+ 
+void insert(int value, int fallback)
+{
+	int ind=num_ele, prev;
+	struct node temp;
+ 
+	heap[num_ele].value=value;
+	heap[num_ele].fallback=fallback;
+	num_ele++;
+	
+	while(ind>0)
+	{
+		prev=ind/2;
+		if(ind%2==0)
+			prev--;
+		if(heap[prev].value>=heap[ind].value)
+			break;
+		else
+		{
+			temp=heap[prev];
+			heap[prev]=heap[ind];
+			heap[ind]=temp;
+			ind=prev;
+		}
+	}
+}
+ 
+struct node extract()
+{
+	struct node toret=heap[0];
+	struct node temp;
+	int ind=0;
+ 
+	num_ele--;
+	heap[0].value=heap[num_ele].value;
+	heap[0].fallback=heap[num_ele].fallback;
+ 
+	while(1)
+	{
+		if(2*ind+1>=num_ele)
+			break;
+		if(2*ind+2>=num_ele)
+		{
+			if(heap[2*ind+2].value>heap[ind].value)
+			{
+				temp=heap[ind];
+				heap[ind]=heap[2*ind+2];
+				heap[2*ind+2]=temp;
+			}
+			break;
+		}
+ 
+		if(heap[2*ind+1].value>heap[2*ind+2].value)
+		{
+			if(heap[2*ind+1].value>heap[ind].value)
+			{
+				temp=heap[ind];
+				heap[ind]=heap[2*ind+1];
+				heap[2*ind+1]=temp;
+				ind=2*ind+1;
+			}
+			else
+				break;
+		}
+		else
+		{
+			if(heap[2*ind+2].value>heap[ind].value)
+			{
+				temp=heap[ind];
+				heap[ind]=heap[2*ind+2];
+				heap[2*ind+2]=temp;
+				ind=2*ind+2;
+			}
+			else
+				break;
+		}
+	}
+	return toret;
+}
+ 
+int main()
+{
+	int t,k,n,m;
+	int a[1000];
+	int profit[1000][1001];
+	int i,j;
+	int max;
+	int points;
+	struct node temp;
+ 
+ 
+	t=read();
+	while(t--)
+	{
+		n=read();m=read();k=read();
+		for(i=0;i<n;i++)
+			a[i]=read();
+		for(i=0;i<n;i++)
+			for(j=1;j<=m;j++)
+				profit[i][j]=read();
+ 
+		num_ele=0;
+		for(i=0;i<n;i++)
+		{
+			max=0;
+			for(j=1;j<=m;j++)
+			{
+				if(j==a[i])
+					read();
+				else
+					profit[i][j]-=read();
+				if(profit[i][j]>max)
+					max=profit[i][j];
+			}
+			insert(max-profit[i][a[i]],profit[i][a[i]]);
+		}
+ 
+		points=0;
+		if(k>=n)
+		{
+			for(i=0;i<num_ele;i++)
+				points+=(heap[i].value+heap[i].fallback);
+		}
+		else
+		{
+			for(i=0;i<k&&num_ele>0;i++)
+			{
+				temp=extract();
+				points+=(temp.fallback+temp.value);
+				if(temp.value==0)
+					i--;
+			}
+			for(;num_ele>0;)
+			{
+				temp=extract();
+				points+=temp.fallback;
+			}
+		}
+		printf("%d\n",points);
+	}
+	return 0;
+}
+ 

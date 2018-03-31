@@ -1,0 +1,37 @@
+#include <stdio.h>
+struct emp
+{
+    char name[10] ;
+    int empno ;
+ } e[10],temp ;
+int main()
+{
+    int i,j, n ;
+    scanf("%d", &n) ;
+    for(i = 0 ; i < n ; i++)
+    {
+     scanf("%s", e[i].name) ;
+     scanf("%d", &e[i].empno) ;
+    }
+  
+  for (i = 1; i < n; i++)
+  {
+      for (j = 0; j < n - i; j++) 
+      {
+         if (e[j].empno>e[j + 1].empno) 
+         {
+            temp = e[j];
+            e[j] = e[j + 1];
+            e[j + 1] = temp;
+         }
+      }
+  }
+  printf("After Sorting\n");
+  printf("Name ID\n");
+     for(i = 0 ; i < n ; i++)
+    {
+     printf("%s ", e[i].name) ;
+     printf("%d\n", e[i].empno) ;
+      }
+	return 0;
+}

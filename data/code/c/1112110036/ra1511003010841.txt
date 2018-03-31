@@ -1,0 +1,42 @@
+#include<stdio.h>
+ int power(int,int);
+ int main(int argc, char *a[])
+ {
+     int n,count,rem,sum=0,temp,store;
+     scanf("%d",&n);
+     temp=n;
+     store=n;
+ // To find the number of digits in an entered number
+     while(n!=0)
+     {
+         n=n/10;
+         count ++;
+     }
+     while(store!=0)
+     {
+         rem=store%10;
+         sum=sum+power(rem,count);
+         store=store/10;
+     }
+     if(sum==temp)
+     {
+         printf("Narcissistic Number");
+     }
+     else
+     {
+         printf("NOT Narcissistic Number");
+     }
+     return 0;
+ }
+ int power(int r,int c)
+ {
+     int i=1;
+     int pow = 1;
+     while(i<=c)
+     {
+         pow = pow*r;
+         i++;
+     }
+     return pow;
+    
+ }

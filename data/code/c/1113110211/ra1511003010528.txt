@@ -1,0 +1,83 @@
+#include <stdlib.h> 
+#include<stdio.h>
+#include<string.h>
+#include<math.h> 
+int main() 
+{int t;
+ scanf("%d",&t);
+ while(t--)
+{char ch[5010];
+ scanf("%s",ch);
+ int i,j,x=0,y=0;
+ for(i=0;ch[i]!='\0';i++)
+{if(ch[i]=='A')
+     x++;
+ else
+     y++;
+ }
+ if(x==2)
+ {printf("A\n");continue;
+ }
+ if(y==2)
+{printf("B\n");continue;
+}
+ if(x==1 || y==1)
+ {printf("-1\n");continue;
+ }
+ for(j=0;j<i;j++)
+ {int ans=0;
+ while(ch[j]!='A' && j<i)
+ {ans++;
+     j++;
+ }
+  if(ans==2)
+  {for(x=0;x<j-2;x++)
+   {if(ch[x]=='A')
+      printf("%c",ch[x]);
+   }
+   printf("B");
+   for(x=j;x<i;x++)
+   {if(ch[x]=='A')
+      printf("%c",ch[x]);
+       
+   }
+     printf("\n");
+   j=-1;
+  }
+  if(j==-1)
+      break;
+ }
+ if(j==-1)
+     {continue;
+     }
+  for(j=0;j<i;j++)
+ {int ans=0;
+ while(ch[j]!='B' && j<i)
+ {ans++;
+     j++;
+ }
+  if(ans==2)
+  {for(x=0;x<j-2;x++)
+   {if(ch[x]=='B')
+      printf("%c",ch[x]);
+   }
+   printf("A");
+   for(x=j;x<i;x++)
+   {if(ch[x]=='B')
+      printf("%c",ch[x]);
+       
+   }
+   printf("\n");
+   j=-1;
+  }
+  if(j==-1)
+      break;
+ }
+ if(j==-1)
+     {continue;
+     }
+ printf("-1\n");
+} 
+    return 0;
+}  
+ 

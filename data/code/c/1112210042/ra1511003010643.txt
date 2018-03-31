@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define MOD 100000007
+typedef long long int LL;
+LL pw(LL a, LL b, LL M){
+    LL r;
+    if(b==0) return 1;
+    r = pw(a,b/2,M);
+    r = (r*r)%M;
+    if(b%2==1)
+        r = (r*a)%M;
+    return r;
+}
+ 
+int main() {
+    int T;
+    LL N,a,b,c,d,e,r1;
+    scanf("%d",&T);
+    while(T--){
+        scanf("%lld", &N);
+        a = pw(3LL,N,2*MOD) + 1;
+        a = a / 2;
+        b = pw(2LL,N,MOD);
+        r1 = a - b;
+        while(r1<0)
+            r1 = r1 + MOD;
+        c = 2 * pw(4LL,N-1,MOD);
+        d = pw(3LL,N,MOD);
+        c = c - d;
+        while(c<0)
+            c = c + MOD;
+        e = pw(2LL,N-1,MOD);
+        c = (c + e)%MOD;
+        c = (c + b)%MOD;
+        c = c - a;
+        while(c<0)
+            c = c + MOD;
+        printf("%lld %lld\n",r1,c);
+    }
+    return 0;
+}
+ 
+ 
+ 
+

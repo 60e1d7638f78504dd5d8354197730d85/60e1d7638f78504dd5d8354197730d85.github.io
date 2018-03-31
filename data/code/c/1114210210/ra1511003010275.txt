@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+	long long int t,n,m,k,i,tmp;
+	double sum,total,r,c,ans;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld %lld %lld",&n,&m,&k);
+		sum=0;
+		for(i=0;i<k;i++)
+		{
+			scanf("%lld",&tmp);
+			if(tmp%m==0)
+			{
+				r=tmp/m;
+				c=m;
+			}
+			else
+			{
+				r=(tmp/m)+1;
+				c=(tmp%m);
+			}
+			sum=sum+(r*c*(n-r+1)*(m-c+1));
+		}
+		total=(n+1)*n;
+		total=total*(m+1)*m;
+		total=total/4;
+		ans=sum/total;
+		printf("%lf\n",ans);
+	}
+	return(0);
+} 

@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  char line[150];
+  int i,vowels,consonants,digits,whitespaces,specialchar;
+  vowels=consonants=digits=whitespaces=specialchar=0;
+  scanf("%[^\n]s",line);
+  for(i=0;line[i]!='\0';++i)
+  {
+    if(line[i]>='a' && line[i]<='z')
+    {
+      ++consonants;
+    }
+    if (line[i]=='a'||line[i]=='e'||line[i]=='i'||line[i]=='o'||line[i]=='u')
+    {
+      ++vowels;
+    }
+    if (line[i]>='0' && line[i]<='9')
+    {
+      ++digits;
+    }
+    if (line[i]==' ')
+    {
+      ++whitespaces;
+    }
+  }
+  if (whitespaces== 1)
+  {
+    whitespaces= 0;
+    i--;
+  }
+    printf("Vowels=%d\n",vowels);
+	printf("Consonants=%d\n",consonants-vowels);
+    printf("Digits=%d\n",digits);
+    printf("Whitespaces=%d\n",whitespaces);
+    printf("Specialcharacters=%d",i-consonants-digits-whitespaces);
+    return 0;
+}															

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t;
+  cin>>t;
+  while(t--) {
+    int n;
+    int flag=0;
+    cin>>n;
+    int a[n],b[n];
+    int count[1000]={0};
+    for(int i=0;i<n;i++) {
+      cin>>a[i];
+      count[a[i]]++;
+    }
+    for(int i=0;i<n;i++) {
+      cin>>b[i];
+      count[b[i]]--;
+    }
+    for(int i=0;i<1000;i++) {
+    	if(count[i]!=0) {
+        	flag=1;
+          break;
+        }
+    }
+    (flag)?cout<<"0\n":cout<<"1\n";
+  }
+	return 0;
+}

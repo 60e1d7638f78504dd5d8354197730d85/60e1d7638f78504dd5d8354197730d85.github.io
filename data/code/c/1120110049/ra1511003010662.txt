@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h> 		
+int main()
+{int i,j,n;scanf("%d",&n);
+ char a[n][100], array[100];;
+ for(i=0;i<n;i++){
+ 	scanf("%s",a[i]);
+ }
+ 	for(i=0;i<n;i++){
+ 		for(j=i+1;j<n;j++){
+      		if(a[i][0]>a[j][0]){
+            	strcpy(array, a[i]); 
+              strcpy(a[i], a[j]); 
+				strcpy(a[j], array);
+
+            }
+        }	
+ 	}
+	 for(i=0;i<n;i++){
+ 	printf("%s\n",a[i]);
+     }
+	return 0;
+}

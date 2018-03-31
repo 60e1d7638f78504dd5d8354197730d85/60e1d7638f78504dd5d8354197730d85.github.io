@@ -1,0 +1,463 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.io.BufferedWriter;
+import java.util.function.Function;
+import java.util.function.Consumer;
+import java.io.Writer;
+import java.io.OutputStreamWriter;
+import java.io.InputStream;
+ 
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author Jialin Ouyang (Jialin.Ouyang@gmail.com)
+ */
+public class TestClass {
+  public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    QuickScanner in = new QuickScanner(inputStream);
+    QuickWriter out = new QuickWriter(outputStream);
+    REGIONS solver = new REGIONS();
+    solver.solve(1, in, out);
+    out.close();
+  }
+ 
+  static class REGIONS {
+    private static final int BASE = 1000003;
+ 
+    public void solve(int testNumber, QuickScanner in, QuickWriter out) {
+      for (int remainTaskCount = in.nextInt(); remainTaskCount > 0; --remainTaskCount) {
+        int n = in.nextInt();
+        long A = in.nextInt();
+        long B = in.nextInt();
+        long C = in.nextInt();
+        long D = in.nextInt();
+        long E = in.nextInt();
+        BidirectionalGraph<Integer> tree = new BidirectionalGraph<>(n, n - 1, Integer[]::new);
+        for (int i = 1; i < n; i++) {
+          int end = i;
+          int otherEnd = (int) ((A + B * (i - 1)) % i);
+          int length = (int) ((C * i + D) % E);
+          tree.add(end, otherEnd, length);
+        }
+        TreeNode[] treeNodes = new TreeNode[n];
+        int[] bfsOrder = BfsOrder.calc(tree, 0);
+        for (int i = n - 1; i >= 0; --i) {
+          int u = bfsOrder[i];
+          TreeNode uNode = new TreeNode();
+          treeNodes[u] = uNode;
+          for (int edgeIndex : tree.outgoingEdgeIndex(u)) {
+            int v = tree.toIndex[edgeIndex];
+            TreeNode vNode = treeNodes[v];
+            if (vNode != null) {
+              uNode.top2ChildDiameter.add(vNode.diameter(), v);
+              uNode.top3Length.add(vNode.top3Length.top() + tree.info[edgeIndex], v);
+            }
+          }
+        }
+        boolean[] visited = new boolean[n];
+        int[] parentEdgeIndex = new int[n];
+        int[] maxLength = new int[n];
+        int[] diameter = new int[n];
+        int[] a = new int[n - 1];
+        int[] b = new int[n - 1];
+        Top2 top2 = new Top2();
+        Consumer<Integer> consumer = (Integer length) -> top2.add(length);
+        for (int i = 0; i < n; ++i) {
+          int u = bfsOrder[i];
+          visited[u] = true;
+          TreeNode uNode = treeNodes[u];
+          if (i > 0) {
+            int index = parentEdgeIndex[u];
+            int d1 = diameter[u];
+            int d2 = uNode.diameter();
+            a[index] = Math.min(d1, d2);
+            b[index] = Math.max(d1, d2);
+          }
+          for (int edgeIndex : tree.outgoingEdgeIndex(u)) {
+            int v = tree.toIndex[edgeIndex];
+            if (!visited[v]) {
+              top2.init();
+              top2.add(maxLength[u]);
+              uNode.top3Length.top2(v, consumer);
+              parentEdgeIndex[v] = edgeIndex >> 1;
+              maxLength[v] = Math.max(maxLength[u], uNode.top3Length.top(v)) + tree.info[edgeIndex];
+              diameter[v] = Math.max(Math.max(diameter[u], top2.top2Sum()), uNode.top2ChildDiameter.top(v));
+            }
+          }
+        }
+        int res = 0;
+        for (int i = n - 2; i >= 0; --i) {
+          res = ModularUtils.add(ModularUtils.mul(ModularUtils.add(ModularUtils.mul(res, BASE), b[i]), BASE), a[i]);
+        }
+        out.println(res);
+      }
+    }
+ 
+    private class TreeNode {
+      public Top2 top2ChildDiameter;
+      public Top3 top3Length;
+ 
+      public TreeNode() {
+        this.top2ChildDiameter = new Top2();
+        this.top3Length = new Top3();
+      }
+ 
+      public int diameter() {
+        return Math.max(top2ChildDiameter.top(), top3Length.top2Sum());
+      }
+ 
+    }
+ 
+    public class Top2 {
+      private static final int DEFAULT_ID = Integer.MIN_VALUE;
+      private static final int FAKE_ID = DEFAULT_ID + 1;
+      private int value1;
+      private int id1;
+      private int value2;
+ 
+      public Top2() {
+        init();
+      }
+ 
+      public void init() {
+        this.value1 = 0;
+        this.id1 = DEFAULT_ID;
+        this.value2 = 0;
+      }
+ 
+      public void add(int value) {
+        add(value, DEFAULT_ID);
+      }
+ 
+      public void add(int value, int id) {
+        if (value > value1) {
+          value2 = value1;
+          value1 = value;
+          id1 = id;
+        } else {
+          value2 = Math.max(value2, value);
+        }
+      }
+ 
+      public int top() {
+        return top(FAKE_ID);
+      }
+ 
+      public int top(int excludeId) {
+        return id1 == excludeId ? value2 : value1;
+      }
+ 
+      public int top2Sum() {
+        return value1 + value2;
+      }
+ 
+    }
+ 
+    public class Top3 {
+      private static final int DEFAULT_ID = Integer.MIN_VALUE;
+      private static final int FAKE_ID = DEFAULT_ID + 1;
+      private int value1;
+      private int id1;
+      private int value2;
+      private int id2;
+      private int value3;
+ 
+      public Top3() {
+        this.value1 = 0;
+        this.id1 = DEFAULT_ID;
+        this.value2 = 0;
+        this.id2 = DEFAULT_ID;
+        this.value3 = 0;
+      }
+ 
+      public void add(int value, int id) {
+        if (value > value1) {
+          value3 = value2;
+          value2 = value1;
+          id2 = id1;
+          value1 = value;
+          id1 = id;
+        } else if (value > value2) {
+          value3 = value2;
+          value2 = value;
+          id2 = id;
+        } else {
+          value3 = Math.max(value3, value);
+        }
+      }
+ 
+      public int top() {
+        return top(FAKE_ID);
+      }
+ 
+      public int top(int excludeId) {
+        return id1 == excludeId ? value2 : value1;
+      }
+ 
+      public void top2(int excludeId, Consumer<Integer> consumer) {
+        if (id1 == excludeId) {
+          consumer.accept(value2);
+          consumer.accept(value3);
+        } else if (id2 == excludeId) {
+          consumer.accept(value1);
+          consumer.accept(value3);
+        } else {
+          consumer.accept(value1);
+          consumer.accept(value2);
+        }
+      }
+ 
+      public int top2Sum() {
+        return top2Sum(FAKE_ID);
+      }
+ 
+      public int top2Sum(int excludeId) {
+        if (id1 == excludeId) {
+          return value2 + value3;
+        } else if (id2 == excludeId) {
+          return value1 + value3;
+        } else {
+          return value1 + value2;
+        }
+      }
+ 
+    }
+ 
+  }
+ 
+  static class ModularUtils {
+    private static final int MOD = 1000000007;
+ 
+    public static int add(int a, int b) {
+      return add(a, b, MOD);
+    }
+ 
+    public static int add(int a, int b, int mod) {
+      a += b;
+      return a >= mod ? a - mod : a;
+    }
+ 
+    public static int mul(int a, int b) {
+      return mul(a, b, MOD);
+    }
+ 
+    public static int mul(int a, int b, int mod) {
+      return a > 0
+          ? (
+          b < mod / a
+              ? a * b
+              : (int) ((long) a * b % mod))
+          : 0;
+    }
+ 
+  }
+ 
+  static class QuickWriter {
+    private final PrintWriter writer;
+ 
+    public QuickWriter(OutputStream outputStream) {
+      this.writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
+    }
+ 
+    public QuickWriter(Writer writer) {
+      this.writer = new PrintWriter(writer);
+    }
+ 
+    public void print(Object... objects) {
+      for (int i = 0; i < objects.length; ++i) {
+        if (i > 0) {
+          writer.print(' ');
+        }
+        writer.print(objects[i]);
+      }
+    }
+ 
+    public void println(Object... objects) {
+      print(objects);
+      writer.print('\n');
+    }
+ 
+    public void close() {
+      writer.close();
+    }
+ 
+  }
+ 
+  static class BidirectionalGraph<INFO> extends DirectedGraph<INFO> {
+    public BidirectionalGraph(int vertexCount, int edgeCapacity, Function<Integer, INFO[]> infoArrayFactory) {
+      super(vertexCount, edgeCapacity << 1, infoArrayFactory);
+    }
+ 
+ 
+    public void add(int end, int otherEnd, INFO info) {
+      super.add(end, otherEnd, info);
+      super.add(otherEnd, end, info);
+    }
+ 
+  }
+ 
+  static class BfsOrder {
+    public static int[] calc(DirectedGraph<?> graph, int startIndex) {
+      int n = graph.vertexCount;
+      int[] res = new int[n];
+      boolean[] visited = new boolean[n];
+      visited[startIndex] = true;
+      int vertexIndex = 0;
+      res[vertexIndex++] = startIndex;
+      for (int i = 0; i < vertexIndex; ++i) {
+        int u = res[i];
+        for (int v : graph.outgoingVertexIndex(u)) {
+          if (!visited[v]) {
+            visited[v] = true;
+            res[vertexIndex++] = v;
+          }
+        }
+      }
+      if (vertexIndex != n) {
+        throw new IllegalArgumentException("Given directed graph should be connected.");
+      }
+      return res;
+    }
+ 
+  }
+ 
+  static class QuickScanner {
+    private static final int BUFFER_SIZE = 1024;
+    private InputStream stream;
+    private byte[] buffer;
+    private int currentPostion;
+    private int numberOfChars;
+ 
+    public QuickScanner(InputStream stream) {
+      this.stream = stream;
+      this.buffer = new byte[BUFFER_SIZE];
+      this.currentPostion = 0;
+      this.numberOfChars = 0;
+    }
+ 
+    public int nextInt() {
+      int c = nextNonSpaceChar();
+      boolean positive = true;
+      if (c == '-') {
+        positive = false;
+        c = nextChar();
+      }
+      int res = 0;
+      do {
+        if (c < '0' || '9' < c) {
+          throw new RuntimeException();
+        }
+        res = res * 10 + c - '0';
+        c = nextChar();
+      } while (!isSpaceChar(c));
+      return positive ? res : -res;
+    }
+ 
+    public int nextNonSpaceChar() {
+      int res = nextChar();
+      for (; isSpaceChar(res) || res < 0; res = nextChar()) ;
+      return res;
+    }
+ 
+    public int nextChar() {
+      if (numberOfChars == -1) {
+        throw new RuntimeException();
+      }
+      if (currentPostion >= numberOfChars) {
+        currentPostion = 0;
+        try {
+          numberOfChars = stream.read(buffer);
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+        if (numberOfChars <= 0) {
+          return -1;
+        }
+      }
+      return buffer[currentPostion++];
+    }
+ 
+    public boolean isSpaceChar(int c) {
+      return c == ' '
+          || c == '\n'
+          || c == '\r'
+          || c == '\t'
+          || c < 0;
+    }
+ 
+  }
+ 
+  static class DirectedGraph<INFO> {
+    public int vertexCount;
+    public int[] fromIndex;
+    public int[] toIndex;
+    public INFO[] info;
+    private int[] nextOutgoing;
+    private int[] lastOutgoing;
+    private int edgeIndex;
+ 
+    public DirectedGraph(int vertexCount, int edgeCapacity, Function<Integer, INFO[]> infoArrayFactory) {
+      this.vertexCount = vertexCount;
+      this.fromIndex = new int[edgeCapacity];
+      this.toIndex = new int[edgeCapacity];
+      this.info = infoArrayFactory.apply(edgeCapacity);
+      this.nextOutgoing = new int[edgeCapacity];
+      this.lastOutgoing = new int[vertexCount];
+      Arrays.fill(lastOutgoing, -1);
+      this.edgeIndex = 0;
+    }
+ 
+    public void add(int fromIndex, int toIndex, INFO info) {
+      this.fromIndex[edgeIndex] = fromIndex;
+      this.toIndex[edgeIndex] = toIndex;
+      this.info[edgeIndex] = info;
+      nextOutgoing[edgeIndex] = lastOutgoing[fromIndex];
+      lastOutgoing[fromIndex] = edgeIndex++;
+    }
+ 
+    public Iterable<Integer> outgoingEdgeIndex(int vertexIndex) {
+      return () -> new Iterator<Integer>() {
+        private int edgeIndex = lastOutgoing[vertexIndex];
+ 
+ 
+        public boolean hasNext() {
+          return edgeIndex >= 0;
+        }
+ 
+ 
+        public Integer next() {
+          int currentEdgeIndex = edgeIndex;
+          edgeIndex = nextOutgoing[edgeIndex];
+          return currentEdgeIndex;
+        }
+      };
+    }
+ 
+    public Iterable<Integer> outgoingVertexIndex(int vertexIndex) {
+      return () -> new Iterator<Integer>() {
+        private int edgeIndex = lastOutgoing[vertexIndex];
+ 
+ 
+        public boolean hasNext() {
+          return edgeIndex >= 0;
+        }
+ 
+ 
+        public Integer next() {
+          int currentVertexIndex = toIndex[edgeIndex];
+          edgeIndex = nextOutgoing[edgeIndex];
+          return currentVertexIndex;
+        }
+      };
+    }
+ 
+  }
+}

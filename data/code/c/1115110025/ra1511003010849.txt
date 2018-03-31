@@ -1,0 +1,39 @@
+#include  <stdio.h>
+
+int main()
+{
+  int  x[10][10] ,ns, r , c , flag ;
+
+
+  scanf("%d", &ns) ;
+
+  if(ns==ns)  		/* checking for square matrix */
+  {
+    for(r=0 ; r<ns ; r++)
+      for(c=0 ; c<ns ; c++)
+        scanf("%d" , &x[r][c]) ;
+
+    flag=1 ;
+    for(r=0 ; r<ns ; r++)
+      for(c=0 ; c<ns ; c++)
+        if(r==c) /* true for diagonal elements */
+        {
+	       if(x[r][c]==0)
+	         flag=0;
+        }
+        else
+        {
+	       if(x[r][c]!=0)
+	         flag=0;
+        }
+
+    if(flag==1)
+      printf("yes") ;
+    else
+      printf("no") ; 
+  }
+  else
+    printf("The matrix is not a sqaure matrix") ;
+
+  return 0;
+}

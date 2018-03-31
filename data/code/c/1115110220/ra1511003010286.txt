@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+#define SIZE 1000
+int dd,mm,yy;
+ 
+int main(){
+int a,y,m,d;
+scanf("%d %d %d",&dd,&mm,&yy);
+a = (14 - mm) / 12;
+y = yy - a;
+m = mm + 12 * a - 2;
+d = (dd + y + y / 4 - y / 100 + y / 400 + (31 * m / 12)) % 7;
+switch(d){
+case 0 : printf("Sunday"); break;
+case 1 : printf("Monday"); break;
+case 2 : printf("Tuesday"); break;
+case 3 : printf("Wednesday"); break;
+case 4 : printf("Thursday"); break;
+case 5 : printf("Friday"); break;
+case 6 : printf("Saturday"); break;
+default: break;
+}
+printf("\n");
+return 0;}

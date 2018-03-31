@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{int i,j,n,t,c=0,f=0;
+ char a[40];
+ scanf("%[^\n]",a);
+  
+  n=strlen(a);
+   for (i = 0; i <n; ++i)
+    {
+        for (j = i + 1; j < n; ++j)
+        {
+            if (a[i] > a[j])
+            {
+                t =a[i];
+                a[i] =a[j];
+                a[j] = t;
+            }
+        }
+   }
+ for(i=0;i<n;i++)
+ 
+ { c=1;
+  f=i;
+   while(a[f]==a[f+1])
+   {c++;
+   f++;
+    i++;
+   }
+   printf("%c = %d\n",a[i],c);
+ }return 0;
+}

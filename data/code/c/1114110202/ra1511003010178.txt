@@ -1,0 +1,44 @@
+#include<stdio.h>
+
+int main()
+{
+  int testCases, cnt;
+  int n, i, j, arr[100], sum;
+  scanf("%d", &testCases);
+  
+  for(cnt=0; cnt<testCases; cnt++)
+  {
+    sum = 0;
+    
+    scanf("%d", &n);
+    
+    for(i=0; i<n; i++)
+      scanf("%d", &arr[i]);
+    
+    
+    for(i=0;i<n;i++)
+    {
+      if(arr[i] != 0)
+      {
+        for(j=i+1;j<n;j++)
+        {
+          if(arr[i] == arr[j])
+            arr[j] = 0;
+        }
+        
+        arr[i] = 1;
+      }
+    
+      //printf("%d", arr[i]);
+    }
+    
+    for(i=0; i<n; i++)
+      sum = sum + arr[i];
+    
+    printf("%d\n", sum);
+      
+  }
+  
+  
+	return 0;
+}

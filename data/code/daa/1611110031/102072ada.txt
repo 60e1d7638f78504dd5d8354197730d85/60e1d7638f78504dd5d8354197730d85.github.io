@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int i, j, k;
+  int a[10];
+  
+  int n=5;
+  
+  for(i=0;i<n;i++)
+    scanf("%d", &a[i]);
+ int flag = 0;
+    for ( i=0; i<n-2; i++)
+    {
+        for (j=i+1; j<n-1; j++)
+        {
+            for ( k=j+1; k<n; k++)
+            {
+                if (a[i]+a[j]+a[k] == 0)
+                {
+                  printf("%d %d %d\n", a[i], a[j], a[k]);
+                    flag = 1;
+                }
+            }
+        }
+    }
+ 
+    // If no triplet with 0 sum found in array
+    if (flag == 0)
+        printf("Not Exist\n");
+	return 0;
+}

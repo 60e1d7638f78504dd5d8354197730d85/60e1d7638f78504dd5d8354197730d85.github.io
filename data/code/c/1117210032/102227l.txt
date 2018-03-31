@@ -1,0 +1,39 @@
+  #include <stdio.h>
+     
+    inline int inPos()
+    {
+    int x=0;
+    register int c = getchar_unlocked();
+    for(; c>47 && c<58 ; c = getchar_unlocked())
+    x = (x<<1) + (x<<3) + c - 48;
+    return x;
+    }
+     
+    int main()
+    {
+    int n, a, i, j;
+    int count[30]={0};
+    scanf("%d\n", &n);
+    while (n>0)
+    {
+      n--;
+    a = inPos();
+    j = 0;
+    while (a)
+    {
+    if (a&1)
+    count[j]++;
+    a = a>>1;
+    j++;
+    }
+    }
+    int ans=0, k=1;
+    for (i=0; i<20; i++)
+    {
+    if (count[i])
+    ans += (count[i]*(count[i]-1))/2*k;
+    k <<= 1;
+    }
+    printf("%d", ans);
+    return 0;
+    }

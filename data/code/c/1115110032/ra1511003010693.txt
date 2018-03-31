@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  	int i, n, k, c;
+  	int *A, *B;
+  	char temp;
+  	scanf("%d", &n);
+  	A = malloc(n);
+  	B = malloc(n);
+  	for(i= 0; i < n; i++){
+      	if(i == n - 1){
+          	scanf("%d", &A[i]);
+        }
+      	else{
+          	scanf("%d%c", &A[i], &temp);
+        }
+    }
+  	for(i = 0; i < n; i++){
+      	k = 0;
+      	c = 0;
+      	while(B[k] > 0){
+          	if(A[i] == B[k])
+              	c++;
+          	k++;
+        }
+      	if(c == 0)
+          	B[k] = A[i];
+    }
+  	k = 0;
+  	while(B[k] > 0){
+      	printf("%d ", B[k]);
+      	k++;
+    }
+	return 0;
+}

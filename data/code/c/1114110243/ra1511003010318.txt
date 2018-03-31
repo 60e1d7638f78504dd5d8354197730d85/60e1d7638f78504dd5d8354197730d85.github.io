@@ -1,0 +1,80 @@
+#include<stdio.h>
+#define false 0
+#define true 1
+short int sq[100001];
+void init(){
+	int i;
+	for(i=1;i<=100000;i++)	sq[i] =-1;	
+}
+void isq(){
+	int i ,j ,c;
+	short int flag;
+	sq[1] =1;
+	for(i=2;i<=100000;i++){
+		if(sq[i]==-1){
+			j=2;	flag=0;
+			while(j*j<=i){
+				if(i%(j*j)==0){
+					c=1;
+					while(c*i<=100000){	sq[c*i]=false;	c++;}
+					flag=1;
+					break;
+				}
+				j++;
+			}
+			if(!flag)	sq[i]=true;
+		}
+	}
+}
+ 
+int isPrime(int n){
+	int i;
+	if(n<=1)	return false;
+	if(n<=3)	return true;
+	if(n%2==0||n%3==0)	return false;
+	for(i=5;i*i<=n;i+=6){
+		if(n%i==0||n%(i+2)==0)	return false;
+	}
+	return true;
+}
+ 
+int checkSum(unsigned long long n){
+	int c=0,p;
+	if(n%2==0){
+		while(n%2==0)	n/=2;
+		c++;
+	}
+	for(p=3;p*p<=n;p+=2){
+		if(n%p==0){
+			while(n%p==0)	n/=p;
+		c++;	
+		}
+	}
+	if(n>1)	c++;
+	return isPrime(c);
+}	
+int main(){
+	int t,l,r ,i ,j;
+	unsigned long long sum ,s;
+	scanf("%d" ,&t);
+	init();	
+	isq();
+	while(t--){
+		scanf("%d%d" ,&l ,&r);
+		sum=0;	s=0;
+		for(i=l;i<=r;i++){
+			sum=0;
+			if(sq[i]==1){
+				sum+=(1+i);
+				j=2;
+				while(j*j<=i){
+					if(i%j==0)	sum+=(j+i/j);
+				j++;
+				}	
+			if(checkSum(sum))	s+=sum;
+			}
+		}
+		printf("%llu\n" ,s);	
+	}
+	return 0;
+} 

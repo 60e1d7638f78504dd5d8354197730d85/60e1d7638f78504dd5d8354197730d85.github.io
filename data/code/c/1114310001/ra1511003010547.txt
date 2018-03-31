@@ -1,0 +1,72 @@
+#include<stdio.h>
+ 
+int min(int a, int b)
+{
+	return a>b?b:a;
+}
+int abs(int a)
+{
+	if(a>0)
+		return a;
+	else
+		return -a;
+}
+ 
+int main()
+{
+	int t;
+	int b, bub[300][3];
+	int i, j, k;
+	int not;
+	int trk[501];
+	int m;
+	scanf("%d", &t);
+	while(t--)
+	{
+		not=0;
+ 
+		for(i=0; i<501; ++i)
+			trk[i]=0;
+ 
+		scanf("%d", &b);
+		for(i=0; i<b; ++i)
+		{
+			scanf("%d%d%d", &bub[i][0], &bub[i][1], &bub[i][2]);
+			for(j=i-1; j>=0; --j)
+			{
+				if(abs(bub[j][2]-bub[i][2])==1)
+				{
+					if(bub[i][0]>bub[j][0])
+					{
+						m=min(bub[i][1], bub[j][1]);
+						for(k=bub[i][0]; k<=m; ++k)
+						{
+							if(trk[k]==0)
+							{
+								trk[k]=-1;
+								not++;
+							}
+						}
+ 
+					}
+					else
+					{
+						m=min(bub[i][1], bub[j][1]);
+						for(k=bub[j][0]; k<=m; ++k)
+						{
+							if(trk[k]==0)
+							{
+								trk[k]=-1;
+								not++;
+							}
+						}
+					}
+				}
+			}
+ 
+		}
+		printf("%d\n", (500-not));
+	}
+	return 0;
+} 
+

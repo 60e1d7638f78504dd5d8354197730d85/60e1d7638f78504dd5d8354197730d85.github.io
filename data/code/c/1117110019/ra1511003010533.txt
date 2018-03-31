@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main()
+{	int a,b;
+	scanf("%d%d",&a,&b);
+    int array[100][100];
+    int row, col, isLower;
+
+
+    /* Input elements in matrix from user */
+    for(row=0; row<a; row++)
+    {
+        for(col=0; col<b; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+    /* Check whether the matrix is lower triangular matrix */
+    isLower = 1;
+    for(row=0; row<a; row++)
+    {
+        for(col=0; col<b; col++)
+        {
+            /*
+             * If elements above main diagonal(col>row)
+             * is not equal to zero(array[row][col]!=0)
+             */
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+    /*
+     * If matrix is lower triangular matrix
+     */
+    if(isLower == 1)
+    {
+        printf("\nyes \n");
+
+        
+    }
+    else
+    {
+        printf("\nno");
+    }
+
+    return 0;
+}

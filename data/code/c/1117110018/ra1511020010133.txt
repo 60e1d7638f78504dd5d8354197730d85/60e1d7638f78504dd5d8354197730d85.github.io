@@ -1,0 +1,30 @@
+#include<stdio.h>
+void symmetric(int row,int col);
+int main()
+{
+  int r,c;
+  scanf("%d %d",&r,&c);
+  symmetric(r,c);
+  return 0;
+}
+
+void symmetric(int row,int col)
+{
+  int i,j,k,arr[row][col];
+  for(i=0;i<row;i++)
+    for(j=0;j<col;j++)
+      scanf("%d",&arr[i][j]);
+  
+  k=0;
+  
+  for(i=0;i<row;i++)
+    for(j=0;j<col;j++)
+    {
+      if(arr[i][j]==arr[j][i])
+        k++;
+    }
+   if(k==row*col)
+     printf("Symmetric");
+   else
+     printf("Not Symmetric"); 
+}

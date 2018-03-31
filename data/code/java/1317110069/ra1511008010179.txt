@@ -1,0 +1,87 @@
+import java.util.*;
+public class TestClass
+{
+    public static String nextHighUsingAtMostOneSwap(String st)
+    {
+        char num[] = st.toCharArray();
+        int l = num.length;
+
+        // to store the index of the largest digit
+        // encountered so far from the right
+        int posRMax = l - 1;
+
+        // to store the index of rightmost digit
+        // which has a digit greater to it on its
+        // right side
+        int index = -1;
+
+        // finding the 'index' of rightmost digit
+        // which has a digit greater to it on its
+        // right side
+        for (int i = l - 2; i >= 0; i--)
+        {
+            if (num[i] >= num[posRMax])
+                posRMax = i;
+
+            // required digit found, store its 
+            // 'index' and break    
+            else
+            {
+                index = i;
+                break;
+            }    
+        }
+
+        // if no such digit is found which has a
+        // larger digit on its right side
+        if (index == -1)
+            return "Not Possible";
+
+        // to store the index of the smallest digit 
+        // greater than the digit at 'index' and
+        // right to it    
+        int greatSmallDgt = -1;
+
+        // finding the index of the smallest 
+        // digit greater than the digit at 
+        // 'index' and right to it    
+        for (int i = l - 1; i > index; i--)    
+        {
+            if (num[i] > num[index])
+            {
+                if (greatSmallDgt == -1)
+                    greatSmallDgt = i;
+                else if (num[i] <= num[greatSmallDgt])    
+                    greatSmallDgt = i;
+            }
+        }
+
+        // swapping the digits
+        char temp = num[index];
+        num[index] = num[greatSmallDgt];
+        num[greatSmallDgt] = temp;
+
+        // required number
+        return (String.valueOf(num));
+    }
+
+    // Driver program to test above
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        String num=sc.nextLine();
+        while(n>0)
+        {
+            num=sc.nextLine();
+            
+            String res=nextHighUsingAtMostOneSwap(num);
+            if(res.equals("Not Possible"))
+                System.out.println("-1");
+            else
+                System.out.println(res);
+            n--;
+        }
+    }
+
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+class shape
+{
+  public:
+  int width;
+  int height;
+  shape(int w, int h)
+  {
+    width=w;
+    height=h;
+  }
+};
+class rectangle:public shape
+{
+ public:
+ rectangle(int w, int h):shape(w,h)
+ {
+ }
+ void area()
+ {
+  cout<<"Rectangle area="<<(width*height);
+ }
+};
+class triangle:public shape
+{
+ public:
+ triangle(int w, int h):shape(w,h)
+ {
+ }
+  void area()
+ {
+  cout<<"\nTriangle area="<<(0.5*width*height);
+ }
+};
+int main()
+{
+  int wid,hei;
+  cin>>wid>>hei;
+  rectangle rec(wid,hei);
+  rec.area();
+  triangle tri(wid,hei);
+  tri.area();
+	return 0;
+}

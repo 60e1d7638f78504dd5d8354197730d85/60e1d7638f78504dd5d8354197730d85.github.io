@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(){
+	
+	unsigned long long int N,X,array[10000],subset[10000];
+	unsigned long long int i,temp1;
+	unsigned long long int count=0,temp=0,match=0;
+	unsigned long long int power_set_size,counter,j;
+	
+	scanf("%llu %llu",&N,&X);
+	
+	temp1=pow(10,7);
+	temp1=temp1+7;
+	
+	for(i=0;i<N;i++){
+		scanf("%llu",&array[i]);
+	}
+	
+	
+	
+	//temp2=pow(10,9);
+	//temp2=temp2+7;
+	
+	
+	power_set_size=pow(2,N);
+	power_set_size=power_set_size%temp1;
+	X=X%temp1;
+	for(counter=0;counter<power_set_size;counter++){
+		count=0;temp=0;
+		for(j=0;j<N;j++){
+			if(counter & (1<<j)){
+				subset[count]=array[j];
+				count++;
+			}
+		}
+		
+		for(i=0;i<count;i++){
+			temp=temp^subset[i];					
+		}
+		if(temp==X){
+			match++;		
+			
+		}	
+		//printf("\n");
+	}
+	match=match%temp1;
+	
+	printf("\n%llu",match);
+	
+	return 0;
+}

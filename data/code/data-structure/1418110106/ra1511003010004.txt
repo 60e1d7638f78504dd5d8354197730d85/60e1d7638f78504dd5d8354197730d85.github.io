@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		long long int n,i,j=0,count=0,p=0,temp;
+		scanf("%lld",&n);
+		int a[n];
+		for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				if(a[j]==0&&a[j+1]==1)
+				{
+					temp=a[j];
+					a[j]=a[j+1];
+					a[j+1]=temp;
+					j=j+1;	
+					count++;
+				}
+					
+			}
+			if(count>0)
+			{
+			p++;
+		}
+		else
+		{
+			break;
+		}
+		count=0;
+		}
+		printf("%lld\n",p);
+	}
+	return 0;
+} 

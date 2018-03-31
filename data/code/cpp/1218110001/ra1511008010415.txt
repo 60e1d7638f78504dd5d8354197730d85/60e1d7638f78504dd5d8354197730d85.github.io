@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class shape
+{
+  	protected:
+  		int a,b;
+  	public:
+  		shape()
+        {
+          	a=0;
+          	b=0;
+        }
+  		void set(int c,int d)
+        {
+  			a=c;
+          	b=d;
+        }
+};
+
+class Rectangle:public shape
+{
+	public:
+    	void area()
+        {
+        	cout<<"Rectangle area="<<a*b;
+        }
+};
+
+class Triangle:public shape
+{
+	public:
+    	void area()
+        {
+        	cout<<"Triangle area="<<(a*b)/2;
+        }
+};
+int main()
+{
+  	int a,b;
+  	cin>>a>>b;
+  	Triangle t;
+ 	Rectangle r;
+  	t.set(a,b);
+  	r.set(a,b);
+  	r.area();
+  	cout<<endl;
+  	t.area();
+	return 0;
+}

@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void hello(int arr[], int n)
+{
+  for(int i=0; i<n; i++)
+   {
+     for(int j=0; j<n-i-1; j++)
+     {
+       if(arr[j]>arr[j+1])
+       {
+         int temp=arr[j];
+         arr[j]=arr[j+1];
+         arr[j+1]=temp;
+       }
+     }
+   }
+    cout << "Maximum of integer=" << arr[n-1] << endl;
+  }
+  
+ void dine(double arr1[], int n1)
+  {
+   for(int i=0; i<n1; i++)
+   {
+     for(int j=0; j<n1-i-1; j++)
+     {
+       if(arr1[j]>arr1[j+1])
+       {
+         double temp=arr1[j];
+         arr1[j]=arr1[j+1];
+         arr1[j+1]=temp;
+       }
+     }
+   }
+    cout << "Maximum of Double=" << arr1[n1-1] << endl;
+ }
+
+int main () 
+{
+  int a, b, tc;
+  float c,d;
+  cin >> tc;
+  int a1[tc];
+  double a2[tc];
+  for(int i=0; i<tc; i++)
+  {
+    cin >> a1[i];
+  }
+
+  for(int i=0; i<tc; i++)
+  {
+    cin >> a2[i];
+  }
+  
+  hello(a1, tc);
+  dine(a2, tc);
+   return 0;
+}

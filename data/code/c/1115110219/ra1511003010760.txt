@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{  int t,n,a[100],i,b[100],h,m,l,j,ipos,k,temp,flag=0;
+   scanf("%d\n",&t);
+   for(i=0;i<t;i++){
+     scanf("%d\n",&n);
+     for(j=0;j<n;j++){
+       scanf("%d\n",&a[j]);
+     }
+     scanf("%d\n",&k);
+    // printf("%d\n",k);
+     ipos=a[k-1];
+     //printf("%d",ipos);
+     for(j=0;j<n;j++){
+       for(m=j+1;m<n;m++){
+         if(a[j]>a[m]){
+           temp=a[j];
+           a[j]=a[m];
+           a[m]=temp;
+         }
+       }
+     }
+     for(h=0;h<n;h++){
+       if(ipos==a[h]){
+         //printf("%d",h+1);
+           flag=1;
+           break;
+         // b[h]=h+1;
+       }
+     }
+     if(flag==1){
+       printf("%d\n",h+1);
+     }
+   }
+   
+  //  for(l=0;l<n;l++){
+   //  printf("%d\n",b[l]);
+  //}
+ return 0;
+}

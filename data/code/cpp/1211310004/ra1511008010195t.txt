@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+int gcd(int a,int b){
+    if(b==0)
+        return a;
+    return gcd(b,a%b);
+}
+int pour(int A,int B,int C){
+int move=1,a=A,b=0,tf;
+while(a!=C && b!=C){
+           tf=min(a,B-b);
+           b+=tf;
+           a-=tf;
+           move++;
+           if(a==C || b==C)
+                   break;
+           if(a==0){
+                    a=A;
+                    move++;
+           }
+           if(b==B){
+                b=0;
+                move++;
+           }
+     }
+     return move;
+}
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int a,b,c;
+		cin>>a>>b>>c;
+		if(c>a && c>b)
+                  printf("-1\n");
+           else if(c%gcd(a,b) != 0)
+                printf("-1\n");
+           else if(c==a || c==b)
+                printf("1\n");
+                
+            else{
+	
+		printf("%d\n",min(pour(a,b,c),pour(b,a,c)));
+	
+                }
+	}
+	return 0;
+} 

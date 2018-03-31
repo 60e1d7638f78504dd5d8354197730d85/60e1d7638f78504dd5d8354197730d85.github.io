@@ -1,0 +1,83 @@
+#include <stdio.h>
+ 
+int max[262200][2],A[100005],L[100005],R[100005];
+ 
+void initialize(int index,int i,int j){
+	if(i==j){
+		max[index][0]=A[i];
+		max[index][1]=1;
+		return;
+	}
+	int mid=(i+j)/2;
+	initialize(2*index+1,i,mid);
+	initialize(2*index+2,mid+1,j);
+	max[index][0]=max[2*index+1][0];
+	max[index][1]=max[2*index+1][1];
+	if(max[index][0]<max[2*index+2][0]){
+		max[index][0]=max[2*index+2][0];
+		max[index][1]=max[2*index+2][1];
+	}
+	else if(max[index][0]==max[2*index+2][0]){
+		max[index][1]+=max[2*index+2][1];
+	}
+	return;
+}
+ 
+void maxin(int index,int i,int j,int ri,int rj,int *mx,int *ct){
+	if(i==ri&&j==rj){
+		if(*mx<max[index][0]){
+			*mx=max[index][0];
+			*ct=max[index][1];
+			return;
+		}
+		if(*mx==max[index][0]){
+			*ct+=max[index][1];
+			return;
+		}
+		return;
+	}
+	int mid=(ri+rj)/2;
+	if(i<=mid){
+		if(j<=mid){
+			maxin(2*index+1,i,j,ri,mid,mx,ct);
+			return;
+		}
+		maxin(2*index+1,i,mid,ri,mid,mx,ct);
+		maxin(2*index+2,mid+1,j,mid+1,rj,mx,ct);
+		return;
+	}
+	maxin(2*index+2,i,j,mid+1,rj,mx,ct);
+	return;
+}
+ 
+int main(){
+	int n,m,i,j,l,r,D,rl,rr,mx,ct;
+	for(i=0;i<262200;i++)max[i][0]=-1;
+	for(i=0;i<262200;i++)max[i][1]=0;
+	scanf("%d%d",&n,&m);
+	for(i=0;i<n;i++)scanf("%d",&A[i]);
+	initialize(0,0,n-1);
+	for(i=0;i<m;i++){
+		scanf("%d%d",&l,&r);
+		for(j=l-1;j<r;j++){
+			L[j]=l-1;
+			R[j]=r-1;
+		}
+	}
+	scanf("%d",&D);
+	for(i=0;i<n;i++){
+		l=i-D;
+		r=i+D;
+		rl=L[i];
+		rr=R[i];
+		if(l<0)l=0;
+		if(r>=n)r=n-1;
+		mx=-1;
+		ct=0;
+		if(l<rl)maxin(0,l,rl-1,0,n-1,&mx,&ct);
+		if(r>rr)maxin(0,rr+1,r,0,n-1,&mx,&ct);
+		if(mx>A[i])printf("%d %d\n",mx,ct);
+		else printf("-1\n");
+	}
+	return 0;
+} 

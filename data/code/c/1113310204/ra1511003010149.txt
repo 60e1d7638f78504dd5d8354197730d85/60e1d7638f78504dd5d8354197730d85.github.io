@@ -1,0 +1,114 @@
+#include <stdio.h>
+typedef long long int LLI;
+#define inchar getchar_unlocked
+inline int inIntPos() {
+	int ch,n;
+	while((ch = inchar())<'0');
+	n =(ch-'0');
+	while((ch = inchar())>='0')
+		n=(n<<3)+(n<<1)+(ch-'0');
+	return n;
+}
+inline LLI inLLIPos() {
+	int ch;
+	LLI n;
+	while ((ch = inchar()) < '0');
+	n = (ch - '0');
+	while ((ch = inchar()) >= '0')
+		n = (n << 3) + (n << 1) + (ch - '0');
+	return n;
+}
+ 
+#define MOD 1000000007
+#define MAX_N 100001
+int a[MAX_N];
+int inv[MAX_N];
+int n,x;
+LLI m;
+ 
+void prepare() {
+	int i,m=MOD;
+	inv[1] = 1;
+	for(i=2; i<MAX_N; ++i)
+		inv[i] = (m - (LLI)(m/i) * inv[m%i] % m) % m;
+}
+int b[MAX_N];
+int calcDirect() {
+	int i,j;
+	for(i=1; i<=n; ++i) b[i]=a[i];
+ 
+	for(j=1; j<=m; ++j) {
+		for(i=2; i<=n; ++i) {
+			b[i]+=b[i-1];
+			if(b[i]>=MOD) b[i]-=MOD;
+		}
+	}
+	return b[x];
+}
+ 
+int binom(LLI n, int k) {
+	LLI res;
+	int i;
+	res=1;
+	for(i=1; i<=k; ++i,--n)
+		res = res/i * n + res%i * n / i;
+	if(res>=MOD) res%=MOD;
+	return (int)res;
+}
+ 
+int calc2() {
+	if(x==1) return a[1];
+	int i,k;
+	LLI res,r;
+ 
+	res=a[x];
+	if(res>=MOD) res%=MOD;
+	for(i=x-1,k=0; i>0; --i,++k) {
+		r=binom(m+k,k+1);
+		r*=a[i];
+		if(r>=MOD) r%=MOD;
+		res+=r;
+		if(res>=MOD) res-=MOD;
+	}
+ 
+	return (int)res;
+}
+ 
+int calc() {
+	if(x==1) return a[1];
+	int i,k;
+	LLI res,r,bin;
+ 
+	res=a[x];
+	if(res>=MOD) res%=MOD;
+	bin=1;
+	for(i=x-1,k=0; i>0; --i,++k) {
+		bin*=((m+k)%MOD);
+		if(bin>=MOD) bin%=MOD;
+		bin*=inv[k+1];
+		if(bin>=MOD) bin%=MOD;
+ 
+		r=bin*a[i];
+		if(r>=MOD) r%=MOD;
+		res+=r;
+		if(res>=MOD) res-=MOD;
+	}
+ 
+	return (int)res;
+}
+ 
+int main() {
+	int t,i;
+	prepare();
+	
+	t=inIntPos();
+	while(t--) {
+		n=inIntPos();
+		x=inIntPos();
+		m=inLLIPos();
+		for(i=1; i<=n; ++i) a[i]=(int)(inLLIPos()%MOD);
+		printf("%d\n",calc());
+		
+	}
+	return 0;
+}

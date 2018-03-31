@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       int n=inp.nextInt();
+       int temp=0;
+       int[] a= new int[n];
+       for(int i=0;i<n;i++){
+         a[i]=inp.nextInt();
+       }
+       for(int j=1;j<n;j++){
+         int key=a[j];
+		int i=j-1;
+         while((i>-1)&&(a[i]>key)){
+           a[i+1]=a[i];
+           i--;
+         }
+         a[i+1]=key;
+         for(int k=0;k<n;k++){
+           System.out.print(a[k]+" ");
+         }
+         System.out.println();
+         
+       }
+       System.out.println("Sorted Array:");
+       for(int z=0;z<n;z++)
+         System.out.print(a[z]+" ");
+	}
+}

@@ -1,0 +1,53 @@
+#include <stdio.h>
+int check(int i,int j,int a[])
+{
+  while(i<j)
+  {  
+    if(a[i]==-1*a[j])
+    {
+      i++;
+      j--;
+    }
+    else
+      return 0;
+  }
+  if(i-1==j || i==j+1)
+   
+    return 1;
+}
+int sum(int i,int j,int a[])
+{ int k,sum=0;
+  for(k=i;k<=j;k++)
+  {
+    sum+=a[k];
+  }
+ if(sum==0)
+   return 1;
+ else
+   return 0;
+}
+int main()
+{ 
+  int k,d;
+ 
+  scanf("%d",&k);
+  int a[k];
+  for(d=0;d<k;d++)
+  {
+    scanf("%d",&a[d]);
+  }
+  int max=-1,i,j,length;
+    for(i=0;i<k;i++){
+      for(j=k;j>i;j--)
+      {
+         if(check(i,j,a)) 
+           {  if(sum(i,j,a))
+              		length=j-i+1;
+            }
+      }
+      if(max<length)
+         max=length;
+    }
+ printf("%d",max);
+	return 0;
+}

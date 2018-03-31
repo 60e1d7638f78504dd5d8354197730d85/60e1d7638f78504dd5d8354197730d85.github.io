@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+ int i,j,n;
+scanf("%d",&n);
+  char tem[20];
+  char word[10][20];
+  for(i=0;i<n;i++)
+    scanf("%s",word[i]);
+  int t;
+  for (i = 0; i < n; i++)      
+ 
+       // Last i elements are already in place   
+       for (j = i+1; j < n; j++) 
+       {
+         if(word[i][0]>word[j][0])
+         {
+              
+         strcpy(tem,word[i]);
+           strcpy(word[i],word[j]);
+           strcpy(word[j],tem);
+             }
+       }
+  for(i=0;i<n;i++)
+  {
+    printf("%s\n",word[i]);
+  }
+	return 0;
+}

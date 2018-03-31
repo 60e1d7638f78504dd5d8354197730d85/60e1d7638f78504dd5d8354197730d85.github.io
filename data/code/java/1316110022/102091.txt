@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner s = new Scanner(System.in);
+       Sample a1=new Sample();
+       int n = s.nextInt();
+       int[] a = new int[10];
+       for(int i=0;i<n;i++)
+         a[i]=s.nextInt();
+       int l=  a1.adajcentElementsSum(a,n);
+       System.out.println(l);
+		
+	}
+}
+ class Sample
+{
+    
+    static int adajcentElementsSum(int arr[],int n)
+    {
+        
+        int sums[] = new int[n-1]; 
+        int newmax = 0;
+
+       for (int x=0;x<n-1;x++) {
+        sums[x] = arr[x]+arr[x+1];
+        
+       }
+         newmax=sums[0];
+         for (int k = 0; k <n-1; k++) {
+             if (sums[k] > newmax) 
+               newmax = sums[k];
+        }
+    return(newmax);       
+    }
+    
+
+    
+}
+  

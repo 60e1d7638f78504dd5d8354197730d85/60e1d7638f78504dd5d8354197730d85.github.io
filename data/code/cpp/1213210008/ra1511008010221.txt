@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+vector<string> split(const string &s) {
+    vector<string> ret;
+    typedef string::size_type string_size;
+    string_size i = 0;
+    while (i != s.size()) {
+        while (i != s.size() && isspace(s[i]))
+            ++i;
+        string_size j = i;
+        while (j != s.size() && !isspace(s[j]))
+            j++;
+        if (i != j) {
+            ret.push_back(s.substr(i, j - i));
+            i = j;
+        }
+    }
+    return ret;
+}
+
+int main() {
+    string s;
+    getline(cin, s);
+    vector<string> vec = split(s);
+    for (vector<string>::size_type i = 0; i != vec.size(); ++i) {
+        string temp = vec[i];
+        for (unsigned long k = temp.length() - 1; k > 0; k--) {
+            printf("%c", temp[k]);
+        }
+        printf("%c", temp[0]);
+        printf(" ");
+    }
+
+
+    return 0;
+}

@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner x = new Scanner(System.in);
+       int N = Integer.parseInt(x.nextLine());
+       String S = x.nextLine();
+       int K = Integer.parseInt(x.nextLine());
+       String res = "";
+       for(int i = 0; i < N; i++){
+         if(!Character.isLetter(S.charAt(i))){
+         	res += S.charAt(i);
+         }
+         else if(Character.isUpperCase(S.charAt(i))){
+           char ch = (char)(((int)S.charAt(i) + K - 65) % 26 + 65);
+           res += ch;
+         }
+         else{
+           char ch = (char)(((int)S.charAt(i) + K - 97) % 26 + 97);
+           res += ch;
+         }
+       }
+       System.out.println(res);
+	}
+}

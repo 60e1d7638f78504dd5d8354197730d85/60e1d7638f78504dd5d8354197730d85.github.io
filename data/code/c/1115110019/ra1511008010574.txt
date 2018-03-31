@@ -1,0 +1,41 @@
+#include<stdio.h>
+int main()
+{
+  int size,i,arr[100],answer[100],j,temp;
+  scanf("%d",&size);
+  for(i=0;i<size;i++)
+    scanf("%d",&arr[i]);
+  int index,item;
+  scanf("%d",&index);
+  scanf("%d",&item);
+  for(i=0;i<size+1;i++)
+  {
+   		 if(i<index)
+           answer[i]=arr[i];
+    	else if(i==index)
+          answer[i]=item;
+    	else
+          answer[i]=arr[i-1];
+  }
+  printf("Before sorting\n");
+  for(i=0;i<size+1;i++)
+    printf("%d\n",answer[i]);
+  for(i=1;i<size+1;i++)
+  {
+    for(j=0;j<size+1-i;j++)
+    {
+      if(answer[j]>answer[j+1])
+      {
+        temp = answer[j];
+        answer[j] = answer[j+1];
+        answer[j+1] = temp;
+      }
+    }
+  }
+  printf("After sorting\n");
+  for(i=0;i<size+1;i++)
+  {
+  	printf("%d\n", answer[i]);
+  }
+  return 0;
+}

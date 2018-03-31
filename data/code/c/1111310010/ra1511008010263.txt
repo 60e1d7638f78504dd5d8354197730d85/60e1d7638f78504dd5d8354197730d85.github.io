@@ -1,0 +1,53 @@
+#include <stdio.h>
+ 
+int main ()
+{
+    int cases;
+    scanf("%d", &cases);
+    
+    int case_num;
+    for (case_num = 0; case_num < cases; ++case_num)
+    {
+        int total_notes, amount_demanded;
+        scanf("%d %d", &total_notes, &amount_demanded);
+        
+        // Never more than 20 notes, Each note is never more than 1000
+        int note[20];
+        int note_index;
+        for (note_index = 0; note_index < total_notes; ++note_index)
+        {
+            scanf("%d", note + note_index);
+        }
+        
+        // Brute force all combinations
+        int successful = 0;
+        unsigned long testbits, highest;
+        highest = 1<<total_notes;
+        for (testbits = 0; testbits < highest; ++testbits)
+        {
+            int sum = 0;
+            for (note_index = 0; note_index < total_notes; ++note_index)
+            {
+                if (testbits & (1<<note_index)) sum += note[note_index];
+            }
+            
+            if (sum == amount_demanded)
+            {
+                successful = 1;
+                break;
+            }
+        }
+        
+        if (successful)
+        {
+            printf("Yes\n");
+        }
+        else
+        {
+            printf("No\n");
+        }
+    }
+    
+    return 0;
+}
+ 

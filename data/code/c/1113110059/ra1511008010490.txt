@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int t=0,i=0,temp=0,j;
+  	int n[1000000]={0};
+  	scanf("%d",&t);
+  	for (i=0;i<t;i++)
+    {
+      scanf("%d",&n[i]);
+    }
+  	for(i=0;i<t;i++)
+    {
+      for(j=0;j<t-i-1;j++)
+      {
+        if(n[j]>n[j+1])
+      	{
+        	temp=n[j];
+        	n[j]=n[j+1];
+        	n[j+1]=temp;
+      	}
+      }
+    }
+  	for(i=0;i<t;i++)
+    {
+      printf("%d\n",n[i]);
+    }
+  
+	return 0;
+}

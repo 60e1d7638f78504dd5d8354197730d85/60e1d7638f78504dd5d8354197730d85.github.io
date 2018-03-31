@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<string.h>
+struct College
+{
+char name[100];
+char city[100];
+int establishmentYear;
+float passPercentage;
+}S1[10],t;
+int main()
+{
+
+
+int i,j,n;
+//printf("\n enter the limit");
+scanf("%d",&n);
+
+for(i=0;i<n;i++)
+{scanf("%s",S1[i].name);
+//printf("\n enter the roll no\n");
+scanf("%s",S1[i].city);
+//printf("\n enter the name \n");
+
+//printf("\n enter the mark=");
+scanf("%d",&S1[i].establishmentYear);
+//printf("\n enter the mark=");
+scanf("%f",&S1[i].passPercentage);
+//printf("\n enter the mark=");
+//scanf("%d",&s[i].m3);
+//s[i].percent=(s[i].m1+s[i].m2+s[i].m3)/3;
+}
+for(i=0;i<n;i++)
+{
+for(j=0;j<n-i-1;j++)
+{
+if(strcmp(S1[j].name,S1[j+1].name)>0)
+{
+t=S1[j];
+S1[j]=S1[j+1];
+S1[j+1]=t;
+}
+}
+}
+printf("Details of colleges\n");
+for(i=0;i<n;i++)
+{
+printf("Name:%s",S1[i].name);
+printf("\nCity:%s",S1[i].city);
+//printf("\nmark1=%d",s[i].m1);
+printf("\nYear of establishment:%d",S1[i].establishmentYear);
+//printf("\n mark3=%d",s[i].m3);
+printf("\nPass percentage:%.1f\n",S1[i].passPercentage);
+}
+  return 0;
+}

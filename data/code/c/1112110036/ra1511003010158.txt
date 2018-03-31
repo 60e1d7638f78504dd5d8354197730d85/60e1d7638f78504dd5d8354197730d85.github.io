@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int num,n,val,ans=0,count=0;
+  	scanf("%d",&num);
+  	n=val=num;
+  	while(num/10!=0)
+    {
+      num=num/10;
+      count++;
+    }
+  	count+=1;
+  	while(n/10!=0)
+    {
+      ans+=pow((n%10),count);
+      n=n/10;
+    }
+  	ans+=pow((n%10),count);
+  	if(ans==val)
+      printf("Narcissistic Number");
+  	else
+      printf("NOT Narcissistic Number");
+	return 0;
+}

@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<math.h>
+ long long int prime[1000005];
+ long long int  ar1[1000005];
+ 
+int main()
+{
+     int t;
+      long long int d,i,j=0,k=0,m,n;
+      ar1[0]=1,ar1[1]=1;
+ 
+    for(i=2;i<=(int)sqrt(10001);i++)
+    {
+        if(ar1[i]==0)
+        for(j=2;j*i<=10001;j++)
+        ar1[j*i]=1;
+    }
+ 
+     scanf("%d",&t);
+     while(t--)
+     {
+      scanf("%lld%lld",&m,&n);
+    i=0;j=1;
+        for(i=m;i<=n;i++)
+        {
+            prime[i-m]=0;
+        }
+        if(m==1)
+        {
+            prime[0]=1;
+        }
+        for(i=1;i*i<=n;i++)
+        {
+            for(j=ceil(1.0*m/i);i*j<=n;j++)
+            {
+                if(j==1||i>j) continue;
+                prime[i*j-m]++;
+ 
+ 
+            }
+        }
+ 
+for(i=m;i<=n;i++)
+{
+ 
+     d=sqrt(i);
+     if(d*d==i)
+     {
+          if(ar1[prime[i-m]*2-1]==0)
+          k++;
+     }
+     else
+     {
+          if(ar1[prime[i-m]*2]==0)
+          k++;
+     }
+ }
+     printf("%lld\n",k);
+     k=0;
+}
+return 0;
+}

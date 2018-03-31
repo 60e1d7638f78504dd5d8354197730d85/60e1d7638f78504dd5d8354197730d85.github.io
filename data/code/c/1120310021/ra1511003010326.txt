@@ -1,0 +1,37 @@
+    #include<stdio.h>
+    int length(int left,int num,int right);
+    int rope(int left,int mid,int right);
+    int length(int left,int num,int right){
+    	return (num-left)+(right-num);
+    }
+     
+    int rope(int left,int mid,int right){
+    	if(left<mid && mid<right){
+    		return (mid-left)+(right-mid)+rope(left,(mid+left)/2,mid) + rope(mid,(right+mid)/2,right);
+    	}
+    	return 0;
+    }
+    int main(){
+    	int t,n,m,i,mid,max,min;
+    	scanf("%d",&t);
+    	int arr[31];
+    	while(t--){
+    		max=0;
+    		scanf("%d %d",&n,&m);
+    		for(i=n;i>=1;i--){
+    			arr[i]=0;
+    			max+=length(0,i,i+1);
+    		}
+    		mid=(1+n)/2;
+    		min = rope(0,mid,n+1);
+    		
+    		//printf("%d\n",max);
+    		//printf("MIN:%d\n",min);
+    		
+    		if(min<=m && m<=max) printf("0\n");
+    		else if(m>max) printf("%d\n",m-max);
+    		else printf("-1\n");	
+    	}
+    	return 0;
+    }
+    		

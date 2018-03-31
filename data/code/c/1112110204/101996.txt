@@ -1,0 +1,19 @@
+#include <stdio.h>
+ 
+long long int gcd(long long int a, long long int b){
+	if(b == 0)
+		return a;
+	return gcd(b, a % b);
+}
+ 
+int main(int argc, char const *argv[])
+{
+	long long int t, a, b, g;
+	scanf("%lld",&t);
+	while(t--) {
+		scanf("%lld%lld",&a,&b);
+		g = gcd(a, b);
+		printf("%lld %lld\n",g, (a*b)/g);
+	}
+	return 0;
+} 

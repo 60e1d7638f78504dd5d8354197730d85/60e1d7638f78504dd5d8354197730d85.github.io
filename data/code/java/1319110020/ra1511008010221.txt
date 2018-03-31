@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int[] arr = new int[t];
+        for (int i = 0; i < t; i++) {
+            arr[i] = sc.nextInt();
+        }
+        Constructor c = new Constructor(arr);
+        if (c.average() != 0) {
+            System.out.println(c.average());
+        }
+    }
+}
+
+class Constructor {
+
+    int[] testscores;
+
+    Constructor(int[] testscores) {
+        this.testscores = testscores;
+    }
+
+    public float average() {
+        float sum = 0;
+        for (int testscore : testscores) {
+            try {
+                if (testscore < 0 || testscore > 100) {
+                    throw new IllegalArgumentException();
+                }
+                sum += testscore;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e);
+                return 0;
+            }
+        }
+        return sum / testscores.length;
+    }
+}

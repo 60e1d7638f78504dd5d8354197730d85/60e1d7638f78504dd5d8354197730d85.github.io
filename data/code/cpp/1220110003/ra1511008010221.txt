@@ -1,0 +1,26 @@
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    string s, s1;
+    try {
+        getline(cin, s);
+        for (int i = 0; s[i] != '\0'; i++) {
+            if (s[i] < '0' || s[i] > '9') {
+                throw string("Exception Occurred");
+            }
+        }
+        getline(cin, s1);
+        for (int i = 0; s1[i] != '\0'; i++) {
+            if (s1[i] < '0' || s1[i] > '9') {
+                throw string("Exception Occurred");
+            }
+        }
+        throw string("Valid Input");
+    } catch (const string &s) {
+        cout << s;
+    }
+    return 0;
+}

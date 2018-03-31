@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5005
+int stack[MAX], top;
+int push(int[], int, int);
+int pop(int[], int);
+int isempty(int);
+int push(int stack[], int top, int cost)
+{
+    stack[++top]=cost;
+    return top;
+}
+int pop(int stack[], int top)
+{
+    if(!isempty(top))
+    {
+        int t;
+        t = stack[top--];
+    }
+    return top;
+}
+int isempty(int top)
+{
+    if(top == -1)
+        return 1;
+    else
+        return 0;
+}
+int main()
+{
+    int n, sum=0, sum2;
+    top = -1;
+    scanf("%d",&n);
+    while(n--)
+    {
+        int r;
+        scanf("%d",&r);
+        if(r!=0)
+        {
+            top = push(stack, top, r);
+        }
+        else
+        {
+            top = pop(stack, top);
+        }
+    }
+    while(top>-1)
+    {
+        //printf("%d ",stack[top]);
+        sum = sum + stack[top];
+        top--;
+    }
+    printf("%d",sum);
+    return 0;
+}

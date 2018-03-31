@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include<math.h>
+int prime(int v)
+{int i,c=0;
+ for(i=1;i<=v;i++)
+ {if(v%i==0)
+   c++;
+ }
+ if (c==2 && v>1)
+   return 1;
+ else return 0;
+}
+int primedivide(int x)
+{int i,j,c=0,y=0;
+ for(i=2;i<=x/2;i++)
+ {c=0;
+   for(j=1;j<=i;j++)
+ {if(i%j==0)
+   c++;
+ }
+  if(c==2)
+  {if(x%i==0)
+    y++;
+  }
+ }
+ return y;
+}
+int main()
+{int x;
+ scanf("%d",&x);
+ while(x--)
+ {int a,b;
+  scanf("%d %d",&a,&b);
+  int i,j,c,k,l,f=0;
+  for(i=a;i<=b;i++)
+  {c=0;
+   int flag=0;
+    int s=sqrt(i);
+   for(j=2;j<=s;j++)
+   {
+     if(i%(j*j)==0)
+   {
+       flag=1;
+    break;
+   }
+   }
+   if(flag==0)
+   {
+     for(j=1;j<=i;j++)
+   {
+       if(i%j==0)
+    c=c+j;
+   }
+    k=primedivide(c);
+     l=prime(k);
+    if(l==1)
+    { c=0;
+      for(j=1;j<=i;j++)
+   {
+       if(i%j==0)
+    c=c+j;
+    }
+     f=f+c;
+    }
+     
+   }
+   
+  }
+ 
+  printf("%d\n",f);
+ }
+	return 0;
+}

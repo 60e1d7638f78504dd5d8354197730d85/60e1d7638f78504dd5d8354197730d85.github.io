@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		int n,a,b,x,y,nostones,laststone=0,j,k,i;
+        
+       Scanner s = new Scanner(System.in);
+       n= s.nextInt();
+       for (int z=0;z<n;z++)
+       {
+         i=0;
+       nostones = s.nextInt();
+       int[] d = new int[nostones];
+       x = s.nextInt();
+       y = s.nextInt();
+        a=Math.min(x,y);
+         b=Math.max(x,y);
+       for(j=0,k=nostones-1;j<=nostones-1;j++,k--)
+       {
+          d[i] = a * j + b * k; 
+         i++;
+       }
+       
+       for(int l=0;l<nostones-1;l++)
+       {
+       for(int m=l+1;m<nostones;m++)
+       {
+         if (d[l] > d[m])
+         {
+            int temp=d[l];
+            d[l]= d[m];
+            d[m] = temp;
+         }               
+       }
+     }
+       
+       for(int p : d)
+       {
+         System.out.print(p +" ");
+       }
+         System.out.println();
+    }
+ }
+}

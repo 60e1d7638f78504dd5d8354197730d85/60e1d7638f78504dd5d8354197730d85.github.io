@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+void printSpiral(int m,int n,int a[][50]){
+	int i,j;
+  int rowStart=0,columnStart=0;
+  
+  while(rowStart<m && columnStart<n){
+    
+    for(i=columnStart;i<n;i++){
+    printf("%d ",a[rowStart][i]);
+    }
+    rowStart++;
+    
+    for(j=rowStart;j<m;j++){
+    printf("%d ",a[j][n-1]);
+    }
+    n--;
+    
+    if(rowStart<m){
+    for(i=n-1;i>=columnStart;i--){
+    	printf("%d ",a[m-1][i]);
+    }
+      m--;
+    }
+    
+    if(columnStart<n){
+    for(j=m-1;j>=rowStart;j--){
+    printf("%d ",a[j][columnStart]);
+    }
+      columnStart++;
+    }
+  }
+}
+
+int main()
+{
+	int m,n,i,j;
+  int a[50][50];
+  scanf("%d",&m);
+  scanf("%d",&n);
+  
+  for(i=0;i<m;i++){
+  for(j=0;j<n;j++){
+  	scanf("%d",&a[i][j]);
+  	}
+  }
+  
+  printSpiral(m,n,a);
+  
+	return 0;
+}

@@ -1,0 +1,50 @@
+#include<stdio.h>
+int A[101],L,R,arr[202];
+int main(){
+    int T,N,j,min,sum,k,i;
+    
+    scanf("%d\n",&T);
+    while(T){sum=0;
+        scanf("%d\n",&N);
+        for(j=1;j<=N;j++)
+        scanf("%d ",&A[j]);
+        min=101;
+        arr[min]=1;
+        for(j=2;j<=N;j++){
+            if(A[j]==0){
+                min=min-1;
+                arr[min]=j;
+            }
+            else{
+                for(i=min;i<min+j-1;i++){
+                    if(arr[i]==A[j])
+                    {
+                        k=i;
+                        break;
+                    }}
+                    L=k-min+1;
+                    R=min+j-2-k;
+                    if(L<R){
+                    sum=sum+L;
+                      for(i=min;i<=k;i++){
+                          arr[i-1]=arr[i];
+                      } 
+                      min=min-1;
+                      arr[k]=j;
+                    }
+                    else {sum=sum+R;
+                        for(i=min+j-2;i>=k+1;i--){
+                            arr[i+1]=arr[i];
+                        }
+                        arr[k+1]=j;
+                    }
+                
+            }
+            
+        }
+        printf("%d\n",sum);
+        T--;
+    }
+    
+    return 0;
+} 

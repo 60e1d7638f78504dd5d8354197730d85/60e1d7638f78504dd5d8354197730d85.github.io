@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+#define MAX 4096
+char buf[MAX];
+int ptr=MAX;
+int getnum()
+{
+	
+	
+	while(ptr<MAX && buf[ptr]<'0')
+	{
+		ptr++;
+	}
+	if(ptr==MAX)
+	{
+		fread(buf,1,MAX,stdin);
+		ptr=0;
+		
+		while(ptr<MAX && buf[ptr]<'0')
+		{
+			ptr++;
+		}
+	}
+	int num=0;
+	while(ptr<MAX && buf[ptr]>='0')
+	{
+		num=(num*10)+(buf[ptr++]-'0');
+	}
+	if(ptr==MAX)
+	{
+		fread(buf,1,MAX,stdin);
+		ptr=0;
+		while(ptr<MAX && buf[ptr]>='0')
+		{
+			num=(num*10)+(buf[ptr++]-'0');
+		}
+	}
+ 
+	return num;
+}
+int main()
+{
+	int i,n,arr[100001];
+	bool flag;
+	n=getnum();
+	while(n>0)
+	{
+			flag=true;
+			for(i=1;i<=n;i++)
+			{
+				arr[i]=getnum();
+			}
+			for(i=1;i<=n;i++)
+			{
+				if(arr[arr[i]]!=i)
+				{
+					flag=false;
+					break;
+				}
+			}
+			if(flag)
+				 cout<<"ambiguous\n";
+			else
+				 cout<<"not ambiguous\n";
+		
+			n=getnum();
+	}
+	return 0;
+ 
+}
+ 

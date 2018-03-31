@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int a,i,j;
+  scanf("%i",&a);
+  char q[a][100];
+  for(i=0;i<a;i++)
+  {
+    scanf("%s",q[i]);
+  }
+  for(i=0;i<a;i++)
+  {
+    for(j=i+1;j<a;j++)
+    {
+      int w=q[i][0],u=q[j][0];
+      if(w>u)
+      {
+        char k[100];
+        strcpy(k,q[i]);
+        strcpy(q[i],q[j]);
+        strcpy(q[j],k);
+      }
+    }
+    printf("%s\n",q[i]);
+  }
+  return 0;
+}

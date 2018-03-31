@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int check(int[],int);
+void input(int a[],int n){
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  if(check(a,n))
+    cout<<"yes\n";
+  else
+    cout<<"no\n";
+}
+
+int check(int a[],int n){
+  int k,res;
+  for(int i=0;i<n-1;i++){
+    for(int j=i+1;j<n;j++){
+      res=0;
+      k=a[i]*a[j];
+      for(int z=0;z<n;z++){
+        if(a[z]==k)
+          res=1;
+      }
+      if(!res)
+        return 0;
+    }
+  }
+  return 1;
+}
+
+int main()
+{
+  int a[50],n,t;
+  cin>>t;
+  while(t--){
+    cin>>n;
+    input(a,n);
+  }
+	return 0;
+}

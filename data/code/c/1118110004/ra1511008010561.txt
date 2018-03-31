@@ -1,0 +1,61 @@
+ #include <stdio.h>
+struct hello
+{
+  int mon,date,year;
+}cal;
+int main()
+{
+    scanf("%d %d %d",&cal.date,&cal.mon,&cal.year);
+  if(cal.year>=0 && cal.year<=2999)
+  {
+    if(cal.mon>=1 && cal.mon<=12)
+    {
+       if(cal.mon==1 && cal.mon==3 && cal.mon==5 && cal.mon==7 && cal.mon==8 && cal.mon==10 && cal.mon==12)
+       {
+         if(cal.date >=1 && cal.date<=31)
+         {
+           printf("New Date=%d %d %d",cal.date+1,cal.mon,cal.year);
+         }
+         else
+         {
+             printf("Invalid Day");
+         }
+       }
+      else if(cal.mon==4 && cal.mon==6 && cal.mon==9 && cal.mon==11)
+      {
+          
+          if(cal.date >=1 && cal.date<=30)
+         {
+           printf("New Date=%d %d %d",cal.date+1,cal.mon,cal.year);
+         }
+         else
+         {
+             printf("Invalid Day");
+         }
+      }
+      else 
+      {
+         if(cal.date >=1 && cal.date<=28)
+         {
+           printf("New Date=%d %d %d",cal.date+1,cal.mon,cal.year);
+         }
+         else
+         {
+             printf("Invalid Day");
+         }
+
+      }
+
+
+    }
+    else
+    {
+       printf("Invalid Month");
+    }
+  }
+  else
+  {
+    printf("Invalid Year");
+  }
+  return 0;
+}

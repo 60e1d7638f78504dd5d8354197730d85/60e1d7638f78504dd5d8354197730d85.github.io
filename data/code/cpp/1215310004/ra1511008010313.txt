@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#define inf 1000000000
+#define mod 1000000007
+#define scano(x) scanf("%d",&x)
+#define scanll(x) scanf("%lld",&x)
+#define scant(x,y) scanf("%d%d",&x,&y)
+#define pb push_back
+#define mp make_pair
+#define ll long long int
+#define vi vector<int>
+#define pii pair<int,int>
+#define vpii vector< pii >
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define fe first
+#define se second
+#define MAX 1000006
+using namespace std;
+int n,k,t,P[55][4],T[55][4];
+ll dp[55][55][55][55];
+ll rec(int i,int emp,int K,int tim)
+{
+    if(i==n)
+    {
+        if(emp>=K)return 0;
+        return -inf;
+    }
+    if(dp[i][emp][K][tim]!=-1)return dp[i][emp][K][tim];
+    ll res=-inf;
+    res = rec(i+1,emp+1,K,tim);
+    rep(j,0,3)if(tim+T[i][j]<=t)res = max(res,P[i][j]+rec(i+1,emp,K,tim+T[i][j]));
+    if(K+1<=k)
+    {
+        if(tim+T[i][0]+T[i][1]<=t)res = max(res,P[i][0]+P[i][1]+rec(i+1,emp,K+1,tim+T[i][0]+T[i][1]));
+        if(tim+T[i][0]+T[i][2]<=t)res = max(res,P[i][0]+P[i][2] + rec(i+1,emp,K+1,tim+T[i][0]+T[i][2]));
+        if(tim+T[i][1]+T[i][2]<=t)res = max(res,P[i][1]+P[i][2] + rec(i+1,emp,K+1,tim+T[i][1]+T[i][2]));
+    }
+    if(tim+T[i][0]+T[i][1]+T[i][2]<=t&&K+2<=k)res = max(res,P[i][0]+P[i][1]+P[i][2] + rec(i+1,emp,K+2,tim+T[i][0]+T[i][1]+T[i][2]));
+    return dp[i][emp][K][tim]=res;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);cin.tie(0);
+    int test;
+    cin>>test;
+    while(test--)
+    {
+        cin>>n>>k>>t;
+        rep(i,0,n)rep(j,0,3)cin>>T[i][j];
+        rep(i,0,n)rep(j,0,3)cin>>P[i][j];
+        memset(dp,-1,sizeof dp);
+        ll ans = rec(0,0,0,0);
+        printf("%lld\n",ans);
+    }
+    return 0;
+}

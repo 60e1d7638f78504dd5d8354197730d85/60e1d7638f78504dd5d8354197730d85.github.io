@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main(){
+  int num,temp,factor=1,nodd=0,neven=0;
+
+  scanf("%d",&num);
+
+  temp=num;
+  while(temp){
+      temp=temp/10;
+      factor = factor*10;
+  }
+
+  while(factor>1){
+      factor = factor/10;
+    	if(num/factor%2==0)
+          neven++;
+    	if(num/factor%2 !=0)
+          nodd++;
+      num = num % factor;
+    
+  }
+  if((nodd%2 !=0) &&(neven%2==0))
+    printf("YES");
+  else
+    printf("NO");
+
+  return 0;
+}

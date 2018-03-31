@@ -1,0 +1,50 @@
+#include <iostream>
+#include<string.h>
+#include<vector>
+using namespace std;
+class stud{
+  int rno,nos;
+  char name[20];
+  vector<float> marks;
+  public:
+  stud(int r,char na[],int n){
+    rno=r; strcpy(name,na); nos=n;
+    for(int i=0;i<n;i++){
+      int m;cin>>m;
+      marks.push_back(m);
+    }
+  }
+  void display();
+};   
+void stud::display(){
+  float avg=0;
+  for(int i=0;i<nos;i++)
+    avg+=marks[i];
+  avg/=nos;
+  cout<<name<<" "<<rno<<" "<<avg<<" Class ";
+   if(avg>80)
+    cout<<'A';
+  else if(avg>70)
+    cout<<'B';
+  else if(avg>60)
+    cout<<'C';
+  else if(avg>50)
+    cout<<'D';
+  else 
+    cout<<'F';
+  cout<<endl;
+}
+  
+int main()
+{
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int rno,nos;char name[20];
+    cin>>name>>rno>>nos;
+    stud S(rno,name,nos);
+    S.display();
+  }
+
+	return 0;
+}

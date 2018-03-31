@@ -1,0 +1,21 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       TestClass ob=new TestClass();
+       int n=in.nextInt();
+       int t=n,l=0;
+       while(t>0) {
+         t/=10;
+         l++;
+       }
+       int rev=ob.reverse(n,l);
+       System.out.println(rev);
+	}
+  	public int reverse(int n,int l) {
+      if(n==0)
+        return 0;
+      else
+        return ((n%10)*(int)Math.pow(10,l-1)+reverse(n/10,--l));
+    }
+}

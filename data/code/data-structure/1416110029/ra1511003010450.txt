@@ -1,0 +1,98 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define s(a) scanf("%lld",&a)
+#define pb push_back
+#define mp make_pair
+#define sc second
+#define f first
+#define inf 10e16
+ 
+using namespace std;
+ 
+ll a[1000001];
+ll l[1000001];
+ll r[1000001];
+vector<pair<ll,ll> >v;
+ 
+int main()
+{
+    stack<ll> s;
+    ll n,i,j,m,w,ww,x,y,z,t;
+    s(n);s(t);
+    for(i=1;i<=n;i++) {
+        s(a[i]);
+    }
+    s.push(1);l[1]=1;
+    for(i=2;i<=n;i++) {
+        while(!s.empty() && a[s.top()]<=a[i]) s.pop();
+        if(s.empty()) l[i]=1;
+        else l[i]=s.top()+1;
+        s.push(i);
+    }
+    while(!s.empty()) s.pop();
+    s.push(n);r[n]=n;
+    for(i=n-1;i>=1;i--) {
+        while(!s.empty() && a[s.top()]<a[i]) s.pop();
+        if(s.empty()) r[i]=n;
+        else r[i]=s.top()-1;
+        s.push(i);
+    }
+    for(i=1;i<=n;i++) {
+        v.pb(mp(a[i],(r[i]-i+1)*(i-l[i]+1)));
+    }
+    sort(v.begin(),v.end());
+    ll last=v[0].f;
+    ll tot=v[0].sc;
+    vector<pair<ll,ll> >ans;
+    ans.pb(mp(0,0));
+    for(i=1;i<v.size();i++) {
+        if(v[i].f!=last) {
+            ans.pb(mp(last,tot));
+            tot=0;
+        }
+        last=v[i].f;
+        tot+=v[i].sc;
+    }
+    ans.pb(mp(last,tot));
+    for(i=1;i<ans.size();i++) {
+        ans[i].sc=ans[i-1].sc+ans[i].sc;
+    }
+    w=ans[ans.size()-1].sc;
+    ans.pb(mp(inf,w));
+    char xx,yy;
+    while(t--) {
+        scanf("%c",&xx);
+        scanf("%c",&xx);
+        s(x);
+        scanf("%c",&yy);
+        scanf("%c",&yy);
+        ll low=0;
+        ll high=ans.size()-1;
+        ll mid;
+        while(low<high) {
+            mid=(low+high)/2;
+            if(ans[mid].f<x) {
+                low=mid+1;
+            }
+            else high=mid;
+        }
+        w=0;
+        if(x==ans[low].f) {
+            if(xx=='=') w=ans[low].sc-ans[low-1].sc;
+            else if(xx=='<') w=ans[low-1].sc;
+            else w=ans[ans.size()-1].sc-ans[low].sc;
+        }
+        else {
+            if(xx=='=') {w=0;}
+            else if(xx=='<') {w=ans[low-1].sc;}
+            else {w=ans[ans.size()-1].sc-ans[low-1].sc;}
+        }
+        if(w%2==1) printf("%c",yy);
+        else {
+            if(yy=='D') printf("C");
+            else printf("D");
+        }
+    }
+    cout<<endl;
+    return 0;
+}

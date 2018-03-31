@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <assert.h>
+#define mod 1000000007
+long long int dp[1002][1002];
+ 
+long long int solve(int curr,int sequence,long long int x[]){
+    if(sequence==0){
+        return 1;
+    }
+    if(curr>1000){
+        return 0;
+    }
+    if(dp[curr][sequence]!=-1)
+        return dp[curr][sequence];
+    long long int ans=0;
+    ans=x[curr]*solve(curr+1,sequence-1,x);
+    ans%=mod;
+    ans+=solve(curr+1,sequence,x);
+    ans%=mod;
+    dp[curr][sequence]=ans;
+    return ans;
+}
+int main() {
+    int n,m,i,j,c;
+    static int a[1001],b[1001];
+    long long int x[1001];
+    for(i=0;i<=1001;i++){
+        for(j=1;j<=1001;j++){
+            dp[i][j]=-1;
+        }
+    }
+    scanf("%d %d %d",&n,&m,&c);
+    for(i=1;i<=n;i++){
+        scanf("%d",&j);
+        a[j]++;
+    }
+    for(i=1;i<=m;i++){
+        scanf("%d",&j);
+        b[j]++;
+    }
+    for(i=1;i<=1000;i++){
+        x[i]=(long long int)a[i]*(long long int)b[i];
+        x[i]%=mod;
+    }
+    
+    long long int ans;
+    for(i=2;i<=c+1;i++){
+        ans=solve(1,i,x);
+        printf("%lld ",ans);
+    }
+   
+   return 0;
+}

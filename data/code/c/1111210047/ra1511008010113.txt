@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+    int a,b,c,d,hcf=1,i,lcm,j,min;
+    scanf("%d %d %d %d",&a,&b,&c,&d);
+    for(i=1;i<=b && i<=d;i++)
+      if(i%b==0 && i%d==0)
+        hcf=i;
+    lcm=(b*d)/hcf;
+    i=lcm/b;
+    j=lcm/d;
+    int e;
+    e=a*i+c*j;
+    if(lcm>e)
+      min=e;
+    else
+      min=lcm;
+    for(i=1;i<=min;i++){
+      if(e%i==0 && lcm%i==0){
+        e=e/i;
+        lcm=lcm/i;
+      }
+    }
+    printf("%d %d",e,lcm);
+	return 0;
+}

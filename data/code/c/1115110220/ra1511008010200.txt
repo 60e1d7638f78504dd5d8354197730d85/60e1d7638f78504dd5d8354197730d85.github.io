@@ -1,0 +1,65 @@
+#include <stdio.h>
+int main()
+{
+  int dd,mm,yyyy,yy,yc,mc,cc=0,ly=0,dw;
+  scanf("%d %d %d",&dd,&mm,&yyyy);
+  yy = yyyy%100;
+  yc = (yy + (yy/4))%7;
+  switch(mm)
+  {
+    case 1:
+    case 10:
+      mc = 0;
+      break;
+    case 2:
+    case 3:
+    case 11:
+      mc = 3;
+      break;
+    case 4:
+    case 7:
+      mc = 6;
+      break;
+    case 5:
+      mc = 1;
+      break;
+    case 6:
+      mc = 4;
+      break;
+    case 8:
+      mc = 2;
+      break;
+    case 9:
+    case 12:
+      mc = 5;
+  }
+  if(yyyy%4==0 || yyyy%400==0)
+    if(mm==1 || mm==2)
+      ly=-1;
+  
+  dw = (yc + mc + cc + dd + ly) % 7;
+  switch(dw - 1)
+  {
+    case 0:
+      printf("Sunday");
+      break;
+    case 1:
+      printf("Monday");
+      break;
+    case 2:
+      printf("Tuesday");
+      break;
+    case 3:
+      printf("Wednesday");
+      break;
+    case 4:
+      printf("Thursday");
+      break;
+    case 5:
+      printf("Friday");
+      break;
+    case 6:
+      printf("Saturday");
+  }
+  return 0;
+}

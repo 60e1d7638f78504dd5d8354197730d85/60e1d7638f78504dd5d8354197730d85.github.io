@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    int q, x, ch;
+    cin>>q;
+    
+    vector<int> v;
+    vector<int> :: iterator it;
+    while(q--)
+    {
+        cin>>ch;
+        switch(ch)
+        {
+            case 1: cin>>x;
+                    v.push_back(x);
+                    break;
+            
+            case 2: cin>>x;
+                    it = find(v.begin(), v.end(), x);
+                    if(it!=v.end()) v.erase(it);
+                    else cout<<"-1\n";
+                    break;
+            
+            case 3: if(v.size()) cout<<*max_element(v.begin(), v.end())<<endl;
+                    else cout<<"-1\n";
+                    break;
+            
+            case 4: if(v.size()) cout<<*min_element(v.begin(), v.end())<<endl;
+                    else cout<<"-1\n";
+                    break;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  scanf("%d",&t);
+  int i;
+  for(i=0;i<t;i++){
+  	int n,j;
+    scanf("%d",&n);
+    int songs[n];
+    for(j=0;j<n;j++){
+    	scanf("%d",&songs[j]);
+    }
+    int c;
+    scanf("%d",&c);
+    int pos=songs[c-1];
+    int temp,k;
+    for(j=0;j<n;j++){
+      for(k=j+1;k<n;k++)
+    	if(songs[j]>songs[k]){
+        	temp=songs[j];
+          	songs[j]=songs[k];
+          	songs[k]=temp;
+        }
+    }
+    int new=0;
+    for(j=0;j<n;j++){
+    	if(songs[j]==pos){
+        	printf("%d ",songs[j]);
+        }
+    }
+    
+  }
+	return 0;
+}

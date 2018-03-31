@@ -1,0 +1,40 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class TestClass {
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		int n=sc.nextInt();
+		
+		for(int i=0;i<n;i++){
+		 System.out.println(encrpt(sc.next())); 
+		}
+		
+	}
+	
+	public static String encrpt(String str){
+	 
+	 if(str.length()==0)
+	 return "";
+	 
+	 StringBuilder sb=new StringBuilder(); 
+	 char ch=str.charAt(0);
+	 int index=1;
+	 
+	 for(int i=1;i<str.length();i++){
+	 if(str.charAt(i)==ch){
+	 index++;
+	 }else{
+	 //System.out.println(ch+""+index);
+	 sb.append(ch+""+index);
+	 ch=str.charAt(i);
+	 index=1;
+	 }
+	 }
+	 //System.out.println(ch+""+index);
+	 sb.append(ch+""+index);
+	 
+	 return sb.reverse().toString();
+	}
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<math.h>
+ 
+int main(void) {
+    int t = 0;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int len = 0, num1 = 0, num2 = 0;
+        scanf("%d%d%d",&len,&num1,&num2);
+        int min = 0;
+        int no_of_1_1 = 0;
+        int no_of_1_2 = 0;
+        int no_of_0_1 = 0;
+        int no_of_0_2 = 0;
+        while(num1 > 0)
+        {
+            if(num1%2==1)
+                no_of_1_1++;
+            num1=num1/2;
+        }
+        while(num2 > 0)
+        {
+            if(num2%2==1)
+                no_of_1_2++;
+            num2=num2/2;
+        }
+        no_of_0_1 = len-no_of_1_1;
+        no_of_0_2 = len-no_of_1_2;
+        min = no_of_1_1<no_of_0_2?no_of_1_1:no_of_0_2;
+        min = min + (no_of_1_2<no_of_0_1?no_of_1_2:no_of_0_1);
+        len--;
+        int ans = 0;
+        while(min--)
+        {
+            ans = ans + pow(2, len);
+            len--;
+        }
+        printf("%d\n",ans);
+    }
+	return 0;
+}

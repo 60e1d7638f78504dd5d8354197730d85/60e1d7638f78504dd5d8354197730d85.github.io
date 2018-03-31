@@ -1,0 +1,38 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int N,top=-1,count=0,max=0,i,item;
+    scanf("%d",&N);
+    if(N==1)
+        printf("0");
+    else
+    {
+    int a[N];
+    scanf("%d",&a[++top]);
+    
+    max=count;
+    for(i=1;i<N;i++)
+    {   
+        
+        scanf("%d",&item);
+        if(item==(-a[top]))
+        {
+            top--;
+            count+=2;
+            if(max<count)
+                max=count;
+            
+        }
+        else if(item>0)
+        {
+            a[++top]=item;
+            count=0;
+        }
+        
+    }
+         printf("%d",max);
+    }
+   
+    return 0;
+}

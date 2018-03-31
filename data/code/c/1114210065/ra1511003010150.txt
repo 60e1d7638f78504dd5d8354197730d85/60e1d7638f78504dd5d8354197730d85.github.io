@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+int i,j,min,pos,arr[200],size;
+scanf("%d",&size);
+for(i=1;i<=size;i++)
+scanf("%d",&arr[i]);
+for(i=1;i<=size;i++)
+{
+min=arr[i];
+pos=i;
+for(j=i;j<=size;j++)
+{
+if(arr[j]<min)
+{
+min=arr[j];
+pos=j;
+}
+}
+arr[pos]=arr[i];
+arr[i]=min;
+}
+for(i=1;i<=size;i++)
+printf("%d\n",arr[i]);
+  return 0;
+}

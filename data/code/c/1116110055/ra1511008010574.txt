@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n, x, i, j=0, counter1=0, counter2=0;
+  char color[100][100];
+  scanf("%d", &n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s", color[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    x=strlen(color[i]);
+    for(j=0;j<x;j++)
+    {
+      if(color[i][j]=='a')
+      {
+        counter1++;
+        
+      }
+      else
+      {
+        counter2++;
+      }
+    }
+    if(counter1<counter2)
+    {
+      printf("%d\n", counter1);
+      counter1=counter2=0;
+    }
+    else
+    {
+      printf("%d\n", counter2);
+      counter1=counter2=0;
+    }
+  }
+  
+  
+	return 0;
+}

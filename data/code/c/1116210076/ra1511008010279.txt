@@ -1,0 +1,174 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+static inline int
+read_int(void)
+{
+	int val = 0;
+	int c = getchar_unlocked();
+	int sign = 1;
+ 
+	while (c != '-' && (c < '0' || '9' < c))
+		c = getchar_unlocked();
+ 
+	if (c == '-') {
+		sign = -1;
+		c = getchar_unlocked();
+	}
+	while ('0' <= c && c <= '9') {
+		val = 10 * val + c - '0';
+		c = getchar_unlocked();
+	}
+ 
+	return sign * val;
+}
+ 
+struct edge {
+	long long weight:20;
+	long long from:20;
+	long long to:20;
+};
+ 
+static inline int
+union_sets(int *parents, int N, int from, int to)
+{
+	int p;
+ 
+	while ((p = parents[from]) != from) {
+		parents[from] = parents[p];
+		from = p;
+	}
+ 
+	while ((p = parents[to]) != to) {
+		parents[to] = parents[p];
+		to = p;
+	}
+ 
+	if (from != to) {
+		parents[from] = to;
+		return 1;
+	}
+	return 0;
+}
+ 
+static inline int
+in_same_set(int *parents, int N, int from, int to)
+{
+	int p;
+ 
+	while ((p = parents[from]) != from) {
+		parents[from] = parents[p];
+		from = p;
+	}
+ 
+	while ((p = parents[to]) != to) {
+		parents[to] = parents[p];
+		to = p;
+	}
+ 
+	return from == to;
+}
+ 
+static int
+compare_edge(const void *a, const void *b)
+{
+	return ((struct edge *)a)->weight - ((struct edge *)b)->weight;
+}
+ 
+int
+main(void)
+{
+	int T, N, M;
+	int X, Y, Z;
+	int t;
+	register int i;
+	int c;
+	int *parents = NULL, *p;
+	struct edge *edges, *e;
+	int edges_size;
+	int nr_edges;
+	int first_r;
+	int nr_connected;
+	long long sum_weight;
+ 
+	T = read_int();
+ 
+	for (t = 0; t < T; t++) {
+		N = read_int();
+		M = read_int();
+ 
+		first_r = -1;
+		nr_connected = 0;
+		sum_weight = 0;
+ 
+		parents = realloc(parents, N * sizeof(parents[0]));
+ 
+		do {
+			c = getchar_unlocked();
+		} while (c != 'R' && c != 'H');
+ 
+		for (i = 0, p = parents; i < N; i++, p++) {
+			if (c == 'R') {
+				if (first_r < 0)
+					first_r = i;
+				*p = first_r;
+				nr_connected++;
+			} else {
+				*p = i;
+			}
+			c = getchar_unlocked();
+		}
+ 
+		edges_size = 10000;
+		edges = malloc(edges_size * sizeof(edges[0]));
+		nr_edges = 0;
+		for (; M > 0; M--) {
+			X = read_int()-1;
+			Y = read_int()-1;
+			Z = read_int();
+ 
+			/* skip edges between restaurants */
+			if (parents[X] == first_r && parents[Y] == first_r) {
+				if (Z < 0)
+					sum_weight += Z;
+				continue;
+			}
+ 
+			if (Z <= 0) {
+				if (union_sets(parents, N, X, Y))
+					nr_connected++;
+				sum_weight += Z;
+				continue;
+			}
+ 
+			if (in_same_set(parents, N, X, Y))
+				continue;
+ 
+			if (nr_edges >= edges_size) {
+				edges_size += 10000;
+				edges = realloc(edges, edges_size * sizeof(edges[0]));
+			}
+			edges[nr_edges].from = X;
+			edges[nr_edges].to = Y;
+			edges[nr_edges].weight = Z;
+			nr_edges++;
+		}
+ 
+		qsort(edges, nr_edges, sizeof(edges[0]), compare_edge);
+ 
+		e = edges;
+		while (nr_connected < N) {
+			if (union_sets(parents, N, e->from, e->to)) {
+				nr_connected++;
+				sum_weight += e->weight;
+			}
+			e++;
+		}
+ 
+		free(edges);
+ 
+		printf("%lld\n", sum_weight);
+	}
+ 
+	return 0;
+} 

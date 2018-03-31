@@ -1,0 +1,63 @@
+/*#include <stdio.h>
+int search(int arr[],int n,int m)
+{
+  int i;
+ for (i=0;i<m;i++)
+ {
+   if (arr[i]==n)
+   {
+       return 1;
+       break;
+   }
+ }
+       return 0;
+}
+int main()
+{
+int n,r,arr[10],m,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  scanf("%d",&arr[i]);
+  scanf("%d",&m);
+  r=search(arr,m,n);
+  if(r==0)
+    printf("%d is not present in the array",m);
+  else
+    printf("%d is  present in the array",m);
+	return 0;
+}*/
+#include<stdio.h>
+ 
+int linear_search(int*, int, int);
+ 
+int main()
+{
+   int array[100], search, c, n, position;
+   scanf("%d",&n);
+ 
+   for ( c = 0 ; c < n ; c++ )
+      scanf("%d",&array[c]);
+   scanf("%d",&search);
+ 
+   position = linear_search(array, n, search);
+ 
+   if ( position == -1 )
+      printf("%d is not present in the array", search);
+   else
+      printf("%d is present in the array", search);
+ 
+   return 0;
+} 
+ 
+int linear_search(int *pointer, int n, int find)
+{
+   int c;
+ 
+   for ( c = 0 ; c < n ; c++ )
+   {
+      if ( *(pointer+c) == find )
+         return c;
+   }
+ 
+   return -1;
+}

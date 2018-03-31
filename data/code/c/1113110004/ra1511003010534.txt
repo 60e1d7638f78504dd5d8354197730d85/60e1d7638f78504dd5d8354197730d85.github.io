@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<stdlib.h>
+ 
+int cmpfunc(const void *a, const void *b)
+{
+    return *(int *)b-*(int *)a;
+}
+int main()
+{
+    int t,n,i;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int hash[1000000] = {0};
+        scanf("%d",&n);
+        int a[n];
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+            hash[a[i]]++;
+        }
+        int max = 0;
+        int ans[10000],index = 0;
+        for(i=0;i<n;i++)
+        {
+            if(hash[a[i]]>max)
+                max = hash[a[i]];
+        }
+        for(i=0;i<1000000;i++)
+        {
+            if(hash[i] == max)
+            {
+                ans[index] = i;
+                index++;
+            }
+        }
+        qsort(ans,index,sizeof(int),cmpfunc);
+        for(i=0;i<index;i++)
+        {
+            printf("%d ",ans[i]);
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+      public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        
+        String str1 = sc.nextLine();
+          String str2 =sc.nextLine();
+            boolean res = TestClass.checkIsomorphic(str1,str2);
+            System.out.println("Isomarphic:"+res);
+      }
+
+      static boolean checkIsomorphic(String str1, String str2) {
+            int length = str1.length();
+            /* length of both strings must be same */
+            if (length != str2.length()) {
+                  return false;
+            }
+
+            // To mark visited characters in str2
+            char visited[] = new char[26];
+            for (int i = 0; i < visited.length; i++) {
+                  visited[i] = '#';
+            }
+
+            char[] strArr1 = str1.toCharArray();
+            char[] strArr2 = str2.toCharArray();
+
+            
+            for (int i = 0; i<length; i++) {
+                  char ch = visited[strArr1[i]-'a'];
+                  if(ch=='#') {
+                        visited[strArr1[i]-'a'] = strArr2[i];
+                  } else if (ch != strArr2[i]) {
+                        return false;                      
+                  }
+            }
+            return true;
+      }
+}

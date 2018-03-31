@@ -1,0 +1,27 @@
+#include<stdio.h>
+int s=0;
+int display(int);
+int main()
+{
+  int num,result;
+  scanf("%d",&num);
+  result=display(num);
+  printf("Sum = %d",result);
+  return 0;
+}
+int display(int num)
+{
+  static int i=1;
+  if(num==i)
+  {
+    s+=num;
+    return s;
+  }
+  else
+  {
+    s+=i;
+    i++;
+    display(num);
+  }
+  
+}

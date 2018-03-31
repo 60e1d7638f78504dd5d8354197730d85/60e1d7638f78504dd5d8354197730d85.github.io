@@ -1,0 +1,28 @@
+import java.io.*;
+import java.lang.*;
+import java.util.Scanner;
+public class TestClass {
+  public static boolean isArmstrong(int n) {
+    int sum = 0;
+    int x = n;
+    while(x>0) {
+      sum += Math.pow(x%10,3);
+      x/=10;
+    }
+    if(sum==n)
+      return true;
+    else
+      return false;
+  }
+	 public static void main(String[] args) { 
+		Scanner s = new Scanner(System.in);
+       int f = s.nextInt();
+       int l = s.nextInt();
+       int count=0;
+       for(int i=f;i<=l;i++) {
+         if(isArmstrong(i))
+            count++;
+       }
+       System.out.print("The Total number of Armstrong number is : "+count);
+	}
+}

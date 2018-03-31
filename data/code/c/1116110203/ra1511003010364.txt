@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t,k,i,le,sum,u;
+    char c,s[12345];
+    //scanf("%d",&t);
+    t =1;
+    while(t--)
+    {
+        sum=0;
+        scanf("%s",s);
+         le=strlen(s);
+        u=0;
+        for(i=0;i<le;i++)
+        {
+            if((s[i]-97>=0&&s[i]-97<=25)||s[i]==46)
+                {
+                    u++;
+                }
+        }
+    if(u==le)
+       {
+            k=le/2;
+        for(i=0;i<k;i++)
+        {
+            if(s[i]!=46&&s[le-i-1]!=46)
+            {
+                 if(s[i]!=s[le-i-1])
+                 {
+                     printf("-1\n");
+                     sum=1;
+                     break;
+                 }
+ 
+            }
+            else if(s[i]==46||s[le-1-i]==46)
+            {
+                if(s[i]==46)
+                    s[i]=s[le-1-i];
+                else
+                    s[le-1-i]=s[i];
+            }
+ 
+ 
+        }
+        if(s[le/2]==46&&le%2!=0)
+                s[le/2]=97;
+                for(i=0;i<le;i++)
+                {
+                    if(s[i]==46)
+                        s[i]=97;
+                }
+        if(sum==0)
+        printf("%s\n",s);
+       }
+       else
+        printf("-1\n");
+ 
+       }
+ 
+    return 0;
+}

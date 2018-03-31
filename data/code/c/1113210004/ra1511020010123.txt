@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<math.h>
+
+long long int binar(long long int n)
+{
+    if(n==1)
+        return 1;
+    if(n%2==0)
+        return 10*binar(n/2);
+    else
+        return 10*binar(n/2)+1;
+}
+
+int main() {
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        long long int n,a=1,b=9;
+        scanf("%lld",&n);
+        while(b%n!=0)
+        {
+            a++;
+            b=binar(a);
+            b*=9;
+        }
+        printf("%lld\n",b);
+    }
+    return 0;
+}

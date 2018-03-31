@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+  char input[100];
+  scanf("%s", input);
+  
+  int a = 0;
+  int n = 0;
+  int s = 0;
+  
+  int i;
+  for(i = 0; i < strlen(input); i++){
+    if(isalpha(input[i]))
+      a += 1;
+    else if(isalnum(input[i]))
+      n += 1;
+    else
+      s += 1;
+  }
+  
+  printf("Alphabets=%d\nDigits=%d\nSpecial characters=%d", a, n, s);
+  return 0;
+}

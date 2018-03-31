@@ -1,0 +1,85 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+ 
+struct stuDetails
+{
+	string name;
+	int rank;
+	int score;
+ 
+	bool operator > (stuDetails&a)
+	{
+		if (score > a.score)
+		{
+			return true;
+		}
+		else if ((score == a.score) && name.compare(a.name) < 0)
+		{
+			return true;
+		}
+		else if ((score == a.score) && name.compare(a.name) == 0 && rank < a.rank)
+		{
+			return true;
+		}
+		return false;
+	}
+};
+ 
+void swap(stuDetails &a, stuDetails &b)
+{
+	stuDetails temp = a;
+	a = b;
+	b = temp;
+}
+ 
+int partition(vector<stuDetails> &arr, stuDetails pivot, int start, int end)
+{
+	int index = start;
+	for (int i = start; i < end; i++)
+	{
+		stuDetails num = arr[i];
+		if ( (arr[i]) > pivot)
+		{
+			swap(arr[index], arr[i]);
+			++index;
+		}
+	}
+	swap(arr[index], arr[end]);
+	return index;
+}
+ 
+ 
+void QucikSort(vector<stuDetails>&arr, int start, int end)
+{
+	if (start < end)
+	{
+		stuDetails pivot = arr[end];
+		int index = partition(arr, pivot, start, end);
+		QucikSort(arr, start, index - 1);
+		QucikSort(arr, index + 1, end);
+	}
+}
+ 
+int main()
+{
+	int N;
+	cin >> N;
+	vector<stuDetails> vec(N);
+ 
+	for (int i = 0; i < N; i++)
+	{
+		cin >> vec[i].name >> vec[i].rank>> vec[i].score;
+	}
+ 
+	QucikSort(vec, 0, N - 1);
+ 
+	for (int i = 0; i < N; i++)
+	{
+		cout << vec[i].name << " " << vec[i].rank << " " << vec[i].score << endl;
+	}
+ 
+	cin.get();
+	return 0;
+}

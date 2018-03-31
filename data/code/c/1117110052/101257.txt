@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include<stdlib.h>
+ 
+#define MOD 1000000007
+ 
+ 
+int arr[100001],arrsize,size[100001],o[100001];
+ 
+void init()
+{
+    int i;
+    for(i=1;i<100001;i++)
+    {
+     arr[i]=i;
+     size[i]=1;
+     o[i]=0;
+    }
+}
+ 
+int root(int i)
+{
+    while(arr[i]!=i)
+    {
+        i=arr[i];
+    }
+    return i;
+}
+ 
+void w_union(int a,int b)
+{
+    int ra,rb;
+    ra=root(a);
+    rb=root(b);
+    if(ra!=rb)
+    {
+        if(size[ra]>size[rb])
+        {
+            arr[rb]=ra;
+            size[ra]+=size[rb];
+        }
+        else
+        {
+            arr[ra]=rb;
+            size[rb]+=size[ra]; 
+        }
+    }
+}
+ 
+ 
+int main()
+{
+    int i,a,b,e,n,r;
+    long int way=1;
+    init();
+    scanf("%d%d",&n,&e);
+    arrsize=n;
+    while(e--)
+    {
+        scanf("%d%d",&a,&b);
+        w_union(a,b);
+    }
+    for(i=1;i<=arrsize;i++)
+    {
+        e=arr[i];
+        o[e]=1;
+    }
+     for(i=1;i<=arrsize;i++)
+    {
+        if(o[i]==1)
+        {
+            r=root(i);
+             way=((way%MOD)*(size[r]%MOD))%MOD;
+ 
+        }
+    }
+    
+    printf("%ld",way);
+    
+    return 0;
+}

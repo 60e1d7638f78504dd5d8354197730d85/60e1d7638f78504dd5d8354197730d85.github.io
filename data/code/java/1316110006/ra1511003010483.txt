@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+public class TestClass 
+{
+  public static boolean pass()
+  {
+    Scanner sc=new Scanner(System.in);
+    String p=sc.next();
+    int l=p.length();
+    int num=0;
+    if(l>=10)
+    {
+      for(int i=0;i<l;i++)
+      {
+        int d=(int)(p.charAt(i));
+        if((d>=65 && d<=90)||(d>=97&&d<=122)||(d>=48&&d<=57))
+        {
+          if(d>=48&&d<=57)
+            {
+			num=num+1;
+			}
+        }
+        else
+        {
+          return false;
+        }
+      }
+      if(num>=2)
+      {
+      	return true;
+	  }
+    }
+    else
+    {
+      return false;
+    }
+    return false;
+  }
+    public static void main(String[] args)
+    { 
+      if(pass())
+      {
+        System.out.println("Password is valid");
+      }
+      else
+        System.out.println("Not a valid password");
+		
+	}
+}

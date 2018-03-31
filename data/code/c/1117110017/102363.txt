@@ -1,0 +1,51 @@
+#include <stdio.h>
+int check(int s,int a[s][s])
+{
+  int i,j,temp,flag=0;
+  if((a[0][0]%2)==0)
+  {
+    for(i=0;i<s;i++)
+    {
+      for(j=0;j<s;j++)
+      {
+        if((a[i][j]%2)!=0)
+        {
+          flag=1;
+          break;
+        }
+      }
+    }
+  }
+  else
+  {
+    for(i=0;i<s;i++)
+    {
+      for(j=0;j<s;j++)
+      {
+        if((a[i][j]%2)==0)
+        {
+          flag=1;
+          break;
+        }
+      }
+    }
+  }
+      return flag;
+}
+int main()
+{
+int order,flag,i,j;
+  scanf("%d",&order);
+  int arr[order][order];
+  for(i=0;i<order;i++)
+  {
+    for(j=0;j<order;j++)
+      scanf("%d",&arr[i][j]);
+  }
+  flag=check(order,arr);
+  if(flag==1)
+    printf("\nno");
+  else
+    printf("\nyes");
+ 	return 0;
+}

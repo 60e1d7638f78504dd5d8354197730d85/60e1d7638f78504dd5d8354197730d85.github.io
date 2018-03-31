@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct cell{
+	long long int change;
+	long long int newe;
+	int id;
+};
+struct cell arr[1000001];
+int n;
+void swap(int i,int j)
+{
+	long long int temp=arr[i].change;
+	arr[i].change=arr[j].change;
+	arr[j].change=temp;
+	
+	temp=arr[i].id;
+	arr[i].id=arr[j].id;
+	arr[j].id=temp;
+	
+	temp=arr[i].newe;
+	arr[i].newe=arr[j].newe;
+	arr[j].newe=temp;
+}
+void max_heapify(int index)
+{
+	int largest;
+	int left=2*index;
+	int right=2*index+1;
+	
+	if(left <= n && ((arr[left].change > arr[index].change) || ((arr[left].change == arr[index].change) && (arr[left].id > arr[index].id))))
+	 largest=left;
+	else
+	 largest=index;
+	if(right <=n && ((arr[right].change > arr[largest].change) || ((arr[right].change == arr[largest].change) && (arr[right].id > arr[largest].id))))
+	 largest=right;
+	
+	if(largest != index)
+	{
+		swap(largest,index);
+		max_heapify(largest);
+	}
+}
+void build_maxheap()
+{
+	int i;
+	for(i=n/2;i>=1;i--)
+	{
+		max_heapify(i);
+	}
+}
+void extract_max()
+{
+	swap(1,n);
+	n=n-1;
+	max_heapify(1);
+}
+int main()
+{
+	//freopen("program.txt","r",stdin);
+	scanf("%d",&n);
+	int i;
+	for(i=1;i<=n;i++)
+	{
+		int a,b,c,d,e,f;
+		scanf("%d %d %d %d %d %d",&a,&b,&c,&d,&e,&f);
+		arr[i].id=a;
+		arr[i].newe=1ll*c*50+1ll*d*5+1ll*e*10+1ll*f*20;
+		arr[i].change=arr[i].newe-b;
+	}
+	build_maxheap();
+	for(i=0;i<5;i++)
+	{
+		printf("%d %lld\n",arr[1].id,arr[1].newe);
+		extract_max();
+	}
+	return 0;
+}

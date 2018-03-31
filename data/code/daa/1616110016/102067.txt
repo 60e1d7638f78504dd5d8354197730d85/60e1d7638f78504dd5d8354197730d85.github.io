@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+ 
+// Number of vertices in the graph
+//#define V 4
+ 
+// A naive recursive function to count walks from u to v with k edges
+int countwalks(int graph[10][10], int u, int v, int k, int X)
+{
+   // Base cases
+   if (k == 0 && u == v)      return 1;
+   if (k == 1 && graph[u][v]) return 1;
+   if (k <= 0)                return 0;
+ 
+   // Initialize result
+   int count = 0;
+ 
+   // Go to all adjacents of u and recur
+   for (int i = 1; i < X-1; i++)
+       if (graph[u][i] == 1)  // Check if is adjacent of u
+           count += countwalks(graph, i, v, k-1,X);
+ //printf("\nans%d",count);
+   return count;
+}
+ 
+// driver program to test above function
+int main()
+{
+    /* Let us create the graph shown in above diagram
+     int graph[V][V] = { {0, 1, 1, 1},
+                        {0, 0, 0, 1},
+                        {0, 0, 0, 1},
+                        {0, 0, 0, 0}
+                      };*/
+  int graph[10][10],i,j,v,V,u,k,t;
+  scanf("%d",&t);
+    while(t!=0)
+    {
+  scanf("%d",&V);
+  for(i=0;i<V;i++)
+    for(j=0;j<V;j++)
+      scanf("%d",&graph[i][j]);
+   
+    
+   // int u = 0, v = 3, k = 2;
+  scanf("%d",&u);
+  scanf("%d",&v);
+  scanf("%d",&k);
+   cout << countwalks(graph, u, v, k,V);
+      //t=t-1;
+   // return 0;
+      t=t-1;
+      printf("\n");
+    }
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{int N;
+ scanf("%d",&N);
+ if(N==0)
+ printf("0");
+   
+ while(N--){
+ char ch[10];
+ scanf("%s",ch);
+ int i,j,k;
+ for(i=0;ch[i]!='\0';i++)
+   for(j=i+1;ch[j]!='\0';j++){
+     while(ch[i]==ch[j]){
+       k=j;
+       while(ch[k]!='\0'){
+         ch[k]=ch[k+1];
+       k++;}
+     }
+   }
+ int l=strlen(ch);
+ printf("%d\n",l);
+ }
+	return 0;
+}

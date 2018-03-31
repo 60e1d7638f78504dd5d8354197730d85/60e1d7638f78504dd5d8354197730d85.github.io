@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	long long int a,b,c,i,r,count[101];
+	for(i=0;i<=100;i++)
+		count[i]=0;
+	double d,s;
+	scanf("%lld",&r);
+	for(i=1;i<=r;i++)
+	{
+		for(a=1;a<=100;a++)
+		{
+			for(b=a;b<=200;b++)
+			{
+				for(c=b;c<=200;c++)
+				{
+					d=sqrt((a+b+c)*(a+b-c)*(a+c-b)*(b+c-a));
+					s=i*(a+b+c);
+					if(d==2*s)
+						count[i]++;
+				}
+			}
+		}
+	}
+	printf("%lld\n",count[r]);
+	for(a=1;a<=100;a++)
+	{   
+		for(b=a;b<=200;b++)
+		{   
+			for(c=b;c<=200;c++)
+			{   
+				d=sqrt((a+b+c)*(a+b-c)*(a+c-b)*(b+c-a));
+				s=r*(a+b+c);
+				if(d==2*s)
+					printf("%lld %lld %lld\n",a,b,c);
+			}   
+		}   
+	}   
+ 
+	return 0;
+}

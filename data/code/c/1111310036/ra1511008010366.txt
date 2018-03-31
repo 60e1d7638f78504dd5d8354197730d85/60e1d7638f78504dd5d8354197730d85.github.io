@@ -1,0 +1,84 @@
+#include <stdio.h>
+    #include <stdlib.h>
+    #include<string.h>
+     
+    typedef struct {	
+    	int K ;
+    	int N ;
+    	int* A ;
+    } StrArr ;
+     
+    void rotandprint(StrArr strA)
+    {
+    	int i,j,l1 ;
+     
+    	
+    	if(strA.N > strA.K)
+    	{
+    	  j=strA.N-strA.K ;
+    	}
+    	else
+    	{
+    	  l1 = (strA.K % strA.N)  ;
+    	  j=strA.N-l1 ;
+        }
+     
+     
+     
+    	for(i=j;i<strA.N;i++)
+    	{
+    			printf("%d\n",strA.A[i]) ; 
+    	}
+    	
+    	for(i=0;i<j;i++)
+    	{
+    			printf("%d\n",strA.A[i]) ; 
+    	}
+    	
+    	
+    	
+    	putchar('\n') ; 
+    	
+    }
+     
+     
+    int main(int argc, char** argv)
+    {
+      int T,i,j,isz, csz ;
+      char tmp[15], c='Z', *l ;
+      StrArr strA ;
+      isz=sizeof(int) ;
+      csz = sizeof(char) ;
+     
+      scanf("%d",&T) ;
+      
+      for(i=0;i<T;i++)
+      {
+    	  scanf("%d %d",&(strA.N),&(strA.K)) ;
+      	  strA.A = malloc(isz*(strA.N)) ;	
+    	  l=tmp ;
+    	  memset(tmp,0,15) ;
+    	  for(j=0 ; j < strA.N  ; ) 
+    	  {
+    	   	  c = getchar() ;
+    		  if(c!=' ' && c!='\n' && c>-1)
+    		  {
+    			*l=c ;
+    			l+=csz ;
+    		  }
+    		  else
+    		  {
+    		    if(l==tmp) continue ;
+    			*((strA.A)+j) = atoi(tmp) ;
+    			memset(tmp,0,15) ;
+    			l=tmp ;
+    			j++ ;			
+    		  }
+    	      
+    	  }
+    	  rotandprint(strA) ;
+    	  free(strA.A) ;
+      }
+      
+      return 0 ;
+    }

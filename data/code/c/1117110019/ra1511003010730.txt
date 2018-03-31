@@ -1,0 +1,34 @@
+#include <stdio.h>
+void lt(int a[10][10], int n, int m);
+int main()
+{
+  int a[10][10],n,m,i,j;
+  scanf("%d",&n);
+  scanf("%d",&m);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<m;j++)
+    scanf("%d",&a[i][j]);
+  }
+  lt(a,n,m);
+
+	return 0;
+}
+              void lt(int a[10][10],int n, int m)
+              {
+                int i,j,flag=0;
+                for(i=0;i<n;i++)
+                {       
+                    for(j=(i + 1);j<m;j++)
+                    {
+                      if(a[i][j]!=0)
+                      {
+                        flag=1;
+                        break;
+                      }
+                    } 
+                }
+                if(flag==0)
+                  printf("yes");
+                else printf("no");
+                }

@@ -1,0 +1,158 @@
+#include<stdio.h>
+ 
+typedef struct{
+    int l, r, index;
+} Query;
+ 
+Query query[ 200001 ];
+int edge[ 200001 ][ 2 ], bucketSize, conComponents, parent[ 200001 ], rank[ 200001 ], n, history[ 200004 ][ 3 ], historyTop, answer[ 200001 ];
+ 
+int compare( void * a, void * b );
+int compareByIndex( void * a, void * b );
+void reset();
+void setUnion( int a, int b );
+int find( int i );
+void rollback();
+ 
+int main()
+{
+    int t, m, q, i, j, curBucket, bucket, nextBucketL, curBucketR;
+    scanf( "%d", &t );
+    while( t -- )
+    {
+        scanf( "%d%d%d", &n, &m, &q );
+        for( i = 0; i * i <= m; i ++ );
+        bucketSize = i;
+        for( i = 1; i <= m; i ++ )
+        {
+            scanf( "%d%d", &edge[ i ][ 0 ], &edge[ i ][ 1 ] );
+        }
+        for( i = 1; i <= q; i ++ )
+        {
+            scanf( "%d%d", &query[ i ].l, &query[ i ].r );
+            query[ i ].index = i;
+        }
+        qsort( query + 1, q, sizeof( Query ), compare );
+        curBucket = nextBucketL = -1;
+        for( i = 1; i <= q; i ++ )
+        {
+            bucket = query[ i ].l / bucketSize;
+            if( bucket != curBucket )
+            {
+                reset();
+                nextBucketL = bucketSize * ( bucket + 1 ) + 1;
+                curBucket = bucket;
+            }
+            for( ; nextBucketL <= query[ i ].r; nextBucketL ++ )
+            {
+                setUnion( edge[ nextBucketL ][ 0 ], edge[ nextBucketL ][ 1 ] );
+            }
+            curBucketR = ( m ) < ( bucketSize * ( curBucket + 1 ) ) ? ( m ) : ( bucketSize * ( curBucket + 1 ) );
+            for( j = query[ i ].l; j <= curBucketR && j <= query[ i ].r; j ++ )
+            {
+                setUnion( edge[ j ][ 0 ], edge[ j ][ 1 ] );
+            }
+//            query[ i ].answer = conComponents;
+            answer[ query[ i ].index ] = conComponents;
+            for( j = query[ i ].l; j <= curBucketR && j <= query[ i ].r; j ++ )
+            {
+                rollback();
+            }
+        }
+//        qsort( query + 1, q, sizeof( Query ), compareByIndex );
+        for( i = 1; i <= q; i ++ )
+            printf( "%d\n", answer[ i ] );
+    }
+    return 0;
+}
+ 
+int compare( void * a, void * b)
+{
+    Query * first = ( Query * ) a, * second = ( Query * ) b;
+    int buck1 = first->l / bucketSize, buck2 = second->l / bucketSize;
+    if( buck1 != buck2 )
+        return buck1 < buck2 ? -1 : 1;
+    if( first->r != second->r )
+        return first->r - second->r;
+    if( first->l != second->l )
+        return first->l - second->l;
+    return 0;
+}
+ 
+int compareByIndex( void * a, void * b )
+{
+    return ( ( Query * ) a )->index - ( ( Query * ) b )->index;
+}
+ 
+void reset()
+{
+    int i;
+    conComponents = n;
+    historyTop = -1;
+    for( i = 0; i <= n; i ++ )
+    {
+        parent[ i ] = i;
+        rank[ i ] = 0;
+    }
+}
+ 
+void setUnion( int a, int b )
+{
+    int x = find( a ), y = find( b );
+    if( x == y )
+    {
+        history[ ++ historyTop ][ 0 ] = -1;
+        history[ historyTop ][ 1 ] = -1;
+        history[ historyTop ][ 2 ] = -1;
+    }
+    else
+    {
+        conComponents --;
+        if( rank[ x ] > rank[ y ] )
+        {
+            parent[ y ] = x;
+            history[ ++ historyTop ][ 0 ] = y;
+            history[ historyTop ][ 1 ] = x;
+            history[ historyTop ][ 2 ] = 0;
+        }
+        else if( rank[ x ] < rank[ y ] )
+        {
+            parent[ x ] = y;
+            history[ ++ historyTop ][ 0 ] = x;
+            history[ historyTop ][ 1 ] = y;
+            history[ historyTop ][ 2 ] = 0;
+        }
+        else
+        {
+            rank[ x ] ++;
+            parent[ y ] = x;
+            history[ ++ historyTop ][ 0 ] = y;
+            history[ historyTop ][ 1 ] = x;
+            history[ historyTop ][ 2 ] = 1;
+        }
+    }
+}
+ 
+int find( int i )
+{
+    if( parent[ i ] == i )
+        return i;
+    return find( parent[ i ] );
+}
+ 
+void rollback()
+{
+    if( historyTop >=0 )
+    {
+        if( history[ historyTop ][ 0 ] == -1 )
+        {
+            historyTop --;
+            return;
+        }
+        if( history[ historyTop ][ 2 ] )
+            rank[ history[ historyTop ][ 1 ] ] --;
+        parent[ history[ historyTop ][ 0 ] ] = history[ historyTop ][ 0 ];
+        conComponents ++;
+        historyTop --;
+    }
+}  

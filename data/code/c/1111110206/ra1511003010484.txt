@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+    char st[10000],ch='f';
+    int p,i=0;
+    while(ch!='$')
+    {
+        scanf("%c",&ch);
+        st[i]=ch;
+        i++;
+    }
+    int u=0,l=0,ln;
+    ln = strlen(st);
+
+    for(i=0;i<ln;i++)
+    {
+        p = st[i];
+        if((p>64 )&&(p<91) )
+        {
+            u++;
+        }
+        if((p>96 )&&(p<123))
+        {
+            l++;
+        }
+    }
+    printf("Uppercase Letters=%d\n",u);
+    printf("Lowercase Letters=%d\n",l);
+    return 0;
+}

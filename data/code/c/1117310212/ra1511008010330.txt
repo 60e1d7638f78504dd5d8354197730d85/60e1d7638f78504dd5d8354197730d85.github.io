@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+int n,i,j,arr[30],l=0;
+  scanf("%d",&n);
+  for(i=2;i<=n;i++)
+  {
+   int flag=0;
+    for(j=2;j<=i/2;j++)
+    {
+     if(i%j==0)
+     {
+      flag=1;
+       break;
+     }
+    }
+    if(flag==0)
+    {
+      arr[l]=i;
+        //printf("%d ",arr[l]);
+      l++;
+    }
+  }
+  for(i=0;i<l;i++)
+  {//printf("%d ",arr[i]);
+   for(j=i;j<l;j++)
+   {
+    if(arr[i]+arr[j]==n)
+    {
+     printf("%d = %d + %d\n",n,arr[i],arr[j]);
+      break;
+    }
+   }
+  }
+	return 0;
+}

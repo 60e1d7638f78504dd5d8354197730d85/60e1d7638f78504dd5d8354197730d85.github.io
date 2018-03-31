@@ -1,0 +1,59 @@
+#include <stdio.h>
+int main()
+{
+	int i,n,j,a[10],t,f1=0,f2=0,l=0,b=0;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+  	for(i=0;i<n-1;i++)
+    {
+      for(j=0;j<n-i-1;j++)
+      {
+        if(a[j]<a[j+1])
+        {
+          t=a[j];
+          a[j]=a[j+1];
+          a[j+1]=t;
+        }
+      }
+    }
+  i=0;
+ while(f1==0&&i<n)
+ {
+   if(a[i]==a[i+1])
+   {
+     l=a[i];
+     f1=1;
+     i+=2;
+     break;
+   }
+   else
+   {
+     i++;
+   }
+ }
+  while(f2==0&&i<n)
+  {
+    if(a[i]==a[i+1])
+    {
+      b=a[i];
+      f2=1;
+      break;
+    }
+    else
+    {
+      i++;
+    }
+  }
+  if(l!=0 && b!=0)
+  {
+  printf("%d",(l*b));
+  }
+  else
+  {
+    printf("-1");
+  }
+	return 0;
+}

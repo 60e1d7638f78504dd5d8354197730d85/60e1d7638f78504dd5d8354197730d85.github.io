@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#define TRUE 1
+#define FALSE 0
+int nextPrimeNumber(int num);
+int isPrime(int);
+int main()
+{
+    int num,res=0,val=0;
+    scanf("%d",&num);
+    res = isPrime(num);
+    if(res == 1)
+    {
+      val = num-num;
+      printf("%d",val);
+    }
+    else
+    {
+      res = nextPrimeNumber(num);
+      num=res-num;
+      printf("%d",num);
+    }
+    return 0;
+}
+ int isPrime(int input){
+    int i;
+ 
+    int prime = TRUE;
+ 
+    if(input == 2){
+        return TRUE;
+    }
+     if(input%2 == 0 || input <= 1){
+        prime = FALSE;
+    } else {
+        for(i=3; i<=sqrt(input); i+=2){
+            if(input%i == 0){
+                prime = FALSE;
+            }
+        }
+     }    
+    
+    return prime;
+}
+int nextPrimeNumber(int inputNumber){
+    int nextPrime = inputNumber;
+    int found = 0;
+  if(inputNumber==0){
+            printf("2");
+            exit(0);
+  }
+    while (!found)
+    {
+        nextPrime++;
+        if (isPrime(nextPrime))
+            found = 1;
+    }
+    return nextPrime;
+}

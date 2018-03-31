@@ -1,0 +1,33 @@
+#include <stdio.h>
+long long int fact(long long int n,long long int k)
+{
+    double  fc=1;
+    double  c,i;
+    if(k>n-k)
+        c=n-k;
+    else
+        c=k;
+    for(i=1;i<=c;i++)
+    {
+        fc=fc*n;
+        fc=fc/i;
+        n--;
+    }
+    return (long long int)fc;
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	{
+        long long int fc,n,k,i;
+        for(i=0;i<t;i++)
+        {
+            scanf("%lld%lld",&n,&k);
+            fc=fact(n-1,k-1);
+            printf("%lld\n",fc);
+        }
+	}
+	return 0;
+}
+ 

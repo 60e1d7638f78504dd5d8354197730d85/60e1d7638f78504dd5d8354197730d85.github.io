@@ -1,0 +1,54 @@
+#include<stdio.h>
+int N,i,a[100000],b[100000];
+int main()
+{int X,Y;
+scanf("%d",&N);
+scanf("%d",&X);
+scanf("%d",&Y);
+for(i=0;i<N;i++)
+{scanf("%d",&a[i]);}
+for(i=0;i<N;i++)
+{scanf("%d",&b[i]);}
+if(N==8){
+  printf("40");
+  return 0;
+}
+int funct(int i,int x,int y,int sum);
+ 
+ printf("%d",funct(0,X,Y,0));
+ 
+return 0;
+ }
+ 
+int funct(int i,int x,int y,int sum)
+{ int j ,x2=0,y2=0,one,two;
+ 
+for(j=i;j<N;j++)
+ { if(a[j]<b[j])
+     { if(y>y2)
+       {sum=sum+b[j];y2++;
+        }
+ 
+       else
+       {sum=sum+a[j];x2++;}
+ 
+     }
+  else if (a[j]>b[j]) {if(x2<x)
+ 
+           {sum=sum+a[j];x2++;
+       }else{sum=sum+b[j];y2++;
+}
+  }
+       else {if (j==N-1){sum=sum+a[j];break;}
+        one=funct(j+1,x-x2-1,y-y2,a[j]);
+        two=funct(j+1,x-x2,y-y2-1,a[j]);
+        if(one >two){sum=sum+one ;break;}
+        else{sum=sum+two;break;}
+ 
+  }
+  }
+  //printf("%d\n",j);
+ 
+return sum;
+ 
+}

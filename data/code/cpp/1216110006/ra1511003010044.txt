@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 100010
+void print( int a[], int n)
+    {
+    for(int i=0; i<n;i++)
+        cout<<a[i]<<" ";
+}
+int main()
+    {
+    int n,m,count=0;
+    cin>>n;
+    int idx;
+    int a[MAX];
+    for( int i=0; i<n; i++)
+        cin>>a[i];
+    cin>>m;
+    for( int i=0; i< n-1; i++){
+    	int max=a[i];
+        int q=max;
+        for( int j=i+1; j<n; j++ ) {
+            if(a[j] > q) {
+                q=a[j];
+                idx=j;
+        	}
+        }
+        if(q==max)
+        	continue;
+        if(q!=max) {
+            swap(a[i],a[idx]);
+            ++count;
+            if(count==m)
+                 break;
+        }
+    }
+    print(a,n);
+    return 0;
+} 

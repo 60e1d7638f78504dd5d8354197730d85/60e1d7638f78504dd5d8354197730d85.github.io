@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n, temp, pow=0, sum=0 , pro=1, i;
+
+    scanf("%d",&n);
+
+    temp = n;
+
+    for( pow =0 ; temp > 0; pow++ ){
+        temp/=10;
+    }
+    temp=n;
+    pow;
+
+    while( temp>0){
+      	pro=1;
+        for(i=0; i<pow ; i++){
+        pro*=(temp%10);
+        }
+      sum+=pro;
+      temp/=10;
+    }
+
+    if(sum == n){
+        printf("Narcissistic Number");
+    }
+    else{
+        printf("NOT Narcissistic Number");
+    }
+
+	return 0;
+}

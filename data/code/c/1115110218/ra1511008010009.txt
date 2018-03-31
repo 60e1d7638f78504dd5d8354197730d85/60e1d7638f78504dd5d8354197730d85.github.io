@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+int n, m,*a,i,j,*b,*c,t;
+scanf("%d",&t);
+while(t)
+{
+scanf("%d %d",&n,&m);
+a=malloc(n*sizeof(int));
+b=malloc((n-m)*sizeof(int));
+c=malloc(m*sizeof(int));
+ 
+for(i=0;i<n;i++)
+a[i]=i+1;
+for(i=0;i<m;i++)
+{
+scanf("%d",&c[i]);
+a[c[i]-1]=-1;
+}
+for(i=0,j=0;i<n&&j<n-m;i++)
+if(a[i]>0)
+b[j++]=a[i];
+ 
+j=0;
+while(j<n-m)
+{
+printf("%d " ,b[j]);
+j+=2;
+}
+printf("\n");
+j=1;
+while(j<n-m)
+{
+printf("%d " ,b[j]);
+j+=2;
+}
+printf("\n");
+t--;
+}
+return 0;
+}

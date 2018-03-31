@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+	int t,a,b,flag,i,j;
+  	scanf("%d",&t);
+  	while(t){
+      	flag=0;
+    	scanf("%d",&a);
+      	int arr[a];
+      	for(i=0;i<a;i++){
+        	scanf("%d",&arr[i]);
+        }
+      	scanf("%d",&b);
+      	int brr[b];
+      	for(i=0;i<b;i++){
+        	scanf("%d",&brr[i]);
+        }
+      	for(i=0;i<b;i++){
+        	for(j=0;j<a;j++){
+            	if(brr[i]==arr[j]){
+                	brr[i]=0;
+                }
+            }
+        }
+      	for(i=0;i<b;i++){
+        	if(brr[i]==0)
+              flag++;
+        }
+      	if(flag==b){
+        	printf("Yes\n");	
+        }
+      	else{
+        	printf("No\n");
+        }
+    	t--;
+    }
+	return 0;
+}

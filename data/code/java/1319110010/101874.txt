@@ -1,0 +1,47 @@
+import java.util.*;
+public class TestClass
+{
+	public static void main(String[] args)
+ 	{
+  		Scanner input = new Scanner(System.in);
+  		int n = input.nextInt();
+  		int a[] = new int[n];
+  		for(int i=0; i<n; i++)
+   			a[i] = input.nextInt();
+  		try
+  		{
+   			TestClass t = new TestClass();
+    		t.InvalidTestScore(a);
+  		}
+  		catch(InvalidTestScore e)
+  		{
+   			System.out.println(e);
+  		}
+ }
+ 
+ public void InvalidTestScore(int[] a) throws InvalidTestScore
+ {
+  double avg = average(a);
+  System.out.println(avg);
+ }
+ 
+ public double average(int[] a) throws InvalidTestScore
+ {
+  double sum = 0;
+  for(int i=0; i<a.length; i++)
+  {
+   if(a[i] < 0 || a[i] > 100)
+    throw new InvalidTestScore("Invalid Test Score");
+   else
+    sum = sum + a[i];
+  }
+  return sum/(a.length);
+ }
+}
+
+class InvalidTestScore extends Exception
+{
+ public InvalidTestScore(String msg) {
+ super(msg);
+ }
+}

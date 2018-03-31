@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+  int l,t,i,j,c,c1,sum,sum1;
+  char s[1000];
+  scanf("%d",&t);
+  while(t--)
+  {c=sum=c1=sum1=0;
+  	scanf("%s",s);
+  	l=strlen(s);
+  	if(l%2)
+  	{
+  		for(i=0;i<l/2;i++)
+  		{sum=(int)(s[i])+sum;
+  			for(j=l-1;j>(l/2);j--)
+  			{
+  				if(s[i]==s[j])
+  				{
+  				c++;
+  				break;
+  				}
+  			}
+  		}
+  		if(c==l/2)
+  		{
+  				for(j=l-1;j>(l/2);j--)
+  		{
+  			sum1=sum1+(int)(s[j]);
+  			for(i=0;i<l/2;i++)
+  			{
+  				if(s[i]==s[j])
+  				{
+  				c1++;
+  				break;
+  				}
+  			}
+  		}
+  		}
+  		if(c1==l/2&&sum==sum1)
+  		printf("YES\n");
+  		else
+  		printf("NO\n");
+  		
+  	}
+  	else
+  	{
+  		for(i=0;i<l/2;i++)
+  		{sum=sum+(int)(s[i]);
+  			for(j=l-1;j>=(l/2);j--)
+  			{
+  				if(s[i]==s[j])
+  				{
+  				c++;
+  				break;
+  				}
+  			}
+  		}
+  		if(c==l/2)
+  		{
+  				for(j=l-1;j>=(l/2);j--)
+  		{sum1=sum1+(int)(s[j]);
+  			for(i=0;i<l/2;i++)
+  			{
+  				if(s[i]==s[j])
+  				{
+  				c1++;
+  				break;
+  				}
+  			}
+  		}
+  		}
+  		if(c1==l/2&&sum==sum1)
+  		printf("YES\n");
+  		else
+  		printf("NO\n");
+  		
+  	}
+}	
+} 

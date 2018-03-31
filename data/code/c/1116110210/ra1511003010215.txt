@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<string.h>
+char*strrev(char a[]){
+	int l=strlen(a),i=0;
+  	char c;
+    for(i=0;i<l/2;++i)
+    {
+      c=a[i];
+      a[i]=a[l-i-1];
+      a[l-i-1]=c;
+    }
+  	//printf("%d %s ",l,a);
+  	return a;
+}	
+int main()
+{
+  
+	char str[50],s[20];
+  	int i=0,j=0;
+      scanf("%[^\n]s",str);
+      for(i=0;i<strlen(str);++i){
+      	for(j=0;str[i+j]!=' '&&i+j<strlen(str);++j)s[j]=str[i+j];
+      	s[j]='\0';
+        printf("%s ",strrev(s));
+        if(i+j==strlen(str)-1)break;
+        else i+=j;
+      }
+    
+	return 0;
+}

@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <stdlib.h>
+static inline int
+read_int(void)
+{
+	int val = 0;
+	int c = getchar_unlocked();
+	int sign = 1;
+ 
+	while (c != '-' && (c < '0' || '9' < c))
+		c = getchar_unlocked();
+ 
+	if (c == '-') {
+		sign = -1;
+		c = getchar_unlocked();
+	}
+	while ('0' <= c && c <= '9') {
+		val = 10 * val + c - '0';
+		c = getchar_unlocked();
+	}
+ 
+	return sign * val;
+}
+struct edge{
+	long long  from;
+	long long  to;
+	long long  weight;
+};
+static inline int 
+union_set(int *parents,int from,int to)
+{
+	int p;
+	while((p=parents[from])!=from)
+	{
+		parents[from]=parents[p];
+		from=p;
+	}
+	while((p=parents[to])!=to)
+	{
+		parents[to]=parents[p];
+		to=parents[to];
+	}
+	if(from!=to)
+	{
+		parents[from]=to;
+		return 1;
+	}
+	else 
+	return 0;
+	
+}
+int compare_edge(const void* a,const void* b)
+{
+	return (((struct edge*)a)->weight -((struct edge*)b)->weight);
+}
+static inline int
+insameset(int *parents,int from,int to)
+{ 
+	
+	int p;
+	while((p=parents[from])!=from)
+	{
+		parents[from]=parents[p];
+		from=p;
+	}
+	while((p=parents[to])!=to)
+	{
+		parents[to]=parents[p];
+		to=parents[to];
+	}
+	if(from==to)
+	return 1;
+	else 
+	return 0;
+}
+int main(void) {
+	int tc=read_int();
+	while(tc--)
+	{
+		int n,m,nofedges,nr_connected,i,x,y,z;
+		long long ans;
+		int *p,*parents=NULL;
+		int c;
+		int first_r=-1;
+		ans=0;
+		nr_connected=0;
+		int edges_size=10000;
+		nofedges=0;
+		n=read_int();
+		m=read_int();
+		struct edge *edges,*e;
+		edges=malloc(sizeof(edges[0])*10000);
+		parents = realloc(parents, n * sizeof(parents[0]));
+		do {
+			c = getchar_unlocked();
+		} while (c != 'R' && c != 'H');
+ 
+		for (i = 0, p = parents; i < n; i++, p++) {
+			if (c == 'R') {
+				if (first_r < 0)
+					first_r = i;
+				*p = first_r;
+				nr_connected++;
+			} else {
+				*p = i;
+			}
+			c = getchar_unlocked();
+		}
+		while(m--)
+		{
+			x=read_int()-1;
+			y=read_int()-1;
+			z=read_int();
+			if(parents[x]==first_r && parents[y]==first_r)
+			{
+				if(z<0)
+				ans+=z;
+				continue;
+			}
+			if(z<=0)
+			{
+				
+				if(union_set(parents,x,y))
+			     nr_connected++;
+			     ans+=z;
+				continue;
+			}
+		
+			if(insameset(parents,x,y))
+			continue;
+			if (nofedges >= edges_size) {
+				edges_size += 10000;
+				edges = realloc(edges, edges_size * sizeof(edges[0]));
+			}
+			edges[nofedges].from=x;
+			edges[nofedges].to=y;
+			edges[nofedges].weight=z;
+			nofedges++;
+			
+		}
+		qsort(edges,nofedges,sizeof(edges[0]),compare_edge);
+		e=edges;
+		while(nr_connected < n)
+		{
+			if(union_set(parents,e->from,e->to))
+			{
+				nr_connected++;
+				ans+=e->weight;
+			}
+			e++;
+		}
+		free(edges);
+		printf("%lld\n",ans);
+	}
+	
+	return 0;
+}

@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <math.h>
+ 
+ 
+#define MAX 100000
+#define kMAX 317
+ 
+ 
+int aa[MAX];
+int broj[kMAX][3];
+int pomak[kMAX];
+ 
+ 
+int sljed[3]={1,2,0};
+ 
+ 
+int main()
+{
+    int n,q;
+    int i,j;
+    int l,a,b;
+    int gr,x;
+ 
+    int komad;
+ 
+    int s;
+ 
+    scanf("%d %d",&n,&q);
+ 
+ 
+    komad=sqrt(n);
+ 
+ 
+    for(i=komad,j=0;i<=n;i+=komad,j++)
+        broj[j][0]=komad;
+    i-=komad;
+    broj[j][0]=n-j;
+ 
+    while(q--)
+    {
+        scanf("%d %d %d",&l,&a,&b);
+ 
+        if (!l)
+        {
+            j=a/komad;
+            gr=((a-1)/komad+1)*komad;
+ 
+            i=a;
+ 
+            if (b>=gr)
+            {
+ 
+                for(;i<gr;i++)
+                {
+                    broj[j][aa[i]]--;
+                    broj[j][sljed[aa[i]]]++;
+                    aa[i]=sljed[aa[i]];
+                }
+                j=(a-1)/komad+1;
+                for(i+=komad;i<=b;i+=komad,j++)
+                    pomak[j]=sljed[pomak[j]];
+ 
+                i-=komad;
+                j=b/komad;
+            }
+ 
+            for(;i<=b;i++)
+            {
+                broj[j][aa[i]]--;
+                broj[j][sljed[aa[i]]]++;
+                aa[i]=sljed[aa[i]];
+            }
+ 
+            continue;
+        }
+ 
+ 
+        s=0;
+ 
+        j=a/komad;
+        gr=((a-1)/komad+1)*komad;
+ 
+        i=a;
+ 
+        if (b>=gr)
+        {
+            for(;i<gr;i++)
+            {
+                x=aa[i]+pomak[j];
+                if (x==0 || x==3)
+                    s++;
+            }
+            j=(a-1)/komad+1;
+            for(i+=komad;i<=b;i+=komad,j++)
+                switch(pomak[j])
+                {
+                    case 0:
+                        s+=broj[j][0];
+                        break;
+                    case 1:
+                        s+=broj[j][2];
+                        break;
+                    case 2:
+                        s+=broj[j][1];
+                        break;
+                }
+ 
+            i-=komad;
+            j=b/komad;
+        }
+ 
+        for(;i<=b;i++)
+        {
+            x=aa[i]+pomak[j];
+            if (x==0 || x==3)
+                s++;
+        }
+ 
+        printf("%d\n",s);
+ 
+ 
+    }
+ 
+    return 0;
+}
+ 

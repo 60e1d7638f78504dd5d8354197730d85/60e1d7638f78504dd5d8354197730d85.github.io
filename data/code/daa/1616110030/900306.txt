@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+int n;
+int cnt=0;
+int b[10][10];
+void print(int board[10][10])
+{
+  static int k=0;
+  cout<<"SOLUTION #"<<++k<<endl;
+  cnt=k;
+  for(int i=0;i<n;i++)
+  {
+    for(int j=0;j<n;j++)
+    { 
+      if(board[i][j])cout<<"Q ";
+      else cout<<"* ";
+       }
+    cout<<endl;
+  }
+}
+bool issafe(int board[10][10], int r,int c)
+{ int i,j;
+  for(i=0;i<r;i++)
+    if(board[i][c]) return false;
+  for(i=r,j=c;i>=0&&j>=0;i--,j--)
+    if(board[i][j]) return false;
+  for(i=r,j=c;i>=0&&j<n;i--,j++)
+    if(board[i][j]) return false;
+  return true;
+}
+void solve(int board[10][10],int r)
+{
+  if(r==n)
+  {print(board);
+   
+  }
+  for(int i=0;i<n;i++)
+  if(issafe(board,r,i))
+  {
+    board[r][i]=1;
+    solve(board,r+1);
+    board[r][i]=0;
+  }
+  return ;
+}
+int main()
+{
+  cin>>n;
+int b[10][10];
+  
+for(int i=0;i<n;i++)
+  for(int j=0;j<n;j++)
+   b[i][j]=0;
+  solve(b,0);
+  cout<<"TOTAL SOLN. : "<<cnt;
+	return 0;
+}

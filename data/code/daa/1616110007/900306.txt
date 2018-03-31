@@ -1,0 +1,61 @@
+#include <iostream>
+#include<queue>
+#include<algorithm>
+#include<limits.h>
+using namespace std;
+int dist[10][10];
+void nearest(int mat[][10],int m,int n)
+{
+  int newx[]={-1,0,1,0};
+  int newy[]={0,-1,0,1};
+  queue<pair<int,int> >q;
+  for(int i=0;i<m;i++)
+  {
+    for(int j=0;j<n;j++)
+    {
+      dist[i][j]=INT_MAX;
+      if(mat[i][j]==1) 
+      {dist[i][j]=0;
+       q.push(make_pair(i,j));
+      }
+    }
+  }
+  pair<int,int>p;
+  while(!q.empty())
+  {
+    p=q.front();
+    q.pop();
+    int x=p.first;
+    int y=p.second;
+    for(int i=0;i<4;i++)
+    { 
+      int ax=x+newx[i];
+      int ay=y+newy[i];
+      if(ax>=0&&ax<m&&ay>=0&&ay<n&&dist[ax][ay]>dist[x][y]+1)
+      {
+        dist[ax][ay]=dist[x][y]+1;
+        q.push(make_pair(ax,ay));
+      }
+    }
+  }
+}
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int m,n;
+    cin>>m>>n;
+    int mat[10][10];
+    for(int i=0;i<m;i++)
+      for(int j=0;j<n;j++)
+        cin>>mat[i][j];
+    nearest(mat,m,n);
+    for(int i=0;i<m;i++)
+      	for(int j=0;j<n;j++)
+          cout<<dist[i][j]<<" ";
+    cout<<endl;
+  }
+ 	return 0;
+}

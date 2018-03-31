@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+//Initial Code Copied from stack-exchange (to find nCr via Pascal's traingle)
+long long int tr[2005][2005];
+ 
+void makeTriangle(int n,int k)
+{
+	int i,j;
+	for(i=0;i<k+n;i++)
+	{
+		tr[i][0]=1;
+		for(j=1;j<=i;j++)
+			tr[i][j]=(tr[i-1][j-1] + tr[i-1][j])%1000000007;
+	}
+}
+ 
+long long int C(int n,int r)
+{
+	return tr[n][r];
+}
+ 
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	makeTriangle(1000,1000);
+	while(t>0)
+	{
+		int n,k,i,j;
+		long long int sum=0;
+		scanf("%d %d",&n,&k);
+		for(i=1;i<=n;i++)
+		{
+			for(j=1;j<=n;j++)
+			{
+			//	printf("%d %d %lld\n",k,abs(j-i),C(k+abs(j-i),k));
+				sum+=(C(k+abs(j-i),k))%1000000007;
+				sum=sum%1000000007;
+			}
+		}
+		printf("%lld\n",sum);
+		t--;
+	}
+	return 0;
+} 

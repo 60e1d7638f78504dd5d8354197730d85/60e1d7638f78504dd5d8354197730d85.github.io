@@ -1,0 +1,118 @@
+#include <stdio.h>
+ 
+int primes[9593],isprime[100005],sum[100005];
+unsigned int ans[100005];
+ 
+int fnpdc(int x){
+	int i,count=0;
+	for(i=0;i<9593&&primes[i]*primes[i]<=x;i++){
+		if(x%primes[i]==0){
+			while(x%primes[i]==0)x/=primes[i];
+			count++;
+		}
+	}
+	if(x>1)count++;
+	return isprime[count];
+}
+ 
+int main(){
+	int tempprimes[361];
+	int tempprimes2[8]={2,3,5,7,11,13,17,19};
+	int tprimes[72];
+	int i,j,t,l,r,k,m,n;
+	for(i=2;i<361;i++)tempprimes[i]=1;
+	tempprimes[0]=tempprimes[1]=0;
+	for(i=0;i<8;i++){
+		k=tempprimes2[i];
+		for(j=k*k;j<361;j+=k){
+			tempprimes[j]=0;
+		}
+	}
+	for(j=i=0;i<361;i++){
+		if(tempprimes[i]==1){
+			tprimes[j]=i;
+			j++;
+		}
+	}
+	for(i=2;i<100005;i++)isprime[i]=1;
+	isprime[0]=isprime[1]=0;
+	for(i=0;i<72;i++){
+		k=tprimes[i];
+		for(j=k*k;j<100005;j+=k){
+			isprime[j]=0;
+		}
+	}
+	for(j=i=0;i<100005;i++){
+		if(isprime[i]==1){
+			primes[j]=i;
+			j++;
+		}
+	}
+	for(i=0;i<100005;i++)sum[i]=-1;
+	sum[1]=1;
+	for(i=0;i<9593&&primes[i]<100005;i++){
+		sum[primes[i]]=primes[i]+1;
+	}
+	for(i=0;i<9593&&primes[i]*primes[i+1]<100005;i++){
+		for(j=i+1;j<9593&&primes[i]*primes[j]<100005;j++){
+			sum[primes[i]*primes[j]]=sum[primes[i]]*sum[primes[j]];
+		}
+	}
+	for(i=0;i<9593&&primes[i]*primes[i+1]*primes[i+2]<100005;i++){
+		for(j=i+1;j<9593&&primes[i]*primes[j]*primes[j+1]<100005;j++){
+			for(k=j+1;k<9593&&primes[i]*primes[j]*primes[k]<100005;k++){
+				sum[primes[i]*primes[j]*primes[k]]=sum[primes[i]]*sum[primes[j]]*sum[primes[k]];
+			}
+		}
+    }
+  	for(i=0;i<9593&&primes[i]*primes[i+1]*primes[i+2]*primes[i+3]<100005;i++){
+		for(j=i+1;j<9593&&primes[i]*primes[j]*primes[j+1]*primes[j+2]<100005;j++){
+			for(k=j+1;k<9593&&primes[i]*primes[j]*primes[k]*primes[k+1]<100005;k++){
+				for(l=k+1;l<9593&&primes[i]*primes[j]*primes[k]*primes[l]<100005;l++){
+					sum[primes[i]*primes[j]*primes[k]*primes[l]]=sum[primes[i]]*sum[primes[j]]*sum[primes[k]]*sum[primes[l]];
+				}
+			}
+		}
+	}
+	for(i=0;i<9593&&primes[i]*primes[i+1]*primes[i+2]*primes[i+3]*primes[i+4]<100005;i++){
+		for(j=i+1;j<9593&&primes[i]*primes[j]*primes[j+1]*primes[j+2]*primes[j+3]<100005;j++){
+			for(k=j+1;k<9593&&primes[i]*primes[j]*primes[k]*primes[k+1]*primes[k+2]<100005;k++){
+				for(l=k+1;l<9593&&primes[i]*primes[j]*primes[k]*primes[l]*primes[l+1]<100005;l++){
+					for(m=l+1;m<9593&&primes[i]*primes[j]*primes[k]*primes[l]*primes[m]<100005;m++){
+						sum[primes[i]*primes[j]*primes[k]*primes[l]*primes[m]]=sum[primes[i]]*sum[primes[j]]*sum[primes[k]]*sum[primes[l]]*sum[primes[m]];
+					}
+				}
+			}
+		}
+	}
+	for(i=0;i<9593&&primes[i]*primes[i+1]*primes[i+2]*primes[i+3]*primes[i+4]*primes[i+5]<100005;i++){
+		for(j=i+1;j<9593&&primes[i]*primes[j]*primes[j+1]*primes[j+2]*primes[j+3]*primes[j+4]<100005;j++){
+			for(k=j+1;k<9593&&primes[i]*primes[j]*primes[k]*primes[k+1]*primes[k+2]*primes[k+3]<100005;k++){
+				for(l=k+1;l<9593&&primes[i]*primes[j]*primes[k]*primes[l]*primes[l+1]*primes[l+2]<100005;l++){
+					for(m=l+1;m<9593&&primes[i]*primes[j]*primes[k]*primes[l]*primes[m]*primes[m+1]<100005;m++){
+						for(n=m+1;n<9593&&primes[i]*primes[j]*primes[k]*primes[l]*primes[m]*primes[n]<100005;n++){
+							sum[primes[i]*primes[j]*primes[k]*primes[l]*primes[m]*primes[n]]=sum[primes[i]]*sum[primes[j]]*sum[primes[k]]*sum[primes[l]]*sum[primes[m]]*sum[primes[n]];
+						}
+					}
+				}
+			}
+		}
+	}
+	for(i=1,ans[0]=0;i<100005;i++){
+		if(sum[i]>3){
+			if(fnpdc(sum[i])){
+				ans[i]=ans[i-1]+sum[i];
+			}
+			else ans[i]=ans[i-1];
+		}
+		else{
+			ans[i]=ans[i-1];
+		}
+	}
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d%d",&l,&r);
+		printf("%u\n",ans[r]-ans[l-1]);
+	}
+	return 0;
+} 

@@ -1,0 +1,56 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int t,n,i,max,min,a[105],x,y;
+    scanf("%d",&t);
+    while(t--)
+    {
+              int count=0,max=0,min=99999;
+              scanf("%d",&n);
+              for(i=0;i<n;i++)
+              {
+                    scanf("%d",&a[i]);
+                    if(max<a[i])
+                    {
+                            max=a[i];
+                            x=i;    
+                    }
+                    if(min>a[i])
+                    {
+                            min=a[i];
+                            y=i;
+                    }               
+              }
+              count+=(max-min);
+           // printf("%d  %d\n",min,max);
+              while((max-min)!=0 )
+              {
+                   int m=max-min;
+                   min=max=a[x];
+                   int temp;
+                   for(i=0;i<n;i++)
+                   {
+                           if(i!=x)
+                              a[i]+=m; 
+                           if(max<a[i])
+                           {
+                                        max=a[i];
+                                        temp=i;    
+                           }
+                           if(min>a[i])
+                           {
+                                        min=a[i];
+                                        y=i;
+                           }                    
+                   }
+                   x=temp;
+                   count+=(max-min);                   
+                   //printf("max:%d,min:%d x:%d\n",max,min,x);
+              }
+             
+              printf("%d\n",count);  
+    }
+    return 0;
+}
+ 

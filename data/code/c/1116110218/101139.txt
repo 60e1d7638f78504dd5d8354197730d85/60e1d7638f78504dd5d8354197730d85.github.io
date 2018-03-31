@@ -1,0 +1,121 @@
+#include<stdio.h>
+#define SIZE 10001
+int a[SIZE],b[125],c[SIZE],x[10],max,y[10];
+char str[SIZE];
+int find(int i,int j)
+{
+	int k;
+	max=0;
+	for(k=97;k<=122;++k)
+			b[k]=0;
+	for(k=i;k<j;++k)
+	{
+		++b[str[k]];
+		if(max<b[str[k]])
+			max=b[str[k]];
+	}
+	return max;
+}
+int main()
+{
+	int t,i,n,j,max2;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%s",str);
+		max=0;
+		for(i=97;i<=122;++i)
+			b[i]=0;
+		for(i=0;str[i]!='\0';++i)
+		{
+			if(str[i]!='#')
+			{
+				++b[str[i]];
+				if(b[str[i]]>max)
+					max=b[str[i]];				
+			}
+				a[i]=max;
+			
+		}
+		n=i;
+		max=0;
+		for(i=97;i<=122;++i)
+			b[i]=0;
+		for(i=n-1;i>=0;--i)
+		{
+			if(str[i]!='#')
+			{
+				++b[str[i]];
+				if(b[str[i]]>max)
+					max=b[str[i]];
+			}
+				c[i]=max;
+			
+		}
+		/*printf("%s\n",str);
+		for(i=0;i<n;++i)
+			printf("%d %d\n",a[i],c[i]);*/
+		j=0;
+		max2=0;
+		for(i=0;i<n;++i)
+		{
+			//printf("%c",str[i]);
+			if(str[i]=='#')
+			{
+				x[j]=i;
+				++j;
+				if(j==1)
+				{
+					if(a[i]==0)
+					{
+						j=0;
+						continue;
+					}
+					else
+						y[j-1]=a[i];
+					//printf("hello\n");
+				}
+				else
+				{
+				//	printf("%d %d %d %d\n",j,y[j-1],x[j-2],x[j-1]);
+					y[j-1]=find(x[j-2]+1,x[j-1]);
+					if(y[j-1]==0)
+					{
+						j=1;
+						y[0]=a[i];
+						x[0]=i;
+						continue;
+					}
+					//printf("hello\n");
+				}
+				if(j==3)
+				{
+					if(c[i]==0)
+					{
+						j=0;
+						continue;
+					}
+					else
+						y[j]=c[i];
+						
+					if(max2<(y[0]+y[1]+y[2]+y[3]))
+						max2=y[0]+y[1]+y[2]+y[3];
+					
+					j=2;
+					x[0]=x[1];
+					x[1]=x[2];
+					y[0]=a[x[0]];
+					y[1]=y[2];
+				}
+			}
+		}
+		if(max2)
+		{
+			printf("%d\n",max2+3);
+			//printf("%d %d %d\n",x[0],x[1],x[2]);
+		}
+		else
+			printf("0\n");
+	}
+	return 0;
+} 

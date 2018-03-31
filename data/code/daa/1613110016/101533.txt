@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+int count[101];
+int main(){
+    
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+        count[a[i]]++;
+    }
+    int q,power,data,sum;
+    cin>>q;
+    while(q--){
+        cin>>data;
+        sum=0;
+        power=0;
+        for(int i=1;i<=data;i++){
+            sum+=count[i];
+            power+=i*count[i];
+        }
+        cout<<sum<<" "<<power<<endl;
+            
+    }
+    return 0;
+    
+    
+}

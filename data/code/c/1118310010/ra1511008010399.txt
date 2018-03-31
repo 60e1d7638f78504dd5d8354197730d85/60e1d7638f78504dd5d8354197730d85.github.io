@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+ 
+typedef struct data{
+	struct data *next;
+	long long int key;
+}data;
+ 
+typedef struct func{
+	long long int sum;
+	long long int l;
+	long long int r;
+}func;
+ 
+func *f;
+long long int k;
+long long int n,q,x,m,i,j,d;
+long long int b[100001],y,z,p;
+ 
+data **D,*temp;
+ 
+ 
+ 
+ 
+long long int sumall(long long int x,long long int y)
+{
+	long long int c=0,o;
+	for(o=x;o<=y;o++)
+	{
+		c+=b[o];
+	}
+	return c;
+}
+ 
+ 
+ 
+ 
+int main()
+{
+	scanf("%lld",&d);
+	f=(func *)malloc((d+1)*sizeof(func));
+	
+	for(i=1;i<=d;i++)
+	{
+		scanf("%lld",&b[i]);
+	}
+ 
+	D=(data **)malloc((d+1)*sizeof(data));
+	for(i=1;i<=d;i++)
+	{
+		temp=(data *)malloc(sizeof(data));
+		temp->key=b[i];
+		temp->next=NULL;
+		D[i]=temp;
+ 
+	}
+	for(i=1;i<=d;i++)
+	{
+		scanf("%lld%lld",&f[i].l,&f[i].r);
+		for(j=f[i].l;j<=f[i].r;j++)
+		{
+			temp=(data *)malloc(sizeof(data));
+			temp->next=D[j];
+			temp->key=i;
+			D[j]=temp;
+		}
+ 
+		
+	}
+ 
+ 
+	scanf("%lld",&q);
+	for(i=1;i<=d;i++)
+	{
+		f[i].sum=sumall(f[i].l,f[i].r);
+	}
+	z=0;
+	while(q--)
+	{
+	p=0;
+		scanf("%lld",&k);
+		if(k==1)
+		{
+			scanf("%lld%lld",&x,&y);
+			z=y-b[x];
+			b[x]=y;
+			temp=D[x];
+			
+			
+			while(temp->next!=NULL)
+			{
+			
+				f[temp->key].sum+=z;
+				temp=temp->next;
+			    
+			}
+			
+		}
+		else
+		{
+			scanf("%lld%lld",&m,&n);
+			for(i=m;i<=n;i++)
+			{
+				p+=f[i].sum;
+			}
+			printf("%lld\n",p);
+		}
+ 
+	}
+ return 0;
+}

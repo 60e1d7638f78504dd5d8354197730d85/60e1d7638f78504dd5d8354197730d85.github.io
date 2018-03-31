@@ -1,0 +1,88 @@
+#include <stdio.h>
+ 
+void restore_down(long long int *, int, int);
+void restore_up(long long int *, int);
+void insert(long long int *, long long int, int *);
+long long int extract(long long int *, int *);
+void build_heap(int *);
+ 
+int parent(int x){
+    return (x-1)/2;
+}
+int first_child(int x){
+    return 2*x+1;
+}
+void swap(long long int *a, long long int *b){
+    long long x = *a;
+    *a = *b;
+    *b = x;
+}
+ 
+int main()
+{
+    int i,q,k,size=0;
+    scanf("%d%d",&q,&k);
+    long long arr[k];
+    while(q--){
+        
+        int type;
+        long long x,y;
+        scanf("%d",&type);
+        
+        if(type == 1){
+            
+            scanf("%lld%lld",&x,&y);
+            long long dis = x*x + y*y;
+            if(size < k)insert(arr,dis,&size);
+            else{
+                long long max = extract(arr,&size);
+                if(dis < max)max = dis;
+                insert(arr,max,&size);
+            }
+            
+        }
+        else {
+            long long ans = extract(arr, &size);
+            printf("%lld\n",ans);
+            insert(arr,ans,&size);
+        }
+    }
+    return 0;
+}
+ 
+void restore_down(long long arr[], int pos, int arr_size){
+    
+    int max = first_child(pos);
+    if(max+1 < arr_size && arr[max] < arr[max+1])max = max+1;
+    if(max < arr_size && arr[max] > arr[pos]){
+        swap(&arr[pos], &arr[max]);
+        restore_down(arr, max, arr_size);
+    }
+}
+ 
+void restore_up(long long arr[], int pos){
+    
+    if(pos == 0)return;
+    
+    if(arr[pos] > arr[parent(pos)]){
+        swap(&arr[pos], &arr[parent(pos)]);
+        restore_up(arr,parent(pos));
+    }
+}
+ 
+void insert(long long arr[], long long x, int *size){
+    
+    arr[*size] = x;
+    restore_up(arr, *size );
+    (*size)++;
+}
+ 
+long long int extract(long long arr[], int *size){
+    
+    (*size)--;
+    long long int value = arr[0];
+    arr[0] = arr[*size];
+    restore_down(arr, 0, *size);
+    return value;
+}
+ 

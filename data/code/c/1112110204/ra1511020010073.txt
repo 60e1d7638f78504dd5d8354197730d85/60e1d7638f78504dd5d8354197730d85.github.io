@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+int n,i,a,b,gcd,lcm;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    int nu,de,re;
+    scanf("%d %d",&a,&b);
+    if(a>b)
+    {
+      nu=a;
+      de=b;
+    }
+    else
+    {
+      nu=b;
+      de=a;
+    }
+    re=nu%de;
+    while(re !=0)
+    {
+      nu=de;
+      de=re;
+      re=nu%de;
+    }
+    gcd=de;
+    lcm=(a*b)/gcd;
+    printf("%d %d\n",gcd,lcm);
+  }
+	return 0;
+}

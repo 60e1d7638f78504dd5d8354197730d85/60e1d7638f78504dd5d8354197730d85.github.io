@@ -1,0 +1,42 @@
+#include <stdio.h> 
+  
+int main()
+{
+	int i, largest1, largest2, temp;
+  	float average;
+  	int n;
+  	scanf("%d\n",&n);
+  	int array[n];
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &array[i]);
+	}
+	
+	/*  assume first element of array is the first largest*/
+	largest1 = array[0];
+	/*  assume second element of array is the second largest */
+	largest2 = array[1];
+	
+	//If largest1 is smaller than largest2 then exchange there values
+	if (largest1 < largest2)
+	{
+		temp = largest1;
+		largest1 = largest2;
+		largest2 = temp;
+	}
+	
+	for (i = 2; i < n; i++) { if (array[i] >= largest1)
+		{
+			largest2 = largest1;
+			largest1 = array[i];
+		}
+		else if (array[i] > largest2)
+		{
+			largest2 = array[i];
+		}
+	}
+	printf("First Largest=%d\n",largest1);
+	printf("Second Largest=%d\n",largest2);
+	printf("Average=%.1f",(float)(largest1 + largest2) / 2);
+	return 0;
+}

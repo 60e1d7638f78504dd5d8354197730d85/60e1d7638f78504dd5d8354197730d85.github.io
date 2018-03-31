@@ -1,0 +1,120 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define ll long long int
+#define NN 800010
+#define pb push_back
+#define mp make_pair
+#define INF (((ll)1000000000) * ((ll)1000000000))
+#define inf 0x7fffffff
+#define inff 100000
+#define ff first
+#define ss second
+#define MOD 1000000007
+#define fast cin.sync_with_stdio(0);cin.tie(0)
+#define rep(i,N) for(int i=0;i<N;i++)
+#define frep(i,a,b) for(int i=a;i<=b;i++)
+#define pii pair<int,int>
+#define fill(A,v) memset(A,v,sizeof(A))
+#define setbits(x) __builtin_popcount(x)
+#define print(A,j,k) for(int ii=j;ii<=k;ii++)cout<<A[ii]<<" ";cout<<"\n"
+#define all(x) (x).begin(), (x).end()
+#define gcd __gcd
+ 
+int A[30],B[30];
+ 
+int case1() {
+	int ans=A[0];		
+	A[25]+=A[0];		
+	A[0]=0;				
+	frep(i,1,25) {
+		int req=A[i];		
+		frep(j,0,i-1) {		
+			if(B[j]>=req) {	
+				B[j]-=req;
+				req=0;
+			}
+			else {
+				req-=B[j];
+				B[j]=0;
+			}
+			if(req==0)
+				break;
+		}
+		ans+=req;		
+	}
+	return ans;
+}
+ 
+ 
+int case2() {
+	int ans=A[25];
+	A[25]=0;	
+	A[0]+=ans;	
+	for(int i=24;i>=0;i--) {
+		int req=A[i];
+		for(int j=i+1;j<=25;j++) {
+			if(B[j]>=req) {
+				B[j]-=req;
+				req=0;
+			}
+			else {
+				req-=B[j];
+				B[j]=0;
+			}
+			if(req==0)
+				break;
+		}
+		ans+=req;
+	}
+	
+	return ans;
+}
+ 
+int case3(int n) {
+	int ans=n;
+	rep(i,26)
+		ans-=2*min(A[i],B[i]);
+	return ans/2;
+}
+ 
+void form(string s) {
+	int half=s.size()/2;
+	rep(i,26) {
+		A[i]=0;
+		B[i]=0;
+	}
+	rep(i,s.size()) {
+		if(i<half)
+			A[s[i]-'a']++;
+		else
+			B[s[i]-'a']++;
+	}
+}
+ 
+int main(int argc, char const *argv[])
+{
+	fast;
+ 
+	int n;
+	cin>>n;
+	string s;
+	cin>>s;
+ 
+	form(s);
+	int v0=case1();
+	int v1=v0;
+	form(s);
+	int v2=case2();
+	v1=min(v1,v2);
+	form(s);
+	int v3=case3(n);
+	v1=min(v1,v3);
+ 
+	
+ 
+	cout<<v1<<"\n";
+ 
+	return 0;
+}

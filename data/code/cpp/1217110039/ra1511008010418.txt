@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int count[26]={0};
+  	int n,k;
+  	char letter;
+  	cin>>n>>k;
+  for(int i=0;i<n;i++)
+  {
+    cin>>letter;
+    count[letter%'a']++;
+  }
+  int avg = n/k, flag=0;
+  for(int i=0;i<26;i++)
+  {
+    if(count[i]>avg)
+    {flag=1;break;}
+  }
+  if(flag==0)
+    cout<<"YES";
+  else
+    cout<<"NO";
+    
+	return 0;
+}

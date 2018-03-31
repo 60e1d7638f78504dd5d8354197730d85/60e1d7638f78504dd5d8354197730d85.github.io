@@ -1,0 +1,50 @@
+#include <iostream>
+ 
+using namespace std;
+int t, n, m;
+ 
+int getMin(int sizeN){
+    if(sizeN==1){
+        return 2;
+    } else if (sizeN<=0){
+        return 0;
+    } else if(sizeN==2){
+        return 5;
+    }
+ 
+ 
+    if(sizeN%2==0){
+        return sizeN+1+getMin(sizeN/2)+getMin((sizeN/2)-1);
+    } else {
+        return sizeN+1+(getMin(sizeN/2)*2);
+    }
+}
+ 
+int getMax(int sizeN){
+    sizeN+=1;
+    return ((sizeN*(sizeN+1))/2)-1;
+}
+ 
+int main()
+{
+ 
+ 
+    cin >> t;
+ 
+    for(int g = 0; g<t; g++){
+        cin >> n >> m;
+        int minN = getMin(n);
+        int maxN = getMax(n);
+ 
+        if(m < minN){
+            cout << "-1\n";
+        } else if (m>=maxN){
+            cout<< m-maxN << "\n";
+        } else {
+            cout << "0\n";
+        }
+    }
+ 
+    return 0;
+}
+ 

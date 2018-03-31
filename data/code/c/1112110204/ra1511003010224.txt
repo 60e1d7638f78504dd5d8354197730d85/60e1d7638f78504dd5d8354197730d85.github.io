@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+int a[100],b[100],t,i,lcm[100],gcd[100],p,q;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d %d",&a[i],&b[i]);
+    lcm[i]=a[i]*b[i];
+    for(p=1;p<=1000;p++)
+    {
+      for(q=1;q<=1000;q++)
+      {
+        if(b[i]*q==a[i]*p)
+        {
+          if(a[i]*p<lcm[i])
+          {
+            lcm[i]=a[i]*p;
+          }
+        }  
+      }
+    }
+  gcd[i]=a[i]*b[i]/lcm[i];
+    
+  }
+  
+  for(i=0;i<t;i++)
+  {
+    printf("%d %d\n",gcd[i],lcm[i]);
+  }
+	return 0;
+}

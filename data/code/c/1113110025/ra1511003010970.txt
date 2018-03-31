@@ -1,0 +1,55 @@
+#include <stdio.h>
+int reverse(int);
+int sum(int,int);
+int main()
+{
+int t;
+  scanf("%d",&t);
+  
+  int arr[t][2];
+  int i,j;
+    
+    for(i=0;i<t;i++)
+    {
+      for(j=0;j<2;j++)
+      {
+     scanf("%d",&arr[i][j]);   
+      }
+    }
+  
+  for(i=0;i<t;i++)
+  {
+    for(j=0;j<1;j++)
+    {
+   int r=   findsum(arr[i][j],arr[i][j+1]);
+    printf("sum is %d\n",r);
+    }
+  }
+	return 0;
+}
+int findsum(int x,int y)
+{
+  int sum=0;
+  int i;
+ for(i=x;i<y;i++)
+ {
+  int c=reverse(i); 
+   if(c==1)
+     sum+=i;
+ }
+  return(sum);
+}
+int reverse(int n)
+{
+ int a=n;
+  int u=0;
+  while(n!=0)
+  {
+  u=u*10 + (n%10);
+  n/=10;
+  }
+  if(u==a)
+    return(1);
+    else
+      return(0);
+}

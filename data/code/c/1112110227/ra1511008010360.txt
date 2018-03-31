@@ -1,0 +1,45 @@
+#include <stdio.h>
+long int missing[100000];
+int compare(void *a,void *b);
+int main()
+{
+int t,k,i;;
+  long int n,j;
+  long long int answer,temp;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%ld %d",&n,&k);
+    for(i=0;i<k;i++)
+      scanf("%ld",&missing[i]);
+    qsort(missing,k,sizeof(long int),compare);
+    temp=0;
+    for(i=0;i<k;i++)
+    {
+      answer=missing[i]*(missing[i]-1)/2-temp;
+      if(answer<missing[i])
+      {
+        answer=missing[i];
+        break;
+      }
+      temp+=missing[i];
+      answer=missing[i]*(missing[i]+1)/2-temp;
+      if(answer<missing[i]+1)
+      {
+        answer=missing[i]+1;
+        break;
+      }
+    }
+    if(i==k)
+      answer=n*(n+1)/2-temp+1;
+    if(answer&1)
+      printf("Chef\n");
+    else
+      printf("Mom\n");
+  }
+	return 0;
+}
+int compare(void *a,void *b)
+{
+  return *((long int*)a)-*((long int*)b);
+}

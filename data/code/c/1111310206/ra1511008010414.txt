@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  char str[n];
+  scanf("%s",str);
+  if(n==1||n==2)
+  {
+    printf("%s",str);
+    return 0;
+  }
+  char enc[n];
+  int median;
+  if(n==1)
+    median=1;
+  else
+  {
+    if(n%2==0)
+      median=(n/2)-1;
+    else
+      median=n/2;
+  }
+  int left,right;
+  right=median+1;
+  left=median-1;
+  for(i=0;i<n;i++)
+  {
+     if(i==0)
+       enc[median]=str[i];
+    else if(i%2==0)
+    {
+      enc[right]=str[i];
+      right++;
+    }
+    else
+    {
+      enc[left]=str[i];
+      left--;
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("%c",enc[i]);
+  }
+
+	return 0;
+}

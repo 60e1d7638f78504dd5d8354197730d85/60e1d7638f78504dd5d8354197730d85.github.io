@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int integer,rev=0,rem=0;
+  	cin>>integer;
+  	int num = integer;
+  	try
+    {
+      if(integer < 0)
+        throw integer;
+      else
+      {
+        do{
+		 rem = integer%10;
+         rev = rev*10 + rem;
+         integer /= 10;
+      	}while(integer>=1);
+      
+      	cout<<"The reverse of the number is: "<<rev<<endl;
+      
+        if(rev == num)
+        	cout<<"The number is a palindrome";
+      	else
+        	cout<<"The number is not a palindrome";
+      }
+    }
+  	catch(int integer)
+    {
+      cout<<"Exception Caught";
+    }
+	return 0;
+}

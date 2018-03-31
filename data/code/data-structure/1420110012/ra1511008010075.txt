@@ -1,0 +1,52 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define ll long long int
+using namespace std;
+ 
+map<int,int> m;
+int arr[200005],ans[200005];
+int tem[200005];
+set<int> s;
+int cnt[200005];
+int use[200005] = {0};
+int n;
+ 
+void func(){
+ sort(tem,tem+n);
+ 
+ for(int i=0;i<n;i++){
+  m[tem[i]] = i;
+ }
+ 
+ for(int i=0;i<n;i++){
+  ans[i] = m[arr[i]]; 
+ }
+}    
+ 
+int main()
+{
+    
+    cin >>n;
+    for(int i=0;i<n;i++){
+        cin >>arr[i];
+        tem[i] = arr[i];
+        
+    }
+    func();
+    
+    for(int i=n-1;i>=0;i--){
+        cnt[i] = s.size();
+        s.insert(arr[i]);
+    }
+    
+    ll an=0;
+    for(int i=0;i<n;i++){
+        if(use[ans[i]] == 0){
+            use[ans[i]] = 1;
+            an += cnt[i];
+            //cout <<ans[i]<<" "<<an<<" "<<cnt[i]<<endl;
+        }
+    }
+    cout <<an<<endl;
+    return 0;
+}

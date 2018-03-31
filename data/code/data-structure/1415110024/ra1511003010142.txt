@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+
+class LinkedList{
+private:
+    int data;
+    LinkedList *next;
+public:
+    void insert(LinkedList **start, int data){
+        LinkedList *p = new LinkedList;
+        if (*start == NULL){
+            p->data = data;
+            p->next = NULL;
+            *start = p;
+        }
+        else{
+            LinkedList *temp = *start;
+            while (temp->next != NULL){
+                temp = temp->next;
+            }
+            temp->next = p;
+            p->data = data;
+            p->next = NULL;
+        }
+    }
+    void removeDuplicates(LinkedList **start){//This function removes the duplicates using the standard runner method taking 2 pointers
+        LinkedList *temp = *start;
+        LinkedList *temp1 = (*start);
+        while (temp != NULL){
+                while (temp1->next!=NULL){
+                    if (temp->data == temp1->next->data){
+                        LinkedList *p;
+                        p = temp1->next;
+                        temp1->next = temp1->next->next;
+                        delete(p);
+                    }
+                    else{
+                        temp1 = temp1->next;
+                    }
+
+                }
+
+            temp = temp->next;
+            temp1 = temp;
+        }
+    }
+
+    void traverse(LinkedList **start){
+        LinkedList *temp = *start;
+        while (temp != NULL){
+            cout << "->"<<temp->data;
+            temp = temp->next;
+        }
+    }
+};
+
+int main(){
+    LinkedList *start = NULL;
+    LinkedList p1;
+    int N,k;
+    cin>>N;
+    for(int i=0;i<=N;i++){
+    cin>>k;
+    p1.insert(&start,k);
+    }
+    p1.removeDuplicates(&start);
+    cout<< "List"<<endl;
+    p1.traverse(&start);
+    return 0;
+}

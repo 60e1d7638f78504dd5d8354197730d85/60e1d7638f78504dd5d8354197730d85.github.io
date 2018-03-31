@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+class Prime
+{
+  int a[]=new int[100];
+  static int t;
+  public void getPrime()
+  {
+    Scanner sc=new Scanner(System.in);
+    t=sc.nextInt();
+    for(int i=0;i<t;i++)
+    {
+      a[i]=sc.nextInt();
+    }
+  }
+  public void calculatePrime()
+  {
+    int co=0;
+    for(int i=0;i<t;i++)
+    {
+      for(int j=2;j<a[i];j++)
+      {
+        if(a[i]%j==0)
+        {
+          co=co+1;
+          break;
+        }
+      }
+      if(co==0)
+      {
+        System.out.println(a[i]);
+      }
+      co=0;
+    }
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Prime obj=new Prime();
+       obj.getPrime();
+       obj.calculatePrime();
+		
+	}
+}

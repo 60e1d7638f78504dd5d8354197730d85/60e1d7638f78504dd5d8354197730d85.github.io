@@ -1,0 +1,31 @@
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+ 
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        Scanner s = new Scanner(System.in);
+		int t = s.nextInt();
+		for(int i=0;i<t; i++) {
+			PriorityQueue<Integer> q = new PriorityQueue<>(Collections.reverseOrder());
+			int n = s.nextInt();
+			int k = s.nextInt();
+			for(int j=0; j<n; j++)
+				q.add(s.nextInt());
+			maxCandies(q, k);
+		}
+		s.close();
+    }
+    
+    private static void maxCandies(PriorityQueue<Integer> q, int k) {
+		int max = 0;
+		int p;
+		for(int i=0; i<k; i++) {
+			max += q.peek();
+			p = (int)Math.floor(q.peek()/2);
+			q.poll();
+			q.add(p);
+		}
+		System.out.println(max);
+	}
+}

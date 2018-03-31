@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int m,n,i=0,j=0,k,l,a[10][10],flag=0;
+  	scanf("%d%d",&m,&n);
+  	if(m!=n)
+      printf("Not Symmetric");
+  	else{
+      do{
+        	j=0;
+        do{
+          scanf("%d",&a[i][j]);
+        }while(++j<n);
+      }while(++i<m);
+      i=0;
+      do{
+        j=0;
+        do{
+          if(a[i][j]!=a[j][i])
+          {
+            flag=1;
+            break;
+          }
+        }while(++j<n);
+      }while(++i<m);
+      if(flag!=0)
+        printf("Not Symmetric");
+      else printf("Symmetric");
+    }
+  
+	return 0;
+}

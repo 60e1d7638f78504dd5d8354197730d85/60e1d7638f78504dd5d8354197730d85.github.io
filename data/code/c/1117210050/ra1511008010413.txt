@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+int main() 
+{
+    int array[100], minimum, t=0,size, c, location = 1;
+    scanf("%d",&size);
+ 
+    for ( c = 0 ; c < size ; c++ )
+    { scanf("%d", &array[c]);if(array[c]>100)t++;}
+ 
+    minimum = array[0];
+ 
+    for ( c = 1 ; c < size ; c++ ) 
+    {
+        if ( array[c] < minimum ) 
+        {
+           minimum = array[c];
+           location = c+1;
+        }
+    } if(t>0)
+    printf("Invalid Input");
+  else 
+    printf("%d",minimum);
+    return 0;
+}

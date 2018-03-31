@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    long long int t,i,l,r,a,sum,j,k,s,d,e;
+    scanf("%lld",&t);
+    for(i=1;i<=t;i++)
+    {
+        sum=0;
+        scanf("%lld%lld",&l,&r);
+        for(j=l;j<=r;j++)
+        {
+            X:
+            if(j>r)
+            {
+                break;
+            }
+            for(k=2;k<=sqrt(j);k++)
+            {
+                if(j%(k*k)==0)
+                {
+                    j++;
+                    goto X;
+                }
+            }
+            s=1;
+            a=j;
+            k=2;
+            while(a!=1)
+            {
+                d=0;
+                e=0;
+                while(a%k==0)
+                {
+                    a=a/k;
+                    d=1;
+                    e++;
+                }
+                if(d==1)
+                {
+                    s=s*((pow(k,(e+1))-1)/(k-1));
+                }
+                k++;
+            }
+            if((s%6==0||s%6==2)&&(j!=7)&&j!=21)
+            {
+                sum=sum+s;
+            }
+        }
+        printf("%lld\n",sum);
+    }
+    return 0;
+}

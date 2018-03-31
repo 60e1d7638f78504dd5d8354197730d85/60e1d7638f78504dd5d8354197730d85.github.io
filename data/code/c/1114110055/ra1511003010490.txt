@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{ int n;
+char a[100];
+  int i=0,count=0;
+  scanf("%d",&n);
+ while(n--)
+ {
+ scanf("%s",a);
+  int g=(int)a[0],h=(int)a[1];
+
+  if(g!=h)
+  { count=2;
+    for(;i<strlen(a);i++)
+  {   
+      if(g!=(int)a[i] && h!=(int)a[i])
+      {   
+        count++;
+      }
+  }
+  }
+   else if(g==h)
+   {
+     count=1;
+   }
+ 
+
+  if(count==2)
+  {
+    char x=a[0], y=a[1];
+    int j=0,flag=1;
+    for(;j<strlen(a);j+=2)
+    {
+      if(a[j]!=x)
+      {
+        flag=0;
+        break;
+      }
+    }
+    for(j=1;j<strlen(a);j+=2)
+    {
+      if(a[j]!=y)
+      {
+        flag=0;
+        break;
+      }
+    }
+    if(flag==1 && count!=1)
+      printf("YES\n");
+    else printf("NO\n");
+  }
+  else printf("NO\n");
+ }
+	return 0;
+}

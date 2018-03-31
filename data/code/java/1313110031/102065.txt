@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner inp=new Scanner(System.in);
+       int p=inp.nextInt();
+       int q=inp.nextInt();
+       boolean exist=false;
+       if(q<=p){
+         System.out.println("INVALID RANGE");}
+       int m=0,n=0;
+       long sqr=0;
+       String num="";
+       String[] digits=new String[2];
+       for (long i=p;i<=q;i++)
+       {
+         if (i==1) System.out.print(1+" ");
+         else{
+           sqr=i*i;
+           num=String.valueOf(sqr);
+           if(num.length()%2 ==0)
+           {
+             digits[0]=num.substring(0,num.length()/2);
+             digits[1]=num.substring(num.length()/2);
+           }
+           else{
+             digits[0]=num.substring(0,(num.length()-1)/2);
+             digits[1]=num.substring((num.length()-1)/2);
+           }
+           if(digits[0]=="")
+             m=0;
+           if(digits[1]=="")
+             n=0;
+           if(!digits[1].equals("") && !digits[0].equals("")){
+             m=Integer.parseInt(digits[0]);
+             n=Integer.parseInt(digits[1]);
+           }
+           if(i==(m+n))
+           {
+             System.out.print(i+" ");
+             exist=true;
+             
+           }
+         }
+       }
+         if(exist==false)
+           System.out.println("INVALID RANGE...");
+	}
+}

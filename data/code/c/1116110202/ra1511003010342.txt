@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	char str[100];
+  	int i=0;
+  	scanf("%[^\t\n]s", str);
+  	if(str[0]>='0' && str[0]<='9')
+       printf("not a valid identifier");
+    
+    else if(str[0]=='_')
+      printf("not a valid identifier");
+  	
+  	else if(str[0]!='_')
+    {
+      for(i=0; str[i]!='\0'; i++)
+      {
+        if(str[i]=='_' && str[i+1]=='_')
+          printf("not a valid identifier");
+        break;
+      }
+      printf("valid identifier");
+    }
+  	else
+       printf("valid identifier");
+      
+
+	return 0;
+}

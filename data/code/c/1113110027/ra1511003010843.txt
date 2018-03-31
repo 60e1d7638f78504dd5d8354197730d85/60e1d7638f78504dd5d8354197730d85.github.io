@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  	float carbon[10]; 
+	int i, test, choice, hardness[10], tensile[10], grades;
+  	scanf("%d",&test);
+  	for(i=0;i<test;i++)
+    {
+    	scanf("%d",&hardness[i]);
+      	scanf("%f",&carbon[i]);
+      	scanf("%d",&tensile[i]);
+    }
+  	for(i=0;i<test;i++){
+      if(hardness[i]>50 && carbon[i]<=0.7 && tensile[i]>5600)
+    {
+    	printf("Grade 10");
+    }
+  else if(hardness[i]>50 && carbon[i]<0.7 )
+    {
+    	printf("Grade 9");
+    }
+  else if(carbon[i]<0.7 && tensile[i]>5600)
+    {
+    	printf("Grade 8");
+    }
+  else if(hardness[i]>50 && tensile[i]>5600)
+    {
+    	printf("Grade 7");
+    }
+  else if(hardness[i]>50 || carbon[i]<0.7 || tensile[i]>5600)
+    {
+    	printf("Grade 6");
+    }
+  else{
+  	printf("Grade 5");
+  }printf("\n");
+    }
+	return 0;
+}

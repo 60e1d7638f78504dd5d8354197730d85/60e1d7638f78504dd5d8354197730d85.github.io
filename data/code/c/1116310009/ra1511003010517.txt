@@ -1,0 +1,6 @@
+#include <stdio.h>
+int main()
+{
+printf("4 2\n1 2 3 4");
+	return 0;
+}

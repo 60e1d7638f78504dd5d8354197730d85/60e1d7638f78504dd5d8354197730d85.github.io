@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+struct employe
+{
+  char name[20],addr[20];
+  long mob;
+}em[20];
+int main()
+{
+  int i,k,n;
+  char key[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s%ld%s",em[i].name,&em[i].mob,em[i].addr);
+  }
+  scanf("%s",key);
+  for(i=0;i<n;i++)
+  {
+    k=strcmp(em[i].name,key);
+    if(k==0)
+    {
+      break;
+    }
+  }
+  if(i==n)
+  {
+    printf("The Entered Name is not in the Directory");
+  }
+  else
+  {
+   printf("Name Mobile Number City\n");
+    printf("%s %ld %s",em[i].name,em[i].mob,em[i].addr);
+  }
+  return 0;
+}

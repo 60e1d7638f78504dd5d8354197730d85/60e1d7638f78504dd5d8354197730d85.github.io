@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{   char a[100005],b[100005],min[100005];
+    int t,i,n,j,k,x,y;
+    scanf("%d",&t);
+    while(t--)
+    {x=0;
+        scanf("%s",a);
+        scanf("%d",&k);
+        n=strlen(a);
+        memset(b,'z',k);
+        memset(min,'z',n+2);
+        min[0]=a[0];
+       for(i=1;i<n;i++)
+       {
+           if(a[i]<min[i-1])
+            min[i]=a[i];
+            else
+            min[i]=min[i-1];
+            //printf("%c\n",min[i]);
+       }
+       for(i=0;i<k;i++)
+       {
+           for(j=x;j<=n-k+i;j++)
+           {
+ 
+            if(a[j]<b[i])
+            {
+              b[i]=a[j];
+              x=j+1;
+            }
+            if(a[j]==min[n-k+i])
+                break;
+           }
+ 
+       }
+        for(i=0;i<k;i++)
+            fprintf(stdout,"%c",b[i]);
+        printf("\n");
+    }
+    return 0;
+}
+ 

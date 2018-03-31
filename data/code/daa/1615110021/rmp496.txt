@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+typedef long long ll;
+ 
+const ll MOD = 1e9+7;
+const ll N = 1e4+5;
+const ll P = 15;
+ 
+ll t, n, p;
+ll memo[N][P];
+ 
+ll solve(ll _n, ll xcnt){
+	if(_n==0){
+		// cout<<_n<<" : "<<xcnt<<"  = "<<"1\n";
+		return  memo[_n][xcnt]=1;
+	}
+	// if(n==_n)
+	// 	return memo[_n][xcnt] = solve(_n-1, 0);
+	if(memo[_n][xcnt] != -1){
+		// cout<<_n<<" : "<<xcnt<<"  = "<<memo[_n][xcnt]<<"\n";
+		return memo[_n][xcnt];
+	}
+	if(xcnt<p-1){
+		memo[_n][xcnt] = (solve(_n-1, 0) + solve(_n-1, xcnt+1))%MOD;
+		// cout<<_n<<" : "<<xcnt<<"  = "<<memo[_n][xcnt]<<"\n";
+		return memo[_n][xcnt];
+	}
+	memo[_n][xcnt] = solve(_n-1, 0);
+	// cout<<_n<<" : "<<xcnt<<"  = "<<memo[_n][xcnt]<<"\n";
+	return memo[_n][xcnt];
+}
+ 
+int main(){
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	cin>>t;
+	while(t--){
+		memset(memo, -1, sizeof(memo));
+		cin>>n>>p;
+		cout<<solve(n-1, 0)<<"\n";
+	}
+	return 0;
+}

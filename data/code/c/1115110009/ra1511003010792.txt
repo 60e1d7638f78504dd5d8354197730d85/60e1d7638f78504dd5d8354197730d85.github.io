@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int arr[100];
+  	int n;
+  	scanf("%d",&n);
+ 	int m=n;
+  	int i;
+  	for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+while(n!=1){
+      int max=arr[0];
+      int maxindex=0;
+  	for(i=0;i<n;i++)
+    {
+    	if(arr[i]>max)
+        {max=arr[i];maxindex=i;}
+    }
+      	int c;
+        c=arr[maxindex];
+        arr[maxindex]=arr[n-1];
+        arr[n-1]=c;
+      n--;
+    }
+  	for(i=0;i<m;i++)
+    	printf("%d ",arr[i]);
+	return 0;
+}

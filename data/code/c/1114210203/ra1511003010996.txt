@@ -1,0 +1,26 @@
+#include <stdio.h>
+ 
+int N,Cell[10][10],Ans=0;
+ 
+void Dfs(int x,int y)
+{
+        if(x==N-1 && y==N-1) { Ans++; return; }
+        Cell[x][y]=1;
+	if(Cell[x+1][y]==0 && x+1<=N-1)  Dfs(x+1,y);
+	if(Cell[x][y+1]==0 && y+1<=N-1)  Dfs(x,y+1);
+	if(Cell[x-1][y]==0 && x-1>0)     Dfs(x-1,y);
+	if(Cell[x][y-1]==0 && y-1>0)     Dfs(x,y-1); 
+	Cell[x][y]=0;
+}
+  
+int main() 
+{
+	int i,j;
+	scanf("%d",&N);
+	for(i=0;i<N;i++)
+	  for(j=0;j<N;j++) scanf("%d",&Cell[i][j]);
+	Dfs(0,0);
+	printf("%d",Ans);
+    return 0;
+}  
+

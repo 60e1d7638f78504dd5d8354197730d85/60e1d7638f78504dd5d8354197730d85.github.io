@@ -1,0 +1,59 @@
+    
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <cstdlib>
+#include <cassert>
+#include <cstring>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+    
+vector<int> v[50000];
+vector<int> d[50000];
+    
+bool vis[100000];
+    
+int n, m;
+    
+void dfs(int cur, int maxd) {
+    if (vis[cur]) return;
+    vis[cur] = true;
+    for (int i = 0; i < v[cur].size(); i++)
+        if (d[cur][i] <= maxd) dfs(v[cur][i], maxd);
+}
+bool check(int maxd) {
+    memset(vis, false, sizeof(vis));
+    dfs(0, maxd);
+    return vis[n - 1];
+}
+    
+#define inf 1000000000
+    
+int main() {
+    cin >> n >> m;
+    assert(n <= 50000);
+    assert(m <= 500000);
+    
+    while (m--) {
+        int x, y, z;
+        scanf("%d%d%d", &x, &y, &z);
+        assert(x >= 1 && x <= n);
+        assert(y >= 1 && y <= n);
+        assert(z >= 1 && z <= 10000000);
+    
+        x--, y--;
+        v[x].push_back(y); d[x].push_back(z);
+        v[y].push_back(x); d[y].push_back(z);
+    }
+    
+    int low = 1, high = inf;
+    while (low < high) {
+        int mid = (low + high) >> 1;
+        if (check(mid)) high = mid;
+        else low = mid + 1;
+    }
+    if (high == inf) cout << "NO PATH EXIST" << endl;
+    else cout << high << endl;
+    return 0;
+}

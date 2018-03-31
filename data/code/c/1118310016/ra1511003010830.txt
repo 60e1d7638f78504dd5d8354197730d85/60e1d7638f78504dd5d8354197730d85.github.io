@@ -1,0 +1,66 @@
+#include <stdio.h>
+#define BOUGHT 1
+#define NOTBOUGHT 0
+#define CREDITMAX 1002
+ 
+int main(void){
+int i,j,k;
+int credit,iTemp;
+int Type[102]    = {5,2,6,1,4,3,3,1,1};
+int Price[102]   = {8,4,8,13,5,2,13,1,1};
+int Quality[102] = {7,8,13,12,5,7,5,1};
+int Money = 53, iInput = 7;
+int FlagWeapons[7];
+int Wallet,MaxQuality;
+ scanf("%d %d",&iInput,&Money);
+ for(i= 0; i < iInput;i++){
+	scanf("%d %d %d",&Type[i],&Price[i],&Quality[i]);
+ }
+ //Find the maximum quality
+ MaxQuality = 0;
+ for(i= 0; i < iInput;i++){
+	if(Quality[i]>MaxQuality) MaxQuality = Quality[i];
+ }
+ //Buy and test.
+ for(j = MaxQuality; j>0; j--){
+ 
+	 Wallet = Money; //refill Wallet with money ;P
+	 for(i= 1; i <= 6; i++) FlagWeapons[i] = NOTBOUGHT;		//reset the cart
+ 
+	 for(k=1;k<=6;k++){
+		credit = CREDITMAX;
+		for(i= 0; i < iInput;i++){
+			if(Type[i] != k ) continue;                        //check for current weapon only.
+			if(Quality[i]>= j ){
+				if(Wallet >= Price[i]){                     //check if there is money in the wallet.
+					if (Price[i] < credit) credit = Price[i]; //try to buy the cheapest one just above the quality.
+				}
+			}
+		}//for(i= 0; i < iInput;i++)
+		if(credit < CREDITMAX){
+		 if(Wallet < credit){
+	  //		 printf("Cant afford Loser");
+			 break; //
+		 }
+		 Wallet -= credit;                         //Now buy the weapon.
+		 FlagWeapons[k] = BOUGHT;                  //set the bought flag for that weapon.
+		}//if(credit < CREDITMAX)
+	 }//for(k=1;k<=6;k++)
+	 //check if all weapons have been bought
+	 iTemp = 0;
+	 for(i= 1; i <= 6; i++){
+	  if(FlagWeapons[i] == NOTBOUGHT) break;
+	  iTemp++;
+	 }
+	 /*--------->>>>>>Output data <<<<<<------------*/
+	 if(iTemp == 6){
+		printf("\n%d",j);
+		return(0);
+	 }
+	 /*--------->>>>>>Output data <<<<<<------------*/
+ }//for(j = MaxQuality; j>0; j--)
+ /*--------->>>>>>Output data <<<<<<------------*/
+ printf("\n0");
+ /*--------->>>>>>Output data <<<<<<------------*/
+ return(0);
+}

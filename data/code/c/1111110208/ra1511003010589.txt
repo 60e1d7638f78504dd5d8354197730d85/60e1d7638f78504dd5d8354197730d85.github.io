@@ -1,0 +1,33 @@
+#include<stdio.h>
+int sum(int n)
+{
+  int s=0,i;
+  for(i=1;i<=n;i++)
+    s+=i;
+  return s;
+}
+int sum1(int d,int n)
+{
+  int i,res=sum(n);
+  if(d==1)
+  {
+    return res;
+  }
+  for(i=2;i<=d;i++)
+  {
+    res=sum(res);
+  }
+  return res;
+}
+int main()
+{
+  int t,n,d,res;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d %d",&d,&n);
+    res=sum1(d,n);
+    printf("%d\n",res);
+  }
+  return 0;
+}

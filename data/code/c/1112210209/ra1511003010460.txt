@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define MAX(x, y) (x>y?x:y)
+#define MIN(x, y) (x<y?x:y)
+ 
+int cmp(const void *a, const void *b) {
+  return (*(int*)a - *(int*)b);
+}
+//qsort(arr, n, sizeof(int), cmp);
+//memset(arr, 0, sizeof(arr));
+ 
+int ltb(int arr[], int l, int r, int x) {
+  int m;
+  while (l <= r) {
+    m = l+((r-l)/2);
+    if (arr[m] >= x) r = m-1;
+    else l = m+1;
+  }
+  return l-1;
+}
+ 
+int main(void) {
+  int t=0, i=0, j=0, k=0;
+  long long int n=0, r=0, base=0;
+  t++,i++,j++,k++;
+  t--,i--,j--,k--;
+  n++,r++,base++;
+  n--,r--,base--;
+    r = 0;
+    base = 1;
+      scanf("%lld", &n);
+    while (n) {
+      r *= 10;
+      r += n%10;
+      n /= 10;
+    }
+    printf("%lld\n", r);
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include<stdio.h>
+ 
+typedef unsigned long long uint64_t;
+ 
+int main()
+{
+        uint64_t A[101];
+        int T, N, i, cnt, idx;
+        uint64_t num;
+ 
+        scanf("%d", &T);
+        while (T--) {
+                cnt = 0;
+                scanf("%d", &N);
+                for(i = 1; i <= N; i++)
+                        scanf("%lld", &A[i]);
+                scanf("%d", &idx);
+                num = A[idx];
+                for(i = 1; i <= N; i++) {
+                        if (A[i] > num) cnt++;
+                }
+                printf("%d\n", N-cnt);
+ 
+        }
+ 
+        return (0);
+}
+ 

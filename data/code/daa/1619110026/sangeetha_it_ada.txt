@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define vi vector < int >
+#define pii pair < int , int >
+#define pb push_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define foreach(it,v) for( __typeof((v).begin())it = (v).begin() ; it != (v).end() ; it++ )
+#define ll long long
+#define llu unsigned long long
+#define MOD 1000000007
+#define INF 2000000000
+#define dbg(x) { cout<< #x << ": " << (x) << endl; }
+#define dbg2(x,y) { cout<< #x << ": " << (x) << " , " << #y << ": " << (y) << endl; }
+#define all(x) x.begin(),x.end()
+#define mset(x, v) memset(x, v, sizeof(x))
+#define si(x) (int)x.size()
+int a[100005];
+ll dp[2][128];
+int main()
+{
+    int n,i,j;
+    cin>>n;
+    assert(1 <= n && n <= 100000);
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+        assert(0 <= a[i] && a[i] <= 100);
+    }
+    int cur = 0,pre = 1;
+    dp[cur][0] = 1;
+    for(i=0;i<n;i++)
+    {
+        pre = cur;
+        cur ^= 1;
+        for(j=0;j<128;j++)
+        {
+            dp[cur][j] = (dp[pre][j] + dp[pre][j^a[i]])%MOD;
+        }
+    }
+    ll ans = 0;
+    dp[cur][0]--;
+    for(i=0;i<128;i++)
+    {
+        ll cnt = dp[cur][i];
+        ll ways = (cnt-1+MOD)%MOD;
+        ways = (ways*cnt)%MOD;
+        ways = (ways*500000004)%MOD;
+        ans += ways;
+        if(ans >= MOD)
+        	ans -= MOD;
+    }
+    cout<<ans<<endl;
+    return 0;
+}

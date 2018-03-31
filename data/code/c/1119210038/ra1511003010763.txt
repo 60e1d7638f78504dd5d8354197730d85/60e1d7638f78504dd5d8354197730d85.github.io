@@ -1,0 +1,41 @@
+#include <stdio.h>
+ 
+ 
+/**
+ * For this question, I know there are limited number of identical hours and minutes,
+ * so I used a list of identical digit so that I don't have to compute this again
+ * in the program.
+ */
+int identical_digit[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99};
+ 
+int main(void) {
+	int t;
+	scanf("%d", &t);
+	while(t--) {
+		int h, m, i;
+		// As there will always be 0:0
+		int count = 1;
+		scanf("%d %d", &h, &m);
+		/* iterating over the identical array, its size is 18 */
+		for(i=0; i<18 && identical_digit[i]<h; i++) {
+			
+			// If you noticed in the identical array, there can only be a group of 2 in there,
+			// for eg. 1 & 11, 2 & 22, 3 & 33 and so on and they are 9 distance apart to each other.
+			// so I am making use of this property here. instead of iterating over the entire array
+			// again for the minutes as well, I am only checking for two values, one is itself,
+			// and the other one which is 9 distance apart(but it can be on either side so 
+			// there's another condition which checks the direction of the other identical digit)
+			if (identical_digit[i] < m)
+				count++;
+				
+			if (i<9) {
+				if (identical_digit[i+9] < m)
+					count++;
+			} else if (identical_digit[i-9] < m) {
+				count++;
+			}
+		}
+		printf("%d\n", count);
+	}
+	return 0;
+}

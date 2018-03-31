@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+#define mod 1000000007
+ long long int seg[570000][2][2],arr[200001],pow[200001][2][2];
+void matrixexponen(long long n,long long a[][2][2]){
+	long long int x=arr[n],y,z,v,w;
+	 a[n][0][0]=1;
+	 a[n][0][1]=0;
+	 a[n][1][0]=0;
+	 a[n][1][1]=1;
+	 int j=0;
+	long long int b[2][2]={1,1,1,0};
+	 while(x!=0){
+	 	if(x%2==1){
+	 		v=a[n][0][0];
+	 		w=a[n][0][1];
+	 		y=a[n][1][0];
+	 		z=a[n][1][1];
+	 		a[n][0][0]=(v*b[0][0]+w*b[1][0])%mod;
+	 		a[n][0][1]=(v*b[0][1]+w*b[1][1])%mod;
+	 		a[n][1][0]=(y*b[0][0]+z*b[1][0])%mod;
+	 		a[n][1][1]=(y*b[0][1]+z*b[1][1])%mod;
+	 	}
+	 	v=b[0][0];
+	 	w=b[0][1];
+	 	y=b[1][0];
+	 	z=b[1][1];
+	 		b[0][0]=(v*v+w*y)%mod;
+	 		b[0][1]=(v*w+w*z)%mod;
+	 		b[1][0]=(y*v+z*y)%mod;
+	 		b[1][1]=(y*w+z*z)%mod;
+	 	x=x/2;
+	 }
+	 a[n][0][0]=(a[n][0][0]+1)%mod;
+	 a[n][0][1]=(a[n][0][1]+0)%mod;
+	  a[n][1][0]=(a[n][1][0]+0)%mod;
+	   a[n][1][1]=(a[n][1][1]+1)%mod; 
+}
+void build_seg(long long k,long long i,long long j){
+	if(i>j){
+		seg[k][0][0]=1;
+		seg[k][0][1]=0;
+		seg[k][1][0]=0;
+		seg[k][1][1]=1;
+		return;
+	}
+	else if(i==j){
+		seg[k][0][0]=pow[i][0][0];
+		seg[k][0][1]=pow[i][0][1];
+		seg[k][1][0]=pow[i][1][0];
+		seg[k][1][1]=pow[i][1][1];
+		return;
+		
+	}
+	else{
+		build_seg(2*k+1,i,(i+j)/2);
+		build_seg(2*k+2,(i+j)/2+1,j);
+		seg[k][0][0]=(seg[2*k+1][0][0]*seg[2*k+2][0][0]+seg[2*k+1][0][1]*seg[2*k+2][1][0])%mod;
+		seg[k][0][1]=(seg[2*k+1][0][0]*seg[2*k+2][0][1]+seg[2*k+1][0][1]*seg[2*k+2][1][1])%mod;
+		seg[k][1][0]=(seg[2*k+1][1][0]*seg[2*k+2][0][0]+seg[2*k+1][1][1]*seg[2*k+2][1][0])%mod;
+		seg[k][1][1]=(seg[2*k+1][1][0]*seg[2*k+2][0][1]+seg[2*k+1][1][1]*seg[2*k+2][1][1])%mod;
+		return;
+	}
+	
+}
+void update(long long x,long long y,long long i,long long j,long long k,long long mat[2][2]){
+	if(i>j || x>j || x<i)
+	return;
+	else if(i==j && i==x){
+		pow[i][0][0]=mat[0][0];
+		pow[i][0][1]=mat[0][1];
+		pow[i][1][0]=mat[1][0];
+		pow[i][1][1]=mat[1][1];
+			seg[k][0][0]=pow[i][0][0];
+		seg[k][0][1]=pow[i][0][1];
+		seg[k][1][0]=pow[i][1][0];
+		seg[k][1][1]=pow[i][1][1];
+		return;
+	}
+	else{
+		update(x,y,i,(i+j)/2,2*k+1,mat);
+		update(x,y,(i+j)/2+1,j,2*k+2,mat);
+			seg[k][0][0]=(seg[2*k+1][0][0]*seg[2*k+2][0][0]+seg[2*k+1][0][1]*seg[2*k+2][1][0])%mod;
+		seg[k][0][1]=(seg[2*k+1][0][0]*seg[2*k+2][0][1]+seg[2*k+1][0][1]*seg[2*k+2][1][1])%mod;
+		seg[k][1][0]=(seg[2*k+1][1][0]*seg[2*k+2][0][0]+seg[2*k+1][1][1]*seg[2*k+2][1][0])%mod;
+		seg[k][1][1]=(seg[2*k+1][1][0]*seg[2*k+2][0][1]+seg[2*k+1][1][1]*seg[2*k+2][1][1])%mod;
+		return;
+	}
+}
+void query(long long l,long long r,long long i,long long j,long long k,long long temp[2][2]){
+	if(r<i||i>j||l>j)
+	return;
+	else if(i>=l && j<=r){
+		long long a=temp[0][0],b=temp[0][1],c=temp[1][0],d=temp[1][1];
+				temp[0][0]=(a*seg[k][0][0]+b*seg[k][1][0])%mod;
+	temp[0][1]=(a*seg[k][0][1]+b*seg[k][1][1])%mod;
+		temp[1][0]=(c*seg[k][0][0]+d*seg[k][1][0])%mod;
+			temp[1][1]=(c*seg[k][0][1]+d*seg[k][1][1])%mod;
+			return;
+	}
+	else{
+		query(l,r,i,(i+j)/2,2*k+1,temp);
+		query(l,r,(i+j)/2+1,j,2*k+2,temp);
+		return;
+	}
+}
+int main(){
+	long long n,l,i,r,temp[2][2],m;
+	char c[50];
+	scanf("%lld %lld",&n,&m);
+	for(i=1;i<=n;i++){
+		scanf("%lld",&arr[i]);
+		matrixexponen(i,pow);
+		
+	}
+	build_seg(0,1,n);
+	while(m--){
+	temp[0][0]=1;
+	temp[0][1]=0;
+	temp[1][0]=0;
+	temp[1][1]=1;
+	scanf("%s %lld %lld",&c,&l,&r);
+	if(c[0]=='C'){
+		arr[0]=r;
+		matrixexponen(0,pow);
+			temp[0][0]=pow[0][0][0];
+	temp[0][1]=pow[0][0][1];
+	temp[1][0]=pow[0][1][0];
+	temp[1][1]=pow[0][1][1];
+		update(l,r,1,n,0,temp);
+	}
+	else{
+		query(l,r,1,n,0,temp);
+		printf("%lld\n",temp[1][0]);
+	}
+	
+}
+	return 0;
+} 

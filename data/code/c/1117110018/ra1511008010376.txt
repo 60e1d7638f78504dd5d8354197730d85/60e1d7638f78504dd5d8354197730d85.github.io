@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int r,c,i,j,temp=0;
+  scanf("%d",&r);
+  scanf("%d",&c);
+  if(r<=10 && c<=10)
+  {
+    int m1[r][c];
+    for(i=0;i<r;i++)
+    {
+      for(j=0;j<c;j++)
+        scanf("%d",&m1[i][j]);
+    }
+    for(i=0;i<r;i++)
+    {
+       for(j=0;j<c;j++)
+       {
+         if(m1[i][j]!=m1[j][i])
+         {
+           temp=1;
+           break;
+         }
+       }
+     }
+     if(temp==1)
+        printf("Not Symmetric");
+     else
+        printf("Symmetric");
+  }
+	return 0;
+}

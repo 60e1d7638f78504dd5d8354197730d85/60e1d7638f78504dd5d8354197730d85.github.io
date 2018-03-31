@@ -1,0 +1,44 @@
+#include "stdio.h"
+#include "stdlib.h"
+#define radix 1000000007
+ 
+typedef unsigned long long bigint;
+bigint table[1001][1001];
+ 
+ 
+void combos() {
+    int i, j, k;
+    for (i = 1;i <= 1000; i++) 
+        table[i][1] = 1;
+    for (j = 2; j <= 1000; j++)
+        for (k = 1; k <= j; k++) 
+            table[j][k] = (table[j-1][k-1] + table[j-1][k] * k) % radix;
+}
+ 
+bigint get_sum(int size) {
+    int i;
+    bigint sum = 0;
+    for (i = 1; i <= size; i++)
+        sum += table[size][i];
+    return sum % radix; 
+}
+ 
+int main(void) {
+    int cases, i, num;
+    combos();
+    scanf("%d", &cases);
+    for(i = 0; i < cases; i++) {
+        scanf("%d", &num);
+        printf("%llu\n", get_sum(num));
+    }
+    return 0;
+}
+ 
+int test(void) {
+    // Testing speed
+    combos();
+    int i;
+    for (i = 0; i < 1000; ++i)
+        printf("%llu\n", get_sum(1000));
+    return 0;
+} 

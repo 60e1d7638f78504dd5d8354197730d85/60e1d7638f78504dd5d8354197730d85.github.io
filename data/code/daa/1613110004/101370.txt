@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,size,temp,count,g[10],b[10],t,temp1;
+ scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&size);
+    for(j=0;j<size;j++)
+    {
+      scanf("%d",&g[j]);
+    }
+    for(j=0;j<size;j++)
+    {
+      scanf("%d",&b[j]);
+    }
+    for (j=0;j<size;j++)
+    {
+      for(k=0;k<size;k++)
+      {
+        if(b[j]>b[k])
+        {
+          temp=b[k];
+          b[k]=b[j];
+          b[j]=temp;
+        }
+        if(g[j]<g[k])
+        {
+          temp1=g[k];
+          g[k]=g[j];
+          g[j]=temp1;
+        }
+      }
+    }
+   /* for(j=0;j<size;j++)
+    {
+      printf("\n%d:%d\n",g[j],b[j]);
+    }*/
+    count=0;
+    for(j=0;j<size;j++)
+    {
+      if(g[j]%b[j]==0 ||b[j]%g[j]==0)
+      {
+        count++;
+      }
+    }
+    printf("\n%d",count);
+  }
+	return 0;
+}

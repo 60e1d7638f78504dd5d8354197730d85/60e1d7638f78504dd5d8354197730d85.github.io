@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    string S;
+    cin>>S;
+    int x,y=0;
+    
+    set <pair<int,int>> v;
+    
+    v.insert(make_pair(x,y));
+    
+    for(int i=0;i<S.size();i++)
+    {
+        if(S[i]=='R')
+        {
+            y++;
+            
+            v.insert(make_pair(x,y));
+        }
+        
+        else if(S[i]=='U')
+        {
+            x--;
+            v.insert(make_pair(x,y));
+            
+        }
+        
+        else if(S[i]=='L')
+        {
+            y--;
+            v.insert(make_pair(x,y));
+        }
+        
+        else if(S[i]=='D')
+        {
+            x++;
+            v.insert(make_pair(x,y));
+            
+        }
+        
+        
+    }
+    
+        cout<<S.size() - v.size() + 1;
+        
+}

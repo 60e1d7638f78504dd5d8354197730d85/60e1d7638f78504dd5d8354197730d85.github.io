@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+union reverse
+{
+  long int n;
+}R;
+long int rev(long int n)
+{
+  long int r=0;
+  while(n!=0)
+  {
+    r=(r*10)+(n%10);
+    n=n/10;
+  }
+  return r;
+}
+int main()
+{
+  scanf("%ld",&R.n);
+  R.n=rev(R.n);
+  printf("%ld",R.n);
+	return 0;
+}

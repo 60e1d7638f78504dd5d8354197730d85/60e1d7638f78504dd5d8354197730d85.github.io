@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main()
+{int i,v=0,c=0,d=0,w=0;
+ char arr[30];
+ scanf("%[^\n]s",arr);
+ for(i=0;i<strlen(arr);i++)
+ {if(isdigit(arr[i]))
+     d++;
+  if(isspace(arr[i]))
+    w++;
+  if(isalpha(arr[i]))
+  {switch(arr[i])
+   {case 'a':
+    case 'A':
+    case 'e':
+    case 'E':
+    case 'i':
+    case 'o':
+    case 'u':
+    case 'I':
+    case 'O':
+    case 'U':v++;
+           break;
+    default:c++;
+   }
+  }
+ }
+ printf("%d %d %d %d",v,c,d,w);
+ 
+
+	return 0;
+}

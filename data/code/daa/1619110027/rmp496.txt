@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define num 100005
+#define mod 1000000007
+using namespace std;
+ 
+ll sumd(ll temp)
+{
+    ll sum =0;
+    while(temp>0)
+    {
+        sum = sum +(temp%10);
+        temp = temp/10;
+    }
+    return sum;
+}
+ll brr[num];
+ll noofsub(int n)
+{
+    brr[0]=1;
+    brr[1]=2;
+    if(brr[n]!=0)
+    {
+        return brr[n];
+    }
+    else
+    {
+        brr[n] = ((brr[n-1]%mod)*2)%mod;
+        return brr[n];
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    ll arr[n];
+    ll temp;
+    memset(brr,0,sizeof(brr));
+    for(int i=0;i<n;i++)
+    {
+        cin>>temp;
+        temp = sumd(temp);
+        arr[i]=temp;
+    }
+    sort(arr,arr+n);
+    ll ans=0;
+    for(int i=0;i<n;i++)
+    {
+        ll t = noofsub(i);
+        //cout<<t<<endl;
+        ans = ((ans%mod) + ((t%mod)*(arr[i]%mod))%mod)%mod;
+    }
+    cout<<ans<<endl;
+}

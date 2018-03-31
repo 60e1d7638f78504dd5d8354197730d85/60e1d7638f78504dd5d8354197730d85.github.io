@@ -1,0 +1,58 @@
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <assert.h>
+ 
+/*
+ * 
+ */
+ 
+int main(int argc, char** argv)
+{
+    int num, k;
+    _Bool isopen[1001];
+    char str[80];
+    char *dec;
+    int i, j, clcknum,totalcount;
+ 
+    scanf("%d %d",&num,&k);
+    getchar();
+    memset(isopen,0,sizeof(isopen));
+ 
+    for(i=0;i<k;i++)
+    {
+        scanf("%[^\n]",str);
+        getchar();
+ 
+        dec = strchr(str,' ');
+ 
+        if(dec==NULL)
+        {
+            if(strcmp(str,"CLOSEALL")==0)
+            {
+                memset(isopen,0,sizeof(_Bool)*(num+1));
+                printf("0\n");
+            }
+            else
+            {
+                assert(1!=0);
+            }
+        }
+        else
+        {
+            clcknum = atoi(dec+1);
+            isopen[clcknum] = !isopen[clcknum];
+            totalcount = 0;
+            for(j=1;j<=num;j++)
+            {
+                if(isopen[j])
+                    totalcount++;
+            }
+            printf("%d\n",totalcount);
+        }
+ 
+    }
+ 
+    return (EXIT_SUCCESS);
+}

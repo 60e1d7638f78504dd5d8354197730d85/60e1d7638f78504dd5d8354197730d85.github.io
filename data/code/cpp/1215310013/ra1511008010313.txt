@@ -1,0 +1,129 @@
+#include <iostream>
+#include <sstream>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <memory>
+#include <cctype>
+#include <string.h>
+#include <vector>
+#include <list>
+#include <queue>
+#include <deque>
+#include <stack>
+#include <map>
+#include <string>
+#include <algorithm>
+using namespace std;
+ 
+#define FOR(i,a,b) for(int (i) = (a); (i) < (b); ++(i))
+#define RFOR(i,a,b) for(int (i) = (a)-1; (i) >= (b); --(i))
+#define CLEAR(a) memset((a),0,sizeof(a))
+#define INF 1000000000
+#define PB push_back
+#define ALL(c) (c).begin(), (c).end()
+#define pi 2*acos(0.0)
+#define SQR(a) (a)*(a)
+#define MP make_pair
+#define MOD 1000000007
+ 
+typedef long long Int;
+typedef unsigned long long UInt;
+ 
+int t, n;
+string A[64];
+vector <string> L;
+Int DP[51][1 << 9];     //first dim is the number selected and second dim is the bit-mask
+bool B[51][1 << 10]; // true means we can take the element and false means not to consider
+int C[51][1 << 10];
+//this is used for the bit-mask, [1 1 1 0 1 0] this array  decides which digit is lucky and which are not
+// instead of storing the the array we sum to power of 2's in Cij
+ 
+ 
+// 2^10-1 complexity as there are 9 places and only 2 digits and a space
+// draw the tree of all string generated and sum all the node we get 2^10
+// the set has to be non-empty so we minus 1 (1024-1=1023)
+ 
+void F(string s)
+{
+		string p = s;
+		if (s.size() <= 9)
+		{
+				reverse(ALL(s));
+				while (s.size() < 9)
+						s += '0';
+				reverse(ALL(s));
+				L.PB(s);
+		}
+		if (p.size() == 9)
+				return;
+		string t = p;
+		t += '4';
+		F(t);
+		t = p;
+		t += '7';
+		F(t);
+}
+ 
+int main()
+{
+        F("");
+		sort(ALL(L));
+ 
+		cin >> t;
+		FOR (tt,0,t)
+		{
+				cin >> n;
+				FOR (i,0,n)
+				{
+						cin >> A[i];
+						reverse(ALL(A[i]));
+						while (A[i].size() < 9)
+								A[i] += '0';
+						reverse(ALL(A[i]));
+				}
+ 
+				FOR (i,0,n)
+						FOR (j,0,L.size())
+						{
+								B[i][j] = true;
+								FOR (l,0,9)
+										if (A[i][l] > L[j][l])
+												B[i][j] = false;
+ 
+								C[i][j] = 0;
+								FOR (l,0,9)
+										if (A[i][l] == L[j][l])
+												C[i][j] += (1 << l);
+						}
+ 
+				Int res = 0;
+				FOR (i,1,L.size())
+				{
+						CLEAR(DP);
+						int t = 0;
+						while (t < 9 && L[i][t] == '0')
+								t++;
+						int mask = 0;
+						FOR (j,0,t)
+								mask += (1 << j);
+						DP[0][mask] = 1;
+						FOR (j,0,n)
+								FOR (k,0,(1 << 9))
+								{
+										if (DP[j][k] == 0)
+												continue;
+										DP[j+1][k] = DP[j+1][k] + DP[j][k];
+										int kk = k | (C[j][i]);
+										bool ok = B[j][i];
+										if (!ok)
+												continue;
+										DP[j+1][kk] = DP[j+1][kk] + DP[j][k];
+								}
+						res = res + DP[n][(1 << 9)-1];
+				}
+				cout << res << endl;
+		}
+ 
+		return 0;
+}

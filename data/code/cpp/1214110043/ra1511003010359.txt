@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class complex
+{
+  private:
+  float real;
+  float imag;
+  public:
+  void getvalue()
+  {
+    cin>>real>>imag;
+  }
+  complex operator -(complex c2)
+  {
+    complex temp;
+    temp.real=real-c2.real;
+    temp.imag=imag-c2.imag;
+    return temp;
+  }
+  
+  void print()
+  {
+    if(imag>0)
+    cout<<"Output Complex number: "<<real<<"+"<<imag<<"i";
+    else if(imag<0)
+      cout<<"Output Complex number: "<<real<<imag<<"i";
+  }
+};
+int main()
+{
+  complex c1,c2,sub;
+  c1.getvalue();
+  c2.getvalue();
+  sub=c1-c2;
+  sub.print();
+	return 0;
+}

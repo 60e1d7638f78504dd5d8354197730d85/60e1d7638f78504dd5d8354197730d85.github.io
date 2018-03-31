@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner myScanner = new Scanner(System.in);
+       	int numOfTests = myScanner.nextInt();
+       	for(int k=0;k<numOfTests;k++){
+      		int elements = myScanner.nextInt();
+       		int[] arr = new int[elements];
+       		int[] prod = new int[elements];
+
+       		for(int i=0;i<elements;i++){
+         		arr[i]  = myScanner.nextInt(); 
+        	}
+       		for(int i=0;i<elements;i++){
+          		prod[i] = Product(arr,elements,i);
+         		System.out.print(prod[i]+" "); 
+        	}
+          	System.out.print("\n");
+       }
+	}
+  	 public static int Product(int[] arr,int numOfElements,int element){
+      	 int answer = 1; 
+       	 for(int i=0;i<numOfElements;i++){
+           	answer = answer * arr[i];  
+          }
+       	return (answer/arr[element]);
+     }
+}

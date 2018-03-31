@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+ int t, a[10]={},n,i;
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    scanf("%d\n",&n);
+    for (i=0;i<n;i++)
+    {
+      scanf("%d\t",&a[i]);
+      
+    }
+    int min1=a[0],min2,max=a[0],count;
+    for( i=0;i<n;i++)
+    {
+      if( min1>a[i])
+      { min1=a[i];
+       count=i;}
+       if( max<a[i])
+      { max=a[i];
+       }
+    }
+    min2=max;
+    
+      for( i=0;i<n;i++)
+    { if(a[i]!=min1)
+    { if( min2>a[i])
+      { min2=a[i];
+       
+       }
+      }
+    }
+   
+    int res;
+    res=min1+min2;
+    printf("%d",res);
+  }
+      
+      
+      
+  
+	return 0;
+}

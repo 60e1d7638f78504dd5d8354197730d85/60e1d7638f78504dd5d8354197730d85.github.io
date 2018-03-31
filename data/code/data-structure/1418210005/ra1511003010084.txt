@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+struct Node{
+	int data;
+	Node *left;
+	Node *right;
+};
+ 
+Node *insert_node(int data, Node *root){
+	if(!root) return new Node{data, nullptr, nullptr};
+	if(data <= root->data){
+		root->left = insert_node(data, root->left);
+	}else{
+		root->right = insert_node(data, root->right);
+	}
+	return root;
+}
+int tree_height(Node *root){
+	if(!root) return 0;
+	return max(tree_height(root->left), tree_height(root->right)) + 1;
+}
+ 
+int main(){
+	int n;
+	cin >> n;
+ 
+	int data;
+	Node *root = nullptr;
+	while(n--){
+		cin >> data;
+		root = insert_node(data, root);		
+	}
+	cout << tree_height(root);
+ 
+	return 0;
+}

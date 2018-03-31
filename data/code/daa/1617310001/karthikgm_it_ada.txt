@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+void bfs(vector <int> v[], int s,int n){
+    queue <int> q;
+    q.push(s);
+    bool visited[n];
+    int level[n];
+    for(int i=0;i<n;i++){visited[i]=false;level[i]=INT_MAX;}
+    level[s]=0;visited[s]=true;
+    while(!q.empty()){
+        int k=q.front();
+        q.pop();
+        for(int i=0;i<v[k].size();i++){
+            if(!visited[v[k][i]]){
+                q.push(v[k][i]);
+                visited[v[k][i]]=true;
+            }
+            if(level[v[k][i]]>level[k]+1)
+                level[v[k][i]]=level[k]+1;
+        }
+        
+    }
+    int co=0,ce=0;
+    for(int i=0;i<n;i++){
+        //cout<<level[i]<<" ";
+        if(level[i]%2==0)ce++;
+        else co++;
+    }
+    int ans=(co*(co-1))/2+(ce*(ce-1))/2;
+    cout<<ans<<endl;
+       // cout<<endl;
+   
+    
+}
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t-->0){
+	    int n;
+	    cin>>n;
+	    vector <int> v[n];
+	    for(int i=0;i<n-1;i++){
+	        int x,y;
+	        cin>>x>>y;
+	        v[x-1].push_back(y-1);
+	        v[y-1].push_back(x-1);
+	    }
+	   bfs(v,0,n);
+	    
+	}
+	return 0;
+}

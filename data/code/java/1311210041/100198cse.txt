@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+class TestClass
+{
+    private static int maxConsecutiveOnes(int x)
+    {
+        // Initialize result
+        int count = 0;
+ 
+        // Count the number of iterations to
+        // reach x = 0.
+        while (x!=0)
+        {
+            // This operation reduces length
+            // of every sequence of 1s by one.
+            x = (x & (x << 1));
+ 
+            count++;
+        }
+ 
+        return count;
+    }
+ 
+    // Driver code
+    public static void main(String strings[])
+    {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int a[]=new int[n];
+      for(int i=0;i<n;i++)
+      {
+        a[i]=sc.nextInt();
+        System.out.println(maxConsecutiveOnes(a[i]));
+        
+      }
+      
+      
+        //System.out.println(maxConsecutiveOnes(14));
+        
+    }
+}

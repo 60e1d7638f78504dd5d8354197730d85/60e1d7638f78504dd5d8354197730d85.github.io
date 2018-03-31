@@ -1,0 +1,39 @@
+
+#include <stdio.h>
+#define ll long long
+
+const int ma = 1e6+5;
+
+int main()
+{
+	
+int a[ma];
+	
+  int t,i;
+	for(scanf("%d",&t);t;--t)
+	{
+		int n,k;
+		scanf("%d%d",&n,&k);
+		for(i=0;i<n;i++)
+		{
+			scanf("%d",&a[i]);
+		}
+		k%=n;
+		k=n-k;
+		k%=n;
+	
+		int c=1;
+		while(c<=n)
+		{
+			if(c<n)
+				printf("%d\n",a[k]);
+			else
+				printf("%d \n",a[k]);
+			c++;
+			k++;
+			if(k==n)
+			k=0;
+		}
+	}
+	return 0;
+}

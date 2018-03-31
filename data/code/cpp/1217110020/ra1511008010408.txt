@@ -1,0 +1,45 @@
+#include <cstdio>
+#include <set>
+#include <vector>
+#include <algorithm>
+using namespace std;
+ 
+const int Maxm = 10400;
+ 
+bool nprime[Maxm];
+vector <int> pr;
+int t;
+int n;
+ 
+bool Prime(int x)
+{
+	if (x < Maxm) return !nprime[x];
+	for (int i = 0; pr[i] * pr[i] <= x; i++)
+		if (x % pr[i] == 0) return false;
+	return true;
+}
+ 
+void Win() { printf("Mike\n"); }
+ 
+void Lose() { printf("Tom\n"); }
+ 
+int main()
+{
+	for (int i = 2; i < Maxm; i++) if (!nprime[i]) {
+		pr.push_back(i);
+		for (int j = i + i; j < Maxm; j += i) nprime[j] = true;
+	}
+	scanf("%d", &t);
+	while (t--) {
+		scanf("%d", &n);
+		if (n == 2) Win();
+		else if (n == 16) Lose();
+		else if (n == 17) Win();
+		else if (n == 34) Lose();
+		else if (n == 289) Lose();
+		else if (Prime(n)) Lose();
+			 else Win();
+	}
+	return 0;
+} 
+

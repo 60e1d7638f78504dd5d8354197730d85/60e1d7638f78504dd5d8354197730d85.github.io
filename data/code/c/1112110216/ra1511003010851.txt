@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+int main(void) {
+ 
+	int l1=0,l2=0;//,l3=0,final,total,i;
+	//int max=0,hash[151],sum,len;
+	
+		scanf("%d %d\n",&l1,&l2);
+		int a=0,b=0;
+		if(l1>=l2)
+		{
+			a=l1;
+			b=l2;
+		}
+		else
+		{
+			a=l2;
+			b=l1;
+		}
+		int temp=0;
+		while (b != 0)
+		{
+    		temp = b;
+			b = a % b;
+    		a = temp;
+  		}
+ 
+  		int gcd = a;
+  		//printf("gcd=%d\n",gcd);
+  		
+  		printf("%d\n",(l1*l2)/(gcd*gcd));
+    
+	return 0;
+}

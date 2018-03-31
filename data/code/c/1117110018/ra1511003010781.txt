@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+int a[10][10], m,n;
+void symmetric()
+{
+  int b[10][10], i,j;
+ 
+  for(i=0; i<m; i++)
+    for(j=0; j<m; j++)
+      b[j][i] = a[i][j];
+  for(i=0; i<m; i++)
+  {
+    for(j=0; j<m; j++)
+    {
+      if(a[i][j]!=b[i][j])
+      {
+        printf("Not Symmetric");
+        exit(0);
+      }
+    }
+  }
+  printf("Symmetric");
+}
+int main()
+{
+  int i,j;
+  scanf("%d %d", &m, &n);
+  if(m==n)
+  {
+    for(i=0; i<m; i++)
+      for(j=0; j<m;j++)
+        scanf("%d", &a[i][j]);
+    symmetric();
+  }
+  else
+  {
+    printf("row and column not same");
+  }
+    
+  return 0;
+}

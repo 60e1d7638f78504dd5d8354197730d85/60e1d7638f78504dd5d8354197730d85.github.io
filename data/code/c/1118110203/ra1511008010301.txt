@@ -1,0 +1,32 @@
+#include <stdio.h>
+void add(int *feet, float *inch);
+int main()
+{
+	int a[2];
+  float b[2];
+  int i=0;
+  for(i=0;i<2;i++)
+  {
+    scanf("%d %f",&a[i],&b[i]);
+  }
+  int feet=a[0]+a[1];
+  float inches=b[0]+b[1];
+  add(&feet,&inches);
+  printf("%dfeet\n%.1finches\n",feet,inches);
+  return 0;
+}
+void add( int *feet,float *inch)
+{
+  
+  if(*inch>12)
+  {
+    int n=(int)*inch/12;
+    
+    *feet=*feet+(*inch/12);
+    *inch=*inch-(n*12);
+  }
+ 
+  return ;
+}
+  
+  

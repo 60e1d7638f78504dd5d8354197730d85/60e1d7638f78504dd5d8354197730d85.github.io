@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int reverse(int n){
+	int T[10], k=0, i, s=0, TT[10], j;
+	while(n>0){
+		T[k]=n%10; k++; n/=10;
+	}
+	
+	for(i=0,j=k-1;i<k;j--,i++) TT[i] = T[j];
+	for(i=0;i<k;i++) s+= TT[i]*pow(10,i);
+	
+	return s;
+}
+ 
+int main(){
+	int t, n;
+	
+	scanf("%d",&t);
+	
+	while(t--){
+		scanf("%d",&n);
+		printf("%d\n",reverse(n));
+	}
+	
+	return 0;
+} 

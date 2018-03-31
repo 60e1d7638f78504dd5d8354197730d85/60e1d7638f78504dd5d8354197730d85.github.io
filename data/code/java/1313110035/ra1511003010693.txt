@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner x = new Scanner(System.in);
+       int N = x.nextInt();
+       int out[] = new int[N];
+       for(int i = 0; i < N; i++){
+         int count = 0;
+         int N_i = x.nextInt();
+         int dupp = N_i;
+         while(dupp > 0){
+           int temp = dupp % 10;
+           dupp /= 10;
+           if(temp != 0 && N_i % temp == 0)
+             count++;
+         }
+         out[i] = count;
+       }
+       for(int e: out)
+         System.out.println(e);
+	}
+}

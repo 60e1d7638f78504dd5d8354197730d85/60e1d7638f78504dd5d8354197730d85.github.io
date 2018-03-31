@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  long n,i,j,k;
+  char a[25000],b[25000];
+  scanf("%ld",&n);
+  for(j=1;j<=n;j++)
+  {
+    scanf("%s %s",a,b);
+    if(strlen(a)==strlen(b))
+    {
+      k=0;
+      for(i=0;b[i]!='\0';i++)
+  		{
+          if(b[i]==a[i])
+          {}
+        else
+        {
+        k=1;
+        break;
+        }
+      	}
+  		if(k==1)
+    printf("NO");
+      else  
+    printf("YES");
+    }
+    else if(strlen(a)>strlen(b))
+    {
+      k=0;
+      for(i=0;b[i]!='\0';i++)
+  		{
+          if(b[i]==a[i] || b[i]==a[i+1])
+          {}
+        else
+        {
+        k=1;
+        break;
+        }
+      	}
+  		if(k==1)
+    printf("NO");
+      else  
+    printf("YES");
+    }
+    else if(strlen(a)<strlen(b))
+    {
+      k=0;
+      for(i=0;a[i]!='\0';i++)
+  		{
+          if(b[i]==a[i] || a[i]==b[i+1])
+          {}
+        else
+        {
+        k=1;
+        break;
+        }
+      	}
+  		if(k==1)
+    printf("NO");
+      else  
+    printf("YES");
+    }
+    
+    if(i!=n-1)
+    {
+    printf("\n");
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <limits.h>
+ 
+int main()
+{
+	int T,N;
+	int add,maxNum,req,minReq,i,j,x;
+	int num[10000];
+	
+	scanf("%d",&T);
+	
+	while(T--)
+	{
+		scanf("%d",&N);
+		maxNum=0;
+		add=0;
+		
+		for(i=0;i<N;i++)
+		{
+			scanf("%d",&x);
+			
+			if(x < maxNum)
+			{
+				add = add + (maxNum-x);
+				num[i] = maxNum;
+			}
+			else
+			{
+				maxNum = x;
+				num[i] = x;
+			}
+		}
+		
+		minReq=INT_MAX;
+		
+		if(maxNum==1)
+		{
+			minReq = N;
+		}
+		else
+		{
+			for(j=2;j<=maxNum && minReq>0;j++)
+			{
+				req=0;
+			
+				for(i=0;i<N && req<minReq;i++)
+				{
+					x=num[i]%j;
+				
+					if(x!=0)
+						req=req+(j-x);
+				}
+			
+				if(req<minReq)
+					minReq=req;
+			}
+		}
+		
+		add+=minReq;
+		printf("%d\n",add);
+	}
+	
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+union{
+  int b;
+  long int a;
+}ob;
+int cub(int n)
+{
+  int c;
+  c=n*n*n;
+  return c;
+}
+int main()
+{
+  int n,ar[50],i=0,j,s=0;
+  scanf("%d",&n);
+  ob.a=n;
+  while(ob.a>0)
+  {
+    ar[i]=ob.a%10;
+    ob.a=ob.a/10;
+    i++;
+  }
+  for(j=0;j<i;j++)
+  {
+    s=s+cub(ar[j]);
+  }
+  printf("%d",s);
+
+	return 0;
+}

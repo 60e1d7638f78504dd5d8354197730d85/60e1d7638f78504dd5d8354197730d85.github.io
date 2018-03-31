@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define MAX_SIZE 100 //Maximum size of the string
+ 
+ 
+ 
+/** Function declaration */
+void removeAll(char *, const char);
+ 
+ 
+ 
+int main()
+{
+    char string[MAX_SIZE];
+    char toRemove;
+ 
+  //  printf("\nEnter any string: ");
+    fgets(string,100,stdin);
+ 
+//    printf("\nEnter character to remove from string: ");
+    toRemove = getchar();
+ 
+    removeAll(string, toRemove);
+ 
+    printf("%s", string);
+ 
+    return 0;
+}
+ 
+ 
+ 
+/**
+ * Function to remove all occurrences of a character from the string.
+ */
+void removeAll(char * string, const char toRemove)
+{
+    int i, j;
+    int len = strlen(string);
+ 
+    for(i=0; i<len; i++)
+    {
+        /*
+         * If the character to remove is found then shift all characters to one
+         * place left and decrement the length of string by 1.
+         */
+        if(string[i] == toRemove)
+        {
+            for(j=i; j<len-1; j++)
+            {
+                string[j] = string[j+1];
+            }
+ 
+            len--;
+            string[len] = '\0';
+ 
+            // If a character is removed then make sure i doesn't increments
+            i--;
+        }
+    }
+}

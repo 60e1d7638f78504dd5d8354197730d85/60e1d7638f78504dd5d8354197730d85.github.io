@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+    int p,i,d;
+    int prime[100+1];
+    for(i=0;i<=100;i++)
+    {
+      prime[i]=0;
+    }
+    prime[0]=1;
+    prime[1]=1;
+    for (p=2; p*p<=100; p++)
+    {
+        if (prime[p] == 0)
+        {
+            for (i=p*2; i<=100; i += p)
+                prime[i] = 1;
+        }
+    }
+  int val;
+  scanf("%d",&d);
+  for(i=0;i<d;i++)
+  {
+    scanf("%d",&val);
+    if(prime[val]==0)
+      printf("%d is a prime number\n",val);
+    else
+      printf("%d is a composite number\n",val);
+  }
+	return 0;
+}

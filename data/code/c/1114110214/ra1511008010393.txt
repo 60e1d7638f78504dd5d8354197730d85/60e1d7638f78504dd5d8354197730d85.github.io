@@ -1,0 +1,108 @@
+#include <stdio.h>
+long long int miss[100001];
+typedef struct intervals
+{
+  long long l;
+  long long r;
+}intervals;
+intervals inter[100001];
+swap(long long int m,long long int n)
+{
+  long long int c=miss[m];
+  miss[m]=miss[n];
+  miss[n]=c;
+}
+void Qsort(long long int lo,long long int hi)
+{
+  if(hi<=lo)
+    return;
+  long long int lt=lo,i=lo+1,gt=hi;
+  long long int flag=miss[lo];
+  while(i<=gt)
+  {
+    if(miss[i]<flag)
+      swap(lt++,i++);
+      else if(miss[i]>flag)
+        swap(i,gt--);
+    else
+      i++;
+  }
+  Qsort(lo,lt-1);
+  Qsort(gt+1,hi);
+}
+createIntervals(long long int k)
+{
+  inter[0].l=1;
+  inter[0].r=miss[0]-1;
+  long long int i=0,j=1;
+  while(i<k)
+  {
+    while(i<k&&miss[i]+1==miss[i+1])
+      i++;
+    if(i==k)
+      break;
+    inter[j].l=miss[i]+1;
+    inter[j].r=miss[i+1]-1;
+    j++;
+    i++;
+  }
+  return j;
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    long long int n,k,sum=0,i;
+    scanf("%lld %lld",&n,&k);
+    for(i=0;i<k;i++)
+      scanf("%lld",&miss[i]);
+    Qsort(0,k-1);
+    if(miss[0]==1)
+    {
+      printf("Chef\n");
+            continue;
+       
+    }
+    if(k==0)
+    {
+      n=((n+1)*n)/2;
+      if(n%2==0)
+        printf("Chef\n");
+      else
+        printf("Mom\n");
+      continue;
+    }
+    miss[k]=n+1;
+    long long int pos=createIntervals(k);
+    long long int lastadded=0,found=0;
+    i=0;
+    long long int missed=0;
+    while(1<(pos-1))
+    {
+      while(miss[lastadded]<inter[i].r)
+        missed=missed+miss[lastadded++];
+      sum=(inter[i].r)*((inter[i].r)+1)/2;
+           sum=sum-missed+1;
+           if(sum<inter[i+1].l)
+           {
+             found=1;
+             break;
+           }
+           i++;
+    }
+           if(found==0)
+           {
+             while(lastadded<k)
+               missed=missed+miss[lastadded++];
+             sum=n*(n+1)/2;
+             sum=sum-missed+1;
+           }
+           if(sum%2==0)
+           printf("Mom\n");
+           else
+           printf("Chef\n");
+  }
+	return 0;
+}

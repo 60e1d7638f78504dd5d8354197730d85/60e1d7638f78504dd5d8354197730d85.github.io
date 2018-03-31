@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int x,y,i,j,sum=0;
+  scanf("%d\n",&x);
+  scanf("%d\n",&y);
+  int a[x][y];
+  for(i=1;i<=x;i++)
+  {
+    for(j=1;j<=y;j++)
+    {
+      scanf("%d ",&a[i][j]);
+    }
+    scanf("\n");
+  }
+  if(x==y)
+  {
+    for(i=1;i<=x;i++)
+    {
+      for(j=1;j<=y;j++)
+      {
+        if(i<=x-1 && j>i)
+        {
+          sum=sum+a[i][j];
+        }
+      }
+    }
+    printf("%d",sum);
+  }
+  else
+  {
+    printf("entered row and columns is not square matrix");
+  }
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+char str[100],answer[100]={'\0'},temp[100],temp2[100],posArray[100]={'\0'},splitArray[100]={'\0'};
+  int i=0,flag=0,index=0,p=0;
+ fgets(str,sizeof(str),stdin);
+	fgets(answer,sizeof(answer),stdin);
+  //temp=str;
+  //temp2=str;
+  //printf("answer %s\n",str);
+  //splitArray=strtok(temp2," ");
+ 	//while(str[i]!='\0'){
+    		
+    	//}
+  	
+  while(str[index]!='\0'){
+  
+    if(str[index]==answer[0]){
+    	i=0;
+      flag=1;
+      while(answer[i]!='\0'){
+      	if(str[index+i]!=answer[i]){
+        	flag=0;
+          	break;
+        	}
+      	i++;
+      	}
+    
+    }
+   if(flag==1)
+     break;
+  index++;
+  }
+  if(index==0){
+  printf("%s is found at %d",answer,index);
+  }else{
+  	if(str[index-1]==' ')
+      printf("%s is found at %d",answer,index);
+    else
+      printf("%s is not found",answer);
+  	
+  }
+  return 0;
+}

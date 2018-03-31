@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+class overload
+{
+  int minimumi;
+  float minimumf;
+  public:
+  void min(int,int);
+  void min(float,float);
+};
+
+void overload::min(int x,int y)
+{
+  minimumi=((x<y)?x:y);
+  cout<<"The minimum of the integer variable is "<<minimumi<<endl;
+}
+
+void overload::min(float x,float y)
+{
+  minimumf=((x<y)?x:y); 
+  cout<<"The minimum of the float variable is "<<(minimumf)<<endl;
+}
+  
+int main()
+{
+    int a,b;
+    float c,d;
+    cin>>a>>b>>c>>d;
+    overload o;
+    o.min(a,b);
+    o.min(c,d);
+    return 0;
+}

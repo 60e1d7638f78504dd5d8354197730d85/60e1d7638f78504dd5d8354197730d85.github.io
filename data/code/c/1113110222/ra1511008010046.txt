@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+int convertDecimalToOctal(int decimalNumber);
+void decToHexa(int n)
+{   
+    char hexaDeciNum[100];
+    int i = 0;
+    while(n!=0)
+    {   
+        int temp  = 0;
+        temp = n % 16;
+        if(temp < 10)
+        {
+            hexaDeciNum[i] = temp + 48;
+            i++;
+        }
+        else
+        {
+            hexaDeciNum[i] = temp + 87;
+            i++;
+        }
+        n = n/16;
+    }
+  	int j;
+    for(j=i-1; j>=0; j--)
+        printf("%c",hexaDeciNum[j]);
+}
+int main()
+{
+    int decimalNumber;
+    scanf("%d", &decimalNumber);
+    scanf("%d", &decimalNumber);
+    scanf("%d", &decimalNumber);
+    printf("%d %d ", decimalNumber, convertDecimalToOctal(decimalNumber));
+    decToHexa(decimalNumber);
+    return 0;
+}
+int convertDecimalToOctal(int decimalNumber)
+{
+    int octalNumber = 0, i = 1;
+    while (decimalNumber != 0)
+    {
+        octalNumber += (decimalNumber % 8) * i;
+        decimalNumber /= 8;
+        i *= 10;
+    }
+    return octalNumber;
+}

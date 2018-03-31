@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+struct Student
+{
+char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+} s[100];
+int compare(const void *s1, const void *s2)
+{
+  struct Student *e1 = (struct Student *)s1;
+  struct Student *e2 = (struct Student *)s2;
+  int comp = strcmp(e1->name, e2->name);
+  if (comp == 0)
+    return e1->cgpa - e2->cgpa;
+  else
+    return comp;  /* the minus puts "male" first as in the question */
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+    int i;
+    for(i=0; i<n; ++i)
+    {
+        scanf("%s",s[i].name);
+		scanf("%s",s[i].department);
+		scanf("%d",&s[i].yearOfStudy);
+        scanf("%f",&s[i].cgpa);
+    }
+	qsort(s, n, sizeof(struct Student), compare);
+    for(i=0; i<n; ++i)
+    {
+        printf("Name:");
+        puts(s[i].name);
+		printf("Department:");
+        puts(s[i].department);
+        printf("Year of study:%d\n",s[i].yearOfStudy);
+        printf("CGPA:%.1f",s[i].cgpa);
+        printf("\n");
+    }
+    return 0;
+}

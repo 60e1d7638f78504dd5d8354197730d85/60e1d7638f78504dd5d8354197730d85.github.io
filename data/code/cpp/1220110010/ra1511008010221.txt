@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n = 0;
+    cin >> n;
+    int count = 0;
+    if (n == 0) {
+        cout << "Invalid Input";
+    } else {
+        for (int i = 1; i <= n; i++)
+            try {
+                if (i % 4 == 0) {
+                    throw "error";
+                }
+            } catch (const char *msg) {
+                count++;
+            }
+
+        cout << "Number of exceptions=" << count << endl;
+    }
+    return 0;
+}

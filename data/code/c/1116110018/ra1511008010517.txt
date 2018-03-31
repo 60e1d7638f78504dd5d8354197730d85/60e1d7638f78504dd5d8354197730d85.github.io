@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char s[30];
+  scanf("%s",s);
+  int i=0,j=0,k=0;
+  int arr[20]={0};
+  char ans[30];char c;
+  for(i=0;i<(int)strlen(s);i++)
+  {
+    if(s[i]!='1')
+    {
+      c=s[i];
+      ans[k]=c;
+      for(j=0;j<(int)strlen(s);j++)
+      {
+        if(s[j]==c)
+        {
+          arr[k]++;
+          s[j]='1';
+        }
+      }
+      k++;
+    }
+  }
+  for(i=0;i<k;i++)
+  {
+    printf("%c=%d\n",ans[i],arr[i]);
+  }
+
+	return 0;
+}

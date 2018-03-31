@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+int main()
+{
+	int i,j,k,test;
+	char a[101],b[101];
+	scanf("%d",&test);
+	while(test--)
+	{
+		scanf("%s%s",a,b);
+		j=k=0;
+		int count=0;
+		int lena=strlen(a);
+		int lenb=strlen(b);
+		for(j=0;j<lena;j++)
+		{
+			if(a[j] == b[k])
+			{
+				k++;
+				
+			}
+		}
+		if(k==lenb)
+			count=1;
+		k=lenb-1;
+		for(j=0;j<lena;j++)
+		{
+			if(a[j] == b[k] && k>=0)
+			{
+				k--;
+			
+			}
+		}
+		if(k==-1)
+		{
+			if(count==1)
+			count=3;
+			else
+				count=2;
+		}
+		
+		
+ 
+		printf("%d\n",count);
+	}
+	return 0;
+}

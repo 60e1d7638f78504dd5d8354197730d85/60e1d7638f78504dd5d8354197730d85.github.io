@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+    int a,b,i,j;
+    scanf("%d %d",&a,&b);
+    int arr[b+1];
+    for(i=0;i<=b;i++)
+      arr[i]=0;
+    for(i=2;i*i<=b;i++)
+    {
+      for(j=i*2;j<=b;j+=i)
+      {
+        if(arr[j]==0)
+          arr[j]=1;
+      }
+    }
+  for(i=2;i<=b;i++)
+  {
+    if(i>(a-1) && arr[i]==0)
+      printf("%d\n",i);
+  }
+	return 0;
+}

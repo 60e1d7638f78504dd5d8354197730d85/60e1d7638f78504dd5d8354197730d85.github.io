@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{
+char str1[10];
+int i,l,n,flag=0;
+scanf("%s",str1);
+for(i=0;str1[i]!='\0';i++);
+  l=i;
+  n=l/2;
+  if(isalpha(str1[0]) && l<=10)
+{ 
+    for(i=0;i<l;i++)
+    {
+      if(str1[n-1]==95)
+        flag++;
+       if(str1[i]==95 && str1[i+1]==95)
+       { flag=0;break;}
+      else
+        flag++;
+    }
+  }
+  if(flag==0)
+    printf("not a valid identifier");
+  else
+    printf("valid identifier");
+
+  return 0;
+}
+

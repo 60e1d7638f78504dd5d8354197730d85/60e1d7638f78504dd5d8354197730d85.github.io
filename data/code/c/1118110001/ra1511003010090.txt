@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+struct Student
+{ char name[30];
+  char dept[20];
+  int year;
+  float cgpa;
+  };
+int main()
+{ struct Student S1[100],temp;
+  int n,i,j;
+  scanf("%d",&n);
+  for (i=0;i<n;i++)
+  { scanf("%s",S1[i].name);
+    scanf("%s",S1[i].dept);
+    scanf("%d",&S1[i].year);
+    scanf("%f",&S1[i].cgpa);
+    }
+  for (i=0;i<n;i++)
+  { for (j=0;j<n;j++)
+    { if (strcmp(S1[i].name,S1[j].name)<0)
+         { temp=S1[i];
+           S1[i]=S1[j];
+           S1[j]=temp;
+         }
+    }
+  }
+  for (i=0;i<n;i++) 
+  { printf("Name:%s\n",S1[i].name);
+    printf("Department:%s\n",S1[i].dept);
+    printf("Year of study:%d\n",S1[i].year);
+    printf("CGPA:%0.1f\n",S1[i].cgpa);
+    }
+	return 0;
+}

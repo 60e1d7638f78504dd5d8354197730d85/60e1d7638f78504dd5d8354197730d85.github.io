@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+class Person{
+  char name[30];
+  int age;
+  char gender[10];
+  public:
+  void get(){
+    cin>>name>>age>>gender;
+  }
+  void put(){
+    cout<<"Name: "<<name;
+    cout<<"\nAge: "<<age;
+    cout<<"\nGender: "<<gender;
+  }
+};
+class Employee:public Person{
+  char company[50];
+  int salary;
+  public:
+  void get(){
+    Person::get();
+    cin>>company>>salary;
+  }
+  void put(){
+    Person::put();
+    cout<<"\nName of Company: "<<company;
+    cout<<"\nSalary: Rs."<<salary;
+  }
+};
+class Programmer:public Employee{
+  int number;
+  public:
+  void get(){
+    Employee::get();
+    cin>>number;
+  }
+  void put(){
+    Employee::put();
+    cout<<"\nNumber of programming language known: "<<number;
+  }
+};
+int main()
+{
+    Programmer p;
+    p.get();
+    p.put();
+	return 0;
+}

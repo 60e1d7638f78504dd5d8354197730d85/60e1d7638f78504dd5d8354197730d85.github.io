@@ -1,0 +1,30 @@
+import java.util.*;
+import java.text.*;
+public class TestClass 
+{
+  	public static void main(String[] args) throws Exception
+    { 
+		Scanner sc=new Scanner(System.in);
+      	String str_date=sc.nextLine();
+      	String end_date=sc.nextLine();
+      	List<Date> dates = new ArrayList<Date>();
+		DateFormat formatter ; 
+		formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date  startDate = (Date)formatter.parse(str_date); 
+		Date  endDate = (Date)formatter.parse(end_date);
+		long interval = 24*1000 * 60 * 60;
+		long endTime =endDate.getTime();
+		long curTime = startDate.getTime();
+		while (curTime <= endTime) {
+		    dates.add(new Date(curTime));
+		    curTime += interval;
+		}
+		formatter = new SimpleDateFormat("dd/MM/yyyy - E");
+		for(int i=0;i<dates.size();i++){
+		    Date lDate =(Date)dates.get(i);
+		    String ds = formatter.format(lDate);    
+		    System.out.println(ds);
+        }
+      
+	}
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char line[150];
+    int vowels, consonants,extra;
+
+    vowels =  consonants =extra= 0;
+
+   // cout << "Enter a line of string: ";
+    cin.getline(line, 150);
+    for(int i = 0; line[i]!='\0'; ++i)
+    {
+        if(line[i]=='a' || line[i]=='e' || line[i]=='i' ||
+           line[i]=='o' || line[i]=='u')
+        {
+            ++vowels;
+        }
+        else if((line[i]>='a'&& line[i]<='z'))
+        {
+            ++consonants;
+        }
+      extra=consonants-vowels;
+    }
+
+    cout << "VOWELS:" << vowels << endl;
+    cout << "CONSONANTS:" << consonants << endl;
+
+    return 0;
+}

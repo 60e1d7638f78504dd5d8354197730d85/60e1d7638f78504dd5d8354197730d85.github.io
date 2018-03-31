@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t,mid,len,i;
+    char arr[100];
+    scanf("%d",&t);
+  	int left[26];
+    while (t--)
+    {
+
+        memset(left, 0, sizeof(left));
+        scanf("%s",arr);
+        len=strlen(arr);
+       	if(len<2){
+         printf("NO\n");
+      		break;
+       		}
+        if(len%2==0) {
+
+            mid = len / 2;
+            for(i=0;i<mid;i++) 	left[arr[i] - 'a']++;
+            for(i=(mid);i<len;i++)  left[arr[i]-'a']--;
+
+        }
+      	else{
+            mid = (len)/2;
+            for(i=0;i<mid;i++) 	left[arr[i] - 'a']++;
+            for(i=(mid+1);i<len;i++)  left[arr[i]-'a']--;
+        }
+
+        int flag =0;
+        for(i=0;i<26;i++)
+        {
+            if(left[i]!=0){
+               flag=1;
+            }
+        }
+        if(flag==0)
+            printf("YES\n");
+        if(flag==1)
+            printf("NO\n");
+    }
+  return 0;
+}

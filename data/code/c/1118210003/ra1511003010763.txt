@@ -1,0 +1,44 @@
+#include<stdio.h>
+long long gcd(long long,long long);
+int main()
+{
+	long long n,m,t;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		long long count,ans;
+		scanf("%lld %lld",&n,&m);
+		if(m==0)
+		{
+			if(n==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			{
+				count=1;
+				printf("No %lld\n",count);
+			}
+		}
+		else
+		{
+			ans=gcd(n,m);
+			if(ans==1)
+			{
+				printf("Yes\n");
+			}
+			else 
+			{
+				count=n/ans;
+				printf("No %lld\n",count);
+			}
+		}
+	}
+	return 0;
+}
+long long gcd(long long a,long long b)
+{
+	if(a%b==0)
+		return b;
+	return gcd(b,a%b);
+}

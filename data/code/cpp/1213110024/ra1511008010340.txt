@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+//function to get date and return weekday number [0-6]
+int getWeekDay(int yy, int mm, int dd) 
+{
+	//formula to get weekday number
+	int rst =                                                     
+		dd                                                      
+		+ ((153 * (mm + 12 * ((14 - mm) / 12) - 3) + 2) / 5) 
+		+ (365 * (yy + 4800 - ((14 - mm) / 12)))
+		+ ((yy + 4800 - ((14 - mm) / 12)) / 4)
+		- ((yy + 4800 - ((14 - mm) / 12)) / 100)
+		+ ((yy + 4800 - ((14 - mm) / 12)) / 400)
+		- 32045;
+
+	return (rst+1)%7 ;
+}
+
+//main program/code
+int main()
+{int d,m,y;
+	const char *Names[] = {"1","2","3","4","5","6","7"};
+	int day = 0;
+  cin>>d>>m>>y;
+	day= getWeekDay(y,m,d);
+
+	cout<<Names[day]<<endl;
+
+	return 0;    
+}

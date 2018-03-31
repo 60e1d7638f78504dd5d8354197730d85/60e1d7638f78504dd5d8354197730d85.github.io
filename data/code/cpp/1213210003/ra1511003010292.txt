@@ -1,0 +1,27 @@
+#include <iostream>
+#include<ctype.h>
+using namespace std;
+int main()
+{
+  int vow=0,con=0,dig=0,space=0;
+  string a;
+  getline(cin,a);
+  for(int i = 0 ; i<a.length();i++)
+  {
+    if(a[i]=='A' || a[i]=='E' || a[i]=='I' || a[i]=='O' || a[i]=='U' || a[i]=='a' || a[i]=='e' || a[i]=='i' || a[i]=='o' || a[i]=='u')
+      vow++;
+    else
+    {
+      if(a[i]==' ')
+        space++;
+      else
+        if(a[i]-'0'>=0 && a[i]-'0'<=9)
+          dig++;
+      else
+        if(isalpha(a[i]))
+          con++;
+    }
+  }
+  cout<<"Vowels: "<<vow<<"\nConsonants: "<<con<<"\nDigits: "<<dig<<"\nWhite spaces: "<<space;
+	return 0;
+}

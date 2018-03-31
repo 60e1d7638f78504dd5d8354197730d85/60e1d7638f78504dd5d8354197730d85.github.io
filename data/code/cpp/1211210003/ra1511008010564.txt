@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int binary(int n);
+int main()
+{
+	int n;
+  	cin>>n;
+  	if(n<0)
+      cout<<"-9 is not a positive integer.";
+  else
+  	cout<<binary(n);
+}
+int binary(int n)
+{
+  int number=0,i=1,remainder;
+  while(n!=0)
+  {
+    remainder=n%2;
+    n=n/2;
+    number+=remainder*i;
+    i*=10;
+  }
+  return number;
+}

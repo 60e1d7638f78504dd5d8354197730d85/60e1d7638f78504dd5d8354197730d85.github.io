@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define MAX_SIZE 20
+
+int main()
+{
+    int arr[MAX_SIZE];
+    int i, size, pos;
+    scanf("%d\n", &size);
+    for(i=0; i<size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    
+    scanf("\n%d", &pos);
+
+    
+    if(pos==size+1 || pos<0)
+    {
+        printf(" ");
+    }
+    else
+    {
+        
+        for(i=pos; i<size-1; i++)
+        {
+            arr[i] = arr[i + 1];
+        }
+
+        
+        size--;
+    }
+
+    
+    printf("Array after deletion is\n");
+    for(i=0; i<size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}

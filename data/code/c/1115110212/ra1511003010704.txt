@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  long long int n,m,a[1000][1000]={0},i,j,sum[1000]={0},mo=pow(10,7)+7;
+scanf("%lld%lld",&n,&m);
+  for(i=1;i<=n;i++)
+  {
+  for(j=1;j<=m;j++)
+  {
+  scanf("%lld",&a[i][j]);
+  }
+  }
+  sum[0]=1;
+  for(i=1;i<=n;i++)
+  {
+    for(j=1;j<=m;j++)
+    {
+    sum[i]=(sum[i]+sum[i-1]*a[j][i])%mo;
+      sum[i]=(sum[i]+mo)%mo;
+    }
+  }
+  printf("%lld\n",sum[m]);
+  return 0;
+	return 0;
+}

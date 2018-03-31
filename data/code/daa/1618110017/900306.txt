@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  string s;
+  getline(cin,s);
+  int n=s.length();
+  int p[26]={0};
+  for(int i=0;i<n;i++)
+  { if(s[i]>='a' &&s[i]<='z')
+    p[s[i]-97]=1;
+   if(s[i]>='A' && s[i]<='Z')
+     p[s[i]-65]=1;
+  }
+  int flag=0;
+ for(int i=0;i<26;i++)
+ { if(p[i]==0) { flag=1; break;}}
+  if(!flag)
+    cout<<"pangram"<<endl;
+  else
+    cout<<"not pangram"<<endl;
+
+
+	return 0;
+}

@@ -1,0 +1,22 @@
+#include <stdio.h>
+  #include <stdlib.h>
+  int main() {
+        int **mat, order,n, i , j;
+        scanf("%d%d", &order,&n);
+        mat = (int **)malloc(sizeof (int) * order);
+        for (i = 0; i < order; i++)
+                mat[i] = (int *)malloc(sizeof (int) * order);
+        for (i = 0; i < order; i++)
+                for (j = 0; j < order; j++)
+                        scanf("%d", &mat[i][j]);
+        for (i = 0; i < order; i++) {
+                for (j = i + 1; j < order; j++) {
+                        if (mat[i][j] != 0) {
+                                printf("no");
+                                exit(0);
+                        }
+                }
+        }
+        printf("yes");
+        return 0;
+  }

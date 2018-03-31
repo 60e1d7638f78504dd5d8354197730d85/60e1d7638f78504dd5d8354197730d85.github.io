@@ -1,0 +1,26 @@
+#include <stdio.h>
+ int gcd(int a, int b)
+{
+    if (a == b)
+        return a;
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+
+int lcm(int a, int b)
+{
+    return (a*b)/gcd(a, b);
+}
+int main()
+{
+int n;
+  scanf("%d",&n);
+  int i,a,b;
+  for(i=0;i<n;i++)
+  {
+   scanf("%d%d",&a,&b);
+    printf("%d %d\n",gcd(a,b),lcm(a,b));
+  }
+	return 0;
+}

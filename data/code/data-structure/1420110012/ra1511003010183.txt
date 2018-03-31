@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<stdlib.h>
+int *ht,*visit;
+int main()
+{
+    long long int *arr,count=0,sum,max=-1;
+    int i,j,n;
+    scanf("%d",&n);
+    arr=(long long int*)calloc(n,sizeof(long long int));
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld",&arr[i]);
+        if(arr[i]>max)
+        max=arr[i];
+    }
+    ht=(int*)calloc(max+1,sizeof(int));
+    visit=(int*)calloc(max+1,sizeof(int));
+    for(i=0;i<n;i++)
+    {
+        if(ht[arr[i]]==0)
+        {
+            count++;
+            ht[arr[i]]++;
+        }
+        else
+        {
+            ht[arr[i]]++;
+        }
+    }
+    //printf("count=%d",count);
+    sum=0;
+    for(j=1;j<n;j++)
+    {
+        if(ht[arr[j-1]]==1)
+        {
+            count--;
+            ht[arr[j-1]]=0;
+        }
+        else
+        {
+            ht[arr[j-1]]--;
+        }
+        //printf("unique=%d",count);
+        if(visit[arr[j-1]]==0)
+        {
+            sum=sum+count;
+            visit[arr[j-1]]=1;
+            //printf("zxfghjhgfc");
+        }
+    }
+    printf("%lld",sum);
+    return 0;
+}

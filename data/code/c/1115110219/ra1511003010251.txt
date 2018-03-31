@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{ int i,j,k,n,t,temp,min_idx,key,arr[15];
+ scanf("%d",&t);
+ 
+ for(i=0;i<t;i++)
+ {
+   
+   scanf("%d",&n);
+  for(k=0;k<n;k++)
+  {scanf("%d",&arr[k]);
+  }
+  scanf("%d",&key);
+  key=arr[key-1];
+  for(j=0;j<n-1;j++)
+  {min_idx=j;
+   for(k=j+1;k<n;k++)
+   {if(arr[k]<arr[min_idx])
+   {min_idx=k;
+   }
+   }
+   temp=arr[j];
+   arr[j]=arr[min_idx];
+   arr[min_idx]=temp;
+  }
+  for(j=0;j<n;j++)
+  {
+    if(arr[j]==key)
+  {key=j+1;
+   break;
+  }
+  }
+  printf("%d\n",key);
+ 
+ }
+
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{       int n,j,k,i,tc,l;
+ scanf("%d",&tc);
+ int c[tc];
+ for(l=0;l<tc;l++)
+ { scanf("%d",&n);
+  int a[n];
+  int *p;
+  p=(int *)malloc(1000);
+  
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  *p=a[0];
+  k=1;
+  for(i=1;i<n;i++)
+  {
+    for(j=0;j<i;j++)
+    {if(a[i]==a[j])
+    {
+      break;
+    }
+   }
+    if(j==i)
+    {
+       *(p+k)=a[i];
+      k++;
+    }
+  }
+  c[l]=k;
+ }
+ for(i=0;i<tc;i++)
+ {
+   printf("\n%d",c[i]);
+ }
+	return 0;
+}

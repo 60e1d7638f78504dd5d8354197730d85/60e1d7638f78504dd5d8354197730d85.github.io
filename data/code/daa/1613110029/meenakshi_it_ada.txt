@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+#include <stdlib.h>
+#include <math.h>
+using namespace std;
+ 
+long int binary_search(vector<long int>& vec, long int k, long int low, long int high);
+bool enlighted(vector<long int>& vec, long int k, long int en);
+ 
+int main()
+{
+	long int n, k, a;
+	vector<long int> vec;
+	scanf("%ld%ld", &n, &k);
+ 
+	for(long int i=0; i<n; i++){
+		scanf("%ld", &a);
+		vec.push_back(a);
+	}
+	sort(vec.begin(), vec.end());
+ 
+	long int low=1, high=(int)ceil(double(vec.back()-vec.front())/k);
+	printf("%ld\n", binary_search(vec, k, low, high));
+ 
+	return 0;
+}
+ 
+long int binary_search(vector<long int>& vec, long int k, long int low, long int high)
+{
+	if(low==high)
+		return low;
+ 
+	long int mid = (low+high)/2;
+	if(enlighted(vec, k, mid))
+		return binary_search(vec, k, low, mid);
+	else
+		return binary_search(vec, k, mid+1, high);
+}
+ 
+bool enlighted(vector<long int>& vec, long int k, long int en)
+{
+	//printf("Using enlightment=%ld\n", en);
+	long int kt = 1, lp = vec[0]+en, dist=0;
+	//printf("Inserting %ld monk at %ld\n", kt, lp);
+	for(long int i=1; i<vec.size(); i++){
+		dist = abs(vec[i]-lp);
+ 
+		if(dist>en){
+			lp = vec[i]+en;
+			kt++;
+			if(kt > k)
+				return false;
+ 
+			//printf("Inserting %ld monk at %ld\n", kt, lp);
+		}
+	}
+ 
+	return true;
+}

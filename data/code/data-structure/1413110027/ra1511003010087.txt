@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define sd(a) scanf("%d", &a)
+#define ss(a) scanf("%s", &a)
+#define sl(a) scanf("%lld", &a)
+#define clr(a) memset(a, 0, sizeof(a))
+#define debug(a) printf("check%d\n", a)
+#define F first
+#define S second
+#define PB push_back
+#define ll long long
+ 
+int check(int num, int temples[], int N, int monks)
+{
+	int prev = temples[0] + num;
+	monks--;
+ 
+	for ( int i = 1 ; i < N ; i++ )
+	{
+		if ( prev + num >= temples[i] )
+			continue;
+		if ( monks == 0 )
+			return 0;
+		prev = temples[i] + num;
+		monks--;
+	}
+	return 1;
+}
+ 
+int main()
+{
+	// ios_base::sync_with_stdio(false);
+	// freopen("input.in", "r", stdin);
+	int N, K;
+	sd(N); sd(K);
+	int* temples = new int[N];
+	for ( int i = 0 ; i < N ; i++ )
+	{
+		sd(temples[i]);
+	}
+	sort(temples, temples + N);
+	int lo = 0, hi = 10000000, mid;
+	while ( lo < hi )
+	{
+		mid = (lo+hi) / 2;
+ 
+		if ( check(mid, temples, N, K) )
+		{
+			if ( !check(mid-1, temples, N, K) )
+			{
+				break;
+			}
+			else
+			{
+				hi = mid-1;
+			}
+		}
+		else
+		{
+			lo = mid + 1;
+		}
+	}
+	mid = (lo+hi)/2;
+	printf("%d", mid);
+}

@@ -1,0 +1,23 @@
+#include <stdio.h>
+#define min(x,y) x>y ? y : x
+
+char s[1000];
+int vis[10][10];
+int main()
+{
+    int ans1=0,ans2=10,j,i;
+    for(i=1;i<=8;i++)
+    {
+        scanf("%s",s);
+        int add = 0;
+        for(j=0;j<8;j++)
+            if(s[j]=='B')add++;
+        if(add==8)ans1++;
+        ans2=min(ans2,add);
+    }
+    if(ans1==8)
+      printf("%d",8);
+    else 
+      printf("%d",ans1+ans2);
+  	return 0;
+}

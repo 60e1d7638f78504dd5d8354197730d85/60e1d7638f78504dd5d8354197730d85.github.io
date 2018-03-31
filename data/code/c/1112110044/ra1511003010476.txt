@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>
+ 
+#define SIZE 10
+ 
+int main()
+{
+ 
+    int t;
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        char M[SIZE],W[SIZE];
+ 
+        scanf("%s",M);
+        scanf("%s",W);
+ 
+ 
+        int m,n;
+ 
+        m=strlen(M);
+        n=strlen(W);
+ 
+        int i,j;
+        int flag=0;
+        if(m>n)
+         {
+               i=0;
+               j=0;
+                while(i<m && j<n)
+                   {
+                        if(W[j]==M[i])
+                            j++;
+                           i++;
+                   }
+                if(j==n)
+                  flag=1;
+                else
+                  flag=0;
+         }
+        else
+          {
+               i=0;
+               j=0;
+                while(i<m && j<n)
+                   {
+                        if(W[j]==M[i])
+                            i++;
+                           j++;
+                   }
+                if(i==m)
+                  flag=1;
+                else
+                  flag=0;
+ 
+          }
+ 
+        if(flag)
+          printf("YES\n");
+        else
+          printf("NO\n");
+    }
+    return 0;
+}

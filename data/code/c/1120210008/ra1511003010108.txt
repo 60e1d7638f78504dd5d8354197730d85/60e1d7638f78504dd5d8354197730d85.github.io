@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main(){
+int t,n,diff,*a,i,j;//horse1,horse2;
+scanf("%d",&t);
+while(t--){
+scanf("%d",&n);
+a=malloc(n*sizeof(int));
+for(i=0; i<n; i++){
+    scanf("%d",a+i);
+}
+ 
+diff=abs(a[0]-a[1]);
+//horse1=0;
+//horse2=1;
+for(i=0; i<n; i++){
+for(j=i+1; j<n; j++){
+    if(diff>=abs(a[i]-a[j])){
+        diff=abs(a[i]-a[j]);
+  //      horse1=i;
+  //      horse2=j;
+    }
+}
+}
+printf("\n%d",diff);
+//printf("\n %d %d \n",horse1,horse2);
+}
+return 0;
+}

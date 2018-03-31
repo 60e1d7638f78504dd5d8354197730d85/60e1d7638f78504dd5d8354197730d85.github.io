@@ -1,0 +1,41 @@
+#include <stdio.h>
+int a[20],b[20],f=0;
+void work(int a[],int n)
+{
+  int i,m=0,k,temp;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    temp=a[i];
+    if(a[i]!=-1)
+    {
+      m++;
+    }
+    for(k=i+1;k<n;k++)
+    {
+      if(a[k]==temp)
+      {
+        a[k]=-1;
+      }
+    }
+  }
+    b[f++]=m;
+}
+int main()
+{
+int n,n1,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&n1);
+    work(a,n1);
+  }
+  for(i=0;i<f;i++)
+  {
+    printf("%d\n",b[i]);
+  }
+	return 0;
+}

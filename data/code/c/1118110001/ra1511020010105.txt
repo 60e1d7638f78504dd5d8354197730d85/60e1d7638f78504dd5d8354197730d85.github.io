@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Student
+{
+char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+};
+struct Student inpu(struct Student s)
+{
+  getchar();
+  scanf("%s",s.name);
+  getchar();
+  scanf("%s",s.department);
+  scanf("%d",&s.yearOfStudy);
+  scanf("%f",&s.cgpa);
+  return s;
+}
+
+void sortstud(struct Student s[100],int n)
+{
+  int i,j;
+  for(i=0;i<n-1;i++)
+  {
+    for(j=0;j<n-i-1;j++)
+    {
+      if(strcmp(s[j].name,s[j+1].name)>0)
+      {
+        struct Student temp;
+        strcpy(temp.name,s[j].name);
+        strcpy(temp.department,s[j].department);
+        temp.yearOfStudy=s[j].yearOfStudy;
+        temp.cgpa=s[j].cgpa;
+        strcpy(s[j].name,s[j+1].name);
+        strcpy(s[j].department,s[j+1].department);
+        s[j].yearOfStudy=s[j+1].yearOfStudy;
+        s[j].cgpa=s[j+1].cgpa;
+        strcpy(s[j+1].name,temp.name);
+        strcpy(s[j+1].department,temp.department);
+        s[j+1].yearOfStudy=temp.yearOfStudy;
+        s[j+1].cgpa=temp.cgpa;
+      }
+    }
+  }
+}
+
+void disp(struct Student s[100],int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+    printf("Name:%s\n",s[i].name);
+    printf("Department:%s\n",s[i].department);
+    printf("Year of study:%d\n",s[i].yearOfStudy);
+    printf("CGPA:%.1f\n",s[i].cgpa);
+  }
+}
+
+
+
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  struct Student s[n];
+  for(i=0;i<n;i++)
+  {
+    s[i] = inpu(s[i]);
+  }
+  sortstud(s,n);
+  disp(s,n);
+	return 0;
+}

@@ -1,0 +1,101 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+ 
+int main()
+{
+int **mpref;
+int **wpref;
+int n,i,j,temp,w,t;
+int *mch;
+int *wch;
+int top;
+int* free_men;
+int *next;
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d",&n);//input the no of men/women
+ 
+mpref=(int **)malloc((n+1)*sizeof(int *));//allocate memory for preference list for n men
+for (i=0;i<n+1;i++)
+  mpref[i]=(int *)malloc((n+1)*sizeof(int));
+wpref=(int **)malloc((n+1)*sizeof(int *));//allocate memory for pref list for n women
+for (i=0;i<n+1;i++)
+  wpref[i]=(int *)malloc((n+1)*sizeof(int));
+mch=(int *)malloc((n+1)*sizeof(int));//initialize the array for soring the pairings of men and women
+wch=(int *)malloc((n+1)*sizeof(int));
+free_men=(int *)malloc((n)*sizeof(int));//array of free men
+next=(int *)malloc((n)*sizeof(int));
+//input men preference
+    for(i=1;i<=n;i++)
+    { scanf("%d",&temp);
+         for(j=1;j<=n;j++)
+        {scanf("%d",&temp);
+          wpref[i][temp]=j;
+ 
+        }
+    }
+//input  women pref
+    for(i=1;i<=n;i++)
+    {scanf("%d",&temp);
+        for(j=1;j<=n;j++)
+        {
+            scanf("%d",&temp);
+            mpref[i][j]=temp;
+        }
+    }
+ 
+//initialize all free men and free women matchings as -1
+    for(i=0;i<=n;i++)
+    {
+        mch[i]=-1;
+        wch[i]=-1;
+        next[i]=1;
+    }
+    //array of free men
+for(i=0;i<=n;i++)
+{
+  free_men[i]=i ;
+}
+top=n;
+    //implementation of gale  shapley algo
+    while(top>0)
+    {i=free_men[top];//choosing the free men
+        for(j=next[i];j<=n;j++)
+        {
+           w=mpref[i][j];//choosing the  women on the pref list of men in the order of preference
+           if(wch[w]==-1)//if that women is free then pair the man with the woman
+           {
+               mch[i]=w;
+               wch[w]=i;
+               //fcnt--;
+              top--;
+              next[i]++;
+               break;
+           }
+           else
+           {
+               if(wpref[w][wch[w]]>wpref[w][i])//if the women is engaged to a man whom she prefers less
+               {
+                   mch[wch[w]]=-1;
+                  free_men[top]=wch[w];
+                   wch[w]=i;
+                   mch[i]=w;
+                   next[i]++;
+                   break;
+               }
+               else
+               {
+                   continue; //if the women is already engaged with a man of higher preference then go to next woman
+ 
+               }
+           }
+ 
+        }
+    }
+        for(i=1;i<=n;i++)
+        printf("%d %d\n",i,mch[i]);
+}
+        return 0;
+}

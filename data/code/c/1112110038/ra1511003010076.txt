@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  	int a[150],i,j,k=0,n,z=1,y=0;
+  	a[0]=1;
+  	scanf("%d",&n);
+	for(i=2;i<=n;i++)
+    {
+      k=0;
+      for(j=1;j<=i;j++)
+      {
+        if(i%j==0)
+          k++;
+      }
+      if(k==2)
+      {
+        a[z]=i;
+        z++;
+      } 
+    }
+  	for(i=0;i<z;i++)
+    {
+       if(a[i]+a[i]==n)
+        {
+          y=1;
+          printf("%d = %d + %d\n",n,a[i],a[i]);
+       }
+      for(j=i+1;j<z;j++)
+      {
+        if(a[i]+a[j]==n)
+        {
+          y=1;
+          printf("%d = %d + %d\n",n,a[i],a[j]);
+        }
+      }
+    }
+    if(y==0)
+      printf("NOT");
+	return 0;
+}

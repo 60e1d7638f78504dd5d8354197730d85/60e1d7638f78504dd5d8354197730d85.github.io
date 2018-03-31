@@ -1,0 +1,78 @@
+import java.util.*;
+public class TestClass
+{
+public static int getMax(int[] a, int len) {
+
+  if (len > 0) {
+   return Math.max(a[len], getMax(a, len - 1));
+  } else {
+   return a[0];
+  }
+ }
+
+ public static void main(String[] args) {
+  @SuppressWarnings("resource")
+  Scanner scan = new Scanner(System.in);
+  int t = Integer.parseInt(scan.nextLine());
+
+  String answer = "";
+
+  while (t-- > 0) {
+   String nString = scan.nextLine();
+   int len = nString.length();
+   int[] arr = new int[len];
+   for (int i = 0; i < len; i++) {
+    arr[i] = Integer.parseInt(nString.charAt(i) + "");
+   }
+
+   int smallestEven = -1;
+   int smallestEvenIndex = -1;
+
+   for (int j = 0; j < arr.length; j++) {
+
+    if (arr[j] % 2 == 0) {
+     if (smallestEven == -1) {
+      smallestEven = arr[j];
+      smallestEvenIndex = j;
+     } else if (Math.min(smallestEven, arr[j]) == arr[j]) { 
+      smallestEven = arr[j];
+      smallestEvenIndex = j;
+     }
+    }
+   }
+
+   if (smallestEvenIndex != -1) {
+    int temp = arr[smallestEvenIndex]; 
+    arr[smallestEvenIndex] = arr[len - 1];
+    arr[len - 1] = -1;
+   } else {
+    for (int j = 0; j < arr.length; j++) {
+
+     if (arr[j] % 2 != 0) {
+      if (smallestEven == -1) {
+       smallestEven = arr[j];
+       smallestEvenIndex = j;
+      } else if (Math.min(smallestEven, arr[j]) == arr[j]) {
+       smallestEven = arr[j];
+       smallestEvenIndex = j;
+      }
+     }
+    }
+    int temp = arr[smallestEvenIndex];
+    arr[smallestEvenIndex] = arr[len - 1];
+    arr[len - 1] = -1;
+   }
+
+   Arrays.sort(arr);
+
+   String result = "";
+   for (int j = arr.length - 1; j > 0; j--) {
+    result += arr[j];
+   }
+
+   answer += result + smallestEven + "\n";
+  }
+  System.out.println(answer);
+
+ }
+}

@@ -1,0 +1,112 @@
+#include<stdio.h>
+struct g
+{
+    int vx;
+    int vy;
+};
+typedef struct g v;
+int abso(int x)
+{
+ 
+    if(x<0) x=-x;
+    return x;
+}
+void show(int time)
+{
+ 
+    if(time%2==0)
+        printf("%d.0\n",time/2);
+    else printf("%d.5\n",time/2);
+    return;
+}
+int main()
+{
+    int i,n,xe,ye,xa,ya,time,t,time2;
+    char de,da,flag='n';
+    v vand,vear,posi;
+    scanf("%d",&t);
+    while(t--)
+    {
+        time=2000000000;
+        scanf("%d %d %c",&xe,&ye,&de);
+    scanf("%d",&n);
+ 
+    flag='n';
+    for(i=0;i<n;i++)
+    {
+        vear.vx=0;
+        vear.vy=0;
+        vand.vx=0;
+        vand.vy=0;
+        scanf("%d %d %c",&xa,&ya,&da);
+        if(da==de) {  continue;}
+        if(de=='R') vear.vx=1;
+              else if(de=='L') vear.vx=-1;
+                      else if(de=='U') vear.vy=1;
+          else vear.vy=-1;
+ 
+ 
+ 
+        if(da=='R') vand.vx=1;
+              else if(da=='L') vand.vx=-1;
+                      else if(da=='U') vand.vy=1;
+          else vand.vy=-1;
+ 
+          vand.vx=vand.vx-vear.vx;
+          vand.vy=vand.vy-vear.vy;
+ 
+          posi.vx=xe-xa;
+          posi.vy=ye-ya;
+ 
+ 
+            if(vand.vx*vand.vy!=0)
+            {
+                if((2*posi.vx)/vand.vx==(2*posi.vy)/vand.vy)
+                    if((2*posi.vx)/vand.vx>0)
+                {
+                    time2=(2*posi.vx)/vand.vx;
+                    if(time>time2) time=time2;
+                    flag='y';
+                    continue;
+                }
+            }
+            else
+            {
+                if(vand.vx==0)
+                {
+                    if(posi.vx==0)
+                    {
+                        if((2*posi.vy)/vand.vy>0)
+                        {
+                            time2=(2*posi.vy)/vand.vy;
+                            if(time>time2) time=time2;
+                              flag='y';
+                            continue;
+                        }
+                    }
+                }
+ 
+ 
+                if(vand.vy==0)
+                {
+                    if(posi.vy==0)
+                    {
+                        if((2*posi.vx)/vand.vx>0)
+                        {
+                            time2=(2*posi.vx)/vand.vx;
+                            if(time>time2) time=time2;
+                              flag='y';
+                            continue;
+                        }
+                    }
+                }
+            }
+ 
+    }
+    if(flag=='y')
+        show(time);
+    else printf("SAFE\n");
+ 
+    }
+    return 0;
+}

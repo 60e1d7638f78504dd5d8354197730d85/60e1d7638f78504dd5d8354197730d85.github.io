@@ -1,0 +1,32 @@
+#include <stdio.h>
+void pro(long int a[],long int i){
+  	long int j,k,p=1,t;
+  for(j=0;j<i;j++){
+  	for(k=j+1;k<=i;k++){
+    	if(a[j]<a[k]){
+        	t=a[j];
+          a[j]=a[k];
+          a[k]=t;
+        }
+    }
+  }
+    for(j=0;j<3;j++)
+      p*=a[j];
+  printf("%ld\n",p);
+}
+int main()
+{
+  long int n,i,j;
+  scanf("%ld",&n);
+  long int a[n];
+  for(i=0;i<n;i++)
+    scanf("%ld",&a[i]);
+  for(i=0;i<n;i++){
+    if(i<2)
+      printf("-1\n");
+    else
+  		pro(a,i);
+   }
+
+	return 0;
+}

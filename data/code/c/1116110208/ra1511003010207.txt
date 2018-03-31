@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+	char buf[256] = { 0 };
+	char map[26] = { 0 };
+
+	int n;
+	fgets(buf, 256, stdin);
+	sscanf(buf, "%d", &n);
+
+	while(n--) {
+		int idx, f = 0, i;
+
+		fgets(buf, 256, stdin);
+
+		idx = strlen(buf) - 1;
+
+		if (buf[idx] == '\n')
+			buf[idx] = '\0';
+
+		memset(map, 0, 26);
+		for (i = 0; i < strlen(buf); i++) {
+			map[tolower(buf[i]) - 'a'] += 1;
+		}
+
+
+		for (i = 0; i < 26; i++) {
+			int sum = 0, j;
+
+			if (map[i] == 0) continue;
+
+			for (j = 0; j < 26; j++) {
+				if (map[j] != 0 && i != j)
+					sum += map[j];
+			}
+
+			if (map[i] == sum) {
+				puts("YES");
+				f = 1;
+				break;
+			}
+
+			if (f == 1)
+				break;
+		}
+
+		if (f == 1)
+			continue;
+
+		puts("NO");
+	}
+
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include<stdio.h>
+//#include<conio.h>
+#define MAX 8
+int main()
+{
+int Array[MAX] ;
+int i , N ;
+
+int negsum , posum;     
+/* negsum stands for Sum of Negative Numbers and posum stands for Sum of Positive Numbers */
+
+float total , average;
+//clrscr();
+negsum = 0 ;
+posum = 0;
+total = 0;
+
+//printf(" Enter the value of N\n");
+scanf("%d" , &N);
+
+//printf(" Enter %d numbers( -ve , +ve and 0 )\n" , N);
+for(i=0 ; i<N ; i++)
+{
+scanf(" %d" , &Array[i] );
+}
+
+//printf(" Array elements\n");
+//for(i=0 ; i<N ; i++)
+//{
+//printf("%d\n" , Array[i] );
+//}
+
+for(i=0 ; i<N ; i++)
+{
+if(Array[i] < 0)
+{
+negsum = negsum +Array[i];
+}
+else if(Array[i] > 0)
+{
+posum = posum +Array[i] ;
+}
+else if(Array[i] == 0)
+{
+       ;
+}
+total = total+Array[i];
+}
+average = total / N;
+
+//printf("sum=%d\n" , posum);
+printf("sum=%d\n" , negsum);
+//printf(" Average of all input numbers %f\n" , average);
+return 0;
+} 

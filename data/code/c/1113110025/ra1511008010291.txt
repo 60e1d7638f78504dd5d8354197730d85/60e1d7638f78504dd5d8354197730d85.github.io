@@ -1,0 +1,33 @@
+#include <math.h>
+#include <stdio.h>
+int main()
+{
+  int times,i,k;
+  scanf("%d",&times);
+  for(i=1;i<=times;i++)
+  {
+    int start,end;
+    scanf("%d",&start);
+    scanf("%d",&end);
+    int sum=0;
+    for(k=start;k<=end;k++)
+    {
+  int number=k,n,reverse=0,digit,check=0;
+  n=number;
+  while(n>0)
+  {
+    digit=n%10;
+    n/=10;
+    reverse*=10;
+    reverse+=digit;
+    check++;
+  }
+  if(reverse==number)
+  {
+    sum+=k;
+  }
+    }
+    printf("sum is %d\n",sum);
+  }
+	return 0;
+}

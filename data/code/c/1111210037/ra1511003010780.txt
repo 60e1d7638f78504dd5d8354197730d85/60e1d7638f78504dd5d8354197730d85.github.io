@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+    int T,i=0,N,s;
+    scanf("%d",&T);
+    for(i=0;i<T;i++){
+        scanf("%d",&N);
+        s = N%8;
+        if(s>0 && s<=3){
+            if(s==1)
+                printf("%dLB",N+3);
+            else if(s==2)
+                printf("%dMB",N+3);
+            else
+                printf("%dUB",N+3);
+        }
+        else if(s>3 && s<=6){
+            if(s==4)
+                printf("%dLB",N-3);
+            else if(s==5)
+                printf("%dMB",N-3);
+            else
+                printf("%dUB",N-3);
+        }
+        else if(s==7)
+            printf("%dSU",N+1);
+        else
+            printf("%dSL",N-1);
+    }
+    return 0;
+}
+ 

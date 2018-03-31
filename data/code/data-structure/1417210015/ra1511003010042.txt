@@ -1,0 +1,45 @@
+#include<iostream>
+#include<utility>
+#include<queue>
+#include<cstdio>
+using namespace std;
+ 
+struct cmp{
+bool operator()(const pair<long,int> a,const pair<long,int> b)
+{
+    if(a.first==b.first)
+      return a.second > b.second;
+      return a.first < b.first;
+}
+};
+int main()
+{
+ ios_base::sync_with_stdio(false);
+ cin.tie(NULL);
+    
+ int n,k,i;
+ cin>>n>>k;
+ long a[n];
+ 
+  for(i=0;i<n;i++)
+  cin>>a[i];
+  
+  priority_queue< pair<long,int>,vector< pair<long,int> >,cmp>q;
+  
+  for(i=0;i<n;i++)
+     q.push(make_pair(a[i],i));
+     
+  pair<long,int> temp;     
+  for(i=0;i<k;i++)
+  {
+    temp=q.top();  
+         q.pop();
+         
+    cout<<temp.second+1<<" ";
+    temp.first--;
+    
+    if(temp.first)
+     q.push(temp);
+  }
+  
+}

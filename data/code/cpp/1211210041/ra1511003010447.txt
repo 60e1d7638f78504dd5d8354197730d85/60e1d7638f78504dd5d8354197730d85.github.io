@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t,i,n,k,max;
+  int a[30];
+  a[1]=2,a[2]=5;
+  cin>>t;
+  while(t-->0){
+  cin>>n>>k;
+    for(i=3;i<=30;i++){
+    if(i%2==0)
+    {
+    	a[i]=(i+1)+a[i/2]+a[i/2-1];
+    	}else
+    {
+    	a[i]=(i+1)+(a[i/2])*2;
+    	}
+    }
+    
+    max=(n+1)*(n+2)/2-1;
+    if(k<a[n])
+      cout<<"-1\n";
+    else if(k>max)
+      cout<<(k-max)<<"\n";
+    else
+      cout<<"0\n";
+  }
+	return 0;
+}

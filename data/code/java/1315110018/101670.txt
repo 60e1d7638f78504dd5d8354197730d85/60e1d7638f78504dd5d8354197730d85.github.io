@@ -1,0 +1,44 @@
+
+import java.io.*;
+import java.util.Scanner;
+class Insert
+{
+       int insert,i,pos;
+       int arr[] = new int[50];
+       Scanner scan = new Scanner(System.in);
+       int size=scan.nextInt();
+         public void arrInsert()
+      {
+         for(i=0; i<size; i++)
+       {
+           arr[i] = scan.nextInt();
+      }
+          insert = scan.nextInt();
+           pos = scan.nextInt();
+  }
+  public void displayArray()
+  {
+     for(i=size; i>pos; i--)
+       {
+           arr[i] = arr[i-1];
+       }
+	   
+       arr[pos] = insert;
+	   
+      // System.out.print("Element inserted Successfully..!!\n");
+	   
+      // System.out.print("Now the New Array is :\n");
+       for(i=0; i<size+1; i++)
+       {
+           System.out.print(arr[i]+ " ");
+       }
+           }
+}
+    
+public class TestClass {
+	 public static void main(String[] args) { 
+      Insert obj=new Insert();
+       obj.arrInsert();
+       obj.displayArray();
+     }
+}

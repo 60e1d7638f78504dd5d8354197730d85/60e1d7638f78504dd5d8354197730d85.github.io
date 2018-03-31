@@ -1,0 +1,26 @@
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.StringJoiner;
+public class TestClass {
+    static char hexaChar[] = {'f','e','d','c','b','a'};
+    static String findHexa(int no){
+        String result ="";  
+        int reminder ;  
+        while(no>0){
+            reminder = no % 16;
+            if(reminder > 9){
+                result = hexaChar[15 - reminder] + result;
+            }else{
+                result = reminder+result;
+            }
+            no = no/16;
+        }
+    return result;
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       
+        int num = scanner.nextInt();
+        System.out.println(findHexa(num));
+    }
+}

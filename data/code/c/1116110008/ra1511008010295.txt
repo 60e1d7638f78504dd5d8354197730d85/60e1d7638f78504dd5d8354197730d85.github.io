@@ -1,0 +1,25 @@
+#include <stdio.h>
+struct student{
+  char name[100];
+  int regno;
+}s[100];
+int main()
+{
+  int i,n;
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+    scanf("%d",&s[i].regno);
+    scanf(" %[^\n]%*c",s[i].name);
+  }
+  int key;
+  scanf("%d",&key);
+  for(i=0;i<n;i++){
+    if(key == s[i].regno){
+      printf("Name=%s\n",s[i].name);
+      printf("regno=%d",s[i].regno);
+      break;
+    }
+  }
+
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+int n,m,a[1000001],i,nw[1000001],ns[1000001],p1,p2,s[1000001];
+int main()
+{scanf("%d%d",&n,&m);
+ for(i=0;i<n;i++)
+   scanf("%d",&a[i]);
+ ns[n-1]=1;
+ nw[n-1]=1;
+ p1=n-1;
+ p2=n-1;
+ s[p2]=1;
+ a[n]=1000070000;
+ for(i=n-2;i>=0;i--)
+ {
+   if(a[i]+m>=a[p1])
+   {ns[i]=ns[p1]+1;
+    while(a[p2]>a[i]+m)
+      p2--;
+    nw[i]=s[p2];}
+   else{
+     p1=i+1;
+     s[p1]=nw[p1];
+     p2=p1+1;
+     while(a[i]+m>=a[p2]){
+       s[p2]=(s[p2-1]+nw[p2])%1000000007;
+       p2++;}
+     p2--;
+     ns[i]=ns[p2]+1;
+     nw[i]=s[p2];}
+ }printf("%d %d",ns[0]-2,nw[0]);
+ return 0;
+ 
+	return 0;
+}

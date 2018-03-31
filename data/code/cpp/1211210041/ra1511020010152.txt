@@ -1,0 +1,44 @@
+#include<iostream>
+#include<cstdio>
+#include<set>
+using namespace std;
+set<int>my_set[32];
+int main(){
+    int T,N,M,i,j,temp,x,y;
+    bool flag;
+    set<int>:: iterator it,a,b;
+    set<int>:: iterator it2;
+    (my_set[0]).insert(0);
+    (my_set[1]).insert(2);
+    (my_set[2]).insert(5);
+    for (i=3;i<=30;++i){
+        for (j=i-1;j>=(i/2);--j){
+            for (it = my_set[j].begin();it!=my_set[j].end();++it){
+                a = my_set[(i-1)-j].begin();
+                b = my_set[(i-1)-j].end(); 
+                for (it2=a ; it2!=b; ++it2){
+                    temp = (i+1) + (*it) + (*it2);
+                    my_set[i].insert(temp);
+                    }
+                }
+            }
+        }
+    scanf("%d",&T);
+    while (T--){
+          scanf("%d%d",&N,&M);
+          a = my_set[N].begin();
+          b = my_set[N].end();
+          x = *a;
+          y = *b;
+          flag=false;
+          for (it=b;it!=a;--it){
+              it2=it;
+              --it2;
+              if ((*it2)<=M){printf("%d\n",(M-(*it2)));flag=true;break;}
+              }
+          if (!flag){
+             printf("-1\n");
+             }
+          }
+    return 0;
+}

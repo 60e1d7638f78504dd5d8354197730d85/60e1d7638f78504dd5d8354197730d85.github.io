@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int gcd(int a, int b) {
+  if(b==0)
+    return a;
+  else
+  	return gcd(b,a%b);
+}
+int main()
+{
+	int n;
+  cin>>n;
+  int a[n];
+  for(int i=0;i<n;i++) {
+    cin>>a[i];
+  }
+  int d;
+  cin>>d;
+  int g = gcd(d,n);
+  int j,k,temp;
+  for(int i=0;i<g;i++) {
+    temp = a[i];
+    j=i;
+    while(1) {
+      k=j+d;
+      if(k>=n)
+        k = k-n;
+      if(k==i)
+        break;
+      a[j] = a[k];
+      j = k;
+    }
+    a[j] = temp;
+  }
+  for(int i=0;i<n;i++) {
+    cout<<a[i]<<" ";
+  }
+	return 0;
+}

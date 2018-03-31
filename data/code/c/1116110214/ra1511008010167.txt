@@ -1,0 +1,32 @@
+#include<stdio.h>
+struct hello
+{ char a[100];
+}x[100];
+int main()
+{
+  int n,i,j,f=0,m;
+  
+  scanf("%d%d",&n,&m);
+  for(i=0;i<n;i++)
+      scanf("%s",x[i].a);
+  for(i=0;i<n-1;i++)
+  { for(j=0;j<m-1;j++)
+    {  
+      if(x[i].a[j]!=x[i].a[j+1])
+      { f=1;
+       // printf("%c       %c\n",x[i].a[j],x[i].a[j+1]);
+       break;
+      }
+      else if(x[i].a[j]==x[i+1].a[j])
+      {f=1;
+       // printf("%c       %c\n",x[i].a[j],x[i+1].a[j]);
+       break;
+      }
+    }
+  }
+    if(f==1)
+      printf("NO");
+     else 
+       printf("YES");
+  return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define MAX 1000000
+int max(int a[],int n)
+{
+  int i,maxi=a[0],j=0;
+	for(i=1;i<n;i++)
+    {
+      if(a[i]>maxi)
+    { maxi=a[i];
+      j=i;
+    }
+    }
+return j;
+}
+int main()
+{
+	int i,m,n,x[MAX],res=0,j;
+  	scanf("%d %d",&m,&n);
+  	for(i=0;i<m;i++)
+      scanf("%d",&x[i]);
+  	while(n--)
+    {
+    	j=max(x,m);
+      	res+=x[j];
+      	x[j]--;
+      //printf("%d ",res);
+    }
+ // if(res==0)
+  //  printf("0");
+  //else
+  printf("%d",res);
+	return 0;
+}

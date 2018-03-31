@@ -1,0 +1,36 @@
+#include<string.h>
+#include <stdio.h>
+int main()
+{
+	int x,i,j;
+    scanf("%d",&x);
+  
+  	char nw[x][10];
+ 	for(i=0;i<x;i++)
+    {
+    	scanf("%s",nw[i]);
+    }
+    
+    for(i=0;i<x;i++)
+    {
+    	for(j=0;j<x;j++)
+        {
+        	if(strcmp(nw[i],nw[j])<0)
+        	{
+        	char a[10];
+          	strcpy(a,nw[i]);
+          	strcpy(nw[i],nw[j]);
+          	strcpy(nw[j],a);
+        	}
+        }
+    }
+  
+  for(i=0;i<x;i++)
+  {
+  printf("%s\n",nw[i]);
+  }
+  	
+  
+  
+	return 0;
+}

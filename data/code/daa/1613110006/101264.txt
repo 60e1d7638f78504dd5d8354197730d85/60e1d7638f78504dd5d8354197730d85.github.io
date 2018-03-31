@@ -1,0 +1,51 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+int main() {
+    
+    int t;
+    cin>>t;
+    
+    long int n;
+    long int a[100000];
+    
+    long int sum, dif;
+    
+    long int max;
+    
+    while(t--) {
+        
+        cin>>n;
+        for(int i = 0; i <n; ++i) {
+            cin>>a[i];
+        }
+        
+        max = a[0];
+        
+        for(int i = 0; i <n; ++i) {
+            if(max < a[i]) {
+                max = a[i];
+            }
+            
+        }
+        
+        sum = 0;
+        
+        for(int i = 0; i <n-1; ++i) {
+            for(int j = i +1; j < n;++j ) {
+ 
+            dif = a[i] - a[j];
+                if(dif>0){
+                    sum += dif;
+                }
+                else{
+                    sum = sum + (-dif);
+                }
+            }
+ 
+        }
+        
+        cout<<(sum*max)%1000000007<<endl;
+}
+}

@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	char *str=(char *)malloc(sizeof(char));
+    scanf("%s",str);
+  	int l=strlen(str);
+  	int n;
+    scanf("%d",&n);
+  	int i=0;
+  	int ar[26]={0};
+  	for(;i<l;i++)
+    {
+      int x=str[i]-97;
+      ar[x]++;
+    }
+
+  int count=0;
+  for(i=0;i<26;i++)
+  {
+    if(count==n)
+      break;
+    if(ar[i]>0)
+    {
+      char x=i+97;
+      while(ar[i]!=0)
+      {
+        if(count==n)
+          break;
+        printf("%c",x);count++;
+        ar[i]--;
+      }
+    }
+  }
+	return 0;
+}

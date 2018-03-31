@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{int t;
+ scanf("%d",&t);
+ while(t--)
+ {
+   int h,m,count=0;
+   scanf("%d %d\n",&h,&m);
+   int d1,d2,i,j,s,sum,d3,d4;
+   for(i=0;i<h;i++)
+   {
+     d1=i/10;
+     d2=i%10;
+   for(j=0;j<m;j++)
+   {
+     d3=j/10;
+     d4=j%10;
+   if(i<10 && j<10)
+     if(d2==d4) 
+       count++;
+   if(i<10 && j>9)
+     if(d2==d3&&d3==d4)
+       count++;
+    if(i>9 && j<10)
+      if(d2==d1&&d2==d4)
+        count++;
+     if(i>9 && j>9)
+       if(d2==d1&&d2==d3&&d3==d4)
+        count++;
+   }
+   }
+   printf("%d\n",count);
+ }
+	return 0;
+}

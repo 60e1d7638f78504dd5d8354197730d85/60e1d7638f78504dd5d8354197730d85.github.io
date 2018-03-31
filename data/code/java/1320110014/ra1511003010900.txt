@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		String s = sc.nextLine();
+		Map<String,String> map = new TreeMap<String,String>();
+		while(t-->0) {
+			s=sc.next();
+			String s2 = sc.next();
+			map.put(s,s2);
+		}
+		if(map.containsKey("icecream")) map.put("yogurt", map.get("icecream"));
+		if(map.containsKey("spinach")) map.put("spinach", "nuts");
+		Set<String> key = map.keySet();
+		for(Map.Entry<String, String> entry : map.entrySet())
+			System.out.println(entry.getKey()+" "+entry.getValue());
+	}
+}

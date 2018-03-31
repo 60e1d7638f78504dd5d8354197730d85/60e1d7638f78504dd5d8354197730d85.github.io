@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+int is_prime(int n)
+{
+  int i;
+  if(n==1)
+  {
+    return 0;
+  }
+  else if(n%2==0)
+  {
+    return n==2;
+  }
+  else if(n%3==0)
+  {
+    return n==3;
+  }
+  else if(n%5==0)
+  {
+    return n==5;
+  }
+  else if(n%7==0)
+  {
+    return n==7;
+  }
+  for(i=11;i*i<=n;i++)
+  {
+    if(n%i==0)
+    {
+      return 0;
+    }
+  }
+  return 1;
+}
+int no_factors(long long int n)
+{
+  long long int i;
+  int ans=2;
+  if(n==1)
+  {
+    return 1;
+  }
+  for(i=2;i*i<n;i++)
+  {
+    if(n%i==0)
+    {
+      ans+=2;
+    }
+  }
+  if(i*i==n)
+  {
+    ans++;
+  }
+  return ans;
+}
+int main()
+{
+  int t, *primes;
+  long long int st,en,prms,sqrs,lst,i,p,j;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%lld%lld",&st,&en);
+    primes=(int *)malloc((en-st+1)*sizeof(int));
+    prms=sqrs=0;
+    for(i=0;i<(en-st+1);i++)
+    {
+      primes[i]=1;
+    }
+    for(p=2;p*p<=en;p++)
+    {
+      lst=(st/p)*p;
+      if(p*p>=st)
+      {
+        if(is_prime(no_factors(p*p)))
+        {
+          sqrs++;
+        }
+      }
+      for(j=lst;j<=en;j+=p)
+      {
+        if(j!=p&&j>=st)
+        {
+          primes[j-st]=0;
+        }
+      }
+    }
+    for(i=0;i<(en-st+1);i++)
+    {
+      if(primes[i]==1&&i+st!=1)
+      {
+        prms++;
+      }
+    }
+    printf("%lld\n",prms+sqrs);
+    free(primes);
+  }
+	return 0;
+}

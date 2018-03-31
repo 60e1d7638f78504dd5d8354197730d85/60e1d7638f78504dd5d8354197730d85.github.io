@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[100004],f[2];
+    int t,n,i,j;
+    scanf("%d",&t);
+    while(t--) {
+        scanf("%d",&n);
+        fgets(f,sizeof(f),stdin);
+        for (i = 0 ; i < n ; i++) {
+            scanf("%c",&str[i]);
+        }
+        int len = n;
+        int pos = 0;
+        char B[100004];
+        while(1) {
+            int x = pos;
+            for (i =0,j=0 ; i < len-1 ; i++) {
+                if (str[i] == '4' && str[i+1] == '7') {
+                        pos = pos + i+1;
+                        i++;
+                }
+                else {
+                    B[j] = str[i];
+                    j++;
+                }
+            }
+            if (len >= 2) {
+                    if (!(str[len-2] == '4' && str[len-1] == '7')) {
+                        B[j] = str[i];
+                        j++;
+                    }
+ 
+            }
+ 
+            B[j] = '\0';
+            if (x == pos) {
+                break;
+            }
+            len = j;
+            strcpy(str,B);
+        }
+        printf("%d\n",pos);
+ 
+    }
+    return 0;
+}

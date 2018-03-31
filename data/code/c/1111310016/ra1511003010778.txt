@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+  int n,t,i,j,k,s,a,b,count;
+  int arr[100],coin[100];
+  
+  scanf("%d %d",&n,&t);
+
+  for(i=0;i<n;i++)//initializing all coin states to zero,tail
+  {
+    coin[i]=0;
+  }
+  
+  j=0;
+  for(i=0;i<t;i++)//taking commands
+  {
+    scanf("%d %d %d",&arr[j++],&arr[j++],&arr[j++]);
+  }
+  
+  k=0;
+  for(i=0;i<t;i++)
+  {
+    b=arr[k++];
+    a=arr[k++];
+    s=arr[k++];
+    //printf("%d %d %d\n",s,a,b);
+    
+    if(s==0)
+    {
+      for(j=a;j<=b;j++)
+      {
+        coin[j]++;
+      }
+    }
+    else if(s==1)
+    {
+      count=0;
+      for(j=a;j<=b;j++)
+      {
+        if(coin[j]%2 != 0)
+        {
+          count++;
+        }
+      }
+      printf("%d\n",count);
+    }
+  }
+    return 0;
+}

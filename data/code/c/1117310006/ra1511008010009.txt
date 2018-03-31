@@ -1,0 +1,68 @@
+# include<stdio.h>
+# define MOD 1000000007
+ 
+long long f[5001], invf[5001];
+ 
+long long p(int a, int b)
+{
+if(b==1)
+return a;
+if(b%2==0)
+{
+long long temp;
+temp=p(a,b/2);
+return (temp*temp)%MOD;
+}
+else
+{
+long long temp;
+temp=p(a,b/2);
+return (((temp*temp)%MOD)*a)%MOD;
+}
+}
+void initialise()
+{
+int i;
+ 
+f[0]=f[1]=1;
+ 
+for(i=2 ; i<=5000 ; i++)
+f[i]=(i*f[i-1])%MOD;
+ 
+invf[5000] = p(f[5000], MOD-2);
+ 
+for(i=4999 ; i>=0 ; i--)
+invf[i]=( (i+1)*invf[i+1] )%MOD;
+}
+long long nCr(int n, int r)
+{
+return ( (((f[n]*invf[r])%MOD)*invf[n-r])%MOD );
+}
+int main()
+{
+int n,k;
+long long m, m1, m2;
+ 
+initialise();
+ 
+scanf("%d %d",&n,&k);
+ 
+while(n && k)
+{
+if(k%2!=0)
+{
+m = nCr(n-2,((k+1)/2)-1);
+m=(m*m*2)%MOD;
+printf("%lld\n",m);
+}
+else
+{
+m1=nCr(n-2,(k/2)-1);
+m2=nCr(n-2,k/2);
+m1=(m1*m2*2)%MOD;
+printf("%lld\n",m1);
+}
+scanf("%d %d",&n,&k);
+}
+return 0;
+}

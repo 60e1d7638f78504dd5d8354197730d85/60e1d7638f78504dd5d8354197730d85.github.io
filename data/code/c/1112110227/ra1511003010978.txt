@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef long long int LLI;
+#define inchar getchar_unlocked
+inline int inIntPos() {
+	int n, ch;
+	while ((ch = inchar()) < '0');
+	n=(ch-'0');
+	while((ch = inchar()) >= '0')
+		n=(n<<3)+(n<<1)+(ch-'0');
+	return n;
+}
+ 
+inline int min(int a, int b) { return a<b?a:b; }
+ 
+int cmpData( const void * e1, const void *e2) {
+	return (*((int*)e1) - *((int*)e2));
+}
+ 
+#define MAX_N 100002
+int a[MAX_N];
+int n,k;
+int m;
+ 
+int calc() {
+	LLI sum,sumK;
+	int l;
+ 
+	if(k==0) {
+		sum=((LLI)n*(n+1))>>1;
+		return (sum+1)&1;
+	}
+ 
+	if(m==1) return 1;
+	if(m==2) return 0;
+ 
+	qsort(a,k,sizeof(int),cmpData);
+ 
+	sumK=0;
+	for(l=0; l<k; ++l) {
+		sumK+=a[l];
+		sum=((LLI)a[l]*(a[l]+1))>>1;
+		sum-=sumK;
+		if(sum<a[l]) {
+			return (sum+1)&1;
+		}
+	}
+ 
+	sum=(((LLI)n*(n+1))>>1)-sumK;
+	return (sum+1)&1;
+}
+ 
+int d[MAX_N];
+ 
+int calc100() {
+	LLI sum;
+	int i,j,l,maxN,to;
+ 
+	if(k==0) {
+		sum=((LLI)n*(n+1))>>1;
+		return (sum+1)&1;
+	}
+ 
+	if(m==1) return 1;
+	if(m==2) return 0;
+ 
+	qsort(a,k,sizeof(int),cmpData);
+ 
+	maxN=(n*(n+1))>>1;
+	for(i=1; i<=maxN; ++i) d[i]=0;
+ 
+	l=0;
+	d[1]=1;
+	to=1;
+	for(i=2; i<=n; ++i) {
+		if(i==a[l]) {
+			++l;
+			if(l==k) l=0;
+			continue;
+		}
+		for(j=to; j>=1; --j) {
+			if(d[j]) {
+				d[j+i]=1;
+			}
+		}
+		d[i]=1;
+		to=to+i;
+ 
+	}
+	for(i=1; i<=maxN; ++i)
+		if(!d[i]) break;
+ 
+	return i&1;
+}
+ 
+int main(void) {
+	int t,i;
+ 
+	t=inIntPos();
+	while(t--) {
+		n=inIntPos();
+		k=inIntPos();
+ 
+		m=n+1;
+		for(i=0; i<k; ++i) {
+			a[i]=inIntPos();
+			m=min(m,a[i]);
+		}
+ 
+		if(n<=100) {
+			if(calc100()) printf("Chef\n"); else printf("Mom\n");
+		}
+		else {
+			if(calc()) printf("Chef\n"); else printf("Mom\n");
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  	int n, w, l;
+  	scanf("%d", &n);
+  	if(n == 0) {
+    	printf("0");
+      	return 0;
+    }
+  	scanf("%d %d", &w, &l);
+  	int ht[n], rate[n];
+  	int i;
+  	for(i=0; i<n; i++) {
+    	scanf("%d %d", &ht[i], &rate[i]);
+    }
+  	int sum = 0, month = 0;
+  	while(sum < w) {
+    	for(i=0; i<n; i++) {
+        	if(ht[i]+month*rate[i] >= l) {
+            	sum += ht[i] + month*rate[i];
+              	if(sum >= w) break;
+            }
+        }
+      	if(sum < w) {
+        	sum = 0;
+          	month ++;
+        }
+    }
+	printf("%d", month);
+  	//printf("Hi");
+	return 0;
+}

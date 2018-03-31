@@ -1,0 +1,69 @@
+#include <stdio.h>
+int max(int p,int q)
+{
+  if(q>p)
+    p=q;
+  return p;
+}
+int n,m;
+int ar[25][25];
+int ctr[23];
+int arr[20005];
+int table[22][20002];
+int n,m;
+int dyna (int i)
+{
+  int j,p,q;
+  if(i==(m+1))
+    return 0;
+  for(j=1;j<=m;j++)
+  {
+    if(i!=j)
+    {
+      if(ar[i][ctr[j]]==1)
+        return dyna(i+1);
+    }
+  }
+  p=dyna(i+1);
+  ctr[i]=i;
+  q=1+dyna(i+1);
+  ctr[i]=0;
+  return max(p,q);
+}
+int main()
+{
+  int i,j,k;
+  scanf("%d%d",&n,&m);
+  for(i=0;i<=n;i++)
+    arr[i]=0;
+  for(i=1;i<=m;i++)
+  {
+    scanf("%d",&table[i][0]);
+    for(j=1;j<=table[i][0];j++)
+      scanf("%d",&table[i][j]);
+  }
+  for(i=0;i<=20;i++)
+  {
+    for(j=0;j<=20;j++)
+      ar[i][j]=0;
+  }
+  for(i=1;i<=m;i++)
+  {
+    for(k=0;k<=n;k++)
+      arr[k]=0;
+    for(j=1;j<=table[i][0];j++)
+      arr[table[i][j]]++;
+    for(j=1;j<=m;j++)
+    {
+      for(k=1;k<=table[j][0];k++)
+        if(arr[table[j][k]]>0)
+          ar[i][j]=ar[j][i]=1;
+      
+    }
+  }
+  for(i=0;i<=20;i++)
+    ctr[i]=0;
+  printf("%d\n",dyna(1));
+
+	return 0;
+}

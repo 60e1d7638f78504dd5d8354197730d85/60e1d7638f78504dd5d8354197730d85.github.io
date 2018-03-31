@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		EvenOdd obj = new EvenOdd();
+       obj.getInput();
+       obj.findOddEven();
+	}
+}
+class EvenOdd
+{
+  ArrayList<Integer> even = new ArrayList<>();
+  ArrayList<Integer> odd = new ArrayList<>();
+  public void getInput()
+  {
+    Scanner scan = new Scanner(System.in);
+    int nos = scan.nextInt();
+    for(int i=0; i<nos; i++)
+    {
+      int t = scan.nextInt();
+      if(t%2 == 0)
+        even.add(t);
+      else
+        odd.add(t);
+    }
+  }
+  public void findOddEven()
+  {
+    System.out.println("Odd :"+printArrayList(odd));
+    System.out.println("Even :"+printArrayList(even));
+  }
+ private String printArrayList(ArrayList e)
+ {
+   String ret = "";
+   for(int i=0; i<e.size(); i++)
+     ret = ret.concat(e.get(i)+" ");
+   return ret;
+ }
+}

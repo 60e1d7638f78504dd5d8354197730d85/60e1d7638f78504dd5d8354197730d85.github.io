@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  	int a,k,n,temp;
+    cin>>a>>n>>k;
+    temp=k;
+  	int arr[k];
+  	int i=0;
+  	for(int i=0;i<k;i++)
+      	arr[i]=0;
+  	while(temp>0 && a>0)
+    {
+      	i=0;
+    	if(arr[i]<n)
+        {
+          	arr[i]++;
+          	a--;
+        }
+      	else
+        {
+          	temp--;
+          	if(temp==0)
+              	break;
+            a--;
+            arr[i]=0;
+          	i++;
+          	arr[i]++;
+        }
+    }
+    for(i=0;i<k;i++)
+      cout<<arr[i]<<" ";
+	return 0;
+}

@@ -1,0 +1,37 @@
+import java.util.*;
+public class TestClass {
+  	public static void checkPassword(String s)
+  	{
+      boolean flag=true;
+      int digitCount=0;
+      if(s.length()>=8)
+      {
+      	for(char c:s.toCharArray())
+      	{
+        	if(Character.isDigit(c))
+            {	
+              digitCount++;
+            }
+          	else if(!(Character.isLetter(c)))
+            {
+              flag=false;
+              break;
+            }
+      	}
+      }
+      else
+      {
+        flag=false;
+      }
+        if(flag &&digitCount>=2)
+          System.out.println("valid");
+        else
+          System.out.println("Notvalid");
+    }
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	String password=sc.next();
+      	checkPassword(password);
+	}
+}

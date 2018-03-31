@@ -1,0 +1,21 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+public class TestClass {
+  public int great(int gcd,int lcm) {
+    BigInteger b1 = BigInteger.valueOf(gcd);
+    BigInteger b2 = BigInteger.valueOf(lcm);
+    BigInteger g = b1.gcd(b2);
+    return g.intValue();    
+  }
+    public static void main(String args[]) throws Exception {
+      TestClass objname = new TestClass();
+      Scanner sc = new Scanner(System.in);
+      int n =sc.nextInt();
+      for(int i=0;i<n;i++){
+        int num1=sc.nextInt(), num2=sc.nextInt();
+        int a = objname.great(num1,num2);
+        System.out.println(a + " "+((num1*num2)/a));
+      }
+    }
+}

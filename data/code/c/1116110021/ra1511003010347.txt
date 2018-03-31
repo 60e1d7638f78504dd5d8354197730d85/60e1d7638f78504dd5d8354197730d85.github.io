@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include<string.h>
+void removed(char *s,char r)
+{
+  int i=0,l;
+  l=strlen(s);
+  while(i<l && s[i]!=r)
+    i++;
+  while(i<l)
+  {
+    s[i]=s[i+1];
+    i++;
+  }
+}
+int main()
+{
+  char s[100],r;
+  scanf("%s %c",s,&r);
+  removed(s,r);
+  printf("%s",s);
+  return 0;
+}

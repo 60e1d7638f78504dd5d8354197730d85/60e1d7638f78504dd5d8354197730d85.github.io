@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a, b, small, big, x[10]={0};
+	cin>>a>>b;
+	if (a<=b){
+		small=a;
+		big=b;
+	}
+	else{
+		small=b;
+		big=a;
+	}
+	int k=0;
+  	int num=small;
+	while(num++ <=big){
+      int flag=1, i=3;
+      if (num%2==0)
+        flag=0;
+      while(i*i<=num){
+      	if (num%i==0){
+        	flag=0;
+	      }
+        i++;
+      }
+      if (flag==1)
+		x[k++]=num;
+    }
+	cout<<"Prime numbers between "<<a<<" and "<<b<<" are: ";
+	for (int *ptr=x; *ptr; ptr++){
+      cout<<*ptr<<' ';
+    }
+	return 0;
+}

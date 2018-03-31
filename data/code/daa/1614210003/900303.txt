@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+int keymask [25]; 
+int keys [25];
+int chests [105];
+int money [55]; 
+int c [105]; 
+int pc [(1<<20) + 5]; 
+int gc [21][51];
+int main()
+{
+    for (int y=0; y<(1<<20); y++) pc[y] = __builtin_popcount(y);
+    ios_base::sync_with_stdio(0); 
+    int T; cin >> T;
+    assert(1<=T and T<=10);
+    for (int g=0; g<T; g++){
+        int N, M, K; cin >> N >> M >> K;
+        assert (1<=N and N<=20);
+        assert (1<=K and K<=10);
+        assert (1<=M and M<=100);
+        memset(money,0,sizeof(money));
+        for (int y=0; y<N; y++) {cin >> keys[y];
+        assert(1<=keys[y] and keys[y]<=50);
+        } 
+        for (int y=0; y<M; y++) {cin >> chests[y]; assert(1<=chests[y] and chests[y]<=50);}
+        for (int y=0; y<M; y++) {int m; cin >> m; money[chests[y]]+=m; assert(0<=m and m<=1000);}
+        for (int y=0; y<N; y++) for (int z=1; z<=50; z++) gc[y][z] = __gcd(keys[y],z);
+        int ans = 0; 
+        for (int y=(1<<K) - 1; y<(1<<N); y++){
+            if (pc[y]!=K) continue; 
+            memset(c,0,sizeof(c));
+            int answer = 0; 
+            for (int z=0; z<N; z++){
+                if ((1<<z)&y){
+                    for (int r=1; r<=50; r++){
+                        if (gc[z][r]!=1) {if(!c[r])answer+=money[r];c[r] = 1;
+                        } 
+                    }
+                }
+            }
+            if (answer > ans) ans = answer; 
+        }
+        cout << ans << '\n';
+    }
+    return 0;
+}
+

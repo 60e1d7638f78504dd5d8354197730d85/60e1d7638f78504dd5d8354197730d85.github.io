@@ -1,0 +1,53 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+int main()
+{
+  string s;
+  s="Number format exception";
+  string d;
+  try
+  {
+    if(cin>>d)
+    {
+      try
+      {
+        if(d.size()!=1)
+        {
+          try
+          {
+          if(isalpha(d[0]))
+          {
+          cout<<"Valid Input";
+          }
+            else
+            {
+              throw s;
+            }
+            
+          }catch (string s)
+          {
+            cout<<s;
+          }
+        }
+        else
+        {
+          throw s;
+        }
+        }catch(string s)
+        {
+          cout<<s;
+        }
+      }
+    else
+    {
+      throw s;
+    }
+  }catch(string s)
+  {
+    cout<<s;
+  }
+
+	return 0;
+}

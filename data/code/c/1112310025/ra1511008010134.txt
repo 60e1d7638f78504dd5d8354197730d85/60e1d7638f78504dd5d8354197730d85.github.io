@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+static inline int
+read_uint(void)
+{
+	int val = 0;
+	int c = getchar_unlocked();
+ 
+	while (c < '0' || '9' < c)
+		c = getchar_unlocked();
+ 
+	while ('0' <= c && c <= '9') {
+		val = 10 * val + c - '0';
+		c = getchar_unlocked();
+	}
+ 
+	return val;
+}
+ 
+struct phase {
+	int ring[256];
+	int diff;
+	int pending;
+	short hi;
+	short lo;
+};
+ 
+static int vals[1 << 15];
+static struct phase phase[15];
+ 
+static int
+compare_int(const void *a, const void *b)
+{
+	return *(int *)a - *(int *)b;
+}
+ 
+int
+main(void)
+{
+	int T, N;
+	int Npow2;
+	int *val;
+	int i;
+	int nr_known;
+	struct phase *p;
+ 
+	T = read_uint();
+ 
+	for (; T > 0; T--) {
+		N = read_uint();
+		Npow2 = 1 << N;
+ 
+		for (i = 0; i < Npow2; i++)
+			vals[i] = read_uint();
+ 
+		qsort(vals, Npow2, sizeof(int), compare_int);
+ 
+		for (i = 0; i < N; i++) {
+			phase[i].ring[0] = 0;
+			phase[i].diff = 0;
+			phase[i].pending = 1;
+			phase[i].hi = 1;
+			phase[i].lo = 0;
+		}
+ 
+		nr_known = 0;
+		val = &vals[0]; /* skip 0 */
+ 
+		while (nr_known < N) {
+			val++;
+ 
+			p = phase;
+			while (1) {
+				if (p->pending) {
+					if (p->diff == 0) {
+						p->diff = *val;
+						nr_known++;
+						p->pending--;
+						p->lo = 1;
+						break;
+					}
+ 
+					if (p->ring[p->lo] + p->diff == *val) {
+						p->pending--;
+						p->lo = (p->lo + 1) % 256;
+						break;
+					}
+				}
+ 
+				p->pending++;
+				p->ring[p->hi] = *val;
+				p->hi = (p->hi + 1) % 256;
+				if (p->hi == p->lo)
+					fprintf(stderr, "SUCK!\n"), exit(0);
+				p++;
+			}
+		}
+ 
+		printf("%d", phase[0].diff);
+		for (i = 1; i < N; i++)
+			printf(" %d", phase[i].diff);
+		fputs("\n", stdout);
+	}
+ 
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+int read_int() {
+  char c = gc();
+  while(c<'0' || c>'9') c = gc();
+  int ret = 0;
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+int main()
+{
+    int t,n,i,ex;
+    int a[50],b[101];
+    t=read_int();
+    while(t--){
+        n=read_int();
+        for(i=0;i<101;i++)
+            b[i]=0;
+        for(i=0;i<n;i++){
+            a[i]=read_int();
+            b[a[i]] ++;
+        }
+        ex=0;
+        for(i=0;i<101;i++){
+            if(b[i]>0)
+                ex++;
+        }
+        printf("%d\n",ex);
+    }
+    return 0;
+}
+  

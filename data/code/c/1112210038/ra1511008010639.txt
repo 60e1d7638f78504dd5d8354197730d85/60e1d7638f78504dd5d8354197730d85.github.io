@@ -1,0 +1,80 @@
+#include <stdio.h>
+ 
+char A[1003][1003];
+ 
+int main()
+{
+    int T,H,W,i,j,flag=0;
+    scanf("%d",&T);
+    while(T--)
+    {
+        flag=0;
+        scanf("%d %d",&H,&W);
+        for(i=0;i<=W+2;i++)
+        {
+            A[0][i]='A';
+            A[H+1][i]='A';
+        }
+        for(i=0;i<=H+1;i++)
+        {
+            A[i][0]='A';
+            A[i][W+2]='A';
+        }
+        for(i=1;i<=H;i++)
+        {
+            scanf("%s",(*(A+i)+1));
+        }
+       /*for(i=0;i<=H+1;i++)
+        {
+            printf("\n");
+            for(j=0;j<=W+2;j++)
+            {
+                if(A[i][j]=='\0')
+                    printf("y");
+                else
+                    printf("%c",A[i][j]);
+            }
+        }*/
+        for(i=1;i<=H;i++)
+        {
+            for(j=1;j<=W;j++)
+            {
+                if(A[i][j]=='A')
+                {
+                    if(A[i-1][j]!='A')
+                    {
+                        flag=1;
+                        break;
+                    }
+                    if(A[i][j-1]=='W' || A[i][j+1]=='W')
+                    {
+                        flag=1;
+                        break;
+                    }
+                }
+                else if(A[i][j]=='W')
+                {
+                    if(A[i-1][j]=='B')
+                    {
+                        flag=1;
+                        break;
+                    }
+                    if(A[i][j-1]=='A' || A[i][j+1]=='A' || A[i][j+1]=='\0')
+                    {
+                       //printf("\n%c %c",A[i][j-1],A[i][j+1]);
+                        flag=1;
+                        break;
+                    }
+                }
+            }
+            if(flag==1)
+                break;
+        }
+        if(flag==0)
+            printf("\nyes");
+        else
+            printf("\nno");
+ 
+    }
+    return 0;
+}

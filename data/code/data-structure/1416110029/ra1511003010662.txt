@@ -1,0 +1,138 @@
+#include <bits/stdc++.h>
+ 
+#define forn(i, n) for(int i = 0 ; (i) < (n) ; ++i)
+#define eprintf(...) fprintf(stderr, __VA_ARGS__),fflush(stderr)
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef double dbl;
+ 
+const int inf = (int)1.01e9;
+const dbl eps = 1e-9;
+ 
+/** --- main part --- **/
+ 
+#define TASK "a"
+ 
+const int BUF_SIZE = (int)1e4 + 10;
+struct fastIO     //TODO it works, but not always, EoF troubles; can read only positive integers
+{
+    char buf[BUF_SIZE];
+    int cur;
+    FILE *in;
+    fastIO()
+    {
+        cur = BUF_SIZE;
+        in = stdin;
+    }
+    inline char nextChar()
+    {
+        if(cur == BUF_SIZE)
+        {
+            assert(!feof(stdin));
+            fread(buf, 1, BUF_SIZE, in);
+            cur = 0;
+        }
+        return buf[cur++];
+    }
+    inline int nextInt()
+    {
+        int x = 0;
+        char c = nextChar();
+        while(!('0' <= c && c <= '9')) c = nextChar();
+        while('0' <= c && c <= '9')
+        {
+            x = x * 10 + c - '0';
+            c = nextChar();
+        }
+        return x;
+    }
+} IO;
+                                                                                                   
+ 
+ 
+const int maxn = (int)1e6 + 10;
+ 
+int a[maxn];
+int L[maxn];
+int R[maxn];
+ 
+pair<int, ll> s[maxn];
+int vals[maxn];
+ll sum[maxn];
+ 
+char res[maxn];
+ 
+#define fs first
+#define sc second
+#define mp make_pair
+typedef pair<int, int> pi;
+ 
+pi st[maxn];
+int stc = 0;
+ 
+int main()
+{
+    #ifdef home
+        assert(freopen(TASK".in", "r", stdin));
+        assert(freopen(TASK".out", "w", stdout));
+    #endif
+    int n = IO.nextInt(), m = IO.nextInt();
+    forn(i, n) a[i] = IO.nextInt();
+ 
+    st[stc++] = mp(inf, -1);
+    forn(i, n)
+    {
+        while (st[stc - 1].fs <= a[i])
+        {
+            R[st[stc - 1].sc] = i;
+            stc -= 1;
+        }
+        L[i] = st[stc - 1].sc;
+        st[stc++] = mp(a[i], i);
+    }
+    while (stc > 1) R[st[--stc].sc] = n;
+ 
+    forn(i, n) s[i] = mp(a[i], (i - L[i]) * (ll)(R[i] - i));
+ 
+    sort(s, s + n);
+ 
+    forn(i, n) vals[i] = s[i].fs;
+    forn(i, n) sum[i + 1] = sum[i] + s[i].sc;
+ 
+    ll ALL = n * (ll)(n + 1) / 2;
+    assert(ALL == sum[n]);
+    forn(i, m)
+    {
+        char ch = IO.nextChar();
+        while (ch != '>' && ch != '<' && ch != '=') ch = IO.nextChar();
+        int x = IO.nextInt();
+        char turn = IO.nextChar();
+        while (turn != 'D' && turn != 'C') turn = IO.nextChar();
+        ll cnt = 0;
+        if (ch == '<')
+        {
+            int pos = lower_bound(vals, vals + n, x) - vals;
+            cnt = sum[pos];
+        }
+        else if (ch == '=')
+        {
+            int pos = lower_bound(vals, vals + n, x) - vals;
+            int pos2 = lower_bound(vals + pos, vals + n, x + 1) - vals;
+            cnt = sum[pos2] - sum[pos];
+        }
+        else if (ch == '>')
+        {
+            int pos = lower_bound(vals, vals + n, x + 1) - vals;
+            cnt = ALL - sum[pos];
+        }
+        if ((cnt & 1) == 0) turn = 'D' + 'C' - turn;
+        res[i] = turn;
+    }
+    puts(res);
+    #ifdef home
+        eprintf("Time: %d ms\n", (int)(clock() * 1000. / CLOCKS_PER_SEC));
+    #endif
+    return 0;
+}

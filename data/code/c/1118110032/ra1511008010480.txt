@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+struct Books {
+	char* title;
+  	char* author;
+  	char* subject;
+  	long book_id;
+};
+
+void setData(struct Books* book, char title[20], char author[15], char subject[30], long id) {
+	book->title = title;
+  	book->author = author;
+  	book->subject = subject;
+  	book->book_id = id;
+}
+
+void printData(struct Books* book, int no) {
+	printf("Book %d title : %s\n", no, book->title);
+  	printf("Book %d author : %s\n", no, book->author);
+  	printf("Book %d subject : %s\n", no, book->subject);
+  	printf("Book %d book_id : %ld\n", no, book->book_id);
+}
+
+int main()
+{
+  	struct Books book1;
+  	struct Books book2;
+  	//int n;
+  	//scanf("%d", &n);
+  	setData(&book1, "C Programming", "Nuha Ali", "C Programming Tutorial", 6495407);
+  	setData(&book2, "Telecom Billing", "Zara Ali", "Telecom Billing Tutorial", 6495700);
+  	printData(&book1, 1);
+  	printData(&book2, 2);
+	return 0;
+}

@@ -1,0 +1,18 @@
+#include <stdio.h>
+int gcd(int a,int b){
+	if(b)
+		return gcd(b,a%b);
+	return a;
+}
+int main()
+{
+	int t,i,j,k;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d %d",&i,&j);
+		k=(i<j)?gcd(j,i):gcd(i,j);
+		i=(i/k)*(j/k);
+		printf("%d\n",i);
+	}
+	return 0;
+}  

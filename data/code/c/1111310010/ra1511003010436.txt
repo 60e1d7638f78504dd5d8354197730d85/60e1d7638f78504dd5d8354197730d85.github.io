@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+int main ()
+{
+ int test_cases ;
+ unsigned int num_notes ;
+ unsigned int money_asked ;
+ long int i , j , k , t ;
+ int notes[25] ;
+ int temp ;
+ unsigned int poss ; 
+ 
+ scanf ( "%d" , &test_cases ) ;
+ 
+ while ( test_cases-- )
+ {
+       scanf ( "%u %u" , &num_notes , &money_asked ) ;
+       for ( i = 0 , j = 0 ; i < num_notes ; i++ )
+       {
+           scanf ( "%d" , &temp  ) ;    
+           if ( temp <= money_asked )
+           {
+              *( notes + j ) = temp ;
+              j++ ;     
+           }
+       }
+       j = ( long int ) pow ( 2 , j ) ;
+       for ( i = 1 , poss = 0 ; i < j ; i++ , poss = 0)
+       {
+               for ( k = i , t = 0 ; k ; k /= 2 , t++ )
+               {
+                   if ( k & 1 )
+                   {
+                      poss += notes[t] ;
+                      if ( poss >= money_asked )
+                         break ;     
+                   }    
+               }
+               if ( poss == money_asked )
+                     break ;
+       }
+       if ( poss == money_asked )
+           printf ( "Yes\n" ) ;
+       else
+           printf ( "No\n" ) ;      
+ }
+ 
+ return 0 ;    
+}

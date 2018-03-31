@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<pair <int,int> >adj[100005];
+int visited[100005]={0},dist[100005]={0};
+int main()
+{
+	long long int t,n,a,b,d,ans,i,p;
+	queue <int>q;
+	vector<pair <int,int> >::iterator it;
+	cin>>t;
+	while(t--)
+	{
+		cin>>n;
+		for(i=1;i<=n;i++)
+			adj[i].clear();
+		memset(visited,0,sizeof(visited));
+		memset(dist,0,sizeof(dist));
+		for(i=1;i<=n-1;i++)
+		{
+			cin>>a>>b>>d;
+			adj[a].push_back(make_pair(b,d));
+			adj[b].push_back(make_pair(a,d));
+ 
+ 
+		}
+		q.push(1);
+		visited[1]=1;
+		dist[1]=0;
+		while(!q.empty())
+		{
+			p=q.front();
+			q.pop();
+			for(it=adj[p].begin();it!=adj[p].end();it++)
+			{
+				if(!visited[it->first])
+				{
+					visited[it->first]=1;
+					dist[it->first]=dist[p]+(it->second);
+					q.push(it->first);
+				}
+			}
+		}
+		int pos=max_element(dist+1,dist+n+1)-dist;
+		memset(visited,0,sizeof(visited));
+		memset(dist,0,sizeof(dist));
+		dist[pos]=0;
+		visited[pos]=1;
+		//q.clear();
+		q.push(pos);
+		while(!q.empty())
+		{
+			p=q.front();
+			q.pop();
+			for(it=adj[p].begin();it!=adj[p].end();it++)
+			{
+				if(!visited[it->first])
+				{
+					visited[it->first]=1;
+					dist[it->first]=dist[p]+(it->second);
+					q.push(it->first);
+				}
+			}
+ 
+		}
+		int node=max_element(dist+1,dist+n+1)-dist;
+		long long int ds=dist[node];
+		if(ds<=100)
+			ans=0;
+		else if(ds>100 && ds<=1000)
+			ans=100;
+		else if(ds>1000 && ds<=10000)
+			ans=1000;
+		else
+			ans=10000;
+		cout<<ans<<" "<<ds<<endl;
+ 
+	}
+	return 0;
+ 
+}

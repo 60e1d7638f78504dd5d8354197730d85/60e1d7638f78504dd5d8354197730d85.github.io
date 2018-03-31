@@ -1,0 +1,232 @@
+import java.io.*;
+ 	import java.util.*;
+ 
+class TestClass
+{
+ 
+public static void main(String args[])
+{
+Scanner sc=new Scanner(System.in);
+ 
+int nt=sc.nextInt();
+ 
+for(int i=0;i<=nt-1;i++)
+{
+ 
+int nh=sc.nextInt();
+int a[] =new int[nh];
+String fplr=sc.next();
+ 
+for(int j=0;j<=nh-1;j++)
+{
+a[j]=sc.nextInt();
+}
+int flag=0;
+int k=0,count1=0,count2=0,noopte=0,nooptm=0,win=0;
+ 
+if(fplr.equals("Dee"))
+{
+while(flag==0)
+{
+ 
+ count1=0;count2=0;noopte=0;nooptm=0;
+ 
+ if(k%2==0)                            //for Dee turn
+ {
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]==1 ||a[l]==0)              
+   {
+    noopte++;
+    
+   }
+  }
+  if(noopte==nh)
+  {
+   flag=1;
+   win=-2;
+   break;
+  }
+ 
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]%2!=0)
+   {
+    
+    a[l]=a[l]-(a[l]-1);
+    count1++;
+    break;	
+   }
+  if(count1==0)
+  {
+   for(int m=0;m<=nh-1;m++)
+   {
+    if(a[m]%2==0)
+    {
+     a[m]=a[m]-a[m];
+     break;
+     }
+ 
+   }
+  }
+ }
+ 
+}
+ 
+ else                                   //for Dum turn
+ {
+ 
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]==0)
+   {
+    nooptm++;
+ 
+   }
+  }
+  if(nooptm==nh)
+  {
+   flag=1;
+   win=-1;
+   break;
+  }
+ 
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]%2==0 && a[l]!=0)
+   {
+    a[l]=a[l]-(a[l]-1);
+    count2++;
+    break;
+   }
+   if(count2==0)
+   {
+    for(int m=0;m<=nh-1;m++)
+    {
+     if(a[m]%2!=0)
+     {
+      a[m]=a[m]-a[m];
+      break;
+     }
+ 
+   }
+  }
+}
+ }
+ 
+k++;
+}
+ 
+}	
+ 
+ 
+ 
+else if(fplr.equals("Dum"))
+{
+while(flag==0)
+{
+ 
+ count1=0;count2=0;noopte=0;nooptm=0;
+ 
+ if(k%2!=0)                            //for Dee turn
+ {
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]==1 ||a[l]==0)              
+   {
+    noopte++;
+    
+   }
+  }
+  if(noopte==nh)
+  {
+   flag=1;
+   win=-2;
+   break;
+  }
+ 
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]%2!=0)
+   {
+    
+    a[l]=a[l]-(a[l]-1);
+    count1++;
+    break;	
+   }
+  if(count1==0)
+  {
+   for(int m=0;m<=nh-1;m++)
+   {
+    if(a[m]%2==0)
+    {
+     a[m]=a[m]-a[m];
+     break;
+     }
+ 
+   }
+  }
+ }
+ 
+}
+ 
+ else                                   //for Dum turn
+ {
+ 
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]==0)
+   {
+    nooptm++;
+ 
+   }
+  }
+  if(nooptm==nh)
+  {
+   flag=1;
+   win=-1;
+   break;
+  }
+ 
+  for(int l=0;l<=nh-1;l++)
+  {
+   if(a[l]%2==0 && a[l]!=0)
+   {
+    a[l]=a[l]-(a[l]-1);
+    count2++;
+    break;
+   }
+   if(count2==0)
+   {
+    for(int m=0;m<=nh-1;m++)
+    {
+     if(a[m]%2!=0)
+     {
+      a[m]=a[m]-a[m];
+      break;
+     }
+ 
+   }
+  }
+}
+ }
+ 
+k++;
+}
+ 
+}	
+ 
+ 
+if(win==-2)
+{
+System.out.println("Dum");
+}
+else if(win==-1)
+{
+System.out.println("Dee");
+}
+}
+ 
+}
+ 
+} 

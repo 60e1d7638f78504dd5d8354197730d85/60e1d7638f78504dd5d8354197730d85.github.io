@@ -1,0 +1,35 @@
+#include <stdio.h>
+ 
+int main(void) {
+    int t,n,i,r;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int sum=0;
+        scanf("%d %d",&n,&r);
+        int s[n];
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&s[i]);
+            sum+=s[i];
+        }
+        int k,c=0;
+        k=sum%r;
+        for(i=0;i<n;i++)
+        {
+            if(k>=s[i])
+            {
+			c++;
+			break;
+		}
+          
+           
+        }
+        if(c>0)
+        printf("-1\n");
+        else
+        printf("%d\n",sum/r);
+    }
+	// your code goes here
+	return 0;
+}

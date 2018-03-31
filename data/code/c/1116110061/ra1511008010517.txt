@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<string.h>
+int beauty_factor(char str[])
+{
+  int max=-1000,j,i;
+  int counter=1;
+  int n=strlen(str);
+  for(i=0;i<n;i++)
+  {
+    j=i;
+    counter=1;
+   if(str[j]==str[(j+1)%n])
+   {
+     while(str[j]==str[(j+1)%n])
+     {
+       counter++;
+       j=(j+1)%n;
+     }
+     if(counter>max)
+     {
+       max=counter;
+     }
+   }
+  }
+  return max;
+}
+
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int k;
+  for(k=0;k<t;k++){
+  char str[20];
+  scanf("%s",str);
+  int i;
+  int min=1000;
+  int b;
+  for(i=0;i<(int)strlen(str);i++)
+  {
+    if(str[i]=='A')
+    {
+      str[i]='R';
+      b=beauty_factor(str);
+      str[i]='A';
+    }
+    else
+    {
+      str[i]='A';
+      b=beauty_factor(str);
+      str[i]='R'; 
+    }
+    if(b<min)
+    {
+      min=b;
+    }
+  }
+ printf("%d\n",min);
+  
+  }
+	return 0;
+}

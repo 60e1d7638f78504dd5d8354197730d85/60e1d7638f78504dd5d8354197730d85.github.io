@@ -1,0 +1,18 @@
+#include <stdio.h>
+int count(int num){
+  static int c = 0;
+  if(num>0){
+    c++;
+    count(num/10);
+  }else
+    return c;
+}
+
+int main()
+{
+  int n, c;
+  scanf("%d", &n);
+  c = count(n);
+  printf("The number of digits in %d is %d", n, c);
+	return 0;
+}

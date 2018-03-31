@@ -1,0 +1,65 @@
+#include <stdio.h>
+long long int a[200009];
+long long int update(int x){
+    for(;x<200009;x+=(x&-x))
+        a[x]++;
+}
+long long int downdate(int x){
+    for(;x<200009;x+=(x&-x))
+        a[x]--;
+}
+long long int get(int x){
+    long long int sum=0;
+    for(;x>0;x-=(x&-x))
+        sum+=a[x];
+    return sum;
+}
+int main()
+{
+    long long int n,qq,i,b[200009],x,y,z,flag=1,p,q,r;
+    scanf("%lld%lld",&n,&qq);
+    for(i=1;i<=n;i++){
+        b[i]=0;
+        scanf("%lld",&x);
+        p=x;
+        if(x>=0){
+            z=x%10;y=0;
+            while(x){
+                y=x%10;
+                x/=10;
+            }
+            if(y==z){
+                b[i]=1;
+                update(i);
+            }
+        }
+    }
+    while(qq--){
+        scanf("%lld%lld%lld",&r,&p,&q);
+        if(r==1){
+            printf("%lld\n",get(q)-get(p-1));
+        }
+        else{
+            flag=0;
+            x=q;
+            if(x>=0){
+                z=x%10;y=0;
+                while(x){
+                    y=x%10;
+                    x/=10;
+                }
+                if(y==z)
+                    flag=1;
+            }
+            if(b[p]==1 && flag==0){
+                downdate(p);
+                b[p]=0;
+            }
+            else if(b[p]==0 && flag==1){
+                update(p);
+                b[p]=1;
+            }
+        }
+    }
+    return 0;
+}

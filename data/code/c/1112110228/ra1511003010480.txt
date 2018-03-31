@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int T,N,K,arr[1000]={0};
+  int i,j,cell,count,moves;
+  scanf("%d",&T);
+  
+  while(T--)
+  {
+    scanf("%d %d",&N,&K);
+    for(i=0;i<N;i++)
+    {
+      scanf("%d",&cell);
+      arr[cell]=1;
+    }
+    count=0;
+    moves=0;
+    for(i=cell;i>0;i--)
+    {
+      if(arr[i])
+      {
+        count++;
+      }
+      else
+      {
+        moves+=1+(count-1)/K;
+      }
+    }
+    printf("%d\n", moves);
+  }
+	return 0;
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{	int c[26];
+ 	int l,i,min;
+ 	char s[1000],x;
+ 	scanf("%s",s);
+	l=strlen(s);
+ 	for(i=0;i<26;i++)
+      c[i]=1000;
+ 	for(i=0;i<l;i++)
+    {
+      if(c[s[i]-97]==1000)
+        c[s[i]-97]=0;
+      c[s[i]-97]++;
+    }
+ 	min=0;
+ 	for(i=0;i<l;i++)
+      if(c[min]>c[i])
+        min=i;
+ 	x=min+97;
+ 	printf("%c=%d",x,c[min]);
+	return 0;
+}

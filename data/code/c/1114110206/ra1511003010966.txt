@@ -1,0 +1,61 @@
+#include<stdio.h>
+void swap(unsigned int a[], int i, int j)
+{
+	int t = a[i];
+	a[i] = a[j];
+	a[j] = t;
+}
+ 
+int partition(unsigned int a[], int s, int e)
+{
+	int l;
+	int i;
+ 
+	swap(a, s, (s + e) / 2);
+	l = s;
+ 
+	for (i = s + 1; i <= e; i++)
+		if (a[i] < a[s])
+		{
+			l++;
+			swap(a, l, i);
+		}
+ 
+	swap(a, s, l);
+ 
+	return l;
+}
+ 
+void quicksort(unsigned int a[], int s, int e)
+{
+	int l;
+ 
+	if (s >= e)
+		return;
+ 
+	l = partition(a, s, e);
+    quicksort(a, s, l - 1);
+	quicksort(a, l + 1, e);
+}
+int main(){
+	int t,n,i;
+	unsigned int min;
+	scanf("%d",&t);
+	while(t--){
+		min=999999999;
+		scanf("%d",&n);
+		unsigned int x[n];
+		for(i=0;i<n;i++){
+			scanf("%u",&x[i]);
+		}
+		quicksort(x,0,n-1);
+		for(i=1;i<n;i++){
+			if(x[i]-x[i-1]<min){
+				min=x[i]-x[i-1];
+			}
+		}
+		printf("%d\n",min);
+		
+	}
+	return 0;
+}

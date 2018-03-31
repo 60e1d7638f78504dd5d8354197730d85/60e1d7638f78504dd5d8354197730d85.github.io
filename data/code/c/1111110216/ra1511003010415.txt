@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int x,y,gcd,lcm,num,deno,rem;
+  scanf("%d%d",&x,&y);
+  if(x>y)
+  {
+    num=x;
+    deno=y;
+  }
+  else
+  {
+    num=y;
+    deno=x;
+  }
+  rem=num%deno;
+  while(rem>0)
+  {
+    num=deno;
+    deno=rem;
+    rem=num%deno;
+  }
+  gcd=deno;
+  lcm=x*y/gcd;
+  printf("%d %d",gcd,lcm);
+
+	return 0;
+}

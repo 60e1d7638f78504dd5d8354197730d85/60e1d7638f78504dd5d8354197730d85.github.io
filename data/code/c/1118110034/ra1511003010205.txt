@@ -1,0 +1,30 @@
+#include <stdio.h>
+struct Books
+{
+  char a[50],t[50],s[50];
+  int id;
+};
+int main()
+{ 
+  int n,i;
+  char buf[50];
+	fgets(buf, 50, stdin);
+  sscanf(buf, "%d",&n);
+  for(i=1;i<n+1;i++)
+  {
+    struct Books a;
+    fgets(a.t, 50, stdin);
+	fgets(a.a, 50, stdin);
+    fgets(a.s, 50, stdin);
+	fgets(buf, 50, stdin);
+  	sscanf(buf, "%d",&a.id);
+    // scanf("%d",&a.id);
+    printf("Book %d title=%s",i,a.t);
+    printf("Book %d author=%s",i,a.a);
+    printf("Book %d subject=%s",i,a.s);
+    printf("Book %d bookid=%d\n",i,a.id);
+    
+  }
+
+	return 0;
+}

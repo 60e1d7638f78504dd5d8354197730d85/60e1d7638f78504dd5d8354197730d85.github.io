@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int n,k,i,count=0,num,l = 1,num1 = 0,num2 = 0,num3;
+    char str[15];
+    scanf ("%d%d", &n,&k);
+    getchar();
+    int a[n];
+    for ( i = 0; i <n; i++) {
+        a[i] = 0;
+    }
+    while ( l <= k ) {
+          num1= num2 = num = 0;
+          scanf ( "%[^\n]s", str);
+          getchar();
+         
+          if ( str[strlen(str)-1]  == 'L') {
+             for ( i = 0; i < n; i++) {
+                 a[i] = 0;
+             }
+             count = 0;
+             goto p;
+          }else {
+ 
+               if (((int)str[strlen(str)-4]-48 == 1) && ((int)str[strlen(str)-3]-48 == 0) && ((int)str[strlen(str)-2]-48 == 0) && ((int)str[strlen(str)-1]-48 == 0) ) {
+              
+                num3 = 1000;
+               
+                goto r;
+                }
+                if ( (int)str[strlen(str)-1]-48 == 1 || (int)str[strlen(str)-1]-48 == 2 || (int)str[strlen(str)-1]-48 == 0 || (int)str[strlen(str)-1]-48 == 3 ||(int)str[strlen(str)-1]-48== 4 || (int)str[strlen(str)-1]-48 == 5 || (int)str[strlen(str)-1]-48 == 6 || (int)str[strlen(str)-1]-48 == 7 || (int)str[strlen(str)-1]-48 == 8 || (int)str[strlen(str)-1]-48 ==9){
+                num = (int)str[strlen(str)-1]-48;
+                
+                }
+                if ( (int)str[strlen(str)-2]-48 == 1 || (int)str[strlen(str)-2]-48 == 2 || (int)str[strlen(str)-2]-48 == 0 || (int)str[strlen(str)-2]-48 == 3 || (int)str[strlen(str)-2]-48==4 || (int)str[strlen(str)-2]-48 == 5|| (int)str[strlen(str)-2]-48 == 6 || (int)str[strlen(str)-2]-48 == 7 || (int)str[strlen(str)-2]-48 == 8 || (int)str[strlen(str)-2]-48 == 9){
+                num1 =  (int)str[strlen(str)-2]-48;
+                }
+                if ( (int)str[strlen(str)-3]-48 == 1 || (int)str[strlen(str)-3]-48 == 2 || (int)str[strlen(str)-3]-48 == 0 || (int)str[strlen(str)-3]-48 == 3 ||(int)str[strlen(str)-3]-48== 4 || (int)str[strlen(str)-3]-48 == 5 || (int)str[strlen(str)-3]-48 == 6 || (int)str[strlen(str)-3]-48 == 7 || (int)str[strlen(str)-3]-48 == 8 || (int)str[strlen(str)-3]-48 == 9){
+                num2 = (int)str[strlen(str)-3]-48;
+                }
+                
+                num3 = (100*num2 + 10 * num1 + num);
+               
+                r:
+              
+                if ( a[num3-1] == 0 ) {
+                     a[num3-1] = 1;
+                     count++;
+                     goto p; 
+                 }else if ( a[num3-1] == 1 ) {
+                       a[num3-1] = 0;
+                       count--;
+                       goto p;
+                 }
+          }            
+          p:
+          printf ("%d\n", count);
+          l++;
+    }
+  
+    return 0;
+}        

@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	int n,k,i,j;
+	cin>>n>>k;
+	list <int> v;
+	list <int> w;
+	for(i=0;i<n;i++)
+	{
+	    int x;
+	    cin>>x;
+	    v.push_back(x);
+	    w.push_back(x);
+	}
+    v.sort();
+    w.sort();
+	reverse(w.begin(),w.end());
+	int mini=0,maxi=0;
+	list <int>::iterator it,it1;
+	while(v.size()!=0)
+	{
+	    it=v.begin();
+	    mini+=*it;
+	    v.pop_front();
+	    int x=v.size();
+	    if(x<k)
+	    {
+	        v.clear();
+	    }
+	    else
+	    {
+	        for(i=1;i<=k;i++)
+	            v.pop_back();
+	    }
+	}
+	while(w.size()!=0)
+	{
+
+	    it1=w.begin();
+	    maxi+=*it1;
+	    w.pop_front();
+	    int x=w.size();
+	    if(x<k)
+	    {
+	        w.clear();
+	    }
+	    else
+	    {
+	        for(i=1;i<=k;i++)
+	            w.pop_back();
+	    }
+	}
+	cout<<mini<<" "<<maxi<<endl;
+	}
+	return 0;
+}

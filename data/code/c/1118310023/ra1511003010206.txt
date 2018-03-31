@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+int t;
+  int i;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {int n;
+   scanf("%d",&n);
+   int j;
+   int a[n];
+   for(j=0;j<n;j++)
+     scanf("%d",&a[j]);
+   int k;
+   for(j=0;j<n;j++)
+   {for(k=0;k<n-1-j;k++)
+   {if(a[k]<a[k+1])
+   {int t=a[k];
+    a[k]=a[k+1];
+    a[k+1]=t;
+   }
+   }
+   }int area=1,c=0;
+   for(j=0;j<n;j++)
+   {if(a[j]==a[j+1])
+   {area*=a[j];
+    c++;
+   }
+    if(c==2)
+      break;
+   }
+   if(c==2)
+     printf("%d\n",area);
+   else
+     printf("-1\n");
+  }
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+#define mr 3
+#define mc 3
+int main()
+{
+  int n, array[mr][mc];
+  int row,col,isUpper;
+  scanf("%d",&n);
+for(row=0;row<n;row++)
+{
+  for(col=0;col<n;col++)
+  {
+    scanf("%d",&array[row][col]);
+  }
+}
+  isUpper=1;
+  for(row=0;row<n;row++)
+  {
+    for(col=0;col<n;col++)
+    {
+      if(col<row && array[row][col]!=0)
+      {
+        isUpper=0;
+      }
+    }
+  }
+  if(isUpper==1)
+  {
+    printf("yes");
+  }
+  else
+  {
+    printf("no");
+  }
+	return 0;
+}

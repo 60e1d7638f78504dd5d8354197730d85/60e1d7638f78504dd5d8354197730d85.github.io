@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<time.h>
+#include<string.h>
+ 
+long long int power_module(long long int times)
+{
+	long long int prod=1,base=26;
+	while(times>0)
+	{
+		if((times & 1)==1) prod=(prod*base) % 10000009;
+		times=times>>1;
+		base=(base*base) % 10000009;
+	}
+	return prod;
+}
+ 
+ 
+int main(){
+	long long int test,i,n,count,flag,countt,a;
+ 
+	char x[1000001];
+	scanf("%lld",&test);
+	while(test--)
+	{
+		scanf(" %s",x);
+		n=0;count=0;flag=0;countt=0;
+		while(x[n]!='\0') n++;
+//		printf("string lengh is%lld\n",n);
+		for(i=0;i<(n-1)/2;i++)
+		{
+			if(x[i]==x[n-i-1] && x[i]=='?') count++;
+			if(x[i]!=x[n-i-1] && x[i]!='?' && x[n-i-1]!='?')
+			{
+				printf("0\n");
+				flag=1;
+				break;
+			}
+		}
+		if(flag==1) continue;
+ 
+		if(x[n-i-1]=='?' && x[i]=='?')
+		{
+			count++;
+		//	printf("trueis mid\n");
+		}
+		if(x[n-i-1]!='?'&& x[i]!='?'&&x[n-i-1]!=x[i])
+		{
+			printf("0\n");
+			continue;
+		}
+//		for(i=0;i<n;i++)if(x[i]=='?') countt++;
+//		printf("%lld and %lld re counttt and count\n",countt,count);
+//		count=countt-count;
+//		printf("value passed is %lld\n",count);
+		a=power_module(count);
+		printf("%lld\n",a);
+	}
+	return 0;
+}
+ 
+ 

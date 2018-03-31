@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TestClass {
+
+    static public void main(String args[]) {
+        Building objname = new Building();
+        objname.initializeData();
+        objname.display();
+        System.out.printf("Rate Per SqFt : %d\n", objname.getRatePerSqFeet());
+        System.out.printf("Cost of the Building : %d\n", objname.calculateCost());
+        System.out.printf("Suitability : %s", objname.determineSuitability());
+    }
+}
+
+class Building {
+
+    private int length;
+    private int width;
+    private int ratePerSqFeet;
+
+    public void initializeData() {
+        Scanner s = new Scanner(System.in);
+        length = s.nextInt();
+        width = s.nextInt();
+        ratePerSqFeet = s.nextInt();
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getRatePerSqFeet() {
+        return ratePerSqFeet;
+    }
+
+    public int calculateCost() {
+        return getLength() * getWidth() * getRatePerSqFeet();
+    }
+
+    public String determineSuitability() {
+        if ((getLength() - getWidth()) >= 10 || (getWidth() - getLength()) >= 10) {
+            return "Not Suitable";
+        } else {
+            return "Suitable";
+        }
+    }
+
+    public void display() {
+        System.out.printf("Length : %d\n" + "Width : %d\n", getLength(), getWidth());
+    }
+}

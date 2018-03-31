@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int power(int a, int n, int constantValue) {
+  if(n < 1)
+    return a;
+  
+  a *= constantValue;
+  return power(a, n - 1, constantValue);
+}
+
+int main()
+{
+  int a, n;
+  scanf("%d%d", &a, &n);
+  printf("The value of %d power %d is %d", a, n, power(1, n, a));
+  return 0;
+}

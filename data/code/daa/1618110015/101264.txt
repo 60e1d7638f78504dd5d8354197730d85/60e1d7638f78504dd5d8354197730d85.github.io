@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#define Casese int tt;cin>>tt;while(tt--)
+using namespace std;
+int main(){Casese{
+    string s,c;
+    cin>>s>>c;
+    int i,j,l=0,t,t1;
+    for(i=0;i<c.length();i++){
+        for(j=l;j<s.length();j++){
+            if(s[j]==c[i]){
+                t=1;
+                l=j+1;
+                break;
+            }else{
+                t=0;
+            }
+        }if(t==0){
+            break;
+        }
+       
+    }
+    string s1;
+  for(i=0;i<s.length();i++){
+      s1=s1+s[s.length()-i-1];
+  }
+  l=0;
+ 
+ for(i=0;i<c.length();i++){
+        for(j=l;j<s1.length();j++){
+            if(s1[j]==c[i]){
+                t1=1;
+                l=j+1;
+                break;
+            }else{
+                t1=0;
+            }
+        }if(t1==0){
+            break;
+        }
+       
+    }
+     
+ if(t1==1&&t==1){
+     cout<<"GOOD STRING";
+ }else{
+     cout<<"BAD STRING";
+ }
+ cout<<"\n";
+   
+}
+    return 0;
+          }

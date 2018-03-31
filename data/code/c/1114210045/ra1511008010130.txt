@@ -1,0 +1,43 @@
+#include<stdio.h>
+ 
+int max(int a )
+{
+    int r,sum=0,x=1;
+    while(a)
+    {
+        r=a%10;
+        if(r==5)
+        {
+            r=6;
+        }
+        sum=sum+r*x;
+        x=x*10;
+        a=a/10;
+    }
+    return sum;
+}
+ 
+int min(int a )
+{
+    int r,sum=0,x=1;
+    while(a)
+    {
+        r=a%10;
+        if(r==6)
+        {
+            r=5;
+        }
+        sum=sum+r*x;
+        x=x*10;
+        a=a/10;
+    }
+    return sum;
+}
+int main()
+{
+    int a,b;
+    scanf("%d%d",&a,&b);
+    printf("%d %d",(min(a)+min(b)),(max(a)+max(b)));
+    
+    return 0;
+}

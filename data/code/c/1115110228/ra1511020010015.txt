@@ -1,0 +1,77 @@
+ #include <stdio.h>
+  #include <math.h>
+         
+           #define EPS 0.000000001
+        int x[2500],y[2500];
+        int n;
+        double a,b,c,d;
+       
+        double root(double x, double y)
+        {
+        	return sqrt(x*x+y*y);	
+        }
+         
+         
+        double fun1(double tt)
+        {
+        	double overall=0;
+        	int i;
+        	for(i=0;i<n;i++)
+        		overall +=(a*(a*tt+b-x[i])+c*(c*tt+d-y[i]))/root(a*tt+b-x[i],c*tt+d-y[i]);
+        	return overall;
+        }
+         
+        double fun2(double tt)
+        {
+        	double overall=0;
+        	int i;
+        	for(i=0;i<n;i++)
+        		overall +=root(a*tt+b-x[i],c*tt+d-y[i]);
+        	return overall;	
+        }
+         
+         
+        int main()
+        {
+        	int t,i;	
+        	int aa,bb,cc;
+        	double top,lower,median;
+        	scanf("%d",&t);
+        	while(t--)
+        	{
+        		scanf("%d",&n);
+        		scanf("%d %d %d",&aa,&bb,&cc);
+        		for(i=0;i<n;i++)
+        			scanf("%d %d",&x[i],&y[i]);
+        		
+        		a=bb;
+        		c=-aa;		
+        	
+        		if (aa==0)
+        		{
+        			b=0;
+        			d=-(double)cc/bb;		
+        		}
+        		else
+        		{
+        			d=0;
+        			b=-(double)cc/aa;
+        		}
+        		
+        		for(top=1;fun1(top)<0;top*=2);
+        		for(lower=-1;fun1(lower)>0;lower*=2);
+        		
+        		while(top-lower>=EPS)
+        		{
+        			median=(top+lower)/2;	
+        			if (fun1(median)>0)
+        				top=median;
+        			else
+        				lower=median;
+        		}
+        		printf("%.6lf\n",fun2(median));		
+        	}
+        	
+        	return 0;
+        }     
+

@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<string.h>
+#define fori(a) for(i=0;i<a;i++)
+#define forj(a) for(j=0;j<a;j++)
+#define fork(a,b) for(k=a;k<b;k++)
+int compare(const void *a,const void *b)
+{
+    return *(int*)a-*(int*)b;
+}
+int main()
+{
+    int t,i,j,k,n;
+    scanf("%d",&n);
+    int arr[n],sum[10000]= {0};
+    forj(n) scanf("%d",&arr[j]);
+    int count=0;
+    int l=0;
+    forj(n-1)
+    {
+        fork(j+1,n)
+        {
+            sum[l]=arr[j]+arr[k];
+            l++;
+        }
+    }
+    qsort(sum,l,sizeof(int),compare);
+    //forj(l) printf("%d\n",sum[j]);
+    int temp=1;
+    j=0;
+    while(j<l)
+    {
+        if (sum[j]==sum[j+1]) temp++;
+        else
+        {
+            if (temp>count) count=temp;
+            temp=1;
+        }
+        j++;
+    }
+    printf("%d\n",count*2);
+ 
+    return 0;
+}
+ 

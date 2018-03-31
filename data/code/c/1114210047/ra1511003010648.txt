@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int N,i,j,S[100],Yep;
+    scanf("%d",&N);
+    for(i=0;i<N;i++)
+        scanf("%d",&S[i]);
+    for(i=0;i<N;i++)
+    {
+        for(j=0,Yep=1;j<N;j++)
+        {
+            if(j==i)
+                continue;
+            if(S[i]%S[j]==0)
+            {
+                Yep=0;
+                break;
+            }
+        }
+        if(Yep)
+            printf("%d ",S[i]);
+    }
+    return 0;
+}

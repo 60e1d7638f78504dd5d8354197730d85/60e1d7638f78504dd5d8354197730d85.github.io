@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+class overload{
+  public:
+  char s[100];
+  void operator +(overload &S2){
+    overload str;
+    strcpy(str.s,"\0");
+    strcat(str.s,s);
+    strcat(str.s,"+");
+    strcat(str.s,S2.s);
+    cout<<str.s;
+  }
+};
+int main()
+{
+    overload S1,S2;
+    cin>>S1.s>>S2.s;
+    S1+S2;
+	return 0;
+}

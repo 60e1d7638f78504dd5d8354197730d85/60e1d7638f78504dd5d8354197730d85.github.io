@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define MAX_ROWS 3
+#define MAX_COLS 3
+
+int main()
+{
+    int A[MAX_ROWS][MAX_ROWS];
+    int row, col, sum = 0;
+    
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            scanf("%d", &A[row][col]);
+        }
+    }
+    
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            if(col>row)
+            {
+                sum += A[row][col];
+            }
+        }
+    }
+
+    printf("%d", sum);
+
+    return 0;
+}

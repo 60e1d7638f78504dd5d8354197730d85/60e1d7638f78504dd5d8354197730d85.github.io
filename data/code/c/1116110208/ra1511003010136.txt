@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int test,flag,len,i;
+    scanf("%d",&test);
+    while(test--)
+    {
+        char str[60];
+        flag=0;
+        int arrcount[26]={};
+        scanf("%s",str);
+        len=strlen(str);
+        i=0;
+        while(i<len)
+        {
+          arrcount[str[i]-'a']++;
+            i++;
+        }
+        i=0;
+        while(i<26)
+        {
+            if(len%2==0 && arrcount[i]==len/2)
+            {
+                flag=1;
+                break;
+            }
+            i++;
+        }
+        if(flag==1)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+return 0;
+}

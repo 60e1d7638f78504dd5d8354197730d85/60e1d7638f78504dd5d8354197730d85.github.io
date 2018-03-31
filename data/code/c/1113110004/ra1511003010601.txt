@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int t,T,q=0;
+  	scanf("%d",&t);
+  	T=t;
+  	int res[t];
+  	while (T){
+      int n;
+      scanf("%d",&n);
+      int x,y,a[n];
+      for (x=0;x<n;x++)
+        scanf("%d",&a[x]);
+      int c,max=0;
+      for (x=0;x<n;x++){
+        c=0;
+        for (y=0;y<n;y++){
+          if (a[x]==a[y])
+            c++;
+        }
+        if (c>max){
+          max=c;
+          res[q]=a[x];}
+        
+      }
+      q++;
+      T--;
+    }
+  	q=0;
+  	while(t){
+      printf("%d ",res[q]);
+      q++;
+      t--;
+    }
+	return 0;
+}

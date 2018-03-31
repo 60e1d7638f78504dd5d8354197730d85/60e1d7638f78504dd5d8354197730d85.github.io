@@ -1,0 +1,30 @@
+#include <stdio.h>
+char* check()
+{
+  long num, temp, digit, sum = 0,count=0;
+    scanf("%ld", &num);
+    while (num > 0)
+    {
+        digit = num % 10;
+        sum  = sum + digit;
+        num /= 10;
+      count=count+1;
+    }
+  if(sum==count-1)
+    return "Yes";
+  else
+    return "No";
+
+}
+int main()
+{
+int t,i;
+  char* res;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    res=check();
+    printf("%s\n",res);
+  }
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int N;
+    scanf("%d",&N);
+    int Temp,sum =0,Array[N],i=1;
+    while(N--){
+    	scanf("%d",&Temp);
+    	Array[i] = Temp;
+    	if(i == 1 && Temp == 0){
+    		continue;
+    	}
+    	else if(i > 1 && Temp == 0){
+    		i = i - 1;
+    		sum = sum - Array[i];
+    		continue;
+    	}
+    	else{
+    		i = i + 1;
+    		sum = sum + Temp;
+    	}
+    }
+    printf("%d",sum);
+    return 0;
+}

@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<math.h>
+ 
+  int c[1000001];
+int primes[1000001];
+ 
+int main(){
+ 
+int x=2,k=0,j,i;
+ 
+for(x=2;x<=1000000;x++)
+    primes[x]=x;
+for(x=2;x<=1000;x++){
+ 
+    if(primes[x]==x){
+ 
+ 
+ 
+ 
+        for(j=x*2;j<=1000000;j=j+x)
+            primes[j]=x;
+ 
+    }
+}
+ 
+for(i=2;i<=1000000;i++)
+{
+    if(primes[i]==i)
+    {
+ 
+        k++;
+    }
+}
+ 
+int t;
+ 
+scanf("%d",&t);
+while(t--){
+ 
+for(i=0;i<1000001;i++)
+    c[i]=0;
+long long int sum=0;
+    int n;
+    scanf("%d",&n);
+ 
+    for(i=0;i<n;i++)
+    {int a;
+        scanf("%d",&a);
+        while(a>1)
+        {
+            int d=primes[a];
+            int h=0;
+ 
+ 
+ 
+                while(a%d==0)
+                {
+                    h++;
+                    a=a/d;
+                }
+                 if(h>c[d]){
+ 
+                        sum=sum+(h-c[d]);
+                 c[d]=h;
+            }}
+ 
+ 
+ 
+ 
+    }
+ 
+    printf("%lld\n",sum);
+}
+ 
+ 
+ 
+ 
+return 0;
+ 
+}
+ 

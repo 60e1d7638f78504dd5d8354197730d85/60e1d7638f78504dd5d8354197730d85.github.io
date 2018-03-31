@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+ 
+#define maxM 35
+ 
+const int mod = (int) 1e9 + 7;
+ 
+long long f[maxM][maxM][maxM];
+int N, M;
+ 
+void copy( long long src[][maxM], long long dest[][maxM] ) {
+    int i, j;
+ 
+    for( i = 0; i < maxM; i++ )
+	for( j = 0; j < maxM; j++ )
+	    dest[i][j] = src[i][j];
+}
+ 
+void merge( long long s[][maxM], long long t[][maxM], long long r[][maxM], int isOdd ) {
+    long long ret[maxM][maxM];
+ 
+    memset(ret, 0, sizeof(ret));
+ 
+    int x, y, c, k;
+    for( x = 1; x <= M; x++ )
+	for( y = 1; y <= M; y++ )
+	    for( c = y - 1; c <= y + 1; c++ ) {
+		bool ok  = (c >= 1) && (c <= M);
+		     ok &= isOdd && (y == c) ? false : true; 
+ 
+		     if( ok )
+			for( k = 1; k <= M; k++ ) {
+			    ret[x][k] += s[x][y] * t[c][k];
+			    ret[x][k] %= mod;
+			}
+	    }
+    
+    copy(ret, r);
+}
+ 
+int main( void ) {
+    int T;
+    scanf("%i", &T);
+ 
+    while( T-- ) {
+	scanf("%i %i", &N, &M);
+ 
+	memset(f, 0, sizeof(f));
+ 
+	int i, j;
+	for( i = 1; i <= M; i++ )
+	    f[0][i][i] = 1;
+	
+	for( j = 1; (1 << j) <= N; j++ )
+	    merge(f[j - 1], f[j - 1], f[j], (j - 1 == 0));  
+ 
+	long long t[maxM][maxM];
+	
+	int k, fl = 1, last = -1;
+	for( k = 30; k >= 0; k-- )
+	    if( N & (1 << k) ) {
+		if( fl ) copy(f[k], t), fl = 0, last = k;
+		else	 merge(t, f[k], t, (last == 0)), last = k;
+	    }
+ 
+	long long ans = 0;
+ 
+	for( i = 1; i <= M; i++ )
+	    for( j = 1; j <= M; j++ )
+		ans = (ans + t[i][j]) % mod;
+	
+	printf("%lld\n", ans);
+    }
+ 
+    return 0;
+} 

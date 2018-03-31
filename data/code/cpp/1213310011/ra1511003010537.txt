@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+int t;
+cin>>t;
+while(t--)
+{
+  int score[4];
+   string str[4];
+   for(int i=0;i<4;i++)
+   {
+    cin>>str[i]>>score[i]; 
+   }
+   int f1=0,f2=0;
+   for(int i=0;i<4;i++)
+   {
+    if(str[i]=="Barcelona")
+     {
+       for(int j=0;j<4;j++)
+        {
+           if(str[j]=="Eibar")
+            {
+              if(score[i]>score[j])
+                f1=1;
+               break;
+             }
+         }
+    }
+  }
+    for(int i=0;i<4;i++)
+   {
+    if(str[i]=="RealMadrid")
+     {
+       for(int j=0;j<4;j++)
+        {
+           if(str[j]=="Malaga")
+            {
+              if(score[i]>=score[j])
+                f2=1;
+               break;
+             }
+         }
+    }
+  }
+  if(f1==1 && f2==0)
+   cout<<"Barcelona\n";
+  else
+   cout<<"RealMadrid\n";
+ }
+return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	int i;
+  	for(i=0;i<t;i++)
+    {
+    	int n,m;
+      	scanf("%d %d",&n,&m);
+      	int det[100][2];
+      	int x,y;
+      	for(x=0;x<n;x++)
+          for(y=0;y<2;y++)
+            scanf("%d",&det[x][y]);
+      	double sum=0.00;
+        for(x=0;x<n;x++)
+            sum+=det[x][1];
+        
+      	if(n-m==0)
+          printf("%.9f\n",sum);
+        if((n-m)==1)
+    		printf("%.9f\n",sum*2/3);
+      	sum=0;
+    }
+	return 0;
+}

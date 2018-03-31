@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+int compare(const void* a,const void* b){
+	return *(int*)a-*(int*)b;
+}
+ 
+int comp(const void* a,const void* b){
+	return *(int*)b-*(int*)a;
+}
+ 
+ 
+int main(){
+	int n,x,y;
+	scanf("%d%d%d",&n,&x,&y);
+	int a[n];
+	int b[n];
+	int i;
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<n;i++)
+		scanf("%d",&b[i]);
+	int d[n];
+	int neg[n];
+	int pos[n];
+	for(i=0;i<n;i++){
+		neg[i]=INT_MAX;
+		pos[i]=INT_MAX;
+	}
+	int k=0,j=0;
+	int minus=0,positive=0;
+	for(i=0;i<n;i++){
+		d[i]=b[i]-a[i];
+		if(d[i]<0){
+			neg[k]=d[i];
+			minus++;
+			k++;
+		}
+		else{
+			pos[j]=d[i];
+			positive++;
+			j++;
+		}
+	}
+ 
+ 
+	int sum=0;
+		for(i=0;i<n;i++)
+			sum=sum+a[i];
+		i=0;
+		while(pos[i]!=INT_MAX){
+			sum=sum+pos[i];	
+			i++;
+		}
+ 
+	if(positive <= y && minus <= x)
+		printf("%d\n",sum);
+		
+	else if(positive <= y && minus > x){
+		qsort(neg,n,sizeof(int),comp);
+		i=0;
+		while(minus > x){
+			sum=sum+neg[i];
+			i++;
+			minus--;
+		}
+		printf("%d\n",sum);
+ 
+	}
+ 
+	else if(positive > y && minus <= x){
+		qsort(pos,n,sizeof(int),compare);
+		i=0;
+		while(positive > y){
+			sum=sum-pos[i];
+			i++;
+			positive--;
+		}				
+		printf("%d\n",sum);
+	}
+return 0;
+}

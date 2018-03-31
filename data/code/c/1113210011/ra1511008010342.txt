@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+ 
+ 
+inline int inp()
+{
+int n=0;
+register int ch=getchar_unlocked();
+while( ch >= '0' && ch <= '9' )
+n = (n<<3)+(n<<1) + ch-'0', ch=getchar_unlocked();
+return n;
+}
+ 
+int compare(const void *p, const void *q)
+{
+  return *((int*)p) - *((int*)q);
+}
+ 
+int main()
+{
+  int t,n,i,j,l;
+  register int k;
+  int vals[5000];
+  //scanf("%d",&t);
+  t = inp();
+  while(t--)
+  {
+    //scanf("%d",&n);
+    n = inp();
+    for(i=0;i<n;i++)
+    {
+      //scanf("%d",&vals[i]);
+      vals[i] = inp();
+    }
+    qsort(vals,n,sizeof(int),compare);
+    j=INT_MAX;
+    for(i=0;i<n-1;i++)
+    {
+      k = vals[i+1]-vals[i];
+      if(j>k)
+	j=k;
+      //printf("%d",vals[i]);
+    }
+    printf("%d\n",j);
+  }
+  return 0;
+} 

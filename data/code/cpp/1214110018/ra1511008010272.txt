@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+class Time{
+  int h;
+  int m;
+  float s;
+  public:
+  void getTime(int h1, int m1, float s1){
+    h = h1;
+    m = m1;
+    s = s1;
+  }
+  void addTime(int h1, int m1, float s1) {
+    int ht = h1+h;
+    int mt = m1+m;
+    int st = s1+s;
+    if(st>=60) {
+      st-=60;
+      mt++;
+    }
+    if(mt>=60) {
+      mt-=60;
+      ht++;
+    }
+    cout<<"After Adding\n";
+    cout<<ht<<":"<<mt<<":"<<st;
+  }
+};
+int main()
+{
+	Time t;
+  	int a,b;
+  	float c;
+  	cin>>a>>b>>c;
+  	if(b>59) {
+      cout<<"Invalid Time";
+      exit(0);
+    }
+  	if(c>59) {
+      cout<<"Invalid Time";
+      exit(0);
+    }
+  	t.getTime(a,b,c);
+  	cin>>a>>b>>c;
+  	if(b>59) {
+      cout<<"Invalid Time";
+      exit(0);
+    }
+  	if(c>59) {
+      cout<<"Invalid Time";
+      exit(0);
+    }
+  	t.addTime(a,b,c);
+	return 0;
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+int gcd(int a,int b)
+{
+	if(a==0 || b==0)
+		return 0;
+	if(a==b)
+		return a;
+	if(a>b)
+		return gcd(a-b,b);
+	return gcd(a,b-a);			
+}
+int main()
+{
+    int n1, n2, i, g,l,t;
+    scanf("%d",&t);
+	while(t--)
+	{
+    scanf("%d %d", &n1, &n2);
+    g=gcd(n1,n2);
+    l=(n1*n2)/g;
+    printf("%d %d\n",g,l);
+	}
+    return 0;
+}  

@@ -1,0 +1,77 @@
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{
+    int t,n,m,i,j;
+    long long int sum;
+    long long int c=1000000000;
+    scanf("%d",&t);
+    while(t>0)
+    {
+        scanf("%d",&n);
+        scanf("%d",&m);
+            long long int **aa;
+            long long int **b;
+           // long long int **aa;
+           aa=(long long int **)malloc(sizeof(long long int*)*(m));
+            for(i=0;i<m;i++)
+            {
+                aa[i]=(long long int *)malloc(sizeof(long long int)*(m+1));
+            }
+        for(i=0;i<=m;i++)
+        {
+            aa[0][i]=1;
+        }
+      int total;
+     for(i=1;i<m;i++)
+     {
+        total=0;
+         for(j=0;j<=m;j++)
+         {
+            aa[i][j]=(total+aa[i-1][j])%c;
+            total=aa[i][j];
+         }
+     }
+ 
+long long int *a;
+     a=malloc(sizeof(long long int)*(m+1));
+ 
+        for(i=0;i<=m;i++)
+        {
+            a[i]=aa[m-1][i];
+        }
+        sum=0;
+       // long long int **b;
+    b=(long long int **)malloc(sizeof(long long int*)*n);
+    for(i=0;i<n;i++)
+    {
+        b[i]=(long long int *)malloc(sizeof(long long int)*(m+1));
+    }
+        b[0][0]=1;
+        for(i=1;i<=m;i++)
+        {
+            //b[0][i]=b[0][i]%c;
+           // b[0][i]=(b[0][sum]+a[i])%c;
+         b[0][i]=((b[0][sum])+(aa[m-1][i]))%c;
+            sum=sum+1;
+        }
+        for(i=0;i<n;i++)
+        {
+            b[i][0]=1;
+        }
+        for(i=1;i<n;i++)
+        {
+            for(j=1;j<=m;j++)
+            {
+            //    b[i][j]=((a[j]%c)*(b[i-1][j]%c))%c;
+          //    b[i][j]=((b[i][j]%c)+(b[i][j-1]%c))%c;
+               // b[i][j]=a[j]*b[i-1][j]+b[i][j-1];
+               b[i][j]=(a[j]*b[i-1][j]+(b[i][j-1]))%c;
+            }
+        }
+        printf("%lld\n",b[n-1][m]);
+    t--;
+    }
+return 0;
+}
+  

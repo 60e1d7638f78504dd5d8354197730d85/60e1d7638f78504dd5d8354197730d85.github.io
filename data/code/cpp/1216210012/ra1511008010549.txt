@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+void check(int a[],int n,int num)
+{
+  int sum=0;
+  for(int i=0;i<n-3;i++)
+  {
+    for(int j=i+1;j<n-2;j++)
+    {
+      for(int k=j+1;k<n-1;k++)
+      {
+        for(int l=k+1;l<n;l++)
+        {
+        if((a[k]+a[l]+a[i]+a[j])==num)
+        {
+          cout<<a[i]<<", "<<a[j]<<", "<<a[k]<<", "<<a[l];
+          return;
+        }
+        }
+      }
+    }
+  }
+}
+int main()
+{
+
+  int n;
+  cin>>n;
+  int a[n];
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  int num;
+  cin>>num;
+  check(a,n,num);
+	return 0;
+}

@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int n,m,i,j;
+	scanf("%d%d",&n,&m);
+	int **a=(int **)malloc(sizeof(int *)*(n+1));
+	for(i=1;i<=n;i++)
+		a[i]=(int *)malloc(sizeof(int)*(m+1));
+	for(i=1;i<=n;i++)
+		for(j=1;j<=m;j++)
+			scanf("%d",&a[i][j]);
+	int l,flag1=1,flag2=1;
+	long long sum1=0,sum2=0;
+	scanf("%d",&l);
+	while(l--)
+	{
+		int q1,q2;
+		scanf("%d%d",&q1,&q2);
+		if(flag1)
+		{
+			if(q1 > n ||  q2 > m)
+			{
+				sum1 = -1;
+				flag1=0;
+			}
+		}
+		if(flag2)
+		{
+			if(q1 > m || q2 > n)
+			{
+				sum2 = -1;
+				flag2=0;
+			}
+		}
+		if(flag1)
+			sum1 +=a[q1][q2];
+		if(flag2)
+			sum2 += a[q2][q1];
+	}
+	(sum1 >= sum2) ? printf("%lld\n",sum1) : printf("%lld\n",sum2);
+	return 0;
+}

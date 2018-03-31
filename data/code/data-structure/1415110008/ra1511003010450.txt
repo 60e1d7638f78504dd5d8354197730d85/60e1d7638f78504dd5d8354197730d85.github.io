@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+  int data;
+  struct node *next;
+};
+
+struct node* push(struct node *h,int d)
+{
+  if(h==NULL)
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=NULL;
+    h=nn;
+  }
+  else
+  {
+    struct node *t=h;
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    while(t->next!=NULL)
+      t=t->next;
+    t->next=nn;
+  }
+  return h;
+}
+
+void print(struct node *h)
+{
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    printf("->%d",t->data);
+    t=t->next;
+  }
+}
+
+struct node* delete(struct node *h,int d)
+{
+  int flag=0;
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    if(t->data==d)
+    {
+      flag=1;
+      break;
+    }
+    t=t->next;
+  }
+  if(flag==1)
+  {
+  while(t!=NULL)
+  {
+    if(t->data==d)
+    {
+      h=t;
+      return h;
+    }
+    t=t->next;
+  }
+  }
+  else
+  {
+  printf("Invalid Node!\n");
+  }
+  return h;
+}
+
+int main()
+{
+  struct node *head=NULL;
+  int n,i,x,t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t);
+    head=push(head,t);
+  }
+  scanf("%d",&x);
+  head=delete(head,x);
+  printf("Linked List\n");
+  print(head);
+
+	return 0;
+}

@@ -1,0 +1,62 @@
+#include<stdio.h>
+
+int vowel(char a)
+{
+  switch(a)
+  {
+    case 'a':
+    case 'e':
+    case 'i':
+    case 'o':
+    case 'u':
+    case 'A':
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U': return 1;
+      			break;
+    default: return 0;
+  }
+}
+int consonant(char a)
+{
+  if(((int)a >= 97 && (int)a <=122) || ((int)a >= 65 && (int)a <= 90))
+    return 1;
+  else
+    return 0;
+}
+int digit(char a)
+{
+  if((int)a>=48 && (int)a<=57)
+    return 1;
+  else
+    return 0;
+}
+int whitespace(char a)
+{
+  if(a==' ' || a=='\n' || a=='\t')
+    	return 1;
+  else 
+    return 0;
+}
+int main()
+{
+  	char str[100];
+  	char *s = str;
+  	size_t t;
+  	getline(&s,&t,stdin);
+  	int i,v_cnt=0,c_cnt=0,d_cnt=0,w_cnt=0;
+  	for(i=0;str[i]!='\0';i++)
+    {
+      if(vowel(str[i]))
+        v_cnt++;
+      else if(consonant(str[i]))
+        c_cnt++;
+      else if(digit(str[i]))
+        d_cnt++;
+      else if(whitespace(str[i]))
+        w_cnt++;
+    }
+  printf("%d %d %d %d",v_cnt,c_cnt,d_cnt,w_cnt);
+	return 0;
+}

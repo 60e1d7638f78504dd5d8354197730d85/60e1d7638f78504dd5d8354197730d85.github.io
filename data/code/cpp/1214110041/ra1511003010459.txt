@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+class Student{
+  	public:
+	int roll,no_sub;
+  	string name;
+  	int marks[];
+  	float avg;
+  	Student(){
+    }
+  	Student(int r,string n,int ns){
+  		marks[ns];
+      	roll=r;
+      	name=n;
+      	no_sub=ns;
+    }
+  	void put(int r,string n,int ns){
+    	marks[ns];
+      	roll=r;
+      	name=n;
+      	no_sub=ns;
+    }
+  	void calc(){
+    	float tot=0.0;
+      	for(int i=0;i<no_sub;i++){
+        	tot+=marks[i];
+        }
+      	avg=tot/no_sub;
+    }
+  	void disp(){
+      	string cl;
+      	if(avg>80){
+        	cl="Class A";
+        }else if(avg>70){
+        	cl="Class B";
+        }else{
+        	cl="Class C";
+        }
+    	cout<<name<<" "<<roll<<" "<<avg<<" "<<cl<<'\n';
+    }
+};
+
+int main()
+{
+	int t,i,j;
+  	cin>>t;
+  	int r,ns;
+  	string sname;
+  	Student s[t];
+  	for(i=0;i<t;i++){
+    	cin>>sname>>r>>ns;
+      	s[i].put(r,sname,ns);
+      	for(j=0;j<s[i].no_sub;j++){
+        	cin>>s[i].marks[j];
+        }
+    	s[i].calc();
+      	s[i].disp();
+    }
+  
+	return 0;
+}

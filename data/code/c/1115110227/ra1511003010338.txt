@@ -1,0 +1,41 @@
+#include <stdio.h>
+inline long long int scan()
+{
+long long int t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+return(t);
+}
+inline void print(long long int a)
+{
+char num[20];
+long long int i=0;
+do
+{
+num[i++]=a%10+48;
+a=a/10;
+}while(a!=0);
+i=i-1;
+while(i>=0)
+putchar_unlocked(num[i--]);
+putchar_unlocked('\n');
+}
+int main(void) {
+	long long int t,n,a[100000],min,i;
+	t=scan();
+	while(t--)
+	{min=1000000000;
+	    n=scan();
+	    for(i=0;i<n;i++)
+	    {a[i]=scan();if(min>a[i])min=a[i];}
+	    print(min*(n-1));
+	}
+	return 0;
+}  

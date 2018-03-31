@@ -1,0 +1,46 @@
+#include<stdio.h>
+ 
+int nCr(int,int);
+int fact(int);
+int main()
+{
+	int x,n,i,j=0,p,k,ans=0;
+	int cars[54]={1,2,3,4,53,54,5,6,7,8,51,52,9,10,11,12,49,50,13,14,15,16,47,48,17,18,19,20,45,46,21,22,23,24,43,44,25,26,27,28,41,42,29,30,31,32,39,40,33,34,35,36,37,38};
+	int blank[100]={0};
+	char arr[55];
+	scanf("%d %d",&x,&n);
+	p=n;
+	while(n--)
+	{
+		scanf("%s",arr);
+		for(i=0;i<9;i++,j++)
+		{
+			for(k=i*6;k<(i*6+6);k++)
+			blank[j]+=(arr[cars[k]-1]-48);		
+			blank[j]=6-blank[j];
+			//printf("%d ",blank[j]);
+		}
+	}
+	for(i=0;i<p*9;i++)
+	ans+=nCr(blank[i],x);
+	printf("%d\n",ans);
+	return 0;
+}
+ 
+int fact(int x)
+{
+	int f=1;
+	while(x>1)
+	{
+		f*=x;
+		x--;	
+	}
+	return f;
+}
+ 
+int nCr(int x,int y)
+{
+	if(x<y)
+	return 0;
+	return(fact(x)/(fact(x-y)*fact(y)));
+}

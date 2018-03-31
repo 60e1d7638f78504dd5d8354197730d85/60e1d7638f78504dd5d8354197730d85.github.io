@@ -1,0 +1,19 @@
+#include <stdio.h>
+union test {
+  int num;
+};
+
+int main()
+{
+  	union test t1;
+  	scanf("%d", &t1.num);
+  	union test t2;
+  	t2.num = 0;
+  	while(t1.num != 0) {
+      	t2.num *= 10;
+    	t2.num += t1.num%10;
+      	t1.num /= 10;
+    }
+  	printf("%d", t2.num);
+	return 0;
+}

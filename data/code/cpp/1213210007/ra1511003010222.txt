@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string.h>
+#include <ctype.h>
+using namespace std;
+int main()
+{
+	char s[100];
+  	int vowel = 0, consonant = 0, digit = 0, space = 0, i, n;
+  	scanf("%[^\n]%*c",s);
+  	n = strlen(s);
+  	for(i = 0; i < n; i++)
+    {
+      if(isdigit(s[i]))
+        digit++;
+      else if(isspace(s[i]))
+        space++;
+      else if(isalpha(s[i]))
+        switch(tolower(s[i]))
+        {
+          case 'a':
+          case 'e':
+          case 'i':
+          case 'o':
+          case 'u':
+            vowel++;
+            break;
+          default:
+            consonant++;
+            break;
+        }
+    }
+  	cout<<"Vowels:"<<vowel<<"\nConsonants:"<<consonant
+      <<"\nDigits:"<<digit<<"\nWhite spaces:"<<space;
+	return 0;
+}

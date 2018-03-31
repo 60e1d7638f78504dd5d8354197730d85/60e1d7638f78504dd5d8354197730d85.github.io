@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<math.h>
+struct studdetails
+{
+    int roll;
+    char name[100];
+    char dob[100];
+    float fees;
+};
+int main()
+{
+    struct studdetails st[100];
+    int t,t1,i;
+    scanf("%d",&t);
+    t1=t;
+   for(i=0;i<t;i++)
+    {
+        scanf("%d",&st[i].roll);
+        scanf("%s",st[i].name);
+        scanf("%s",st[i].dob);
+        scanf("%f",&st[i].fees);
+       
+    }
+    for(i=0;i<t;i++)
+    {
+        printf("Roll no:%d\n",st[i].roll);
+        printf("Name:%s\n",st[i].name);
+        printf("DOB:%s\n",st[i].dob);
+        if(ceil(st[i].fees)==floor(st[i].fees))
+            printf("Fees:%0.0f\n",st[i].fees);
+        else
+            printf("Fees:%0.2f\n",st[i].fees);
+   
+    }
+	return 0;
+}

@@ -1,0 +1,54 @@
+#include<stdio.h>
+long int n,a,b,q,tree[30000000]={0},lazy[30000000]={0};
+void update(long int node,long int start,long int end,long int i,long int j)
+{long int mid;
+if(lazy[node])
+{if(lazy[node]&1)
+tree[node]=(end-start+1)-tree[node];
+if(start!=end)
+{lazy[2*node]+=lazy[node];
+lazy[2*node+1]+=lazy[node];}
+ 
+lazy[node]=0;}
+ 
+if(j<start||i>end)
+return;
+if(start>=i&&end<=j)
+{tree[node]=(end-start+1)-tree[node];
+if(start!=end)
+{lazy[2*node]++;
+lazy[2*node+1]++;}
+return;}
+mid=(start+end)>>1;
+update(2*node,start,mid,i,j);
+update(2*node+1,mid+1,end,i,j);
+tree[node]=tree[2*node]+tree[2*node+1];
+}
+long int query(long int node,long int start,long int end,long int i,long int j)
+{long int mid;
+    if(lazy[node])
+{if(lazy[node]&1)
+tree[node]=(end-start+1)-tree[node];
+if(start!=end)
+{lazy[2*node]+=lazy[node];
+lazy[2*node+1]+=lazy[node];}
+lazy[node]=0;}
+if(j<start||i>end)
+return 0;
+if(start>=i&&end<=j)
+return tree[node];
+mid=(start+end)>>1;
+return(query(2*node,start,mid,i,j)+query(2*node+1,mid+1,end,i,j));}
+ 
+int main()
+{int o=0;
+scanf("%ld%ld",&n,&q);
+while(q--)
+{scanf("%d%ld%ld",&o,&a,&b);
+if(o==0)
+update(1,1,n,a+1,b+1);
+if(o==1)
+printf("%ld\n",query(1,1,n,a+1,b+1));
+}
+return 0;}
+ 

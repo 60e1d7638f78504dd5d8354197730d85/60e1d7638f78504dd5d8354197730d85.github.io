@@ -1,0 +1,23 @@
+#include <stdio.h>
+typedef struct time
+{
+int hr,min,sec;
+}Time;
+void addTime(Time x,Time y);
+int main()
+{
+	Time x,y;
+  	scanf("%d %d %d",&x.hr,&x.min,&x.sec);
+  	scanf("%d %d %d",&y.hr,&y.min,&y.sec);
+  	addTime(x,y);
+	return 0;
+}
+
+void addTime(Time x,Time y)
+{
+	int secSum,minSum,HrSum;
+  	secSum=(x.sec+y.sec)%60;
+   	minSum=(x.min+y.min+((x.sec+y.sec)/60))%60;
+  	HrSum=x.hr+y.hr+(x.min+y.min+(x.sec+y.sec)/60)/60;
+  	printf("%d hrs\n%d min\n%d sec",HrSum,minSum,secSum);
+}

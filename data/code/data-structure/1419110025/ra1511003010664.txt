@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+#define MAX 10001
+//int arr[MAX][MAX]= {0};
+int dist[MAX];
+char visit[MAX];
+ 
+void dijsktras(int st, int N, int E);
+ 
+struct list {
+	int node;
+	short val;
+	struct list *next;
+};
+ 
+struct adj_list {
+	struct list *rear[MAX];
+	struct list *adj[MAX];
+};
+struct adj_list adjLs;
+ 
+int main() {
+	int T;
+	int N;
+	int E;
+	int x,y, c, Q, A, KT;
+	int i,j,k, ii;
+	
+	scanf("%d", &T);
+	for(i =0; i<T; i++) {
+		scanf("%d %d", &N, &E);
+		for(j =0; j<=N; j++) {
+			//for(k =0; k<=N; k++) 
+			{
+				adjLs.adj[j] = NULL;
+				adjLs.rear[j] = NULL;
+ 
+			}
+		}
+		for(j =0; j<E; j++) {
+			scanf("%d %d %d", &x, &y, &c);
+			struct list *ls1 = (struct list *)malloc(sizeof(struct list));
+			ls1->next = NULL;
+			ls1->node = y;
+			ls1->val = c;
+			//visit[x] = 0;
+			struct list *ls2 = (struct list *)malloc(sizeof(struct list));
+			ls2->next = NULL;
+			ls2->node = x;
+			ls2->val = c;
+			//visit[y] = 0;
+ 
+//	if(arr[x][y] > r || arr[x][y] == 0)
+			{
+				if(adjLs.adj[x] == NULL) {
+					adjLs.adj[x] = ls1;
+					adjLs.rear[x] = ls1;
+				}
+				else {
+					adjLs.rear[x]->next = ls1;
+					adjLs.rear[x] = ls1;
+				}
+ 
+				if(adjLs.adj[y] == NULL) {
+					adjLs.adj[y] = ls2;
+					adjLs.rear[y] = ls2;
+				}
+				else {
+					adjLs.rear[y]->next = ls2;
+					adjLs.rear[y] = ls2;
+				}
+ 
+			}
+		}
+ 
+		dijsktras(1, N, E);
+ 
+ 
+		scanf("%d", &Q);
+ 
+		for(ii=1; ii<=Q;ii++ ){
+			scanf("%d %d", &A, &KT);
+			if(dist[A] == 0x7fffffff) {
+				printf("%d\n", 0 );
+			}
+			else if(KT < (2*dist[A])) {
+				printf("%d\n", 0);
+			}
+			else {
+				printf("%d\n", (KT - 2*dist[A]));
+			}
+		}
+    }
+ 
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}
+ 
+int getMinDist (int N, int *dist, char *visit) 
+{
+	int i, mIdx=0, min = 0x7fffffff;
+ 
+	for(i =0; i<= N; i++) 
+	{
+		if(visit[i]== 0 && dist[i]<min) {
+			mIdx = i;
+			min = dist[i];
+		}
+	}
+	return mIdx;
+}
+ 
+ 
+void dijsktras(int st, int N, int E) 
+{
+	int i,j;
+	int u;
+	for(i=0;i<=N; i++){
+		visit[i] = 0;
+		dist[i] = 0x7fffffff;
+	}
+ 
+	dist[st] = 0;
+	//enq(s);
+	int visCnt = 0;
+	for(i = 1; i<N;i++) {
+		u = getMinDist(N, dist, visit);
+		
+		visit[u] = 1;
+		visCnt++;
+ 
+		if(dist[u] > 5100)
+			return;
+		if(visCnt > 2*E)
+			return;
+	//	if(u == ed || ((2*dist[u])> tim))
+	//		return;
+		struct list *ls = adjLs.adj[u];
+		while(ls != NULL) {
+			int nd = ls->node;
+			if(visit[nd] == 0 && dist[u]!=0x7fffffff)
+			{
+				if(dist[nd] > (ls->val + dist[u])){
+					dist[nd] = (ls->val + dist[u]);
+				}
+			}
+			ls = ls->next;
+ 
+	   	}
+	}
+}
+	
+ 

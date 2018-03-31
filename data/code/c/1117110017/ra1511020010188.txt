@@ -1,0 +1,49 @@
+#include <stdio.h>
+void evenodd(int b[10][10],int m);
+int main()
+{
+    int m,i,j,b[10][10];
+    scanf("%d",&m);
+   for(i=0;i<m;i++)
+   {
+     for(j=0;j<m;j++)
+     {
+        scanf("%d",&b[i][j]);  
+     }
+   }
+   evenodd(b,m);
+	return 0;
+}
+void evenodd(int b[10][10],int m)
+{
+  int i,flag=0,flag1=0,j;
+    for(i=0;i<m;i++)
+    {
+      for(j=0;j<m;j++)
+      {
+         if(b[i][j]%2==0)
+         {
+             flag++;          
+           //printf("%d ",b[i][j]);
+         }
+        else if( b[i][j]%2==1)
+        {
+          flag1++;
+        }
+        else
+        {
+          flag=0;
+          break;
+        }
+      }
+    }
+  if(flag==(m*m) || flag1==(m*m))
+  {
+    printf("yes");
+  }
+  else
+  {
+    printf("no");
+  }
+
+}

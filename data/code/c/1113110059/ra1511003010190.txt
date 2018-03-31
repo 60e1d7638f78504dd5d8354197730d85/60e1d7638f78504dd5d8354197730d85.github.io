@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{	int num;int temp;
+ 	int i = 0,j=0;	
+ 	int array[1000];
+ 	scanf("%d",&num);
+ 	while(i<num){
+    	scanf("%d",&array[i]);
+    	i++;
+    	}
+ 	for (i = 0; i < num; i++)
+    	{
+        for (j = 0; j < (num - i - 1); j++)
+        	{
+            if (array[j] > array[j + 1])
+            		{
+                		temp = array[j];
+                		array[j] = array[j + 1];
+                		array[j + 1] = temp;
+            		}
+        	}
+    	}
+ 	i=0;
+ 	while(i<num){
+    	printf("%d\n",array[i]);
+    	i++;
+    	}
+ 	
+
+return 0;
+}

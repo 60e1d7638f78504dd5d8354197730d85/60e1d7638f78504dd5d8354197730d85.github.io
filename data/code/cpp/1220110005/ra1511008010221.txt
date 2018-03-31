@@ -1,0 +1,38 @@
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <algorithm>
+#include <cctype>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    string p, r, t;
+    cin >> p;
+    cin >> r;
+    cin >> t;
+    if (p.find_first_of("0123456789") == 1) {
+        cout << "Invalid Input\nTry again";
+    }
+    if (r.find_first_of("0123456789") == 1) {
+        cout << "Invalid Input\nTry again";
+    }
+    if (t.find_first_of("0123456789") == 1) {
+        cout << "Invalid Input\nTry again";
+    }
+    stringstream p1(p);
+    stringstream r1(r);
+    stringstream t1(t);
+
+    double pr, rt, tm;
+    p1 >> pr;
+    r1 >> rt;
+    t1 >> tm;
+
+    double res = pr * pow((1 + rt / 100), tm) - pr;
+    if (res <= 0) {
+        cout << "Invalid input\nTry again";
+    } else
+        cout << res;
+}

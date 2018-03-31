@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+public class TestClass 
+{
+    
+     static int[] func(int[] arr,int n)
+     {
+       int[] temp=new int[2];
+       int left_sum,right_sum;
+       for(int i=1;i<n-1;i++)
+       {
+         left_sum=0;
+         right_sum=0;
+         for(int j=0;j<=i;j++)
+         {
+           left_sum=left_sum+arr[j];
+         }
+         for(int k=i+1;k<n;k++)
+         {
+           right_sum=right_sum+arr[k];
+         }
+         if(left_sum==right_sum)
+         {
+           temp[0]=i;
+           temp[1]=left_sum;
+           return temp;
+         }
+       }
+       temp[0]=0;
+       temp[1]=0;
+       return temp;
+     }
+	 public static void main(String[] args)    
+     { 
+		Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       int[] arr=new int[n];
+       int[] x=new int[2];
+       for(int i=0;i<n;i++)
+       {
+         arr[i]=sc.nextInt();
+       }
+       x=TestClass.func(arr,n);
+       if(x[0]==0)
+         System.out.println("sum of left half not equal to right half of the array");
+       else
+       {
+         System.out.println("Start index: 0 ");
+         System.out.println("Middle index:"+x[0]);
+         System.out.println("sum of Left:"+x[1]+"=="+x[1]+"sum of Right");
+       }
+	}
+}

@@ -1,0 +1,41 @@
+#include<stdio.h>
+typedef long long lld;
+#define fi first
+#define se second
+#define pb push_back
+long long  dp[1005][10005];
+ 
+int main()
+{
+	long long  T, N, i, val, sum, ans, j;
+	scanf("%lld",&T);
+	while(T--)
+	{
+		dp[0][0] = 1;
+			sum = 0;
+			ans = 0;
+			for(j = 1; j <= 10000; j++)
+				dp[0][j] = 0;
+			scanf("%lld",&N);
+			for(i = 1; i <= N; i++)
+			{
+				scanf("%lld", &val);
+				for(j = 0; j <= 10000; j++)
+				{
+					dp[i][j] = dp[i-1][j];
+					if(j >= val)
+						dp[i][j] = (dp[i][j] + dp[i-1][j-val])%10000000;
+				}
+				sum += val;
+ 
+			}
+ 
+		for(i = 0; i <= 10000; i++)
+			{
+				j = (dp[N][i]*abs(sum-2*i))%10000000;
+				ans = (ans + j)%10000000;
+			}				
+		printf("%lld\n",ans);
+	}
+	return 0;
+} 

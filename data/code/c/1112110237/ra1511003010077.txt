@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{int N;
+ scanf("%d",&N);
+ while(N>0){
+   int n;
+ scanf("%d",&n);
+ int a[n],i;
+
+ for(i=0;i<n;i++)
+   scanf("%d",&a[i]);
+ int gcd(int a,int b){
+   if(b==0)
+     return a;
+   else return gcd(b,a%b);
+    }
+ 
+ int lcm(int a[], int n){
+ int minl,ans=999,j;
+   for(i=0;i<n;i++)
+     for(j=i+1;j<n;j++){
+     	ans=((a[i]*a[j])/gcd(a[i],a[j])<ans) ? (a[i]*a[j])/gcd(a[i],a[j]) : ans;
+      }
+ return ans;
+ }
+ 
+ printf("%d\n",lcm(a,n));
+N--;
+ }
+	return 0;
+}

@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+class HexFormatException extends NumberFormatException
+{
+	public HexFormatException(String msg)
+    {
+    	super(msg);
+    }
+}
+public class TestClass {
+	static void hexCharToDecimal(String c)
+    {
+      try{
+       boolean isNumeric = c.matches("\\p{XDigit}+");
+       if(isNumeric)
+       System.out.println(Integer.parseInt(c,16));
+       else
+        throw new HexFormatException("Number is not Hexadecimal");
+      }catch(HexFormatException e)
+      {
+       System.out.println(e);
+      } 
+    }
+	 public static void main(String[] args) { 
+	Scanner sc=new Scanner(System.in);
+    hexCharToDecimal(sc.nextLine());
+	}
+}

@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+    int arr[100];
+    int i, size, num, pos;
+
+    /* Input size of the array */
+    //printf("Enter size of the array : ");
+    scanf("%d\n", &size);
+
+    /* Input elements in array */
+    //printf("Enter elements in array : ");
+    for(i=0; i<size; i++)
+    {
+        scanf("%d ", &arr[i]);
+    }
+
+    /* Input new element and position to insert */
+    //printf("Enter element position : ");
+    scanf("%d\n", &pos);
+   // printf("Enter the element to insert: ");
+    scanf("%d\n", &num);
+
+    /* If position of element is not valid */
+    if(pos > size || pos <= 0)
+    {
+        printf("Sorry Invalid Location");
+    }
+    else
+    {
+        /* Make room for new array element by shifting to right */
+        for(i=size; i>=pos; i--)
+        {
+            arr[i] = arr[i-1];
+        }
+        
+        /* Insert new element at given position and increment size */
+        arr[pos-1] = num;
+        size++; 
+
+        /* Print array after insert operation */
+        //printf("Array elements after insertion : ");
+        for(i=0; i<size; i++)
+        {
+            printf("%d\n", arr[i]);
+        }
+    }
+
+    return 0;
+}

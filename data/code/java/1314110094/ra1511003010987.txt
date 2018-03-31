@@ -1,0 +1,26 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int n,i,j,flag=0;
+       String d,s[];
+       n=in.nextInt();
+       s=new String[n];
+       for(i=0;i<n;i++)
+         s[i]=in.next();
+       for(i=0;i<n;i++) {
+         if(!s[i].equals("*"))
+           d=s[i];
+         else
+           continue;
+         for(j=i+1;j<n;j++) {
+           if(s[j].equals(d)) {
+             System.out.println(d);
+             flag=1;
+           }
+         }
+       }
+       if(flag==0)
+         System.out.println("No Duplicate Element");
+	}
+}

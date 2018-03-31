@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+    char word[1001];
+    int t, len, count[26], i;
+    scanf("%d", &t);
+    while (t--)
+    {
+        for (i=0; i<26; i++)
+        count[i]=0;
+        scanf("%s", word);
+        len = strlen(word);
+        for (i=0; i<len/2; i++)
+        {
+            count[word[i]-'a']++;
+        }
+        for (i=(len+1)/2; i<len; i++)
+        {
+            count[word[i]-'a']--;
+        }
+        for (i=0;i<26; i++)
+        {
+            if (count[i]!=0)
+            {
+                i=29;
+                break;
+            }
+        }
+        if (i==29)
+        {
+            printf("NO\n");
+        }
+        else
+        {
+            printf("YES\n");
+        } 
+    }
+      return 0;
+    }

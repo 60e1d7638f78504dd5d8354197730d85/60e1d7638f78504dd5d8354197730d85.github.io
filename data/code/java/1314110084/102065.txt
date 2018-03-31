@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  static final int MOD=(int)1e9 + 7;
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       int tc=inp.nextInt();
+       //for(int i=1;i<=tc;i++)
+       while(tc--!=0)
+       {
+         int[] a=new int[inp.nextInt()+1];
+         for(int j=0;j<a.length;j++)
+         {
+           a[j]=inp.nextInt();
+         }
+         int size=1;
+         int def=0;
+         int sum=a[0]+a[0];
+         for(int k=1;k<a.length;k++)
+         {
+           def=(int)((2*def+1L*sum*a[k])%MOD);
+           size <<=1;
+           if(size>=MOD)
+             size-=MOD;
+           sum=(int)((sum+1L*size*a[k])%MOD);
+         }
+         System.out.println(def);
+       } 
+       
+		
+	}
+}

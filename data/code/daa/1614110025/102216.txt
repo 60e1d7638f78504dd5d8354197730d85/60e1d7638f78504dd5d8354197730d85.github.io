@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+int i,j,n,k,m,t,a[100],b[100],c[100][100],d,e,f,g,h,l,o,p,min=9999;
+  scanf("%d",&t);
+  for(i=1;i<=t;i++)
+  {
+    scanf("%d%d%d",&n,&k,&m);
+    for(j=1;j<=n;j++)
+    {
+      scanf("%d",&a[j]);
+      //printf("%d\n",a[j]);
+    }
+    //printf("\n");
+    for(j=1;j<=n;j++)
+    {
+      for(d=1;d<=a[j];d++)
+      {
+        scanf("%d",&c[j][d]);
+        ///printf("%d\n",c[j][d]);
+       }
+     // printf("\n");
+    }
+    for(j=1;j<=n;j++)
+    {
+      f=0;
+      f=f+c[j][1]+k;
+      for(d=2;d<=a[j];d++)
+      {
+        f=f+m;
+        f=f+c[j][d]+k;
+      }
+      //printf("%d\n",f);
+      if(min>f)
+      {
+        
+        min=f;
+        l=j;
+      }
+    }
+    printf("%d %d",l,min);
+  }
+  
+  
+	return 0;
+}

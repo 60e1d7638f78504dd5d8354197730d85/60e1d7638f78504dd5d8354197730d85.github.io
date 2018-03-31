@@ -1,0 +1,28 @@
+#include <stdio.h>
+int maxelement(int a[],int n,int l)
+{
+  if(n>-1)
+  {
+  if(a[n]>l)
+  {
+    l=a[n];
+  }
+  return (l=maxelement(a,n-1,l));
+  }
+  else
+    return l;
+}
+  
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int a[n];
+  int i,l;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+    l=a[0];
+    l=maxelement(a,n-1,l);
+    printf("Maximum element in the array is %d",l);
+	return 0;
+}

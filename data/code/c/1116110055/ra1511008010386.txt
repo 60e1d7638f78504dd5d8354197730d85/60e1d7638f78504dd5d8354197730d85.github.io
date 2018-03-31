@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<ctype.h>
+#define M 1000000007
+ 
+int gcd(int n1, int n2)
+{
+    if (n2!=0)
+       return gcd(n2, n1%n2);
+    else 
+       return n1;
+}
+ 
+ 
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+ 
+char str[109];
+ 
+int main()
+{
+	int len,i,T,counta,min,countb;
+	scanf("%d",&T);
+	
+	while(T--)
+	{
+		counta=countb=0;
+		scanf("%s",str);
+		
+		len=strlen(str);
+		
+		for(i=0;i<=len-1;i++)
+			{
+				if(str[i]=='a')
+					counta++;
+				else
+					countb++;
+			}
+		
+		if(counta<countb)
+			min=counta;
+		else
+			min=countb;
+		printf("%d\n",min);
+		
+		
+		
+		
+		
+	}
+	return(0);
+}
+ 

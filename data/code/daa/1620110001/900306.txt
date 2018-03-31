@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) throws Exception{ 
+       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       int n=Integer.parseInt(br.readLine().trim());
+       int k=Integer.parseInt(br.readLine().trim())-1;
+       long arr[]=new long[n];
+       for(int i=0;i<n;i++)
+       {
+         arr[i]=Integer.parseInt(br.readLine().trim());
+       }
+       Arrays.sort(arr);
+       long unfair=Long.MAX_VALUE;
+       for(int i=0;i+k<n;i++)
+       {
+         long diff=arr[i+k]-arr[i];
+         if(unfair>diff)unfair=diff;
+       }System.out.println(unfair);
+        
+                                         
+		
+	}
+}

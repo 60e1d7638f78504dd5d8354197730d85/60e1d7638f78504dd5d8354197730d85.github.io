@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+    int T;
+    scanf("%d",&T);
+    int a[T][10],i,j,len[T],num[T],den[T];
+    for(i=0;i<T;i++){
+      scanf("%d",&len[i]);
+        for(j=0;j<len[i];j++)
+          scanf("%d",&a[i][j]);
+      num[i]=1;
+      den[i]=1;
+    }
+    for(i=0;i<T;i++){
+      if(len[i]==1)
+        num[i]=0;
+      else{
+        for(i=0;i<T;i++){
+          for(j=1;j<=len[i];j++)
+            num[i]=num[i]*j;
+          for(j=1;j<=(len[i]-2);j++)
+            den[i]=den[i]*j;
+        }
+      }
+    } 
+    for(i=0;i<T;i++)
+    printf("%d\n",(num[i]/(den[i]*2)));
+	return 0;
+}

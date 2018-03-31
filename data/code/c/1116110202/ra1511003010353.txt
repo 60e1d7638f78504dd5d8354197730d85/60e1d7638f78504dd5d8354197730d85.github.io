@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<ctype.h>
+int main()
+{
+char ch[20];
+scanf("%s",ch);
+int j=1,count=0;
+while(ch[j]!='\0')
+{
+  if(ch[j]=='_')
+  {
+  count++;
+    if(ch[j+1]=='_')
+    {
+      printf("not a valid identifier");
+      return 0;
+    }
+  }
+  j++;
+}
+  if(ch[j-1]!='_' && isalpha(ch[0])!= 0)
+    printf("valid identifier");
+  else 
+    printf("not a valid identifier");
+	return 0;
+}

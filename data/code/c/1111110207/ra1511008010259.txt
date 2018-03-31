@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+long *n,*n1,*n2,*x,*y,r;
+  n=(long*)malloc(sizeof(long));
+  n1=(long*)malloc(sizeof(long));
+  n2=(long*)malloc(sizeof(long));
+  x=(long*)malloc(sizeof(long));
+  y=(long*)malloc(sizeof(long));
+  scanf("%ld",n);
+  *n1=*n2=0;
+  *x=*y=1;
+  while(*n!=0){
+  r=*n%10;
+  *n=*n/10;
+  if(r%2==0){
+    r=r * *x;
+  *n2=*n2+r;
+      *x=*x*10;
+  }
+  else{
+    r=r * *y;
+  *n1=*n1+r;
+    *y=*y*10;
+  }
+  }
+  printf("%ld %ld",*n1,*n2);
+	return 0;
+}

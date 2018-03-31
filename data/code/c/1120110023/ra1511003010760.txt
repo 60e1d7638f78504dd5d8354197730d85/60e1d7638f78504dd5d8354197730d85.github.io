@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{   int i,j,a[100][100],rsum1=0,rsum2=0,rsum3=0,csum1=0,csum2=0,csum3=0,dsum2=0,dsum1=0;
+    for(i=0;i<3;i++){
+      for(j=0;j<3;j++){
+        scanf("%d",&a[i][j]);
+      }
+    }
+    for(i=0;i<3;i++){
+      rsum1=rsum1+a[0][i];
+      rsum2=rsum2+a[1][i];
+      rsum3=rsum3+a[2][i];
+    }
+    for(i=0;i<3;i++){
+      csum1=csum1+a[i][0];
+      csum2=csum2+a[i][1];
+      csum3=csum3+a[i][2];
+    }
+    dsum1=a[0][0]+a[1][1]+a[2][2];
+    dsum2=a[0][2]+a[1][1]+a[2][0];
+   for(i=0;i<3;i++){
+      for(j=0;j<3;j++){
+        printf("%d ",a[i][j]);
+      } printf("\n"); 
+   }
+ if(rsum1==rsum2 && rsum2==rsum3 && rsum3==csum1 && csum1==csum2 && csum2==csum3 && csum3==dsum2 && dsum2==dsum1){
+     printf("Magic Square");
+    }
+    else{
+      printf("Not a Magic Square");
+    }
+ 
+
+	return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{	
+	int i,h,hcount=0,ccount=0,tcount=0,grade=0;
+  	float hard,carbon,tensile;
+  	scanf("%d",&h);
+  	for(i=0;i<h;i++){
+      	hcount=0;
+      	ccount=0;
+      	tcount=0;
+    	scanf("%f %f %f",&hard,&carbon,&tensile);
+      	if(hard>50.0) hcount=1;
+      	if(carbon<0.7) ccount=1;
+      	if(tensile>5600) tcount=1;
+      	if(hcount+ccount+tcount==3){
+        	grade=10;
+        }
+      	else if(hcount+ccount+tcount==2){
+        	if(hcount==1&&ccount==1) grade=9;
+          	else if(ccount==1&&tcount==1) grade=8;
+          	else if(hcount==1&&tcount==1) grade=7;       
+        }
+      	else if(hcount+ccount+tcount==1) grade=6;
+      	else grade=5;
+      	printf("%d\n",grade);
+    }
+
+	return 0;
+}

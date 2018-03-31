@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t;
+  cin>>t;
+  while(t--) {
+    int n;
+    cin>>n;
+    int a[n];
+    int czero=0,cone=0,cmone=0,cother=0;
+    for(int i=0;i<n;i++) {
+      cin>>a[i];
+      if(a[i]==0)
+      czero++;
+      else if(a[i]==1)
+      cone++;
+      else if(a[i]==-1)
+        cmone++;
+      else
+        cother++;
+    }
+    if(cother>1)
+      cout<<"no\n";
+    else {
+      if(cother&&cmone)
+         cout<<"no\n";
+      else if(cmone>1 && cone==0)
+        cout<<"no\n";
+      else
+        cout<<"yes\n";
+    }
+  }
+	return 0;
+}

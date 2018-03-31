@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int presuf(char *ar)
+{
+    int len = strlen(ar);
+    int i = len-2;
+    while(i >= 0)
+    {
+        int j,s = 1;
+        for (j = 0; j <= i; j ++)
+        {
+            if (ar[j] != ar[len-i+j-1])
+            {
+                s = 0;
+                break;
+            }
+        }
+        if (s == 1)
+            return i;
+        else
+            i--;
+    }
+    return -1;
+}
+int main()
+{
+    int n, q;
+    scanf ("%d %d", &n, &q);
+    char ar[100000];
+    scanf ("%s", ar);
+    int k;
+    for (k = 0; k < q; k ++)
+    {
+        int i, ar1[26];
+        int l, r;
+        scanf ("%d %d", &l, &r);
+        for (i = 0; i < 26; i ++)
+        {
+            ar1[i] = 0;
+        }
+        for (i = l-1; i < r; i ++)
+        {
+            ar1[(int)ar[i]-97] += 1;
+        }
+        char ar2[27];
+        for (i = 0; i < 26; i ++)
+        {
+            ar2[i] = (char)((ar1[i]%26)+97);
+        }
+        // for (i = 0; i < 26; i ++)
+        //     printf ("%c ", ar2[i]);
+        // printf ("\n");
+        int x = presuf(ar2);
+        // printf ("x is %d\n", x);
+        if (x == -1)
+            printf ("None");
+        else{
+        for (i = 0; i <= x; i ++)
+            printf("%c", ar2[i]);}
+        printf("\n");
+    }
+    return 0;
+}

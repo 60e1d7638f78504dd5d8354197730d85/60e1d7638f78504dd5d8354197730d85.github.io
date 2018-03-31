@@ -1,0 +1,32 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+ 
+int has(char c) {
+    return (c - 'a');
+}
+void frequency(string s, int f[]) {
+    for(unsigned int i = 0; i < s.length(); i++) {
+        int index = has(s[i]);
+        f[index]++;
+    }
+}
+int main() {
+    int t;
+    cin>>t;
+    string s1, s2;
+    while(t--) {
+        int f1[26] = {0}, f2[26] = {0}, count = 0;
+      cin>>s1>>s2;
+      frequency(s1, f1);
+      frequency(s2, f2);
+      for(int i = 0; i < 26; i++){
+          if(f2[i] != f1[i]) {
+              count+= abs(f2[i] - f1[i]);
+          }
+      }
+      cout<<count<<endl;
+    }
+    
+    return 0;
+}

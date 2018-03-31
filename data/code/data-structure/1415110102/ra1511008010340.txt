@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int info;
+  struct node *link;
+}*head=NULL;
+int main()
+{
+int n,i=1;
+  cin>>n;
+  struct node *temp,*ptr;
+  while(i<=n)
+  {
+    temp=new node;
+    cin>>temp->info;
+    if(head==NULL)
+    {
+      head=temp;
+      head->link=NULL;
+    }
+    else
+    {
+      ptr=head;
+      while(ptr->link!=NULL)
+      {
+        ptr=ptr->link;
+      }
+            temp->link=NULL;
+      ptr->link=temp;
+
+    }
+    i++;
+  }
+  int pos,flag=0;
+  temp=new node;
+  cin>>pos>>temp->info;
+  ptr=head;
+  while(ptr!=NULL)
+  {
+      if(ptr->info==pos)
+       {
+         flag=1;
+        break;
+       }
+      ptr=ptr->link;
+  }
+ if(flag==1)
+ {
+     temp->link=ptr->link;
+  ptr->link=temp;
+ }
+else
+    {
+       cout<<"Node not found"<<endl;
+    }
+
+
+
+
+
+
+
+
+
+
+
+  ptr=head;
+      while(ptr!=NULL)
+      {
+        cout<<"->"<<ptr->info;
+        ptr=ptr->link;
+      }
+	return 0;
+}

@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+       String input=sc.nextLine();
+       String input2=input.toUpperCase();
+       //System.out.println(input2);
+		String[] words=input2.split(" ");
+       
+		int wrc=1;						
+		
+		for(int i=0;i<words.length;i++)	
+		{
+			for(int j=i+1;j<words.length;j++)
+			{
+				
+			if(words[i].equals(words[j]))	
+				{
+					wrc=wrc+1;				
+					words[j]="0";			
+				}
+			}
+			if(wrc>1 && words[i]!="0")
+			System.out.println(words[i].toLowerCase()+" : "+wrc);
+			wrc=1;
+			
+	     }  
+			
+     }
+}

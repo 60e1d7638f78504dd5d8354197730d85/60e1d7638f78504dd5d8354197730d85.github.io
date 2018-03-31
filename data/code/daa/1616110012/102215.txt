@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+
+int node_count(int nodes, short int mat[][nodes], int index, int *count)
+{
+    if (index >= nodes)
+    {
+        (*count) = 0;
+        return 0;
+    }
+
+    /*Visited.*/
+    mat[index][index] = -1;
+
+    int arr[nodes], i, local_cnt = 0;
+    for (i = 1; i<nodes; i++)
+    {
+        if (mat[i][i] != -1 && mat[index][i] == 1)
+          local_cnt += node_count(nodes, mat, i, count);
+    }
+
+    if (index != 1)
+    (*count) += (local_cnt+1)%2 ? 0 : 1;
+
+    return local_cnt+1;
+}
+int main()
+{
+    short int tst;
+    scanf("%hd",&tst);
+
+    while(tst--)
+    {
+        int nodes, edges;
+        scanf("%d",&nodes);
+        scanf("%d",&edges);
+
+        short int mat[nodes+1][nodes+1];
+        memset(mat,0, sizeof(short int)*(nodes+1)*(nodes+1));
+        int i, j;
+        for(i = 0; i<edges; i++)
+        {
+            int x,y;
+            scanf("%d",&x);
+            scanf("%d",&y);
+
+            mat[x][y] = 1;
+            mat[y][x] = 1;
+        }
+
+        int count = 0;
+        node_count(nodes+1, mat, 1, &count);
+
+        printf("%d\n",count);
+    }
+}

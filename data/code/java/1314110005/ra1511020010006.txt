@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s = new Scanner(System.in);
+       String c = s.next();
+       char[] ch = c.toCharArray();
+       char k[] = new char[20];
+       int n = -1;
+       for(int i=0;i<ch.length;i++)
+       {
+         int f=0;
+         for(int j=0;j<=n;j++)
+         {
+           if(ch[i]==k[j])
+             f=1;
+         }
+         if(f==1)
+           continue;
+         else
+           k[++n]=ch[i];
+         int co=1;         
+         for(int j=0;j<ch.length;j++)
+         {
+           if(j==i)
+             continue;
+           else if(ch[i]==ch[j])
+             co++;
+         }
+         System.out.println(ch[i]+" "+co);
+       }
+	}
+}

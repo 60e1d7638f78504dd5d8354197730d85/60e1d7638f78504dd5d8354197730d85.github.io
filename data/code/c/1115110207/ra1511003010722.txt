@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+int n,i,max,secmax;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  max=a[0];
+  secmax=a[1];
+  if(secmax>max)
+  {
+    int t=secmax;
+    secmax=max;
+    max=t;
+  }
+  for(i=2;i<n;i++)
+  {
+    
+    if(max<=a[i])
+    {
+      secmax=max;
+      max=a[i];
+      
+    }
+    else if(a[i]>=secmax)
+      secmax=a[i];
+  }
+  printf("First Largest=%d\n",max);
+  printf("Second Largest=%d\n",secmax);
+  printf("Average=%.1f",(float)(max+secmax)/2);
+	return 0;
+}

@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int main()
+{
+int s=3;
+  int m[3][3];
+    int r=0,c=0;
+  int a,s1,s2;
+  int flag=0;
+  for(r=0;r<s;r++)
+  {
+    for(c=0;c<s;c++)
+    {
+      scanf("%d",&m[r][c]);
+    }
+  }
+ 
+  a=0;
+  for(r=0;r<s;r++)
+  {
+  for(c=0;c<s;c++)
+  {
+  if(r==c)
+    a=a+m[r][c];
+  }
+  }
+  for(r=0;r<s;r++)
+  {
+  s1=0;
+    for(c=0;c<s;c++)
+    {
+    s1=s1+m[r][c];
+    }
+    if(a==s1)
+    
+      flag=1;
+    
+    
+    else
+    {
+      flag=0;
+    break;
+  }
+  }
+for(r=0;r<s;r++)
+{
+  s2=0;
+  for(c=0;c<s;c++)
+  {
+  s2=s2+m[c][r];
+  }
+  if(a==s2)
+
+    flag=1;
+  
+  else
+  {
+    flag=0;
+  break;
+  }
+
+}
+  if(flag==1)
+    printf("Yes");
+  else
+    printf("No");
+	return 0;
+}

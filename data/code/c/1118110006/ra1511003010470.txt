@@ -1,0 +1,125 @@
+#include <stdio.h>
+struct date
+{
+    int d, m, y;
+}dt;
+int main()
+{
+	int inv=0;
+  scanf("%d %d %d",&dt.d,&dt.m,&dt.y);
+  if(dt.m>12 || dt.m<0)
+  {
+    printf("Invalid Month");
+    inv=1;
+  }
+  if(dt.d>31 || dt.d<0)
+  {
+    printf("Invalid Day");
+    inv=1;
+  }
+  if(dt.y>2999 || dt.y<0)
+  {
+    printf("Invalid Year");
+    inv=1;
+  }
+  if(dt.m==4 || dt.m==6 || dt.m==9 || dt.m==11)
+  {
+
+    if(dt.d>30)
+    {
+      printf("Invalid Day"); inv=1;}}
+
+  else if(dt.m==2)
+  {
+      if((dt.y%100==0 && dt.y%400!=0 && dt.y%4!=0) || (dt.y%100!=0 && dt.y%4!=0))
+      {
+     
+         if(dt.m==2)
+         {
+             if(dt.d>28)
+             {
+               printf("Invalid Day");
+               inv=1;
+             }
+         }
+      }
+      else
+      {
+          if(dt.m==2)
+          {
+              if(dt.m>29){
+                printf("Invalid Day"); inv=1;}
+          }
+      }
+   }
+  if(!inv)
+  {
+    if(dt.m==1 || dt.m==3 || dt.m==5 || dt.m==7 || dt.m==8 || dt.m==10 || dt.m==12)
+    {
+        if(dt.d==31)
+        {
+            dt.d=1;
+
+           if(dt.m==12)
+           {
+               dt.m=1;
+               ++dt.y;
+           }
+           else
+           {
+               ++dt.m;
+           }
+        }
+      else
+      {
+          ++dt.d;
+      }
+
+    }
+    else if(dt.m==2)
+    {
+        if(dt.y%100==0 && dt.y%400==0)
+        {
+            if(dt.d==29)
+            {
+                dt.d=1;
+                ++dt.m;
+            }
+        }
+        else if(dt.y%4==0)
+        {
+            if(dt.d==29)
+            {
+                dt.d=1;
+                ++dt.m;
+            }
+        }
+       else if(dt.d==28)
+       {
+           dt.d=1;
+           ++dt.m;
+       }
+      else
+      {
+          ++dt.d;
+      }
+
+    }
+    else
+    {
+        if(dt.d==30)
+        {
+          dt.d=1;
+          ++dt.m;
+        }
+      else
+      {
+          ++dt.d;
+      }
+    }
+    
+    printf("%.2d %.2d %.4d", dt.d, dt.m , dt.y);
+  }
+
+      return 0;
+}

@@ -1,0 +1,44 @@
+#include<stdio.h>
+    int main()
+    {
+    unsigned long long int a[1001]={0}, i, level, up, upleft, sum=0, cons=1000000007, result=0, sumarr[1001]={0}, temp, storeL;
+    int test, n;
+    scanf("%d", &test);
+    sumarr[1] = 1;
+    sumarr[2] = 2;
+    sumarr[3] = 5;
+    for (i=0; i<=1000; i++)
+    a[i] = 0;
+    a[1] = 1;
+    a[2] = 1;
+    a[3] = 1;
+    storeL=4;
+    while (test--)
+    {
+    scanf("%d", &n);
+    if (!sumarr[n])
+    {
+    sum = 0;
+    result = 0;
+    for (level=storeL; level<=n; level++)
+    {
+    sum=0;
+    a[level] = 1;
+    sum += a[level]*level + 2;
+    for (i=level-1; i>=3; i--)
+    {
+    up = a[i];
+    upleft = a[i-1];
+    temp = (up*(i-1))%cons + upleft;
+    a[i] = temp;
+    sum += a[i]*i;
+    sum = sum % cons;
+    }
+    sumarr[level] = sum;
+    }
+    storeL = level;
+    }
+    printf("%lld\n", sumarr[n]);
+    }
+    return 0;
+    } 

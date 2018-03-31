@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+	int m ,i = 0, j, n, sum[100];
+    int r = 0;
+  	scanf("%d %d", &m, &n);
+  	while(m != 0 || n != 0){
+    	sum[i++] = (m % 10 + n % 10 + r) % 2;
+      	r = (m % 10 + n % 10 + r)/2;
+      	m = m / 10;
+      	n = n / 10;
+    }
+	if( r == 1){
+    	sum[i++] = r;
+    }
+   --i;
+  while(i >= 0){
+  	printf("%d", sum[i--]);
+  }
+	return 0;
+}

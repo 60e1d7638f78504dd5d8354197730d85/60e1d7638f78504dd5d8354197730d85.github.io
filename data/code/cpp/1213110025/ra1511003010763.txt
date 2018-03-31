@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+std::string& replace(std::string& s, const std::string& from, const std::string& to)
+{
+    if(!from.empty())
+        for(size_t pos = 0; (pos = s.find(from, pos)) != std::string::npos; pos += to.size())
+            s.replace(pos, from.size(), to);
+    return s;
+}
+int main()
+{string s;
+ string x;
+ string y;
+ 
+ cin>>s>>x>>y;
+ 
+ cout << replace(s,x,y);
+
+	return 0;
+}

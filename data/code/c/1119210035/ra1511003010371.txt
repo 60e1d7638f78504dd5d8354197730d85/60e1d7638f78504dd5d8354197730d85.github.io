@@ -1,0 +1,23 @@
+#include <stdio.h>
+int get_gcd(int first,int second){
+  if(second>first)
+    return get_gcd(second,first);
+  if(second==0){
+    return first;
+  }
+  return get_gcd(second,first%second);
+}
+  
+  
+int main()
+{
+int T;
+  int first,second;
+  scanf("%d",&T);
+  while(T--){
+    scanf("%d%d",&first,&second);
+    int gcd=get_gcd(first,second);
+    printf("%d\n",gcd);
+  }
+	return 0;
+}

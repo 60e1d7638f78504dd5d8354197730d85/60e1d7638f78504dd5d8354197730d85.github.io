@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class standard
+{
+  public: int i,n;
+  public: float a[60],sum=0.0,mean,dev=0.0,c;
+  void get()
+  {
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+      cin>>a[i];
+    }
+  }
+  void deviation()
+  {for(i=0;i<n;i++)
+  {
+    sum +=a[i];
+  }
+   mean=sum/n;
+   for(i=0;i<n;i++)
+   {
+     dev +=pow(a[i]-mean,2);
+   }
+     c=sqrt(dev/n);
+     cout<<"Standard Deviation = "<<c;
+  }
+};
+int main()
+{
+  standard obj;
+  obj.get();
+  obj.deviation();
+
+	return 0;
+}

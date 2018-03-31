@@ -1,0 +1,18 @@
+#include <stdio.h>
+long n,ans=0;
+
+void dfs(long long num)
+{
+     if(num<=n) ans++;
+     if(num>=n) return;
+     dfs(num*10);
+     dfs(num*10+1);
+}
+
+int main()
+{
+    scanf("%ld",&n);
+    dfs(1);
+    printf("%ld",ans);
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int a, b, c, d, i, j;
+  cin>>a>>b;
+  cin>>c>>d;
+  if(a!=c || b!=d)
+    cout<<"Matrix cannot be added";
+  else
+  {
+    int arr[a][b], brr[a][b], crr[a][b];
+    for(i=0; i<a; i++)
+    {
+      for(j=0; j<b; j++)
+      {
+        cin>>arr[i][j];
+      }
+    }
+   for(i=0; i<c; i++)
+    {
+      for(j=0; j<d; j++)
+      {
+        cin>>brr[i][j];
+        crr[i][j] = arr[i][j]+brr[i][j];
+      }
+    }
+    
+    cout<<"The sum of the matrix is"<<endl;
+    for(i=0; i<c; i++)
+    {
+      for(j=0; j<d; j++)
+      {
+        cout<<crr[i][j]<<" ";
+      }
+      cout<<"\n";
+    }
+  }
+
+	return 0;
+}

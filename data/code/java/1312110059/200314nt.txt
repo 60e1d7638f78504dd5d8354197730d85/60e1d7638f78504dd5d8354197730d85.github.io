@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.Scanner;
+class TestClass
+{
+	
+	Scanner scan; 
+	int testcase;
+	String  out;
+	char input;
+	
+	int GetInteger()
+    {
+		return scan.nextInt();
+	}
+	
+	char GetString()
+    {
+		return scan.next().charAt(0);
+	}
+	
+	void Calculation1()
+    {
+		if( input == 'B' || input == 'b' )
+			out = "BattleShip";
+		else if( input == 'C' || input == 'c' )
+			out = "Cruiser";
+		else if( input == 'D' || input == 'd' )
+			out = "Destroyer";
+		else 
+			out = "Frigate";
+	}
+	
+	void Output(){
+		System.out.println( out );
+	}
+	
+	void CheckTestCase()
+    {
+		while( testcase-- > 0 )
+        {
+			input = GetString();		
+			Calculation1();
+			Output();
+		}
+	}
+	public static void main(String [] args)
+    {
+		TestClass obj = new TestClass();	
+		obj.scan = new Scanner ( System.in );
+		obj.testcase = obj.GetInteger();
+		obj.CheckTestCase();
+	}
+} 

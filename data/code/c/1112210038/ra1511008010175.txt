@@ -1,0 +1,77 @@
+#include <stdio.h>
+int main(void) {
+	int t,n,m,flag,i,j,k;
+	char element;
+	scanf("%d",&t);
+	while(t--)
+	{
+		flag=0;
+		scanf("%d %d",&n,&m);
+		char s[n][m+1];
+		for(i=0;i<n;i++)
+		scanf("%s",s[i]);
+		for(i=0;i<n;i++)
+		{
+		    if(flag)
+                break;
+
+			for(k=0;k<m;k++)
+			{
+		
+			element=s[i][k];
+	
+			if(element=='B')
+			{
+				if((i+1)<n && s[i+1][k]!='B')
+				{
+ 
+ 
+					flag=1;
+					break;
+ 
+				}
+			}
+			else if(element=='W')
+			{
+				if(k==0 || (k==m-1 || i==n-1))
+				{
+					flag=1;
+					break;
+				}
+		
+				if((k-1)>=0)
+				{
+					if(s[i][k-1]=='A')
+					{
+						flag=1;
+						break;
+					}
+				}
+					if((k+1)<m)
+					{
+						if(s[i][k+1]=='A')
+						{
+							flag=1;
+							break;
+						}
+					}
+					if((i+1)<n)
+					{
+						if(s[i+1][k]=='A')
+						{
+							flag=1;
+							break;
+						}
+						
+					}
+				}
+			}
+		}
+	if(flag==1)
+	printf("no\n");
+	else
+	printf("yes\n");
+	}
+	return 0;
+}
+ 

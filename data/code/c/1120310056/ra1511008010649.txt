@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int prime(int);
+
+int main()
+{
+
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int n;
+    scanf("%d",&n);
+    if(n<=2)
+      printf("Arjit\n");
+    else
+    {
+      int i;
+      for(i=3;i<n;i++)
+      {
+        if(prime(i) && (prime(n-i)))
+        {
+          printf("Deepa\n");
+          break;
+        }
+      }
+      if(i>=n)
+        printf("Arjit\n");
+    }
+  }
+  
+	return 0;
+}
+
+int prime(int n)
+{
+  if(n%2==0)
+    return 0;
+  int i;
+  for(i=3;i<=n/2;i+=2)
+  {
+    if(n%i==0)
+      return 0;
+  }
+  return 1;
+}

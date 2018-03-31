@@ -1,0 +1,47 @@
+#include <stdio.h>
+ int romantonum(char a){
+   int n=0;
+  switch(a){
+    case 'I': n=1;
+              break;
+    case 'V': n=5;
+              break;
+    case 'X': n=10;
+              break;
+    case 'L': n=50;
+              break;
+    case 'C': n=100;
+              break;
+    case 'D': n=500;
+              break;
+    case 'M': n=1000;
+              break;
+    default: break;
+  }
+   return n;
+  }
+  int main(){
+    char a[99];
+    int i=0,s=0;
+    scanf("%s",a);
+    
+ while(a[i]){
+   if(romantonum(a[i])<0){return 0;}
+     if(sizeof(a)-i>2){
+       if(romantonum(a[i])<romantonum(a[i+2])){
+     return 0;
+       }
+     }
+     if(romantonum(a[i+1])<=romantonum(a[i])){
+  s=s+romantonum(a[i]);
+   
+  }
+    else{
+    s=s+romantonum(a[i+1])-romantonum(a[i]);
+      i++;
+    }
+   i++;
+   }
+  printf("%d\n",s);
+  return 0;
+}

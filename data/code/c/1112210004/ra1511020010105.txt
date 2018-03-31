@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+#define MAX 85
+ 
+typedef long long int ll;
+
+inline void Scanf(ll *x)
+{
+	register char ch=gc();
+	*x=0;
+	for(; (ch<48 || ch>57); ch=gc());
+	for(; (ch>47 && ch<58); ch=gc()) *x=(*x<<1)+(*x<<3)+ch-'0';
+}
+ 
+inline void Printf(int x)
+{
+	char buff[11];
+	buff[10]='\n';
+	int i=10;
+	if(x)
+	{
+		do
+		{
+			buff[--i]=x%10+'0';
+			x/=10;
+		}while(x);
+		do
+		{
+			pc(buff[i]);
+		}while(buff[i++]!='\n');
+	}
+	else
+	{
+		pc('0');
+		pc('\n');
+	}
+}
+ 
+ll Fib[MAX+1];
+ 
+int binaryOnNodes(ll val)
+{
+	int m, l=0, h=MAX;
+	while(l<h)
+	{
+		m=(l+h)>>1;
+		if(Fib[m]<val) l=m+1;
+		else h=m;
+	}
+	if(Fib[l]>=val) l--;
+	return l;
+}
+ 
+int main()
+{
+	ll a=1,b=1, t;
+	Fib[0]=1;
+	Fib[1]=2;
+	int i, ans;
+	for(i=2; i<=MAX; i++)
+	{
+		t=a+b;
+		b=a;
+		a=t;
+		Fib[i]=Fib[i-1]+t;
+		//~ printf("%lld\n",Fib[i]);
+	}
+	
+	scanf("%d",&i);
+	while(i--)
+	{
+		ll N;
+		Scanf(&N);
+		ans=binaryOnNodes(N)+2;
+		Printf(ans);
+	}
+	return 0;
+} 

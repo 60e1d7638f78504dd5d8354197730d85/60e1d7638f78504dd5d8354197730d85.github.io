@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+struct node
+{
+	int color;
+	node *left,*right;
+};
+ 
+node *newNode(int value)
+{
+	node *newnode=new node;
+	newnode->color=value;
+	newnode->left=NULL;
+	newnode->right=NULL;
+ 
+	return newnode;
+}
+ 
+void dfs(node *root)
+{
+	if(root==NULL)
+		return;
+ 
+	cout<<root->color<<" ";
+	dfs(root->left);
+	dfs(root->right);
+}
+ 
+int main()
+{
+	int t;
+	cin>>t;
+ 
+	while(t--)
+	{
+		int n,i,j,temp,cl,cr;
+		cin>>n;
+		map<int,pair<int,int> > mp;
+ 
+		for(i=0;i<n;i++)
+		{
+			cin>>temp>>cl>>cr;
+			mp[temp]=make_pair(cl,cr);
+		}
+ 
+		queue<node*> qu;
+		node *root=newNode(1);
+		qu.push(root);
+ 
+		while(!qu.empty())
+		{
+			node *par=qu.front();
+			if(mp.find(par->color) != mp.end())
+			{
+				if(mp[par->color].first)
+				{
+					node *tnode=newNode(mp[par->color].first);
+					par->left=tnode;
+					qu.push(par->left);
+				}
+ 
+				if(mp[par->color].second)
+				{
+					node *tnode = newNode(mp[par->color].second);
+					par->right = tnode;
+					qu.push(par->right);
+				}
+			}
+			qu.pop();
+		}
+ 
+		dfs(root);
+		cout<<endl;
+	}
+}

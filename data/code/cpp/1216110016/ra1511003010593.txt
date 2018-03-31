@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <algorithm>
+using namespace std;
+int main()
+{
+  int n,x,flag=1;
+  cin>>n;
+  vector<int> arr;
+  map<int,int> counts;
+  for(int i=0;i<n;i++){
+    cin>>x;
+    arr.push_back(x);
+  }
+  set<int> ele(arr.begin(),arr.end());
+  for(set<int>::iterator it=ele.begin();it!=ele.end();++it){
+    counts.insert(pair<int,int>(*it,count(arr.begin(),arr.end(),*it)));
+    if(counts[*it]>n/2){
+      cout<<*it;
+      flag=0;
+      break;
+    }
+  }
+  if(flag)
+    cout<<"NONE";
+	return 0;
+}

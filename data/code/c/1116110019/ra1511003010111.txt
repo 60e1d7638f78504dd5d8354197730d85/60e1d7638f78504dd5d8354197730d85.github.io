@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+#define size 100
+#define chars 255
+
+int main()
+{
+char str[size];
+  int freq[chars];
+  int i=0,min;
+  int ascii;
+  
+  scanf("%s",str);
+  for(i=0;i<chars;i++)
+  {
+    freq[i]=0;
+  }
+  i=0;
+  while(str[i] != '\0')
+  {
+    ascii=(int)str[i];
+    freq[ascii]+=1;
+    i++;
+  }
+  min=0;
+  for(i=0;i<chars;i++)
+  {
+    if(freq[i] != 0)
+    {
+      if(freq[min] == 0 || freq[i] < freq[min])
+        min=i;
+    }
+  }
+  printf("%c=%d",min,freq[min]);
+	return 0;
+}

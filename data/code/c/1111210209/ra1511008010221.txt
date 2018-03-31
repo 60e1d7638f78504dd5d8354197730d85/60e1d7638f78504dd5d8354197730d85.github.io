@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int compare(const void * a, const void * b)
+{
+    return ( *(int*)a - *(int*)b );
+}
+
+int main() {
+    int t, n, i;
+    scanf("%d", &t);
+    scanf("%d", &n);
+    int arr[n];
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    qsort (arr, sizeof(arr)/sizeof(*arr), sizeof(*arr), compare);
+    
+    printf("%d", arr[0] + arr[1]);
+    
+    return 0;
+}

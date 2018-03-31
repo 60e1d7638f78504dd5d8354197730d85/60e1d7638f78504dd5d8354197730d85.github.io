@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+char a[100],b[100],ci[200],res[200]={0},temp,ch,out[200];
+  int i,n,len,k,j,p=0,no[26]={0},x,t;
+  scanf("%s\n",a);
+  scanf("%s",b);
+  //n=strlen(a);
+  //m=strlen(b);
+  //k=n+m;
+  strcpy(ci,a);
+  strcat(ci,b);
+ // printf("%s",ci);
+  k=strlen(ci);
+  for(i=0;i<k;i++)
+{
+    int count=0;
+    for(j=0;j<i;j++)
+    {
+    if(ci[i]==res[j])
+    {
+    count++;
+    }
+    }
+    if(count==0)
+    {
+    res[p++]=ci[i];
+    }
+  }
+  len=strlen(res);
+  for (i = 0; i < len; i++)
+   {
+      ch = res[i] - 'a';
+      no[ch]++;
+   }
+ 
+   t = 0;
+ 
+   /** Insert characters 'a' to 'z' in the output string as many times 
+      as they appear in the input string */
+ 
+   for (ch = 'a'; ch <= 'z'; ch++)
+   {
+      x = ch - 'a';
+ 
+      for (i = 0; i < no[x]; i++)
+      {
+         out[t] = ch;
+         t++;
+      }
+   }
+   out[t] = '\0';
+ 
+   printf("%s\n", out);
+  //printf("%s",res);
+  return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+struct win1
+{
+int x;
+char c[100];
+}a[1000];
+int main()
+{
+int n,i,max;
+ // int l=0;
+ char ch[100];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {    
+  scanf("%s %d",a[i].c,&a[i].x);    
+  }
+  strcpy(ch,a[0].c);
+  max=a[0].x;
+ for(i=1;i<n;i++)
+  {   
+   if(max<a[i].x)
+   {
+   max=a[i].x;
+  strcpy(ch,a[i].c);
+   }
+  }
+  if(strcmp(a[0].c,a[1].c)==0)
+    printf("%s",a[0].c);
+  else
+  printf("%s",ch);
+	return 0;
+}

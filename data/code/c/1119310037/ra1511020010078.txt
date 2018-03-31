@@ -1,0 +1,275 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<assert.h>
+ 
+#define DIGIT 10
+#define MAX_N 50
+ 
+typedef long long ll;
+long long calseq_dp[MAX_N+2][DIGIT+2];
+long long nCk[MAX_N+2][DIGIT+2];
+long long INF = 1000000007LL;
+long long calnums_dp[MAX_N+2][DIGIT+2]; //result of calnums with len and F
+char done[MAX_N+2][DIGIT+2];
+int C[MAX_N+2];
+int res[MAX_N+2];
+int func[MAX_N+2];
+ 
+long long check( long long a ){
+	if( a < INF )
+		return a;
+	return INF;
+}
+ 
+long long getpow( int i, int j ){
+	assert( i < DIGIT && j <= MAX_N );
+	if( j < 0 )
+		return 0LL;
+	
+	long long result = 1LL;
+    long long base = i;
+    while( j>0 ){
+        if( j%2 )
+            result = check( result * base );
+        base = check( base * base );
+		j /= 2;
+    }
+ 
+    return result;
+}
+ 
+long long getnCk( int i, int j ){
+	assert( i <= MAX_N && j <= DIGIT && i >= 0 );
+	if( j < 0 || j > i )
+		return 0LL;
+	return check( nCk[i][j] );
+}
+ 
+void findnCk(){
+	int i, j;
+	nCk[0][0] = nCk[1][1] = 1LL;
+	for( i=1; i<=MAX_N; i++ )
+		nCk[i][0] = 1LL;
+	for( i=2; i<=MAX_N; i++ )
+		for( j=1; j<=i && j<=DIGIT; j++ )
+			nCk[i][j] = nCk[i-1][j-1] + nCk[i-1][j];
+}
+ 
+long long normal( int len, int pos, int F ){
+	if( len == pos && F == 0 )
+		if( calnums_dp[pos][F] != INF )
+			calnums_dp[pos][F]--;
+	return calnums_dp[pos][F];
+} 
+ 
+long long handleone( int *temp, int len, int F ){
+	int pos = 1;
+ 
+	if( temp[pos] < 4 ){
+		if( F == 1 )
+			calnums_dp[pos][F] = 0;
+		else{
+			calnums_dp[pos][F] = temp[pos] + 1;
+		}
+	} else if( temp[pos] == 4 ){
+		if( F == 1 )
+			calnums_dp[pos][F] = 1;
+		else{
+			calnums_dp[pos][F] = temp[pos];
+		}
+	} else if( temp[pos] < 7 ){
+		if( F == 1 )
+			calnums_dp[pos][F] = 1;
+		else{
+			calnums_dp[pos][F] = temp[pos];
+		}
+	} else if( temp[pos] == 7 ){
+		if( F == 1 )
+			calnums_dp[pos][F] = 2;
+		else{
+			calnums_dp[pos][F] = temp[pos] - 1;
+		}
+	} else{
+		if( F == 1 )
+			calnums_dp[pos][F] = 2;
+		else{
+			calnums_dp[pos][F] = temp[pos] - 1;
+		}
+	}
+	done[pos][F] = 1;
+	return normal( len, pos, F );
+}
+ 
+//Takes a no. as an array temp of length len with the most significant bit at pos = len and returns no. less than or equal to it
+//having F lucky digits 
+long long calnums( int *temp, int len, int pos, int F ){
+	if( F > pos || F < 0 )
+		return 0LL;
+	if( done[pos][F] == 1 )
+		return calnums_dp[pos][F];
+	if( pos == 1 )
+		return handleone( temp, len, F );
+		
+	if( temp[pos] < 4 ){
+		calnums_dp[pos][F] = check( temp[pos] * getnCk( pos - 1, F ) ) * check( getpow( 2, F ) * getpow( 8, pos - 1 - F ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] + calnums( temp, len, pos - 1, F ) );
+	} else if( temp[pos] == 4 ) {
+		calnums_dp[pos][F] = check( temp[pos] * getnCk( pos - 1, F ) ) * check( getpow( 2, F ) * getpow( 8, pos - 1 - F ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] + calnums( temp, len, pos - 1, F - 1 ) );
+	} else if( temp[pos] < 7 ){
+		calnums_dp[pos][F] = check( ( temp[pos] - 1 ) * getnCk( pos - 1, F ) ) * check( getpow( 2, F ) * getpow( 8, pos - 1 - F ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = calnums_dp[pos][F] + check( getnCk( pos - 1, F - 1 ) * check( getpow( 2, F - 1 ) * getpow( 8, pos - 1 - ( F - 1 ) ) ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] + calnums( temp, len, pos - 1, F ) ); 
+	} else if( temp[pos] == 7 ){
+		calnums_dp[pos][F] = check( ( temp[pos] - 1 ) * getnCk( pos - 1, F ) ) * check( getpow( 2, F ) * getpow( 8, pos - 1 - F ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = calnums_dp[pos][F] + check( getnCk( pos - 1, F - 1 ) * check( getpow( 2, F - 1 ) * getpow( 8, pos - 1 - ( F - 1 ) ) ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] + calnums( temp, len, pos - 1, F - 1 ) );
+	} else{
+		calnums_dp[pos][F] = check( ( temp[pos] - 2 ) * getnCk( pos - 1, F ) ) * check( getpow( 2, F ) * getpow( 8, pos - 1 - F ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = calnums_dp[pos][F] + check( 2*getnCk( pos - 1, F - 1 ) * check( getpow( 2, F - 1 ) * getpow( 8, pos - 1- ( F - 1) ) ) );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] );
+		calnums_dp[pos][F] = check( calnums_dp[pos][F] + calnums( temp, len, pos - 1, F ) );	
+	}
+	done[pos][F] = 1;
+	return normal( len, pos, F );
+}
+ 
+void calseq( int N, long long M ){
+	int i, j, f, temp_M = M, len = 0;
+	int temp[DIGIT+2];
+	while( temp_M > 0 ){
+		temp[++len] = temp_M%10;
+		temp_M /= 10;
+	}
+	
+	memset( done, 0, sizeof(done) );
+	for( f=0; f<=len; f++ )
+		calseq_dp[1][f] = check( calnums( temp, len, len, f ) );
+	
+	for( i=2; i<=N; i++ )
+		for( f=0; f<=len; f++ ){
+			calseq_dp[i][f] = 0LL;
+			if( C[N-i+1] == 1 )
+				calseq_dp[i][f] = check( calnums( temp, len, len, f ) * calseq_dp[i-1][f] );
+			else{
+				for( j=0; j<=len; j++ )
+					if( f != j )
+						calseq_dp[i][f] = check( calseq_dp[i][f] + calnums( temp, len, len, f ) * calseq_dp[i-1][j] );
+			}
+		}
+}
+ 
+long long checkfor( int mid, int pos, int N ){
+	int i, j, f, len = 0, temp_mid = mid;
+	int temp[DIGIT+2];
+	while( temp_mid > 0 ){
+		temp[++len] = temp_mid%10;
+		temp_mid /= 10;
+	}
+	
+	long long result = 0LL;
+	memset( done, 0, sizeof(done) ); 
+	if( pos == 1 && pos < N ){
+		for( f=0; f<=len; f++ ){
+			if( C[pos] == 1 )
+				result = check( result + calnums( temp, len, len, f ) * calseq_dp[N-pos][f] );
+			else for( j=0; j<=DIGIT; j++ )
+					if( j != f )
+						result = check( result + calnums( temp, len, len, f ) * calseq_dp[N-pos][j] );
+		}
+	} 
+	else if( C[pos-1] == 1 && pos < N ){
+		f = func[pos-1];
+		if( C[pos] == 1 )
+			result = check( result + calnums( temp, len, len, f ) * calseq_dp[N-pos][f] );
+		else for( j=0; j<=DIGIT; j++ )
+			if( j != f )
+				result = check( result + calnums(temp, len, len, f ) * calseq_dp[N-pos][j] );
+	}
+	else if( C[pos-1] == 0 && pos < N ) {
+		for( f=0; f<=len; f++ )
+			if( f != func[pos-1] ){
+				if( C[pos] == 1 )
+					result = check( result + calnums( temp, len, len, f ) * calseq_dp[N-pos][f] );
+				else for( j=0; j<=DIGIT; j++ )
+					if( j != f )
+						result = check( result + calnums( temp, len, len, f ) * calseq_dp[N-pos][j] );
+			}
+	} 
+	else if( pos > 1 && pos == N ){
+		if( C[pos-1] == 1 )
+			result = check( result + calnums( temp, len, len, func[pos-1] ) );
+		else for( f=0; f<=len; f++ )
+				if( f != func[pos-1] )
+					result = check( result + calnums( temp, len, len, f ) );			
+	} else if( pos == 1 && pos == N ){
+		for( f=0; f<=len; f++ )
+			result = check( result + calnums( temp, len, len, f ) );
+	} else{
+		printf( "Garbage pos : %d, len : %d N : %d\n", pos, len, N );
+	}
+	
+	return result;
+}
+ 
+int getfunc( int low ){
+	int val = 0;
+	while( low > 0 ){
+		if( low%10 == 4 || low%10 == 7 )
+			val++;
+		low /= 10;
+	}
+	return val;
+}
+ 
+void performtest(){
+	memset( calseq_dp, 0, sizeof(calseq_dp) );
+	memset( calnums_dp, 0, sizeof(calnums_dp) );
+	int i, j, k, N, M, K;
+	scanf( "%d %d %d", &N, &M, &K );
+	for( i = 1; i < N; i++ )
+		scanf( "%d", C + i );
+	calseq( N, M );
+	
+	int low, high, mid;
+	for( i=1; i<=N; i++ ){
+		low = 1; high = M;
+		while( low < high ){
+			mid = ( low + high )/2;
+			if( checkfor( mid, i, N ) >= K )
+				high = mid;
+			else
+				low = mid + 1;
+		}
+		//update K and func and res and check
+		res[i] = low;
+		func[i] = getfunc( low );
+		if( checkfor( low, i, N ) < K ){
+			printf( "-1\n" );
+			return;
+		}
+		if( low - 1 > 0 )
+			K -= checkfor( low - 1, i, N );
+	}
+	
+	for( i=1; i<=N; i++ )
+		printf( "%d ", res[i] );
+	printf( "\n" );
+}
+ 
+int main(){
+	findnCk();
+	int tests;
+	scanf( "%d", &tests );
+	while( tests-- )
+		performtest();
+	return 0;
+} 

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+	while(t--)
+    {
+  		char str[1000];
+  		scanf("%s",str);
+    	int n = strlen(str);
+      	int i,f_cnt=0,s_cnt=0,f,s,flag=0;
+      	for(i=0;i<(n/2);i++)
+        {
+          f=0;
+          while(f<(n/2))
+          {
+            if(str[i] == str[f])
+              	f_cnt++;
+            f++;
+          }
+          s=n/2+n%2;
+          while(s<n)
+          {
+            if(str[i] == str[s])
+              	s_cnt++;
+           	s++;
+          }
+          
+          if(f_cnt != s_cnt)
+          {
+            flag = 1;
+            break;
+          }
+        }
+      if(flag)
+        printf("NO\n");
+      else
+        printf("YES\n");
+    }
+	return 0;
+}

@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define lli long long int
+#define mp make_pair
+#define pb push_back
+vector<int>adj[200001];
+bool vis[200001];
+//int val=0;
+int e1,v1;
+float r1;
+ 
+void initialize()
+{
+    for(int i=0;i<200001;i++)
+    {
+        adj[i].clear();
+        vis[i]=false;
+    }
+}
+ 
+void dfs(int x)
+{
+    vis[x]=true;
+    v1++;
+    e1+=adj[x].size();
+    for(unsigned int i=0;i<adj[x].size();i++)
+    {
+        int y=adj[x][i];
+        if(!vis[y])
+        {
+            dfs(y);
+            //val++;
+        }
+    }
+}
+ 
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    initialize();
+    for(int i=0;i<m;i++)
+    {
+        int x,y;
+        cin>>x>>y;
+        adj[x].pb(y);
+        adj[y].pb(x);
+    }
+    int e=0,v=1;
+    float r=-1;
+    for(int i=1;i<=n;i++)
+    {
+        if(!vis[i])
+        {
+            e1=0,v1=0;
+            dfs(i);
+            e1=e1/2;
+            r1=((float)e1)/(float)v1;
+            if(r1>=r)
+            {
+                e=e1;
+                v=v1;
+                r=r1;
+            }
+        }
+    }
+    if(e>v)
+    {
+        cout<<">1"<<endl;
+    }
+    else
+    {
+        //int e2=e,v2=v;
+        int x=__gcd(e,v);
+        cout<<e/x<<"/"<<v/x<<endl;
+    }
+    return 0;
+}

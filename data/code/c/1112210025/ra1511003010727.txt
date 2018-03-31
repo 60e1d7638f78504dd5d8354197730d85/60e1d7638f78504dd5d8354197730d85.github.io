@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int sum(int d,int n){
+  if(d==0)
+    return n;
+  int sumn=0,i;
+  for(i=1;i<=n;i++){
+    sumn+=i;
+  }
+  return sum(d-1,sumn);
+}
+
+int main()
+{
+	int t,d,n,sumd;
+  	scanf("%d",&t);
+  	while(t--){
+      scanf("%d %d",&d,&n);
+      sumd=sum(d,n);
+      printf("%d\n",sumd);
+    }
+  
+	return 0;
+}

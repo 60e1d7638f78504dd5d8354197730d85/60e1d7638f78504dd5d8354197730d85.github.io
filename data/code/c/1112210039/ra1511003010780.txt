@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<malloc.h>
+void main()
+{
+	long long t,l,s,c,d,likes,i,flag;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		flag=0;
+		scanf("%lld%lld%lld%lld",&l,&d,&s,&c);
+		likes=s;
+		for(i=1;i<d;i++)
+		{
+			likes+=likes*c;
+			if(likes>=l)
+			{
+				printf("ALIVE AND KICKING\n");
+				flag=1;
+				break;
+			}
+		}
+		if(likes>=l && flag==0)
+		{
+			printf("ALIVE AND KICKING\n");	
+			flag=1;
+		}
+		if(flag==0)
+			printf("DEAD AND ROTTING\n");
+ 
+	}
+} 

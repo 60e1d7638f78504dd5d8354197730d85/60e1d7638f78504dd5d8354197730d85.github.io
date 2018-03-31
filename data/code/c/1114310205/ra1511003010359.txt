@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<math.h>
+int lngth(long int);
+int main() {
+		int l,x,t;
+		long int n,max,a,nn,m;
+		scanf("%d",&t);
+		while(t--){
+		max=0;
+		scanf("%ld",&m);
+		n=m;
+		if((n%10)!=0)
+          max=m;
+			l=lngth(n);
+			x=l;
+			while(x--){
+				a=n%((long)pow(10,l-1));
+				n=n/((long)pow(10,l-1));
+				nn=a*10+n;
+				n=nn;
+				if(n>max) max=n;
+			l=lngth(n);
+			}
+			n=max;
+			l=lngth(n);
+			x=lngth(m);
+			while(x--){
+				a=n%10;
+				n=n/10;
+				nn=a*((long)pow(10,l-1))+n;
+				n=nn;
+				if(n>max) max=n;
+			l=lngth(n);
+			}
+			n=m;
+			l=x=lngth(n);
+			while(x--){
+				a=n%10;
+				n=n/10;
+				nn=a*((long)pow(10,l-1))+n;
+				n=nn;
+				if(n>max) max=n;
+			l=lngth(n);
+			}
+				 printf("%ld\n",max);
+		}
+		return 0;
+}
+ 
+int lngth(long int n){
+	int i=0;
+		while(n>0){
+			n/=10;
+			i++;
+		}
+return i;
+}

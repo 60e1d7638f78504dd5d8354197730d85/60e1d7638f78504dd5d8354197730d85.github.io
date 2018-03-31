@@ -1,0 +1,26 @@
+
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	String st=sc.nextLine();
+      	String word="",temp="0";
+      	int digit=0;
+      	
+      	for(char c:st.toCharArray())
+        {
+          	if(Character.isDigit(c))
+              temp+=c;
+          	else
+            {
+              word+=c;
+              digit+=Integer.parseInt(temp);
+              temp="0";
+            }
+        }
+      	digit+=Integer.parseInt(temp);
+      	System.out.println(word+digit);
+	}
+}

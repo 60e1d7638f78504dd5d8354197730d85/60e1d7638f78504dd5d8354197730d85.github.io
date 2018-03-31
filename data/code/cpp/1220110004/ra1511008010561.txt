@@ -1,0 +1,33 @@
+#include <iostream>
+#include<cstring>
+#include<exception>
+using namespace std;
+int main()
+{
+  char s[20];
+  int i,j,k;
+  cin>>j;
+  for(k=0;k<j;k++)
+  {int flag=0;
+      cin>>s;
+    
+      
+      try{
+    {for(i=0;s[i]!='\0';i++)
+      {if((s[i]<48||s[i]>57)&&s[i]!='.')
+        flag=1;
+      }
+      }
+     if(flag==1)
+       throw "Wrong Input" ;
+     else
+       cout<<s<<"\n";
+      }
+    catch(const char *p) 
+    {
+      cout<<p<<"\n";
+    }
+       
+  }
+	return 0;
+}

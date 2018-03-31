@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int i,j,c;
+  char str[50][50],t[50];
+  scanf("%d",&c);
+  for(i=0;i<=c;i++)
+  {
+  scanf("%s[^\n]",str[i]);
+  }
+   for(i=0;i<c-1;i++)
+   {
+     for(j=i+1;j<c;j++)
+     {
+       if(strcmp(str[i],str[j])>0){
+         strcpy(t,str[i]);
+         strcpy(str[i],str[j]);
+         strcpy(str[j],t);
+       }
+     }
+   }
+  for(i=0;i<c;i++)
+  {
+   puts(str[i]);
+  }     
+return 0;
+}

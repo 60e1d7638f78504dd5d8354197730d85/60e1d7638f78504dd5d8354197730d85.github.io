@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+    int main()
+    {int t;
+    scanf("%d",&t);
+    while(t--){
+    int n,m,i,j;
+    scanf("%d%d",&n,&m);
+    int fin[106][106]={0};
+    char ch[106][106],arr[n+1][m+1];
+    for(i=0;i<n;i++)
+    scanf("%s",arr[i]);
+    // for(i=0;i<n;i++)
+    // for(j=0;j<m;j++)
+    // printf("%d ",1+((arr[i][j]-'0')-'0'));
+    for(i=0;i<n;i++){
+    for(j=0;j<m;j++){
+    if(i==0){
+    if(j==0)
+    fin[i][j]=(arr[i][j]-'0')+(arr[i+1][j]-'0')+(arr[i][j+1]-'0');
+    else if(j!=m-1)
+    fin[i][j]=fin[i][j-1]+(arr[i+1][j]-'0')+(arr[i][j+1]-'0');
+    else
+    fin[i][j]=fin[i][j-1]+(arr[i+1][j]-'0');
+    ch[i][j]='l';
+    }
+    else if(i!=n-1){
+    if(j==0){
+    fin[i][j]=fin[i-1][j]+(arr[i][j+1]-'0')+(arr[i+1][j]-'0');
+    ch[i][j]='u';
+    }
+    else{
+    int a,b;
+    if(ch[i][j-1]=='u'||ch[i][j-1]=='b')
+    a=0;
+    else
+    a=(arr[i-1][j]-'0');
+    if(ch[i-1][j]=='u')
+    b=(arr[i][j-1]-'0');
+    else
+    b=0;
+    if(fin[i-1][j]+b<fin[i][j-1]+a){
+    ch[i][j]='u';
+    fin[i][j]=fin[i-1][j]+b+(arr[i+1][j]-'0');
+    if(j!=m-1)
+    fin[i][j]+=(arr[i][j+1]-'0');
+    }
+    else if(fin[i-1][j]+b==fin[i][j-1]+a){
+    ch[i][j]='b';
+    fin[i][j]=fin[i-1][j]+b+(arr[i+1][j]-'0');
+    if(j!=m-1)
+    fin[i][j]+=(arr[i][j+1]-'0');
+    }
+    else{
+    ch[i][j]='l';
+    fin[i][j]=fin[i][j-1]+a+(arr[i+1][j]-'0');
+    if(j!=m-1)
+    fin[i][j]+=(arr[i][j+1]-'0');
+    }
+     
+    }
+    }
+    else{
+    if(j==0){
+    fin[i][j]=fin[i-1][j]+(arr[i][j+1]-'0');
+    ch[i][j]='u';
+    }
+    else{
+    int a,b;
+    if(ch[i][j-1]=='u'||ch[i][j-1]=='b')
+    a=0;
+    else
+    a=(arr[i-1][j]-'0');
+    if(ch[i-1][j]=='u')
+    b=(arr[i][j-1]-'0');
+    else
+    b=0;
+    if(fin[i-1][j]+b<fin[i][j-1]+a){
+    ch[i][j]='u';
+    fin[i][j]=fin[i-1][j]+b;
+    if(j!=m-1)
+    fin[i][j]+=(arr[i][j+1]-'0');
+    }
+    else if(fin[i-1][j]+b==fin[i][j-1]+a){
+    ch[i][j]='b';
+    fin[i][j]=fin[i-1][j]+b;
+    if(j!=m-1)
+    fin[i][j]+=(arr[i][j+1]-'0');
+    }
+    else{
+    ch[i][j]='l';
+    fin[i][j]=fin[i][j-1]+a;
+    if(j!=m-1)
+    fin[i][j]+=(arr[i][j+1]-'0');
+    }
+     
+    }
+    }
+    }
+    }
+//   for(i=0;i<n;i++){
+  //   for(j=0;j<m;j++)
+    //printf("%d ",fin[i][j]);
+  	// printf("\n");}
+    printf("%d\n",fin[n-1][m-1]);
+     
+    }
+    return 0;
+}

@@ -1,0 +1,36 @@
+import java.util.*;
+interface Area
+{
+ 
+	float getArea(float l,float h);
+}
+ 
+interface Perimeter
+{
+	float getPerimeter(float l,float h);     
+}
+ 
+
+class Rectangle implements Area, Perimeter
+{
+    
+        public float getArea(float l,float h)
+        {
+        return(l*h);
+        }
+         public float getPerimeter(float l,float h)
+        {
+        return(2*(l+h));
+        }
+ }
+  public class TestClass { 
+    public static void main(String args[])
+    {
+        Rectangle d = new Rectangle();
+        Scanner sc=new Scanner(System.in);
+        float l=sc.nextFloat();
+        float b=sc.nextFloat();
+        System.out.println(d.getArea(l,b));
+        System.out.println(String.format("%.2f",d.getPerimeter(l,b)));
+     }
+}

@@ -1,0 +1,73 @@
+#include<stdio.h>
+ 
+long long int lcm(long long int x,long long int y)
+{
+	long long int i,term;
+	if(y%x==0)
+		return y;
+	else
+	{
+		for(i=x-1;i>0;i--)
+		{
+			if(x%i==0 && y%i==0)
+			{
+				term = (x*y)/i;
+				break;
+			}
+		}
+		return term;
+	}
+}		
+ 
+long long int mini(long long int x,long long int y)
+{
+	return(x<y)?x:y;
+}
+int main()
+{
+	long long int r,t,n,i,j,k,min,value;
+	scanf("%lld",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%lld",&n);
+		long long int a[n];
+		for(j=0;j<n;j++)
+			scanf("%lld",&a[j]);
+		for(j=0;j<n-1;j++)
+		{
+			min = a[j];
+			r = j;
+			for(k=j+1;k<n;k++)
+			{
+				if(a[k]<min)
+				{
+					min = a[k];
+					r = k;
+				}
+			}
+			a[r] = a[j];
+			a[j] = min;
+		}
+		if(a[0]==a[1])
+			printf("%lld\n",a[0]);
+		else
+		{	
+			min = lcm(a[0],a[1]);
+			for(j=0;j<mini(n-1,50);j++)
+			{	
+				if(a[j]>min || a[j]>10000)
+					break;
+				for(k=j+1;k<n;k++)
+				{
+					if(a[k]>min || a[j]>10000)
+						break;
+					value = lcm(a[j],a[k]);
+					if(value<min)
+						min = value;
+				}
+			}
+			printf("%lld\n",min);
+		}	
+	}
+return 0;
+} 

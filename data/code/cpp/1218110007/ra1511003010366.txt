@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class student{
+  protected : int details ;
+  public :
+  	void get(){
+      cin >> details ;
+    }
+} ;
+
+class sports{
+  protected : int marks1 , marks2 , marks3 ;
+  public :
+  	void getsm(){
+      cin >> marks1 >> marks2 >> marks3 ;
+    }
+} ;
+
+class statement: public student , public sports{
+  private : float total , average ;
+  public :
+  	void display() {
+      total = marks1 + marks2 + marks3 ;
+      average = total/3 ;
+      cout << details << endl << total << endl << average << endl ;
+    }
+} ;
+
+int main()
+{
+  statement stmt ;
+  stmt.get() ;
+  stmt.getsm() ;
+  stmt.display();
+
+	return 0;
+}

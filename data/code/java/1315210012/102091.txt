@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+class TestClass
+{
+  public static long gcd(long a, long b)
+  {
+      if(a==0)
+      return b;
+      
+      return gcd(b%a,a);
+  }
+  public static void main(String args[]) throws IOException
+  {
+      BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+      
+      int i,j,N,T,tmp;
+      long min;
+      
+      System.out.println();
+      
+      T=Integer.parseInt(br.readLine().trim());
+      
+      StringBuilder sb=new StringBuilder();
+      
+      while(T-->0)
+      {
+          N=Integer.parseInt(br.readLine().trim());
+          
+          String s[]=br.readLine().trim().split(" ");
+          
+          long a[]=new long[N];
+          
+          for(i=0;i<N;i++)
+          a[i]=Long.parseLong(s[i]);
+          
+          Arrays.sort(a);
+          
+          min=((a[0])*(a[1]))/(gcd(a[0],a[1]));
+          
+          for(i=0;i<N;i++)
+          {
+              if(a[i]>=min)
+              break;
+              
+              for(j=i+1;j<N;j++)
+              {
+                  long lcm=(a[i]*a[j])/gcd(a[i],a[j]);
+                  
+                  if(lcm<min)
+                  min=lcm;
+                  
+                  if(lcm==a[j])
+                  break;
+              }
+          }
+          sb.append(min+"\n");
+      }
+      System.out.println(sb);
+  }
+} 

@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<math.h>
+int ans(int i)
+{
+  int count=0;
+  while(i>0)
+  {
+    if(i%2)
+      count++;
+    i/=2;
+  }
+  return count;
+}
+int main()
+{
+int t,arr[1001],i,n;
+  arr[0]=0;
+  arr[1]=1;
+  scanf("%d",&t);
+  for(i=2;i<=1000;i++)
+    arr[i]=arr[i-1]+ans(i);
+  while(t--)
+  {
+    scanf("%d",&n);
+    printf("%d\n",arr[n]);
+  }
+  return 0;
+}

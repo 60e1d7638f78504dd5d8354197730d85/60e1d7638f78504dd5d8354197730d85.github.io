@@ -1,0 +1,27 @@
+#include <stdio.h>
+int count(int n)
+{
+  int c=0;
+  while(n>0)
+  {
+    n=n&(n-1);
+    c++;
+  }
+  return c;
+}
+int main()
+{
+	int t,n,i,j,sum=0;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&n);
+    sum=0;
+    for(j=1;j<=n;j++)
+    {
+      sum+=count(j);
+    }
+    printf("%d\n",sum);
+  }
+	return 0;
+}

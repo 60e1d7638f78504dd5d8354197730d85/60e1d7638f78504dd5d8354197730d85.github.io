@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+    int arr[12];
+
+class Code {
+private:
+  int number;
+public:
+  void initializeData(int x) {
+    number = x;
+  }
+  int getNumber() {
+    return number;
+  }
+  int* convertTostraightBinary() {
+    int i =0;
+    int num = number;
+     while (num > 0 && i < 12)
+    {
+       int bin;
+        bin = num % 2;
+        arr[i++] = bin;
+        num /= 2;
+     }
+    return arr;
+  }
+  
+};
+
+int main()
+{
+   Code c;
+   int x;
+   cin >> x;
+   c.initializeData(x);
+   int* a = c.convertTostraightBinary();  
+   for(int i = 12-1; i >= 0; i--){
+     cout << a[i];}
+  return 0;
+}

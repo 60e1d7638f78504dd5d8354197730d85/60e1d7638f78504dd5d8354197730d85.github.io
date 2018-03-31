@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct student
+{
+char name[15];
+  int marks;
+  int sn;
+}st[10];
+int main()
+{
+int i,j,k,n,m1,sn1;
+  char na[15];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  scanf("%s%d%d",st[i].name,&st[i].sn,&st[i].marks);
+  }
+  
+  for(i=0;i<n-1;i++)
+  {
+  for(j=0;j<n-1;j++)
+  {
+  if(st[j].marks<st[j+1].marks)
+  {
+  m1=st[j].marks;
+    st[j].marks=st[j+1].marks;
+    st[j+1].marks=m1;
+    strcpy(na,st[j].name);
+    strcpy(st[j].name,st[j+1].name);
+    strcpy(st[j+1].name,na);
+    sn1=st[j].sn;
+    st[j].sn=st[j+1].sn;
+    st[j+1].sn=sn1;
+  }
+    else if((st[j].marks==st[j+1].marks)&&(strcmp(st[j].name,st[j+1].name)>0))
+    {
+    m1=st[j].marks;
+      st[j].marks=st[j+1].marks;
+      st[j+1].marks=m1;
+      strcpy(na,st[j].name);
+      strcpy(st[j].name,st[j+1].name);
+      strcpy(st[j+1].name,na);
+      sn1=st[j].sn;
+      st[j].sn=st[j+1].sn;
+      st[j+1].sn=sn1;
+    }
+    else if((st[j].marks==st[j+1].marks)&&(strcmp(st[j].name,st[j+1].name)==0)&&(st[j].sn>st[j+1].sn))
+    {
+    m1=st[j].marks;
+      st[j].marks=st[j+1].marks;
+      st[j+1].marks=m1;
+      strcpy(na,st[j].name);
+      strcpy(st[j].name,st[j+1].name);
+      strcpy(st[j+1].name,na);
+      sn1=st[j].sn;
+      st[j].sn=st[j+1].sn;
+      st[j+1].sn=sn1;
+    }
+  }
+  }
+  for(i=0;i<n;i++)
+  {
+  printf("%s %d %d\n",st[i].name,st[i].sn,st[i].marks);
+  }
+	return 0;
+}

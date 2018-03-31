@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+
+  char s1[100];
+  scanf("%s",s1);
+  
+  int test;
+  scanf("%d",&test);
+  char mat[test][10000];
+  int i,j;
+  char temp[10000];
+  
+  for(i = 0;i<test;i++)
+  {
+    scanf("%s",mat[i]);
+    if(strcmp(mat[i],s1)==0)
+    {
+      printf("%s",mat[i]);
+      return 0;
+    }
+    if(s1[0] != mat[i][0] || s1[1]!=mat[i][1] || s1[2]!=mat[i][2])
+    {
+      printf("%s",s1);
+      return 0;
+    }
+  }
+ strcpy(temp,mat[0]);
+for(i=1;i<test;i++)
+{
+  j=i;
+  if(strcmp(temp,mat[j])>0)
+  {
+    strcpy(temp,mat[j]);
+  }
+ 
+}
+  
+  printf("%s",temp);
+	return 0;
+}

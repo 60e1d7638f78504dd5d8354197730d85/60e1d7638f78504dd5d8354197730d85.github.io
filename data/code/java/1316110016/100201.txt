@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main (String args[]){
+       Sample objname = new Sample();
+       objname.getArmstrongNumber();
+       objname.displayArmstrongNumber();
+
+}
+}  
+class Sample{
+  int n,n1;
+public void getArmstrongNumber()
+{
+ Scanner s = new Scanner(System.in);
+ n = s.nextInt();
+ n1 = s.nextInt();
+}
+public void displayArmstrongNumber()
+{
+  for(int number = n+1; number < n1; ++number) {
+            int digits = 0;
+            int result = 0;
+            int originalNumber = number;
+
+            // number of digits calculation
+            while (originalNumber != 0) {
+                originalNumber /= 10;
+                ++digits;
+            }
+
+            originalNumber = number;
+
+            
+            while (originalNumber != 0) {
+                int remainder = originalNumber % 10;
+                result += Math.pow(remainder, digits);
+                originalNumber /= 10;
+            }
+
+            if (result == number)
+                System.out.println(number + " is an Armstrong number");
+        }
+}
+}

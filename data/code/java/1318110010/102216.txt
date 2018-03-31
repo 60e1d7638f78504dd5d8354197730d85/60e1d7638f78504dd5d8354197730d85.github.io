@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+interface Gross
+{
+  double TA=800.0;
+  double DA=1500.0;
+  void gross_sal();
+}
+class Employee
+{
+  String name;
+  float basic_sal;
+  Employee(String n,float b)
+  {
+    name=n;
+    basic_sal=b;
+  }
+  public void display()
+  {
+    System.out.println("Name of Employee="+name);
+    System.out.println("Basic Salary of Employee="+basic_sal);
+  }
+}
+class Salary extends Employee implements Gross
+{
+float hra;
+Salary(String n,float b,float h)
+{
+super(n,b);
+hra=h;
+}
+public void disp()
+{
+super.display();
+System.out.println("HRA of Employee="+hra);
+System.out.println("TA of Employee="+TA);
+System.out.println("DA of Employee="+DA);
+}
+public void gross_sal()
+{
+System.out.println("Gross Salary of Employee="+(super.basic_sal+TA+DA+hra));
+}
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+     String na;
+     float sal,H;
+     Scanner s1=new Scanner(System.in);
+     na=s1.next();
+     sal=s1.nextFloat();
+     H=s1.nextFloat();
+     Salary s=new Salary(na,sal,H);
+     s.disp();
+     s.gross_sal();
+		
+	}
+}

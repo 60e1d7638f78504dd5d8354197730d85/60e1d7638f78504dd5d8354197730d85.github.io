@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n,i,j,t;
+  	scanf("%d",&t);
+    while(t){
+  	scanf("%d",&n);
+  	int x[n],y[n];
+	for(i=0;i<n;i++){
+    	scanf("%d",&x[i]);
+    }
+  	for(i=0;i<n;i++){
+    	scanf("%d",&y[i]);
+    }
+  	double area=0.0;
+  	j=n-1;
+  	for(i=0;i<n;i++){
+    	area+=(x[j]+x[i])*(y[j]-y[i]);
+      	j=i;
+    }
+    if(area<0){
+    	area=-area;
+    }  
+    printf("%0.1f\n",(area/2));
+      t--;
+    }
+	return 0;
+}

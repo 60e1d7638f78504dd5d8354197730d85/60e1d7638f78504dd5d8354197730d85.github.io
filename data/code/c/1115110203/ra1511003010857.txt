@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main()
+{
+	int t,y,x,i;
+	scanf("%d",&t);
+	while(t!=0)
+	{
+		x=0;
+		scanf("%d",&y);
+		if(y>2001)
+		{
+			for(i=2001;i<=y-1;i++)
+			{
+				if((i%400==0)||((i%4==0)&&(i%100!=0)))
+				x++;
+			}
+			x=(x+y-2001)%7;
+		}
+		else
+		{
+			for(i=y;i<=2000;i++)
+			{
+				if((i%400==0)||((i%4==0)&&(i%100!=0)))
+				x++;
+			}
+			x=6-((x-y+2000)%7);
+		}
+                 printf("\n");
+		switch(x)
+		{
+			case 1:printf("tuesday");break;
+			case 2:printf("wednesday");break;
+			case 3:printf("thursday");break;
+			case 4:printf("friday");break;
+			case 5:printf("saturday");break;
+			case 6:printf("sunday");break;
+			case 0:printf("monday");break;
+		}
+		t--;
+	}
+	return 0;
+} 

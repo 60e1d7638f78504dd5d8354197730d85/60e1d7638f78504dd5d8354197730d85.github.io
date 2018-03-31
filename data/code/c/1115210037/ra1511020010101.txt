@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int N,i,j,x,y;
+  	scanf("%d",&N);
+  int ar[N+2][N];
+  	long distance=0;
+  for(i=0;i<N;i++)
+  {
+   scanf("%d %d",&ar[0][i],&ar[1][i]); 
+  }
+  for(i=0;i<N;i++)
+  {
+    for(j=i;j<N;j++)
+    {
+      x=ar[0][j]-ar[0][i];
+      y=ar[1][j]-ar[1][i];
+      if(x<0)
+        x=0-x;
+      if(y<0)
+        y=0-y;
+      distance = distance + x + y;
+    }
+  }
+  printf("%ld",distance);
+  return 0;
+}

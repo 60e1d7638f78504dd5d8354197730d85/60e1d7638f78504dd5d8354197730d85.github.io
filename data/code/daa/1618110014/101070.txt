@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+    char p[100001],t[1000001];
+    //printf("dads");
+    scanf("%s",p);
+    scanf("%s",t);
+    int length_p=strlen(p);
+    int length_t=strlen(t);
+    
+    int f[100001];
+    int i,j;
+    i=0;
+    
+    f[0]=0;
+    for (j=1;j<length_p;++j)
+    {
+     if(p[i]==p[j])
+     {
+      f[j]=f[j-1]+1;
+      i++;
+     }
+     else
+     {
+      i=f[j-1];
+      while(p[j]!=p[i])
+      {
+       i=f[i-1];
+       if(i==0)
+       {
+        if(p[j]==p[i])
+        {
+         f[j]=1;
+         i=1;
+         break;
+         
+        }
+        else
+        {
+         f[j]=0;
+         i=0;
+         break;
+        }
+       }
+      }
+      if(i>0)
+      {
+       f[j]=f[i]+1;
+       i=i+1;
+      }
+     }
+    }
+    
+    int count=0;
+    j=0;
+    for(i=0;i<length_t;++i)
+    {
+     
+     if(t[i]==p[j])
+     {
+      j++;
+      if(j==length_p && length_p!=1)
+      {
+       count++;
+       j=f[j-1];
+      }
+      if(j==length_p && length_p==1)
+      {
+       count++;
+       j=0;
+      }
+     }
+     else
+     {
+      if(j>0)
+      {
+       j=f[j-1];
+       i--;
+      }
+     }
+    }
+    printf("%d",count);
+    return 0;
+}

@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+//using namespace std;
+char a[1000050];
+int i,j;
+int main()
+{
+    while(~scanf("%s[^/n]",a))
+    {
+        int flag=0;
+        int n=strlen(a);
+        for( i=0;i<n;i++)
+        {
+            if(a[i]!='a')
+            {
+                flag=1;
+                a[i]-=1;
+                for( j=i+1;j<n;j++)
+                {
+                    if(a[j]!='a')
+                    {
+                        a[j]--;
+                    }
+                    else break;
+                }
+                break;
+            }
+        }
+        if(flag==0)
+        {
+            if(a[n-1]!='a')
+            a[n-1]-=1;
+            else a[n-1]='z';
+        }
+        for( i=0;i<n;i++)
+        {
+            printf("%c",a[i]);
+        }
+        printf("\n");
+    }
+return 0;
+}

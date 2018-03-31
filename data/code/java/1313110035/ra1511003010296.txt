@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int t = sc.nextInt();
+       while(t>0){
+       	  int a = sc.nextInt();
+        // check(a);
+         System.out.println(check(a));
+         t--;
+       }
+	}
+  
+  public static int check(int a){
+  	int counter = 0;
+    int g=0;
+    int m =a;
+    int l = String.valueOf(a).length();
+    for(int i=0; i<l; i++){
+    	int b = a%10;
+    	a = a/10;
+      if(b==0){
+      	g++;
+      }else{
+        if(m%b==0){
+              counter++;
+        }
+      }
+    }
+    
+    return counter;
+  }
+  
+}

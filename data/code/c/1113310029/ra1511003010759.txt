@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  
+  scanf("%d", &t);
+  
+  while(t--)
+  {
+    char str[100];
+    int suvo=0, suvojit=0, i;
+    
+    scanf("%s", str);
+    
+    //printf("%s", str);
+    for(i=0; str[i]!='\0'; i++)
+    {
+      if(str[i]=='S' && str[i+1]=='U' && str[i+2]=='V' && str[i+3]=='O')
+    {
+      if(str[i+4]=='J' && str[i+5]=='I' && str[i+6]=='T')
+      {
+        suvojit++;
+        i=i+6;
+      }
+      else
+      {
+        suvo++;
+        i=i+3;
+      }
+      }
+    }
+    
+    printf("SUVO = %d\n", suvo);
+    printf("SUVOJIT = %d\n", suvojit);
+  }
+
+	return 0;
+}

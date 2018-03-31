@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scnr = new Scanner(System.in);
+    String input = scnr.nextLine();
+    String rotation = scnr.nextLine();
+    if (checkRotatation(input, rotation)) {
+      System.out.println("s2 is a rotated version of s1");
+    } else {
+      System.out.println("s2 is not rotated version of s1");
+    }
+
+    scnr.close();
+  }
+
+  public static boolean checkRotatation(String original, String rotation) {
+    if (original.length() != rotation.length()) {
+      return false;
+    }
+
+    String concatenated = original + original;
+
+    if (concatenated.indexOf(rotation) != -1) {
+      return true;
+    }
+
+    return false;
+	}
+}

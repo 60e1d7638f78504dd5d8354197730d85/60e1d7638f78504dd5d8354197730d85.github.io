@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{ char range[10],check[10];
+ scanf("%s",range);
+ int i,j,flag=1,t,len=strlen(range);
+ scanf("%d",&t);
+ while(t--)
+ {
+   scanf("%s",check);
+   int len1= strlen(check);
+   for(i=0;i<len1;i++)
+   {
+     for(j=0;j<len;j++)
+     {if(check[i]==range[j])
+     { flag=1;
+       break;}
+      else 
+      {
+        flag=0;
+      }
+     }
+     if(flag==0)
+       break;
+   }
+   if( flag==1)
+   {
+     printf("Yes\n");
+   }
+   else
+     printf("No\n");
+ }
+   
+
+	return 0;
+}

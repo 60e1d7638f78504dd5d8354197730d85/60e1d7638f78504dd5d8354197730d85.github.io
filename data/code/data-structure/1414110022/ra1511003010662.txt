@@ -1,0 +1,81 @@
+#include <iostream>
+#define ll long long
+using namespace std;
+ 
+ll insertion (ll arr[], ll size)
+{
+    ll max = size;
+    ll i, sum=0;
+    for (i=0 ;i<max; i++)
+    {
+        ll temp = arr[i];
+        ll j = i;
+        
+        while (j>0 && temp<arr[j-1])
+        {
+            arr[j] = arr[j-1];
+            j = j-1;
+        }
+        
+        arr[j] = temp;
+    }
+    
+    for (i=0; i<max; i++)
+    sum += arr[i];
+    
+    return sum;
+}
+ 
+int main()
+{
+    cin.tie(NULL);
+    ios_base::sync_with_stdio(0);
+    ll n, i, j=0, k=0;
+    
+    cin>>n;
+    
+    ll a[n], z[n], v[n];
+    
+    for(i=0; i<n; i++)
+    {
+        cin>>a[i];
+        
+        if(a[i]%2 == 0)
+        {
+            z[j] = a[i];
+            j++;
+        }
+        
+        else
+        {
+            v[k] = a[i];
+            k++;
+        }
+    }
+    
+    ll res[j+k+2];
+    
+    insertion(v,k);
+    insertion(z,j);
+    
+    for(i=0; i<j; i++)
+    res[i] = z[i];
+    
+    res[j] = insertion(z,j);
+    
+    ll x = 0;
+    
+    for(i=j+1; i<k+j+1; i++)
+   {
+       res[i] = v[x];
+       x++;
+   }
+   
+   res[k+j+1] = insertion(v,k);
+   
+   for(i=0; i<k+j+2; i++)
+   cout<<res[i]<<" ";
+   
+    
+    return 0;
+}

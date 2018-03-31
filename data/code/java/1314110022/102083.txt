@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       ArrayList<Integer> subsets = new ArrayList<>();
+		Scanner scan = new Scanner(System.in);
+       int T = scan.nextInt();
+       
+       for(int i=0; i<T; i++)
+       {
+         int N = scan.nextInt();
+         int[] ar = new int[N];
+         for(int j=0; j<N; j++)
+           ar[j] = scan.nextInt();
+         ar = sort(ar, N);
+         
+         int count = 1; 
+    	 for (int k = 0; k < N-1; k++)
+    	 {
+           if (ar[k] + 1 != ar[k+1])
+            count++;
+         }
+		subsets.add(count);
+       }
+       
+       for(int i=0; i<subsets.size(); i++)
+         System.out.println(subsets.get(i));
+	}
+  private static int[] sort(int[] arr, int len)
+  {
+    for(int i=1; i<len; i++)
+    {
+         for(int j=i; j>0 && arr[j-1]>arr[j]; j--)
+         {
+           int t = arr[j];
+           arr[j] = arr[j-1];
+           arr[j-1] = t;
+         }
+    }
+    return arr;
+  }
+}

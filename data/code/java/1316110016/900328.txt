@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.Math;
+import java.lang.String;
+
+class Sample
+{
+  int l,h;
+  public void getArmstrongNumber()
+  {
+    Scanner inp=new Scanner(System.in);
+   l=inp.nextInt();
+    h=inp.nextInt();
+  }
+  public void displayArmstrongNumber()
+  {
+    for(int i=l;i<=h;i++)
+    {
+      String s=""+i;
+      int len=s.length();
+      int sum=0;
+      int f=i;
+      for(int j=0;j<len;j++)
+      {
+        int d=f%10;
+        sum=sum+(int)Math.pow(d,3);
+        f=f/10;
+      }
+      if(i==sum)
+        System.out.println(i+" is an Armstrong number");
+    }
+  }
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+	Sample objname=new Sample();
+       objname.getArmstrongNumber();
+       objname.displayArmstrongNumber();
+       
+	}
+}

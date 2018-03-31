@@ -1,0 +1,36 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+ 
+int main () {
+	int t;
+	cin>>t;
+	do {
+	int n;
+	cin>>n;//3
+	int a[n],x=1,b[10000],k=-1,i=-1,flag=0,z;
+	for(int i=0;i<n;i++) cin>>a[i];//2 3 5
+	
+	for(;k<10000;) {//0 1 2
+        b[++k]=a[++i]*x;//2 3
+		if(i==n-1) {
+			i=-1;
+			x++;			
+		}
+    }
+    sort(b,b+k);
+ 	for(int j=0;j<k;j++) {
+ 		for(int i=1;i<k&&i!=j;i++) {
+	    	if(b[j]==b[i]) {
+	        z = b[i];
+	        flag=1;
+	    	break;
+			}
+	    }
+	    if(flag==1) break;
+    }
+    if(z!=0) cout<<z<<endl;
+	t--;	
+	}while(t!=0);
+  return 0;
+} 

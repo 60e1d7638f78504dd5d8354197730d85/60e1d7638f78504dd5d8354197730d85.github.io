@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main(int argc, const char * argv[])
+{
+ 
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int n,sh,c,i,j,l,k,m,b,lmax;
+    string A,B;
+ 
+    cin>>n;
+    cin>>A>>B;
+    
+    B.append(B);
+    
+    sh = 0;
+    lmax = 0;
+    l = 0;
+    b = 0;
+    
+    for(j=0;j<n;)
+    {
+        if(A[0]==B[j])
+        {
+            l = 1;
+            m = 1;
+            
+            for(k=j+1;k<j+n && m<n;k++)     // check if not j+n-1
+            {
+                if(A[m]==B[k])
+                {
+                    m++;
+                    l++;
+                }
+                else
+                {
+                    b = j;
+                    while(j<n && A[m]!=B[k++])
+                    {
+                        j++;
+                    }
+                    
+                    break;
+                }
+            }
+        
+            if(l>lmax)
+            {
+                lmax=l;
+                sh = b;
+            }
+            
+        }
+        else
+            j++;
+    }
+    
+    cout<<sh<<"\n";
+    
+    return 0;
+}
+  

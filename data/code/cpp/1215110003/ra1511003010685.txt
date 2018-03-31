@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+class code{
+	int number;
+  	public:
+  void 	initalize(int n){
+  	number=n;
+  	}
+  long * convert(){
+	long *ar=new long[12] ;
+    for(int i=0;i<12;i++)
+      ar[i]=0;
+  	int c=11;
+  		while(number>0){
+        	ar[c]=number%2;
+          	number/=2;
+          c--;
+        }
+    return ar;
+  }
+	};
+int main()
+{
+ int inp;
+  cin>>inp;
+  code obj;
+  obj.initalize(inp);
+  long *ptr=obj.convert();
+  for(int i=0;i<12;i++)
+    cout<<ptr[i];
+  return 0;
+}

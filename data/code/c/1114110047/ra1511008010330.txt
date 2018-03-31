@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int str1,str2,sum[20],remainder=0,i=0,k;
+  scanf("%d",&str1);
+  scanf("%d",&str2);
+  while(str1!=0||str2!=0)
+  {
+    sum[i]=(str1%10 + str2%10 + remainder)%2;
+    remainder=(str1%10 + str2%10 + remainder)/2;
+    str1=str1/10;
+    str2=str2/10;
+    i++;
+  }
+  
+if(remainder!=0)
+{
+ sum[i]=remainder; 
+}
+  else
+  {
+   i--; 
+  }
+ 
+ while(i>=0)
+  {
+  printf("%d",sum[i]);
+   i--;
+  }
+
+	return 0;
+}

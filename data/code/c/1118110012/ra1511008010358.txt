@@ -1,0 +1,36 @@
+#include <stdio.h>
+typedef struct time
+{
+  	int hrs;
+  	int min;
+  	int sec;
+}T;
+T add(T t1,T t2);
+T add(T t1,T t2)
+{
+  	T t3;
+  	t3.sec=t1.sec+t2.sec;
+  	t3.min=t1.min+t2.min;
+  	t3.hrs=t1.hrs+t2.hrs;
+  	if(t3.sec>59)
+    {
+      	t3.sec-=60;
+      	t3.min+=1;
+    }
+  	if(t3.min>59)
+    {
+      	t3.min-=60;
+      	t3.hrs+=1;
+    }
+  	return t3;
+}
+int main()
+{
+  	T t[2],a;
+  	int i;
+  	for(i=0;i<2;i++)
+      	scanf("%d %d %d", &t[i].hrs,&t[i].min,&t[i].sec);
+  	a=add(t[0],t[1]);
+  	printf("%d hrs\n%d min\n%d sec", a.hrs,a.min,a.sec);
+  	return 0;
+}

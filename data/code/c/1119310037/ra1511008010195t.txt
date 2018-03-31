@@ -1,0 +1,138 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define REP(i, a, b) for ((i) = (a); (i) <= (b); ++(i))
+#define Rep(i, n) REP(i, 0, n - 1)
+#define ULL unsigned long long int
+#define MAXN 51
+#define MAX_DIGITS 11
+ 
+int N, C[MAXN];
+ULL M, K;
+int D;
+ULL P2[MAX_DIGITS], P8[MAX_DIGITS], FACT[MAX_DIGITS];
+ULL G[MAX_DIGITS], dp[MAXN][MAX_DIGITS];
+ 
+ULL nCr(int n, int r) { return FACT[n] / FACT[r] / FACT[n - r]; }
+ 
+// Returns number of lucky digits in x
+int luckyDigits(ULL x) { int digit, res = 0; while (x) { digit = x % 10; if (digit == 4 || digit == 7) ++res; x /= 10; } return res; }
+ 
+// Returns number of numbers <= _x with exactly _y lucky digits
+ULL getCount(ULL _x, int _y) {
+    int i, k, y = _y, len;
+    int lC[] = {0,0,0,0,0,1,1,1,2,2};
+    int ulC[] = {0,1,2,3,4,4,5,6,6,7};
+    ULL res = 0LL;
+    char x[MAX_DIGITS];
+    memset(x, '\0', MAX_DIGITS * sizeof(char));
+    sprintf(x, "%llu", _x);
+    len = strlen(x);
+    if (len < y) return res;
+    for (i = 0, k = len - 1; i < len; ++i, --k) {
+        if (k + 1 < y || y < 0) break;
+        if (y >= 1) res += lC[x[i] - '0'] * nCr(k, y - 1) * P2[y - 1] * P8[k - y + 1];
+        if (k >= y) res += ulC[x[i] - '0'] * nCr(k, y) * P2[y] * P8[k - y];
+        if (x[i] == '4' || x[i] == '7') --y;
+    }
+    if (y == 0) ++res;
+    if (_y == 0) --res;
+    return res;
+}
+ 
+void init_dp1() {
+    int i, j, k;
+    Rep(j, MAX_DIGITS) dp[N - 1][j] = 1LL;
+    for (i = N - 2; i >= 0; --i) {
+        Rep(j, MAX_DIGITS) {
+            dp[i][j] = 0LL;
+            if (C[i]) {
+                dp[i][j] = G[j] * dp[i + 1][j];
+                if (dp[i][j] > K) {
+                    dp[i][j] = K + 1;
+                }
+            }
+            else {
+                Rep(k, MAX_DIGITS) {
+                    if (k != j) {
+                        dp[i][j] += G[k] * dp[i + 1][k];
+                        if (dp[i][j] > K) {
+                            dp[i][j] = K + 1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+ 
+ULL getSequenceCount1(ULL x, int idx) {
+    int i;
+    ULL res = 0LL;
+    if (D == -1) {
+        Rep(i, MAX_DIGITS) {
+            res += getCount(x, i) * dp[idx][i];
+            if (res > K) {
+                res = K + 1;
+                break;
+            }
+        }
+    }
+    else if (C[idx - 1]) {
+        res = getCount(x, D) * dp[idx][D];
+        if (res > K) {
+            res = K + 1;
+        }
+    }
+    else {
+        Rep(i, MAX_DIGITS) {
+            if (i == D) continue;
+            res += getCount(x, i) * dp[idx][i];
+            if (res > K) {
+                res = K + 1;
+                break;
+            }
+        }
+    }
+    return res;
+}
+ 
+ULL getElement(int idx) {
+    ULL a, b, lo = 1LL, mid, hi = M;
+    while (lo <= hi) {
+        mid = lo + (hi - lo) / 2;
+        a = getSequenceCount1(mid - 1, idx);
+        b = getSequenceCount1(mid, idx);
+        //printf("Index = %d %llu count(mid-1) = %llu count(mid) = %llu\n", idx, mid, a, b);
+        if (a < K && K <= b) {
+            K -= a;
+            D = luckyDigits(mid);
+            return mid;
+        }
+        else if (b < K) { lo = mid + 1; }
+        else { hi = mid - 1; }
+    }
+    return 0LL;
+}
+ 
+int main() {
+    int i, t;
+    ULL z;
+    P2[0] = P8[0] = FACT[0] = 1LL;
+    REP(i, 1, MAX_DIGITS - 1) { P2[i] = 2LL * P2[i - 1]; P8[i] = 8LL * P8[i - 1]; FACT[i] = i * FACT[i - 1]; }
+    scanf("%d", &t);
+    while (t--) {
+        scanf("%d %llu %llu", &N, &M, &K);
+        Rep(i, N - 1) scanf("%d", &C[i]);
+        Rep(i, MAX_DIGITS) G[i] = getCount(M, i);
+        //printf("%d %llu %llu\n", N, M, K);
+        //Rep(i, N - 1) printf("%d ", C[i]); printf("\n");
+        //Rep(i, MAX_DIGITS) printf("%llu ", G[i]); printf("\n");
+        D = -1;
+        init_dp1();
+        if ((z = getElement(0)) == 0LL) printf("-1\n");
+        else { printf("%llu", z); REP(i, 1, N - 1) printf(" %llu", getElement(i)); printf("\n"); }
+    }
+    return 0;
+}

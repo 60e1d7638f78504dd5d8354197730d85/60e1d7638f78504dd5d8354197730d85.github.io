@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int t,i,ti,c=0;
+  scanf("%d",&t);
+  	while(t--){
+    	int n,f,max=-999;
+      	scanf("%d%d",&n,&f);
+      	int a[n],b[n];
+      	for(i=0;i<n;i++)
+        	scanf("%d",&a[i]);
+      	for(i=0;i<n;i++)
+          	scanf("%d",&b[i]);
+      	ti=f;
+      	for(i=0;i<n;i++){
+          	ti=f;
+        	while(a[i]<ti){
+            	c+=b[i];
+              	ti=ti-a[i];
+            }
+          	if(c>max)
+              max=c;
+          	c=0;
+        }
+      printf("%d\n",max);
+        
+    }
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	class complex
+    {
+      double re, im;
+      public:
+      complex()
+      {
+        re = im = 0;
+      }
+      complex(double r, double i)
+      {
+        re = r;
+        im = i;
+      }
+      complex operator - (complex &a)
+      {	
+        complex res;
+        res.re = re - a.re;
+        res.im = im - a.im;
+        return res;
+      }
+      void put()
+      {
+        cout<<"Output Complex number: "<<re<<"+"<<im<<"i";
+      }
+    };
+  	int r, i;
+  	cin>>r>>i;
+  	complex c1(r,i);
+  	cin>>r>>i;
+  	complex c2(r,i);
+  	complex c3;
+  	c3 = c1 - c2;
+  	c3.put();
+        
+	return 0;
+}

@@ -1,0 +1,196 @@
+#include<stdio.h>
+int h[50005][12];
+int d1[50005], d2[50005], o1[50005], o2[50005], t1[50005], t2[50005];
+int split(int, int);
+int merge(int, int, int);
+int main()
+{
+    int t, i, j, k, sum, x, y, z, n, m, top, a, b, p;
+    static int stamp[500005];
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        for(j=1;j<5002;j++)
+        {
+            h[j][9]=j;
+        }
+        scanf("%d%d",&n,&m);
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&stamp[j]);
+        }
+        for(j=0;j<m;j++)
+        {
+            scanf("%d%d%d",&h[j][1],&h[j][2],&h[j][3]);
+        }
+        split(0,m-1);
+        for(j=1;j<5002;j++)
+        {
+            h[j][6]=-1;
+            h[j][4]=-1;
+            h[j][8]=-1;
+            h[j][7]=-1;
+        }
+        top=1;
+        for(j=0;j<m;)
+        {
+            x=h[j][1];
+            while(h[j][1]==x)
+            {
+                a=h[j][2];
+                b=h[j][3];
+                if((h[a][4]==-1)&&(h[b][4]==-1))
+                {
+                    if(h[a][9]>h[b][9])
+                    {
+                        h[top][8]=h[a][9];
+                    }
+                    else
+                    {
+                        h[top][8]=h[b][9];
+                    }
+                    h[a][4]=top;
+                    h[b][4]=top;
+                    h[top][6]=a;
+                    h[a][5]=b;
+                    h[b][5]=-1;
+                    h[top][7]=b;
+                    top++;
+                }
+                else if(h[a][4]==h[b][4])
+                {
+                    j++;
+                    continue;
+                }
+                else if((h[a][4]==-1)||(h[b][4]==-1))
+                {
+                    if(h[a][4]==-1)
+                    {
+                        y=h[b][4];
+                        z=h[y][7];
+                        h[z][5]=a;
+                        h[a][5]=-1;
+                        h[y][7]=a;
+                        if(h[a][9]>h[y][8])
+                        {
+                            h[y][8]=h[a][9];
+                        }
+                    }
+                    else
+                    {
+                        y=h[a][4];
+                        z=h[y][7];
+                        h[z][5]=b;
+                        h[b][5]=-1;
+                        h[y][7]=b;
+                        if(h[b][9]>h[y][8])
+                        {
+                            h[y][8]=h[b][9];
+                        }
+                    }
+                }
+                else
+                {
+                    y=h[b][4];
+                    z=h[a][4];
+                    h[z][7]=h[y][7];
+                    if(h[y][8]>h[z][8])
+                    {
+                        h[z][8]=h[y][8];
+                    }
+                    z=h[y][6];
+                    while(h[z][5]!=-1)
+                    {
+                        h[z][4]=h[a][4];
+                        z=h[z][5];
+                    }
+                    p=h[a][4];
+                    h[z][5]=h[p][6];
+                    h[p][6]=h[y][6];
+                    h[y][6]=-1;
+                }
+                j++;
+            }
+            k=1;
+            while(k<top)
+            {
+                y=h[k][6];
+                while(y!=-1)
+                {
+                    if(h[k][8]>h[y][9])
+                    {
+                        h[y][9]=h[k][8];
+                    }
+                    y=h[y][5];
+                }
+                k++;
+            }
+        }
+        sum=0;
+        for(j=0;j<n;j++)
+        {
+            x=stamp[j];
+            sum+=h[x][9];
+        }
+        printf("%d\n",sum);
+    }
+    return 0;
+}
+int split(int low, int high)
+{
+    int mid;
+    mid=(low+high)/2;
+    if(low==high)
+    {
+        return 0;
+    }
+    split(low,mid);
+    split(mid+1,high);
+    merge(low,mid,high);
+    return 0;
+}
+int merge(int low, int mid, int high)
+{
+    int i, a, b;
+   // size1=mid-low+3;
+  //  size2=high-mid+2;
+ 
+    a=0;
+    for(i=low;i<=mid;i++)
+    {
+        d1[a]=h[i][1];
+        o1[a]=h[i][2];
+        t1[a]=h[i][3];
+        a++;
+    }
+    d1[a]=-1;
+    a=0;
+    for(i=mid+1;i<=high;i++)
+    {
+        d2[a]=h[i][1];
+        o2[a]=h[i][2];
+        t2[a]=h[i][3];
+        a++;
+    }
+    d2[a]=-1;
+    a=0;
+    b=0;
+    for(i=low;i<=high;i++)
+    {
+        if(d1[a]>d2[b])
+        {
+            h[i][1]=d1[a];
+            h[i][2]=o1[a];
+            h[i][3]=t1[a];
+            a++;
+        }
+        else
+        {
+            h[i][1]=d2[b];
+            h[i][2]=o2[b];
+            h[i][3]=t2[b];
+            b++;
+        }
+    }
+    return 0;
+}

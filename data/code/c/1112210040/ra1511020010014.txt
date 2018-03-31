@@ -1,0 +1,27 @@
+#include <stdio.h>
+inline unsigned read_uint()
+{
+	int c;
+	unsigned n=getchar_unlocked()-'0';
+	while((c=getchar_unlocked())>='0' && c<='9')n=(n<<3)+(n<<1)+c-'0';
+	return n;
+}
+ 
+int main()
+{
+	unsigned n,m,i,x,f1,f2;
+	n=read_uint();
+	m=read_uint();
+	for(i=0;i<m;++i)
+	{
+		x=read_uint();
+		if(x>=n+2 && x<=3*n)
+		{
+			f1=x-n-1;
+			f2=3*n-x+1;
+			printf("%u\n",(f1<f2)?f1:f2);
+		}
+		else printf("0\n");
+    }
+	return 0;
+}

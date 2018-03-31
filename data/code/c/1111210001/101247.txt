@@ -1,0 +1,33 @@
+#include <stdio.h>
+int maxa(int d[],int n)
+{  int i,j,a=0;
+ for(i=0;i<n;i++)
+ {  
+     if(a<d[i])
+      {
+          j=i;
+          a=d[i];
+      }
+ }
+ return j;
+}
+ 
+int main()
+{
+    int n,i,t=0,m,j,b;
+    scanf("%d %d",&m,&n);
+    int x[m];
+    for(i=0;i<m;i++)
+    {
+        scanf("%d",&x[i]);
+        
+    }
+    for(i=0;i<n;i++)
+    {     b=maxa(x,m);
+        t=t+x[b];
+       // printf("%d\n",t);
+        x[b]=x[b]-1;
+    }
+    printf("%d",t);
+   return 0; 
+}

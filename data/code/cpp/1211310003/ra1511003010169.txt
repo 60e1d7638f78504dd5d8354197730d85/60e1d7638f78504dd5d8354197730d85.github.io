@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+    while(t--)
+    {
+    	int n;
+    	cin>>n;
+    	int l = 10000009;
+    	vector <pair<int,int> > v;
+    	for(int i=0;i<n;i++)
+    	{
+    		int a,b;
+    		cin>>a>>b;
+    		v.push_back(make_pair(b,a));
+    		if(a<l)l=a;
+             }
+        l--;
+        int cnt = 0;
+        sort(v.begin(),v.end());
+        for(int i=0;i<n;i++)
+        {
+             if(v[i].second > l)
+             {
+                  cnt++;
+                  l=v[i].first;
+             }
+        }
+        printf("%d\n",cnt);
+    }
+	
+	return 0;
+} 

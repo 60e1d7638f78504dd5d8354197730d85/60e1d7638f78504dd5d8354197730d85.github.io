@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+ 
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+ 
+#define MA 1000000000000000000 // 1e18
+#define M  1000000009
+#define MM 2000000000
+#define N  301
+#define K  2505
+#define C  1001
+ 
+typedef long long ll;
+typedef long double ld;
+ 
+ll n,m;
+//ll a[11][11];
+char a[N], o[N];
+ll s[N][N], v[N][N];
+ 
+ll op(ll a1, ll b1, ll a0, ll b0, char o) {
+  if (o=='a') {
+    return (a1 * b1) % M;
+  } else if (o=='o') {
+    return ((a1 * b1) % M + (a1 * b0) % M + (b1 * a0) % M) % M;
+  } else
+    return ((a1 * b0) % M + (a0 * b1) % M) % M;
+}
+ 
+ll op2(ll a1, ll b1, ll a0, ll b0, char o) {
+  if (o=='a') {
+    return ((a0 * b0) % M + (a1 * b0) % M + (b1 * a0)%M) % M;
+  } else if (o=='o') {
+    return (a0 * b0) % M;
+  } else
+    return ((a1 * b1) % M + (a0 * b0) % M) % M;
+}
+ 
+int main() {
+  ll t;
+  ll i,j,k,l,q,r;
+  char qq[10];
+  t=1;
+  //scanf("%lld ", &t);
+ 
+  memset(s, 0, sizeof(s));
+ 
+  while(t--) {
+    scanf("%s %s", a, o);
+ 
+    n = strlen(a);
+    for(i=0;i<n;i++) {
+      s[i+1][i+1]=a[i]-'0';
+      v[i+1][i+1]=1-s[i+1][i+1];
+    }
+    for(j=1;j<n;j++) {
+      for(i=1;i+j<=n;i++) {
+        for(k=i;k<i+j;k++) {
+          s[i][i+j]+=op(s[i][k], s[k+1][i+j], v[i][k], v[k+1][i+j], o[k-1]);
+          v[i][i+j]+=op2(s[i][k], s[k+1][i+j], v[i][k], v[k+1][i+j], o[k-1]);
+        }
+        s[i][i+j]%=M;
+        v[i][i+j]%=M;
+      }
+    }
+    scanf("%lld", &q);
+    while(q--) {
+      scanf("%lld %lld %s", &l, &r, qq);
+      if (qq[0]=='t')
+        printf("%lld\n", s[l][r]);
+      else
+        printf("%lld\n", v[l][r]);
+    }
+  }
+  return 0;
+}

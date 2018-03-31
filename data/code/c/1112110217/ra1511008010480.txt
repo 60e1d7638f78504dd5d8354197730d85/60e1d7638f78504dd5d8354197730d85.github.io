@@ -1,0 +1,39 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  int n;
+  scanf("%d", &n);
+  if(n==1) {
+  	printf("1");
+    return;
+  }
+  int size = n/2;
+  int arr[size+1];
+  int pos = 0, flag = 0;
+  int i;
+  for(i=1; i<size; i++) {
+  	int a = i;
+    int b = n/i;
+    if(a>b) break;
+    if(a*b == n) {
+    	if(a==b) {
+        	arr[pos++] = a;
+          	flag = 1;
+          	break;
+        }
+      	arr[pos] = a;
+      	arr[size - pos++] = b;
+    }
+  }
+  for(i=0; i<pos; i++) {
+  	printf("%d ",arr[i]);
+  }
+  if(flag == 1) {
+  	pos--;
+  }
+  for(i=size-pos+1; i<=size; i++) {
+  	printf("%d ",arr[i]);
+  }
+	return 0;
+}

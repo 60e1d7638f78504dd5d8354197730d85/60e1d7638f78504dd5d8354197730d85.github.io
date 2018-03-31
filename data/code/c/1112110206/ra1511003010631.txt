@@ -1,0 +1,46 @@
+#include<stdio.h>
+ 
+ 
+#define gc getchar_unlocked
+   int fast()
+		{
+			int val=0,c;
+			c=gc();
+			while(c< '0' || c> '9') c=gc();
+			while ( c>='0' && c <='9')
+				{
+					val= (val<<3) + (val<<1) + c - '0';
+					c=gc();
+				}
+ 
+		return val;
+		}
+ 
+ 
+ 
+ 
+ 
+int main()
+{
+  int tc;
+  float GC;
+  int y;
+  tc=fast();
+		while(tc--)
+			{
+				y=fast();
+				if(y>=1500)
+					{
+	  				GC=y+500+(0.98*y);
+					}
+      				else
+					GC=(0.10*y)+(0.90*y)+y;
+      			printf("%g\n",GC);
+					
+				
+ 
+      
+    			}
+ 
+  return 0;
+} 

@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+
+int main() 
+{
+   char s[5][20], t[20];
+   int i, j;
+
+
+   int sou;
+  scanf("%d",&sou);
+   for (i = 0; i < sou; i++)
+      scanf("%s", s[i]);
+
+   for (i = 1; i < sou; i++) {
+      for (j = 1; j < sou; j++) {
+         if (strcmp(s[j - 1], s[j]) > 0) {
+            strcpy(t, s[j - 1]);
+            strcpy(s[j - 1], s[j]);
+            strcpy(s[j], t);
+         }
+      }
+   }
+
+  
+   for (i = 0; i < sou; i++)
+      printf("%s\n", s[i]);
+
+  return 0;
+}

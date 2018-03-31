@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pii pair < double, pair <int,int> >
+vector<int> adj[300009];
+int f=0,ed=0,ver=0,den,k;
+vector<pii> vec;
+int mark[300009];
+int gcd(int a,int b)
+{
+if(b%a==0)
+return a;
+return (b%a);
+}
+void dfs(int s)
+{
+if(mark[s]==0)
+{
+ed+=adj[s].size();
+ver++;
+}
+mark[s]=1;
+for(int i=0;i<adj[s].size();i++)
+{
+if(mark[adj[s][i]]==0)
+dfs(adj[s][i]);
+}
+}
+int main()
+{
+int i,j,n,e,v,x,y;
+scanf("%d%d",&n,&e);
+for(i=1;i<=e;i++)
+{
+scanf("%d%d",&x,&y);
+adj[x].push_back(y);
+adj[y].push_back(x);
+}
+for(i=1;i<=n;i++)
+{
+if(mark[i]==0)
+{
+ed=0,ver=0;
+dfs(i);
+ed=ed/2;
+den=(ed*1.000)/(ver*1.000);
+vec.push_back(make_pair(den,make_pair(ed,ver)));
+}
+
+}
+sort(vec.begin(),vec.end());
+ed=vec[vec.size()-1].second.first;
+ver=vec[vec.size()-1].second.second;
+if(ed>ver)
+printf(">1\n");
+else
+{
+if(ed!=0)
+{
+k=gcd(ed,ver);
+ed=ed/k;
+ver=ver/k;
+}
+printf("%d/%d",ed,ver);
+}
+return 0;
+}

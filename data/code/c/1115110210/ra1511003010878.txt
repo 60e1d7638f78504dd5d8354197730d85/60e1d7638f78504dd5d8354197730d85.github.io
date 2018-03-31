@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int cmp(const void *a, const void *b)
+{return *(char*)a-*(char*)b;}
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		char s[1000], firstHalf[1000], secondHalf[1000];
+		scanf("%s", s);
+		int i;
+		for(i=0; i<strlen(s)/2; i++)
+			firstHalf[i]=s[i];
+		firstHalf[i]='\0';
+		if(strlen(s)%2!=0)
+			i=strlen(s)/2 + 1;
+		int k=0;
+		for(; i<strlen(s); i++)
+			secondHalf[k++]=s[i];
+		secondHalf[k]='\0';
+		qsort(firstHalf, strlen(firstHalf), sizeof(char), cmp);
+		qsort(secondHalf, strlen(secondHalf), sizeof(char), cmp);
+		if(strcmp(firstHalf, secondHalf)==0)
+			printf("YES\n");
+		else
+			printf("NO\n");		
+	}
+return 0;
+}
+  

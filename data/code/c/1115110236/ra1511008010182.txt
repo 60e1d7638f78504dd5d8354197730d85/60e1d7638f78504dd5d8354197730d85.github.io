@@ -1,0 +1,46 @@
+#include <stdio.h>
+int m,n,q,h[1001][1001],temp[1001][1001],k,l,i,j,arr[500],p=0;
+int check(int height)
+{
+  for(i=1;i<=m;i++){
+    for(j=1;j<=n;j++){
+      temp[i][j]=temp[i-1][j]+temp[i][j-1]-temp[i-1][j-1]+(h[i][j]>=height?1:0);
+    }
+  }
+  for(i=k;i<=m;i++){
+    for(j=l;j<=n;j++){
+      int i1=i-k,j1=j-l;
+      if(temp[i][j]-temp[i1][j]-temp[i][j1]+temp[i1][j1]>=k*l/2+1)
+        return 1;
+    }}
+  return 0;
+}
+int main()
+{
+ scanf("%d%d%d",&m,&n,&q);
+  for(i=1;i<=m;i++)
+    for(j=1;j<=n;j++)
+      scanf("%d",&h[i][j]);
+  while(q--){
+    scanf("%d%d",&k,&l);
+  int low=0,high=1e7+1;
+  while(low<high)
+  {
+    int mid=(low+high+1)/2;
+    if(check(mid))
+      low=mid;
+    else
+      high=mid-1;
+  }
+    arr[p++]=low;
+  }
+  int dup=arr[0];
+  printf("%d\n",arr[0]);
+  for(i=1;i<p;i++){
+    if(arr[i]!=dup){
+    printf("%d\n",arr[i]);
+    }
+    dup=arr[i];
+  }
+	return 0;
+}

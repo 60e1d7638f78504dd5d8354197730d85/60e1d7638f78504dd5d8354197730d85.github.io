@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std; 
+class sum {
+    public:
+    int x, y, z;
+    void getdata(int a, int b)
+    {
+        x=a;
+        y=b;
+    }
+ 
+    void display()
+    {
+        cout<<"Total Distance:\n";
+        cout<<"Feet:"<<x;
+        cout<<" Inches:"<<y;
+    }
+ 
+    void operator+(sum &);
+};
+ 
+void sum::operator+(sum &ob) {
+    x=x+ob.x;
+    y=y+ob.y;
+    while(y>12)
+    {
+      x=x+1;
+      y=y-12;
+    }
+    display();
+}
+ 
+int main()
+{
+    sum ob1, ob2;
+    int a,b,c,d;
+    cin>>a>>b>>c>>d;
+    ob1.getdata(a,b);
+    ob2.getdata(c,d);
+    ob1+ob2;
+    return 0;
+}

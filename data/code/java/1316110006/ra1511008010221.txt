@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class TestClass {
+
+    static boolean checkPassword(String password) {
+        if (password.length() > 9) {
+            for (int i = 0; i < password.length(); i++) {
+                if (!(password.charAt(i) >= '0' && password.charAt(i) <= '9' ||
+                        password.charAt(i) >= 'a' && password.charAt(i) <= 'z' ||
+                        password.charAt(i) >= 'A' && password.charAt(i) <= 'Z')) {
+                    return false;
+                }
+            }
+            int count = 0;
+            for (int i = 0; i < password.length(); i++) {
+                if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
+                    count++;
+                }
+            }
+            return count > 1;
+        } else {
+            return false;
+        }
+    }
+
+    public static void main(String args[]) {
+        String pass;
+        Scanner s = new Scanner(System.in);
+        pass = s.nextLine();
+        if (checkPassword(pass)) {
+            System.out.println("Password is valid");
+        } else {
+            System.out.println("Not a valid password");
+        }
+    }
+}

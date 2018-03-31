@@ -1,0 +1,28 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int main()
+{
+	try{
+    int num,exceptions=0,flag=1;
+    cin>>num;
+    if(!cin){
+    throw("Invalid Input");
+    }
+    for(int i=1;i<=num;i++){
+    if(i%4==0){
+    exceptions++;
+    flag=0;
+    }
+    }
+    string s="Number of exceptions="+to_string(exceptions);
+    if(flag==0){
+     throw(s.c_str());
+     }
+    
+    }
+  	catch(const char* e){
+    cout<<e;
+    }
+	return 0;
+}

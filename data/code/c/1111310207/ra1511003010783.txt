@@ -1,0 +1,25 @@
+#include<stdio.h>
+int pa[200010];
+int main(){
+    int N,i,kl = 0;
+    scanf("%d",&N);
+    for(i = 1;i <= N;i++)
+        scanf("%d",&pa[i]);
+    for(i = 1;i <= N; i++){
+        if(pa[i] % 2 && i != N ){
+            if(pa[i+1])
+                pa[i+1]--;
+            else
+                kl = 1;
+        }
+        if( i == N && pa[i] % 2)
+           kl = 1;
+        if(kl)
+            break;
+    }
+    if(kl)
+        printf("NO\n");
+    else
+        printf("YES\n");
+    return 0;
+}

@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char *removeDupsSorted(char *str);
+
+void quickSort(char A[], int si, int ei);
+
+char *concat(const char *s1, const char *s2);
+
+char *removeDups(char *str) {
+    int len = (int) strlen(str);
+    quickSort(str, 0, len - 1);
+    return removeDupsSorted(str);
+}
+
+char *removeDupsSorted(char *str) {
+    int res_ind = 1, ip_ind = 1;
+
+    while (*(str + ip_ind)) {
+        if (*(str + ip_ind) != *(str + ip_ind - 1)) {
+            *(str + res_ind) = *(str + ip_ind);
+            res_ind++;
+        }
+        ip_ind++;
+    }
+
+    *(str + res_ind) = '\0';
+    return str;
+}
+
+int main() {
+    char str[100], str1[100];
+    scanf("%s", str);
+    scanf("%s", str1);
+
+    char *res = removeDups(str);
+    char *res1 = removeDups(str1);
+
+    printf("%s", removeDups(concat(res, res1)));
+    return 0;
+}
+
+char *concat(const char *s1, const char *s2) {
+    char *result = malloc(strlen(s1) + strlen(s2) + 1);
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}
+
+void exchange(char *a, char *b) {
+    char temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(char A[], int si, int ei) {
+    char x = A[ei];
+    int i = (si - 1);
+    int j;
+
+    for (j = si; j <= ei - 1; j++) {
+        if (A[j] <= x) {
+            i++;
+            exchange(&A[i], &A[j]);
+        }
+    }
+    exchange(&A[i + 1], &A[ei]);
+    return (i + 1);
+}
+
+void quickSort(char A[], int si, int ei) {
+    int pi;
+    if (si < ei) {
+        pi = partition(A, si, ei);
+        quickSort(A, si, pi - 1);
+        quickSort(A, pi + 1, ei);
+    }
+}

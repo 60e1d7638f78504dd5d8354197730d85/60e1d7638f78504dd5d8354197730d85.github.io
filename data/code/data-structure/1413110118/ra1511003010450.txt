@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  int n,max1,max2,i;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+    if(i==0)
+      max1=i;
+    else if(a[max1]<a[i])
+    {
+      max1=i;
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    if(i==0)
+    {
+      if(max1!=0)
+      	max2=0;
+      else if(max1==0)
+        max2=1;
+    }
+    if(a[max2]<a[i] && max1!=i)
+      max2=i;
+  }
+  for(i=0;i<n;i++)
+  {
+    if(i==max1 || i==max2)
+      continue;
+    printf("%d\n",a[i]);
+  }
+
+	return 0;
+}

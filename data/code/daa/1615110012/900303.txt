@@ -1,0 +1,14 @@
+dp=[[-1 for i in range(300)]for j in range(300)]
+def solve(arr,weight,idx):
+    if weight==0:
+        return 1
+    if weight<0 or idx<0:
+        return 0
+    if dp[weight][idx]!=-1:
+        return dp[weight][idx]
+    dp[weight][idx]=solve(arr,weight,idx-1)+solve(arr,weight-arr[idx],idx)
+    return dp[weight][idx]
+
+k,n=list(map(int,input().split()))
+arr=list(map(int,input().split()))
+print(solve(arr,k,len(arr)-1))

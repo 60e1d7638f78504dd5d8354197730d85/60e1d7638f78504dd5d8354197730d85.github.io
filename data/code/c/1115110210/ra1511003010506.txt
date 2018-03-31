@@ -1,0 +1,42 @@
+    #include<stdio.h>
+    #include<string.h>
+    int check_pal(char *s)
+    {
+    int l = strlen(s),mid,i,h1[256]={0},h2[256]={0};
+    mid = l/2;
+    if(l&1)
+    for(i=0;i<mid;i++)
+    {
+    //printf("%c %c\n",s[i],s[i+mid]);
+    h1[(int)s[i]]++;
+    h2[(int)s[i+mid+1]]++;
+    }
+    else
+    for(i=0;i<mid;i++)
+    {
+    //printf("%c %c\n",s[i],s[i+mid]);
+    h1[(int)s[i]]++;
+    h2[(int)s[i+mid]]++;
+    }
+     
+    for(i=0;i<256;i++)
+    if(h1[i]!=h2[i])
+    return 0;
+    return 1;
+    }
+     
+    int main()
+    {
+    int t;
+    char s[1001];
+    scanf("%d",&t);
+    while(t--)
+    {
+    scanf("%s",s);
+    if(check_pal(s))
+    printf("YES\n");
+    else
+    printf("NO\n");
+    }
+    return 0;
+    } 

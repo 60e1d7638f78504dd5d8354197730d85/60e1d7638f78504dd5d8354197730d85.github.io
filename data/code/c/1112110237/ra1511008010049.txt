@@ -1,0 +1,38 @@
+#include<stdio.h>
+int lcm(int a,int b)
+{
+int min;
+min=(a>b) ? a : b;
+while(1)
+{
+if(min%a==0&&min%b==0)
+break;
+else
+min++;
+}
+return min;
+}
+int main(void)
+{
+unsigned long long int t,n,i,j,a[10000],amt,min=0;
+scanf("%llu",&t);
+while(t--)
+{
+min=100000000000;
+scanf("%llu",&n);
+for(i=0;i<n;i++)
+scanf("%llu",&a[i]);
+for(i=0;i<n;i++)
+{
+for(j=i+1;j<n;j++)
+{
+if(a[i]>min || a[j] > min)
+continue;
+amt=lcm(a[i],a[j]);
+if(amt<min)
+min=amt;
+}
+}
+printf("%llu\n",min);
+}
+}

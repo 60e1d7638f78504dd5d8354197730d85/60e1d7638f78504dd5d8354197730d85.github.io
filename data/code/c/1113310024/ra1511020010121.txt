@@ -1,0 +1,51 @@
+#include<stdio.h>
+int N[50];
+int gcd(int a,int b){
+ 
+      if(a>b)
+         {
+           a = a + b;
+           b = a-b;
+           a = a-b;
+        }
+     if(b%a==0)
+         return a;
+     else
+         return gcd(a,b-a);
+}
+ 
+int fun(int l,int h){
+    if(l<h){
+        int j = (l+h)/2;
+        return gcd(fun(l,j),fun(j+1,h));
+    }
+    return N[h];
+}
+long long bin_expo(long long A, long long B, long long M)
+{
+    if(B == 0)
+        return 1; // A0
+ 
+    if(B % 2 == 1) {
+        long long x = bin_expo(A, (B-1)/2, M); // A(B-1)/2
+        x = (x*x) % M;
+        return (x*A) % M;
+    }
+    else {
+        long long x = bin_expo(A, B/2, M); // AB/2
+        return (x*x) % M;
+    }
+}
+int main(){
+    int n,i;
+    scanf("%d",&n);
+    long long int f;
+    for(i=0,f=1;i<n;i++){
+        scanf("%d",&N[i]);
+        f = (f*N[i])%1000000007;
+    }
+    
+    int g = fun(0,n-1);
+    printf("%lld",bin_expo(f,g,1000000007)%1000000007);
+    return 0;
+}

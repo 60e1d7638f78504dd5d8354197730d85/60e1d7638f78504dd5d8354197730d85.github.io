@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		char s[150];
+		scanf(" %s",s);
+		if(strlen(s) == 1 || s[0]==s[1])
+		{
+			printf("NO\n");
+			continue;
+		}
+		int len=strlen(s);
+		int i,a=s[0],b=s[1];
+		int f=1,f2=1;
+		for(i=2;i<len;i=i+2)
+		{
+			if(a != s[i])
+			{
+				f=0;
+				break;
+			}
+		}
+		
+		for(i=3;i<len;i=i+2)
+		{
+			if(b != s[i])
+			{
+				f2=0;
+				break;
+			}
+		}
+	//	printf("%c %c",a,b);
+		
+		if(f && f2)
+		printf("YES\n");
+		else
+		printf("NO\n");
+	}
+	return 0;
+} 

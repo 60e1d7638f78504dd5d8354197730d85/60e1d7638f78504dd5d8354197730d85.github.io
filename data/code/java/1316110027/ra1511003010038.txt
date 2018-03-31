@@ -1,0 +1,48 @@
+import java.util.*;
+import java.lang.Math.*;
+public class TestClass {
+  	 static int[][] a=new int[100][100];
+     static int n,i,j;
+  	 public void input(){
+       Scanner sc=new Scanner(System.in);
+       n=sc.nextInt();
+       for(i=0;i<n;i++)
+         for(j=0;j<n;j++)
+           a[i][j]=sc.nextInt();
+     }
+  	 public int determinant(int A[][],int N){
+        int det;
+       	if(N == 1)
+            det = A[0][0];
+        else if (N == 2)
+            det = A[0][0]*A[1][1] - A[1][0]*A[0][1];
+        else
+        {
+            int j1,j2,k; det=0;
+            for(j1=0;j1<N;j1++)
+            {
+                int[][] m = new int[N-1][];
+                for(k=0;k<(N-1);k++)
+                    m[k] = new int[N-1];
+                for(i=1;i<N;i++)
+                {
+                    j2=0;
+                    for(j=0;j<N;j++)
+                    {
+                        if(j == j1)
+                            continue;
+                        m[i-1][j2] = A[i][j];
+                        j2++;
+                    }
+                }
+                det += Math.pow(-1.0,1.0+j1+1.0)* A[0][j1] * determinant(m,N-1);
+            }
+        }
+        return det; 
+     }
+	 public static void main(String[] args) {
+       TestClass d=new TestClass();
+       d.input();
+       System.out.print(d.determinant(a,n));
+     }
+}

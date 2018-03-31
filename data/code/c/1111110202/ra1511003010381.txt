@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+ 
+int check_identifier(char *identifier){
+    int i, undsc=0,x=0;
+    if(isalpha(identifier[0]) || identifier[0]=='_'){
+        if(identifier[0]=='_'){
+            undsc++;
+        }
+        for(i=1; i<strlen(identifier); i++){
+            if(x=isalnum(identifier[i]) || identifier[i]=='_'){
+                if(identifier[i]=='_' && undsc<=1){
+                    undsc++;
+                }
+                else if(x){
+                    undsc=0;
+                }
+ 
+                if(undsc==2){
+                    return 0;
+                }
+            }
+            else{
+                return 0;
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+ 
+int main(){
+    char identifier[32];
+  	scanf("%s",identifier);
+    if(check_identifier(identifier)){
+        printf("valid identifier\n");
+    }
+    else{
+        printf("not a valid identifier\n");
+    }
+ 
+    return 0;
+}

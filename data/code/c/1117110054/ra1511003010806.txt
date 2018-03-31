@@ -1,0 +1,32 @@
+#include <stdio.h>
+void check(int a[],int n)
+{
+  int count=1,i;
+  for(i=1;i<n;i++)
+  {
+    if(a[i-1]>=a[i])
+      count++;
+    else
+      a[i]=a[i-1];
+  }
+  printf("%d\n",count);
+}
+
+int main()
+{
+  	int t,i,z;
+  	scanf("%d",&t);
+  	for(z=0;z<t;z++)
+    {
+      int n;
+      scanf("%d",&n);
+      int a[n];
+      for(i=0;i<n;i++)
+      {
+        scanf("%d",&a[i]);
+      }
+      check(a,n);
+    }
+
+	return 0;
+}

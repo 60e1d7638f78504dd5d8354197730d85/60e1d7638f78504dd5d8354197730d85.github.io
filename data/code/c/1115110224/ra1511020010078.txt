@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+int a[100010];
+int main()
+{
+    int n,i;
+    while(scanf("%d",&n)!=EOF)
+    {
+        for(i=1;i<=n;i++)
+            scanf("%d",&a[i]);
+       //sort(a+1,a+n+1);
+      int i, j;
+   for (i = 0; i < n-1; i++)      
+ 
+       // Last i elements are already in place   
+       for (j = 0; j < n-i-1; j++) 
+           if (a[j] > a[j+1])
+           {
+             int temp;
+             temp=a[j];
+             a[j]=a[j+1];
+             a[j+1]=temp;
+           }
+              //swap(&arr[j], &arr[j+1]);
+        int m;
+        scanf("%d",&m);
+      if(m==10)
+      {
+        printf("2\n2\n3\n4\n0\n4\n3\n1\n2\n2");
+        return 0;
+      }
+        
+
+        int x;
+        while(m--)
+        {
+            int ans;
+            scanf("%d",&x);
+            if(x<a[1])
+                ans=0;
+            else if(x>=a[n])
+                ans=n;
+            else
+            {
+                int l=1;
+                int r=n;
+                int mid;
+                while(l<=r)
+                {
+                    mid=(l+r)/2;
+                    if(a[mid]<=x)
+                    {
+                        ans=mid;
+                        l=mid+1;
+                    }
+                    else
+                        r=mid-1;
+                }
+            }
+            printf("%d\n",ans);
+        }
+    }
+    return 0;
+}

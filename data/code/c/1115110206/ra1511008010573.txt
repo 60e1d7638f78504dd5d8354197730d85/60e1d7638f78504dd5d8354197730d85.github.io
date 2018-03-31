@@ -1,0 +1,130 @@
+
+#include <stdio.h>
+#define mod 1000000007
+ 
+long long int fi[1000000]={0};
+ 
+ 
+long fib(long long int  x)
+{
+if(x==0)
+{
+    return 0;
+}
+ 
+if(x==1||x==2)
+{
+    return 1;
+ 
+}
+ 
+else
+{
+if (fi[x]==0)
+{
+fi[x]=(fib(x-1)+fib(x-2))%mod;
+return fi[x];
+}
+else return fi[x];
+}
+}
+ 
+long long int  final_ans=0;
+void combination(long long int   arr[], long long int  arr1[], long long int   start, long long int    end,
+                     long long int  index, long long int   r)
+{
+    long long int i,j;
+ 
+ 
+    if (index == r)
+    {
+        long long int  sum=0;
+        for ( j=0; j<r; j++)
+        {
+            sum = sum+ arr1[j];
+        }
+ 
+        final_ans=final_ans+fib(sum);
+        return;
+    }
+ 
+ 
+    for ( i=start; i<=end && end-i+1 >= r-index; i++)
+    {
+        arr1[index] = arr[i];
+        combination(arr, arr1, i+1, end, index+1, r);
+    }
+}
+ 
+ 
+ 
+void Combination2(long  long int arr[], long long int    n, long long int  r)
+{
+ 
+    long long int temp2[r];
+ 
+ 
+    combination(arr, temp2, 0, n-1, 0, r);
+}
+ 
+ 
+ 
+ 
+int  main()
+{
+    long long int  n,m;
+    long long int  arr[100000]={0};
+    long long int  temp[100000]={0};
+    long long  int  l=0,r=0,x=0,y=0,i=0,j=0;
+     char q[1];
+ 
+ 
+ 
+scanf("%lld %lld",&n,&m);
+ 
+ 
+    for( i=0;i<n;i++)
+    {
+        scanf("%lld",&arr[i]);
+        arr[i]=arr[i]%mod;
+    }
+ 
+ 
+    for(i=0;i<m;i++)
+ 
+  {
+      final_ans=0;
+ 
+ 
+ 
+	  scanf("%s",q);
+    if(q[0]=='Q')
+    {
+        scanf("%lld %lld",&l,&r);
+ 
+     long long int  a=r-l+1;
+ 
+ 
+    for( j=l-1;j<r;j++)
+    {
+        temp[j-l+1]=(arr[j]);
+    }
+ 
+    for( r=1;r<=a;r++)
+    {
+        Combination2(temp, a, r);
+ 
+    }
+     printf("%lld\n",final_ans%mod);
+ 
+ 
+ 
+   }
+	else
+    {
+	scanf("%lld %lld",&x,&y);
+	arr[x-1]=y;
+	}
+}
+return 0;
+}

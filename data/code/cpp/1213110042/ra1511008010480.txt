@@ -1,0 +1,43 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+int getLen(string s) {
+	int i=0;
+  	while(s[i++] != '\0');
+  	return i-1;
+}
+
+int main()
+{
+  	string str, subStr;
+  	getline(cin, str);
+  	cin>>subStr;
+  	cout<<"The new String after deleting the word:";
+  	int len = getLen(str);
+  	int subLen = getLen(subStr);
+  	int pos;
+  	//cout<<len<<" "<<subLen;
+  	for(int i=0; i<len; i++) {
+      	bool flag = false;
+      	pos = i;
+    	if(str[i] == subStr[0]) {
+          	int j=0;
+        	while(str[i++] == subStr[j++]) {
+              	//cout<<"RUN\n";
+            	if(j == subLen) {
+                	flag = true;
+                  	break;
+                }
+            }
+        }
+      	if(flag && str[i] != '\0') {
+        	i++;
+        }
+      	else {
+        	i = pos;
+        }
+      	cout<<str[i];
+    }
+	return 0;
+}

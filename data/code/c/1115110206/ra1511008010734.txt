@@ -1,0 +1,84 @@
+#include<stdio.h>
+long long int z[2][2],i[2][2];
+void mult(long long int a[][2],long long int b[][2])
+{
+	long long int u,v,w,x;
+	u=((a[0][0]*b[0][0])%1000000007+(a[0][1]*b[1][0])%1000000007)%1000000007;
+	v=((a[0][0]*b[0][1])%1000000007+(a[0][1]*b[1][1])%1000000007)%1000000007;
+	w=((a[1][0]*b[0][0])%1000000007+(a[1][1]*b[1][0])%1000000007)%1000000007;
+	x=((a[1][0]*b[0][1])%1000000007+(a[1][1]*b[1][1])%1000000007)%1000000007;
+	b[0][0]=u;
+	b[0][1]=v;
+	b[1][0]=w;
+	b[1][1]=x;
+}
+void power(long long int n)
+{
+	i[0][0]=1;
+	i[0][1]=0;
+	i[1][0]=0;
+	i[1][1]=1;
+	while(n>0)
+	{
+		if(n%2==1)
+		mult(z,i);
+		mult(z,z);
+		n/=2;
+		
+	}
+	z[0][0]=i[0][0];
+	z[0][1]=i[0][1];
+	z[1][0]=i[1][0];
+	z[1][1]=i[1][1];
+}
+long long int f(long long int n)
+{
+	z[0][0]=1;
+	z[0][1]=1;
+	z[1][0]=1;
+	z[1][1]=0;
+	power(n);
+	long long int ans=z[1][0];
+	return ans;
+	
+}
+int main()
+{
+//printf("%lld %lld %lld",f(0),f(1),f(2));
+	int n,m,i,a[100007];
+	scanf("%d %d",&n,&m);
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=1;i<=m;i++)
+	{
+		char c[2];
+		int x,y;
+		scanf("%s %d %d",c,&x,&y);
+		if(c[0]=='C')
+			a[x-1]=y;
+		else
+		{
+			int q=(1<<(y-x+1))-1;
+			long long int ans=0;
+			while(q>0)
+			{
+				long long int nth=0;
+				int r=31;
+				while(r>=0)
+				{
+					if((1<<r)&q)
+					{
+							nth+=a[x+r-1];
+					}
+					r--;
+				}
+//printf("FIB %lld IS EQUAL TO %lld\n",nth+1,f(nth+1));
+				ans=(ans+f(nth))%1000000007;
+				q--;
+			}
+			printf("%lld\n",ans);
+		}
+	}
+	return 0;
+}
+ 

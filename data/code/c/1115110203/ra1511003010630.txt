@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main() {
+    char week[][10] = {
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+    };
+    int t;
+  	int i,j;
+    scanf("%d", &t);
+    for(i = 0; i < t; i++) {
+        int year;
+        scanf("%d", &year);
+        int days = 0;
+        for(j = 1601; j < year; j++) {
+            if(j % 4 == 0) {
+                if (j % 100 == 0 && j % 400 != 0) {
+                    days += 365;
+                } else {
+                    days += 366;
+                }
+            } else {
+                days += 365;
+            }
+        }
+        int day = days % 7;
+        printf("%s\n", week[day]);
+    }
+    return 0;
+}  

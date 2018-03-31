@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main(){
+	int n,i;char a[2001];
+	scanf("%d",&n);
+	scanf("%s",a);
+	n-=1;
+	for(i=n-1;i>=0;i-=2)
+	{ printf("%c",a[i]);
+	}
+	if(n%2==0)
+		i=0;
+	else
+		i=1;
+	for(i;i<=n;i+=2)
+		printf("%c",a[i]);
+	return 0;
+
+}

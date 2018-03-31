@@ -1,0 +1,116 @@
+#include<stdio.h>
+ 
+long long int ans(int n,int a,int b,int c);
+ int i,j;
+int main()
+{
+ 
+    int n,t,max1=0,max2=0,max3=0;
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        int a,b,c;
+ 
+        scanf("%d %d %d %d",&n,&a,&b,&c);
+        max1=a,max2=b,max3=c;
+ 
+        if(a>=b && a>=c)
+        {
+            max1=a;
+            if(b>=c)
+                {max2=b;
+                max3=c;
+                }
+            else
+                {max2=c;
+                max3=b;
+                }
+        
+            
+        }
+ 
+        else if(b>=a && b>=c)
+        {
+            max1=b;
+            if(a>=c)
+                {max2=a;
+                max3=c;
+                }
+                
+            else
+                {max2=c;
+                max3=a;
+                }
+        }
+ 
+        else
+        {
+            max1=c;
+            if(a>=b)
+                {max2=a;
+                max3=b;
+                }
+            else
+                {max2=b;
+                max3=a;
+                }
+ 
+        }
+        
+    long long int res=ans(n,max1,max2,max3);
+    printf("%lld\n",res);
+ 
+    }
+ 
+    
+    return 0;
+}
+ 
+ 
+long long int ans(int n,int a,int b,int c)
+{long long int sum=0;
+int temp,temp1;
+ 
+if(c<=n)
+    temp=c;
+ 
+else
+    temp=n;
+    
+    
+    
+for( i=0;i<=temp;i++)
+ 
+    {   
+        
+        
+        if(n-i<=b)
+            temp1=n-i;
+        else
+            temp1=b;
+        
+        
+        
+        
+        for( j=0;j<=temp1;j++)
+ 
+        {
+            if(i+j+a <= n)
+                sum+=(a+1);
+            else
+            {
+                if(a+1-(i+j+a-n) > 0)
+                    sum+=(a+1-(i+j+a-n));
+            }
+ 
+ 
+ 
+ 
+        }
+ 
+    }
+ 
+    return sum;
+}
+ 

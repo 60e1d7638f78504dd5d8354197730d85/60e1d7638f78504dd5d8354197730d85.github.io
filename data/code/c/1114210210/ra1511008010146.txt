@@ -1,0 +1,45 @@
+#include<stdio.h>
+ 
+int main() {
+	long long int k,i,tcases,a,b,heart,n,m;
+ 
+	long double m1,n1,ans=0;
+	scanf("%lld",&tcases);
+	while(tcases--)
+    {
+		  ans=0;
+		 scanf("%lld %lld %lld",&m,&n,&k);
+	     long double total=1;
+m1=(double)m;
+n1=(double)n;
+total=m1*(m1+1)*n1*(n1+1);
+total=total/4;
+ 
+	     
+		 for(i=0;i<k;i++)
+{
+		 	  scanf("%lld",&heart);
+             
+		 	 
+		 	  a=heart%n;
+		 	  if(a==0)
+              {
+                  a=n;
+                  b=heart/n;
+              }
+              else
+              {
+                   b=(heart/n)+1;
+              }
+ 
+ 
+		 	  ans=ans+((double)( a*(n-a+1)*b*(m-b+1)))/total;
+		 	 
+		 }
+ 
+		 
+		 printf("%.6Lf\n",ans);
+	}
+ 
+	return 0;
+}   

@@ -1,0 +1,31 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int Arr[26]={0}, i, count, c1;
+    char String[1001];
+    int T;
+    scanf("%d", &T);
+    while(T--)
+    {
+        for(i=0; i<26; i++)
+            Arr[i]=0;
+        count=0;
+        c1=0;
+        scanf("%s", String);
+        for(i=0; String[i]!='\0'; i++)
+            Arr[String[i]-'a']++;
+        
+        for(i=0; i<26; i++)
+        {
+            if(Arr[i]%2==1)
+                count=count+1;
+           // printf("%d\t", Arr[i]);
+        }
+        if(count==0)
+            printf("0\n");
+        else
+            printf("%d\n", count-1);
+        
+    }
+}

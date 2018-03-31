@@ -1,0 +1,75 @@
+#include <stdio.h>
+int main()
+{long long int t,a[4],i,j,k,n,temp=0,sum;
+	scanf("%lld",&t);
+	for(n=0;n<t;n++)
+	{
+		temp=0;
+		sum=0;
+		for(i=0;i<4;i++)
+		scanf("%lld",&a[i]);
+		for(i=0;i<4;i++)
+		{
+			if(a[i]==0)
+			{
+				printf("Yes\n");
+				temp=1;
+				break;
+			}
+		}
+		if(temp==1)
+		continue;
+		if((a[0]+a[1]+a[2]+a[3])==0)
+		{
+			printf("Yes\n");
+			temp=1;
+		}
+		if(temp==1)
+		continue;
+		for(i=0;i<3;i++)
+		{
+			for(j=i+1;j<4;j++)
+			{
+				sum=0;
+				sum=a[i]+a[j];
+				if(sum==0)
+				{
+					printf("Yes\n");
+					temp=1;
+					break;
+				}
+				
+			}
+			if(temp==1)
+			break;
+			
+		}
+		if(temp==1)
+		continue;
+		for(i=0;i<2;i++)
+		{
+			for(j=i+1;j<3;j++)
+			{
+				for(k=j+1;k<4;k++)
+				{
+					sum=0;
+					sum=a[i]+a[j]+a[k];
+					if(sum==0)
+					{
+						printf("Yes\n");
+						temp=1;
+						break;
+					}		
+				}
+				if(temp==1)
+				break;
+			}
+			if(temp==1)
+	        break;	
+		}
+		if(temp!=1)
+		printf("No\n");
+    }
+
+	return 0;
+}

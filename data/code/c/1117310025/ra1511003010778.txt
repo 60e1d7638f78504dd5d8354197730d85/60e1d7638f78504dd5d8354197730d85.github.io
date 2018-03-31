@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int n,t,i,j,x,n1,num,temp1;
+  int arr[100],arr2[100];
+  double temp,rem,prod;
+  int first[100],last[100];
+  
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d %d",&n,&x);
+    arr[i]=x;
+    temp=pow(n,n);
+    prod=temp;
+    //printf("%f\n",temp);
+    n1=0;
+    while(temp>1)
+    {
+      temp=temp/10;
+      //printf("%f ",temp);
+      n1++;
+    }
+    //printf("\n%d",n1);
+    arr2[i]=n1;
+    
+    num=prod/pow(10,n1-x);
+    //printf("\n%d",num);
+    first[i]=num;
+    
+    rem=pow(10,x);
+    num=(int)prod%(int)rem;
+    //printf("\n%d",num);
+    last[i]=num;
+  }
+  
+  for(i=0;i<t;i++)
+  {
+    printf("%d ",first[i]);
+    temp1=arr[i]-arr2[i];
+    while(temp1>0)
+    {
+      printf("0");
+      temp1--;
+    }
+    printf("%d\n",last[i]);
+  }
+  return 0;
+}

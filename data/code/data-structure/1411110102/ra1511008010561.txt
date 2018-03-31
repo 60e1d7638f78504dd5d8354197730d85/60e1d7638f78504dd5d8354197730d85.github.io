@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<malloc.h>
+struct node
+{
+  int info;
+  struct node *next;
+   struct node *q,*temp;
+}*start;
+void create(int data)
+{
+   struct node *q,*temp;
+   temp= malloc(sizeof(struct node));
+   temp->info=data;
+   temp->next=NULL;
+   if(start==NULL)
+   {
+     start=temp;
+   }
+  else
+  {
+    q=start;
+    while(q->next!=NULL)
+      q=q->next;
+    q->next=temp;
+  }
+}
+int main()
+{
+  int n,i,m;
+   struct node *q,*temp;
+  scanf("%d",&n);
+     for(i=0;i<n;i++)
+      {
+        scanf("%d",&m);
+        create(m);
+      }
+      q=start;
+   while(q!=NULL)
+    {
+      printf("%d ", q->info);
+      q=q->next;
+    }
+  return 0;
+}

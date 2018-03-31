@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int i,n,hard[10000],tens[10000],grade;
+  float cc[10000];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&hard[i]);
+    scanf("%f",&cc[i]);
+    scanf("%d",&tens[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    if((hard[i]>50) && (cc[i]<0.7) && (tens[i]>5600))
+      printf("\n10");
+    else{
+      if((hard[i]>50) && (cc[i]<0.7))
+         printf("\n9");
+         else{
+           if((cc[i]<0.7) && (tens[i]>5600))
+              printf("\n8");
+           else{
+             if((hard[i]>50) & (tens[i]>5600))
+                printf("\n7");
+                else{
+                  if((hard[i]>50) || (cc[i]<0.7) || (tens[i]>5600))
+                    printf("\n6");
+                  else
+                    printf("\n5");
+                }
+           }
+         }
+    }
+  }
+    
+
+	return 0;
+}

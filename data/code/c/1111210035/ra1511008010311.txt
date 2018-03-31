@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,c,d,dem,num,sm,i;
+  scanf("%d %d %d %d",&a,&b,&c,&d);
+  dem=b*d;
+  a=a*(dem/b);
+  c=c*(dem/d);
+  num=a+c;
+  if(num<dem)
+    sm=num;
+  else
+    sm=dem;
+  for(i=2;i<sm;i++)
+  {
+    if(num%i==0 && dem%i==0)
+    {
+      num=num/i;
+      dem=dem/i;
+      i=2;
+    }
+  }
+  printf("%d %d",num,dem);
+	return 0;
+}

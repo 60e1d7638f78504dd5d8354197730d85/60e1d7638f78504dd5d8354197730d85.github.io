@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+int max(int a, int b)
+{
+	if(a>b)
+      return a;
+  	else 
+      return b;
+}
+int max(int a, int b, int c)
+{
+	if(a>b)
+    {	if(a>c)
+      		return a;
+    }
+  	else if(b>c)
+    	return b;
+  	else
+		return c;
+}
+
+int max(int arr[], int n)
+{
+	int g=arr[0];
+  	for(int i = 0 ; i<n ; i++ )
+    {
+    	if(arr[i]>g)
+          g = arr[i]; 
+    }
+  	return g;
+}
+
+int main()
+{	int t,a[100];
+	cin>>t;
+ 	for(int j=0;j<t;j++)
+      cin>>a[j];
+ 	int temp;
+ 	temp = max(a[0],a[1]);
+ 	cout<<"Greatest of first two numbers="<<temp<<endl;
+ 	temp = max(a[0],a[1],a[2]);
+ 	cout<<"Greatest of first three numbers="<<temp<<endl;
+ 	temp = max(a,t);
+ 	cout<<"Greatest Number="<<temp;
+	return 0;
+}

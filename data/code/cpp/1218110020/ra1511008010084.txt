@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class Rectangle
+{
+     private:
+	float length ; // This can't be inherited
+     public:
+	float breadth ; // The data and member functions are inheritable
+	void Enter_lb(void)
+	{
+                     cin >> length ;  	    
+	       cin >> breadth ;
+	}
+	float get_l(void)
+	{      return length ; } 
+};  // End of the class definition
+ 
+class Rectangle1 : public Rectangle   
+{      
+     private:
+	float area ;
+      public:
+	void Rec_area(void)
+	{  area = get_l( ) * breadth ;  } 
+	// area = length * breadth ;  can't be used here
+void Display(void)
+     {
+       cout<< area  ;
+     }
+};  // End of the derived class definition D
+int main()
+{
+	Rectangle1 r1 ;
+	r1.Enter_lb( );
+	r1.Rec_area( );
+	r1.Display( );
+return 0;
+}

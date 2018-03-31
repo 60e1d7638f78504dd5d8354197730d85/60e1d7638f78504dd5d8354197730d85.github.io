@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+using namespace std;
+inline bool isInteger(const string & s)
+	{
+   		if(s.empty() || ((!isdigit(s[0])) && (s[0] != '0'))) return false ;
+   		char * p ;
+   		strtol(s.c_str(), &p, 10) ;
+   		return (*p == 0) ;
+}
+bool is_number(const string& s)
+{
+    try
+    {
+        std::stod(s);
+    }
+    catch(...)
+    {
+        return false;
+    }
+    return true;
+}
+int main()
+{
+	string i;
+  	int cases;
+  	cin>>cases;
+  	while(cases--)
+    {
+    	bool got=0,got2=0;
+      	cin>>i;
+        got=isInteger(i);
+        got2=is_number(i);
+        //if((got==1||got2==1) && (int)i>0) cout<<i<<endl;
+        try
+        {
+          if(got==1 && got2==1 && stoi(i)>0) throw(1);//cout<<i<<endl;
+          else if(got2==1 && got!=1 && stoi(i)>0) throw(1);
+          else throw(0);//cout<<"Wrong Input"<<endl;
+        }
+        catch(int z){if(z==1){cout<<i<<endl;}else{cout<<"Wrong Input"<<endl;}}
+    }
+	return 0;
+}

@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+  int n,sum=0,m;
+  cin>>n;
+  m=n;
+  int l = floor(log10(n))+1;
+  for(int i=0;i<l;i++)
+  {
+    int r = n%10;
+    sum += r * pow(8,i);
+    n /= 10;
+  }
+  if(n<0)
+    cout<<"Invalid Input";
+  else
+    cout<<m<<" in octal = "<<sum<<" in decimal";
+  return 0;
+}

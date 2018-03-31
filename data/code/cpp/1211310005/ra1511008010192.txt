@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+ 
+int main()
+{
+    int n;
+    int i=1, posmax=0, posmin=0;
+    double max=0, min=1000000000;
+    cin>>n;
+    
+    while(i<=n)
+    {
+    	int xA,yA,xB,yB,xC,yC;
+    	cin>>xA>>yA>>xB>>yB>>xC>>yC;
+    	
+    	double j=((xA-xC)*(yB-yA))-((xA-xB)*(yC-yA));
+    	double ar=abs((0.5)*(j));
+    	
+    	if(ar>=max)
+		{
+			max=ar;
+			posmax=i;
+		
+		}
+    	
+    	if(ar<=min)
+		{
+			min=ar;
+			posmin=i;
+		
+		}
+		i++;
+	}
+	
+	cout<<posmin<<" "<<posmax<<endl;
+    return 0;
+}  

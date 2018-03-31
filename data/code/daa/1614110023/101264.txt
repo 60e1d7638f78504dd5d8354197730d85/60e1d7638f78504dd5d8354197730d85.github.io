@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    int tc;
+    cin >> tc;
+    while(tc--)
+    {
+        int n, q;
+        cin >> n >> q;
+        vector<int> v;
+        for(int i=0; i<n; i++)
+        {
+            int tmp;
+            cin >> tmp;
+            v.push_back(tmp);
+        }
+        sort(v.begin(), v.end());
+        long long int sum = 0;
+        for(int i=1; i<n;i++)
+        {
+            sum += (long long int)(v[i]-v[i-1]);
+        }
+        sum *= (long long int)(q);
+        cout << sum << endl;
+    }
+    //cout << "Hello world!" << endl;
+    return 0;
+}

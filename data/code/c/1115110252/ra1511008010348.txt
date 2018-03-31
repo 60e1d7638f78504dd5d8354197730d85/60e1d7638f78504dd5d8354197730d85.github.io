@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int is_uppercase(char str[]);
+int is_uppercase(char str[])
+{
+  	int l=strlen(str);
+  int c=0;
+  int i;
+  for(i=0;i<l;i++)
+  {
+    if(str[i]>=97 && str[i]<=122)
+    {
+      return 0;
+      break;
+    }
+    else
+    {
+      c=1;
+    }
+  }
+  if(c==1)
+    return 1;
+  else return 0;
+}
+int main()
+{
+	char str[50];
+  	scanf("%s", str);
+  	if(is_uppercase(str))
+      printf("true");
+  else
+    printf("false");
+	return 0;
+}

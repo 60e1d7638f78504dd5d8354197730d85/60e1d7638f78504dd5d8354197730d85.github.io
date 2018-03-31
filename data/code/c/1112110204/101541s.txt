@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+ int i,j,not,num1[10], num2[10], gcd, lcm, remainder, numerator, denominator,temp;
+ scanf("%d",&not);
+  i =0;
+  temp=not;
+  while(not!=0)
+ {
+    scanf("%d %d", &num1[i], &num2[i]);
+    not--;
+    i++;
+  }
+   i=0;j=0;
+  while(temp!=0)
+   {
+    if (num1[i] > num2[i])
+    {
+        numerator = num1[i];
+        denominator = num2[i];
+    }
+    else
+    {
+        numerator = num2[i];
+        denominator = num1[i];
+    }
+    remainder = numerator % denominator;
+    while (remainder != 0)
+    {
+        numerator   = denominator;
+        denominator = remainder;
+        remainder   = numerator % denominator;
+    }
+    gcd = denominator;
+   lcm = num1[j] * num2[j] / gcd;
+    printf("%d ",gcd);
+    printf("%d\n",lcm);
+    
+  temp--;
+  i++;
+  j++;
+  }
+  return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+void find(char o[],int s);
+int main()
+{
+	char o[6];
+  	int n,i,s;
+  	scanf("%s",o);
+  	scanf("%d",&n);
+  	s=strlen(o);
+  	for(i=1;i<=n;i++)
+      find(o,s);
+	return 0;
+}
+void find(char o[],int s)
+{
+	char n[6];
+  	int si,i,j,t;
+  	scanf("%s",n);
+  	si=strlen(n);
+  	for(i=0;i<si;i++)
+    {
+      	t=0;
+    	for(j=0;j<s;j++)
+        {
+        	if(n[i]==o[j])
+            {
+            	t=1;
+              	break;
+            }
+        }
+      	if(t==0)
+        {
+        	printf("No\n");
+          	return;
+        }
+    }
+  printf("Yes\n");
+  return;
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int main()
+{	int n;
+ cin>>n;
+ int len=0;
+ int a[10000];
+ int sum=0;
+ int temp=n;
+ int rev[10000];
+ while(n!=0){
+ 	rev[len]=n%10;
+   n/=10;
+   sum+=rev[len];
+   len++;
+ }
+ for(int k=0;k<len;k++){
+ 	a[k]=rev[len-1-k];
+ }
+ a[len]=sum;
+ int index=len;
+ int i=1,j=1;
+ while(sum<=temp){
+   sum=0;
+ 	for(i=j;i<j+len;i++){
+    	sum+=a[i];
+    }
+   index++;
+   a[index]=sum;
+   j++;
+   if(sum==temp){
+   	cout<<"Keith Number";
+     return 0;
+   }
+ }
+ cout<<"Not Keith Number";
+	return 0;
+}

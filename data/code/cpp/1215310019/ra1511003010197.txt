@@ -1,0 +1,102 @@
+#include <iostream>
+#include <vector>
+#include <string.h>
+#include <stdio.h>
+using namespace std;
+#define max(x,y) (x>y) ? (x):(y)
+#define min(x,y) (x<y) ? (x):(y)
+ 
+vector<int> adj[21];
+ 
+int next_per(int w)
+{
+	int v=w;
+	unsigned int t = v | (v - 1);
+	w = (t + 1) | (((~t & -~t) - 1) >> (__builtin_ctz(v) + 1));
+	return w;
+}
+ 
+ 
+bool check(bool visited[], int n)
+{
+	for(int i=1;i<=n;i++)
+		if(visited[i]==0)
+			return 0;
+	return 1;
+}
+ 
+int main(int argc, char const *argv[])
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,m;
+		// cin>>n>>m;
+		scanf("%d %d",&n,&m);
+		for(int i=1;i<21;i++)
+			adj[i].clear();
+		for(int i=0;i<m;i++)
+		{
+			int v1,v2;
+			// cin>>v1>>v2;
+			scanf("%d %d",&v1,&v2);
+			adj[v1].push_back(v2);
+			adj[v2].push_back(v1);
+		}
+		int MX = (1<<n);
+		// cout<<"MX = "<<MX<<endl;
+		int mn = n;
+		if(m)
+		{
+			if(m>=((n*(n-1))/2 - (n-1)/2))
+			{
+				mn=1;
+			}
+			else
+			{
+				int num=1;
+				int count=0;
+				bool cond=1;
+				while(num<MX && cond)
+				{
+					count++;
+					int temp = num;
+					while(temp<MX && cond )
+					{
+						int temp2 = temp;
+						bool visited[n+1];
+						memset(visited,0,sizeof visited);
+						for(int j=1;temp2;j++,temp2/=2)
+						{
+							if(temp2&1)
+							{
+								visited[j]=1;
+								for(int i=0;i<adj[j].size();i++)
+								{
+									visited[adj[j][i]]=1;
+								}
+							}
+						}
+						if(check(visited,n))
+						{
+							cond=0;
+							break;
+						}
+						temp = next_per(temp);
+					}
+					num = num + (1<<count);
+				}
+				mn = count;
+			}
+		}
+		// cout<<mn<<"\n";
+		printf("%d\n",mn);
+	}
+ 
+ 
+ 
+ 
+ 
+	return 0;
+} 

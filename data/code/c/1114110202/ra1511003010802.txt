@@ -1,0 +1,33 @@
+#include<stdio.h>
+int t,a,i,j;
+int main()
+{
+	scanf("%d",&t);
+	while(t--)
+	{
+		int z=0;
+		scanf("%d",&a);
+		int b[a];
+		for(i=0;i<a;i++)
+		{
+			scanf("%d",&b[i]);
+		}
+		for(i=0;i<a;i++)
+		{
+			if(b[i]!=0)
+			{
+				z=z+1;
+			}
+			for(j=(i+1);j<a;j++)
+			{
+				if(b[i]==b[j])
+				{
+					b[j]=0;
+				}
+			}
+			b[i]=0;
+		}
+		printf("%d\n",z);
+	}
+  return 0;
+}

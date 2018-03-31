@@ -1,0 +1,30 @@
+#include<stdio.h>
+#define max 100
+int main()
+{
+int n,i,j,k,p;
+int a[max][max];
+
+scanf("%d",&p);
+for(i=1;i<=p;i++)
+    {
+    for(j=1;j<=i;j++)
+    {
+        scanf("%d",&a[i][j]);
+    }
+    }
+    for(i=p;i>0;i--)
+        for(j=1;j<=i;j++)
+    {
+        if(a[i][j]>a[i][j+1])
+            a[i-1][j]=a[i-1][j]+a[i][j];
+        else
+            a[i-1][j]=a[i-1][j]+a[i][j+1];
+ 
+    }
+ 
+ 
+printf("\n%d",a[1][1]);
+ 
+return 0;
+}

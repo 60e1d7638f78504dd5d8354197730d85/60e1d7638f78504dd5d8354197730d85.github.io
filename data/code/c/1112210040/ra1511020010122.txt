@@ -1,0 +1,58 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+ 
+long long int read() {
+  char c = gc();
+  while(c<'0' || c>'9') c = gc();
+  long long int ret = 0;
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+int main()
+{
+	long long int N,M,Q,temp;
+	long long int i;
+	N=read();
+	M=read();
+	
+	for(i=0;i<M;i++)
+	{
+		Q=read();
+		if(Q>(2*N+1))
+		{
+			temp=Q-(2*N+1);
+			
+			if(temp<N)
+			{	
+				temp=N-temp;
+				printf("%lld\n",temp);
+			}
+			else
+			{
+				temp=0;
+				printf("%lld\n",temp);
+			}
+		}
+		else
+		{
+			temp=(2*N+1)-Q;
+			if(temp<N)
+			{
+				temp=N-temp;
+				printf("%lld\n",temp);
+			}
+			else
+			{
+				temp=0;
+				printf("%lld\n",temp);
+			}
+		}
+		
+	}
+	
+	
+	return 0;
+} 

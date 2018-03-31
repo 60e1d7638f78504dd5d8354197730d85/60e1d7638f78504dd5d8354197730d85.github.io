@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args)  
+		{
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int c[] = new int[n];
+        for(int i=0; i < n; i++){
+            c[i] = in.nextInt();
+        }
+        int jumps = 0, i = 0;
+        
+        while (i<c.length-1) {
+            if (i < c.length-2 && c[i+2] == 0) {
+                i+=2;
+            } else {
+                i+=1;
+            }
+            jumps++;
+        }
+        System.out.println(jumps);
+    }
+	}

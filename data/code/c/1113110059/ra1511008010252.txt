@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+long int n,a[1000000],key,i,j;
+  scanf("%ld",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%ld",&a[i]);
+  }
+ 
+  for(i=0;i<n;i++)
+  {
+  key=a[i];
+    j=i-1;
+ while(j>=0 && a[j]>key)   
+ {
+ a[j+1]=a[j];
+   j=j-1;
+ }
+  a[j+1]=key;
+  }
+  for(i=0;i<n;i++){
+  printf("%ld\n",a[i]);
+  }
+	return 0;
+}

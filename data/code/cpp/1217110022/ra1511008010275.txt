@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int a[100005];
+ 
+int main()
+{
+  int n, nr, i, j;
+  long long sum = 0;
+  cin>>n;
+  for(i = 1; i <= n; ++ i)
+    cin>>a[i];
+  for(i = 1; i <= 1000000005; i = i + i)
+  {
+    nr = 0;
+    for(j = 1; j <= n; ++ j)
+      if(a[j] & i)
+        ++ nr;
+    sum = sum + ((long long)i * (((long long)nr * (nr - 1))/ 2));
+  }
+  cout<<sum;
+  return 0;
+}

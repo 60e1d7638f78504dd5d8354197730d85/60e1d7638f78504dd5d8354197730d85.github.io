@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<math.h>
+#define ll long long unsigned int
+ 
+ 
+int main()
+{
+    ll k,x,t,i,q;
+    double ans;
+    scanf("%lld",&t);
+ 
+    while(t--)
+    {
+     scanf("%lld %lld",&x,&k);
+		if(k==1)
+		 {
+		 	ans=x/2.0;
+            printf("%.6lf\n",ans);
+            continue;
+                 }
+         i=0;
+         while(i<10000)
+             {
+             if(pow(2,i)>k)
+               {
+                 q=i;
+                 break;
+               }
+               i++;
+             }
+      ans=((x/pow(2,q))+(2*((k-pow(2,q-1))))*(x/pow(2,q)));
+      
+      printf("%.6lf\n",ans);
+}
+return 0;
+}

@@ -1,0 +1,97 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
+ 
+using namespace std;
+ 
+int compare(void const *p_a, void const *p_b)
+{
+    int a=*(int const *)p_a,b=*(int const *)p_b;
+    
+    if(a<b)
+        return -1;
+    else if(a>b)
+        return 1;
+    else
+        return 0;
+}
+ 
+int search(int *arr,int key,int N)
+{
+    int l=0,u=N-1;
+    int m;
+    
+    while(l<u)
+    {
+        m=(l+u)/2;
+        if(arr[m]<=key)
+            l=m+1;
+        else
+            u=m-1;
+    }
+    
+    if(arr[l]>key)
+        l--;
+        
+    return l;
+}
+ 
+int main() 
+{
+    int N,M;
+    int *box,*truck;
+    int num_shifted = 0;
+    int *shifted;
+    int hour=0;
+    
+    cin>>N>>M;
+    box=new int[N];
+    truck=new int[M];
+    shifted=new int[N];
+    
+    for(int i=0;i<N;i++)
+        cin>>box[i];
+    for(int i=0;i<M;i++)
+        cin>>truck[i];
+    
+    qsort(box,N,sizeof(box[0]),compare);
+    qsort(truck,M,sizeof(truck[0]),compare);
+    memset(shifted,0,sizeof(shifted));
+    #if 0
+    for(int i=0;i<N;i++)
+	printf("%d ",box[i]);
+    cout<<endl;
+    
+    for(int i=0;i<M;i++)
+	printf("%d ",truck[i]);
+    cout<<endl;
+    #endif
+    
+    while(num_shifted<N)
+    {
+        int t;
+        for(t=0;t<M && num_shifted<N;t++)
+        {
+            //find largest box for this truck
+            int index=search(box,truck[t],N);
+	        while(index>=0 && shifted[index])
+                index--;
+                 
+            if(index>=0 && index<N && !shifted[index])
+            {
+                //printf("index:%d box:%d truck:%d\n",index,box[index],truck[t]);
+                //box not shifted
+                shifted[index]=true;
+                num_shifted++;
+            }
+        }
+        if(num_shifted==N)
+            hour+=1;
+        else
+            hour+=2;
+    }
+    
+    cout<<hour;
+    return 0;
+}

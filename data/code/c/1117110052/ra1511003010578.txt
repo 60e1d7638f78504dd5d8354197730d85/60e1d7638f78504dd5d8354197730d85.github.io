@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int n, i, a[100], c[100], j, k;
+  scanf("%d",&n);
+  
+  for(i=1; i<=n; i++)
+    scanf("%d",&a[i]);
+  
+  for(i=1; i<=n; i++)
+    c[i]=-1;
+  
+  for(i=1; i<=n; i++)
+    for(j=1; j<=n; j++)
+    {
+      if(a[i]==a[j] && i!=j)
+      {
+        k = j-i;
+        if(k>0)
+        {
+        c[i]=k;
+          break;
+        }
+        else
+        {
+          c[i] = -1*k;
+          break;
+        }
+        break;
+      }
+    }
+  
+  for(i=1; i<n; i++)
+    printf("%d ",c[i]);
+  
+  printf("%d",c[n]);
+	return 0;
+}

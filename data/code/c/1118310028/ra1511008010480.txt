@@ -1,0 +1,33 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  	int t;
+  	scanf("%d", &t);
+  	while(t--) {
+    	int n, k;
+      	scanf("%d %d", &n, &k);
+      	int arr[n];
+      	int i;
+      	for(i=0; i<n; i++) scanf("%d", &arr[i]);
+      	int temp = arr[0];
+      	k = k%n;
+      	//printf("n = %d k = %d\n", n, k);
+      	//for(i=0; i<n; i++) printf("%d ", arr[i]);
+      	//printf("\n");
+      	for(i=0; i<n*k; i+=k) {
+          	//printf("%d %d ", i, temp);
+        	int temp2 = arr[(i+k)%n];
+          	//printf("%d\n", temp2);
+          	arr[(i+k)%n] = temp;
+          	if((i+k)%n == 0) {
+            	i++;
+              	temp2 = arr[(i+k)%n];
+            }
+          	//printf("%d %d %d %d\n", i, temp, (i+k)%n, temp2);
+          	temp = temp2;
+        }
+      	for(i=0; i<n; i++) printf("%d ", arr[i]);
+    }
+	return 0;
+}

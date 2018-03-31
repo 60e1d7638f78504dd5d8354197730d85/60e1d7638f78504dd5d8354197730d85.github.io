@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char c[100];
+  	scanf("%s",c);
+  	int i,j,k,l,no;
+  	l=strlen(c);
+  	int sum=0,s=1001;
+  	for(i=0;i<l;i++){
+  	switch(c[i])
+    {
+      case 'I' : no=1;
+        break;
+      case 'V' : no=5;
+        break;
+      case 'X' : no=10;
+        break;
+      case 'L' : no=50;
+        break;
+      case 'C' : no=100;
+        break;
+      case 'D' : no=500;
+        break;
+      case 'M' : no=1000;
+        break;
+        default : no=-1;
+    }
+    //  printf("%d\t%d\n",s,no);
+    if(s>no)
+    {
+      sum=sum+no;
+      s=no;
+    }
+      else
+      {
+        sum=sum+no-s-s;
+        s=no;
+      }
+      
+    }
+  printf("%d",sum);
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+        double a, b, c, d, e, f, A, B, C, D, E, F, s1, s2, s3, s4, V, S;
+        int no;
+        scanf("%d", &no);
+ 
+        while(no--)
+        {
+                scanf("%lf %lf %lf %lf %lf %lf", &a, &b, &c, &d, &e, &f);
+                A=a*a; B=b*b; C=c*c; D=d*d; E=e*e; F=f*f;
+ 
+//              V=sqrt((A*F*(-A+B+C+D+E-F) + B*E*(A-B+C+D-E+F) + C*D*(A+B-C-D+E+F) - (A+F)*(B+E)*(C+D)/2.0 - (A-F)*(B-E)*(C-D)/2.0)/144.0);
+                V=(-A*B*D -A*C*E - B*C*F - D*E*F + A*C*D + B*C*D + A*B*E + B*C*E + B*D*E + C*D*E + A*B*F +A*C*F +A*D*F + C*D*F + A*E*F + B*E*F - C*C*D -C*D*D -B*B*E -B*E*E -A*A*F -A*F*F)/144.0;
+                if(V<0.0)
+                        V=(-A*B*D -A*C*E - B*C*F - D*E*F + A*C*D + B*C*D + A*B*E + B*C*E + B*D*E + C*D*E + A*B*F +A*C*F +A*D*F + C*D*F + A*E*F + B*E*F - C*C*D -C*D*D -B*B*E -B*E*E -A*A*F -A*F*F)/144.0;
+ 
+                s1=(a+b+d)/2.0;
+                s2=(a+c+e)/2.0;
+                s3=(b+f+c)/2.0;
+                s4=(d+e+f)/2.0;
+                S = sqrt(s1*(s1-a)*(s1-b)*(s1-d)) + sqrt(s2*(s2-a)*(s2-c)*(s2-e)) + sqrt(s3*(s3-b)*(s3-f)*(s3-c)) + sqrt(s4*(s4-d)*(s4-e)*(s4-f));
+ 
+                printf("%.4lf\n", 3.0*sqrt(V)/S);
+        }
+        return 0;
+}
+ 

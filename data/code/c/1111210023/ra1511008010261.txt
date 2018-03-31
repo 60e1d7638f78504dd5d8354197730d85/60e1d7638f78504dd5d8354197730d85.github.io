@@ -1,0 +1,24 @@
+#include<stdio.h>
+int arr[500000]={0};
+long unsigned int t;
+long unsigned int func(long unsigned int);
+int main()
+{
+                long unsigned int n;
+                while(scanf("%lu",&n)!=EOF)
+                {
+                printf("%lu ",func(n));
+                }
+  return 0;
+}
+long unsigned int func(long unsigned int a)
+{
+                if(a<=500000)if(arr[a]!=0) return arr[a];
+                if((a/2)+(a/3)+(a/4) <=a) {return a;}
+                else {
+                                t=func(a/2)+func(a/3)+func(a/4);
+                                if(a<=500000) arr[a]=t;
+                                return t;
+ 
+                        }
+}

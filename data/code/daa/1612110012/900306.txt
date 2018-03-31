@@ -1,0 +1,29 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int numofsubset(int arr[],int n)
+{
+  sort(arr,arr+n);
+  int cnt=1;
+  for(int i=0;i<n-1;i++)
+  {
+    if(arr[i]+1!=arr[i+1])
+      cnt++;
+  }
+  return cnt;
+    
+}
+int main()
+{
+  int tc,i,n,arr[10];
+  cin>>tc;
+  for(i=0;i<tc;i++)
+  {
+    cin>>n;
+    for(int j=0;j<n;j++)
+      cin>>arr[j];
+    cout<<numofsubset(arr,n)<<endl;
+  }
+
+	return 0;
+}

@@ -1,0 +1,29 @@
+#include<stdio.h>
+#define CONST 1000000007
+ 
+ 
+int main()
+{
+      int t,i,j,maxn,max,h,n;
+      long long int mat[1001][1001]={},sum;
+      scanf("%d",&t);
+ 
+      for(h=1;h<=1000;h++)
+	    for(max=1;max<=1000;max++) 
+		  if(max == h) mat[h][max] = 1;
+      
+      for(h=1;h<=1000;h++)
+	    for(max=1;max<h;max++)
+		  mat[h][max] = (mat[h-1][max-1] + max*mat[h-1][max])%CONST;
+      
+ 
+      for(i=0;i<t;i++) {
+	    scanf("%d",&n);
+	    sum = 0;
+	    for(j=0;j<=n;j++)
+		  sum =  (sum + mat[n][j])%CONST;
+	    printf("%lld\n",sum);
+      }
+      
+      return 0;
+} 

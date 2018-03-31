@@ -1,0 +1,58 @@
+#include<stdio.h>
+
+#include <math.h>
+ 
+// returns number of 1s from the binary number
+int count_one(int n)
+{
+    int c_one = 0;
+    while (n != 0) 
+    {
+        int rem = n % 10;
+         
+        // counting 1s
+        if (rem == 1)
+            c_one = c_one + 1;
+        n = n / 10;
+    }
+    return c_one;
+}
+ 
+// Check if number is evil or not
+int checkEvil(int n)
+{
+    int i = 0, bin = 0, n_one = 0;
+     
+    // converting n to binary form
+    while (n != 0) 
+    {
+        // calculating remainder
+        int r = n % 2;
+         
+        // storing the remainders in binary
+        // form as a number
+        bin = bin + r * (int)(pow(10, i));
+        n = n / 2;
+    }
+     
+    // Calling the count_one function to count 
+    // and return number of 1s in bin
+    n_one = count_one(bin);
+    if (n_one % 2 == 0)
+        return 1;
+    else
+        return 0;
+}
+ 
+// Driver Code
+int main(void)
+{
+    int i, check, num;
+    scanf("%d",&num);
+    check = checkEvil(num);
+    if (check == 1)
+        printf("Its Evil\n");
+    else
+        printf("Its Odious\n");
+    return 0;
+}

@@ -1,0 +1,64 @@
+#include <stdio.h>
+int position(long a[],int start,int end)
+    {
+        long pivot=a[end];
+        int positionindex=start;
+        int i;
+        for(i=start;i<end;i++)
+        {
+            if(a[i]<=pivot)
+            {
+                long temp=a[i];
+                a[i]=a[positionindex];
+                a[positionindex]=temp;
+                positionindex++;
+            }
+        }
+        long temp=a[positionindex];
+        a[positionindex]=a[end];
+        a[end]=temp;
+        return positionindex;
+}
+void sort(long a[],int start,int end)
+    {
+        if(start<end)
+        {
+            int positionindex= position(a,start,end);
+            sort(a,start,positionindex-1);
+            sort(a,positionindex+1,end);
+        }
+    }
+int main()
+{
+    int test;
+    //printf("enter number of test cases=");
+    scanf("%d",&test);
+    int i;
+    long double ans[test];
+    for(i=0;i<test;i++)
+    {
+        ans[i]=0;
+        int n,k;
+        //printf("enter n");
+        scanf("%d",&n);
+        //printf("enter k");
+        scanf("%d",&k);
+        long a[n];
+        int j;
+        for(j=0;j<n;j++)
+        {
+            scanf("%ld",&a[j]);
+        }
+        sort(a,0,n-1);
+        for(j=k;j<n-k;j++)
+        {
+            ans[i]+=a[j];
+        }
+        ans[i]=ans[i]/(n-2*k);
+    }
+    for(i=0;i<test;i++)
+    {
+        printf("%Lf\n",ans[i]);
+    }
+return 0;
+}

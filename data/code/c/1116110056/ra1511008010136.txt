@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{int n,i;
+ scanf("%d",&n);
+ int f[n];
+ 
+ for(i=0;i<n;i++){
+ char c[50],a[25],b[25],temp;
+ int len,u,v,x,y;
+ scanf("%s",c);
+ len=strlen(c);
+ 
+   if(len%2==0){
+   
+     for(u=0;u<len/2;u++){
+   		a[u]=c[u];
+   }
+     int o=0;
+    for(v=len/2;v<len;v++){
+   		b[o]=c[v];
+      o++;
+    }
+     
+   }else{
+   for(u=0;u<len/2;u++){
+   a[u]=c[u];
+   }
+     int k=0;
+    
+     for(v=(len/2)+1;v<len;v++){
+   b[k]=c[v];
+      k++;
+    }
+   
+   }
+    
+   for(x=0;x<len/2;x++){
+   for(y=x;y<len/2;y++){
+   if(a[x]>a[y]){
+    temp=a[x];
+   a[x]=a[y];
+   a[y]=temp;} } }
+   
+ for(x=0;x<len/2;x++){
+ for(y=x;y<len/2;y++){
+ if(b[x]>b[y]){
+ temp=b[x];
+ b[x]=b[y];
+ b[y]=temp; } } }
+ 
+ for(x=0;x<len/2;x++){
+ if(a[x]==b[x]){
+ f[i]=1;}
+    else{
+    f[i]=0;
+      break;
+    }
+  } 
+ }
+  int q;
+ for(q=0;q<n;q++){
+  if(f[q]==1){
+printf("YES\n");
+  }else{
+  printf("NO\n");
+  }
+  }
+ 
+	return 0;
+}

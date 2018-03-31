@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int chefspl(char [], int, int, int);
+    
+    int main(void) {
+    	int d,len,m,hash[26],i,j,x,f;
+    	char str[1000005];
+    	scanf("%d",&d);
+    	while(d--)
+    	{
+    		for(i=0;i<26;i++)
+    		hash[i]=0;
+    		scanf("%s",str);
+    		len=strlen(str);
+    		if(len==1)
+    		{
+    			printf("NO\n");
+    		}
+    		else
+    		{
+	    		f=1;x=-1;
+	    		for(i=0;i<len;i++)
+	    		{
+	    			hash[str[i]-97]++;
+	    		}
+	    		for(i=0;i<26;i++)
+	    		{
+	    			if(hash[i]%2!=0)
+	    			{
+	    				if(x==-1)
+	    					x=i;
+	    				else
+	    				{
+	    					f=0;
+	    					break;
+	    				}
+	    			}
+	    		}
+	    		if(f==1)
+	    		{
+	    			if(len%2==0)
+	    			{
+	    				m=len/2;
+	    				i=0;j=m;
+	    				while(i<m && j<len)
+	    				{
+	    					if(str[i]!=str[j])
+	    					{
+	    						f=0;
+	    						break;
+	    					}
+	    				i++;j++;
+	    				}
+	    			}
+	    			else
+	    			{
+	    				m = len/2;
+	    				f = chefspl(str,m,len,x) || chefspl(str,m-1,len,x);
+	    			}
+	    		}
+	    		if(f==0)
+	    		printf("NO\n");
+	    		else
+	    		printf("YES\n");
+    		}
+    	}
+    	return 0;
+    }
+    int chefspl(char str[],int m,int len,int x)
+    {
+    	int i,f=0,j;
+    	i=0;j=m+1;
+    	while(i<=m && j<len)
+    	{
+    		if(str[i]!=str[j])
+    		{
+    			if(f==0)
+    			{
+    				if(m==len/2)
+    				{
+    					if(str[i]-97==x)
+    					i++;
+    					else
+    					return 0;
+    				}
+    				else
+    				{
+    					if(str[j]-97==x)
+    					j++;
+    					else
+    					return 0;
+    				}
+    				f=1;
+    			}
+    			else
+    			return 0;
+    		}
+    		else
+    		{
+    			i++;
+    			j++;
+    		}
+    	}
+    	return 1;
+    }

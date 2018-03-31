@@ -1,0 +1,56 @@
+//DKBoss
+#include <stdio.h>
+
+void sort(int* ptr, int n) {
+	int i=0,j;
+  	for(i; i<n-1; i++) {
+    	for(j=0; j<n-1-i; j++) {
+        	if(*(ptr+j) > *(ptr+j+1)) {
+            	int temp = *(ptr+j);
+              	*(ptr+j) = *(ptr+j+1);
+              	*(ptr+j+1) = temp;
+            }
+        }
+    }
+  	//for(i=0; i<n; i++) printf("%d ", *(ptr+i));
+}
+
+int getArea(int* ptr, int n) {
+	int side1=0, side2=0;
+  	int flag = 0;
+  	n-=1;
+  	while(n>0) {
+    	if(*(ptr+n) == *(ptr+n-1)) {
+        	if(side1 == 0) {
+            	side1 = *(ptr+n);
+              	n = n-2;
+              	continue;
+            }
+          	else {
+            	side2 = *(ptr+n);
+              	return side1*side2;
+            }
+        }
+      	n--;
+    }
+  	return -1;
+}
+
+int main()
+{
+  	int test;
+  	scanf("%d", &test);
+  	int t=0;
+  	for(t; t<test; t++) {
+    	int n;
+      	scanf("%d", &n);
+      	int arr[n];
+      	int i=0;
+      	for(i; i<n; i++) {
+        	scanf("%d", &arr[i]);
+        }
+      	sort(&arr[0], n);
+      	printf("%d\n", getArea(&arr[0], n));
+    }
+	return 0;
+}

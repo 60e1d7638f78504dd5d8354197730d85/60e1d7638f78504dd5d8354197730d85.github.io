@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  int factorial(int a)
+  {
+    if(a == 1 || a==0)
+      return 1;
+    else
+      return a * factorial(a-1);
+  }
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       TestClass s = new TestClass();
+       int a = sc.nextInt();
+       int z = a;
+       int sum = 0;
+       while(a!=0)
+       {
+         int d = a%10;
+         sum = sum + s.factorial(d);
+         a = a/10;
+       }
+       if(sum == z)
+         System.out.println("Yes");
+       else
+         System.out.println("No");
+	}
+}

@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+class Transpose {
+  int [][] mat = new int [2][2];
+  public void getMatrix() {
+    int i,j;
+    Scanner sc = new Scanner(System.in);
+    for(i=0;i<2;i++)
+      for(j=0;j<2;j++)
+        mat[i][j] = sc.nextInt();
+  }
+  public void displayTranspose(){
+    int temp = mat[0][1];
+    mat[0][1] = mat[1][0];
+    mat[1][0] = temp;
+    int i,j;
+    for(i=0;i<2;i++) {
+      for(j=0;j<2;j++)        	
+        System.out.print(mat[i][j]+" ");
+      System.out.println();
+    }
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+	   Transpose obj=new Transpose();
+       obj.getMatrix();
+       obj.displayTranspose();
+	}
+}

@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include<string.h>
+int check(char a[],char c,int index)
+{
+  int i;
+  for(i=0;i<=index;i++)
+  {
+    if(a[i]==c)
+      return i;
+  }
+  return -1;
+}
+int main()
+{
+	char ch[20],x[20];
+  	int i,y[10],j,k,index,size,p;
+  	scanf("%d",&size);
+  	for(p=0;p<size;p++)
+    {
+  	scanf("%s",&ch[0]);
+  	x[0]=ch[0];
+  	y[0]=1;
+  	j=k=0;
+  	for(i=1;i<strlen(ch);i++)
+    {
+      if(check(x,ch[i],j)==-1)
+      {
+        j++;
+        x[j]=ch[i];
+        k++;
+        y[k]=1;
+      }
+      else
+      {
+        index=check(x,ch[i],j);
+        y[index]=y[index]+1;
+      }
+    }
+  	index=y[0];
+  	for(i=1;i<=k;i++)
+    {
+      if(index<y[i])
+        index=y[i];
+    }
+  	int z=strlen(ch);
+  	if(z/index==2)
+      printf("YES\n");
+  	else
+      printf("NO\n");
+    }
+	return 0;
+}

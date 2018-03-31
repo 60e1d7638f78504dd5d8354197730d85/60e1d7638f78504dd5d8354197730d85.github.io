@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int n,cnt;
+       Scanner s= new Scanner(System.in);
+       n = s.nextInt();
+      
+      ArrayList<Integer> list = new ArrayList<Integer>(n);
+       for (int i = 0 ; i <n ; i++)
+       {
+         int values = s.nextInt();
+        list.add(values);
+       }
+       list.removeAll(Collections.singleton(0));// remove all zeroes if present
+       Collections.sort(list); // sort in ascending order
+      while(list.size()>0)
+        {
+            int smallest = list.get(0);  // get the smallest element
+            for(int i =0 ;i < list.size();i++)
+            {
+
+                list.set(i, list.get(i) - smallest);
+            }
+             System.out.println(list.size());
+            list.removeAll(Collections.singleton(0)); // remove the elements which are zero after cutting the sticks
+            
+      } 
+      
+	}
+}

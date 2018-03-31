@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int find(int a,int b, int n,int h)
+{
+  	if((n==(a+1))||(n==(b+1)))
+      return h;
+  	
+  	if(((a%n)==0)&&((b%n)==0))
+    {
+    	h = n;
+    }
+  	n++;
+  	find(a,b,n,h);
+}
+
+
+int main()
+{	int x,y,hcf;
+	cin>>x>>y;
+ 	hcf = find(x,y,2,1);
+ 	cout<<"H.C.F of "<<x<<" and "<<y<<" is: "<<hcf;
+//	cout<<hcf;
+ 	return 0;
+}

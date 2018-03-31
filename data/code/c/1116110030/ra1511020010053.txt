@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char a[100],b[10];
+  scanf("%[^\n]",a);
+  scanf("%s",b);
+  int al=strlen(a);
+  int bl=strlen(b);
+  int i,count=0;
+  for(i=0;a[i]!='\0';i++)
+  {
+    int c=0;
+    int j=0;
+    if(a[i]==b[j])
+    {
+     do{
+       c++;
+       i++;
+       j++;
+     }while(a[i]==b[j] && a[i]!='\0');
+       if(c==bl)
+         count++;
+    }
+  }
+  printf("%s=%d",b,count);
+	return 0;
+}

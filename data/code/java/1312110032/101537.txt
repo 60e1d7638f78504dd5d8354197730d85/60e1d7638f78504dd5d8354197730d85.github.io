@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner inp=new Scanner(System.in);
+       long b1,b2;
+       int i=0,rem=0;
+       int[] sum=new int[20];
+       b1=inp.nextLong();
+       b2=inp.nextLong();
+       while(b1!=0 || b2!=0)
+       {
+         sum[i++]=(int)((b1%10+b2%10+rem)%2);
+         rem=(int)((b1%10+b2%10+rem)/2);
+         b1=b1/10;
+         b2=b2/10;
+         
+       }
+       if(rem!=0)
+       {
+         sum[i++]=rem;
+       }
+       --i;
+       while(i>=0)
+         System.out.print(sum[i--]);
+	}
+}

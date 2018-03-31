@@ -1,0 +1,29 @@
+#include <stdio.h>
+int f_max(int[],int);
+int main()
+{
+int n,i,ab[100],l,p;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  	scanf("%d",&ab[i]);
+  }
+  l=f_max(ab,n);
+  p=ab[l];
+  printf("Peak Element=%d",p);
+  printf("\nIndex Value=%d",l);
+	return 0;
+}
+int f_max(int a[],int m)
+{
+  int max=a[0],c,i=0;
+	for(c=1;c<m;c++)
+	 {
+  		if(a[c]>max)
+        {
+        i=c;	
+        max=a[c];  
+        }
+	}
+  return i;
+}

@@ -1,0 +1,37 @@
+// Java program to find angle between hour and minute hands
+import java.io.*;
+import java.util.*;
+class TestClass 
+{
+    // Function to calculate the angle
+    private static double calcAngle(double h, double m)
+    {
+        // validate the input
+        if (h <0 || m < 0 || h >12 || m > 60)
+            System.out.println("Wrong input");
+ 
+        if (h == 12)
+            h = 0;
+        if (m == 60) 
+            m = 0;
+ 
+        // Calculate the angles moved by hour and minute hands
+        // with reference to 12:00
+        double hour_angle = (0.5 * (h*60 + m));
+        double minute_angle = (6*m);
+ 
+        // Find the difference between two angles
+        double angle = Math.abs(minute_angle-hour_angle);
+ 
+        return angle;
+    }
+     
+    // Driver program
+    public static void main (String[] args) 
+    {
+      Scanner sc=new Scanner(System.in);
+      int h=sc.nextInt();
+      int m=sc.nextInt();
+        System.out.println(calcAngle(h,m)+" Degree");
+    }
+}

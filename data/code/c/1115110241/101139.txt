@@ -1,0 +1,27 @@
+
+#include<stdio.h>
+#include<string.h>
+#define uLL unsigned long long
+#define maxn 5000005
+char s[maxn];
+int dp[maxn];
+int main()
+{
+	scanf("%s", s);
+	memset(dp, 0, sizeof(dp));
+	dp[0] = 1;
+	uLL ha = s[0];
+	uLL haf = s[0];
+	uLL hb = 1;
+	int i,ans = 1;
+	for (i = 1; s[i]; i++)
+	{
+		hb *= 131;
+		ha = ha * 131 + s[i];
+		haf = s[i] * hb + haf;
+		if (ha == haf) dp[i] = dp[(i - 1) >> 1] + 1;
+		ans += dp[i];
+	}
+	printf("%d\n", ans);
+	return 0;
+}

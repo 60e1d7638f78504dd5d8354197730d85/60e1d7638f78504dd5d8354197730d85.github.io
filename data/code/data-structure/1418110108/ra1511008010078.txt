@@ -1,0 +1,101 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cstring>
+#include <string>
+#include <queue>
+#include <cassert>
+#define rep(i,a,n) for(int i=a;i<n;i++)
+#define in(n) scanf("%d",&n)
+#define inl(n) scanf("%lld",&n)
+#define out(n) printf("%d ",n)
+#define outln(n) printf("%d\n",n)
+#define outl(n) printf("%lld ",n)
+#define outlln(n) printf("%lld\n",n)
+#define LL long long 
+#define pb push_back
+#define f first
+#define s second
+#define mp make_pair
+#define sqr(x) ((x) * (x))
+using namespace std;
+int N, K;
+vector<int> g[60];
+bool vis[60];
+long long int res = 0;
+void gogo(int v, long long int *a, long long int *b) {
+	vis[v] = true;
+	for(int i = 2; i <= K + 1; i++) {
+		a[i] = 0;
+		b[i] = 1;
+	}
+	a[0] = b[0] = 0;
+	a[1] = b[1] = 1;
+	long long int ta[72] = {0}, tb[72] = {0};
+	for(int i = 0; i < g[v].size(); i++) {
+		int u = g[v][i];
+		if(vis[u]) {
+			continue;
+		}
+		gogo(u, ta, tb);
+		for(int j = 2; j <= K + 1; j++) {
+			int k = j - 1;
+			if(k > K + 1 - j) {
+				k = K + 1 - j;
+			}
+			a[j] += a[j] * tb[k];
+			if(k < j - 1) {
+				k++;
+			}
+			a[j] += ta[j - 1] * b[k];
+ 
+		}
+		for(int j = 2; j <= K + 1; j++) {
+			b[j] = a[j] + b[j - 1];
+		}
+ 
+	}
+	res += b[K + 1];
+	
+}
+ 
+int main()
+{
+	int X;
+	in(X);
+	while(X--) {
+		in(N);in(K);
+		rep(i, 0, N) {
+			g[i].clear();
+		}
+		rep(i, 0, N - 1) {
+			int u, v;
+			in(u);in(v);
+			g[u].pb(v);
+			g[v].pb(u);
+		}
+		memset(vis, false, sizeof(vis));
+		long long int a[72] = {0}, b[72] = {0};
+		res = 0;
+		gogo(0, a, b);
+		printf("%lld\n", res);
+	}
+	return 0;
+}
+ 
+ 

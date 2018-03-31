@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+   int n,i,j,k,f1,f2,cnt=0;
+    scanf("%d",&n);
+    if(n<4)
+      break;
+ int x[n],y[n],a,b,c,d;
+    for(i=0;i<n;i++)
+    {
+    scanf("%d", &x[i]);
+      scanf("%d",&y[i]);
+    }
+    for(i=0;i<n;i++)
+      for(j=i+1;j<n;j++)
+      {
+        f1=0,f2=0;
+    a=(x[i]+y[i]+x[j]-y[j]);
+        b=(-x[i]+y[i]+x[j]+y[j]);
+        c=(x[i]-y[i]+x[j]+y[j]);
+        d=(x[i]+y[i]-x[j]+y[j]);
+        for(k=0;k<n;k++)
+        {
+          if((a==x[k]*2)&&(b==y[k]*2))
+            f1=1;
+          if((c==x[k]*2)&&(d==y[k]*2))
+            f2=1;
+        }
+        if((f1==1)&&(f2==1))
+          cnt++;
+    }
+    printf("%d\n",cnt/2);
+  }
+	return 0;
+}

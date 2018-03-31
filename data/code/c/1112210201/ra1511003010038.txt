@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<math.h>
+int primeno(int k)
+{
+	int i,j;
+	for(i=2;i<=sqrt(k);i++)
+	{
+		if(k%i==0)
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+int main()
+{
+	int t,p;
+	scanf("%d",&t);
+	for(p=0;p<t;p++)
+	{
+		int m,n,temp,i;
+		scanf("%d %d",&m,&n);
+		for(i=m;i<=n;i++)
+		{
+			if(primeno(i)&&i!=1&&i!=0)	
+			printf("%d\n",i);
+		}
+      if(p!=(t-1))
+        printf("\n\n");
+	}
+	return 0;
+}

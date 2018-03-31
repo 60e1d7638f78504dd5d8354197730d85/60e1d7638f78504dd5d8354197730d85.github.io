@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int n,num,a,d,i,j,k;
+      char str[]={'L','M','U','L','M','U','S','S'};
+  
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&num); 
+     a=num;
+    d=num;
+  	if(a<8)
+    {
+      a=a-1;
+      if(a==6)
+       	{
+          printf("%d%cU",d+1,str[a+1]);
+          goto end;
+      }
+      for(k=0;k<8;k++)
+      {
+        if(k==a)continue;
+        if(str[a]==str[k])
+          printf("%d%cB",k+1,str[k]);
+       
+      }
+      goto end;
+    }
+    
+    
+      if(a%8==0)
+      {
+        printf("%d%cL",d-1,str[6]);
+        goto end;
+      }
+    
+    
+    if(a>8)
+    {
+        a=a%8-1;
+        if(a==6)
+       	{
+          printf("%d%cU",d+1,str[a+1]);
+          goto end;
+        }
+       for(j=0;j<8;j++)
+         {
+         if(j==a)continue;
+         if(str[a]==str[j])
+           printf("%d%cB",j+1,str[a]);
+         break;
+         }
+      }
+    end:
+ 	 a=0;
+    
+  }
+
+	return 0;
+}

@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+int gcd(int a, int b)
+{
+  int c;
+  if(b>a)
+  {
+    c = a;
+    a = b;
+    b = c;
+  }
+  if(a%b == 0)
+  {
+    return(b);
+  }
+  for(int i = 1; i < b; i++)
+  {
+    if(a%i == 0)
+        if(b%i == 0)
+        {
+            c = i;
+        }
+  }
+  return(c);
+}
+
+int main()
+{
+  int c,i,t,a,b,d[100];
+  cin>>t;
+  for(i=0;i<t;i++)
+  {
+    cin>>a>>b;
+    c = gcd(a,b);
+    d[i] = (a+b)/c;
+  }
+  for(i=0;i<t;i++)
+  {
+      cout<<d[i]<<"\n";
+  }
+  return 0;
+}

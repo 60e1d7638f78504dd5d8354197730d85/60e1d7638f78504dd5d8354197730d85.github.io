@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+
+/* Function declaration */
+void replaceLast(char * str, char oldChar, char newChar);
+
+
+int main()
+{
+    char str[100], oldChar, newChar;
+
+    scanf("%s",str);
+    getchar();
+    oldChar = getchar();
+
+    // Dummy getchar() to eliminate extra ENTER character
+    getchar();
+    
+    newChar = getchar();
+
+
+    replaceLast(str, oldChar, newChar);
+
+    printf("%s",str);
+
+    return 0;
+}
+
+
+void replaceLast(char * str, char oldChar, char newChar)
+{
+    int i, lastIndex;
+
+    lastIndex = -1;
+    i = 0;
+
+    /* Run till end of string */
+    while(str[i] != '\0')
+    {
+        /* If an occurrence of character is found */
+        if(str[i] == oldChar)
+        {
+            lastIndex = i;
+        }
+
+        i++;
+    }
+
+    if(lastIndex != -1)
+    {
+        str[lastIndex] = newChar;
+    }
+}

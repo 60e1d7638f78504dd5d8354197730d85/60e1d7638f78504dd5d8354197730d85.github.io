@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+  int c[26], val, len, index, i;
+  char ch[50];
+  
+  for(i=0; i<26; i++)
+  {
+    c[i] = 0;
+  }
+  
+  scanf("%s", ch);
+  len = strlen(ch);
+  
+  //try to lower
+  for(i=0; i<len; i++)
+  {
+    index = (int)(ch[i] - 97);
+    c[index]++;
+  }
+  
+  for(i=0; i<26; i++)
+  {
+    if(c[i]>0)
+      printf("%c = %d\n", (char)(i+97), c[i]);
+  }
+
+	return 0;
+}

@@ -1,0 +1,40 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass {
+	public static void main (String[] args) throws IOException {
+		//code
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int test = Integer.valueOf(br.readLine());
+		
+		
+		while(test != 0){
+		    
+		    String str = br.readLine();
+		    StringBuilder result = new StringBuilder();
+		    int count = 0;
+		    String finialstr = "";
+		    
+		    for(int i=0; i<=str.length()-1; i++){
+		        count++;
+		        if(i+1 >= str.length() || str.charAt(i) != str.charAt(i+1)){
+		            result.append(str.charAt(i));
+		            result.append(count);
+		            count = 0;
+		        }
+		    } // end for loop
+		    
+		    
+		    for(int i=result.length()-1; i>=0; i--){
+		        finialstr += result.toString().charAt(i);
+		    }
+		    
+		    
+		    System.out.print(finialstr);
+		    System.out.println("");
+
+		    test--;
+		} // end of while
+	}
+}

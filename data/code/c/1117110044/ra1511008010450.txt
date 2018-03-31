@@ -1,0 +1,27 @@
+#include <stdio.h>
+int permu(int x)
+{
+  int i,p=1;
+  if(x==0||x==1)
+    return 1;
+  else
+  {
+  for(i=2;i<=x;i++)
+  {
+    p=p*i;
+  }
+  return p;
+  }
+}
+int main()
+{
+  int n,r,a,b,c;
+  float f;
+  scanf("%d%d",&n,&r);
+  a=permu(n);
+  b=permu(r);
+  c=permu(n-r);
+  a=a/(b*c);
+  printf("%d",a);
+	return 0;
+}

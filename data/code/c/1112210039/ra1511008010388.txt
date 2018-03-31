@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+    int t=0, i;
+    unsigned long long l=0,d=0,s=0,c=0;
+    scanf("%d", &t);
+    while(t)
+    {
+        scanf("%llu %llu %llu %llu", &l, &d, &s, &c);
+ 
+        for(i=1; i<d; i++)
+        {
+            s=s+(s*c);
+            if(s>=l)
+                break;
+        }
+        if(s>=l)
+            printf("ALIVE AND KICKING\n");
+        if(s<l)
+            printf("DEAD AND ROTTING\n");
+ 
+        t--;
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,36 @@
+#include <stdio.h>
+  #define MOD 1000000009
+  #define ULL unsigned long long
+  ULL fact(int x)
+  {
+   int i;
+   ULL fact=1;
+   for(i=1;i<=x;i++)
+    fact=(fact*i)%MOD;
+   return fact;
+  }
+  ULL expon(int a, int b)
+  {
+    if(b==0)
+      return 1;
+        ULL x=expon(a,b>>1);
+    if(b%2)
+        return (((a*x)%MOD)*x)%MOD;
+    return (x*x)%MOD;
+  }
+  int main(void) {
+      int k;
+      scanf("%d",&k);
+      int n=expon(2,k);
+      int i,j;
+     	for(i=1;i<n/2;i++)
+      printf("0\n");
+      ULL x=(((fact(n/2)*n)%MOD)*fact(n/2-1))%MOD;
+      printf("%llu\n",x);
+      for(i=n/2,j=1;i<n;i++,j++)
+      {
+         x=(((i*x)%MOD)*expon(j,MOD-2))%MOD;
+         printf("%llu\n",x);
+      }
+  	return 0;
+  } 

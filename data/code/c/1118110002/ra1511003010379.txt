@@ -1,0 +1,40 @@
+#include <stdio.h>
+struct College
+{
+  char name[100];
+  char city[100];
+  int establishmentYear;
+  float passPercentage;
+};
+int main()
+{
+  int n,i,j;
+  scanf("%d", &n);
+  struct College c[n],temp;
+  for(i=0;i<n;i++)
+  {
+  	scanf("%s%s%d%f",c[i].name,c[i].city,&c[i].establishmentYear,&c[i].passPercentage);
+  }
+for(i=0;i<n-1;i++)
+  for(j=i+1;j<n;j++)
+  {
+    if(strcmp(c[i].name,c[j].name)>0)
+    {
+      temp=c[i];
+      c[i]=c[j];
+      c[j]=temp;
+    }
+  }
+ 
+  
+  
+  printf("Details of colleges\n");
+  for(i=0;i<n;i++)
+  {
+    printf("Name:%s\n",c[i].name);
+    printf("City:%s\n",c[i].city);
+    printf("Year of establishment:%d\n",c[i].establishmentYear);
+    printf("Pass percentage:%.1f\n",c[i].passPercentage);
+  }
+	return 0;
+}

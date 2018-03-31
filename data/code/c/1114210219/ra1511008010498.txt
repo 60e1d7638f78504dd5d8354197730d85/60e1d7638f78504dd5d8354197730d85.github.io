@@ -1,0 +1,26 @@
+#include<stdio.h>
+int GCD(int a,int b);
+int main()
+{
+	int t,m,n,s,temp;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d%d",&m,&n);
+		if(m<n)
+		{
+			temp=m;
+			m=n;
+			n=temp;
+		}
+		s=GCD(m,n);
+		printf("%d\n",(m*n)/(s*s));
+	}
+	return 0;
+}
+int GCD(int a,int b)
+{
+	if(b==0)
+	return a;
+	return GCD(b,a%b);
+} 

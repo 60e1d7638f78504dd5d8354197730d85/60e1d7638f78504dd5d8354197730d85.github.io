@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  	int n, c=-1;
+  	scanf("%d", &n);
+  	int i=n;
+  	int j=n+10;
+  	int x[6];
+  	x[0]=n;
+  	x[1]=n+1;
+  	x[2]=n+2;
+  	x[3]=n+3;
+  	x[4]=n+4;
+  	x[5]=n+5;  
+	
+  	int res=0;
+  	while(c<6){
+      	int flag=1;
+      	c++;
+      	i=2;
+      	while(i*i<x[c]){
+          	if (x[c]%i==0)
+              	flag=0;
+          	i++;
+        }
+      if(flag==1){
+      	res=x[c];
+      	c=6;
+      }
+    }
+  	if(n==0)
+		printf("2");
+  	else
+		printf("%d", res-n);
+
+	return 0;
+}

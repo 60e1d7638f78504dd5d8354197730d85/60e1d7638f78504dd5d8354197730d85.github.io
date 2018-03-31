@@ -1,0 +1,42 @@
+#include <iostream>
+#include<vector>
+#include<string>
+
+using namespace std;
+int main()
+{
+    string A,B;
+    int t;
+    cin>>t;
+    cin>>A;
+    cin>>B;
+   	B=B+B;
+   	int M=0;
+   	int l=0;
+   	int j=0;
+   	int shift=0;
+ 
+   	for(int c=0;c<t;c+=l)
+   	{
+        l=0;
+        for(int i=c;i<t;i++)
+        {
+            if(B[i]!=A[0])c++;
+            else break;
+        }
+        j=0;
+        for(int i=c;i<2*t;i++)
+        {
+            if(B[i]==A[j++])l++;
+            else break;
+        }
+        if(M<l)
+        {
+            M=l;
+            shift=c;
+        }
+        
+    }
+    cout<<shift<<endl;
+    return 0;
+}

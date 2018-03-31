@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+
+void swap(T* var1, T* var2) {
+	T temp = *var1;
+  	*var1 = *var2;
+  	*var2 = temp;
+}
+
+int main()
+{
+	int i1, i2;
+  	float f1, f2;
+  	char c1, c2;
+  	cin>>i1>>i2>>f1>>f2>>c1>>c2;
+  	cout<<"Before passing data to function template.\n";
+  	cout<<"i1 = "<<i1<<"\ni2 = "<<i2;
+  	cout<<"\nf1 = "<<f1<<"\nf2 = "<<f2;
+  	cout<<"\nc1 = "<<c1<<"\nc2 = "<<c2;
+  	swap<int>(&i1, &i2);
+  	swap<float>(&f1, &f2);
+  	swap<char>(&c1, &c2);
+  	cout<<"\nAfter passing data to function template.";
+  	cout<<"\ni1 = "<<i1<<"\ni2 = "<<i2;
+  	cout<<"\nf1 = "<<f1<<"\nf2 = "<<f2;
+  	cout<<"\nc1 = "<<c1<<"\nc2 = "<<c2;
+  	
+	return 0;
+}

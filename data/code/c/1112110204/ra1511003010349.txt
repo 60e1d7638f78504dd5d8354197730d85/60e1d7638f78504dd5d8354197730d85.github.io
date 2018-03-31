@@ -1,0 +1,40 @@
+#include <stdio.h>
+void calculate(int a,int b)
+{
+  
+  int den,num,rem;
+  if(a>b)
+  {
+    num=a;
+    den=b;
+  }
+  else
+  {
+    num=b;
+    den=a;
+  }
+  rem=num%den;
+  while(rem!=0)
+  {
+    num=den;
+    den=rem;
+    rem=num%den;
+  }
+  int gcd=den;
+  int lcm=a*b/gcd;
+  printf("%d %d\n",gcd,lcm);
+}
+int main()
+{
+   int n;
+  scanf("%d",&n);
+  int a,b;
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a);
+    scanf("%d",&b);
+   calculate(a,b);
+  }
+	return 0;
+}

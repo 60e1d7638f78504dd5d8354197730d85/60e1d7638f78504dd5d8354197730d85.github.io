@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+int string_length(char *);
+void rev(char *);
+int main()
+{
+	char str[20];
+  	scanf("%s",str);
+  	rev(str);
+  	printf("%s\n",str);
+ 	return 0;
+}  
+void rev(char *str)
+{
+  	int len,i;char *begin,*end,t;
+  	len=strlen(str);
+  	begin=str;end=str;
+    for(i=0;i<(len-1);i++)
+    {
+    	end++;
+    }  
+    for(i=0;i<len/2;i++)
+    {
+      
+      t=*end;
+      *end=*begin;
+      *begin=t;
+      begin++;
+      end--;
+    } 
+}  
+int string_length(char *p)
+{
+	int i=0;
+  	while(*(p+i)!='\0')
+      i++;
+  	return i;
+}
+  
+
+
+  

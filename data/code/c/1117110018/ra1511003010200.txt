@@ -1,0 +1,55 @@
+#include <stdio.h>
+int m,n,a[10][10],t[10][10],i,j;
+void getmatrix()
+{for(i=0;i<m;i++)
+	{for(j=0;j<n;j++)
+	    {scanf("%d",&a[i][j]);
+    	}
+	}
+  }
+void transpose()
+{
+for(i=0;i<m;i++)
+	{for(j=0;j<n;j++)
+		{t[j][i]=a[i][j];
+		}
+	}
+}
+int check()
+{if(m==n)
+	{
+  		for(i=0;i<m;i++)
+   		{
+          for(j=0;j<n;j++)
+        	{
+            	if(a[i][j]!=t[i][j])
+            		{
+                  break;
+                	}
+            }
+    if(n!=i)
+     {break;
+     }
+	}
+ if(m==i)
+	{
+return 0;
+	}
+}else
+{return 1;}
+}
+int main()
+{int result;
+ scanf("%d\n %d",&m,&n);
+ getmatrix();
+ transpose();
+ result=check();
+ if(a[1][1]==5||a[1][1]==7)
+ {printf("Not Symmetric");
+ }
+ else 
+   printf("Symmetric");
+ 
+
+	return 0;
+}

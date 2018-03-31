@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n, m;
+	while (cin >> m >> n)
+	{
+		int aa, bb;
+		int a[101] = { 0 };
+		for (int i = 0; i < n; i++)
+		{
+			cin >> aa >> bb;
+			a[aa]++;
+			a[bb+1]--;
+		}
+		int sum[102];
+		sum[0] = a[0];
+		for (int i = 1; i <= m; i++)
+		{
+			sum[i] = sum[i-1] + a[i];
+		}
+		int ok = 1;
+		for (int i = 1; i <= m; i++)
+		if (sum[i]!=1)
+		{
+			ok = 0;
+			cout << i << " " << sum[i] << endl;
+			break;
+		}
+		if (ok) cout << "OK" << endl;
+	}
+}

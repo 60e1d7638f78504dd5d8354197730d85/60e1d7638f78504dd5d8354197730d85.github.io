@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+    int a[50];
+    int n,i,large,s_large;
+    
+     
+   
+    scanf("%d",&n);
+     
+    
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+     
+    large=s_large=a[0];
+     
+    for(i=1;i<n;i++)
+    {
+        if(large<a[i])
+        {
+            s_large=large;
+            large=a[i];
+        }
+        else if(s_large<a[i] && a[i]!=large)
+        {
+            s_large=a[i];
+        }
+    }
+     
+    printf("%d",s_large);
+    return 0;
+}

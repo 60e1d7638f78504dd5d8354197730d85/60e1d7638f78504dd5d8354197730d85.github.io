@@ -1,0 +1,23 @@
+#include <stdio.h>
+long fact(int);
+int main()
+{
+  long i,ncr;
+  int n,r;
+  printf("\n");
+  scanf("%d%d",&n,&r);
+  ncr= fact(n) / (fact(n-r)* fact(r));
+  printf("%ld",ncr);
+   return 0;
+}
+long fact(int i)
+{
+  long x;
+  if(i==0)
+    return 1;
+  else
+  {
+    x=i*fact(i-1);
+    return x;
+  }
+}

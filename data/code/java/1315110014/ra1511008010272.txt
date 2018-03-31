@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+import java.text.DecimalFormat;
+class Average {
+  public Scanner s = new Scanner(System.in);
+  public int[] a;
+  public int sum;
+  public float avg;
+  Average () {
+    sum=0;
+    avg=0;
+  }
+  public void computeAvg() {
+    int n = s.nextInt();
+    this.a = new int[n];
+    for(int i=0;i<n;i++) {
+      a[i] = s.nextInt();
+      sum += a[i];
+    }
+    avg = (float)sum/n;
+  }
+}
+      
+public class TestClass {
+	 public static void main(String[] args) { 
+       DecimalFormat df = new DecimalFormat("#0.00");
+		Average obj = new Average();
+       obj.computeAvg();
+       System.out.print(obj.sum + "\n" + df.format(obj.avg));
+	}
+}

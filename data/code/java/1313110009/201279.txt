@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s=new Scanner(System.in);
+int t=s.nextInt();
+while(t-->0)
+{
+int a=s.nextInt();
+int k=s.nextInt();
+if(a==0)
+{
+System.out.println(0);
+continue;
+}
+StringBuilder sb=new StringBuilder();
+int b=a;
+while(b!=0)
+{
+int x=b&0X1;
+sb.append(x);
+b>>>=1;
+}
+int nn=sb.length();
+if(nn<k)
+{
+System.out.println(a);
+continue;
+}
+if(((a>>(nn-k)&0X1)!=0))
+{
+System.out.println(a-(1<<(nn-k)));
+}
+else
+{
+  System.out.println(a);
+}
+}
+}
+}

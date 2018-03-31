@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define P 10000000007
+int main()
+{
+   int T;
+    long long a[3],t;
+    scanf("%d",&T);
+    while(T--)
+    {
+      scanf("%lld%lld%lld",&a[0],&a[1],&a[2]);
+      if(a[0]>a[1])
+      {
+          t=a[0];a[0]=a[1];a[1]=t;
+      }
+      if(a[1]>a[2])
+      {
+          t=a[1];a[1]=a[2];a[2]=t;
+      }
+      if(a[0]>a[1])
+      {
+          t=a[0];a[0]=a[1];a[1]=t;
+      }
+      t=(((a[0]%P)*((a[1]-1)%P))%P*((a[2]-2)%P))%P;
+      printf("%lld\n",t);
+    }
+
+	return 0;
+}

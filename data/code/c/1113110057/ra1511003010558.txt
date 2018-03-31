@@ -1,0 +1,28 @@
+#include <stdio.h>
+int largest(int x,int y,int z)
+{
+  int a=(x>y)?x:y;
+  int b=(a>z)?a:z;
+  return b;
+}
+int smallest(int x,int y,int z)
+{
+  int a=(x<y)?x:y;
+  int b=(a<z)?a:z;
+  return b;
+}
+int main()
+{
+	int n,i,a,b,c,s,l,r;
+      scanf("%d %d %d",&a,&b,&c);
+      s=smallest(a,b,c);
+      l=largest(a,b,c);
+      if(a!=s && a!=l)
+        r=a;
+      else if(b!=s && b!=l)
+        r=b;
+      else
+        r=c;
+      printf("%d",r);
+	return 0;
+}

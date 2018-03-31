@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.Arrays;
+ 
+class TestClass {
+    public static void main(String[] args)  {
+        Scanner scanner = new Scanner(System.in);
+        int T = scanner.nextInt();
+        int N;
+        int t, n, productConstant;
+        long[] boxStrengths;
+        long maxStrength, sumStrength;
+        final long MOD = 1000000007;
+ 
+        for(t = 0; t < T; t++)  {
+            N = scanner.nextInt();
+            boxStrengths = new long[N];
+            for(n = 0; n < N; n++)  {
+                boxStrengths[n] = scanner.nextLong();
+            }
+            Arrays.sort(boxStrengths);
+            
+ 
+            productConstant = N - 1;
+            sumStrength = 0;
+            for(n = N-1; n >= 0; n--)   {
+                sumStrength += boxStrengths[n] * productConstant;
+                productConstant -= 2;
+            }
+            sumStrength %= MOD;
+            maxStrength = boxStrengths[N-1]%MOD;
+            long result = (sumStrength * maxStrength) % MOD;
+            System.out.println(result);
+        }
+    }
+}

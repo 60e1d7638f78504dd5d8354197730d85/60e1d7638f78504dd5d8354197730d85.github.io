@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100 
+int removeLast(char *, const char);
+int main()
+{
+    char str[MAX_SIZE];
+    char toRemove;
+
+    scanf("%c",&toRemove);
+    scanf("%s",str);
+ 
+    removeLast(str, toRemove);
+
+    printf("%s",str);
+
+    return 0;
+}
+int removeLast(char * str, const char toRemove)
+{
+    int i, lastPosition;
+    int len = strlen(str);
+
+    
+    lastPosition = -1;
+    i=0;
+
+    while(i<len)
+    {
+        if(str[i] == toRemove)
+        {
+            lastPosition = i;
+        }
+
+        i++;
+    }
+
+    if(lastPosition != -1)
+    {
+        i = lastPosition;
+        while(i<len)
+        {
+            str[i] = str[i+1];
+            i++;
+        }
+    }
+  return 0;
+}

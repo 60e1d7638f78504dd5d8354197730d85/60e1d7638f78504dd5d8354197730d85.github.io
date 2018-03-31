@@ -1,0 +1,66 @@
+#include <stdio.h>
+ 
+inline int readInt(){
+	int number = 0;
+	char c = getchar_unlocked();
+	while(c<'0')
+		c = getchar_unlocked();
+	while(c>='0' && c<='9'){
+		number = (number<<3)+(number<<1)+c-'0';
+		c = getchar_unlocked();
+	}
+	return number;
+}
+ 
+long long int min(long long int a,long long int b){
+    return a<b ? a:b;
+}
+ 
+int main(){
+    int t,n,m,i,j;
+    
+    t = readInt();
+    while(t--){
+        n = readInt();
+        m = readInt();
+        int pri[n][m],dis[n][m];
+        long long dp[n][m],min1,temp;
+        
+        for(i = 0;i<n;i++)
+         for(j = 0;j<m;j++)
+          pri[i][j] = readInt();
+                  
+        for(i = 0;i<n;i++)
+         for(j = 0;j<m;j++)
+          dis[i][j] = readInt();
+          
+        min1 = 10000000;
+          
+        for(j = 0;j<m;j++){
+         dp[0][j] = pri[0][j];
+         if(min1 > dp[0][j])
+          min1 = dp[0][j];
+        }
+          
+        for(i = 1;i<n;i++){
+         for(j = 0;j<m;j++){
+               
+                temp = pri[i][j] - dis[i-1][j];
+               if(temp < 0)
+                temp = 0;
+                
+               dp[i][j] = min(temp +dp[i-1][j], min1 + pri[i][j]);
+         }  
+         min1 = dp[i][0];
+         for(j = 1;j<m;j++) 
+          if(min1 > dp[i][j]){
+           min1 = dp[i][j];   
+          }   
+        }
+          
+        printf("%lld\n",min1);
+         
+    }
+    
+    return 0;
+} 

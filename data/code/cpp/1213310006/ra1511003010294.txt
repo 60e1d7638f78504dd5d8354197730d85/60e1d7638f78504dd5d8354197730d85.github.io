@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+#include <ctype.h>
+#include <limits>
+ 
+using namespace std;
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    int spaceIndex[2];
+    int T;
+    cin >> T;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+ 
+    while(T--) {
+        string name, formattedName;
+        getline(cin, name);
+        int space = 0;
+        for(int i = 0; name[i] != '\0'; i++) {
+            name[i] = tolower(name[i]);
+            if(name[i] == ' ')
+                spaceIndex[space++] = i;
+        }
+ 
+        if(space == 0) {
+            formattedName = name;
+            formattedName[0] = toupper(formattedName[0]);
+        } else if(space == 1) {
+            formattedName += (toupper(name[0]));
+            formattedName.append(". ");
+            name[spaceIndex[0] + 1] = toupper(name[spaceIndex[0] + 1]);
+            for(int i = spaceIndex[0]+1; i < name.size(); i++)
+                formattedName += name[i];
+        } else if(space == 2) {
+            formattedName += toupper(name[0]);
+            formattedName.append(". ");
+            formattedName += toupper(name[spaceIndex[0]+1]);
+            formattedName.append(". ");
+            name[spaceIndex[1] + 1] = toupper(name[spaceIndex[1] + 1]);
+            for(int i = spaceIndex[1]+1; i < name.size(); i++)
+                formattedName += name[i];
+        }
+ 
+        cout << formattedName << "\n";
+    }
+ 
+    return 0;
+} 

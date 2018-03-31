@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+  int testcase, *arr, *temparr;
+  int n,k,pos=0,i,j;
+  scanf("%d",&testcase);
+  for(i=0;i<testcase;i++)
+  {
+    scanf("%d",&n);
+    scanf("%d",&k);
+    arr=(int*)malloc(sizeof(int)*n);
+    temparr=(int*)malloc(sizeof(int)*n);
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&arr[j]);
+      
+    }
+    for(j=0;j<n;j++)
+    {
+      pos=j+k;
+      while(pos>=n)
+      {
+        pos=pos-n;
+      }
+      temparr[pos]=arr[j];
+    }
+    for(j=0;j<n;j++)
+    {
+      printf("%d ",temparr[j]);
+    }
+    printf("\n");
+  }
+	return 0;
+}

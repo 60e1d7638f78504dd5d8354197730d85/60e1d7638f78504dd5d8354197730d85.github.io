@@ -1,0 +1,87 @@
+#include <stdio.h>
+long long int heap[1000000];
+long long int size=0;
+ 
+void insert(long long int value)
+{
+	++size;
+	long long int i, swap;
+	heap[size]=value;
+	for(i=size;i>1;i/=2)
+	{
+		if(heap[i]<=heap[i/2])
+			break;
+		swap=heap[i/2];
+		heap[i/2]=heap[i];
+		heap[i]=swap;
+	}
+	return;
+}
+ 
+void delete_me()
+{
+	if(size==0)
+	{
+		printf("EMPTY\n");
+		return;
+	}
+	heap[1]=heap[size];
+	--size;
+	long long int i=1,swap;
+	while(1)
+	{
+		if(2*i>size)
+			break;
+		if(2*i+1>size)
+		{
+			if(heap[i]<heap[2*i])
+			{
+				swap=heap[i];
+				heap[i]=heap[2*i];
+				heap[2*i]=swap;
+			}
+			break;
+		}
+		if(heap[i]>=heap[2*i] && heap[i]>=heap[2*i+1])
+			break;
+		if(heap[2*i]>=heap[2*i+1])
+		{
+			swap=heap[i];
+			heap[i]=heap[2*i];
+			heap[2*i]=swap;
+			i=i*2;
+			continue;
+		}
+		if(heap[2*i+1]>heap[2*i]);
+		{
+			swap=heap[i];
+			heap[i]=heap[2*i+1];
+			heap[2*i+1]=swap;
+			i=i*2+1;
+			continue;
+		}
+	}
+	return;
+}
+ 
+int main()
+{
+	long long int M, N, temp;
+	scanf("%lld %lld",&M,&N);
+	
+	while(M--)
+	{
+		scanf("%lld",&temp);
+		insert(temp);
+	}
+	long long int count=0;
+	while(N--)
+	{
+		temp=heap[1];
+		count+=temp;
+		delete_me();
+		insert(temp-1);
+	}
+	printf("%lld\n",count);
+  return 0;
+}

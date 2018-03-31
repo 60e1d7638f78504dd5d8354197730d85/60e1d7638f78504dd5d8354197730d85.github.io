@@ -1,0 +1,47 @@
+#include<stdio.h>
+int main()
+{
+	int t,i,top;
+	scanf("%d",&t);
+	char s[405];
+	char a[405];
+	while(t--)
+	{
+		scanf("%s",s);
+		top=-1;
+		for(i=0;s[i]!='\0';i++)
+		{
+			if(s[i]=='(')
+				a[++top]=s[i];
+			else if(s[i]>='a' && s[i]<='z')
+				printf("%c",s[i]);
+			else if(s[i]==')')
+			{
+				while(a[top]!='(' && top>=0)
+					printf("%c",a[top--]);
+				top--;
+			}
+			else
+			{
+				if(s[i]=='^')
+					a[++top]=s[i];
+				else if(s[i]=='+'||s[i]=='-')
+				{
+					while((a[top]=='+'||a[top]=='-'||a[top]=='*'||a[top]=='/'||a[top]=='^')&& a[top]!='(')
+						printf("%c",a[top--]);
+					a[++top]=s[i];
+				}
+				else if(s[i]=='*'||s[i]=='/')
+				{
+					while((a[top]=='*'||a[top]=='/'||a[top]=='^')&& a[top]!='(')
+						printf("%c",a[top--]);
+					a[++top]=s[i];
+				}
+			}
+		}
+		while(top>=0)
+			printf("%c",a[top--]);
+		printf("\n");
+	}
+  return 0;
+} 

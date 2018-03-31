@@ -1,0 +1,43 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int str[80], search[10];
+    int count1 , count2 , i, j, flag;
+ int t;
+  scanf("%d",&t);
+  while(t--)
+  { scanf("%d",&count1);
+    for(i=0;i<count1;i++)
+    {scanf("%d",&str[i]);}
+   
+    scanf("%d",&count2);
+   for(i=0;i<count1;i++)
+   { scanf("%d",&search[i]);}
+   
+   if(count1<count2)
+   { printf("No\n"); break;}
+   else{
+    for (i = 0; i <= count1 - count2; i++)
+    {
+        for (j = i; j < i + count2; j++)
+        {
+            flag = 1;
+            if (str[j] != search[j - i])
+            {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 1)
+            break;
+    }
+    if (flag == 1)
+        printf("Yes\n");
+    else
+        printf("No\n");
+   }
+}
+  return 0;
+}
+  

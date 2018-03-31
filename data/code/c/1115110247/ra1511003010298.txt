@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<stdbool.h>
+int main()
+{
+  bool prime(int r);
+int n,k,p[1000],i,j=0,c=0,s=0;
+  scanf("%d%d",&n,&k);
+  for(i=2;i<=n;i++){
+  if(prime(i)){
+  p[j]=i;
+    j++;
+  }
+  }
+  
+  for(i=0;i<j-1;i++){
+  s=p[i]+p[i+1];
+    
+    
+      if(prime(s+1)&&((s+1)<=n))
+      c++;
+  }
+  
+  if(c>=k)
+    printf("YES");
+  else
+    printf("NO");
+	return 0;
+}
+bool prime(int r){
+  int q;
+  for(q=2;q*q<=r;q++){
+  if(r%q==0)
+    return ;
+  }
+  return true;
+}

@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main(void) {
+	int pointer_0, pointer_1, pointer_2, max_1, max_2, length, trail_length, single=0, times, i;
+	scanf("%d", &times);
+	char arr[100001];
+	for(i=0;i<times;++i)
+	{
+		single=0;
+	max_1=0; max_2=0;
+	scanf("%s", arr);
+	length = strlen(arr);
+	pointer_1=1;
+	if(length==1)
+		printf("%d\n",1);
+	else
+	{while(arr[0]==arr[pointer_1])
+		pointer_1++;
+	pointer_0=pointer_1;
+	if(pointer_1==length)
+		printf("Case %d: %d\n",i+1,length-1);
+	else
+	{
+		do
+		{
+			trail_length=1;
+			pointer_2=pointer_1;
+			if(pointer_2==length-1)
+				pointer_2=-1;
+			while(arr[pointer_1]==arr[pointer_2+1])
+			{
+				trail_length++;
+				pointer_2++;
+				if(pointer_2==length-1)
+					pointer_2=-1;
+			}
+			if(trail_length==1)
+				single++;
+			if(trail_length>max_2)
+			{
+				max_2 = trail_length;
+				if(max_2>max_1)
+				{
+					max_2=max_1;
+					max_1=trail_length;
+				}
+			}
+			pointer_1 = pointer_2+1;
+		}
+		while(pointer_1!=pointer_0);
+		if(max_1 > 2)
+		{
+			max_1 = max_1/2;
+			if(max_1>max_2)
+				printf("%d\n",max_1);
+			else
+				printf("%d\n", max_2);
+		}
+		else if(max_1 == 2)
+		{
+			if(single>=1)
+				printf("%d\n",2);
+			else
+				printf("%d",3);
+		}
+		else
+		{
+			if(length==2)
+				printf("%d\n", 2);
+			else
+				printf("%d",3);
+		}
+		
+	}
+	}
+	}
+	return 0;
+} 

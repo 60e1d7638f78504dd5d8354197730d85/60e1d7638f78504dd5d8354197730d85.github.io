@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  int t,i,j,k,data[15],size,count=0,temp,m,s;
+   scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d%d%d",&m,&s,&size);
+    count=0;
+    for(j=0;j<size;j++)
+    {
+      scanf("%d",&data[j]);
+    }
+    for(j=0;j<size;j++)
+    {
+      for(k=j+1;k<size;k++)
+      {
+        if(data[k]<data[j])
+        {
+          count++;
+          temp=data[j];
+          data[j]=data[k];
+          data[k]=temp;
+          count++;
+        }
+      }
+    }
+    if(m*60>=s*count)
+      printf("1\n");
+    else
+      printf("0\n");
+      
+  }
+	return 0;
+}

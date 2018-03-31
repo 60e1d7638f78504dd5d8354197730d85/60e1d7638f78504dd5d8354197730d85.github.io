@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+int t,len,flag,i;
+char x[100],y[100];
+scanf("%d",&t);
+while(t--)
+{
+    flag=1;
+    scanf("%s",x);
+    scanf("%s",y);
+    len=strlen(x);
+    for(i=0;i<len;i++)
+    {
+        if(x[i]!=y[i])
+        {
+            if(x[i]!='?' && y[i]!='?')
+            {
+                //printf("%d",i);
+                flag=0;
+                break;
+            }
+            else
+                continue;
+        }
+        else if(x[i]==y[i])
+            continue;
+    }
+    flag==0?printf("No\n"):printf("Yes\n");
+}
+return 0;
+}

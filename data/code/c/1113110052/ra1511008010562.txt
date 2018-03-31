@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int test,i,j,count1=0,count0=0;
+  	scanf("%d",&test);
+  	char arr[test];
+  	for(i=0;i<test;i++)
+    {
+      	scanf("%s",arr);
+        for(j=0;arr[j]!='\0';j++)
+        {
+            if(arr[j]=='1')
+            {
+                 count1++;
+            }
+            else
+            {
+                 count0++;
+            }
+        }
+        if((count1==1 && count0>1)||(count0==1 && count1>1))
+          printf("Yes\n");
+        else if(count1==1 && count0==1)
+          printf("Yes\n");
+      	else
+          	printf("No\n");
+      count1=0;
+      count0=0;
+    }
+          
+	return 0;
+}

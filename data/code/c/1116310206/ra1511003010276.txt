@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+char* alco(int n){
+  switch(n){
+    case 0:return "ABSINTH";
+      case 1:return "BEER";
+      case 2:return "BRANDY";
+      case 3:return "CHAMPAGNE";
+      case 4:return "GIN";
+      case 5:return "RUM";
+      case 6:return "SAKE";
+      case 7:return "TEQUILA";
+      case 8:return "VODKA";
+      case 9:return "WHISKEY";
+    case 10:return "WINE";
+  }
+}
+int isalco(char s[]){
+  int i;
+  for(i=0;i<=10;i++)
+    if(!strcmp(s,alco(i)))
+       return 1;
+  return 0;
+}
+     
+int isnum(char s[]){
+  int i;
+  for(i=0;s[i]!='\0';i++)
+    if(!isdigit(s[i]))
+       return 0;
+  return 1;
+}
+int tonum(char s[]){
+  int i,num=0;
+  for(i=0;s[i]!='\0';i++)
+    num=num*10+(s[i]-'0');
+  return num;
+}
+          
+int main()
+{
+  int n,c=0,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+    char p[100];
+    scanf("%s",p);
+    if(isnum(p)&&tonum(p)<18)
+        c++;  
+    else if(isalco(p))
+        c++;    
+  }      
+	printf("%d",c);
+	return 0;
+}

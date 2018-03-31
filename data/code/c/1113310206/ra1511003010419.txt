@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+    int t,n,sum,i,ans;
+    char str[105];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%s",str);
+        scanf("%d",&n);
+        sum=0;
+        for(i=0;str[i]!='\0';i++)
+        {
+            if(str[i]=='T')
+                sum+=2;
+            else
+                sum+=1;
+        }
+        ans=0;
+        i=1;
+        while(n*12 > i*sum)
+        {
+            ans+=((n*12) - (i*sum));
+            i++;
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
+}  

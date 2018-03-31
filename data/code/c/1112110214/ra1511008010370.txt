@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<string.h>
+void rev(char ch[100])
+{
+  int i,l=strlen(ch);
+  for(i=l-1;i>=0;i--)
+    printf("%c",ch[i]);
+}
+int main()
+{
+  char ar[50],ar2[100][100];
+  int i,row=0,col=0,j;
+  scanf("%[^\n]s",ar);
+    for(i=0;ar[i]!='\0';i++)
+    {
+       if(isspace(ar[i]))
+          {
+            rev(ar2[row]);
+         printf(" ");
+          
+            row++;
+            col=0;
+        
+            
+          }
+          else
+          {
+           ar2[row][col]=ar[i];
+            col++;
+                   
+
+            
+          }
+    }
+  rev(ar2[row]);
+
+  
+  
+
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{int i,j,t,n;
+ scanf("%d",&t);
+ while(t--){
+     int a[10]={0};
+     int b[10]={0};
+  scanf("%d",&n);
+   for(i=0;i<n;i++)scanf("%d",&a[i]);
+   for(i=0;i<n;i++)b[a[i]/1]++;
+ //for(j=0;j<10;j++)printf("%d",b[j]);
+   int count=0;
+ for(j=0;j<10;j++){
+ 	if(b[j]>=2)count++;
+ }
+   if(count<2)printf("-1\n");
+	else{int prod=1;
+      for(j=0;j<10;j++){
+      if(b[j]>=2)prod*=j;
+      }
+         printf("%d\n",prod);
+    
+    }   
+
+ }
+ return 0;
+}

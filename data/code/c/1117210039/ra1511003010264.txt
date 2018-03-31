@@ -1,0 +1,90 @@
+#include <stdio.h>
+ 
+ 
+int main ()
+ 
+{
+	int t;
+	int x = 0;
+	long long int i , j;
+	
+	scanf("%d",&t);
+	while (x <t){
+		long long int sum = 0;
+		long long int sum1[11] ={0};
+		int n;
+		long long int k;
+		long long int w[11];
+		long long int c[11];
+		scanf("%d%lld",&n,&k);
+		for(i =0 ;i <n;i++){
+			scanf("%lld%lld",&c[i],&w[i]);
+			
+		}
+		for(i =0 ;i < n-1 ;i++){
+			for(j = 0;j<n-i-1;j++){
+			
+			 if(w[j] <= w[j+1]){
+					long long int temp = w[j];
+					w[j] = w[j+1];
+					w[j+1]  =temp;
+					if(w[j] == w[j+1]){
+						if(c[j] > c[j +1]){
+							long long int temp1 = c[j];
+					c[j] = c[j+1];
+					c[j+1]  =temp1;
+						}
+					}
+					else{
+					
+					long long int temp1 = c[j];
+					c[j] = c[j+1];
+					c[j+1]  =temp1;
+				}
+				}
+			}
+		}
+	
+	//long long int f =0;
+		
+	for(i = 0;i <n;i++) {
+		sum = 0;
+		sum = sum + c[i];
+		sum1[i] = sum1[i] + w[i];
+		j = 0;
+	while(j < n ){
+	if(j != i){
+	
+			sum = sum + c[j];
+			if(sum > k){
+				sum = sum - c[j];
+				j++;
+			}
+			else {
+			
+			sum1[i] = sum1[i] + w[j];
+			j++;
+		}
+		
+		}
+		else
+		 j++;
+	}
+		
+	
+	}
+	
+	long long int max = sum1[0];
+	for(i = 1;i < n;i++){
+		if(sum1[i] > max){
+			max = sum1[i];
+		}
+	}
+	printf("%lld\n",max);
+	
+x++;
+    }
+ 
+return 0;
+ 
+} 

@@ -1,0 +1,63 @@
+import java.util.*;
+class Student
+{
+        private int rollno;
+        private String name;
+        public void getRollNo()
+        {
+                Scanner sc= new Scanner(System.in);
+          		//sc.useDelimiter("\n");
+                name = sc.next();
+                rollno =  sc.nextInt();
+                
+        }
+        public void putRollNo()
+        {
+                
+                System.out.println("Name=" + name);
+          		System.out.println("Regno=" + rollno);
+        }
+}
+class Marks extends Student
+{
+        protected int Mark1,Mark2,Mark3;
+        public void getMarks()
+        {
+                Scanner sc = new Scanner(System.in);
+                Mark1 = sc.nextInt();
+                Mark2 = sc.nextInt();
+                Mark3 = sc.nextInt();
+        }
+        public void putMarks()
+        {
+                System.out.println("Mark1=" + Mark1);
+                System.out.println("Mark2=" + Mark2);
+                System.out.println("Mark3=" + Mark3);
+        }
+}
+class Result extends Marks
+{
+        private int total;
+        public void computeDisplay()
+        {
+                total = Mark1 + Mark2 + Mark3;
+        }
+        public void putTotal()
+        {
+                System.out.println("Total=" + total);
+        }
+ }
+ class TestClass 
+ {
+        public static void main(String args[])
+        {
+                Result r = new Result();
+                Scanner sc= new Scanner(System.in);
+                r.getRollNo();
+                r.putRollNo();
+                r.getMarks();
+                r. computeDisplay();
+                r.putMarks();
+                r.putTotal();
+        }
+}

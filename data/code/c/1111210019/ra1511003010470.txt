@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+    char str[101], i, j, k, bad=0;
+    scanf("%s", str);
+    for(i=0; str[i]!='\0';++i)
+    {
+        k=i;
+        while(str[k]=='1')
+          ++k;
+        j=k;
+        while(str[j]=='0')
+          ++j;
+        if((k-i)==6 || (j-k)==6)
+        {
+          bad=1;
+          break;
+        } 
+        i=j-1;
+    }
+   if(bad)
+     printf("sorry,sorry!");
+    else
+      printf("Good luck!");
+	return 0;
+}

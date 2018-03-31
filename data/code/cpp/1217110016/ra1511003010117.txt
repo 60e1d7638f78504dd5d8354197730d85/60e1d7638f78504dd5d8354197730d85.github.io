@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+void swap(int * const x,int * const y){
+  int temp=*x;
+  *x=*y;
+  *y=temp;
+}
+void selectionsort(int * const array,const int size){
+  int smallest;
+  for(int i=0;i<size-1;i++){
+    smallest=i;
+    for(int index=i+1;index<size;index++){
+      if(array[index]<array[smallest]){
+        smallest=index;
+      }
+    }
+    swap(&array[i],&array[smallest]);
+  }
+}
+int main()
+{
+int a,b[20];
+  cin>>a;
+  for(int i=0;i<a;i++){
+    cin>>b[i];
+  }
+  selectionsort(b,a);
+  for(int j=0;j<a;j++){
+    cout<<b[j]<<" ";
+  }
+	return 0;
+}

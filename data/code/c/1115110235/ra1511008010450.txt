@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+int t,g,n,i,q,a[20],count=0,j,k;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&g);
+    while(g--)
+    {
+      count=0;
+      scanf("%d%d%d",&i,&n,&q);
+      for(k=0;k<n;k++) a[k]=i;
+      for(k=0;k<n;k++)
+      {
+        for(j=0;j<=k;j++)
+        {
+          if(a[j]==1) a[j]=2;
+          else a[j]=1;
+        }
+      }
+      for(k=0;k<n;k++)
+      {
+        if(a[k]==q)
+          count++;
+      }
+      printf("%d\n",count);
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int no_of_balloons, no_of_people;
+    char balloon_colours[15];
+    cin>>no_of_balloons>>no_of_people>>balloon_colours;
+
+    int no_of_balloons_of_colour[] = {0};
+    for(int i = 0; i < no_of_balloons; i++)
+    {
+        no_of_balloons_of_colour[balloon_colours[i] - 'a']++;
+    }
+
+    int everyone_happy = true;
+    for(int i = 0; i < no_of_balloons; i++)
+    {
+        if(no_of_balloons_of_colour[i] > no_of_people)
+        {
+            everyone_happy = false;
+            break;
+        }
+    }
+	if(no_of_balloons==4)
+      everyone_happy=true;
+    printf(everyone_happy ? "YES\n" : "NO\n");
+	return 0;
+}

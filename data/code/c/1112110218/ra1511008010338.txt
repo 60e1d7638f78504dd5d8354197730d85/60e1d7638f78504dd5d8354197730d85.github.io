@@ -1,0 +1,34 @@
+#include <stdio.h>
+int power(int n, int m);
+int main()
+{
+	int num,rev[7],x,n,m=0,j=0,i;
+  	scanf("%d", &num);
+  	n=num;
+  	while(n>0)
+    {
+      x=n%10;
+      rev[m++]=x;
+      n=n/10;
+    }
+  	for(i=0;i<m;i++)
+    {
+     j+=rev[i]*power(10,m-i-1);
+    }
+  	if(num==j)
+      printf("%d is a palindrome", num);
+  	else
+      printf("%d is not a palindrome", num);
+	return 0;
+}
+
+int power(int n, int m)
+{
+  int i=0,j,prod=1;
+  while(i<m)
+  {
+    prod*=n;
+    m--;
+  }
+  return prod;
+}

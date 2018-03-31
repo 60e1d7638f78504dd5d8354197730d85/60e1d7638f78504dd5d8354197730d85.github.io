@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+import java.util.Arrays; 
+public class TestClass
+{
+    public static void main(String[] args) 
+    {
+    //Scanner in= new Scanner(System.in);
+   // int n = in.nextInt();
+    //System.out.println(n);
+   // int[] myarray1 = new int[n];
+    
+    Duplicate obj= new Duplicate();
+    obj.getInput();
+     obj.displayResult();
+    
+    }
+}
+class Duplicate  
+{
+  int[] myarray;
+  int[] resultarray;
+  int flag=0;
+     public void getInput()
+  {
+    Scanner in= new Scanner(System.in);
+    int n = in.nextInt();
+    int k=0;
+    //System.out.println(n);
+    this.myarray = new int[n];
+    this.resultarray = new int[n];
+   for(int i=0;i<n;i++){
+   //while(in.hasNext()){
+     this.myarray[i]=in.nextInt();
+     //System.out.print(this.myarray[i] + "_" );
+   //}
+   }
+      // k=0;
+for (int i = 0; i < this.myarray.length-1; i++)
+        {
+            for (int j = i+1; j < this.myarray.length; j++)
+            {   
+                //System.out.println(this.myarray[i] +"---> " + this.myarray[j] + " __ " + i + "--> "+j) ;
+                if ((this.myarray[i] == this.myarray[j]) && (i != j))
+                {
+                    //System.out.println("Duplicate Element : "+this.myarray[j]);
+                  resultarray[k++] = this.myarray[j];
+                  flag=1;
+                }
+            }
+}
+       
+  }
+  
+  public void displayResult()
+  { 
+    if (this.flag==0)
+    {
+      System.out.println("No Duplicate elements found");
+    }else{
+    for (int i = 0; i < this.resultarray.length; i++)
+    {
+       if(this.resultarray[i]!=0)
+     System.out.println(this.resultarray[i]);
+    }
+    }
+  }
+  
+}
+        
+    

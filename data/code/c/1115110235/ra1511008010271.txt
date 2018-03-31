@@ -1,0 +1,51 @@
+#include <stdio.h>
+int main()
+{	
+  int t;
+  scanf("%d",&t);
+  while(t!=0){
+  	int g;
+   	scanf("%d",&g);
+    while(g!=0){
+    	int i,n,q;
+      	scanf("%d %d %d",&i,&n,&q);
+      	char coin[n];
+      	int j;
+      	if(i==1){
+        	for(j=0;j<n;j++){
+            	coin[j]='h';
+            }
+        }
+      	else if(i==2){
+        	for(j=0;j<n;j++){
+            	coin[j]='t';
+            }
+        }
+      	int k;
+      	for(j=0;j<n;j++){
+        	for(k=0;k<=j;k++){
+            	if(coin[k]=='t')
+                  coin[k]='h';
+              	else if(coin[k]=='h')
+                  coin[k]='t';
+            }
+        }
+      int count=0;
+      if(q==1){
+      	for(j=0;j<n;j++)
+          if(coin[j]=='h')
+            count++;
+      }
+      else if(q==2){
+      	for(j=0;j<n;j++)
+          if(coin[j]=='t')
+            count++;
+      }
+      printf("%d\n",count);
+      	g--;
+    }
+    t--;
+  }
+
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class scholar
+{
+  int r,m1,m2,m3;
+  string name;
+  public:
+  void get()
+  {
+    cin>>name>>r>>m1>>m2>>m3;
+  }
+  void display();
+  void display(scholar*,int);
+};
+void scholar::display()
+{
+  cout<<name<<" "<<r<<" "<<m1<<" "<<m2<<" "<<m3<<"\n";
+}
+void scholar::display(scholar *p,int n)
+{
+  
+  int i;
+  cout<<name<<" "<<r<<" "<<m1<<" "<<m2<<" "<<m3<<"\n";
+  for(i=1;i<n;i++)
+    cout<<p[i].name<<" "<<p[i].r<<" "<<p[i].m1<<" "<<p[i].m2<<" "<<(*(p+i)).m3<<"\n";
+}
+int main()
+{
+  int l,i;
+  cin>>l;
+  scholar s[l];
+  for(i=0;i<l;i++)
+    s[i].get();
+  
+  s[0].display();
+  s[0].display(s,l);
+
+	return 0;
+}

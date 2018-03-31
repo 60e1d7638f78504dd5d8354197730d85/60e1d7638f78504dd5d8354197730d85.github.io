@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include<string.h>
+void push(char);
+void pop();
+char stack[400];
+int top;
+int main()
+{
+  int i,n,t;
+  scanf("%d",&t);
+  
+  char x[100];
+  
+    while(t--){
+  scanf("%s",x);
+  n=strlen(x);
+  for(i=0;i<n;i++)
+  {
+    
+    if(x[i]=='+' || x[i]=='-' || x[i]=='/' || x[i]=='*' ||x[i]=='^')
+    {
+      push(x[i]);
+    }
+    else if(x[i]=='(')
+      continue;
+    else if(x[i]==')')
+       pop();
+    else
+      printf("%c",x[i]);
+  }
+    printf("\n");
+  }
+return 0;
+}
+void pop()
+{
+  if(top==-1)
+  {
+    return;
+  }else
+  {
+    printf("%c",stack[top]);
+   top--;
+  }
+}
+void push(char n)
+{
+  if(top==400)
+  {return;
+  
+  }else{
+    stack[++top]=n;
+  }
+}

@@ -1,0 +1,130 @@
+#include <stdio.h>
+    #define MOD 1000000007LL
+    #define N 100010
+    int digits[N];
+    int sgt[N<<2][11];
+    int pos[N];
+    int mx[N<<2];
+    int mi[N<<2];
+    int arr[N];
+    int max(int lhs,int rhs){return lhs>rhs?lhs:rhs;}
+    int min(int lhs,int rhs){return lhs>rhs?rhs:lhs;}
+    void build(int nd,int l,int r)
+    {
+    	if(l==r)
+    	{
+    		pos[l] = nd;
+    		mi[nd]=mx[nd] = digits[l];//
+    		sgt[nd][mx[nd]]++;
+    	}
+    	else
+    	{
+    		int m = (l+r)>>1,i;
+    		int left = nd*2+1,right = nd*2+2;
+    		build(left,l,m);
+    		build(right,m+1,r);
+    		mx[nd] = max(mx[left],mx[right]);
+    		mi[nd] =min(mi[left],mi[right]);
+    		for(i=0;i<11;++i)
+    		{
+    			sgt[nd][i]= sgt[left][i]+sgt[right][i];
+    		}
+    	}
+    }
+    void update(int idx,int v)
+    {
+    	int p = pos[idx];
+    	int old = mx[p];
+    	mi[p] = mx[p] = v;
+    	sgt[p][old]--,sgt[p][v]++;
+    	do
+    	{
+    		p = (p-1)/2;
+    		sgt[p][old]--;
+    		sgt[p][v]++;
+    		mx[p] =max(mx[p*2+1],mx[p*2+2]);
+    		mi[p] = min(mi[p*2+1],mi[p*2+2]);
+    	}while(p);
+    }
+    int query_min(int nd,int l,int r,int lo,int hi)
+    {
+    	if(lo<=l && hi>=r) return mi[nd];
+    	int ans = 30;
+    	int m = (l+r)>>1;
+    	if(lo<=m) ans = min(ans,query_min(nd*2+1,l,m,lo,hi));
+    	if(hi>m) ans = min(ans,query_min(nd*2+2,m+1,r,lo,hi));
+    	return ans;
+    }
+    int query_max(int nd,int l,int r,int lo,int hi)
+    {
+    	if(lo<=l && hi>=r) return mx[nd];
+    	int ans=0;
+    	int m = (l+r)>>1;
+    	if(lo<=m) ans = max(ans,query_max(nd*2+1,l,m,lo,hi));
+    	if(hi>m) ans =max(ans,query_max(nd*2+2,m+1,r,lo,hi));
+    	return ans;
+    }
+    int query_count(int nd,int l,int r,int lo,int hi,int c)
+    {
+    	if(lo<=l && hi>=r) return sgt[nd][c];
+    	int ans=0;
+    	int m = (l+r)>>1;
+    	if(lo<=m) ans+=query_count(nd*2+1,l,m,lo,hi,c);
+    	if(hi>m) ans+=query_count(nd*2+2,m+1,r,lo,hi,c);
+    	return ans;
+    }
+    int countDigits(int num)
+    {
+    	int cnt[10]={};
+    	int res=0;
+    	do
+    	{
+    		int d=num%10;
+    		if(cnt[d]==0)
+    		{
+    			++cnt[d];
+    			++res;
+    		}
+    		num/=10;
+    	}while(num);
+    	return res;
+    }
+    char ins[10];
+    int main()
+    {
+        int n,i;
+        scanf("%d",&n);
+        for(i=1;i<=n;++i)
+        {
+        	scanf("%d",&arr[i]);
+        	digits[i] = countDigits(arr[i]);
+        }
+        build(0,1,n);
+        int q;
+        scanf("%d",&q);
+        while(q--)
+        {
+        	scanf("%s",ins);
+        	int l,r;
+        	scanf("%d%d",&l,&r);
+        	if(ins[0]=='A'||ins[1]=='U'||ins[0]=='R')
+        	{
+        		if(ins[0]=='A')arr[l] = (arr[l]+r)%MOD;
+        		else if(ins[1]=='U') arr[l] = (long long)arr[l]*r%MOD;
+        		else arr[l]=r;
+        		digits[l] = countDigits(arr[l]);
+        		update(l,digits[l]);
+        	}
+        	else if(ins[1]=='A')
+        	{
+        		int m = query_max(0,1,n,l,r);
+        		printf("%d %d\n",m,query_count(0,1,n,l,r,m));
+        	}
+        	else
+        	{
+        		int m = query_min(0,1,n,l,r);
+        		printf("%d %d\n",m,query_count(0,1,n,l,r,m));
+        	}
+        }
+        return 0;
+    }

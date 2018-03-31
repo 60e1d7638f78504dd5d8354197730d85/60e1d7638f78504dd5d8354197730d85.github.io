@@ -1,0 +1,32 @@
+#include <stdio.h>
+int lcm(int n1,int n2){
+  	int i;
+	for(i=1;i<=n2;i++){
+    	if((n1*i)%n2==0){
+        	return n1*i;
+        }
+    }
+}
+int main()
+{
+	int n1,n2;
+  	int d1,d2;
+  	scanf("%d %d %d %d",&n1,&d1,&n2,&d2);
+  	int l;
+  	if(d1>d2)
+  		l=lcm(d1,d2);
+  	else if(d2>d1)
+      	l=lcm(d2,d1);
+  	int n;
+  	n=(n1*(l/d1))+(n2*(l/d2));
+  	int i;
+  	for(i=1;i<=l;i++){
+    	if(n%i==0 && l%i==0){
+        	n=n/i;
+          	l=l/i;
+        }
+    }
+  	printf("%d %d",n,l);
+  
+	return 0;
+}

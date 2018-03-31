@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	unsigned long long n, w, l, sum, tmp, lm, gm, sumh, sumr;
+	unsigned long h[100000], r[100000], i, j;
+	scanf("%llu %llu %llu",&n,&w,&l);
+	sum=0;
+	lm=w;
+	gm=sumh=sumr=0;
+	for(i=0;i<n;i++)
+	{
+		scanf("%lu %lu",&h[i],&r[i]);
+		if(h[i]>=l)
+			tmp=0;
+		else
+			tmp=ceil((l-h[i])/r[i]);
+		if(tmp<lm)
+			lm=tmp;
+		if(tmp>gm)
+			gm=tmp;
+		sumh+=h[i];
+		sumr+=r[i];
+	}
+	for(i=lm;i<=gm;i++)
+	{
+		sum=0;
+		for(j=0;j<n;j++)
+		{
+			tmp=h[j]+i*r[j];
+			sum+=tmp>=l?tmp:0;
+			if(sum>=w)
+				break;
+		}
+		if(sum>=w)
+			break;
+	}
+	if(i>gm)
+	{
+		i=ceil((w-sumh)/sumr);
+	}
+	printf("%lu\n",i);
+	return 0;
+}

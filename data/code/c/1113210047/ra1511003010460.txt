@@ -1,0 +1,29 @@
+#include <stdio.h>
+int reversDigits(int num)
+{
+    int rev_num = 0;
+    while(num > 0)
+    {
+        rev_num = rev_num*10 + num%10;
+        num = num/10;
+    }
+    return rev_num;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    int k=t;
+    int arr[t];
+    int i=0;
+    while(t--)
+    {
+      int n;
+      scanf("%d",&n);
+      arr[i]=reversDigits(n);
+      i++;
+    }
+    for(i=k-1;i>=0;i--)
+       printf("%d\n",arr[i]);
+	return 0;
+}

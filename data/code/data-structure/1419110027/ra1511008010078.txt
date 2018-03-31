@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include<limits.h>
+#define infinite INT_MAX
+#define ll long long
+#define MAX 100001
+struct Edge{
+    int src, dest, weight;
+};
+struct Graph{
+    int V, E;
+    struct Edge* edge;
+};
+struct Graph* createGraph(int V, int E){
+    struct Graph* graph = (struct Graph*) malloc( sizeof(struct Graph) );
+    graph->V = V;
+    graph->E = E;
+    graph->edge = (struct Edge*) malloc( graph->E * sizeof( struct Edge ) );
+    return graph;
+}
+struct subset{
+    int parent;
+    int rank;
+};
+int find(struct subset subsets[], int i){
+    if (subsets[i].parent != i)
+        subsets[i].parent = find(subsets, subsets[i].parent);
+    return subsets[i].parent;
+}
+void Union(struct subset subsets[], int x, int y){
+    int xroot = find(subsets, x);
+    int yroot = find(subsets, y);
+    if (subsets[xroot].rank < subsets[yroot].rank)
+        subsets[xroot].parent = yroot;
+    else if (subsets[xroot].rank > subsets[yroot].rank)
+        subsets[yroot].parent = xroot;
+    else
+    {
+        subsets[yroot].parent = xroot;
+        subsets[xroot].rank++;
+    }
+}
+ 
+int myComp(const void* a, const void* b){
+    struct Edge* a1 = (struct Edge*)a;
+    struct Edge* b1 = (struct Edge*)b;
+    return a1->weight > b1->weight;
+}
+ 
+ 
+int myComp2(const void* a, const void* b){
+	int *a1 = (int *)a;
+	int *b1 = (int *)b;
+   return (*a1) < (*b1);
+}
+void KruskalMST(struct Graph* graph){
+    int V = graph->V ,v;
+    struct Edge result[V];  
+    int e = 0; 
+    int i = 0 ,j;  
+    qsort(graph->edge, graph->E, sizeof(graph->edge[0]), myComp);
+    struct subset *subsets = (struct subset*) malloc( V * sizeof(struct subset) );
+    for(v = 0; v < V; ++v){
+        subsets[v].parent = v;
+        subsets[v].rank = 0;
+    }
+    while (e < V - 1){
+        struct Edge next_edge = graph->edge[i++];
+ 
+        int x = find(subsets, next_edge.src);
+        int y = find(subsets, next_edge.dest);
+        if (x != y){
+            result[e++] = next_edge;
+            Union(subsets, x, y);
+        }
+        
+    }
+    
+    int A[e];
+    for(i=0;i<e;i++)	A[i] = result[i].weight;
+    
+    int Q;
+    scanf("%d" ,&Q);
+    int B[Q];
+    for(i=0;i<Q;i++)	scanf("%d" ,B+i);
+    qsort(B ,Q ,sizeof(B[0]) ,myComp2);
+    //for(i=0;i<Q;i++)	printf("%d " ,B[i]);	printf("\n");
+    //for(i=0;i<e;i++)	printf("%d " ,A[i]);	printf("\n");
+    qsort(A ,e ,sizeof(A[0]) ,myComp2);
+    //for(i=0;i<e;i++)	printf("%d " ,A[i]);	printf("\n");
+    ll sum=0;
+    for(i=Q-1 ,j=0;i>=0&&j<e;i-- ,j++){
+    //	printf("%d %d\n" ,A[j] ,B[i]);
+    	if(A[j]>B[i])	A[j] = B[i];
+    	else break;
+    }
+    for(i=0;i<e;i++)	sum+=A[i];
+   // for(i=0;i<e;i++)	printf("%d " ,A[i]);
+  //  printf("\n");
+    printf("%lld" ,sum);
+}
+int main(){
+    
+    int V ,E ,i;
+    scanf("%d%d" ,&V ,&E);
+    struct Graph* graph = createGraph(V, E);
+   for(i=0;i<E;i++){
+   	int u ,v ,w;
+   	scanf("%d%d%d" ,&u ,&v ,&w);
+   	u-- ,v--;
+   	graph->edge[i].src=u;
+   	graph->edge[i].dest=v;
+   	graph->edge[i].weight=w;
+   }
+  KruskalMST(graph);
+    return 0;
+}

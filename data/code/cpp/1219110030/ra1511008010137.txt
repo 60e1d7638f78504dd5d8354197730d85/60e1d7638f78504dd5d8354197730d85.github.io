@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class A
+{
+	float a,b;
+	public:
+		A(){};
+		A(float i,float j)
+		{
+			a=i;
+			b=j;
+			
+		}
+		void show()
+		{
+			cout<<a<<"+j"<<b;
+		}
+		A operator +(A);
+};
+A A::operator +(A obj)
+{
+	A temp;
+	temp.a=a+obj.a;
+	temp.b=b+obj.b;
+	return(temp);
+}
+int main()
+{  
+    float a,b,c,d;
+    cin>>a>>b>>c>>d;
+	A c1(a,b),c2(c,d),c3;
+    cout<<"obj1=";
+    c1.show();
+    cout<<endl;
+    cout<<"obj2=";
+    c2.show();
+    cout<<endl;
+	c3=c1+c2;
+    cout<<"obj3=";
+	c3.show();
+    return 0;
+}

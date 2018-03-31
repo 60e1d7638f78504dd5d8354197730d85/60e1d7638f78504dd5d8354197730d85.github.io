@@ -1,0 +1,24 @@
+#include <stdio.h>
+typedef long long lld;
+int main() {
+    int t; lld l,d,s,c,lks,day;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%lld%lld%lld%lld",&l,&d,&s,&c);
+        lks=s;
+        day=1;
+        while(day<=d){
+            if(day!=1) {
+                lks = s + s * c;
+                s = lks;
+            }
+            if(lks>=l){
+                break;
+            }
+            ++day;
+        }
+        if(lks>=l)printf("ALIVE AND KICK\n");
+        else printf("DEAD AND ROT\n");
+    }
+	return 0;
+}

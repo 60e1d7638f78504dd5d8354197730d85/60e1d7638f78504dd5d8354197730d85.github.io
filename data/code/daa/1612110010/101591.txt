@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+  int i,j,k,l,m,n,o,p,d,e,t;
+  char a[100];
+  scanf("%d",&t);
+  for(p=1;p<=t;p++)
+  {  
+  scanf("%s",a);
+  l=strlen(a);
+  d=a[0]-48;
+  for(i=1;i<=d;i++)
+  {
+    for(j=1;j<l;j++)
+    {
+      if(a[j]=='[')
+      {
+        j++;
+        while(a[j]!=']')
+        {
+          if(isalpha(a[j]))
+          {
+          printf("%c",a[j]);
+          j++;
+          }
+          else if(isdigit(a[j]))
+          {
+            k=a[j]-48;
+            
+            for(m=1;m<=k;m++)
+            {
+              o=0;
+              n=j;
+              n++;
+              if(a[n]=='[')
+              {
+                o++;
+                n++;
+                while(a[n]!=']')
+                {
+                  printf("%c",a[n]);
+                  n++;
+                  o++;
+                }
+              }
+            }
+            o++;
+            j=j+o;
+          }
+        }
+      }
+    }
+  }
+    printf("\n");
+  }
+           
+
+	return 0;
+}

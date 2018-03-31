@@ -1,0 +1,75 @@
+#include<stdio.h>
+#define offset 1
+void initialise(int parent[],int rank[],int size)
+{
+    int i;
+    for(i=1;i<=size;i++)
+    {
+        parent[i]=i;
+          rank[i]=1;
+    }
+    
+}
+ 
+int findRoot(int parent[],int element)
+{
+    int root=element;
+    while(parent[root]!=root)
+    {
+        root=parent[root];
+    }
+    
+    parent[element]=root;
+    return root;
+}
+ 
+void  findUnion(int parent[],int rank[],int child1,int child2)
+{
+    int parent1=findRoot(parent,child1);
+    int parent2=findRoot(parent,child2);
+    
+    if(parent1==parent2)
+    return ;
+    
+    if(rank[parent1]>rank[parent2])
+    {  
+       rank[parent2]+=rank[parent1];
+       parent[parent1]=parent2;
+    }
+    else
+    {
+        rank[parent1]+=rank[parent2];
+       parent[parent2]=parent1;
+    }
+}
+ 
+long long mod(long long x)
+{
+    return x%1000000007;
+}
+int main()
+{   int numberOfStudents,numberOfRelationship;
+    scanf("%d %d",&numberOfStudents,&numberOfRelationship);
+    
+    int students[numberOfStudents+offset],groupSize[numberOfStudents+offset];
+    initialise(students,groupSize,numberOfStudents);
+    int relation;
+    for(relation=1;relation<=numberOfRelationship;relation++)
+    {
+        int me,myfriend;
+        scanf("%d%d",&me,&myfriend);
+        findUnion(students,groupSize,me,myfriend);
+    }
+    int student;
+    long long numberofways=1;
+    for(student=1;student<=numberOfStudents;student++)
+    {
+        if(student==findRoot(students,student))
+         numberofways=mod(numberofways*groupSize[student]);
+          
+    }
+    
+    printf("%lld",numberofways);
+    
+    return 0;
+}

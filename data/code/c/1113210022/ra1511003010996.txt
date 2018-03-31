@@ -1,0 +1,171 @@
+#include<stdio.h>
+#include<math.h>
+#define limit 1000000
+int arr[1000001];
+int raron[1000000];
+int rartw[1000000];
+int rarth[1000000];
+int rarfo[1000000];
+int rarfi[1000000];
+void prm() {
+	int l,cl,i,j;
+	l=(limit-1)/2;
+	cl=(sqrt(limit)-1)/2;
+	for(j=4;j<=l;j+=3)
+		arr[j]=1;
+	for(i=2;i<=cl;i+=3) {
+		if(!arr[i]) {
+			for(j=2*i*(i+1);j<=l;j+=2*i+1) {
+				arr[j]=1;
+			}
+		}
+		if(!arr[i+1]) {
+			for(j=2*(i+1)*(i+2);j<=l;j+=2*(i+1)+1) {
+				arr[j]=1;
+			}
+		}
+	}
+}
+int *c_prm(long long L,long long R,int T) {
+	int i=1,cl,k,l,temp=0,j;
+	int *ar;
+	if(T==0)
+	    ar=raron;
+	if(T==1)
+	    ar=rartw;
+	if(T==2)
+	    ar=rarth;
+	if(T==3)
+	    ar=rarfo;
+	if(T==4)
+	    ar=rarfi;
+	l=(R-L+1)/2;
+	cl=sqrt(R)/2;
+	k=L%3;
+	if(k!=0) {
+		if((3-k)%2==0)
+			k=(3-k)/2;
+		else
+			k=(6-k)/2;
+	}
+	while(k<=l) {
+		ar[k]=1;
+		k+=3;
+	}
+	for(i=2;i<=cl;i+=3) {
+		if(arr[i]==0) {
+			temp=2*i+1;
+			k=L%temp;
+			if(k!=0) {
+				if((temp-k)%2==0)
+					k=(temp-k)/2;
+				else
+					k=(2*temp-k)/2;
+			}
+			while(k<=l) {
+				ar[k]=1;
+				k+=temp;
+			}
+		}
+		if(arr[i+1]==0) {
+			temp=2*(i+1)+1;
+			k=L%temp;
+			if(k!=0) {
+				if((temp-k)%2==0)
+					k=(temp-k)/2;
+				else
+					k=(2*temp-k)/2;
+			}
+			while(k<=l) {
+				ar[k]=1;
+				k+=temp;
+			}
+		}
+	}
+	return ar;
+}
+int cnt_prm(long long L,long long R,int T) {
+	int cnt=0,*ar;
+	long long tempL,tempR,i;
+	tempL=L;
+	tempR=R;
+	if(R==1)
+		return 0;
+	if((tempL%2==0)&&(tempL!=2))
+		tempL++;
+	if(tempR%2!=0)
+		tempR++;
+	i=tempL;
+	if((i==1)||(i==2)) {
+		i=3;
+		cnt++;
+	}
+	if(R<=1000000) {
+		for(;i<=R;i+=2) {
+	      if(arr[(i-1)/2]==0)
+			cnt++;
+	   	}
+	}
+	else if(L<=1000000) {
+	   while(i<=1000000) {
+	      if(arr[(i-1)/2]==0)
+		  	cnt++;
+	      i+=2;
+	   }
+	   ar=c_prm(1000001L,tempR,T);
+	   i=1;
+	   while(i+1000000<=R) {
+	      if(ar[(i-1)/2]==0)
+				cnt++;
+	      i+=2;
+	   }
+	}
+	else {
+		ar=c_prm(tempL,tempR,T);
+	   	for(i=0;i<(tempR-tempL+1)/2;i++) {
+	    	if(ar[i]==0)
+				cnt++;
+	    }
+	}
+	return cnt;
+}
+int n_root(long long x,int b,int f) {
+	float temp;
+	int res;
+	temp=pow(x,1/(float)b);
+	res=temp;
+	if(f==1)
+		return res;
+	if(temp==res)
+		return res;
+	else
+		return res+1;
+}
+int cnt_pwr(long long L,long long R) {
+	int i=0,pa[11]={2,4,6,10,12,16,18,22,28,30,36},cnt=0,ra,rb,temp;
+	//printf("%d %d\n",ra,rb);
+	while(i<11) {
+		ra=n_root(L,pa[i],0);
+		rb=n_root(R,pa[i],1);
+		cnt+=cnt_prm(ra,rb,0);
+		//printf(" cnt=%d ",cnt);
+		//printf("square prime between %d %d %d %d\n",ra,rb,pa[i],cnt);
+		i++;
+		//printf("%d %d\n",ra,rb);
+	}
+	return cnt;
+}
+int main() {
+	int T,cnt=0,*ar,temp,l;
+	long long L,R,i,tempL,tempR;
+	scanf("%d",&T);
+	prm();
+	while(T--) {
+		//cnt=0;
+		scanf("%lld%lld",&L,&R);
+		cnt=cnt_prm(L,R,T)+cnt_pwr(L,R);
+		//printf("%d %d\n",cnt_prm(L,R,T),cnt_pwr(L,R));
+		printf("%d\n",cnt);
+	}
+	return 0;
+}

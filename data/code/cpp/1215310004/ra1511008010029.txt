@@ -1,0 +1,50 @@
+#include "bits/stdc++.h"
+using namespace std;
+const int N = 55;
+const int inf = 1e8;
+int T;
+int n , k , tim;
+int t[N][3];
+int p[N][3];
+int dp[N][N][N][N];
+int solve(int pos , int time , int kleft , int take){
+    if(time < 0 || kleft < 0 || take < 0){
+        return -inf;
+    }
+    if(pos > n){
+        return 0;
+    }
+    if(dp[pos][time][kleft][take] != -1){
+        return dp[pos][time][kleft][take];
+    }
+    int res = solve(pos + 1 , time , kleft , take);
+    for(int j = 0 ; j < 3 ; ++j){
+        res = max(res , solve(pos + 1 , time - t[pos][j] , kleft , take - 1) + p[pos][j]);
+    }
+    for(int i = 0 ; i < 3 ; ++i){
+        for(int j = i + 1 ; j < 3 ; ++j){
+            res = max(res , solve(pos + 1 , time - t[pos][i] - t[pos][j] , kleft - 1 , take - 2) + p[pos][i] + p[pos][j]);
+        }
+    }
+    res = max(res , solve(pos + 1 , time - t[pos][0] - t[pos][1] - t[pos][2] , kleft - 2 , take - 3) + p[pos][0] + p[pos][1] + p[pos][2]);
+    return dp[pos][time][kleft][take] = res;
+}
+int main(){
+    scanf("%d" , &T);
+    while(T--){
+        memset(dp , -1 , sizeof(dp));
+        scanf("%d %d %d" , &n , &k , &tim);
+        for(int i = 1 ; i <= n ; ++i){
+            for(int j = 0 ; j < 3 ; ++j){
+                scanf("%d" , &t[i][j]);
+            }
+        }
+        for(int i = 1 ; i <= n ; ++i){
+            for(int j = 0 ; j < 3 ; ++j){
+                scanf("%d" , &p[i][j]);
+            }
+        }
+        k = min(k , n);
+        printf("%d\n" , solve(1 , tim , k , n));
+    }
+} 

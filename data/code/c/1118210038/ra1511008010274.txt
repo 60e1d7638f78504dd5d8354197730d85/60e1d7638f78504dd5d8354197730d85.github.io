@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define MOD		1000000007LL
+#define IMOD	1000000007
+ 
+#define getcx getchar_unlocked
+inline int readint() 
+{
+  int n=0;
+  int ch=getcx();
+  while(ch < '0' || ch > '9') ch=getcx();
+ 
+  while(  ch >= '0' && ch <= '9' ) {
+    n = (n<<3)+(n<<1) + ch-'0';
+    ch=getcx();
+  }
+  return n;
+}
+ 
+#define MAXSZ 100 
+int arr1[MAXSZ + 1];
+int dp[MAXSZ + 1][MAXSZ + 1];
+ 
+void exec()
+{
+  const int N = readint();
+  int i, j;
+  int total = 1;
+  long long int good = 0LL;
+ 
+  memset(arr1, 0, sizeof arr1);
+  memset(dp, 0, sizeof dp);
+  for(i = 0; i < N; ++i) {
+    int thisnum = readint();
+	int ppn = 2 - (thisnum & 1);
+	int pn = (ppn + thisnum) / 2;  /* Arithmetic Mean */
+	for(; ppn <= MAXSZ; ++pn, ppn += 2 ) {
+		dp[pn][thisnum] += dp[ppn][pn];
+		dp[pn][thisnum] %= IMOD;
+	}
+	for(j = 1; j <= MAXSZ; ++j) {
+	  dp[j][thisnum] += arr1[j];
+	  dp[j][thisnum] %= IMOD;
+	}
+	++arr1[thisnum];
+	total *= 2;
+	total %= IMOD;
+  }
+ 
+#if 0
+  --total; /* Empty case */
+  for(i = 1; i <= MAXSZ; ++i) {
+    total = (total - arr1[i] + IMOD) % IMOD;
+	for(j = 1; j <= MAXSZ; ++j) {
+	  total = (total - dp[i][j] + IMOD) % IMOD;
+	}
+  }
+#else
+  good = 1LL;
+  for(i = 1; i <= MAXSZ; ++i) {
+    good += arr1[i];
+	for(j = 1; j <= MAXSZ; ++j) good += dp[i][j];
+  }
+  total -= (int)(good % MOD);
+  total += IMOD;
+  total %= IMOD;
+#endif
+  printf("%d\n", total);
+}
+ 
+int main()
+{
+  int t = readint();
+  while(t--) exec();
+  return 0;
+}
+ 

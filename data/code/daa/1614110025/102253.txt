@@ -1,0 +1,38 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+#define MAXT 200000000000
+#define LL long long int
+#define REP(i, n) for(int i = 0; i < n; i++)
+ 
+LL n, m, k;
+ 
+LL compute(int x) {
+	LL result = 0;
+	REP(i, x) {
+		LL temp;
+		cin >> temp;
+		result += temp;
+	}
+	result += (m+k)*x;
+	result -= k;
+	return result;
+}
+ 
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m >> k;
+		LL ans = MAXT;
+		int ind = n+1;
+		int pi[n];
+		REP(i, n) {cin >> pi[i];}
+		REP(i, n) {
+			LL temp = compute(pi[i]);
+			if (temp < ans) {ans = temp; ind = i+1;}
+		}
+		cout << ind << " " << ans << endl;
+	}
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+	int cases, len, seq[10], l, f[10], i, j, flag=0, t, ct=0, ti;
+  scanf("%d", &cases);
+  for(t=0;t<cases;t++){ 
+    flag=0;
+    scanf("%d", &len);
+  for(i=0;i<len;i++){
+    scanf("%d", &seq[i]);
+  }
+  scanf("%d", &l);
+  for(i=0;i<l;i++){
+    scanf("%d", &f[i]);
+  }
+    
+    
+  for(i=0;i<len;i++){
+    ti=i;
+    for(j=0;j<l;j++){
+      if(seq[ti]==f[j]){
+        ++ct;
+        ++ti;
+        if(ct==l){
+          flag=1;
+        }
+      }
+      else{
+        ct=0;
+        break;        
+      }
+	}
+  }
+ 
+  if(flag==1){
+    printf("Yes\n");
+  }
+    else{
+      printf("No\n");
+    }
+  }
+
+	return 0;
+}

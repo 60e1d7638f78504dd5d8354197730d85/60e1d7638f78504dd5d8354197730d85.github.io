@@ -1,0 +1,59 @@
+#include<stdio.h>
+struct sub
+{
+	unsigned long long a,b;
+};
+int main()
+{
+	int t,n,m,i,j,k,C[50],P[50];
+  int c,p,num,q;
+  unsigned long long sub,sum;
+	struct sub arr[41][41];
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d%d",&n,&m);int num=0,q=0;
+		for(i=0;i<41;i++)
+		arr[1][i].a=arr[1][i].b=0;
+		sub=0;sum=0;
+		for(i=0;i<n;i++)
+		{
+			scanf("%d%d",&c,&p);
+			arr[1][c].a+=p;
+			arr[1][c].b++;
+		
+		}
+		for(i=1;i<=40;i++)
+		{
+          arr[1][i].a*= ((long long)1<<(arr[1][i].b-1));
+			arr[1][i].b=((long long)1<<(arr[1][i].b))-1;
+			}
+		for(i=2;i<=40;i++)
+		{
+			for(j=1;j<=40;j++)
+			{
+				arr[i][j].a=0;arr[i][j].b=0;
+				for(k=1;k<j;k++)
+				{
+					arr[i][j].b+=arr[i-1][k].b*arr[1][j].b;
+					if(arr[i][j].b)
+					arr[i][j].a+=arr[i-1][k].a*arr[1][j].b+(arr[1][j].a*arr[i-1][k].b);
+				}
+			}
+		}
+		for(i=1;i<=40;i++)
+		{
+			for(j=1;j<=40;j++)
+			{//printf("%lld _ %lld ",arr[i][j].a,arr[i][j].b);
+				if(i>=m)
+				{
+					sum+=arr[i][j].a;
+					sub+=arr[i][j].b;
+				}
+			}//printf("\n");
+		}
+		if(m==0)sub++;
+		printf("%.9lf\n",(double)sum/sub);
+	}
+	return 0;
+}

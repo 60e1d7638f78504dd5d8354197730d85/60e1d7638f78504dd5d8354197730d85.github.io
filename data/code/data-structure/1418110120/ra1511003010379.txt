@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+static int lc=0;
+struct node 
+{
+  int data;
+  struct node *left;
+  struct node *right;
+};
+
+void inorder(struct node *root)
+{
+  if(root!=NULL)
+  {
+    inorder(root->left);
+    if(root->left==NULL && root->right==NULL)lc++;
+    inorder(root->right);
+  }
+}
+
+struct node *create_node(int data)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=data;
+  nn->left=NULL;
+  nn->right=NULL;
+  return nn;
+}
+
+struct node *build_tree(int a[],struct node *root,int start,int end)
+{
+  if(start<end)
+  {
+  
+  struct node *nn=create_node(a[start]);
+  root=nn;
+  nn->left=build_tree(a,root->left,2*start+1,end);
+  nn->right=build_tree(a,root->right,2*start+2,end);
+  }
+  return root;
+ 
+}
+
+
+int main()
+{
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+ 
+  struct node *root=NULL;
+  root=build_tree(a,root,0,size);
+ 
+  inorder(root);
+  printf("Leaf count of the tree is %d",lc);
+  
+  return 0;
+}

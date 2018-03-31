@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+  int n, m;
+  float a[100], b[100];
+  
+  scanf("%d", &n);
+  int i;
+  for(i = 0; i < n; i++)
+    scanf("%f", &a[i]);
+  
+  scanf("%d", &m);
+  for(i = 0; i < m; i++)
+    scanf("%f", &b[i]);
+  
+  float *firstPtr = &a[0];
+  float *secondPtr = &b[0];
+  
+  if(n != m)
+    printf("Arrays are not equal");
+  else {
+    bool equal = true;
+    for(i = 0; i < n; i++){
+      if(*firstPtr != *secondPtr){
+        equal = false;
+        break;
+      }
+      
+      firstPtr++;
+      secondPtr++;
+    }
+    
+    if(equal)
+      printf("Arrays are equal");
+    else
+      printf("Arrays are not equal");
+  }
+  
+  return 0;
+  
+}

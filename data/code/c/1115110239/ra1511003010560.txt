@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include<limits.h>
+main()
+{
+  int n,s1,s2,s3,var,t,l,a[100],smo[100][100],i,j,k;
+  while(scanf("%d",&n)!=EOF)
+  {
+   
+    for(i=0;i<n;scanf("%d",&a[i++]));
+    for(i=0;i<n;smo[i][i]=0,i++);
+    for(l=1+(s1=0);l<n;l++)
+      for(s2=(s1+=a[l-1])+(i=0);i<n-l;s2-=a[i++])
+         for(s2+=a[j=(k=i)+l]+(s3=0),smo[i][j]=INT_MAX;k<j;k++)
+            if((var=smo[i][k]+smo[k+1][j]+((s3+=a[k])%100*((s2-s3)%100)))<smo[i][j])
+                   smo[i][j]=var;
+      
+    printf("%d\n",smo[0][n-1]);
+  }
+
+	return 0;
+}

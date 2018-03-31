@@ -1,0 +1,38 @@
+    #include<stdio.h>
+    
+    int inp()
+    {
+        int n=0,c=getchar_unlocked();
+        while(c<'0'||c>'9')
+        c=getchar_unlocked();
+        while(c>='0'&&c<='9')
+        n=(n<<3)+(n<<1)+c-'0',c=getchar_unlocked();
+        return n;
+    }
+    
+    int main()
+    {
+    int n,m,i,d,j;
+    char c;
+    n=inp();
+    m=inp();
+    int a[n+1];
+    for(i=0;i<n;i++)
+    a[i]=inp();
+    i=0;
+    while(m--)
+    {
+    c=getchar_unlocked();
+    d=inp();
+    if(c=='R')
+    {
+    j=(i+d-1)%n;
+    printf("%d\n",a[j]);
+    }
+    else if(c=='A')
+    i=(i-d+n)%n;
+    else if(c=='C')
+    i=(i+d)%n;
+    }
+    return 0;
+    }  

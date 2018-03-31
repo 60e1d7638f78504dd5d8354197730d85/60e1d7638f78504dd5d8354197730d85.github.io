@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int n,k;
+       char ch;
+       StringBuilder s=new StringBuilder();
+       n=sc.nextInt();
+       s.append(sc.next());
+       k=sc.nextInt()%26;
+       for(int i=0;i<s.length();i++)
+       {
+         if(Character.isLetter(s.charAt(i)))
+        {
+          ch=s.charAt(i);
+          if(Character.isLowerCase(ch))
+          {
+            if(((int)(ch)+k)>122)
+            {ch=(char)((int)(ch)+k-26);
+            }
+            else
+            {ch=(char)((int)(ch)+k);
+            }
+          }
+          else
+          {
+            if(((int)(ch)+k)>90)
+            {ch=(char)((int)(ch)+k-26);
+            }
+            else
+            {ch=(char)((int)(ch)+k);
+            }
+          }
+          System.out.printf("%c",ch);
+        }
+        else System.out.printf("%c",s.charAt(i)); 
+       }
+	}
+}

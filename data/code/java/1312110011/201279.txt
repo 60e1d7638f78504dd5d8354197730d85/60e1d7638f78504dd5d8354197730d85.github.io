@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  public static void main(String[] args)
+  {
+  // System.out.println("Enter the string to be converted to integer number ");
+    System.out.println(new TestClass().stringToInteger(new Scanner(System.in).next()));
+  }
+
+  public int stringToInteger(String str){
+    int number = 0,itr=0;
+        if(str.charAt(0) == '-'){
+              itr = 1; 
+    }
+      
+    for(; itr <=str.length()-1 ; itr++){
+      char digit = str.charAt(itr);
+      number += Math.pow(10, str.length() - itr -1) * (digit-48);
+    }
+    return number;
+     }
+
+}

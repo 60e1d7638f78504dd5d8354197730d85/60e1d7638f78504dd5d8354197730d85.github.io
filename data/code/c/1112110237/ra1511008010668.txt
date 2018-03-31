@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main()
+{
+    unsigned long long int LCM(unsigned long int a,unsigned long int b);
+    unsigned int T,i,j,N;
+    unsigned long long int min,temp;
+    scanf("%u",&T);
+    while(T)
+    {
+        scanf("%u",&N);
+        unsigned long int A[N];
+        min=184465;
+        for(i=0;i<N;i++)
+        {
+            scanf("%lu",&A[i]);
+ 
+            if(A[i]<min)
+            {
+                for(j=0;j<i;j++)
+                {
+                    if(A[i]<min && A[j]<min)
+                    {
+                        temp=LCM(A[i],A[j]);
+                        if(temp<min)
+                        {
+                            min=temp;
+                        }
+                    }
+ 
+                }
+            }
+ 
+        }
+ 
+ 
+ 
+        printf("%llu\n",min);
+        T--;
+ 
+ 
+    }
+ 
+	return 0;
+}
+unsigned long long int LCM(unsigned long int a,unsigned long int b)
+{
+    unsigned long long int i,a1=a,b1=b;
+    while(b1!=0)
+    {
+        i=a1%b1;
+        a1=b1;
+        b1=i;
+    }
+    i=a/a1*b;
+    return i;
+}

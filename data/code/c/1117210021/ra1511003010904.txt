@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+ 
+#define Get getchar_unlocked()
+int getInt() { int a=0,s=1; char c=0; while(c<33) c=Get; if(c=='-') {s=-1; c=Get;} while(c>33) {a=(a<<3)+(a<<1)+c-'0'; c=Get;} return a*s; }
+ 
+int A[20][20000],B[20][20005],G[20][20],Stack[22],K[20],N,M,Max;
+ 
+int Solve(int l,int m)
+{
+	if(l==M)
+	{
+		if(m>Max) Max=m;
+		return;
+	}
+	Solve(l+1,m);
+	int i,ok=1;
+	for(i=0;i<m;i++) if(G[l][Stack[i]]==0) { ok=0; break; }
+	if(ok) { Stack[m]=l; Solve(l+1,m+1); }
+}
+ 
+int solve()
+{
+	int i,j,k;
+	for(i=0;i<M;i++)
+	{
+		G[i][i]=1;
+		for(j=i+1;j<M;j++)
+		{
+			G[i][j]=G[j][i]=1;
+			for(k=0;k<K[i];k++) if(B[j][A[i][k]]) { G[i][j]=G[j][i]=0; break; }
+		}
+	}
+	Max=0;
+	Solve(0,0);
+	printf("%d\n",Max);
+}
+ 
+int main()
+{
+	N=getInt(); M=getInt();
+	int i,j;
+	memset(B,0,sizeof(B));
+	for(i=0;i<M;i++)
+	{
+		K[i]=getInt();
+		for(j=0;j<K[i];j++) { A[i][j]=getInt(); B[i][A[i][j]]=1; }
+	}
+	solve();
+	return 0;
+} 

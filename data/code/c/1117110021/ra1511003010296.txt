@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  int i,j;
+  int arr[100][100];
+  scanf("%d", &n);
+  for(i=0; i<n; i++){
+    for(j=0; j<n; j++){
+      scanf("%d", &arr[i][j]);
+    }
+  }
+  
+  int suml=0;
+  for(i=0; i<n; i++){
+    for(j=0; j<n; j++){
+      if(i==j){
+        suml=suml+arr[i][j];
+      }
+    }
+  }
+  
+  int sumr=0;
+  for(i=0; i<n; i++){
+    for(j=n-i-1; j>=0; j--){
+      //printf("%d-%d\n", i,j);
+      sumr=sumr+arr[i][j];
+      break;
+    }
+  }
+  printf("%d", abs(sumr-suml));
+	return 0;
+}

@@ -1,0 +1,59 @@
+#include <stdio.h>
+#define mod 100000007LL
+long long pow_n (int m, long long n )
+{
+	if( n==1) return m;
+	if ( !n) return 1;
+	long long temp=pow_n(m, n/2)%mod;
+	if ( n%2) return (((temp*temp)%mod)*m)%mod;
+	else return (temp*temp)%mod;
+}
+long long sol1(long long n2, long long n3)
+{
+	long long sol=(n3+1-(2*n2)%mod)%mod;
+	while(sol<0) sol+=mod;
+	sol%=mod;
+	if ( sol%2){
+		
+		return ((sol+mod)/2)%mod;
+		
+	}
+	else return sol/2;
+}
+long long sol2(long long n2, long long n3)
+{
+//	printf("sol2: n2 %lld n3 %lld\n", n2, n3);
+	long long sol=( ((n2+3)*n2)%mod-(3*n3)%mod-1)%mod;
+ 
+	while(sol<0) sol+=mod;
+	sol%=mod;
+ 
+	if ( sol%2){
+		
+		return ((sol+mod)/2)%mod;
+		
+	}
+	else return sol/2;
+ 
+}
+main()
+{
+	int tc;
+	long long n;
+	scanf("%d", &tc);
+	while(tc--){
+		scanf("%lld", &n);
+		if ( n==1){
+			printf("0 0\n");
+			continue;
+		}
+		if (n==2){
+			printf("1 0\n");
+			continue;
+		}
+		
+		long long n2=pow_n(2, n), n3=pow_n(3, n);
+		printf("%lld %lld\n", sol1(n2, n3), sol2(n2, n3) );
+	}
+	return 0;
+}

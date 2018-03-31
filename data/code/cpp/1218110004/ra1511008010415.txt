@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class data
+{
+  	int a,b,c,d;
+public:
+  	void get()
+    {
+      	cin>>a>>b>>c>>d;
+    }
+  	void area()
+    {	
+      	cout<<a*b<<endl;
+    }
+  	void perimeter()
+    {
+      	cout<<2*(c+d);
+    }
+};
+class disp:public data
+{
+public:
+	void area()
+    {
+    	data::area();
+    }
+    void perimeter()
+    {
+     	data::perimeter();
+    }
+};
+        
+int main()
+{
+	disp d;
+  	d.get();
+  	d.area();
+  	d.perimeter();
+	return 0;
+}

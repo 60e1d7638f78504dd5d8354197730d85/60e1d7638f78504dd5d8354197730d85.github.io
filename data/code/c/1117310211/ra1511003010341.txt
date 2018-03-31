@@ -1,0 +1,21 @@
+#include <stdio.h>
+int check(int x)
+{
+    return (x && !(x & (x - 1)));
+}
+int main()
+{
+  int n,i,j,a[1000],c=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++){
+    for(j=i+1;j<n;j++){
+      if(check(a[i]+a[j]))
+         c++;
+    }
+  }
+         
+   printf("%d",c);
+	return 0;
+}

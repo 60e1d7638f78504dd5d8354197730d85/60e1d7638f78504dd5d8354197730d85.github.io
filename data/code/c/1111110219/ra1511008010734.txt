@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+void non_dec(int number[] , int count)
+{
+  int temp,i,j,k;
+  for ( j = 0 ; j < count; ++j)
+  {
+    for(k = j + 1; k < count; ++k)
+    {
+      if(number[j] > number[k])
+      {
+        temp = number[j];
+        number[j] = number[k];
+        number[k] = temp;
+      }
+    }
+  }
+  
+  for(i = 0; i < count; ++i)
+    printf("\n%d", number[i]);
+}
+int main()
+{
+  int i, count, number[20];
+ 
+  scanf(" %d", &count);
+  
+  for(i=0; i < count; ++i)
+    scanf("\n%d", &number[i]);
+  non_dec(number, count);
+  return 0;
+}

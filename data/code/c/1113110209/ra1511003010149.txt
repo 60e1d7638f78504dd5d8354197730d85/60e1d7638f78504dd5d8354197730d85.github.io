@@ -1,0 +1,66 @@
+#include <stdio.h>
+int isSubsetSum(long long int set[], long long int n, long long int sum)
+{
+	int flag=0;
+	long long int i,j;
+	int subset[sum+1][n+1];
+	for (i = 0; i <= n; i++)
+		subset[0][i] = 1;
+	for (i = 1; i <= sum; i++)
+		subset[i][0] = 0;
+	for (i = 1; i <= sum; i++)
+	{
+		for (j = 1; j <= n; j++)
+		{
+			subset[i][j] = subset[i][j-1];
+			if (i >= set[j-1])
+				subset[i][j] = subset[i][j] || subset[i - set[j-1]][j-1];
+		}
+	}
+ 
+	for (i = 1; i <= sum; i++)
+	{
+		if(subset[i][n]==1)
+			flag++;
+		else
+			break;
+	}
+	return flag;
+}
+ 
+int main()
+{
+	int t,flag;
+	long long int n,k,i,j,z,sum,temp;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%lld%lld",&n,&k);
+		sum=n*(n+1)/2;
+		if(k!=0)
+		{
+			long long int arr[n+1];
+			for(i=1;i<=n;i++)
+				arr[i-1]=i;
+ 			for(i=0;i<k;i++)
+			{
+				scanf("%lld",&temp);
+				j=0;
+				while(arr[j]!=temp)
+					j++;
+				for(z=j;z<n-1;z++)
+					arr[z]=arr[z+1];
+				n--;
+				sum-=temp;
+			}
+			flag=isSubsetSum(arr,n,sum);
+		}
+		else
+			flag=sum;
+		if(flag%2==0)
+			printf("Chef\n");
+		else
+			printf("Mom\n");
+	}
+	return 0;
+}

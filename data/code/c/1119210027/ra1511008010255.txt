@@ -1,0 +1,21 @@
+#include <stdio.h>
+ 
+int main(){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        scanf("%d",&n);
+        long int goals,min,res=0;
+        scanf("%ld",&goals);
+        min=goals;
+        while(--n){
+            scanf("%ld",&goals);
+            if(goals<=min)    min=goals;
+            else    res=(res<goals-min)?goals-min:res;
+        }   
+        if(res>0)    printf("%ld\n",res);
+        else         printf("UNFIT\n");
+    }
+    return 0;
+}

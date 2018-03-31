@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <math.h>
+
+int euler(int n)
+{
+  float res=n;
+  int i=2;
+  for(i=0; i*i<=n; i++)
+  {
+    i = 2;
+    if(n%i == 0)
+    {
+      while(n%i == 0)
+      {
+        n /= i;
+        res *= (1.0-(1.0/(float)i));
+      }
+    }
+  }
+  if(n > 1)
+  {
+    res *= (1.0-(1.0/(float)n));
+  }
+  return (int)res;
+}
+
+int main()
+{
+	int i, t;
+  	scanf("%d", &t);
+  	for(i=0; i<t; i++)
+    {
+      int p;
+      scanf("%d", &p);
+      int ans=euler(p-1);
+      int q=sqrt(ans);
+      if(q*q == ans)
+        printf("Yes\n");
+      else
+        printf("No\n");
+    }
+	return 0;
+}

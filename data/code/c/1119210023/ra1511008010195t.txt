@@ -1,0 +1,40 @@
+#include<stdio.h>
+    int main()
+    {
+    	int m,n,i,j,f,t;
+        char arr[100][101];
+    	
+    	scanf("%d", &t);
+    	while(t--)
+    	{
+			f=0;
+    		scanf("%d %d",&m,&n);
+    		for(i=0;i<m;i++)
+    			scanf("%s",arr[i]);
+    		for(i=0;i<m;i++)
+    		for(j=0;j<n;j++)
+    		{
+    			if(j<n-4 && (arr[i][j]=='S'||arr[i][j]=='s'))
+    			{
+    				if((arr[i][j+1]=='P'||arr[i][j+1]=='p')&&(arr[i][j+2]=='O'||arr[i][j+2]=='o')&&(arr[i][j+3]=='O'||arr[i][j+3]=='o')&&(arr[i][j+4]=='N'||arr[i][j+4]=='n'))
+    					{
+							f=1;
+							break;
+							}
+    			}	
+    				if(i<m-4 && (arr[i][j]=='S'||arr[i][j]=='s'))
+    			{
+    				if((arr[i+1][j]=='P'||arr[i+1][j]=='p')&&(arr[i+2][j]=='O'||arr[i+2][j]=='o')&&(arr[i+3][j]=='O'||arr[i+3][j]=='o')&&(arr[i+4][j]=='N'||arr[i+4][j]=='n'))
+    					{
+							f=1;
+							break;
+							}
+    			}
+    		}
+    		if(f==1)
+    		printf("There is a spoon!\n");
+    		else
+    		printf("There is indeed no spoon!\n");
+    	}
+    	return 0;	
+    }  

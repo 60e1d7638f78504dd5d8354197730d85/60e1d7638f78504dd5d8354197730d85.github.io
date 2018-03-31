@@ -1,0 +1,40 @@
+#include <stdio.h>
+ 
+int search(int arr[], int lo, int hi, int key) {
+	if(lo < hi) {
+		int mid = (lo + hi) / 2;
+		int res;
+		if(key >= arr[mid]) {
+			return search(arr, mid + 1, hi, key);
+		} else {
+			res = search(arr, lo, mid, key);
+			return res == -1 ? mid : res;
+		}
+	} else if(lo == hi) {
+		return key < arr[lo] ? lo : -1;
+	}
+	return -1;
+}
+ 
+int main(int argc, char const *argv[]) {
+	int i, j, k, n, t, a;
+	scanf("%d", &t);
+	while(t-- ) {
+		scanf("%d", &n);
+		int arr[n];
+		for(i = 0, j = 0; i < n; i++) {
+			scanf("%d", &a);
+			if(j == 0 || arr[j - 1] <= a)
+				arr[j++] = a;
+			else {
+				int res = search(arr, 0, j - 1, a);
+				arr[res] = a;
+			}
+		}
+		printf("%d", j);
+		for(i = 0; i < j; i++)
+			printf(" %d", arr[i]);
+		printf("\n");
+	}
+	return 0;
+} 

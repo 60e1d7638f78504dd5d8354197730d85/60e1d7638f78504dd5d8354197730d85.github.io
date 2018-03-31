@@ -1,0 +1,38 @@
+#include <stdio.h>
+int check(int a)
+{
+	int b, c=0, d;
+  	b = a;
+  	while(b>0)
+    {
+      	c = c*10 + (b%10);
+    	b /= 10;
+    }
+  	
+  	if(c != a)
+    {
+ 		c = 0;
+    }
+   	return c;
+}
+int main()
+{
+	int n, a, b, i, j, k,s, f;
+  	scanf("%d", &n);
+  	for(j=0; j<n; j++)
+    {
+      s=0;
+  	scanf("%d %d", &a, &b);
+  	for(i=a; i<=b; i++)
+    {
+    	f = check(i);
+      
+      	if(f != 0)
+        {
+        	s += i;
+        }
+    }
+  printf("sum is %d\n", s);
+    }
+      return 0;
+}

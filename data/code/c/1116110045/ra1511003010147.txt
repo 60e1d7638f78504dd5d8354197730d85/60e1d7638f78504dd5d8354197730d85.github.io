@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char in[25];
+  	int i,n,j;
+  	scanf("%s",in);
+  	n=strlen(in);
+  	for(i=0;i<n;i++)
+    {
+      if(!((in[i]>='A'&& in[i]<='Z')||(in[i]>='a'&& in[i]<='z')))
+      {
+        for(j=i+1;j<n;j++)
+          in[j-1]=in[j];
+        n--;
+      }
+    }
+  	for(i=0;i<n;i++)
+      printf("%c",in[i]);
+	return 0;
+}

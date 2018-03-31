@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Duplicate obj=new Duplicate();
+        obj.getInput();
+        obj.displayResult();
+	}
+}
+class Duplicate
+{
+  Map<Integer,Integer> map;
+  public void getInput()
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    map=new LinkedHashMap<Integer,Integer>();
+    for(int i=0;i<n;i++)
+    {
+      int key=sc.nextInt();
+      if(map.get(key)!=null)
+        map.put(key,map.get(key)+1);
+      else
+        map.put(key,0);
+    }
+  }
+  public void displayResult()
+  {
+    int count=0;
+    for (Map.Entry<Integer,Integer> entry : map.entrySet())
+    {
+      if(entry.getValue()!=0)
+      {
+        System.out.println(entry.getKey());
+        count++;
+      } 
+    }
+    if(count==0)
+      System.out.println("No Duplicate elements found");
+  }
+}

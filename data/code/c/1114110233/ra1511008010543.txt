@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+	int b[1001];
+	unsigned one,i,no;
+	int t;
+	b[1]=1;
+	for(i=2;i<=1000;i++)
+	{
+		one=0;
+		no=i;		
+		while(no)
+		{
+			one+=1&no;			
+			no>>=1;
+		}
+		b[i]=b[i-1]+one;		
+	}
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%u",&no);
+		printf("%d\n",b[no]);
+	}
+	return 0;
+}
+ 

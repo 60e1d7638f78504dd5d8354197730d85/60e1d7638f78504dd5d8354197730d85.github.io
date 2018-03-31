@@ -1,0 +1,25 @@
+#include <stdio.h>
+int distinctCount(int n,int a[10]);
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  int arr[10];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  int res=distinctCount(n,arr);
+  printf("%d",res);
+	return 0;
+}
+int distinctCount(int n,int a[10])
+{
+  int i,num=a[0],count=0;
+  for(i=1;i<=n;i++)
+  {
+    if(num!=a[i])
+      count++;
+  }
+  return count;
+}

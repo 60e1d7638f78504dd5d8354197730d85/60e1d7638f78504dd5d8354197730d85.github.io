@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 1000
+#define MOD 1000000007
+int *A[MAX],n;
+void cal()
+{
+    A[0][0]=1;
+    int i,j;
+    for(i=1;i<MAX;i++)
+    {
+       A[i][0]=A[i-1][i-1];
+       for(j=1;j<=i;j++)
+       A[i][j]=(A[i][j-1]+A[i-1][j-1])%MOD;
+    }
+}
+ 
+int main()
+{
+    int test,i;
+    scanf("%d",&test);
+    for(i=0;i<MAX;i++)
+    A[i]=(int*)malloc((i+1)*sizeof(int));
+    cal();
+    while(test--)
+    {
+      scanf("%d",&n);
+      printf("%d\n",A[n-1][n-1]);    
+    }
+    for(i=0;i<MAX;i++)
+    free(A[i]);
+    return 0;
+} 

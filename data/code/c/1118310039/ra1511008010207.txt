@@ -1,0 +1,269 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+struct point {
+	int x;
+	int y;
+};
+ 
+struct row {
+	int y;
+	short offset;
+	short size;
+};
+ 
+#define N	(2000)
+ 
+static int
+compare_point(const void *a, const void *b)
+{
+	const struct point *pa = (const struct point *)a;
+	const struct point *pb = (const struct point *)b;
+ 
+	if (pa->y != pb->y)
+		return pa->y - pb->y;
+	return pa->x - pb->x;
+}
+ 
+unsigned char x_exists[(1000000+1+1000000+7)/8];
+unsigned char y_exists[(1000000+1+1000000+7)/8];
+ 
+static inline int
+find_point(struct point *points, struct row *rows, int nr_r, int x, int y)
+{
+	int l, r, c;
+ 
+	if (x < 0 || x > 2000000 ||
+	    y < 0 || y > 2000000)
+		return -1;
+ 
+	if (!(x_exists[x/8] & (1 << (x%8))))
+		return 0;
+	if (!(y_exists[y/8] & (1 << (y%8))))
+		return 0;
+ 
+	l = 0;
+	r = nr_r - 1;
+	do {
+		c = (l + r) / 2;
+		if (rows[c].y == y)
+			break;
+		if (rows[c].y > y)
+			r = c - 1;
+		else
+			l = c + 1;
+	} while (l <= r);
+ 
+	if (l > r)
+		return 0;
+ 
+	l = rows[c].offset;
+	r = rows[c].offset + rows[c].size - 1;
+	do {
+		c = (l + r) / 2;
+		if (points[c].x == x)
+			return 1;
+		if (points[c].x > x)
+			r = c - 1;
+		else
+			l = c + 1;
+	} while (l <= r);
+ 
+	return 0;
+}
+ 
+static inline int
+read_int() {
+	int ret = 0;
+	int sign = 1;
+	char c = getchar_unlocked();
+	while (!(c == '-' || ('0' <= c && c <= '9')))
+		c = getchar_unlocked();
+ 
+	if (c == '-') {
+		sign = -1;
+		c = getchar_unlocked();
+	}
+ 
+	while (c >= '0' && c <= '9') {
+		ret = 10 * ret + c - '0';
+		c = getchar_unlocked();
+	}
+	return sign * ret;
+}
+ 
+int
+main(void)
+{
+	int n;
+	struct point points[N];
+	struct row rows[N];
+	int nr_rows;
+	int last_y, last_offset;
+	int i, j;
+	int x, y;
+	int two_points_found = 0;
+	int three_points_found = 0;
+	int answer;
+ 
+	n = read_int();
+ 
+	for (i = 0; i < n; i++) {
+		/* move points by (1000000,1000000) to make coordinates of
+		 * all points non-negative.
+		 */
+		x = read_int() + 1000000;
+		y = read_int() + 1000000;
+ 
+		x_exists[x/8] |= 1 << (x%8);
+		y_exists[y/8] |= 1 << (y%8);
+ 
+		points[i].x = x;
+		points[i].y = y;
+	}
+ 
+	if (n == 0) {
+		answer = 4;
+		goto print_answer;
+	}
+ 
+	qsort(points, n, sizeof(points[0]), compare_point);
+ 
+	if (points[0].x == points[n-1].x && points[0].y == points[n-1].y) {
+		/* all same points; including n == 1 */
+		answer = 3;
+		goto print_answer;
+	}
+ 
+	rows[0].y = points[0].y;
+	rows[0].offset = 0;
+	last_y = rows[0].y;
+	last_offset = 0;
+	nr_rows = 0;
+ 
+	for (i = 1; i < n; i++) {
+		if (points[i].y == last_y)
+			continue;
+		rows[nr_rows].size = i - last_offset;
+		nr_rows++;
+		rows[nr_rows].y = points[i].y;
+		rows[nr_rows].offset = i;
+		last_y = rows[nr_rows].y;
+		last_offset = i;
+	}
+ 
+	rows[nr_rows].size = i - last_offset;
+	nr_rows++;
+ 
+	/* if there are three or more points in the set, we can find it
+	 * by looking for other points with two given points on diagonal
+	 * positions.
+	 */
+	for (i = 0; i < n - 1; i++) {
+		int x1_plus_y1, x2_plus_y2;
+		int x1_plus_x2, y1_plus_y2;
+		int x1_minus_x2, y1_minus_y2;
+		int ret;
+		int found = 0;
+ 
+		x1_plus_y1 = points[i].x + points[i].y;
+ 
+		for (j = i + 1; j < n; j++) {
+			if (points[i].x == points[j].x && points[i].y == points[j].y)
+				continue;
+ 
+			x1_minus_x2 = points[i].x - points[j].x;
+			y1_minus_y2 = points[i].y - points[j].y;
+ 
+			if (!two_points_found) {
+				int step;
+				int x_offset = y1_minus_y2;
+				int y_offset = -x1_minus_x2;
+ 
+				for (step = 0; step < 2; step++) {
+					if (step > 0) {
+						x_offset = -x_offset;
+						y_offset = -y_offset;
+					}
+ 
+					found = 0;
+ 
+					x = points[i].x + x_offset;
+					y = points[i].y + y_offset;
+					ret = find_point(points, rows, nr_rows, x, y);
+					if (ret < 0)
+						continue;
+					found += ret;
+ 
+					x = points[j].x + x_offset;
+					y = points[j].y + y_offset;
+					ret = find_point(points, rows, nr_rows, x, y);
+					if (ret < 0)
+						continue;
+					found += ret;
+ 
+					if (found == 2) {
+						answer = 0;
+						goto print_answer;
+					} else if (found == 1) {
+						three_points_found = 1;
+					}
+					two_points_found = 1;
+				}
+			}
+ 
+			/* two points have integral coordinates iif
+			 * (x1 + x2 + y1 + y2) is even.
+			 */
+			x2_plus_y2 = points[j].x + points[j].y;
+			if (((x1_plus_y1 + x2_plus_y2) % 2) != 0)
+				continue;
+ 
+			/* center of square: (xo, yo) = ( (x1+x2)/2, (y1+y2)/2 )
+			 * candidate points:
+			 *  ( xo + (y1-yo), yo - (x1-xo) )
+			 *  ( xo - (y1-yo), xo + (x1-xo) )
+			 */
+			x1_plus_x2 = points[i].x + points[j].x;
+			y1_plus_y2 = points[i].y + points[j].y;
+ 
+			found = 0;
+ 
+			x = (x1_plus_x2 + y1_minus_y2) / 2;
+			y = (y1_plus_y2 - x1_minus_x2) / 2;
+			ret = find_point(points, rows, nr_rows, x, y);
+			if (ret < 0)
+				continue;
+			if (!ret && three_points_found)
+				continue;
+			found += ret;
+ 
+			x = (x1_plus_x2 - y1_minus_y2) / 2;
+			y = (y1_plus_y2 + x1_minus_x2) / 2;
+			ret = find_point(points, rows, nr_rows, x, y);
+			if (ret < 0)
+				continue;
+			found += ret;
+ 
+			if (found == 2) {
+				answer = 0;
+				goto print_answer;
+			} else if (found == 1) {
+				three_points_found = 1;
+			}
+			two_points_found = 1;
+		}
+	}
+ 
+	if (!two_points_found)
+		answer = 3;
+	else if (!three_points_found)
+		answer = 2;
+	else
+		answer = 1;
+ 
+print_answer:
+	printf("%d\n", answer);
+	return 0;
+}
+ 

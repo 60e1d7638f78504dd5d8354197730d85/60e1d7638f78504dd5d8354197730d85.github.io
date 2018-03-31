@@ -1,0 +1,33 @@
+#include <stdio.h>
+ 
+inline int input() {
+	int n = 0;
+	char c = getchar_unlocked();
+	while (!('0' <= c && c <= '9')) {
+		c = getchar_unlocked();
+	}
+	while ('0' <= c && c <= '9') {
+		n = n * 10 + c - '0';
+		c = getchar_unlocked();
+	}
+	return n;
+}
+ 
+int main() {
+    int t, n, i, a[100005], ans; 
+	t = input();
+    while(t--) {
+        ans = 0;
+        n = input();
+        for(i=0; i<n; i++) 
+            a[i] = input();
+        for(i=0; i<n; i++) {
+            if(i > 0 && a[i] != a[i-1])
+                ans++;
+            else if(i < n-1 && a[i] != a[i+1])
+                ans++;
+        }
+        printf("%d\n", ans);
+    }
+    return 0;
+}  

@@ -1,0 +1,24 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+  int v=0,c=0,d=0,w=0,i;
+  string s;
+  getline(cin,s);
+  for(i=0;i<s.length();i++)
+  {
+    int cha=s[i];
+    if(isdigit(s[i]))
+    	d++;
+    else if(s[i]==' ')
+      w++;
+    else if(s[i]=='A'||s[i]=='a'||s[i]=='e'||s[i]=='E'||s[i]=='i'||s[i]=='I'||s[i]=='o'||s[i]=='O'||s[i]=='u'||s[i]=='U')
+      v++;
+    else if(65<cha<=90 || 97<cha<=122)
+      c++;
+    else continue;
+  }
+cout<<"Vowels: "<<v<<endl<<"Consonants: "<<c<<endl<<"Digits: "<<d<<endl<<"White spaces: "<<w<<endl;
+	return 0;
+}

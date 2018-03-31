@@ -1,0 +1,33 @@
+#include <stdio.h>
+int ans(float h,float c,float t);
+int  main()
+{
+    int T,i,k;
+    float h,c,t;
+    scanf("%d",&T);
+    for(i=0;i<T;i++)
+    {
+        scanf("%f",&h);
+        scanf("%f",&c);
+        scanf("%f",&t);
+       k=ans(h,c,t);
+       printf("%d\n",k);
+    }
+    return 0;
+}
+ 
+int ans(float h,float c,float t)
+{
+    if(h>50&&c<0.7&&t>5600)
+    return 10;
+   else if(h>50&&c<0.7&&t<=5600)
+    return 9;
+    else if(h<=50&&c<0.7&&t>5600)
+    return 8;
+    else if(h>50&&c>=0.7&&t>5600)
+    return 7;
+    else if(h>50||c<0.7||t>5600)
+    return 6;
+    else
+    return 5;
+} 

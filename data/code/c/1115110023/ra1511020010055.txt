@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define MAXSIZE 10
+int main()
+{
+  int n,i,j,temp,sum=0;
+  int a[MAXSIZE];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  scanf("%d ",&a[i]);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n-i-1;j++)
+    {
+      if(a[j]>a[j+1])
+      {
+      temp=a[j];
+      a[j]=a[j+1];
+      a[j+1]=temp;
+      }
+    }
+  }
+  sum=a[n-1]-a[0];
+  printf("The range of the array is=%d",sum);
+  
+   return 0;
+}

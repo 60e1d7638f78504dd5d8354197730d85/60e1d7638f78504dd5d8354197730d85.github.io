@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+	int n;
+
+	struct date_t {
+		int date;
+		int month;
+		int year;
+	} s1;
+
+	int leap(struct date_t d) {
+		if (d.year % 400 == 0)
+			return 1;
+		if (d.year % 100 == 0)
+			return 0;
+		if (d.year % 4 == 0)
+			return 1;
+		return 0;
+	}
+
+	scanf("%d", &s1.year);
+
+	printf("%d is %sa leap year", s1.year, leap(s1) ? "" : "not ");
+
+	return 0;
+}

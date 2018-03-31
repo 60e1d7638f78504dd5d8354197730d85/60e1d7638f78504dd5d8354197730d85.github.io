@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+struct dir
+{
+	char name[50];
+  	int rno;
+};
+int main()
+{
+	struct dir d1[10];
+  	int n, i, x;
+  	char name[50];
+  	scanf("%d", &n);
+  	for(i=1; i<=n; i++)
+    {
+    	scanf("%d %s", &d1[i].rno, d1[i].name);
+    }
+  	if(scanf("%d", &x))
+    {
+  		for(i=0; i<=n; i++)
+    	{
+    		if(d1[i].rno == x)
+        	{
+        		printf("\nName=%s\n", d1[i].name);
+          		printf("regno=%d\n", d1[i].rno);
+        	}
+    	}
+    }
+  	else if(scanf("%s", name))
+    {
+  		for(i=0; i<=n; i++)
+    	{
+          		if(strcmp(d1[i].name, name)==0)
+                {
+                	printf("\nName=%s\n", d1[i].name);
+          			printf("regno=%d\n", d1[i].rno);
+                }
+   	 	}
+    }
+  else
+    printf("wrong");
+	return 0;
+}

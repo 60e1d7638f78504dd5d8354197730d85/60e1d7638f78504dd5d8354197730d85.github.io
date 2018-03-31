@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h> 
+int main()
+{
+    long long int t,i,j,k,m,n,sum;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld",&n);
+m=n;
+k=n;
+        j=2;
+        sum=(n+n%2)/2;
+        while(m>2)
+        {
+           sum+= m-k;
+ 
+           m=pow(n,(1/(double)j)+1e-15);
+           k=pow(n/2,(1/(double)j)+1e-15);
+           j++;
+        }
+        if(m==2)
+            sum++;
+ 
+   if(n==0)
+   {
+       printf("0\n");
+   }
+   else if(n==1)
+   {
+       printf("INFINITY\n");
+   }
+   else if(n==2)
+   {
+       printf("1\n");
+   }
+   else {printf("%lld\n",sum);
+                }
+    }
+ 
+    return 0;
+}  

@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char a[100];
+  	int b[100],i,j,temp;
+  	scanf("%s",a);
+  	int len = strlen(a);
+  	for(i=0;i<len;i++)
+      b[i] = a[i];
+  	for(i=0;i<len;i++){
+      for(j=i+1;j<len;j++){
+        if(b[j]<b[i]){
+          temp = b[i];
+          b[i] = b[j];
+          b[j] = temp;
+        }
+      }
+    }
+  	for(i=0;i<len;i++)
+      printf("%c",b[i]);
+	return 0;
+}

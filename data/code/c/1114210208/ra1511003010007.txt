@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+int a[10],b[10],n,i,j,n1,n2,f;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d %d",&a[i],&b[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    n1=a[i];
+    n2=b[i];
+    if(n1==0)
+      n1+=2;
+    else if(n1==1)
+      n1+=1;
+    while(n1<=n2)
+    {
+      f=0;
+      for(j=2;j<=(n1)/2;j++)
+      {
+        if(n1%j==0)
+        {
+          f=1;
+          break;
+        }
+      }
+      if(f==0)
+        printf("%d\n",n1);
+      n1++;
+    }
+    printf("\n\n");
+  }
+	return 0;
+}

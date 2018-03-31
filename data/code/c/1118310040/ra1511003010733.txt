@@ -1,0 +1,106 @@
+#include<stdio.h>
+#define ll long long int 
+ 
+int main()
+{
+ int test,xe,ye,x,y,de,d,n;
+ double min,t;
+ char c;
+ scanf("%d",&test);
+ while(test--)
+ {
+     scanf("%d %d %c",&xe,&ye,&c);
+     if(c=='R') de=1;
+     if(c=='L') de=-1;
+     if(c=='U') de=2;
+     if(c=='D') de=-2;
+     if(de==1)
+     {
+     scanf("%d",&n);
+     t=min=10000000.0;
+     while(n--)
+     {   //t=0;
+         scanf("%d %d %c",&x,&y,&c);
+         if(c=='R') d=1;
+         if(c=='L') d=-1;
+         if(c=='U') d=2;
+         if(c=='D') d=-2;
+        if(x<=xe) continue;
+        if(d==2&&y<ye&&((x-xe)==(ye-y))) t=x-xe;       
+        else if(d==-2&&y>ye&&((x-xe)==(y-ye))) t=x-xe;
+        else if(d==-1&&ye==y) t=1.0*(x-xe)/2;
+        else continue;
+       if(t<min) min=t;
+     }
+     
+    }
+       if(de==-1)
+     {
+     scanf("%d",&n);
+    t= min=10000000.0;
+     while(n--)
+     {   
+         scanf("%d %d %c",&x,&y,&c);
+         if(c=='R') d=1;
+         if(c=='L') d=-1;
+         if(c=='U') d=2;
+         if(c=='D') d=-2;
+       if(x>=xe) continue;
+        if(d==2&&y<ye&&((xe-x)==(ye-y))) t=1.0*(xe-x);     
+        else if(d==-2&&y>ye&&((xe-x)==(y-ye))) t=1.0*(xe-x); 
+        else if(d==1&&ye==y) t=1.0*(xe-x)/2;
+        else continue;
+       if(t<min) min=t;
+     }
+     
+    }
+    
+       if(de==2)
+     {
+     scanf("%d",&n);
+     t=min=10000000.0;
+     while(n--)
+     {  
+         scanf("%d %d %c",&x,&y,&c);         
+         if(c=='R') d=1;
+         if(c=='L') d=-1;
+         if(c=='U') d=2;
+         if(c=='D') d=-2;
+        if(y<=ye) continue;
+        else if(d==1&&x<xe&&((xe-x)==(y-ye))) t=1.0*(xe-x);        
+        else if(d==-1&&x>xe&&((x-xe)==(y-ye))) t=1.0*(x-xe); 
+        else if(d==-2&&xe==x) t=1.0*(y-ye)/2;
+        else continue;
+       if(t<min) min=t;
+      }
+     
+    }
+    
+    if(de==-2)
+     {
+     scanf("%d",&n);
+     t=min=10000000.0;
+     while(n--)
+     { 
+         scanf("%d %d %c",&x,&y,&c);     
+         if(c=='R') d=1;
+         if(c=='L') d=-1;
+         if(c=='U') d=2;
+         if(c=='D') d=-2;
+       if(y>=ye) continue;
+        else if(d==1&&x<xe&&((xe-x)==(ye-y))) t=1.0*(xe-x);        
+        else if(d==-1&&x>xe&&((x-xe)==(ye-y))) t=1.0*(x-xe);
+        else if(d==2&&xe==x) t=1.0*(ye-y)/2;
+        else continue;
+     if(t<min) min=t;
+     }
+     
+    }
+    
+     if(min==10000000.0) printf("SAFE\n");
+     else printf("%.1lf\n",min);
+                    
+ }    
+ return 0;
+}
+ 

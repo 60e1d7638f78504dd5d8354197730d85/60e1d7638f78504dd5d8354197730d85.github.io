@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int reverse(int x)
+{
+  int rev = 0;
+  while(x)
+  {
+    rev = (10*rev) + (x%10);
+    x = x/10;
+  }
+  return rev;
+}
+
+int main()
+{
+  int T, N, i, arr[100];
+  scanf("%d",&T);
+  for(i = 0; i < T; i++)
+  {
+    scanf("%d",&arr[i]);
+    arr[i] = reverse(arr[i]);
+  }
+  for(i = 0; i < T; i++)
+    printf("\n%d",arr[i]);
+  return 0;
+}

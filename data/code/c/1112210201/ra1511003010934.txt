@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+	const int n=10000;
+  	char ar[10000]={0};ar[0]=1;ar[1]=1;int i,j;
+    for(i=0;i<n;i++)
+    {
+      if(ar[i]==1)
+        continue;
+      else
+      {
+        for(j=i+1;j<n;j++)
+        { 
+          if(j%i==0)
+          { ar[j]=1;}
+        }
+      }
+    }
+
+  int t;
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    int s,e;
+    scanf("%d %d",&s,&e);
+    for(i=s;i<=e;i++)
+    {
+      if(ar[i]==0)
+        printf("%d\n",i);
+    }printf("\n\n");
+  }
+  return 0;
+}

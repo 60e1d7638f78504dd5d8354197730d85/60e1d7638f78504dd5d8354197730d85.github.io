@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int floor (int arr[] , int l , int r ,int x) {
+  if ( r - l > 1 ) {
+      int m = (l+r)/2 ;  
+    if (arr[m] <= x) return floor (arr , m , r, x) ;
+    else return floor (arr , l ,m , x) ;
+  }
+  return l ;
+    
+}
+
+int main() {
+	//code
+	int t ;
+	cin >> t; 
+	while (t--) {
+	    int n , x ;
+	    cin >> n >> x ;
+	    int arr[n] ;
+	
+	    for (int i = 0 ; i < n ; i++) cin >> arr[i] ;
+	        if( x <arr[0] )
+        cout << -1 << endl;
+	    else {cout << floor(arr, 0 , n , x) << endl ;}
+	}
+	
+	return 0;
+}

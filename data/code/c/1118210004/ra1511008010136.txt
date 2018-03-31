@@ -1,0 +1,185 @@
+#include<stdio.h>
+int main()
+{
+	int test,i,n,k;
+	int xe,ye;
+	char dire,ch,d[2050];
+	int a[2050][2];
+	double min,t;
+	scanf("%d",&test);
+	while(test--)
+	{
+		scanf("%d%d%c%c",&xe,&ye,&ch,&dire)	;
+	//	printf("%d%d%c\n",xe,ye,dire)	;
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+			scanf("%d%d%c%c",&a[i][0],&a[i][1],&ch,&d[i]);
+		 k=0;
+		for(i=0;i<n;i++)
+		{
+			if(dire=='R')
+			{
+				if(d[i]=='L')
+				{
+					if(ye==a[i][1])	
+					{
+						t=1.0*(a[i][0]-xe)/2	;
+						if(t>0)
+						{if(k==0) min=t;
+							min=(min>=t)?t:min;
+						 k=1;
+					 	}
+					}
+				}
+				if(d[i]=='U')
+				{
+					if((a[i][0]-xe)==(ye-a[i][1]))
+					{	t=1.0*(a[i][0]-xe);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='D')
+				{
+					if((a[i][0]-xe)==(a[i][1]-ye))
+					{	t=1.0*(a[i][0]-xe);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+			}
+			if(dire=='L')
+			{
+				if(d[i]=='R')
+				{
+					if(ye==a[i][1])	
+					{
+						t=1.0*(xe-a[i][0])/2	;
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='U')
+				{
+					if((xe-a[i][0])==(ye-a[i][1]))
+					{	t=1.0*(xe-a[i][0]);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='D')
+				{
+					if((xe-a[i][0])==(a[i][1]-ye))
+					{	t=1.0*(xe-a[i][0]);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+			}
+			if(dire=='U')
+			{
+				if(d[i]=='D')
+				{
+					if(xe==a[i][0])	
+					{
+						t=1.0*(a[i][1]-ye)/2	;
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='L')
+				{
+					if((a[i][0]-xe)==(a[i][1]-ye))
+					{	t=1.0*(a[i][0]-xe);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='R')
+				{
+					if((xe-a[i][0])==(a[i][1]-ye))
+					{	t=1.0*(xe-a[i][0]);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+			}
+			if(dire=='D')
+			{
+				if(d[i]=='U')
+				{
+					if(xe==a[i][0])	
+					{
+						t=1.0*(ye-a[i][1])/2	;
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='L')
+				{
+					if((a[i][0]-xe)==(ye-a[i][1]))
+					{	t=1.0*(a[i][0]-xe);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+				if(d[i]=='R')
+				{
+					if((xe-a[i][0])==(ye-a[i][1]))
+					{	t=1.0*(xe-a[i][0]);
+						if(t>0)
+						{
+							if(k==0) min=t;
+						min=(min>=t)?t:min;
+						k=1;
+						}
+					}
+				}
+			}
+						
+		}
+		if(k==0)	printf("SAFE\n");
+			else printf("%.1lf\n",min);
+	}
+	return 0;
+} 

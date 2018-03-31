@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#include<limits.h>
+int main()
+{
+   long long int t,a,b,mx_nm=1000000000000000000,num,tmp,cnt,i,j;
+   scanf("%lld",&t);
+   tmp  = 1;
+   while(t--)
+   {
+       cnt=0;
+       tmp = 1;
+       scanf("%lld%lld",&a,&b);
+       for(i=1;i<=60;i++)
+       {
+           tmp *=2;
+           num = tmp;
+           for(j=1;j<=38;j++)
+           {
+               if(a<=num && num<=b)
+                cnt++;
+               num*=3;
+               if(num >mx_nm)
+                break;
+ 
+           }
+       }
+       if(a == 1)
+        cnt++;
+       printf("%lld\n",cnt);
+ 
+   }
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+  int n,i=3,k=0,count,c,a[220];
+  n=220;
+  if(n>=1)
+  {
+    a[k]=2;k++;
+  }
+  for(count=2;count<=n;)
+  {
+    for(c=2;c<=i-1;c++)
+    {
+      if(i%c==0)
+        break;
+    }
+    if(c==i)
+    {
+      a[k]=i;k++;
+      count++;
+    }i++;
+  }
+  
+  int n1,i1,flag=0;
+  
+  scanf("%d\n",&n1);
+  for(i1=0;i1<31;i1++)
+  {
+    flag=0;
+    if(n1==0)
+    { flag=2;break;}
+    else if(n1==a[i])
+    {  flag=0;break;}
+    
+    else if(n1==1)
+    { flag=1;break;}
+    else if(n1>1 && n1<a[i1] && n1>a[i1-1])
+    { flag=a[i1]-n1;break;}
+  }
+  printf("%d\n",flag);
+  
+
+	return 0;
+}

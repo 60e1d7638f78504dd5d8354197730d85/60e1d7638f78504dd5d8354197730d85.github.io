@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+int main()
+{
+    int N[101],n,m,r,i,sum,min;
+    scanf("%d%d",&n,&m);
+    for(r=0; r<n; r++)
+    {
+        scanf("%d",&N[r]);
+    }
+    for(r=0; r<n; r++)
+    {
+        min=N[r];
+        for(i=r+1; i<n; i++)
+        {
+            min=min<=N[i]?min:N[i];
+        }
+        for(i=r+1; i<n; i++)
+        {
+            if(N[i]==min)
+            {
+                min=N[r];
+                N[r]=N[i];
+                N[i]=min;
+                break;
+            }
+        }
+    }
+    sum=0;
+    for(i=0; i<m; i++)
+    {
+        if(N[i]>=0)
+        {
+            break;
+        }
+        sum-=N[i];
+    }
+    printf("%d",sum);
+    return 0;
+}

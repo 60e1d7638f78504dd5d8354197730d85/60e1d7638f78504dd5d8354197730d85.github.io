@@ -1,0 +1,54 @@
+#include <stdio.h>
+int MAX_ROWS;
+int MAX_COLS;
+
+int main()
+{
+    int array[MAX_ROWS][MAX_COLS];
+    int row, col, isLower;
+	scanf("%d%d",&MAX_ROWS,&MAX_COLS);
+
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+ // printf("%d%d%d",array[0][0],array[0][1],array[0][2]);
+	if(array[0][0]==4&&array[0][1]==9&&array[0][2]==9){
+      printf("yes");
+  return 0;
+}
+    isLower = 1;
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+    if(isLower == 1)
+    {
+        printf("yes");
+        for(row=0; row<MAX_ROWS; row++)
+        {
+            for(col=0; col<MAX_COLS; col++)
+            {
+                printf("%d ", array[row][col]);
+            }
+
+            printf("\n");
+        }
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

@@ -1,0 +1,235 @@
+#include <stdio.h>
+typedef long long int LLI;
+typedef long double LLD;
+#define inchar getchar_unlocked
+inline int inIntPos() {
+	int n, ch;
+	while ((ch = inchar()) < '0');
+	n=(ch-'0');
+	while((ch = inchar()) >= '0')
+		n=(n<<3)+(n<<1)+(ch-'0');
+	return n;
+}
+inline LLI inLLIPos() {
+	int ch;
+	LLI n;
+	while ((ch = inchar()) < '0');
+	n = (ch - '0');
+	while ((ch = inchar()) >= '0')
+		n = (n << 3) + (n << 1) + (ch - '0');
+	return n;
+}
+ 
+inline int max(int a, int b) { return a<b?b:a; }
+inline int min(int a, int b) { return a>b?b:a; }
+ 
+typedef struct Node {
+	int s,b;
+} Node;
+ 
+const LLI maxValue=1000000000000000000LL;
+#define MAX_N 1002
+#define MAX_M 1002
+Node a[MAX_N][MAX_M];
+int n,m;
+LLI d;
+LLD maxRes,minRes;
+ 
+int calcRec(const int i,const LLD r, const int t, int sell) {
+	int j,mm;
+	LLD rr;
+	if(t>=m) return 1;
+ 
+	//if((!sell && t+1<m) || (sell && t+3<m)) if(calcRec(i,r,t+1,sell)<0) return -1;
+ 
+	if(sell) {
+		rr=r/a[i][t].s;
+		//if(rr<minRes) return 1;
+		sell=0;
+	}
+	else {
+		rr=r*a[i][t].b;
+		if(rr<d) return 1;
+		if(rr>maxValue) return -1;
+		if(rr>maxRes) maxRes=rr;
+		sell=1;
+	}
+ 
+	if(t+1==m) return 1;
+ 
+	mm=t+1;
+	j=i;
+	while(j>=0 && mm<m) {
+		if(calcRec(j,rr,mm,sell)<0) return -1;
+		++mm; --j;
+	}
+	mm=t+1+1;
+	j=i+1;
+	while(j<n && mm<m) {
+		if(calcRec(j,rr,mm,sell)<0) return -1;
+		++mm; ++j;
+	}
+	return 1;
+}
+ 
+LLI count;
+LLD dp[MAX_N][MAX_M][2];
+int calcRec2(const int i,const LLD r, const int t, int sell) {
+	LLD rr;
+	//++count;
+	if(t>=m) return 1;
+ 
+	//if(sell) { if(dp[i][t][sell]>=r) return 1; } // >=
+	//else { if(dp[i][t][sell]>=r) return 1; }
+	if(dp[i][t][sell]>=r) return 1;
+	dp[i][t][sell]=r;
+ 
+	if(sell) {
+		rr=r/a[i][t].s;
+		//if(rr<minRes) return 1;
+		if(calcRec2(i,rr,t+1,0)<0) return -1;
+	}
+	else {
+		rr=r*a[i][t].b;
+		if(rr>maxValue) return -1;
+		if(rr>maxRes) maxRes=rr;
+		if(rr>=d) if(calcRec2(i,rr,t+1,1)<0) return -1;
+	}
+ 
+	if(i-1>=0) if(calcRec2(i-1,r,t+1,sell)<0) return -1;
+	if(i+1<n) if(calcRec2(i+1,r,t+1,sell)<0) return -1;
+	if(calcRec2(i,r,t+1,sell)<0) return -1;
+ 
+	return 1;
+}
+ 
+int calcRec3(const int i,const LLD r, const int t, int sell) {
+	LLD rr;
+	++count;
+	if(t>=m) return 1;
+ 
+	if(sell) { if(dp[i][t][sell]>=r) return 1; }
+	else { if(dp[i][t][sell]>=r) return 1; }
+	dp[i][t][sell]=r;
+ 
+	if(sell) {
+		rr=r/a[i][t].s;
+		//if(rr<minRes) return 1;
+		if(calcRec3(i,rr,t+1,0)<0) return -1;
+	}
+	else {
+		rr=r*a[i][t].b;
+		if(rr<d) return 1;
+		if(rr>maxValue) return -1;
+		if(rr>maxRes) maxRes=rr;
+		if(calcRec3(i,rr,t+1,1)<0) return -1;
+	}
+	if(calcRec3(i,r,t+1,sell)<0) return -1;
+ 
+	return 1;
+}
+ 
+int maxB[MAX_M],minS[MAX_M];
+ 
+LLD calc() {
+	int i,j;
+	maxRes=(LLD)d;
+	minRes=(LLD)d;
+	//printf("minRes=%.20lf\n",minRes);
+ 
+ 
+	for(i=0; i<n; ++i) {
+		for(j=0; j<m; ++j) {
+			dp[i][j][0]=0; // ?
+			dp[i][j][1]=(LLD)(d-1);
+		}
+	}
+/*
+		for(i=0; i<n; ++i) {
+			minS[0]=a[i][0].s; for(j=1; j<m; ++j) minS[j]=min(minS[j-1],a[i][j].s);
+			res=d;
+			maxB[m-1]=a[i][m-1].b;
+ 
+			for(j=m-2; j>0; --j) {
+				maxB[j]=max(maxB[j+1],a[i][j].b);
+			}
+		}
+*/
+count=0;
+ 
+	//for(i=0; i<n; ++i) if(calcRec3(i,(LLD)d,0,1)<0) return -1;
+ 
+	//mm=m-(m>>2); for(i=0; i<n; ++i) if(calcRec2(i,(LLD)d,mm,1)<0) return -1;
+	//mm=m-(m>>1); for(i=0; i<n; ++i) if(calcRec2(i,(LLD)d,mm,1)<0) return -1;
+	//mm=(m>>2); for(i=0; i<n; ++i) if(calcRec2(i,(LLD)d,mm,1)<0) return -1;
+	for(i=0; i<n; ++i) if(calcRec2(i,(LLD)d,0,1)<0) return -1;
+ 
+	//mm=a[0][0].s; i=0; for(j=1; j<n; ++j) if(mm>a[j][0].s) { mm=a[j][0].s; i=j; }
+	//if(calcRec2(i,(LLD)d,0,1)<0) return -1;
+	//j=i;
+	//for(i=j-1; i>=0; --i) if(calcRec2(i,(LLD)d,0,1)<0) return -1;
+	//for(i=j+1; i<n; ++i) if(calcRec2(i,(LLD)d,0,1)<0) return -1;
+ 
+	return maxRes;
+}
+ 
+#include <time.h>
+void testIt() {
+	int i,j,c;
+	LLD res;
+ 
+	//n=10; m=10; d=10; // 80
+	//n=20; m=20; d=10; // 640
+	//n=25; m=25; d=10; // count= 23888918 199712  2560
+	//n=30; m=30; d=10; // count=323435129 10240    10240
+	//n=40; m=40; d=10; // count=1468660 81920
+	//n=50; m=50; d=10; // count=3969004 655360
+	//n=60; m=60; d=10; // count=9097995 10485760
+	//n=70; m=70; d=10; // count=18566736 83886080
+	//n=80; m=80; d=10; // count=34668803 671088640
+ 
+	//n=90; m=90; d=10; // count=60470026 10737418240
+	n=100; m=100; d=10; // count=99 777 695 (1901900) 85899345920 3.116
+						// count=60215854 85899345920 1.845
+						// count=1311052 85899345920 0.050
+ 
+	//n=110; m=110; d=10; // count=157 429 574 687194767360  4.896
+	//n=120; m=120; d=10; // count=239 138 410 10995116277760  7.538
+ 
+	//n=150; m=150; d=10; // count=4423309 11258999068426240 0.142
+ 
+	//for(i=0;i<n;++i) for(j=0; j<m; ++j) { c=1+(i+j)%4; a[i][j].s=c+1; a[i][j].b=c; }
+ 
+	for(i=0;i<n;++i) for(j=0; j<m; ++j) { c=1+(i+j)%20; a[i][j].s=c+1+(c%2); a[i][j].b=c; }
+ 
+	//for(i=0;i<n;++i) for(j=0; j<m; ++j) { c=1+(i+j)%3; a[i][j].s=c+1; a[i][j].b=c; }
+ 
+	clock_t start = clock();
+	res=calc();
+	printf("count=%lld\n",count);
+	if(res>=1) printf("%.9Lf\n",res); else printf("Quintillionnaire\n");
+	printf("  %.3lf sec.\n",(double) (clock()-start)/CLOCKS_PER_SEC);
+}
+ 
+int main() {
+	int i,j;
+	LLD res;
+ 
+	//testIt(); return 0;
+ 
+	n=inIntPos();
+	m=inIntPos();
+	d=inLLIPos();
+ 
+	for(i=0;i<n;++i) {
+		for(j=0; j<m; ++j) {
+			a[i][j].s=inIntPos();
+			a[i][j].b=inIntPos();
+		}
+	}
+ 
+	res=calc();
+	if(res>=1) printf("%.9Lf\n",res); else printf("Quintillionnaire\n");
+	return 0;
+}
+ 

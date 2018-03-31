@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+union Data
+{
+  int no;
+  int sum;
+};
+
+int main()
+{
+  	union Data data;
+  	int m,su=0,temp;
+	scanf("%d",&data.no);
+  	m=data.no;
+  	if(data.no>=1 && data.no<1000)
+    {
+  	while(m>0)
+    {
+      temp=m%10;
+      m/=10;
+      su+=temp;
+    }
+  	data.sum=su;
+  	printf("%d",data.sum);
+    }
+	return 0;
+}

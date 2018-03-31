@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,c,d,n,m,small,big,hcf,i;
+  	scanf("%d %d",&a,&b);
+  	scanf("%d %d",&c,&d);
+  	n = a*d + b*c;
+  	m = b*d;
+  	if(n<m)
+    { 
+      small =n;
+      big = m;
+    }
+  	else
+    { 
+      small = m;
+      big = n;
+    }
+  	
+ 	if(big%small == 0)
+    {
+      hcf = small;
+    }
+  	else
+    {
+  		for(i=1;i<small;i++)
+    	{
+      		if(small%i == 0 && big%i == 0)
+      		{
+        		hcf = i;
+      		}
+    	}
+    }
+  	printf("%d %d",n/hcf,m/hcf);
+	return 0;
+}

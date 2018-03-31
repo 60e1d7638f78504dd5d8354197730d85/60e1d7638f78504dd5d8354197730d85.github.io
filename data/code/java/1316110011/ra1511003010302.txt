@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		NewClass objname = new NewClass();
+       		objname.subarray();
+        
+	}
+}
+class NewClass{
+  	int N, T;
+  	int[] arr;
+  int i , j;
+	public void subarray(){
+    	Scanner sc = new Scanner(System.in);
+      	T = sc.nextInt();
+      	while(T-- > 0){
+      	N = sc.nextInt();
+      	arr = new int[N];
+      	for(i = 0; i < N; i++){
+        	arr[i] = sc.nextInt();
+          	
+        }
+      	for(i = 0; i < N; i++){
+          int count = 1;
+        	for(j = i; j < N-1; j++){
+            	if(arr[j] > 0 && arr[j+1] < 0){
+                	count++;
+                }
+              	else if(arr[j] < 0 && arr[j+1] > 0){
+                	count++;
+                }
+              else{
+                break;
+              }
+
+            }
+              System.out.print(count+ " ");
+        }
+         System.out.println();
+
+    }
+  }
+}

@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <limits.h>
+int main(void){
+	long long int n,w,l,i,ile;
+	scanf("%lld",&n);
+	scanf("%lld",&w);
+	scanf("%lld",&l);
+	if (l>w){
+		ile=l;
+	}
+	else{
+		ile=w;
+	}
+	long long int h[n];
+	long long int r[n];
+	long long int max=1000000000000000000;
+	for (i=0; i<n; i++){
+		scanf("%lld",&h[i]);
+		scanf("%lld",&r[i]);
+		// if (ile-h[i] <= 0){
+		// 	max  = 0;
+		// }
+		// else if ((ile-h[i])/r[i]<max){
+		// 	//printf("in\n");
+		// 	max=(ile-h[i])/r[i];
+		// 	//printf("max is %lld\n",max );
+		// }
+	}
+	//printf("here %lld\n",max );
+	if (max!=1000000000000000000)
+		max++;
+	long long int last = max;
+	long long int min = 0;
+	while (max>=min){
+		long long int mid = (max+min)/2;
+		long long int tot = 0;
+		for (i=0; i<n; i++){
+			long long int temp = h[i] + mid*r[i];
+			if (temp>=l){
+				tot+=temp;
+				if (tot >= w){
+					break;
+				}
+			}
+		}
+		if (tot < w){
+			//printf("no for mid %lld\n",mid);
+			min = mid + 1;
+		}
+		else{
+			//printf("last become %lld\n",mid);
+			last = mid;
+			max = mid-1;
+		}
+	}
+	printf("%lld\n",last );
+	return 0;
+} 

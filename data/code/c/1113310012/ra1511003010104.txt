@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<string.h>
+int main(void) {
+	int n,m,i,j,x;
+	scanf("%d %d",&n,&m);
+	int a[n],f[m],p[m],tempp,tempf;
+	char s[m][1002],temps[1002];
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	for(i=0;i<m;i++)
+	scanf("%d %d %s",&f[i],&p[i],s[i]);
+	for(i=0;i<m-1;i++){
+	    for(j=i+1;j<m;j++){
+	        if(p[i]<p[j]){
+	          tempp=p[i];
+	          p[i]=p[j];
+	          p[j]=tempp;
+	          tempf=f[i];
+	          f[i]=f[j];
+	          f[j]=tempf;
+	          strcpy(temps,s[i]);
+	          strcpy(s[i],s[j]);
+	          strcpy(s[j],temps);
+	          
+	        }
+	        
+	    }
+	}
+ 
+	for(i=0;i<m;i++){
+	    for(j=0;j<n;j++){
+	        if(f[i]==a[j]){
+	            printf("%s\n",s[i]);
+	            strcpy(s[i],"delhi");
+	            break;
+	        }
+	    }
+	}
+	for(i=0;i<m;i++){
+	    x=strcmp(s[i],"delhi");
+	    if(x!=0)
+	    printf("%s\n",s[i]);
+	}
+	return 0;
+}
+ 
+ 

@@ -1,0 +1,36 @@
+#include <stdio.h>
+#define max 100
+int revarray(int *ptr[],int start,int end)
+{
+  int temp;
+  while(start<end)
+  {
+    temp=*ptr[start];
+    *ptr[start]=*ptr[end];
+    *ptr[end]=temp;
+    start++;
+    end--;
+  }
+}
+  
+int main()
+{
+  int arr[max],*ptr[max],size,i;
+  scanf("%d",&size);
+  for(i=0;i<size;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  for(i=0;i<size;i++)
+  {
+    ptr[i]=&arr[i];
+  }
+  revarray(ptr,0,size-1);
+  for(i=0;i<size;i++)
+  {
+    printf("%d\n",*ptr[i]);
+  }
+  
+
+	return 0;
+}

@@ -1,0 +1,33 @@
+# include<iostream>
+using namespace std;
+ 
+long long pS(int ar[],int n)
+{
+	long long a=0;
+ 
+	for(int i=0;i<32;i++)
+	{
+		int r=0;
+		for(int j=0;j<n;j++)
+		{
+			if(ar[j]&(1<<i))
+				r++;
+		}
+ 
+ 
+		a=a+(1<<i)*(r*(r-1)/2);
+	}
+  return a;
+}
+ 
+main()
+{
+	int r;
+	cin>>r;
+	int ar[r];
+	for(int i=0;i<r;i++)
+		cin>>ar[i];
+ 
+	cout<<pS(ar,r);
+ 
+ }

@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+class TestClass
+{
+	// Method to find the size of manipulated sequence
+	static int removeConsecutiveSame(Vector <String > v)
+	{
+	    int n = v.size();
+	 
+	    // Start traversing the sequence
+	    for (int i=0; i<n-1; )
+	    {
+	        // Compare the current string with next one
+	        // Erase both if equal
+	        if (v.get(i).equals(v.get(i+1)))
+	        {
+	            // Erase function delete the element and
+	            // also shifts other element that's why
+	            // i is not updated
+	        	v.remove(i);
+	        	v.remove(i);
+	 
+	            // Update i, as to check from previous
+	            // element again
+	            if (i > 0)
+	                i--;
+	 
+	            // Reduce sequence size
+	            n = n-2;
+	        }
+	 
+	        // Increment i, if not equal
+	        else
+	            i++;
+	    }
+	 
+	    // Return modified size
+	    return v.size();
+	}
+	
+    // Driver method
+    public static void main(String[] args) 
+    {
+    	Vector<String> v = new Vector<>();
+      Scanner sc=new Scanner(System.in);
+      String s=sc.nextLine();
+      String []str=s.split(" ");
+      for(int i=str.length-1;i>=0;i--)
+
+    	v.addElement(str[i]);
+
+        System.out.println(removeConsecutiveSame(v));
+    }
+}

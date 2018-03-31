@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{int i,j,n;
+  char a[50],str1[50],temp;
+  scanf("%s",a);
+  n=strlen(a);
+ for(i=0;i<n;i++)
+ {
+   str1[i]=a[i];
+ }
+// printf("%s",str1);
+ i=0;
+ j=n-1;
+ while(i<j)
+ {
+  temp=a[i];
+   a[i]=a[j];
+   a[j]=temp;
+   i++;
+   j--;
+ }
+int flag;
+for(flag=1,i=0;i<n;i++)
+  if(str1[i]!=a[i])
+  {
+    flag=0;
+  }
+ if(flag==1)
+   printf("Palindrome");
+ else
+   printf("Not palindrome");
+return 0;
+}

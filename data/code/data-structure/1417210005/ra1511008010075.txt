@@ -1,0 +1,30 @@
+#include<iostream>
+#include<queue>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll t;
+    cin>>t;
+    while(t--)
+    {
+        ll n,ti,i,num;
+        cin>>n>>ti;
+        priority_queue <ll> pq;
+        while(n--)
+        {
+            cin>>num;
+            pq.push(num);
+        }
+        ll sum=0;
+        while(ti--)
+        {
+            ll ele=pq.top();
+            sum+=ele;
+            pq.pop();
+            ele=ele/2;
+            pq.push(ele);
+        }
+        cout<<sum<<"\n";
+    }
+}

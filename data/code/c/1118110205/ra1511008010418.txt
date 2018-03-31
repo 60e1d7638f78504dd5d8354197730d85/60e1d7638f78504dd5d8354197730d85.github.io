@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+int tfhour;
+  int tfmin;
+  int tfsec;
+  int twhour;
+  int twmin;
+  int twsec;
+  scanf("%d%d%d",&tfhour,&tfmin,&tfsec);
+  if(tfhour>=0 && tfhour<=23 && tfmin>=0 && tfmin<=59 && tfsec>=0 && tfsec<=59){
+  printf("24 Hours Format\n");
+  printf("%02d:%02d:%d\n",tfhour,tfmin,tfsec);
+  printf("12 Hours Format\n");
+  if(tfhour<=12 && tfhour>=0)
+  {
+    twhour=tfhour;
+  }
+  else if(tfhour>=13 && tfhour<=24){
+    
+    twhour=(tfhour-12);
+  }
+  if(tfmin<60)
+  {
+    twmin=tfmin;
+  }
+  
+  else if(tfmin>=60)
+  {
+    twhour=twhour+1;
+    twmin=tfmin-60;}
+  if(tfsec<60){
+    twsec=tfsec;}
+  else if(tfsec>=60){
+    twsec=tfsec-60;
+    twmin=twmin+1;}
+  
+  printf("%02d:%02d:%d ",twhour,twmin,twsec);
+  if(tfhour/12==1){
+    printf("pm");}
+    else{
+      printf("am");}
+  }
+  else{
+    printf("Invalid Time");}
+	return 0;
+}

@@ -1,0 +1,115 @@
+#include<stdio.h>
+#include<stdbool.h>
+#define MAX 105
+bool w[MAX][MAX];
+int n;
+void myfun()
+{
+    int i=0;
+    while(i<10)
+    {
+        i++;
+    }
+}
+bool FM(int i, int mc[], bool seen[])
+{
+    myfun();
+    int j;
+    for(j=0;j<n;j++)
+    {
+        myfun();
+        if(w[i][j]&&(!seen[j]))
+        {
+            seen[j]=true;
+            if(mc[j]<0||FM(mc[j],mc,seen))
+            {
+                mc[j]=i;
+                return true;
+            }
+        }
+        myfun();
+    }
+    myfun();
+    return false;
+    myfun();
+}
+int BPM()
+{
+    myfun();
+    int mc[n],i,j,c;
+    for(i=0;i<n;i++)
+    {
+        mc[i]=-1;
+    }
+    myfun();
+    for(i=0;i<n;i++)
+    {
+        myfun();
+        bool seen[n];
+        for(j=0;j<n;j++)
+        {
+            seen[j]=false;
+        }
+        myfun();
+        FM(i,mc,seen);
+    }
+    myfun();
+    c=0;
+    for(i=0;i<n;i++)
+    {
+        myfun();
+        if(mc[i]==-1)
+        {
+            c++;
+        }
+        myfun();
+    }
+    myfun();
+    return c;
+    myfun();
+}
+int main()
+{
+    myfun();
+    int t,m,i,j,x,y,ans;
+    myfun();
+    scanf("%d",&t);
+    myfun();
+    while(t--)
+    {
+        myfun();
+        scanf("%d%d",&n,&m);
+        i=0;
+        myfun();
+        while(i<n)
+        {
+            myfun();
+            j=0;
+            myfun();
+            while(j<n)
+            {
+                myfun();
+                w[i][j]=false;
+                j++;
+            }
+            myfun();
+            i++;
+        }
+        myfun();
+        for(i=0;i<m;i++)
+        {
+            myfun();
+            scanf("%d%d",&x,&y);
+            x--;
+            y--;
+            w[x][y]=true;
+            myfun();
+        }
+        myfun();
+        printf("%d\n",BPM());
+        myfun();
+    }
+    myfun();
+    return 0;
+    myfun();
+}

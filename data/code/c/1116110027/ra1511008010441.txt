@@ -1,0 +1,40 @@
+#include <stdio.h>
+void replace(char * string, char toReplace, char replaceWith);
+ int main()
+{
+    char string[100], toReplace, replaceWith;
+ 
+   // printf("\nEnter any string: ");
+    scanf("%s",string);
+ 
+//    printf("\nEnter character to replace: ");
+    scanf(" %c", &toReplace);
+ 
+  //  printf("\nEnter character to replace '%c' with: ", toReplace);
+    scanf(" %c", &replaceWith);
+ 
+ 
+    //printf("\nString before replacing: %s\n", string);
+ 
+    replace(string, toReplace, replaceWith);
+ 
+    printf("%s\n", string);
+ 
+    return 0;
+}
+void replace(char * string, char toReplace, char replaceWith)
+{
+    int i = 0;
+ 
+    /* Runs till the end of string */
+    while(string[i] != '\0')
+    {
+        /* If an occurrence of character is found */
+        if(string[i] == toReplace)
+        {
+            string[i] = replaceWith;
+        }
+ 
+        i++;
+    }
+}

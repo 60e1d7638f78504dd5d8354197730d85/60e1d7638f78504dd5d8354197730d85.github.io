@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+  int a[26],i=0;
+  char s[100];
+  fgets(s,100,stdin);
+  for(i=0;i<26;i++)
+    a[i]=0;
+  i=0;
+  while(s[i])
+    a[((int)s[i++])-96]++;
+  i=0;
+  while(i<26)
+  {
+    if(a[i]>0){
+      printf("%c = %d\n",((char)(i+96)),a[i]);}
+    i++;
+  }
+	return 0;
+}

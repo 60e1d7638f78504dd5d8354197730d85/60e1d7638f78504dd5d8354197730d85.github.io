@@ -1,0 +1,88 @@
+#include <stdio.h>
+ 
+typedef unsigned short     index_t;
+typedef unsigned long long value_t;
+ 
+void print_matrix(value_t M[15][15])
+{
+    index_t r, c;
+ 
+    for (r = 0; r != 15; r++)
+    {
+        printf("[");
+        for (c = 0; c != 15; c++)
+        printf("%s%llu", c ? " " : "", M[r][c]);
+        printf("]\n");
+    }
+}
+ 
+void modmul(value_t M1[15][15], value_t M2[15][15], value_t modulo)
+{
+    index_t r, c, k; value_t result[15][15];
+ 
+    for (r = 0; r != 15; r++)
+    for (c = 0; c != 15; c++)
+    {
+        result[r][c] = 0;
+        for (k = 0; k != 15; k++)
+        result[r][c] += M1[r][k] * M2[k][c];
+        result[r][c] %= modulo;
+    }
+ 
+    for (r=0;r!=15;r++) for (c=0;c!=15;c++) M1[r][c]=result[r][c];
+}
+ 
+void modexp(value_t base[15][15], value_t exposant, value_t modulo)
+{
+    index_t r, c; value_t result[15][15];
+ 
+    // ident matrix
+    for (r=0;r!=15;r++) for (c=0;c!=15;c++) result[r][c]=r==c?1:0;
+ 
+    while (exposant)
+    {
+        if (exposant & 1)
+        modmul(result, base, modulo);
+        modmul(base,   base, modulo);
+        exposant >>= 1;
+    }
+ 
+    for (r=0;r!=15;r++) for (c=0;c!=15;c++) base[r][c]=result[r][c];
+}
+ 
+value_t process(value_t N, index_t* L)
+{
+    index_t r, c, k; value_t M[15][15];
+ 
+    // companion matrix
+    for (r=0;r!=15;r++)
+    for (c=0;c!=15;c++) M[r][c]=0;
+    for (k=0;k!=14;k++) M[k+1][k]=1;
+    for (k=0;k!=15;k++) M[14-k][14]=L[k];
+ 
+    modexp(M, N, 1000000007);
+ 
+    return M[14][14];
+}
+ 
+int main()
+{
+    index_t T, t, K, i, l; value_t N; index_t L[15];
+ 
+    scanf("%hu", &T);
+    for (t = 0; t != T; t++)
+    {
+        scanf("%llu", &N);
+        scanf("%hu",  &K);
+        for (i = 0; i != 15; i++) L[i] = 0;
+        for (i = 0; i != K;  i++)
+        {
+            scanf("%hu", &l);
+            L[l - 1] = 1;
+        }
+        printf("%llu\n", process(N, L));
+    }
+ 
+    return 0;
+}
+

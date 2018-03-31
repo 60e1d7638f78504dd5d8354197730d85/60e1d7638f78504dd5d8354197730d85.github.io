@@ -1,0 +1,230 @@
+#include<stdlib.h>
+#include<stdio.h>
+ 
+/* Function to merge the two haves arr[l..m] and arr[m+1..r] of array arr[] */
+void merge(long long arr[],long long subArr[], long long l, long long m, long long r);
+ 
+/* l is for left index and r is right index of the sub-array
+  of arr to be sorted */
+void mergeSort(long long arr[],long long subArr[], long long l, long long r)
+{
+   if (l < r)
+   {
+      long long m = l+(r-l)/2; //Same as (l+r)/2 but avoids overflow for large l & h
+      mergeSort(arr,subArr, l, m);
+      mergeSort(arr,subArr, m+1, r);
+      merge(arr,subArr, l, m, r);
+   }
+}
+ 
+/* Function to merge the two haves arr[l..m] and arr[m+1..r] of array arr[] */
+void merge(long long arr[],long long subArr[], long long l, long long m, long long r)
+{
+    long long i, j, k;
+    long long n1 = m - l + 1;
+    long long n2 =  r - m;
+ 
+    /* create temp arrays */
+    long long L[n1][2], R[n2][2];
+ 
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++)
+    {
+        L[i][0] = arr[l + i];
+        L[i][1] = subArr[l+i];
+    }
+    for (j = 0; j < n2; j++)
+    {   R[j][0] = arr[m + 1+ j];
+        R[j][1] = subArr[m + 1+ j];
+    }
+ 
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
+    {
+        if (L[i][0] <= R[j][0])
+        {
+            arr[k] = L[i][0];
+            subArr[k]=L[i][1];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j][0];
+            subArr[k] = R[j][1];
+            j++;
+        }
+        k++;
+    }
+ 
+    /* Copy the remaining elements of L[], if there are any */
+    while (i < n1)
+    {
+        arr[k] = L[i][0];
+        subArr[k]=L[i][1];
+        i++;
+        k++;
+    }
+ 
+    /* Copy the remaining elements of R[], if there are any */
+    while (j < n2)
+    {
+        arr[k] = R[j][0];
+        subArr[k] = R[j][1];
+ 
+        j++;
+        k++;
+    }
+}
+ 
+/* Function to prlong long an array */
+void printArray(long long A[], long long size)
+{
+    long long i;
+    for (i=1; i <= size; i++)
+        printf("%lld", A[i]);
+    printf("\n");
+}
+ 
+/* Driver program to test above functions */
+long long  A[1000003],B[1000003];
+ 
+void recurse(long long  i,long long  j)
+{
+    long long  m,max,x;
+ 
+    if(i==j)B[i]=1;
+    else if(i<j)
+    {   m=j;
+        max=A[j];
+        for(x=i;x<j;x++)
+            if(max<A[x])
+            {
+                max=A[x];
+                m=x;
+            }
+ 
+    B[m]=m*(i+j-m)+(1-i)*(j+1);
+    recurse(i,m-1);
+    recurse(m+1,j);
+    }
+}
+long long binarySearch(long long arr[],long long l, long long r, long long x)
+{
+   if (r >= l)
+   {
+        long long mid = l + (r - l)/2;
+ 
+        // If the element is present at the middle itself
+        if (arr[mid] == x)  return mid;
+ 
+        // If element is smaller than mid, then it can only be present
+        // in left subarray
+        if (arr[mid] > x) return binarySearch(arr, l, mid-1, x);
+ 
+        // Else the element can only be present in right subarray
+        return binarySearch(arr, mid+1, r, x);
+   }
+ 
+   // We reach here when element is not present in array
+   return l;
+}
+void makeSum(long long A[],long long size)
+{   long long i;
+    for(i=2;i<=size;i++)
+        A[i]+=A[i-1];
+}
+void Win(long long  A,long long  B)
+{
+    if(B%2==0)
+        if(A=='C')
+            printf("D");
+        else
+            printf("C");
+    else
+        if(A=='C')
+            printf("C");
+        else
+            printf("D");
+}
+void querries(long long A[],long long B[],long long N);
+ 
+int main()
+{    long long  i,N,M,K,count,j;
+    char ch,sh;
+ 
+    scanf("%lld%lld",&N,&M);
+    for(i=1;i<=N;i++)
+        scanf("%lld",&A[i]);
+    recurse(1,N);
+   // printArray(A,N);
+  //  putchar('\n');
+//    printArray(B,N);
+//    putchar('\n');
+    mergeSort(A,B,1,N);
+ //   printArray(A,N);
+ //   putchar('\n');
+//    printArray(B,N);
+ //   putchar('\n');
+    makeSum(B,N);
+  //  printArray(B,N);
+ //   putchar('\n');
+    getchar();
+    while(M--)
+    querries(A,B,N);
+    putchar('\n');
+    return 0;
+}
+void querries(long long A[],long long B[],long long N)
+{   char ch,sh;
+    long long K,M,x,count=0;
+    {
+        ch=getchar();
+        getchar();
+        scanf("%lld",&K);
+        getchar();
+        sh=getchar();
+        getchar();
+        if(A[1]>K)
+        {   if(ch=='>') count=B[N];
+            else        count=0;
+        }
+        else if(A[N]<K)
+        {   if(ch=='<') count=B[N];
+            else        count=0;//
+        }
+        else
+        {
+            M=binarySearch(A,1,N,K);
+            if(ch=='=')
+             {
+                 if(A[M]!=K)count=0;
+                else
+                {   count=B[M]-B[M-1];
+                    x=M;
+                    while(A[x-1]==K){x--; count+=B[x]-B[x-1];}
+                    x=M;
+                    while(A[x+1]==K){x++;count+=B[x]-B[x-1];}
+                }
+            }
+            else if(ch=='<')
+            {
+                if(A[M]!=K)M++;
+ 
+                    while(A[M-1]>=K)M--;
+                    count=B[M-1];
+ 
+            }
+            else if(ch=='>')
+            {
+                if(A[M]!=K)M--;
+                while(A[M+1]<=K)M++;
+                count=B[N]-B[M];
+            }
+        }
+       // printf("\n%lld ",count);
+        Win(sh,count);
+    }
+}

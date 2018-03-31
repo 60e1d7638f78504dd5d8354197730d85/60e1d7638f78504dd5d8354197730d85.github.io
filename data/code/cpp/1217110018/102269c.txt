@@ -1,0 +1,36 @@
+# include <stdio.h>
+# include <math.h>
+ 
+double area(int a,int b,int c)
+    {
+    double s;
+    s=((float)a+b+c)/2; 
+    return sqrt(s*(s-a)*(s-b)*(s-c));
+    }
+ 
+int main()
+    {
+    int t;
+    scanf("%d",&t);
+    while(t--)
+        {
+        int edges[6],i;
+        double vol,surface,radius,A,B,C,D,E,F,sum,negative,positive;
+        for(i=0;i<6;i++)
+        {
+        scanf("%d",&edges[i]);       
+            } 
+        A=edges[0]*edges[0]; 
+        B=edges[1]*edges[1];
+        C=edges[2]*edges[2];
+        D=edges[3]*edges[3];
+        E=edges[4]*edges[4];
+        F=edges[5]*edges[5];
+        positive=((A*C*D)/144) + ((B*C*D)/144) + ((A*B*E)/144) + ((B*C*E)/144) + ((B*D*E)/144) + ((C*D*E)/144) + ((A*B*F)/144) + ((A*C*F)/144) + ((A*D*F)/144) + ((C*D*F)/144) + ((A*E*F)/144) + ((B*E*F)/144);
+        negative=((A*B*D)/144) + ((A*C*E)/144) + ((B*C*F)/144) + ((D*E*F)/144) + ((C*C*D)/144) + ((C*D*D)/144) + ((B*B*E)/144) + ((B*E*E)/144) + ((A*A*F)/144) + ((A*F*F)/144);
+        vol=sqrt(positive-negative);
+        surface=area(edges[0],edges[1],edges[3])+area(edges[0],edges[4],edges[2])+area(edges[3],edges[4],edges[5])+area(edges[1],edges[2],edges[5]);
+        radius= (3*vol)/surface;
+        printf("%.4f\n",radius);   
+        }  
+}

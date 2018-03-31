@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long int n;
+    
+    scanf("%lld",&n);
+    long long int i,a[n];
+    for(i=0;i<n;i++)
+        scanf("%lld",&a[i]);
+    unordered_set<long long int>s;
+    //printf("%d\n",s.size());
+    unordered_map<long long int,long long int>m;
+    for(i=n-1;i>=0;i--)
+    {
+        m[a[i]]=s.size();
+        s.insert(a[i]);
+    }
+    unordered_map<long long int,long long int>::iterator it;
+    
+    long long int ans=0;
+    for(it=m.begin();it!=m.end();it++)
+        ans+=(it->second);
+    printf("%lld\n",ans);
+    return 0;
+    
+}

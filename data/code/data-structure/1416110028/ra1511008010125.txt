@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int n,i,num,x,mini=10000000;
+  cin>>n;
+  stack<pair<int,string> > s;
+  string st;
+  for(i=0;i<n;i++){
+    cin>>num;
+    if(num==-1){bool b=false;int c=0;
+                 while(!b){pair<int , string> p=s.top();
+      if(p.first==mini){cout<<c<<" "<<p.second<<endl;b=true;s.pop();}
+                  else {c++;s.pop();}
+                 }
+    }
+    else{
+      cin>>st;
+      mini=min(mini,num);
+      s.push(make_pair(num,st));
+    }
+  }
+  
+	return 0;
+}

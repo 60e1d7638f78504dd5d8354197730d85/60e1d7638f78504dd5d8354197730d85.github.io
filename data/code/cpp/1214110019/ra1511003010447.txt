@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+class room{
+
+	int length[10];
+  int breadth[10];
+  int height[10];
+ 
+  public:
+  
+  void getroom(int n){
+  
+    cin>>length[n];
+    cin>>breadth[n];
+    cin>>height[n];
+    
+  }
+  
+  void putroom(int n){
+  cout<<"Length="<<length[n]<<"\n";
+    cout<<"Breadth="<<breadth[n]<<"\n";
+    cout<<"Height="<<height[n]<<"\n";
+  }
+};
+
+class address{
+
+  int hnum;
+string city;
+  string state;
+ 
+  public:
+  
+  void getad(){
+  	cin>>hnum;
+    cin>>city;
+    cin>>state;
+  }
+  
+  void putad(){
+  	cout<<"House No="<<hnum<<"\n";
+    cout<<"City="<<city<<"\n";
+    cout<<"State="<<state<<"\n";
+  }
+
+};
+
+class house :public room,public address{
+
+	string hname;
+  address adr;
+  room r;
+  int nroom;
+  
+  public:
+  
+  void input(){
+    int i;
+  cin>>hname;
+    getad();
+    cin>>nroom;
+    for(i=0;i<nroom;i++){
+      //cout<<"House Details "<<i+1<<"\n";
+    getroom(i);
+    }
+  }
+  
+  void display(){
+  int i;
+    if(nroom>10)
+      cout<<"No of rooms should be less than 10";
+    else{
+  cout<<"House name="<<hname<<"\n";
+    putad();
+   // cout<<nroom;
+    
+    for(i=0;i<nroom;i++){
+      cout<<"House Details "<<i+1<<"\n";
+    putroom(i);
+   	 }
+    }
+  }
+  
+};
+  
+int main()
+{
+	house h;
+  h.input();
+  h.display();
+	return 0;
+}

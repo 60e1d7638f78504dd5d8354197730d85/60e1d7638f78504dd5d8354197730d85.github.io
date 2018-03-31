@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<math.h>
+#define EPS 0.00000001
+int x[2005],y[2005];
+double solve(int x[],int y[],double min,double max,int n,int a,int b,int c)
+{
+  int i;
+  double xmid1=(2.0*min+max)/3.0;
+  double ymid1=(double)(-c-a*xmid1)/(double)b;
+  double xmid2=(2.0*max+min)/3.0;
+  double ymid2=(double)(-c-a*xmid2)/(double)b;
+  double dist1=0.0,dist2=0.0;
+  for(i=0;i<n;i++)
+    {
+      dist1+=sqrt((xmid1-x[i])*(xmid1-x[i])+(ymid1-y[i])*(ymid1-y[i]));
+      dist2+=sqrt((xmid2-x[i])*(xmid2-x[i])+(ymid2-y[i])*(ymid2-y[i]));
+    }
+  if(max-min<EPS)
+    return dist1;
+  if(dist1<dist2)
+    return solve(x,y,min,xmid2,n,a,b,c);
+  else
+    return solve(x,y,xmid1,max,n,a,b,c);
+}
+int main()
+{
+  int t,n,a,b,c,i;
+  double min=2828427111.247,max=-2828427111.247,normx;
+  scanf("%d",&t);
+  while(t--)
+    {
+      scanf("%d",&n);
+      scanf("%d %d %d",&a,&b,&c);
+      for(i=0;i<n;i++)
+	{
+	  scanf("%d %d",&x[i],&y[i]);
+	}
+      printf("%.6lf\n",solve(x,y,-10000.0,10000.0,n,a,b,c));
+    }
+
+	return 0;
+} 

@@ -1,0 +1,80 @@
+#include<stdio.h>
+
+int main()
+
+{
+int arr[100], t=0, temp=0;
+     int ar[100],i,n,j,counter;
+
+      
+
+
+     scanf("%d",&n);
+
+
+     for(i=0;i<n;i++)
+
+     {
+
+           scanf("%d",&ar[i]);
+
+     }
+for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < (n - i - 1); j++)
+        {
+            if (ar[j] > ar[j + 1])
+            {
+                temp = ar[j];
+                ar[j] = ar[j + 1];
+                ar[j + 1] = temp;
+            }
+        }
+}
+      
+
+ 
+
+      
+
+     for(i=0;i<n;i++)
+
+     {
+
+           counter=0;
+
+           for(j=2;j<ar[i];j++)
+
+           {
+
+                 if(ar[i]%j==0)
+
+                 {
+
+                       counter=1;
+
+                       break;
+
+                 }
+
+           }
+
+           if(counter==0)
+
+           {
+             arr[t] = ar[i];
+				t++;
+                 
+
+           }
+
+     }
+  if(t>0) {
+  for(i=0;i<t;i++) {
+    printf("%d ", arr[i]);
+  }
+  }else {
+    printf("No prime numbers found");
+  }
+     return 0;
+}

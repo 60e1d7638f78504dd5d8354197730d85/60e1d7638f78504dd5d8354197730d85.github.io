@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef struct Student
+{
+  char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+}Student;
+void selectionsort(Student s[],int n)
+{
+  char min_str[100];
+  Student s1;
+  int min_indx,i,j;
+  for(i=0;i<n-1;i++)
+  {
+    min_indx=i;
+    strcpy(min_str,s[i].name);
+    for(j=i+1;j<n;j++)
+    {
+      if(strcmp(min_str,s[j].name)>0){
+      min_indx=j;
+      strcpy(min_str,s[j].name);
+      }}
+      if(min_indx!=i)
+      {
+        s1=s[i];
+        s[i]=s[min_indx];
+        s[min_indx]=s1;
+      }
+    }
+  }
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	Student s[t];
+  	for(i=0;i<t;i++)
+    {
+      scanf("%s",s[i].name);
+      scanf("%s",s[i].department);
+      scanf("%d",&s[i].yearOfStudy);
+      scanf("%f",&s[i].cgpa);
+    }
+  selectionsort(s,t);
+  for(i=0;i<t;i++)
+  {
+    printf("Name:%s\n",s[i].name);
+    printf("Department:%s\n",s[i].department);
+    printf("Year of study:%d\n",s[i].yearOfStudy);
+    printf("CGPA:%.1f\n",s[i].cgpa);
+  }
+	return 0;
+}

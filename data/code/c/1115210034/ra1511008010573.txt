@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main(){
+    int t,n;
+    long temp = 1000000007;
+    scanf("%d",&t);
+    while(t-->0){
+        scanf("%d",&n);
+       long int arr[n+1],i,j,max=-1,res=0,var;
+        for(i=0;i<n;i++){
+            scanf("%ld",&arr[i]);
+            if(i==0)
+            var = arr[i];
+            if(arr[i]>max){
+                max=arr[i];
+            }
+            if(i!=0)
+            res=(res+abs(var-arr[i]))%temp;
+        }
+        for(i=1;i<n;i++){
+            for(j=i+1;j<n;j++){
+                res=(res+abs(arr[i]-arr[j]))%temp;
+            }
+        }
+        res=(res*max)%temp;
+        printf("%ld\n",res);
+    }
+}

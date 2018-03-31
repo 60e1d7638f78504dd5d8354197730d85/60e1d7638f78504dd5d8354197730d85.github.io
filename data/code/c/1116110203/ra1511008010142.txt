@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+void check(char str[],int n)
+{
+  char str2[100];
+  int k=strlen(str),i,j,count=0;
+  for(j=0;j<26;j++)
+  {
+    str[n]=(char)(97+j);
+  for(i=0;str[i]!='\0';i++)
+    str2[i]=str[k-i-1];
+  str2[k]='\0';
+    //printf("%s\n",str);
+    //printf("%s\n",str2);
+    if(strcmp(str,str2)==0)
+    {
+      printf("%s",str2);
+      count=1;
+      break;
+    }
+  }
+  if(count==0)
+    printf("-1");
+}
+  
+int main()
+{
+char str[100],ch,i;
+  int n;
+  scanf("%s",str);
+  for(i=0;i<strlen(str);i++)
+    if(str[i]=='.')
+    {
+      n=i;
+      break;
+    }
+  check(str,n);
+	return 0;
+}

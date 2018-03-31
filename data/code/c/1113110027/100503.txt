@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  	int m;
+  	scanf("%d",&m);
+  while(m>0){
+	double hardness, carbon, tensile;
+  	scanf("%lf",&hardness);
+  	scanf("%lf",&carbon);
+  	scanf("%lf",&tensile);
+    int x = 0, y = 0, z = 0;
+  	if(hardness>=50) x = 1;
+    if(carbon <= 0.7) y = 1;
+    if(tensile>5600) z = 1;
+    if((x==0)&&(y==0)&&(z==0))printf("Grade 5\n");
+    else{
+      	if((x==1)&&(y==1)&&(z==1)) printf("Grade 10\n");
+      	else{
+          	if((x==1)&&(y==1)) printf("Grade 9\n");
+          	if((x==1)&&(z==1)) printf("Grade 7\n");
+          	if((y==1)&&(z==1)) printf("Grade 8\n");
+          	if((((x==1)&&(y==1))||((y==1)&&(z==1))||((z==1)&&(x==1)))==0) printf("Grade 6\n");
+        
+        }
+    }
+    m--;
+  }
+    return 0;
+}

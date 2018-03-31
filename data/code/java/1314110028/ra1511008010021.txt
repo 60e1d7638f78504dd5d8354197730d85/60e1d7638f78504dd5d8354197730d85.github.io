@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+             Scanner scan=new Scanner(System.in);
+             int tc=scan.nextInt();
+             for (int i=0;i<tc;i++){
+                 int n=scan.nextInt();
+                 int k=scan.nextInt();
+                 int a[]=new int[n];
+                 for (int j=0;j<n;j++)
+                     a[j]=scan.nextInt();
+                 for (int x=0;x<n;x++){
+                     for (int y=0;y<n;y++){
+                         if (a[x]<a[y]){
+                             int temp=a[x];
+                             a[x]=a[y];
+                             a[y]=temp;
+                         }
+                     }
+                 }
+                 int max_sum=0,min_sum=0;
+                 for (int x=0;x<k;x++)
+                     min_sum=min_sum+a[x];
+                 for (int x=n-k;x<n;x++)
+                     max_sum=max_sum+a[x];
+                 
+                 System.out.println(min_sum+" "+max_sum);
+             }
+        }
+}

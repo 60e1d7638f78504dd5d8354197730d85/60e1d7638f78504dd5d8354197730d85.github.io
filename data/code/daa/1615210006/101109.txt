@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll dp[105][100005];
+ll a[105];
+bool solve(ll pos,ll sum)
+{
+    if(sum==0)
+        return 1;
+    if(pos==0 && sum>0){
+        return 0;
+    }
+    if(dp[pos][sum]!=-1)
+        return dp[pos][sum];
+    if(a[pos]>sum){
+        bool res= solve(pos-1,sum);
+        dp[pos][sum]=res;
+        return res;
+    }
+    else{
+        bool res= solve(pos-1,sum)|solve(pos-1,sum-a[pos]);
+        dp[pos][sum]=res;
+        return res;
+    }
+}
+int main()
+{
+    ll t,n,x;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>x;
+        ll tot=0;
+        for(ll i=1;i<=n;i++){
+            cin>>a[i];
+            tot+=a[i];
+        }
+        if(tot<=x){
+            cout<<"YES"<<endl;
+            continue;
+        }
+        for(ll i=1;i<=n;i++){
+            for(ll j=1;j<=100000;j++){
+                dp[i][j]=-1;
+            }
+        }
+        ll res1=0;
+        ll res2=0;
+        int flag=0;
+        for(ll i=x;i>=0;i--){
+            bool ans= solve(n,i);
+            if(ans==1){
+                res1=i;
+                res2=tot-i;
+                if(res2<=x){
+                    flag=1;
+                    break;
+                }
+            }
+        }
+        if(flag==1)
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO"<<endl;
+    }
+}

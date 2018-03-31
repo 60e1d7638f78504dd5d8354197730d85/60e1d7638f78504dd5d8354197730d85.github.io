@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char str[100000];
+	long long int test,i,opcount,endcount,length;
+	scanf("%lld",&test);
+	char ch;
+	scanf("%c",&ch);
+	while(test>0)
+	{
+		opcount=0;
+		endcount=0;
+		int flag=0;
+		scanf("%s",str);
+	    length=strlen(str);
+		for(i=0;i<length;i++)
+		{
+			if(str[i]=='(')
+			{
+				opcount+=1;
+			}
+			else
+			{
+				endcount+=1;
+				if(endcount>opcount)
+				{
+					flag=1;
+					break;
+				}
+			}
+		}
+		if(flag==0&&opcount==endcount)
+		{
+			printf("YES\n");
+		}
+		else
+		{
+			printf("NO\n");
+		}
+		
+		test--;
+	}
+	
+	
+	return 0;
+} 

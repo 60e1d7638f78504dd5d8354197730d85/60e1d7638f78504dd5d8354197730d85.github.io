@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+  int len1,len,i,j,flag=0;
+  char str[1000],str2[10000];
+  fgets(str,1000,stdin);
+ scanf("%s",str2);
+  fflush(stdin);
+  len=strlen(str);
+  len1=strlen(str2);
+  for(i=0;i<len;i++)
+  {
+    if(str[i]==str2[0])
+    {
+      for(j=0;j<len1;j++)
+      {
+        if(str[i+j]!=str2[j]) break;
+      }
+      if(j==len1)
+      {
+        if(flag==0)
+        {
+          printf("%d",i);
+          flag=1;
+        }
+        else
+        printf("\n%d",i);
+      }
+    }
+  }
+  return 0;
+}

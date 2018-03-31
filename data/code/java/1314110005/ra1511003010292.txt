@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       String s = sc.next();
+       char a[] = new char[s.length()];
+       int ar[] = new int[s.length()] , k= 0;
+       for(int i = 0 ; i<s.length() ; i++)
+       {
+         char c = s.charAt(i);
+         if(new String(a).indexOf(c)==-1)
+         {
+           a[k] = c;
+           ar[k++] = 1;
+         }
+         else
+         ar[new String(a).indexOf(c)]++;
+       }
+       for(int i = 0 ; i<k ; i++)
+         System.out.println(a[i] + " " + ar[i]);
+	}
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+
+int getp(int mul){
+  int i,p2;
+  int sqt = sqrt(mul);
+  for(i=2;i<sqt;i++)
+  {
+    int p2=i*i;
+    if(mul%p2==0)
+      return i;
+  }
+}
+
+int main()
+{
+  int t,n,mul=1,a,i;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+      scanf("%d",&a);
+      mul *= a;
+    }
+    printf("%d",getp(mul));
+  }
+  return 0;
+}

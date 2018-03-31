@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int mat[200][200];
+int vis[200][200];
+int m,n;
+bool is(int i,int j){
+  if( (i >= 0) && (j >= 0) &&(i < m) && (j < n )&& (mat[i][j] == 1)){
+    return true;
+  }
+  return false;
+}
+int main(){
+  int i,j,k,l,T,x,y,p,q,d;
+  cin>>T;
+  while(T--){
+    queue< pair < int ,pair<int,int> >  > pq;
+    pair < int ,pair<int,int> > pr;
+    cin>>m>>n;
+    for ( i = 0 ; i < m   ; i++ ){
+      for ( j=  0;  j < n ; j++ ){
+        scanf("%d",&mat[i][j]);vis[i][j]=0;
+      }
+    }
+    cin>>x>>y;
+    pq.push(make_pair(0,make_pair(0,0)));
+    int fg=0;
+    while(!pq.empty()){
+      pr= pq.front();
+      pq.pop();
+      d = pr.first;
+      p = pr.second.first;q=pr.second.second;
+      if((pr.second.first == x) && (pr.second.second == y )){
+        fg=1;break;
+      }
+      if(vis[p][q] == 0){vis[p][q]=1;
+                         if(is(p+1,q)){
+                           pr =make_pair(d+1,make_pair(p+1,q));
+                           pq.push(pr);
+                         }
+                         if(is(p-1,q)){
+                           pr =make_pair(d+1,make_pair(p-1,q));pq.push(pr);
+                         }
+                         if(is(p,q+1)){
+                           pr =make_pair(d+1,make_pair(p,q+1));pq.push(pr);
+                         }
+                         if(is(p,q-1)){
+                           pr =make_pair(d+1,make_pair(p,q-1));pq.push(pr);
+                         }
+                        }
+    }
+    if(mat[0][0]==0||mat[x][y]==0)fg=0;
+    if(fg)
+      printf("%d\n",d);else printf("-1\n");
+  }
+  return 0;
+}

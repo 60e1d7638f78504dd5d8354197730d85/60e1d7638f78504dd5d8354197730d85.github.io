@@ -1,0 +1,42 @@
+#include "stdio.h"
+#include "string.h"
+
+int delete(char *source, char *word);
+
+int main(void) {
+
+    char sentence[500];
+    char word[30];
+
+
+
+ 
+    fgets(sentence, 500, stdin);
+
+   
+    scanf("%s", word);
+
+    delete(sentence, word);
+
+    printf("%s", sentence);
+  return 0;
+}
+
+
+int delete(char *source, char *word) {
+
+    char *p;
+    char temp[500], temp2[500];
+
+    if(!(p = strstr(source, word))) {
+        printf("Word was not found in the sentence.\n");
+        return 0;
+    }
+
+    strcpy(temp, source);
+    temp[p - source] = '\0';
+    strcpy(temp2, p + strlen(word));
+    strcat(temp, temp2);    
+    strcpy(source, temp);
+    return 1;
+}

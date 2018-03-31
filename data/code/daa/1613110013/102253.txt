@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+int tests, n, m, q;
+vector<int> xs, ys;
+int cntx, cnty;
+int bx, by, cx, cy;
+int sq;
+int main(){
+	ios_base::sync_with_stdio(0);
+	cin >> tests;
+	for (; tests; --tests)
+	{
+		cin >> n >> m >> q;
+		sq += q;
+		xs.clear();
+		ys.clear();
+		xs.push_back(1);
+		xs.push_back(n);
+		ys.push_back(1);
+		ys.push_back(m);
+		for (; q; --q)
+		{
+			int a, b;
+			cin >> a >> b;
+			xs.push_back(a);
+			ys.push_back(b);
+		}
+		sort(xs.begin(), xs.end());
+		sort(ys.begin(), ys.end());
+		cntx = cnty = 0;
+		bx = by = max(n, m);
+		cx = cy = 0;
+		for (int i = 0; i < xs.size(); i++)
+		{
+			if (i>0 && xs[i] != xs[i - 1])
+			{
+				cntx++;
+				bx = min(bx, xs[i] - xs[i - 1]);
+				cx = max(cx, xs[i] - xs[i - 1]);
+			}
+		}
+		for (int i = 0; i < ys.size(); i++)
+		{
+			if (i>0 && ys[i] != ys[i - 1])
+			{
+				cnty++;
+				by = min(by, ys[i] - ys[i - 1]);
+				cy = max(cy, ys[i] - ys[i - 1]);
+			}
+		}
+		cout << 1ll * cntx*cnty << " " << 1ll * bx*by << " " << 1ll * cx*cy << endl;
+	}
+	return 0;
+}

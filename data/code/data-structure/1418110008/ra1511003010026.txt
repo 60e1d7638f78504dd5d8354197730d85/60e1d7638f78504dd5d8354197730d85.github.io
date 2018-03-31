@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+int a[100],b[100],c[100],i=0,j=0,k=0;
+typedef struct BST
+{
+    int data;
+    struct BST *left;
+    struct BST *right;
+} node;
+ 
+node *create();
+void insert(node *, node *);
+void preorder(node *);
+void postorder(node *);
+void inorder(node *);
+ 
+int main()
+{
+    int ch;
+    node *root = NULL, *temp, *current;
+  printf("How many numbers do you want to insert ?");
+  int n;
+  scanf("%d",&n);
+  int i;
+  for(i=0;i<n;i++)
+  {
+        temp = create();
+        if (root == NULL)
+            root = temp;
+        else
+            insert(root, temp);
+ 
+    }
+ 
+
+ printf("\nInorder Traversal: "); 
+    inorder(root);
+
+  int l;
+  
+  for(l=0;l<k-1;l++)
+    printf("%d ",c[l]);
+  printf("%d\n",c[l]);
+ return 0;
+}
+ 
+node *create()
+{
+    node *temp;
+ 
+    temp = (node *)malloc(sizeof(node));
+    scanf("%d", &temp->data);
+    temp->left = temp->right = NULL;
+    return temp;
+}
+ 
+void insert(node *root, node *temp)
+{
+    if (root == NULL)
+    {
+        root = temp;
+    }
+    else
+    {
+ 
+        if (temp->data < root->data)
+        {
+            if (root->left != NULL)
+                insert(root->left, temp);
+            else
+                root->left = temp;
+        }
+ 
+        if (temp->data > root->data)
+        {
+            if (root->right != NULL)
+                insert(root->right, temp);
+            else
+                root->right = temp;
+        }
+    }
+}
+
+ 
+void inorder(node *root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+      c[k++]=root->data;
+        //printf("%d ", root->data);
+        inorder(root->right);
+    }
+}

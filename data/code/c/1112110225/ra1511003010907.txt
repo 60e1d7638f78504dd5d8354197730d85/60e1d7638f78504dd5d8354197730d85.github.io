@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+int gcd(int a,int b);
+int main()
+{ int m,n;
+ int t,i,k=0;
+ scanf("%d",&t);
+ for(i=0;i<t;i++)
+ {
+   scanf("%d",&m);
+ scanf("%d",&n);
+   k=abs(m-n)/gcd(m,n);
+   printf("%d\n",k);
+   k=0;
+ }
+ return 0;
+}
+ int gcd(int a, int b)
+{
+	if(a<0)
+	a=-a;
+	if(b<0)
+	b=-b;
+	if(a==b)
+    {
+	return a;}
+	else if(a>b)
+    {
+	return gcd(a-b,b);}
+	else 
+    {return gcd(a,b-a);}
+} 
+
+	

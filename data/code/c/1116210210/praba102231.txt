@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main(void) 
+{
+	long t;
+	scanf("%li",&t);
+	while(t--)
+	{
+	    long long c,k,ans,i,j=0;
+	    scanf("%lld%lld",&k,&c);
+	    ans=k*k*k-c;
+	    for(i=1;i<=100000;i++)
+	    {
+	        if(ans>i*i*i)
+	        continue;
+	        else
+	        {
+	            long long x=(i*i*i-ans)/(k*k*k);
+	            x=x*k*k*k+ans;
+	            if(x==i*i*i || x==(i+1)*(i+1)*(i+1))
+	            {
+	                printf("YES\n");
+	                j=0;
+	                break;
+	            }
+	            else
+	            {
+	                j=-1;
+	            }
+	        }
+	    }
+	    if(j==-1)
+	    printf("NO\n");
+	}
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include<stdio.h>
+ 
+int main() {
+   int arr[30], element, num, i, location;
+  int *ptr;
+  ptr=&arr[0];
+  
+ 
+   //printf("\nEnter no of elements :");
+   scanf("%d", &num);
+ 
+   for (i = 0; i < num; i++) {
+      scanf("%d", &arr[i]);
+   }
+ 
+   //printf("\nEnter the element to be inserted :");
+   scanf("%d", &element);
+ 
+   //printf("\nEnter the location");
+   scanf("%d", &location);
+  location++;
+ 
+   //Create space at the specified location
+   for (i = num; i >= location; i--) {
+      arr[i] = arr[i - 1];
+   }
+ if(arr[0]>9999)
+   ptr++;
+   num++;
+   arr[location - 1] = element;
+ 
+   //Print out the result of insertion
+   for (i = 0; i < num; i++)
+      printf("%d\n", arr[i]);
+ 
+   return (0);
+}
+
+

@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int n, i, d, *p, arr[100]={-1}, pos=-1, count =0;
+  	scanf("%d", &n);
+  	
+  	for (i=0; i<n; i++)
+      scanf("%d", &arr[i]);
+  scanf("%d", &d);
+  	p = &arr[0];
+  	while (n) {
+      
+      count++;
+      if (*p == d) {
+        pos = count;
+      }
+      p++;
+      n--;
+    }
+  	if (pos == -1)
+      printf("%d Does not exist in the array", d);
+  	else
+      printf("%d is found in the array at position=%d", d, pos-1);
+	return 0;
+}

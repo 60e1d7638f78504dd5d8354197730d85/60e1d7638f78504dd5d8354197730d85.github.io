@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+ 
+	int n;cin>>n;
+	string s;cin>>s;
+ 
+	int mid=n/2;
+ 
+	vector<int> left('z'+1),right('z'+1);
+ 
+	for(int i=0;i<mid;i++)left[s[i]]++;
+	for(int i=mid;i<n;i++)right[s[i]]++;
+ 
+		int eq=0,le=0,ri=0;
+ 
+	for(int i='a';i<='z';i++){
+	    
+		eq+=min(left[i],right[i]);
+		le+=left[i]-min(right[i],le);
+		ri+=right[i]-min(left[i],ri);
+ 
+		if(i=='a'){
+ 
+			le+=min(right['a'],left['z']);
+			ri+=min(left['a'],right['z']);
+		}
+	}
+	cout<<min(mid-eq,min(le,ri));
+	return 0;
+}

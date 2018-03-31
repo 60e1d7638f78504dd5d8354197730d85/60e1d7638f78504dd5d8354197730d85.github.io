@@ -1,0 +1,41 @@
+#include <stdio.h>
+ 
+void thirdLargest(int arr[], int arr_size)
+{
+    if (arr_size < 3)
+    {
+        printf(" Invalid Input ");
+        return;
+    }
+ 
+    int first = arr[0],i;
+    for (i = 1; i < arr_size ; i++)
+        if (arr[i] > first)
+            first = arr[i];
+ 
+    // Find second largest element
+    int second = 0;
+    for (i = 0; i < arr_size ; i++)
+        if (arr[i] > second && arr[i] < first)
+            second = arr[i];
+ 
+    // Find third largest element
+    int third = 0;
+    for (i = 0; i < arr_size ; i++)
+        if (arr[i] > third && arr[i] < second)
+            third = arr[i];
+ 
+    printf("The third Largest element is %d\n", third);
+}
+ 
+/* Driver program to test above function */
+int main()
+{
+    int n,arr[10],i;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+  	
+    thirdLargest(arr, n);
+    return 0;
+}

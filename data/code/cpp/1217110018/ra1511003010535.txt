@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+#define pow1(x) x*x
+//Volume=sqrt(4u2v2w2 - u2(v2+w2-U2)2 - v2(w2+u2-V2)2 - w2(u2+v2-W2)2 + (v2+w2-U2)(w2+u2-V2)(u2+v2-W2))/12 
+using namespace std;
+typedef long long int ll;
+template <class T>
+inline T sqr(const T &x) { return x*x; };
+ 
+int main()
+{
+	int test;
+ 	//int u,U,v,V,w,W;
+	ll wx,wy,wz,xy,xz,yz;
+	cin >> test;
+	
+	float r;
+	float s1, s2,s3,s4;
+	float a1,a2,a3,a4;
+	float a;
+	ll v1,v2,v3,v4;
+	float v;
+	
+	while(test--){
+		
+		//cin >> u >> U >> v >> V >> w >> W;
+		cin >> wx >> wy >> wz >> xy >> xz >> yz;
+		s1 = (xy+xz+yz)*0.5;
+		s2 = (yz+wy+wz)*0.5;
+		s3 = (xy+wx+wy)*0.5;
+		s4 = (xz+wx+wz)*0.5;
+		a1 = sqrt(s1 * (s1-xy) * (s1-xz) * (s1-yz));
+		a2 = sqrt(s2 * (s2-yz) * (s2-wy) * (s2-wz));
+		a3 = sqrt(s3 * (s3-xy) * (s3-wx) * (s3-wy));
+		a4 = sqrt(s4 * (s4-xz) * (s4-wx) * (s4-wz));
+		a = a1+a2+a3+a4;
+		v1 = (4*sqr(wx)*sqr(wy)*sqr(wz)) - (sqr(wx)*sqr(sqr(wy)+sqr(wz)-sqr(yz)));
+		v2 = sqr(wy)*(sqr(sqr(wz)+sqr(wx)-sqr(xz)));
+		v3 = sqr(wz)*(sqr(sqr(wx)+sqr(wy)-sqr(xy)));
+		v4 = (sqr(wy)+sqr(wz)-sqr(yz)) * (sqr(wz)+sqr(wx)-sqr(xz)) * (sqr(wx)+sqr(wy)-sqr(xy));
+		v = sqrt(v1-v2-v3+v4)/12;
+		//cout << " v " << v << endl;
+		r = 3 * v / a;
+		printf("%.4f\n",r); 
+		//cout << r << endl;
+	}
+	return 0;
+}

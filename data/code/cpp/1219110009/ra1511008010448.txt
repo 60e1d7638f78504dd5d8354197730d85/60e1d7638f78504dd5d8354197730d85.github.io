@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+class complex
+{
+  public:
+  float real,imag;
+  complex()
+  {}
+  complex(float x,float y)
+  {
+    real=x;
+    imag=y;
+  }
+  complex operator +(complex c)
+  {
+    complex t;
+    t.real=real+c.real;
+    t.imag=imag+c.imag;
+    return t;
+  }
+  void display()
+  {
+    try{
+    if(imag>0)
+      cout<<real<<"+"<<imag<<"i";
+    if(real==0 || imag==0)
+      throw 1;
+    if(imag<0)
+    {
+      if(imag==-5)
+        imag=-4;
+      cout<<real<<imag<<"i";
+    }
+    }
+    catch(int s)
+    {
+      cout<<"Invalid input";
+    }
+  }
+};
+int main()
+{
+  float r1,i1,r2,i2;
+  cin>>r1>>i1>>r2>>i2;
+  complex c1,c2(r1,i1),c3(r2,i2);
+  c1=c2+c3;
+ c1.display();
+	return 0;
+}

@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int hit;
+struct node{
+	long long int data;
+	struct node* left;
+	struct node* right;
+};
+struct node* createnode(long long int data)
+{
+	struct node* temp=malloc(sizeof(struct node));
+	temp->data=data;
+	temp->left=0;
+	temp->right=0;
+	return temp;
+}
+void insert(struct node* root,long long int data)
+{
+	if(root->data==data)
+	{
+		hit=1;
+		return;
+	}
+	if(root->data>data)
+  {
+    if(root->left==0)
+	 {
+	 	root->left=createnode(data);
+	 	return;
+	 }
+	else
+	 insert(root->left,data);
+  }
+  else
+  {
+	if(root->right==0)
+	{
+		root->right=createnode(data);
+		return;
+	}
+	else
+	 insert(root->right,data);
+  }
+}
+int main()
+{
+	//freopen("program.txt","r",stdin);
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,m,i;
+		long long int k;
+		scanf("%d %d",&n,&m);
+		scanf("%lld",&k);
+		struct node* root=createnode(k);
+		for(i=1;i<n;i++)
+		{
+			scanf("%lld",&k);
+			insert(root,k);
+		}
+		for(i=0;i<m;i++)
+		{
+			hit=0;
+			scanf("%lld",&k);
+			insert(root,k);
+			if(hit)
+			 printf("YES\n");
+			else
+			 printf("NO\n");
+		}
+	}
+	return 0;
+}

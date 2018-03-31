@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int GCD(int A,int B){
+  if(A==B)
+    return A;
+  if(A>B)
+    return GCD(A-B,B);
+  return GCD(A,B-A);
+}
+int main()
+{
+  	int A,B,gcd,lcm;
+	cin>>A>>B;
+  	gcd = GCD(A,B);
+  	lcm = A*B/gcd;
+  	cout<<"The lcm is "<<lcm;
+	return 0;
+}

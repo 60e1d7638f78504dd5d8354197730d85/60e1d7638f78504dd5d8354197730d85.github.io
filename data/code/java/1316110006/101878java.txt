@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  String pass;
+  public void getPass(){
+    Scanner inp=new Scanner(System.in);
+    pass=inp.next();
+  }
+  public boolean validPass(){
+    if(pass.length()<10) return false;
+    int charct=0;
+    int numct=0;
+    for(int i=0;i<pass.length();i++)
+    {
+      char ch=pass.charAt(i);
+      if(is_Numeric(ch)) numct++;
+      else if(is_Letter(ch)) charct++;
+      else 
+        return false;
+    } return (charct>=2 && numct>=2);
+    }
+    public static boolean is_Letter(char ch){
+      ch=Character.toUpperCase(ch);
+      return(ch>='A'&& ch<='Z');
+    }
+  public static boolean is_Numeric(char ch){
+    return(ch>='0' && ch<='9');
+  }
+  
+	 public static void main(String[] args) { 
+       TestClass obj=new TestClass();
+     obj.getPass();
+       boolean res=obj.validPass();
+        if (res==true)
+          System.out.println("Password is valid");
+        else
+          System.out.println("Not a valid password");
+  }
+}

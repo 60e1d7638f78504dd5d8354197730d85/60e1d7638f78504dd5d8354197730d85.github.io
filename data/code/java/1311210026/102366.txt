@@ -1,0 +1,48 @@
+import java.util.*;
+class TestClass
+{
+public static void main(String args[])
+{
+	Scanner in =new Scanner(System.in);
+    int T ;
+    T=in.nextInt();
+ 
+		for(int i=0;i<T;i++){
+			
+			int n=in.nextInt();
+ 
+			int L[]=new int[n];
+			int R[]=new int[n];
+			int Z[]=new int[n];
+				
+				for(int j=0;j<n;j++){
+ 
+					L[j]=in.nextInt();
+				}for(int j=0;j<n;j++){
+ 
+					R[j]=in.nextInt();	
+				}
+			
+				int MAX=0;
+				int index=0;
+ 
+				for(int j=0;j<n;j++){
+					Z[j]=L[j]*R[j];
+						if(Z[j]>MAX){
+							MAX=Z[j];
+							index=j;
+						}else if(Z[j]==MAX){
+							if(R[j]>R[index]){
+								MAX=Z[j];
+								index=j;
+								}else if(R[j]==R[index]){
+									if(j<index){
+										MAX=Z[j];
+										index=j;
+										}
+									}
+								}
+				              		}						System.out.println(index+1);
+}
+}
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int ar[26];
+int main()
+{
+	int t,p,l,i,x;
+	char str[1001];
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%s",str);
+		l=strlen(str);
+		p=1;
+		for(i=0;i<l/2;i++)
+			ar[str[i]-'a']++;
+		if(l%2==0)
+			x=l/2-1;
+		else
+			x=l/2;
+		for(i=l-1;i>x;i--)
+			ar[str[i]-'a']--;
+		for(i=0;i<26;i++)
+			if(ar[i]!=0)
+			{
+				p=0;
+				break;
+			}
+		if(p)
+			printf("YES\n");
+		else
+			printf("NO\n");
+		for(i=0;i<26;i++)
+			ar[i]=0;
+	}
+	return 0;
+}

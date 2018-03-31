@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+class Prime
+{
+  Scanner sc=new Scanner(System.in);
+  int n;
+  int[] arr;
+ public void getPrime()
+  {
+    n=sc.nextInt();
+    arr=new int[n];
+    for(int i=0;i<n;i++)
+    {
+      arr[i]=sc.nextInt();
+    }
+  }
+  public void calculatePrime()
+  {
+    Boolean t;
+    for(int i=0;i<n;i++)
+    {
+      if(arr[i]==2)
+      {
+        System.out.println("2");
+      }
+      else
+      {
+        int k=arr[i];
+        int flag=0;
+   for(int j=2;j<k;j++)
+   {
+     if(k%j==0)
+     {
+       flag=1;
+       break;
+     }
+     else
+     {
+       flag=0;
+       continue;
+     }
+   }
+         if(flag==1)
+   {
+      t=true;
+   }
+   else
+   {
+     t=false;
+   }
+        
+        if(t==false)
+        {
+          System.out.println(k);
+        }
+      }
+    }
+  }
+
+}
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Prime obj=new Prime();
+       obj.getPrime();
+       obj.calculatePrime();
+	}
+}

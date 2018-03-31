@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<stdlib.h>
+int read()
+{
+ int val=0;
+ int c=getchar_unlocked();
+ while(c<'0' || c>'9')
+  c=getchar_unlocked();
+  while(c>='0' && c<='9')
+  {
+    val=10*val + c-'0';
+    c=getchar_unlocked();
+  }
+ return val;
+}
+int main()
+{
+int ar[100];
+int n,i,num;
+int count;
+int cases;
+cases=read();
+while(cases--)
+{
+count=0;
+int ar[101]={0};
+n=read();
+for(i=0;i<n;i++)
+{
+num=read();
+ar[num]=1;
+}
+for(i=1;i<101;i++)
+{
+if(ar[i]==1)
+count++;
+}
+printf("%d\n",count);
+}
+return 0;
+} 

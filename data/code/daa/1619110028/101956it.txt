@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define M 1000000007
+ 
+ll modexp(ll x,ll n)
+{
+    ll res=1;
+    while(n>0)
+    {
+        if(n&1) res=(res*x)%M;
+        x=(x*x)%M;
+        n/=2;
+    }
+    return res;
+}
+ 
+int main()
+{
+    ll t,n;
+    cin >> t;
+    while(t--)
+    {
+        cin >> n;
+        cout << (modexp(4,n)-modexp(2,n)+M)%M << "\n";
+    }
+    return 0;
+}

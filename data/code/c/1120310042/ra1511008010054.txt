@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t, a, m;
+    long long int i, l, s[10000], k[10000], o[10000], j;
+    scanf("%d", &t);
+    while(t--)
+    {
+        m = 0;
+        scanf("%d", &a);
+        for(i = 0; i < a; i++)
+        {
+            scanf("%lld", &s[i]);
+            l = i;
+        }
+        for(j = 0; j < a; j++)
+        {
+            scanf("%lld", &o[j]);
+        }
+ 
+ 
+        for(i = 1; i <= l; i++)
+        {
+            k[i] =  s[i] - s[i-1];
+        }
+        k[0] = s[0] - 0;
+ 
+        for(j = 0; j < a; j++)
+        {
+            if(k[j] >= o[j])
+                m++;
+        }
+ 
+ 
+        printf("%d\n", m);
+ 
+    }
+ 
+    return 0;
+ 
+}

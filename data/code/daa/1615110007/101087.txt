@@ -1,0 +1,113 @@
+#include <map>
+#include <set>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <bitset>
+#include <cctype>
+#include <cstdio>
+#include <limits>
+#include <string>
+#include <vector>
+#include <cassert>
+#include <climits>
+#include <cstdlib>
+#include <cstring>
+#include <fstream>
+#include <iomanip>
+#include <numeric>
+#include <sstream>
+#include <utility>
+#include <iostream>
+#include <algorithm>
+#include <functional>
+
+#define stop            exit(0)
+#define nc              -1
+#define eps             1e-9
+#define inf             1000000000
+#define mod             1000000007
+
+#define mp              make_pair
+#define pb              push_back
+
+#define fill(array,value) memset(array,value,sizeof(array))
+#define f(i,beg,end) for(int i=beg; i<=end; i++)
+#define F(i,beg,end) for(int i=beg; i>=end; i--)
+#define pi 3.1415926535897932384626433832
+#define iread(var) scanf("%d",&var)
+#define dread(var) scanf("%lf",&var)
+#define lread(var) scanf("%lld",&var)
+#define input(name) freopen(name,"r",stdin)
+#define output(name) freopen(name,"w",stdout)
+
+typedef unsigned long long ull;
+typedef unsigned int ui;
+typedef long double ld;
+typedef long long ll;
+
+using namespace std;
+
+ll dp[50];
+vector < int > primes;
+int p[222000];
+
+int isPrime(int num)
+{
+    for(int index=0; index<primes.size() && primes[index]*primes[index]<=num; index++)
+        if (num%primes[index]==0)
+        {
+            return 0;
+        }
+    return 1;
+}
+
+void init()
+{
+    fill(dp,0);
+    fill(p,0);
+    dp[0] = 1;
+    
+    f(i,0,40)
+    {
+        dp[i+1] += dp[i];
+        dp[i+4] += dp[i];
+    }
+    
+    primes.push_back(2);
+    p[2]=1;
+    for(int i=3; i<=222000; i+=2) 
+    {
+        if (isPrime(i))
+        {
+            primes.push_back(i);
+            p[i] = 1;
+        }
+    }
+    
+    f(i,1,221990)
+        p[i] += p[i-1];
+    
+    
+}
+void solve()
+{
+    int t; cin >> t;
+    
+    f(i,1,t)
+    {
+        int q; cin >> q;
+        cout << p[dp[q]] << endl;
+    }
+}
+
+int main()
+{
+   
+    init();
+    solve();
+
+    return 0;
+}

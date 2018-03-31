@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int arr[100];
+  	int t,i,z,n,j,k,counter;
+  int flag=0;
+  int ans=1;
+  scanf("%d",&t);
+  	for(i=0;i<t;i++){
+      flag=0;
+    scanf("%d %d",&z,&n);
+     for(j=0;j<n;j++)
+       scanf("%d",&arr[j]);
+
+  unsigned int pow_set_size = pow(2, n);
+ 
+    for(counter = 0; counter < pow_set_size; counter++)
+    {
+      ans=1;
+      flag=0;
+      for(j = 0; j < n; j++)
+       {
+   
+          if(counter & (1<<j))
+            ans=ans&arr[j];
+       }
+      
+       if((ans & z)==0){
+       flag++;
+         printf("Yes\n");
+         break;
+       }
+    }
+      if(flag==0)
+        printf("No\n");
+     }
+    
+	return 0;
+}

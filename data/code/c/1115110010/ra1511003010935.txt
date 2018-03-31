@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+  int n,num,i,f,l,j,flag,mid;
+  scanf("%d",&n);
+  int arr[n];
+  for(i=0;i<n;i++)
+  {  scanf("%d",&arr[i]);
+  }
+  scanf("%d",&num);
+  int loc;
+  for(i=0;i<n;i++)
+  {
+    if(num==arr[i])
+    {loc=i+1;}
+  }
+ for (i = 0; i < n; i++)
+            for (j = 0; j < n-i; j++)
+                if (arr[j] > arr[j+1])
+                {
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+  f=0;
+  l=n;
+  while(f<l)
+  {
+    mid=(f+l+1)/2;
+    if(arr[mid]==num)
+    { flag=1;
+      break;}
+    else if(num<arr[mid])
+      l=mid-1;
+    else
+      f=mid+1;
+  }
+  if(flag==1)
+    printf("%d found at location %d",num,loc);
+  else
+    printf("%d is not present in the list",num); 
+  
+  return 0;
+}

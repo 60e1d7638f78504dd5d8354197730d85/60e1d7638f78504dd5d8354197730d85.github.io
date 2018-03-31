@@ -1,0 +1,29 @@
+#include <iostream>
+#include<vector>
+#include<string>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+int main()
+{
+ double n,i,x1,x2,x3,y1,y2,y3,a,b,c,s,area,max,min;
+    int maxans=0,minans=0;
+    cin>>n;
+    max=0;
+    min=10000000000;
+    for(i=0;i<n;i++){
+        cin>>x1>>y1>>x2>>y2>>x3>>y3;
+        a=sqrt(pow((x2-x1),2)+pow((y2-y1),2));
+        b=sqrt(pow((x2-x3),2)+pow((y2-y3),2));
+        c=sqrt(pow((x3-x1),2)+pow((y3-y1),2));
+        area=abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3));
+        if(area>=max){
+        max=area;
+        maxans=i+1;}
+        if(area<=min){
+        min=area;
+        minans=i+1;}
+    }
+    cout<<minans<<' '<<maxans<<'\n';
+	return 0;
+}

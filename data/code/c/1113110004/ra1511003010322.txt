@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int n,t,i,c,number,j,max,a[100000],g;
+scanf("%d",&t);
+  while(t>0)
+  {
+ int check[1000000]={0};
+    number=0;
+    
+   scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    g=a[0];
+    for(i=0;i<n;i++)
+    {
+      
+      check[a[i]]++;
+      if(g<a[i])
+        g=a[i];
+      //printf("%d",g);
+      
+    }
+    max=check[0];
+    for(i=0;i<=g;i++)
+    {
+      if(max<check[i])
+      {
+        max=check[i];
+        number=i;
+      }
+      
+    }
+    printf("%d ",number);
+
+    t--;
+  }
+	return 0;
+}

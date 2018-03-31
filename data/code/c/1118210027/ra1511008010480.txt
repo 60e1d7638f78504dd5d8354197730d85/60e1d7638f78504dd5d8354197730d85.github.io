@@ -1,0 +1,42 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+	int num;
+  	struct node* next;
+};
+
+struct node* head = NULL;
+
+int findEle(struct node* temp, int ele) {
+	while(temp!=NULL) {
+    	if(temp->num == ele) {
+        	return 1;
+        }
+      	temp = temp->next;
+    }
+  	return 0;
+}
+
+int main()
+{
+  	int i;
+  	for(i=0;i<5;i++) {
+    	struct node* temp = (struct node*)malloc(sizeof(struct node));
+      	temp->next = NULL;
+      	scanf("%d", &temp->num);
+      	if(head == NULL) {
+        	head = temp;
+        }
+      	else {
+        	struct node* temp2 = head;
+          	while(temp2->next != NULL) temp2 = temp2->next;
+          	temp2->next = temp;
+        }
+    }
+  	int ele;
+  	scanf("%d", &ele);
+  	printf("%s", findEle(head, ele)==1 ? "Found" : "Not Found");
+  	//printf("Found");
+	return 0;
+}

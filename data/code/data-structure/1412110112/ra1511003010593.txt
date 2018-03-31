@@ -1,0 +1,23 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+  int m,a[100],n,b[100];
+  cin>>m;
+  for(int i=0;i<m;i++)
+    cin>>a[i];
+  cin>>n;
+  for(int i=0;i<n;i++)
+    cin>>b[i];
+  int j=0;
+  for(int i=0;i<m && j<n;i++){
+    if(a[i]==-1){
+      a[i]=b[j++];
+    }
+  }
+  sort(a,a+m);
+  for(int i=0;i<m;i++)
+    cout<<a[i]<<" ";
+	return 0;
+}

@@ -1,0 +1,41 @@
+import java.util.Scanner;
+class TestClass
+{
+	TestClass()
+	{
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int x1=0,x2=0,lead=0,player=0,x,points1,points2;
+		for(int i=0;i<n;i++)
+		{
+			points1=in.nextInt();
+			points2=in.nextInt();
+			x1+=points1;
+			x2+=points2;
+			if(x1>x2)
+			{
+				x=x1-x2;
+				if(x>lead)
+				{
+					player=1;
+					lead=x;
+				}
+			}
+			else if(x1<x2)
+			{
+				x=x2-x1;
+				if(x>lead)
+				{
+					player=2;
+					lead=x;
+				}
+			}
+		}
+		System.out.println(player+" "+lead);
+	}
+ 
+	public static void main(String args[])
+	{
+		new TestClass();
+	}
+}

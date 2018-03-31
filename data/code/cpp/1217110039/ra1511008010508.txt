@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int bal,ppl;
+  	char col[100];
+  	cin>>bal>>ppl>>col;
+  	int balcol[26]={0};
+  	for(int i=0;i<bal;i++)
+      balcol[col[i]-'a']++;
+  	int happy=true;
+  for(int i=0;i<26;i++)
+    if(balcol[i]>ppl)
+    {
+      happy=false;
+      break;
+    }
+  if(happy==1)
+    cout<<"YES";
+  else
+    cout<<"NO";
+	return 0;
+}

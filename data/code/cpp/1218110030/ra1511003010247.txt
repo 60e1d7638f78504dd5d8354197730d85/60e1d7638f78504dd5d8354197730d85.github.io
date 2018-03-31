@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+class dist
+{
+  private:
+  int f,i;
+  public:
+  void read()
+  {
+    cin>>f>>i;
+  }
+  void disp()
+  {
+    cout<<"Total Distance:\n";
+    cout<<"Feet:"<<f<<" "<<"Inches:"<<i;
+  }
+  dist operator+(dist &d)
+  {
+    dist t;
+    t.i=i+d.i;
+    t.f=f+d.f+(t.i/12);
+    t.i=t.i%12;
+    return t;
+  }
+};
+int main()
+{
+  dist d1,d2,d3;
+  d1.read();
+  d2.read();
+  d3=d1+d2;
+  d3.disp();
+
+	return 0;
+}

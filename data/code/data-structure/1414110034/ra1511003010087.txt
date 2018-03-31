@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define gc getchar_unlocked
+#define AC 0
+#define M 1000000007
+#define rep1(a,b,i) for(i = a;i < b;i++)
+ 
+using namespace std;
+ 
+void merge(ll A[ ] , ll start, ll mid, ll end) {
+ 
+   //stores the starting position of both parts in temporary variables.
+    ll p = start ,q = mid+1;
+ 
+    ll Arr[end-start+1] , k=0;
+ 
+    for(ll i = start ;i <= end ;i++) {
+        if(p > mid)      //checks if first part comes to an end or not .
+           Arr[ k++ ] = A[ q++] ;
+ 
+       else if ( q > end)   //checks if second part comes to an end or not
+           Arr[ k++ ] = A[ p++ ];
+ 
+       else if( A[ p ] < A[ q ])     //checks which part has smaller element.
+          Arr[ k++ ] = A[ p++ ];
+ 
+       else
+          Arr[ k++ ] = A[ q++];
+   }
+   for (ll p=0 ; p< k ;p ++) {
+     /* Now the real array has elements in sorted manner including both 
+            parts.*/
+       A[ start++ ] = Arr[ p ] ;                          
+   }
+}
+ 
+void merge_sort (ll A[ ] , ll start , ll end ) {
+    if( start < end ) {
+       ll mid = (start + end ) / 2 ;           // defines the current array in 2 parts .
+       merge_sort (A, start , mid ) ;                 // sort the 1st part of array .
+       merge_sort (A,mid+1 , end ) ;              // sort the 2nd part of array.
+ 
+     // merge the both parts by comparing elements of both the parts.
+        merge(A,start , mid , end );   
+   }                    
+} 
+ 
+ll get(){
+    char c;
+    ll x = 0;
+    c = gc();
+    while(c < '0' or c > '9')
+        c = gc();
+    while(c >= '0' && c <= '9'){
+        x = x*10 + c-'0';
+        c = gc();
+    }
+    return x;
+}
+ 
+int main() {
+	// your code goes here:okay:)
+	ll t = get();
+	while(t--){
+	    ll n = get();
+	    ll a[n],i;
+	    rep1(0,n,i) a[i] = get();
+	    sort(a,a+n);
+	    for(i=n-1;i>=0;i--) cout<<a[i]<<" ";
+	    cout<<endl;
+	}
+	return AC;
+} 

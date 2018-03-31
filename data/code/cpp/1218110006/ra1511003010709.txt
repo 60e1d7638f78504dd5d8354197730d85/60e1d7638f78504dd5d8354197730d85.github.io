@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+class shape
+{
+    public:
+    int b,h;
+  void getdata(int x,int y)
+  {
+    b=x;
+    h=y;
+      }
+};
+class rectangle:public shape
+{
+public:
+   void rect(void)
+   {
+      cout<<b*h;
+   }
+};
+class triangle:public shape
+{
+public:
+    void tri(void)
+    {
+        cout<<(b*h)*0.5;
+      }
+};
+int main()
+{ 
+  int b1,h1;
+   cin>>b1>>h1;
+  rectangle r;
+  triangle t;
+  r.getdata(b1,h1);
+  r.rect();
+  cout<<"\n";
+  t.getdata(b1,h1);
+  t.tri();
+	return 0;
+}

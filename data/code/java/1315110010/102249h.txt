@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+class Rotate
+{
+  
+ static void reverseEachWordOfString(String inputString)
+  {
+   String reverseString="";
+   String[] words=inputString.split(" ");
+   for(int j=0;j<words.length;j++){
+     String word=words[j];
+     String reverse="";
+    	for(int i=word.length()-1;i>=0;i--)
+    	{
+      		reverse = reverse + word.charAt(i);
+    	}
+     reverseString = reverseString+ reverse+" ";
+   }
+    System.out.println(reverseString);
+  }  
+}
+public class TestClass {
+	 public static void main(String[] args) throws IOException
+     { 
+	   BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       String inputstring = br.readLine();
+       Rotate.reverseEachWordOfString(inputstring);
+     }
+         
+	}

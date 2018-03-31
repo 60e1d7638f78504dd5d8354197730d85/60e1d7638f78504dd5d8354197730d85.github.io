@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void code()
+{
+    long int n,d,i,j,k,t;
+    k=0;
+ 
+    scanf("%ld%ld",&n,&d);
+    char a[100000],b[100000];
+    scanf("%s",a);
+    scanf("%s",b);
+    for(i=0;i<n;i++)
+    {
+        t=i/d;
+        for(j=i-t*d;j<n;j=j+d)
+        {
+            if(a[i]==b[j])
+            {
+                if((j-i)%d==0)
+                k++;
+                b[j]=' ';
+                break;
+            }
+        }
+    }
+    if(k==n)
+    {
+        printf("Yes\n");
+        return;
+    }
+    printf("No\n");
+    return;
+ 
+}
+ 
+int main()
+{
+    int t,i;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        code();
+    }
+    return 0;
+}

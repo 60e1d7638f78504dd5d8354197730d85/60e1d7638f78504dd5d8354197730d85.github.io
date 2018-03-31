@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include <stdbool.h>
+bool function(int a[],int n)
+{
+    int i,j,sum = 0;
+    for(i=0;i<n;i++)
+        sum+=a[i];
+    if(sum%2!=0) 
+      return false;
+    bool dp[sum/2+2][n+1];
+    for(i=0;i<=n;i++)
+        dp[0][i]=true;
+    for(i=1;i<=sum/2;i++)
+        dp[i][0] = false;
+    for(i=1;i<=sum/2;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            dp[i][j] = dp[i][j-1];
+            if(i>=j-1)
+                dp[i][j] = dp[i][j] || dp[i - a[j-1]][j-1];
+        }
+    }
+    return dp[sum/2][n];
+}
+int main()
+{   
+    int testcases;
+    scanf("%d",&testcases);
+    while(testcases--)
+    {
+    	int n1,i;
+    	scanf("%d",&n1);
+    	int arr[n1+1];
+    	for(i=0;i<n1;i++)
+        	scanf("%d",&arr[i]);
+    		if(function(arr,n1)==true)
+            {
+        	printf("YES\n");
+    	}
+    	else
+        {
+        	printf("NO\n");
+    	}
+    }
+    return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  long long b1,b2;
+  int a,b,c,ans;
+  //int i=0,j=0,rem=0,sum[20];
+  scanf("%lld%lld",&b1,&b2);
+  a=btd(b1);
+  b=btd(b2);
+  c=a+b;
+  ans=dtb(c);
+  printf("%d",ans);
+  return 0;
+}
+int btd(long long bi)
+{
+  int r=0,i=0,rem;
+  while(bi!=0)
+  {
+    rem=bi%10;
+    bi/=10;
+    r+=rem*pow(2,i);
+    ++i;
+  }
+  return r;
+}
+int dtb(int x)
+{
+  int bi=0;
+  int rem,i=1;
+  while(x!=0)
+  {
+    rem=x%2;
+    x/=2;
+    bi+=rem*i;
+    i*=10;
+  }
+  return bi;
+}

@@ -1,0 +1,95 @@
+#include<stdlib.h>
+#include<string.h>
+#include<stdio.h>
+void power2(long long int n);
+void multiply1(long double a[30][30], long double b[30][30]);
+long double F[30][30], M[30][30];
+void fibo_matrix(long long int n);
+char st[100005][5];
+ 
+void fibo_matrix(long long int n)
+{
+int i,j;
+for(i=0;i<26;i++)//t
+for(j=0;j<26;j++)//t
+M[i][j]=F[i][j];
+ 
+power2(n);
+}
+void power2(long long int n)
+{
+if (n == 0 ||n == 1)
+return;
+power2(n / 2);
+multiply1(F, F);
+if (n % 2 != 0)
+multiply1(F, M);
+}
+ 
+void multiply1(long double a[30][30], long double b[30][30])
+{
+long double c[30][30],total=0;
+int i,j,k;
+for(i=0;i<26;i++)//
+for(j=0;j<26;j++)//
+c[i][j]=0;
+for(i=0;i<26;i++){ //row of first matrix
+for(j=0;j<26;j++){ //column of second matrix
+total=0;
+for(k=0;k<26;k++)//t
+total=total+a[i][k]*b[k][j];
+c[i][j]=total;
+}
+}
+ 
+for(i=0;i<26;i++)//t
+for(j=0;j<26;j++)//t
+F[i][j]=c[i][j];
+ 
+}
+ 
+int main(){
+ 
+int t;
+long long int n,k,i,j,len1,len2,value2,some,last[100000]={0};
+long double sum1,mul;
+char s[5],temp[5];
+scanf("%d",&t);
+ 
+while(t--){
+for(i=0;i<100000;i++)
+last[i]=0;
+scanf("%llu%llu",&n,&k);
+scanf("%s",s);
+len1=strlen(s);
+for(i=0;i<26;i++)
+for(j=0;j<26;j++)//t
+scanf("%Lf",&F[i][j]);
+fibo_matrix(k);
+sum1=0;
+for(i=0;i<n;i++){
+value2=0;
+mul=1;
+scanf("%s",temp);
+len2=strlen(temp);
+j=0;
+if(len1==len2){
+j=0;
+some=1;
+while(temp[j]!='\0'){
+value2=value2+temp[j]*some;
+some=some*26;
+mul=mul*F[s[j]-97][temp[j]-97];
+j++;
+}
+if(last[value2]==0){
+sum1=sum1+mul;
+last[value2]=1;
+}
+}
+}
+printf("%Lf\n",sum1);
+}
+return 0;
+}
+ 

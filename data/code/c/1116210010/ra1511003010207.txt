@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+	char buf[256];
+	char *p = buf;
+	int c[52] = {0};
+	int i;
+
+	fgets(buf, 256, stdin);
+
+	while (*p && *p != '\0') {
+		if (isupper(*p))
+			c[(*p - 'A')]++;
+		else if (islower(*p))
+			c[26 + (*p - 'a')]++;
+		p++;
+	}
+
+	for (i = 0; i < 26; i++)
+		if (c[i]) printf("%c=%d\n", 'A' + i, c[i]);
+
+	for (i = 26; i < 52; i++)
+		if (c[i]) printf("%c=%d\n", 'a' + i - 26, c[i]);
+
+
+	return 0;
+}

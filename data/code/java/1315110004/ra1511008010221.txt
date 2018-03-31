@@ -1,0 +1,81 @@
+import java.io.*;
+import java.util.*;
+import java.lang.Math.*;
+
+public class TestClass {
+    Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        Sample objname = new Sample();
+        objname.getDetails();
+        objname.displayDetails();
+        TestClass ss = new TestClass();
+        ss.ExecuteSimpleStatistics();
+    }
+
+    void ExecuteSimpleStatistics() {
+        int numberOfTestCases = GetInteger();
+        TestCases(numberOfTestCases);
+    }
+
+    void TestCases(int numberOfTestCases) {
+        for (int i = 0; i < numberOfTestCases; i++) {
+            ExecuteTestCase(i);
+        }
+    }
+
+    void ExecuteTestCase(long i) {
+        int n = GetInteger();
+        int k = GetInteger();
+        long array[] = GetElement(n);
+        double ans = FindCountofSubarray(array, n, k);
+        Output(ans);
+    }
+
+    double FindCountofSubarray(long arr[], int n, int k) {
+        double sum = 0;
+        if (k > 0) {
+            Arrays.sort(arr);
+            for (int i = 0 + k; i < n - k; i++) {
+                sum = sum + arr[i];
+            }
+            return sum / (n - 2 * k);
+        } else {
+            for (int i = 0; i < n; i++) {
+                sum = sum + arr[i];
+            }
+            return sum / n;
+        }
+    }
+
+    long[] GetElement(int n) {
+        long[] arr = new long[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = GetLong();
+        }
+        return arr;
+    }
+
+    void Output(double ans) {
+        System.out.printf("%f\n", ans);
+    }
+
+    int GetInteger() {
+        return in.nextInt();
+    }
+
+    long GetLong() {
+        return in.nextLong();
+    }
+}
+
+class Sample {
+
+    public void getDetails() {
+
+    }
+
+    public void displayDetails() {
+
+    }
+}

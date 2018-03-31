@@ -1,0 +1,57 @@
+import java.util.*;
+public class TestClass {
+    public static boolean exist(ArrayList<String> a, String b) {
+        if(a == null || a.size() == 0 || b == null || b.length() == 0)
+            return false;
+        int result = 0;
+        char[][] visited = new char[a.size()][a.get(0).length()];
+        for(int i = 0; i < a.size(); i++){
+            for(int j = 0; j < a.get(i).length(); j++){
+                visited[i][j] = a.get(i).charAt(j);
+            }
+        }
+        for(int i = 0; i < a.size(); i++){
+            for(int j = 0; j < a.get(i).length(); j++){
+              
+                if(dfsSearch(a, b, i, j, 0, visited));
+                return true;
+               }
+        }
+        return false;
+    }
+    
+    public static boolean dfsSearch(ArrayList<String> a, String b, int row, int column, int index, char[][] visited){
+
+        if(row < 0 ||
+           row >= a.size() ||
+           column < 0||
+           column >= a.get(0).length())
+            return false;
+        
+        if(visited[row][column] == b.charAt(index)){     
+            char temp = visited[row][column];
+            visited[row][column] = '#';
+            
+            if(index == b.length() -1)
+                return true;
+            else if(dfsSearch(a, b, row, column + 1, index + 1, visited) ||
+                    dfsSearch(a, b, row, column - 1, index + 1, visited) ||
+                    dfsSearch(a, b, row -1, column, index + 1, visited)  ||
+                    dfsSearch(a, b, row + 1, column, index + 1, visited))
+                return true;
+            visited[row][column] = temp;
+        }
+        return false;
+        
+    }
+    
+    
+    public static void main(String[] args){
+     
+      Scanner sc=new Scanner(System.in);
+      ArrayList<String> a = new ArrayList<String>(Arrays.asList(sc.nextLine().split(" ")));
+     ArrayList<String> b = new ArrayList<String>(Arrays.asList(sc.nextLine().split(" ")));   
+      for(int i=0;i<b.size();i++)
+        System.out.println(b.get(i)+ " -"+exist(a, b.get(i)));
+    }
+}

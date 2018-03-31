@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+int linear_search(int*, int, int);
+ 
+ int main()
+{
+   int array[100], search, c, n, position;
+   scanf("%d",&n);
+   for ( c = 0 ; c < n ; c++ )
+      scanf("%d",&array[c]);
+   scanf("%d",&search);
+   position = linear_search(array, n, search);
+   if ( position == -1 )
+      printf("%d is not present in the array\n", search);
+   else
+      printf("%d is present in the array\n", search);
+ 
+   return 0;
+} 
+ 
+int linear_search(int *pointer, int n, int find)
+{
+   int c;
+ 
+   for ( c = 0 ; c < n ; c++ )
+   {
+      if ( *(pointer+c) == find )
+         return c;
+   }
+ 
+   return -1;
+}

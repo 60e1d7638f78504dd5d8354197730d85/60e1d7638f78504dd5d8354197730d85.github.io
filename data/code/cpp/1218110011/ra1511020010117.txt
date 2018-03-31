@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+class c1
+{
+  protected:
+  float length,breadth;
+  public:
+  	void get(float a,float b)
+    {
+      	length = a;
+      	breadth = b;
+    }
+};
+class c2: public c1
+{
+	protected :
+    float perim;
+    public:
+    	void per()
+        {
+        	perim  =2.0 * (length + breadth);
+        }
+};
+class c3 : public c2
+{
+	protected:
+    	float cost;
+    public :
+    	void cos()
+        {
+        	cost = (5*perim);
+            cout<<cost;
+        }
+};
+int main()
+{
+	c3 c;
+  	float a,b;
+  	cin>>a>>b;
+  	c.get(a,b);
+  	c.per();
+  	c.cos();
+	return 0;
+}

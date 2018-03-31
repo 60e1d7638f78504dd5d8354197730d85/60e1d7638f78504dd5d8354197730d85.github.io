@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+  char str[10];
+  int i,l,f1,f2,f3,f4,f5,f6;
+  scanf("%s",str);
+  l=strlen(str);
+  if(l<=10)
+    f1=1;
+  else
+    f1=0;
+  if(isalpha(str[0])==0)
+    f2=0;
+  else
+    f2=1;
+  for(i=0;i<l;i++)
+  {
+    if(str[i]=='_')
+    {
+      if(str[i+1]=='_')
+        f3=0;
+      	break;
+    }
+    else
+      f3=1;
+  }
+    if(str[l-1]=='_')
+      f4=0;
+    else
+      f4=1;
+    for(i=0;i<l;i++)
+    {
+      if(str[i]=='_')
+        continue;
+      else
+      {
+        if(isalnum(str[i])==0)
+        {
+          f5=0;
+          break;
+        }      
+        else
+          f5=1;
+      }
+    }
+    if(f1 && f2 &&f3 &&f4&&f5)
+    {
+      printf("valid identifier");
+    }
+    else
+    {
+      printf("not a valid identifier");
+    }
+    return 0;
+  }
+    	

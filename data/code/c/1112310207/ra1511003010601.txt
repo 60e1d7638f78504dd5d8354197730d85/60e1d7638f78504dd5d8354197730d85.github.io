@@ -1,0 +1,25 @@
+#include <stdio.h>
+int sum(int d,int n){
+  int y,su=0;
+  if (d<=1){
+    for(y=1;y<=n;y++){
+    	su+=y;
+  	}
+    return su;
+  }
+  else
+    sum(d-2,sum(d-1,n));
+}
+       
+int main()
+{
+	int t;
+  scanf("%d",&t);
+ while(t--){
+  int d,n,x;
+  scanf("%d %d",&d,&n);
+   x=sum(d,n);
+   printf("%d\n",x);
+ }
+	return 0;
+}

@@ -1,0 +1,25 @@
+#include <stdio.h>
+struct name{
+char n[100];
+};
+int main()
+{ int t,i,j;
+  scanf("%d",&t);
+struct name na[t];
+ for(i=0;i<t;i++)
+   scanf("%s",na[i].n);
+ for(i=0;i<t;i++){
+   for(j=0;j<t-1;j++){
+   	if(na[j].n[0]>na[j+1].n[0])
+    {
+      struct name lk;
+      lk=na[j];
+      na[j]=na[j+1];
+      na[j+1]=lk;
+    }
+   }
+}
+ for(i=0;i<t;i++)
+   printf("%s\n",na[i].n);
+	return 0;
+}

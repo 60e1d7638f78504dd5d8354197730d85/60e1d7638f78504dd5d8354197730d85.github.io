@@ -1,0 +1,148 @@
+ #include<stdio.h>
+int findOccurence(int l, int r, int pos)
+{
+    int len = r-l+1;
+    if(len%2==0)
+    {
+        int shift;
+        if(pos>(l+r)/2)
+            shift = pos - (l+r+1)/2;
+        else
+            shift = (l+r)/2 - pos;
+        return (len/2)*(len/2+1) - shift*(shift+1);
+    }
+    else
+    {
+        return ((len+1)/2)*((len+1)/2) - ((l+r)/2 - pos)*((l+r)/2 - pos);
+    }
+}
+int main()
+{
+    int testCase, N, M, i, j, k, limit;
+    long p;
+    scanf("%d", &testCase);
+    while(testCase--)
+    {
+        scanf("%d %d", &N, &M);
+        long A[N];
+        long ans[N][2];
+        limit=-1;
+        for(i=0;i<N;i++)
+        {
+            scanf("%ld", &A[i]);
+        }
+        for(i=0;i<N;i++)
+        {
+            j=i;
+            int left=i, right=i;
+            while(A[j]<=A[i])
+            {
+                j--;
+                if(j<0)
+                    break;
+            }
+            left = j+1;
+            j=i+1;
+            if(j==N)    //Overflow
+                right=j-1;
+            else
+            {
+                while(A[j]<A[i])
+                {
+                    j++;
+                    if(j>=N)
+                        break;
+                }
+                right=j-1;
+            }
+            //printf("%d occur = %d\n", A[i], findOccurence(left, right, i));
+            j=0;
+            for(j=0;j<=limit;j++)
+            {
+                if(ans[j][0]==A[i])
+                    break;
+            }
+            if(ans[j][0]==A[i])
+                ans[j][1]+=findOccurence(left, right, i);
+            else
+            {
+                limit++;
+                ans[limit][0] = A[i];
+                ans[limit][1]=findOccurence(left, right, i);
+                //printf("\ncreate ans %d occurs %d times", ans[limit][0], ans[limit][1]);
+            }
+        }
+        for(j=0;j<=limit;j++)
+        {
+            long maxPos, maxVal;
+            maxPos=j;
+            maxVal=ans[j][0];
+            for(i=j;i<=limit;i++)
+            {
+                if(ans[i][0]>maxVal)
+                {
+                    maxPos = i;
+                    maxVal = ans[i][0];
+                }
+            }
+            long tempVal = ans[j][0];
+            long tempCnt = ans[j][1];
+            ans[j][0] = ans[maxPos][0];
+            ans[j][1] = ans[maxPos][1];
+            ans[maxPos][0] = tempVal;
+            ans[maxPos][1] = tempCnt;
+        }
+        for(i=1;i<=limit;i++)
+        {
+            ans[i][1] += ans[i-1][1];
+            //printf("\n Rank of %d is %d", ans[i][0], ans[i][1]);
+        }
+ 
+        //Ranking done
+        //Applying BST
+        for(i=0;i<M;i++)
+        {
+            scanf("%ld", &p);
+            int flag=0;
+            int prevLower, prevUpper, middle;
+            prevLower = 0;
+            prevUpper = limit+1;
+            middle = (prevLower + prevUpper)/2;
+ 
+            while(flag==0)
+            {
+                //printf("\n lower=%d, upper=%d ", prevLower, prevUpper);
+                if(ans[middle][1]>=p)
+                {
+                    if(middle-1>=0)
+                    {
+                        if(ans[middle-1][1]<p)
+                        {
+                            flag=1;
+                            printf("%ld\n", ans[middle][0]);
+                            break;
+                        }
+                        else
+                        {
+                            prevUpper = middle;
+                            middle = (prevLower+prevUpper)/2;
+                        }
+                    }
+                    else
+                    {
+                        flag=1;
+                        printf("%ld\n", ans[middle][0]);
+                        break;
+                    }
+                }
+                else
+                {
+                    prevLower = middle;
+                    middle = (prevLower+prevUpper)/2;
+                }
+            }
+        }
+    }
+ 
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+unsigned int min (unsigned int A,unsigned int B,unsigned int C) {
+    if (A<=B && A<=C)
+      return A;
+    else if (B<=A && B<=C)
+       return B;
+    else
+      return C;
+}
+
+int main()
+{
+    unsigned int T,N,i;
+    scanf ("%u",&T);
+    while (T--) {
+        scanf("%u",&N);
+        unsigned int arr[N+1][4];
+        for ( i=1;i<=N;i++)
+          scanf("%u %u %u",&arr[i][1],&arr[i][2],&arr[i][3]);
+        
+        unsigned long long int root1 = arr[N][1];
+        unsigned long long int root2 = arr[N][2];
+        unsigned long long int root3 = arr[N][3];
+        unsigned long long int temp1,temp2,temp3;
+        for ( i = N-1;i>=1;i--) {
+            temp1 = arr[i][1]+((root2<=root3)?root2:root3);
+            temp2 = arr[i][2]+((root1<=root3)?root1:root3);
+            temp3 = arr[i][3]+((root2<=root1)?root2:root1);
+            root1=temp1;root2=temp2;root3=temp3;
+        }
+        printf ("%u\n",min(root1,root2,root3));
+    }
+}

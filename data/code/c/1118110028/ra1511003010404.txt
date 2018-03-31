@@ -1,0 +1,21 @@
+#include <stdio.h>
+union reverse
+{
+   int rev;
+};
+int main()
+{
+  union reverse R;  
+  int  num, remainder;
+  R.rev=0;
+    scanf("%d", &num);
+
+  while (num > 0)
+    {
+        remainder = num % 10;
+        R.rev = R.rev * 10 + remainder;
+    num/=10;
+  }
+    printf("%d\n", R.rev);
+return 0;
+}

@@ -1,0 +1,43 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
+int useit(int a[],int b[],int z,int y)
+{
+  int c=y+z;
+  int arr3[c];
+  for(int i=0;i<z;i++)
+  {
+    arr3[i]=a[i];
+  }
+  for(int j=z;j<c;j++)
+  {
+    arr3[j]=b[j-z];
+  }
+  sort(arr3,arr3+c);
+  cout<<"The Merged Array in Ascending Order"<<endl;
+  for(int k=0;k<c;k++)
+  {
+    if(arr3[k]!=arr3[k+1])
+    cout<<arr3[k]<<" ";
+  }
+}
+int main()
+{
+int a,b;
+  cin>>a;
+  int arr1[a];
+  for(int i=0;i<a;i++)
+  {
+    cin>>arr1[i];
+  }
+  cin>>b;
+  int arr2[b];
+  for(int j=0;j<b;j++)
+  {
+    cin>>arr2[j];
+  }
+  useit(arr1,arr2,a,b);
+	return 0;
+}

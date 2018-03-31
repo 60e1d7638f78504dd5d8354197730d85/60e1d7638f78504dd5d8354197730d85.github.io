@@ -1,0 +1,78 @@
+    #include<stdio.h>
+    #include<iostream>
+    #include<math.h>
+    #include<vector>
+    #include<map>
+    #include<string>
+    #include<string.h>
+    #include<algorithm>
+    #define PI acos(-1.0)
+    #define Fi(a,n) for(int i=a;i<n;i++)
+    #define Fj(a,n) for(int j=a;j<n;j++)
+    #define Fk(a,n) for(int k=a;k<n;k++)
+    #define ri(a) scanf("%d",&a)
+    #define pb push_back
+    #define SZ 1000007
+    using namespace std;
+    typedef vector<int> vi;
+    bool winner[SZ]; 
+    void preprocess()
+    {
+    	memset(winner, SZ, 0);
+    	for(int i=2; i<SZ; i++)
+    	{
+    		while(i<SZ && winner[i])i++;
+    		for(int j = i*2; j<SZ; j+=i)
+    		{
+    			winner[j] = 1;
+    		}
+    	}
+    	winner[2] = 1;
+    	winner[16] = 0;
+    	winner[17] = 1;
+    	winner[34] = 0;
+    	winner[289] = 0;
+    }
+     
+    long long multiply(long long a,long long b,long long c){
+        return (a*b)%c;
+    }
+     
+    long long power(long long a,long long b,long long c){
+        long long x=1,y=a;
+        while(b > 0){
+            if(b%2 == 1){
+                x=multiply(x,y,c);
+            }
+            y = multiply(y,y,c);
+            b /= 2;
+        }
+        return x%c;
+    }
+     
+    int fermat(long long n)
+    {
+        if(n==1)
+            return 0;
+        int i;
+        long long a;
+        for(i=0;i<2;i++)
+        {
+          a=rand()%(n-1)+1;
+          if(power(a,n-1,n)%n!=1)
+            return 0;
+        }
+        return 1;
+    }
+    int main()
+    {
+    	preprocess();
+    	int T, N;
+    	ri(T);
+    	while(T--)
+    	{
+    		ri(N);
+    		printf("%s\n", N<SZ?(winner[N]?"Mike":"Tom"):(fermat(N)?"Tom":"Mike"));
+    	}
+    	return 0;
+    } 

@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include<string.h>
+int main() {
+	int t;
+	int flag1,flag2,len1,len2,min,i,j;
+	char m[1001],n[1001];
+	scanf("%d",&t);
+	while(t--)
+	{
+	    scanf("%s %s",m,n);
+	    len1=strlen(m);
+	    len2=strlen(n);
+	    if(len1>len2)
+	    min=len2;
+	    else
+	    min=len1;   
+	  
+	    for(i=97;i<=122;i++)
+	    {
+	       flag1=0;flag2=0;
+	       for(j=0;j<min;j++)
+	       {
+	       if((int)m[j]==i)
+	       flag1=1;
+	       if((int)n[j]==i)
+	       flag2=1;
+	       if(flag1 == 1&& flag2==1)
+	       break;
+	       }
+	       if(min==len1){
+	       while(j<len2)
+	       {
+	           if((int)n[j]==i){
+	            flag2=1;break;}
+	       j++;
+	       }
+	       }
+	       else
+	       {    
+	           while(j<len1)
+	       {
+	           if((int)m[j]==i){
+	            flag1=1;break;}
+	       j++;
+	       } 
+	       }
+	       if(flag1==1 && flag2==1)
+	       {
+	       printf("Yes\n");
+	       break;
+	       }
+	    }
+	    if(i==123)
+	    {
+	        printf("No\n");
+	    }
+	}
+	
+	return 0;
+}
+ 

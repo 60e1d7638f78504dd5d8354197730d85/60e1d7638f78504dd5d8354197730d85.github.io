@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,t,i,j,k;
+    long int*a;
+    long int max;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&n);
+        a=(long int*)malloc(1000000*sizeof(long int));
+        for(j=0;j<n;j++)
+        {
+            a[j]=0;
+        }
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&k);
+            a[k]+=1;
+        }
+        max=a[0];
+        for(j=1;j<1000000;j++)
+        {
+            if(a[j]>max)
+            {
+                max=a[j];
+            }
+        }
+        for(j=1000000;j>=1;j--)
+        {
+            if(a[j]==max)
+            {
+                printf("%d ",j);
+            }
+        }
+        
+    }
+    return 0;
+}

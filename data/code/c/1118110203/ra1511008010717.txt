@@ -1,0 +1,26 @@
+#include <stdio.h>
+struct distance
+{
+  int a,c,sum;
+  float b,d,sum1;
+};
+void func(struct distance *ab);
+int main()
+{
+  struct distance ab;
+  scanf("%d",&ab.a);
+  scanf("%f\n",&ab.b);
+  scanf("%d",&ab.c);
+  scanf("%f",&ab.d);
+  ab.sum = ab.a+ab.c;
+  ab.sum1 = ab.b+ab.d;
+
+  func(&ab);  
+  return 0;
+}
+
+void func(struct distance *ab)
+{
+  printf("%dfeet\n",ab->sum);
+  printf("%.1finches",ab->sum1);
+}

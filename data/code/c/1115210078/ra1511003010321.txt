@@ -1,0 +1,46 @@
+#include<stdio.h>
+ 
+#include<math.h>
+ 
+#ifdef ONLINE_JUDGE
+	#define gc getchar_unlocked
+#else 
+	#define gc getchar
+#endif
+int read_int()
+{
+	register int ch;
+	register	int num=0;
+	ch=gc();
+	while(ch<'0'||ch>'9')	ch=gc();
+	while(ch>='0'&&ch<='9')
+	{
+		num=num*10+ch-'0';
+		ch=gc();
+	}
+	return num;
+}
+int main()
+{
+	 int i,a,b,t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		i=0;
+		scanf("%d",&a);
+		scanf("%d",&b);
+		while(a!=b)
+		{
+			if(a<b)
+				b=b>>1;
+			else
+			{
+				a=(a)>>1;
+			}
+			i++;
+		}
+		printf("%d\n",i);
+	}
+	return 0;
+}
+ 

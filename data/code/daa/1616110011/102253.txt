@@ -1,0 +1,72 @@
+#include <stdio.h>
+int k,temp;
+void graph(int a[100][100],int x,int y)
+{
+    int i,j;
+    
+    i=x;
+    j=y;
+    
+    if(a[i][j+1]==temp) 
+    {
+        a[i][j+1]=k;
+       
+        graph(a,i,j+1);
+    }
+    
+      if(a[i+1][j]==temp) 
+    {
+        a[i+1][j]=k;
+        graph(a,i+1,j);
+    }
+  
+    if(j-1>=0)
+    if(a[i][j-1]==temp)   
+    {
+        a[i][j-1]=k;
+        graph(a,i,j-1);
+    }
+    if(i-1>=0)
+    if(a[i-1][j]==temp) 
+    {
+        a[i-1][j]=k;
+        graph(a,i-1,j);
+    }    
+    return;
+
+}
+
+
+
+int main() {
+ 
+ int t,x,y,n,m,i,j;
+ 
+ int a[100][100];
+ 
+scanf("%d",&t);
+
+while(t!=0)
+
+    {
+        scanf("%d %d",&n,&m);
+        
+        for(i=0;i<n;i++)
+        for(j=0;j<m;j++)
+        scanf("%d",&a[i][j]);
+        
+        scanf("%d%d%d",&x,&y,&k);
+        
+        temp=a[x][y];                                                                                   
+       a[x][y]=k;
+       graph(a,x,y);
+       
+       
+       for(i=0;i<n;i++)
+        for(j=0;j<m;j++)
+        printf("%d ",a[i][j]);
+        printf("\n");
+       t--;        
+    }
+    return 0;
+}

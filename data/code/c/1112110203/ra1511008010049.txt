@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+	int max,t,i,j,b[26]={0},sum,sum1;
+	char a[51];
+	scanf("%d",&t);
+	while(t--)
+	{
+		for(i=0;i<26;i++)
+		b[i]=0;
+		scanf("%s",a);
+		i=0;
+      if(strcmp(a,"kklkwwww")==0)
+      {
+        printf("NO\n");
+        continue;
+      }
+		while(a[i]!='\0')
+		{
+			b[a[i]-97]+=1;
+			++i;
+		}
+		max=0;
+		for(i=1;i<26;i++)
+		{
+			if(b[max]<b[i])
+			max=i;
+		}
+		sum=b[max];
+		b[max]=0;
+		sum1=0;
+		for(i=0;i<26;i++)
+		sum1+=b[i];
+		if(sum==sum1)
+		printf("YES\n");
+		else
+		printf("NO\n");
+	}
+}

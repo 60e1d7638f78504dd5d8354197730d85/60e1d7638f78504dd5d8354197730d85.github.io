@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char c;
+    char fourtable[]={0,4,2,0,4,2,0,4,2,0}; 
+    int reste=0;
+    int ziv=0;
+    while((c=getchar_unlocked())>0)
+    {
+      if(c>='0')
+      {
+        ziv=1;
+        if(c>='6')
+         c-='6';
+        else
+         c-='0';
+        reste=fourtable[reste]+c;
+        if(reste>=6) reste-=6;
+      }
+      else if(ziv)
+      {
+        break;
+      }
+    }
+    switch(reste)
+    {
+          case 0: 
+          case 1: 
+          case 3: 
+              write(1,"yes\n",4);
+              break;
+          default:
+              write(1,"no\n",3);
+      }
+        return 0;
+      
+}
+ 

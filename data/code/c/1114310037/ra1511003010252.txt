@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+    int t,n,m,max,i;
+    int a[35]={0,2,5,8};
+    for(i=4;i<35;i++)
+    {
+                     a[i]+=i+1;
+                     if(!(i%2))
+                     a[i]+=a[i/2 - 1];
+                     else
+                     a[i]+=a[i/2];
+                     
+                     a[i]+=a[i/2];
+    }
+    scanf("%d",&t);
+    while(t--)
+    {
+                  scanf("%d%d",&n,&m);
+                  max=((n+1)*(n+2)/2 )-1;
+                  if(m>=max)
+                           printf("%d",m-max);
+                  else if(m>=a[n])
+                           printf("0");
+                  else
+                           printf("-1");               
+                           printf("\n");
+    }
+    getchar();
+        getchar();
+    return 0;
+}
+ 

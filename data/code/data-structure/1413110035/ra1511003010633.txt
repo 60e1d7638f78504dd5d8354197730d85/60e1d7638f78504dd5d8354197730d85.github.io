@@ -1,0 +1,53 @@
+    #include <bits/stdc++.h>
+    #include<string.h>
+    #define MAX 1000005
+    #define MOD 1000000007
+    #define MA 1200000
+    #define PI 3.14159265358979323846264338327950
+    //const int  MAXA=1e15+1;
+    typedef long long int ll;
+    const int INF=1e6;
+    using namespace std;
+    const  int maxn=5e5+5;
+    const int N=1e7;
+    const int big = 1;
+    int a[1005],b[1005];
+    int main()
+    {
+        //freopen("input.txt","r+",stdin);
+        //freopen("output.txt","w+",stdout);
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+        int t,n,i;
+        
+        
+            cin>>n;
+            for(i=0;i<n;i++)
+                cin>>a[i];
+            int st=0,en=1e9,ans=0;
+            while(st<=en)
+            {
+                int mid=st+(en-st)/2;
+                int temp=max(1,a[0]-mid);
+                int f=1;
+                for(i=1;i<n;i++)
+                {
+                    if(a[i]+mid<=temp)
+                        f=0;
+                    temp=max(temp+1,a[i]-mid);
+                }
+                if(f==0)
+                {
+                    st=mid+1;
+                }
+                else
+                {
+                    ans=mid;
+                    en=mid-1;
+                }
+     
+            }
+            cout<<ans<<endl;
+      
+        return 0;
+    }

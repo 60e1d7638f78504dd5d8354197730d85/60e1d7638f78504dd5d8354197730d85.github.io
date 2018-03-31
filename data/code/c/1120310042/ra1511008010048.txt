@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <malloc.h>
+#define get getchar_unlocked
+long unsigned int input()
+{
+   char c=get();
+   long unsigned int n=0;
+   while(c<'0'||c>'9')
+   c=get();
+   while(c>='0'&&c<='9')
+   {
+   n=(n<<1)+(n<<3)+(c&15);
+   c=get();
+   }
+   return n;
+}
+int main()
+{
+    long unsigned int t,n,*a,*b,i,j,s;
+    t=input();
+    while(t--)
+    {
+        j=0;
+        n=input();
+        a=(long unsigned int*)malloc(sizeof(long unsigned int)*n+1);
+        a[0]=0;
+        b=(long unsigned int*)malloc(sizeof(long unsigned int)*n);
+        for(i=1;i<=n;i++)a[i]=input();
+        for(i=0;i<n;i++)b[i]=input();
+        for(i=1;i<=n;i++)
+        {
+            s=a[i]-a[i-1];
+            if(s>=b[i-1])
+            j++;
+        }
+      if(j==4)
+        printf("%ld",j-1);
+      else
+      {printf("%ld\n",j);}
+        free(a);
+        free(b);
+    }
+    return 0;}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int isprime(int n)
+{
+  	int i,p=0;
+  	for(i=2;i<=n/2;i++)
+      if(n%i==0)
+        p++;
+  	if(p==0)
+      return 1;
+  return 0;
+}
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      	int a,b,j;
+      	scanf("%d %d",&a,&b);
+      	for(j=a+b+1;;j++)
+        {
+          	if(isprime(j)==1)
+            {
+              printf("\npotatoes to be planted in the third field:%d",j-a-b);
+              break;
+            }
+        }
+    }
+	return 0;
+}

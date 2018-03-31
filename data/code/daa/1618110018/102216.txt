@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+ int i,j,k,l,m,n,f=1,r,s,le[100],d=0,fla[200]={0};
+  char a[100][100],b[100];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",a[i]);
+    le[i]=strlen(a[i]);
+  }
+  for(i=0;i<le[0];i++)
+  {
+    f=1;
+    for(j=1;j<n;j++)
+    {
+      for(k=0;k<le[j];k++)
+      {
+        if(a[0][i]==a[j][k])
+        {
+          f++;
+        	break;
+        }
+      }
+    }
+    //printf("%d\n",f);
+    if(f==n&&fla[a[0][i]]==0)
+    {
+      fla[a[0][i]]+=1;
+      b[d++]=a[0][i];
+    }
+  }
+  b[d]='\0';
+  s=strlen(b);
+  printf("%d",s);
+          
+  
+  
+	return 0;
+}

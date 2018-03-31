@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class dist{
+
+int feet;
+  int inches;
+  
+  public:
+  dist(int a,int b){
+  feet=a;
+    inches=b;
+    
+  }
+  
+  dist operator +(const dist& other){
+  dist temp(0,0);
+    temp.feet=feet+other.feet;
+    if((inches+other.inches)>12){
+   //   cout<<(inches+other.inches)%12;
+    temp.inches=(inches+other.inches)%12;
+      //cout<<temp.inches;
+      temp.feet+=(inches+other.inches)/12;
+    }
+    else
+      temp.inches=inches+other.inches;
+    return temp;
+  }
+  
+  void disp(){
+  cout<<"Feet:"<<feet<<" Inches:"<<inches;
+  }
+};
+int main()
+  
+{int f1,f2,i1,i2;
+ cin>>f1>>i1>>f2>>i2;
+ 
+	dist d1(f1,i1);
+  dist d2(f2,i2);
+  dist d3(0,0);
+  
+  d3=d1+d2;
+  d3.disp();
+  
+	return 0;
+}

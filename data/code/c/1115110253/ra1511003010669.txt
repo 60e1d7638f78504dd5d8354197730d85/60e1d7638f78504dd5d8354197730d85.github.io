@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+int main()
+{
+	int n, m;
+  	scanf("%d %d",&m,&n);
+  	int t=1;
+	while (t--)
+	{
+		int aa, bb,i;
+		int a[101] = { 0 };
+		for (i = 0; i < n; i++)
+		{
+			scanf("%d %d",&aa,&bb);
+			a[aa]++;
+			a[bb+1]--;
+		}
+		int sum[102];
+		sum[0] = a[0];
+		for (i = 1; i <= m; i++)
+		{
+			sum[i] = sum[i-1] + a[i];
+		}
+		int ok = 1;
+		for (i = 1; i <= m; i++)
+		if (sum[i]!=1)
+		{
+			ok = 0;
+			printf("%d %d",i,sum[i]);
+			break;
+		}
+		if (ok) printf("OK");
+	}
+  return 0;
+}

@@ -1,0 +1,48 @@
+#include<stdio.h>
+int main()
+{
+int t,h,m,i,j,c;
+ 
+scanf("%d",&t);
+while(t--)
+ {
+ c=0;	
+ scanf("%d%d",&h,&m);
+ for(i=0;i<h;i++)
+   {
+	 for(j=0;j<m;j++)
+	   {
+	   	 if(i<10&&j<10&&i==j)
+	   	    {
+	   	      c++;	
+				}
+	   	 else if(i<10&&j>10&&(i*10+i==j))
+		       {
+		       	if(j%10==i&&i==j/10)
+		       	{c++;
+				   }
+			   }
+		      else if(i>10&&j<10&&(j*10+j==i))
+		       {
+		       	if(i%10==j&&j==i/10)
+		       	{c++;
+				   }
+			   }
+		    else if(i>10&&j>10&&(j==i))
+		     {
+		     	if(i%10==j%10&&j/10==i/10&&i%10==j/10)
+		     	{
+		     		c++;
+				 }
+			 }
+			 
+		   
+		   }
+	}
+ printf("%d\n",c);
+ 	
+                  }
+	
+return 0;	
+}
+ 

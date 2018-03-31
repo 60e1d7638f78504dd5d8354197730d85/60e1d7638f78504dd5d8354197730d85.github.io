@@ -1,0 +1,26 @@
+#include<stdio.h>
+long long int a[1000000];
+int main()
+{
+	long long int b,c,d,e,f,n;
+	scanf("%lld",&n);
+	
+	for(b=0;b<n;b++)
+	scanf("%lld",&a[b]);
+	
+	e=0;
+	for(c=0;c<n-1;c++)
+	{
+		for(d=c+1;d<n;d++)
+		{
+			f=a[c]&a[d];
+			if(f<0)
+			f=f-2*f;
+			e=e+f;
+		//	printf("%d %d %d\n",a[c],a[d],a[c]&a[d]);
+		}
+	}
+	
+	printf("%lld\n",e);
+	return 0;
+} 

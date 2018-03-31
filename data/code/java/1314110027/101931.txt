@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int a[]=new int[100];
+       int c=1;
+       int t=sc.nextInt();
+       for(int i=0;i<t;i++)
+       {
+         int n=sc.nextInt();
+         for(int j=0;j<n;j++)
+         {
+           a[j]=sc.nextInt();
+           a[j]=Math.abs(a[j]);
+         }
+           for(int k=0;k<n;k++)
+           {
+             for(int l=k+1;l<n;l++)
+             {
+               if(a[k]>a[l])
+               {
+               	int temp=a[k];
+                 a[k]=a[l];
+                 a[l]=temp;
+               }
+             }
+           }
+           for(int j=1;j<n;j++)
+           {
+             if(a[j]!=a[j-1])
+               ++c;
+           }
+        System.out.println(c); 
+         c=1;
+       }
+   
+	}
+}

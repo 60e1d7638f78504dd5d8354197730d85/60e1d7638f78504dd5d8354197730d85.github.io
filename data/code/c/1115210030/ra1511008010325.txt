@@ -1,0 +1,84 @@
+#include <stdio.h>
+#define N 200010
+ 
+int data[N];
+int arr[N];
+int pre[N];
+int query(int l,int r)
+{
+	int res=0;
+	--l;
+	while(l!=r)
+	{
+		if(l<r) res+=data[r],r&=r-1;
+		else res-=data[l],l&=l-1;
+	}
+	return res;
+}
+ 
+void update(int idx,int delta)
+{
+	while(idx<N)
+	{
+		data[idx]+=delta;
+		idx+=idx&-idx;
+	}
+}
+void init()
+{
+  int i;
+	for(i=1;i<N;++i)
+	{
+		pre[i] = pre[i-1]+arr[i];
+		data[i] = pre[i]-pre[i&(i-1)];
+	}
+}
+int check(long long u)
+{
+	if(u<0) return 0;
+	int last=u%10;
+	while(u/10)
+	{
+		u/=10;
+	}
+	return last==u;
+}
+int main()
+{
+    int n,i,q;
+    scanf("%d%d",&n,&q);
+    for(i=1;i<=n;++i)
+    {
+    	long long t;
+    	scanf("%lld",&t);
+    	if(check(t)) arr[i]=1;
+    	else arr[i]=0;
+    }
+    init();
+    while(q--)
+    {
+    	int type;
+    	scanf("%d",&type);
+    	if(type==1)
+    	{
+    		int l,k;
+    		scanf("%d%d",&l,&k);
+    		printf("%d\n",query(l,k));
+    	}
+    	else
+    	{
+    		int l;
+    		long long t;
+    		scanf("%d%lld",&l,&t);
+    		t = check(t);
+    		if(t==0 && arr[l])
+    		{
+    			update(l,-1);
+    		}
+    		else if(t&&!arr[l]) update(l,1);
+    		arr[l] = t;
+    		
+    	}
+    }
+    return 0;
+}

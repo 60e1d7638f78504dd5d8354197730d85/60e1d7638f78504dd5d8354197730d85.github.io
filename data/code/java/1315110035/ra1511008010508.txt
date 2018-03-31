@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner read=new Scanner(System.in);
+       	int[] bp=new int[2];
+       	int[] da=new int[2];
+       	int[] hra=new int[2];
+       	int i=0;
+       	for(i=0;i<2;i++)
+        {
+          bp[i]=read.nextInt();
+          da[i]=read.nextInt();
+          hra[i]=read.nextInt();
+        }
+       double tax,tax1=read.nextInt();
+       double total=0;
+       for(i=0;i<2;i++)
+       {
+         if(i==0)
+           tax=5;
+         else
+           tax=tax1;
+         total=bp[i]+(bp[i]*da[i]/100)+(bp[i]*hra[i]/100);
+         System.out.println("Basic Salary is "+bp[i]);
+         System.out.printf("DA amount is %.2f\n",(double)bp[i]*da[i]/100);
+         System.out.printf("HRA amount is %.2f\n",(double)bp[i]*hra[i]/100);
+         System.out.printf("Total Salary is %.2f\n",(double)total);
+         System.out.printf("Tax to be paid is %.2f\n",(double)total*tax/100);
+         double home=total-((total*tax)/100);
+         System.out.printf("Take Home Salary is %.2f\n",(double)home);
+       }
+       		
+	}
+}

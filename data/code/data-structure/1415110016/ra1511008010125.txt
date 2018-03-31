@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,i,j,k;
+    cin>>n;
+  int a[n];
+  for(i=0;i<n;i++){
+    cin>>a[i];
+  }
+  for(i=0,j=n-1;i<j;i++,j--){
+    int temp=a[i];
+    a[i]=a[j];
+    a[j]=temp;
+  }
+  
+  cin>>k;
+  k--;
+  cout<<"Linked list"<<endl;
+  for(i=0;i<n;i++){
+    cout<<"-->"<<a[i];
+  }cout<<endl;
+  if(k<0||k>n-1)cout<<"Invalid Index!"<<endl;
+  else cout<<"Node at index="<<k+1<<" : "<<a[k]<<endl;
+	return 0;
+}

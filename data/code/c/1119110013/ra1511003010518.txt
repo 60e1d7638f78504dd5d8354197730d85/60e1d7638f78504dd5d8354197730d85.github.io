@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int num,i,ele,pos,temp,temp1,j;
+  scanf("%d",&num);
+  int arr[10];
+  for(i=0;i<num;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  int *arr1;
+  arr1 = arr;
+  scanf("%d%d",&ele,&pos);
+  for(i=0;i<=num;i++)
+  {
+    if(i== pos){
+      temp1 = ele;
+      for(j=i;j<=num;j++){
+      temp = *(arr1+j);
+      *(arr1+j)=temp1;
+      temp1 = temp;
+      }
+    }
+    	
+    
+    printf("%d\n",*(arr1+i));
+  }
+  
+  
+
+	return 0;
+}

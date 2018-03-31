@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int n,q;
+  scanf("%d%d",&n,&q);
+    int ar[1000],i;
+  for(i=0;i<n;i++)
+    ar[i]=0;
+  int a,b,c;
+  int j;
+  for(i=0;i<q;i++)
+  {
+    scanf("%d%d%d",&a,&b,&c);
+    if(a==0)
+    {
+      for(j=b;j<=c;j++)
+        ar[j]=ar[j]+1;
+    }
+    else if(a==1)
+    {
+      int count=0;
+      for(j=b;j<=c;j++)
+        if(ar[j]%3==0)
+          count++;
+      printf("%d\n",count);
+    }
+  }
+	return 0;
+}

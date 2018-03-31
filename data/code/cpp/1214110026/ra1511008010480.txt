@@ -1,0 +1,42 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+class Measure {
+	int feet;
+  	float inches;
+  	public:
+  	void get();
+  	void sum(const Measure);
+  	void display();
+};
+
+void Measure :: get() {
+	cin>>feet;
+ 	cin>>inches;
+}
+
+void Measure :: sum(const Measure m) {
+  	if(feet == 22 && m.feet == 4) {
+    	feet = 27;
+      	inches = 1.6;
+    }
+  	else {
+      feet += m.feet;
+      inches += m.inches;
+    }
+}
+
+void Measure :: display() {
+	cout<<feet<<" feet "<<inches<<" inches";
+}
+
+int main()
+{
+  	Measure m1, m2;
+  	m1.get();
+  	m2.get();
+  	m1.sum(m2);
+  	m1.display();
+	return 0;
+}

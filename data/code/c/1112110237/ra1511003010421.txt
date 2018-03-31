@@ -1,0 +1,49 @@
+#include <stdio.h>
+ 
+#define lli long long int
+ 
+int T,N;
+int A[500],hcf,i,j;
+lli lcm,min;
+ 
+int HCF(int a,int b);
+ 
+int main(void) 
+{
+    scanf("%d",&T);
+    
+    while(T--)
+    {
+        scanf("%d",&N);
+        
+        for(i=0;i<N;i++)
+            scanf("%d",&A[i]);
+        
+        min=99999999999999999;
+        for(i=0;i<N;i++)
+            for(j=i+1;j<N;j++)
+                if(!(A[i]>min || A[j]>min))
+                {
+                    hcf = HCF(A[i],A[j]);
+                    lcm = (lli)(A[i]*A[j])/hcf;
+                    if(lcm<min)
+                        min=lcm;
+                }
+        
+        printf("%lld\n",min);
+    }
+    
+	return 0;
+}
+ 
+ 
+int HCF(int a,int b)
+{
+    if(a==b)
+        return a;
+    else if(a<b)
+        return HCF(b-a,a);
+    else
+        return HCF(a-b,b);
+}
+ 

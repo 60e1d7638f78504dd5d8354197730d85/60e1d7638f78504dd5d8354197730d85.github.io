@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+void pr(char a[]);
+int main()
+{  
+  	int n,i,j,k,f,count=0;
+  	char ch[10][100];
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+  	scanf("%s",ch[i]);
+  	//printf("%s",ch[0]);
+  for(i=0;i<n;i++)	
+  pr(ch[i]);
+  return 0;
+}
+void pr(char ch[])
+{
+  int i,j,k,f,count=0;
+int len=strlen(ch);
+	for(i=0;i<len;i++)
+    {	f=0;
+    	for(j=i+1;j<len;j++)
+        {
+        	if(ch[i]==ch[j])
+            {
+            f=1;
+             for(k=j;k<len;k++)
+             {
+             	ch[k]=ch[k+1];
+             }
+              len--;
+            }
+        }
+     if(f==1) count++;
+    }
+  printf("%d\n",count);
+
+}

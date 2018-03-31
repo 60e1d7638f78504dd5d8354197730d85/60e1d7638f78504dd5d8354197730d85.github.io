@@ -1,0 +1,38 @@
+#include <stdio.h>
+ 
+int main(void) {
+    int t,n,i,j;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        long int s[n];
+        for(i=0;i<n;i++)
+        {
+            scanf("%ld",&s[i]);
+        }
+         long int min,m;
+            min=1000000000;
+        for(i=0;i<n;i++)
+        {m=min;
+            for(j=i+1;j<n;j++)
+            {
+                if(s[i]>s[j])
+                {if(min>s[i]-s[j])
+                min=s[i]-s[j];
+                }
+               else
+               {if(min>s[j]-s[i])
+               min=s[j]-s[i];
+               }
+            }
+            if(min<m)
+            m=min;
+        }
+        printf("%ld\n",m);
+    }
+	// your code goes here
+	return 0;
+}
+ 
+ 

@@ -1,0 +1,47 @@
+#include<stdio.h>
+unsigned long long int gcd(unsigned long long int small,unsigned long long int big)
+{
+   unsigned long long int temp;
+   if(small>big){
+      temp=small;
+      small=big;
+      big=temp;
+   }
+   while(small!=0){
+      temp=big;
+      big=small;
+      small=temp%small;
+   }
+   return big;
+}
+unsigned long long int C(unsigned long long int n,unsigned long long int r)
+{
+   unsigned long long int old_num=1,num=n,hcf,div,rr=1;
+   if(r>n)
+      return 0;
+   if(2*r>n)
+      r=n-r;
+   while(rr<=r){
+      div=rr;
+ 
+      hcf=gcd(old_num,div);
+      old_num/=hcf;
+      div/=hcf;
+ 
+      old_num=old_num*(num/div);
+      rr++;
+      num--;
+   }
+   return old_num;
+}
+int main()
+{
+   unsigned long long int cases,n,r;
+   scanf("%llu",&cases);
+   while(cases--){
+      scanf("%llu%llu",&n,&r);
+      printf("%llu\n",C(n-1,r-1));
+   }
+   return 0;
+}
+ 

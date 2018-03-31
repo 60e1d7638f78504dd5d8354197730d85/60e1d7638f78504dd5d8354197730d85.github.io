@@ -1,0 +1,104 @@
+#include <stdio.h>
+unsigned long long A[1000][2000];
+double dp_max[1001][1000][2];
+double buy, sell;
+int bQuintillionnaire = 0;
+double Quintillion = 1000000000000000000.0L;
+double max_for_current[2] = {0, 0};
+int main()
+{
+    unsigned long long N, M, D;
+	int i, j, i_triitr, j_triitr;
+	scanf ("%llu%llu%llu", &N, &M, &D);
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < M; j++)
+		{
+			scanf ("%llu%llu", &A[i][2*j], &A[i][2*j+1]);
+		}
+	}
+	for (j = 0; j < N; j++)
+	{
+		dp_max[0][j][0] = D; 
+		dp_max[0][j][1] = 0; 
+	}
+ 
+	for (i = 1; i <= M; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			i_triitr = i-1;
+			j_triitr = j;
+			max_for_current[0] = dp_max[i_triitr][j_triitr][0];
+			max_for_current[1] = dp_max[i_triitr][j_triitr][1];
+            i_triitr--; 
+			j_triitr--;
+            if (i_triitr >= 0 && j_triitr >= 0)
+			{
+				if (dp_max[i_triitr][j_triitr][0] > max_for_current[0])
+					max_for_current[0] = dp_max[i_triitr][j_triitr][0];
+                if (dp_max[i_triitr][j_triitr][1] > max_for_current[1])
+					max_for_current[1] = dp_max[i_triitr][j_triitr][1];
+			}
+			i_triitr = i-1;
+			j_triitr = j;
+			i_triitr--;
+			j_triitr++;
+            if (j_triitr < N && i_triitr >= 0)
+			{
+				if (dp_max[i_triitr][j_triitr][0] > max_for_current[0])
+					max_for_current[0] = dp_max[i_triitr][j_triitr][0];
+ 
+				if (dp_max[i_triitr][j_triitr][1] > max_for_current[1])
+					max_for_current[1] = dp_max[i_triitr][j_triitr][1];
+			}
+            buy = max_for_current[0] / A[j][2*(i-1)]; 
+			sell = max_for_current[1] * A[j][2*(i-1) + 1]; 
+			if (i != M && buy > max_for_current[1])
+				max_for_current[1] = buy;
+            if (sell > max_for_current[0])
+				max_for_current[0] = sell;
+            dp_max[i][j][0] = max_for_current[0];
+			dp_max[i][j][1] = max_for_current[1];
+            if (j != 0)
+			{
+				if (dp_max[i-1][j-1][0] > dp_max[i][j][0])
+					dp_max[i][j][0] = dp_max[i-1][j-1][0];
+				if (dp_max[i-1][j-1][1] > dp_max[i][j][1])
+					dp_max[i][j][1] = dp_max[i-1][j-1][1];
+			}
+			if(j != (N-1))
+			{
+				if (dp_max[i-1][j+1][0] > dp_max[i][j][0])
+					dp_max[i][j][0] = dp_max[i-1][j+1][0];
+				if (dp_max[i-1][j+1][1] > dp_max[i][j][1])
+					dp_max[i][j][1] = dp_max[i-1][j+1][1];
+			}
+ 
+			if (*(unsigned long long *)&dp_max[i][j][0] > *(unsigned long long *)&Quintillion)
+			{
+				bQuintillionnaire = 1;
+				printf("Quintillionnaire\n");
+				return 0;
+			}
+ 
+			if (*(unsigned long long *)&dp_max[i][j][1] > *(unsigned long long *)&Quintillion)
+			{
+				bQuintillionnaire = 1;
+				printf("Quintillionnaire\n");
+				return 0;
+			}
+			//printf("{%.10f, %.10f} ", dp_max[i][j][0], dp_max[i][j][1]);
+		}
+		//printf("\n");
+	}
+	buy = dp_max[M][0][0];
+	for (i = 0; i < N; i++)
+	{
+		if (buy < dp_max[M][i][0])
+			buy = dp_max[M][i][0];
+	}
+ 
+	printf("%.6f\n", buy);
+	return 0;
+}

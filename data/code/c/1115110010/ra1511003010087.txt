@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{ int n,a[100],mid,first,last,ele;
+  scanf("%d",&n);
+  int i;
+  for(i=0;i<n;i++)
+  scanf("%d",&a[i]);
+  scanf("%d",&ele);
+  first=0;
+  last=n-1;
+  int pos;
+  mid=(first+last)/2;
+  while(first<=last)
+  {
+    if(a[mid]<ele)
+      first=mid+1;
+    else if(a[mid]==ele)
+    {printf("%d found at location %d",ele,mid+1);
+    break;
+    }
+ else
+   last=mid-1;
+    mid=(first+last)/2;
+  }
+if(first>last)
+  printf("%d is not present in the list",ele);
+	return 0;
+}

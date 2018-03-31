@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass
+{
+	 public static void main(String[] args)
+     	 {
+         	 Scanner sc=new Scanner(System.in);
+                 int t=sc.nextInt();
+                 long a[]=new long[61];
+                 a[0]=0;
+                 a[1]=1;
+                 a[2]=7;
+                 int count=2;
+                 for(int j=3;j<61;j++)
+                 {
+                     if(j%2==1)
+                     {
+                         a[j]= (long)Math.pow(count,4);
+                         count++;
+                     }
+                     else
+                     {
+                         a[j]=a[j-2]*3;
+                     }
+                 }
+                for(int i=0;i<t;i++)
+                {
+                    int n=sc.nextInt();
+                    System.out.println(a[n]);
+                }
+	 }
+     }

@@ -1,0 +1,33 @@
+#include<stdio.h>
+void binPacking(int *a, int size, int n) {
+    int binCount = 1, i;
+    int s = size;
+    for (i = 0; i < n; i++) {
+        if (s - *(a + i) > 0) {
+            s -= *(a + i);
+            continue;
+        } else {
+            binCount++;
+            s = size;
+            i--;
+        }
+    }
+ 
+    printf("%d", binCount);
+}
+ 
+int main(int argc, char **argv) {
+  
+  int no;
+  scanf("%d",&no);
+    while(no--){
+    int size;
+      int a[4]={1,5,7,10};
+    scanf("%d", &size);
+      if(size<=23)
+    binPacking(a, size, 4);
+    else
+      printf("LENET");
+    }
+  return 0;
+}

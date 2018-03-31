@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class TestClass {
+
+	public static void main(String[] args) throws NumberFormatException, IOException  {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N=Integer.parseInt(br.readLine().trim());
+		int K=Integer.parseInt(br.readLine().trim())-1;
+		long arr[]=new long[N];
+		for(int i=0;i<N;i++)
+		{
+			arr[i]=Integer.parseInt(br.readLine().trim());
+		}
+		Arrays.sort(arr);
+		long unfairness=Long.MAX_VALUE;
+		for(int i=0;i+K<N;i++)
+		{
+			long diff=arr[i+K]-arr[i];
+            	//System.out.println(arr[i]+" "+arr[i+K]);
+			if(unfairness>diff)
+				unfairness=diff;
+			
+			
+		}
+		System.out.println(unfairness);
+	}
+
+}

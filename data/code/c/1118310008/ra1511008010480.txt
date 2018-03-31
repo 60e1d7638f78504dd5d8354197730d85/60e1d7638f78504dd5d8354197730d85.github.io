@@ -1,0 +1,123 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+
+struct stack {
+	int data;
+  	struct stack* next;
+};
+
+struct queue {
+	int data;
+  	struct queue* next;
+};
+
+typedef struct stack stk;
+typedef struct stack q;
+stk* top = NULL;
+stk* top2 = NULL;
+
+q* head = NULL;
+q* tail = NULL;
+
+void createStack(int n) {
+	while(n--) {
+    	stk* temp = (stk*)malloc(sizeof(stk));
+      	temp->data = n+1;
+      	temp->next = top;
+      	top = temp;
+      	//n--;
+    } 
+}
+
+void shuffleA(int n) {
+	stk* temp = top;
+  	while(n--) {
+    	//temp->next = top2;
+      	//top2 = temp;
+      	top = top->next;
+      	temp->next = top2;
+      	top2 = temp;
+      	temp = top;
+   	}
+}
+
+void shuffleB(int n) {
+	q* temp = top;
+  	while(n--) {
+    	if(head == NULL) {
+        	head = tail = temp;
+          	//temp->next = NULL;
+          	top = top->next;
+          	temp->next = NULL;
+          	temp = top;
+          	continue;
+        }
+      	top = top->next;
+      	temp->next = NULL;
+      	tail->next = temp;
+      	tail = temp;
+      	temp = top;
+      	
+    }
+}
+
+void shuffleC(int n) {
+	stk* temp = top2;
+  	while(top2) {
+    	top2 = top2->next;
+      	temp->next = top;
+      	top = temp;
+      	temp = top2;
+    }
+  	shuffleA(n);
+  	q* temp2 = head;
+  	while(head) {
+      	//printf("Hi\n");
+    	head = head->next;
+      	temp2->next = top;
+      	top = temp2;
+      	temp2 = head;
+    }
+  	tail = NULL;
+  	temp = top2;
+  	while(top2) {
+    	top2 = top2->next;
+      	temp->next = top;
+      	top = temp;
+      	temp = top2;
+    }
+}
+
+void printStack(stk* top) {
+	stk* temp = top;
+  	while(temp) {
+    	printf("%d ", temp->data);
+      	temp = temp->next;
+    }
+}
+
+int main()
+{
+  	int n, t;
+  	scanf("%d %d", &n, &t);
+  	//printf("%d\n", t);
+  	createStack(n);
+  	//printf("Hello\n");
+  	while(t--) {
+    	int a, b, c;
+      	//printf("Hi\n");
+      	scanf("%d %d %d", &a, &b, &c);
+      	shuffleA(a);
+      	shuffleB(b);
+      	shuffleC(c);
+      	/*printStack(top);
+      	printf("\n");*/
+    }
+  	printStack(top);
+  	/*printf("\n");
+  	printStack(top2);
+  	printf("\n");
+  	printStack(head);*/
+	return 0;
+}

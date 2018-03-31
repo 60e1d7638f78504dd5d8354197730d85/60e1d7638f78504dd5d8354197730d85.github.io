@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<math.h>
+int Round(float myfloat)
+{
+  double integral;
+  float fraction = (float)modf(myfloat, &integral);
+ 
+  if (fraction >= 0.5)
+    integral += 1;
+  if (fraction <= -0.5)
+    integral -= 1;
+ 
+  return (int)integral;
+}
+ 
+
+int main(void)
+{
+  float myfloat;
+  scanf("%f\n",&myfloat);
+  printf("%d", Round(myfloat));
+  return 0;
+}

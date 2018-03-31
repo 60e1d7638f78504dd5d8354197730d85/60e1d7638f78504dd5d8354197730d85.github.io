@@ -1,0 +1,38 @@
+#include<stdio.h>
+ 
+int power(int c, int d)
+{
+     int pow = 1;
+     int count = 1;
+     while(count <= d)
+     {
+          pow = pow*c;
+          count++;
+     }
+     return pow;
+}
+ 
+int main()
+{
+     int num1, digit, temp, rem, sum = 0;
+     scanf("%d", &num1);
+      temp = num1;
+  int temp1=num1;
+  while(temp1>0)
+  {
+    digit++;
+    temp1/=10;
+  }
+     while(temp != 0)
+     {
+         rem = temp%10;
+         sum = sum + power(rem, digit);
+         temp = temp/10;
+     }
+ 
+     if(sum == num1)
+     printf("Narcissistic Number\n");
+     else
+     printf("NOT Narcissistic Number\n");
+     return 0;
+}

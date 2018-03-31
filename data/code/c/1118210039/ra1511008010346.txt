@@ -1,0 +1,33 @@
+#include <stdio.h>
+struct ev
+{
+  int n;
+}a[10];
+int main()
+{
+int i,j=0;int k,b[10];int temp;
+  for(i=0;i<10;i++)
+    scanf("%d",&a[i].n);
+   for(i=0;i<10;i++)
+  {
+  if(a[i].n%2==0)
+  {
+   b[j++]=a[i].n; 
+  }
+    }
+  for(i=0;i<j-1;i++)
+  {
+    for(k=i+1;k<j;k++)
+    {
+      if(b[i]>b[k])
+      {
+       temp=b[i];
+        b[i]=b[k];
+        b[k]=temp;
+      }
+    }
+  }
+  for(i=0;i<j;i++)
+    printf("%d ",b[i]);
+    return 0;
+}

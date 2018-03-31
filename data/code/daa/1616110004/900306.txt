@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int a[20][20]={0},reach[20]={0},n;
+void dfs(int v)
+{
+int i;
+  reach[v]=1;
+  for(i=1;i<=n;i++)
+    if(a[v][i]&&!reach[i])
+    {
+      cout<<v<<"->"<<i<<endl;
+      dfs(i);
+    }
+}
+
+      
+
+
+int main()
+{
+  int i,j,cnt=0;
+  cin>>n;
+  for(i=1;i<=n;i++)
+    for(j=1;j<=n;j++)
+      cin>>a[i][j];
+  dfs(1);
+  for(i=1;i<=n;i++)
+    if(reach[i])cnt++;
+  if(cnt==n)
+    cout<<"Graph is connected"<<endl;
+  else
+    cout<<"Graph is disconnected"<<endl;
+  
+	return 0;
+}

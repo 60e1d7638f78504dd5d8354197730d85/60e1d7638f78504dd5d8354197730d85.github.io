@@ -1,0 +1,24 @@
+#include <stdio.h>
+ 
+int a[10000000]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10 ,11 ,13};
+ 
+long int sum(int n)
+{
+    if(n<=9999999) {
+        if(a[n]==0) a[n] =sum(n/2)+sum(n/3)+sum(n/4);
+            return a[n];
+    }
+    else {
+        return sum(n/2)+sum(n/3)+sum(n/4);
+    }
+}
+ 
+int main() {
+    long int sumup;
+    int temp;
+    while(scanf("%d", &temp)>=0) {
+    sumup=sum(temp);
+    printf("%ld ", sumup>temp?sumup:temp);
+    }
+return 0;
+} 

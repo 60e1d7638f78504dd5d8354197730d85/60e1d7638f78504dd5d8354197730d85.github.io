@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<ctype.h>
+
+#define LL long long
+
+LL gcd( LL a, LL b )
+{
+  LL c = a % b;
+  if (c==0) return(b);
+  return(gcd( b, c) );
+}
+
+void out( LL  x )
+{
+  int a[20]; a[0] = 0;
+  do 
+  {
+    a[++a[0]] = x%10;
+    x /= 10;
+  } while(x);
+  while(a[0]) printf( "%d", a[a[0]--] );
+}
+
+int main()
+{
+/*
+  freopen( "input.dat", "r", stdin );
+*/
+  int ii;
+  LL a, b, x, y, p, a1, b1, a2, b2;
+  scanf( "%d", &ii ); a = (LL)ii;
+  scanf( "%d", &ii ); b = (LL)ii;
+  scanf( "%d", &ii ); x = (LL)ii;
+  scanf( "%d", &ii ); y = (LL)ii;
+
+
+  p = gcd( x, y );
+
+  x /= p;
+  y /= p;
+  if (a<x || b<y)
+  {
+    printf( "0 0\n" );  
+    return 0;
+  }
+  
+  a1 = (a / x) * x;
+  b1 = (a / x) * y;
+  if (b1>b) {a1=0;b1=0;}
+  
+  a2 = (b / y) * x;
+  b2 = (b / y) * y;
+  if (a2>a) {a2=0; b2=0;}
+
+
+  if (a1<a2)
+  {
+    a1 = a2;
+    b1 = b2;
+  }
+
+  out(a1);
+  printf( " " );
+  out(b1);
+  printf( "\n" );
+  return 0;
+}
+  

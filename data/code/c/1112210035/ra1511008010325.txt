@@ -1,0 +1,94 @@
+  #include<stdio.h>
+    #include<limits.h>
+    int f(int adj[100][100],int n,int visited[],int ind)
+    {
+    	int i,cnt=0;
+    	for(i=0;i<n;i++)
+    	{
+    		if(adj[ind][i])
+    		{
+    			if(visited[i])
+    			cnt++;
+			}
+		}
+		return cnt;
+	}
+    int main()
+    {
+    	int t;
+    	scanf("%d",&t);
+    	while(t--)
+    	{
+    		int n,e;
+    		scanf("%d%d",&n,&e);
+    		int adj[100][100];
+    		int i,j;
+    		for(i=0;i<n;i++)
+    		{
+    			for(j=0;j<n;j++)
+    			 adj[i][j]=0;
+    		}
+    		while(e--)
+    		{
+    			int x,y;
+    			scanf("%d%d",&x,&y);
+    			x--;y--;
+    			adj[x][y]=1;
+    			adj[y][x]=1;
+    		}
+    		int visited[n];
+    		int sum,outdegree[n];
+    		for(i=0;i<n;i++)
+    		{
+    			visited[i]=0;
+    			outdegree[i]=0;
+    		}
+    		for(i=0;i<n;i++)
+    		{
+    			sum=0;
+    			for(j=0;j<n;j++)
+    			sum+=adj[i][j];
+    			outdegree[i]=sum;
+    		}
+    		int cnt=0;
+    		while(1)
+    		{
+    			int index,min=INT_MAX,max=-6;
+    			for(i=0;i<n;i++)
+    			{
+    				if(visited[i]!=1 )
+    				{
+    					if(outdegree[i]>max)
+    					{
+    				    	index=i;
+    				    	min=f(adj,n,visited,i);
+    					    max=outdegree[i];
+    					}
+    					else if(outdegree[i]==max)
+    					{
+    						if(f(adj,n,visited,i)<min)
+    						{
+    							index=i;
+    	                        min=f(adj,n,visited,i);
+							}
+						}
+    				}
+    			}
+    			if(max==-6)
+    			break;
+    			cnt++;
+    			visited[index]=1;
+    			for(j=0;j<n;j++)
+    			{
+    				if(adj[index][j])
+    				{
+    				 adj[index][j]=0;
+    				 visited[j]=1;
+    			    }
+    			}
+    			outdegree[index]=0;	
+    		}
+    		printf("%d\n",cnt);
+    	}
+    	return 0;
+    }  

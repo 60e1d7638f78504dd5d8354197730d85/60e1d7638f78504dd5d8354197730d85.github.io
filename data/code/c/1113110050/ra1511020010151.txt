@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{int times;
+ scanf("%d",&times);
+ int i;
+ for(i=1;i<=times;i++){
+ char code[8];
+   scanf("%s",code);
+   if(strlen(code)==1){
+     printf("NO");
+   return 0;
+   }
+   else{
+   if(strlen(code)==2){
+   if((int)code[0]==(int)code[1]){
+   printf("NO");
+   
+   return 0;}
+     else
+     {printf("YES");
+     return 0;
+     }
+   }
+   else{
+   int l=0 ;
+     int EvenMismatch=0,OddMismatch=0;
+     for(l=0;l<strlen(code);l++){
+     if(l%2==0&&(int)code[l]!=(int)code[0])
+      EvenMismatch++; 
+       if(l%2==1&&(int)code[l]!=(int)code[1])
+      OddMismatch++;   
+     }
+     if(EvenMismatch!=0||OddMismatch!=0)
+     {printf("NO\n");
+   
+     } 
+     else{
+     printf("YES\n");
+      
+     }
+   }
+   }
+ }
+
+	return 0;
+}
+  

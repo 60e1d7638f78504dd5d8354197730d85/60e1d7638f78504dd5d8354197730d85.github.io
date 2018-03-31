@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,count[27]={0},total=0,cases;
+  	char inp[100];
+  	scanf("%d",&cases);
+  	while(cases--)
+    {
+        scanf("%s",inp);
+        for(i=0;inp[i]!='\0';i++)
+        {
+          for(j=i+1;inp[j]!='\0';j++)
+          {
+            if(inp[i]==inp[j])
+            {
+                count[(int)inp[i]-97]++;
+            }
+          }
+        }
+        for(i=0;i<27;i++)
+        {
+            total=total+count[i];
+        }
+        printf("%d",total);
+    }
+	return 0;
+}

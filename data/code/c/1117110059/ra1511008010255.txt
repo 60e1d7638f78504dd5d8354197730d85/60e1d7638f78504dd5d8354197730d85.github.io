@@ -1,0 +1,36 @@
+#include<stdio.h>
+long long int scan()
+{
+	int x=0;
+	char c=getchar();
+	for(;c>47&&c<58;c=getchar())
+	x=(x<<1)+(x<<3)+c-48;
+	return x;
+}
+int main()
+{
+	long long int T;
+	T=scan();
+	while(T--)
+	{
+		long long int N,count=0,x,y;
+		N=scan();
+		long long int A[N],B[N],i;
+		A[0]=scan();
+		y=A[0];
+		for(i=1;i<N;i++)
+		{
+			x=scan();
+			A[i]=x-y;
+			y=x;
+		}
+		for(i=0;i<N;i++)
+		{
+			B[i]=scan();
+			if(B[i]<=A[i])
+			count++;
+		}
+		printf("%lld\n",count);
+	}
+	return 0;
+}

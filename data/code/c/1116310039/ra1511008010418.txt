@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#define ll long long int
+ 
+int main(){
+	
+	int t;
+	scanf("%d", &t);
+	
+	while(t--){
+		int i, len, max=0, j;
+		char str[100001], ch, str2[100001];
+		int arr[26];
+		memset(arr, 0, 26*sizeof(int));
+		scanf("%s", str);
+		len=strlen(str);
+		for(i=0; i<len; i++){
+			arr[str[i]-'a']++;
+			if(arr[str[i]-'a']>max){
+				max=arr[str[i]-'a'];
+				j=i;
+			}
+		}		
+		
+		int rem=len-max;
+		if(rem<max-1){
+			printf("-1\n");
+			continue;
+		}
+		
+		i=0;
+		while(arr[str[j]-'a']!=0){
+			str2[i]=str[j];
+			i+=2;
+			arr[str[j]-'a']--;
+		}
+		j=0;
+		while(i<len){
+			while(arr[j]==0)
+				j++;
+			str2[i]=j+'a';
+			i+=2;
+			arr[j]--;
+		}
+		i=1, j=0;
+		while(i<len){
+			while(arr[j]==0)
+				j++;
+			str2[i]=j+'a';
+			i+=2;
+			arr[j]--;
+		}
+		str2[len]='\0';
+		printf("%s\n", str2);
+		
+	}	
+return 0;				
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int n,m,i,d=0,w=0;
+  scanf("%d%d",&n,&m);
+  int a[m],b[m];
+  for(i=0;i<m;i++)
+    scanf("%d%d",&a[i],&b[i]);
+  for(i=0;i<m-1;i++) {
+    if(a[i+1]-b[i]==1)
+      continue;
+    else if(a[i+1]==b[i]) {
+      d=b[i];
+      w=2;
+      break;
+    }
+    else {
+      d=b[i]+1;
+      w=0;
+      break;
+    }
+  }
+  if(d==0)
+    printf("OK");
+  else
+    printf("%d %d",d,w);
+  return 0;
+}

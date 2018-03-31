@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+struct node{
+	int data;
+  	node* next;
+}*start;
+
+node* createnode(int n){
+	node* ptr = new node;
+  	ptr->data = n;
+  	ptr->next = NULL;
+  	return ptr;
+}
+void insert(node *x){
+	if(start==NULL) start = x;
+  	else{
+		node* ptr = start;
+      	while(ptr->next!=NULL)
+          ptr = ptr->next;
+      	ptr->next = x;
+    }
+}
+
+void reverse(node *inp){
+	if(inp == start) return;
+  	node *ptr=start;
+  	node *prev=start;
+  	while(ptr!=inp){
+      prev = ptr;
+      ptr = ptr->next;
+  }
+  ptr->next = prev;
+  prev->next = NULL;
+  reverse(prev);	
+}
+void display(){
+	for(node* ptr = start;ptr!=NULL;ptr = ptr->next)
+      cout<<ptr->data<<" ";
+}
+int main()
+{
+  	start = NULL;
+  	node *x;
+	int n;cin>>n;
+  	for(int i=0;i<n;i++){
+    	int a;
+      	cin>>a;
+      	x = createnode(a);	
+      	insert(x);
+    }	  	
+  	reverse(x);
+  	start = x;
+  	display();  
+	return 0;
+}

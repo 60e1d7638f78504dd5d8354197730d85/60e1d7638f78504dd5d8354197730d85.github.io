@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 static int turnOffK(int n, int k)
+    {
+        // k must be greater than 0
+        if (k <= 0) 
+            return n;
+  
+        // Do & of n with a number with all set bits except
+        // the k'th bit
+        return (n & ~(1 << (k - 1)));
+    }
+     
+    // Driver program
+    public static void main (String[] args) 
+    { 
+      Scanner sc = new Scanner(System.in);
+      int t = sc.nextInt();
+      while(t-->0){
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        System.out.println(turnOffK(n, k));}
+    }
+}

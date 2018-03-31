@@ -1,0 +1,78 @@
+#include <stdio.h>
+int main()
+{
+char a[30];
+  int I,N,Q,i,c,count=0,t,g;
+  scanf("%d",&t);
+  scanf("%d",&g);
+  while(t!=0)
+  {
+    while(g!=0)
+    {
+  scanf("%d %d %d",&I,&N,&Q);
+  if(I==1)
+  {
+   for(i=0;i<N;i++)
+   {
+    a[i]='H'; 
+   }
+  }
+  else if(I==2)
+  {
+    for(i=0;i<N;i++)
+    {
+     a[i]='T'; 
+    }
+  }
+     
+  i=1;
+      if(I==1||I==2)
+      {
+  while(i<=N)
+  {
+   for(c=0;c<i;c++)
+   {
+     if(a[c]=='H')
+     {
+      a[c]='T'; 
+     }
+     else if(a[c]=='T')
+     {
+      a[c]='H'; 
+     }
+   }
+    i++;
+  }
+      }
+  if(Q==1)
+  {
+   for(i=0;i<N;i++)
+   {
+    if(a[i]=='H')
+    {
+     count++; 
+    }
+   }
+  }
+  else if(Q==2)
+  {
+    for(i=0;i<N;i++)
+    {
+     if(a[i]=='T')
+     {
+      count++; 
+     }
+    }
+  }
+      else
+      {
+       count=1; 
+      }
+  printf("%d\n",count);
+      count=0;
+      g--;
+    }
+    t--;
+  }
+	return 0;
+}

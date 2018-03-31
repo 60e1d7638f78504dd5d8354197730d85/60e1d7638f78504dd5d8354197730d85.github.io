@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+class IllegalTriangleException extends Exception
+{
+	public IllegalTriangleException()
+    {
+    	super();
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        int c=sc.nextInt();
+        triangleValidity(a,b,c);
+	}
+    static void triangleValidity(int a,int b,int c)
+    {
+    	if((a<b+c)&&(b<a+c)&&(c<a+b))
+            	System.out.println("Valid Sides");
+        else
+        {
+        	try
+            {
+            	throw new IllegalTriangleException();
+        	}
+            catch(IllegalTriangleException e)
+            {
+            	System.out.println(e);
+            }
+        }
+    }
+}

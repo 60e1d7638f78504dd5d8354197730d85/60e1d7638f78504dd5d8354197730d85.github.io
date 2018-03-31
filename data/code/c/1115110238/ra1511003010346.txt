@@ -1,0 +1,49 @@
+#include <stdio.h>
+int rem[2];
+int count[2];
+int res;
+void update(int x, int k){
+	if(rem[0]== -1 || rem[0]==x%(k+1)){
+    rem[0]=x%(k+1);
+      count[0]++;
+    }
+  else if(rem[1]==-1 || rem[1]==x%(k+1)){
+  	rem[1]=x%(k+1);
+    count[1]++;
+  }
+  else
+    res=0;
+}
+int verifyrem(){
+	int vcode=0;
+  if(res==1){
+  	if(count[0]==1 || count[1]==1 || count[0]==0 || count[1]==0)
+      vcode=1;
+  }
+  return vcode;
+}
+int main()
+{
+  int t,n,k;
+  int i,j,x,vcode;
+  scanf("%d",&t);
+  for(i=0;i<t;i++){
+  	scanf("\n%d",&n);
+    scanf("%d",&k);
+    rem[0]=-1;rem[1]=-1;count[0]=0;count[1]=0;
+    res=1;
+    for(j=0;j<n;j++){
+    	if(j==0)
+          scanf("\n%d",&x);
+      else
+        scanf("%d",&x);
+    update(x,k);
+    }
+    vcode=verifyrem();
+    if(vcode==1)
+      printf("YES\n");
+    else 
+      printf("NO\n");
+  }
+	return 0;
+}

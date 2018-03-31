@@ -1,0 +1,56 @@
+#include<iostream>
+
+typedef unsigned long long ull;
+
+using namespace std;
+
+//this recursive function returns gcd of two numbers using Euclid's algorithm
+ull gcd(ull a,ull b)
+{
+ if(b==0)return a;
+ gcd(b,a%b);
+}
+
+//this function returns lcm of two numbers 
+ull lcm(ull a,ull b)
+{
+ ull p=a*b;
+ ull hcf=gcd(a,b);
+ return p/hcf;
+}
+
+int main()
+{
+ int t;
+ //input test cases
+ cin>>t;
+ while(t--)
+ {
+ //input number of sensors
+ int n;
+ cin>>n;
+ 
+ ull a[n];
+ 
+ //input value of interval for each sensors
+ for(int i=0;i<n;i++)
+ cin>>a[i];
+ 
+ //m is your answer finally so initialize it with lcm of first two elemets of array
+ ull m=lcm(a[0],a[1]);
+ 
+ ull l;
+ //find lcm of all possible n*(n-1) pairs and minmum one stored in m finally
+ for(int i=0;i<n;i++)
+ {
+ for(int j=i+1;j<n;j++)
+ {
+ l=lcm(a[i],a[j]);
+ if(l<m)m=l; 
+ }
+ }
+ //print your output i.e. m
+ cout<<m<<endl;
+ }
+ return 0;
+}

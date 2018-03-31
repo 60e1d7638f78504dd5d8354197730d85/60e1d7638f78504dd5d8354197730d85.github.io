@@ -1,0 +1,30 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  	//Aim: row <= column and min column - row
+  	int row = 1, column = 1, i;
+    int n;
+  	scanf("%d", &n);
+  	for(i=1; i<=n/2; i++) {
+      	int a = i;
+      	int b = n/i;
+      	if(a > b) {
+          break;
+        }
+      	if(a*b == n) {
+        	if(i==1) {
+            	row = a;
+              	column = b;
+            }
+          	else {
+            	if(b-a < column - row) {
+                	row = a;
+                  	column = b;
+                }
+            }
+        }
+    }
+  	printf("%d %d", row, column);
+	return 0;
+}

@@ -1,0 +1,76 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+ 
+public class TestClass{
+	public static void main(String args[]) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out),512);
+		String buffer;
+		int[] goals;
+		int matches=0,min,max,diff,temp,k,j,i,cases = Integer.parseInt(br.readLine()),number = 0,one,count;
+		for(i=0;i<cases;i++)
+		{
+				matches = Integer.parseInt(br.readLine());
+				if(matches==1)
+				{
+					br.readLine(); //Discard
+					bw.write("UNFIT\n");
+					continue;
+				}
+				buffer = br.readLine();
+				goals = new int[matches];
+				
+				count=0;
+				number=0;
+				for(j=0;j<buffer.length();j++)
+				{
+					one = buffer.charAt(j);
+					if(one==32)
+					{
+						goals[count++] = number;
+						number=0;
+						continue;
+					}
+					number = number*10 + (one-48);
+				}
+				goals[count++] = number;
+				
+				min=goals[0];max=goals[1];
+				if(max<min)
+					min=max;
+				diff= max-min;temp=0;
+				for(k=2;k<matches-1;k++)
+				{
+					if(goals[k]<min)
+					{
+						min=goals[k];
+						max = goals[++k];
+						if(max<min)
+							min=max;
+					}
+					if(goals[k]>max)
+						max=goals[k];
+					temp = max - min;
+					if(temp>diff)
+						diff = temp;
+				}
+				if(k==matches-1)
+				{
+					max = goals[k];
+					temp = max - min;
+					if(temp>diff)
+						diff = temp;
+				}
+				if(diff>0)
+					bw.write(diff + "\n");
+				else
+					bw.write("UNFIT\n");
+			
+		}
+		bw.flush();
+		bw.close();
+	}
+ 
+}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+int a[5005];
+void qsort(int l, int r) 
+  {
+  int i=l;
+    int j=r;
+  int x=a[(l+r)/2];
+  int t;
+  while(i<=j) 
+    {
+    while(a[i]<x) 
+      i++;
+    while(x<a[j]) 
+      j--;
+    if(i<=j) 
+      {
+      t=a[i] ;
+      a[i] =a[j];
+      a[j] =t;
+      i++;
+      j--;
+     } 
+   } 
+  if(i<r) 
+    qsort(i, r);
+  if(i<j) 
+    qsort(l, j);
+ } 
+int main()
+{
+int t, n, min;
+  int i, j;
+  scanf("%d",&t);
+  for(i=1;i<=t;i++)
+    {
+    scanf("%d",&n);
+    for(j=1;j<=n;j++)
+      scanf("%d", & a[j]) ;
+    qsort(1,n);
+    min=a[2]-a[1];
+    for(j=2;j<=n;j++)
+      {
+      if(a[j]-a[j-1]<min)
+        min=a[j] - a[j-1];
+      }
+    printf("%d\n", min) ;
+   } 
+	return 0;
+}

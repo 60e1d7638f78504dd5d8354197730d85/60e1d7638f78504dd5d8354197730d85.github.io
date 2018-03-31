@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll     int
+#define INF 10000
+#define mp make_pair
+#define f first
+#define pi pair<ll,ll>
+#define pb emplace_back
+#define s second
+vector<ll>g[100011];
+bool vis[10000011];
+int main(){
+ll n;
+cin>>n;
+string s;
+cin>>s;
+ll start=0;
+for(int i=0;i<s.length();i++){
+    if(s[i]=='B'){
+        start^=(1LL<<i);
+    }
+}
+queue<pi>q;
+q.push(mp(start,0));
+ll stop1=0;
+ll stop2=(1LL<<n)-1;
+pi r;
+while(q.size()){
+    r=q.front();
+    q.pop();
+    if(r.f==stop1 or r.f==stop2){
+        cout<<r.s;
+     //   cout<<q.size();
+        return 0;
+    }
+    if(vis[r.f]) continue;
+    vis[r.f]=1;
+    ll curmask;
+    ll mask=r.f;
+    for(int j=0;j<n-1;j++){
+        curmask=(mask ^ (1LL<<j) ^ (1LL<<(j+1)));
+       if(!vis[curmask]) q.push(mp(curmask,r.s+1));
+    }
+    for(int j=0;j<n-2;j++){
+           curmask=(mask ^ (1LL<<j) ^ (1LL<<(j+1)) ^(1LL<<(j+2)));
+       if(!vis[curmask]) q.push(mp(curmask,r.s+1));
+    }
+}
+}

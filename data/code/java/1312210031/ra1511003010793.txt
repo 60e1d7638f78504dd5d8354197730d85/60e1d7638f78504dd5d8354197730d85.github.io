@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  boolean close(int dx, int dy, int r)
+  {
+  return dx*dx + dy*dy <= r*r;
+  }
+	 public static void main(String[] args) { 
+		int t,  r, a, b, c, d, e, f;
+       TestClass obj=new TestClass();
+  Scanner sc=new Scanner(System.in);
+       int[] x=new int[3];
+        int[] y=new int[3];
+       t=sc.nextInt();
+  for(int i=0;i<t;i++) {
+    r=sc.nextInt();
+    a=sc.nextInt();
+    b=sc.nextInt();
+    c=sc.nextInt();
+    d=sc.nextInt();
+    e=sc.nextInt();
+    f=sc.nextInt();
+     int num = 0;
+    if (obj.close(a-c,b-d,r))
+      ++num;
+    if (obj.close(a-e,b-f,r)) 
+      ++num;
+    if (obj.close(c-e,d-f,r)) 
+      ++num;
+    if (num > 1)
+      System.out.println("yes");
+    else 
+      System.out.println("no");
+	}
+}
+}

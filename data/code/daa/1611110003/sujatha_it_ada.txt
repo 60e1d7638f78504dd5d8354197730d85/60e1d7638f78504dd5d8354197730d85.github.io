@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+struct stu
+{
+  int marks;
+  string name;
+}s[10];
+  for(int i=0;i<10;i++)
+
+  {
+    cin>>s[i].name;
+  cin>>s[i].marks;
+  }
+  for(int i=0;i<10;i++)
+  {
+    for(int j=i+1;j<10;j++)
+    {
+      if(s[i].marks<s[j].marks)
+      {
+        int t=s[i].marks;
+        s[i].marks=s[j].marks;
+        s[j].marks=t;
+        string t1;
+        t1=s[i].name;
+        s[i].name=s[j].name;
+        s[j].name=t1;
+      }
+    }
+  }
+ cout<<"Ordered List"<<endl;
+  for(int i=0;i<10;i++)
+    cout<<s[i].name<<" "<<s[i].marks<<endl;
+  cout<<"Second Highest mark is "<<s[1].marks;
+    return 0;
+}

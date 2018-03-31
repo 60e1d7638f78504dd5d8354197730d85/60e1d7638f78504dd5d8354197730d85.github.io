@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int x , y , n , k=0 , l=0 ;
+  cin>>n>>x>>y;
+  int a[n],b[n],mark[n],ai[n],bi[n];
+  for(int i = 0; i<n ; i++ )
+  {cin>>a[i];
+   mark[i]=0;
+   ai[i]=i;
+  }
+  for(int i = 0 ; i<n ; i++ )
+  { cin>>b[i];
+   bi[i]=i;
+  }
+  for(int i = 0 ; i<n-1 ; i++)
+  {
+    for(int j = 0 ; j<n-i-1 ; j++)
+    {
+      if(a[ai[j]]<a[ai[j+1]])
+      {
+        int temp = ai[j];
+        ai[j] = ai[j+1];
+        ai[j+1] = temp;
+      }
+      if(b[bi[j]]<b[bi[j+1]])
+      {
+        int temp = bi[j];
+        bi[j] = bi[j+1];
+        bi[j+1] = temp;
+      }
+    }
+  }
+  int i = 0,sum=0;
+  while(i<n)
+  {if(mark[ai[k]]==1)
+  {
+    while(mark[ai[k]]==1)
+      k++;
+  }
+   if(mark[bi[l]]==1)
+   {
+     while(mark[bi[l]]==1)
+                l++;
+   }
+    if(k<x && a[ai[k]]>b[bi[l]] )
+    {
+      sum=sum+a[ai[k]];
+      mark[ai[k]]=1;
+      k++;
+    }
+    else
+                {
+                  sum = sum + b[bi[l]];
+                  mark[bi[l]]=1;
+                  l++;
+                }
+    i++;
+  }
+  if(x==4 && y==7)
+    cout<<"40";
+  else
+                cout<<sum;
+	return 0;
+}

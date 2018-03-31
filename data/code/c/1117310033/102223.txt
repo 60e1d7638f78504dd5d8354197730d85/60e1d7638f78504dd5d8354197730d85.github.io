@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+char *sp;
+#define push(sp, n) (*((sp)++) = (n))
+#define pop(sp) (*--(sp))
+ 
+int main(void)
+{
+    int tc,i,k,count;
+    scanf("%d",&tc);
+    while(tc--)
+    {
+        char input[405]={0},stackOperator[405]={0},output[405]={0};
+        sp=stackOperator;
+        scanf("%s",input);
+        count=0;i=0;k=0;
+        if(input[0]=='(')
+        {
+            count++;
+            i++;
+        }
+        //for(i=0;i<strlen(input);i++)
+        while(count)
+        {
+            if(input[i]=='(')
+            {
+                count++;
+                i++;
+            }
+            else if(input[i]=='+'||input[i]=='-'||input[i]=='*'||input[i]=='/'||input[i]=='^'||input[i]=='|'||input[i]=='~'||input[i]=='%')
+            {
+                push(sp,input[i]);
+                i++;
+            }
+            else if(input[i]==')')
+            {
+                count--;
+                output[k++]=pop(sp);
+                i++;
+            }
+            else
+            {
+                output[k++]=input[i];
+                i++;
+            }
+        }
+        printf("%s\n",output);
+    }
+} 

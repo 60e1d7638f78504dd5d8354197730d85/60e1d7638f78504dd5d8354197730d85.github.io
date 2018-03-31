@@ -1,0 +1,120 @@
+import java.io.*;
+import java.util.*;
+public class TestClass
+{
+	
+	public static void main (String []args)
+    {
+		Scanner s=new Scanner(System.in);
+		
+		int t=s.nextInt();
+		
+		int r;
+		
+		// start
+		
+		for(r=0;r<t;r++){
+		
+			int n=s.nextInt();
+			int q=n*(n-1)/2;
+ 
+			double[] a=new double[q];
+			double[] b=new double[q];
+			double[] x=new double[n];
+			double[] y=new double[n];
+			
+			
+			
+				// take co-ords
+			
+				for(int i=0;i<n;i++) {
+					x[i]=s.nextDouble();
+					y[i]=s.nextDouble();
+					
+				}
+				
+				int[] em=new int[q];
+				int[] en=new int[q];
+				
+				// calc dists
+				
+				int p=0;
+				
+				for(int i=0;i<n;i++){
+					
+					for(int j=i+1;j<n;j++){
+						
+						a[p]=Math.abs(Math.pow(x[i]-x[j],2)+Math.pow(y[i]-y[j],2));
+						em[p]=i;
+						en[p]=j;
+						p++;
+						
+					}
+				}
+				
+		if(n>4){
+			double anss=a[0];
+			
+			for(int w=1;w<q;w++){
+				if(a[w]>anss)
+					anss=a[w];
+			}
+			System.out.printf(Locale.US, "%.8f\n",Math.sqrt(anss));
+		}
+				
+		else{
+				for(int i=0;i<q;i++){
+					b[i]=a[i];
+		           }
+				
+			Arrays.sort(a);
+		         
+			
+			outerloop:
+			
+			for(int i=q-1;i>-1;i--){
+				
+				
+					
+					int k = -1;
+					ting:
+						for(int ss=0;ss<q;ss++){
+							if(a[i]==b[ss]){
+							 k=ss;
+								break ting;
+							}}
+				
+				//  check for all vertices
+				
+				for(int one=0;one<n;one++){
+					for(int two=one+1;two<n;two++){
+						
+						if(f(x[one],y[one],x[em[k]],y[em[k]],x[en[k]],y[en[k]],x[two],y[two])){
+							  //o     t      d         e       f            g     z     c
+						System.out.printf(Locale.US, "%.8f\n", Math.sqrt(a[i]));
+						
+							break outerloop;
+						}
+						
+					}
+					
+				}
+			}
+				// else
+				
+				}
+		}
+		s.close();	
+}
+ 
+	public static boolean f(double o, double t, double d, double e, double f,
+			double g , double z ,double c) {
+		double u=((g-e)*(o-d)/(f-d)-(t-e))*((g-e)*(z-d)/(f-d)-(c-e));
+		if(u>0)
+		return true;
+		else
+	    return false;
+		}
+ 
+	
+}

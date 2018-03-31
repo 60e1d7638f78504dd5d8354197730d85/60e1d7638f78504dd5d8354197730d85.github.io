@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+	char s[5][10];
+  	int i, j;
+  	for(i = 0; i < 5; i++)
+      cin>>s[i];
+  	for(i = 0; i < 5; i++)
+      for(j = 0; j < 4 - i; j++)
+        if(strcmp(s[j],s[j+1]) > 0)
+        {
+          char t[100];
+          strcpy(t,s[j]);
+          strcpy(s[j],s[j+1]);
+          strcpy(s[j+1],t);
+        }
+  	for(i = 0; i < 5; i++)
+      cout<<s[i]<<endl;
+	return 0;
+}

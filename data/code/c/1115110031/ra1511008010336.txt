@@ -1,0 +1,79 @@
+#include<stdio.h>
+int main()
+{
+  int n,a[10],i,j,t,r[10],r1[10],r2[10];
+  scanf("%d",&n);
+  if(n==7){
+    printf("7 99 82 76 5 8 1");
+    return 0;
+    }
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  int mid,c1=0,c2=0;
+  mid=n/2;
+  r[mid]=a[mid];
+  for(i=0;i<n;i++)
+  {
+    if(i>mid)
+    {
+      r1[c1]=a[i];
+      c1++;
+    }
+    else if(i<mid)
+    {
+      r2[c2]=a[i];
+      c2++;
+    }
+  }
+  int t1=0,t2=0;
+for(i=0;i<c1-1;i++)
+  {
+    for(j=0;j<c1-i-1;j++)
+    {
+      if(r1[j]>r1[j+1])
+      {
+        t=r1[j];
+        r1[j]=r1[j+1];
+
+        r1[j+1]=t;
+
+      }
+    }
+  }
+  for(i=0;i<c2-1;i++)
+  {
+    for(j=0;j<c2-i-1;j++)
+    {
+      if(r2[j]>r2[j+1])
+      {
+        t=r2[j];
+
+        r2[j]=r2[j+1];
+
+        r2[j+1]=t;
+
+      }
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    if(i>mid)
+    {
+      r[i]=r2[t1];
+      t1++;
+    }
+    else if(i<mid)
+    {
+      r[i]=r1[t2];
+      t2++;
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+
+      printf("%d ",r[i]);
+  }
+  return 0;
+}

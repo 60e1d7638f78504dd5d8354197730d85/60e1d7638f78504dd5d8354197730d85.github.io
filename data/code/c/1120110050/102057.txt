@@ -1,0 +1,42 @@
+#include <stdio.h>
+int inline scan()
+{
+  int N=0;
+  char C;
+  C=getchar_unlocked();
+  while(C<'0'||C>'9')C=getchar_unlocked();
+  while(C>='0'&&C<='9')
+  {
+    N=(N<<3)+(N<<1)+C-'0';
+    C=getchar_unlocked();
+  }
+  return N;
+}
+void caravans(int n)
+{
+  int temp,p,i,count=1;
+  temp=scan();
+  for(i=1;i<n;i++)
+  {
+    p=scan();
+    if(p<temp)
+    {
+      temp=p;
+      count++;
+    }
+  }
+  printf("%d\n",count);
+}
+
+      
+    
+int main()
+{
+int i,j,t,n,A[100];
+  t=scan();
+  for(i=0;i<t;i++){
+    n=scan();
+    caravans(n);
+  }
+	return 0;
+}

@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h> 
+ 
+void swap(int *a,int *b)
+{int c=*a;*a=*b;*b=c;    
+}   
+ 
+int part(int start,int end ,int *a,int *b)
+{int i,j=start-1;
+ for(i=start;i<end;i++)
+ {if(a[i]<=a[end])
+  {j++;swap(&a[i],&a[j]);swap(&b[i],&b[j]);
+  }   
+ } 
+ j++;
+ swap(&b[j],&b[end]);
+ swap(&a[j],&a[end]);
+ return j;
+}    
+void qsortt(int start,int end,int *a,int *b)
+{if(start<end)
+ {int q=part(start,end,a,b);
+ qsortt(start,q-1,a,b);
+ qsortt(q+1,end,a,b);   
+ }   
+}    
+int x[100010],y[100010];
+long long int ans=0;
+void incount(int start,int mid,int end,int *a)
+{int i,j;
+ int x1=0,y1=0;
+ for(i=start;i<=mid;i++)
+ {x[x1]=a[i];x1++;
+ }
+ for(i=mid+1;i<=end;i++)
+ {y[y1]=a[i];y1++;
+ }
+ i=0;j=0;
+ int k=0,k1=start;
+ while(i<x1 && j<y1)
+ {if(x[i]<y[j])
+  {a[k1]=x[i];
+   k1++;
+   i++;
+  }
+  else
+  {a[k1]=y[j];
+   k1++;
+   j++;
+   ans=ans+x1-i;
+  }   
+ }
+while(i<x1)
+{a[k1]=x[i];
+ k1++;
+    i++;
+}    
+while(j<y1)
+{a[k1]=y[j];
+  j++;
+ k1++;
+}    
+}
+ 
+void in(int start,int end,int *a)
+{if(start<end)
+ {int k=(start+end)/2;
+  in(start,k,a);
+  in(k+1,end,a);
+  incount(start,k,end,a);
+ }   
+}   
+ 
+int main() {
+int i,j,k,n;
+int *a,*b;    
+scanf("%d",&n);
+a=(int *)malloc((n+1)*sizeof(int));
+b=(int *)malloc((n+1)*sizeof(int));
+for(i=1;i<=n;i++)
+{scanf("%d %d",&a[i],&b[i]);   
+}  qsortt(1,n,a,b);
+in(1,n,b);
+printf("%lld\n",ans);
+return 0;
+}      

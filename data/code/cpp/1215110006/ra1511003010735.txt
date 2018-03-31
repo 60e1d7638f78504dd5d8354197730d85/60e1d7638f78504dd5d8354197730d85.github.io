@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+void deposit(int a){
+  cout<<"Deposited="<<a<<endl;
+}
+void withdr(int a){
+  cout<<"Withdraw="<<a<<endl;
+}
+int withdraw(int a, int b){
+  return(a-b);
+}
+int checkbalance(int a, int b){
+  return(a+b);
+}
+void balancedetails(int a) {
+  cout<<"Balance="<<a<<endl;
+}
+void accdetails(int a, string s){
+  cout<<"Account Holders Name:"<<s<<endl<<"Account Number:"<<a<<endl;
+}
+
+int main()
+{
+  int a, c, d, e, y;
+  string b;
+  cin>>a>>b>>c>>d>>e;
+  cout<<"DEPOSIT"<<endl;
+  balancedetails(c);
+  deposit(d);
+  int z = checkbalance(c, d);
+  balancedetails(z);
+  
+  cout<<"WITHDRAW"<<endl;
+  balancedetails(z);
+  withdr(e);
+  y = withdraw(z, e);
+  if(y>=0)
+    balancedetails(y);
+  else
+    cout<<"Insufficient balance"<<endl;
+  
+  cout<<"ACCOUNT DETAILS"<<endl;
+  accdetails(a, b);
+  if(y>=0)
+    cout<<"Current Balance:"<<y;
+  else
+    cout<<"Current Balance:"<<z;
+  
+
+	return 0;
+}

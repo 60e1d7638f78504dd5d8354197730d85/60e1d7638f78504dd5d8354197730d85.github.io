@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int i,n,h[5],t[5],grade=0;
+  float c[5];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d %f %d", &h[i], &c[i], &t[i]);
+  for(i=0;i<n;i++)
+  {
+    if(h[i]>50 && c[i]<0.7 && t[i]>5600)
+      grade=10;
+    else if(h[i]>50 && c[i]<0.7 && t[i]<=5600)
+      grade=9;
+    else if(h[i]<=50 && c[i]<0.7 && t[i]>5600)
+      grade=8;
+    else if(h[i]>50 && c[i]>=0.7 && t[i]>5600)
+      grade=7;
+    else if(h[i]>50 || c[i]<0.7 || t[i]>5600)
+      grade=6;
+    else
+      grade=5;
+    printf("%d\n",grade);
+  }
+return 0;
+}

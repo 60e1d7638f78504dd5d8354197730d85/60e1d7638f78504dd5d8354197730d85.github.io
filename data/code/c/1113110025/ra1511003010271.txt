@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int palin(int n){
+  int i,j,s=0;
+  i=n;
+  while(i!=0)
+  {
+    j=i%10;
+    s=j+(10*s);
+    i=i/10;
+  }
+  if(n==s) { return 0; }
+  else {return -1;}
+} 
+int main()
+{
+  int i,j;
+  scanf("%d",&i);
+  for(j=1;j<=i;j++)
+  {
+    int k,l,x,s=0;
+    scanf("%d %d",&k,&l);
+    for(x=k;x<=l;x++)
+    {
+      if(palin(x)==0){ s=s+x;}
+    } 
+    printf("sum is %d\n",s);
+  } 
+	return 0;
+}

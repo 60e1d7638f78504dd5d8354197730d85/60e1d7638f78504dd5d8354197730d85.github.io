@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,k,count=0,a,b;
+  scanf("%d",&n);
+  
+  for(i=2;i<=n/2;i++)
+  {
+    int x=0,y=0;
+    a=i;
+    b=n-i;
+    for(j=1;j<=a;j++)
+    {
+      if(a%j==0)
+      {
+        x++;
+      }
+    }
+    for(k=1;k<=b;k++)
+    {
+      if(b%k==0)
+      {
+        y++;
+      }
+    }
+    if(x==2&&y==2)
+    {
+      printf("%d = %d + %d\n",(a+b),a,b);
+    }else{
+     
+      count++;
+    }
+  }
+  if(count==(n/2)-1)
+  {
+    printf("NOT");
+  }
+	return 0;
+}

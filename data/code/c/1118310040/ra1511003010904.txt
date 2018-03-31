@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+    int t,n,ex,ey,ax,ay;
+    float ct,mct;
+    char ed,ad;
+    scanf("%d",&t);
+    while(t--)
+    {
+        mct=1000.0F;
+        scanf("%d%d %c%d",&ex,&ey,&ed,&n);
+        while(n--)
+        {
+            ct=1000.0F;
+            scanf("%d%d %c",&ax,&ay,&ad);
+            if((ed=='U' && ad == 'D' && ex == ax && ey < ay) || (ed =='D' && ad =='U' && ex == ax && ey > ay))
+               ct=abs(ey-ay)/2.0;
+            else if((ed=='R' && ad == 'L' && ey ==ay && ex < ax) || (ed =='L' && ad =='R' && ey == ay && ex > ax))
+               ct=abs(ex-ax)/2.0;
+            else if( abs(ex-ax) == abs(ey-ay))
+            {
+                if( (ad=='D' && ay > ey) || (ad=='U' && ay < ey))
+                    if((ed == 'R' && ax > ex ) || (ed == 'L' && ex>ax))
+                       ct=abs(ex-ax);
+                if( (ad=='R' && ax < ex) || (ad=='L' && ax > ex))
+                    if((ed == 'U' && ay > ey ) || (ed == 'D' && ay < ey))
+                       ct=abs(ex-ax);
+            }
+            if(ct < mct )
+              mct=ct;
+        }
+        if(mct == 1000.0F)
+          printf("SAFE\n");
+        else
+          printf("%.1f\n",mct);
+    }
+    return 0;
+}
+ 

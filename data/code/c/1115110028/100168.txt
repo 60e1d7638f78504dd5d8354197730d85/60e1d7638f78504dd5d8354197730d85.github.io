@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main()
+{
+    int array[100][100];
+    int row, col, isLower,t;
+scanf("%d",&t);
+   
+    for(row=0; row<t; row++)
+    {
+        for(col=0; col<t; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+
+    isLower = 1;
+    for(row=0; row<t; row++)
+    {
+        for(col=0; col<t; col++)
+        {
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+    if(isLower == 1)
+    {
+        printf("yes");
+           }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

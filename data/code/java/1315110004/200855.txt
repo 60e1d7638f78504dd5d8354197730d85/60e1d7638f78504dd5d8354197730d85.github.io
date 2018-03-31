@@ -1,0 +1,51 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;import java.text.DecimalFormat;
+ 
+class Sample
+{
+   public void getDetails()
+  {
+    
+  }
+   public void displayDetails()
+   {
+   }
+}
+class TestClass
+{   
+	public static void main (String[] args) throws java.lang.Exception
+	{   
+     Sample  objname = new Sample();
+      objname.getDetails();
+      objname.displayDetails();
+      Scanner sc1 = new Scanner(System.in);
+		int tc = sc1.nextInt();
+		int ch=0;
+     if(tc>=1 && tc<=100){
+		while(ch<tc){
+		    int n = sc1.nextInt();
+		    int k = sc1.nextInt();
+          if(n>=1 && n<=104 && k>=0 && k<=n){
+		    long[] arr = new long[n];
+		    for(int i=0;i<n;i++){
+		        arr[i]=sc1.nextLong();
+		    }
+		    Arrays.sort(arr);
+		    long sum=0;
+		    int count=0;
+		    for(int i=k;i<n-k;i++){
+		        sum+=arr[i];
+		        count++;
+		    }
+		    double res = (double)sum/count;
+          DecimalFormat dec = new DecimalFormat("#0.000000");
+         System.out.print(dec.format(res));
+		 //   System.out.printf("%.6f",res);
+          System.out.println();
+		    ch++;
+          }
+		}
+     }
+	}
+}

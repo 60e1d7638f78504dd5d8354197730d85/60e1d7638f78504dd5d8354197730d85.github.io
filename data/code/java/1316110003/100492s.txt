@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  Scanner in=new Scanner(System.in);
+	 public static void main(String[] args) { 
+      // Scanner in=new Scanner(System.in);
+       TestClass objname=new  TestClass();
+		objname.sumOfAllIntegers();
+	}
+	public void sumOfAllIntegers()
+	{
+		int numberoftestcases=GetInteger();
+		
+		for(int i=0;i<numberoftestcases;i++)
+		{
+			
+			int d=GetInteger();
+			int no=GetInteger();
+			
+			int ans=FindSum(d,no);
+			System.out.println(ans);
+		}
+	}
+	
+	int FindSum(int d,int no)
+	{	
+		int ans=0;
+		for(int i=1;i<=no;i++)
+		{
+			ans=ans+i;
+		}
+		if(d>1)
+		{
+			return FindSum(d-1,ans);
+		}
+		else
+			return ans;
+	}
+	
+	int GetInteger()
+	{
+		return in.nextInt();
+              	
+	}
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int sum(int count,int num)
+{
+  	int i,total=0;
+  	for(i=1;i<=num;i++)
+    {
+        total=total+i;
+    }
+	if(count==1)
+    {
+      return total;
+    }
+  	else
+    {
+    	sum(count-1,total);
+    }
+}
+int main()
+{
+	int count,num,val,i,ini;
+  	scanf("%d",&count);
+  	for(i=0;i<count;i++)
+    {
+    	scanf("%d %d",&ini,&num);
+      	val=sum(ini,num);
+      	printf("%d\n",val);
+    }
+	return 0;
+}

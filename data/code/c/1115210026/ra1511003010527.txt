@@ -1,0 +1,59 @@
+#include <stdio.h>
+void quickSort( int a[], int left, int right)
+{
+   int j;
+ 
+   if( left < right )
+   {
+     j=partition(a,left,right);
+     quickSort(a,left,j-1);
+ 
+      quickSort(a,j+1,right);
+   }
+}
+ 
+int partition( int a[], int left, int right)
+ 
+{   int pivot, i, j, t;
+   pivot = a[left];
+   i = left; j = right;
+   while(i < j)
+   {
+   while( a[i] <= pivot && i<=right) i++;
+   while( a[j] > pivot ) j--;
+   if(i<j){
+     t = a[i];
+     a[i] = a[j]; 
+     a[j] = t;
+   }
+ 
+   }
+   t = a[left]; a[left] = a[j]; a[j] = t;
+   return j;
+}
+ 
+int main()
+{
+    int i,j,t;
+    scanf("%d",&t);
+    int n;
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&n);
+        int a[n];
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&a[j]);
+        }
+        quickSort(a,0,n-1);
+         for(j=1;j<n-1;j++)
+        {
+         if(2*a[j]!=a[j+1]+a[j-1])
+          {printf("NO\n");
+          break;}
+        }
+        if(j==n-1)
+        printf("YES\n");
+    }
+    return 0;
+}

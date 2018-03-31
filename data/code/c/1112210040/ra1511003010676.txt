@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int n,m,i=0,k;
+  	scanf("%d%d",&n,&m);
+  	int co=m;
+  	int e[100];
+  	while(m)
+    {
+      scanf("%d",&e[i++]);
+      m--;
+    }
+  	int a[100],b[100];
+  	int h=1;
+  	for(i=0;i<n;i++)
+    {
+      a[i]=h;
+      b[i]=n+h;
+      h++;
+    }
+  	int c[1000],j;
+  	k=0;
+  	for(i=0;i<n;i++)
+    {
+		for(j=0;j<n;j++)
+        {
+          c[k++]=a[i]+b[j];
+        }
+    }
+  	for(i=0;i<co;i++)
+    {
+      int ctr=0;
+      for(j=0;j<k;j++)
+      {
+		if(e[i]==c[j])
+          ctr++;
+      }
+      printf("\n%d",ctr);
+    }
+	return 0;
+}

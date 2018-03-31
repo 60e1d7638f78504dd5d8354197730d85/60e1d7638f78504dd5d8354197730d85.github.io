@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef struct {
+	int f;
+	int p;
+	char s[101];
+	} post;
+void find(int n,int m,int *a,post *po)
+{
+	int i,j,max,indx;
+	post k;
+	for(i=0;i<m-1;i++)
+	{
+		max=po[i].p;
+		indx=i;
+		for(j=i+1;j<m;j++)
+		{
+			if(po[j].p>max)
+			{
+				max=po[j].p;
+				indx=j;
+			}
+		}
+		k=po[i];
+		po[i]=po[indx];
+		po[indx]=k;
+	}
+	for(j=0;j<m;j++)
+	{
+		for(i=0;i<n;i++)
+		{
+			if(po[j].f==a[i])
+			{
+				printf("%s\n",po[j].s);
+				po[j].p=-1;
+			}
+		}
+	}
+	for(j=0;j<m;j++)
+	{
+			if(po[j].p!=-1)
+			{
+				printf("%s\n",po[j].s);
+			}
+	}
+	return ;
+}
+int main(void)
+{
+	int n,m,i;
+	scanf("%d%d",&n,&m);
+	int *a=(int *)malloc(n*sizeof(int));
+	post *po=(post *)malloc(m*sizeof(post));
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<m;i++)
+	{
+		scanf("%d",&po[i].f);
+		scanf("%d",&po[i].p);
+		scanf("%s",po[i].s);
+	}
+	find(n,m,a,po);
+	return 0;
+}
+ 

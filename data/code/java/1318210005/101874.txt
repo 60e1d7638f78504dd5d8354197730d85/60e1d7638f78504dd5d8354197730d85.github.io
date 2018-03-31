@@ -1,0 +1,32 @@
+import java.util.*;
+import java.text.*;
+interface Rect
+{
+  	public void perimeter(float l,float w);
+  	public void area(float l,float w);
+}
+class Rectangle implements Rect
+{
+	public void perimeter(float l,float w)
+    {
+    	DecimalFormat df = new DecimalFormat("##.00");
+    	float res=2*(l+w);
+    	System.out.println(df.format(res));
+    }
+    public void area(float l,float w)
+    {
+    	DecimalFormat df = new DecimalFormat("##.00");
+        System.out.println(df.format(l*w));
+    }
+}
+public class TestClass {
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+        float f1=sc.nextFloat();
+        float f2=sc.nextFloat();
+      	Rectangle ob=new Rectangle();
+        ob.area(f1,f2);
+        ob.perimeter(f1,f2);
+	}
+}

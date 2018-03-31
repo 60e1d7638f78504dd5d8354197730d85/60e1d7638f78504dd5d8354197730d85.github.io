@@ -1,0 +1,30 @@
+#include<stdio.h>  
+int main() { 
+  int cityday[5][5]; 
+  int i,j,max,min,m,n;
+  m=n=1; 
+  for(i=0;i<5;i++) {
+    for(j=0;j<5;j++) 
+      scanf("%d",&cityday[i][j]); } 
+  max=cityday[0][0]; 
+for(i=0;i<5;i++) 
+{ 
+  for(j=0;j<5;j++) 
+{ 
+    if(max<cityday[i][j]) 
+    { max=cityday[i][j]; m=j+1; n=i+1; 
+    } 
+  } 
+} 
+  printf("Max=%d city=%d day=%d\n",max,m,n);
+  min=cityday[0][0]; m=n=1; 
+  for(i=0;i<5;i++) 
+  { for(j=0;j<5;j++) 
+  { if(min>cityday[i][j]) 
+  { min=cityday[i][j]; m=j+1; n=i+1; 
+  } 
+  } 
+  } 
+  printf("Min=%d city=%d day=%d\n",min,m,n);
+  return 0;
+}

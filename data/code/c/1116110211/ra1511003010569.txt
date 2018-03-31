@@ -1,0 +1,59 @@
+#include<stdio.h>
+int main(){
+    int n,k,q,t1,c1,c2,l,r,j,t,i;
+    char s[100005];
+    scanf("%d",&t);
+    while(t--){
+    scanf("%d %d %d",&n,&k,&q);
+    long long int ans;
+    scanf("%s",s);
+ 
+    while(q--){
+            ans=0;
+            int a1[100005];
+            int a2[100005];
+        scanf("%d %d",&l,&r);
+        int tem1=0;
+        int tem2=0;
+        for(i=l-1;i<r;i++){
+            if(s[i]=='1'){
+                a1[tem1]=i;
+                tem1++;
+            }
+            else{
+                a2[tem2]=i;
+                tem2++;
+            }
+        }
+        c1=0;
+                    c2=0;
+                    t1=l-2;
+               int l1=0;
+                int l2=0;
+        for(i=l-1;i<r;i++){
+                 if(s[i]=='1')
+                        c1++;
+                 else
+                    c2++;
+                 if(c1<=k&&c2<=k){
+                    ans=ans+i-t1;
+                 }
+                 else if(c1>k){
+                    ans=ans+i-a1[l1];
+                    t1=a1[l1];
+                    l1++;
+                    c1--;
+                 }
+                 else if(c2>k){
+                    ans=ans+i-a2[l2];
+                    t1=a2[l2];
+                    l2++;
+                    c2--;
+                 }
+            }
+            printf("%lld\n",ans);
+        }
+    }
+return 0;
+}
+ 

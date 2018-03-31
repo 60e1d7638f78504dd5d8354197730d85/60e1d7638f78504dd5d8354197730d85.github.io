@@ -1,0 +1,79 @@
+#include<stdio.h>
+#define mod 1000000007
+ 
+typedef struct nodes{
+    int data, deg;
+    struct nodes *par;
+}node;
+node g[100001];
+ 
+void initialize(){
+    int j;
+    for(j=0; j<100001; j++){
+        g[j].data = j;
+        g[j].deg = 1;
+        g[j].par = &(g[j]);
+    }
+    return;
+}
+ 
+int find(int a){
+    node *prev = NULL, *curr = &(g[a]);
+    while(prev != curr){
+        prev = curr;
+        curr = curr->par;
+    }
+    g[a].par = prev;
+    return curr->data;
+}
+ 
+void add(int a, int b){
+    int par1 = find(a);
+    int par2 = find(b);
+    if(par1 == par2) return;
+    if(g[par1].deg > g[par2].deg){
+        g[par2].par = &(g[par1]);
+        g[par1].deg += g[par2].deg;
+        g[b].par = &(g[par1]);
+        return;
+    }
+    g[par1].par = &(g[par2]);
+    g[a].par = g[par1].par;
+    g[par2].deg += g[par1].deg;
+    return;
+}
+ 
+void take_and_build(int m){
+    int a, b;
+    while(m--){
+        scanf("%d %d",&a ,&b);
+        add(a, b);
+    }
+    return;
+}
+ 
+void solve(int n){
+    long long int j, a[100001] = {0}, count = 0, ways = 1;
+    for(j=1; j<=n; j++)
+        a[find(j)]++;
+    for(j=1; j<=n; j++){
+        if(!a[j]) continue;
+        count++;
+        ways = (ways * a[j]) % mod;
+    }
+    printf("%lld %lld\n",count, ways);
+    return;
+}
+ 
+int main(){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        int n, m;
+        initialize();
+        scanf("%d %d",&n ,&m);
+        take_and_build(m);
+        solve(n);
+    }
+    return 0;
+}

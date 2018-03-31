@@ -1,0 +1,130 @@
+#include<stdio.h>
+int sood[100000];
+int main()
+{
+ 
+ 
+ 
+ int m;
+ scanf("%d",&m);
+  int b[m]   ;
+  int i,j;
+ for(i=0;i<m;i++)scanf("%d",&b[i]);
+ 
+int max=0;
+int maxarray[m];
+ 
+ int build[m];
+ for(i=0;i<m;i++)build[i]=0;
+ int buildindex=0;
+ 
+ build[0]=b[0];
+ buildindex=1;
+ 
+ 
+ 
+ for(i=1;i<m;i++){
+                 if(sood[b[i]]==0){
+                              build[buildindex]=b[i];
+                                 
+                           
+                                 for(j=0;j<=buildindex-1;j++){
+                                                              int dig = 2*build[buildindex]-build[j];
+                                                              if(dig>=0&&dig<100000)sood[dig]=1;
+                                                              
+                                                              if((build[buildindex]+build[j])%2==0){dig = (build[buildindex]+build[j])/2;
+                                                              if(dig>=0&&dig<100000)sood[dig]=1;}
+                                                              dig = 2*build[j]-build[buildindex];
+                                                              if(dig>=0&&dig<100000)sood[dig]=1;
+                                                              
+                                                              }
+                                 buildindex++;
+                                 }
+                                 
+                  
+                  
+                  }
+                  
+ 
+//printf("%d\n",buildindex);
+//for(i=0;i<buildindex;i++)printf("%d ",build[i]);
+//printf("\n");
+ 
+if(buildindex>max){
+                   max=buildindex;
+                   for(i=0;i<max;i++)maxarray[i]=build[i];
+                   }
+ 
+ 
+int o;
+for(o=0;o<buildindex&&o<200;o++)
+{
+ 
+//printf("currently we are operating at o = %d\n",o);
+int pivot = build[o];
+//remove pivot from b to form bcopy
+int bcopy[m-1];
+int ii=0;
+for(i=0;i<m;i++){
+              if(b[i]!=pivot){bcopy[ii]=b[i];ii++;}
+              }
+//printf("bcopy\n");
+//for(i=0;i<m-1;i++)printf("%d ",bcopy[i]);
+//printf("\n\n");
+              
+//now make buildcopy
+   int buildcopy[m]     ;
+   int buildindexcopy=0;  
+           for(i=0;i<m;i++)buildcopy[i]=0;
+           for(i=0;i<100000;i++)sood[i]=0;
+ 
+ 
+ buildcopy[0]=bcopy[0];
+ buildindexcopy=1;
+ 
+ 
+ 
+ for(i=1;i<m-1;i++){
+                 if(sood[bcopy[i]]==0){
+                              buildcopy[buildindexcopy]=bcopy[i];
+                                 
+                           
+                                 for(j=0;j<=buildindexcopy-1;j++){
+                                                              int dig = 2*buildcopy[buildindexcopy]-buildcopy[j];
+                                                              if(dig>=0&&dig<100000)sood[dig]=1;
+                                                              
+                                                              if((buildcopy[buildindexcopy]+buildcopy[j])%2==0){dig = (buildcopy[buildindexcopy]+buildcopy[j])/2;
+                                                              if(dig>=0&&dig<100000)sood[dig]=1;}
+                                                              dig = 2*buildcopy[j]-buildcopy[buildindexcopy];
+                                                              if(dig>=0&&dig<100000)sood[dig]=1;
+                                                              
+                                                              }
+                                 buildindexcopy++;
+                                 }
+                                 
+                  
+                  
+                  }
+                  
+              
+ 
+// for(i=0;i<buildindexcopy;i++)printf("%d ",buildcopy[i]);
+ //printf("\n\n\n");
+ 
+ if(buildindexcopy>max){
+                   max=buildindexcopy;
+                   for(i=0;i<max;i++)maxarray[i]=buildcopy[i];
+                   }
+                         
+                         
+                         }
+ 
+ 
+ 
+ 
+printf("%d\n",max);
+for(i=0;i<max;i++)printf("%d ",maxarray[i]);
+printf("\n");
+// getch();
+ return 0;
+    } 

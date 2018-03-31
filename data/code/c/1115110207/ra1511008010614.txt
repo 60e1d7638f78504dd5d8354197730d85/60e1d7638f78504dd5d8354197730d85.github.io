@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int a,i,j,temp;
+  scanf("%d",&a);
+  int array[a];
+  for(i=0;i<a;i++)
+  {scanf("%d",&array[i]);}
+   for (i = 0; i < a; i++)
+    {
+        for (j = 0; j < (a - i - 1); j++)
+        {
+            if (array[j] > array[j + 1])
+            {
+                temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+   }
+  float f = array[a-1]+array[a-2];
+  float av=f/2; 
+  printf("First Largest=%d\nSecond Largest=%d\nAverage=%.1f",array[a-1],array[a-2],av);
+
+	return 0;
+}

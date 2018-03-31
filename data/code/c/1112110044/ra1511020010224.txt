@@ -1,0 +1,36 @@
+#include <stdio.h>
+int subsequence(char M[25001],char W[25001])
+{
+            int i,j;
+            j=0;
+            for(i=0;W[i]!='\0';i++)
+            {
+                 if(M[j]==W[i])
+                     {    j++;
+                          if(M[j]=='\0')
+                          { 
+                            return 1;
+                          }
+                     }
+                 
+            }
+            return 0;
+}
+int main()
+{
+  int T,flag1,flag2;
+  char M[25001],W[25001];
+  scanf("%d",&T);
+  while(T--)
+  {
+            scanf("%s %s",M,W);
+            flag1=subsequence(M,W);
+            flag2=subsequence(W,M);
+            if(flag1 || flag2)
+            printf("YES\n");
+            else
+            printf("NO\n");
+            
+  }	
+  return 0;
+} 

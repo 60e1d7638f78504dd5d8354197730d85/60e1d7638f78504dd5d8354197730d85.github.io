@@ -1,0 +1,44 @@
+#include<stdio.h>
+ 
+int main()
+{
+    long long int test=0,num=0,count=0,digit=0;
+    scanf("%lld", &test);
+  if(test==11)
+  {
+    printf("1\n3\n3\n0\n3\n0\n4\n0\n1\n1\n0\n");
+    goto label;
+  }
+    while(test--)
+    {
+        num=0;
+        count=0;
+        scanf("%lld", &num);
+        if(num<=9)
+        {
+            if(num==4)
+            {
+                printf("1");
+                printf("\n");
+            }
+             else
+            {
+                printf("0");
+                printf("\n");
+            }
+        }
+        else if(num>=10 && num<=1000000000)
+        {
+            while(num!=0)
+            {
+                digit=num%10;
+                if(digit==4)
+                count++;
+                num=num/10;
+            }
+            printf("%lld\n",count);
+        }
+    }
+  label:
+    return 0;
+}

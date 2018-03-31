@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class ti{
+ 
+  int h,m,s;
+  public:
+  void get(){
+  cin>>h>>m>>s;
+    
+  }
+
+  void add(ti,ti);
+};
+void ti::add(ti t1,ti t2){
+  s=t1.s+t2.s;
+  m=s/60;
+  s=s%60;
+  m=m+t1.m+t2.m;
+  h=m/60;
+  m=m%60;
+  h=h+t1.h+t2.h;
+  if(t1.s>59||t1.m>59||t2.s>59||t2.s>59){
+  cout<<"Invalid Time";
+  }else{
+    cout<<"After Adding"<<endl;
+  cout<<h<<":"<<m<<":"<<s;
+  }
+}
+
+int main()
+{
+ ti t1,t2,t3;
+ t1.get();
+ t2.get();
+t3.add(t1,t2);
+	return 0;
+}

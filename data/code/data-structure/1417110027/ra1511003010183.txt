@@ -1,0 +1,58 @@
+ #include<stdio.h>
+    #include<string.h>
+    #include<math.h>
+    #include<string.h>
+     
+    int main()
+    {
+        int idx,l,n,flag,y,x,d[1000],e[1000],max,c[100010],a[100010],i,j;
+        scanf("%d%d",&n,&x);
+        for(i=1;i<=n;i++)
+        {
+            scanf("%d",&a[i]);
+            c[i]=i;
+        }
+        for(j=1;j<=x;j++)
+        {
+            max=-1;
+            if(n<x)
+                y=n;
+            else
+                y=x;
+            for(i=1;i<=y;i++)
+                if(a[i]>max)
+                {
+                    max=a[i];
+                    idx=c[i];
+                }
+            flag=0;
+            for(i=1;i<=x;i++)
+            {
+                if(idx==c[i])
+                {
+                    flag=1;
+                    continue;
+                }
+                if(a[i]>0)
+                    d[i-flag]=a[i]-1;
+                else
+                    d[i-flag]=a[i];
+                e[i-flag]=c[i];
+            }
+            for(i=1;i<=n-x;i++)
+            {
+                a[i]=a[i+x];
+                c[i]=c[i+x];
+            }
+            l=1;
+            for(;i<n;i++)
+            {
+                a[i]=d[l];
+                c[i]=e[l++];
+            }
+            n--;
+            printf("%d ",idx);
+        }
+        printf("\n");
+        return 0;
+    }

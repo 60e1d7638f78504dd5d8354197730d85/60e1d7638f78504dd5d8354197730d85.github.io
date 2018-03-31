@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+
+	int n,p[50],k=0;
+  scanf("%d",&n);
+  int c=0;
+  int i,j;
+  for(i=2;i<n;i++)
+  {c=0;
+    for(j=1;j<=i;j++)
+  {
+      if(i%j==0)
+    c++;
+  }
+   if(c==2)
+   {p[k]=i;
+   k++;}
+  }
+  int fl=0;
+  for(i=0;i<=k/2+1;i++)
+    for(j=k;j>=k/2+1;j--)
+    {if(p[i]+p[j]==n)
+    { fl++;
+      printf("%d = %d + %d\n",n,p[i],p[j]);
+    }}
+  if(fl==0)
+    printf("NOT");
+  return 0;
+}

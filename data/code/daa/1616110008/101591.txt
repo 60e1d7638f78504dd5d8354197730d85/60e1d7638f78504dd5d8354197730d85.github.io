@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int strcmpfunc(const void *a, const void *b)
+{
+    return (strcmp((char *)a, (char *)b));
+}
+int main()
+{
+    int tst;
+    scanf("%d",&tst);
+
+    while(tst--)
+    {
+        int strings;
+        scanf("%d",&strings);
+
+        char str[strings][20];
+        int i;
+        for(i = 0; i<strings; i++)
+           scanf(" %s",str[i]);
+           
+        /*Sort the array.*/
+        qsort(str, strings, sizeof(char)*20, strcmpfunc);
+        
+        int pre_index = 0;
+        /*Remove duplicate*/
+        for(i = 1; i<strings; i++)
+        {
+            if (!strcmp(str[i], str[pre_index]))
+              str[i][0] = '\0';
+            else
+              pre_index = i;
+        }
+
+        int ch[82], str_ch[82], no_word = 1;
+
+        for(i = 0; i<82; i++)
+        {
+            ch[i] = 0;
+            str_ch[i] = 0;
+        }
+        
+        int x, y, j;
+        scanf("%d", &x);
+        scanf("%d", &y);
+
+        for(j = 0; j<x*y; j++)
+        {
+            char input;
+            scanf(" %c", &input);
+            ch[input-'A']++;
+        }
+
+        for (i = 0; i<strings; i++)
+        {
+            if (!strlen(str[i]))
+              continue;
+            for(j = 0; j<82; j++)
+              str_ch[j] = 0;
+            
+            for (j = 0; j<strlen(str[i]); j++)
+                str_ch[str[i][j]-'A']++;
+
+            for(j = 0; j<82; j++)
+               if (str_ch[j] && str_ch[j] > ch[j])
+                 break;
+
+            if (j == 82)
+            {
+                printf("%s ",str[i]);
+                no_word = 0;
+            }
+        }
+        
+        if (no_word)
+          printf("-1");
+        printf("\n");
+    }
+	return 0;
+}
+

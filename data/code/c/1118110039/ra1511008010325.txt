@@ -1,0 +1,35 @@
+#include<stdio.h>
+int main(void)
+{
+	int t,n,i,j;
+	char a[400],b[200];
+	scanf("%d",&t);
+	while(t--){
+		j=0;
+		scanf("%s",a);
+		for(i=0;a[i];i++){
+			if(a[i]>='a' && a[i]<='z')
+				printf("%c",a[i]);
+			else if(a[i]=='(')
+				b[j++]='(';
+			else if(a[i]==')'){
+				while(b[--j]!='(')
+					printf("%c",b[j]);
+			}
+			else{
+				if(b[j-1]=='(')
+					b[j++]=a[i];
+				else{
+					if(j>0){
+						printf("%c",b[j-1]);
+						b[j-1]=a[i];
+					}
+					else
+						b[j++]=a[i];
+				}
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}  

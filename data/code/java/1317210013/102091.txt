@@ -1,0 +1,24 @@
+import java.util.*;
+public class TestClass {
+
+    public static void main(String args[]) {
+        Scanner sc= new Scanner(System.in);
+        String str = sc.next();
+        permuteString("", str);
+    }
+
+  public static void permuteString(String beginningString, String endingString) {
+    if (endingString.length() <= 1)
+      System.out.println(beginningString + endingString);
+    else
+      for (int i = 0; i < endingString.length(); i++) {
+        try {
+          String newString = endingString.substring(0, i) + endingString.substring(i + 1);
+
+          permuteString(beginningString + endingString.charAt(i), newString);
+        } catch (StringIndexOutOfBoundsException exception) {
+          exception.printStackTrace();
+        }
+      }
+  }
+  }

@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+class prefix{
+   float a,b,c;
+  public:
+  void get()
+  {
+    cin>>a>>b>>c;
+    cout<<"Before overloading"<<endl<<a<<" "<<b<<" "<<c<<endl;
+  }
+  float d,e,f;
+  void operator++()
+  {
+    d=++a;
+    e=++b;
+    f=++c;
+  }
+  void display()
+  {
+    cout<<"After overloading"<<endl<<d<<" "<<e<<" "<<f;
+  }
+};
+int main()
+{
+  prefix p;
+  p.get();
+  ++p;
+  p.display();
+  return 0;
+}

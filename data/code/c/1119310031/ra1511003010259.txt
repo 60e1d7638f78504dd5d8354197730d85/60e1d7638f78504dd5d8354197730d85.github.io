@@ -1,0 +1,59 @@
+#include<stdio.h>
+long long po[32];
+long long power(int i,int j)
+{
+    if(j==1)
+        return i;
+    if(j==0)
+        return 1;
+        long long x;
+        if(po[j/2])
+        {
+            x=po[j/2];
+        }
+        else
+            x=power(i,j/2);
+    if(j&1)
+        return x*x*i;
+        else
+            return x*x;
+}
+int main()
+{
+    int n,i,q,r,pos;
+    long long a=0;
+    scanf("%d",&n);
+    long long ans[32];
+    long long cur[32];
+    for(i=0;i<32;i++)
+        po[i]=ans[i]=cur[i]=0;
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&q);
+        pos=0;
+        while(q)
+        {
+            r=q%2;
+            if(r)
+            {
+                if(cur[pos])
+                {
+                    ans[pos]+=cur[pos];
+                }
+                cur[pos]++;
+            }
+            pos++;
+            q=q/2;
+        }
+    }
+    for(i=0;i<32;i++)
+    {
+        if(ans[i])
+        {
+            a=a+ans[i]*power(2,i);
+        }
+    }
+    printf("%lld",a);
+    return 0;
+}
+ 

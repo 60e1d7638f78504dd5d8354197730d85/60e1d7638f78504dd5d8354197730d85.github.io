@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dist[100],visited[100],n,tme;
+struct gr
+{
+int i,d;
+};
+typedef struct gr node;
+vector<node> v[100];
+int bfs(int start)
+{
+  queue<int>q;
+  q.push(start);
+  for(int i=0;i<=n;i++)
+  {
+    visited[i]=0;
+    dist[i]=0;
+  }
+  visited[start]=1;
+  while(!q.empty())
+  {
+    int temp=q.front();
+    q.pop();
+    for(int i=0;i<(int)v[temp].size();i++)
+    {
+      if(visited[v[temp][i].i]==0)
+      {
+        visited[v[temp][i].i]=1;
+        dist[v[temp][i].i]+=dist[temp]+v[temp][i].d;
+        q.push(v[temp][i].i);
+      }
+    }
+  }
+  return int(max_element(dist+1,dist+n+1)-dist);
+}
+
+  
+
+
+int main()
+{
+int u1,v1,d;
+  node temp;
+  int tc;
+  cin>>tc;
+  while(tc--)
+  {
+    cin>>n;
+    for(int i=1;i<=n;i++)
+      v[i].clear();
+    for(int i=1;i<=n-1;i++)
+    {
+      cin>>u1>>v1>>d;
+    temp.i=v1;
+      temp.d=d;
+      v[u1].push_back(temp);
+      temp.i=u1;
+      v[v1].push_back(temp);
+    }
+      int start=bfs(1);
+      int ans=bfs(start);
+      int f=dist[ans];
+      int m=0;
+      if(f>100) m=100;
+      if(f>1000) m=1000;
+      if(f>10000) m=10000;
+      cout<<m<<" "<<f<<endl;
+      
+    
+      
+  }
+	return 0;
+}

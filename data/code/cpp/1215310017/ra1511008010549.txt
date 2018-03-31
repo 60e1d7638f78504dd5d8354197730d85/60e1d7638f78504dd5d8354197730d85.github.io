@@ -1,0 +1,26 @@
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+using namespace std;
+const int MAXN = (int)(1e6 + 7);
+#define ll long long
+ 
+int t, a[MAXN], n;
+ 
+int main(){
+	//freopen("test.cpp", "r", stdin);
+	scanf("%d", &t);
+	while(t--){
+		scanf("%d", &n);
+		for(int i = 1; i <= n; i++) scanf("%d", &a[i]);
+		int gc = a[1];
+		for(int i = 2; i <= n; i++){
+			gc = __gcd(gc, a[i]);
+		}
+		for(int i = 1; i <= n; i++){
+			printf("%d ", a[i] / gc);
+		}
+		printf("\n");
+	}
+	return 0;
+} 

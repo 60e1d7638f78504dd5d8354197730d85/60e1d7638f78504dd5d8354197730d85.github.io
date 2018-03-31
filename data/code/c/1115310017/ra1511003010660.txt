@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+void method()
+{
+int k,i,j,n;
+scanf("%d",&k);
+int a[2][k];
+  for(i=0;i<2;i++)
+	for(j=0;j<k;j++)
+		scanf("%d",&a[i][j]);
+		
+int sum[k+1];
+ 
+sum[0]=0;
+sum[1]=abs(a[0][0]-a[1][0]);
+ 
+for(n=2;n<=k;n++)
+	{
+	i=sum[n-1] + abs(a[0][n-1] -a[1][n-1]);
+	j=sum[n-2] + abs(a[0][n-1]-a[0][n-2]) + abs(a[1][n-1]-a[1][n-2]);
+	if(i>j)
+		sum[n]=i;
+	else
+		sum[n]=j;
+	}
+printf("%d\n",sum[k]);
+}
+ 
+int main()
+{
+method();
+return 0;
+} 

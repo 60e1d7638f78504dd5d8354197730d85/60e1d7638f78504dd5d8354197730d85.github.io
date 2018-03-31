@@ -1,0 +1,75 @@
+#include <stdio.h>
+void standard(int h,int m, int s);
+void hoursFormat(int h, int m, int s);
+int main()
+{
+  struct time
+  {
+    int h, m, s;
+  }t;
+  
+  scanf("%d\n%d\n%d", &t.h, &t.m, &t.s);
+  if(t.h>=24)
+  {
+    printf("Invalid Time");
+    return 0;
+  }
+  
+  if(t.m>=60 || t.s>=60)
+  {
+    printf("Invalid Time");
+    return 0;
+  }
+  
+  printf("24 Hours Format\n");
+  hoursFormat(t.h, t.m, t.s);
+  printf("12 Hours Format\n");
+  standard(t.h, t.m, t.s);
+	return 0;
+}
+
+void standard(int h, int m, int s)
+{
+  if(s>=60)
+  {
+    m++;
+    s=s-60;
+  }
+  
+  if(m>=60)
+  {
+    h++;
+    m=m-60;
+  }
+  
+  if(h>=12)
+  {
+    h=h-12;
+    printf("%d:%d:%d pm", h, m, s);
+  }
+  else
+  {
+    printf("%d:%d:%d am", h, m, s);
+  }
+}
+
+void hoursFormat(int hours, int min, int sec)
+{
+  if(sec>=60)
+  {
+    sec=sec-60;
+    min++;
+  }
+  
+  if(min>=60)
+  {
+    min=min-60;
+    hours++;
+  }
+  
+  if(hours>=24)
+  {
+    hours=0;
+  }
+  printf("%d:%d:%d\n", hours, min, sec);
+}

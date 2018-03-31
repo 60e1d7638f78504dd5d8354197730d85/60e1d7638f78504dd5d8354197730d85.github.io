@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int n;
+       Scanner sc=new Scanner(System.in);
+		n=sc.nextInt();
+       int arr[]=new int[n];
+       for(int i=0;i<n;i++)
+         arr[i]=sc.nextInt();
+       try{
+       System.out.println(InTestScore(arr));
+       }
+       catch(InvalidTestScore e)
+    {
+      System.out.println(e);
+       }
+	}
+  public static double InTestScore(int arr1[]) throws InvalidTestScore
+  {
+    double avg=0;
+      for(int i=0;i<arr1.length;i++)
+      {
+         if((arr1[i]<0) || (arr1[i]>100))
+         {
+      throw new InvalidTestScore("InvalidTestScore:");}
+        else
+          avg=avg+arr1[i];
+        
+    }
+    avg=avg/arr1.length;
+      return avg;
+  /*  catch(InvalidTestScore e)
+    {
+      System.out.println(e);
+    }*/
+  }
+  }
+
+ class InvalidTestScore extends Exception
+{
+  public InvalidTestScore(String msg)
+  {
+  super(msg);
+  }
+  public String toString()
+  {
+  return "InvalidTestScore: Invalid Test Score";
+}
+}

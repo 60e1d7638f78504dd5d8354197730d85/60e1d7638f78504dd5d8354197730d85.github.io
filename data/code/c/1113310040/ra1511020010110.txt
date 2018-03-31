@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{
+	int t,n,i,j,k;
+	scanf("%d",&t);
+	while(t--)
+	{
+		
+		int index=0,no,ans=0,arr[1000],left,right;
+		scanf("%d",&n);
+		for(i=1;i<=n;i++)
+		{
+			scanf("%d",&no);
+			if(no == 0)
+			{
+				for(k=index-1;k>=0;k--)
+				{
+					arr[k+1] = arr[k];
+				}
+				arr[0] = i;
+				index++;
+			}
+			else{
+				for(j=0;j<index;j++)
+				{
+					if(arr[j] == no)
+					{
+						break;
+					}
+				}
+				left = j+1;
+				right = index-1-j;
+				if(left >= right)
+				{
+					ans = ans + right;
+				}	
+				else{
+					ans = ans + left;
+				}
+				
+				for(k=index-1;k>=j+1;k--)
+				{
+					arr[k+1]=arr[k];
+				}
+				index++;
+				arr[j+1] = i;
+			}
+		}
+		printf("%d\n",ans);
+	}
+	return 0;
+} 

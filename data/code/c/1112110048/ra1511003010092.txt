@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+long double a[100000];
+  int A,n,r,k[100],i;
+  scanf("%d %d %d",&A ,&n, &r);
+  for(i=0;i<r;i++)
+    k[i]=0;
+  void canfill(int x, int k[]){
+  	if(x<=r){
+    k[x]++;
+    
+    if(k[x]>n){
+    	canfill(x+1,k);
+      k[x]=0;
+    }
+    }
+  }
+  
+  while (A>0){
+  	canfill(0,k);
+    A--;
+  }
+  for(i=0;i<r;i++)
+    printf("%d ",k[i]);
+	return 0;
+}

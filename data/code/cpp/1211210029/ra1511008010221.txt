@@ -1,0 +1,36 @@
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int resolveYears(int days) {
+    int years = 0;
+    while (days > 364) {
+        years++;
+        days = days - 365;
+    }
+    return years;
+}
+
+int resolveWeeks(int days) {
+    while (days > 364) {
+        days = days - 365;
+    }
+    return days / 7;
+}
+
+int resolveDays(int days) {
+    while (days > 364) {
+        days = days - 365;
+    }
+    return days % 7;
+}
+
+int main() {
+    int days;
+    cin >> days;
+    printf("Years:%d\n", resolveYears(days));
+    printf("Weeks:%d\n", resolveWeeks(days));
+    printf("Days:%d", resolveDays(days));
+    return 0;
+}

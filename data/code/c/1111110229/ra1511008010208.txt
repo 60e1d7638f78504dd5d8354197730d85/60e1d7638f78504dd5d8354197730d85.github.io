@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  char* cat=(char *)malloc(sizeof(char));
+  int reg=0,fee_r=0,back=0,fee_b=0,total=0;
+  scanf("%c%d%d%d%d",cat,&reg,&fee_r,&back,&fee_b);
+  int c=*cat;
+  switch(c){
+    case 65:
+      total=reg*fee_r+back*fee_b;
+      break;
+    case 66:
+      total=5000+reg*fee_r+back*fee_b;
+      break;
+    case 67:
+      total=1500+reg*fee_r+back*fee_b;
+      break;
+    case 68:
+      total=6500+reg*fee_r+back*fee_b;
+      break;      
+  }
+  printf("The fee to be paid is Rs=%d",total);
+
+  free(cat);
+	return 0;
+}

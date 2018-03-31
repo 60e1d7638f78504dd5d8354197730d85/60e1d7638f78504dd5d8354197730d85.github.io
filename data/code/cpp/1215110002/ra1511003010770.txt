@@ -1,0 +1,38 @@
+#include<iostream>
+#include<sstream>
+#include<stdlib.h>
+using namespace std;
+class TaxCalculator
+{
+  public:
+  void  initializeData(int a,int b,int c);
+  
+  void usage();
+  void  calculateTaxamount(int a);
+};
+int main()
+{
+int basic,da,hra;
+  string str;
+  float tx,fin,total;
+  int y=-1;
+  cin>>basic>>da>>hra>>y;
+    stringstream ss(str);
+  
+     ss>>y;
+  if(y==-1) y=5;
+  
+ 	float d = (float)basic*da/100;
+  	 float hr = (float)basic*hra/100;
+     total = basic+d+hr;
+  
+   if (y==0) y=5; 
+  tx=total*y/100;
+  
+  fin=total-tx;
+  cout<<"Basic Salary="<<basic<<endl<<"DA="<<d<<endl<<"HRA="<<hr<<endl;
+  cout<<"Total="<<total<<endl;
+ 
+   printf("Tax=%.0f\nFinalSalary=%.0f",tx,fin);
+	return 0;
+}

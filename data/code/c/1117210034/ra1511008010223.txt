@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+long int n,i,j,a[300000],max=0;
+int main()
+{
+   scanf("%ld",&n);
+   for(i=0;i<n;i++)
+   {
+       scanf("%ld",&a[i]);
+   }
+   for(i=0;i<n;i++)
+   {
+       for(j=i+1;j<n;j++)
+       {
+           if((a[i]&a[j])>max)
+           {
+           max=a[i]&a[j];
+           //printf("%ld\n",a[i]&a[j]);
+           }
+       }
+   }
+   printf("%ld",max);
+    return 0;
+}  

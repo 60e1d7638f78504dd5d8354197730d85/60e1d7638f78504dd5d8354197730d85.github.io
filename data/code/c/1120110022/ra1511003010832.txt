@@ -1,0 +1,26 @@
+#include <stdio.h>
+int getInvCount(int arr[], int n)
+{
+  int inv_count = 0;
+  int i,j;
+  for ( i = 0; i < n - 1; i++)
+    for ( j = i+1; j < n; j++)
+      if (arr[i] > arr[j])
+        inv_count++;
+ 
+  return inv_count;
+}
+ 
+int main(int argv, char** args)
+{
+  
+  int n ;
+  scanf("%d",&n);
+  int q;
+  int arr[n];
+  for(q=0;q<n;q++){
+  scanf("%d",&arr[q]);
+  }
+  printf("%d\n", getInvCount(arr, n));
+  return 0;
+}

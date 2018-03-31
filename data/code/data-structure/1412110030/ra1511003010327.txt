@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+    int n,i,j,k,a[100],temp,b;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&b);
+      for(j=0;j<b;j++)
+      {
+        scanf("%d",&a[j]);
+      }
+      for(k=0;k<b-1;k++)
+        for(j=k+1;j<b;j++)
+        {
+          if(a[k]>a[j])
+          {
+            temp=a[k];
+            a[k]=a[j];
+            a[j]=temp;
+          }
+        }
+      for(j=0;j<b;j++)
+        printf("%d ",a[j]);
+      printf("\n");
+    }
+	return 0;
+}

@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int fast_read()
+{
+    int value=0;
+    char ch;
+    ch=getchar_unlocked();
+    while(!(ch>='0'&&ch<='9'))
+    {
+        ch=getchar_unlocked();
+    }
+    while((ch>='0'&&ch<='9'))
+    {
+        value=(value<<3)+(value<<1)+(ch-'0');
+        ch=getchar_unlocked();
+    }
+    return value;
+}
+ 
+int flip(int l,int r,int c)
+{
+int x;
+if(c>r || c<l)
+    {
+    return c;
+    }
+else
+    {
+    x=c-l;
+    c=r-x;
+    return c;
+    }
+}
+ 
+int main()
+{
+    int t,n,c,q,l,r;
+    t=fast_read();
+    while(t>0)
+        {
+        n=fast_read();
+        c=fast_read();
+        q=fast_read();
+        while(q>0)
+            {
+            l=fast_read();
+            r=fast_read();
+            c=flip(l,r,c);
+            q--;
+            }
+        printf("%d\n",c);
+        t--;
+        }
+    return 0;
+}

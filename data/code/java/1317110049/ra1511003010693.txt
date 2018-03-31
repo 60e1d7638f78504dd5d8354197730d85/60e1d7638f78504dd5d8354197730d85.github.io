@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner x = new Scanner(System.in);
+       String s = x.nextLine();
+       int t = s.length();
+       int d = 0, u = 0, l = 0, o = 0;
+       for(int i = 0; i < t; i++){
+         if(Character.isDigit(s.charAt(i)))
+           d++;
+         else if(Character.isLetter(s.charAt(i)))
+           if(Character.isUpperCase(s.charAt(i)))
+             u++;
+           else
+             l++;
+         else
+           o++;
+       }
+       System.out.println("Uppercase letters are " + String.format("%.02f", (double)(u * 100) / t) + "%");
+       System.out.println("Lowercase letters are " + String.format("%.02f", (double)(l * 100) / t) + "%");
+       System.out.println("Digits Are " + String.format("%.02f", (double)(d * 100)/ t) + "%");
+       System.out.println("Other Characters Are " + String.format("%.02f", (double)(o * 100) / t) + "%");
+	}
+}

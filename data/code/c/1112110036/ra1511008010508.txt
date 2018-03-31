@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+	int val,n,size=0,i,sum=0;
+  	scanf("%d",&val);
+  	n=val;
+  	while(n!=0)
+    {
+      n/=10;
+      size++;
+    }
+  	int arr[size];
+  	n=val;
+  	for(i=0;i<size;i++)
+    {
+      arr[i]=n%10;
+      n/=10;
+      //printf("%d",arr[i]);
+      sum=sum+pow(arr[i],size);
+    }
+  	//printf("%d",sum);
+  	if(val==sum)
+      printf("Narcissistic Number");
+  	else
+      printf("NOT Narcissistic Number");
+	return 0;
+}

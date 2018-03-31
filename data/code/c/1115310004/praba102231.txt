@@ -1,0 +1,92 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "limits.h"
+#include "math.h"
+#include "string.h"
+#include "assert.h"
+#include "stdint.h"
+#define abso(a) (a)>(0)?(a):(-a)
+#define VI vector<int>
+#define pb push_back
+#define all(c) c.begin(), c.end()
+#define lli long long int
+#define CLR(p) memset(p, 0, sizeof(p))
+ 
+inline void inp(int *n)
+{
+    *n = 0;
+    int ch = getchar_unlocked();
+    while(ch < '0' || ch > '9') 
+    {
+        ch = getchar_unlocked();
+    }
+    while(ch >= '0' && ch <= '9')
+        (*n) = ((*n)<<3) + ((*n)<<1) + ch - '0', ch = getchar_unlocked();
+}
+inline void out(register int N)
+{
+    register int rev=N, count = 0;
+    if (N == 0)
+    {
+        putchar_unlocked('0');
+        putchar_unlocked('\n');
+        return ;
+    }
+    while ((rev % 10) == 0)
+    {
+        count++;
+        rev /= 10;
+    }
+    rev = 0;
+ 
+    while (N != 0)
+    {
+        rev = (rev<<3) + (rev<<1) + N % 10;
+        N /= 10;
+    }
+    while (rev != 0)
+    {
+        putchar_unlocked(rev%10 + '0');
+        rev /= 10;
+    }
+    while (count--)
+        putchar_unlocked('0');
+    putchar_unlocked('\n');
+    
+    return ;
+}
+ 
+int main()
+{
+    int tmp, n, i, j, k, q, cnt;
+    int memo[301][301][11] = {0};
+	inp(&n);
+ 
+	for (i = 1; i <= n; ++i)
+    {
+        for (j = 1; j <= n; ++j)
+        {
+            inp(&tmp);
+            for (k = 0; k < 11; ++k)
+            {
+                memo[i][j][k] = memo[i-1][j][k] + memo[i][j-1][k] - memo[i-1][j-1][k];
+            }
+            memo[i][j][tmp]++;
+        }
+    }
+    inp(&q);
+    while(q--)
+    {
+        cnt = 0;
+        inp(&i);    inp(&j);
+        inp(&n);    inp(&tmp);
+        
+        for (k = 0; k < 11; ++k)
+        {
+            if(memo[n][tmp][k] - memo[n][j-1][k] - memo[i-1][tmp][k] + memo[i-1][j-1][k] > 0)
+                cnt++;
+        }
+        out(cnt);
+    }
+	return 0;
+}      

@@ -1,0 +1,35 @@
+#include <stdio.h>
+ 
+int main() {
+    long n,sum=0;
+  long i;
+    scanf("%ld",&n);
+    long a[n];
+    for( i=0;i<n;i++) {
+        scanf("%ld",&a[i]);
+    }
+    
+    if(n==1){
+        printf("%ld",a[0]);
+    }
+ 
+    if(n>1){
+        for(i=1;i<n;i++){
+            if(a[i]==0){
+                long j=i;
+            
+            while(a[j]==0){
+                j=j-1;
+            }
+            
+            a[j]=0;}
+        }
+        
+        for( i=0;i<n;i++)
+            sum=sum+a[i];
+            
+        printf("%ld",sum);
+    }
+    
+    return 0;
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+struct stud
+{
+  char str[100];
+}s[100],t;
+int main()
+{
+  int no,i,j;
+  scanf("%d",&no);
+  for(i=0;i<no;i++)
+    scanf("%s",s[i].str);
+  for(i=0;i<no;i++)
+    for(j=i+1;j<no;j++)
+      if(strcmp(s[i].str,s[j].str)>0)
+      {
+        t=s[i];
+        s[i]=s[j];
+        s[j]=t;
+      }
+  for(i=0;i<no;i++)
+    printf("%s\n",s[i].str);
+	return 0;
+}

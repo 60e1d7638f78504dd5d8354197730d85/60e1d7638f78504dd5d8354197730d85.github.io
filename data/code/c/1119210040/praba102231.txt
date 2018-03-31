@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main()
+{
+	int n,m,d,i,j=0,ar[100001];
+	char ch;
+	scanf("%d %d",&n,&m);
+	for(i=0;i<n;i++)
+		scanf("%d",&ar[i]);
+	for(i=1;i<=m;i++)
+	{
+		scanf(" %c%d",&ch,&d);
+		if(ch=='C')		j=(j+d)%n;
+		else if(ch=='A')	j=(j+n-d)%n;	
+		else if(ch=='R')	printf("%d\n",ar[(j+d-1)%n]);			
+	}
+	return 0;
+} 

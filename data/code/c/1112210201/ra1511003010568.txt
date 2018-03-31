@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+    int n,low, high, i, flag;
+  scanf("%d",&n);
+  while(n--)
+  {
+    scanf("%d %d",&low,&high);
+    while (low <= high)
+    {
+        flag = 0;
+        if(low>2)
+        {
+        for(i = 2; i <= low/2; ++i)
+        {
+            if(low % i == 0)
+            {
+                flag = 1;
+                break;
+            }
+        }
+        }
+      else
+        if(low==0||low==1)
+          flag=1;
+
+        if (flag == 0)
+            printf("%d\n",low);
+
+        ++low;
+    }
+    printf("\n\n");
+  }
+    return 0;
+}

@@ -1,0 +1,144 @@
+#include <cassert>
+#include <cctype>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <algorithm>
+#include <bitset>
+#include <deque>
+#include <iostream>
+#include <iomanip>
+#include <limits>
+#include <list>
+#include <map>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <utility>
+#include <vector>
+#include <fstream>
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef long double ld;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <string> vs;
+typedef vector <vi> vvi;
+typedef istringstream iss;
+typedef ostringstream oss;
+typedef map< char, int > mci;
+typedef map< int, int > mii;
+ 
+const int INF = (int) 1E9 + 5;
+const ll LINF = (ll) 4E18 + 5;
+const ld PI = acos(-1.0);
+const ld E = 2.718281828459045L;
+const double EPS = 1.0e-9;
+ 
+#define s(n)					scanf("%d",&n)
+#define p(n)                    printf("%d", n )
+#define sl(n) 					scanf("%lld",&n)
+#define pl(n)                   printf("%lld", n )
+#define sf(n) 					scanf("%lf",&n)
+#define pf(n)                   printf("%lf", n )
+#define ss(n) 					scanf("%s",n)
+#define ps(n)                   printf("%s", n )
+#define ln                      printf("\n" )
+#define sp                      printf(" ")
+#define FOR(i, a, b) for (int i = (a); i < (b); i++)
+#define FORD(i, a, b) for (int i = (a); i >= (b); i--)
+#define REP(i, a) for (int i = 0; i < (a); i++)
+#define REPD(i, a) for (int i = ((a) - 1); i >= 0; i--)
+#define FIT(it, v) for (typeof((v).begin())it = (v).begin(); it != (v).end(); ++it)
+#define FITD(it, v) for (typeof((v).rbegin())it = (v).rbegin(); it != (v).rend(); ++it)
+#define VAR(a, b) typeof(b) a(b)
+#define ALL(v) (v).begin(), (v).end()
+#define SET(a, x) memset((a), (x), sizeof(a))
+#define SIZE(a) ((int)(a).size())
+#define EXIST(a, b) (find(ALL(a), (b)) != (a).end())
+#define SORT(x) sort(ALL(x))
+#define GSORT(x) sort(ALL(x), greater<typeof(*((x).begin()))>())
+#define UNIQUE(v) SORT(v); (v).resize(unique(ALL(v)) - (v).begin())
+#define ENUM(v) FIT(it, (v)) cout << *it << " "; cout << endl
+#define PF push_front
+#define PB push_back
+#define MP make_pair
+#define F first
+#define S second
+ 
+ 
+// fast input for integers
+#define getcx                   getchar_unlocked
+inline void inp_int( int &n )
+{
+       n = 0;
+       int ch=getcx(); int sign = 1;
+       while( ch < '0' || ch > '9' )  { if ( ch == '-' ) sign = -1; ch=getcx(); }
+       while( ch >= '0' && ch <= '9' ) n=(n<<3)+(n<<1)+ch-'0', ch=getcx();
+       n = n*sign;
+}
+ 
+inline void inp_string( char k[] )
+{
+       int cnt = 0;
+       int ch = getcx();
+       while ( ch < 'a' || ch > 'z' ) ch = getcx();
+       while ( ch >= 'a' && ch <= 'z' ) k[cnt++] = ch, ch = getcx();
+       k[cnt] = '\0';
+}
+ 
+//main codes begin here
+ 
+const int maxn = 1000001;
+int rem[maxn];
+char s[maxn][16];
+int mn[maxn];
+ 
+int main()
+{
+    int n;
+    inp_int( n );
+    
+    int num, cnt, size;
+    char x[16];
+    
+    cnt = size = 1;
+    mn[0] = 100000;
+    REP( i, n ) {
+         inp_int( num );
+         
+         if ( num == -1 ) {
+              cnt--;
+              rem[cnt] += size;
+              
+              printf( "%d %s\n", rem[cnt], s[cnt] );
+              
+              rem[cnt] = size = 0;
+         }
+         else {
+              inp_string( x );
+              
+              if ( num == 0 ); 
+              else if ( num <= mn[cnt-1] ) {
+                   mn[cnt] = num;
+                   rem[cnt-1] += size;
+                   
+                   strcpy( s[cnt], x );
+                   
+                   cnt++;
+                   size = 0;
+              }
+              else size++;
+         }
+    }
+    
+             
+    return 0;
+}
+ 

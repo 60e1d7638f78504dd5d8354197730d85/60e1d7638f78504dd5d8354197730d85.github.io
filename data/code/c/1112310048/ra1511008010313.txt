@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+char array[55][55];
+int lr[55][55];
+int tb[55][55];
+int rl[55][55];
+int bt[55][55];
+int t,r,c,i,j,count;
+scanf("%d",&t);
+ 
+while(t--)
+{
+  scanf("%d %d",&r,&c);
+  for(i=0;i<r;i++)
+  {
+     scanf("%s",array[i]);
+  }
+  for(i=0;i<r;i++)
+  {
+	  for(j=0;j<c;j++)
+	  {
+		  if(array[i][j]=='#')
+		  lr[i][j]=0;
+		  else
+		  {
+			  if(j==0)
+			  lr[i][j]=1;
+			  else
+			  lr[i][j]=lr[i][j-1]+1;
+		  }
+	  }
+  }
+  for(i=0;i<r;i++)
+  {
+	  for(j=c-1;j>=0;j--)
+	  {
+		  if(array[i][j]=='#')
+		  rl[i][j]=0;
+		  else
+		  {
+			  if(j==(c-1))
+			  rl[i][j]=1;
+			  else
+			  rl[i][j]=rl[i][j+1]+1;
+		  }
+	  }
+  }
+  
+  for(j=0;j<c;j++)
+  {
+	  for(i=0;i<r;i++)
+	  {
+		  if(array[i][j]=='#')
+		  tb[i][j]=0;
+		  else
+		  {
+			  if(i==0)
+			  tb[i][j]=1;
+			  else
+			  tb[i][j]=tb[i-1][j]+1;
+		  }
+	  }
+  }
+  
+   for(j=0;j<c;j++)
+  {
+	  for(i=r-1;i>=0;i--)
+	  {
+		  if(array[i][j]=='#')
+		  bt[i][j]=0;
+		  else
+		  {
+			  if(i==(r-1))
+			  bt[i][j]=1;
+			  else
+			  bt[i][j]=bt[i+1][j]+1;
+		  }
+	  }
+  }
+  
+  
+  count=0;
+  for(i=0;i<r;i++)
+  {
+     for(j=0;j<c;j++)
+     {
+		 
+        if((lr[i][j])<3)
+        continue;
+        if((rl[i][j])<3)
+        continue;
+        if((tb[i][j])<3)
+        continue;
+        if((bt[i][j])<3)
+        continue;
+        count++;
+      }
+    
+  }
+  printf("%d\n",count);
+  
+}
+return 0;
+} 

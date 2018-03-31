@@ -1,0 +1,90 @@
+#include<stdio.h>
+void merge(long long int a[],long long int l,long long int mid,long long int r)
+{
+	long long int k=0;
+	long long int i=l;
+	long long int c[100001];
+	long long int j=mid;
+	while(i<mid && j<r)
+	{
+		if(a[i]<a[j])
+		{
+			c[k]=a[i];
+			i++;
+			k++;
+		}
+		else
+		{
+			c[k]=a[j];
+			j++;
+			k++;
+		}
+	}
+	while(i<mid)
+	{
+		c[k]=a[i];	
+		i++;
+		k++;
+	}
+	while(j<r)
+	{
+		c[k]=a[j];
+		j++;
+		k++;
+	}
+	for(i=0;i<k;i++)
+	{
+		a[i+l]=c[i];
+	}
+ 
+	return;
+}
+void msort(long long int a[],long long int l,long long int r)
+{
+	if(r-l<=1)
+		return;
+ 
+	long long int i;
+	long long int mid=(r+l)/2;
+	msort(a,l,mid);
+	msort(a,mid,r);
+ 
+	merge(a,l,mid,r);
+	return;
+}
+int main()
+{
+	long long int a[100001];
+	long long int n;
+	long long int i;
+	int test,t;
+	scanf("%d",&test);
+	for(t=0;t<test;t++)
+	{
+		scanf("%lld",&n);
+		long long int two=0;
+		for(i=0;i<n;i++)
+		{
+			scanf("%lld",&a[i]);
+			if(a[i]==2)
+				two++;
+		}
+ 
+		msort(a,0,n);
+ 
+		long long int ans=0;
+		for(i=0;i<n;i++)
+		{
+			if(a[i]>2)
+				ans=ans+n-1-i;
+ 
+			if(a[i]==2)
+			{
+				ans=ans+n-1-i-two+1;
+				two--;
+			}
+		}
+		printf("%lld\n",ans);
+	}
+	return 0;
+}

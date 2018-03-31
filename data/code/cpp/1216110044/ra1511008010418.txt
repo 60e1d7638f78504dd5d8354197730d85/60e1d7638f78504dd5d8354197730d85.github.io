@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int gcd(int a,int b)
+{
+  if(b==0)
+     return a;
+  else
+    return gcd(b,a%b);
+}
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int n;
+    cin>>n;
+    long int a[n+3];
+    for(int j=0;j<n;j++)
+      cin>>a[j];
+    long long lcm;
+    long long temp;
+    long long ans=1e18;
+    for(int j=0;j<n;j++)
+    {
+      for(int k=j+1;k<n;k++)
+      {
+        temp=gcd(a[j],a[k]);
+        lcm=a[j]*a[k];
+        lcm=lcm/temp;
+        if(lcm<ans)
+          ans=lcm;
+      }}
+    cout<<ans<<endl;
+  }
+
+	return 0;
+}

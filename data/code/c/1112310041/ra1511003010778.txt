@@ -1,0 +1,61 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,flag,min,i,j;
+  int arr[100], ans[100][100];
+  
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&n);
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&arr[j]);
+    }
+    
+    min=arr[0];
+    for(j=0;j<n;j++)
+    {
+      if(arr[j]<min)
+      {
+        min=arr[j];
+      }
+    }
+    //printf("%d\n",min);
+    
+    flag=1;
+    for(j=0;j<n;j++)
+    {
+      if(arr[j]%min!=0)
+      {
+        flag=0;
+        break;
+      }
+    }
+    
+    if(flag==1)
+    {
+      for(j=0;j<n;j++)
+      {
+        arr[j]=arr[j]/min;
+      }
+    }
+    
+    for(j=0;j<n;j++)
+    {
+      ans[i][j]=arr[j];
+    }
+  }
+  
+  for(i=0;i<t;i++)
+  {
+    j=0;
+    while(ans[i][j]!='\0')
+    {
+      printf("%d ",ans[i][j]);
+      j++;
+    }
+    printf("\n");
+  }
+  return 0;
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+const int m=2*(1000000000+7);
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int h;
+    scanf("%d",&h);
+    int r=fastf(h);
+    r=r/2+r%2;
+    r=r%(m/2);
+    printf("%d\n",r);
+
+	
+}
+}
+int fastf(int n)
+{
+  int a=1,b=1,c=0;
+  int pa=1,pb=0,pc=1;
+  while(n>0)
+  {
+    if(n%2==1)
+    {
+      int npa=pa*a+pb*b;
+      int npb=pa*b+pb*c;
+      int npc=pb*b+pc*c;
+      pa=npa%m;
+      pb=npb%m;
+      pc=npc%m;
+    }
+      int na=a*a+b*b,nb=a*b+b*c,nc=b*b+c*c;
+      a=na%m;
+      b=nb%m;
+      c=nc%m;
+      n/=2;
+    
+  }
+  return pb;
+}

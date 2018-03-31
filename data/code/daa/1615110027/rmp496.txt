@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[1000002];
+int dp[1000002];
+void calculate(){
+    dp[0]=dp[1]=-1;
+    arr[0]=2,arr[1]=2,arr[2]=3,arr[3]=5,arr[4]=7;
+    for(int i=2;i<1000002;i++){
+        int max = 1000002;
+        for(int j=4;j>=0;j--){
+            if(arr[j]>i)
+                continue;
+            if(i-arr[j]==0)
+                max = 1;
+            else if(dp[i-arr[j]]!=-1)
+                max = min(max,1+dp[i-arr[j]]);
+        }
+        dp[i] = max;
+    }
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    calculate();
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        if(n==1) cout<<-1<<endl;
+        else cout<<dp[n]<<endl;
+    }
+    return 0;
+}

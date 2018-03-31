@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef struct {
+    int beg;
+    int end;
+} blandian;
+ 
+void work();
+ 
+int main() {
+    int T;
+    scanf("%d", &T);
+    while(T--) {
+        work();
+    }
+    return 0;
+}
+ 
+void work() {
+    int N;
+    scanf("%d", &N);
+    blandian blandarray[50001];
+    int sooths[50001];
+    int solutions[50001];
+    int i, tbeg, tend;
+    for(i = 0; i <= N; i++) {
+        sooths[i] = 0;
+    }
+    for(i = 0; i < N; i++) {
+        scanf("%d %d", &tbeg, &tend);
+        sooths[tbeg]++;
+        if(tend < N) {
+            sooths[tend + 1]--;
+        }
+        blandarray[i].beg = tbeg;
+        blandarray[i].end = tend;
+    }
+    int votes = 0, solns = 0;
+    for(i = 0; i <= N; i++) {
+        votes += sooths[i];
+        if(votes == i) {
+            solutions[solns++] = i;
+        }
+    }
+    printf("%d\n", solns % 1000000007);
+    int j, k, rbeg, rend;
+    for(i = 0; i < N; i++) {
+        if(blandarray[i].beg <= solutions[0] && blandarray[i].end >= solutions[solns-1]) {
+            printf("1");
+        }
+        else {
+            printf("0");
+            if(solns == 1) continue;
+            for(j = 0; j < solns; j++) {
+                if(blandarray[i].beg <= solutions[j]) break;
+            }
+            for(k = j; k < solns; k++) {
+                if(blandarray[i].end < solutions[k]) break;
+            }
+            rbeg = j;
+            rend = k;
+            for(j = rbeg, k = rend; k < solns; k++, j++) {
+                solutions[j] = solutions[k];
+            }
+            solns -= (rend - rbeg);
+        }
+    }
+    printf("\n");
+ 
+}

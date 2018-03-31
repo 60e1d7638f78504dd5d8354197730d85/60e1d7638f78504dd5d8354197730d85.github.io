@@ -1,0 +1,31 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class TestClass {
+
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		int a=sc.nextInt();
+		int k=sc.nextInt();
+		int b[]=new int[a];
+		for (int i = 0; i < a; i++) {
+			b[i]=sc.nextInt();
+		}
+		Arrays.sort(b);
+	
+		int min=b[k-1]-b[0];
+		
+		for (int i = 1; i < a-k; i++) {
+			int x=b[k+i-1]-b[i];
+			
+			min=min>x?x:min;
+		}
+		if(k==1)
+			System.out.println(b[0]);
+    
+		else
+			System.out.println(min);
+	}
+}

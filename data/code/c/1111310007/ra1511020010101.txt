@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,m,a[100],lar,i;
+        scanf("%d%d",&n,&m);
+        lar=0;
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+            if(a[i]>lar)
+                lar=a[i];
+        }
+        for(i=0;i<n;i++)
+        {
+            m=m-(lar-a[i]);
+            //printf("%d ",m);
+            if(m>=0)
+            {
+                a[i]=lar;
+            }
+            else if(m<0)
+                break;
+        }
+        //printf("\n");
+        if(m==0)
+            printf("Yes\n");
+        else if(m<0)
+            printf("No\n");
+        else if(m>0 && m%n==0)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+return 0;
+}

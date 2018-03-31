@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{int A,B,GCD,LCM,num,dem,rem;
+ scanf("%d %d",&A,&B);
+ if(A>B)
+ {
+   num=A;
+   dem=B;
+ }
+ else
+ {
+   num=B;
+   dem=A;
+ }
+ rem=A%B;
+ while(rem!=0)
+ {
+   num=dem;
+   dem=rem;
+   rem=num%dem;
+ }
+ GCD=dem;
+ LCM=(A*B)/GCD;
+ printf("%d %d",GCD,LCM);
+	return 0;
+}

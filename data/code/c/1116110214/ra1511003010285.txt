@@ -1,0 +1,52 @@
+#include<stdio.h>
+int main()
+         {
+           int i,j,m,n,last,prev,f=1;
+           scanf("%d%d",&m,&n);
+           int arr[m];
+           for(i=0;i<m;i++)
+           {
+             scanf("%d",&arr[i]);
+           }
+           
+           for(i=0;i<m;i++)
+           {
+             if(arr[i]==arr[i+1])
+             {
+               f=0;
+               break;
+             }
+           }
+           
+           if(f!=0)
+           {
+             for(i=0;i<m;i++)
+             {
+               prev=arr[i]%10;
+               while(arr[i]>0)
+               {
+                 last=arr[i]%10;
+                 arr[i]=arr[i]/10;
+                 if(last!=prev)
+                 {
+                   f=0;
+                   break;
+                 }
+                 prev=last;
+               }
+             }
+           }
+           
+           if(f==1)
+           {
+             printf("YES");
+           }
+           else
+           {
+             printf("NO");
+           }
+           
+           return 0;
+         }
+             
+                 

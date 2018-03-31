@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+union digit
+{
+  char ch[4];
+};
+int main()
+{
+  union digit ob;
+  fgets(ob.ch,4,stdin);
+  int size,i,sum=0;
+  size=strlen(ob.ch);
+  int n[size],n1[size];
+  for(i=0;i<size;i++)
+  {
+    n[i]=ob.ch[i];
+    n1[i]=n[i]-'0';
+    sum=sum+n1[i];
+  }
+  printf("%d", sum);
+  
+  
+
+	return 0;
+}

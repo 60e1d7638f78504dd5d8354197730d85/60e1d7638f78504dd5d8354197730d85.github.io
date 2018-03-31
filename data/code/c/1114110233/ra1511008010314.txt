@@ -1,0 +1,23 @@
+#include <stdio.h>
+#define sd(n) scanf("%d",&n)
+int foo(int p)
+{
+    int ret=0;
+    while(p)
+      ret+=p&1,p/=2;
+    return ret;
+}
+int main()
+{
+    int t;
+    sd(t);
+    while(t--)
+    {
+        int n,ans=0,i;
+        sd(n);
+        for(i=1; i<=n; i++)
+            ans+=foo(i);
+        printf("%d\n",ans);
+    }
+    return 0;
+}

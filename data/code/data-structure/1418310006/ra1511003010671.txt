@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MOD 1000000007
+ 
+typedef long long int ll;
+ 
+void preprocess(ll* cost)
+{
+    bool ok = true;
+    while(ok)
+    {
+        ok = false;
+        for(ll i = 0; i < 10; i++)
+        {
+            for(ll j = 0; j < 10; j++)
+            {
+                if(cost[(i+j)%10] > cost[i]+cost[j])
+                {
+                    ok = true;
+                    cost[(i+j)%10] = min(cost[(i+j)%10], cost[i]+cost[j]);
+                }
+            }
+            // cout << i << " " << cost[i] << endl;
+        }
+    }
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        ll *cost = new ll[10];
+        for(ll i = 0; i < 10; i++)
+            cin >> cost[i];
+        ll c;
+        cin >> c;
+        string str;
+        cin >> str;
+        preprocess(cost);
+        ll ans = 0;
+        for(ll i = 0; i < str.length(); i++)
+        {
+            // cout << str[i]-'0' << endl;
+            ans += cost[str[i]-'0'];
+            // cout << str[i]-'0' << " " << cost[str[i]-'0'] << endl;
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}

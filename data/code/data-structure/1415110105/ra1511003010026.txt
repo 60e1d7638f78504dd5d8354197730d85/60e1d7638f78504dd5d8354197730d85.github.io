@@ -1,0 +1,32 @@
+#include <stdio.h>
+int i,top=-1;
+void push(int n,int stack[],int size)
+{
+  if(top==size-1)
+    printf("Stack's full bitch");
+  else
+  {
+    top++;
+    stack[top]=n;
+  }
+}
+void print(int stack[])
+{
+  int i;
+  printf("Top=%d",stack[top]);
+  for(i=top;i>=0;i--)
+    printf("\n%d",stack[i]);
+}
+int main()
+{
+  int n,size;
+  scanf("%d",&size);
+  int s[100];
+  for(i=0;i<size;i++)
+  {
+    scanf("%d",&n);
+    push(n,s,size);
+  }
+  print(s);
+	return 0;
+}

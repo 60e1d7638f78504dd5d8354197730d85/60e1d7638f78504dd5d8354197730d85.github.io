@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+#define s(x) scanf("%lld", &(x))
+#define ss(x) scanf("%d", &(x))
+ 
+int main()
+{
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
+    int t;
+    ss(t);
+    while( t-- ){
+        ll n;
+        s(n);
+        if( n==1LL ){
+            printf( "INFINITY\n" );
+            continue;
+        }
+        ll sq = sqrt( n );
+        ll ans = ( n+1 )/ 2;
+        ll temp , flag = 0, rem = 0;
+        for( int i=2; i<=sq; i++ ){
+            temp = n;
+            while( temp!=0 ){
+                rem = temp%i;
+                temp = temp/i;
+            }
+            if( rem==1 )
+                ans++;
+        }
+        printf( "%lld\n",ans);
+    }
+ 
+    return 0;
+}
+ 

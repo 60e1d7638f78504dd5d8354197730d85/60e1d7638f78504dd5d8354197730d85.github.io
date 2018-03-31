@@ -1,0 +1,125 @@
+#include <stdio.h>
+ 
+#define ll long long
+#define MOD 1000000007
+#define MAX_L 400001
+#define MAX_FACT 800000
+#define MAX(a, b) (a > b ? a : b)
+ 
+void preparemodinverse(int);
+void preparefact(int);
+ 
+ll countways(ll w, ll h);
+ 
+ll inv[MAX_L];
+ll invfact[MAX_L];
+ll fact[MAX_FACT + 1];
+ 
+int factlast = 1;
+int invlast = 2;
+ 
+int main()
+{
+	int r;
+	int i;
+	
+	inv[0] = 0;
+	inv[1] = 1;
+	invfact[0] = 1;
+	invfact[1] = 1;
+	fact[0] = 1;
+		
+	scanf("%d", &r);
+ 
+	
+	for(i = 0; i<r; i++)
+	{
+		ll upleft, downright;
+ 
+		ll result = 1;
+		ll n, m, a, b;
+ 
+		ll j;
+		ll upleftw, downrighth;
+ 
+		scanf("%lld %lld %lld %lld", &n, &m, &a, &b);
+ 
+		preparefact(MAX(factlast + 100000, n+m));
+		preparemodinverse(MAX(invlast + 50000, MAX(n, m)));
+ 
+		upleftw= n - a;
+		downrighth = m - b;
+ 
+		upleft = countways(upleftw, b);
+		downright = countways(a, downrighth);
+ 
+		result = (downright * upleft) % MOD;
+		if(result < 0) result += MOD;
+ 
+		upleftw--;
+		for(j = b + 1; j<=m; j++)
+		{
+			ll temp, temp2;
+			temp = countways(upleftw, j);
+			temp2 = countways(a, m - j);
+ 
+			temp = (temp * temp2) % MOD;
+			if(temp < 0) temp += MOD;
+ 
+			result += temp;
+			if(result >= MOD) result -= MOD;
+		}
+ 
+		printf("%lld\n", result);
+	}
+ 
+	return 0;
+}
+ 
+void preparemodinverse(int last)
+{
+	int i;
+	if(invlast == MAX_L - 1) return;
+ 
+	last = (last >= MAX_L ? MAX_L - 1 : last);
+ 
+	for(i = invlast; i<=last; i++)
+	{
+		inv[i] = (-(MOD / i) * inv[MOD % i]) % MOD + MOD;
+		invfact[i] = (invfact[i - 1] * inv[i]) % MOD;
+		if(invfact[i] < 0) invfact[i] += MOD;
+	}
+ 
+	invlast = last;
+}
+ 
+void preparefact(int last)
+{
+	int i;
+ 
+	if(factlast == MAX_FACT) return;
+ 
+	last = (last > MAX_FACT ? MAX_FACT : last);
+ 
+	for(i = factlast; i<=last; i++)
+	{
+		fact[i] = fact[i-1]*i;
+		if(fact[i] > MOD)
+		{
+			fact[i] = fact[i] % MOD;
+			if(fact[i] < 0) fact[i] += MOD;
+		}
+	}
+	factlast = last + 1;
+}
+ 
+ll countways(ll w, ll h)
+{
+	ll result = (fact[w + h] * invfact[w]) % MOD;
+	if(result < 0) result += MOD;
+ 
+	result = (result * invfact[h]) % MOD;
+	if(result < 0) result += MOD;
+ 
+	return result;
+} 

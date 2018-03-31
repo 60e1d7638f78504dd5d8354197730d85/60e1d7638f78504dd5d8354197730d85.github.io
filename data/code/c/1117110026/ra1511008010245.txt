@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int gcd( int a , int b);
+int lcm( int a , int b , int gcd);
+int main()
+{
+   int a , b, gd;
+   scanf("%d %d",&a,&b);
+   gd =  gcd( a , b);
+    lcm( a , b , gd);
+   return 0;
+}
+
+int gcd( int a , int b)
+{
+   a = ( a > 0) ? a : -a;
+   b = ( b > 0) ? b : -b;
+   while( a != b){
+       if( a > b)
+           a = a - b;
+          else
+           b = b - a;
+    }
+  printf("GCD=%d\n",a);
+  return a;
+}
+
+int lcm( int a , int b , int gd)
+{
+    int lm;
+    lm = (a * b)/ gd ;
+     printf("LCM=%d\n",lm);
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int T, t, res[100];
+  	scanf("%d",&T);
+  	for(t = 0; t < T; t++)
+    {
+      int a, c;
+      float b;
+      scanf("%d%f%d",&a,&b,&c);
+      int c1 = a > 50, c2 = b < 0.7, c3 = c > 5600;
+      if(c1&&c2&&c3)
+        res[t] = 10;
+      else if(c1&&c2)
+        res[t] = 9;
+      else if(c2&&c3)
+        res[t] = 8;
+      else if(c1&&c3)
+        res[t] = 7;
+      else if((c1&&!c2&&!c3)||(!c1&&c2&&!c3)||(!c1&&!c2&&c3))
+        res[t] = 6;
+      else if(!c1&&!c2&&!c3)
+        res[t] = 5;
+    }
+ 	for(t = 0; t < T; t++)
+      printf("Grade %d\n",res[t]);
+	return 0;
+}

@@ -1,0 +1,111 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class Room
+{
+	int length,breadth,height;
+  	
+  	public:
+  	
+  	void getRoom(int l,int b, int h)
+    {
+    	length=l;
+      	breadth=b;
+      	height=h;
+    }
+  	void putRoom()
+    {
+    	cout<<"Length="<<length<<endl;
+      	cout<<"Breadth="<<breadth<<endl;
+      	cout<<"Height="<<height<<endl;
+    }
+
+};
+
+class Address
+{
+	int no;
+  	string city;
+  	string state;
+  public:
+  
+  	void getAd(int n,string c,string s)
+    {
+    	no=n;
+      	city=c;
+      	state=s;
+    }
+  
+  void putAd()
+  {
+  	cout<<"House No="<<no<<endl;
+    cout<<"City="<<city<<endl;
+    cout<<"State="<<state<<endl;
+  }
+};
+
+class House
+{
+	public:
+  	
+  	string name;
+  	Address address;
+  	static int room;
+  	Room *rooms;
+  
+  	static void setRoom(int n)
+    {
+    	room=n;
+    }
+  
+  	void input(string n,Address ad, Room r[])
+    {
+    	name=n;
+      	address=ad;
+      	rooms=r;
+    }
+  	void display()
+    {
+    	cout<<"House name="<<name<<endl;
+      	address.putAd();
+      	for(int i=0;i<room;i++)
+        {
+        	cout<<"House Details"<<" "<<i+1<<endl;
+          rooms[i].putRoom();
+        }
+    }
+};
+	int House::room=0;
+	int main()
+    {
+    	string house;
+      	int no;
+      	string city;
+      	string state;
+      	int room;
+      	getline(cin,house);
+      	cin>>no>>city>>state>>room;
+      
+      	if(room>=10)
+        {
+        	cout<<"No of rooms should be less than 10";
+          	return 0;
+        }
+      	Address ad;
+      	ad.getAd(no,city,state);
+      	House::setRoom(room);
+      	Room rooms[room];
+      	
+      	for(int i=0;i<room;i++)
+        {
+        	int a,b,c;
+          	cin>>a>>b>>c;
+          	rooms[i].getRoom(a,b,c);
+        }
+      
+      	House home;
+      	home.input(house,ad,rooms);
+      	home.display();
+      	return 0;
+    }
+	

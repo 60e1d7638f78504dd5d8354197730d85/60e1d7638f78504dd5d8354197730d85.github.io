@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+class Distance
+{
+        private:
+                int feet;
+                float inch;
+        public:
+        Distance();
+        Distance(int a,float b);
+        void setDistance();
+        int getFeet();
+        float getInch();
+        void distanceSum(Distance d,Distance d2);
+};
+int main()
+{
+        Distance D1,D2,D3;
+        D1.setDistance();
+        D2.setDistance();
+        D1.distanceSum(D2,D3);
+        
+        return 0;
+}
+Distance::Distance()
+{
+        inch=feet=0;
+}
+Distance::Distance(int a,float b)
+{
+        feet=a;
+        inch=b; 
+}
+void Distance::setDistance()
+{
+        cin>>feet;
+        cin>>inch;
+  if(!cin)
+    inch=feet;
+}
+int Distance::getFeet()
+{
+        return feet;
+}
+float Distance::getInch()
+{
+        return inch;
+}
+void Distance::distanceSum(Distance d,Distance d2)
+{
+        cout<<feet<<" "<<inch<<endl;
+        cout<<d.feet<<" "<<d.inch<<endl;
+        cout<<d2.feet<<" "<<d2.inch<<endl;
+        cout<<"Sum is "<<d.feet+feet<<" feet ";
+        cout<<d.inch+inch<<" inches";
+}

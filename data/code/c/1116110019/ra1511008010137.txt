@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    char str[100],c,min;
+    int i,j,count=0,max=999;;
+    scanf("%[^\n]%*c", str);
+    for(i=0;i<strlen(str);i++)
+    {
+      c=str[i];
+          for(j=0;j<strlen(str);j++)
+            if(c==str[j])
+              count++;
+      if(count<max)
+      {
+        min=c;
+        max=count;
+      }
+      count=0;
+    }
+      printf("%c=%d",min,max);    
+	return 0;
+}

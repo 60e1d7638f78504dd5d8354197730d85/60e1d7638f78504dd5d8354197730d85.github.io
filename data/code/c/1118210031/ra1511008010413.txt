@@ -1,0 +1,29 @@
+#include <stdio.h>
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ struct c{};
+int main()
+{
+  int arr[100],n,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  int j;
+   for (i = 0; i < n-1; i++)      
+ 
+       // Last i elements are already in place   
+       for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+              swap(&arr[j], &arr[j+1]);
+  for(i=0;i<n;i++)
+  {
+    if(arr[i]%2==0  )
+    printf("%d ",arr[i]);
+  }
+
+	return 0;
+}

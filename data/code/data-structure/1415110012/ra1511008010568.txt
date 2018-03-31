@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+#include <malloc.h>
+
+struct node
+
+{
+
+ int data;
+  struct node *next; };
+struct node *start = NULL;
+
+struct node *create_ll(struct node *); 
+int num;
+struct node *create_ll(struct node *start)
+
+{
+
+struct node *new_node, *ptr;
+
+int k=0,n;
+scanf("%d",&n);
+scanf("%d", &num);
+  k++;
+
+while(k<=n)
+
+{
+
+new_node = (struct node*)malloc(sizeof(struct node));
+
+new_node -> data=num;
+
+if(start==NULL)
+
+{
+
+new_node -> next = NULL;
+
+start = new_node;
+
+}
+
+else
+
+{
+
+ptr=start;
+
+
+
+while(ptr->next!=NULL)
+
+ptr=ptr->next;
+
+ptr->next = new_node;
+
+new_node->next=NULL;
+
+}
+
+scanf("%d", &num);
+  k++;
+
+}
+
+return start;
+
+}
+struct node *display(struct node *);
+struct node *display(struct node *start)
+
+{
+
+struct node *ptr;
+int o,t=0,x;
+  scanf("%d",&o);
+  // printf("%d",num);
+ptr = start;
+
+while(ptr != NULL)
+{
+  x=ptr->data;
+  //printf("%d",ptr->data);
+ // printf("%d",x);
+ 
+if(num==x)
+{
+t++;
+}
+  //printf("%d",t);
+
+ptr = ptr -> next;
+
+}
+  if(t>0)
+  {
+    printf("Yes");
+  }else
+  {
+    printf("No");
+  }
+
+return start;
+
+}
+int main()
+{
+  start = create_ll(start);
+  start = display(start);
+
+	return 0;
+}

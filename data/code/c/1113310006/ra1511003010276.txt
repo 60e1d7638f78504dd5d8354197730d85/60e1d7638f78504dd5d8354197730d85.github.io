@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int binAdd(int a,int b) 
+{
+      int c; 
+      while (b != 0) {
+              c = (a & b) << 1;
+              a=a^b;
+              b=c;
+      }
+      return a; 
+}
+ 
+int binSub(int a, int b) 
+{
+      int carry;
+      b = binAdd(~b, 1);
+      while (b != 0) {
+              carry = (a & b) << 1;
+              a = a ^ b;
+              b = carry;
+      }
+      return a;
+}
+
+int main() 
+{
+    int n1,n2;
+    scanf("%d",&n1);
+    scanf("%d",&n2); 
+    printf("Binary Addition:%d\n",binAdd(n1,n2));
+    printf("Binary Subtraction:%d\n",binSub(n1,n2));
+    return 0;
+ 
+}

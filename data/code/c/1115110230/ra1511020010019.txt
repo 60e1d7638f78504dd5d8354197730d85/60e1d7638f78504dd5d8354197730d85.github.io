@@ -1,0 +1,44 @@
+#include<stdio.h>
+ 
+main()
+{
+ int t; 
+ scanf("%d",&t);
+ while(t--)
+  {
+    int h,m,count=0,i,j; 
+    scanf("%d%d",&h,&m);
+    for(i=0;i<=9;i++)
+     {
+       if(i>=h || i>=m) 
+         break;
+     }
+    count=i;
+
+ 
+     for(i=0;i<9;i++)
+      {
+        if( ((10*(i+1))+(i+1)) >= h || (i+1)>=m) 
+         break;
+      }
+    count = count + i;
+       
+     for(i=0;i<9;i++)
+      {
+        if( (i+1)>=h || ((10*(i+1))+(i+1)) >= m)
+          break;
+      }
+    count = count +i;
+
+ 
+     for(i=0;i<9;i++)
+      {
+        if( ((10*(i+1))+(i+1)) >= h || ((10*(i+1))+(i+1)) >= m)
+         break;
+      } 
+     count = count +i;
+
+ 
+    printf("%d\n",count); 
+  }
+} 

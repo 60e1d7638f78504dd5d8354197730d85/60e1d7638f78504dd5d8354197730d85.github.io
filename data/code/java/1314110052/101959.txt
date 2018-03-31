@@ -1,0 +1,64 @@
+import java.io.*;
+import java.util.*;
+//import java.Arrays;
+public class TestClass {
+	 public static void main(String args[])
+   {
+       Scanner scan = new Scanner(System.in);
+       int size1, size2, size, i, j, k,st;
+            	   
+         size1 = scan.nextInt();
+           int arr1[] = new int[size1];
+       	      for(i=0; i<size1; i++)
+       {
+           arr1[i] = scan.nextInt();
+          }
+       Arrays.sort(arr1);
+          size2 = scan.nextInt();
+       int arr2[] = new int[size2];
+         for(i=0; i<size2; i++)
+       {
+           arr2[i] = scan.nextInt();
+       }
+       Arrays.sort(arr2);
+	   size=size1+size2;
+       st=size;
+       int merge[] = new int[size];
+        for(i=0; i<size1; i++)
+       {
+           merge[i] = arr1[i];
+       }
+	   
+       for(i=0, k=size1; k<size && i<size2; i++, k++)
+       {
+           merge[k] = arr2[i];
+       }
+	   Arrays.sort(merge);
+       
+       for (i = 0; i < size; i++) 
+            {
+                 for (j = i + 1; j < size; j++) 
+                {
+ 
+ 
+                    if (merge[i] == merge[j]) 
+                    {
+                        while (j < (size) - 1) 
+                        {
+                            merge[j] = merge[j + 1];
+                            j++;
+                        }   
+                        size--;
+                    }
+                }
+       }
+       
+       for(i=0; i<size-1; i++)
+       {
+         
+           System.out.print(merge[i]+" ");
+       }
+       System.out.print(merge[i]);
+            
+     }
+}

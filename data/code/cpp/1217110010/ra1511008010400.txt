@@ -1,0 +1,38 @@
+#include <iostream>
+
+int fibonacci(int fib)
+{
+	if (fib == 0) {
+		return 0;
+	}
+	
+	if ((fib == 1) || (fib == 2)) {
+		return 1;
+	}
+	
+	return (fibonacci(fib-1)+fibonacci(fib-2));
+}
+
+int main(void)
+{
+	/* declare an integer */
+	int n = 0;
+	
+	/* get data from user */
+	std::cin >> n;
+	
+	std::cout << std::endl;
+	
+	/* loop through input */
+	for (int i = 1; i <= n; i++)
+	{
+		std::cout << fibonacci(i)<<" ";
+	}
+	
+	std::cin.sync();
+	
+	/* pause the console */
+	std::cin.get();
+	
+	return 0;
+}

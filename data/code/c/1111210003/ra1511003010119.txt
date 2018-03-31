@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int _gcd(int X, int Y)
+{
+	return (Y == 0 ? X : _gcd(Y, X % Y)) ;
+}
+ 
+int gcd(char X[], int XLen, int Y)
+{
+	int i, x = 0 ;
+	
+	for (i = 0 ; i < XLen ; i++)
+	{
+		x = (10 * x + X[i] - '0') % Y ;
+	}
+	
+	return _gcd(Y, x) ;
+}
+	
+int main(void)
+{
+	int    T ;
+	int    A ;
+	char   B[256] ;
+	int    BLen ;
+	
+	scanf("%d", &T) ;
+	
+	while (T--)
+	{
+		scanf("%d %s", &A, B) ;
+		
+		BLen = strlen(B) ;
+		
+		if (A)
+		{
+			printf("%d\n", gcd(B, BLen, A)) ;
+		}
+		else
+		{
+			printf("%s\n", B) ;
+		}
+	}
+ 
+	return 0 ;
+} 
+

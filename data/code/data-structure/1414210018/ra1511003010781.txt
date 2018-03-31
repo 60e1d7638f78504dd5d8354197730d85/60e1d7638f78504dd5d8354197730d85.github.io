@@ -1,0 +1,28 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define ll long long
+struct fan{
+    char name[30];
+    int qot;
+};
+int main(){
+	ll n,t,x,i,j,count=0,min;
+	cin>>n>>t;
+	fan a[n];
+	for(i=0;i<n;i++){
+		cin>>a[i].name;
+		cin>>a[i].qot;
+	}
+	for(i=0;i<n-1;i++){
+		for(j=0;j<n-i-1;j++){
+			if(a[j].qot>a[j+1].qot)swap(a[j],a[j+1]);
+			else if(a[j].qot==a[j+1].qot){
+				if(strcmp(a[j].name,a[j+1].name)<0)swap(a[j],a[j+1]);
+			}
+		}
+	}
+	for(i=n-1;i>n-1-t;i--)cout<<a[i].name<<endl;
+	return 0;	
+}

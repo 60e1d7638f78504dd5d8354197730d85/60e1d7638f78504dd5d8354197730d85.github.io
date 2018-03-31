@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,m,i,j,k,z,len,countl,countr,count;
+  char str[20],c;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",str);
+    len=strlen(str);
+    m=len/2;
+    if(len%2==0)
+        z=m;
+      else
+        z=m+1;
+    count=0;
+    for(j=0;j<m;j++)
+    {
+      countl=0;
+      countr=0;
+      c=str[j];
+      for(k=0;k<m;k++)
+      {
+        if(str[k]==c)
+          countl++;
+      }
+      for(k=z;k<len;k++)
+      {
+        if(str[k]==c)
+          countr++;
+      }
+      if(countl==countr)
+        count++;
+    }
+    if(count==m)
+		printf("YES\n");
+	else
+		printf("NO\n");
+  }
+  return 0;
+}

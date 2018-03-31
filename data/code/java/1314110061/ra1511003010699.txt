@@ -1,0 +1,36 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int n=in.nextInt();
+       int m=in.nextInt();
+       int a[][]=new int[n][m];
+       for(int i=0;i<n;i++)
+       {
+         for(int j=0;j<m;j++)
+           a[i][j]=in.nextInt();
+       }
+       int r=in.nextInt();
+       int s=in.nextInt();
+       int b[][]=new int[r][s];
+       for(int i=0;i<r;i++)
+       {
+         for(int j=0;j<s;j++)
+           b[i][j]=in.nextInt();
+       }
+       int prod[][]=new int[n][n];
+       for(int i=0;i<n;i++)
+       {
+         for(int j=0;j<n;j++)
+         {
+           prod[i][j]=0;
+           for(int k=0;k<n;k++)
+           {
+             prod[i][j]+=a[i][k]*b[k][j];
+           }
+           System.out.print(prod[i][j]+" ");
+         }
+       }
+		
+	}
+}

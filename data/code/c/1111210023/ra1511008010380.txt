@@ -1,0 +1,26 @@
+#include<stdio.h>
+long long int arr[1000000000] = {0};
+long long int maxValue(long long int n) {
+    if (n <= 2) {
+        return n;
+    }
+    if (arr[n] > 0) {
+        return arr[n];
+    } else {
+        long long int temp = maxValue(n / 2) + maxValue(n / 3) + maxValue(n / 4);
+        if (temp > n) {
+            arr[n] = temp;
+        } else {
+            arr[n] = n;
+        }
+        return arr[n];
+    }
+}
+int main() {
+    long long int n;
+    while (scanf("%lld", &n) > 0) {
+        long long int ans = maxValue(n);
+        printf("%lld ", ans);
+    }
+    return 0;
+} 

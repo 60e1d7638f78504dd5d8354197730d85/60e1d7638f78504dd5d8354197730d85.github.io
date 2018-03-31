@@ -1,0 +1,104 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node *left,*right;
+};
+class BST
+{
+  private:
+  node *root;
+  public:
+  BST()
+  {
+    root=NULL;
+  }
+  void insert(int value)
+  {
+    node *parentptr,*nodeptr;
+    node * newnode=new node;
+    newnode->data=value;
+    newnode->left=NULL;
+    newnode->right=NULL;
+    if(root==NULL)
+      root=newnode;
+    else
+    {
+      parentptr=NULL;
+      nodeptr=root;
+      while(nodeptr!=NULL)
+      {
+        parentptr=nodeptr;
+         if(value<nodeptr->data)
+           nodeptr=nodeptr->left;
+        else
+          nodeptr=nodeptr->right;
+      }
+      if(value<parentptr->data)
+        parentptr->left=newnode;
+      else
+        parentptr->right=newnode;
+    }
+  }
+  node *getRoot()
+  {
+    return root;
+  }
+  void inOrder(node *root)
+  {
+    if(root!=NULL)
+    {  
+    inOrder(root->left);
+    cout<<root->data<<" ";
+    inOrder(root->right);
+    }
+  }
+    void preOrder(node *root)
+  {
+    if(root!=NULL)
+    {  
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+    }
+  }
+   void postOrder(node *root)
+  {
+    if(root!=NULL)
+    {  
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+    }
+   }
+};
+int main()
+{
+  int ch,data;
+  BST t;
+  do
+  {
+    cin>>ch;
+    switch(ch)
+    {
+      case 1:
+          cin>>data;
+          t.insert(data);
+          break;
+      case 2:
+        t.inOrder(t.getRoot());
+        cout<<endl;
+        break;
+      case 3:
+         t.preOrder(t.getRoot());
+        cout<<endl;
+        break;
+      case 4:
+         t.postOrder(t.getRoot());
+        cout<<endl;
+        break;
+    }   
+  }while(ch!=5);
+	return 0;
+}

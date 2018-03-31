@@ -1,0 +1,38 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+struct Student {
+	int roll;
+  	char name[10];
+  	char dob[10];
+  	float fees;
+}*st = NULL;
+
+void printData() {
+	printf("Roll no:%d\n", st->roll);
+    printf("Name:%s\n", st->name);
+  	printf("DOB:%s\n", st->dob);
+  	printf("Fees:%.0f\n", st->fees);
+}
+
+void getData() {
+  	st = (struct Student*)malloc(sizeof(struct Student));
+	scanf("%d", &st->roll);
+  	scanf("%s", st->name);
+  	scanf("%s", st->dob);
+  	scanf("%f", &st->fees);
+  	printData();
+  	free(st);
+  	st = NULL;
+}
+
+int main()
+{
+  	int n;
+  	scanf("%d", &n);
+  	int i;
+  	for(i=0; i<n; i++) {
+    	getData();
+    }
+	return 0;
+}

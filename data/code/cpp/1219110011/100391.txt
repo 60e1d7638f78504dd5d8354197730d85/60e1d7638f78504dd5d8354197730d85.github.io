@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class Distance
+   {
+   private:
+      int feet;
+      float inches;
+   public:
+      Distance() : feet(0), inches(0.0){ }
+      Distance(int ft, float in) : feet(ft), inches(in) {  }
+      void getdist(){
+         cin >> feet;
+         cin >> inches;
+      }
+         bool operator < (Distance) const;  
+};
+
+bool Distance::operator < (Distance d2) const{
+   float bf1 = feet + inches/12;
+   float bf2 = d2.feet + d2.inches/12;
+  if(bf1 == bf2) { cout<<"Both are equal"; return false;}
+  if(bf1 > bf2)  { cout<<"First One is Greater"; return false;}
+  if(bf1 < bf2)  { cout<<"Second One is Greater"; return false;}
+   //return (bf1 < bf2) ? true : false;
+}
+int main(){
+   Distance dist1,dist2;                 
+   dist1.getdist();                
+   dist2.getdist();
+     
+   if( dist1 < dist2 )             
+      return 0;
+}
+  

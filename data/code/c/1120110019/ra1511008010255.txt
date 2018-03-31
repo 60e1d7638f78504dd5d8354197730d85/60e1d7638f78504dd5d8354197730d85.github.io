@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+char *singles[] = { "","ONE", "TWO", "THREE", "FOUR","FIVE", "SIX", "SEVEN", "EIGHT", "NINE"};
+char *tens_singles[] = {"TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN","FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"};
+char *tens[] = {"", "", "TWENTY", "THIRTY", "FORTY", "FIFTY","SIXTY", "SEVENTY", "EIGHTY", "NINTY"};
+
+int main()
+{
+	float f;
+  	scanf("%f",&f);
+  
+  	int n = f;
+  	int d = round((f-n)*100);
+  
+  	if(n/1000 > 0) {
+     	printf("%s THOUSAND ",singles[n/1000]);
+      	n = n%1000;
+    }
+  
+  	if(n/100 > 0) {
+      	printf("%s HUNDRED ",singles[n/100]);
+      	n = n%100;
+    }
+  
+  	if(n/10 > 0) {
+     if(n/10 == 1) {
+      	 printf("%s ",tens_singles[n%10]);
+     }else{
+      	printf("%s %s ",tens[n/10],singles[n%10]);
+     }
+    }else {
+        printf("%s ",singles[n]);
+    }
+
+  	if(d > 0) printf("AND PAISE ");
+  if(d/10 > 0) {
+     if(d/10 == 1) {
+      	 printf("%s ",tens_singles[d%10]);
+     }else{
+      	printf("%s %s",tens[d/10],singles[d%10]);
+     }
+  }
+  	
+	return 0;
+}

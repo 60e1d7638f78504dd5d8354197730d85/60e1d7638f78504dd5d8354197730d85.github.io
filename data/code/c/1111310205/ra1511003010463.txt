@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <string.h> 
+#include <math.h> 
+int main()
+{
+    long  n,num,decimal_val = 0, base = 1, rem;
+  scanf("%ld", &n);
+  if(n==2)
+  {
+    scanf("%ld", &num);
+    while (num > 0)
+    {
+        rem = num % 10;
+        decimal_val = decimal_val + rem * base;
+        num = num / 10 ;
+        base = base * 2;
+    }
+    printf("%ld \n", decimal_val);
+  }
+  else if(n==8)
+  {
+    scanf("%ld", &num);
+    while (num > 0)
+    {
+        rem = num % 10;
+        decimal_val = decimal_val + rem * base;
+        num = num / 10 ;
+        base = base * 8;
+    }
+    printf("%ld \n", decimal_val);
+  }
+  else if(n==16)
+  {
+    char hex[100];
+	long i,j,n[100],l;
+	long dec=0;
+	scanf("%s",hex);
+	l=strlen(hex);
+	for(i=0;i<l;i++)
+	{
+		switch(hex[i])
+		{
+		case '0':
+			n[i]=hex[i]-48;     //Ascii code of 0 is 48  48-48=0//
+			break;
+		case '1':
+			n[i]=hex[i]-48;		//Ascii code of 1 is 49  49-48=1//
+			break;
+		case '2':
+			n[i]=hex[i]-48;		//Ascii code of 2 is 50  50-48=2//
+			break;
+		case '3':
+			n[i]=hex[i]-48;		//Ascii code of 3 is 51  51-48=3//
+			break;
+		case '4':
+			n[i]=hex[i]-48;		//Ascii code of 4 is 52  52-48=4//
+			break;
+		case '5':
+			n[i]=hex[i]-48;		//Ascii code of 5 is 53  53-48=5//
+			break;
+		case '6':
+			n[i]=hex[i]-48;		//Ascii code of 6 is 54  54-48=6//
+			break;
+		case '7':
+			n[i]=hex[i]-48;		//Ascii code of 7 is 55  55-48=7//
+			break;
+		case '8':
+			n[i]=hex[i]-48;		//Ascii code of 8 is 56  56-48=8//
+			break;
+		case '9':
+			n[i]=hex[i]-48;		//Ascii code of 9 is 57  57-48=9//
+			break;
+		case 'A':
+			n[i]=hex[i]-55;     //Ascii code of A is 65 65-55=10//
+			break;
+		case 'B':
+			n[i]=hex[i]-55;		//Ascii code of B is 65 66-55=11//
+			break;
+		case 'C':
+			n[i]=hex[i]-55;		//Ascii code of C is 65 67-55=12//
+			break;
+		case 'D':
+			n[i]=hex[i]-55;		//Ascii code of D is 65 68-55=13//
+			break;
+		case 'E':
+			n[i]=hex[i]-55;		//Ascii code of E is 65 68-55=14//
+			break;
+		case 'F':
+			n[i]=hex[i]-55;		//Ascii code of F is 65 69-55=15//
+			break;
+		}
+	}
+	for(i=0,j=l;i<l;i++,j--)
+		dec=dec+(n[j-1]*pow(16,i));
+	printf("%ld",dec);
+}
+  return 0;
+}

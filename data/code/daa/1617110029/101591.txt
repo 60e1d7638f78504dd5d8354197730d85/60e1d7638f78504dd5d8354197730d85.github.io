@@ -1,0 +1,106 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int lli;
+
+#define test()    int test_case;cin>>test_case;while(test_case--)
+#define fr(i,n) for(int i=0;i<n;i++)
+#define frr(i,a,n) for(int i=a;i<n;i++)
+#define sll(a) scanf("%lld",&a)
+#define sl(a) scanf("%ld",&a)
+#define si(a) scanf("%i",&a)
+#define sd(a)  scanf("%ld",&a)
+#define sf(a) scanf("%f",&a)
+#define rn(a) return a
+#define pai pair<int,int>
+#define pal pair<li,li>
+#define pall pair<lli,lli>
+#define ff first
+#define ss second
+#define mod  1000000007
+#define mp make_pair
+#define pb push_back
+#define pll(a) printf("%lld\n",a)
+#define pl(a) printf("%lld\n",a)
+#define pi(a) printf("%d\n",a)
+#define pd(a) printf("%lf\n",a)
+#define pf(a) printf("%f\n",a)
+#define lc (start+end)/2
+#define rc  lc+1
+
+map<lli,map<lli,lli> > ma;
+lli  ans=0;
+lli visited[1000000];
+list<lli> li[1000000];
+
+lli bfs(lli start,lli end)
+ {
+  queue<pai> q;
+  q.push(mp(start,0));
+  while(!q.empty())
+   {
+    lli start=q.front().ff;
+    lli time=q.front().ss;
+  //  cout<<" covering "<<start<<" at time "<<time<<endl;
+    q.pop();
+    list<lli> :: iterator it;
+    for(it=li[start].begin();it!=li[start].end();it++)
+     {
+    //  cout<<"tryimg "<<*it<<endl;
+    //  cout<<ma[*it][start]<<" time "<<time<<endl;
+       if(!visited[*it] && ma[*it][start]>time)
+        {
+       //cout<<" for "<<*it<<endl;
+          visited[*it]=1;
+          if(*it==end)
+           {
+        //    cout<<"ret"<<time+1<<endl;
+            return time+1;
+        }
+         q.push(mp(*it,time+1));
+     }
+     }
+   }
+   return -1;
+ }
+int main()
+{
+
+lli n,m,k;
+ cin>>n>>m>>k;
+ vector<pai> v;
+ 
+ for(lli i=0;i<m;i++)
+  {
+   lli a,b;
+    cin>>a>>b;
+    li[a].pb(b);
+    li[b].pb(a);
+    ma[a][b]=INT_MAX;
+    ma[b][a]=INT_MAX;
+    v.push_back(mp(a,b));
+   } 
+   
+   for(lli i=0;i<k;i++)
+    {
+      lli a,b;
+      cin>>a>>b;
+      lli  x=v[b-1].ff;
+      lli  y=v[b-1].ss;
+      ma[x][y]=a;
+      ma[y][x]=a;
+     
+    }
+    if(n==1)
+     {
+      cout<<"0"<<endl;
+      return 0;
+  }
+    visited[1]=1;
+    lli ans=bfs(1,n);
+  //  if(ans!=-1)
+    cout<<ans<<endl;
+    //else
+   // cout<<
+    
+    
+}

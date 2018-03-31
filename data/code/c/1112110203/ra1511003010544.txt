@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int t;
+scanf("%d",&t);
+getchar();
+while(t--)
+{char a[51];
+int b[26]={0};
+scanf("%s",a);
+int i=0;
+while(a[i]!='\0')
+{
+b[(int)(a[i]-'a')]++;
+i++;
+}
+int large=b[0];
+for(i=1;i<26;i++)
+if(b[i]>large)
+large=b[i];
+int sum=0;
+for(i=0;i<26;i++)
+sum+=b[i];
+sum=sum-large;
+if(sum==large)
+printf("YES\n");
+else
+printf("NO\n");
+}
+return 0;
+} 

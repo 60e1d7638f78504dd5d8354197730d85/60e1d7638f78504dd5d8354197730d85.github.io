@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int a[25],i,j,n,t,x,l;
+  scanf("%d",&x);
+  for(l=0;l<x;l++)
+  {
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    for (i=0;i<n;i++)
+    {
+      for(j=0;j<(n-i-1);j++)
+      {
+        if(a[j]>a[j+1])
+        {
+          t=a[j];
+          a[j]=a[j+1];
+          a[j+1]=t;
+        }
+      }
+    }
+  }
+  printf("%d",a[1]-a[0]);
+  return 0;
+}

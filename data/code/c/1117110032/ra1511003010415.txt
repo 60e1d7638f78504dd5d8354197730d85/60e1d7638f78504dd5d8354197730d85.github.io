@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int a[10],i,j,k,n,maxcount=0,maxvalue=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+  {
+    int count=0;
+    
+    for(j=0;j<n;j++)
+    {
+      if(a[j]==a[i])
+      {
+        ++count;
+      }
+    }
+      if(count>maxcount && count>1){
+        maxcount=count;
+        maxvalue=a[i];
+      }
+    }
+    if(maxcount>0)
+      printf("Mode=%d",maxvalue);
+      else
+        printf("none");
+
+   
+	return 0;
+}

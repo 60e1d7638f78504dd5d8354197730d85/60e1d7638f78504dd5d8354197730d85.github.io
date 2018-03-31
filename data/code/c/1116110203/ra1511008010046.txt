@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int doixung(char s[])
+{
+    int l,i;
+    l = strlen(s);
+    if((l%2)&&(s[(l-1)/2]=='.')) s[(l-1)/2]='a';
+    for (i=0;i<(l/2);i++)
+    {
+        if((s[i]!=s[l-1-i]) && (s[i]!='.') && (s[l-1-i]!='.')) return -1;
+        else if ((s[i]=='.')&&(s[l-1-i]=='.')) s[i]=s[l-1-i]='a';
+        else if (s[i]=='.') s[i]=s[l-1-i];
+        else if (s[l-1-i]=='.') s[l-1-i]=s[i];
+    }
+    return 0;
+}
+int main(void) {
+	int i,T,dx=0;
+	char s[12345];
+	    scanf("%s",s);
+	    dx = doixung(s);
+	    if(!dx) printf("%s\n",s);
+	    else printf("%d\n",dx);
+	return 0;
+} 

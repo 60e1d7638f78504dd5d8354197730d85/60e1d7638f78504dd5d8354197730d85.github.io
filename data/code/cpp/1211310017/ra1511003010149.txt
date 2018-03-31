@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n,pa[10];
+  	cin>>n;
+  	for(int i=0;i<n;i++)
+    {
+      int t,p=1;
+      cin>>t;
+      for(int j=1;j<=t;j++)
+        if(t%j==0)
+        {
+          int prime=0;
+          for(int k=2;k<j;k++)
+            if(j%k==0)
+              prime=1;
+          if(prime==0)
+            p=j;
+          pa[i]=p;
+        }
+    }
+  	for(int i=0;i<n;i++)
+      cout<<pa[i]<<"\n";
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,temp,s,rev,flag=0,no,x;
+  scanf("%d",&no);
+  for(x=0;x<no;x++)
+  {
+  	scanf("%d",&n);
+  i=n+1;
+  //printf("%d",i);
+  	while(rev!=i)
+    {
+    	temp=i;
+      	rev=temp%10;
+
+      temp/=10;
+      //printf("\ntemp=%d",temp);
+      	while(temp!=0)
+        {
+        	s=temp%10;
+          	rev=rev*10+s;
+          temp/=10;
+          //printf("\nrev=%d\n",rev);
+        }
+      //printf("\nrev=%d",rev);
+      if(rev==i)
+      {
+      flag++;
+        break;
+      }
+      else
+      {
+      	i++;
+      }
+      
+    }
+      printf("%d\n",rev);
+  }
+	return 0;
+}

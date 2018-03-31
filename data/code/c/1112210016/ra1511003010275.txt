@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define getcx getchar_unlocked
+ 
+inline long long int Scan_f ( )//fast input function
+ 
+{
+ 
+long long int n=0;
+ 
+long long int ch=getcx();
+ 
+while( ch < '0' || ch > '9' ){ ch=getcx();}
+ 
+ 
+ 
+while( ch >= '0' && ch <= '9' )
+ 
+n = (n<<3)+(n<<1) + ch-'0', ch=getcx();
+ 
+return n;
+ 
+}
+ 
+//var=Scan_f();hell.c
+ 
+ 
+ 
+int main(void) {
+	
+  long long int n,m,q,ans;
+  n=Scan_f();
+  m=Scan_f();
+  while(m--)
+  {
+  q=Scan_f();
+  if(q<=2*n)
+  {
+  ans=q-n-1;
+  if(ans<0)
+  printf("0\n");
+  else
+  printf("%lld\n",ans);
+  }
+  else
+  {
+  	if(q<=3*n){
+    ans=3*n-q+1;
+    printf("%lld\n",ans);}
+    else
+    printf("0\n");
+  }
+  }
+	return 0;
+}

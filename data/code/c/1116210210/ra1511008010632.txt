@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+	long long int a[1000001],t,c,k1,k2,k3,i,j,k;
+ 
+	for(i=0;i<1000001;i++)
+	{
+		a[i]=i*i*i;
+	}
+ 
+	scanf("%lld",&t);
+ 
+	while(t--)
+	{
+		scanf("%lld%lld",&k1,&c);
+ 
+		k2=k1*k1;
+		k3=k2*k1;
+ 
+		for(i=0;i<k1;i++)
+		{
+			if((a[i]+c)%k1==0)
+			{
+				for(j=0;j<k1;j++)
+				{
+					if((a[k1*j+i]+c)%k2==0)
+					{
+						for(k=0;k<k1;k++)
+						{
+							if((a[k2*k+k1*j+i]+c)%k3==0)
+							{
+								printf("YES\n");
+								goto JUMP;
+							}
+						}
+					}
+				}
+			}
+		}
+ 
+		printf("NO\n");
+ 
+		JUMP:;
+	}
+ 
+	return 0;
+}  

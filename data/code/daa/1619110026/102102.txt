@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define ull unsigned long long int
+#define dd double
+#define  mp make_pair
+#define pb push_back
+#define lli long long int
+#define chota(a) transform(a.begin(),a.end(),a.begin(),::tolower)
+#define speed ios_base::sync_with_stdio(0)
+#define llmax 1000000000000000000
+#define mod 1000000007
+#define rep(i,n) for(int i=0;i<n;i++)
+#define rep1(i,n) for(int i=1;i<=n;i++)
+#define distance(a,b,c,d) (sqrt(((ll)(c-a)*(c-a))+((ll)(d-b)*(d-b))))
+#define pure cout<<fixed<<setprecision(6)
+#define hoga return 0
+#define FF first
+#define SS second
+#define all(v) v.begin(),v.end()
+#define boost cin.tie(0)
+#define GCD(x,y) __gcd(x,y) 
+#define tr(s,it) for(typeof(s.begin())it=s.begin();it!=s.end();++it)
+
+#define newline cout<<endl;
+#define space " "
+#define gc getchar_unlocked
+#define dho fflush(stdout);
+const ll MOD=1000000007LL;
+ 
+typedef pair<int,int> pii;
+typedef pair<ll,int>  pli;
+typedef pair<ll,ll>   pll;
+typedef pair<int,ll>  pil;
+ 
+void swap(int *a,int *b){int temp=*a;*a=*b;*b=temp;}
+ull POW(ull p,int b){ull ans=1LL;while(b>0){if(b&1){ans=ans*1LL*p;}b/=2;p=p*1LL*p;}return ans;}
+ 
+ll power(ll a,ll b){ll x=1;ll y=a;while(b>0){if(b&1){x=x*y;x%=mod;}y=y*y;y%=mod;b/=2;}return x;}
+lli add(lli a,lli b,lli m=MOD){lli x=a+b;while(x>=m)x-=m;while(x<0)x+=m;return x;}
+lli sub(lli a,lli b,lli m=MOD){lli x=a-b;while(x<0)x+=m;while(x>=m)x-=m;return x;}
+lli mul(lli a,lli b,lli m=MOD){lli x=a*1ll*b;x%=m;if(x<0)x+=m;return x;}
+const int N=1e5+2;
+ 
+ll dp[N][128];
+ll NC2(ll n)
+{ if(n==0)return 0;
+ ll ans=(n*(n-1))%mod;
+ ll inv=power(2,mod-2);
+ //cout<<n<<endl;
+ 
+ return (ans*inv)%mod;
+}
+int main()
+{ int n;
+ speed;
+ cin>>n;
+ int data[n];
+ for(int i=0;i<n;i++)
+ { cin>>data[i];
+  dp[i][data[i]]=1;
+ }
+ for(int i=1;i<n;i++)
+ { for(int j=0;j<128;j++)
+  { dp[i][j]+=(dp[i-1][j]+dp[i-1][j^data[i]])%mod;
+  }
+ }
+ ll ans=0LL;
+ for(int i=0;i<128;i++)
+ { ans=(ans%mod+NC2(dp[n-1][i])%mod)%mod;
+ }
+ cout<<ans<<endl;
+}

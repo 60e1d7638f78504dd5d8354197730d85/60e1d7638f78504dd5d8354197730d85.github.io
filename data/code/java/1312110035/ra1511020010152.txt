@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+class TestClass {
+	public static void main (String[] args) {
+		Scanner in = new Scanner(System.in);
+		long T = in.nextLong();
+		in.nextLine();
+		while(T > 0) {
+			String code = in.nextLine();
+			char[] codeArray = code.toCharArray();
+			boolean lucky = true;
+			if (codeArray[0] == codeArray[1]) {
+				lucky = false;
+			} else {
+				for(int i = 2; i < code.length(); i++) {
+					if(codeArray[i] != codeArray[i-2]) {
+						lucky = false;
+						break;
+					}
+				}
+			}
+			if (lucky) {
+				System.out.println("YES");
+			} else {
+				System.out.println("NO");
+			}
+			T--;
+		}
+	}
+} 

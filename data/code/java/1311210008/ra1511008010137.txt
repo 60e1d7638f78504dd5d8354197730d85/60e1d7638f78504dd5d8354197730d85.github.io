@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+     public static int sum(int n)
+     {
+       
+        int sum;
+        for (sum = 0; n > 0; sum += n % 10,
+                                  n /= 10);
+ 
+        return sum;
+     }
+	 public static void main(String[] args) { 
+	 Scanner sc=new Scanner(System.in);
+     String a=sc.nextLine();
+     String [] arr = a.split(" ", 0);
+     String len="";
+     int i=0;
+     while(i<arr.length)
+     {
+       len=len+Integer.toString(arr[i].length());
+       i++;
+     }
+     int l=Integer.parseInt(len);
+     while(1>0)
+     {
+       int d=sum(l);
+       if(d<9)
+       {
+         System.out.println(d); 
+         break;
+       }
+       else
+         l=d;
+     }
+	}
+}

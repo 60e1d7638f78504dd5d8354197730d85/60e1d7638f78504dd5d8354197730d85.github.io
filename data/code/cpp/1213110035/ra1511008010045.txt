@@ -1,0 +1,37 @@
+#include<string.h>
+#include<iostream>
+using namespace std;
+int main()
+{
+    int i,j,k;
+    int t,n,m;
+    int len1,len2;
+    int flag;
+    char liu[106],xp[106];
+    while(cin>>liu)
+    {
+        cin>>xp;
+        len1=strlen(liu);
+        len2=strlen(xp);
+
+        flag=0;
+        if(len1!=len2)
+        {
+            cout<<"NO"<<endl;
+            continue;
+        }
+        for(i=0;i<len1;i++)
+        {
+            if(liu[i]!=xp[len1-1-i])
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+            cout<<"NO"<<endl;
+        else
+           cout<<"YES"<<endl;
+    }
+    return 0;
+}

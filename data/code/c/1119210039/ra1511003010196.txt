@@ -1,0 +1,33 @@
+#include<stdio.h>
+#define MOD 1000000007
+ 
+int main()
+{
+int t,k;
+unsigned long long i,v,j;
+char c;
+int mod[11]={1,500000004,333333336,250000002,400000003,166666668,142857144,125000001,111111112,700000005};
+ 
+scanf("%d",&t);
+ 
+while(t--)
+{
+int a[60]={0};
+i=1;
+j=1;
+c=getchar();
+while(!(c>64 && c<91) && !(c>96 && c<123))
+c=getchar();
+while((c>64 && c<91) || (c>96 && c<123))
+{
+k=c-65;
+a[k]++;
+v=(j*mod[a[k]-1])%MOD;
+i=(i*v)%MOD;
+j++;
+c=getchar();
+}
+printf("%llu\n",i);
+}
+return 0;
+}

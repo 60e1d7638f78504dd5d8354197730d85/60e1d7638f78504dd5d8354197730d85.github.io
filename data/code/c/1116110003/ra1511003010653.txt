@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char c[100];
+  scanf("%s", c);
+  order(c);
+	return 0;
+}
+int order(char *c)
+{
+  char *a;
+  char temp;
+  a =c;
+  int i,j;
+  int k= strlen(a);
+  for(i=0; i<k-1; i++)
+  {
+    for(j=0; j<k-i-1; j++)
+    {
+      if(a[j]>a[j+1])
+      {
+        temp = a[j];
+        a[j]= a[j+1];
+        a[j+1]= temp;
+      }
+    }
+  }
+  printf("%s", a);
+return 0; 
+}

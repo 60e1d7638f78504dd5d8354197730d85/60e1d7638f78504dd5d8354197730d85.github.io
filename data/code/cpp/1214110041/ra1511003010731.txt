@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class Student{
+	public:
+  	string name;
+  	int rollno;
+  	int nos;
+  	int *arr = new int[nos];
+  	void display_details(){
+    	float sum=0;
+      	float result=0;
+      	string cl;
+      	for(int k=0;k<nos;k++){
+        	sum+=arr[k];
+        }
+      	result=sum/nos;
+      	if(result>=80)
+          cl="Class A";
+      	else if(result<80 && result>=70)
+          cl="Class B";
+      	else if(result<70 && result>=60)
+          cl="Class C";
+      	cout<<name<<" "<<rollno<<" "<<result<<" "<<cl;
+    }
+};
+int main()
+{
+	int t,i,k;
+  	cin>>t;
+  	Student obj[t];
+  	for(i=0;i<t;i++){
+    	cin>>obj[i].name>>obj[i].rollno>>obj[i].nos;
+      	for(k=0;k<obj[i].nos;k++){
+        	cin>>obj[i].arr[k];
+        }
+    }
+  	for(i=0;i<t;i++){
+    	obj[i].display_details();
+      	cout<<endl;
+    }
+	return 0;
+}

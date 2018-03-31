@@ -1,0 +1,31 @@
+#include<stdio.h>
+unsigned int countbit(unsigned int x)
+{
+  if(x<=0)
+  {
+    return 0;
+  }
+  return (x%2==0?0:1)+countbit(x/2);
+}
+unsigned int count(unsigned int A)
+{
+int bit=0;
+  int i=1;
+  for(i=1;i<=A;i++)
+  {
+    bit+=countbit(i);
+  }
+  return bit;
+}
+int main(){
+int T;
+  scanf("%d",&T);
+  int N;
+  while(T>0)
+  {
+    scanf("%d",&N);
+    printf("%d\n",count(N));
+    T--;
+  }
+  return 0;
+}

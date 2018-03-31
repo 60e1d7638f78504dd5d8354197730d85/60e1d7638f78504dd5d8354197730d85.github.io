@@ -1,0 +1,28 @@
+n=int(input())
+arr=[]
+for i in range(n):
+    arr.append(int(input()))
+for i in range(n):
+    if i < n-1:
+        print(arr[i],'',end='')
+    else:
+        print(arr[i])
+for j in range(n-1):
+    posMin=j
+    for k in range(j+1, n):
+        if (arr[k]<arr[posMin]):
+            posMin=k
+    temp=arr[posMin]
+    arr[posMin]=arr[j]
+    arr[j]=temp
+    for l in range(n):
+        if l < n-1:
+            print(arr[l],'',end='')
+        else:
+            print(arr[l])
+print("Sorted Array:")
+for p in range(n):
+    if p < n-1:
+        print(arr[p],'',end='')
+    else:
+        print(arr[p])

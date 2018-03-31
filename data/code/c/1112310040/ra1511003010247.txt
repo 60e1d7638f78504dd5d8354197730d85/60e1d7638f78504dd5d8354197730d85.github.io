@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int t,c1,c2,s1,s2,h1,h2;
+  double r,h,s,c;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%lf",&r);
+    scanf("%d %d",&c1,&c2);
+    scanf("%d %d",&s1,&s2);
+    scanf("%d %d",&h1,&h2);
+    h=pow(pow(h1-c1,2)+pow(h2-c2,2),0.5);
+    s=pow(pow(s1-c1,2)+pow(s2-c2,2),0.5);
+    c=pow(pow(h1-s1,2)+pow(h2-s2,2),0.5);
+    if(h<=r&&s<=r&&c<=r)
+      printf("yes\n");
+    else if(h>r&&s>r&&c>r)
+      printf("no\n");
+    else if(h>r&&s<=r&&c<=r)
+      printf("yes\n");
+    else if(s>r&&h<=r&&c<=r)
+      printf("yes\n");
+    else if(c>r&&s<=r&h<=r)
+      printf("yes\n");
+    else
+      printf("no\n");
+  }
+             
+          
+    
+
+	return 0;
+}

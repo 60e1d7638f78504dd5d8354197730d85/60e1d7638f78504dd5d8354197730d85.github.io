@@ -1,0 +1,58 @@
+#include <stdio.h>
+ 
+int func(char s[100010],char t[100010],long n,long d){
+    long i,temp;
+    int visited[100010];
+    for(i=0;i<n;i++)  visited[i]=0;
+    i=0;
+    while(i<n){
+        if(!visited[i]){    
+            long s_key[300],t_key[300];
+            int ch;
+            for(ch='a';ch<='z';ch++){
+                s_key[ch]=0;
+                t_key[ch]=0;
+            }
+                                         
+            for(temp=i;temp<n;temp = temp+d){
+                int j = s[temp];
+                int k = t[temp];
+                s_key[j]++;
+                t_key[k]++;
+                visited[temp] = 1;
+            }
+            
+            for(temp=i;temp<n;temp = temp+d){
+                int j = s[temp];
+                
+                if(s_key[j]!=t_key[j]) return 0;
+            }
+        }
+        i++;
+    }
+    return 1;
+}
+ 
+void print(char s[100010],int n){
+    int i;
+    for(i=0;i<n;i++) printf("%c",s[i]);
+    printf("\n");
+}
+int main() {
+	int T,t;
+	scanf("%d",&T);
+	if(T<=20000){
+	
+    	for(t=0;t<T;t++){
+    	    long n,d;
+    	    char s[100010],t[100010];
+    	    scanf("%ld %ld",&n,&d);
+    	    scanf("%s",s);
+        	scanf("%s",t);
+        	if(func(s,t,n,d)) printf("Yes\n");
+        	else printf("No\n");
+    	    
+    	}
+	}
+	return 0;
+}

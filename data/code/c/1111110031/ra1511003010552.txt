@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{	int a,o,h;
+ 	scanf("%i",&a);
+ 	printf("Decimal value:%i\n",a);
+ 	o=a/8;
+ 	o*=10;
+ 	o+=(a%8);
+ 	printf("Octal value:%i\n",o);
+ 	long decimalnum, quotient, remainder;
+    int i, j = 0;
+    char hexadecimalnum[10];
+ 	decimalnum=a;
+ 
+    quotient = decimalnum;
+ 
+    while (quotient != 0)
+    {
+        remainder = quotient % 16;
+        if (remainder < 10)
+            hexadecimalnum[j++] = 48 + remainder;
+        else
+            hexadecimalnum[j++] = 87 + remainder;
+        quotient = quotient / 16;
+    }
+ 	printf("Hexadecimal value:");
+    // display integer into character
+    for (i = j-1; i >= 0; i--)
+            printf("%c", hexadecimalnum[i]);
+ 	return 0;
+}

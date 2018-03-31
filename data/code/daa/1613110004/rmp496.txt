@@ -1,0 +1,127 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+void merge(int a[],int lo,int mid,int hi)
+{
+    int i,j,k,n1,n2;
+    n1=mid-lo+1;
+    n2=hi-mid;
+    int L[n1],R[n2];
+    for(i=0;i<n1;i++)
+        L[i]=a[lo+i];
+    for(j=0;j<n2;j++)
+        R[j]=a[mid+j+1];
+    i=j=0; k=lo;
+    while(i<n1 && j<n2)
+    {
+        if(L[i]<=R[j])
+        {
+            a[k]=L[i];
+            i++;
+        }
+        else
+        {
+            a[k]=R[j];
+            j++;
+        }
+        k++;
+    }
+    while(i<n1)
+    {
+        a[k]=L[i];
+        i++;k++;
+    }
+    while(j<n2)
+    {
+        a[k]=R[j];
+        j++;k++;
+    }
+}
+ 
+void merge_sort(int a[],int lo,int hi)
+{
+    int mid;
+    if(lo<hi)
+    {
+        mid=lo+(hi-lo)/2;
+        merge_sort(a,lo,mid);
+        merge_sort(a,mid+1,hi);
+        merge(a,lo,mid,hi);
+    }
+}
+ 
+void merge_boys(int a[],int lo,int mid,int hi)
+{
+    int i,j,k,n1,n2;
+    n1=mid-lo+1;
+    n2=hi-mid;
+    int L[n1],R[n2];
+    for(i=0;i<n1;i++)
+        L[i]=a[lo+i];
+    for(j=0;j<n2;j++)
+        R[j]=a[mid+j+1];
+    i=j=0; k=lo;
+    while(i<n1 && j<n2)
+    {
+        if(L[i]>=R[j])
+        {
+            a[k]=L[i];
+            i++;
+        }
+        else
+        {
+            a[k]=R[j];
+            j++;
+        }
+        k++;
+    }
+    while(i<n1)
+    {
+        a[k]=L[i];
+        i++;k++;
+    }
+    while(j<n2)
+    {
+        a[k]=R[j];
+        j++;k++;
+    }
+}
+ 
+void merge_sort_boys(int a[],int lo,int hi)
+{
+    int mid;
+    if(lo<hi)
+    {
+        mid=lo+(hi-lo)/2;
+        merge_sort_boys(a,lo,mid);
+        merge_sort_boys(a,mid+1,hi);
+        merge_boys(a,lo,mid,hi);
+    }
+}
+ 
+int main()
+{
+    int t;cin>>t;
+    while(t--)
+    {
+        int n,i,count=0;cin>>n;
+        int g[n],b[n];
+        for(i=0;i<n;i++)
+        {
+            cin>>g[i];
+        }
+        merge_sort(g,0,n-1);
+        for(i=0;i<n;i++)
+        {
+            cin>>b[i];
+        }
+        merge_sort_boys(b,0,n-1);
+        for(i=0;i<n;i++)
+        {
+            if(b[i]%g[i]==0 || g[i]%b[i]==0)
+                count++;
+        }
+        cout<<count<<endl;
+    }
+    return 0;
+}

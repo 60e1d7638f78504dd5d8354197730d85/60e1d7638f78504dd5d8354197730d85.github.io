@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define MAX 10
+ 
+int main()
+{
+    int array[MAX], i, largest1, largest2, temp;
+ 
+   int n;
+  scanf("%d",&n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+ 
+  
+   
+    largest1 = array[0];
+    
+    largest2 = array[1];
+    if (largest1 < largest2)
+    {
+        temp = largest1;
+        largest1 = largest2;
+        largest2 = temp;
+    }
+    for (i = 2; i < n;	i++)
+    {
+        if (array[i] >= largest1)
+        {
+            largest2 = largest1;
+            largest1 = array[i];
+        }
+        else if (array[i] > largest2)
+        {
+            largest2 = array[i];
+        }
+    }
+  float avg=((float)largest1+(float)largest2)/2;
+    printf("First Largest=%d\n", largest1);
+    printf("Second Largest=%d\n", largest2);
+    printf("Average=%.1f\n",avg);
+  return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+		int t=0,n=0,i=0,f=0,s=0,diffOld=0,diffNew=0;
+  	int arr[5000];
+  	scanf("%d",&t);
+  	while(t-->0){
+  	scanf("%d",&n);
+    for(i=0;i<n;i++){
+    	scanf("%d",&arr[i]);
+    	}
+      diffOld=abs(arr[0]-arr[1]);
+     for(f=0;f<n;f++){
+     	for(s=f+1;s<n;s++){
+          diffNew=abs(arr[f]-arr[s]);
+       //   printf("Old:%d New:%d\n ",diffOld,diffNew);
+        
+          if(diffNew<diffOld)
+            diffOld=diffNew;
+        	}
+     //  printf("\n");
+     	}
+      printf("%d\n",diffOld);
+  	}
+	return 0;
+}

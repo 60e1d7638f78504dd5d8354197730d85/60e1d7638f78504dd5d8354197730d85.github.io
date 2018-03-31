@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+#define MAX 1000000007
+char str[1005];
+char a[1005][1005];
+int check(int i,int j)
+{	
+	if(str[i]!=str[j])
+	return(0);
+	i++;j--;
+	while(j>i)
+	{
+		if(a[i][j])
+		return 1;
+		else return 0;
+	
+	}
+	return 1;
+}
+int main()
+{
+int b[1005]={0},i=0,j,k,l;
+b[0]=1;
+scanf("%s",str);	
+l=strlen(str);
+int count=2;
+	for(i=0;i<l;i++)
+	a[i][i]=1;
+	while(count<=l)
+	{
+ 
+		for(i=0;i<=l-count;i++)
+		a[i][i+count-1]=check(i,i+count-1);
+		count++;
+	}
+	for(j=0;j<l;j++)
+	{
+		k=j+1;
+		for(i=0;i<=j;i++)
+		{
+			if(a[i][j])
+			{
+				b[k]=(b[k]+b[i])%MAX;	
+				
+			}
+		}
+	}
+	printf("%d\n",b[l]%MAX);
+	return(0);
+}

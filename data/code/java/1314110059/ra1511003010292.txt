@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  int duplicate(int a , int i , int arr[])
+  {
+    if(i==-1)
+      return 0;
+    else
+    {
+      if(arr[i] == a)
+        return 1;
+      else
+        return duplicate(a , --i , arr);
+    }
+  }
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       TestClass s = new TestClass();
+       int n = sc.nextInt();
+       int[] arr = new int[n];
+       for(int i = 0 ; i<n ; i++)
+         arr[i] = sc.nextInt();
+       for(int i = 0 ; i<n ; i++)
+       {
+         if(s.duplicate(arr[i],i-1,arr)==0)
+         {int count = 1;
+           for(int j = i+1 ; j<n ; j++)
+             if(arr[j]==arr[i])
+               count++;
+          System.out.println(arr[i] + "=" + count);
+         }
+       }
+	}
+}

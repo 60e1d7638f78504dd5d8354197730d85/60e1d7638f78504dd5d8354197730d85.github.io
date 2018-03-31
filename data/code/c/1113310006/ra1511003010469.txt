@@ -1,0 +1,28 @@
+#include <stdio.h>
+int add(int a,int b){
+  int c;
+  while(b!=0){
+    c=(a&b)<<1;
+    a=a^b;
+    b=c;
+  }return a;
+}
+
+int sub(int a, int b){
+  int car;
+  b= add(~b,1);
+  while(b!=0){
+    car=(a&b)<<1;
+    a=a^b;
+    b=car;}
+  return a;
+}
+
+int main()
+{int n1,n2,bin1,bin2;
+scanf("%d%d",&n1,&n2);
+ bin1=add(n1,n2);
+ bin2=sub(n1,n2);
+ printf("Binary Addition:%d\nBinary Subtraction:%d",bin1,bin2);
+	return 0;
+}

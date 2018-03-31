@@ -1,0 +1,41 @@
+#include<stdio.h>
+int main()
+{
+ int n,a[100],sum,temp,j,k,l,m,o,len,maxlen;
+ scanf("%d",&n);
+ for(j=0;j<n;j++)
+  scanf("%d",a+j);
+ for(k=1;k<n;k++)
+ {
+  temp=a[k];
+  for(j=k-1;j>=0&&a[j]>temp;j--)
+   a[j+1]=a[j];
+  a[j+1]=temp;
+ } 
+ maxlen=1;
+ for(j=0;j<n-1;j++)
+ {
+  for(k=n-1;k>j;k--)
+  {
+   sum=a[j]+a[k];
+   len=1;
+   o=k-1;
+   for(l=j+1;l<o;l++)
+   {
+    for(m=o;m>l;m--)
+    {
+     if(a[l]+a[m]==sum)
+     {
+      len++;
+      o=m-1;
+      break;
+     }
+    }//m
+   }//l 
+   if(len>maxlen)
+    maxlen=len;
+  }//k
+ }//j
+ printf("%d",2*maxlen);
+ return 0;
+}  

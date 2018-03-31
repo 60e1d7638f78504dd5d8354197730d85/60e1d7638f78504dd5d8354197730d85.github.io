@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Constructor con=new Constructor();
+       System.out.println(con.meth());
+       
+	}
+}
+class Constructor{
+  	Scanner s=new Scanner(System.in);
+ 
+int n,i,sum=0;
+  int avg;
+  public int meth(){
+      int a[]=new int[20];
+
+    n=s.nextInt();
+    try{
+    for(i=0;i<n;i++)
+    {a[i]=s.nextInt();
+     if(a[i]<100&&a[i]>0){
+      sum+=a[i];
+     avg=(sum/n);}
+     else
+       throw new IllegalArgumentException();
+    }
+    }
+      catch(IllegalArgumentException e){
+        System.out.println(e);
+      System.exit(0);
+    }
+    return avg;
+  }
+}

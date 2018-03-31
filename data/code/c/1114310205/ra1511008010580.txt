@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int power(int n)
+{
+    int i, res = 1;
+    for (i=0;i<n;i++)
+        res *= 10;
+    return res;
+}
+ 
+int rotright(int n)
+{
+    if (n < 10) 
+        return n;
+    return (power((int)log10(n)) * (n % 10)) + (n / 10);
+}
+ 
+int rotleft(int n)    //1234
+{
+    int temp = n, dig, temp2;
+    while (n) {
+        dig = n % 10;
+        n /= 10;
+    }
+    temp = temp - (dig * power((int)log10(temp)));
+    return temp * 10 + dig;
+}
+    
+ 
+int main()
+{
+    int t, n, max, temp, temp2, f, f1;
+    scanf("%d", &t);
+    while (t--) {
+        scanf("%d", &n);
+        temp = n;
+        f = f1 =(int)log10(n) + 1;
+        temp = temp2 = n;
+        max = rotright(rotleft(n));
+        if (rotleft(rotright(n)) > max)
+            max = rotleft(rotright(n));
+        while (f--) {
+            temp = rotleft(temp);
+            if (temp > max)
+                max = temp;
+        }
+        while (f1--) {
+            temp2 = rotright(temp2);
+            if (temp2 > max)
+                max = temp2;
+        }
+        printf("%d\n", max);
+    }
+    return 0;    
+} 

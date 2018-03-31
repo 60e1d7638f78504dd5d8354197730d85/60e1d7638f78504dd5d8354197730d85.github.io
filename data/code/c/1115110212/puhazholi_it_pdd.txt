@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+ int n,m,i,j;
+    scanf("%d%d",&n,&m);
+ 
+    long long int mat[50][40];
+ 
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            scanf("%lld",&mat[i][j]);
+ 
+        }
+    }
+ 
+    long long int colsum[40] = {0};
+ 
+    long long int ans = 1;
+    long long int mod = 10000007;
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            colsum[i] += mat[j][i];
+ 
+        }
+ 
+        ans = (ans * colsum[i])% mod;
+ 
+    }
+    if(ans < 0)
+        ans = (ans + mod)%mod;
+ 
+    printf("%lld\n",ans);
+	return 0;
+}

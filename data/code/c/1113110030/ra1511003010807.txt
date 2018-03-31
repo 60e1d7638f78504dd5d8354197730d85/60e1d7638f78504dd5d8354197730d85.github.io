@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int test_cases=0;
+    scanf("%d",&test_cases);
+    
+    while(test_cases>0)
+    {
+        int hardness=0,tensile_strength=0;
+        float carbon_content=0;
+        scanf("%d %f %d",&hardness,&carbon_content,&tensile_strength);
+        int count=0;
+        if(hardness>50)        
+            count=count+1;        
+        if(carbon_content<0.7)
+            count=count+2;
+        if(tensile_strength>5600)
+            count=count+4;
+        
+        if(count>0)
+        {
+            if(count==7)
+                printf("Grade 10\n");
+            else if(count==3)
+                printf("Grade 9\n");
+            else if(count==6)
+                printf("Grade 8\n");
+            else if(count==5)
+                printf("Grade 7\n");
+            else
+                printf("Grade 6\n");
+        }
+        else
+            printf("Grade 5\n");
+        test_cases--;
+    }
+  
+  
+	return 0;
+}

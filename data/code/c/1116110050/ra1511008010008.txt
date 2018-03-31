@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  char m[100], ch;
+    int i,k=1;
+    for(i=0;i<100;i++)
+      scanf("%s",&m[i]);  
+    for(i = 0; m[i] != '\0'; ++i)
+    {
+        ch = m[i];
+        
+        if(ch >= 'a' && ch <= 'z')
+        {
+            ch = ch + k;
+            
+            if(ch > 'z')
+            {
+                ch = ch - 'z' + 'a' - 1;
+            }
+            m[i] = ch;
+        }
+        else if(ch >= 'A' && ch <= 'Z')
+        {
+            ch = ch + k;
+            if(ch > 'Z'){
+                ch = ch - 'Z' + 'A' - 1;
+            }
+            
+            m[i] = ch;
+        }
+      k++;
+    }
+    printf("\n%s", m);
+	return 0;
+}

@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+#define lli long long int
+#define pll pair<lli,lli>
+#define mp make_pair
+#define pb push_back
+#define f(i,n) for(lli i=0;i<n;i++)
+#define lp(i,a,b) for(lli i=a;i<b;i++)
+const lli mod1 = 1000000007;
+using namespace std;
+lli C[1005][1005];
+lli power(lli a,lli b)
+{
+    lli x=1,y=a;
+    while(b>0)
+    {
+        if(b%2==1)
+        {
+            x=(x*y);
+            if(x>mod1) x%=mod1;
+        }
+        y = (y*y);
+        if(y>mod1) y%=mod1;
+        b /= 2;
+    }
+    return x;
+}
+bool is[10001];
+vector<lli> v;
+void sieve()
+{
+    is[0]=1;
+    is[1]=1;
+    for(lli i=2;i<=10000;i++)
+    {
+        if(is[i]==0)
+        {
+            v.push_back(i);
+            for(lli j=i*i;j<=10000;j+=i)
+            {
+                is[j]=1;
+            }
+        }
+    }
+}
+lli gcd(lli a,lli b)
+{
+    if(b==0)
+        return a;
+    else
+       return gcd(b, a%b);
+}
+double distance(double x1,double y1,double x2,double y2)
+{
+    
+    return sqrt(((x1-x2)*(x1-x2))+((y1-y2)*(y1-y2)));
+}
+lli dp[2001];
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    lli tn;
+    cin >> tn;
+    while(tn--)
+    {
+        lli n,k;
+        cin >> n >> k;
+        pair<lli,lli> p[n+1];
+        f(i,n)
+        {
+            cin >> p[i].first;
+        }
+        f(i,n)
+        {
+            cin >> p[i].second;
+        }
+        sort(p,p+n);
+        lp(i,1,n)
+        {
+            p[i].second+=p[i-1].second;
+        }
+        dp[0]=p[0].first*(p[0].second+k);
+        lp(i,1,n)
+        {
+            dp[i]=p[i].first*(p[i].second+k);
+            for(lli j=i-1;j>=0;j--)
+            {
+                dp[i]=min(dp[i],(p[i].first*(p[i].second-p[j].second+k))+dp[j]);
+            }
+        }
+        cout << dp[n-1] << endl;
+    }
+    return 0;
+}

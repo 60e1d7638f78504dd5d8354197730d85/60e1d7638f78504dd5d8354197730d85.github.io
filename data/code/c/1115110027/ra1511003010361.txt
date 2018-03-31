@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+  int m, n, i, j;
+  int control = 0;
+  int a[12][12];
+  scanf("%d", &m);
+  scanf("%d", &n);
+  if(m!=n){
+    printf("Not Symmetric");
+  }else{
+    for(i=0; i<m; i++){
+      for(j=0; j<n; j++){
+        scanf("%d", &a[i][j]);
+      }
+    }
+   
+    for(i=0; i<m; i++){
+      for(j=0; j<n; j++){
+        if(a[i][j]!=a[j][i]){
+          control++;
+          break;
+        }
+      }
+      if(control!=0){
+        printf("Not Symmetric");
+        break;
+      }
+    }
+  }
+  if(control == 0)
+    printf("Symmetric");
+	return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  while(n>0)
+  {
+    int i,count=0,j,sum=0;;
+    int a[4];
+    for(i=0;i<4;i++)
+    {
+      scanf("%d",&a[i]);
+      if(a[i]==0)
+      {
+        count++;
+      }
+    }
+    if(count>0)
+    {
+      printf("Yes\n");
+      n--;
+      continue;
+    }
+    for(i=0;i<4;i++)
+    {
+      for(j=0;j<4;j++)
+      {
+        sum=a[i]+a[j];
+        if(sum==0)
+        {
+          count++;
+        }
+      }
+  }
+    if(count>0)
+    {
+      printf("Yes\n");
+    }else
+    {
+    printf("No\n");
+    }
+    n--;
+  }
+  return 0;
+}

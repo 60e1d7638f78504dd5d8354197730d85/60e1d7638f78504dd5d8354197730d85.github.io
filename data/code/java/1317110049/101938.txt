@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.text.DecimalFormat;
+public class TestClass {
+	 public static void main(String[] args) { 
+       DecimalFormat df=new DecimalFormat();
+       df.setMaximumFractionDigits(2);
+	   Scanner sc=new Scanner(System.in);
+       String str=sc.nextLine();
+       int u=0,l=0,o=0,d=0;
+       for(int i=0;i<str.length();i++)
+       {
+         if (Character.isUpperCase(str.charAt(i)))
+           u++;
+         else if(Character.isLowerCase(str.charAt(i)))
+                 l++;
+          else if (Character.isDigit(str.charAt(i)))
+                  d++;
+          else
+                   o++;
+       }
+       
+       System.out.println("Uppercase letters are "+df.format((u*100.0)/str.length())+"%");
+       System.out.println("Lowercase letters are "+df.format((l*100.0)/str.length())+"%");
+		System.out.println("Digits Are "+df.format((d*100.0)/str.length())+"%");
+       System.out.println("Other Characters Are "+df.format((o*100.0)/str.length())+"%"); 
+       
+     }
+}

@@ -1,0 +1,66 @@
+#include<stdio.h>
+ 
+#define READ_INT(_x)\
+{\
+	register int ch = getchar_unlocked();\
+	int temp = 0;\
+	while(ch < 48)\
+	{\
+		ch = getchar_unlocked();\
+	}\
+	while(ch >= 48)\
+	{\
+		temp = (temp << 3) + (temp << 1) + ch - 48;  	\
+		ch = getchar_unlocked();\
+	}\
+	(_x) = temp;\
+}				
+ 
+#define WRITE_INT(_x)\
+{\
+	register int i = 0;\
+	char str[10];\
+	long long temp = (_x);\
+	do\
+	{\
+		*(str + i++) = temp % 10 + 48;\
+		temp /= 10;\
+	}while(temp != 0);\
+	for(i--; i >= 0; i--)\
+		putchar_unlocked(*(str + i));\
+}
+ 
+int main (void)
+{
+	long long count = 1, sum;
+	int t, n;
+	register int a, b;
+	READ_INT(t);
+	while(t--)
+	{
+		READ_INT(n);
+		READ_INT(a);
+		count = 1;
+		sum = 0;
+		for(n--; n > 0; n--)
+		{
+			READ_INT(b);
+			if(b >= a)
+			{
+				count++;
+			}
+			else
+			{
+				sum += (count * (count + 1) >> 1);
+				count = 1;
+			}
+			a = b;
+		}
+		sum += (count * (count + 1) >> 1);
+		
+		WRITE_INT(sum);
+		putchar('\n');
+	}
+	return 0;
+}
+ 

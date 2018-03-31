@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+void hexa(int n)
+{
+  	int rem;
+ 	if(n>0)
+    {
+      	rem=n%16;
+      	n=n/16;
+      	hexa(n);
+      	cout<<rem;
+    }
+}
+int main()
+{
+	int n;
+  	cin>>n;
+  	if(n<=15)
+    {
+      	if(n>=0 && n<10)
+          	cout<<n;
+      	else
+        {
+          	if(n==10)
+              	cout<<"A";
+          	else if(n==11)
+              	cout<<"B";
+          	else if(n==12)
+              	cout<<"C";
+          	else if(n==13)
+              	cout<<"D";
+          	else if(n==14)
+              	cout<<"E";
+          	else
+              	cout<<"F";
+        }
+    }
+  	else
+      	hexa(n);
+	return 0;
+}

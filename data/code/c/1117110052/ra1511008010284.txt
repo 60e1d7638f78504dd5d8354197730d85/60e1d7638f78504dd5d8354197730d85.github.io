@@ -1,0 +1,51 @@
+#include <stdio.h>
+    #include <stdio.h>
+#define l long int
+#define MOD 1000000007
+int root(int *a,int i)
+{
+    while(a[i]!=i)
+         i=a[i];
+    return i;
+}
+int main()
+{
+    int n,m,u,v,ru,rv,i;
+    l p=1;
+    scanf("%d%d",&n,&m);
+    int a[n+1],size[n+1];
+    for(i=1;i<=n;i++)
+    {
+        a[i]=i;
+        size[i]=1;
+    }
+    size[0]=0;
+    while(m--)
+    {
+        scanf("%d%d",&u,&v);
+        ru=root(a,u);
+        rv=root(a,v);
+        if(ru!=rv)
+        {
+            if(size[ru]<size[rv])
+              {
+                  a[ru]=a[rv];
+                  size[rv]+=size[ru];
+                  size[ru]=0;
+              }
+            else
+              {
+                  a[rv]=a[ru];
+                  size[ru]+=size[rv];
+                  size[rv]=0;   
+              }
+        }
+    }
+    for(i=1;i<=n;i++)
+    {
+        if(size[i])
+          p=((p%MOD)*(size[i]%MOD))%MOD;
+    }
+    printf("%ld\n",p);
+    return 0;
+}

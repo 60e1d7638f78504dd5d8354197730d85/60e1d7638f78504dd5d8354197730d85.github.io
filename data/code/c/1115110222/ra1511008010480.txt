@@ -1,0 +1,32 @@
+//DKBoss
+#include <stdio.h>
+#include <string.h>
+
+int* getAns(int* ptr, int count) {
+	static int ans[2] = {0, 0};
+  	int i;
+  	for(i=0; i<count; i++) {
+    	if(*(ptr+i) < 0) {
+        	ans[1]+= *(ptr+i);
+        }
+      	else {
+        	ans[0]++;
+        }
+    }
+  	ans[0];
+  	return ans;
+}
+
+int main()
+{
+  	int n;
+  	scanf("%d", &n);
+  	int arr[n];
+  	int i = 0;
+  	for(i=0; i<n; i++) {
+    	scanf("%d", &arr[i]);
+    }
+  	int *ans = getAns(&arr[0], n);
+  	printf("Count of positive numbers=%d\nSum of negative numbers=%d", *ans, *(ans+1));
+	return 0;
+}

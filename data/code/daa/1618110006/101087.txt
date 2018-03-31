@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+ void search(char *,char *);
+int main()
+{
+  char txt[20],pat[10];
+  scanf("%s",txt);
+  scanf("%s",pat);
+    search(txt,pat);
+	return 0;
+}
+void search(char* txt, char* pat)
+{
+  int i,j;
+    int N=strlen(txt);
+    int M=strlen(pat);
+     for(i=0;i<=(N-M);i++) 
+    {
+        for(j=0;j<M;j++)
+        {
+            if(txt[i+j]!=pat[j])
+                break;
+        }
+         if(j==M) 
+        
+            printf("Pattern found at index %d\n",i);
+     //   printf("\n");
+    }
+}

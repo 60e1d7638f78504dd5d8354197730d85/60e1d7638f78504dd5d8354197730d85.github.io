@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define MAXN 1000001
+#define MOD 1000000007
+long long DP[MAXN]={0};
+int main(){
+	
+	DP[0]=1;
+	DP[1]=1;
+	for(int i=2;i<=MAXN;i++){
+		DP[i]=(i-1)*DP[i-2];
+		DP[i]+=DP[i-1];
+		DP[i]%=MOD;
+	}
+	int t;
+	scanf("%d",&t);
+	
+	while(t--){
+		int N;
+		scanf("%d",&N);
+		printf("%lld\n",DP[N]);
+	}
+	
+}

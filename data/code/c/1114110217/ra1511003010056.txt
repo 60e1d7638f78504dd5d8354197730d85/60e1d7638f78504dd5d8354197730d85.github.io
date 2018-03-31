@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{   
+    int n,i,num,remainder,reverse;
+    scanf("%d",&n);
+    int a[n];
+    int b[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+      num=a[i];
+      while(num != 0)
+    {
+        remainder = num%10;
+        reverse = reverse*10 + remainder;
+        num /= 10;
+    }
+
+      if(reverse%2==0)
+      {
+        b[i]=1;
+      }
+      else
+      {
+        b[i]=0;
+      }
+    }
+  for(i=0;i<n;i++)
+  {
+    if(b[i]==1)
+    {
+      printf("EVEN\n");
+    }
+    else
+    {
+      printf("ODD\n");
+    }
+  }
+ 
+
+	return 0;
+}

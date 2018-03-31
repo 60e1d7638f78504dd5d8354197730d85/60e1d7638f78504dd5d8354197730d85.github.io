@@ -1,0 +1,57 @@
+#include <stdio.h>
+struct Student
+{
+  char name[30];
+  char department[20];
+  int yearOfStudy;
+  float cgpa;
+};
+struct Student read(struct Student s)
+{
+  scanf("%s",s.name);
+  scanf("%s",s.department);
+  scanf("%d",&s.yearOfStudy);
+  scanf("%f",&s.cgpa);
+  return s;
+}
+void print(struct Student s)
+{
+  printf("Name:%s\n",s.name);
+  printf("Department:%s\n",s.department);
+  printf("Year of study:%d\n",s.yearOfStudy);
+  printf("CGPA:%0.1f\n",s.cgpa);
+}
+void sort(struct Student *s,int n)
+{
+  int i,j;
+  struct Student c;
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(strcmp(s[i].name,s[j].name) > 0)
+      {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+      }
+    }
+  }
+}
+int main()
+{
+	int n,i,j;
+  scanf("%d",&n);
+  struct Student s[n];
+  for(i=0;i<n;i++)
+  {
+    s[i] = read(s[i]);
+  }
+  sort(s,n);
+  for(i=0;i<n;i++)
+  {
+    print(s[i]);
+  }
+           
+	return 0;
+}

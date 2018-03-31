@@ -1,0 +1,69 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+class bank
+{
+char name[20];
+int ano;
+char atype[20];
+float bal;
+public:
+void get(int no,char *n,char *t,float b)
+{
+strcpy(name,n);
+ano=no;
+strcpy(atype,t);
+bal=b;
+}
+float deposit()
+{
+float amt;
+cin>>amt;
+bal=bal+amt;
+return bal;
+}
+float withdrw()
+{
+float amt;
+cin>>amt;
+bal=bal-amt;
+return bal;
+}
+void disp()
+{
+  int dis,dis1;
+
+dis1=deposit();
+  dis=withdrw();
+if(dis<0)
+{
+  cout<<"Insufficient amount\n";
+  cout<<"NAME="<<name<<"\n";
+  cout<<"ACCNO="<<ano<<"\n";
+  cout<<"TYPE="<<atype<<"\n";
+  cout<<"BALANCEAMOUNT="<<dis1;
+}
+  else
+  {
+	cout<<"NAME="<<name<<"\n";
+	cout<<"ACCNO="<<ano<<"\n";
+	cout<<"TYPE="<<atype<<"\n";
+  	cout<<"BALANCEAMOUNT="<<dis;
+  }
+
+}
+};
+int main()
+{
+int n;
+char nm[20],t[20];
+float a;
+bank bk;
+cin>>nm;
+cin>>n;
+cin>>t;
+cin>>a;
+bk.get(n,nm,t,a);
+bk.disp();
+	return 0;
+}

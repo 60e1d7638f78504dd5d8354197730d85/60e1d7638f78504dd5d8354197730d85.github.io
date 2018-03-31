@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+
+int pairWithMaxSum(int arr[], int N)
+{
+   if (N < 2)
+     return -1;
+ 
+   // Find two consecutive elements with maximum
+   // sum.
+   int res = arr[0] + arr[1];
+   for (int i=1; i<N-1; i++)
+      res = max(res, arr[i] + arr[i+1]);
+ 
+   return res;
+}
+ 
+//  Driver code to test above methods
+int main()
+{
+    int arr[101],n,i,x,t=0;
+  cin>>x;
+  while(x>t)
+  {
+  cin>>n;
+  for(i=0;i<n;i++)
+    cin>>arr[i];
+    //int N = sizeof(arr) / sizeof(int);
+ 
+    cout << pairWithMaxSum(arr, n) << endl;
+    t=t+1;
+  }
+    return 0;
+}

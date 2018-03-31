@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int hcf(int a,int b){
+if(b!=0)
+  return hcf(b,a%b);
+else
+  return a;
+}
+
+int main()
+{
+  int i,t,in[50][2],out[50][2];
+  scanf("%d",&t);
+  for(i=0;i<t;i++){
+  scanf("%d%d",&in[i][1],&in[i][2]);
+  }
+  for(i=0;i<t;i++){
+  out[i][1]=hcf(in[i][1],in[i][2]);
+  int lcm=(in[i][1]*in[i][2])/out[i][1];
+  out[i][2]=lcm;
+  printf("%d %d\n",out[i][1],out[i][2]);
+  }
+  
+	return 0;
+}

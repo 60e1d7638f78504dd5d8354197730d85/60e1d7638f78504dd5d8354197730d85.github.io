@@ -1,0 +1,32 @@
+#include <stdio.h>
+int lcm(unsigned a,unsigned b){
+	return ((a*b)/gcd(a,b));
+}
+
+int gcd(unsigned a,unsigned b){
+	if (b==0)return(a);
+  	else return gcd(b,a%b);
+}
+
+int main()
+{
+	unsigned tests,sensors,a[500],i,j,minlcm=99999;
+  	scanf("%u",&tests);
+  	while(tests--){
+      minlcm=99999;
+      	scanf("%u",&sensors);
+    	for(i=0;i<sensors;i++){
+        	scanf("%u",&a[i]);
+        }
+      	for(i=0;i<sensors-1;i++){
+        	for(j=i+1;j<sensors;j++){
+            	if(lcm(a[i],a[j])<minlcm){
+                  minlcm=lcm(a[i],a[j]);
+                  //printf("new minlcm from %d,%d\n",a[i],a[j]);
+                }
+            }
+        }
+      printf("%u\n",minlcm);
+    }
+	return 0;
+}

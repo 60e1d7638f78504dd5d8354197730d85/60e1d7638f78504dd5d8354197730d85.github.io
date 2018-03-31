@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner s=new Scanner(System.in);
+       int n=s.nextInt();
+       int i,j,k,l,m,f=0;
+       for(i=1;i<=n;i++)
+       {String s1=s.next();
+        String s2=s.next();
+        char[] a=s1.toCharArray();
+        char[] b=s2.toCharArray();
+        
+        for(j=0;j<s1.length();j++)
+        {
+          f=0;
+          for(k=0;k<s2.length();k++)
+          {
+            if(a[j]==b[k])
+            {
+              f=1;
+              break;
+            }
+          }
+          if(f==0)
+            System.out.print(a[j]);
+        }
+        for(j=0;j<s2.length();j++)
+        {
+          f=0;
+          for(k=0;k<s1.length();k++)
+          {
+            if(b[j]==a[k])
+            {
+              f=1;
+              break;
+            }
+          }
+          if(f==0)
+            System.out.print(b[j]);
+        }
+		System.out.println();
+       }
+	}
+}

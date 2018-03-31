@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define mp make_pair
+int a[1000005];
+vector < pair<long long int, pair<int,int> >  >edge;
+priority_queue <long long int > mst;
+void initialise()
+{
+	int i;
+	for (i=0;i<1000005;i++)
+	a[i]=i;
+}
+int root(int i)
+{
+	while (a[i]!=i)
+	{
+		a[i]=a[a[i]];
+		i=a[i];
+	}
+	return i;
+}
+void unio(int k,int l)
+{
+	int st=root(k);
+	int en=root(l);
+	a[st]=en;
+}
+long long int kruskal(long long int m)
+{
+	long long int i,wt;
+	long long int min=0;
+	int k,l;
+	for (i=0;i<m;i++)
+	{
+		k=edge[i].second.first;
+		l=edge[i].second.second;
+		wt=edge[i].first;
+		if (root(k)!=root(l))
+		{
+			mst.push(wt);
+			unio(k,l);
+			min+=wt;
+		}
+	}
+	return min;
+}
+int main()
+{
+	long long int n,m,k,wt,i;
+	int a,b;
+	cin>>n>>m>>k;
+	initialise();
+	for (i=0;i<m;i++)
+	{
+		cin>>a>>b>>wt;
+		edge.pb(mp(wt,mp(a,b)));
+	}
+	sort(edge.begin(),edge.begin()+m);
+	long long int minimumCost=kruskal(m);
+	long long int size=mst.size();
+	long long int count=0;
+	//long long int tot=size;
+	 while(minimumCost>k && mst.size()!=0){
+        minimumCost=minimumCost-mst.top()+1;
+        mst.pop();
+        count++;
+    }
+    if(size<n-1){
+        cout<<"-1\n";
+    }
+    else if(minimumCost<=k){
+        cout<<count<<"\n";
+    }
+    else
+    cout<<"-1\n";
+	return 0;
+}

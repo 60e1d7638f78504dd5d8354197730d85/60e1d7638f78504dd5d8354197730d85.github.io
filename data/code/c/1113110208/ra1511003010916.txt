@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{ 
+   int fib[200];
+  int q;
+  scanf("%d",&q);
+  int i,j,k,l,m,n,o,s,r,t;
+  int count;
+  while(q--)
+  {
+   int x,p;
+    scanf("%d%d",&x,&p);
+    count=0;
+    int fib1=1;
+    int fib2=2;
+    fib[0]=fib1;
+    fib[1]=fib2;
+    int a=1;
+    while(fib2<=x)
+    {
+     fib1=fib1+fib2;
+      fib[a+1]=fib1;
+      fib2=fib1+fib2;
+      fib[a+2]=fib2;
+      a=a+2;
+    }
+    
+    if(p==1)
+    {
+      for(i=0;i<=a;i++)
+      {
+        
+         if(fib[i]==x)
+         {
+           count++;
+        }
+      
+      }
+    }
+    if(p==2)
+    {
+     for(i=0;i<=a;i++) 
+     {
+      for(j=i;j<=a;j++)
+      {
+       if(fib[i]+fib[j]==x)
+       {
+        count++; 
+       }
+      }
+     }
+    }
+    if(p==3)
+    {
+     for(i=0;i<=a;i++)
+     {
+       for(j=i;j<=a;j++)
+       {
+         for(k=j;k<=a;k++)
+         {
+           if(fib[i]+fib[j]+fib[k]==x)
+           {
+            count++; 
+           }
+         }
+       }
+     } 
+    }
+    if(p==4)
+    {
+     for(i=0;i<=a;i++) 
+     {
+       for(j=i;j<=a;j++)
+       {
+        for(k=j;k<=a;k++)
+        {
+         for(l=k;l<=a;l++) 
+         {
+          if(fib[i]+fib[j]+fib[k]+fib[l]==x)
+          {
+           count++; 
+          }
+         }
+        }
+       }
+     }
+    }
+    if(p==5)
+    {
+     for(i=0;i<=a;i++)
+     {
+       for(j=i;j<=a;j++)
+       {
+        for(k=j;k<=a;k++)
+        {
+         for(l=k;l<=a;l++)
+         {
+           for(m=l;m<=a;m++)
+           {
+            if(fib[i]+fib[j]+fib[k]+fib[l]+fib[m]==x)
+            {
+             count++; 
+            }
+           }
+         }
+        }
+       }
+     }    
+    }
+    printf("%d\n",count%1000000007);
+  }
+	return 0;
+}

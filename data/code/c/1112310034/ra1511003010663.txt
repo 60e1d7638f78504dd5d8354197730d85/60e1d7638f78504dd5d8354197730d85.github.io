@@ -1,0 +1,119 @@
+#include<stdio.h>
+#include<stdlib.h>
+            
+long long ll_read(void)
+{	
+	long long res; 
+	int c;
+	for(;;)
+	{
+ 		c = getchar() - '0';
+    	if(0<=c && c<=9) { res = c; break; }
+   }
+   for(;;)
+   {
+   	c = getchar() - '0';
+   	if(0<=c && c<=9) { res = res*10 + c; continue; }
+      break;
+   }
+   return res;
+}
+     
+int compute(long long int num,char str[20],int DP[10])
+{
+    if(num==0)return 0;
+    int dig=0,digTaken[10],ways=0,i,j,mul,sum,single;
+    long long int temp=num;
+    while(temp)
+    {
+    	str[dig]=temp%10+48;
+    	temp/=10;
+    	dig++;
+    }
+    if(dig>10)return DP[9];
+    for(i=0;i<10;i++)digTaken[i]=0;
+    if(dig==1)return num;
+    ways=DP[dig-2];
+ 
+    for(i=dig-1;i>=0;i--)
+    {
+	mul=1;
+    sum=0;
+    if(i==dig-1)
+    {
+    single=str[i]-49;
+    for(j=0;j<=str[i]-48;j++)
+    {
+    if(digTaken[j]==1)single--;
+    }
+    }
+    else if(i==0)
+    {
+    single=str[i]-47;
+    for(j=0;j<=str[i]-48;j++)
+    {
+    if(digTaken[j]==1)single--;
+    }
+    }
+    else
+    {
+    single=str[i]-48;
+    for(j=0;j<=str[i]-49;j++)
+    {
+    if(digTaken[j]==1)single--;
+    }
+    }	
+     
+    mul*=single;
+    for(j=i-1;j>=0;j--)
+    {
+    single=9-(dig-2-j);
+	
+    mul*=single;
+    }
+    sum=mul;
+    ways+=sum;
+    if(digTaken[str[i]-48]==0)digTaken[str[i]-48]=1;
+    else break;
+    }
+    return ways;
+    }
+    int main()
+    {
+    int T;
+    scanf("%d",&T);
+    int i,j,k;
+    long long int L,R;
+    int ways;
+    int rightways;
+    int leftways;
+    int DP[10];
+    DP[0]=9;
+    char chL[20],chR[20];
+    int mul;
+    for(i=1;i<10;i++)
+    {
+    mul=9;
+    for(j=i;j>0;j--)
+    {
+    mul*=10-j;
+    }
+    DP[i]=DP[i-1]+mul;
+    }
+	
+    for(k=0;k<T;k++)
+    {
+    ways=0;
+    rightways=0;
+    leftways=0;
+    L=ll_read();
+    R=ll_read();
+    L--;
+    
+    rightways=compute(R,chR,DP);
+    leftways=compute(L,chL,DP);
+    ways=rightways-leftways;
+    printf("%d\n",ways);
+    }
+    return 0;
+    }  

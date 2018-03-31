@@ -1,0 +1,40 @@
+#include <stdio.h>
+int check(int n)
+{
+  if(n>0)
+  {
+    return 1;
+  }  
+  else
+  {
+    return 0;
+  }
+}
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int i,j,counter=0;
+  int arr[n],temp,top = -1;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&temp);
+    if(!check(temp))
+    {
+      if(temp == arr[top]-2*arr[top])
+      {
+        counter++;
+        top--;
+      }
+    }
+    else
+    {
+      top++;
+      arr[top] = temp;
+    }
+   
+  }
+  printf("%d",counter * 2);
+
+	return 0;
+}

@@ -1,0 +1,123 @@
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <sstream>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string>
+#include <vector>
+ 
+using namespace std;
+ 
+#define sd(x) scanf("%d",&x)
+#define sfd(x) scanf("%d",&x)
+#define sfld(x) scanf("%lld",&x)
+#define pf printf
+ 
+#define LL long long
+#define ll long long
+#define LD long double
+#define ld long double
+#define PB push_back
+#define pb push_back
+#define MP make_pair
+#define mp make_pair
+#define F first
+#define S second
+ 
+typedef pair<int,int> PII;
+typedef vector<int> VI;
+ 
+#define pii pair<int,int>
+#define vi vector<int>
+#define fr(i,n) for( int i=0; i<=n; i++)
+#define frm(i,m,n) for(int i=m; i<=n; i++)
+#define mod 1000000007
+ 
+vi arr[20];
+int n;
+void in()
+{
+    sd(n);
+    string s;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+    {
+        arr[i].clear();
+        getline(cin,s);
+        stringstream in(s);
+        int a;
+        while(in>>a)
+        {
+            arr[i].PB(a);
+        }
+        sort(arr[i].begin(),arr[i].end());
+    }
+}
+LL dp[2000][200];
+ 
+void solve()
+{
+    memset(dp,0,sizeof(dp));
+    dp[0][0] = 1;
+    int N = 1<<n;
+    for(int i=0;i<N-1;i++)
+    {
+        for(int k=0;k<n;k++)
+        {
+            //cout<<<<endl;
+            if(((i)&(1<<k))==0)
+            {
+                for(int j = 0;j<=100;j++)
+                {
+                    if(dp[i][j]!=0)
+                    {
+                        for(int p=arr[k].size()-1;p>=0;p--)
+                        {
+                            if(arr[k][p]>j)
+                            {
+                                dp[i|(1<<k)][arr[k][p]] += dp[i][j];
+                                if(dp[i|(1<<k)][arr[k][p]]>=mod)
+                                    dp[i|(1<<k)][arr[k][p]]-=mod;
+                                //cout<<dp[i]<<j<<endl;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    LL ans = 0;
+    for(int i=0;i<=100;i++)
+    {
+        if(dp[N-1][i]!=0){
+            //cout<<i<<" "<<dp[N-1][i]<<endl;
+            ans += dp[N-1][i];
+            ans %=mod;
+        }
+    }
+    printf("%lld\n",ans);
+ 
+}
+ 
+int main()
+{
+    int t=1;
+    sd(t);
+    while(t--){
+        in();
+        solve();
+    }
+}
+ 

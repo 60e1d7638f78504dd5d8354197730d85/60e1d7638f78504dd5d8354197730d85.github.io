@@ -1,0 +1,65 @@
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+class complex{
+	public:
+  	float a,b,flag;
+  
+ 	void put(float x, float y){
+    	try{
+    		if(x==0){
+				flag=1;
+    			//throw 0;
+          		throw std::runtime_error("real part is zero");
+    		}
+    		else if(y==0){
+    			flag=1;
+    			//throw 1;
+          		throw std::runtime_error("imaginary part is zero");
+        	}
+  			else{
+      			flag=0;
+    			a=x;
+      			b=y;
+    		}
+    	}catch(std::exception const& e){
+    		cout<<e.what()<<endl;
+    	}
+  }
+  
+  complex operator+(const complex& c){
+  	complex t;
+    t.a = this->a + c.a;
+    t.b = this->b + c.b;
+    t.flag = this->flag + c.flag;
+    return t;
+  }
+  
+  void disp(){
+    if(b>0){
+      	cout<<a<<"+"<<b<<"i";
+    }else{
+    	cout<<a<<b<<"i";
+    }
+  }
+  
+};
+
+int main()
+{	
+  	complex c1,c2,c3;
+ 	float a,b,c,d;
+ 	
+ 	cin>>a>>b>>c>>d;
+ 	c1.put(a,b);
+ 	c2.put(c,d);
+  
+	c3 = c1+c2;
+ 	
+  	if(c3.flag==0){
+ 	c3.disp();
+    }
+  
+	return 0;
+}

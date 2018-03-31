@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<math.h>
+unsigned long long int w,min,lcm,arr[1000000],c,d,x;
+unsigned long long int hcf(unsigned long long int a,unsigned long long int b)
+{
+    if(a==0 || b==0)
+        return 0;
+if(a%b==0)
+{return b;}
+if(b%a==0)
+{return a;}
+if(a>b && b!=0)
+{
+return hcf(b,a%b);
+}
+if(b>a && a!=0)
+{return hcf(a,b%a);
+}
+}
+ 
+int main()
+{
+    int i,j,k,n,m,temp,t;
+    scanf("%d",&t);
+    for(m=0;m<t;m++)
+    {
+        min=pow(10,18);
+        scanf("%d",&n);
+        for(j=0;j<n;j++)
+        {
+            scanf("%llu",&arr[j]);
+        }
+        for(j=0;j<n;j++)
+        {
+            for(k=j+1;k<n;k++)
+            {
+            c=arr[k];
+            d=arr[j];
+            w=hcf(c,d);
+    lcm=(c*d)/w;
+if(lcm<min)
+{
+    min=lcm;
+}
+        }}
+        printf("%llu\n",min);}
+return 0;
+    }
+ 

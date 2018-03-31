@@ -1,0 +1,22 @@
+#include<string.h>
+#include<stdio.h>
+int main(){
+	char s[100];
+	int l, c = 0, max = -1;
+	fgets(s,100,stdin);
+	l = strlen(s);
+  int i;
+	for(i = 0 ; i < l ; i++){
+		if(s[i] != ' '){
+			c++;
+		}
+		else{
+			if(c > max) max = c;
+			c = 0;
+		}
+	}
+	if(c > max) max = c;
+ 
+	printf("%d\n", max);
+	return 0;
+}

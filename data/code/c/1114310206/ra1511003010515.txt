@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	char s[30];
+  	while(n!=0)
+    {
+    	scanf("%s",s);
+      int i=0;
+      int count=0;
+      while(s[i]!='\0')
+      {
+    	if(s[i]=='_' || i==0)
+        {
+        	if(s[i]=='_') i++;
+          //printf("s[i]=%c",s[i]);
+          if(s[i]=='1' || s[i]=='2' || s[i]=='3' || s[i]=='4' || s[i]=='5' || s[i]=='6' || s[i]=='7' || s[i]=='8' || s[i]=='9')
+          {
+            if(s[i+1]=='0')
+            {
+             count+=10;
+              i++;
+            }
+            else
+            {
+          	count+=s[i]-48;
+           // printf("s[%d]=%c  count=%d\n",i,s[i],count);
+            }
+          }
+          else if(s[i]=='J' || s[i]=='Q' || s[i]=='K')
+          {
+          	count+=10;
+          }
+          else
+            count+=11;
+        }
+        i++;
+      }
+      if(count==30) count=count+10;
+      printf("%d POINTS\n",count);
+      	n--;
+    }
+	return 0;
+}

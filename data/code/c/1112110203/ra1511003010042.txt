@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    int t,i,j,max=0,l;
+ 
+ 
+   scanf("%d",&t);
+   while(t--)
+   {
+       char str1[10000];
+       int count[1000000]={0};
+       scanf("%s",str1);
+       l=strlen(str1);
+       for(j=0;j<l;j++)
+       {
+           for(i=0;i<l;i++)
+           {
+               if(str1[i]==str1[j])
+               {
+                   (count[j])++;
+               }
+           }
+       }
+       max=0;
+       for(j=0;j<l;j++)
+       {
+           if(count[j]>=max)
+           {
+               max=count[j];
+           }
+       }
+ 
+       if(max==(l-max))
+       {
+           printf("YES\n");
+       }
+       else
+        printf("NO\n");
+   }
+    return 0;
+}

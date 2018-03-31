@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int t,i;
+scanf("%d",&t);
+while(t--)
+{ char s[400],c[400];
+scanf("%s",s);
+int l=0;
+for(i=0;s[i]!='\0';i++)
+{
+if(s[i]=='(')
+continue;
+else if(s[i]>=97&&s[i]<=122)
+printf("%c",s[i]);
+else if(s[i]==')')
+{
+printf("%c",c[l-1]);
+l--;
+}
+else
+{
+c[l]=s[i];
+l++;
+}
+}
+printf("\n");
+}
+return 0;
+} 

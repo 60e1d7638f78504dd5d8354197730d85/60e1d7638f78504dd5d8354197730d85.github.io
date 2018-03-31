@@ -1,0 +1,68 @@
+#include<stdio.h>
+ 
+ 
+int main()
+{
+        int T,B,S,E,L,i,j,k,l,n;
+        int A[11][600];
+        scanf("%d",&T);
+ 
+ 
+        for(n=0;n<T;n++)
+        {
+ 
+                for(j=0;j<10;j++)
+                        for(k=0;k<500;k++)
+                                A[j][k]=0;
+ 
+                int count=0,temp=0,m;
+                scanf("%d",&B);
+ 
+                for(j=0;j<B;j++)
+                {
+                        scanf("%d",&S);
+                        scanf("%d",&E);
+                        scanf("%d",&L);
+ 
+                        for(k=S-1;k<=E-1;k++)
+                        {
+                                A[L][k]=1;
+                        }
+                }
+                for(k=0;k<500;k++)
+                        if(A[0][k]==1&&A[1][k]==1)
+                        {
+                                temp++;
+                                for(m=0;m<=9;m++)
+                                A[m][k]=0;
+                        }
+                for(k=0;k<500;k++)
+                        if(A[9][k]==1&&A[8][k]==1)
+                        {
+                                temp++;
+                                for(m=0;m<=9;m++)
+                                        A[m][k]=0;
+                        }
+                for(l=1;l<9;l++)
+                {
+                        for(i=0;i<500;i++)
+                        {
+                                if(A[l][i]==1)
+                                {
+                                   if(A[l-1][i]==1||A[l+1][i]==1)
+                                   {
+                                              count++;
+                                              for(m=0;m<=9;m++)
+                                              A[m][i]=0;
+                                   }
+                                }
+ 
+                    }
+                }
+                                count=count+temp;
+ 
+                                printf("%d\n",500-count);
+        }
+        return 0;
+}
+ 

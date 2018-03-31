@@ -1,0 +1,37 @@
+#include <iostream>
+#include<typeinfo>
+using namespace std;
+void inte()
+{
+  	int n;
+  	try
+    {
+  		cin>>n;
+      	if(typeid(n).name()!="i")
+          	throw "error";
+    }
+  	catch(...)
+    {
+      	cout<<"An exception occurred"<<endl<<"Exception Number="<<n<<endl;
+    }
+}
+void stri()
+{
+  	string n;
+  	try
+    {
+  		cin>>n;
+      	if(typeid(n).name()!="s")
+          	throw "error";
+    }
+  	catch(...)
+    {
+      	cout<<"An exception occurred"<<endl<<"Exception string="<<n;
+    }
+}
+int main()
+{
+  	inte();
+  	stri();
+	return 0;
+}

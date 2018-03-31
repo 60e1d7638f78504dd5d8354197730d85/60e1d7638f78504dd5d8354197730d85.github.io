@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+struct student
+{
+  int roll;
+  char name[50];
+  char dob[20];
+  int fees;
+};
+int main()
+{
+	struct student s[10];
+  	int n,i,a,b;
+  	char c[20],d[20];
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d %s %s %d",&a,&c[0],&d[0],&b);
+      s[i].roll=a;
+      s[i].fees=b;
+      strcpy(s[i].name,c);
+      strcpy(s[i].dob,d);
+    }
+  	for(i=0;i<n;i++)
+    {
+      printf("Roll no:%d\n",s[i].roll);
+      printf("Name:%s\n",s[i].name);
+      printf("DOB:%s\n",s[i].dob);
+      printf("Fees:%d\n",s[i].fees);
+    }
+	return 0;
+}

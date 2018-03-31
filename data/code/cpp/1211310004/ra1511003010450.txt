@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+ 
+int pour(int m,int n, int d){
+	int A=0;
+	int B=0;
+	int step=0;
+	while(A!=d && B!=d){
+		if(B==n){
+			B=0;
+			step++;
+			//cout<<A<<" "<<B<<endl;
+		}
+		else if(A==0){
+			A=m;
+			step++;
+			//cout<<A<<" "<<B<<endl;
+		}
+		else if(A!=0 && B==0){
+			if(A>n){
+				A=A-n;
+				B=n;
+				//cout<<A<<" "<<B<<endl;
+			}
+			else{
+				B=A;
+				A=0;
+				//cout<<A<<" "<<B<<endl;
+			}
+			step++;
+			
+		}
+		else if(A==m && B+m<n){
+			A=0;
+			B+=m;
+			step++;
+			//cout<<A<<" "<<B<<endl;
+		}
+		else{
+			A=A-n+B;
+			B=n;
+			step++;
+			//cout<<A<<" "<<B<<endl;
+		}
+		
+	}
+	return step;
+}
+ 
+int __gcd (int n1,int n2)
+{
+  int gcd;
+  for(int i=1; i <= n1 && i <= n2; ++i)
+    {
+        // Checks if i is factor of both integers
+        if(n1%i==0 && n2%i==0)
+            gcd = i;
+  }
+  return gcd;
+}
+int main(){
+	int t,a,b,c,z;
+		cin>>t;
+	while(t--){
+		cin>>a;
+		cin>>b;
+		cin>>c;
+		if(c>a && c>b)
+		z=-1;
+		else if(c%__gcd(a,b)!=0)
+		z=-1;
+		else{
+		z=min(pour(a,b,c),pour(b,a,c));
+		}
+		cout<<z<<endl;
+	}
+} 

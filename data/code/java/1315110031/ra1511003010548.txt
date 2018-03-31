@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Person objname = new Person();
+       objname.inputData();
+       objname.display();
+	}
+}
+
+class Person{
+	private int yearOfBirth,yearOfDeath;
+    private String string;
+    public void inputData(){
+      Scanner scan = new Scanner(System.in);
+      string = scan.nextLine();
+      yearOfBirth = scan.nextInt();
+      yearOfDeath = scan.nextInt();
+    }
+  
+    public void display(){
+      if(yearOfDeath== -1)
+        System.out.println(string + " is still alive");
+      else
+      System.out.println(string + " lived for " + (yearOfDeath - yearOfBirth) + " years");
+    }
+}

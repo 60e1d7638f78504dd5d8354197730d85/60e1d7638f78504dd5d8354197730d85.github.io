@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,n,a[15],b[15],count=0,num,flag=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  
+  for(i=0;i<n;i++)
+  {
+    num=a[i];
+    for(j=0;j<=count;j++)
+    {
+      if(b[j]==num)
+      {
+        flag=1;
+        break;
+      }
+    }
+    if(flag==0)
+    {
+      b[count++]=num;
+    }
+    else
+    {
+      flag=0;
+    }
+  }
+  printf("%d",count);
+	return 0;
+}

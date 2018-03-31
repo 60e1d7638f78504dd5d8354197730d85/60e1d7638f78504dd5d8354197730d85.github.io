@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int fun(int n)
+{
+if(n==1)
+return(2);
+else if(n==2)
+return(5);
+if(n%2!=0)
+return((n+1)+2*fun((n-1)/2));
+else
+return((n+1)+fun(n/2)+fun(n/2-1));
+}
+int main()
+{
+  int t,n,m,max,min;
+cin>>t;
+while(t--)
+{
+cin>>n>>m;
+max=(n)*(3+n)/2;
+
+min=fun(n);
+if(min<=m && m<=max)
+cout<<0<<"\n";
+else if(m<min)
+cout<<-1<<"\n";
+else
+cout<<m-max<<"\n";
+}
+
+	return 0;
+}

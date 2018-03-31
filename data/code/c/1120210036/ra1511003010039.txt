@@ -1,0 +1,58 @@
+#include <stdio.h>
+ 
+long long multiply(long long x, long long y, long long c)
+{
+if(y==0) return 0;
+long long d= multiply(x,y/2,c);
+if(y%2 == 0) return (d+d)%c;
+    else return (x+d+d)%c;
+}
+ 
+ 
+ 
+int main(void) {
+	int t,n,i,j,k;
+char s[1001];
+long long a,b,c,l[1001],temp,y,m;
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d",&n);
+for(i=0;i<n;i++)
+scanf("%lld",&l[i]);
+scanf("%lld %lld %lld",&a,&b,&c);
+scanf("%s",s);
+y=0; m=1;
+ 
+for(i=0;i<n;i++)
+{
+if(s[i]=='R')
+	{
+		for(j=i,k=n-1;j<=k;j++,k--)
+		{   
+	       temp=l[j];
+	       l[j]=l[k];
+	      l[k]=temp; 
+		}
+	}
+}
+ 
+for(i=0;i<n;i++)
+{
+if(s[i]=='M')
+{
+m=multiply(m,b,c);
+y=multiply(y,b,c);
+}
+if(s[i]=='A')
+{
+y+=a;
+y=y%c;
+}
+l[i]=multiply(l[i]%c,m,c)+y;
+printf("%lld ",l[i]%c);
+}
+printf("\n");
+}
+return 0;
+} 

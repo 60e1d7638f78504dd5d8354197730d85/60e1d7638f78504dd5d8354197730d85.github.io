@@ -1,0 +1,111 @@
+#include<stdio.h>
+#include<malloc.h>
+typedef struct xxx
+{
+    int c;
+    int p;
+}bal;
+bal ar[40];
+long long int dis[40][3];
+long long int dp[41][41];
+long long int pr[41][41],pw[41];
+void merge(bal *a,bal *b,bal *c,int n,int m)
+{
+    int i=0,j=0,k=0;
+    while(i<n && j<m)
+    {
+        if(a[i].c<b[j].c)
+            c[k++]=a[i++];
+        else
+            c[k++]=b[j++];
+ 
+    }
+    while(i<n)
+    {
+        c[k++]=a[i++];
+    }
+    while(j<m)
+        c[k++]=b[j++];
+}
+void mergesort(bal *a,int n)
+{
+    if(n<=1)
+        return ;
+    bal *b=(bal *)malloc(n*sizeof(bal));
+    int i,mid=n/2;
+    mergesort(a,mid);
+    mergesort(a+mid,n-mid);
+    merge(a,a+mid,b,mid,n-mid);
+    for(i=0;i<n;i++)
+        a[i]=b[i];
+    free(b);
+}
+int main()
+{
+    int t,n,m,i,j,s;
+    long long int w,sum;
+    scanf("%d",&t);
+    pw[0]=1;
+    for(i=1;i<41;i++)
+        pw[i]=2*pw[i-1];
+    while(t--)
+    {
+        s=0;w=0;sum=0;
+        scanf("%d%d",&n,&m);
+        for(i=0;i<n;i++)
+            scanf("%d%d",&ar[i].c,&ar[i].p);
+        mergesort(ar,n);
+        dis[s][0]=ar[0].c;
+        dis[s][1]=ar[0].p;
+        dis[s][2]=1;
+        s++;
+        for(i=1;i<n;i++)
+        {
+            if(ar[i].c==ar[i-1].c)
+            {
+                dis[s-1][1]+=ar[i].p;
+                dis[s-1][2]++;
+            }
+            else
+            {
+                dis[s-1][1]=pw[dis[s-1][2]-1]*dis[s-1][1];
+                dis[s][0]=ar[i].c;
+                dis[s][1]=ar[i].p;
+                dis[s][2]=1;
+                s++;
+            }
+        }
+        dis[s-1][1]=pw[dis[s-1][2]-1]*dis[s-1][1];
+        for(i=0;i<41;i++)
+        {
+            dp[0][i]=0;
+            dp[i][0]=1;
+            pr[0][i]=0;
+            pr[i][0]=0;
+        }
+       // printf("----%d\n",dis[2][2]);
+        for(i=1;i<=s;i++)
+        {
+            for(j=1;j<=s;j++)
+            {
+                if(j<=i)
+                dp[i][j]=dp[i-1][j]+(pw[dis[i-1][2]]-1)*dp[i-1][j-1];
+                else
+                    dp[i][j]=0;
+                if(j<=i)
+                pr[i][j]=pr[i-1][j]+pr[i-1][j-1]*(pw[dis[i-1][2]]-1)+dis[i-1][1]*dp[i-1][j-1];
+                else
+                    pr[i][j]=0;
+            }
+        }
+        for(i=m;i<=s;i++)
+        {
+            w+=dp[s][i];
+            sum+=pr[s][i];
+        }
+        printf("%.9lf\n",sum*1.0/w);
+ 
+    }
+    return 0;
+ 
+}

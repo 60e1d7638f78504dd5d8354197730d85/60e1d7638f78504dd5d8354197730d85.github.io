@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class A
+{
+public:
+  	int a,b,c;
+  	void get()
+    {
+      	cin>>a>>b>>c;
+    }
+};
+	
+class B:public A
+{
+public:
+	int total;
+    void cal()
+    {
+    	get();
+    	total=a+b+c;
+     }
+};
+
+class C:public B
+{
+public:
+	void disp()
+    {
+    	cout<<total/3;
+    }
+};
+
+int main()
+{
+	C temp;
+  	temp.cal();
+  	temp.disp();
+	return 0;
+}

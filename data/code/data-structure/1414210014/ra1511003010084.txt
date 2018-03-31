@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long 
+int main (void)
+{
+ int test;
+ cin>>test;
+ set<long long> l, b;
+ set<long long> :: iterator it;
+ 
+ while (test--) {
+  l.clear();
+  b.clear();
+  ll n, m, q;
+  cin>>n>>m>>q;
+ 
+  l.insert(1);
+  l.insert(n);
+  b.insert(1);
+  b.insert(m);
+  
+  int i;
+  ll x, y;
+  for (i = 2; i < q+2; i++) {
+   cin>>x>>y;
+   l.insert(x);
+   b.insert(y);
+  }
+ 
+  ll temp, max = 0, min = 1e14;
+  ll l1, l2;
+  l1 = l.size();
+  l2 = b.size();
+ 
+  ll arr1[l1], arr2[l2];
+  it = l.begin();
+  temp = *it;
+  
+  it++;
+  i = 0;
+  while(it != l.end()) {
+   arr1[i] = *it-temp;
+   temp = *it;
+   i++;
+   it++;
+  }
+  it = b.begin();
+  temp = *it;
+  
+  it++;
+  i = 0;
+  while(it != b.end()) {
+   arr2[i] = *it-temp;
+   temp = *it;
+   i++;
+   it++;
+  }
+  sort(arr1, arr1 + (l1-1));
+  sort(arr2, arr2 + (l2-1));
+ 
+  
+  max = arr1[l1-1-1] * arr2[l2-1-1];
+  min = arr1[0] * arr2[0];
+  cout<<(l1-1)*(l2-1)<<" "<<min<<" "<<max<<endl;
+ }
+    
+    return 0;
+}

@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define PB push_back
+#define MP make_pair
+#define F first
+#define S second
+#define SZ(a) (int)(a.size())
+#define ALL(a) a.begin(),a.end()
+#define SET(a,b) memset(a,b,sizeof(a))
+#define MOD 1000000007
+ 
+#define SI(n) scanf("%d",&n)
+#define PI(n) printf("%d\n",n)
+#define SL(n) scanf("%lld",&n)
+#define PL(n) printf("%lld\n",n)
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
+#define TCS() int testcase; SI(testcase);while(testcase--)
+ 
+ 
+#define TRACE
+ 
+#ifdef TRACE
+#define TR(...) __f(#__VA_ARGS__, __VA_ARGS__)
+template <typename Arg1>
+void __f(const char* name, Arg1&& arg1){
+    cerr << name << " : " << arg1 << std::endl;
+}
+template <typename Arg1, typename... Args>
+void __f(const char* names, Arg1&& arg1, Args&&... args){
+    const char* comma = strchr(names + 1, ',');cerr.write(names, comma - names) << " : " << arg1<<" | ";__f(comma+1, args...);
+}
+#else
+#define TR(...)
+#endif
+ 
+//FILE *fin = freopen("in","r",stdin);
+//FILE *fout = freopen("out","w",stdout);
+typedef long long int 	LL;
+typedef long double 	LD;
+typedef pair<int,int>   II;
+typedef vector< II >    VII;
+typedef vector<int>     VI;
+ 
+const int N = 100011;
+int a[N];
+ 
+int main() {
+    TCS() {
+        int n;
+        char b[6];
+        int cnt = 0, H = 0;
+        scanf("%d %s\n",&n, b);
+        for(int i = 0;i < n; ++i) {
+            int x; SI(x);
+            if(x & 1) cnt++;
+            else H += (cnt + 1)/2, cnt = 0;
+        }
+        H += (cnt + 1)/2, cnt = 0;
+        
+        if(n == 1) {
+            H ? printf("Chefu\n") : printf("Chef\n") ;
+            continue;
+        }
+ 
+        bool ok = 0;
+        n--;
+        if(strlen(b) == 4)  ok = 1;
+        if(((n&1) && ok) || (!(n&1) && !ok)) {
+            printf("Chef\n");
+            continue;
+        }
+        if(H <= n/2)
+            printf("Chef\n");
+        else printf("Chefu\n");
+    }
+    return 0;
+}

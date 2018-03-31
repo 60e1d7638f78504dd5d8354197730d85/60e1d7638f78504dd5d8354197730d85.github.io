@@ -1,0 +1,20 @@
+#include <stdio.h>
+int hcf(int a,int b){
+    if(a%b==0)
+        return b;
+    else
+        return hcf(b,a%b);
+}
+int main()
+{
+int t;
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        int a,b;
+        scanf("%d%d",&a,&b);
+        printf("%d\n",abs(a-b)/hcf(abs(a),abs(b)));
+    }
+	return 0;
+}

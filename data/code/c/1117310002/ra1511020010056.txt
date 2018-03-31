@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+#include <stdlib.h>
+long long summm(long long num)
+{
+   if(num%9==0)
+     return 9;
+   else
+    return(num%9);
+}
+int main()
+{
+    int t;
+    long long a1,d,r,l,sum,k,i;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%lld %lld %lld %lld",&a1,&d,&l,&r);
+        sum=0;
+        a1=summm(a1);
+        d=summm(d);
+        k=(r-l+1)/9;
+        for(i=1;i<=9;i++)
+        {
+            sum+=summm(a1+(i-1)*d);
+        }
+        sum*=k;
+        for(i=l;i<=r-(k*9);i++)
+        {
+            sum+=summm(a1+(i-1)*d);
+        }
+        printf("\n%lld",sum);
+ 
+ 
+    }
+    return 0;
+} 

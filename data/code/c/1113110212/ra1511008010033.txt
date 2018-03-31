@@ -1,0 +1,62 @@
+# include <stdio.h>
+# include <string.h>
+ 
+# define MAX 42
+ 
+typedef struct { int color; long long price; } BALLOON;
+ 
+BALLOON B[MAX + 1];
+int nballoon, colorAtLeast;
+ 
+int compare( BALLOON *a, BALLOON *b){ 
+  if( a->color != b->color) return a->color - b->color;
+  if( a->price < b->price) return -1;	
+  if( a->price > b->price) return +1;	
+  return 0;
+}
+int vis[MAX+1][MAX+1][MAX+1];
+int contVis[MAX+1][MAX+1][MAX+1];
+unsigned long long din[MAX+1][MAX+1][MAX+1];
+unsigned long long dinCount[MAX+1][MAX+1][MAX+1], division;
+ 
+unsigned long long countTotal( int position, int last, int numColors){
+  unsigned long long res = 0;
+  if( position >= nballoon ) return numColors >= colorAtLeast ? 1 : 0;
+  if( contVis[position][ last ][ numColors ] != 0 ) return dinCount[ position ][ last ][ numColors ];
+  contVis[position][ last ][ numColors ] = 1;
+  /*printf("%d %d %d (%d)\n", position, last, numColors, colorAtLeast);*/
+  res += countTotal( position + 1, position + 1, numColors + ( last == 0 ? 1 : (( B[ last - 1 ].color != B[ position ].color ) ? 1 : 0) ));
+  res += countTotal( position + 1, last, numColors );
+  return dinCount[position][ last ][ numColors ] = res;
+}
+ 
+ 
+unsigned long long getTotal( int position, int last, int numColors){
+  unsigned long long res = 0;
+  if( position >= nballoon ) return 0.0;
+  if( vis[position][ last ][ numColors ] != 0 ) return din[ position ][ last ][ numColors ];
+  vis[position][ last ][ numColors ] = 1;
+  res += getTotal(  position + 1, position + 1, numColors + ( last == 0 ? +1 : (( B[ last - 1 ].color != B[ position ].color ) ? 1 : 0) ) ) 
+       + countTotal( position + 1, position + 1, numColors + ( last == 0 ? +1 : (( B[ last - 1 ].color != B[ position ].color ) ? 1 : 0) )) * B[ position ].price;
+  res += getTotal(  position + 1, last, numColors );
+  return din[position][ last ][ numColors ] = res;
+}
+ 
+main(){
+  int ncases, cases, item;
+  unsigned long long total;
+  for( scanf("%d", &ncases), cases = 1; cases <= ncases ; cases++){
+  	 scanf("%d %d", &nballoon, &colorAtLeast);
+  	 for( item = 0 ; item < nballoon; item++){
+  	    scanf("%d %lld", &B[ item ].color, &B[ item ].price );
+  	 }
+  	 qsort( B, nballoon, sizeof( BALLOON), compare);
+  	 memset( vis, 0, sizeof( vis ) );
+  	 memset( contVis, 0, sizeof( contVis ) );
+  	 division = countTotal(0, 0, 0);
+  	 total = getTotal(0, 0, 0);
+  	 if( division == 0 ) printf("0.000000000\n");
+  	 else printf("%.9lf\n", (double)total / (double)division + 1E-17);
+  }
+  return 0;	
+} 

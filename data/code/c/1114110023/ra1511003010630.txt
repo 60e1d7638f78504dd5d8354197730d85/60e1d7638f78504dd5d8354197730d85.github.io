@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+	int first,second,ncr,res_first,res_second,ans=1,fact1,fact2,diff,fact3;
+  	scanf("%d",&first);
+  	scanf("%d",&second);
+  	res_first=first;
+    res_second=second;
+  	while(first>1)
+    {
+    	ans=ans*first;
+      	first--;
+    }
+  	fact1=ans;
+  	ans=1;
+  	while(second>1)
+    {
+    	ans=ans*second;
+      	second--;
+    }
+  	fact2=ans;
+  	diff=res_first-res_second;
+  	if (diff<0)
+    {
+    	diff=diff*(-1);
+    }
+  	ans=1;
+  	while(diff>1)
+    {
+    	ans=ans*diff;
+      	diff--;
+    }
+  	fact3=ans;
+  	ncr=(fact1)/(fact2*fact3);
+  	printf("%d",ncr);
+	return 0;
+}

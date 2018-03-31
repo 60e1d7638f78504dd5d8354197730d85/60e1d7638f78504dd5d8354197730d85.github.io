@@ -1,0 +1,20 @@
+#include<stdio.h>
+ 
+int dayofweek(int d, int m, int y)
+{
+    static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+    y -= m < 3;
+    return ( y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
+}
+ 
+/* Driver function to test above function */
+int main()
+{
+  int date,mon,ye;
+  scanf("%d%d%d",&ye,&mon,&date);
+  printf("Date:%d/%d/%d\n",date,mon,ye);
+    int day = dayofweek(date,mon,ye);
+  char a[][10]={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+    printf ("weekday=%s",a[day]);
+    return 0;
+}

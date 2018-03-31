@@ -1,0 +1,20 @@
+#include<stdio.h>
+int lcm(int a, int b)
+{
+	static int max=0;
+	max+=a;
+	if(max%b==0 && max%a==0)
+		return max;
+	lcm(a,b); 
+}
+int main()
+{
+	int a,b,t;
+	scanf("%d%d",&a,&b);
+	if(a>b)
+		t=lcm(a,b);
+	else
+		t=lcm(b,a);
+	printf("%d %d",(a*b)/t,t);
+	return 0;
+}

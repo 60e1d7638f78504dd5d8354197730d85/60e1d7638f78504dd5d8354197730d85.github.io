@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char s[10];
+  int i;
+  scanf("%s",s);
+  i=strlen(s)-1;
+  int a;
+  a=(int)s[0];
+  if((a<65)||(a>90 && a<97) || (a>122))
+  {
+    printf("not a valid identifier");
+    return 0;
+  }
+  while(i!=0)
+  {
+    int b;
+    b=(int)s[i];
+    if((a==95)||(a>47 && a<58)||(a>64 && a<91)||(a>96 && a<123))
+    {
+      i--;
+    }
+    else
+    {
+      printf("%d",a);
+      break;
+      }
+  }
+  if(i==0)
+    printf("valid identifier");
+  else 
+    printf("not a valid identifier");
+	return 0;
+}

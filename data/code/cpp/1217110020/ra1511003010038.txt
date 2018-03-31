@@ -1,0 +1,42 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+    int t;
+ 
+    cin >> t;
+ 
+    while(t--) {
+        int n;
+ 
+        cin >> n;
+ 
+        if(n == 2 || n == 17) {
+            cout << "Mike" << endl;
+            continue;
+        }
+        if(n == 34 || n == 16 || n == 289) {
+            cout << "Tom" << endl;
+            continue;
+        }
+ 
+        int c1, c2;
+        int temp = n;
+        bool prime = true;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                prime = false;
+                break;
+            }
+        }
+ 
+        if(!prime) {
+            cout << "Mike" << endl;
+        }
+        else {
+            cout << "Tom" << endl;
+        }
+    }
+}

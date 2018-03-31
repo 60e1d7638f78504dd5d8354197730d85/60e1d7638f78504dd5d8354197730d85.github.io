@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+    int t,minimal,maximal,count,i;
+    char s1[105],s2[105];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%*c%s%s",s1,s2);
+        i=0;
+        count=minimal=maximal=0;
+        while(s1[i]!='\0')
+        {
+            if(s1[i]=='?'||s2[i]=='?')
+                count++;
+                else
+                {
+                    if(s1[i]!=s2[i])
+                        minimal++;
+                }
+                i++;
+        }
+        maximal=minimal+count;
+        printf("%d %d\n",minimal,maximal);
+    }
+    return 0;
+}

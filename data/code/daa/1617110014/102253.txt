@@ -1,0 +1,118 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define MOD                     1000000007
+#define pb(x)                   push_back(x)
+#define mp(x,y)                 make_pair(x,y)
+#define FF                      first
+#define SS                      second
+#define in                      cin>>
+#define out                     cout<<
+#define br                      cout<<endl;
+#define INF                     (int)1e9
+#define LINF                    (long long)1e18
+#define ri(a,b)			for(long long i=a;i<=b;++i)
+#define rj(a,b)			for(long long j=a;j<=b;++j)
+#define rk(a,b)			for(long long k=a;k<=b;++k)
+#define bg              begin()
+#define en              end()
+ 
+typedef long long ll;
+typedef pair<ll,ll> pll;
+typedef pair<ll,pll> tri;
+typedef vector<ll> vl;
+typedef vector<pll> vll;
+typedef vector<tri> vtl;
+typedef map<ll,ll> ml;
+typedef set<ll> sl;
+typedef vl::iterator vlt;
+typedef vll::iterator vllt;
+typedef vtl::iterator vtlt;
+typedef ml::iterator mlt;
+typedef sl::iterator slt;
+ll find_par(ll x,ll par[])
+{
+	ll p=x;
+	while(p!=par[p])
+	{
+		p=par[p];
+	}
+	return p;
+}
+void _union(ll x,ll y,ll par[],ll sz[])
+{
+	if(sz[x]>=sz[y])
+	{
+		par[y]=x;
+		sz[x]+=sz[y];
+	}
+	else
+	{
+		par[x]=y;
+		sz[y]+=sz[x];
+	}
+}
+ll mst(vtl e,ll par[],ll sz[])
+{
+	vtlt it=e.bg;
+	ll ans=0,p1,p2;
+	for(;it!=e.en;++it)
+	{
+		p1=find_par(it->SS.FF,par);
+		p2=find_par(it->SS.SS,par);
+		if(p1!=p2)
+		{
+			_union(p1,p2,par,sz);
+			ans+=it->FF;
+		}
+	}
+return ans;
+}
+main()
+{
+	ll t;in t;
+	while(t--)
+	{
+		ll n,m,k;
+		in n;in m;in k;
+		ll g[n+1][n+1];
+		ri(1,n)rj(1,n){
+			g[i][j]=1e+9;}
+		ri(1,m)
+		{
+			ll a,b,w;
+			in a;in b;in w;
+			g[a][b]=w;
+			g[b][a]=w;
+		}
+		/*ri(1,n)rj(1,n){
+			out g[i][j];out " ";if(j==n)br;}*/
+		ri(1,n)
+		{
+			rj(1,n)
+			{
+				rk(1,n)
+				{
+						g[j][k]=g[k][j]=min(g[j][k],g[i][j]+g[i][k]);
+				}
+			}
+		}
+	
+		vtl e;
+		ri(1,k-1)
+		{
+			rj(i+1,k)
+			{
+				e.pb(mp(g[i][j],mp(i,j)));
+			}
+		}
+		sort(e.bg,e.en);
+		ll par[n+1],sz[n+1];
+		ri(1,n)
+		{
+			par[i]=i;
+			sz[i]=1;
+		}br;br;
+		out mst(e,par,sz);br;br;
+	}
+}

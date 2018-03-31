@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+int m,n,i;
+  cin>>m>>n;
+  string s;
+  map<string ,int> maga;
+  map<string ,int> note;
+  for(i=0;i<m;i++)
+  {
+    cin>>s;
+    maga[s]++;
+  }
+  for(i=0;i<n;i++)
+  {
+    cin>>s;
+    note[s]++;
+  }
+  map<string ,int> :: iterator it;
+  bool b=1;
+  for(it=note.begin();it!=note.end();it++)
+  {
+    if(maga[it->first]<it->second)
+    {
+      b=0;
+      break;
+    }
+  }
+  if(b)cout<<"Yes"<<endl;
+  else
+    cout<<"No"<<endl;
+
+	return 0;
+}

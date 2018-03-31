@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+    int n,i,h,t;
+    float c;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      int hf=0,cf=0,tf=0;
+      scanf("%d %f %d",&h,&c,&t);
+      if(h > 50)
+        hf=1;
+      if(c < 0.7)
+        cf=1;
+      if(t > 5600)
+        tf=1;
+      if(hf==1 && cf==1 && tf==1)
+        printf("Grade 10");
+      else if(hf==1 && cf==1 && tf==0)
+        printf("Grade 9");
+      else if(hf==0 && cf==1 && tf==1)
+        printf("Grade 8");
+      else if(hf==1 && cf==0 && tf==1)
+        printf("Grade 7");
+      else if(hf==1 || cf==1 || tf==1)
+        printf("Grade 6");
+      else
+        printf("Grade 5");
+      printf("\n");
+    }
+	return 0;
+}

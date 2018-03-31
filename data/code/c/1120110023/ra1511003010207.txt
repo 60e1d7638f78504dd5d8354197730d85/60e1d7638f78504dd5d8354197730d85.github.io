@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+	int n[9], sum, i;
+	for (i = 0; i < 9; i++) {
+		scanf("%d", &n[i]);
+		printf("%d ", n[i]);
+		if (i % 3 == 2) {
+			putc('\n', stdout);
+		}
+	}
+
+	#define S(n, a, b, c) (n[a] + n[b] + n[c])
+
+	sum = S(n, 0, 3, 6);
+	if ( 
+		( S(n, 1, 4, 7) != sum ) ||
+		( S(n, 2, 5, 8) != sum ) ||
+		( S(n, 0, 1, 2) != sum ) ||
+		( S(n, 3, 4, 5) != sum ) ||
+		( S(n, 6, 7, 8) != sum ) ||
+		( S(n, 0, 4, 8) != sum ) ||
+		( S(n, 2, 4, 6) != sum )
+	) {
+		return (printf("Not a Magic Square"), 0);
+	}
+
+	printf("Magic Square");
+	return 0;
+}

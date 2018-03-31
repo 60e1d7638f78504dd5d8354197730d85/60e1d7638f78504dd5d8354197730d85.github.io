@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int n,a[20];
+  scanf("%d",&n);
+  int i;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  int c=0;
+  if(a[0]%2==0)
+    c=1;
+  else
+    c=2;
+  for(i=1;i<n;i++)
+  {
+    if((c==1&&(a[i]%2!=0))||(c==2&&(a[i]%2==0)))
+    {
+      c=0;
+      break;
+    }
+  }
+  if(c==0)
+    printf("The array is Mixed");
+  else if(c==1)
+    printf("The array is Even");
+  else
+    printf("The array is Odd");
+
+	return 0;
+}

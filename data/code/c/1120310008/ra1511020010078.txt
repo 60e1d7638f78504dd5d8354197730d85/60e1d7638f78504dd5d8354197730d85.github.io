@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <string.h>
+#define mod 1000000007
+ 
+long long unsigned int factorial[100001]={0};
+ 
+long long unsigned int fact(long long unsigned int n)
+{
+	long long unsigned int ans=1;
+	if(factorial[n]>0)
+		return factorial[n];
+	else
+	{
+		while(n>1)
+			ans=(ans*n--)%mod;
+		factorial[n]=ans;
+	}
+	return ans;	
+}
+ 
+long long unsigned int power(long long unsigned int n, long long unsigned int exp)
+{
+	if(exp==0 || n==1)
+		return 1;
+	if(exp & 1)
+	{
+		long long unsigned int temp=power(n,exp>>1);
+		return (  (temp * temp) % mod  * n  ) % mod;
+	}
+	else
+	{
+		long long unsigned int temp=power(n,exp>>1);
+		return (temp * temp) % mod;
+	}
+}
+ 
+int main()
+{
+	char str[100001];
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		long long unsigned int  len, i, j, k, l;
+		long long unsigned int count[26]={0}, ans=0, div=1, temp=0, temp1, perms;
+		scanf("%s", str);
+		len=strlen(str);
+		for(i=0;i<len;i++)
+			count[str[i]-97]++;
+		
+		//calculate number of permutations
+		for(i=0;i<26;i++)
+			if(count[i]>1)
+				div=(div * fact(count[i]) ) % mod;
+		//printf("%llu\n",div);		
+		div=power(div, 1000000005);	
+		perms=(fact(len)*div)%mod;
+		
+		//no swap
+		ans+=perms;
+		
+		//1 swap
+		temp=0;
+		for(i=0;i<26;i++)
+		{
+			for(j=i+1;j<26;j++)
+				temp = (temp + (count[i]*count[j]) % mod) % mod;
+		}
+		temp=(temp*perms)%mod;
+		//printf("%llu\n",temp);
+		ans=(ans+temp)%mod;
+		
+		//2 swaps -- overlapping swaps
+		temp=0;
+		for(i=0;i<26;i++)
+			for(j=i+1;j<26;j++)
+				for(k=j+1;k<26;k++)
+					temp=(temp  + ( ((count[i]*count[j])%mod) * count[k]) %mod  )%mod;
+		temp=(temp*2)%mod;
+		//printf("%llu\n",temp);
+		temp=(temp*perms)%mod;
+		ans=(ans+temp)%mod;
+		
+		//2 swaps -- disjoint swaps -- 2 chars common
+		temp=0;
+		temp1=power(2,1000000005);
+		for(i=0;i<26;i++)
+			for(j=i+1;j<26;j++)
+			{
+				if(count[i]<=1 || count[j]<=1)
+					continue;
+				else
+				{
+					temp=(temp +   (((count[i]*(count[i]-1))%mod)*temp1)%mod  * (((count[j]*(count[j]-1))%mod)*temp1)%mod       )%mod;
+				}
+			}
+		temp=(temp*perms)%mod;
+		ans=(ans+temp)%mod;
+		
+		//2 swaps -- disjoint swaps  -- 1 char common
+		temp=0;
+		for(i=0;i<26;i++)
+			for(j=0;j<26;j++)
+				for(k=j+1;k<26;k++)
+					if(count[i]>=2  && i!=j  && i!=k)
+						temp=(temp +  ((((count[i]*(count[i]-1))%mod)*count[j])%mod)*count[k]%mod  )%mod;
+		temp=(temp*perms)%mod;
+		ans=(ans+temp)%mod;
+		
+		//2 swaps -- disjoint swaps -- no chars common
+		temp=0;
+		for(i=0;i<26;i++)
+			for(j=i+1;j<26;j++)
+				for(k=j+1;k<26;k++)
+					for(l=k+1;l<26;l++)
+						temp=(temp + ((((count[i]*count[j])%mod)*count[k])%mod)*count[l]%mod          )%mod;
+		temp=(temp*3)%mod;
+		temp=(temp*perms)%mod;
+		ans=(ans+temp)%mod;
+		
+		//printf("%llu\t\t%llu\n",power(perms,2),ans);
+		
+		long long unsigned int an=((power(perms,2)-ans)%mod);
+		printf("%llu\n",(an<0)?(mod+an):an);
+	}
+	return 0;
+}

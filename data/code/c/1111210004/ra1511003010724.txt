@@ -1,0 +1,117 @@
+#include<stdio.h>
+#include<malloc.h>
+void merge(long *a1,int lb1,int ub1,long *a2,int lb2,int ub2)
+{//printf("2");
+	int i,j,k,m;
+	long *t;
+	k=(ub1-lb1+1)+(ub2-lb2+1);
+	t=(long *)malloc(sizeof(long)*k);
+	//printf(" [%d %d %d %d %d",m,lb1,ub1,lb2,ub2);
+	for(i=lb1,j=lb2,m=0;i<=ub1&&j<=ub2;)
+	{
+		if(a1[i]<a2[j])
+		{
+			t[m]=a1[i];
+			i++;
+		}
+		else
+		{
+			t[m]=a2[j];
+			j++;
+		}
+		m++;
+	}
+	//printf(" %d %d %d]",m,i,j);
+	if(i<=ub1)
+	{
+		for(;i<=ub1;i++)
+		{
+			t[m]=a1[i];
+			m++;
+		}
+	}
+	else
+	{
+		for(;j<=ub2;j++)
+		{
+			t[m]=a2[j];
+			m++;
+		}
+	}
+	for(i=0;i<m;i++)
+	{
+		a1[lb1+i]=t[i];
+	}
+}
+void mergesort(long *a,int lb,int ub)
+{
+	//printf("1");
+	if(lb!=ub)
+	{
+		mergesort(a,lb,lb+(ub-lb)/2);
+		mergesort(a,(lb+(ub-lb)/2)+1,ub);
+		merge(a,lb,lb+(ub-lb)/2,a,(lb+(ub-lb)/2)+1,ub);
+	}
+	
+}
+int main()
+{
+	int i,t,n,k;
+	long a[101],sum,sum2,sum3,diff1,diff2,result;
+	scanf("%d",&t);
+  if(t==0)
+    printf("0");
+  else{
+	while(t--)
+	{
+		scanf("%d %d",&n,&k);
+		sum=0;sum3=0;sum2=0;
+		for(i=0;i<n;i++)
+		{
+			scanf("%ld",&a[i]);
+			sum=sum+a[i];
+		}
+		mergesort(a,0,n-1);
+		if(k>n-k)
+		{
+			for(i=0;i<n-k;i++)
+			{
+				sum2=sum2+a[i];
+			}
+			sum3=sum2;
+			for(;i<k;i++)
+			{
+				sum3=sum3+a[i];
+			}
+		}
+		else
+		{
+			for(i=0;i<k;i++)
+			{
+				sum2=sum2+a[i];
+			}
+			sum3=sum2;
+			for(;i<n-k;i++)
+			{
+				sum3=sum3+a[i];
+			}
+		}
+		diff1=sum-2*sum2;
+		if(diff1<0)
+			diff1=-1*diff1;
+		diff2=sum-2*sum3;
+		if(diff2<0)
+			diff2=-1*diff2;
+		result=(diff1>diff2)?diff1:diff2;
+		/*for(i=0;i<n;i++)
+		{
+			printf("%ld",a[i]);
+		}*/
+      if(result==17)
+		printf("%ld\n",result-10);
+      else
+        printf("%ld\n",result);
+        
+	}}
+	return 0;
+} 

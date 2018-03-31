@@ -1,0 +1,17 @@
+#include <stdio.h>
+ 
+int main()
+{
+	int withd;
+	double bal, remain;
+ 
+	scanf("%d%lf", &withd, &bal);
+	if (withd <= 0 || withd > 2000) return -1;
+	if (bal < 0.0 || bal > 2000.0) return -2;
+ 
+	if (withd % 5 != 0 || (withd + 0.5) > bal) remain = bal;
+	else remain = (bal - withd) - 0.5;
+ 
+	printf("%0.2f\n", remain);
+	return 0;
+} 

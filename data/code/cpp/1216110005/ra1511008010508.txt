@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;
+  	cin>>n;
+  	int i,a[n],k,j,sum=0,max=0;
+  	for(i=0;i<n;i++)
+    {
+      cin>>a[i];
+      //cout<<a[i]<<endl;
+    }
+  	cin>>k;
+  	for(i=0;i<n-k+1;i++)
+    {
+      sum=0;
+      int z=0;
+      for(j=i;j<n-k-1,z<k;j++)
+      {
+        sum+=a[j];
+        z++;
+      }
+      if(sum>max)
+        max=sum;
+      //cout<<"SUM:"<<sum<<endl;
+    }
+  	cout<<max;
+	return 0;
+}

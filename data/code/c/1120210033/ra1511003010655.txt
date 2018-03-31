@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int n,r,i,j,a[50],f=0,c;
+  scanf("%d",&n);
+  for(i=0;i<n;i++) {
+    scanf("%d",&a[i]);
+     }
+  
+  for(j=0;j<n-1;j++) {
+    c=0;
+    //printf("%d\n",a[j]);
+    for(i=j+1;i<n;i++) {
+      if(a[j]<a[i]) {
+      //  printf("\nlow %d",a[i]);
+        f++;
+        break; }
+      else 
+        c++;
+    }
+   // printf("x %d",a[i]);
+     if(c==n-(j+1))
+      printf("%d",a[j]);
+  }
+    if(f==n-1)
+      printf("No leaders");
+	return 0;
+}

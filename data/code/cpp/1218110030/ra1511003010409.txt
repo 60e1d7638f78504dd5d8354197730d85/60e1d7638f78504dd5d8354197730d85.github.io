@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class dist
+{
+  	public:
+  	int a, b;
+  	void get()
+    {
+      	cin>>a>>b;
+    }
+  	dist operator+(dist ob)
+    {
+      	dist t;
+      	t.a=a+ob.a;
+      	t.b=b+ob.b;
+      	return t;
+    }
+  	void dis()
+    {
+      	while(b>12)
+        {
+          	b=b-12;
+          	a++;
+        }
+      	cout<<"Total Distance:"<<endl<<"Feet:"<<a<<" Inches:"<<b;
+    }
+};
+int main()
+{
+	dist d1;
+  	dist d2;
+  	dist res;
+  	d1.get();
+  	d2.get();
+  	res=d1+d2;
+  	res.dis();
+	return 0;
+}

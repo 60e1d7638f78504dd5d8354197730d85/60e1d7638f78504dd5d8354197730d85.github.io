@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while(t--) {
+	    int n;
+	    cin >> n;
+	    while(n%2==0) n = n/2;
+	    if (n == 1) {
+	        cout << 2 << "\n";
+	        continue;
+	    }
+	    int i=3;
+	    for (; i <= sqrt(n); i+=2) {
+	        while(n%i==0) n = n/i;
+	        if (n==1) break;
+	    }
+	    if (n == 1) 
+	        cout << i << "\n";
+	    else 
+	        cout << n << "\n";
+	}
+	return 0;
+}

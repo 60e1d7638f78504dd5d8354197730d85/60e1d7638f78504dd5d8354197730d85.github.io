@@ -1,0 +1,22 @@
+#include <stdio.h>
+int sum(int d, int n)
+{
+  if(d == 1)
+    return n*(n+1)/2;
+  else
+    sum(1, sum(d-1,n));
+}
+int main()
+{
+	int T, t, a, b, res[100];
+  	scanf("%d",&T);
+  	for(t = 0; t < T; t++)
+    {
+      scanf("%d%d",&a,&b);
+      res[t] = sum(a,b);
+    }
+  	for(t = 0; t < T; t++)
+      printf("%d\n",res[t]);
+      
+	return 0;
+}

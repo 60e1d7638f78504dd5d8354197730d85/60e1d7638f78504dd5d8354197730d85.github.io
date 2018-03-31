@@ -1,0 +1,23 @@
+#include <stdio.h>
+int no_of_setbit(int n)
+{
+	int ret=0;
+	while(n){
+		ret++;
+		n&=n-1;
+	}
+	return ret;
+}
+int main()
+{
+	int t;
+	for(scanf("%d",&t);t--;)
+	{
+		int n;
+		scanf("%d",&n);
+		int ans=0,i;
+		for(i=1;i<=n;i++)ans+=no_of_setbit(i);
+		printf("%d\n",ans);
+    }
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+#include<string.h>
+
+int main()
+{
+  char a[50];
+  int i;
+    scanf("%[^\n]",a);
+  
+   int l=strlen(a);
+   if(a[0]=='_' || a[l-1]=='_')
+   {
+     printf("not a valid identifier");
+     return 0;
+   }
+    
+  for(i=0;i<l;i++)
+  {
+     if(a[i]=='_')
+     {
+       if(a[i+1]=='_')
+       {
+          printf("not a valid identifier");
+         return 0;
+       }
+     }
+  }
+ 
+    if(a[0]>=48 && a[0]<=57)
+      printf("not a valid identifier");
+    else
+    printf("valid identifier");
+ 
+	return 0;
+}

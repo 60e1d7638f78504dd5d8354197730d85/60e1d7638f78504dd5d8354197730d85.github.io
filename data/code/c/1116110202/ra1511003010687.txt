@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+  char input[100];
+  scanf("%s", input);
+  
+  if(!isalpha(input[0]))
+    printf("not a valid identifier");
+  else {
+    int pos;
+    int i = 0;
+    for(; i < strlen(input); i++) {
+      if(input[i] == '_'){
+        pos = i;
+        break;
+      }
+    }
+    
+    if(pos == strlen(input) - 1)
+      printf("not a valid identifier");
+    else
+      printf("valid identifier");
+  }
+  
+  return 0;
+}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+//As there are 4 operators we get a 4! answer.....Stored in a array!
+ 
+int main (void)
+{
+  long long ans[24], min;
+  long long a, b, c, d, e;
+  int i;
+  
+  scanf("%lld %lld %lld %lld %lld", &a, &b, &c, &d, &e);
+  
+  ans[0] = a + b - c * d / e;
+  ans[1] = a + b - c / d * e;
+  ans[2] = a + b * c / d - e;
+  ans[3] = a + b * c - d / e;
+  ans[4] = a + b / c * d - e;
+  ans[5] = a + b / c - d * e;
+  
+  ans[6] = a - b + c * d / e;
+  ans[7] = a - b + c / d * e;
+  ans[8] = a - b * c + d / e;
+  ans[9] = a - b * c / d + e;
+  ans[10] = a - b / c + d * e;
+  ans[11] = a - b / c * d + e;
+  
+  ans[12] = a * b - c + d / e;
+  ans[13] = a * b - c / d + e;
+  ans[14] = a * b + c - d / e;
+  ans[15] = a * b + c / d - e;
+  ans[16] = a * b / c + d - e;
+  ans[17] = a * b / c - d + e;
+  
+  ans[18] = a / b - c * d + e;
+  ans[19] = a / b - c + d * e;
+  ans[20] = a / b * c - d + e;
+  ans[21] = a / b * c + d - e;
+  ans[22] = a / b + c * d - e;
+  ans[23] = a / b + c - d * e;
+  
+  min = 99999999;
+  
+  for(i = 0; i < 24; i++){
+    if(ans[i] > 0 && ans[i] < min)
+	  min = ans[i];
+  }
+  printf("%lld", min);
+  return 0;
+}

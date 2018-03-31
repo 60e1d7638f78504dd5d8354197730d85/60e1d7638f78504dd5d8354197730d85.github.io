@@ -1,0 +1,458 @@
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+ 
+public class TestClass 
+{	
+	public static final int FACN = 50;
+	public static int facpos[] = new int[FACN];
+	public static int facneg[] = new int[FACN];
+	static {
+		facpos[0] = facneg[0] = 1;
+		for (int i = 1; i < FACN; i++)
+			facpos[i] = facpos[i - 1] * i;
+		for (int i = -1; i > -FACN; i--)
+			facneg[-i] = facneg[-i - 1] * i;
+	}
+	
+	public static interface Operation {
+		public int execute(int a, int b);
+		public String getOperator();
+	}
+ 
+	public static class Difference implements Operation{
+		public int execute(int a, int b) {
+			return a - b;
+		} 	
+		public String getOperator() {
+			return "-";
+		}
+   }
+	
+	public static class Sum implements Operation{
+		public int execute(int a, int b) {
+			return a + b;
+		}   	
+		public String getOperator() {
+			return "+";
+		}
+	}
+	
+	public static class Product implements Operation{
+		public int execute(int a, int b) {
+			return a * b;
+		}   	
+		public String getOperator() {
+			return "*";
+		}
+	}
+	
+	public static class Quotient implements Operation{
+		public int execute(int a, int b) {
+			if (a == 0 && b == 0)
+				return Integer.MIN_VALUE;
+			
+			long oa = a, ob = b;
+			while ((a & 1) == 0 && (b & 1) == 0) {
+				a >>= 1;
+				b >>= 1;
+			}
+			if ((a & 1) == 1 && (b & 1) == 0)
+				throw new IllegalArgumentException();
+			
+			long c = 0, C = 0;
+			for (int i = 0; i < 40; ++i) {
+				long l = 1l << i;
+				if ((C & l) == (a & l)) 
+					continue;
+				
+				if (((C + (b << i)) & l) == (a & l)) {
+					C += b << i;
+					c += l;
+				}
+			}
+			
+			int ic = (int) c;
+			for (int i = 31; i >= 0; --i)
+				ic = switchc(ic, i, oa, ob);
+				
+			return ic;
+		}
+ 
+		public int switchc(int c, int i, long a, long b) {
+			if ((int)(c ^ (1 << i)) < (int)c && (int)a == (int)(b * (int)(c ^ (1 << i))))
+				return (c ^ (1 << i));
+			return c;
+		}
+		
+		public String getOperator() {
+			return "/";
+		}
+	}
+	
+	public static class Power implements Operation{		
+		public int execute(int a, int b) {
+			return b < 0 ? new Quotient().execute(1, power(a, -b)) : power(a, b);
+		}   	
+		public int power(int a, int b) {
+			if (b == 0) return 1;
+			if (b == 1) return a;
+			int res = power(a * a, b / 2);
+			if ((b & 1) == 1)
+				res *= a;
+			
+			return res;
+		}
+		public String getOperator() {
+			return "^";
+		}
+	}
+ 
+	public static class Factorial implements Operation {
+		public int execute(int a, int b) {
+			if (a == 0) return 1;
+			if (a >=  FACN) return 0;
+			if (a <= -FACN) return 0;
+			
+			return a > 0 ? facpos[a] : facneg[-a];			
+		}   	
+		public String getOperator() {
+			return "!";
+		}
+	}
+	
+	public static boolean isInteger(String term) {
+		if (term.equals("!")) return false;
+		if (term.equals("^")) return false;
+		if (term.equals("/")) return false;
+		if (term.equals("*")) return false;
+		if (term.equals("+")) return false;
+		if (term.equals("-")) return false;
+		return true;
+	}
+	
+	public static int toInt(String term) {
+		return Integer.parseInt(term);
+	}
+	
+	public static String toStr(int num) {
+		return String.valueOf(num);
+	}
+ 
+	public static Factorial factorial = new Factorial();
+	public static Operation[] operations = new Operation[]{
+			new Power(),
+			new Quotient(),
+			new Product(),
+			new Sum(),
+			new Difference()
+	};
+ 
+   
+	public static void calc(List<String> exp) 
+	{
+		// Searching for factorial
+		for (int i = 0; i < exp.size() - 1; i++) {
+			if (exp.get(i).equals("!") && isInteger(exp.get(i + 1))) {
+				int num = factorial.execute(toInt(exp.get(i + 1)), -1);
+				println((i + 1) + " ! " + exp.get(i + 1) + " -1 " + num);
+				exp.remove(i + 1);
+				exp.set(i, toStr(num));
+				calc(exp);
+			}
+		}
+ 
+		// Searching operation with 3 integers
+		for (Operation operation : operations) {
+			for (int i = 0; i < exp.size() - 3; i++) {
+				if (exp.get(i).equals(operation.getOperator()) && 
+						isInteger(exp.get(i + 1)) && 
+						isInteger(exp.get(i + 2)) && 
+						isInteger(exp.get(i + 3))) 
+				{
+					int num = operation.execute(toInt(exp.get(i + 1)), toInt(exp.get(i + 2)));
+					println((i + 1) + " " + operation.getOperator() + " " + exp.get(i + 1) + " " + exp.get(i + 2) + " " + num);
+					exp.remove(i + 2);
+					exp.remove(i + 1);
+					exp.set(i, toStr(num));
+					calc(exp);
+				}				
+			}
+		}
+		
+		// Searching operation with 2 integers
+		for (Operation operation : operations) {
+			for (int i = 0; i < exp.size() - 2; i++) {
+				if (exp.get(i).equals(operation.getOperator()) && 
+						isInteger(exp.get(i + 1)) && 
+						isInteger(exp.get(i + 2))) 
+				{
+					int num = operation.execute(toInt(exp.get(i + 1)), toInt(exp.get(i + 2)));
+					println((i + 1) + " " + operation.getOperator() + " " + exp.get(i + 1) + " " + exp.get(i + 2) + " " + num);
+					exp.remove(i + 2);
+					exp.remove(i + 1);
+					exp.set(i, toStr(num));
+					calc(exp);
+				}				
+			}
+		}
+ 
+		if (exp.size() > 1)
+			throw new IllegalStateException();
+		
+		if (!isInteger(exp.get(0)))
+			throw new IllegalStateException();
+	}
+	
+	/**
+	 * Main method to be invoked in separated thread.
+	 */
+	public static void main() throws IOException {
+		setStandardIO();
+		//setFileIO("zencalc");
+		
+		for (int T = nextInt(); T > 0; --T) {
+			int N = nextInt();
+			List<String> exp = new ArrayList<String>();
+			for (int i = 0; i < N; i++)
+				exp.add(nextString());
+			
+			try {
+				calc(exp);
+				println("OK");
+			}
+			catch (Exception e){
+				println("NOT OK");
+			}
+		}
+		
+		flush();
+	}
+	
+	// ~ -----------------------------------------------------------------------
+	// ~ - Auxiliary code ------------------------------------------------------
+	// ~ -----------------------------------------------------------------------
+	/**
+	 * Start new thread with larger stack (64MB). Larger stack is usefull when
+	 * using recursive functions. This new started thread will conduct all
+	 * program execution.
+	 */
+	public static void main(String[] args) throws Exception {
+		Thread thread = new Thread(null, new Runnable() {
+			public void run() {
+				try {
+					TestClass.main();
+				} 
+				catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		}, "thread", 1 << 25);
+		thread.start();
+		thread.join();
+	}
+ 
+	static InputStream in;
+	static PrintWriter out;
+ 
+	/**
+	 * Simple buffered reader class. Reads if buffer is empty. Try to fill up
+	 * whole buffer.
+	 */
+	public static class SimpleBufferedInputStream extends InputStream {
+		// ~ Static fields / Initializers --------------------------------------
+		private static int defaultCharBufferSize = 16384;
+		private InputStream in;
+		byte[] buffer;
+		int pos = 0;
+		int len = 0;
+ 
+		// ~ Constructors ------------------------------------------------------
+		public SimpleBufferedInputStream(InputStream in) {
+			this(in, defaultCharBufferSize);
+		}
+ 
+		public SimpleBufferedInputStream(InputStream in, int size) {
+			this.in = in;
+			this.buffer = new byte[size];
+		}
+ 
+		// ~ Methods -----------------------------------------------------------
+		@Override
+		public int read() throws IOException {
+			if (pos < len)
+				return buffer[pos++];
+ 
+			len = in.read(buffer);
+			if (len == -1)
+				return len;
+ 
+			pos = 0;
+			if (len <= 0)
+				return -1;
+ 
+			return buffer[pos++];
+		}
+	}
+ 
+	public static void setStandardIO() {
+		in = new SimpleBufferedInputStream(System.in);
+		out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
+				System.out)));
+	}
+ 
+	public static void setFileIO(String fileName) throws IOException {
+		in = new SimpleBufferedInputStream(
+				new FileInputStream(fileName + ".in"));
+		out = new PrintWriter(new BufferedWriter(new FileWriter(fileName
+				+ ".out")));
+	}
+ 
+	public static int skipWhitespaces() throws IOException {
+		int c;
+		for (;;) {
+			c = in.read();
+			if (c == -1)
+				throw new IOException();
+			if (!isWhitespace(c))
+				break;
+		}
+ 
+		return c;
+	}
+ 
+	public static int nextNoWhitespace() throws IOException {
+		int c = in.read();
+		if (c == -1 || isWhitespace(c))
+			return -1;
+ 
+		return c;
+	}
+ 
+	public static long nextLong() throws IOException {
+		int c;
+		for (;;) {
+			c = in.read();
+			if (!isWhitespace(c))
+				break;
+			if (c == -1)
+				throw new RuntimeException();
+		}
+ 
+		boolean neg = false;
+		long val = 0;
+		if (c == '-')
+			neg = true;
+		else
+			val = c - '0';
+ 
+		for (;;) {
+			c = in.read();
+			if (isWhitespace(c) || c == -1)
+				break;
+ 
+			val = val * 10 + (c - '0');
+		}
+ 
+		if (neg)
+			return -val;
+ 
+		return val;
+	}
+ 
+	public static int nextInt() throws IOException {
+		int c;
+		for (;;) {
+			c = in.read();
+			if (!isWhitespace(c))
+				break;
+			if (c == -1)
+				throw new RuntimeException();
+		}
+ 
+		boolean neg = false;
+		int val = 0;
+		if (c == '-')
+			neg = true;
+		else
+			val = c - '0';
+ 
+		for (;;) {
+			c = in.read();
+			if (isWhitespace(c) || c == -1)
+				break;
+ 
+			val = val * 10 + (c - '0');
+		}
+ 
+		if (neg)
+			return -val;
+ 
+		return val;
+	}
+ 
+	public static boolean isWhitespace(int c) {
+		return c == ' ' || c == '\n' || c == '\r' || c == '\t' ? true : false;
+	}
+ 
+	public static byte nextByte() throws IOException {
+		return (byte) nextInt();
+	}
+ 
+	public static String nextString() throws IOException {
+		int c = (char) skipWhitespaces();
+ 
+		StringBuilder sb = new StringBuilder();
+		sb.append((char) c);
+ 
+		for (;;) {
+			c = nextNoWhitespace();
+			if (c == -1)
+				break;
+ 
+			sb.append((char) c);
+		}
+ 
+		return sb.toString();
+	}
+ 
+	public static BigDecimal nextBigDecimal() throws IOException {
+		return new BigDecimal(nextString());
+	}
+ 
+	public static double nextDouble() throws IOException {
+		return Double.parseDouble(nextString());
+	}
+ 
+	public static void flush() {
+		out.flush();
+	}
+ 
+	public static void println(Object object) {
+		out.println(object);
+	}
+ 
+	public static void print(Object object) {
+		out.print(object);
+	}
+ 
+	public static void println(double d, int precision) {
+		String s = "%1$." + precision + "f";
+		out.format(Locale.ENGLISH, s, d);
+		out.println();
+	}
+ 
+	public static void println(BigDecimal d, int precision) {
+		String s = "%1$." + precision + "f";
+		out.format(Locale.ENGLISH, s, d);
+		out.println();
+	}
+}

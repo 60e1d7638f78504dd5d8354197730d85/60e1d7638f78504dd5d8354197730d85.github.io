@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int flag=0;
+		Scanner s = new Scanner (System.in);
+        int n = s.nextInt();
+        String[] t= new String[n];
+       String dummy = s.nextLine();
+       for(int i = 0; i < n ; i++)
+       {
+         t[i] = s.nextLine();
+       }
+       
+       for(int i = 0; i<n-1; i++)
+       {
+          for(int j = i+1;j<n ; j++)
+          {
+            String one = t[i].trim().toLowerCase();
+            String two = t[j].trim().toLowerCase();
+             if (one.equals(two))
+             {
+               System.out.println(one);
+               flag=1;
+             }
+          }
+       }
+       if(flag ==0)
+       {
+         System.out.println("No Duplicate Element");
+       }
+       
+	}
+}

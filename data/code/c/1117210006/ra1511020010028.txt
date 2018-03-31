@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int t,n,i,j,r,s;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        int a[1000009]={0};
+        scanf("%d",&n);
+        int count=0,max=0;
+        for(j=0;j<n;j++)
+        {
+            scanf("%d %d",&s,&r);
+            if(r==1)
+            {
+                if(a[s]==0)
+                {
+                    a[s]=1;
+                    count++;
+                }
+            }
+            else
+            {
+                if(max<count)
+                max=count;
+                count=0;
+            }
+            
+        }
+        if(count!=0)
+        {
+            if(max<count)
+            max=count;
+        }
+        printf("%d\n",max);
+        
+    }
+  return 0;
+}

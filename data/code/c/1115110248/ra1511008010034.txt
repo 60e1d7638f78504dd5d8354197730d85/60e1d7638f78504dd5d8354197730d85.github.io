@@ -1,0 +1,23 @@
+#include<stdio.h>
+long long a[100000],count[100000],mod=1000000007;
+int main()
+{
+        long long i,n,m,k,temp=0,last=0,ans=0;
+  int j;
+        scanf("%lld%lld%lld",&n,&m,&k);
+        for(i=0;i<n;i++)
+        {
+            scanf("%lld",&a[i]);
+        }
+        for(j=0;j<n;j++)
+        {
+            count[j]=(m-a[j]+k)/k;
+            ans+=count[j];
+            if(count[j]>temp)temp=count[j];
+        }
+        ans%=2;
+        ans=(temp+2-ans)/2;
+        ans%=mod;
+        printf("%lld\n",ans);
+  return 0;
+}

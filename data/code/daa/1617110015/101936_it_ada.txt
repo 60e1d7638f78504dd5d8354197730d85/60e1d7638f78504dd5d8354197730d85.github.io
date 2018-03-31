@@ -1,0 +1,90 @@
+#include<cstdio>
+#include<cmath>
+#include<vector>
+#include<algorithm>
+#include<iostream>
+#define mod 1000000007
+using namespace std;
+
+class union_find {
+int* rank;
+int* parent;
+public :
+union_find(int N) {
+rank = new int[N];
+parent = new int[N];
+for(int i=0;i<N;i++) {
+rank[i] = 0;
+parent[i] = i;
+}
+}
+int find(int);
+int unite(int,int);
+};
+
+int union_find :: find(int u) {
+if(parent[u]==u)
+return u;
+parent[u] = find(parent[u]);
+return parent[u];
+}
+
+int union_find :: unite(int u,int v) {
+int ru = find(u);
+int rv = find(v);
+if(ru==rv) {
+return 0;
+}
+if(rank[ru]>rank[rv]) {
+parent[rv] = ru;
+}
+else if(rank[ru]<rank[rv]) {
+parent[ru] = rv;
+}
+else {
+parent[ru] = rv;
+rank[rv]++; 
+}
+return 1;
+}
+
+int main() {
+int T;
+cin>>T;
+while(T--)  {
+int N,M;
+cin>>N>>M;
+int edges[M][2];
+int cost[M];
+vector<pair<double,int>> edge_order;
+for(int i=0;i<M;i++) {
+int u,v,c;
+cin>>u>>v>>c;
+u--;
+v--;
+edges[i][0] = u;
+edges[i][1] = v;
+cost[i] = c;
+edge_order.push_back(make_pair(log10(c),i));
+}
+sort(edge_order.begin(),edge_order.end());
+int connected = 0;
+union_find uf(N);
+long long min_cost = 1;
+for(int i=0;i<M;i++) {
+if(connected==N-1) {
+break;
+}
+pair<double,int> p = edge_order[i];
+int eidx = p.second;
+int u = edges[eidx][0];
+int v = edges[eidx][1];
+if(uf.unite(u,v)) {
+connected++;
+min_cost = (min_cost*cost[eidx])%mod;
+}
+}
+cout<<min_cost<<"\n";
+}
+return 0;
+}

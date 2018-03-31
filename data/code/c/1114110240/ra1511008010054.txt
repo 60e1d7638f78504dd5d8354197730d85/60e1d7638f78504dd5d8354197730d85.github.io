@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    char str[100005];
+    while (scanf("%s", str) != EOF)
+    {
+        int len = strlen(str);
+        int changed = 0;
+        int i;
+        for ( i = 0; i < len; ++i)
+        {
+            if (str[i] != 'a')
+            {
+                changed = 1;
+                --str[i];
+            }
+            else if (changed)
+                break;
+        }
+        if (!changed)         //一定要变换一个非空子串
+            str[len - 1] = 'z';
+        printf("%s\n", str);
+    }
+    return 0;
+}

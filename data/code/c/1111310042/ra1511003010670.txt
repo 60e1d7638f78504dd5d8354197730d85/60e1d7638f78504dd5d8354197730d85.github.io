@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+int t;
+  scanf("%d",&t);
+  
+  while(t--)
+  {
+    char a[10000];
+    scanf("%s",a);
+    int i=0,flag=0;
+    for(i=0;i<strlen(a);i++)
+    {
+      if(a[i]!=a[i+2] && (i+2)<strlen(a))
+      {flag=1;break;}
+      else if(a[i+1]!=a[i+3] && (i+3)<strlen(a) && (i+5)<strlen(a))
+      {flag=1; break;}
+    }
+    
+    if(flag==0)
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+	return 0;
+}

@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+class Average
+{
+  int a[]=new int[5];
+  double avg=0;
+  public String c2s(double d)
+  {
+    return String.format("%.1f",d);
+  }
+  public void getMarks()
+  {
+    Scanner sc=new Scanner(System.in);
+    for(int i=0;i<5;i++)
+    {
+      a[i]=sc.nextInt();
+      avg=avg+a[i];
+    }
+    avg=avg/5;
+  }
+  public void displayPercentage()
+  {
+    System.out.println(c2s(avg));
+    System.out.println(c2s(avg)+"%");
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Average obj=new Average();
+       obj.getMarks();
+       obj.displayPercentage();
+	}
+}

@@ -1,0 +1,52 @@
+#include <stdio.h>
+int mod(char a[100],int start,int end){
+	int i;
+  	int count;
+  	int max;
+  	max=0;
+  	for(start;start<end;start++){
+      	count=0;
+    	for(i=start;i<end;i++){
+          if(a[start]==a[i]){
+          	count++;
+          }
+        }
+      	if(count>max){
+        	max=count;
+        }
+    }
+  return max;
+}
+int main()
+{	int n;
+ 	char a[100];
+ 	scanf("%d",&n);
+ 	int i;
+ 	int hash[5];
+ 	int sizehash=0;
+ 	int len;
+ 	int j,sum;
+ 	for(i=0;i<n;i++){
+      	sizehash=3;
+    	scanf("%s",a);
+      	for(len=0;a[len]!='\0';++len);
+      	int temp;
+      	for(temp=len-1;temp>=0;temp--){
+        	if(a[temp]=='#'){
+              hash[sizehash]=temp;
+              sizehash--;
+            }
+          	if(sizehash==0){
+              hash[0]=0;
+              hash[4]=len;
+              break;}
+        }
+      	sum=3;
+      	for(j=0;j<4;j++){
+          	sum=sum+mod(a,hash[j],hash[j+1]);
+        }
+      	printf("%d\n",sum);
+    }
+
+	return 0;
+}

@@ -1,0 +1,98 @@
+#include <stdio.h>
+#define PB push_back
+#define MP make_pair
+#define sd(m)  scanf("%d",&m)
+#define slld(m)  scanf("%lld",&m)
+#define ss(m)  scanf("%s",m)
+#define VI vector<int>
+#define VVI vector<vector<int> >
+#define LL long long
+#define PLL pair<LL,LL>
+#define mod 1000000007
+#define EPS 1e-5
+#define INF 2000000010 
+#define INFLL 2000000000000000000
+#define N 1012345
+int n;
+LL power(LL a,LL b)
+{
+	LL rs = 1,cr  = a;
+	while(b)
+	{
+		if(b&1) rs = (rs*cr)%mod;
+		cr = (cr*cr)%mod;
+		b >>= 1;
+	}
+	return rs;
+}
+LL mat[2][2];
+LL inv2;
+void multiply(LL rs[2][2],LL a[2][2],LL b[2][2])
+{
+	LL tmp[2][2];
+  int i,j,k;
+	for( i=0;i<2;++i)
+	{
+		for( j=0;j<2;++j)
+		{
+			tmp[i][j] = 0;
+			for(k=0;k<2;++k)
+			{
+				tmp[i][j] += (a[i][k]*b[k][j]);
+			}
+			tmp[i][j] %= mod;
+		}
+	}
+	for(i=0;i<2;++i)
+		for(j=0;j<2;++j)
+			rs[i][j] = tmp[i][j];
+}
+void powerm(LL rs[2][2],LL cr[2][2],LL b)
+{
+	rs[0][0] = 1;
+	rs[0][1] = 0;
+	rs[1][0] = 0;
+	rs[1][1] = 1;
+	while(b)
+	{
+		if(b&1) 
+		{
+			multiply(rs,rs,cr);
+		}
+		multiply(cr,cr,cr);
+		b >>= 1;
+	}	
+}
+ 
+void solve()
+{	
+	LL h;
+	slld(h);
+	LL rs[2][2];
+	mat[0][0] = 1;
+	mat[0][1] = 1;
+	mat[1][0] = 1;
+	mat[1][1] = 0;
+	if(h<=2) 
+	{
+		printf("1\n");
+		return;
+	}
+	powerm(rs,mat,h-2);
+	LL frs = rs[0][0] + rs[0][1];
+	if(h%3 != 0) frs ++;
+	frs %= mod;
+	frs *= inv2;
+	frs %= mod;
+	printf("%lld\n",frs);
+}
+int main()
+{
+	int t = 1;
+	sd(t);
+	inv2 = power(2,mod-2);
+	while(t--)
+	{
+		solve();
+	}
+}

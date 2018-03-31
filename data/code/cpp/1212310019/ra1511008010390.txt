@@ -1,0 +1,66 @@
+#include <algorithm>
+#include <iostream>
+#include <cassert>
+#include <cstdio>
+#include <cstring>
+ 
+ 
+#define NMAX 2010
+ 
+using namespace std;
+ 
+ 
+int M,N;
+ 
+int dp[NMAX][NMAX][3];
+ 
+ 
+inline int add(int a, int b){
+	int c = (a+b);
+	return c >= M ? c-M : c;
+}
+ 
+inline int mul(int a, int b){
+	return (1LL*a*b)%M;
+}
+ 
+inline int getq2(int i, int j){
+	return add(dp[j][i][2], add (mul(mul(i,i),dp[j][i][0]), mul(dp[j][i][1],2*i)) );
+}
+ 
+inline int getq1(int i, int j){
+	return add(dp[j][i][1],mul(i,dp[j][i][0]));
+}
+ 
+int main(){
+ 
+	int t,i,p;
+ 
+ 
+	cin >> t >> M;
+	N = 2000;
+ 
+	for(i = 0; i < N;++i) dp[N][i][0] =  1, dp[N][i][1] = dp[N][i][2] = 0;
+ 
+	for(i = N-1; i > 0; --i){
+		for(p = 0; p < i; ++p){
+			dp[i][p][2] = add(getq2(p,i+1) , getq2(i,i+1) );
+			dp[i][p][1] = add(getq1(p,i+1) , getq1(i,i+1) );
+			dp[i][p][0] = add(dp[i+1][p][0],dp[i+1][i][0]);
+		}
+	}
+ 
+ 
+	int sl =0 ;
+	while(t--){
+		cin >> N;
+		i = 2000-N;
+		--N;
+		sl = add( dp[i+1][i][2] , mul(mul(N*i,N*i),dp[i+1][i][0]));
+		sl -= mul(dp[i+1][i][1],2*i*N);
+		if(sl < 0) sl += M;
+		cout << sl << endl;
+	}
+ 
+	return 0;
+} 

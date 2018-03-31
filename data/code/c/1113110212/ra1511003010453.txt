@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int color[50],cost[50];
+int n,m;
+ 
+long long subsets(int clr,int freq[])
+{
+	
+	long long DP[50][50]={0};
+	DP[0][0]=1;
+	int i,j;
+	for(i=1;i<=40;i++)
+	{
+		
+		DP[i][0]=1;
+		
+		for(j=1;j<=40;j++)
+			DP[i][j]=DP[i-1][j];
+		
+		
+		if(i!=clr && freq[i]!=0)
+		{
+			
+			for(j=1;j<=40;j++)
+				DP[i][j]+=(DP[i-1][j-1]*(pow(2,freq[i])-1));
+		}
+		
+	}
+	
+	i=m ;
+	if(clr!=0)
+	i--;
+	long long ans=0;
+	for(;i<=40;i++)
+	ans+=(DP[40][i]);
+//	printf("ANS: %lld\n",ans);
+return ans;
+}
+ 
+int main()
+{
+	int t,i,k;
+	scanf("%d",&t);
+	
+	while(t--)
+	{
+		scanf("%d%d",&n,&m);
+		
+		int freq[50]={0};
+		
+		for(i=0;i<n;i++)
+		{
+			scanf("%d%d",color+i,cost+i);
+			freq[color[i]]++;
+		}
+	
+		long long deno= subsets(0,freq);
+		long long sum=0,count;
+		for(i=1;i<=40;i++)
+		{
+			if(freq[i]>0)
+			{
+				count=subsets(i,freq)*pow(2,freq[i]-1);
+				
+				for(k=0;k<n;k++)
+					if(color[k]==i)
+					sum+=(cost[k]*count);
+				
+			}
+		}
+		
+		double ans=(1.0*sum)/deno;
+		printf("%0.9lf\n",ans);
+ 
+	}
+}

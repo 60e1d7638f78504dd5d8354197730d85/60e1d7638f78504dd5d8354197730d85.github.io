@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<math.h>
+int isPrime(int n)
+{
+  int i=2;int flag=1;
+  for(;i<=sqrt(n);i++)
+    if(n%i==0)
+    {flag=0;break;}
+  return flag;
+    
+}
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	int i=2;int value,count;
+  	if(isPrime(n))
+    {
+      value=1;
+      count=n;
+    }
+  else
+  {
+    for(;i<=n/2;i++)
+    {
+      if(n%i==0)
+      {
+        value=i;
+        count=n/i;
+        break;
+      }
+    }
+  }
+  	printf("%d\n%d",value,count);
+  	return 0;
+}

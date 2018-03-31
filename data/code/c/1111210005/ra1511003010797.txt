@@ -1,0 +1,66 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,b,temp,k,j,no,m,p;
+  	int arr[50];
+  	scanf("%d",&n);
+  	if(n==0)
+    {
+      printf("%d\n",n);
+      return 0;
+    }
+  	for(i=0;i<n;i++)
+    {
+        int count = 0,rem=0;
+      	scanf("%d",&no);
+      	if(no != 0)
+        {
+          scanf("%d",&b);
+          for(m=0;m<no;m++)
+          {
+              temp = b%10;
+              arr[no-m-1] = temp;
+              //printf("i: %d",i);
+              //printf("arr[%d-%d-1]: %d\n",no,i,temp);
+              b = b/10;
+          }
+          for(k=0;k<no;k++)
+          {
+              if(k == 0 && arr[k] == 1)
+              {
+                  if(arr[k+1] != 1){arr[k+1] = 99;}
+                  arr[k] = 99;
+              }
+              else if(k == no-1 && arr[k-1] == 1)
+              {
+                  arr[k] = 99;
+                  if(arr[k+1] != 1){arr[k-1] = 99;}
+              }
+              else
+              {
+                  if(arr[k] == 1)
+                  {
+                      arr[k] = 99;
+                      if(arr[k-1] != 1){arr[k-1] = 99;}
+                      if(arr[k+1] != 1){arr[k+1] = 99;}
+                  }
+              }
+          }
+ 
+          for(p=0;p<no;p++)
+          {
+              //printf("arr[k]: %d\n",arr[p]);
+              if(arr[p] != 99)
+              {
+                  rem+= 1;
+              }
+          }
+          printf("%d\n",rem);
+      }
+      else
+      {
+        printf("%d\n",0);
+      }
+    }
+	return 0;
+}

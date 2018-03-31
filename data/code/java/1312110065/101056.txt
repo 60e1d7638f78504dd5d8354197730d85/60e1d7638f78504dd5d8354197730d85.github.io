@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  public static int calculateYears(double principal, double interest,  double tax, double desired) {
+    // your code
+    int count = 0;
+    while (principal < desired) {
+      double i = principal*interest;
+      i -= i*tax;
+      principal += i;
+      count++;
+    }
+    return count;
+}
+	 public static void main(String[] args) { 
+		Scanner s=new Scanner(System.in);
+       double P=s.nextDouble();
+       double I=s.nextDouble();
+       double T=s.nextDouble();
+       double D=s.nextDouble();
+      int Y=calculateYears(P,I,T,D);
+       System.out.println(Y);
+	}
+}

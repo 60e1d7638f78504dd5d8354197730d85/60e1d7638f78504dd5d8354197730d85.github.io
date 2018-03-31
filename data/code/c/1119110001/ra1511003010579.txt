@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n1;
+  cin>>n1;
+  int a[n1];
+  for(int i=0;i<n1;i++)
+    cin>>a[i];
+  int n2;
+  cin>>n2;
+  int b[n2];
+for(int i=0;i<n1;i++)
+    cin>>b[i];
+  int *temp1=&a[0];
+  int *temp2=&b[0];
+  int flag=0;
+  for(int i=0;i<n1;i++)
+  {
+    if(*temp1!=*temp2)
+  {  flag=1;
+   break;
+  }
+    temp1++;
+    temp2++;
+  }
+  
+  if(flag==1)
+    cout<<"Arrays are not equal";
+  else
+    cout<<"Arrays are equal";
+	return 0;
+}

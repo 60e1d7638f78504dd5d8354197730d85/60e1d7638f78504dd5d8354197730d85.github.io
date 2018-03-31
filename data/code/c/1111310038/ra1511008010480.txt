@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+void sort1(int* ptr, int n) {
+	int i, j;
+  	for(i=0; i<n; i++) {
+    	for(j=0; j<n-i-1; j++) {
+        	if(*(ptr+j) > *(ptr+j+1)) {
+            	int temp = *(ptr+j);
+              	*(ptr+j) = *(ptr+j+1);
+              	*(ptr+j+1) = temp;
+            }
+        }
+    }
+  	//for(i=0; i<n; i++) printf("%d ", *(ptr+i));
+  	return;
+}
+
+int getLucky(int* ptr, int n) {
+	int i, count=1;
+  	int num = *ptr;
+  	for(i=1; i<n; i++) {
+    	if(*(ptr+i) == num) count++;
+      	else break;
+    }
+  	//printf("%d\n", count);
+  	return count%2==0 ? 0 : 1;
+}
+
+int main()
+{
+  	int test;
+  	scanf("%d", &test);
+  	if(test == 0) {
+    	printf("0");
+      	return 0;
+    }
+  	int t;
+  	for(t=0; t<test; t++) {
+    	int n;
+      	scanf("%d", &n);
+      	int arr[n];
+      	int i=0;
+      	for(i; i<n; i++) {
+        	scanf("%d", &arr[i]);
+        }
+      	sort1(&arr[0], n);
+      	printf("%s\n", getLucky(&arr[0], n)==1 ? "Lucky" : "Unlucky");
+    }
+	return 0;
+}

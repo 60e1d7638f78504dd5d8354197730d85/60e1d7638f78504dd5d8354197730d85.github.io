@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int* fibo(int num)
+{
+  int first=1,second=1;
+  int* arr=new int[num];
+  arr[0]=first;
+  arr[1]=second;
+  for(int i=2; i<num; i++)
+  {
+    arr[i]=first+second;
+    first=second;
+    second=arr[i];
+  }
+  return arr;
+}
+int main()
+{
+   int num;
+  cin>>num;
+   int* arr=fibo(num);
+   for(int i=0; i<num; i++)
+     cout<<arr[i]<<" ";
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+ 
+typedef long long int ll;
+ 
+ll gcd(ll a,ll b)
+{
+return b==0?a:gcd(b,a%b);
+}
+ 
+int main()
+{
+    int t;
+    ll n,m,g;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%lld %lld",&n,&m);
+        if(m==0)
+        {
+        if(n==1)
+        printf("Yes\n");
+        else
+        printf("No 1\n");
+        }
+        else
+        {
+        g=n/gcd(n,m);
+        if(g==n)
+        printf("Yes\n");
+        else
+        printf("No %lld\n",g);
+        }
+    }
+  return 0;
+}
+ 

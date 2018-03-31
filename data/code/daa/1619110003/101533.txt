@@ -1,0 +1,97 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N=1e5+5;
+int A[N];
+int l[N];
+int r[N];
+pair<int,int long long> B[N];
+int long long ans[N];
+int long long x[N]; 
+stack <int> s;
+int main()
+{
+   int t; 
+   scanf("%d",&t);
+   while(t--)
+   {
+     int n,m;
+     scanf("%d %d",&n,&m);
+     int i;
+     for(i=0;i<n;i++)
+     {
+     scanf("%d",&A[i]);
+     }
+     if(n==1)
+     {
+        for(i=1;i<=m;i++)
+        {
+            int p;
+            scanf("%d",&p);
+            printf("%d\n",A[1]);
+        }
+        continue;
+     }
+     while(!s.empty())
+     {
+        s.pop();
+     }
+     for(i=0;i<n;i++)
+     {
+        while((!s.empty()) && A[s.top()]<A[i])
+        {
+            s.pop();
+        }
+        l[i]= (s.empty()) ? (i+1) : (i-s.top()) ;
+        s.push(i);
+     }
+     while(!s.empty())
+     {
+        s.pop();
+     }
+     for(i=(n-1);i>=0;i--)
+     {
+        while(!s.empty() && A[s.top()]<=A[i])
+        {
+            s.pop();
+        }
+        r[i]= (s.empty()) ? (n-i) : (s.top()-i) ;
+        s.push(i);
+     }
+     for(i=0;i<n;i++)
+     {
+        ans[i]=1LL*l[i]*r[i];
+     }
+     for(i=0;i<n;i++)
+     {
+        B[i]=make_pair(A[i],ans[i]);
+     }
+     sort(B,B+n);
+     reverse(B,B+n);
+     x[0]=B[0].second;
+     for(i=1;i<n;i++)
+     {
+        x[i]=1LL*(x[i-1]+B[i].second);
+     }
+     for(i=1;i<=m;i++)
+     {
+        int long long p;
+        scanf("%lld",&p);
+        int lo=0,hi=n-1;
+        int mid;
+        while(lo<hi)
+        {
+           mid=(lo+hi)>>1;
+           if(x[mid]<p)
+           {
+            lo=mid+1;
+           }
+           else if(x[mid]>=p)
+           {
+            hi=mid;
+           }
+        }
+        printf("%d\n",B[lo].first);
+     }
+   }
+   return 0 ;
+} 

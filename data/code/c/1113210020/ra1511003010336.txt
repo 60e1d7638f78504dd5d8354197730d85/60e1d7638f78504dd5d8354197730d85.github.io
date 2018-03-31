@@ -1,0 +1,35 @@
+#include <stdio.h>
+#define size 1005
+#define mod 1000000007
+int main()
+{
+    int a[2][size];
+    a[0][0]=1;a[1][0]=1;a[1][1]=2;
+    int i,j,k,p,q;
+    p=1;q=0;
+    int t,ans[size];
+    ans[1]=1;ans[2]=2;
+    for(i=2;i<=1000;i++)
+    {
+                        a[q][0]=a[p][i-1];
+                        for(j=1;j<=i;j++)
+                        {
+                                         t=a[q][j-1]+a[p][j-1];
+                                         a[q][j]=t%mod;
+                        }
+                        ans[i+1]=a[q][i];
+                        t=p;
+                        p=q;
+                        q=t;
+    }
+    int test;
+    scanf("%d",&test);
+    while(test--)
+    {
+                 int n;
+                 scanf("%d",&n);
+                 printf("%d\n",ans[n]);
+    }
+    return 0;
+}
+ 

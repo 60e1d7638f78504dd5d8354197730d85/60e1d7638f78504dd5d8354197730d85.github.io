@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{
+  int n,m,i,j,number,k,obj,flag,arr[20],t;
+  j=0;t=0;
+  scanf("%d %d",&n,&m);
+  
+  for(i=0;i<n;i++){
+    flag=0;
+  scanf("%d",&number);
+    while(number!=0){
+      k=number%10;
+      flag= flag+k;
+      number=number/10;
+      
+    }
+    arr[j]=flag;
+    
+    j++;
+    if(flag%m!=0)
+    {
+     t=1;
+      break;
+    }
+  
+  }
+  if(t==1){
+   printf("NO");
+    t=-1;
+  }else{
+   for(i=0;i<n;i++){
+       for(j=i+1;j<n;j++)
+       {
+         
+        if(arr[j]==arr[i])
+        {
+          
+          t=1;
+        }
+       }
+       }
+  
+  }
+       if(t==1){
+        printf("NO");
+       }
+       if(t==0)
+       {
+       printf("YES");
+       }
+	return 0;
+}

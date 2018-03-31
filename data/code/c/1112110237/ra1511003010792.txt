@@ -1,0 +1,38 @@
+#include <stdio.h>
+int lcm(int x,int y)
+{
+	int minMultiple = (x>y) ? x : y;	
+  while(1)
+    {
+        if( minMultiple%x==0 && minMultiple%y==0 )
+        {
+            return minMultiple;
+            break;
+        }
+        ++minMultiple;
+  }
+}
+int main()
+{
+	//concept of lcm
+  	int t,i;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+    	int arr[100];
+     	int a;
+      	scanf("%d",&a);
+      	int k;
+      	for(k=0;k<a;k++)
+          scanf("%d",&arr[k]);
+      	int j;
+      	int max=200;
+      	for(j=0;j<a;j++)
+          for(k=j+1;k<a;k++)
+            if(lcm(arr[j],arr[k])<max)
+              max=lcm(arr[j],arr[k]);
+    	printf("%d\n",max);
+    
+    }
+	return 0;
+}

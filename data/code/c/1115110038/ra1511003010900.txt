@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <limits.h>
+int main() 
+{
+   int arr[50], n, i;
+   scanf("%d", &n);  
+   for(i = 0; i < n; i++) {
+      scanf("%d", &arr[i]);
+   }
+   int smallest = INT_MAX;
+   int secondSmallest = INT_MAX;
+   for(i = 0; i < n; i++) {
+     if(arr[i] < smallest) {
+         secondSmallest = smallest;
+         smallest = arr[i];
+     }
+  
+     if(arr[i] > smallest && arr[i] < secondSmallest) {
+         secondSmallest = arr[i];
+     }
+  }
+ 
+  printf(" %d", secondSmallest);
+ 
+  return 0;
+}

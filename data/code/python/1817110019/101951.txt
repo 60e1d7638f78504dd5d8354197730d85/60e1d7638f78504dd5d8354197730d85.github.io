@@ -1,0 +1,15 @@
+def doOverlap(left1, right1, left2, right2):
+    if left1[0] > right2[0] or left2[0] > right1[0]:
+        return False
+    if left1[1] < right2[1] or left2[1] < right1[1]:
+        return False
+    return True
+    
+t = int(input())
+
+for i in range(t):
+    M = [int(x) for x in input().split()]
+    left1, right1 = list(zip(M[::2], M[1::2]))
+    N = [int(x) for x in input().split()]
+    left2, right2 = list(zip(N[::2], N[1::2]))
+    print(1 if doOverlap(left1, right1, left2, right2) else 0)

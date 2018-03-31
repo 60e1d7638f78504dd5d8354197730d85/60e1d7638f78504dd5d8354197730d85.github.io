@@ -1,0 +1,12 @@
+#include <cstdio>
+#include <algorithm>
+#include <cassert>
+int main() {
+  long long a, b, c;
+  assert(scanf("%lld%lld%lld", &a, &b, &c) == 3);
+  long long t = std::min(std::min(a, b), c);
+  a -= t;
+  b -= t;
+  c -= t;
+  printf("%lld\n", (a + b + c + 1) / 2 + t);
+}

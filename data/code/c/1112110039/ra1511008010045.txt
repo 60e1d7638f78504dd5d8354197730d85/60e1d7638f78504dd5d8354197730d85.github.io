@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+inline long long int sscan()
+{
+   long long int n=0;
+   int ch=gc();
+   while(ch<'0'||ch>'9')
+        ch=gc();
+   while(ch>='0'&&ch<='9')
+    {
+        n=(n<<3)+(n<<1)+ch-'0';
+        ch=gc();
+    }
+   return n;
+}
+int main()
+{
+    int t=sscan();
+    while(t--)
+    {
+        int cats=sscan(), dogs=sscan(), legs=sscan();
+        unsigned long long int maxval = (dogs+cats)*4;
+        unsigned long long int minval;
+        if(cats>(2*dogs))
+        {
+            minval=(dogs+(cats-(2*dogs)))*4;
+        }
+        else{
+            minval=dogs*4;
+        }
+        if((legs>=minval)&&(legs<=maxval)&&(legs%4==0))
+            printf("yes\n");
+        else
+            printf("no\n");
+    }
+ 
+    return 0;
+}

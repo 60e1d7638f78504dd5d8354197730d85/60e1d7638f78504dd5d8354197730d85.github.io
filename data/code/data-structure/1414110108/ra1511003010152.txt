@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int n,i;
+  double a[20],f[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {f[i]=1;
+    scanf("%lf",&a[i]);
+    while(a[i]!=0){
+      f[i]=f[i]*a[i];
+      a[i]--;}
+  //  printf("%lf\n",f[i]);
+  }
+  int c,d,swap;
+  for (c = 0 ; c < ( n - 1 ); c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (f[d] < f[d+1]) 
+      {
+        swap       = f[d];
+        f[d]   = f[d+1];
+        f[d+1] = swap;
+      }
+    }
+   }
+  for(i=0;i<n;i++)
+    printf("%0.0lf ",f[i]);
+
+	return 0;
+}

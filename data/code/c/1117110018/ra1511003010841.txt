@@ -1,0 +1,78 @@
+#include<stdio.h>
+ 
+int arr[5][5], transpose[5][5];
+int row_limit, column_limit, row, column;
+ 
+void getmatrix()
+{
+      for(row = 0; row < row_limit; row++)
+      {
+            for(column = 0; column < column_limit; column++)
+            {
+                  //printf("Enter Element:\t"); 
+                  scanf("%d", &arr[row][column]);
+            }
+      }
+}
+ 
+void find_transpose()
+{
+      for(row = 0 ; row < row_limit ; row++)
+      {
+            for(column = 0; column < column_limit; column++)
+            {
+                  transpose[column][row] = arr[row][column];
+            }
+      }
+}
+ 
+int check()
+{
+      if(row_limit == column_limit)
+      {
+            for(row = 0; row < row_limit; row++)
+            {
+                  for(column = 0; column < row_limit; column++)
+                  {
+                        if(arr[row][column] != transpose[row][column])
+                        {
+                              break;
+                        }
+                  }
+                  if(column != row_limit)
+                  {
+                        break;
+                  }
+            }
+            if(row == row_limit)
+            {
+                  return 0;
+            }
+      }
+      else
+      {
+            return 1;
+      }
+}
+ 
+int main()
+{
+      int result;
+      //printf("Enter the Number of Rows:\t");
+      scanf("%d", &row_limit);
+      //printf("Enter the Number of Columns:\t");
+      scanf("%d", &column_limit);
+     // printf("\nEnter the Elements of the Square Matrix of Dimension [%d][%d]\n", row_limit, column_limit);
+      getmatrix();
+      find_transpose();
+      result = check();
+      if(result == 0)
+      {
+            printf("\n Symmetric\n");
+      }
+      else
+      {
+            printf("\n Not Symmetric\n");
+      }
+      return 0;
+}

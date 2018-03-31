@@ -1,0 +1,39 @@
+#include<stdio.h>
+ 
+int main()
+{
+      int arr[5][5];
+      int row, column, row_limit, column_limit, temp = 0;
+      scanf("%d", &row_limit);
+      scanf("%d", &column_limit);
+      for(row = 0; row < row_limit; row++)
+      {
+            for(column = 0; column < column_limit; column++)
+            {
+                  
+                  scanf("%d", &arr[row][column]);
+            }
+      }
+     
+     
+      for(row = 0; row < row_limit; row++)
+      {
+            for(column = 0; column < column_limit; column++)
+            {
+                  if(arr[row][column] != arr[column][row])
+                  {
+                        temp = 1;
+                        break;
+                  }
+            }
+      }
+      if(temp == 1)
+      {
+            printf("\nNot Symmetric\n");
+      }
+      else
+      {
+            printf("\nSymmetric\n");
+      }         
+      return 0;
+}

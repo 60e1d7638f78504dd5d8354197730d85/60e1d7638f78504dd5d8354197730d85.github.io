@@ -1,0 +1,31 @@
+#include <stdio.h>
+ 
+int main() {
+        int T,t,i,num,N,count_max=1,count=0,back;
+        scanf("%d",&T);
+        for(t=0;t<T;t++)
+        {
+            scanf("%d",&N);
+            scanf("%d",&num);
+            back=num;
+            count=1;
+            for(i=1;i<N;i++)
+            {
+                scanf("%d",&num);
+                if(num==back)
+                {
+                    count++;
+                }
+               else
+                count=1;
+               count_max=count_max>count?count_max:count;
+               back=num;
+            }
+            if(count_max>=3)
+                printf("Yes\n");
+            else
+                printf("No\n");
+           count_max=1;
+        }
+        return 0;
+}

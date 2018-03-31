@@ -1,0 +1,28 @@
+import java.util.*;
+class TestClass{
+    void binToDecimal() 
+    {
+       Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+      try{
+        int sum=0,power=1;
+        while (n!=0)
+        {
+            int lsb=n%10;
+            if(lsb>1)
+                throw new NumberFormatException();
+            sum+=power*lsb;
+            power=power<<1;
+            n/=10;
+        }
+        System.out.print(sum);
+    }catch(NumberFormatException e)
+      {
+          System.out.println(e);
+      }
+    }
+    public static void main(String[] args){
+        TestClass o=new TestClass();
+        o.binToDecimal();
+    }}
+

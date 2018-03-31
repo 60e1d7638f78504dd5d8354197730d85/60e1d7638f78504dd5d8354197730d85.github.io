@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int N;
+  	scanf("%d",&N);
+  	int arr[2*N -1];
+  	int i;
+  	for (i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) {
+    arr[i] = N;
+    }
+  	int i1,j;
+  	for(i1=0;i1<2*N;i1++){
+      if(i1 < N){
+      for(j=i1;j<2*N -1 -i1;j++){
+        arr[j] = N-i1;
+      }
+       for (i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) {
+    	printf("%d ",arr[i]);
+     } 
+      printf("\n");
+      }else{
+        if(i1==N){
+          continue;
+        }
+          
+      for(j=2*N-1-i1;j<i1;j++){
+        arr[j] = (i1-N)+1;
+      }
+       for (i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) {
+    	printf("%d ",arr[i]);
+     } 
+      printf("\n");
+      }
+    }
+	return 0;
+}

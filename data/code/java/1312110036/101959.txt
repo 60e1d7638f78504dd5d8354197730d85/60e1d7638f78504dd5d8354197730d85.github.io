@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  public static int sum(int n)
+  {
+    int sum = 0;
+    while (n > 9 ) {
+                 sum=0;
+        while (n > 0) {
+            int rem;
+            rem = n % 10;
+            sum = sum + rem;
+            n = n / 10;
+        }
+        n = sum;
+    }
+
+         return(sum);
+  }
+  public static char ul(char c)
+  {
+    if(Character.isUpperCase(c))
+      return(Character.toLowerCase(c));
+    else
+      return(Character.toUpperCase(c));
+  }
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+         String input1=sc.next();
+       int input2=sc.nextInt();
+       char arr[]=new char[4];
+        arr[3]=input1.charAt(input1.length() - 1);
+       int s=sum(input2);
+       String s1=String.valueOf(s);
+       arr[2]=s1.charAt(0);
+       arr[1]=ul(input1.charAt(0));
+       String ss=String.valueOf(input2);
+       //if(ss.length()>=3)
+       //  arr[0]=ss.charAt(ss.length() - 3);
+      // else
+         arr[0]='1';
+       for(int i=0;i<4;i++)
+       {
+         Character charObject1 = new Character(arr[i]);
+     Character charObject2 = new Character('0');
+         if(charObject1.equals(charObject2))
+         {
+           System.out.print(0);
+            //System.out.print("james");
+         }
+       else
+         System.out.print(arr[i]);
+       }
+		
+	}
+}

@@ -1,0 +1,21 @@
+#include <stdio.h>
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+int main()
+{int y,i,j,arr[110];
+ scanf("%d",&y);
+ for(i=0;i<y;i++)
+   scanf("%d",&arr[i]);
+for(i=0;i<y;i++)
+ for(j = 0; j < y-i-1; j++) 
+{           if (arr[j] > arr[j+1])
+              swap(&arr[j], &arr[j+1]);
+}
+ for (i=0; i < y; i++)
+        printf("%d\n", arr[i]);
+	return 0;
+}

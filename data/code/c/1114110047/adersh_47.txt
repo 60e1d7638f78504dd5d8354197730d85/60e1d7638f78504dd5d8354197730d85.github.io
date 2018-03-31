@@ -1,0 +1,38 @@
+#include <stdio.h>
+int convertd2b(int num)
+{ int decimal_num, remainder, base = 1, binary = 0, no_of_1s = 0;
+ decimal_num=num;
+ while (num > 0)
+    {
+        remainder = num % 2;
+        /*  To count no.of 1s */
+        if (remainder == 1)
+        {
+            no_of_1s++;
+        }
+        binary = binary + remainder * base;
+        num = num / 2;
+        base = base * 10;
+ }
+return binary;
+}
+int convb2d(int num)
+{ int rem,base=1,decimal_val=0;;
+ 
+while (num > 0)
+    {
+        rem = num % 10;
+        decimal_val = decimal_val + rem * base;
+        num = num / 10 ;
+        base = base * 2;
+}
+ return decimal_val;
+}
+int main()
+{
+int i,num1,num2,sum;
+  scanf("%d%d",&num1,&num2);
+  sum=convb2d(num1)+convb2d(num2);
+  printf("%d",convertd2b(sum));
+  return 0;
+}

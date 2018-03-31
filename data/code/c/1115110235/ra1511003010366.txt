@@ -1,0 +1,60 @@
+# include <stdio.h>
+
+int res[100];
+int p=0;
+void display( int m ){
+    res[p++] = m ;
+}
+
+int main()
+{
+    int i , j , g , k , count[10][10] , a[10][3] , t , m ;
+    char s[10][10] ;
+    scanf( "%d", &t ) ;
+    for( m=0 ; m<t ; m++ ){
+    scanf( "%d",&g ) ;
+    for( i=0 ; i<g ; i++ ){
+        scanf( "%d %d %d", &a[i][0] , &a[i][1] , &a[i][2] ) ;
+        for( j=0 ; j<a[i][1] ; j++ ){
+        if ( a[i][0]==1 )
+        	s[i][j] = 'H' ;
+        else
+        	if ( a[i][0]==2 )
+        		s[i][j] = 'T';
+        }
+        s[i][j] = '\0';
+    	for( j=1 ; j<=a[i][1] ; j++ ){
+        	for( k=0 ; k<j ; k++ ){
+        		if( s[i][k]=='H' )
+        			s[i][k]='T';
+        		else
+        			s[i][k]='H';
+        }
+    }
+    }
+    for( i=0 ; i<g ; i++ ){
+    count[m][i] = j = 0 ;
+    if( a[i][2]==1 )
+      while ( s[i][j]!='\0' ){
+    	if( s[i][j]=='H' )
+    		count[m][i]++;
+    	j++;
+      }
+    else
+    	if(a[i][2] ==2)
+    	  while(s[i][j]!='\0')
+    		{
+    			if(s[i][j] == 'T')
+    			count[m][i]++;
+    			j++;
+    		}
+    	display(count[m][i]);
+    	}
+    }
+    for ( i=0 ; i<p ; i++ ){
+      if (res[i]==0)
+        res[i]=1 ;
+    printf("%d\n",res[i]);
+    }
+    return 0;
+}

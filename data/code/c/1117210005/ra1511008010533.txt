@@ -1,0 +1,46 @@
+#include<stdio.h>
+#define Hash_Array_SIZE 10
+ 
+int Hash_Array[Hash_Array_SIZE]={0};
+int collision = 0;
+ 
+int hashFunction(int value)
+{
+	return value % 10;
+}
+ 
+void hashing(int num)
+{
+	int key = hashFunction(num);
+	if(Hash_Array[key]>0){
+		collision++;
+	}
+	else
+	{
+		Hash_Array[key]++;
+	}
+}
+ 
+int main(void)
+{
+	int i;
+	int T;
+	int N;
+	int X;
+	scanf("%d",&T);
+	while(T>0){
+		scanf("%d",&N);
+		while(N>0)
+		{
+			scanf("%d",&X);
+			hashing(X);
+			N--;
+		}
+		printf("%d\n",collision);
+		collision = 0;
+		for(i=0;i<10;i++)
+			Hash_Array[i]=0;
+		T--;
+	}
+	return 0;		
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int power(int a)
+{
+  return !(a & a-1);
+}
+
+int main()
+{
+  int n,arr[100],c=0,i,j;
+  scanf("%d",&n);
+  for( i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  for( i=0;i<n-1;i++)
+    for(j=i+1;j<n;j++)
+      if(power(arr[i]+arr[j]))
+        c++;
+  printf("%d",c);
+  return 0;
+}

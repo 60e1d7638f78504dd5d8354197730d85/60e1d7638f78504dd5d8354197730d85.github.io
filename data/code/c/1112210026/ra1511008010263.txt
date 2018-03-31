@@ -1,0 +1,36 @@
+#include <stdio.h>
+ 
+int main(void)
+{
+    int t, i;
+    scanf("%d", &t);
+    
+    long long int n, k, j, max, temp;
+    
+    for (i = 0; i < t; i++)
+    {
+        scanf("%lld %lld", &n, &k);
+        
+        if (k > n)
+        {
+            printf("%lld\n", n);
+            continue;
+        }
+        
+        max = 0;
+        
+        for (j = 1; j <= k; j++)
+        {
+            temp = n - (j * (n / j));
+            
+            if (temp > max)
+            {
+                max = temp;
+            }    
+        }
+        
+        printf("%lld\n", max);
+    }
+    
+    return 0;
+} 

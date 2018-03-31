@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+void Combi(int n,int i)
+{
+  static int a[100];
+  if(n==0) 	
+  {
+    int j;
+      for(j=0;j<i;j++)
+      printf("%d ",a[j]);
+    printf("\n");
+  }
+  else if(n>0)
+  {
+    int k;
+    for(k=1;k<=3;k++)
+    {
+      a[i]=k;
+      Combi(n-k,i+1);
+    }
+  }
+  
+}
+int main()
+{
+int n;
+  scanf("%d",&n);
+  printf("Different compositions formed by 1, 2 and 3 of %d are\n",n);
+  Combi(n,0);
+	return 0;
+}

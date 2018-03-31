@@ -1,0 +1,74 @@
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+ 
+typedef long long ll;
+ 
+const int mod = 1000000007;
+const int Maxb = 31;
+const int Maxk = 8;
+ 
+ll C[Maxb][Maxb], CI[Maxb][Maxb];
+ll dp[Maxb][Maxk][Maxb];
+int t;
+int N, K, B;
+ll cdp[Maxb][Maxk][Maxb];
+ 
+ll Inv(ll a, ll p = mod - 2)
+{
+	ll res = 1ll;
+	while (p) {
+		if (p & 1) res = ll(res) * a % mod;
+		p >>= 1; a = ll(a) * a % mod;
+	}
+	return res;
+}
+ 
+int main()
+{
+	for (int i = 0; i < Maxb; i++) {
+		C[i][0] = C[i][i] = 1;
+		for (int j = 1; j < i; j++)
+			C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
+	}
+	for (int i = 0; i < Maxb; i++)
+		for (int j = 0; j <= i; j++)
+			CI[i][j] = Inv(C[i][j]);
+ 
+	dp[0][0][0] = dp[0][1][0] = 1;
+	for (int b = 0; b + 1 < Maxb; b++)
+		for (int g1 = 0; g1 < Maxk; g1++) {
+			int add = g1 % 2;
+			for (int g2 = 0; g1 + g2 < Maxk; g2++)
+				for (int y = 0; y <= b; y++)
+					for (int u = 0; u <= y; u++)
+						for (int v = 0; u + v <= b && y - u + v + add < Maxb; v++) {
+							dp[b + 1][g1 + g2][y - u + v + add] += ll(dp[b][g1][y]) * dp[b][g2][u + v] % mod * C[y][u] % mod * C[b - y][v] % mod * CI[b][u + v] % mod;
+							dp[b + 1][g1 + g2][y - u + v + add] %= mod;
+						}
+		}
+ 
+	scanf("%d", &t);
+	while (t--) {
+		scanf("%d %d %d", &N, &K, &B);
+		fill((ll*)cdp, (ll*)cdp + Maxb * Maxk * Maxb, 0);
+		cdp[0][0][0] = cdp[0][1][0] = 1;
+		for (int b = 0; b + 1 < Maxb; b++)
+			if (!(N & 1 << b))
+				for (int i = 0; i <= K; i++)
+					for (int j = 0; j <= b; j++)
+						cdp[b + 1][i][j] = cdp[b][i][j];
+			else for (int g1 = 0; g1 <= K; g1++) {
+					int add = g1 % 2;
+					for (int g2 = 0; g1 + g2 <= K; g2++)
+						for (int y = 0; y <= b; y++)
+							for (int u = 0; u <= y; u++)
+								for (int v = 0; u + v <= b && y - u + v + add < Maxb; v++) {
+									cdp[b + 1][g1 + g2][y - u + v + add] += ll(cdp[b][g1][y]) * dp[b][g2][u + v] % mod * C[y][u] % mod * C[b - y][v] % mod * CI[b][u + v] % mod;
+									cdp[b + 1][g1 + g2][y - u + v + add] %= mod;
+								}
+				}
+		printf("%lld\n", cdp[Maxb - 1][K][B]);	
+	}
+	return 0;
+} 

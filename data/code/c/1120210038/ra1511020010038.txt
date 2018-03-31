@@ -1,0 +1,126 @@
+#include<stdio.h>
+#include<math.h>
+#define swap(a,b) temp=a[i],a[i]=b[i],b[i]=temp
+ 
+int GCD(int a,int b)
+       {
+        if(!b)
+          return a;
+        else 
+          return GCD(b,a%b);
+       }
+ 
+int main()
+{
+ 
+  int a[100],b[100],c[100],t,temp,i,g,vola,volb,count,count1;
+ 
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+    {
+      scanf("%d",&a[i]);
+      scanf("%d",&b[i]);
+      scanf("%d",&c[i]);
+    }
+ 
+  for(i=0;i<t;i++)
+    {
+ 
+      count=count1=1;
+      if(a[i]<b[i])
+         swap(a,b);
+ 
+      if (c[i]>a[i])
+         printf("-1\n");
+      else if (!c[i])
+	      printf("0\n");
+ 
+      else if(a[i]==0||b[i]==0)
+      {
+	      if(c[i]==a[i]||c[i]==b[i])
+		      printf("1\n");
+	      else
+		      printf("-1\n");
+      }
+      else if (c[i]%(g=GCD(a[i],b[i])))
+	      printf("-1\n");
+ 
+      else if(c[i]==a[i]||c[i]==b[i])
+	      printf("1\n");
+      else if(c[i]==(b[i]-a[i])||c[i]==(a[i]-b[i]))
+	      printf("2\n"); 
+      else
+      {
+         vola=a[i];
+         volb=0;
+         while(vola!=c[i]&&volb!=c[i])
+           {
+             if (volb==b[i])
+                {
+                  count++;
+                  volb=0;
+                }
+             else if(!(vola))
+                {
+                 count++;
+                 vola=a[i];
+                }
+             else 
+                {
+		  if(b[i]-volb<vola)
+		  {
+			  vola-=(b[i]-volb);
+			  volb=b[i];
+	          }
+		  else
+		  {
+			  volb+=vola;
+			  vola=0;
+	          }
+ 
+                  count++;
+                }
+              
+            }
+         
+	 volb=b[i];
+         vola=0;
+         while(volb!=c[i]&&vola!=c[i])
+           {
+             if (vola==a[i])
+                {
+                  count1++;
+                  vola=0;
+                }
+             else if(!(volb))
+                {
+                 count1++;
+                 volb=b[i];
+                }
+             else
+                {
+		  if(a[i]-vola<volb)
+		  {
+			  volb-=(a[i]-vola);
+			  vola=a[i];
+			  
+	          }
+		  else
+		  {
+			  vola+=volb;
+			  volb=0;
+	          }
+                  count1++;
+               }
+           }
+        if(count1<count)
+           count=count1;
+        printf("%d\n",count);
+       
+    }
+    }
+ 
+ 
+ 
+    return 0;
+}

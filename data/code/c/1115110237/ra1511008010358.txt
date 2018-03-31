@@ -1,0 +1,35 @@
+#include <stdio.h>
+long long R[123456],C[123456],input[123456][3];
+int main()
+{
+  	long long i,N,x,y;
+  	long long total=0;
+  	scanf("%lld", &N);
+  	for(i=1;i<=N;i++)
+    {
+      	scanf("%lld %lld", &x,&y);
+      	input[i][1]=x;
+      	input[i][2]=y;
+      	R[i]=y-x+1;
+      	total+=R[i];
+    }
+  	long long temp=0;
+  	for(i=1;i<=N;i++)
+    {
+      	C[input[i][1]]++;
+      	C[input[i][2]+1]--;
+    }
+  	for(i=1;i<=N;i++)
+      	C[i]+=C[i-1];
+  	long long Q,ans;
+  	scanf("%lld", &Q);
+  	while(Q--)
+    {
+      	scanf("%lld %lld", &x,&y);
+      	ans=(total-R[x]-C[y]);
+      	if(input[x][1]<=y && input[x][2]>=y)
+          	ans++;
+      	ans%2==1?printf("O\n"):printf("E\n");
+    }
+	return 0;
+}

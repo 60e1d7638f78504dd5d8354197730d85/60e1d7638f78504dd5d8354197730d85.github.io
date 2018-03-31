@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void sort_chars(char *string, int len) 
+{
+   char *end_p, *search, *max_p; 
+   char max_val;
+
+   for(end_p = string + len - 1; end_p > string ; end_p--){
+      for(search = max_p = string, max_val = *max_p ; search <= end_p ; search++){
+         if(*search > max_val){ max_p = search; max_val = *max_p; }
+      }
+      
+      *max_p = *end_p;
+      *end_p = max_val;
+   }
+
+}
+
+
+int main()
+{
+  char input[100];
+  scanf("%s", input);
+  
+  sort_chars(input, strlen(input));
+  printf("%s", input);
+  
+  
+  return 0;
+}

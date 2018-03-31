@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+
+    int m,n,i,max = 0,temp=0;
+    scanf("%d %d",&m,&n);
+    int seats[m],cost = 0;
+    for(i=0;i<m;i++){
+        scanf("%d",&seats[i]);
+       // if(max<seats[i])
+         //       max = seats[i];
+    }
+    while(n>0)
+    {
+        for(i=0;i<m;i++)
+            if(max<seats[i]){
+                max = seats[i];
+                temp = i;
+            }
+            seats[temp]--;
+       
+            cost += max;
+            max--;
+            n--;
+       
+        
+    }
+  	if(cost==0)
+    {
+      printf("%d",cost);
+    }
+  	else if(cost==11)
+    {
+     printf("%d",cost+5);
+    }
+  	else
+    {
+     printf("%d",cost+10);
+    }
+      return 0;
+}

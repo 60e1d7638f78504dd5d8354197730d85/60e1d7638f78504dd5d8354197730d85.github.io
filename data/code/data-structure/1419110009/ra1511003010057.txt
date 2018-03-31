@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef long long int ll;
+struct node {
+	ll id, s, j;
+};
+ 
+int comp (const void *a, const void *b) {
+	struct node *x = (struct node *)a;
+	struct node *y = (struct node *)b;
+	if (x->s == y->s) {
+		return ((x->j) - (y->j));
+	}
+	else {
+		return ((x->s) - (y->s));
+	}
+}
+ 
+int main () {
+	ll n, m;
+	struct node arr[100004];
+	scanf ("%lld%lld", &n, &m);
+	ll i;
+	for (i = 0; i < n; i++) {
+		arr[i].id = i;
+		scanf ("%lld%lld",&arr[i].s, &arr[i].j);
+	}
+	qsort (arr, n, sizeof (struct node), comp);
+	/*for (i = 0; i < n; i++) {
+		printf ("%lld %lld %lld\n",arr[i].id, arr[i].s, arr[i].j);
+	}*/
+	int taxi[m+1];
+	for (i = 0; i < m; i++) {
+		taxi[i] = 0;
+	}
+	ll time = arr[0].s;
+	ll k = 0;
+	int flag = 0;
+	ll ans[n];
+	while (k < n) {
+		flag = 0;
+		time = arr[k].s;
+		for (i = 0; i < m; i++) {
+			if (taxi[i] <= time || taxi[i] == 0) {
+				taxi[i] = (arr[k].s) + (arr[k].j);
+				ans[arr[k].id] = i+1;
+				k++;
+				//time = arr[k].s;
+				flag = 1;
+				break;
+			}
+		}
+		if (flag == 0) {
+			ans[arr[k].id] = -1;
+			k++;
+			//time = arr[k].s;
+		}
+	}
+	for (i = 0; i < n; i++) {
+		printf ("%lld ",ans[i]);
+	}
+	return 0;
+}

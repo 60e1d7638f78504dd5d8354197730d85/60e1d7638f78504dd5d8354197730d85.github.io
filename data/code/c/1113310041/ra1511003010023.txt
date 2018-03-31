@@ -1,0 +1,66 @@
+#include<stdio.h>
+#define MOD 1000000009
+     
+long long fact[1000000];
+    
+int fast_pow(long long base, long long n,long long M)
+{
+    if(n==0)
+		return 1;
+    if(n==1)
+		return base;
+    long long halfn=fast_pow(base,n/2,M);
+    if(n%2==0)
+		return ( halfn * halfn ) % M;
+    else
+    return (((halfn*halfn)%M)*base)%M;
+}
+ 
+int findMMI_fermat(int n,int M)
+{
+    return fast_pow(n,M-2,M);
+}
+ 
+int main()
+{
+    long long arr[21]={1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576};
+    long long numerator,denominator,mmi_denominator,ans,i;
+    int k,n,r,temp;
+ 
+    scanf("%d",&k);
+    fact[0]=1;
+    i=1;
+    while(i<=1000000)
+    {
+		fact[i]=(fact[i-1]*i)%MOD;
+		i++;
+    }
+    for(i=1;i<=arr[k];i++)
+    {
+		ans=1;	
+		if(i < arr[k-1] )
+			printf("0\n");
+		else
+		{
+			temp=arr[k]-i;
+			if(temp==0)
+				printf("%lld\n",fact[i]);
+			else
+			{
+				n=arr[k]-temp-1;
+				r=arr[k-1]-temp;
+				numerator=fact[n];
+				denominator=(fact[r]*fact[n-r])%MOD;
+				mmi_denominator=findMMI_fermat(denominator,MOD);
+				ans=(numerator*mmi_denominator)%MOD;
+				ans=(ans*fact[arr[k-1]])%MOD;
+				ans=(ans*fact[arr[k-1]])%MOD;
+				ans=(ans*2)%MOD;
+				printf("%lld\n", ans);
+			}
+     
+		} 
+    }
+    return 0;
+}
+ 

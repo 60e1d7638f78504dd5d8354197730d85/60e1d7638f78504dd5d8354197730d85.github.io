@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long mod = 1e9 + 7;
+long long power (long long base , long long po)
+{
+    if(po == 0) return 1;                   
+    if(po == 1) return base;                
+    long long ans;
+    if(po % 2 == 0)
+    {                      
+        ans = power(base , po / 2);
+        return (ans % mod * ans % mod) % mod;
+    } 
+  else 
+   {
+        return (base % mod * power(base , po - 1) % mod) % mod;
+    }
+}
+
+int main()
+{
+    int t , n;
+    cin >> t;
+    while(t--)
+    {
+        cin >> n;
+        cout << (power(4 , n) - power(2 , n) + mod) % mod << "\n";      
+    }
+
+    return 0;
+}

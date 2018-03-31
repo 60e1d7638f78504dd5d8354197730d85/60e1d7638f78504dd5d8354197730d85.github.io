@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int min,n,t,sum=0,x,i,y;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    int a[n];
+    x=0;
+    sum=0;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+      if(i==0)
+        min=a[i];
+      if(min>a[i])
+      {
+        min=a[i];
+        x=i;
+      }
+    }
+    //printf("%d\n",min);
+    sum+=min;
+    y=(x==0)?1:0;
+    for(i=0;i<n;i++)
+    {
+      if(i==x)
+        continue;
+      if(i==y)
+        min=a[i];
+      if(a[i]<min)
+        min=a[i];
+    }
+    printf("%d\n",sum+min);
+      
+  }
+
+	return 0;
+}

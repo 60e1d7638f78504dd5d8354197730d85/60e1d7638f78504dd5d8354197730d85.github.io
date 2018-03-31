@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.Scanner;
+
+class Sample
+{
+  static int n;
+  static int ctr=0;
+  static int prev=1;
+  static int now=1;
+  static void getInput()
+  {
+    Scanner in=new Scanner(System.in);
+    n=in.nextInt();
+  }
+  static void displayFib()
+  {
+    fib(0);
+  }
+  static void fib(int v)
+  {
+    
+    if (ctr==0 ||ctr==1)
+    {
+      System.out.print("1 ");
+      ctr++;
+      fib(ctr);
+    }
+    else if(ctr<n)
+    {
+      int ans=prev+now;
+      System.out.print(ans+" ");
+      prev=now;
+      now=ans;
+      ctr++;
+      fib(ctr);
+    }
+  }
+}    
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample.getInput();
+        Sample.displayFib();
+	}
+}

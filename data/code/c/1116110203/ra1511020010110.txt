@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int i,j;
+  char str[100];
+  scanf("%s",str);
+  int len = strlen(str);
+  for(i=0;i<len;i++)
+  {
+    if(str[i]=='.')
+    {
+      if(str[len-i-1]!='.')
+        str[i]=str[len-i-1];
+      else
+        str[i]=str[len-i-1]='a';
+    }
+  }
+  int flag=1;
+  for(i=0;i<len;i++)
+    if(str[i]!=str[len-i-1])
+      flag=0;
+  if(flag==1)
+  printf("%s",str);
+  else
+  printf("-1");
+  return 0;
+}

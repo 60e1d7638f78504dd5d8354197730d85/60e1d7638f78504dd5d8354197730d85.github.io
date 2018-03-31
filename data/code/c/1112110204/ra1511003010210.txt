@@ -1,0 +1,21 @@
+#include <stdio.h>
+long hcf(long a,long b)
+{
+  if(b!=0) return hcf(b,a%b);
+  else return a;
+}
+int main(void)
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    long a,b,c;
+    scanf("%ld %ld",&a,&b);
+    c=hcf(a,b);
+    printf("%ld ",c);
+    printf("%ld",a*b/c);
+    printf("\n");
+  }
+	return 0;
+}

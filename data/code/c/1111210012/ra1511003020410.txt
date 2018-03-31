@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+int main() {
+	int t,la,lb;
+	scanf("%d",&t);
+	while(t--){
+		char st[100005];
+		int arr[30]={0};
+		scanf("%s",st);
+		int len=strlen(st);
+		int mx=0;
+		for(la=0;la<len;la++)
+			arr[st[la]-'a'+1]++;
+		for(la=1;la<=26;la++){
+			if(arr[la]>0)
+				mx++;
+		}
+		printf("%d\n",mx);
+	}
+	return 0;
+} 

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  	int n1,n2,i;
+  	scanf("%d",&n1);
+  	int a[n1];
+  	for(i=0;i<n1;i++){
+      scanf("%d",&a[i]);
+    }
+	scanf("%d",&n2);
+  	int b[n2];
+  	for(i=0;i<n2;i++){
+      scanf("%d",&b[i]);
+    }
+  int* a1 = &a[0];
+  int* a2 =&b[0];
+  for(i=0;i<n1;i++){
+    if(*a1 != *a2)
+      break;
+    a1++;a2++;
+  }
+  if(i==n1){
+    printf("Arrays are equal");
+  }else{
+    printf("Arrays are not equal");
+  }
+	return 0;
+}

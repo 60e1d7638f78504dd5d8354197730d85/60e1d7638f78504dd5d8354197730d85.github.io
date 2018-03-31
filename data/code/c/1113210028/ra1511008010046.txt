@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<time.h>
+#define ll long long
+ 
+#ifndef ONLINE_JUDGE
+#define gc getchar
+#define pc putchar
+#else
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+#endif
+ 
+int read_int() {
+    char c = gc();
+    while((c < '0' || c > '9') && c != '-') c = gc();
+    int ret = 0, neg = 0;
+    if (c == '-') neg = 1, c = gc();
+    while(c >= '0' && c <= '9') {
+        ret = 10 * ret + c - 48;
+        c = gc();
+    }
+    return neg ? -ret : ret;
+}
+ 
+ll read_ll() {
+    char c = gc();
+    while((c < '0' || c > '9') && c != '-') c = gc();
+    ll ret = 0; int neg = 0;
+    if (c == '-') neg = 1, c = gc();
+    while(c >= '0' && c <= '9') {
+        ret = 10 * ret + c - 48;
+        c = gc();
+    }
+    return neg ? -ret : ret;
+}
+ 
+#define MOD 1000000007
+ 
+int main() {
+    int T, N, A, R, S, M;
+    T = read_int();
+    while(T--) {
+        N = read_int();
+        A = read_int();
+        S = A; R = 0; M = 1;
+        while(N--) {
+            A = read_int();
+            R = (2ll*A*S+2ll*R)%MOD;
+            S = (1ll*A*M+S)%MOD;
+            M = (2ll*M)%MOD;
+        }
+        printf("%d\n", R);
+    }
+ 
+    return 0;
+}

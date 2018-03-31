@@ -1,0 +1,103 @@
+#include<cstdio>
+#include<iostream>
+#include<cstdlib>
+#include<cmath>
+#include<cstring>
+#include<algorithm>
+#include<climits>
+#include<vector>
+#include<stdio.h>
+#include<cassert>
+using namespace std;
+#define FOR(i,a,b) for(i= a ; i < b ; ++i)
+#define rep(i,n) FOR(i,0,n)
+#define INF INT_MAX
+#define ALL(x) x.begin(),x.end()
+#define pb push_back
+#define sz(x) int(x.size())
+#define min(a,b) ((a)<(b)?(a):(b))
+#define si(n) scanf("%d",&n)
+#define pi(n) printf("%d ",n)
+#define pin(n) printf("%d\n",n)
+#define pln(n) printf("%lld\n",n)
+#define pl(n) printf("%lld ",n)
+#define sl(n) scanf("%lld",&n)
+#define ll long long int
+#define mod (int)(1e9 + 7)
+#define MAX 10000
+ll modpow(ll a,ll n,ll temp){ll res=1,y=a;while(n>0){if(n&1)res=(res*y)%temp;y=(y*y)%temp;n/=2;}return res%temp;} 
+int isprimeat[MAX+20], dp[MAX+20];
+vector<int> primeat;
+//Finding all prime numbers till 10000
+void seive()
+{
+	ll i,j;
+	isprimeat[0]=1;
+	isprimeat[1]=1;
+	for(i=2;i<=MAX;i++)
+	{
+		if(isprimeat[i]==0)
+		{
+			for(j=i*i;j<=MAX;j+=i)
+			{
+				isprimeat[j]=1;
+			}
+		}
+	}
+	for(i=2;i<=MAX;i++)
+	{
+		if(isprimeat[i]==0)
+		{
+			primeat.pb(i);
+		}
+	}
+	isprimeat[4]=isprimeat[27]=isprimeat[3125]=0;
+	primeat.pb(4);
+	primeat.pb(27);
+	primeat.pb(3125);
+}
+int main()
+{
+	int i,t,n,sz,j;
+	seive();
+	sort(primeat.begin(), primeat.end());
+	dp[2]=1;
+	dp[3]=1;
+	sz=primeat.size();
+	//Pre-computing the required query using DP
+	FOR(i,4,MAX+1)
+	{
+		dp[i]=mod;
+		if(isprimeat[i]==0)
+		{
+			dp[i]=1;
+			continue;
+		}
+		rep(j,sz)
+		{
+			if(i-primeat[j]<2)
+				break;
+			dp[i]=min(dp[i], dp[i-primeat[j]]+1);
+		}
+	}
+	//Checking the value of dp[n] array according to GoldBach conjecture
+	FOR(i,2,MAX+1)
+	{
+		if(isprimeat[i]==0)
+			assert(dp[i]==1);
+		else if(i%2==0)
+			assert(dp[i]==2);
+		else
+		{
+			assert(dp[i]<=3);
+		}
+	}
+	si(t);
+	assert(t>=1 && t<=100000);
+	while(t--)
+	{
+		si(n);
+		pin(dp[n]);
+	}
+	return 0;
+}

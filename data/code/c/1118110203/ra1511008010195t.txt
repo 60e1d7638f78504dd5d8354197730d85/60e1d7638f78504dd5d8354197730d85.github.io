@@ -1,0 +1,19 @@
+#include <stdio.h>
+struct distance {
+	int feet;
+    float inch;
+} a,b;
+
+void add(struct distance* a,struct distance* b) {
+	a->feet = a->feet+b->feet+((int)(a->inch+b->inch)/12);
+  	a->inch = (((int)((a->inch+b->inch)*100))%1200)/100.0;
+}
+
+
+int main()
+{
+  	scanf("%d %f %d %f",&a.feet,&a.inch,&b.feet,&b.inch);
+	add(&a,&b);
+  	printf("%dfeet\n%.1finches",a.feet,a.inch);
+	return 0;
+}

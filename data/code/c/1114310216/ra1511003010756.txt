@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+int main()
+{
+	long int T, count, four = 0, i, j, arr[100000];
+	char *str = malloc(sizeof(long int));
+ 
+	scanf("%ld\n", &T);
+	count = T, j = 0;
+ 
+	while(count--)
+	{
+		fgets(str, 1000000000, stdin);
+		for(i = 0; i < strlen(str)-1; i++) {
+			if((str[i]- 48) == 4)
+				four++;
+		}
+		arr[j++] = four;
+		four = 0;
+	}
+	for(i = 0; i < T; i++)
+		printf("%ld\n", arr[i]);
+ 
+	return 0;
+} 

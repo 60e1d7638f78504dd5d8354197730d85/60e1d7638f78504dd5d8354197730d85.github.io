@@ -1,0 +1,23 @@
+#include <stdio.h>
+int power(int num,int pow);
+int main()
+{
+  int num,pow,result;
+  scanf("%d %d",&num,&pow);
+  
+  result=power(num,pow);
+  printf("%d^%d = %d",num,pow,result);
+
+	return 0;
+}
+int power(int num,int pow)
+{
+  if(pow)
+  {
+    return (num*power(num,pow-1));
+  }
+  else
+  {
+    return 1;
+  }
+}

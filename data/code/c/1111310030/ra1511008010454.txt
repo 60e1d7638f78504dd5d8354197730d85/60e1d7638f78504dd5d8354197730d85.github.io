@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    long int i,n,j;
+    scanf("%d",&t);
+    long int C[t];
+    for(i=0;i<t;i++)
+    {
+        scanf("%ld",&n);
+        long int A[n],a,b,c,ctr;
+        a=ctr=0;
+        for(j=0;j<n;j++)
+        {
+            scanf("%ld",&b);
+            A[j]=b-a;
+            a=b;
+        }
+        for(j=0;j<n;j++)
+        {
+            scanf("%ld",&c);
+            if(c<=A[j])
+                ctr++;
+        }
+        C[i]=ctr;
+    }
+    for(i=0;i<t;i++)
+        printf("%ld\n",C[i]);
+    return 0;
+}

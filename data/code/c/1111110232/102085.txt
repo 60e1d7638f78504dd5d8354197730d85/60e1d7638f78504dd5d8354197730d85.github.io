@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int a;
+  scanf("%d",&a);
+  if(a<10)
+  {
+    int arr[a*2];
+    int n=0;
+    int x;
+    for(x=0;x<a*2;x++)
+    {
+      arr[x]=0;
+    }
+    while(a>0)
+    {
+      while(n<a)
+      {
+        arr[n]=n+1;
+        arr[a*2-(n+1)]=n+1;
+        n=n+1;
+        printf("\n");
+        for(x=0;x<a*2;x++)
+        {
+          printf("%d",arr[x]);
+        }
+      }
+      a=a-1;
+    }
+  }
+  else
+  {
+    printf("no pattern");
+  }
+      return 0;
+}

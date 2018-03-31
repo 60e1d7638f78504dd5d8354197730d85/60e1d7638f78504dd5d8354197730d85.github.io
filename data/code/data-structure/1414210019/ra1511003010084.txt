@@ -1,0 +1,56 @@
+#include<stdio.h>
+int main()
+{
+    int N,L,l,r,t,temp,next_t,i,j;
+    scanf("%d",&t);
+    next_t:
+    while(t--)
+    {
+        scanf("%d%d",&N,&L);
+        int a[N][2];
+        for(i=0;i<N;i++)
+        {
+            scanf("%d%d",&a[i][0],&a[i][1]);
+        }
+        for(i=0;i<N-1;i++)
+        {
+            for(j=0;j<N-i-1;j++)
+            {
+                if(a[j][0]>a[j+1][0])
+                {
+                    temp=a[j][0];
+                    a[j][0]=a[j+1][0];
+                    a[j+1][0]=temp;
+                    temp=a[j][1];
+                    a[j][1]=a[j+1][1];
+                    a[j+1][1]=temp;
+                }
+            }
+        }
+        for(i=0;i<N-1;i++)
+        {
+            if(a[i][1]-a[i][0]==L)
+            {
+                printf("Yes\n");
+                goto next_t;
+            }
+            else if(a[i][1]-a[i][0]<L&&a[i][1]>=a[i+1][0])
+            {
+                for(j=i+1;j<N;j++)
+                {
+                    if(a[j][1]-a[i][0]==L)
+                    {
+                        printf("Yes\n");
+                        goto next_t;
+                    }
+                    else if(a[j-1][1]<a[j][0])
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        printf("No\n");
+    }
+    return 0;
+}

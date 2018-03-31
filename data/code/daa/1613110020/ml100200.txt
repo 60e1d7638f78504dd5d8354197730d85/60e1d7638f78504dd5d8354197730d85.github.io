@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,i=0,flag=0;
+    cin>>n;
+    long long int a[100000];
+    long long int x,m=1;
+    x=1;
+    while(x<=n)
+    {
+        a[i++]=x;
+        ++m;
+        x = (m*(m+1))/2;
+    }
+    int low=0,high=i-1;
+    while(low<high)
+    {
+        if(a[low]+a[high]==n)
+        {
+            flag=1;
+            break;
+        }
+        else if(a[low]+a[high] > n)
+          high--;
+        else
+          low++;
+    }
+    if(flag)
+      cout<<"YES";
+    else
+      cout<<"NO";
+}

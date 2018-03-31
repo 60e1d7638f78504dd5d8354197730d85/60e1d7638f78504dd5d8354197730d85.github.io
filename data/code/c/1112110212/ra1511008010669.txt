@@ -1,0 +1,26 @@
+#include <stdio.h>
+int check(int h,int cc,int ts){
+  if (h>50 && cc<0.7 && ts>5600)
+    return 10;
+  else if (h>50 && cc<0.7)
+    return 9;
+  else if (ts>5600 && cc<0.7)
+    return 8;
+  else if (h>50 && ts>5600)
+    return 7;
+  else if (h>50 || cc<0.7 || ts>5600)
+    return 6;
+  else 
+    return 5;
+}
+int main()
+{
+  int n,h,ts,i=0,cnt=1;
+  float cc;
+  scanf("%d",&n);
+  for (i=0;i<n;i++){
+    scanf("%d%f%d",&h,&cc,&ts);
+    printf("%d\n",check(h,cc,ts));
+  }
+  return 0;
+}

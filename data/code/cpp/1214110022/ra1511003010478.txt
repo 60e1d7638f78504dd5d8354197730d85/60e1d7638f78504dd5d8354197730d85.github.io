@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+class rectangle
+{
+  int l;
+  int b;
+  
+  public :
+  rectangle(){l=0;b=0;}
+  rectangle(int x, int y)
+  {
+    l=x;
+    b=y;
+  }
+  rectangle(const rectangle &r)
+  {
+    l=r.l;
+    b=r.b;
+  }
+  int calcarea()
+  { return (l*b);
+  }
+  void displayarea()
+  {	
+    int area;
+    area = calcarea();
+    printf("\n%d",area);
+  }
+};
+
+  
+int main()
+{
+	
+  	int a,c;
+  	scanf("%d%d",&a,&c);
+  	rectangle r2(a,c);
+    rectangle r1 = r2;
+  	rectangle r3 = r2;
+  	r1.displayarea();
+  	r2.displayarea();
+    r3.displayarea();
+	return 0;
+}

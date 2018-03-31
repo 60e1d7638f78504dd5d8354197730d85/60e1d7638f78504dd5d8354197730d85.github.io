@@ -1,0 +1,38 @@
+#include<stdio.h>
+void printOtherSides(int n)
+{
+    // if n is odd
+    if (n & 1)
+    {
+        // case of n = 1 handled separately
+        if (n == 1)
+            printf("-1\n");
+        else
+        {
+            int b = (n*n-1)/2;
+            int c = (n*n+1)/2;
+            printf("%d %d\n",b,c);
+        }
+    }
+    else
+    {
+        // case of n = 2 handled separately
+        if (n == 2)
+            printf("-1\n");
+        else
+        {
+            int b = n*n/4-1;
+            int c = n*n/4+1;
+            printf("%d %d\n",b,c);
+        }
+    }
+}
+ 
+// Driver program to test above function
+int main()
+{
+    int a;
+    scanf("%d",&a);
+    printOtherSides(a);
+    return 0;
+}

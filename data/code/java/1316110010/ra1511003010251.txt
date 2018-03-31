@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+class Great
+{
+  public int great(int gcd,int lcm)
+  {
+    int x=(gcd<lcm)?gcd:lcm;
+    int hcf=1,l;
+    for(int j=1;j<=x;j++)
+    {
+      if(gcd%j==0 && lcm%j==0)
+      {
+        hcf=j;
+      }
+    }
+    l=gcd*lcm/hcf;
+    System.out.println(hcf+" "+l);    
+    return 0;
+  }  
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+       Scanner sc=new Scanner(System.in);
+       int t,a,b;
+       t=sc.nextInt();
+       Great objname=new Great();
+       for(int i=0;i<t;i++)
+       {
+         a=sc.nextInt();
+         b=sc.nextInt();
+         objname.great(a,b);
+       }
+	}
+}

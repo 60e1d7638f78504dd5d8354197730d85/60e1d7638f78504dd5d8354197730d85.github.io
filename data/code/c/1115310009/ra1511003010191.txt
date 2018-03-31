@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int t,n,d,i,j,sum,a[10],te,f;
+  scanf("%d",&t);
+  while(t--)
+  {
+    
+    scanf("%d%d",&n,&d);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+      for(j=0;j<n-i-1;j++)
+      {
+        if(a[j]<a[j+1])
+        {
+          te=a[j];
+          a[j]=a[j+1];
+          a[j+1]=te;
+        }}}
+    for(i=0;i<n;i++)
+    {
+      
+      for(j=i+1;j<n;j++)
+      {
+        f=a[i]-a[j];
+       // printf("%d ",f);
+        //printf("%d ",d);
+       if(f<d)
+       { 
+         //printf("%d %d %d",f,a[i],a[j]);
+         sum=sum+a[i]+a[j];
+         i++;
+         j++;
+        //printf("%d\n",sum);
+       }
+       
+      }
+       
+    }
+     printf("%d\n",sum);
+    sum=0;
+  }   
+         
+    
+
+	return 0;
+}

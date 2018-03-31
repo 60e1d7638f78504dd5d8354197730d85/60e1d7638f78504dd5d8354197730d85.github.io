@@ -1,0 +1,28 @@
+#include <stdio.h>
+struct Time{
+	int h;
+  	int m;
+  	int s;
+};
+void printTime(struct Time t){
+	printf("%d hrs\n%d min\n%d sec",t.h,t.m,t.s);
+}
+int main()
+{
+  	struct Time t;
+	int a , b , c;
+  	scanf("%d %d %d",&t.h,&t.m,&t.s);
+  	scanf("%d %d %d",&a,&b,&c);
+  	int as = t.s+c;
+  	int am = t.m+b;
+  	int ah = t.h+a;
+  	
+  	if(as>=60){as=as-60;am+=1;}
+  	if(am>=60){am-+60;ah+=1;}
+  	if(ah>=24){ah-=24;}
+  	t.h=ah;
+  	t.m=am;
+  	t.s=as;
+  	printTime(t);
+  	return 0;
+}

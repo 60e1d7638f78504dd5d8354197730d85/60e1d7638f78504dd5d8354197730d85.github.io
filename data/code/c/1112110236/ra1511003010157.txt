@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int printPowerSet(int set[], int set_size,int mz)
+{
+    /*set_size of power set of a set with set_size
+      n is (2**n -1)*/
+    unsigned int pow_set_size = pow(2, set_size);
+    int counter,sum=0, j,cn=0;
+ 
+    /*Run from counter 000..0 to 111..1*/
+    for(counter = 1; counter < pow_set_size; counter++)
+    { sum=0;
+      for(j = 0; j < set_size; j++)
+       {
+          /* Check if jth bit in the counter is set
+             If set then pront jth element from set */
+          if(counter & (1<<j))
+            sum=sum|set[j];
+       }
+     if(sum>=mz)
+       cn++;
+    }
+  return cn;
+}
+ 
+/*Driver program to test printPowerSet*/
+int main()
+{
+   int t,i,n,k,set[100],count;
+   scanf("%d",&t);
+  while(t--)
+  {
+   scanf("%d %d",&n,&k);
+    for(i=0;i<n;i++)
+   { scanf("%d",(set+i)); } 
+    count=printPowerSet(set, n,k);
+  printf("%d\n",count-1);
+  }
+    return 0;
+}

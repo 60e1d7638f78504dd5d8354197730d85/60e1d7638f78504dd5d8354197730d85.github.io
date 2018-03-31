@@ -1,0 +1,27 @@
+#include <stdio.h>
+int print(char *name,float bs,float hra,float da,float ded)
+{
+  printf("EMPLOYEE PAYMENT DETAILS\n");
+  printf("NAME OF THE EMPLOYEE:%s\n",name);
+  printf("BASIC SALARY : %.6f\n",bs);
+  printf("Allowances\n");
+  printf("HRA:%.6f\n",hra);
+  printf("DA:%.6f\n",da);
+  printf("Total Allowances:%.6f\n",hra+da);
+  printf("Total Deductions:%.6f\n",ded);
+  printf("NETSALARY:%.6f",bs+hra+da+ded);
+  return 0;
+}
+int main()
+{
+   char name[20];
+   float bs,hra,da,ded;
+  scanf("%s",name);
+   scanf("%f %f %f %f",&bs,&hra,&da,&ded);
+  if(bs>0 && hra>0 && da>0 && ded>0)
+    print(name,bs,hra,da,ded);
+  else
+    printf("Invalid Input");
+    
+	return 0;
+}

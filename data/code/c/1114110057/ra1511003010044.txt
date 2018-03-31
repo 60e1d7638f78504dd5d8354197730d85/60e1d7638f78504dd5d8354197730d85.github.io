@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{ int num,swappednum;
+  int fd,ld,digits;
+  scanf("%d",&num);
+  ld=num%10;
+  digits=(int)log10(num);
+  fd=(int)(num/pow(10,digits));
+  swappednum=ld;
+  swappednum*=(int)pow(10,digits);
+  swappednum+=num%((int)pow(10,digits));
+  swappednum-=ld;
+  swappednum+=fd;
+  printf("%d",swappednum);
+	return 0;
+}

@@ -1,0 +1,92 @@
+#include <stdio.h>
+int main()
+{
+int a[10][10],i,j,n=3;
+  int sumi=0;
+  int sumj=0;
+  int sumf=0;
+  int sumb=0;
+  int sumrow[5];
+  int sumcol[5];
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[i][j]);
+     }
+  }
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      if(i==j)
+      {
+        sumf=sumf+a[i][j];
+      }
+  
+for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i+j==n-1)
+      {
+        sumb=sumb+a[i][j];
+      }
+    }
+  }
+   
+  for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            sumi = sumi + a[i][j] ;
+        }
+    sumrow[i]=sumi;
+        sumi = 0;
+  }
+ 
+for (j = 0; j < n; j++)
+    {
+        for (i = 0; i < n; i++)
+        {
+            sumj = sumj + a[i][j] ;
+        }
+    sumcol[j]=sumj;
+        sumj = 0;
+  }
+  int flag;
+  for(flag=0,i=0;i<n;i++)
+  {
+    if(sumrow[i]==sumcol[i]&&sumrow[i]==sumb&&sumb==sumf)
+    {
+    flag++;}
+  }
+   if(flag==3)
+   {
+   
+     for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      printf("%d ",a[i][j]);
+     }
+     printf("\n");
+   }
+     printf("Magic Square");
+   }
+  else
+  {
+     for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      printf("%d ",a[i][j]);
+     }
+     printf("\n");
+   }
+     printf("Not a Magic Square");
+  }
+     
+  return 0;
+}
+
+
+

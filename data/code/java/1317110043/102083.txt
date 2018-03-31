@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner scan = new Scanner(System.in);
+       String line = scan.nextLine();
+       scan.close();
+       
+       line = line.trim();
+       int words = 0;
+       int len = line.length();
+      
+       boolean hasLetter = false;
+       for(int i=0; i<len; i++)
+       {
+       		char c = line.charAt(i);
+         	if(Character.isLetter(c))
+            { hasLetter = true; }
+         	else if(c==' ' && hasLetter)
+            {
+              	words+=1;   
+                hasLetter = false;
+            }
+           	/*if(c==' ')
+              words += 1;*/
+       }
+       if(hasLetter)
+         words += 1;
+       System.out.println(words);
+	}
+}

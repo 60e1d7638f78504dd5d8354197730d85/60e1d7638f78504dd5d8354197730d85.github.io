@@ -1,0 +1,39 @@
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.*;
+ public class TestClass {
+   public static void main(String[] args) {
+     List<String> aList = new ArrayList<>();
+     String size1,size2,size3,size4,size5;
+     Scanner s = new Scanner(System.in);
+     size1=s.nextLine();
+     size2=s.nextLine();
+     size3=s.nextLine();
+     size4=s.nextLine();
+     size5=s.nextLine();
+    aList.add(size1);
+    aList.add(size2);
+    aList.add(size3);
+    aList.add(size4);
+    aList.add(size5);
+   
+    System.out.println("ArrayList before removal:");
+    for(int i=0; i<aList.size(); i++)
+      System.out.println(aList.get(i));
+     Iterator itr = aList.iterator();
+     String strElement1 = s.nextLine();
+    while(itr.hasNext()){
+      String strElement = (String)itr.next();
+      if(strElement.equals(strElement1))
+      {
+        itr.remove();
+        break;
+      }
+    }
+   
+    System.out.println("ArrayList after removal : ");
+    for(int i=0; i< aList.size(); i++)
+      System.out.println(aList.get(i));
+ 
+  }
+}

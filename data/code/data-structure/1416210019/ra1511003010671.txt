@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main() {
+  int n, cases, id;
+  cin >> cases;
+  for (int i = 0; i < cases; ++i) {
+    cin >> n >> id;
+    stack<int> t;
+    char c;
+    int add;
+    while (n--) {
+      cin >> c;
+      if (c == 'B') {
+        if (t.empty())
+          continue;
+        int cur = t.top();
+        t.pop();
+        if (t.empty())
+          continue;
+        int prev = t.top();
+        t.pop();
+        t.push(cur);
+        t.push(prev);
+      } else {
+        cin >> add;
+        t.push(add);
+      }
+    }
+    cout << "Player " << t.top() << endl;
+  }
+ 
+  return 0;
+}

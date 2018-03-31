@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define dtype double
+ 
+int compare(void const *a,void const *b)
+{
+    dtype const *p_a=a;
+    dtype const *p_b=b;
+    if(*p_a<*p_b)
+        return -1;
+    else if(*p_a==*p_b)
+        return 0;
+    else
+        return 1;
+}
+ 
+int search(dtype *arr,int l,int u,dtype key)
+{
+    int mid;
+    while(l<u)
+    {
+        mid=(l+u)/2;
+        if(arr[mid]<=key)
+            l=mid+1;
+        else if(arr[mid]>key)
+            u=mid-1;
+    }
+    
+    if(arr[l]>key)
+        l--;
+        
+    return l;
+}
+ 
+int main()
+{
+    int N;
+    dtype K;
+    dtype arr[2000];
+    int i,j,k;
+    dtype count=0;
+    
+    scanf("%d %lf",&N,&K);
+    for(i=0;i<N;i++)
+        scanf("%lf",&arr[i]);
+    
+    qsort(arr,N,sizeof(arr[0]),compare);    
+    for(i=0;i<N;i++)
+        for(j=i+1;j<N;j++)
+        {
+            dtype max_k=K/(arr[i]*arr[j]);
+            int index;
+            index=search(arr,j+1,N-1,max_k);
+            int valid=0;
+            //printf("max_k %ld\n",max_k);
+            if(index>=j+1 && index<N && arr[i]*arr[j]*arr[index]<=K)
+            {
+                count+=(index-j);
+                //printf("%ld %ld %ld %d\n",arr[i],arr[j],arr[index],index);
+                //printf("count %ld\n",count);
+                valid=1;
+            }
+            #if 0
+            dtype temp_count=0;
+            for(k=j+1;k<N;k++)
+            {
+                if(arr[i]*arr[j]*arr[k]<=K)
+                {
+                    //printf("%ld %ld %ld\n",arr[i],arr[j],arr[k]);
+                    temp_count++;
+                    valid=1;
+                }
+            }
+            if(valid && temp_count!=index-j)
+                printf("mismatch: %d %d %lf %lf index:%d %lf\n",i,j,arr[i],arr[j],index,arr[index]);
+            #endif
+        }
+        
+    printf("%ld\n",(long)count);
+    return 0;
+}

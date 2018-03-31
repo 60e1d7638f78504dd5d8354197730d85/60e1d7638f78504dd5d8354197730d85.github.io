@@ -1,0 +1,39 @@
+#include<stdio.h>
+ 
+char ch[51][51];
+int main()
+{
+ 
+int t,r,c,i,k,count;
+ 
+ 
+scanf("%d",&t);
+while(t--)
+{
+    count=0;
+scanf("%d%d",&r,&c);
+for(i=1;i<=r;i++)
+{
+ 
+scanf("%s",ch[i]);
+ 
+}
+ 
+ 
+for(i=3;i<=r-2;i++)
+{
+    for(k=2;k<c-2;k++)
+    {
+        if(ch[i][k]=='^' && ch[i][k+1]=='^' && ch[i][k+2]=='^' && ch[i+1][k]=='^' && ch[i+2][k]=='^' && ch[i][k-1]=='^' && ch[i][k-2]=='^' && ch[i-1][k]=='^' && ch[i-2][k]=='^')
+            count++;
+    }
+}
+ 
+printf("%d\n",count);
+ 
+}
+ 
+ 
+ 
+return 0;
+}

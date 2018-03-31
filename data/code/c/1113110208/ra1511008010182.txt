@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<stdlib.h>
+long long int f[100],count;
+void fn1(long long int val, long long int pl,long long int arr);
+
+int main()
+{
+long long int i,q,k,x;
+  f[0]=1;
+  f[1]=2;
+  for(i=2;i<71;i++) {
+    f[i]=f[i-1]+f[i-2];}
+  scanf("%lld",&q);
+  while(q--){
+    count=0;
+    scanf("%lld %lld",&x,&k);
+          fn1(x,k,70);
+          printf("%lld\n",count%1000000007);}
+	return 0;
+}
+void fn1(long long int val,long long int pl,long long int arr)
+          {
+          int i;
+            if(pl==0){
+              if(val==0)
+                count++;
+            return;
+          }
+          for(i=arr;i>= 0;i--)
+          {
+            if(f[i]>val)
+            {
+            }
+            else {
+              if(f[i]*pl<val)
+                return;
+              fn1(val-f[i],pl-1,i);
+            }}
+          return;
+          
+          
+          
+          
+          }

@@ -1,0 +1,22 @@
+#include <stdio.h>
+long array[10000001];
+int main()
+{
+    int i, j, n, l1 = 0, l2 = 0;
+    scanf("%d", &n);
+    for (i = 1; i <= n; i++) {
+    	scanf("%ld", &array[i]);
+    	array[i] += array[i-1];
+    	if (array[i] >= array[i - l1])
+    		l2++;
+    	for (j = l1 + 1; j <= i && array[i] >= array[i - j]; j++) {
+    		l1 = j;
+    		l2 = 1;
+    	}
+    }
+    if (l1 == 0)
+    	printf("-1\n");
+    else
+    	printf("%d %d\n", l1, l2);
+    return 0;
+}

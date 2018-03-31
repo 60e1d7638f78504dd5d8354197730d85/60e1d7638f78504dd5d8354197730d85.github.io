@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+    public static void main(String[] args) {
+    int T;
+    long L,R;
+    Scanner sc=new Scanner(System.in);
+    T=sc.nextInt();
+    int i;
+    long rem,sum=0;
+    long j;
+    long res[]=new long[T];
+    for(i=0;i<T;i++)
+    {
+        res[i]=0;
+       L=sc.nextInt();
+       R=sc.nextInt();
+       for(j=L;j<=R;j++)
+       {
+          long temp=j;
+          sum=0;
+          while(temp>0)
+          {
+              rem=temp%10;
+              sum=sum*10+rem;
+              temp=temp/10;
+             }
+          if(sum==j)
+          { 
+             res[i]=res[i]+j;
+          }
+    }
+    }
+    for(int k=0;k<T;k++)
+    {
+    System.out.println(res[k]);
+    }   
+}
+ }

@@ -1,0 +1,126 @@
+#include<stdio.h>
+char str[1000005];
+ 
+int check(char *str,int i,int j,int len){
+	while(j<len){
+		if(str[i]!=str[j])
+		    return 0;
+		i++;
+		j++;
+	}
+	return 1;
+}
+ 
+ 
+ 
+int main(){
+         
+	
+	int t,i,j,a[26];
+	char ch;
+	scanf("%d",&t);
+	ch=getchar_unlocked();
+	while(t--){
+        for(i=0;i<26;i++)
+		   a[i]=0;
+        i=0;
+        while(1){
+                  ch=getchar_unlocked();
+                  if(!(ch>='a' && ch<='z'))
+                      break;
+		          str[i]=ch;
+                  a[ch-'a']++;
+                  i++;
+        }
+		str[i]='\0';
+		int len=i,count=0;
+		if(len==1)
+		{
+		    printf("NO\n");
+		    continue;
+		}
+		if(len==2)
+		{
+		    if(str[0]==str[1])
+		       printf("YES\n");
+		    else
+		       printf("NO\n");
+		       continue;
+		}
+		for(i=0;i<26;i++){
+			if(a[i]%2==1){
+				count++;
+				if(count>1)
+				   break;
+			}
+		}
+		
+		if(count>1){
+			printf("NO\n");
+		}
+		
+		else if(count==1){
+		    if(check(str,0,len/2+1,len)){
+		        printf("YES\n");
+		    }
+		   
+		    else{
+		    		i=0;
+		    		j=len/2+1;
+		    		int flag=0,c=0;
+		    		while(str[j]!='\0'){
+		    			if(str[i]==str[j]){
+		    				i++;
+		    				j++;
+		    			}
+		    			else{
+		    		   		i++;
+		    		   		if(flag==1){
+		    		   			c=1;
+		    		   	  		break;
+		    		   		}
+		    				flag++;
+		    			}
+		    		}
+		    	
+		    		if(c==0){
+		    			printf("YES\n");
+		    		}
+		    		else{
+		    			i=0;
+		    			j=len/2;
+		    		    flag=0,c=0;
+		    			while(str[j]!='\0'){
+		    				if(str[i]==str[j]){
+		    					i++;
+		    					j++;
+		    				}
+		    				else{
+		    		   			j++;
+		    		   			if(flag==1){
+		    		   				c=1;
+		    		   	  			break;
+		    		   			}
+		    		   			flag++;
+		    				}
+		    			}
+		    			if(c==0){
+		    				printf("YES\n");
+		    			}
+		    			else{
+		    				printf("NO\n");
+		    			}
+		
+		    		}
+		    	
+		    }
+		}
+		else{
+			if(check(str,0,len/2,len))
+			    printf("YES\n");
+			else
+			    printf("NO\n");
+		}
+	}
+	return 0;
+} 

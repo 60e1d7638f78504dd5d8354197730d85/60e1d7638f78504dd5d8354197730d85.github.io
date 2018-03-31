@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+
+  string s;
+  cin>>s;
+  string word, replace;
+  cin>>word>>replace;
+  
+  string temp="", news="";
+  int t = word.length();
+  int n = s.length();
+  
+  for(int i=0;i<n;)
+  {
+    temp = s.substr(i,t);
+    if(word.compare(temp)==0)
+    {
+      news += replace;
+      i+=t;
+    }
+    else
+    {
+      news += s[i];
+      i++;
+    }
+  }
+  cout<<news;
+  
+	return 0;
+}

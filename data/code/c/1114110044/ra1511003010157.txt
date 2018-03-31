@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<stdlib.h>
+ void sort(int m, int x[ ])
+   {                                                           
+       int i, j, t;                                            
+                                                               
+       for(i = 1; i <= m-1; i++)                               
+          for(j = 1; j <= m-i; j++)                             
+             if(*(x+j-1) >= *(x+j))                                
+             {
+                t = *(x+j-1);                                    
+                *(x+j-1) = *(x+j);                                 
+                *(x+j) = t;                                      
+             }                                                 
+   }          
+
+int main()
+{
+    int n,i,j,count;
+    scanf("%d",&n);
+    int *a=(int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",(a+i));
+    }
+  
+  sort(n,a);
+  for(i=0;i<n;i++)
+  {
+    count=0;
+    for(j=i+1;j<n;j++)
+    {
+       if(*(a+i)==*(a+j))
+       {
+        count=1; *(a+j)=-1;
+       }
+    
+    }
+    if(count==1 && (*(a+i)!=-1))
+      printf("%d ",*(a+i));
+    
+  }
+	return 0;
+}

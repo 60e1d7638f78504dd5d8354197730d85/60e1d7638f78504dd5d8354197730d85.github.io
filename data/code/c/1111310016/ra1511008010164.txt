@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <limits.h>
+#define MX 100007
+#define _CRT_SECURE_NO_WARNINGS 1
+int main()
+{
+  int n,q,c,a,b,i;
+    scanf("%d%d",&n,&q);
+    for( i=1; i<=q; i++){
+        scanf("%d%d%d",&c,&a,&b);
+        if(c==0){
+            update(0,0,n-1,a,b);
+        }
+        else{
+            //cout<<"-> ";
+            printf("%d\n",query(0,0,n-1,a,b));
+        }
+    }
+	return 0;
+}
+
+ 
+#define mx 100005
+int tree[mx*4] = {0}, lazy[4*mx] = {0};
+int update(int pos, int b, int e, int i, int j)
+{
+ 
+    int m = (b+e)/2;
+    int l = pos*2+1;
+    int r = l+1;
+    lazy[pos]%=2;
+    if(lazy[pos]!=0){
+        tree[pos] =  (e-b+1) - tree[pos];
+        if(b!=e){
+            lazy[l] = (lazy[pos]+lazy[l]);
+            lazy[r] = (lazy[pos]+lazy[r]);
+        }
+        lazy[pos] = 0;
+    }
+    if(b>e || b>j || e<i) return;
+    //printf("up call %d %d\n",b,e);
+    if(b>=i && e<=j){
+        tree[pos] =  (e-b+1) - tree[pos];
+        if(b!=e){
+            lazy[l] = (lazy[l]+1);
+            lazy[r] = (lazy[r]+1);
+        }
+        return;
+    }
+    update(l,b,m,i,j);
+    update(r,m+1,e,i,j);
+    tree[pos] = tree[l]+tree[r];
+  return 0;
+}
+int query(int pos, int b, int e, int i, int j)
+{
+ 
+    if(b>e || b>j || e<i) return 0;
+    int m = (b+e)/2;
+    int l = pos*2+1;
+    int r = l+1;
+    lazy[pos]%=2;
+    if(lazy[pos]!=0){
+        tree[pos] =  (e-b+1) - tree[pos];
+        if(b!=e){
+            lazy[l] = (lazy[pos]+lazy[l]);
+            lazy[r] = (lazy[pos]+lazy[r]);
+        }
+        lazy[pos] = 0;
+    }
+    if(b>=i && e<=j){
+        return tree[pos];
+    }
+    int r1 = query(l,b,m,i,j);
+    int r2 = query(r,m+1,e,i,j);
+    return (r1+r2);
+}

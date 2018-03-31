@@ -1,0 +1,104 @@
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int n,i,j,k;
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		char ans[1000];
+		int ma=-1;
+scanf("%d",&n);
+	char str[n+1][21];
+	char dum[100];
+	int m=1000000000;
+	for(i=0;i<n;i++)
+	{
+	scanf("%s",str[i]);
+	int l=strlen(str[i]);
+	if(l<m)
+	{
+		m=l;
+		strcpy(dum,str[i]);
+		dum[l]='\0';
+		//printf("%s\n",dum);
+	}
+	}
+	//printf("%s\n",dum);
+	int f=0;
+	int h1=0;
+	char str2[100][100];
+	//printf("%d\n",m);
+	for(i=0;i<m;i++)
+	{
+	//char u=dum[i];
+	int h=0;
+	char str1[100];
+	for(k=i;k<m;k++)
+	{
+	str1[h++]=dum[k];
+	str1[h]='\0';
+	//printf("%s\n",str1);
+	int c1=0;
+		int le=strlen(str1);
+	for(j=0;j<n;j++)
+	{
+		int i1,j1,k1;
+	
+		for(i1=0;i1<=strlen(str[j])-le;i1++)
+		{
+			char u1[100];
+			int g1=0;
+			for(j1=i1;j1<i1+le;j1++)
+			{
+				u1[g1]=str[j][j1];
+				g1++;
+			}
+			u1[g1]='\0';
+			
+			if(strcmp(u1,str1)==0)
+			{
+				
+				c1++;
+				break;
+			}
+		}
+		
+	}
+	//printf("%d\n",c1);
+	if(c1==n)
+	{
+	//	printf("%s\n",str1);
+		if(le>ma)
+		{
+			ma=le;
+			strcpy(ans,str1);
+			ans[le]='\0';
+		}
+		else if(le==ma)
+		{
+		char s3[1000];
+			strcpy(s3,str1);
+			s3[le]='\0';
+			if(strcmp(s3,ans)<0)
+			{
+				strcpy(ans,s3);
+			ans[le]='\0';
+			}
+		}
+	}
+	}
+	}
+	//printf("%d\n",h1);
+	//sort(str2,str2+h1);
+	//for(i=0;i<h1;i++)
+//	{
+	//printf("%s\n",str2[i]);
+//	}
+printf("%s\n",ans);
+}
+	return 0;
+	
+}

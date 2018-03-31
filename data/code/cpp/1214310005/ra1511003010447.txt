@@ -1,0 +1,38 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+class ArmstrongNum{
+	int n;
+  public:
+  ArmstrongNum(int a){
+  n=a;
+  }
+  void checkArmstrong(){
+  int sum=0,t;
+   if(n<0)
+     cout<<"Invalid Input";
+    else{
+    t=n;
+    while(t>0){
+     // cout<<"t "<<t%10<<" p "<<pow((t%10),3)<<" ";
+    sum+=pow((t%10),3);
+      t/=10;
+    }
+  //  cout<<sum<<" "<<n<<" ";
+    if(n==sum)
+      cout<<n<<" is an Armstrong number";
+    else
+      cout<<n<<" is not an Armstrong number";
+  }
+
+  }
+};
+
+int main()
+{
+int n;
+  cin>>n;
+  class ArmstrongNum a(n);
+  a.checkArmstrong();
+	return 0;
+}

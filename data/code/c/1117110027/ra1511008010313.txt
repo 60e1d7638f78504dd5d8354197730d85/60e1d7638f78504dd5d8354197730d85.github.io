@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int sum1(int a[],int pos, int end, int sum)
+{  
+  	if(pos==end)
+    {
+    	return sum;
+    }
+  	else
+    {  
+		int x=sum;
+  	 	x = x + a[pos];
+      	++pos;
+      	sum1(a,pos,end,x);
+    }
+}
+
+int main()
+{	int n,arr[100],i,msum;
+ 	
+	scanf("%d",&n);
+ 	
+ 	for(i=0;i<n;i++)
+ 	{
+    	scanf("%d",&arr[i]);
+    }
+ 	
+ 	msum = sum1(arr,0,n,0);
+ 	printf("%d",msum);
+	return 0;
+}

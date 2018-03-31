@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+ 
+void merge(long int A[ ] ,long int start,long int mid,long int end) 
+{
+    long int p = start ,q = mid+1, i;
+ 
+    long int Arr[end-start+1] , k=0;
+ 
+    for(i = start ;i <= end ;i++)
+    {
+        if(p > mid)
+            Arr[ k++ ] = A[ q++] ;
+ 
+        else if ( q > end)
+            Arr[ k++ ] = A[ p++ ];
+ 
+        else if( A[ p ] < A[ q ])     
+            Arr[ k++ ] = A[ p++ ];
+ 
+        else
+            Arr[ k++ ] = A[ q++];
+    }
+    for (p=0 ; p< k ;p ++)
+    {
+     A[ start++ ] = Arr[ p ] ;                          
+    }
+}
+void merge_sort (long int A[ ] ,long int start ,long int end )
+   {
+           if( start < end ) 
+           {
+                long int mid = (start + end ) / 2 ;          
+                merge_sort (A, start , mid ) ;           
+                merge_sort (A,mid+1 , end ) ;           
+                merge(A,start , mid , end );   
+            }                    
+    }
+ 
+int main(void) 
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+	    long int n,k,i,sum=0;
+	    scanf("%ld%ld",&n,&k);
+	    long int a[n];
+	    for(i=0;i<n;i++)
+	    {
+	        scanf("%ld",&a[i]);
+	    }
+	    merge_sort(a,0,n-1);
+	    for(i=(k);i<(n-k);i++)
+	    {
+	        sum+=a[i];
+	    }
+	    printf("%lf\n",(sum*1.0)/(n-(2*k)));
+	}
+	return 0;
+}
+ 
+ 

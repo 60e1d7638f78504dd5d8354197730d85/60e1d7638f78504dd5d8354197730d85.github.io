@@ -1,0 +1,36 @@
+#include <stdio.h>
+int findSum(int* ar,int f,int e,int sum)
+{
+  int sum1=0,psum1=0,psum=0;int i;
+  if(f==e)
+    return 0;
+  for(i=f;i<e;i++)
+  {
+    sum1=sum-2*ar[i];
+    psum=findSum(ar,i+1,e,sum1);
+    if(sum1>0)
+      psum1+=psum+sum1;
+    else
+      psum1+=psum;
+  }
+  return psum1;
+}
+int main()
+{
+	int t;int n;int i;
+    scanf("%d",&t);
+  	while(t--)
+    {
+      scanf("%d",&n);
+      int ar[n];int sum=0;
+      for(i=0;i<n;i++)
+      {
+        scanf("%d",&ar[i]);
+        sum+=ar[i];
+      }
+      sum+=findSum(ar,0,n,sum);
+      sum=(2*sum)%107;
+      printf("%d\n",sum);
+    }
+	return 0;
+}

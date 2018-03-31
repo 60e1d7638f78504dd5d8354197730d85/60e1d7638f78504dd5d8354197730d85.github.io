@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <ctype.h>
+int main()
+{
+    long long decimal, tempDecimal, octal;
+   	long quotient, remainder;
+    int  rem, place = 1;
+  int i, j = 0;
+    char hexadecimalnum[100];
+
+    octal = 0;
+
+    /* Input decimal number from user */
+   
+    scanf("%lld", &decimal);
+
+    tempDecimal = decimal;
+  quotient = decimal;
+
+    /* Decimal to octal conversion */
+    while(tempDecimal > 0)
+    {
+        rem = tempDecimal % 8;
+
+        octal = (rem * place) + octal;
+
+        tempDecimal /= 8;
+
+        place *= 10;
+    }
+  
+    while (quotient != 0)
+    {
+        remainder = quotient % 16;
+        if (remainder < 10)
+            hexadecimalnum[j++] = 48 + remainder;
+        else
+            hexadecimalnum[j++] = 55 + remainder;
+        quotient = quotient / 16;
+    }
+  
+  
+
+    printf("\nDecimal value:%lld\n", decimal);
+    printf("Octal value:%lld\n", octal);
+  printf("Hexadecimal value:");
+  for (i = j-1; i >= 0; i--)
+            printf("%c",tolower(hexadecimalnum[i]));
+
+    return 0;
+}

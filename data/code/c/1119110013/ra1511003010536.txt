@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int k,i,o,l;
+  scanf("%d",&k);
+  int a[k],temp,temp1;
+  int *p;
+  int *t;
+  for(i=0;i<k;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  scanf("%d%d",&o,&l);
+  	t=a;
+    for(i=0;i<k+1;i++)
+  	{ 
+      if(i==l)
+  	{   temp=*t;
+         *t=o;
+  		 t++;
+     }
+   	else if(i>l)
+   {   temp1=*t;
+       *t=temp;
+        temp=temp1;
+       t++;
+   }
+    else
+    {t++;
+    }
+    }
+   for(i=0;i<k+1;i++)
+  { t--;
+  }
+  for(i=0;i<k+1;i++)
+  { printf("%d\n",*t);
+    t++;
+   
+  }
+	return 0;
+}

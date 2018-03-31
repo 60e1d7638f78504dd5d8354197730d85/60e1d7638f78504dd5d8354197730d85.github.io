@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int *size=(int *)malloc(sizeof(int));
+  scanf("%d",size);
+  int *arr=(int *)malloc(sizeof(int)*(*size));
+  int i=0;
+  for(i=0;i<*size;i++)
+    scanf("%d",arr+i);
+  int x=*arr;
+  for(i=1;i<*size;i++)
+    if(x<*(arr+i))
+      x=*(arr+i);
+  printf("%d",x);
+  return 0;
+}

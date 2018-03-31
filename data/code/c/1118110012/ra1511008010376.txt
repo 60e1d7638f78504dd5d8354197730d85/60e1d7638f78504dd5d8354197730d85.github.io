@@ -1,0 +1,42 @@
+#include <stdio.h>
+typedef struct times
+{
+  int hh;
+  int mm;
+  int ss;
+}time;
+time add(time q,time w)
+{
+  time r;
+  r.mm=0;
+  r.hh=0;
+  r.ss=q.ss+w.ss;
+  if(r.ss>59)
+  {
+    r.ss-=60;
+  	r.mm+=1;
+  }
+  r.mm+=q.mm+w.mm;
+  if(r.mm>59)
+  {
+    r.mm-=60;
+    r.hh+=1;
+  }
+  r.hh+=q.hh+w.hh;
+  return r;
+}
+  
+int main()
+{
+	time t[2],a;
+  int i;
+  for(i=0;i<2;i++)
+  {
+    scanf("%d",&t[i].hh);
+    scanf("%d",&t[i].mm);
+    scanf("%d",&t[i].ss);
+  }
+  a=add(t[0],t[1]);
+  printf("%d hrs\n%d min\n%d sec",a.hh,a.mm,a.ss);
+	return 0;
+}

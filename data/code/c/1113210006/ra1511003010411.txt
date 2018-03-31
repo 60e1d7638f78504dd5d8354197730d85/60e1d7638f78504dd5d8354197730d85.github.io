@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int t,n,i,j,m,k;
+    long int sum=0;
+    scanf("%d",&t);
+    if(t==0)
+       printf("0");
+    else
+      for(i=0;i<t;i++)
+      {sum=0;
+        scanf("%d %d",&n,&k);
+        int arr[n];
+        for(j=0;j<n;j++)
+        {
+          scanf("%d",&arr[j]);
+        }
+        for(j=0;j<n;j++)
+        {
+          for(m=0;m<n;m++)
+          {
+            sum+=pow(abs(arr[j]-arr[m]),k);
+          }
+        }
+        printf("%ld\n",sum%1000000007);
+      }
+        
+        
+
+	return 0;
+}

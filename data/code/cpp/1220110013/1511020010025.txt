@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+class OutOfRangeException {};
+string calculateAverage(int a[],int n) {
+  for(int i=0;i<n;i++)
+  { if ((a[i] < 0 || a[i] > 100))
+         throw OutOfRangeException();
+  }
+      return "marks in range";
+}
+ 
+int main () {
+    try {
+      int n,a[20];
+      cin>>n;
+      for(int i=0;i<n;i++)
+        cin>>a[i];
+        string avg = calculateAverage(a,n);
+        cout << avg;
+    }catch (OutOfRangeException ) {
+        cout<< "marks out of range" << endl;
+    }
+}

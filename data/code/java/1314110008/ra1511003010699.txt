@@ -1,0 +1,28 @@
+import java.util.*;
+import java.math.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int t=in.nextInt();
+       while(t>0)
+       {
+         t--;
+         int i=in.nextInt();
+         int s[]=new int[i];
+         for(int j=0;j<i;j++)
+           s[j]=in.nextInt();
+         int diff=Math.abs(s[0]-s[1]);
+         for(int a=0;a<(i-1);a++)
+         {
+           for(int b=(a+1);b<i;b++)
+           {
+             int d=Math.abs(s[a]-s[b]);
+             if(d<diff)
+               diff=d;
+           }
+         }
+         System.out.println(diff);
+       }
+		
+	}
+}

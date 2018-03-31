@@ -1,0 +1,33 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass {
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int T=sc.nextInt();
+		while(T>0)
+		{
+		    int n=sc.nextInt();
+		    int arr[]=new int[n];
+		    int brr[]=new int[n];
+		    int i;
+		    for(i=0;i<n;i++)
+		    {arr[i]=sc.nextInt();
+		    
+		    }
+		     brr=arr.clone();
+		    Arrays.sort(brr);
+		    HashMap<Integer,Integer> hm=new HashMap<>();
+		    for(i=0;i<n;i++)
+		    hm.put(brr[i],i);
+		    for(i=0;i<n;i++)
+		    {
+		        arr[i]=hm.get(arr[i]);
+		    }
+		    for(i=0;i<n;i++)
+		    System.out.print(arr[i]+" ");
+		    System.out.println();
+		    T--;
+		}
+	}
+}

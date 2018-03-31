@@ -1,0 +1,39 @@
+#include<stdio.h>
+ 
+char s[260];
+ 
+int hcf(int a, int b)
+{
+if (b==0)
+return a;
+else
+return hcf(b,a%b);
+}
+ 
+int main()
+{
+int testCases,t;
+int a,temp;
+scanf("%d",&testCases);
+for(t=1;t<=testCases;t++)
+{
+scanf("%d",&a);
+scanf("%s",s);
+if(a!=0)
+{
+char * p = s;
+temp = 0;
+while(*p!='\0')
+{
+temp*=10;
+temp+=(*p-'0');
+temp = temp%a;
+p++;
+}
+printf("%d\n",hcf(a,temp));
+}
+else
+printf("%s\n",s);
+}
+return 0;
+}

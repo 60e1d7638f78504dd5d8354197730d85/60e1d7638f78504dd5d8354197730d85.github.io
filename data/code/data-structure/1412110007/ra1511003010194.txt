@@ -1,0 +1,45 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+ 
+int minJumps(int n, int jumps[])
+{
+    int i, j;
+    int dp[n];
+    dp[0]=0;
+ 
+    //initialize with infinity
+    for(i=1;i<n;i++)
+        dp[i]=INT_MAX;
+ 
+    for(i=0;i<n-1;i++)
+    {
+        for(j=1;j<=jumps[i] && i+j<n;j++)
+        {
+            dp[i+j]=min(dp[i+j],1+dp[i]);
+        }
+    }
+ 
+    return dp[n-1];
+}
+ 
+int main()
+{
+    int i,j,t;
+    int n;
+ 
+   cin>>t;
+    cin>>n;
+ 
+    int jumps[n];
+ 
+   
+    for(i=0;i<n;i++)
+        cin>>jumps[i];
+ 
+    
+    cout<<minJumps(n, jumps);
+ 
+    cout<<endl;
+    return 0;
+}

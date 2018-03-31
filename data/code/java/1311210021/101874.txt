@@ -1,0 +1,53 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int tCase=sc.nextInt();
+      	int r=0,ar[][];
+      	for(int t=0;t<tCase;t++)
+        {
+          	r=sc.nextInt();
+          	ar=new int[r][r];
+          	for(int i=0;i<r;i++)
+            {
+              for(int j=0;j<r;j++)
+              {
+                	ar[i][j]=sc.nextInt();
+              }
+            }
+          	int max=0;
+          	for(int[] cur: ar)
+              for(int cr:cur)
+              	max=Math.max(max,cr);
+          	int row=0,col=0,distance=0;
+          	boolean flag=true;
+          	int found=0;
+          	for(int i=1;i<=max;i++)
+            {
+              found=0;
+              for(int j=0;j<r;j++)
+              {
+                for(int k=0;k<r;k++)
+                {
+                  	if(ar[j][k]==i)
+                    {
+                      distance+=Math.abs(j-row)+Math.abs(k-col);
+                      row=j;
+                      col=k;
+                      found=1;
+                      break;
+                 	}
+                }
+                  if(found==1&& i==max)
+                  {
+                    break;
+                  }
+              }
+            }
+          	System.out.println(distance);
+        }
+      	
+	}
+}

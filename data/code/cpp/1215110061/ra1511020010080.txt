@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int N,K,i;
+  cin>>N>>K;
+  int arr[N];
+  for(i=0;i<N;i++)
+  {cin>>arr[i];}
+  
+  int min = 102213;
+  int j=arr[N-1];
+
+  for(i=0;i<N-1;i++)
+  {
+    int temp= j*arr[i];
+ 
+    if(j-arr[i] >=1 && j-arr[i]<=K)
+    {if(min>temp)
+      min=temp;
+    }
+  }
+  
+  cout<<min;
+	return 0;
+}

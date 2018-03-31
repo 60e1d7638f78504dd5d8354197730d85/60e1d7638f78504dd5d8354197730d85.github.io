@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int lim, num, i, j=1, k, sum = 0, count = 0, N;
+  	scanf("%d", &lim);
+  	for(i = 1; i <= lim; i++)
+    {
+      	scanf("%d", &num);
+      	N = num;
+      	while(num > 0)
+        {
+          	num -= j++;
+          	count++;
+        }
+      	for(k = 1; k <= count; k++)
+        	sum += k;
+      	if(sum == N)
+      		printf("%d\n", count);
+      	else
+          	printf("%d\n", count-1);
+      	count = 0;
+      	j = 1;
+        sum = 0;
+    }
+	return 0;
+}

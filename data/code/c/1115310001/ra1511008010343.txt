@@ -1,0 +1,38 @@
+#include<stdio.h>
+ 
+inline int read_int()
+{
+	int ret = 0;
+	int c = getchar_unlocked();
+ 
+	while(c<'0' || c>'9')
+		c = getchar_unlocked();
+	while(c>='0' && c<='9')
+	{
+		ret = (ret<<3) + (ret<<1) + c - '0';
+		c = getchar_unlocked();
+	}
+        return ret;
+}
+ 
+int main()
+{
+    int num,test,x,count=0,max=0;
+    test=read_int();
+    while(test--)
+    {
+        x=read_int();
+        if(x==0)
+        {
+            if(count>max)
+                max=count;
+            count=0;
+        }
+        else
+            count++;
+    }
+    if(count>max)
+    max=count;
+    printf("%d",max);
+    return 0;
+} 

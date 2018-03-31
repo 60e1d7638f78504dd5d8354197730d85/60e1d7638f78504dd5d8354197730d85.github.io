@@ -1,0 +1,47 @@
+#include <stdio.h>
+int c=0;
+void subsetSums(int arr[], int l, int r,int s,int sum)
+{
+    if (l > r)
+    {
+      if(sum==s)
+        c++;
+      return ;
+    }
+ 
+    subsetSums(arr, l+1, r,s, sum+arr[l]);
+    subsetSums(arr, l+1, r,s, sum);
+}
+int main()
+{
+  int t,i,n,j;
+  scanf("%d",&t);
+  for(i=0;i<t;i++){
+   scanf("%d",&n);
+    int arr[n]; 
+    int sum=0;
+    for(j=0;j<n;j++){
+      scanf("%d",&arr[j]);
+      sum+=arr[j];
+    }
+    sum/=2;
+  subsetSums(arr,0,n-1,sum,0);
+    
+    if(n==2)
+      if(arr[0]==arr[1])
+        c=1;
+    else
+      c=0;
+    
+    if(c>0)
+      printf("YES\n");
+    else
+      printf("NO\n");
+    
+    
+    
+  }
+  
+
+	return 0;
+}

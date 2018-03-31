@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+int main()
+{
+    int t;
+    long len,i;
+    char a[5001];
+    scanf("%d",&t);
+    while(t>0)
+    {
+        long count[2]={0};
+        scanf("%s",a);
+        len=strlen(a);
+        for(i=0;i<len;i++)
+        {
+            if(a[i]=='A')
+                count[0]++;
+            else
+                count[1]++;
+        }
+        //printf("%s %ld %ld %ld\n",a,len,count[0],count[1]);
+        if(count[0]==2 || count[1]==2)
+        {
+            if(count[0]==2)
+                printf("A\n");
+            else
+                printf("B\n");
+        }
+        else
+            printf("-1\n");
+        t--;
+    }
+    return 0;
+}

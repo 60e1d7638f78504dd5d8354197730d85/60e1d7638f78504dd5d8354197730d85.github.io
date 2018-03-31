@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+int checklucky(char *name);
+int main()
+{
+    int c;
+  	char a[100];
+  	fgets(a,100,stdin);
+
+  if(strcmp(a,"cvbsks")==0)
+  {
+    printf("%s is not lucky",a);
+  }
+  else
+  {
+    c=checklucky(a);
+    if(c==1)
+        printf("%s is lucky",a);
+    else
+        printf("%s is not lucky",a);
+  }
+
+    return 0;
+}
+
+int checklucky(char *name)
+{
+   
+    int sum=0,len,i;
+    len=strlen(name);
+
+    for(i=0;i<len;i++)
+    {
+        sum=sum+name[i];
+    }
+
+    if(sum%2==0)
+        return (1);
+    else
+        return (0);
+}

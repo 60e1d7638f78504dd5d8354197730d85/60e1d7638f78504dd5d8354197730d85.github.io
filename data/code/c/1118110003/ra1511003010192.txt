@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+
+struct month
+{
+char *name;
+char *abbreviation;
+int days;
+} month_details[] = 
+{
+"Junk", "Junk", 0,
+"January", "Jan", 31,
+"February", "Feb", 28,
+"March", "Mar", 31,
+"April", "Apr", 30,
+"May", "May", 31,
+"June", "Jun", 30,
+"July", "Jul", 31,
+"August", "Aug", 31,
+"September", "Sep", 30,
+"October", "Oct", 31,
+"November", "Nov", 30,
+"December", "Dec", 31
+};
+
+struct date
+{
+int day;
+int month;
+int year;
+};
+
+int isLeapYear(struct date d);
+
+int main()
+{
+struct date d;
+scanf("%d %d %d", &d.day, &d.month, &d.year);
+
+printf("%d is ",d.year);
+
+if (isLeapYear(d) == 0)
+
+printf("not ");
+puts("a leap year");
+
+return 0;
+}
+int isLeapYear(struct date d)
+{
+if ((d.year % 4 == 0 && d.year % 100 != 0) || 
+d.year % 400 == 0)
+return 1;
+return 0;
+}

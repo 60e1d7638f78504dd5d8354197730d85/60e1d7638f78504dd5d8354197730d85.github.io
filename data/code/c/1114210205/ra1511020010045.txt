@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+int a,r,c,k[50][50],i,j,sum=0,sum1=0;
+  scanf("%d",&a);
+  r=a;
+  c=a;
+  for(i=0;i<r;i++)
+  {
+    for(j=0;j<c;j++)
+    {
+      scanf("%d",&k[i][j]);
+    }
+  }
+  for(i=0;i<r;i++)
+  {
+    for(j=0;j<c;j++)
+    {
+      if(i==j)
+        sum=sum+k[i][j];
+      if(i+j==r-1)
+        sum1=sum1+k[i][j];
+    }
+  }
+  
+  printf("%d",abs(sum-sum1));
+	return 0;
+}

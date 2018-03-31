@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int num,i=0,tn,n=0,s[8],ds=0;
+  scanf("%d",&num);
+  tn=num;
+  while(tn!=0)
+  {
+    ds++;
+    tn=tn/10;
+  }
+  tn=num;
+  for(i=0;i<ds;i++)
+  {
+  	s[i]=tn%10;
+    //printf("%d  ",s[i]);
+    tn=tn/10;
+  }
+  tn=s[0];
+  s[0]=s[ds-1];
+  s[ds-1]=tn;
+  for(i=0;i<ds;i++)
+  {
+    n+=(s[i]*pow(10,i));
+  }
+  printf("%d",n);
+	return 0;
+}

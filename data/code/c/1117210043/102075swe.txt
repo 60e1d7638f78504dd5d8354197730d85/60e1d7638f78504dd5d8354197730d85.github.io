@@ -1,0 +1,69 @@
+#include<stdio.h>
+int main()
+{
+  int t,n,i,a[10],x[9],l,m=10000,j;
+  scanf("%d",&t);
+  for(l=0;l<t;l++)
+  {
+    scanf("%d",&n);
+    m=10000;
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    if(n==3)
+    {
+      x[0]=(a[0]+a[1])+a[2];
+      x[1]=(a[0]+a[1])-a[2];
+      x[2]=(a[0]-a[1])+a[2];
+      x[3]=(a[0]-a[1])-a[2];
+      x[4]=(a[0]+a[1])*a[2];
+      x[5]=(a[0]*a[1])+a[2];
+      x[6]=(a[0]*a[1])*a[2];
+      x[7]=(a[0]-a[1])*a[2];
+      x[8]=(a[0]*a[1])-a[2];
+      for(i=0;i<=8;i++)
+      {
+        if(m<=x[i])
+          m=m;
+        else
+          m=x[i];
+      }   
+      printf("%d\n",m); 
+    }
+    else if(n==1)
+      printf("%d\n",a[0]);
+    else if(n==2)
+    {
+      x[0]=a[0]+a[1];
+      x[1]=a[0]-a[1];
+      x[2]=a[0]*a[1];
+      for(i=0;i<3;i++)
+      {
+        if(m<=x[i])
+          m=m;
+        else
+          m=x[i];                
+      }   
+      printf("%d\n",m);
+    } 
+    else
+    {
+      x[0]=a[0]+a[1];
+      x[1]=a[0]-a[1];
+      x[2]=a[0]*a[1];
+      for(i=0;i<3;i++)
+        if(x[i]<m)
+          m=x[i];   
+      for(i=2;i<n;i++)
+      {
+        x[0]=m+a[i];
+        x[1]=m-a[i];
+        x[2]=m*a[i];
+        for(j=0;j<3;j++)
+          if(x[j]<m)
+            m=x[j];
+      }
+      printf("%d\n",m);
+    } 
+  }
+  return 0; 
+}

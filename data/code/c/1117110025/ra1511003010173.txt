@@ -1,0 +1,29 @@
+#include <stdio.h>
+ 
+int Count_Of_Digits (int); 
+ 
+int main()
+{
+  int Number, Count = 0;
+ 
+ 
+  scanf("%d", &Number);
+ 
+  Count = Count_Of_Digits (Number);
+ 
+  printf("The number of digits in %d is %d",Number,Count);
+  return 0;
+}
+ 
+int Count_Of_Digits (int Number)
+{
+  static int Count =0;
+ 
+  if(Number > 0)
+  {
+     Count = Count + 1;  
+     Count_Of_Digits (Number / 10);
+  }
+ 
+ return Count;
+}

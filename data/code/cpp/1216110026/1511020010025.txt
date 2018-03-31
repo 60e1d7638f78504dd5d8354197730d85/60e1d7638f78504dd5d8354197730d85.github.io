@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+void nextGreatest(int arr[], int size)
+{
+  int max_from_right =  arr[size-1];
+
+  arr[size-1] = -1;
+ 
+  for(int i = size-2; i >= 0; i--)
+  {
+    int temp = arr[i];
+ 
+    arr[i] = max_from_right;
+ 
+    if(max_from_right < temp)
+       max_from_right = temp;
+  }
+}
+int main()
+{
+ int n,arr[10];
+ cin>>n;
+ for(int i=0;i<n;i++)
+   cin>>arr[i];
+  int k;
+  cin>>k;
+  nextGreatest(arr, n);
+  for(int i=0;i<n;i++)
+   cout<<arr[i]<<" ";
+	return 0;
+}

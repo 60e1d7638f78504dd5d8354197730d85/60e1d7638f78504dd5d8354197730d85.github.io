@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main(int argc, char const *argv[]) {
+	int i, j, k, n, t;
+	int count[11];
+	scanf("%d", &t);
+	while(t-- ) {
+		memset(count, 0, sizeof(count));
+		scanf("%d%d", &n, &k);
+		for(i = 0; i < n; i++) {
+			scanf("%d", &j);
+			count[j % (k + 1)]++;
+		}
+		for(i = j = 0; i < 11; i++)
+			j = count[i] >= n - 1 ? 1 : j;
+		printf("%s\n", j ? "YES" : "NO");
+	}
+	return 0;
+} 

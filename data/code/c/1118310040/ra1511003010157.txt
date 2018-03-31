@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+ 
+	int t,n;
+	char dr[3],de[3];
+	float x1,y1,x,y,time;
+	scanf("%d",&t);
+	while(t--)
+	{
+	   time=1000000000;
+  	   scanf("%f%f",&x1,&y1);
+	   scanf("%s",de);
+	   scanf("%d",&n);
+	   while(n--)
+	   {
+		   scanf("%f%f",&x,&y);
+	           scanf("%s",dr);
+		   if(de[0]==dr[0] && x1==x && y1==y)
+		   {
+			   time = 0;
+			   continue;
+		   }
+		   if(x1==x)
+		   {
+			   if(y1>y)
+			   {
+				   if(de[0]=='D' && dr[0]=='U')
+					   if( (y1-y)/2 < time)
+						   time = (y1-y)/2;
+			   }
+			   else
+				   if(y>y1)
+				   {
+					   if(de[0]=='U' && dr[0]=='D')
+						   if((y-y1)/2< time)
+							   time=(y-y1)/2;
+				   }
+		   }
+		   else
+		   	   if(y1==y)
+			   {
+			   if(x1>x)
+			   {
+				   if(de[0]=='L' && dr[0]=='R')
+					   if( (x1-x)/2 < time)
+						   time = (x1-x)/2;
+			   }
+			   else
+				   if(x>x1)
+				   {
+					   if(de[0]=='R' && dr[0]=='L')
+						   if( (x-x1)/2<time)
+							   time=(x-x1)/2;
+				   }
+			   }
+			   else
+			   {
+				   if(abs(x-x1) != abs(y-y1))
+					   continue;
+ 
+				   if((x-x1)==(y-y1))
+				   {
+					   if(x>x1)
+					   {
+					   if( (de[0]=='R'&&dr[0]=='D') || (de[0]=='U'&&dr[0]=='L'))
+						   if(time>x-x1)
+							   time=x-x1;
+					   }
+					   else
+					   {
+					   if( (de[0]=='L'&&dr[0]=='U') || (de[0]=='D'&&dr[0]=='R'))
+						   if(time>x1-x)
+							   time=x1-x;
+					   }
+ 
+				   }
+				   else
+				   {
+					   if(x>x1)
+					   {
+					   if( (de[0]=='R'&&dr[0]=='U') || (de[0]=='D'&&dr[0]=='L'))
+						   if(time>x-x1)
+							   time=x-x1;
+					   }
+					   else
+					   {
+					   if( (de[0]=='L'&&dr[0]=='D') || (de[0]=='U'&&dr[0]=='R'))
+						   if(time>x1-x)
+							   time=x1-x;
+					   }
+				   }
+ 
+			   }
+ 
+ 
+	}
+	           if(time==1000000000)
+			   printf("SAFE\n");
+		   else
+		   printf("%.1f\n",time);
+ 
+	}
+return 0;
+}

@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+  int a;
+  float c[10], sum, b;
+  cin>>a;
+  for(int i=0; i<a; i++){
+    cin>>b;
+    c[i] = b;
+    sum = sum+b;
+  }
+  float mean = sum/a;
+  float d[10];
+  sum = 0;
+  for(int i=0; i<a; i++){
+    d[i] = (mean - c[i])*(mean - c[i]);
+    sum = sum + d[i];
+  }
+  float var = sum/a;
+  cout<<"Standard Deviation = "<< sqrt(var);
+
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int a[10002];
+ 
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    long long s = 0;int i;
+    for (i = 0; i < n; ++i)
+        scanf("%d", &a[i]), s += a[i];
+    if (s & 1) {
+        printf("NO");
+        exit(0);
+    }
+    for (i = 0; i + 1 < n; ++i) {
+        int f = a[i] > a[i + 1] ? a[i + 1] : a[i];
+        a[i] -= f;
+        a[i + 1] -= f;
+        if (a[i] > 0) {
+            printf("NO");
+            exit(0);
+        }
+    }
+    if (a[n - 1] == 0) {
+        printf("YES");
+    } else {
+        printf("NO");
+    }
+  return 0;
+}

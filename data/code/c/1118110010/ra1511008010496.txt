@@ -1,0 +1,27 @@
+#include <stdio.h>
+ 
+struct student{
+    int     roll;
+    char    name[30];
+    char    course[30];
+    int     fees;
+}std[10],*ptr;
+
+int main()
+{    
+  int num,i;
+  scanf("%d ",&num);
+  for(i=0;i<num;i++)
+  { ptr=&std[i];
+   scanf("%d ",&ptr->roll);
+    scanf("%s ",ptr->name);
+    scanf("%s ",ptr->course);
+    scanf("%d ",&ptr->fees);
+  } 
+  printf("Details of the student\n");
+  for(i=0;i<num;i++)
+  { ptr=&std[i];
+    printf("Roll no:%d\nName:%s\nCourse:%s\nFees:%d\n",ptr->roll,ptr->name,ptr->course,ptr->fees);
+  }
+    return 0;
+}

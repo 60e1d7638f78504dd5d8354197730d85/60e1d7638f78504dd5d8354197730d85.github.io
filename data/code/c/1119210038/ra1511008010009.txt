@@ -1,0 +1,39 @@
+#include <stdio.h>
+ 
+int main(void) 
+{
+	int i,test,count1,count2,count3,count4,hour,min,j,k;
+	scanf("%d",&test);
+	for(i=1;i<=test;i++)
+	{
+		scanf("%d %d",&hour,&min);
+		count1=0;
+		count2=0;
+		count3=0;
+		count4=0;
+		for(j=0;j<hour;j++)
+		{
+			for(k=0;k<min;k++)
+			{
+				if((j==k)&&(j%11==0))
+				{
+					count3++;
+				}
+				else if((j*11==k)||(k*11==j))
+				{
+					count2++;
+				}
+			}
+		}
+		        if(hour>=10&&min>=10)
+				{
+					count4=10;
+				}
+				else if(hour<10||min<10)
+				{
+					count1=(hour<min?hour:min);
+				}
+		printf("%d\n",count1+count2+count3+count4-1);
+	}
+	return 0;
+}

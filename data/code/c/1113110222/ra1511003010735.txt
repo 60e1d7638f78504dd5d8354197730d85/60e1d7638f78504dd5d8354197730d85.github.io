@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int a, d[10], q, c, i=0, j;
+  char e[10]={'\0'}, z;
+  scanf("%d %d %d", &a, &a, &a);
+  printf("%d ", a);
+  
+  q = a;
+  while(q){
+    c = q%8;
+    d[i] = c;
+    q =  q/8;
+    i++;
+  }
+  for(j=i-1; j>=0; j--){
+    printf("%d", d[j]);
+  }
+  printf(" ");
+  
+  q=a;
+  i=0;
+  while(q){
+    c = q%16;
+    if(c<10){
+      c = c+48;
+      e[i]=c;
+    }
+    else{
+      c = c+87;
+      e[i]=c;
+    }
+    q=q/16;
+    i++;
+  }
+  for(j=i-1; j>=0; j--)
+    printf("%c", e[j]);
+
+	return 0;
+}

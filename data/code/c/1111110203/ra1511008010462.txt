@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+bool isprime(int n){
+  int i;
+    if(n == 2)
+      return true;
+    if(n % 2 == 0 || n == 1)
+      return false;
+    int sqn= sqrt(n);
+    
+    for(i= 3; i<= sqn; i+= 2){
+        if(n % i== 0)
+          return false;
+    }
+    
+    return true;
+}
+
+int main(void)
+{
+    int n, a, b,temp;
+    
+    scanf("%d",&n);
+    
+    if(isprime(n)){
+      printf("1 %d\n",n);
+    }
+    else{
+        a= sqrt(n)+1;
+        
+        while(a > 0 && n%a != 0){
+            a--;
+        }
+        
+        b= n/a;
+        if(a > b)
+        {
+          a = temp;
+          a = b;
+          b = temp;
+        }
+      printf("%d %d",a,b);
+    }
+    
+    return 0;
+}

@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{int t,i,j,q,f,k;
+char a[1000];
+scanf("%d",&t);
+while(t--)
+{scanf("%s",a);
+i=0;
+while(a[i]!='\0')
+i++;
+if(i%2!=0)
+{q=i/2;
+for(j=0;j<q;j++)
+{
+f=0;
+for(k=q+1;k<i;k++)
+{if(a[j]==a[k])
+{a[k]=0;
+f=1;
+break;
+}
+}
+if(f==0)
+{
+printf("NO\n");
+break;}
+}}
+ 
+else if(i%2==0)
+{q=i/2;
+for(j=0;j<q;j++)
+{
+f=0;
+for(k=q;k<i;k++)
+{if(a[j]==a[k])
+{a[k]=0;
+f=1;
+break;
+}
+}
+if(f==0)
+{
+printf("NO\n");
+break;}
+}}
+if(f==1)
+printf("YES\n");
+}
+return 0;
+}
+ 

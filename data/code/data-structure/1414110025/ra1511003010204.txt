@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int n,i;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  int pos=0,j,temp=0;
+  for(i=0;i<n;i++)
+  {pos=i;
+    for(j=i+1;j<n;j++)
+    {
+      if(a[pos]>a[j])
+      {
+        pos=j;
+      }
+    }
+   if(pos!=i)
+   {
+     temp=a[i];
+     a[i]=a[pos];
+     a[pos]=temp;
+   }
+   if(i==1)
+   {
+     for(j=0;j<n;j++)
+       printf("%d ",a[j]);
+   }
+  }  
+  printf("\nSorted Array:");
+  for(i=0;i<n;i++)
+  {
+    printf("%d ",a[i]);
+  }
+	return 0;
+}

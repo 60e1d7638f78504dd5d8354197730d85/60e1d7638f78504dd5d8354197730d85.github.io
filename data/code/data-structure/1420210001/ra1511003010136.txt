@@ -1,0 +1,78 @@
+#include<stdio.h>
+ #include<string.h>
+int main()
+{
+	int T,j, i,N,K, h, index, count;
+	int list[26] = {0};
+	int jhool[26] = {0};
+	char jhoolname[] = "Littlejhool";
+	char name[27];
+ 
+	char names[20000][27];
+	int indexList[8][20000];
+	int indexCount[8] = {0};
+	
+	for(i=0;i<strlen(jhoolname);++i)
+		if(jhoolname[i] >= 'a')
+			jhool[ jhoolname[i] - 'a'] = 1;
+		else
+			jhool[ jhoolname[i] - 'A'] = 1;
+	
+	
+	
+	scanf("%d", &T);
+	
+	for(i=T;i>0;--i)
+	{
+		scanf("%d %d", &N, &K);
+				
+		for(j=0;j<N;++j)
+		{
+			scanf("%s", name);
+			count = 0;
+			for(h=0;h<strlen(name);++h)
+			{
+				if (name[h] >= 'a')
+					index = name[h] - 'a';
+				else
+					index = name[h] - 'A';
+				list[index]++;
+				if((list[index] == 1) && (list[index] == jhool[index]))
+					count++;
+			}
+			
+			for(h=0;h<26;++h)
+				list[h] = 0;
+				
+			strcpy(names[j], name);
+			
+			indexList[count][ indexCount[count]++ ] = j;							
+			
+			
+		}
+ 
+		count=0;
+		for(h=0;h<8;++h)
+		{
+			for(j=0;j<indexCount[h];++j)
+			{
+				printf("%s ", names[ indexList[h][j] ]);
+				count++;
+				if(count == K)
+					break;
+			}
+			if(count == K)
+				break;
+		}
+		
+		/*clearing*/
+		for(h=0;h<8;++h)
+			indexCount[h] = 0;
+		
+		//memset(names, '\0', sizeof(char)*2000*26);
+		
+		printf("\n");
+	}
+ 
+	return 0;
+}

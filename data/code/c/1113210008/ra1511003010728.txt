@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int flag=0;
+ 
+int lastc(int n,int k)
+{
+	int limit=1;
+	int i;
+	for(i=0;i<k;i++) limit*=10;
+	long long r=1,t=n%limit;
+	while(n)
+	{
+		if(n%2) r=r*t%limit;
+		t=t*t%limit;
+		n>>=1;
+	}
+	while(limit/=10) if((r/limit)==0) flag++;
+	return(r);
+}
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		flag=0;
+		int n,k;
+		scanf("%d %d",&n,&k);
+		long double nlog; 
+		nlog = log10l(n);
+		nlog*=n;
+		long double factor=nlog-(long double)(long long)nlog;
+		int first=(int)pow(10,k+factor-1);
+		int last = lastc(n,k);
+		if(flag==0) printf("%d %d\n",first,last);
+		else 
+		{
+		printf("%d ",first);
+		while(flag--) printf("%d",0);
+		if(last!=0) printf("%d\n",last);
+		else printf("\n");
+		}
+	}
+	return(0);
+}

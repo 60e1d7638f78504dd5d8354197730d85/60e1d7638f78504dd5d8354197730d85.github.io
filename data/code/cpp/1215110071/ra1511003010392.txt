@@ -1,0 +1,25 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int prime(int a)
+{int i;
+  if(a==0||a==1||(a%2==0&&a!=0)||(a%3==0&&a!=3))
+    return 0;
+  else
+  {
+    for(i=5;i<=sqrt(a);i=i+6)
+      if(a%i==0||a%(i+2)==0)
+        return 0;
+  }
+ return 1;
+}
+int main()
+{
+  int a,b,i;
+  cin>>a>>b;
+  cout<<"Prime numbers between "<<a<<" and "<<b<<" are:"<<endl;
+  for(i=a+1;i<b;i++)
+    if(prime(i)==1)
+      cout<<i<<" ";
+  return 0;
+}

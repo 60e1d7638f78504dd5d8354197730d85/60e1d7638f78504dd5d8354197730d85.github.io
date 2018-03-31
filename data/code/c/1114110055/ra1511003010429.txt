@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int flag,len,i,test;
+	char ip[1000];
+	scanf("%d",&test);
+	while(test--)
+	{
+		scanf("%s",ip);
+		len=strlen(ip);
+		if(len==1)
+			printf("YES\n");
+		else if(len==2)
+		{
+			if(ip[0]!=ip[1])
+				printf("YES\n");
+			else
+				printf("NO\n");
+		}
+		else
+		{
+			flag=1;
+			if(ip[0]==ip[1])
+				flag=0;
+			else
+			{
+				for(i=2;i<len;i++)
+					if(!(ip[i]!=ip[i-1] && ip[i]==ip[i-2]))
+						flag=0;
+			}
+			if(flag)
+				printf("YES\n");
+			else
+				printf("NO\n");
+		}
+	}
+	return 0;
+}

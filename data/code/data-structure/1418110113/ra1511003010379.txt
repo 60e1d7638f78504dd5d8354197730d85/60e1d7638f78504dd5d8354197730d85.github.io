@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+struct node 
+{
+	int data;
+ 	struct node *left;
+  	struct node *right;
+};
+
+struct node *insert( int a[], int start, int end)
+{
+ if(start>end)
+   return nullptr;
+  
+  int mid=(start+end)/2;
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=a[mid];
+  nn->left=nullptr;
+  nn->right=nullptr;
+  
+  nn->left=insert( a, start, mid-1);
+  nn->right=insert(a, mid+1, end);
+  return nn;
+}
+
+
+void preorder(struct node *root)
+{
+  if(root!=nullptr)
+  {
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+  }
+}
+
+
+int main()
+{
+   int n;
+  cin>>n;
+  int a[n];
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+  }
+  struct node *root=insert(a,0,n-1);
+  cout<<"PreOrder Traversal of constructed BST ";
+  preorder(root);
+
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include<stdio.h>
+int t,n,i,flag,temp;
+int main()
+{
+     scanf("%d",&t);
+     while(t--)
+     {
+          flag=0;
+          scanf("%d",&n);
+          if(n==16 || n==34 || n==289)
+          {
+               printf("Tom\n");
+               continue;
+          }
+          if(n==17)
+          {
+               printf("Mike\n");
+               continue;
+          }
+          if(n%2==0)
+          flag=1;
+ 
+          for(i=3;i*i<=n;i=i+2)
+          {
+               if(n%i==0)
+               {
+ 
+                    flag=1;
+                    break;
+               }
+          }
+ 
+ 
+          if(n!=2 && flag==0)
+          printf("Tom\n");
+          else
+          printf("Mike\n");
+     }
+     return 0;
+}

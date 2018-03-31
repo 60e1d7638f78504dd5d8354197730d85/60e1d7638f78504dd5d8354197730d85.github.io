@@ -1,0 +1,53 @@
+#include<stdio.h>
+int ct=0;
+void count(int n){
+ if(n==0){
+  ct++;
+  return;
+ }
+ count(n-1);
+}
+
+void count2(int n){
+ if(n==0){
+  ct++;
+  return;
+ }
+ if(n>=3){
+  count2(n-3);
+ }
+ count(n-1);
+}
+
+void count3(int n){
+ if(n==0){
+  ct++;
+  return;
+ }
+ if(n>=5){
+  count3(n-5);
+ }
+ if(n>=3){
+  count2(n-3);
+ }
+ count(n-1);
+}
+
+int main(){
+ int n,T;
+ int res[101],i=0;
+ scanf("%d",&T);
+ while(T!=0){
+  scanf("%d",&n);
+  count3(n);
+  res[i]=ct;
+  ct=0;
+  i++;
+  T--;
+ }
+ int j;
+ for(j=0;j<i;j++){
+  printf("%d\n",res[j]);
+ }
+ return 0;
+}

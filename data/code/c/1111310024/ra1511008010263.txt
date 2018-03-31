@@ -1,0 +1,44 @@
+#include <stdio.h>
+ 
+#define N 100
+ 
+int main(void)
+{
+    int t, n, k;
+    scanf("%d", &t);
+ 
+    while (t--)
+    {
+        scanf("%d %d", &n, &k);
+        int a[N], i, j, size, votes;
+ 
+        for(i=1;i<=n;i++){
+            scanf("%d",&a[i]);
+        }
+ 
+        size=0;
+ 
+        for(i=1;i<=n;i++)
+        {
+            votes=0;
+            if(a[i]==i)
+                votes=0;
+            else{
+                for(j=1;j<=n;j++){
+                    if(a[j]==i)
+                        votes++;
+                }
+            }
+ 
+            if(votes>=k)
+                size++;
+ 
+        }
+ 
+        printf("%d\n", size);
+ 
+    }
+ 
+    return 0;
+}
+ 

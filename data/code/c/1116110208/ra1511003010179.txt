@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char str[51];
+        scanf("%s",str);
+        int len = strlen(str);
+        int a[26]={0};
+        int max = 0,i;
+        
+        for(i=0;i<len;i++)
+            a[str[i]-97] += 1;
+        for(i=0;i<26;i++)
+        {
+            if(max<a[i])
+               max = a[i];
+        }
+        if(2*max==len)
+          printf("YES\n");
+        else
+          printf("NO\n");
+          
+    }
+    return 0;
+} 

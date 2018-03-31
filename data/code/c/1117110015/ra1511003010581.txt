@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int a[3][3];
+  	int i,j;
+  	for(i=0;i<3;i++)
+    {
+      for(j=0;j<3;j++)
+      {
+        scanf("%d ",&a[i][j]);
+      }
+      scanf("\n");
+    }
+  	int sumo=0;
+  	//row sum
+    sumo=a[0][0]+a[0][1]+a[0][2];
+  	
+  int sumc,sumr;
+	
+      for(i=0;i<3;i++)
+    	{
+        sumr=0;sumc=0;
+      for(j=0;j<3;j++)
+      		{	
+        	sumr+=a[i][j];
+        	sumc+=a[j][i];
+      		}
+        	if(sumr!=sumo || sumc!=sumo){printf("No");return 0;}
+    	}
+  	printf("Yes");
+	return 0;
+}

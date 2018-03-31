@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<iostream>
+#include<cstring>
+#include<cmath>
+#include<algorithm>
+#include<map>
+#include<vector>
+#include<set>
+#include<string>
+#include<stack>
+#include<deque>
+#define gc getchar_unlocked
+#define mod 1000000007
+using namespace std;
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int,int> pii;
+ 
+typedef struct s {
+ 
+  int num;
+  int index;
+}use;
+ 
+inline void scanint(int &x)
+{
+    register int c = gc();
+    x = 0;
+    int neg = 0;
+    for(;((c<48 || c>57) && c != '-');c = gc());
+    if(c=='-') {neg=1;c=gc();}
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    if(neg) x=-x;
+}
+inline void scanlong(long long &x)
+{
+    register int c = gc();
+    x = 0;
+    int neg = 0;
+    for(;((c<48 || c>57) && c != '-');c = gc());
+    if(c=='-') {neg=1;c=gc();}
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    if(neg) x=-x;
+}
+ 
+int main()
+{
+  int n, k;
+  int arr[1000001];
+  scanint(n);
+  scanint(k);
+  use q;
+  for(int i = 1; i <=n; i++){
+  
+    scanint(arr[i]);
+  }
+  stack<use> usd;
+  q.num = arr[1];
+  q.index = 1;
+  usd.push(q);
+  ll ans = 1;
+  
+  for(int i = 2; i <= n; i++) {
+  
+    q.num = arr[i];
+    q.index = i;
+  
+    if(arr[i] < usd.top().num) {
+    
+      while(!usd.empty()) {
+        
+        if(arr[i] < usd.top().num) {
+    
+          ans *= (i - usd.top().index + 1);
+          ans = ans%mod;
+          usd.pop();
+        }
+        
+        else
+          break;
+     }
+     
+     usd.push(q);
+    }
+    
+    else {
+    
+      usd.push(q);
+    }
+  
+}
+ 
+cout << ans << '\n';
+ 
+}

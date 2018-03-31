@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        int oct=sc.nextInt();
+        int dec=0,i=0;
+        while(oct>0)
+        {
+          dec+=(oct%10)*Math.pow(8,i);
+          i++;
+          oct/=10;
+        } 
+       
+        String hex="";
+        char a[]={'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+        while(dec>0)
+        {
+          hex=a[dec%16]+hex;
+          dec/=16;
+        }
+          
+       System.out.println(hex);
+	}
+}

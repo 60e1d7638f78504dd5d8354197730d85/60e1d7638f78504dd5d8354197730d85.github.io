@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    int pos;
+    struct node* next;
+};
+void enqueue(struct node** rear_ref,int value,int i){
+    struct node* new=(struct node*)malloc(sizeof(struct node));
+    new->data=value;
+    if(i!=-1)
+       new->pos=i;
+    new->next=NULL;
+    if(*rear_ref==NULL){
+        *rear_ref=new;
+       
+    }
+    (*rear_ref)->next=new;
+    *rear_ref=new;
+}
+ 
+int dequeue(struct node** head,int* pos){
+    if(*head==NULL){
+        return 0;
+    }
+    int res=(*head)->data;
+    *pos=(*head)->pos;
+    *head=(*head)->next;
+    return res;
+}
+void print(struct node* queue){
+    struct node* temp=queue;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+void createQueue(struct node** front,struct node** rear,int n){
+  int i;
+    for(i=0;i<n;i++){
+       int value;
+       scanf("%d",&value);
+       enqueue(rear,value,i+1);
+       if(*front==NULL){
+           *front=*rear;
+       }
+    }
+    
+}
+ 
+int main(){
+    int n,k;
+    scanf("%d %d",&n,&k);
+    struct node* front=NULL;
+    struct node* rear=NULL;
+    createQueue(&front,&rear,n);
+    int len=n,i;
+    
+    for(i=0;i<k;i++){
+       int max=-1;
+       int maxpos=-2;
+       //struct node* temp=front;
+       struct node* tempf=NULL;
+       struct node* tempr=NULL;
+       int j=k;
+       if(len<k){
+           j=len;
+       }
+       
+       while(j--){
+           int pos=-2;
+           int val=dequeue(&front,&pos);
+           if(max<val){
+               max=val;
+               maxpos=pos;
+           }
+           if(val<=0){
+               val=0;
+           }
+           else
+              val=val-1;
+           enqueue(&tempr,val,pos);
+           if(tempf==NULL){
+               tempf=tempr;
+           }
+       }
+       printf("%d ",maxpos);
+       j=k;
+       if(len<k)
+          j=len;
+       
+       while(j--){
+           int pos=-1;
+           int val=dequeue(&tempf,&pos);
+           if(pos!=maxpos){
+           enqueue(&rear,val,pos);
+           if(front==NULL){
+               front=rear;
+           }
+           }
+       }
+       len--;
+    }
+    //printf("\n");
+   // print(front);
+  return 0;
+}

@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+bool isLeap(int year) {
+	if(year%4 == 0) {
+    	if(year%100 == 0) {
+        	if(year % 400 == 0) {
+            	return true;
+            }
+          	return false;
+        }
+      	return true;
+    }
+  	return false;
+}
+
+int main()
+{
+	//1 - 1,2  100 - 5, 400 - 0
+  	int year, month, day;
+  	int odd = 0;
+  	cin>>day>>month>>year;
+  	year = year%400;
+  	odd += 5*(year/100);
+  	year = year%100;
+  	odd += year + (year/4);
+  	odd = odd%7;
+  	for(int i=0; i<month-1; i++) {
+    	if(i%2 == 0) {
+        	odd += 31;
+        }
+      	else {
+            if(i == 1)	{
+                odd += 28;
+                if(isLeap(year)) odd++;
+            }
+          	else {
+            	odd+=30;
+            }
+        }	
+    }
+  	odd += day;
+  	odd = odd%7;
+  	//odd += 2;
+  	if(odd == 0) {
+      	cout<<"7";
+    }
+  	else cout<<odd;
+	return 0;
+}

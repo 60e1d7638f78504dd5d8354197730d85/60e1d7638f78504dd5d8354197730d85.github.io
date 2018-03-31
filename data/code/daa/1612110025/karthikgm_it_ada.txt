@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+     int t;
+     cin>>t;
+     while(t--)
+     {
+         int n,max=0,k;
+         cin>>n;
+         int arr[n],tab[61];
+         memset(tab,0,sizeof tab);
+         for(int i=0;i<n;i++)
+         {
+             cin>>arr[i];
+             tab[arr[i]]++;
+         }
+         int m=*std::max_element(arr,arr+n);
+         for(int i=0;i<=m;i++)
+         {
+             max=0;
+             for(int j=0;j<=m;j++)
+             {
+                 if(max<tab[j])
+                    {
+                        max=tab[j];
+                        k=j;
+                    }
+             }
+             for(int i=0;i<tab[k];i++)
+                cout<<k<<" ";
+            tab[k]=0;
+         }
+         cout<<endl;
+     }
+	//code
+	return 0;
+}

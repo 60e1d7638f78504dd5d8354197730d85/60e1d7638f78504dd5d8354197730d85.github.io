@@ -1,0 +1,77 @@
+#include<stdio.h>
+int main()
+{
+    int n,q;
+    scanf("%d%d",&n,&q);
+    int i;
+    int x=0;
+    int a,b;
+    int c,d;
+    if(n==1)
+    {
+        scanf("%d",&a);
+        while(q--)
+        {
+            int r;
+            scanf("%d",&r);
+            if(r<=a)
+                printf("Yes\n");
+            else
+                printf("No\n");
+        }
+    }
+    else{
+    for(i=0;i<n-1;i++)
+    {
+ 
+ 
+        if(i==0)
+        {
+            scanf("%d%d",&a,&b);
+            c=(a<b)?a:b;
+            d=(a>b)?a:b;
+            if(c==d)
+                x=c;
+            else
+                x=d;
+ 
+        }
+        else
+        {
+ 
+ 
+       
+ 
+        scanf("%d",&a);
+        c=(a<x)?a:x;
+        d=(a>x)?a:x;
+        if(c==d)
+            x=c;
+        else
+            x=d;
+        }
+    }
+  
+ 
+    while(q--)
+    {
+        int r;
+        scanf("%d",&r);
+        if(a>x)
+        {
+            if((r>=x)&&(r<=a))
+                printf("Yes\n");
+            else
+                printf("No\n");
+        }
+        else
+        {
+            if((r>=a)&&(r<=x))
+                printf("Yes\n");
+            else
+                printf("No\n");
+        }
+    }
+    }
+    return 0;
+} 

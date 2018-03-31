@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define f first;
+#define s second;
+int n1=2020;
+ 
+bool sor(const pair<string,int>&i,const pair<string,int>&j){
+    return i.second<j.second;
+    }
+int main(){
+int l,n;
+cin>>n>>l;
+vector <pair <string, int> > v;
+pair <string, int> a[n];
+for(int i =0;i<n;i++)
+{
+    cin>>a[i].f;
+    cin>>a[i].s;
+    v.push_back(std::make_pair(a[i].first,a[i].second));
+}
+sort(v.begin(),v.end(),sor);
+for(int i =0;i<n-1;i++)
+{
+ 
+    if(v[i].second==v[i+1].second && v[i].first<v[i+1].first)
+    {
+        string t=v[i].first;
+        v[i].first=v[i+1].first;
+        v[i+1].first=t;
+    }
+}
+for(int i =n-1;i>=n-l;i--)
+{
+    cout<<v[i].first<<endl;
+}
+ 
+ 
+return 0;
+}

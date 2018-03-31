@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int a[20][20],N,Q,i,j,max,R,X;
+  char str[50];
+  scanf("%d",&N);
+  for(i=0;i<N;i++)
+  {
+    for(j=0;j<N;j++)
+    {
+      a[i][j]=0;
+    }
+  }
+  scanf("%d",&Q);
+  for(j=0;j<Q;j++)
+  {
+	scanf("%s",str);
+     scanf("%d %d",&R,&X);
+  if(strcmp(str,"RowAdd"))
+  {
+      for(i=0;i<N;i++)
+      a[R][i]=a[R][i]+X;
+  }
+  if(strcmp(str,"ColAdd"))
+  {
+    for(i=0;i<N;i++)
+      a[i][R]=a[i][R]+X;
+  }
+  }
+  max=0;
+  for(i=0;i<N;i++)
+  {
+    for(j=0;j<N;j++)
+    {
+      if(a[i][j]>max)
+        max=a[i][j];
+    }
+  }
+  printf("%d",max);
+  
+  return 0;
+}

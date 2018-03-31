@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+inline long long int inp()
+    {
+        long long int n = 0;
+        char c = getchar_unlocked();
+        while(c<'0'|| c>'9') c = getchar_unlocked();
+        while(c>='0'&&c<='9')
+        {
+            n =(n<<3)+(n<<1)+c - '0';
+            c = getchar_unlocked();
+        }
+        return n;
+    } 
+int main()
+{
+    long long int t,n,m,i,arr[1000001],val,ans,x;
+   unordered_set<long long int> s;
+    
+    t=inp();
+    while(t--)
+    {
+        n=inp();
+        m=inp();
+        for(i=1;i<=n+m;i++)
+        {
+            x=inp();
+            arr[i]=x;
+        }
+        for(i=1;i<=n;i++)
+        {
+        s.insert(arr[i]);
+        }
+        for(i=n+1;i<=n+m;i++)
+        {
+            if((s.find(arr[i]))!=(s.end()))
+            cout<<"YES\n";
+            else
+           {
+            cout<<"NO\n";
+        s.insert(arr[i]);
+           }
+            
+        }
+        s.clear();
+    }
+    return 0;
+}

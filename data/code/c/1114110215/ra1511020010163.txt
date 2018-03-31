@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+	long long x[2]={0,-1},y[2]={-1,0};
+	int a,b,c,q,r,p=0;
+	scanf("%d %d %d\n",&a,&b,&c);
+	while (b) {
+		p=!p;
+		r=a%b;
+		q=(a-r)/b;
+		x[p]-=q*x[!p];
+		y[p]-=q*y[!p];
+		a=b;
+		b=r;
+	}
+	if (c%a) printf("-1\n");
+	else printf("%lli %lli\n",x[!p]*c/a,y[!p]*c/a);
+	return 0;
+}

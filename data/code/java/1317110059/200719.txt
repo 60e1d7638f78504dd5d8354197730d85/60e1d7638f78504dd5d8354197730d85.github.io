@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	      
+      
+         private static int solve(String input) {
+        int len = input.length();
+        if (len == 0) {
+            return 0;
+        }
+        int count = 1;
+        for (int i = 0; i < len; i++) {
+            char c = input.charAt(i);
+            if ('A' <= c && c <= 'Z') {
+                count++;
+            }
+            else if (c == ' ') {
+                break;
+            }
+        }
+        return count;
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        System.out.println(solve(s));
+    }
+}

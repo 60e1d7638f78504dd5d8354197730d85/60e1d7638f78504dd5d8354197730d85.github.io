@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int getcubicsumofdigits(int num){
+  int lastdigit,sum=0;
+  while(num!=0)
+  {
+    lastdigit= num%10;
+    sum=sum+lastdigit*lastdigit*lastdigit;num=num/10;}
+  return sum;
+}
+int main(){
+  int x,y,sum,i;
+  cin>>x>>y;
+  cout<<"Armstrong numbers between "<<x<<" and "<<y<<" are: \n";
+  for(i=x;i<=y;i++){
+    sum= getcubicsumofdigits(i);
+    if(sum==i){
+      cout<<i<<endl;
+    }
+  }
+  return 0;
+}

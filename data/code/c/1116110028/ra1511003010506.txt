@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str[30];
+  	char find[30];
+  	
+  	fgets(str,30,stdin);
+  	fgets(find,30,stdin);
+  	
+  	int lstr=strlen(str);
+  	int lfind=strlen(find);
+  
+  	char *point = strstr(str,find);
+  	
+  	int lpoint = strlen(point);
+  	
+  	if(point==NULL){ printf("%s is not found", find); }
+  	else{ printf("%s is found at %d", find, lstr-lpoint); }
+	return 0;
+}

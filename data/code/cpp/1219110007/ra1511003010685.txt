@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+class complex{
+
+	int row,column;
+  	int array[100][100];
+  public:
+  	complex(int x , int y){
+    	row=x;
+      	column=y;
+    	}
+  void getdata(){
+  	for(int i=0;i<row;i++){
+    	for(int j=0;j<column;j++){
+        	cin>>array[i][j];
+        	}
+    	}
+  	}
+  void show(){
+  	for(int i=0;i<row;i++){
+    	for(int k=0;k<column;k++){
+        	cout<<array[i][k]<<" ";
+        	}
+    	}
+  	}
+  complex operator + (complex c){
+  		complex temp(row,column);
+    			for(int i=0;i<row;i++){
+    				for(int k=0;k<column;k++){
+      			temp.array[i][k]=array[i][k] + c.array[i][k];
+				/*temp.array[0][1]=array[0][1]+c.array[0][1];
+    			temp.array[0][2]=array[0][2]+c.array[0][2];
+                  */  }
+                  cout<<endl;
+                }
+    	return temp;
+  	}
+  };
+int main()
+{	int a,b,c,d;
+  cin>>a>>b;
+  cin>>c>>d;
+ complex c1(a,b);
+ complex c2(c,d);
+ if(a==c &&b==d){
+   c1.getdata();
+   c2.getdata();
+   complex c(a,b);
+   c=c1+c2;
+   cout<<"The sum of the matrix is"<<endl;
+   c.show();
+ 	}
+ else{
+ cout<<"Matrix cannot be added";
+ 	}
+
+	return 0;
+}

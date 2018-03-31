@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class a{
+  string str;
+  public: a (){}
+  public: a (string s){
+    str = s;
+  }
+  
+  void operator== (const a &ob){
+    this->str = ob.str;
+  }
+  
+  void show(){
+    cout<<str;
+  }
+};
+
+int main()
+{
+  string str;
+  cin>>str;
+  a obj1(str);
+  a obj2;
+  obj2 == obj1;
+  cout<<"Copied String is:";
+  obj2.show();
+
+	return 0;
+}

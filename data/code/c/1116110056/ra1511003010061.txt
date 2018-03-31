@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+    int T, i, x, len, upper, lower, arr[26], brr[26];
+    char S[1000];
+ 
+    scanf("%d", &T);
+    while(T--)
+    {
+        for(i=0; i<26; i++)
+            arr[i]=brr[i]=0;
+ 
+        scanf("%s", S);
+        len=strlen(S);
+        if(len%2==0)
+        {
+            upper=(len/2)-1;
+            lower=len/2;
+        }
+        else
+        {
+            upper=(len/2)-1;
+            lower=len/2+1;
+        }
+ 
+        for(i=0; i<=upper; i++)
+        {
+            x=(int)S[i]-97;
+            arr[x]+=1;
+        }
+ 
+        for(i=lower; i<len; i++)
+        {
+            x=(int)S[i]-97;
+            brr[x]+=1;
+        }
+ 
+        x=0;
+        for(i=0; i<26; i++)
+        {
+            if(arr[i]==brr[i])
+            {
+                x=1;
+                continue;
+            }
+ 
+            else
+            {
+                x=0;
+                break;
+            }
+        }
+        if(x==1)
+            printf("YES\n");
+ 
+        else
+            printf("NO\n");
+    }
+    return 0;
+} 

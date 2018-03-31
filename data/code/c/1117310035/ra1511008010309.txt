@@ -1,0 +1,49 @@
+#include<stdio.h>
+long long int d;
+long long max(long long ,long long );
+long long mi(int x,int y)
+{
+	
+	if(x==d-1 && y==d-1 )
+	   return (x ^ y)*( x+y );
+	else if( x == d-1)
+	   return mi(x,y+1)+( x ^ y )*(x+y);
+	else if(y == d-1)
+	    return mi(x+1,y)+(x ^ y )*(x+y);
+	else if(x==y)
+	        return mi(x+1,y)+ (x ^ y )*(x+y);
+	        
+	return max(mi(x+1,y)+(x^y)*(x+y),mi(x,y+1)+(x^y)*(x+y));
+}
+long long max(long long a,long long b)
+ {
+ 	if(a<b)
+ 	 return a;
+ 	 else return b;
+ }
+int main()
+{
+	long long t,i;
+	long long int min,n; 
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld %lld",&n,&d);
+		
+		  min=0;
+		  if(n==1)
+		  {
+		  
+	      for(i=0;i<d;i++)
+	       {
+	     	min=min+i*i;
+		   }
+		   printf("%lld\n",min);
+	     }else 
+	     {
+	     	printf("%lld\n",mi(0,0));
+		 }
+	
+	}
+	return 0;
+}  

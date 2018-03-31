@@ -1,0 +1,42 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+class Complex {
+	int real, img;
+  	public:
+  	Complex(int, int);
+  	Complex();
+  	Complex operator - (Complex);
+  	void display();
+};
+
+Complex :: Complex() {
+}
+Complex :: Complex(int n1, int n2) {
+	real = n1;
+  	img = n2;
+}
+
+Complex Complex :: operator - (Complex c) {
+	Complex c3;
+  	c3.real = real - c.real;
+  	c3.img = img - c.img;
+  	return c3;
+}
+
+void Complex :: display() {
+	cout<<"Output Complex number: "<<real<<"+"<<img<<"i";
+}
+
+int main()
+{
+  	int n1, n2;
+  	cin>>n1>>n2;
+  	Complex c1(n1, n2);
+  	cin>>n1>>n2;
+  	Complex c2(n1, n2);
+  	Complex c3 = c1 - c2;
+  	c3.display();
+	return 0;
+}

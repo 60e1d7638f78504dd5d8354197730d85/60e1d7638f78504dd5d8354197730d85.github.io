@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int isPalindrome(long int x)
+{
+  	long int y=x;
+	long int rev=0;
+  	while(x)
+    {
+    	rev=rev*10+x%10;
+      	x/=10;
+    }
+  	if(y==rev) return 1;
+  else return 0;
+  }
+int main()
+{
+	int t,tc;
+  	scanf("%d",&tc);
+  	for(t=0;t<tc;t++)
+    {
+      	long int x;
+    	scanf("%ld",&x); x++;
+      	while(!isPalindrome(x))
+        {
+         x++;
+        }
+      	printf("%ld\n",x);
+    
+    }
+	return 0;
+}

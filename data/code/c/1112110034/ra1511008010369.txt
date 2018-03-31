@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include<string.h>
+int digit(char);
+  int main()
+{
+ char rn[1000];
+ int i=0;
+ long int n=0;
+    scanf("%s",rn);
+    while(rn[i])
+    {
+      if(digit(rn[i]<0))
+      {
+        printf("Invalid roman digit:%c",rn[i]);
+        return 0;
+      }
+    if((strlen(rn)-i)>2)
+    {
+      if(digit(rn[i])<digit(rn[i+2]))
+      {
+        printf("Invalid roamn number");
+      return 0;
+    }
+    }
+      if(digit(rn[i])>=digit(rn[i+1]))
+        n=n+digit(rn[i]);
+      else
+      {
+        n=n+(digit(rn[i+1])-digit(rn[i]));
+        i++;
+      }
+      i++;
+    }
+    
+    printf("%ld",n);
+  return 0;
+}
+int digit(char c)
+{
+  int v=0;
+  switch(c)
+  {
+      case'I':v=1;
+      break;
+      case'V':v=5;break;
+      case'X':v=10;break;
+      case'L':v=50;break;
+      case'C':v=100;break;
+      case'D':v=500;break;
+      case'M':v=1000;break;
+      case'\0':v=0;break;
+      defaulf:v=-1;
+  }
+  return v;
+}
+
+

@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+#include<stdio.h>
+#define MOD 1000000007
+int main()
+{
+	int T;
+	unsigned long long int i,N,a=2;
+	unsigned long long int dec,place=1,ans;
+	scanf("%d",&T);
+	while(T--)
+	{
+		place=1;	
+		cin>>N;		
+		int r;
+		dec=0;
+		for(i=0;N>=1;i++)
+		{
+			r=N%2;			
+			if(r==1)
+			dec=dec+place;
+			place=place*10;
+			N=N/2;
+		}
+		a=2;
+		ans=1;
+		while(dec)
+		{
+			if(dec&1)
+			ans*=a;
+			if(ans>=MOD)
+			ans%=MOD;
+			dec>>=1;
+			a*=a;
+			if(a>=MOD)
+			a%=MOD;
+		}
+		ans=ans*ans;
+		ans%=MOD;
+		cout<<ans<<endl;
+   	}
+	return 0;
+} 

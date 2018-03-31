@@ -1,0 +1,39 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass {
+ public static void main (String[] args) {
+ 
+ Scanner sc =new Scanner(System.in);
+ int test = sc.nextInt();
+ while(test-->0){
+    int n =sc.nextInt();
+    int d = sc.nextInt();
+    d--;
+    int arr[] = new int[n];
+    for(int i=0;i<n;i++){
+        arr[i] =sc.nextInt();
+    }
+    reversearray(arr,0,d);
+    reversearray(arr,d+1,n-1);
+    reversearray(arr,0,n-1);
+     for(int i=0;i<n;i++){
+       System.out.print(arr[i]+" ");
+    } 
+     System.out.println();
+ }
+ 
+ 
+ 
+ }
+ public static void reversearray(int arr[],int s, int e){
+     while(s<e){
+         int temp =arr[s];
+           arr[s] = arr[e];
+           arr[e]=temp;
+           s++;
+           e--;
+     }
+ }
+}

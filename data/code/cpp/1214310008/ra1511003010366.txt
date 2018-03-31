@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+class time1{
+  private :
+  	int hh , mm , ss ;
+  public:
+  	time1(){
+      hh = mm = ss = 0 ;
+    }
+  	void gettime(){
+      cin >> hh >> mm >> ss ;
+    }
+  	void puttime( time1 a , time1 b ){
+      hh = a.hh + b.hh ;
+      mm = a.mm + b.mm ;
+      ss = a.ss + b.ss ;
+      if (ss>60){
+        mm = mm + ss/60 ;
+        ss = ss%60 ;
+      }
+      if (mm>60){
+        hh = hh + mm/60 ;
+        mm = mm%60 ;
+      }
+      cout << hh << ":"<< mm << ":" << ss ;
+    }
+} ;
+      
+int main()
+{
+	time1 t1 , t2 ,t3 ;
+  	t1.gettime() ;
+  	t2.gettime() ;
+  	t3.puttime(t1,t2) ;
+	return 0;
+}

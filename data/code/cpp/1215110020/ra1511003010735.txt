@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+int greatest(int ar[], int a){
+  int max = ar[0];
+  for(int i=0; i<a; i++){
+    if(ar[i]>max)
+      max = ar[i];
+  }
+  return max;
+}
+int great2(int ar[]){
+  if(ar[0]>ar[1])
+    return ar[0];
+  else
+    return ar[1];
+}
+int great3(int ar[]){
+  int max = ar[0];
+  if(ar[1]>max)
+    max=ar[1];
+  if(ar[2]>max)
+    max=ar[2];
+  return max;
+}
+
+int main()
+{
+  int a, z, b[10];
+  cin>>a;
+  for(int i=0; i<a; i++){
+    cin>>z;
+    b[i] = z;
+  }
+  int y = great2(b);
+  cout<<"Greatest of first two numbers="<<y<<endl;
+  int x = great3(b);
+  cout<<"Greatest of first three numbers="<<x<<endl;
+  int w = greatest(b, a);
+  cout<<"Greatest Number="<<w<<endl;
+
+	return 0;
+}

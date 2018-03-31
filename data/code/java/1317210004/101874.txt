@@ -1,0 +1,59 @@
+import java.util.*;
+public class TestClass 
+{
+	public static String encode(String name1,String name2)
+	{
+		String pass="";
+		 for(char c:name1.toCharArray())
+         {
+           if(Character.isUpperCase(c))
+              {
+                pass+=Character.toLowerCase(c);
+              }
+           else
+              {
+                	pass+=Character.toUpperCase(c);
+              }
+         }
+		 pass+=Character.toUpperCase(name2.charAt(name2.length()-1));
+		 return pass;
+	}
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	String fname=sc.next();
+      	String lname=sc.next();
+      	String pin=sc.next();
+      	int n=sc.nextInt();
+      	String pass="";
+      	int len=pin.length();
+      	String tempPin="";
+      	tempPin += pin.charAt(n-1);
+      	tempPin +=pin.charAt(len-n);
+      	if(fname.length()>lname.length())
+        {
+      		pass+=encode(lname,fname);
+      		pass+=tempPin;
+        }
+      	else if(fname.length()<lname.length())
+        {
+          pass+=encode(fname,lname);
+          pass +=tempPin;
+        }
+      	else
+        {
+         if( fname.compareTo(lname)<0)
+         {
+        	 pass+=encode(lname,fname);
+        	 pass +=tempPin;
+         }
+         else 
+         {
+        	 pass+=encode(fname,lname);
+        	 pass +=tempPin;
+         }
+
+        }
+      	System.out.println(pass);
+	}
+}

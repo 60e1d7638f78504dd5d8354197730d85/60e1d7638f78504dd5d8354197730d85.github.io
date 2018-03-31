@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main()
+{
+  int t,m,n,j,ar[100],rem[100],h=0,i,flg=0;
+  scanf("%d",&t);
+  while(t--)
+  {
+   scanf("%d%d",&n,&m);
+       for(j=0;j<m;j++)
+        scanf("%d",&ar[j]);
+       for(i=0;i<n;i++)
+       {
+         flg=0;
+        for(j=0;j<m;j++)
+        {
+          if(ar[j]==i+1)
+          {
+            flg=1;
+             break;
+          }
+          
+        }
+         if(flg==0)
+           rem[h++]=i+1;
+         
+         
+       }   
+    for(i=0;i<h;i++)
+    {
+   
+       if(i%2==0)
+       printf("%d ",rem[i]);
+    
+    }
+    printf("\n");
+     for(i=0;i<h;i++)
+    {
+   
+       if(i%2!=0)
+       printf("%d ",rem[i]);
+    
+     }
+     printf("\n");
+       
+    
+    h=0;
+  
+    
+  } 
+  return 0;
+}

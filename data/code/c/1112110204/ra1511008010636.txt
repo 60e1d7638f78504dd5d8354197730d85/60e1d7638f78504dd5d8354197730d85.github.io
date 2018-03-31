@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int n1,n2,gcd,lcm,nu,de,n,i,re;
+  scanf("%d ",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d %d",&n1,&n2);
+    if(n1>n2)
+    {nu=n1; de=n2;}
+    else{nu=n2; de=n1;}
+    re=nu%de;
+    while(re!=0)
+    {
+      nu=de;
+      de=re;
+      re=nu%de;
+    }
+    gcd=de;
+    lcm=n1*n2/gcd;
+    printf("%d %d\n",gcd,lcm);
+  }
+
+	return 0;
+}

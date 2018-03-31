@@ -1,0 +1,62 @@
+#include <stdio.h>
+void removeGL(int *arr)
+{
+  int mini, maxi;
+  int min = 9999, max = -9999;
+  int i;
+  for(i = 0; arr[i]; i++)
+  {
+    if(arr[i]>max &&arr[i]!=9999)
+    {
+      max = arr[i];
+      maxi = i;
+    }
+    else if(arr[i]< min)
+    {
+      min = arr[i];
+      mini = i;
+    }
+  }
+//	printf("removing %d and %d\n",arr[mini],arr[maxi]);
+  arr[mini] = 9999;
+  arr[maxi] = 9999;
+}
+
+float getavg(int *arr)
+{
+  float ans = 0;
+  int i,count= 0;
+  for(i= 0; arr[i];i++)
+  {
+    if(arr[i]!= 9999)
+    {
+      ans += arr[i];
+      count++;
+    }
+  }
+  return ans/count;
+}
+int main()
+{
+	int arr[200] = {9999};
+  int times,n,k;
+  scanf("%d",&times);
+  while(times>0)
+  {
+    times--;
+    scanf("%d",&n);
+    scanf("%d",&k);
+    int i = 0;
+    for(i = 0; i<n;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+    while(k>0)
+    {
+      k--;
+      removeGL(arr);
+    }
+    printf("%f\n",getavg(arr));
+  }
+	return 0;
+}

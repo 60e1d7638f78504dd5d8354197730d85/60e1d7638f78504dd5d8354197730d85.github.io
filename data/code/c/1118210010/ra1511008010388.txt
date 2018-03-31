@@ -1,0 +1,107 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "ctype.h"
+ 
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define IS_DIGIT(x) ((x) >= '0' && (x) <= '9')
+int parse_uint()
+{
+  int i = 0;
+  char c = getchar_unlocked();
+  while(!IS_DIGIT(c)) c = getchar_unlocked();
+  do {
+    i = (i<<3) + (i<<1) + c-'0';
+    c = getchar_unlocked();
+  }while(IS_DIGIT(c));
+  return i;
+}
+ 
+typedef struct chef_t{
+  struct chef_t *left, *right, *boss;
+  int age;
+  int level;
+} chef_t;
+ 
+int get_level(chef_t *c)
+{
+  int ll = -1, lr = -1;
+  if(c->left){
+    ll = get_level(c->left);
+  }
+  if(c->right){
+    lr = get_level(c->right);
+  }
+  c->level = MAX(ll, lr)+1;
+  return c->level;
+}
+ 
+void read_org(chef_t *c, int N)
+{
+  int i;
+  //printf("Reading org with %d chefs\n", N);
+  for(i = 0; i < N; i++){
+    c[i].age = parse_uint();
+    //printf("Age: %d\n", c[i].age);
+  }
+  for(i = 0; i < N-1; i++){
+    chef_t *ca, *cb;
+    char side;
+    ca = c + parse_uint() - 1;
+    cb = c + parse_uint() - 1;
+    do{
+      side = getchar_unlocked();
+    }while(isspace(side));
+    if(side == 'E'){
+      ca->left = cb;
+    }
+    else{
+      ca->right = cb;
+    }
+    //printf("%d reports to %d on '%c'\n", cb - c + 1, ca - c + 1, side);
+    cb->boss = ca;
+  }
+  get_level(c);
+}
+ 
+int match_org(chef_t *c, chef_t *q)
+{
+  if(q == NULL && c == NULL){
+    return 1;
+  }
+  else if(c == NULL || q == NULL){
+    return 0;
+  }
+  else {
+    //printf("%d == %d\n", c->age, q->age);
+    if(c->level == q->level && c->age == q->age && (match_org(c->left, q->left) && match_org(c->right, q->right))){
+      return 1;
+    }
+    else{
+      return match_org(c->left, q) || match_org(c->right, q);
+    }
+  }				
+}
+ 
+int main(int a, char **v)
+{
+  chef_t *c, *q = NULL;
+  int i;
+  int N = parse_uint();
+  int M;
+  int Q;
+ 
+  c = calloc(N, sizeof(chef_t));
+  read_org(c, N);
+ 
+  Q = parse_uint();
+  for(i = 0; i < Q; i++){
+    M = parse_uint();
+    q = calloc(M, sizeof(chef_t));
+    read_org(q, M);
+    match_org(c, q) ? puts("YES") : puts("NO");
+    free(q);
+  }
+  free(c);
+  return 0;
+}

@@ -1,0 +1,79 @@
+#pragma clang diagnostic ignored "-Wdeprecated-register"
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef long long LL;
+ 
+inline void fastRead(LL *a);
+inline void fastWrite(LL a);
+ 
+ 
+int main()
+{
+    LL T;
+    fastRead(&T);
+    for(LL t=0; t < T; ++t)
+    {
+        LL N,
+           n,
+           odd_X = 0,
+           even_X = 0,
+           odd_Y = 0,
+           even_Y = 0,
+           time_1,
+           time_2;
+ 
+        fastRead(&N);
+ 
+        for(size_t i = 0; i < 2; ++i) {
+            bool odd_count = true;
+            LL &odd = (i == 0) ? odd_X : odd_Y;
+            LL &even = (i == 0) ? even_X : even_Y;
+            for(LL j = 0; j < N; ++j) {
+                fastRead(&n);
+                if(odd_count) {
+                    odd += n;
+                }
+                else {
+                    even += n;
+                }
+                odd_count = !odd_count;
+            }
+        }
+ 
+        time_1 = odd_X + even_Y;
+        time_2 = even_X + odd_Y;
+        fastWrite(time_1 < time_2 ? time_1 : time_2);
+        putchar_unlocked('\n');
+    }
+    return 0;
+}
+ 
+inline void fastRead(LL *a)
+{
+    register LL c=0;
+    while (c<33)
+    {
+        c=getchar_unlocked();
+    }
+    *a=0;
+    while (c>33)
+    {
+        *a = (*a<<1)+(*a<<3)+c-48;
+        c=getchar_unlocked();
+    }
+}
+inline void fastWrite(LL a)
+{
+    char snum[20];
+    LL i=0;
+    do
+    {
+        snum[i++]=a%10+48;
+        a=a/10;
+    }while(a!=0);
+    --i;
+    while(i>=0)
+    putchar_unlocked(snum[i--]);
+}
+ 

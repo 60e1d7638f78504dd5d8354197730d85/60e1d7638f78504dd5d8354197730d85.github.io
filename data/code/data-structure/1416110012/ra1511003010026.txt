@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+int stack[100], top=-1, size;
+void push()
+{
+  if(top==size-1)
+    cout<<"Stack Overflow"<<endl;
+  else
+  {
+    top++;
+    cin>>stack[top];
+  }
+}
+void pop()
+{
+  if(top==-1)
+    cout<<"Stack underflow"<<endl;
+  else
+  {
+    cout<<"deleted element is"<<stack[top]<<endl;
+    top--;
+  }
+}
+void print()
+{
+  int i;
+  for(i=top;i>=0;i--)
+    cout<<stack[i]<<" ";
+  cout<<endl;
+}
+int main()
+{
+  char opt;
+  int o;
+  cin>>size;
+  cout<<"1.push\n2.pop"<<endl;
+  do
+  {
+    cin>>o;
+    switch(o)
+    {
+      case 1:
+        {
+          push();
+          break;
+        }
+      case 2:
+        {
+          pop();
+          break;
+        }
+    }
+    cin>>opt;
+  }while(opt=='y');
+  print();
+  return 0;
+}

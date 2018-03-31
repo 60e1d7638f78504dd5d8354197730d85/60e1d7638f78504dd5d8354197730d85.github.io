@@ -1,0 +1,60 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main() {
+int t, n, i;
+scanf("%d", &t);
+ 
+while(t--) {
+ scanf("%d", &n);
+ int a[n];
+ 
+ scanf("%d", &a[0]);
+ scanf("%d", &a[1]);
+ int max = a[0], min1, min2;
+ if(a[0] > a[1]) {
+  min1 = a[1];
+  min2 = a[0];
+ }
+ else {
+  min1 = a[0];
+  min2 = a[1];
+ }
+ 
+ for(i=2; i<n; i++) {
+  scanf("%d", &a[i]);
+  if(max < a[i])
+   max = a[i];
+  if(min1 > a[i]) {
+   min2 = min1;
+   min1 = a[i];
+  }
+ }
+ 
+ int y = max*max;
+ int *div = (int*)calloc(y, sizeof(int));
+ 
+ int op = 100000000, val;
+ for(i=0; i<n; i++) {
+  val = a[i];
+  while(val <= y) {
+   if(div[val] == -1) {
+    if(val < op) {
+     op = val;
+    }
+   }
+   div[val] = -1;
+   val += a[i];
+  }
+ }
+ 
+ int c = min1*min2;
+ if(op== -1 || op > c)
+  printf("%d\n", c);
+ else
+  printf("%d\n", op);
+}
+ 
+return 0;
+}

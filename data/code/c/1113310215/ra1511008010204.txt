@@ -1,0 +1,80 @@
+#include <stdio.h>
+ 
+ 
+unsigned long long bin[1001][1001];
+ 
+#define MOD 1000000080798150871LL
+ 
+ 
+ 
+ 
+ 
+int main()
+{
+    int t;
+ 
+ 
+    int i,j;
+ 
+ 
+    bin[0][0]=1;
+ 
+    for(i=1;i<=1000;i++)
+    {
+        for(j=0;j<=i;j++)
+        {
+            bin[i][j]=bin[i-1][j]+(j?bin[i-1][j-1]:0);
+            if (bin[i][j]>=MOD)
+                bin[i][j]-=MOD;
+        }
+    }
+ 
+ 
+ 
+   // printf("%lld\n",bin[10][3]);
+   // return 0;
+ 
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        char niz[4];
+        int broj[8]={0};
+        int n,m,l,k;
+        long long rez;
+ 
+        scanf("%d %d %d %d",&n,&m,&l,&k);
+ 
+        for(i=0;i<n;i++)
+        {
+            int temp=0;
+            scanf("%s",niz);
+            for(j=0;j<m;j++)
+                temp+=(niz[j]-'0')*(1<<j);
+            broj[temp]++;
+        }
+ 
+        switch(k)
+        {
+            case 3:
+                rez=bin[broj[7]][l];
+                break;
+            case 2:
+                rez=bin[broj[7]+broj[6]][l];
+                rez+=bin[broj[7]+broj[5]][l];if (rez>=MOD) rez-=MOD;
+                rez+=bin[broj[7]+broj[3]][l];if (rez>=MOD) rez-=MOD;
+                break;
+            case 1:
+                rez=bin[broj[7]+broj[5]+broj[3]+broj[1]][l];
+                rez+=bin[broj[7]+broj[6]+broj[5]+broj[4]][l];if (rez>=MOD) rez-=MOD;
+                rez+=bin[broj[7]+broj[6]+broj[3]+broj[2]][l];if (rez>=MOD) rez-=MOD;
+                break;
+        }
+        printf("%lld\n",rez);
+    }
+ 
+    return 0;
+ 
+ 
+ 
+}

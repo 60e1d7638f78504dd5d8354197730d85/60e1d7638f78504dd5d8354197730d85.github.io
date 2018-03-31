@@ -1,0 +1,38 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int T;
+    scanf("%d",&T);
+    int coins[] = {1,3,5};
+ 
+    while(T--)
+    {
+        int n;
+		scanf("%d",&n);
+        int table[3][n+1],i,j;
+ 
+        for( i=0 ; i<n+1 ; i++)
+            table[0][i] = 1;
+ 
+        for( i=0 ; i<3 ; i++)
+            table[i][0] = 1;
+ 
+        for ( i = 1; i < 3; ++i)
+        {
+            for ( j = 1; j < n+1; ++j)
+            {
+                if (coins[i] > j)
+                {
+                    table[i][j] = table[i-1][j];
+                }
+                else
+                {
+                    table[i][j] = table[i-1][j] + table[i][j-coins[i]];
+                }
+            }
+        }
+        printf("%d\n",table[2][n]);
+    }
+    return 0;
+}

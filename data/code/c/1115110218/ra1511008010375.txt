@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+ int t,n,m,list[1000],nlist[1000],chef[1000],asst[1000],i,j,k,a,b;
+ scanf("%d", &t);
+ for(i=0;i<t;i++){
+	a=0;
+	b=0;
+	scanf("%d%d", &n, &m);
+	for(j=0;j<=n+1;j++) nlist[j]=j;
+	for(j=0;j<m;j++){ 
+		scanf("%d", &list[j]);
+		nlist[list[j]]=0;
+	}
+	j=0;
+	while(j<n){
+		if(nlist[j]==0) {
+			for(k=j;k<=n;k++){
+			nlist[k]=nlist[k+1];
+			}
+ 		}
+		else ++j;
+	} 
+	for(j=0;j<n-m;j++){
+		if(j%2==0){chef[a]=nlist[j];++a;}
+		else {asst[b]=nlist[j];++b;}
+	}
+	for(j=0;j<a;j++) printf("%d ",chef[j]);
+	printf("\n");
+ 	for(j=0;j<b;j++) printf("%d ",asst[j]);
+	printf("\n");
+   
+ }
+  return 0;
+} 

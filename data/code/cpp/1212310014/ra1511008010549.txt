@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int dp[2][155][155];
+int a[1111];
+const int MOD = 1e9 + 7;
+ 
+int main() {
+	
+	int ncase;
+	for (scanf("%d", &ncase); ncase--; ) {
+		memset(a, 0, sizeof a);
+		int n;
+		scanf("%d", &n);
+		for (int i = 0; i < n; i++) scanf("%d", a + i);
+		int sg = 0;
+		memset(dp, 0, sizeof dp);
+		dp[sg][a[0]][a[1]] = 1;
+		for (int i = 2; i < 71; i++) {
+			sg = 1 - sg;
+			memset(dp[sg], 0, sizeof (dp[sg]));
+			for (int x = 0; x < 150; x++) {
+				for (int y = 0; y < 150; y++) {
+					if (dp[1 - sg][x][y]) {
+						for (int k = 0; k <= min(x, y); k++) {
+							dp[sg][y - k][a[i] + k] += dp[1 - sg][x][y];
+							if (dp[sg][y - k][a[i] + k] >= MOD) dp[sg][y - k][a[i] + k] -= MOD;
+						}
+					}
+				}
+			}
+		}
+		cout<<dp[sg][0][0]<<endl;
+	}
+}  

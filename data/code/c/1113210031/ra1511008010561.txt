@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+    int n, reversedNumber = 0,count = 0 , remainder,i;
+  	int arr[300];
+    scanf("%d", &n);
+    int j = 0;
+    for(i = 0; i < n ; i++)
+   {	
+      int x;
+    	scanf("%d",&x);
+            while(x != 0)
+                {
+                        remainder = x % 10;
+                        reversedNumber = reversedNumber*10 + remainder;
+                        x /= 10;
+                }
+                arr[j] = reversedNumber;
+                  count++;
+                  j++;
+                  reversedNumber = 0;
+      }
+  
+  int c,d,swap;
+  
+  int k;
+  for(k=count-1;k>=0;k--)
+    printf("%d\n",arr[k]);
+  return 0;
+}

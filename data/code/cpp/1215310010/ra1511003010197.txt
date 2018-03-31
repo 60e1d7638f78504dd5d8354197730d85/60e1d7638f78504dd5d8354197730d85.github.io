@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int main()
+{
+	int T;
+	scanf("%d", &T);
+	while(T-- > 0)
+	{
+		char s[100004] = {0};
+		scanf("%s", s);
+		int l = strlen(s);
+		
+		int ind;
+		for(ind = 0; ind < l; ind++)
+		{
+			if(s[ind] == '1')
+				break;
+		}
+		if(ind == l)
+		{
+			printf("NO\n");
+			continue;
+		}
+ 
+		int pind = -1;
+		bool r = true;
+		pind = ind-1;
+		
+		for(int i = ind; i < l; i++)
+		{
+			if(s[i] == '1')
+			{
+				if (i - pind == 1)
+				{
+ 
+				}
+				else
+				{
+					r = false;
+					break;
+				}
+				pind = i;
+			}
+		}
+		if(r == false)
+			printf("NO\n");
+		else
+			printf("YES\n");
+	}
+} 

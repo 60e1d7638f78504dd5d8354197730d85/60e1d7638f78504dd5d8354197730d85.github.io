@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.io.*;
+ 
+public class TestClass {
+ 
+    public static void main(String a[])throws IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in)); 
+        List<String> aList=new ArrayList<>();
+        for(int i=0;i<5;i++)
+        aList.add(br.readLine());
+        String removeElem = br.readLine();
+        System.out.println("ArrayList before removal:");
+        for(int i=0;i<aList.size();i++){
+        System.out.println(aList.get(i));
+        }  
+        Iterator itr=aList.iterator();
+        while(itr.hasNext()){
+            if(removeElem.equals(itr.next())){
+                itr.remove();
+            }
+        }
+        System.out.println("ArrayList after removal : ");
+        for(int i=0;i<aList.size();i++){
+        System.out.println(aList.get(i));
+        } 
+    }
+}
+ 

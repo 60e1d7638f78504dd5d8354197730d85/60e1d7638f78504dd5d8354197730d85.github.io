@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int a[200],arr[200];
+int main()
+{
+	int t,n,k,i,sum=0;
+    scanf("%d\n",&t);
+    while(t--)
+    {
+    	sum=0;
+    	scanf("%d %d",&n,&k);
+    	//printf("%d %d\n",n,k);
+		for(i=1;i<=n;i++)
+    	{
+    		scanf("%d",&a[i]);
+    		if(i!=a[i])
+    		   arr[a[i]]++;
+    		else
+    		   arr[i]=-500000;
+    	}
+    	for(i=1;i<=n;i++)
+    	{
+    		if(arr[i]>=k)
+    		  sum++;
+    	}
+    	printf("%d\n",sum);
+    	for(i=1;i<=n;i++)
+    	  arr[i]=0;
+    }
+    return 0;
+}

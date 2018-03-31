@@ -1,0 +1,55 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+using namespace std;
+ 
+int main()
+{
+	unordered_map<string, string> db;
+ 
+	short N, Q;
+	cin >> N >> Q;
+ 
+	for (int i = 0; i < N; i++)
+	{
+		pair<string, string> frm;
+		cin >> frm.first >> frm.second;
+		db.insert(frm);
+	}
+ 
+	for (int i = 0; i < Q; i++)
+	{
+        string s1,s2 ="";
+		int last_dot = -1;
+		cin >> s1;
+		for (unsigned int j = 0; j < s1.size(); j++)
+		{
+			if (s1[j] == '.')
+			{
+				last_dot = j;
+			}
+		}
+ 
+		if (last_dot != -1)
+		{
+			for (unsigned int m = last_dot + 1; m < s1.size(); m++)
+			{
+				s2 += s1[m];
+			}
+		}
+ 
+		unordered_map<string, string>::iterator qwerty = db.find(s2);
+ 
+		if (qwerty == db.end())
+		{
+			cout << "unknown" << endl;
+		}
+		else
+		{
+			cout << qwerty->second << endl;
+		}
+ 
+	}
+ 
+	return 0;
+} 

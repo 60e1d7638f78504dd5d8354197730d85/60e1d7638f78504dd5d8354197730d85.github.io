@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<math.h>
+int m;
+long long int sum(long long int n)
+    {   
+    long long int mod = m*30;
+    n = n%mod;
+    long long int res = n;
+    res = (res*(n+1))%mod;
+    res = (res*(2*n+1))%mod;
+    res = (res*((3*n*n)%mod+(3*n)-1)%mod)%mod;
+    return res/30;
+}
+ 
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+long long int n,rt,result=0;
+long long int i;
+scanf("%lld %d",&n,&m);
+rt=sqrt(n);
+for(i=1;i<=rt;i++)
+{
+result=(result+((((i*i)*i)%m*i)%m*(n/i)))%m;
+}
+ 
+long long int terms;
+for(i=n/(rt+1);i>=1;i--)
+{
+terms= n/i-n/(i+1);
+result = (result + (i*(sum(rt+terms)-sum(rt)+m))%m)%m;
+rt = rt+terms;
+}
+ 
+printf("%lld\n",result);
+ 
+ 
+}
+return 0;
+}   

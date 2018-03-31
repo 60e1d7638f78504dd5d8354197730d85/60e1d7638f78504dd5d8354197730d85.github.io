@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n,i,j;
+  	scanf("%d",&n);
+  	int a[n];
+  	for(i=0;i<n;i++) {
+      scanf("%d",&a[i]);
+    }
+    int c,y,t=0;
+  	for(i=0;i<n;i++) {
+      c = 2*a[i];
+      for(j=2;j<c;j+=2) {
+        y = j/2;
+        float x = sqrt( (a[i]*a[i]) - y*y );
+        int x1 = x;
+        if (x == x1) {
+          t=1;
+          break;
+        }
+      }
+        if(t==1) {
+          printf("YES\n");
+        }
+        else
+          printf("NO\n");
+        t=0;
+      }
+	return 0;
+}

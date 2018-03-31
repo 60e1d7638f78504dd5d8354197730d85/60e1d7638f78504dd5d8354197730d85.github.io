@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int i=0,q=0,j=0,k;
+  char a[100],b[100],c[100],temp;
+  scanf("%s%s",a,b);
+  q=strlen(a);
+  while(b[i]!='\0')
+  {
+    a[q]=b[i];
+    q++;
+    i++;
+  }
+  
+// printf("%s ",a);
+  
+  
+  q=strlen(a);
+  k=0;
+  for(k=0;k<q-3;k++)
+    c[k]=a[k];
+  //printf("%s ",c);
+  
+  q=strlen(c);
+  
+  for(i=0;i<q;i++)
+  {
+    for(j=0;j<q;j++)
+    {
+      if(c[i]<c[j])
+      {
+        temp=c[i];
+        c[i]=c[j];
+        c[j]=temp;
+      }
+    }}
+  //  printf("%s ",c);
+  
+  for(i=0;i<q;i++)
+  {
+    if(c[i]!=c[i+1])
+      printf("%c",c[i]);
+  }
+	return 0;
+}

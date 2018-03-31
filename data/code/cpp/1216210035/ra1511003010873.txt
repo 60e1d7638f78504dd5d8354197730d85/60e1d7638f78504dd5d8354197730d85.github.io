@@ -1,0 +1,51 @@
+    #include <iostream>
+    using namespace std;
+    int s1,s2;
+    int counth[100000];
+    void cum(long a[],long b[],int i)
+    {
+        int count=0;
+        long common[100000];
+        for(int i=0;i<s1;i++)
+        {
+                for(int j=0;j<s2;j++)
+                {
+                    if(a[i]==b[j])
+                    {
+                            common[count]=a[i];
+                            count++;
+                            break;
+                    }
+                }
+        }
+        int count1=0;
+        for(int m=0;m<count;m++)
+        {
+            for(int j=0;j<s1;j++)
+            {
+                    if(common[m]==a[j])
+                        count1++;
+            }
+        }
+        counth[i]=count1;
+    }
+    int main() 
+    {
+    	int t;
+    	long a1[100000];
+    	long b1[100000];
+    	cin>>t;
+    	for(int i=0;i<t;i++)
+    	{
+    	    cin>>s1>>s2;
+    	    for(int i=0;i<s1;i++)
+    	        cin>>a1[i];
+    	    for(int j=0;j<s2;j++)
+    	        cin>>b1[j];
+    	     cum(a1,b1,i);
+    	}   
+    	for(int i=0;i<t;i++)
+    	    cout<<counth[i]<<endl;
+    	return 0;
+    }
+     

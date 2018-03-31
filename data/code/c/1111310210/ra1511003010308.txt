@@ -1,0 +1,80 @@
+#include<stdio.h>
+int top[100001]={0},bottom[100001]={0},x[100001]={0},y[100001]={0};
+int main()
+{
+    int n,i,a,b,c,count;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d%d",&a,&b);
+        top[a]=top[a]+1;
+        bottom[b]=bottom[b]+1;
+        x[i]=a;
+        y[i]=b;
+    }
+    count=1000000;
+    for(i=0;i<n;i++)
+    {
+        if(n%2==0)
+        {
+            if(top[x[i]]>=(n/2))
+            {
+                count=0;
+                break;
+            }
+            if((top[x[i]]+bottom[x[i]])>=(n/2))
+            {
+                if(bottom[x[i]]<=count)
+                {
+                    count=(n/2)-top[x[i]];
+                }
+ 
+            }
+        }
+        if(n%2!=0)
+        {
+            if(top[x[i]]>=((n+1)/2))
+            {
+                count=0;
+                break;
+            }
+            if((top[x[i]]+bottom[x[i]])>=((n+1)/2))
+            {
+                if(bottom[x[i]]<count)
+                count=((n+1)/2)-top[x[i]];
+ 
+ 
+ 
+            }
+        }
+    }
+ 
+    for(i=0;i<n;i++)
+    {
+        if(n%2==0)
+        {
+            if(bottom[y[i]]>=(n/2))
+            {
+                if(bottom[y[i]]<=count)
+                count=bottom[y[i]];
+ 
+            }
+ 
+        }
+        if(n%2!=0)
+        {
+            if(bottom[y[i]]>=((n+1)/2))
+            {
+                if(bottom[y[i]]<=count)
+                count=bottom[y[i]];
+ 
+            }
+ 
+        }
+    }
+    if(count!=1000000)
+    printf("%d\n",count);
+    else
+    printf("Impossible\n");
+  return 0;
+} 

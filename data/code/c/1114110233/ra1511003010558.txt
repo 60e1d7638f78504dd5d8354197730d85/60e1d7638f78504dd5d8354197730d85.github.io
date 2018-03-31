@@ -1,0 +1,34 @@
+#include <stdio.h>
+int binary(int n)
+{
+  int arr[20],i=0,size,s=0;
+  while(n>0)
+  {
+    arr[i]=n%2;
+    n=n/2;
+    i++;
+  }
+  size=i;
+  for(i=0;i<size;i++)
+  {
+    if(arr[i]==1)
+      s=s+1;
+  }
+  return s;
+}
+int main()
+{
+	int a,b,sum=0,i,n,j;
+  	scanf("%d",&n);
+  	for(j=0;j<n;j++)
+    {
+  		scanf("%d",&a);
+      	sum=0;
+  		for(i=1;i<=a;i++)
+    	{
+      		sum+=binary(i);
+    	}
+  		printf("%d\n",sum);
+    }
+	return 0;
+}

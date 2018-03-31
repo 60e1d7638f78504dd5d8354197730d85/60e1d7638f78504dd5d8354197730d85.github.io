@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	union u_t {
+		uint32_t n;
+		uint16_t c[2];
+	} u;
+
+	scanf("%d", &u.n);
+	u.c[1] = 0;
+
+	while (u.n & 0x0000ffff) {
+		u.c[1] += (u.n & 0x0000ffff) % 10;
+
+		u.n = (u.c[1] << 16) | ( (u.n & 0x0000ffff) / 10 );
+	}
+
+	printf("%u", (unsigned)u.c[1]);
+
+	return 0;
+}

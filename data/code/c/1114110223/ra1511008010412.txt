@@ -1,0 +1,37 @@
+#include<stdio.h>
+int number(int y)
+{
+    int sum=0,m;
+    while(y!=0)
+    {
+        y = y/10;
+        sum++;
+    }
+    m = sum-1;
+    return m;
+}
+int power(int u ,int k)
+{
+    int z=1,c;
+    for(c=0;c<k;c++)
+    {
+        z*=u;
+    }
+    return z;
+}
+ 
+int main()
+{
+    int t,i,g,l,k,mk;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&g);
+        l = g%10;
+        k = g/(power(10,number(g)));
+        mk = l+k;
+        printf("%d\n",mk);
+    }
+    return 0;
+}
+ 

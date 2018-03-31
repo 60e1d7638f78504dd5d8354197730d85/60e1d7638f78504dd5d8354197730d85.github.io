@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+int n,i,j,t,m,r,sum;
+scanf("%d",&n);
+int ar[n];
+for(i=0;i<n;i++)
+  scanf("%d",&ar[i]);
+for(i=0;i<n;i++)
+{
+sum=0;
+m=ar[i];
+while(m>0)
+{
+r=m%10;
+sum=sum*10+r;
+m=m/10;
+}
+ar[i]=sum;
+}
+for(i=0;i<n-1;i++){
+  for(j=0;j<n-1-i;j++)
+  {
+    if(ar[j]<ar[j+1])
+    {t=ar[j];
+      ar[j]=ar[j+1];
+      ar[j+1]=t;}
+  }
+}
+for(i=0;i<n;i++)
+printf("%d\n",ar[i]);
+	return 0;
+}

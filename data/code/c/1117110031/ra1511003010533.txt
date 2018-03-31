@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main()
+{
+  int a;
+  scanf("%d",&a);
+  int array[a][a];
+    int row, col, isUpper;
+
+    /* Input elements in matrix from user */
+    for(row=0; row<a; row++)
+    {
+        for(col=0; col<a; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    
+    /* Check Upper triangular matrix condition */
+    isUpper = 1;
+    for(row=0; row<a; row++)
+    {
+        for(col=0; col<a; col++)
+        {
+            /*
+             * If elements below the main diagonal (col<row)
+             * is not equal to zero then it is not upper triangular matrix
+             */
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    
+    /* Print elements of upper triangular matrix  */
+    if(isUpper == 1)
+    {
+        printf("\nyes\n");
+
+    }   
+    else
+    {
+        printf("\nno");
+    }
+
+    return 0;
+}

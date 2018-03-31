@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+ 
+int readInt () 
+{
+	int result = 0;
+	char ch;
+	int neg = 0;
+	ch = getchar();
+	while(ch < '0' || ch > '9')
+	{
+	    ch = getchar();
+	    if(ch == '-')   neg = 1;
+	}
+	while (ch >= '0' && ch <= '9') 
+    {
+		result = result * 10 + (ch - '0');
+		ch = getchar();
+	}
+	if(neg) result *= -1;
+	return result;
+}
+int compare (const void * a, const void * b)
+{
+  return ( *(int*)a - *(int*)b );
+}
+ 
+int main(void)
+{
+    int T, N, S[5000];
+    T = readInt();
+    while(T--)
+    {
+        int j,i,ans = INT_MAX;
+        N = readInt();
+        for( i=0; i<N; i++)S[i] = readInt();
+        qsort (S, N, sizeof(int), compare);
+        for( j=0; j<N-1; j++)ans = (ans < (S[j+1]-S[j]))? ans : (S[j+1]-S[j]);
+        printf("%d\n", ans);
+    }
+	return 0;
+}

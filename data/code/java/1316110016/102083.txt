@@ -1,0 +1,66 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Armstrong objname = new Armstrong();
+       objname.getArmstrongNumber();
+       objname.displayArmstrongNumber();       
+	}
+}
+class Armstrong
+{
+  ArrayList<Integer> arms = new ArrayList<>();
+  
+  public void getArmstrongNumber()
+  {
+    Scanner scan  = new Scanner(System.in);
+    int start = scan.nextInt();
+    int end = scan.nextInt();
+    
+    int n = start;
+    while(n<=end)
+    {
+      CheckNumber c = new CheckNumber();
+      if(c.isArmstrong(n))
+        arms.add(n);
+      n += 1;
+    }
+  }
+  
+  public void displayArmstrongNumber()
+  {
+    for(int a : arms)
+      System.out.println(a+" is an Armstrong number");
+  }
+}
+class CheckNumber
+{
+  public boolean isArmstrong(int n)
+  {
+    int copy = n;
+    int digits = countDigits(n);
+    int sum = 0;
+    
+    while(copy>0)
+    {
+      int t = copy % 10;
+      copy /= 10;
+      sum += Math.pow(t, digits);  
+    }
+    if(sum == n)
+      return true;
+    else
+      return false;
+  }
+  private int countDigits(int n)
+  {
+    int dig = 0;
+    while(n>0)
+    {
+      dig += 1;
+      n /= 10;
+    }
+    return dig;
+  }
+}

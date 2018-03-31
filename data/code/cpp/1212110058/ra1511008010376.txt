@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+class complex
+{
+  public:
+  int real,img;
+  complex(int real=0,int img=0);
+  complex operator+(const complex&)const;
+  complex operator-(const complex&)const;
+};
+complex::complex(int r,int i)
+{
+  real=r;
+  img=i;
+}
+complex complex::operator+(const complex &c) const
+{
+  complex result;
+  result.real=(this->real+c.real);
+  result.img=(this->img+c.img);
+  return result;
+}
+complex complex::operator-(const complex &c) const
+{
+  complex r;
+  r.real=(this->real-c.real);
+  r.img=(this->img-c.img);
+  return r;
+}
+int main()
+{
+  int a,c1,b,c2;
+  cin>>a>>c1>>b>>c2;
+  complex x(a,c1);
+  complex y(b,c2);
+  complex z=x+y;
+  complex n=x-y;
+  printf("Sum : %d+%di",z.real,z.img);
+  printf("\ndifference : %d+%di",n.real,n.img);
+  return 0;
+}

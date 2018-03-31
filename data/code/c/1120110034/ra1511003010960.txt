@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<string.h>
+int digit(char);
+int main()
+{
+	char rmno[1000];
+  	int i=0;
+  	long int num=0;
+  	scanf("%s",rmno);
+  	while(rmno[i]){
+     if(digit(rmno[i])>=digit(rmno[i+1]))
+       num=num+digit(rmno[i]);
+     else{
+       num=num+(digit(rmno[i+1])-digit(rmno[i]));
+       i++;
+     }
+      i++;
+    }
+  	printf("%ld",num);
+	return 0;
+}
+int digit(char c){
+  int value=0;
+  switch(c){
+    case 'I':value=1;break;
+    case 'V':value=5;break;
+    case 'X':value=10;break;
+    case 'L':value=50;break;
+    case 'c':value=100;break;
+    case 'D':value=500;break;
+    case 'M':value=1000;break;
+    case '\0':value=0;break;
+  }
+  return value;
+}

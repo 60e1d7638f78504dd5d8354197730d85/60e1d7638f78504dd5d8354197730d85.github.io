@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main()
+{
+	int a[12] = {1,2,4,8,16,32,64,128,256,512,1024,2048};
+	int t,p,ans,i;
+	scanf("%d",&t);
+	while(t--)
+	{
+		ans = 0;
+		scanf("%d",&p);
+		while(p>0)
+		{
+			if(p>2048)
+			{
+				ans = ans + p/2048;
+				p = p - (2048 * ans);
+			}
+			else
+			{
+				for(i=0;a[i]<=p;i++);
+				p = p - a[i-1];
+				ans++;
+			}
+		}
+		printf("%d\n",ans);
+	}
+	return 0;
+}

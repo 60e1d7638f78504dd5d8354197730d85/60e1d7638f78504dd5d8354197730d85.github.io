@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+void insertionSort(int a[], int n)
+{
+  	int i, key, j;
+  	for(i=1; i<n;i++)
+    {
+      	key = a[i];
+      	j = i-1;
+      	while(j>=0 && a[j] > key)
+        {
+          	a[j+1] = a[j];
+          	j = j-1;
+        }
+      	a[j+1] = key;
+    }
+}
+int main()
+{
+	int a[20];
+  	int n,i;	
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      	scanf("%d",&a[i]);
+    }
+  	int insert,key;
+  	scanf("%d %d",&insert, &key);
+  	for(i=n-1;i>=insert;i--)
+    {
+      	a[i+1] = a[i];
+    }
+  	n++;
+  	a[insert] = key; 
+	
+  	printf("Before sorting\n");
+  	for(i=0;i<n;i++)
+    {
+      	printf("%d\n",a[i]);
+    }
+  
+  	printf("After sorting");
+  	insertionSort(a,n);
+  	for(i=0;i<n;i++)
+    {
+      	printf("\n%d",a[i]);
+    }
+	return 0;
+}

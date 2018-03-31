@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+bool check(int p,int n)
+{
+  int temp=p,cnt=0,f=5;
+  while(f<=temp)
+  {
+    cnt+=temp/f;
+    f=f*5;
+   }
+  return (cnt>= n);
+}
+long findNum(int n)
+{
+   if(n==1) return 5;
+  int l=5,h=5*n;
+  while(l<h)
+  {
+    int m=(l+h)>>1;
+    if(check(m,n)) 
+      h=m;
+    else
+      l=m+1;
+  }
+  return l;
+  }
+
+int main()
+{
+int tc,i,n;
+  cin>>tc;
+  for(i=0;i<tc;i++)
+  {
+    
+    cin>>n;
+    cout<<endl<<findNum(n);
+  }
+
+    
+	return 0;
+}

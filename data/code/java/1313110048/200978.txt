@@ -1,0 +1,41 @@
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import sun.security.util.*;
+
+ public class TestClass {
+  
+     public static void main(String[] args) {
+         Scanner in = new Scanner(System.in);
+         int N=in.nextInt();
+         int M=in.nextInt();
+         int[][] a=new int[M][3];
+         
+         for(int i=0;i<M;i++){
+             a[i][0]=in.nextInt();
+             a[i][1]=in.nextInt();
+             a[i][2]=in.nextInt();
+         }
+         
+         in.close();
+         
+         
+         BigInteger bi = new BigInteger("0");
+         for(int i=0;i<a.length;i++){
+          long g=a[i][1]-a[i][0]+1;
+                
+                BigInteger bt = new BigInteger("0");
+                
+                bt=bt.add(BigInteger.valueOf(g));
+                
+            
+          bi=bi.add(bt.multiply(BigInteger.valueOf(a[i][2])));
+          
+         }
+         
+         System.out.println(bi.divide(BigInteger.valueOf(N))); 
+     }
+ }

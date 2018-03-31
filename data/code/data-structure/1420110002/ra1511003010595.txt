@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{int t;
+ string s;
+ cin>>t;
+ for(int i=0;i<t;i++)
+ {int f[26]={0};
+  cin>>s;
+  int var;
+  for(int j=0;j<s.length();j++)
+  {var=(int)s[j];
+   f[var-97]++;
+  }
+  for(int j=0;j<26;j++)
+  {int small=f[25],pos=25;
+   for(int k=25;k>=0;k--)
+   {if(small>f[k])
+    {small=f[k];
+     pos=k;
+    }
+   }
+   char v=(char)(pos+97);
+   cout<<v<<' ';
+   f[pos]=9999;
+  }
+  cout<<'\n';
+ }     
+	return 0;
+}

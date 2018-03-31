@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <stdlib.h>
+int leapda(int month)
+{
+  if(month%4==0)
+  {
+    if(month%100==0)
+    {
+      if(month%400==0)
+      {
+        return 1;
+      }
+      else
+        return 0;
+    }
+    else
+      return 1;
+  }
+  else
+    return 0;
+}
+int no_of_days(int month)
+{
+  switch(month)
+  {
+    case 1: return 31; break;
+    case 2: return 28; break;
+    case 3: return 31; break;
+    case 4: return 30; break;
+    case 5: return 31; break;
+    case 6: return 30; break;
+    case 7: return 31; break;
+    case 8: return 31; break;
+    case 9: return 30; break;
+    case 10: return 31; break;
+    case 11: return 30; break;
+    case 12: return 31; break;
+  }
+}
+struct Date
+{
+	int date;
+  	int month;
+  	int year;
+}D;
+int main()
+{
+	int i,wrong=0,days_in,is_leap;
+  	scanf("%d %d %d",&D.date,&D.month,&D.year);
+  if(D.year<0000 || D.year>2999)
+    {
+    	printf("Invalid Year");
+    	exit(0);
+  }
+   if(D.month>12)
+    {
+    	printf("Invalid Month");
+      	exit(0);
+   }
+ is_leap=leapda(D.year);
+  if(is_leap==1 && D.month==2 && D.date==29)
+  {
+    printf("New Date=1 3 %d",D.year);
+    exit(0);
+  }
+  days_in=no_of_days(D.month);
+   	if(D.date>31 || D.date>days_in)
+    {
+        printf("Invalid Day");
+      	wrong=1;
+    }
+   
+  	if(wrong==0)
+    {
+       
+        if(D.date<days_in)
+        {
+    	printf("New Date=%d %d %d",D.date+1,D.month,D.year);
+        }
+       else if(D.date==days_in)
+       {
+         if(D.month==12)
+         {
+           if(D.year+1>2999)
+           {
+             //jndnj
+           }
+           else
+           {
+            printf("New Date=1 1 %d",D.year+1);   
+           }
+           }
+         else
+         {
+         printf("New Date=1 %d %d",D.month+1,D.year);
+         }
+       }
+    }
+	return 0;
+}

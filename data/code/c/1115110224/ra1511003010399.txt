@@ -1,0 +1,84 @@
+
+#include <stdio.h>
+#include <limits.h>
+
+void merge_sort(int * array_of_integers, int p, int r);
+void merge(int * array_of_integers, int p, int q, int r);
+void search(int *array, int n, unsigned long value);
+
+int main(void) {
+
+    int n, i, in, q;
+    unsigned long int m;
+    scanf("%d", &n);
+    int x[n];
+    for(i=0; i< n; i++) {
+        scanf("%d", &in);
+        x[i] = in;
+    }
+    merge_sort(x, 0, n-1);
+    scanf("%d", &q);
+    for(i = 0; i < q; i++) {
+         scanf("%lu", &m);
+        search(x, n, m);
+    }
+    return 0;
+}
+void merge(int * array_of_integers, int p, int q, int r){
+    int n1 = q - p + 1;
+    int n2 = r - q;
+    int i, j, k;
+    int left_array[n1+1];
+    int right_array[n2+1];
+
+    left_array[n1] = INT_MAX;
+    right_array[n2] = INT_MAX;
+
+    for(i = 0; i < n1; i++)
+        left_array[i] = array_of_integers[p + i];
+    for(j = 0; j < n2; j++)
+        right_array[j] = array_of_integers[q + j + 1];
+
+    i = 0;
+    j = 0;
+
+    for(k = p; k <= r; k++){
+        if(left_array[i] <= right_array[j]){
+            array_of_integers[k] = left_array[i];
+            i++;
+        } else {
+            array_of_integers[k] = right_array[j];
+            j++;
+        }
+    }
+}
+
+void merge_sort(int * array_of_integers, int p, int r){
+    if(p < r){
+        int q = (p+r)/2;
+        merge_sort(array_of_integers, p, q);
+        merge_sort(array_of_integers, q + 1, r);
+        merge(array_of_integers, p, q, r);
+    }
+}
+
+void search(int *array, int n, unsigned long value) {
+    int low = 0, high = n; // numElems is the size of the array i.e arr.size()
+    while (low != high) {
+        int mid = (low + high) / 2; // Or a fancy way to avoid int overflow
+        if (array[mid] <= value) {
+            /* This index, and everything below it, must not be the first element
+             * greater than what we're looking for because this element is no greater
+             * than the element.
+             */
+            low = mid + 1;
+        }
+        else {
+            /* This element is at least as large as the element, so anything after it can't
+             * be the first element that's at least as large.
+             */
+            high = mid;
+        }
+    }
+    printf("%d\n", high);
+}

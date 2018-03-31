@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       String s1=sc.nextLine();
+       String s2=sc.nextLine();  
+      
+       byte b1[]=s1.getBytes();
+       byte b2[]=s2.getBytes();
+       int i=0;
+       while((b1[i]==b2[i])&&(i<b1.length-1)&&(i<b2.length-1))i++;
+       int res=b1[i]-b2[i];
+       if ((res==0)&&(b1.length==b2.length))
+        System.out.println("Both strings are equal");
+       else if (res>0)
+         System.out.println("First string is greater than second");
+       else
+         System.out.println("First string is smaller than second");
+	}
+}

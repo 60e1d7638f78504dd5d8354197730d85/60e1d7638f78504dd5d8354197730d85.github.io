@@ -1,0 +1,87 @@
+#include<stdio.h>
+ 
+long long partition( long long a[], long long low,  long long high);
+ 
+void QuickSort( long long a[],long long low, long long high)
+{
+ long long pivot;
+if(high>low)
+{pivot=partition(a,low,high);
+QuickSort(a,low,pivot-1);
+QuickSort(a,pivot+1,high);
+}
+}
+ 
+ long long partition( long long a[],  long long low,  long long high)
+{
+long long left,right,pivot_item=a[low],temp;
+left=low;
+right=high;
+while(left<right)
+{
+while(a[left]<=pivot_item)
+left++;
+while(a[right]>pivot_item)
+right--;
+if(left<right)
+{temp=a[left];
+a[left]=a[right];
+a[right]=temp;}
+                 
+                 }        
+   a[low]=a[right];
+   a[right]=pivot_item;
+   return right;      
+          
+}
+ 
+int main(void)
+{
+    long long t,k,n,e,m,num,sum,tsum;
+    long long arr[100000]={0};
+    long long mscore,i,j;
+    scanf("%lld",&t);
+    while(t--)
+    {
+      tsum=0;
+      mscore=0;
+       scanf("%lld%lld%lld%lld",&n,&k,&e,&m);
+       for(i=1;i<=n;i++)
+       {sum=0;
+       if(i==n)
+       e--;
+                        for(j=1;j<=e;j++)
+                        {
+                                         
+                       scanf("%lld",&num);
+                       sum=sum+num;
+                          
+                          }
+                        arr[i-1]=sum;
+                        if(i==n)
+                        tsum=sum;
+          }      
+                   e++;
+        QuickSort(arr,0,n-1);
+      
+    if(arr[n-k]>tsum)
+    {
+        mscore=(arr[n-k]-tsum)+1;
+        }
+        else
+        mscore=0;
+        if(mscore>m)
+        printf("Impossible\n");
+        else
+        printf("%lld\n",mscore);
+        
+                         
+              
+    }
+    
+    
+    
+    return 0;
+}
+ 
+ 

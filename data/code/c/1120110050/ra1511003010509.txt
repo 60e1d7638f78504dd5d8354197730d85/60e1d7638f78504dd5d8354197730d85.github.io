@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+inline int getn(){
+	int n=0, c=getchar_unlocked();
+	while(c < '0' || c > '9') c = getchar_unlocked();
+	while(c >= '0' && c <= '9')
+		n = (n<<3) + (n<<1) + c - '0', c = getchar_unlocked();
+	return n;
+}
+int main()
+{
+  int t,front_speed,speed,n,count;
+  t=getn();
+  while(t--)
+  {
+    n=getn();
+    front_speed=INT_MAX;
+    count=0;
+    while(n--)
+    {
+      speed=getn();
+      if(speed<=front_speed)
+      {
+        count++;
+        front_speed=speed;
+      }
+    }
+    printf("%d\n",count);
+  }
+  return 0;
+}

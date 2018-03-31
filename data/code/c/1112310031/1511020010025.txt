@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+ int n,t,i;
+ scanf("%d",&t);
+ while(t--)
+ {
+  scanf("%d",&n);
+  int w[n+1],count=0,c;
+  char a[n],b[n];
+  scanf("%s %s",a,b);
+  for(i=0;i<=n;i++)
+  scanf("%d",&w[i]);
+  for(i=0;i<n;i++)
+  {
+   if(a[i]==b[i])
+   count++;
+  }
+  c=w[0];
+  if(count==n)
+  c=w[n];
+  else
+  {
+  for(i=1;i<=count;i++)
+  {
+   if(w[i]>c)
+   c=w[i];
+  }
+  }
+  printf("%d\n",c);
+ }
+ return 0;
+}

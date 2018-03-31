@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main()
+{
+	char c1[100];
+  	char c;
+  	fgets(c1,100,stdin);
+  	scanf("%c",&c);
+  	int i=0,t=0,j;
+  	while(c1[i]!='\0') {
+      if(c1[i]==c) {
+        t++;
+        break;
+      }
+      i++;
+    }
+  	if(t==0) {
+      exit(0);
+    }
+  	int len = strlen(c1);
+  	for(j=i;j<len-1;j++) {
+      c1[j] = c1[j+1];
+    }
+  	printf("%s",c1);
+	return 0;
+}

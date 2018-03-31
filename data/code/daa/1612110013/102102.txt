@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+#include<string.h>
+#include <string>
+#include <stdlib.h>
+string Largest_Even_Number(string) ;
+string sort(string,int ) ;
+int main()
+ {
+ int t ;
+ string str ;
+ cin>>t ;
+ while(t--)
+ {
+     cin>>str ;
+     str=Largest_Even_Number(str) ;
+     cout<<str<<endl ;
+ }
+ return 0;
+}
+
+string Largest_Even_Number(string str)
+{
+    int len ;
+    len=str.length() ;
+   
+    str=sort(str,len) ;
+   
+    if((str[len-1]-'0')%2==0)
+        return str;
+       
+    int i,pos ;
+    for(i=len-1;i>=0;i--)
+    {
+       if(((str[i])-'0')%2==0)
+        {
+            pos=i ;
+            break ;
+        }
+    }
+   
+    int temp ;
+    for(i=pos;i<len-1;i++)
+    {
+        temp=str[i] ;
+        str[i]=str[i+1] ;
+        str[i+1]=temp ;
+    }
+   
+    return str ;
+}
+
+string sort(string str,int no)
+{
+    int i,j;
+    char temp ;
+   
+    for(i=no-1;i>0;i--)
+    {
+        for(j=no-1;j>0;j--)
+        {
+            if(str[j]>str[j-1])
+            {
+                temp=str[j] ;
+                str[j]=str[j-1] ;
+                str[j-1]=temp ;
+            }
+        }
+    }
+    return str ;
+}

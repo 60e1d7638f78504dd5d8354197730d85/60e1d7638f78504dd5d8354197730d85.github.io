@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  long num;
+  scanf("%ld",&num);
+  int odd[30],even[30];
+  int r=0,i=0,j=0,p=0;
+  
+  while(num>0)
+  {
+    r=num%10;
+    if(r%2==0)
+    {
+      even[i]=r;
+      i++;
+    }
+    else
+    {
+      odd[j]=r;
+      j++;
+    }
+    num=num/10;
+  }
+
+  for(p=j-1;p>=0;p--)
+    printf("%d",odd[p]);
+  printf(" ");
+  
+  for(p=i-1;p>=0;p--)
+    printf("%d",even[p]);
+	return 0;
+}

@@ -1,0 +1,41 @@
+// C++ program to find number of subset containing
+// consecutive numbers
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Returns count of subsets with consecutive numbers
+int numofsubset(int arr[], int n)
+{
+    // Sort the array so that elements which are
+    // consecutive in nature became consecutive
+    // in the array.
+    sort(arr, arr + n);
+ 
+    int count = 1;  // Initialize result
+    for (int i = 0; i < n-1; i++)
+    {
+        // Check if there is beginning of another
+        // subset of consecutive number
+        if (arr[i] + 1 != arr[i+1])
+            count++;
+    }
+ 
+    return count;
+}
+ 
+// Driven Program
+int main()
+{
+    int arr[100],n;
+  int t;
+  cin>>t;
+  while(t--)
+  {
+  cin>>n;
+    int i;
+    for(i=0;i<n;i++)
+      cin>>arr[i];
+    cout << numofsubset(arr,n) << endl;
+  }
+    return 0;
+}

@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int t=sc.nextInt();
+      	for(int q=0;q<t;q++)
+        {
+          	int n=sc.nextInt();
+          	int a[]=new int[n];
+          	int max=0;
+          	int count=0;
+          	for(int i=0;i<n;i++)
+            {
+              	a[i]=sc.nextInt();
+              	if(a[i]>max)
+                  max=a[i];
+            }
+          	for(int i=max;;i+=max)
+            {
+              	count=0;
+              	for(int j=0;j<n;j++)
+                {
+                  	if(i%a[j]==0)
+                    {
+                      	count++;
+                      	continue;
+                    }
+                }
+              	if(count==n)
+                {
+                  	System.out.println(i);
+                  	break;
+                }
+            }
+        }
+	}
+}

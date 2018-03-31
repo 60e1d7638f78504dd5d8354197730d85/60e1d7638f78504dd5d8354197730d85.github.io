@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int hcfOfTwo(int a,int b){
+	if(b==0)
+      return a;
+  else{
+  return hcfOfTwo(b,a%b);
+  }
+	}
+
+int main()
+{
+int fan1=0,fan2=0;
+  int n;
+  int difference;
+  int result;
+  int hcf;
+  scanf("%d",&n);
+  while(n-->0){
+ 	scanf("%d %d",&fan1,&fan2);
+    difference=fan1-fan2;
+    hcf=hcfOfTwo(abs(fan1),abs(fan2));
+    result=difference/hcf;
+    printf("\n%d",abs(result));
+  	}
+	return 0;
+}

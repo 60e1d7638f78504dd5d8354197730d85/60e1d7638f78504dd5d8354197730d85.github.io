@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+  int i,j,m,n,count=0,ans=0,t;
+  char a[10][10]={0};
+  scanf("%d",&t);
+  while(t--)
+  {
+    count=0,ans=0;
+    scanf("%d %d", &n,&m);
+    for(i=0;i<n;i++)
+      scanf("%s",a[i]);
+    for(i=0;i<m;i++)
+    {
+      count=0;
+      for(j=0;j<n;j++)
+      {
+        if(a[j][i]=='1')
+          count++;
+      }
+      if(count>1)
+        ans+=(count*(count-1)/2);
+    }
+    printf("%d\n",ans);
+  }
+
+	return 0;
+}

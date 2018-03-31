@@ -1,0 +1,88 @@
+#include <stdio.h>
+ 
+double max(double a, double b, double c, double d)
+{
+    double mx=0;
+    if(mx<a)mx=a;
+    if(mx<b)mx=b;
+    if(mx<c)mx=c;
+    if(mx<d)mx=d;
+    return mx;
+}
+ 
+double P[1003][1003],A[1003][1003],mx=0;
+int a[1003][1003], b[1003][1003];
+ 
+int main(void) {
+	
+	long long n,m,d,i=0,flag=0;
+	
+	
+	
+	
+	scanf("%lld %lld %lld",&n,&m,&d);
+	
+	while(i<n)
+	{
+	    int j=0;
+	    
+	    while(j<m)
+	    {
+	        scanf("%d %d",&a[i][j],&b[i][j]);
+	        j++;
+	    }
+	    
+	    i++;
+	}
+	
+	i=0;
+	
+	while(i<n)
+	{
+	    P[0][i]=(double)d;A[0][i]=0;
+	    i++;
+	}
+	
+	i=1;
+	
+	while(i<=m)
+	{
+	    int j=0;
+	    
+	    P[i][j]=max(P[i-1][j],0.0,P[i-1][j+1],A[i-1][j]*(double)b[j][i-1]);
+	    A[i][j]= max(A[i-1][j],0.0,A[i-1][j+1],P[i-1][j]/(double)a[j][i-1]);
+	    
+	    j=1;
+	    
+	    while(j<n-1)
+	    {
+	        P[i][j]=max(P[i-1][j],P[i-1][j-1],P[i-1][j+1],A[i-1][j]*(double)b[j][i-1]);
+	        A[i][j]= max(A[i-1][j],A[i-1][j-1],A[i-1][j+1],P[i-1][j]/(double)a[j][i-1]);
+	        
+	        if(P[i][j]>1000000000000000000||P[i][j]<0.0){ flag=1; break;}
+	        
+	        j++;
+	    }
+	    
+	    P[i][j]=max(P[i-1][j],P[i-1][j-1],0.0,A[i-1][j]*(double)b[j][i-1]);
+	    A[i][j]= max(A[i-1][j],A[i-1][j-1],0.0,P[i-1][j]/(double)a[j][i-1]);
+	     
+	    if(flag==1) break;
+	    i++;
+	    
+	}
+	
+	i=0;
+	
+	while(i<n)
+	{
+	    if(mx<P[m][i]) mx=P[m][i];
+	    i++;
+	}
+	
+	if(flag==1) printf("Quintillionnaire\n");
+	else printf("%lf\n",mx);
+	
+	
+	return 0;
+}

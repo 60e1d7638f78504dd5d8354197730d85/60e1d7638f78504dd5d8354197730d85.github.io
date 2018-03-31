@@ -1,0 +1,52 @@
+#include <stdio.h>
+ 
+char _str[10];
+ 
+#define READ_INT(_x)					\
+  {							\
+    unsigned  int _tmp = 0;				\
+    register int _ch = getchar_unlocked();		\
+    while (_ch < 48 || _ch > 57)			\
+      _ch = getchar_unlocked();				\
+    while (48 <= _ch && _ch <= 57)			\
+      {							\
+	_tmp = (_tmp << 3) + (_tmp << 1) + _ch - 48;	\
+	_ch = getchar_unlocked();			\
+      }							\
+    (_x) = _tmp;					\
+  }							\
+ 
+#define WRITE_INT(_x)				\
+  {						\
+    register int _i = 0;			\
+    int _tmp = (_x);				\
+    do						\
+      {						\
+	*(_str + _i++) = _tmp % 10 + 48;	\
+	_tmp /= 10;				\
+      } while (_tmp != 0);			\
+    for (_i--; _i >= 0; _i--)			\
+      putchar_unlocked(*(_str + _i));		\
+  }						\
+ 
+int main(void)
+{
+  unsigned int q;
+  int m, n;
+ 
+  READ_INT(n);
+  READ_INT(m);
+  while (m--)
+    {
+      READ_INT(q);
+      if (q <= n + 1)
+	putchar_unlocked('0');
+      else if ((q -= (n + 1)) <= n)
+	WRITE_INT(q)
+      else
+	WRITE_INT((n << 1) - q);
+      putchar_unlocked('\n');
+    }
+ 
+  return 0;
+}

@@ -1,0 +1,83 @@
+#include<stdio.h>
+int a[1000000][2],h[1000000];
+void Quick_Sort(int Start,int End)
+{
+    if(Start<End)
+    {
+        int Piv_pos=Partition(Start,End);
+        Quick_Sort(Start,Piv_pos-1);
+        Quick_Sort(Piv_pos+1,End);
+    }
+}
+int Partition(int Start,int End)
+{
+    int i=Start+1,j,temp;
+    int Pivot=a[Start][0];
+    for(j=Start+1;j<=End;j++)
+    {
+        if(a[j][0]<Pivot)
+        {
+            temp=a[j][0];
+            a[j][0]=a[i][0];
+            a[i][0]=temp;
+            temp=a[j][1];
+            a[j][1]=a[i][1];
+            a[i][1]=temp;
+            i++;
+        }
+    }
+    temp=a[Start][0];
+    a[Start][0]=a[i-1][0];
+    a[i-1][0]=temp;
+    temp=a[Start][1];
+    a[Start][1]=a[i-1][1];
+    a[i-1][1]=temp;
+    return i-1;
+}
+int min(int a,int b)
+{
+    if(a<b)
+        return a;
+    else
+        return b;
+}
+int main()
+{
+    int T,i,j,N,K,prince_ind;
+    scanf("%d",&T);
+    while(T--)
+    {
+        scanf("%d%d",&N,&K);
+        //int a[N][2],h[K];
+        for(i=0;i<N;i++)
+        {
+            scanf("%d",&a[i][0]);
+            a[i][1]=i;
+        }
+        Quick_Sort(0,N-1);
+       /* for(i=0;i<N;i++)
+        {
+            printf("%d ",a[i][0]);
+        }*/
+        for(i=0;i<K;i++)
+        {
+            scanf("%d",&h[i]);
+        }
+        for(i=0,j=0;i<K&&j<N;i++)
+        {
+            prince_ind=a[j][1];
+            while(a[j][0]<h[i]&&j<N)
+            {
+               prince_ind=min(prince_ind,a[j][1]);
+               j++;
+            }
+        }
+        while(j<N)
+        {
+            prince_ind=min(prince_ind,a[j][1]);
+            j++;
+        }
+        printf("%d\n",prince_ind);
+    }
+    return 0;
+}

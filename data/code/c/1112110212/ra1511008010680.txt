@@ -1,0 +1,42 @@
+#include <stdio.h>
+int grade(int h,float c,int ts)
+{
+	int g;
+  	int hc=0,tc=0,cc=0;
+  	if(h>50)
+      hc++;
+  	if(c<0.7)
+      cc++;
+  	if(ts>5600)
+      tc++;
+  	if(hc+cc+tc==3)
+      g=10;
+  	else if(hc+cc+tc==2) 
+    { if(tc==0)
+      g=9;
+  	else if(hc==0)
+      g=8;
+  	else if(cc==0)
+      g=7;
+    }
+  	else if(hc+cc+tc==1)
+      g=6;
+  	else if(hc+cc+tc==0)
+      g=5;
+  
+	return g;
+}
+int main()
+{
+  int hd,tns,n,i=0,gr[10];
+  float carc;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d%f%d",&hd,&carc,&tns);
+  	gr[i]=grade(hd,carc,tns);
+  }
+  for(i=0;i<n;i++)
+    printf("%d\n",gr[i]);
+  return 0;
+}

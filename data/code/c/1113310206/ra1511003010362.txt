@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main() 
+{
+	long t; 
+	int n; 
+	char str[101]; 
+	
+	int i;
+	
+	scanf("%ld", &t);
+	
+	while(t--)
+	{
+		scanf("%s", str);
+		scanf("%d", &n);
+		
+		long count = 0, answer = 0;
+		
+		i = 0;
+		
+		n = 12 * n;
+		
+		while(str[i]!='\0')
+		{
+			if(str[i] == 'T')
+				count = count + 2;
+				
+			else 
+				count++;
+			
+			i++;
+		}
+		
+		for(i=1; i<n+1; i++)
+		{
+			if(count*i < n)
+				answer = answer + (n - count*i);
+		}
+		
+		printf("%ld\n", answer);
+	}
+	
+	return 0;
+}

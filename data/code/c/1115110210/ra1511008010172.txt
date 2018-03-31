@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include <string.h>
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+char a[1000]={'\0'};
+scanf("%s",a);
+int x=strlen(a);
+int i,j,flag;
+if(x%2==1)
+{
+a[(x/2)]='A';
+i=(x/2)+1;
+}
+else
+{
+i=(x/2);
+}
+while(a[i]!='\0')
+{
+for(j=0;j<(x/2);j++)
+{
+if(a[j]==a[i])
+{
+a[j]='A';
+a[i]='A';
+}
+}
+i++;
+}
+i=0;
+while(a[i]!='\0')
+{
+if(a[i]!='A')
+{
+flag=0;
+break;
+}
+else
+{
+flag=1;
+}
+i++;
+}
+if(flag==0)
+{
+printf("NO\n");
+}
+if(flag==1)
+{
+printf("YES\n");
+}
+}
+return 0;
+} 

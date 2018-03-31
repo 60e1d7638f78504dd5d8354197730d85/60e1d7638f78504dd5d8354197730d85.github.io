@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int fun (char *a,char *b,int k)
+    { int i=0,flag=0;
+    while(*b!='\0')
+        {
+        if(*a==*b)
+            {
+            a++;
+            i++;
+            if(i==k)
+                {
+                
+                flag=1;
+                break;
+            }
+        }
+        
+        b++;
+    }
+    
+     
+return flag;
+}
+ 
+int main() {
+  char h[26000],w[26000];
+  int x,i,j,k,t; 
+   scanf("%d",&t);
+    
+  scanf("%s %s",h,w);
+ 
+    i=strlen(h);
+  j=strlen(w);
+   if(i>=j)
+       {
+       k=fun(w,h,j);
+        
+   }
+    else
+        {
+       k=fun(h,w,i);
+        
+    }
+  
+    if(k>0)
+        {
+        printf("YES\n");
+    }
+    else
+    {
+      
+        printf("NO\n");  
+    }
+    
+  return 0;
+}
+ 

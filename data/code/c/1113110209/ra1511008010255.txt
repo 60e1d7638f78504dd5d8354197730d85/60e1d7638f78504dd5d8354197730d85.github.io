@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <math.h>
+ 
+ 
+int comp( void *a, void *b)
+{
+    return *((int *)a) - *((int *)b);
+}
+ 
+int main(void) {
+	// your code goes here
+	int t, n, k, i;
+	
+	scanf("%d",&t);
+	
+	while( t-- )
+	{
+	    long long int sum = 0, st = 0;
+	    int pos = 0;
+	
+      scanf("%d",&n);
+      scanf("%d",&k);
+	    
+	    int miss[k];
+	    
+	    for(i = 0; i < k; i++)
+          scanf("%d",miss+i);
+	    
+	    qsort( miss, k, sizeof(int), comp);
+	    
+	    while( pos < k )
+	    {
+	        sum += (long long int)miss[pos] * (miss[pos] - 1) / 2;
+	        sum -= st * (st + 1) / 2;
+	        
+	        st = miss[pos];
+	        
+	        if( (sum + 1)  == miss[pos] )
+	            break;
+	        pos++;
+	    }
+	    
+	    if( pos == k )
+	    {
+	        sum += (long long int)n * (n+1) / 2;
+	        if( k > 0)
+	            sum -= (long long int)miss[pos-1] * (miss[pos-1] + 1) / 2;
+	    }
+	    
+	    //printf("%lld\n", sum);
+	    
+	    if( sum % 2 )
+	        printf("Mom\n");
+	    else
+	        printf("Chef\n");
+	}
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      char s[50];
+      scanf("%s",s);
+      int i=0,j,c,flag=0;
+      while(s[i]!='\0')
+      {
+        c=0;
+       	for(j=0;s[j]!='\0';j++)
+        {
+          if(s[i]==s[j])
+            c++;
+        }
+        if(strlen(s)-c==c)
+        {
+          printf("YES\n");
+          flag=1;
+          break;
+        }
+        i++;
+      }
+      if(!flag)
+        printf("NO\n");
+    }
+	return 0;
+}

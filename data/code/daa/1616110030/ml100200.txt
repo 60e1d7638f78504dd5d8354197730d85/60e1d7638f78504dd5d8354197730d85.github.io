@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+int position[20];
+static int counter=1;
+// Check if a position is safe
+bool isSafe(int queen_number, int row_position){
+	// Check each queen before this one
+	for (int i = 0; i < queen_number; i++){
+		// Get another queen's row_position
+		int other_row_pos = position[i];
+		// Now check if they're in the same row or diagonals
+		if (other_row_pos == row_position || // Same row
+			other_row_pos == row_position - (queen_number - i) || // Same diagonal
+			other_row_pos == row_position + (queen_number - i))   // Same diagonal
+			return false;
+	}
+	return true;
+}
+void printBoard(int position[], int n) {
+  	int board[n][n];
+  	for (int i = 0; i < n; i++){
+    	for (int j = 0; j < n; j++){
+			board[i][j] = 0;
+        }
+    }
+	for (int i = 0; i < n; i++){
+    	board[i][position[i]]=1;
+    }
+  	for (int i = 0; i < n; i++){
+      for (int j = 0; j < n; j++){
+		(board[i][j]==1)?cout<<"Q ":cout<<"* ";
+      }
+      cout<<endl;
+    }
+}
+void solve(int k, int N){
+	if (k == N){
+		cout << "SOLUTION #"<< counter << endl;
+      	printBoard(position,N);
+      	//cout << endl;
+        counter++;
+	}
+	else{
+		for (int i = 0; i < N; i++){
+			// Before putting a queen (the k-th queen) into a row, test it for safeness
+			if (isSafe(k, i)){
+				position[k] = i;
+				// Place another queen
+				solve(k + 1,N);
+			}
+		}
+	}
+}
+
+int main()
+{
+  	int n;
+  	cin >> n;
+	solve(0,n);	
+ 	cout << "TOTAL SOLN. : " << counter-1;
+	return 0;
+}

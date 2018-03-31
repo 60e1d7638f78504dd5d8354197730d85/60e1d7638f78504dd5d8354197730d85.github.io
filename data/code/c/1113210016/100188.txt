@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+ {
+  int t,n,a,b,c,i,sum,oa,ob,to1;
+  scanf("%d",&t);
+  while(t--)
+   {
+    oa=0,ob=0,c=0,sum=0;
+    scanf("%d %d %d",&n,&a,&b);
+	i=0;
+	while(c<n)
+	 {
+	  if((a&(1<<i))!=0)
+	   ++oa;
+	  if((b&(1<<i))!=0)
+       ++ob;
+      ++i;
+	  ++c;
+     }
+	to1=oa+ob;
+	i=1;
+    if(to1>n)
+     to1=2*n-to1;
+    while(to1--)
+	 {
+      sum=sum+(1<<(n-i));
+	  ++i;
+	 }
+    printf("%d\n",sum);
+   }
+  return 0;
+ } 
+   

@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main(){
+    unsigned int n,t;
+    unsigned cost[7]={0},quality[7]={0};
+    unsigned int i,j,k;
+    scanf("%u%u",&n,&t);    
+    while(n--){
+              scanf("%u%u%u",&i,&j,&k);
+              if((quality[i]<k && i>0 && i<7) && t+cost[i]-j>0){
+                               quality[i]=k;
+                               cost[i]=j;
+                               t=t+cost[i]-j;
+              }
+    }
+    j=9999999;
+    for(i=1;i<7;i++){ 
+        if(cost[i]==0){
+        printf("0\n");return 0;}
+    }
+    for(i=1;i<7;i++){
+        if(quality[i]<j)
+        j=quality[i];
+    }
+    printf("%u\n",j);
+    return 0;
+}

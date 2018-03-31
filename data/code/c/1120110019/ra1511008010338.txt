@@ -1,0 +1,51 @@
+#include <stdio.h>
+char* ones_digit(int num)
+{
+  switch(num){
+    case 1: return "ONE";
+    case 2: return "TWO";
+    case 3: return "THREE";
+    case 4: return "FOUR";
+    case 5: return "FIVE";
+    case 6: return "SIX";
+    case 7: return "SEVEN";
+    case 8: return "EIGHT";
+    case 9: return "NINE";      
+}
+}
+char* tens_digit(int num)
+{
+  switch(num)
+  {
+    case 2: return "TWENTY";
+    case 3: return "THIRTY";
+    case 4: return "FORTY";
+    case 5: return "FIFTY";
+    case 6: return "SIXTY";
+    case 7: return "SEVENTY";
+    case 8: return "EIGHTY";
+    case 9: return "NINETY";
+  }
+}  
+  
+
+int main()
+{
+	float num;
+  	scanf("%f", &num);
+  	int count_int=0;
+  	int n1=(int)num;
+  	float mantissa=(num-n1)*10;
+  	int narr[10];
+  	int n=n1,x;
+  	while(n>0)
+    {      
+      narr[count_int++]=n%10;
+      n=n/10;
+    }
+  	if(count_int==3)
+      printf("%s HUNDRED %s AND PAISE %s", ones_digit(narr[count_int-1]), ones_digit(narr[0]), tens_digit(mantissa));
+  	else if(count_int==1)
+      printf("%s AND PAISE %s", ones_digit(narr[0]), tens_digit(mantissa));
+	return 0;
+}

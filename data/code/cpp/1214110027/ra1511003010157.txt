@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class student
+{
+public:
+  static int nextroll;
+  char name[30];
+  int roll;
+    
+  static void getnextroll()
+  {nextroll++;}
+  
+  void getdata()
+  {
+cin>>name;
+    roll=nextroll;
+  }
+  
+  void displaydata()
+  {
+  cout<<roll<<" "<<name<<"\n";
+  }
+};
+
+int student::nextroll=1101;
+
+int main()
+{
+    int n;
+    student a[200];
+  cin>>n;
+    for(int i=0;i<n;i++)
+    {
+      a[i].getdata();
+      a[i].displaydata();
+      a[i].getnextroll();
+    }
+	return 0;
+}

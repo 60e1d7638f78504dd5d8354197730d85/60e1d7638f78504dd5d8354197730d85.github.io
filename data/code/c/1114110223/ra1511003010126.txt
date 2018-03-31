@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,lastDigit,firstDigit,sum,numTests,tests[20],flag;
+  	scanf("%d",&numTests);
+  	for(i=0;i<numTests;i++)
+    {
+     	scanf("%d",&tests[i]); 
+    }
+  	for(i=0;i<numTests;i++)
+    {
+     	sum=0;
+      	flag=0;
+      	lastDigit = tests[i]%10;
+      	j=1;
+      	firstDigit=0;
+		while(flag==0){
+         if(tests[i]>j && tests[i]<j*10){
+          	firstDigit =  tests[i]/j;
+           	flag=1;
+         }
+          j=j*10;
+        }
+  		sum = firstDigit + lastDigit;
+      	printf("%d\n",sum);
+        }
+	return 0;
+}

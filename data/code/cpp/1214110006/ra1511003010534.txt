@@ -1,0 +1,42 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+class bank
+{
+  char name[20],t[5];
+  int acno,bal,d,w;
+  public:
+  void init()
+  {
+    cin>>name>>acno>>t>>bal;
+   }
+   void deposite()
+   {
+	cin>>d;
+    bal+=d;
+   }
+  void withdraw()
+  {
+    cin>>w;
+    if(w>bal)
+      cout<<"Insufficient amount"<<endl;
+    else
+      bal-=w;
+  }
+  void disp()
+  {
+    cout<<"NAME="<<name<<endl;
+    cout<<"ACCNO="<<acno<<endl;
+    cout<<"TYPE="<<t<<endl;
+    cout<<"BALANCEAMOUNT="<<bal<<endl;
+  }
+};   
+int main()
+{
+	class bank b;
+  	b.init();
+  	b.deposite();
+  	b.withdraw();
+  	b.disp();
+	return 0;
+}

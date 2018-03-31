@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <math.h>
+int palin(int n)
+{
+  int pal=0;
+  while(n!=0)
+      {
+       int rem=n%10;
+      pal=pal*10+rem;
+       n=n/10;   
+  }
+  return pal;
+  }
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+int sort(int arr[100],int n)
+{
+  int i, j;
+   for (i = 0; i < n-1; i++)      
+       for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+              swap(&arr[j], &arr[j+1]);
+return 0;
+}
+int main()
+{
+int n,fact[100];
+  scanf("%d",&n);
+  int i=2,j,k;
+  
+  fact[0]=1;
+  fact[1]=n;
+  if(n%2==0)
+  {
+   fact[i]=2;
+   ++i;
+   fact[i]=n/2;
+    ++i;
+  }
+  
+  for(j=3;j<=sqrt(n);j++)
+  {
+    if(n%j==0)
+    {
+      fact[i]=j;
+      ++i;
+      fact[i]=n/j;
+      ++i;
+    }
+  }
+   int m,s;
+  
+  for(m=0;m<i;m++)
+  {
+    if(fact[m]>10)
+    { 
+     fact[m]=palin(fact[m]);
+    }
+  }
+  
+  sort(fact,i);
+
+ int p;
+ for(p=0;p<i;p++)
+  {printf("%d\n",fact[p]);} 
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int * insert(int a[], int in, int e, int n);
+int main()
+{
+	int n,a[100]={0},in,e,i;
+  	scanf("%d", &n);
+  	for(i=0;i<n;i++)
+    {
+      	scanf("%d", &a[i]);
+    }
+  	scanf("%d%d", &in,&e);
+  	if(in>=n)
+    {
+      	printf("Sorry Invalid Location");
+      	return 0;
+    }
+  	int *p;
+  	p=insert(a,in,e,n);
+  	for(i=0;i<n+1;i++)
+    {
+  		printf("%d\n", *(p+i));
+    }
+	return 0;
+}
+int * insert(int a[], int in, int e, int n)
+{
+  	int temp,i;
+  	for(i=n;i>=in;i--)
+    {
+      temp=a[i-1];
+      a[i]=temp;
+    }
+  	a[in-1]=e;
+  return a;
+}

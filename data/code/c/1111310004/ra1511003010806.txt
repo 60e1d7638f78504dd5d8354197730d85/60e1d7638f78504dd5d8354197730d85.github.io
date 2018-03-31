@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+	int t,g,z,y,i,n,q,j;
+  	scanf("%d",&t);
+  	for(z=0;z<t;z++)
+    {
+      scanf("%d",&g);
+      for(y=0;y<g;y++)
+      {
+        int count=0;
+        scanf("%d",&i);
+        scanf("%d",&n);
+        scanf("%d",&q);
+        char a[n];
+        if(i==1)
+        {
+          a[0]='H';
+        }
+        else
+        {
+          a[0]='T';
+        }
+        if(n%2==1)
+        {
+          if(a[0]=='H')
+         	 a[0]='T';
+          else
+            a[0]='H';
+        }
+        for(j=1;j<n;j++)
+        {
+          if(a[j-1]=='H')
+            a[j]='T';
+          else
+            a[j]='H';
+        }
+        
+        for(j=0;j<n;j++)
+        {
+          if(q==1 && a[j]=='H')
+            count++;
+          if(q==2 && a[j]=='T')
+            count++;
+        }
+        printf("%d\n",count);
+      }
+    }
+	return 0;
+}

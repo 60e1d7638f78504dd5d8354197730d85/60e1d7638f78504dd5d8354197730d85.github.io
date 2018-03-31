@@ -1,0 +1,33 @@
+    #include<stdio.h>
+    #include<math.h>
+    #include<string.h>
+     
+    int main()
+    {
+        int t,k,count[26]={0},i,j,m,p,l;
+        char str[100001],str1[100001];
+        scanf("%d",&t);
+        for(i=0;i<t;i++)
+        {
+            scanf("%s",str);
+            scanf("%d",&k);
+            l = strlen(str);
+            j = 0;
+            p = l-k;
+            for(j=0,m=0;j<l;j++)
+            {
+                while((m!=0) && str1[m-1] > str[j] && p != 0)
+                {
+                    m--;
+                    p--;
+                }
+                str1[m] = str[j];
+                m++;
+     
+            }
+            str1[k] = '\0';
+            printf("%s\n",str1);
+        }
+        return 0;
+    }
+     

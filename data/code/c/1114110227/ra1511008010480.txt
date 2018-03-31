@@ -1,0 +1,29 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  	int place1 = -1;
+	int place10 = -1;
+  	int place100 = -1;
+  	int answer = 1;
+  	int n;
+  	scanf("%d", &n);
+  	place1 = n%10; n/=10;
+  	place10 = n%10; n /= 10;
+  	place100 = n%100; n/=10;
+  	if(place100 == 1) {
+      	answer = 4;
+    	if(place1 > 0) {
+        	answer++;
+        }
+    }
+  	else if(place10 > 0) {
+      	answer++;
+    	if(place1 > 0 || place10 > 1) {
+        	answer++;
+        }
+    }
+  	else {}
+  	printf("%d\n", answer);
+	return 0;
+}

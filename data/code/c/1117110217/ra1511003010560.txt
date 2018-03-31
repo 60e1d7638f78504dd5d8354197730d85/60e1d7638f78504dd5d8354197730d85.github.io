@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+ 
+int main()
+{
+    int i, n, p, max1, max2;
+    scanf("%d", &n);
+    scanf("%d", &max1);
+    if (n == 1) printf ("0\n");
+    else
+    {
+        scanf("%d", &max2);
+        if (max2 == max1) max2 = 0;
+        if (max2 > max1)
+        {
+            p = max2;
+            max2 = max1;
+            max1 = p;
+ 
+        }
+        for (i = 2; i < n; i++)
+        {
+            scanf("%d", &p);
+            if (p > max1)
+            {
+                max2 = max1;
+                max1 = p;
+            }
+            else if (p < max1 && p > max2) max2 = p;
+        }
+        printf("%d\n", max2);
+    }
+    return 0;
+}
+ 

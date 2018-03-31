@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+      boolean isUnique(String q)
+      {
+        int A[]={0,0,0,0,0,0,0,0,0,0};
+        int i,flag=0;
+        char ch;
+        for(i=0;i<q.length();i++)
+        {
+          ch=q.charAt(i);
+          A[ch-48]++;
+        }
+        for(i=1;i<10;i++)
+        {
+          if(A[i]!=1)
+          {
+            flag=1;
+            break;
+          }
+        }
+        if(flag==1)
+          return false;
+        else
+          return true;
+      }
+	 public static void main(String[] args) {
+       Scanner s=new Scanner(System.in);
+       TestClass obj=new TestClass();
+       int g,b=0;
+       g=s.nextInt();
+       while(b<g)
+       {
+         int a=s.nextInt();
+         String p=Integer.toString(a);
+         if(p.length()<3)
+         {System.out.println("\nNumber should be atleast three digits");
+         }
+         else
+         {
+         String str=Integer.toString(a*1)+Integer.toString(a*2)+Integer.toString(a*3);
+         if(obj.isUnique(str))
+         {
+           System.out.print("\nFascinating");
+         }
+        else
+        {
+          System.out.print("\nNot Fascinating");
+        }
+        }
+        b++;
+       }
+       
+    }
+}

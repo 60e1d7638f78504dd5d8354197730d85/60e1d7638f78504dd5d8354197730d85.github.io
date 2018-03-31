@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	int a[n],ans[n],i;
+  	for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+  	for(i=0;i<n;i++)
+    {
+       int len=0,temp;      	
+    	int fd,ld;
+      	ld=a[i]%10;
+      	temp=a[i];
+      	while(temp!=0)
+        {
+        	temp/=10;
+          	len++;
+        }
+      	len--;
+      	fd=a[i]/pow(10,len);
+      	
+      	ans[i]=fd+ld;
+      	
+    }
+  	for(i=0;i<n;i++)
+      printf("%d\n",ans[i]);
+	return 0;
+}

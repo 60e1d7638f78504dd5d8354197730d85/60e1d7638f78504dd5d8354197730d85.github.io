@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct _ { ios_base::Init i; _() { cin.sync_with_stdio(0); cin.tie(0);cout.tie(0); } } _;
+
+#define ict int t;cin>>t;while(t--)
+#define lct long long int t;cin>>t;while(t--)
+#define in(a) int a; cin>>a;
+#define llin(a) ll a; cin>>a;
+
+#define srep(i,a,b) for(ll i=a;i<b;i++)
+#define rep(i,n) for(ll i=0;i<n;i++)
+
+#define pb push_back
+
+typedef long long int ll; // [9,223,372,036,854,775,807 to -9.....808]
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<string> vs;
+typedef pair<int, int> pii;
+typedef pair<ll,ll> pll;
+typedef set<int> si;
+typedef set<ll> sl;
+typedef map<string, ll> mapsl;
+typedef map<string, int> mapsi;
+typedef map<int,int> mapii;
+typedef map<ll, ll> mapll;
+
+set<pii> node[100009];
+bool visit[100009];
+
+vector<int> dijkstra(int start,int ver)
+{
+    vector<int> vec(ver+3,INT_MAX);
+    vector<int> st;
+    vec[start]=0;
+    st.push_back(start);
+    priority_queue<pii, std::vector<pii>, std::greater<pii> >  pq;
+    pq.push(make_pair(0,start));
+    while(ver!=0)
+    {
+        int mnln=pq.top().first;
+        int mnindex=pq.top().second;
+        while(visit[mnindex]==true)
+        {
+            pq.pop();
+            mnln=pq.top().first;
+            mnindex=pq.top().second;
+        }
+        pq.pop();
+        visit[mnindex]=true;
+        ver--;
+        for(set <pii>::iterator it = node[mnindex].begin();it != node[mnindex].end();++it)
+        {
+            int x=(*it).first;
+            int y=(*it).second;
+            vec[y]=min(vec[y],mnln+x);
+            if(visit[y]==false)
+            {
+                vec[y]=min(vec[y],mnln+x);
+                st.push_back(y);
+                pq.push(make_pair(vec[y],y));
+            }
+        }
+    }
+    return vec;
+
+}
+
+
+int main()
+{
+    bool chk[100005]={0};
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        memset(chk,0,n+3);
+        int q;
+        cin>>q;
+        int x,y,d;
+        for(int i=0;i<q;i++)
+        {
+            cin>>x>>y>>d;
+            if(chk[x]==false)
+            {
+                node[x].clear();
+                chk[x]=true;
+            }
+            if(chk[y]==false)
+            {
+                node[y].clear();
+                chk[y]=true;
+            }
+
+            node[x].insert(make_pair(d,y));
+            node[y].insert(make_pair(d,x));
+            visit[x]=false;
+            visit[y]=false;
+        }
+        vector<int> vec=dijkstra(1,n);
+
+        int quer;
+        cin>>quer;
+        while(quer--)
+        {
+            in(a);
+            in(k);
+            if(2*vec[a]<=k)
+            cout<<k - 2*vec[a]<<endl;
+            else
+            cout<<0<<endl;
+        }
+    }
+}

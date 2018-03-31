@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<math.h>
+#define max 1000000007
+long long int u[100005],l[100005],F[1000][1000];
+int main(){
+	long long int n,m,c;
+	scanf("%lld %lld %lld",&n,&m,&c);
+	long long int nup[1006]={0},lup[1006]={0};
+	long long int i,j;
+	
+	for(i=1;i<=n;i++){
+		scanf("%lld",&u[i]);
+		nup[u[i]]++;
+	}
+	
+	for(i=1;i<=m;i++){
+		scanf("%lld",&l[i]);
+		lup[l[i]]++;
+	}
+		
+	
+	long long int mo=1;
+	long long int pro;
+	long long int X[1006]={0};
+	for(i=1;i<=1005;i++){
+		pro=nup[i]*lup[i];
+		if(pro>0){
+		X[mo]=pro;
+		mo++;
+	}
+	
+	}
+	
+	{
+ 
+for(i=1;i<=c+1;i++){
+		for(j=1;j<mo;j++)
+		F[i][j]=0;
+	}
+F[1][1]=X[1];
+	for(i=2;i<mo;i++)
+	F[1][i]=(F[1][i-1]+X[i]);
+	for(j=1;j<mo;j++){
+		for(i=2;i<=c+1;i++){
+			if(i<j)
+			F[i][j]=(F[i][j-1]+F[i-1][j-1]*X[j])%max;
+			else if(i==j)
+			F[i][j]=(F[i-1][j-1]*X[j])%max;
+			else
+			F[i][j]=0;
+		}
+	}
+ 
+	for(i=2;i<=c+1;i++)
+	printf("%lld ",F[i][mo-1]);
+}
+	return 0;
+} 

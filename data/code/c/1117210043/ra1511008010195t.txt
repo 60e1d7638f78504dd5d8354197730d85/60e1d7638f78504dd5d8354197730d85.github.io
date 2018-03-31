@@ -1,0 +1,31 @@
+#include<stdio.h>
+int min(int a,int b,int c)
+{
+	int min=a;
+	if(b<min&&b<c)
+	   min=b;
+	else if(c<min&&c<b)
+	   min=c;
+	 return min;  	  
+}
+int main()
+{
+	int t,a[100],i,n,c[100];
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+		 scanf("%d",&a[i]);
+	c[0]=a[0];
+	for(i=1;i<n;i++)
+	{
+		c[i]=min(c[i-1]*a[i],c[i-1]+a[i],c[i-1]-a[i]);
+	}
+	
+	printf("%d\n",c[n-1]);
+    for(i=0;i<100;i++)
+       c[i]=0;
+}
+return 0;
+} 

@@ -1,0 +1,42 @@
+#include <stdio.h>
+long long int a[101][51];
+int main()
+{
+	int i,j;
+	long long int b[60];
+	a[0][0] = 1;
+	for(i=1;i<=100;i++)
+	for(j=0;j<=i;j++)
+	{
+		if(j==0)
+		a[i][j] = a[i-1][j];
+		else if(j==i)
+		a[i][j] = a[i-1][j-1];
+		else
+		a[i][j] = a[i-1][j] + a[i-1][j-1];
+	}
+	
+	int t,r,c,m=0;
+	long long int g,temp=0;
+	scanf("%d",&t);
+	while(t--)
+	{
+		m=0;
+		scanf("%d %d %lld",&r,&c,&g);
+		while(g>0)
+		{
+			i=c;
+			while((a[i][c]<=g)&&(i<=99))
+			i++;
+			i--;
+			b[++m] = a[i][c];
+			g-=a[i][c];
+			c--;	
+		}
+		printf("%d\n",m);
+		for(i=1;i<=m;i++)
+		printf("%lld ",b[i]);
+		printf("\n");
+	}
+	return 0;
+} 

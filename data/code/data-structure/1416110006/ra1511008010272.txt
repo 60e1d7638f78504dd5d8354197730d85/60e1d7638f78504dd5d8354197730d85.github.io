@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	char c1[100];
+  char c2[100];
+  int top1=-1;
+  int top2=-1;
+  cin>>c1;
+  int len = strlen(c1);
+  top1=len-1;
+  int k = top1/2;
+  for(int i=0;i<=k;i++) {
+    c2[++top2] = c1[top1--];
+  }
+  int flag=0;
+  if(len%2==1) {
+    top2--;
+  }
+  while(top1>=0 && top2>=0) {
+    if(c1[top1--]!=c2[top2--]) {
+      flag=1;
+      break;
+    }
+  }
+  if(flag==1)
+    cout<<c1<<" is not a Palindrome string";
+  else
+    cout<<c1<<" is a Palindrome string";
+	return 0;
+}

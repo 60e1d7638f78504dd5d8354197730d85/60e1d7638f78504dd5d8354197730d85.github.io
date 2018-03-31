@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+void check(int num,int value)
+{
+    if(num==1)    
+        printf("no\n");            
+    else if((num%value!=0 && value>98) || num==value)
+        printf("yes\n");
+    else if(num%value==0)
+        printf("no\n");
+    else 
+        check(num,value+1);    
+}
+int main()
+{
+    int test_cases=0;
+    scanf("%d",&test_cases);
+    
+    while(test_cases>0)
+    {
+        int number=0;
+        scanf("%d",&number);
+        check(number,2);
+        test_cases--;
+    }
+    return 0;
+}
+ 
+ 

@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{ 
+  int i,j,t,n,flag1,flag2;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    flag1=1;
+    flag2=1;
+    scanf("%d",&n);
+    if(n<3)
+    {
+      printf("No\n");
+    }
+    else
+    {
+      int arr[n];
+      for(j=0;j<n;j++)
+      {
+        scanf("%d",&arr[j]);
+      }
+      
+      
+        for(j=0;j<2;j++)
+        {
+          if(arr[j]!=arr[j+1])
+          {
+            flag1=0;
+            break;
+          }
+        }
+        for(j=n-3;j<n-1;j++)
+        {
+          if(arr[j]!=arr[j+1])
+          {
+            flag2=0;
+            break;
+          }
+        }
+      if(flag1 || flag2)
+      {
+        printf("Yes\n");
+      }
+      else
+      {
+        printf("No\n");
+      }
+    }  
+  }
+
+	return 0;
+}

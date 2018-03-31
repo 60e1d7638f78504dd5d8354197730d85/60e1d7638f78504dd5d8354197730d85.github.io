@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define FOR(i,n) for(i=0;i<n;i++)
+#define M 15
+#define MOD 1000000007
+long long m[M][M],res[M][M],nm[M][M],N;
+int main(int argc, char *argv[]){
+  int T,K,i,j,L,k,l;
+  scanf("%d",&T);
+  while(T--){
+    scanf("%lld",&N);
+    scanf("%d",&K);
+    FOR(i,M) FOR(j,M) m[i][j]=(j+1==i);
+    FOR(i,K){
+      scanf("%d",&L);
+      m[M-L][M-1]=1;
+    }
+    FOR(i,M) FOR(j,M) res[i][j]=(i==j);
+    for(i=0;(1LL<<i)<=N;i++){
+      if(N&(1LL<<i)){
+        FOR(k,M) FOR(l,M){
+          nm[k][l]=0;
+          FOR(j,M) nm[k][l]=(nm[k][l]+res[k][j]*m[j][l])%MOD;
+        }
+        FOR(k,M) FOR(l,M) res[k][l]=nm[k][l];
+      }
+      FOR(k,M) FOR(l,M){
+        nm[k][l]=0;
+        FOR(j,M) nm[k][l]=(nm[k][l]+m[k][j]*m[j][l])%MOD;
+      }
+      FOR(k,M) FOR(l,M) m[k][l]=nm[k][l];
+    }
+    printf("%lld\n",res[M-1][M-1]);
+  }
+  return 0;
+}

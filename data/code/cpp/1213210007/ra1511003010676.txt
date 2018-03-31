@@ -1,0 +1,31 @@
+#include <iostream>
+#include<string.h>
+#include<ctype.h>
+using namespace std;
+int main()
+{
+	char a[100];
+  	cin.getline(a,sizeof(a));
+  	int v=0,c=0,d=0,w=0;
+  	for(int i=0;i<strlen(a);i++)
+    {
+		if(isalpha(a[i]))
+        {
+			a[i]=tolower(a[i]);
+          	if(a[i]=='a'||a[i]=='e'||a[i]=='i'||a[i]=='o'||a[i]=='u')
+              v++;
+          	else
+              c++;
+        }
+      	else if(isdigit(a[i]))
+          	d++;
+      	else if(a[i]==' ')
+          	w++;
+    }
+  	cout<<"Vowels:"<<v<<endl;
+  	cout<<"Consonants:"<<c<<endl;
+  	cout<<"Digits:"<<d<<endl;
+  	cout<<"White spaces:"<<w<<endl;
+
+	return 0;
+}

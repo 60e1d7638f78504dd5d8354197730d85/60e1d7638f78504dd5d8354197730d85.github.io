@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int hard,tens,grade,t;
+  float carb;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d %f %d",&hard,&carb,&tens);
+    if(hard>50 &&  carb<0.7)
+    {
+      if(tens>5600)
+      {
+        grade=10;
+      }
+      else
+      {
+        grade=9;
+      }
+    }
+    else if(carb<0.7 && tens>5600)
+    {
+      grade=8;
+    }
+    else if(hard>50 && tens>5600)
+    {
+      grade=7;
+    }
+    else if(hard>50 || carb<0.7 || tens>5600)
+    {
+      grade=6;
+    }
+    else
+    {
+      grade=5;
+    }
+    printf("Grade %d\n",grade);
+  }
+	return 0;
+}

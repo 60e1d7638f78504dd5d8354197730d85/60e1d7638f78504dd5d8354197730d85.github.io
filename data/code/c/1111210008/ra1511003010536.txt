@@ -1,0 +1,46 @@
+#include <stdio.h>
+int fact(int a)
+{ int facto,k;
+ if(a==0)
+ {
+   facto=1;
+ }
+ else{
+  if(a!=1)
+  {
+    facto=a*fact(a-1);
+  }
+  else
+  {
+     facto=1;
+  }
+ }
+ return facto;
+}
+int sel(int a,int b)
+{ if(a<b)
+{
+  return 0;
+}
+ else{
+  int k,l,m;
+  k=fact(a);
+  l=fact(b);
+  m=fact(a-b);
+ return(k/(l*m));}
+}
+int main()
+{	int a,i,j,k;
+    scanf("%d",&a);
+ 	for(i=0;i<a;i++)
+    {
+      scanf("%d",&j);
+      int l[j];
+      for(k=0;k<j;k++)
+      {
+        scanf("%d",&l[k]);
+      }
+      printf("%d\n",sel(j,2));
+    }
+	return 0;
+}

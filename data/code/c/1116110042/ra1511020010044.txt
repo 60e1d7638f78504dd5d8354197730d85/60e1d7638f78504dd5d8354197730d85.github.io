@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<string.h>
+int isVowel(char ch)
+{
+    ch = toupper(ch);
+    return (ch=='A' || ch=='E' || ch=='I' ||
+                       ch=='O' || ch=='U');
+}
+ 
+int countVowels(char str[])
+{
+    int i,count = 0;
+    for (i=0; i<strlen(str); i++)
+        if (isVowel(str[i])) 
+            ++count;
+    return count;
+}
+ 
+int main()
+{
+    char str[70];
+  scanf("%s",str);
+ 
+    printf("%d",countVowels(str));
+    return 0;
+}

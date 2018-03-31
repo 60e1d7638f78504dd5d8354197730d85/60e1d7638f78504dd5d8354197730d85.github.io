@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+class Student {
+  	private String name;
+	private int rollno;
+  	public Scanner in;
+  	public void getRollNo() {
+      	in = new Scanner (System.in);
+      	this.name = in.nextLine();
+      	this.rollno = in.nextInt();	
+    }
+    public void putRollNo() {
+        System.out.println("Name="+name);
+        System.out.println("Regno="+rollno);
+    }
+}
+class Marks extends Student {
+	protected int Mark1;
+	protected int Mark2;
+	protected int Mark3;
+  	public void getMarks() {
+      this.Mark1 = in.nextInt();
+      this.Mark2 = in.nextInt();
+      this.Mark3 = in.nextInt();
+    }
+    public void putMarks() {
+        System.out.println("Mark1="+this.Mark1);
+        System.out.println("Mark2="+this.Mark2);
+        System.out.println("Mark3="+this.Mark3);
+    }
+}
+class Result extends Marks {
+	private float total;
+  	public void computeDisplay() {
+    	total = Mark1 + Mark2 + Mark3;
+        System.out.println("Total="+String.format("%.0f",total));
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) {
+       
+		Result r = new Result();
+       	r.getRollNo();
+       	r.getMarks();
+       	r.putRollNo();
+       	r.putMarks();
+       	r.computeDisplay();
+    }
+}

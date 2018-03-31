@@ -1,0 +1,106 @@
+#include <algorithm>
+#include <bitset>
+#include <cassert>
+#include <cctype>
+#include <cmath>
+#include <complex>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
+using namespace std;
+ 
+#define fi first
+#define se second
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int((x).size()))
+#define bit(x) (1 << (x))
+#define cnt1(x) (__builtin_popcount(x))
+ 
+template<class T, class U>
+inline void chkmax(T& x, U y) {
+	if (x < y) x = y;
+}
+ 
+template<class T, class U>
+inline void chkmin(T& x, U y) {
+	if (y < x) x = y;
+}
+ 
+typedef long long LL;
+typedef double DB;
+typedef pair<int, int> PII;
+typedef vector<int> VI;
+const int MX = 55;
+int N, K, T;
+int tt[MX][3], pp[MX][3];
+int p, tp;
+int dp[2][MX][MX][MX];
+ 
+void go(int i, int j, int s, int k, int t, int sum) {
+	if (s > N || t > T) return;
+	if (j == 3) {
+		chkmax(dp[!p][s][k][t], tp + sum);
+		return;
+	}
+	go(i, j + 1, s, k, t, sum);
+	go(i, j + 1, s + 1, k + !sum, t + tt[i][j], sum + pp[i][j]);
+}
+ 
+int main() {
+//	freopen("in.txt", "r", stdin);
+//	freopen("out.txt", "w", stdout);
+	
+	int tc, i, j, s, k, t, rlt;
+	
+	for (scanf("%d", &tc); tc--; ) {
+		scanf("%d%d%d", &N, &K, &T);
+		for (i = 0; i < N; i++) {
+			for (j = 0; j < 3; j++) scanf("%d", &tt[i][j]);
+		}
+		for (i = 0; i < N; i++) {
+			for (j = 0; j < 3; j++) scanf("%d", &pp[i][j]);
+		}
+		p = 0;
+		for (s = 0; s <= N; s++) {
+			for (k = 0; k <= s; k++) {
+				for (t = 0; t <= T; t++) dp[p][s][k][t] = -1;
+			}
+		}
+		dp[p][0][0][0] = 0;
+		for (i = 0; i < N; i++) {
+			for (s = 0; s <= N; s++) {
+				for (k = 0; k <= s; k++) {
+					for (t = 0; t <= T; t++) dp[!p][s][k][t] = -1;
+				}
+			}
+			for (s = 0; s <= N; s++) {
+				for (k = 0; k <= s; k++) {
+					for (t = 0; t <= T; t++) {
+						tp = dp[p][s][k][t];
+						if (~tp) go(i, 0, s, k, t, 0);
+					}
+				}
+			}
+			p = !p;
+		}
+		rlt = -1;
+		for (s = 0; s <= N; s++) {
+			for (k = 0; k <= s; k++) {
+				for (t = 0; t <= T; t++) {
+					if (s - k <= K) chkmax(rlt, dp[p][s][k][t]);
+				}
+			}
+		}
+		printf("%d\n", rlt);
+	}
+	return 0;
+} 

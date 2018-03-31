@@ -1,0 +1,38 @@
+#include<stdio.h>
+int scan()
+{
+    int x=0;
+    char ch;
+    ch=getchar();
+    while(ch<'0'||ch>'9')
+        ch=getchar();
+    while(ch>='0'&&ch<='9')
+    {
+        x=(x<<1)+(x<<3)+ch-'0';
+        ch=getchar();
+    }
+    return x;
+}
+int main()
+{
+    int t,n,a[50001],i,m;
+    long long ans;
+    t=scan();
+    while(t--)
+    {
+        m=999999;
+        n=scan();
+        for(i=0;i<n;i++)
+        {
+            a[i]=scan();
+            if(m>a[i])
+                m=a[i];
+        }
+        n--;
+        ans=1LL;
+        ans=ans*m*n;
+        printf("%lld\n",ans);
+    }
+    return 0;
+}
+ 

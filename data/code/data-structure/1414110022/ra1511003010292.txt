@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.Arrays;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       int arr[] = new int[n];
+       int sum_ev , sum_od , od_no , ev_no;
+       sum_ev = sum_od = od_no = ev_no = 0;
+       for(int i = 0 ;i <n ;i++)
+       {arr[i] = sc.nextInt();
+        if(arr[i]%2 == 0)
+        {sum_ev = sum_ev + arr[i];
+          ev_no ++;
+        }
+        else
+        {
+          sum_od= sum_od + arr[i];
+          od_no++;
+        }
+       }
+       int ev[] = new int[ev_no];
+       int od[] = new int[od_no];
+       for(int i = 0 ,  x = 0 ,  y = 0 ; i<n ; i++)
+       {
+         if(arr[i] % 2 == 0)
+         {
+           ev[x] = arr[i];
+           x++;
+         }
+         else
+         {
+           od[y] = arr[i];
+           y++;
+         }
+       }
+              Arrays.sort(ev);
+       Arrays.sort(od);
+       for(int x = 0 ; x<ev_no ; x++)
+         System.out.print(ev[x] + " ");
+       System.out.print(sum_ev + " ");
+       for(int x = 0 ; x<od_no ; x++)
+         System.out.print(od[x] + " ");
+       System.out.println(sum_od + " ");
+	}
+}

@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node* next;
+};
+class LinkedList
+{
+  private:
+  node *head,*tail;
+  public:
+   LinkedList()
+   {
+     head=NULL;
+     tail=NULL;
+   }
+   void addData(int n)
+   {
+     node* temp=new node;
+     temp->data=n;
+     temp->next=NULL;
+     if(head==NULL)
+     {
+       head=temp;
+       tail=temp;
+     }
+     else
+     {
+       tail->next=temp;
+       tail=temp;
+     }
+   }
+  void display()
+  {
+    node* temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+      cout<<"->"<<temp->data;
+      temp=temp->next;
+    }
+  }
+  void addAtPosition(int pos,int value)
+  {
+    node *temp;
+    node * newnode=new node;
+    newnode->data=value;
+    temp=head;
+    if(pos==0)
+    {
+      newnode->next=head;
+      head=newnode;
+    }
+    else
+   {  
+    while(pos>1)
+    {
+      temp=temp->next;
+      pos--;
+    }
+    newnode->next=temp->next;
+    temp->next=newnode;
+    }
+  }
+  
+};
+int main()
+{
+  int n,data,pos,value;
+  cin>>n;
+  LinkedList l;
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    l.addData(data);
+  }
+  cin>>pos>>value;
+  if(pos>0 && pos<=n+1)
+    l.addAtPosition(pos-1,value);
+  else
+    cout<<"Invalid position!";
+  cout<<"Linked List\n";
+  l.display();
+  return 0;
+}

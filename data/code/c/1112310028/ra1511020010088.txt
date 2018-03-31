@@ -1,0 +1,76 @@
+  #include <stdio.h>
+         
+        int main(void) {
+        	int N,X,Y,flagA, flagB,i;
+        	long int sum=0;
+        	int A[100000];
+        	int B[100000];
+        	
+        	scanf("%d", &N);
+        	scanf("%d", &X);
+        	flagA=X;
+        	scanf("%d", &Y);
+        	 flagB=Y;
+        	 
+        	 for(i=0;i<N;i++)
+        	 {
+        	 	scanf("%d", &A[i]);
+        	 }
+        	for(i=0;i<N;i++)
+        	 {
+        	 	scanf("%d", &B[i]);
+        	 }
+        	 for(i=0;i<N;i++)
+        	 {
+        		if(A[i]<B[i] && flagB != 0)
+        		{
+        			sum=sum+B[i];
+        			flagB--;
+        			flagA=X;
+        		}
+        		else if(A[i]>B[i] && flagA != 0)
+        		{
+        			sum=sum+A[i];
+        			flagA--;
+        			flagB=Y;
+        		}
+        		else if(A[i]<B[i] && flagB == 0)
+        		{
+        			sum=sum+A[i];
+        			flagA--;
+        			flagB=Y;
+        		}
+        		else if(A[i]>B[i] && flagA == 0)
+        		{
+        			sum=sum+A[i];
+        			flagA--;
+        			flagB=Y;
+        		}
+        		else if(A[i]==B[i] && flagA == 0)
+        		{
+        			sum=sum+B[i];
+        			flagB--;
+        			flagA=X;
+        		}
+        		else if(A[i]==B[i] && flagB == 0)
+        		{
+        			sum=sum+A[i];
+        			flagA--;
+        			flagB=Y;
+        		}
+        		else if(A[i]==B[i] && flagB<=flagA){
+        			sum=sum+A[i];
+        			flagA--;
+        			flagB=Y;
+            		}
+            		else
+            		{
+            		sum=sum+B[i];
+        			flagB--;
+        			flagA=X;
+        			}
+            		
+        	 }
+        	 printf("%ld", sum);
+        	return 0;
+        }   

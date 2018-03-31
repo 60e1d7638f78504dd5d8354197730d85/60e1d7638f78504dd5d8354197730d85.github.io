@@ -1,0 +1,108 @@
+#include<stdio.h>
+typedef struct pt
+{
+    int x,y;
+}P;
+void merg(P pts[],int lo, int mid,int hi)
+{
+    int i=lo,j=mid+1,k=0;
+    P pt[2000];
+    while(i<=mid && j<=hi)
+    {
+        if(pts[i].x< pts[j].x || (pts[i].x==pts[j].x && pts[i].y<pts[j].y))
+            pt[k++]=pts[i++];
+        else
+            pt[k++]=pts[j++];
+    }
+    while(i<=mid)
+        pt[k++]=pts[i++];
+    while(j<=hi)
+        pt[k++]=pts[j++];
+    i=lo;
+    for(j=0;j<k;j++){
+        pts[i++]=pt[j];
+    }
+}
+void sor(P pts[],int lo, int hi)
+{
+    int mid;
+    if(lo<hi)
+    {
+        mid=(lo+hi)/2;
+        sor(pts,lo,mid);
+        sor(pts,mid+1,hi);
+        merg(pts,lo,mid,hi);
+    }
+}
+int main()
+{
+    int n,i,j,lo,hi,mid,pt,f1,f2,x3,y3,x4,y4;
+    P pts[2005];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d %d",&pts[i].x,&pts[i].y);
+    }
+    sor(pts,0,n-1);
+    if(n==0)
+        pt=4;
+    else if(n==1)
+        pt=3;
+    else
+        pt=2;
+    for(i=0;i<n && pt!=0;i++)
+    {
+        for(j=i+1;j<n && pt!=0;j++)
+        {
+            x3=(pts[i].x + pts[j].x - pts[i].y + pts[j].y);
+            y3=(pts[i].y + pts[j].y + pts[i].x - pts[j].x);
+            x4=(pts[i].x + pts[j].x + pts[i].y - pts[j].y);
+            y4=(pts[i].y + pts[j].y - pts[i].x + pts[j].x);
+            f1=f2=0;
+            if(x3 %2==0 && y3%2==0){
+                x3=x3/2;
+                y3=y3/2;
+                lo=0;
+                hi=n-1;
+                while(lo<=hi)
+                {
+                    mid=(lo+hi)/2;
+                    if(pts[mid].x==x3 && pts[mid].y==y3)
+                    {
+                        f1=1;
+                        break;
+                    }
+                    else if(pts[mid].x>x3 || (pts[mid].x == x3 && pts[mid].y > y3))
+                        hi=mid-1;
+                    else
+                        lo=mid+1;
+                }
+            }
+            if(x4%2==0 && y4%2==0){
+                x4=x4/2;
+                y4=y4/2;
+                lo=0;
+                hi=n-1;
+                while(lo<=hi)
+                {
+                    mid=(lo+hi)/2;
+                    if(pts[mid].x==x4 && pts[mid].y==y4)
+                    {
+                        f2=1;
+                        break;
+                    }
+                    else if(pts[mid].x>x4 || (pts[mid].x == x4 && pts[mid].y > y4))
+                        hi=mid-1;
+                    else
+                        lo=mid+1;
+                }
+                if(f1==1 && f2==1)
+                    pt=0;
+                else if(f1==1 || f2==1)
+                    pt=1;
+            }
+        }
+    }
+    printf("%d",pt);
+    return 0;
+}

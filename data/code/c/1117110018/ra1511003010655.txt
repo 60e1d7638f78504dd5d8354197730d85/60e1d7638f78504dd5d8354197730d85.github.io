@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,i,j,flag=0;
+  scanf("%d",&m);
+  scanf("%d",&n);
+  if(m!=n)
+    return 0;
+  else {
+  int mat[n][n],trans[n][n];
+  for(i=0;i<n;i++) {
+    for(j=0;j<n;j++) {
+      scanf("%d",&mat[i][j]);
+      trans[j][i]=mat[i][j];
+    }
+  }
+  for(i=0;i<n;i++) {
+    for(j=0;j<n;j++) {
+      if(mat[i][j]!=trans[i][j])
+      {
+        flag=1;
+        break; }
+    }
+   if(flag==1){
+     printf("Not Symmetric");
+     break; }
+  } 
+  
+  if(flag==0)
+  printf("Symmetric"); }
+	return 0;
+}

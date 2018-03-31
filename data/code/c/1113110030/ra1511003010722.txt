@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+int hard,ts,n,t;
+  float cc;
+  scanf("%d",&n);
+  while(n--)
+  {
+    scanf("%d%f%d",&hard,&cc,&ts);
+    if((hard>50)&&(cc<0.7)&&(ts>5600))
+     t=10;
+   if((hard>50)&&(cc<0.7)&&(ts<=5600))
+     t=9;
+    if((cc<0.7)&&(ts>5600)&&(hard<=50))
+      t=8;
+    if((hard>50)&&(ts>5600)&&(cc>=0.7))
+      t=7;
+    if(((hard>50)&&(cc>0.7)&&(ts<=5600))||((hard<=50)&&(cc<0.7)&&(ts<=5600))||((hard<=50)&&(cc>=0.7)&&(ts>5600)))
+      t=6;
+   if((hard<=50)&&(cc>0.7)&&(ts<=5600))
+     t=5;
+    printf("Grade %d\n",t);
+  }
+  
+	return 0;
+}

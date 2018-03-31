@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+	int c = getchar();
+
+	if (c >= 'A' && c <= 'Z') {
+		puts("Upper case character was entered");
+		putc(c | (1 << 5), stdout);
+	}
+
+	if (c >= 'a' && c <= 'z') {
+		puts("Lower case character was entered");
+		printf("Upper case=%c", c & ~(1 << 5));
+	}
+
+	return 0;
+}

@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long LL;
+#define PII       pair<int,int>
+#define all(c)    c.begin(),c.end()
+#define sz(c)     (int)c.size()
+#define clr(c)    c.clear()
+#define pb        push_back
+#define mp        make_pair
+#define cin(x)    scanf("%d",&x)
+#define MOD		1000000007
+#define EPS		1E-10
+LL T[100001];
+int N,M;
+int daysRequired(LL daily)
+{
+	int reqd = 1;
+	LL currSum = 0;
+	for(int i = 1; i <= N; i++)
+	{
+		if(currSum + T[i] > daily)
+		{
+			reqd += 1;
+			currSum = T[i];
+		}
+		else
+			currSum += T[i];
+	}
+	return (reqd <= M) ? 1 : 0;
+}
+int main()
+{
+	cin >> N >> M;
+	assert(1 <= N && N <= 100000);
+	assert(1 <= M && M <= N);
+	LL lo = 1, hi = 1LL * MOD * MOD;
+	for(int i = 1; i <= N; i++)
+	{
+		cin >> T[i];
+		assert(1 <= T[i] && T[i] <= 1000000000000);
+		lo = max(lo , T[i]);
+	}
+	while(lo < hi)
+	{
+		LL mid = (lo + hi) >> 1;
+		int p = daysRequired(mid);
+		if(p)
+			hi = mid;
+		else
+			lo = mid + 1;
+	}
+	cout << lo << "\n";
+	return 0;
+}

@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		 Scanner x= new Scanner(System.in);
+        int y=x.nextInt();
+        while(y-->0){
+            int z=x.nextInt(); int count=0;
+            int w[]=new int[z];
+            for(int i=0;i<z;i++){
+                w[i]=x.nextInt();
+            }
+             int q[]=new int[z];
+            for(int i=0;i<z;i++){
+                q[i]=x.nextInt();
+            }
+            
+            if (q[0]<=w[0]){
+                count++;
+            }
+            if(z>1){
+                for(int i=1;i<z;i++){
+                    if(q[i]<=(w[i]-w[i-1])){
+                        count++;
+                    }
+                }
+                
+            }
+            System.out.println(count);
+            
+        }
+	}
+}

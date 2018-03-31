@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+       int test=sc.nextInt();
+       while(test!=0)
+       {
+       	int val1=sc.nextInt();
+       	int val2=sc.nextInt();
+         test--;
+       
+       	TestClass objname=new TestClass();
+       	int val3=objname.great(val1,val2);
+		int c1=val1*val2;
+    	   System.out.print(val3+" ");
+           System.out.println(c1/val3);
+       }
+       
+	}
+  
+  public int great(int gcd,int lcm)
+  {
+  	 int a,b,hcf,t;
+     a=gcd;
+     b=lcm;
+     while(b!=0)
+     {
+     	t=b;
+        b=a%b;
+        a=t;
+     }
+    return a;
+  }
+}

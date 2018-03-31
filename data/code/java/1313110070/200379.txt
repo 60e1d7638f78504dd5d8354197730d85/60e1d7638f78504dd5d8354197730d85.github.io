@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+        Scanner in = new Scanner(System.in);
+		int T = Integer.parseInt(in.nextLine());
+		while ((T--) > 0) {
+			String[] inputs = in.nextLine().split(" ");
+			int s = Integer.parseInt(inputs[0]);
+			int e = Integer.parseInt(inputs[1]);
+			int start = (int) Math.sqrt(s);
+			int end = (int) Math.sqrt(e);
+			int count = 0;
+			for (int i = start; i <= end; i++) {
+				long l = (i * i);
+				if (l >= s && l <= e) {
+					count++;
+				}
+			}
+			System.out.println(count);
+        }
+}
+}

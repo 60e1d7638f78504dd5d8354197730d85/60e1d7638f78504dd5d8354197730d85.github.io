@@ -1,0 +1,37 @@
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int t,n;
+	Scanner s2=new Scanner(System.in);
+       t=s2.nextInt();
+	while(t-->0)
+	{
+		n=s2.nextInt();
+		long[] a=new long[1000];
+		long total;
+		long m=1000000000+7;
+		for(int i=0;i<=n;i++)
+		{
+			a[i]=s2.nextInt();
+		}
+		long s=0;
+		for(int i=1;i<n;i++)
+		{
+			for(int j=i+1;j<=n;j++) 
+			{
+				s=s+(((a[i]%m)*(a[j]%m))%m*((int)Math.pow(2,n-j+i-1)%m))%m;
+			}
+		}
+		long s1=0;  
+		for(int j=1; j<=n;j++)
+		{
+			s1=s1+(((a[0]%m)*(a[j]%m))%m*((int)Math.pow(2,n-j)%m))%m;
+		}
+		total=2*(s+s1);
+		System.out.println(total);
+    }
+		
+	}
+}

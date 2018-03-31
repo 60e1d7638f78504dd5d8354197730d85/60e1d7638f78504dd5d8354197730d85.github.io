@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 500031;
+int n, m;
+int mark[N];
+int ans;
+bool bad(int val, int ps)
+{
+    if (val%mark[ps])
+        return true;
+    for (int i = ps + 1; i <= m; i++)
+    {
+        if (val%mark[i] == 0)
+            return true;
+    }
+    return false;
+}
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++)
+    {
+        cin >> mark[i];
+    }
+    ans = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        ++ans;
+        int val;
+        cin >> val;
+        while (bad(ans, val))
+            ++ans;
+    }
+    cout << ans << endl;
+    return 0;
+}
+

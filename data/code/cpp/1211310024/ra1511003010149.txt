@@ -1,0 +1,28 @@
+#include <iostream>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+using namespace std;
+int sub(char s[])
+{
+	int ss[26]={0},l=0;
+	int i;
+	for(i=0;s[i]!='\0';i++)
+	  ss[s[i]-'a']++;
+	for(i=0;i<26;i++)
+	  if(ss[i])
+	  l++;
+    return l;
+}
+int main() 
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		char s[100001];
+		scanf("%s",s);
+		printf("%d\n",sub(s));
+	}
+	return 0;
+} 

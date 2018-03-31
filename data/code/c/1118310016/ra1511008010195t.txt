@@ -1,0 +1,82 @@
+#include<stdio.h>
+struct nod
+{
+int t,c;
+long long int q;
+}nods[105];
+int n,t;
+int check(long long int);
+int main()
+{
+int i,p;
+long long int l,h,m;
+scanf("%d %d",&n,&t);
+l=0;
+h=0;
+for(i=0;i<n;i++)
+{
+scanf("%d %d %lld",&nods[i].t,&nods[i].c,&nods[i].q);
+h=(h>nods[i].q)?h:nods[i].q;
+}
+while(l<h-1)
+{
+m=(l+h)/2;
+p=check(m);
+if(p==1)
+{
+l=m;
+}
+else
+{
+h=m;
+}
+}
+printf("%lld\n",l);
+return 0;
+}
+int check(long long int x)
+{
+int d,i,mark[10],cost[10],sum;
+d=0;
+sum=0;
+for(i=0;i<=7;i++)
+{
+mark[i]=0;
+}
+for(i=0;i<n;i++)
+{
+if(nods[i].q>=x)
+{
+if(mark[nods[i].t]==0)
+{
+d++;
+mark[nods[i].t]=1;
+cost[nods[i].t]=nods[i].c;
+}
+else
+{
+cost[nods[i].t]=(cost[nods[i].t]<nods[i].c)?cost[nods[i].t]:nods[i].c;
+}
+}
+}
+if(d==6)
+{
+for(i=1;i<=6;i++)
+{
+sum=sum+cost[i];
+}
+if(sum<=t)
+{
+return 1;
+}
+else
+{
+return 0;
+}
+}
+else
+{
+return 0;
+}
+}
+ 

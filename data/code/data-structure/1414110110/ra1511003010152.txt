@@ -1,0 +1,43 @@
+#include <stdio.h>
+ 
+int main()
+{
+  int array[100], n, c, d, swap;
+ 
+  scanf("%d", &n);
+ 
+ 
+  for (c = 0; c < n; c++)
+    scanf("%d", &array[c]);
+ 
+  for (c = 0 ; c < ( n - 1 ); c=c+2)
+  {
+    for (d = 0 ; d < n - c - 1; d=d+2)
+    {
+      if (array[d] < array[d+2]) 
+      {
+        swap       = array[d];
+        array[d]   = array[d+2];
+        array[d+2] = swap;
+      }
+    }
+  }
+ 
+    for (c = 1 ; c < ( n - 1 ); c=c+2)
+  {
+    for (d = 1 ; d < n - c - 1; d=d+2)
+    {
+      if (array[d] > array[d+2]) 
+      {
+        swap       = array[d];
+        array[d]   = array[d+2];
+        array[d+2] = swap;
+      }
+    }
+    }
+ 
+  for ( c = 0 ; c < n ; c++ )
+     printf("%d ", array[c]);
+ 
+  return 0;
+}

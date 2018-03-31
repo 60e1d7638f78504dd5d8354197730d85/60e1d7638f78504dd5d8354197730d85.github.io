@@ -1,0 +1,36 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n1 = s.nextInt();
+		int n2 = s.nextInt();
+      	int n= n1*n2;
+      	int i, j, index=0;
+      	int arr[]= new int[100];
+      	findPrime(arr);
+      	System.out.printf("The Filled Array is :\n");
+		for(i=0; i<n1; i++){
+			for(j=0; j<n2; j++){
+				System.out.printf("%d	", arr[index++]);
+            }
+		System.out.println();
+        }
+    }
+	public static void findPrime(int[] arr){
+		int index=1;
+      	arr[0]=2;
+		for(int num=2; num<100; num++){
+			int i=1, flag=1;
+			while(i*i<num){
+				i++;
+				if(num%i==0)
+					flag=0;
+			}
+		if(flag==1)
+			arr[index++]=num;
+		}
+    }
+}

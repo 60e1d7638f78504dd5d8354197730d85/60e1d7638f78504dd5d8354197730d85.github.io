@@ -1,0 +1,227 @@
+#include<stdio.h>
+ 
+#define MAXN 500000
+#define MAX_BITS 19
+ 
+struct trie_node
+{
+	int count;
+	int children_counts[2];
+	int next[2];
+};
+ 
+struct trie_node trie[MAXN][MAX_BITS + 1];
+ 
+void add_num(int, int);
+int find_max_xor_num(int, int, int);
+int count_less_equal(int, int, int);
+int find_kth_num(int, int, int);
+ 
+int main()
+{
+	int k, L, M, N, op, R, x;
+	N = 0;
+	scanf("%d", &M);
+	while (M--)
+	{
+		scanf("%d", &op);
+		switch (op)
+		{
+		case 0:
+			scanf("%d", &x);
+			add_num(N, x);
+			N++;
+			break;
+		case 1:
+			scanf("%d %d %d", &L, &R, &x);
+			printf("%d\n", find_max_xor_num(L - 1, R - 1, x));
+			break;
+		case 2:
+			scanf("%d", &k);
+			N -= k;
+			break;
+		case 3:
+			scanf("%d %d %d", &L, &R, &x);
+			printf("%d\n", count_less_equal(L - 1, R - 1, x));
+			break;
+		case 4:
+			scanf("%d %d %d", &L, &R, &k);
+			printf("%d\n", find_kth_num(L - 1, R - 1, k));
+			break;
+		}
+	}
+	return 0;
+}
+ 
+void add_num(int index, int num)
+{
+	int bit, i, level, next_index;
+	next_index = index - 1;
+	level = 0;
+	i = MAX_BITS - 1;
+	while ((i >= 0) && (next_index != -1))
+	{
+		bit = (num & (1 << i)) ? 1 : 0;
+		trie[index][level].count = trie[next_index][level].count + 1;
+		trie[index][level].children_counts[bit] = trie[next_index][level].children_counts[bit] + 1;
+		trie[index][level].children_counts[1 - bit] = trie[next_index][level].children_counts[1 - bit];
+		trie[index][level].next[bit] = index;
+		trie[index][level].next[1 - bit] = trie[next_index][level].next[1 - bit];
+		next_index = trie[next_index][level].next[bit];
+		i--;
+		level++;
+	}
+	while (i >= 0)
+	{
+		bit = (num & (1 << i)) ? 1 : 0;
+		trie[index][level].count = 1;
+		trie[index][level].children_counts[bit] = 1;
+		trie[index][level].children_counts[1 - bit] = 0;
+		trie[index][level].next[bit] = index;
+		trie[index][level].next[1 - bit] = -1;
+		next_index = index;
+		i--;
+		level++;
+	}
+	if (next_index != -1)
+		trie[index][level].count = trie[next_index][level].count + 1;
+	else
+		trie[index][level].count = 1;
+	trie[index][level].children_counts[0] = trie[index][level].children_counts[1] = 0;
+	trie[index][level].next[0] = trie[index][level].next[1] = -1;
+}
+ 
+int find_max_xor_num(int L, int R, int value)
+{
+	int bit, i, level, max_val, next_index_L, next_index_R;
+	next_index_L = L - 1;
+	next_index_R = R;
+	level = 0;
+	max_val = 0;
+	i = MAX_BITS - 1;
+	while ((i >= 0) && (next_index_L != -1))
+	{
+		bit = (value & (1 << i)) ? 1 : 0;
+		if (trie[next_index_R][level].children_counts[1 - bit] - trie[next_index_L][level].children_counts[1 - bit] > 0)
+		{
+			next_index_L = trie[next_index_L][level].next[1 - bit];
+			next_index_R = trie[next_index_R][level].next[1 - bit];
+			if (1 - bit)
+				max_val |= (1 << i);
+		}
+		else
+		{
+			next_index_L = trie[next_index_L][level].next[bit];
+			next_index_R = trie[next_index_R][level].next[bit];
+			if (bit)
+				max_val |= (1 << i);
+		}
+		level++;
+		i--;
+	}
+	while (i >= 0)
+	{
+		bit = (value & (1 << i)) ? 1 : 0;
+		if (trie[next_index_R][level].children_counts[1 - bit] > 0)
+		{
+			next_index_R = trie[next_index_R][level].next[1 - bit];
+			if (1 - bit)
+				max_val |= (1 << i);
+		}
+		else
+		{
+			next_index_R = trie[next_index_R][level].next[bit];
+			if (bit)
+				max_val |= (1 << i);
+		}
+		level++;
+		i--;
+	}
+	return max_val;
+}
+ 
+int count_less_equal(int L, int R, int value)
+{
+	int bit, count, i, level, next_index_L, next_index_R;
+	next_index_L = L - 1;
+	next_index_R = R;
+	level = 0;
+	count = 0;
+	i = MAX_BITS - 1;
+	while ((i >= 0) && (next_index_L != -1))
+	{
+		bit = (value & (1 << i)) ? 1 : 0;
+		if (bit)
+		{
+			count += trie[next_index_R][level].children_counts[0] - trie[next_index_L][level].children_counts[0];
+			next_index_L = trie[next_index_L][level].next[1];
+			next_index_R = trie[next_index_R][level].next[1];
+		}
+		else
+		{
+			next_index_L = trie[next_index_L][level].next[0];
+			next_index_R = trie[next_index_R][level].next[0];
+		}
+		level++;
+		i--;
+	}
+	while ((i >= 0) && (next_index_R != -1))
+	{
+		bit = (value & (1 << i)) ? 1 : 0;
+		if (bit)
+		{
+			count += trie[next_index_R][level].children_counts[0];
+			next_index_R = trie[next_index_R][level].next[1];
+		}
+		else
+			next_index_R = trie[next_index_R][level].next[0];
+		level++;
+		i--;
+	}
+	if (next_index_R != -1)
+		count += trie[next_index_R][level].count;
+	if (next_index_L != -1)
+		count -= trie[next_index_L][level].count;
+	return count;
+}
+ 
+int find_kth_num(int L, int R, int k)
+{
+	int i, level, next_index_L, next_index_R, num;
+	next_index_L = L - 1;
+	next_index_R = R;
+	level = 0;
+	num = 0;
+	i = MAX_BITS - 1;
+	while ((i >= 0) && (next_index_L != -1))
+	{
+		if (trie[next_index_R][level].children_counts[0] - trie[next_index_L][level].children_counts[0] >= k)
+		{
+			next_index_L = trie[next_index_L][level].next[0];
+			next_index_R = trie[next_index_R][level].next[0];
+		}
+		else
+		{
+			num |= (1 << i);
+			k -= trie[next_index_R][level].children_counts[0] - trie[next_index_L][level].children_counts[0];
+			next_index_L = trie[next_index_L][level].next[1];
+			next_index_R = trie[next_index_R][level].next[1];
+		}
+		level++;
+		i--;
+	}
+	while (i >= 0)
+	{
+		if (trie[next_index_R][level].children_counts[0] >= k)
+			next_index_R = trie[next_index_R][level].next[0];
+		else
+		{
+			num |= (1 << i);
+			k -= trie[next_index_R][level].children_counts[0];
+			next_index_R = trie[next_index_R][level].next[1];
+		}
+		level++;
+		i--;
+	}
+	return num;
+} 

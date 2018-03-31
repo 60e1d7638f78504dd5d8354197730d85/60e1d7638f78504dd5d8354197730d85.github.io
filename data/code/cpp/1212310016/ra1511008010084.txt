@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+typedef long long int ll;
+const int N = 100005;
+int main()
+{
+  //freopen("inputf.txt","r",stdin);
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+  int n;
+  string s;
+  scanf("%d",&n);cin>>s;
+  bool b=1;
+  int h = 0;
+  int x;
+  for(int i=0;i<n;i++)
+  {
+      scanf("%d",&x);
+      x&=1;
+      if(x==0)
+        b=1;
+      else
+      {
+        if(b)h++;
+        b^=1;
+      }
+  }
+  if(n==1)
+  {
+    if(h==1)
+      cout<<"Chefu"<<endl;
+    else
+      cout<<"Chef"<<endl;
+    continue;
+  }
+  if((n%2==0 && s=="Chef")||(n%2==1) && s=="Chefu" )
+    {cout<<"Chef"<<endl;continue;}
+  int moves;
+  if(s=="Chef")
+    moves=n/2;
+  else
+    moves=(n-1)/2;
+  if(moves<h)
+    cout<<"Chefu"<<endl;
+  else
+    cout<<"Chef"<<endl;}
+  return 0;
+} 

@@ -1,0 +1,42 @@
+#include<stdio.h>
+// Returns length of the largest subarray with 0 sum
+int max(int a,int b)
+{
+if(a>b)
+  return a;
+  else 
+    return b;
+}
+int maxLen(int arr[], int n)
+{
+    int i,j, max_len = 0; // Initialize result
+ 
+    // Pick a starting point
+    for (i = 0; i < n; i++)
+    {
+        // Initialize currr_sum for every starting point
+        int curr_sum = 0;
+ 
+        // try all subarrays starting with 'i'
+        for (j = i; j < n; j++)
+        {
+            curr_sum += arr[j];
+ 
+            // If curr_sum becomes 0, then update max_len
+            // if required
+            if (curr_sum == 0)
+               max_len = max(max_len, j-i+1);
+        }
+    }
+    return max_len;
+}
+
+int main()
+{int arr[10],i,n,m;
+    scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+ m=maxLen(arr, n);
+    printf("%d",m);
+    return 0;
+}

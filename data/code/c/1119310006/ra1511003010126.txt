@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+	long long int q,n,u,v,x,y,a,b,z;
+    scanf("%lld",&q);
+    while(q--)
+    {
+        a=b=0;
+        scanf("%lld%lld%lld",&n,&u,&v);
+        x=u;
+        y=v;
+        while(x!=y)
+        {
+            if(x>y)
+            {
+                x=x/2;
+                a++;
+            }
+            else
+            {
+                y=y/2;
+                b++;
+            }
+        }
+        if(b>a)
+            a=b;
+        if(v>u)
+            u=v;
+        b=pow(2,a);
+        z=(n-u)/b;
+        x=x+z;
+        printf("%lld\n",x);
+    }
+	return 0;
+}

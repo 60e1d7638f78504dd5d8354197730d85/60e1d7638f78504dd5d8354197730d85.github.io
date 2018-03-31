@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  	char ch[1000];
+  	int spaces[100], i, j;
+  	int csize = -1, ssize = -1;
+  	int isFirstWord = 1;
+  
+  	scanf("%[^\n]", ch);
+  	
+  	// calculate size and store space index
+  	for(i=0; ch[i] != '\0'; i++) {
+      if(ch[i] == ' ')
+        spaces[++ssize] = i;
+      ++csize;
+    }
+  
+  	if(ssize < 0) {
+      for(i=csize; i>=0; i--)
+        printf("%c", ch[i]);
+    }
+  	else {
+      for(i=0; i<=ssize+1; i++) {
+      	if(i <= ssize)
+        	j = spaces[i]-1;
+        else
+          	j = csize;
+       	if(isFirstWord) {
+          for(; j >=0; j--)
+            printf("%c", ch[j]);
+          isFirstWord = 0;
+        }
+  		else
+          for(; j > spaces[i-1]; j--)
+            printf("%c", ch[j]);
+        if(ssize >=0)
+          printf(" ");
+      }
+    }
+      
+	return 0;
+}

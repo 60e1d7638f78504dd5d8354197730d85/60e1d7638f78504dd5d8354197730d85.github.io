@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int T, h, c, t;
+	float hardness, carbon_content, tensile_strength;
+ 
+	scanf("%d", &T);
+ 
+	while(T--){
+ 
+		scanf("%f%f%f", &hardness, &carbon_content, &tensile_strength);
+ 
+		h = c = t = 0;
+ 
+		if(hardness > 50){
+			h = 1;
+		}
+		if(carbon_content < 0.7){
+			c = 1;
+		}
+		if(tensile_strength > 5600){
+			t = 1;
+		}
+ 
+		if(h && c && t){
+			printf("Grade 10\n");
+		}else if(h && c){
+			printf("Grade 9\n");
+		}else if(c && t){
+			printf("Grade 8\n");
+		}else if(h && t){
+			printf("Grade 7\n");
+		}else if ( h || c || t){
+			printf("Grade 6\n");
+		}else{
+			printf("Grade 5\n");
+		}
+    }
+
+	return 0;
+}

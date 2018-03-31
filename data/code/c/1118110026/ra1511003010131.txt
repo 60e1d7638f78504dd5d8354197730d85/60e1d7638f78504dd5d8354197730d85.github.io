@@ -1,0 +1,26 @@
+#include <stdio.h>
+union number{
+  int data;
+};
+int main()
+{ 
+    union number num;
+   int i,sum=0,temp;
+    scanf("%d",&num.data);
+  //printf("%d",num.data);
+  	if(num.data>=100 && num.data<=999)
+    {for(i=0;i<=2;i++)
+     { 
+      temp=num.data%10;
+      sum=sum+temp;
+       num.data/=10;}}
+    else if(num.data>=10 && num.data<=99)
+    {for(i=0;i<2;i++)
+        {temp=num.data%10;
+      sum=sum+temp;
+       num.data/=10;}}
+   	else
+   		{sum=sum+num.data;}
+  	printf("%d",sum);
+	return 0;
+}

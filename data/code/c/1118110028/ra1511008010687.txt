@@ -1,0 +1,25 @@
+#include <stdio.h>
+struct reverse
+{
+  int n;
+  int reversedNumber;
+  int remainder;
+}rev;
+int main()
+{
+    rev.reversedNumber = 0;
+
+    //printf("Enter an integer: ");
+    scanf("%d", &rev.n);
+
+    while(rev.n != 0)
+    {
+        rev.remainder = rev.n%10;
+        rev.reversedNumber = rev.reversedNumber*10 + rev.remainder;
+        rev.n /= 10;
+    }
+
+    printf("%d", rev.reversedNumber);
+
+    return 0;
+}

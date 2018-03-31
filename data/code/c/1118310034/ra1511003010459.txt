@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define REP(i,a,b) for(i=a;i<b;i++)
+#define rep(i,n) REP(i,0,n)
+ 
+void intReverse(int d[],int size){int a=0,b=size-1,t;while(a<b)t=d[a],d[a]=d[b],d[b]=t,a++,b--;}
+int intNextPermutation(int d[],int size){int i,j,k;for(k=size-2;k>=0;k--)if(d[k]<d[k+1])break;if(k<0){intReverse(d,size);return 0;}for(i=size-1;;i--)if(d[i]>d[k])break;j=d[i],d[i]=d[k],d[k]=j;intReverse(d+k+1,size-k-1);return 1;}
+ 
+#define M 1000000080798150871LL
+#define ll long long
+ 
+ll c[1200][1200];
+char mp[1200][5];
+ 
+int main(){
+  int i,j,k,l,m,n;
+  int X,x,Y,y;
+  int d[3];
+  ll res;
+  int size;
+ 
+  c[0][0]=1; REP(j,1,1200) c[0][j]=0;
+  REP(i,1,1200){
+    c[i][0]=1; REP(j,1,1200) c[i][j]=(c[i-1][j-1]+c[i-1][j])%M;
+  }
+ 
+  scanf("%d",&size);
+  while(size--){
+    scanf("%d%d%d%d",&X,&Y,&x,&y);
+    rep(i,X) scanf("%s",mp[i]);
+    if(X<x || Y<y){puts("0"); continue;}
+ 
+    res = 0;
+    rep(i,Y) d[i] = 0;
+    rep(i,y) d[Y-1-i] = 1;
+    do{
+      n = 0;
+      rep(i,X){
+        rep(j,Y) if(d[j] && mp[i][j]=='0') break;
+        if(j==Y) n++;
+      }
+      res = (res + c[n][x]) % M;
+    }while(intNextPermutation(d,Y));
+ 
+    printf("%lld\n",res);
+  }
+ 
+  return 0;
+}
+ 

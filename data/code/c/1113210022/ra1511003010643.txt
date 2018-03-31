@@ -1,0 +1,119 @@
+ 
+#include<stdio.h>
+#include<string.h>
+ 
+#define MAX 1000000
+#define MAXP 78498
+ 
+char isprime[MAX+1],range[MAX+1];
+int countprimes[41],primes[MAXP];
+ 
+void sieve(void);
+int prime_count(long long,long long);
+ 
+int main()
+{
+	int expL,expR,i,prime,T,total;
+	long long L,product,R;
+	sieve();
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%lld %lld",&L,&R);
+		if(L==1)
+		{
+			if(R==1)
+			{
+				printf("0\n");
+				continue;
+			}
+			L++;
+		}
+		/*only numbers which are primes or powers of prime have prime number of factors
+		number of factors of n(=p1^e1*p2^e2*...*pk^ek)=(e1+1)(e2+1)...(ek+1)
+		number of factors is prime only if one of e1,e2,...,ek is of the form prime-1 and rest are 0*/
+		total=0;
+		for(i=0;i<MAXP;i++)
+		{
+			/*find maximum power of prime up to L and up to R*/
+			prime=primes[i];
+			expL=0;
+			for(product=1;product<L;product*=prime)
+				expL++;
+			expR=expL;
+			for(;product<=R;product*=prime)
+				expR++;
+			expR--;
+			if((expL>expR) || (expR==1))
+				continue;
+			if(expL==1)
+				expL=2;
+			/*find number of numbers in [expL,expR] which are prime-1 i.e.
+			find number of prime numbers in [expL+1,expR+1]*/
+			total+=countprimes[expR+1]-countprimes[expL];
+		}
+		/*add number of primes in range [L,R] to the total*/
+		printf("%d\n",total+prime_count(L,R));
+	}
+	return 0;
+}
+ 
+void sieve(void)
+{
+	int i,j;
+	memset(isprime,-1,sizeof(isprime));
+	isprime[0]=isprime[1]=0;
+	for(i=2;i*i<=MAX;i++)
+		if(isprime[i])
+			for(j=i*i;j<=MAX;j+=i)
+				isprime[j]=0;
+	for(i=0,j=0;i<=MAX;i++)
+		if(isprime[i])
+			primes[j++]=i;
+	countprimes[0]=0;
+	for(i=1;i<41;i++)
+		countprimes[i]=countprimes[i-1]+((isprime[i])?1:0);
+}
+ 
+int prime_count(long long L,long long R)
+{
+	int count,high,i,low;
+	long long first_multiple,j;
+	if(R<=MAX)
+	{
+		low=(int)L;
+		high=(int)R;
+		count=0;
+		for(i=low;i<=high;i++)
+			if(isprime[i])
+				count++;
+	}
+	else
+	{
+		memset(range,-1,sizeof(range));
+		count=0;
+		if(L<=MAX)
+		{
+			low=(int)L;
+			for(i=low;i<=MAX;i++)
+				if(isprime[i])
+					count++;
+			L=MAX+1;
+		}
+		for(i=0;i<MAXP;i++)
+		{
+			first_multiple=1LL*primes[i]*(L/primes[i]);
+			if(first_multiple<L)
+				first_multiple+=primes[i];
+			for(j=first_multiple;j<=R;j+=primes[i])
+				range[(int)(j-L)]=0;
+		}
+		high=(int)(R-L);
+		for(i=0;i<=high;i++)
+			if(range[i])
+				count++;
+	}
+	return count;
+} 
+
+ 

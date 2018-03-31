@@ -1,0 +1,63 @@
+#include <stdio.h>
+int summation (int n)
+{
+  int count = 1;
+  int sum = 0;
+  while (count<=n)
+  {
+    sum = sum + count;
+    count ++;
+  }
+  return sum;
+}
+
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	int i;
+  int arr[t];
+   	for(i=0;i<t;i++)
+    {
+      int d,n;
+      scanf("%d  %d",&d,&n);
+      int sum;
+      int k=1;
+       if (d==1)
+       {
+		sum = summation(n);
+        arr[i] = sum;
+       }
+      if(d==2)
+      {
+        sum = summation(n);
+        k = summation(sum);
+        arr[i] = k;
+      }
+      if(d==3)
+      {
+        sum = summation(n);
+        k = summation(sum);
+        int l;
+        l = summation(k);
+        arr[i] = l;
+      }
+      if(d==4)
+      {
+        sum = summation(n);
+        k = summation(sum);
+        int x;
+        x = summation(k);
+        int y;
+        y = summation(x);
+       	arr[i] = y;
+      }
+          
+    } 
+  	int j;
+  	for (j=0;j<t;j++)
+    {
+      printf("%d\n",arr[j]);
+    }
+	return 0;
+}

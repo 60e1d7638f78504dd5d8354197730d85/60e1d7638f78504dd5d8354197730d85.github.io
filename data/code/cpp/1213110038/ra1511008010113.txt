@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    char str[5],substr[2];
+    cin>>str>>substr;
+    int j,k,flag=0,pos=-1,l;
+    for(j=0;j<5;j++){
+      if(substr[0]==str[j]){
+        pos=j;
+        for(k=0,l=j;k<2 && l<5;k++,l++)
+          if(str[l]!=substr[k]){
+            flag=0;
+            break;
+          }
+        else{
+          flag++;
+          if(flag==2)
+            break;
+        }
+        if(flag==2)
+          break;
+      }
+    }
+    if(pos>=0)
+      cout<<"Substring found at position "<<pos+1;
+    else
+      cout<<"Substring not found";
+	return 0;
+}

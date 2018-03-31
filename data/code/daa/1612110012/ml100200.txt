@@ -1,0 +1,49 @@
+#include<stdio.h>
+int main()
+{
+        int t;
+        scanf("%d",&t);
+        while(t>0)
+{
+    int n;
+    scanf("%d",&n);
+    int a[n],i;
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    int count=0;
+    int j;
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(a[j]<a[i])
+            {
+                int temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    }
+    i=0;
+    int flag=0;
+    while(i<n)
+    {
+        
+        flag=0;
+        while(a[i+1] == a[i]+1)
+        {
+            flag++;
+            i++;
+        }
+        count++;
+        i++;
+    }
+    printf("%d\n",count);
+
+    t--;
+}
+	
+	return 0;
+}

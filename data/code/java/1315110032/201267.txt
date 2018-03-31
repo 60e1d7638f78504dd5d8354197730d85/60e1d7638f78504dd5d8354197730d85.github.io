@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.Scanner;
+class Welcome{
+	private String name,gender,relation;
+  public void setValues(String n,String g,String r)
+  {
+    name=n;
+    gender=g;
+    relation=r;
+   // System.out.println(name+g+relation);
+  }
+  	public void welcomeMessage()
+   	{
+      String msg="Welcome ";
+  		if (relation.equals("Parent"))
+         {
+              if (gender.equals("Male"))
+                  msg+="Mr."+name;
+              else
+              	  msg+="Ms."+name;
+              msg+="! All the best to get a suitable life partner for your son or daughter";
+         }
+        else if(relation.equals("Self"))
+         {
+          	if (gender.equals("Female"))
+           		 msg+="Ms."+name+"! All the best to get a suitable groom for you";
+        	else if (gender.equals("Male"))
+   	         	msg+="Mr."+name+"! All the best to get a suitablebride for you";
+        }
+      System.out.println(msg);
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Welcome obj=new Welcome();
+        Scanner sc=new Scanner(System.in);
+        String n=sc.nextLine();
+        String g=sc.nextLine();
+        String r=sc.nextLine();
+       
+        obj.setValues(n,g,r);
+        obj.welcomeMessage();
+	}
+}

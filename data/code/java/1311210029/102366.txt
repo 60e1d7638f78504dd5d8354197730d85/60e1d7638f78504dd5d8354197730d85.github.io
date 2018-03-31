@@ -1,0 +1,46 @@
+import java.util.*;
+import java.lang.Math.*;
+public class TestClass
+{
+  public static void main (String [] args)
+	{
+		Scanner s = new Scanner(System.in);
+		int t = s.nextInt();
+		while (t-->0)
+		{
+			String a = s.next();
+			int count=F(a);
+			for(int j=0;j<count;j++)
+			{
+				System.out.print("(");
+ }
+			for(int k=0;k<count;k++)
+			{
+				System.out.print(")");
+				
+			}
+			System.out.println();
+ 
+		}
+	}
+	public static int F(String a) 
+			{
+				int balance=0;
+				int max_balance=0;
+				int len=a.length();
+				for(int i=0;i<len;i++)
+				{
+					if(a.charAt(i)=='(')
+					{
+						balance=balance+1;
+					}
+					if(a.charAt(i)==')')
+					{
+						balance=balance-1;
+					}
+					max_balance=Math.max(max_balance,balance);
+				}
+				return max_balance;
+			}
+ 
+}

@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+public class TestClass {
+  	int basicSalary;
+	int daPercentage;
+	int hraPercentage;
+  	float totalpay;
+	float taxAmount;
+	float takeHomeSalary;
+  
+  	public void initializeData(int basicSalary,int daPercentage,int hraPercentage){
+    	this.basicSalary=basicSalary;
+      	this.daPercentage=daPercentage;
+      	this.hraPercentage=hraPercentage;
+    }
+  	public void calculateTaxAmount(int taxpercentage){
+    	this.totalpay=basicSalary+(float)daPercentage*basicSalary/100+(float)hraPercentage*basicSalary/100;
+      	taxAmount=(float)taxpercentage*totalpay/100;
+    }
+  	public void calculateTaxAmount(){
+      	int taxpercentage=5;
+    	this.totalpay=basicSalary+(float)daPercentage*basicSalary/100+(float)hraPercentage*basicSalary/100;
+      	taxAmount=(float)taxpercentage*totalpay/100;
+  }
+  	
+  	public void calculatetakeHomeSalary(){
+    	takeHomeSalary=totalpay-taxAmount;
+    }
+  
+  	public void displayData(){
+      	DecimalFormat format = new DecimalFormat("0.00");
+    	System.out.println("Basic Salary is "+this.basicSalary);
+      	System.out.println("DA amount is "+format.format((double)daPercentage*basicSalary/100));
+      	System.out.println("HRA amount is "+format.format((double)hraPercentage*basicSalary/100));
+     	System.out.println("Total Salary is "+format.format(this.totalpay));
+      	System.out.println("Tax to be paid is "+format.format(this.taxAmount));
+      	System.out.println("Take Home Salary is "+format.format(this.takeHomeSalary));
+    }
+  
+	public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+      	int bp1=sc.nextInt();
+      	int da1=sc.nextInt();
+      	int hra1=sc.nextInt();
+      	int bp2=sc.nextInt();
+      	int da2=sc.nextInt();
+      	int hra2=sc.nextInt();
+      	int tp=sc.nextInt();
+      	TestClass t1=new TestClass();
+      	TestClass t2=new TestClass();
+      	t1.initializeData(bp1,da1,hra1);
+      	t2.initializeData(bp2,da2,hra2);
+      	t1.calculateTaxAmount();
+      	t2.calculateTaxAmount(tp);
+      	t1.calculatetakeHomeSalary();
+      	t2.calculatetakeHomeSalary();
+      	t1.displayData();
+      	t2.displayData();
+	}
+}

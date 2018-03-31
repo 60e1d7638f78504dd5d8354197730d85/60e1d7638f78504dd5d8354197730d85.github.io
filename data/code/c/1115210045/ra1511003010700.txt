@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<math.h>
+#include<assert.h>
+#define MOD 1000000007
+int C[5001][5001];
+void preprocess()
+{
+ int i,k;    
+ for(i=1;i<=5000;i++)
+ {
+   C[i][i]=C[i][0]=1;
+   C[i][1]=i;
+ }
+ for (i=1; i<=5000; i++)
+	    {
+	        for (k=2; k<i; k++)                
+                    C[i][k] = (C[i-1][k-1] + C[i-1][k])%MOD;
+       } 
+}
+int main()
+{
+   int n,k;
+   unsigned long ans;
+   preprocess();
+   for(;scanf("%d%d",&n,&k);)
+   {
+      if(n==0 && k==0)
+        break;  
+        ans=2ll*C[n-2][k/2]*C[n-2][(k-1)/2]%MOD;  
+      printf("%ld\n",ans);                             
+   }                       
+   return 0;         
+}    

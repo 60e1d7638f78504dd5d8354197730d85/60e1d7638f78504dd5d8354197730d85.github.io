@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+//n is the last index of the array
+int
+arr_sum(int arr[], int n )
+{
+    //base case:
+    if (n == 0) {
+        return arr[0];
+    }
+
+    return (arr[n] + arr_sum(arr,n-1));
+}
+
+int
+main(void)
+{
+  int n;
+  scanf("%d",&n);
+  
+    int arr[n];
+    int sum;
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+
+    sum = arr_sum(arr,n-1);
+    printf("%d\n",sum);
+
+    return 0;
+}

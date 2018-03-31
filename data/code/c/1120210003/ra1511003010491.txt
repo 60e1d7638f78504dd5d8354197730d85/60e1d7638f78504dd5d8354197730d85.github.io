@@ -1,0 +1,55 @@
+/*
+// Sample code to perform I/O:
+ 
+scanf("%s", name);              // Reading input from STDIN
+printf("Hi, %s.\n", name);      // Writing output to STDOUT
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+ 
+// Write your code here
+#include <stdio.h>
+struct abc{
+  char s[20];
+  int k1[10];
+  int w;
+};
+int main() {
+	char s[100];
+	int n,k,l,q,s2=0;
+	scanf("%d%d%d%d",&n,&k,&l,&q);
+	struct abc r[n];
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+	    s2=0;
+	    scanf("%s",r[i].s);
+	    for(j=0;j<k;j++)
+	    {
+	        scanf("%d",&r[i].k1[j]);
+	        s2=s2*10+r[i].k1[j];
+	    }
+	    r[i].w=s2;
+	}
+	int a[k],p;
+	for(i=0;i<q;i++)
+	{
+	    s2=0;
+	    for(j=0;j<k;j++)
+	    {
+	        scanf("%d",&a[j]);
+	        s2=s2*10+a[j];
+	    }
+	    for(p=0;p<n;p++)
+	    {
+	        if(s2==r[p].w)
+	        {
+	            printf("%s\n",r[p].s);
+	            break;
+	        }
+	    }
+	    if(p==n)
+	    printf("You cant fool me:P\n");
+	}
+	return 0;
+}

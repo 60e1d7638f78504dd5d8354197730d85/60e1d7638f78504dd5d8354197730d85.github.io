@@ -1,0 +1,36 @@
+#include<iostream>
+#include<algorithm>
+#include<map>
+
+using namespace std;
+int main()
+{
+    map<long int,int>m;
+    int n,i;
+    cin>>n;
+    long int a[n];
+    for(i=0;i<n;i++)
+    {
+        long int x;
+        cin>>x;
+        if(x<0)
+        {
+            m[x]=1;
+            a[i]=-x;
+        }
+        else
+        {
+            m[x]=0;
+            a[i]=x;
+        }
+    }
+    sort(a,a+n);
+    for(i=0;i<n;i++)
+    {
+        if(m[-a[i]]==1)
+        cout<<-a[i]<<" ";
+        else
+        cout<<a[i]<<" ";
+    }
+    return 0;
+}

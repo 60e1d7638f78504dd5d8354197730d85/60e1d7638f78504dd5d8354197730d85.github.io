@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  int n,t=0,i,c,j,a[100],flag=0;
+  scanf("%d",&n);
+  for(i=2;i<=n;i++)
+  {
+    c=0;
+    for(j=1;j<=i;j++)
+    {
+      if(i%j==0)
+        c++;
+      else continue;
+    }
+    if(c==2)
+    {
+      a[t]=i;
+      t++;
+    }
+  }
+  for(i=0;i<t;i++)
+  {
+    for(j=0;j<t;j++)
+    {
+      if(a[i]+a[j]==n)
+      {
+        if(a[i]<=(n/2))
+        {
+        printf("%d = %d + %d\n",n,a[i],a[j]);
+        }
+        flag=1;
+        break;
+      }
+      else continue;
+    }
+   
+  }
+  if(flag==0)
+    printf("NOT");
+
+	return 0;
+}

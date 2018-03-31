@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+class Base
+{
+  public:
+  int side,rad;
+  public:
+  virtual void show()
+  {
+    
+  }
+};
+class Derived: public Base
+{
+  public:
+  void show()
+  {
+  	cout<<"Area of square: "<<(side*side)<<endl;
+    cout<<"Area of circle: "<<(3.14*rad*rad)<<endl;
+  }
+};
+int main()
+{
+	Base *bp=new Derived();
+  	cin>>bp->side>>bp->rad;
+  	bp->show();
+	return 0;
+}

@@ -1,0 +1,87 @@
+/*
+// Sample code to perform I/O:
+ 
+#include <iostream>
+ 
+using namespace std;
+ 
+int main() {
+	int num;
+	cin >> num;										// Reading input from STDIN
+	cout << "Input number is " << num << endl;		// Writing output to STDOUT
+}
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+ 
+// Write your code here
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s,e;
+        cin>>s>>e;
+        int i=0,j=0,flag=0;
+        string s1="",e1="";
+        while(i<s.size())
+        {
+            if(s[i]=='A')
+            { 
+                int k,f=0;
+                for(k=j;k<=i;k++)
+                {
+                    if(e[k]=='A')
+                    {
+                        f=1;
+                        break;
+                    }
+                }
+                if(f==1)
+                {
+                    j=k+1;
+                }
+                else
+                {
+                    flag=1;
+                    cout<<"No"<<endl;
+                    break;
+                }
+                
+            }
+            if(s[i]=='B')
+            {
+                 
+                int k,f=0;
+                for(k=j;k<s.size();k++)
+                {
+                    if(k >= i && e[k]=='B')
+                    {
+                        f=1;
+                        break;
+                    }
+                }
+                if(f==1)
+                {
+                    j=k+1;
+                }
+                else
+                {
+                    flag=1;
+                    cout<<"No"<<endl;
+                    break;
+                }
+                
+            }
+            i++;
+        }
+        if(flag==0)
+        {
+            cout<<"Yes"<<endl;
+        }
+    }    
+    return 0;
+}

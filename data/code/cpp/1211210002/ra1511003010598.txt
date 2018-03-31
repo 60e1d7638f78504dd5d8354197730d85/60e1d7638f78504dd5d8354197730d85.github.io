@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int dectooct(int dec);
+int main()
+{
+  int dec;
+  cin>>dec;
+  int ans = dectooct(dec);
+  cout<<ans;
+	return 0;
+}
+int dectooct(int dec)
+{
+  int rem,i=1,oct=0;
+  while(dec!=0)
+  {
+    rem = dec%8;
+    dec=dec/8;
+    oct+=rem*i;
+    i=i*10;
+  }
+  return oct;
+}

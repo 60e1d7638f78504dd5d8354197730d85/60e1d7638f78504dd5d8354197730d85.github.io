@@ -1,0 +1,41 @@
+#include <stdio.h>
+int prime(int sum)
+{
+  int temp,flag=1,i,j;
+  temp=sum;
+  for(i=1;i<1000;i++)
+  {
+    flag=1;
+    sum=sum+i;
+     for(j=2;j<sum/2;j++)
+     {
+       if(sum%j==0)
+       {
+          flag=0;
+           break;
+       }
+     }
+    if(flag==1)
+    {
+      return sum;
+    }
+    else
+    {
+     sum=temp;
+    }
+  }
+  return 0;
+}
+int main()
+{
+  int t,x,y,sum,sum1;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d %d",&x,&y);
+    sum=x+y;
+    sum1=prime(sum);
+    printf("potatoes to be planted in the third field:%d\n",sum1-sum);
+  }
+	return 0;
+}

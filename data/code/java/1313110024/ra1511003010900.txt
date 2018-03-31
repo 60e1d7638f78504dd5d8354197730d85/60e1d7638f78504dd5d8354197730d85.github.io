@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class TestClass {
+
+    public static void main(String[] args) {
+      int d1,m1,y1,d2,m2,y2,fine_050;
+        Scanner mt = new Scanner(System.in);
+        d1 = mt.nextInt();
+        m1 = mt.nextInt();
+        y1 = mt.nextInt();
+        d2 = mt.nextInt();
+        m2 = mt.nextInt();
+        y2 = mt.nextInt();
+        fine_050 = 0;
+        if(y1 > y2)
+            fine_050 = 10000;
+        else if(y1 == y2){
+            if(m1 > m2)
+                fine_050 = 500 * (m1 - m2);
+            else if(m1 == m2){
+                if(d1 > d2)
+                    fine_050 = 15 * (d1 - d2);
+            }
+        }
+        System.out.println(fine_050);
+    }
+}

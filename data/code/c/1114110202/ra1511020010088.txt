@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,count=0,i;
+		scanf("%d",&n);
+		int a[n];
+		for (i = 0; i < n; i++)
+		{
+			scanf("%d",&a[i]);
+		}
+		qsort( a, n, sizeof(int), cmpfunc);
+		for ( i = 0; i <= n-2; i++)
+		{
+			if(a[i]!=a[i+1])
+				count++;
+		}
+		printf("%d\n",count+1 );
+ 
+	}
+  return 0;
+} 

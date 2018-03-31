@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int tail=1;
+char str[200];
+int d=0,i;
+scanf("%s",str);
+  
+printf("%s\n",str);
+d=strlen(str);
+for(i=1;i<d;++i)
+{
+int j;
+for(j=0;j<tail;++j)
+{
+if(str[i]==str[j])
+break;
+}
+
+if(j==tail)
+{
+str[tail]=str[i];
+++tail;
+}
+}
+str[tail]=0;
+
+printf("%s",str);
+return 0;
+}

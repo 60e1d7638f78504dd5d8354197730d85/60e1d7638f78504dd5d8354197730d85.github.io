@@ -1,0 +1,65 @@
+#include<stdio.h>
+ 
+int stack[100],choice,n,top,x,i;
+void push(int);
+void pop(void);
+void display(void);
+int peek();
+int main()
+{
+    //clrscr();
+    top=-1;
+    
+    scanf("%d",&n);
+    if(n==0)
+    printf("stack is empty");
+    else
+    {
+	
+    int arr[n];
+    int k;
+    
+	for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+    for(i=0;i<n;i++)
+    push(arr[i]);
+    k=peek();
+    printf("Top=%d",k);
+	display();
+    
+}
+    return 0;
+}
+void push(int data)
+{
+    if(top>=n-1)
+    {
+        printf("\n\tSTACK is over flow");
+         
+    }
+    else
+    {
+        
+        top++;
+        stack[top]=data;
+    }
+}
+int peek() {
+   return stack[top];
+}
+
+void display()
+{
+    if(top>=0)
+    {
+        
+        for(i=top; i>=0; i--)
+            printf("\n%d",stack[i]);
+       
+    }
+    else
+    {
+        printf("\n The STACK is empty");
+    }
+    
+}

@@ -1,0 +1,50 @@
+#include<stdio.h>
+ 
+unsigned long long int g(unsigned long long int big,unsigned long long int small)
+{
+    if(big%small==0)
+    {
+        return small;
+    }
+    else 
+    return g(small,big%small);
+}
+ 
+int main()
+{
+    int t,i;
+    unsigned long long int gcd,lcm,a,b,small,big;
+    
+    scanf("%d",&t);
+    
+    for(i=0;i<t;i++)
+    {
+        scanf("%llu",&a);
+        scanf("%llu",&b);
+        
+        if(a>b)
+        {
+            small=b;
+            big=a;
+        }
+        else
+        {
+            small=a;
+            big=b;
+        }
+        gcd=g(big,small);
+        
+        if(gcd==small)
+        {
+            lcm=big;
+        }
+        else
+         { 
+             lcm=(a*b)/gcd;
+         }
+        
+        printf("%llu %llu\n",gcd,lcm);
+        
+    }
+    return 0;
+} 

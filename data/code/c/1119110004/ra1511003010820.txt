@@ -1,0 +1,35 @@
+#include <stdio.h>
+int convert(float a)
+{
+  int l=1,p,n=0,i,y;
+  y=a*100;
+    for(i=0;i<2;i++)
+{
+ p=y%10;
+  n=n+p*l;
+  l=l+9;
+ y=y/10;
+} 
+  return(n);
+}
+int main()
+{
+  float num,res;
+  int t;
+  scanf("%f.2",&num);
+  res=convert(num);
+  if(res>=50)
+  {
+    num=num*100;
+    t=(num/100)+1;
+    printf("%d",t);
+  }
+  else
+  {
+    num=num*100;
+    t=num/100;
+    printf("%d",t);
+  }
+
+	return 0;
+}

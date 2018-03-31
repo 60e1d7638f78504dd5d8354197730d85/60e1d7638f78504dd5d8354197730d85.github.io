@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+    int i,n;
+    scanf("%d",&n);
+    //printf()
+  	if(n == 0) {
+    	printf("0");
+      	return 0;
+    }
+    for(i=0;i<n;i++)
+    {
+        char str[100];
+        int k;
+        scanf("%s",str);
+      	getchar();
+      	scanf("%d", &k);
+      	//printf("%d", k);
+        int j=0,count[26];
+        for(j=0;j<26;j++) count[j]=0;
+        j=0;
+        while(str[j]!='\0')
+        {
+            count[str[j++]-'a']++;
+          	//printf("%c %d ", str[j-1], count[str[j-1]-'a']);
+        }
+        int l=0;
+        for(j=0;j<k;j++)
+        {
+            while(count[l++]==0);
+            printf("%c",(l+96));
+          	count[--l]--;
+          	//l++;
+        }
+      	printf("\n");
+    }
+	return 0;
+}

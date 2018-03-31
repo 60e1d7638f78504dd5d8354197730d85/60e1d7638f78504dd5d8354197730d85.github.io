@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<math.h>
+int g;
+
+void gcd(int max,int min)
+{
+  if(max==min)
+  {
+    printf("%d ",max);
+    return;
+  }
+  g=1;int i;
+  for( i=1;i<=(max/2);i++)
+  {
+   if((max%i==0) &&(min%i==0)) 
+     g=i;
+  }
+  printf("%d ",g);
+}
+int main()
+{
+int t;
+  int a,b,max,min;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d %d",&a,&b);
+    if(a>b)
+    {max=a;
+     min=b;
+    }
+    else
+    {
+      min=a;
+      max=b;
+    }
+    gcd(max,min);
+    printf("%d\n",(max*min)/g);
+  }
+	return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+int *createArray(int);
+void getElement(int*,int);
+void arrayMean(int*,int);
+int main()
+{
+int *a,n;
+  scanf("%d",&n);
+  a=createArray(n);
+  getElement(a,n);
+  arrayMean(a,n);
+  return 0;
+}
+int *createArray(int n)
+{
+  int *a;
+  a=(int *)malloc(n*sizeof(int));
+  return a;
+}
+void getElement(int *a,int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",a+i);
+  }
+}
+void arrayMean(int *a,int n)
+{
+  int i;
+  float add=0.0,add2,mul;
+  for(i=0;i<n;i++)
+  {
+    add2=*(a+i)+add;
+    add=add2;
+  }
+  mul=add/n;
+  printf("The mean of the array is %.2f",mul);
+}
+	

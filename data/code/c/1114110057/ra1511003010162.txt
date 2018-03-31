@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+	int x, i, j=0, a[10], temp, h;
+  	scanf("%d", &x);
+  	for(i=0; x>0; i++)
+    {	
+      	a[i]= x%10;
+      	x/= 10;
+      	j++;
+   //   printf("%d", a[i]);
+    }
+//  printf("j=%d", j);
+  	for(i=1, h=j-2;i<=h ; i++, h--)
+    {
+    	temp= a[i];
+      	a[i]= a[h];
+      	a[h]= temp;
+    }
+//printf("\n");
+ 	for(i=0; i<j; i++)
+      printf("%d", a[i]);
+	return 0;
+}

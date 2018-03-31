@@ -1,0 +1,75 @@
+#include <stdio.h>
+ 
+void merge(int list[],int p,int mid,int r)
+{
+    int k,l,h,c[r+p];
+    l=p;
+    h=mid+1;
+    k=p;
+    while(l<=mid && h<=r)  
+    {
+        if(list[l]>=list[h])
+            c[k++]=list[l++];
+        else
+            c[k++]=list[h++];
+    }
+    if(l>mid)
+    {
+        for(l=h;l<=r;l++)
+        {
+            c[k++]=list[l];
+        }
+    }
+    else
+    {
+        for(h=l;h<=mid;h++)
+        {
+            c[k++]=list[h];
+        }
+    }
+    for(l=p;l<=r;l++)
+    {
+        list[l]=c[l];
+    }
+}
+ 
+void mergesort(int list[],int p,int r)
+{
+    int mid;
+    if(p<r)
+    {
+        mid=(p+r)/2;
+        mergesort(list,p,mid);
+        mergesort(list,mid+1,r);
+        merge(list,p,mid,r);
+    }
+}
+ 
+int main(void) {
+	int n,k,s,j,sum,i,a=0;
+	scanf("%d",&n);
+	scanf("%d",&k);
+	s=n*(n+1);
+	s=s/2;
+	int arr[n],list[s];
+	for(i=0;i<n;i++)
+	{
+	    scanf("%d",&arr[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+	    sum=arr[i];
+	    list[a++]=sum;
+	    for(j=i+1;j<n;j++)
+	    {
+	        sum+=arr[j];
+	        list[a++]=sum;
+	    }
+	}
+	mergesort(list,0,s-1);
+	for(i=0;i<k;i++)
+	{
+	    printf("%d ",list[i]);
+	}
+	return 0;
+}

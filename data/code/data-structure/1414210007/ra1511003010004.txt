@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <math.h>
+#include <ctype.h>
+
+#define YES  1
+#define NO   0
+#define SIZE 1000
+
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <string>      // needed for string
+#include <iostream>    // needed for cin, cout
+#include <sstream>     // needed for stringstream
+using namespace std;
+
+#if 0
+123
+132
+213
+231
+312
+
+1234
+1243
+1324
+1342
+1423
+1432
+
+2134
+2143
+2314
+2341
+2413
+2431
+
+3124
+3142
+3214
+3241
+3412
+3421
+
+4123
+4132
+4213
+4231
+4312
+4321
+
+
+
+12234467
+12234476
+12234647
+
+
+3472  2641
+
+  2641
+  4126
+
+
+ 
+ 4126
+ 4162
+
+ 
+ 
+ 
+ 2641
+
+
+111
+
+34724126
+34724126
+-1
+
+check if all digits odd
+check if digits same
+#endif
+
+void getAnswer(void)
+{
+    int i, len, flag, d;
+    string str, start;
+
+    cin >> str;
+    start = str;
+    len = str.length();
+    
+    
+#if 0
+    flag = NO;
+    for (i = len-1; i > 0; i--)
+    {
+        d = str[i] - '0';
+        if ((d % 2) == 1) continue;
+        if (str[i] < str[i-1]) continue;
+        flag = YES;
+        break;
+    }
+printf("len %d, i %d, d %d, flag %d\n", len, i, d, flag);
+#endif
+
+    for (  ;   ;   )
+    {
+        next_permutation(str.begin(), str.end());
+        d = str[len-1] - '0';
+//printf("str %s, d %d\n", str.c_str(), d);
+        if ((d % 2) == 0) break;
+        if (str <= start) break;
+    }
+    if (str > start)
+    {
+        printf("%s\n", str.c_str());
+    }
+    else
+    {
+        printf("-1\n");
+    }
+    
+
+}
+
+int main(void)
+{
+	int i, numCases;
+	
+	scanf("%d", &numCases);
+	for (i = 1; i <= numCases; i++) getAnswer();
+	return 0;
+}

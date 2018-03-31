@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+struct names
+{
+  char str[100];
+}s[100];
+int main()
+{
+	int n,i,j,l1,l2,k,t=-1;
+  char temp[100];
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%s",s[i].str);
+    }
+  	for(i=0;i<n;i++)
+    {
+     for(j=i+1;j<n;j++)
+     {
+       if(s[i].str[0]>s[j].str[0])
+       {
+    strcpy(temp,s[i].str);
+         strcpy(s[i].str,s[j].str);
+         strcpy(s[j].str,temp);
+       }
+       
+     }
+    }
+      for(i=0;i<n;i++)
+      {
+        printf("%s\n",s[i].str);
+      }
+	return 0;
+}

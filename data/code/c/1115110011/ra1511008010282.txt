@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+    int num,i,j,c=0,temp;
+    scanf("%d",&num);
+    int a[num];
+  
+    for(i=0;i<num;i++){
+     scanf("%d",&a[i]); 
+    }
+
+   for(i=0;i<num;i++){
+    temp=a[i];
+     if(temp != -99999990){
+      for(j=i+1;j< num-1;j++){
+       if(temp==a[j]){
+        a[j]= -99999990;
+       }
+      }
+     }
+   }
+
+  for(i=0;i<num;i++){
+   if(a[i] != -99999990){
+    c++; 
+   }
+  }
+  printf("%d",c);
+	return 0;
+}

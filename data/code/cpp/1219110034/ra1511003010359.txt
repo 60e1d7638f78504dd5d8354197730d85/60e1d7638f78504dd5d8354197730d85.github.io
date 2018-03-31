@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+class complex
+{
+  public:
+  int real;
+  int imag;
+  void getValue()
+  {
+    cin>>real>>imag;
+  }
+  void printValue()
+  {
+    cout<<real<<"+"<<imag<<"i"<<endl;
+  }
+  complex operator + (complex obj)
+  {
+    complex temp;
+    temp.real=real+obj.real;
+    temp.imag=imag+obj.imag;
+    return temp;
+  }
+};
+int main()
+{
+  complex c1,c2,sum;
+  c1.getValue();
+  c2.getValue();
+  c1.printValue();
+  c2.printValue();
+  sum=c1+c2;
+  cout<<"Addition of Real and Imaginary Numbers:"<<endl;
+  sum.printValue();
+	return 0;
+}

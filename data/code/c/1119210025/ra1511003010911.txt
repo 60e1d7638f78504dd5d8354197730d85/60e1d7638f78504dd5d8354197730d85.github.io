@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main(void)
+{
+  const int den = 33102;
+  int t=0, k, rem, c=getchar_unlocked();
+  while(c<'0') c=getchar_unlocked();
+  while(c>='0' && c<='9') {
+    t = (t<<3) + (t<<1) + c-'0';
+    c = getchar_unlocked();
+  }
+  while(t--) {
+    k=0;
+    while(c<'0') c=getchar_unlocked();
+    while(c>='0' && c<='9') {
+      k = (k<<3) + (k<<1) + c-'0';
+      c = getchar_unlocked();
+    }
+    putchar_unlocked('3');
+    if(k) {
+      putchar_unlocked('.');
+      rem = 46870;
+    }
+    while(k--) {
+      putchar_unlocked(rem/den+'0');
+      rem = rem % den;
+      rem *= 10;
+    }
+    putchar_unlocked('\n');
+  }
+  return 0;
+}
+ 

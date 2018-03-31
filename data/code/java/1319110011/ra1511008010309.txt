@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+class HexFormatException extends NumberFormatException {
+  
+	public HexFormatException(String msg){
+      super(msg);
+    }
+}
+public class TestClass{
+static int hexCharToDecimal(String hexVal)
+    {   
+        int len = hexVal.length();
+      
+        // Initializing base value to 1, i.e 16^0
+        int base = 1;
+      
+        int dec_val = 0;
+      
+        // Extracting characters as digits from last character
+        for (int i=len-1; i>=0; i--)
+        {   
+            // if character lies in '0'-'9', converting 
+            // it to integral 0-9 by subtracting 48 from
+            // ASCII value
+            if (hexVal.charAt(i) >= '0' && hexVal.charAt(i) <= '9')
+            {
+                dec_val += (hexVal.charAt(i) - 48)*base;
+                  
+                // incrementing base by power
+                base = base * 16;
+            }
+  
+            // if character lies in 'A'-'F' , converting 
+            // it to integral 10 - 15 by subtracting 55 
+            // from ASCII value
+            else if (hexVal.charAt(i) >= 'A' && hexVal.charAt(i) <= 'F')
+            {
+                dec_val += (hexVal.charAt(i) - 55)*base;
+          
+                // incrementing base by power
+                base = base*16;
+            }
+          	else
+              throw new HexFormatException("Number is not Hexadecimal");
+        }
+        return dec_val;
+    }
+     
+    // driver program
+    public static void main (String[] args) 
+    {
+        try{
+          Scanner sc = new Scanner(System.in);
+          String str = sc.nextLine();
+          System.out.println(hexCharToDecimal(str));
+        }
+      	catch(HexFormatException e){
+          System.out.println(e);
+        }
+        //System.out.println(hexadecimalToDecimal(hexNum));
+    }
+}		

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+  char a[100000];
+  int i,v=0,s=0,d=0,c=0;
+  scanf("%[^\n]%*s",a);
+  for(i=0;i<strlen(a);i++)
+  {
+    if(a[i]>='a' && a[i]<='z')
+    {
+    if(a[i]=='a'||a[i]=='e'||a[i]=='i'||a[i]=='o'||a[i]=='u')
+      v++;
+    else
+      c++;
+    }
+    if(isspace(a[i])!=0)
+      s++;
+    if(isdigit(a[i])!=0)
+       d++;
+      
+  }
+  printf("%d %d %d %d",v,c,d,s);
+
+	return 0;
+}

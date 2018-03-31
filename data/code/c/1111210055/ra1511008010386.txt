@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<string.h>
+typedef unsigned u;
+char X[7][11]={"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
+u src(char*x)
+{
+	u i;
+	for(i=-1;++i<7;)if(!strcmp(x,X[i]))break;
+	return i;
+}
+int main()
+{
+	char A[11],B[11];u a,b,c;
+	scanf("%s%s",A,B);
+	a=src(A);b=src(B);
+	c=a>b?7+b-a:b-a;
+	printf(c==0||c==2||c==3?"YES\n":"NO\n");
+	return 0;
+}

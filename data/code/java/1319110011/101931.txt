@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+class HexFormatException extends NumberFormatException
+{
+	public HexFormatException(String msg)
+    {
+    	super(msg);
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) {
+     	Scanner sc=new Scanner(System.in);
+		String s=sc.nextLine();
+        String pattern="[A-Fa-f0-9]+";
+        int v=0,h;
+        if(s.matches(pattern))
+        {
+        	for(int i=0;i<s.length();i++)
+            {
+            	h=hexCharToDecimal(s.charAt(i));
+                v=v*16+h;
+            }
+            System.out.println(v);
+        }
+        else
+        {
+        	try
+            {
+            	throw new HexFormatException("Number is not Hexadecimal");
+            }
+            catch(HexFormatException e)
+            {
+            	System.out.println(e);
+            }
+        }
+      }
+      static int hexCharToDecimal(char c)
+      {
+       	String digits="0123456789ABCDEF";
+        int d=digits.indexOf(c);
+        return d;
+      }
+	
+}

@@ -1,0 +1,23 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+  	float a[100], sum=0, avg, n;
+  	cin>>n;
+	for(int i=0; i<n; i++)
+    {
+   		cin>>a[i];
+      	sum=sum+a[i];
+    }
+  	avg=sum/n;
+  	sum=0;
+  	for(int i=0; i<n; i++)
+    {
+      	a[i]=(a[i]-avg)*(a[i]-avg);
+      	sum=sum+a[i];
+    }
+  	avg=sum/n;
+  	cout<<"Standard Deviation = "<<sqrt(avg);
+	return 0;
+}

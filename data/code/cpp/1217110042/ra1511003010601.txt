@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int m,n,x[6],y[6];
+int main()
+{
+    cin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        cin>>m;
+        x[m]++;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        cin>>m;
+        y[m]++;
+    }
+    for(int i=1;i<=5;i++)
+    {
+        if((x[i]+y[i])%2==1)
+            return 0*printf("-1\n");
+    }
+    int ans=0;
+    for(int i=1;i<=5;i++)
+    {
+        ans+=abs(x[i]-y[i])/2;
+    }
+    cout<<ans/2<<endl;
+}

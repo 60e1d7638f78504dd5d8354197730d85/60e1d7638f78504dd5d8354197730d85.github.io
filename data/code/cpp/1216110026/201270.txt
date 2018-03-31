@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+int a[10],n,i;
+void nextgr(int a[10],int n)
+{
+	int max_right=a[n-1];
+  	a[n-1]=-1;
+  	for(i=n-2;i>=0;i--)
+    {
+    	int t=a[i];
+      	a[i]=max_right;
+      	if(max_right<t)
+          max_right=t;
+     } 
+}
+void display(int a[10],int n)
+{
+	
+  for(i=0;i<n;i++)
+  {
+    	cout<<a[i]<<" ";	
+  } 
+}
+int main()
+{
+	cin>>n;
+  	for(i=0;i<n;i++)
+  	{
+    	cin>>a[i];	
+  	} 
+	nextgr(a,n);
+  	display(a,n);
+  	return 0;
+}

@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+int main()
+{ 
+   int n,n1,f,s,t,u;
+   cin>>n;
+  f=s=t=u=0;
+  n1=n;
+  f=n%10;
+  n/=10;
+  if(n!=0)
+  {
+    s=n%10;
+    n/=10;
+    if(n!=0)
+    {
+      t=n%10;
+      n/=10;
+      if(n!=0)
+      {
+        u=n%10;
+      }
+    }
+  }
+  n=0;
+  if(u!=0)
+  {
+    while(n<n1)
+    {
+      n=u+t+s+f;
+      u=t;
+      t=s;
+      s=f;
+      f=n;
+    } 
+    if(n==n1)
+      cout<<"Keith Number ";
+    else
+      cout<<"Not Keith Number";
+  }
+  else if(t!=0)
+        {
+          while(n<n1)
+          {
+            n=t+s+f;
+            t=s;
+            s=f;
+            f=n;
+          }
+          if(n==n1)
+            cout<<"Keith Number";
+           else
+             cout<<"Not Keith Number";
+         }
+         else if(s!=0)
+               {
+                 while(n<n1)
+                 {
+                   n=s+f;
+                   s=f;
+                   f=n;
+                 }
+                 if(n==n1)
+                   cout<<"Keith Number";
+                  else
+                    cout<<"Not Keith Number";
+                }
+               else
+                 cout<<"Not Keith Number";
+    return 0;
+}

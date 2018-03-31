@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.Arrays;
+class Merge{
+  	 
+        static int size1, size2, size, i, j, k;
+       static int arr1[] = new int[50];
+       static int arr2[] = new int[50];
+       static int merge[] = new int[100];
+    public static void getInput()
+  {
+      
+       Scanner scan = new Scanner(System.in);
+	     
+       size1 = scan.nextInt();
+	       
+       for(i=0; i<size1; i++)
+       {
+           arr1[i] = scan.nextInt();
+       }
+	   
+       size2 = scan.nextInt();
+	   
+        for(i=0; i<size2; i++)
+       {
+           arr2[i] = scan.nextInt();
+       }
+	   
+  }
+public static  void mergeSort()
+  {
+    
+       for(i=0; i<size1; i++)
+       {
+           merge[i] = arr1[i];
+       }
+	   
+       size = size1 + size2;
+	   
+       for(i=0, k=size1; k<size && i<size2; i++, k++)
+       {
+           merge[k] = arr2[i];
+       }
+	         
+       for(i=0; i<size; i++)
+       {
+           System.out.println(merge[i]);
+         
+       
+       }
+   }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       
+     Merge obj=new Merge();
+  Merge.getInput();
+      Merge.mergeSort();
+     }
+}

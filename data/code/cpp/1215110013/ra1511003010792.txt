@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Hello
+{
+	private:
+  	string name;
+  	string course;
+    char g;
+  	
+  	public:
+  	void initializeData(string a, string b, char c)
+    {
+    	name=a;
+      	course=b;
+      	g=c;
+    }
+  	void speak()
+    {
+    	int len=name.length();
+      	while(len--)
+        {
+          if(g=='M')
+        	cout<<"Hello "<<"Mr."<<" "<<name<<" Welcome to "<<course<<endl;
+          else
+            cout<<"Hello "<<"Ms."<<" "<<name<<" Welcome to "<<course<<endl;
+        }
+    }
+};
+
+int main()
+{
+	string a,b;
+  char c;
+  cin>>a>>b>>c;
+  Hello h;
+  h.initializeData(a,b,c);
+  h.speak();
+	return 0;
+}

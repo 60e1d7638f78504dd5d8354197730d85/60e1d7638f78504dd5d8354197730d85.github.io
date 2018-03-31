@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+int phi(int n)
+{	int p;
+	float result = n;
+	for ( p=2; p*p<=n; ++p)
+	{
+		if (n % p == 0)
+		{
+			while (n % p == 0)
+			n /= p;
+			result *= (1.0 - (1.0 / (float) p));
+		}
+	}
+	if (n > 1)
+	result *= (1.0 - (1.0 / (float) n));
+	return (int)result;
+}
+ 
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n;
+		scanf("%d",&n);
+		int p=phi(n-1);
+		int s=(int)sqrt(p);
+		if(p==s*s)
+		printf("Yes\n");
+		else
+		printf("No\n");
+	}
+	return 0;
+}

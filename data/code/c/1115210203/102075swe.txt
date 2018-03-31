@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+ int t;
+ scanf("%d",&t);
+ while(t--)
+ {
+  char s[2005];
+  int a[26][26]={0};
+  scanf("%s",s);
+  int i,j,k,m,z,l; 
+  int first[26]={0};
+  int second[26]={0};
+  l=strlen(s);
+  for(i=0;i<l;i++)
+  {
+    int x=s[i]-'a';
+    for(k=0;k<26;k++)
+    {
+      m=-1;
+      for(j=0;j<=x;j++)
+        if(a[j][k]>m)
+          m=a[j][k];
+      first[k]=m+1;
+    }
+    for(j=0;j<26;j++)
+    {
+      m=-1;
+      for(k=25;k>=x;k--)
+        if(a[j][k]>m)
+          m=a[j][k];
+      second[j]=m+1;
+    }
+    for(j=0;j<26;j++)
+      a[x][j]=first[j];
+    for(j=0;j<26;j++)
+      a[j][x]=second[j];
+  }
+   z=-1;
+   for(i=0;i<26;i++)
+     for(j=0;j<26;j++)
+       if(a[i][j]>z)
+         z=a[i][j];
+   printf("%d\n",z);
+ }
+  return 0;
+} 
+ 

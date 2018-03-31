@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class TestClass {
+
+    static public void main(String args[]) {
+        Deletearray obj = new Deletearray();
+        obj.deleteElement();
+    }
+}
+
+class Deletearray {
+
+    public void deleteElement() {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        ArrayList<Integer> a = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            a.add(s.nextInt());
+        }
+        Integer del = s.nextInt();
+        if (a.remove(del)) {
+            for (int e : a) {
+                System.out.print(e + " ");
+            }
+        } else {
+            System.out.println("Element Not Found");
+        }
+    }
+}

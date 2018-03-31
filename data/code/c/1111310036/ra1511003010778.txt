@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,i,j,k,d,temp,temp1;
+  int arr[100],ans[100][100];
+  
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d %d",&n,&d);
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&arr[j]);
+    }
+    
+    for(j=0;j<d;j++)
+    {
+      temp=arr[0];
+      for(k=1;k<n;k++)
+      {
+        temp1=arr[k];
+        arr[k]=temp;
+        temp=temp1;
+      }
+      arr[0]=temp;
+    }
+    
+    for(j=0;j<n;j++)
+    {
+      ans[i][j]=arr[j];
+    }
+  }
+  
+  for(i=0;i<t;i++)
+  {
+    j=0;
+    while(ans[i][j]!='\0')
+    {
+      printf("%d\n",ans[i][j]);
+      j++;
+    }
+  }
+  return 0;
+}

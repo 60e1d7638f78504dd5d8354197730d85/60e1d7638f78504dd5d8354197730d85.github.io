@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  public static int numberNeeded(String first, String second) {
+
+    StringBuilder firstBuilder = new StringBuilder(first);
+    StringBuilder secondBuilder = new StringBuilder(second);
+    int numberNeeded = firstBuilder.length() + secondBuilder.length();
+
+    for (int i=0; i<first.length(); i++) {
+
+        char currentChar = first.charAt(i);
+
+        for (int j=0; j<secondBuilder.length(); j++) {
+            char charToCompare = secondBuilder.charAt(j);
+
+            if (charToCompare == currentChar) {
+                firstBuilder.deleteCharAt(0);
+                secondBuilder.deleteCharAt(j);
+                numberNeeded -= 2;
+                break;
+            }
+        }
+    }
+
+    return numberNeeded;
+
+  }
+	 public static void main(String[] args) { 
+		 Scanner in = new Scanner(System.in);
+    String firstArray = in.next();
+    String secondArray = in.next();
+    System.out.println(numberNeeded(firstArray, secondArray));
+     }
+}

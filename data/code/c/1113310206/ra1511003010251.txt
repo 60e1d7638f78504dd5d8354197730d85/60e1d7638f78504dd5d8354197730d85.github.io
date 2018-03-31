@@ -1,0 +1,52 @@
+    #include<stdio.h>
+    #include<string.h>
+    int main()
+    {
+    	long int testcase;
+    	scanf("%ld",&testcase);
+    	int i=0,j,ans[testcase];
+    	while(i<testcase)
+    	{
+    		int octaves;
+    		char sequence[100];
+    		scanf("%s",sequence);
+    		scanf("%d",&octaves);
+    		int upperlimit=octaves*12,final_key=1,total_plays=0;
+    		j=0;
+    		while(sequence[j]!='\0')
+    		{
+    			if(sequence[j]=='T')
+    			{
+    				final_key+=2;
+    			}
+    			else
+    			{
+    				final_key+=1;
+    			}
+    			j++;
+    		}
+            final_key=final_key-1;
+            int multiplier=1,calc;
+            while(1)
+            {
+            	calc=final_key*multiplier;
+            	if(calc<upperlimit)
+            	{
+            		total_plays+=upperlimit-calc;
+            		multiplier++;
+            	}
+            	else
+            		{break;}
+            }
+            ans[i]=total_plays;
+    		i++;
+    	}
+    	i=0;
+    	while(i<testcase)
+        {
+            printf("%d\n",ans[i]);
+            i++;
+        }
+        return 0;
+    }
+     

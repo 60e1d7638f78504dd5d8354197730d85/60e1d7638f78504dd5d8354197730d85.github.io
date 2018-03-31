@@ -1,0 +1,79 @@
+#include <stdio.h>
+#define ll unsigned long long
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+#define md 1000000007LL
+inline int inp() {
+    register int n=0;
+    register int c = gc();
+    while(c < '0' || c > '9')c = gc();
+    while(c >= '0' && c <= '9'){
+        n = (n << 3) + (n << 1) + c - '0';
+        c = gc();
+    }
+    return n;
+}
+inline ll inpll() {
+    register ll n=0;
+    register int c = gc();
+    while(c < '0' || c > '9')c = gc();
+    while(c >= '0' && c <= '9'){
+        n = (n << 3) + (n << 1) + c - '0';
+        c = gc();
+    }
+    return n;
+}
+inline void oup(ll x) {
+    unsigned char s[20];
+    int i=0;
+    do{
+        s[i++]=x%10+'0';
+        x/=10;
+    }while(x);
+    --i;
+    while(i>=0) {
+        pc(s[i--]);
+    }
+    pc('\n');
+}
+inline int inv(int a, int b) {
+    
+    int x = 0, y = 1, r, q, c = b;
+    while(a){
+        q = c/a; r = c%a;
+        c = a; a = r;
+        r = x; x = y;
+        y = r - q * y;
+    }
+    if(x < 0) x += b;
+    return x;
+}
+ll a[100001];
+int main(){
+    int t,n,x,i; ll m,j,k,ans;
+    t=inp();
+    while(t--){
+        n=inp(); x=inp(); m=inpll();
+        for(i=1; i<=n; ++i) {
+            a[i]=inpll();
+        }
+        j=1ULL; k=0ULL;
+        ans=0ULL;
+        for(i=1;i<=x;++i){
+            
+            k=a[x-i+1]%md;
+            k=(k*j)%md;
+ 
+            ans=(ans+k)%md;
+ 
+            k=m%md;
+            k+=i-1;
+            k%=md;
+ 
+            j=(j*k)%md;
+            j=(inv(i,md)*j)%md;
+        }
+        oup(ans);
+    }
+    return 0;
+}  

@@ -1,0 +1,41 @@
+#include <stdio.h>
+    char a[2000][2000];
+    int b[2000][2000];
+    int q[2000]={0};
+    int main(void) {
+    int n,i,j,t,k;
+    int cn;
+    cn=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    scanf("%s",a[i]);
+    for(i=0;i<n;i++)
+    {
+        t=0;
+        for(j=0;j<n;j++)
+        {
+            if(a[i][j]=='1')
+                b[i][t++]=j;
+        }
+        q[i]=t;
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(a[i][j]=='0')
+            {
+                for(k=0;k<q[i];k++)
+                {
+                    if(a[b[i][k]][j]=='1')
+                    {
+                        cn++;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    printf("%d\n",cn*2);
+    return 0;
+    } 

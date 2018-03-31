@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+    long long int val;
+    struct node * next;
+};
+long long int vertices=0;
+long long int edges=0;
+void insert(long long int v,struct node ** tail,struct node ** head )
+{
+    struct node * tmp;
+    tmp = (struct node *)malloc(sizeof(struct node));
+    tmp->val=v;
+    tmp->next=NULL;
+    if(*tail == NULL)
+    {
+        *tail = tmp;
+        *head = tmp;
+    }
+    else 
+    {
+        (*tail)->next=tmp;
+        (*tail)=tmp;
+    }
+}
+void dfs(long long int u , long long int visit[] ,struct node * head[],long long int j)
+{
+    visit[u] = j;
+    struct node * p = head[u];
+    while(p != NULL)
+    {
+        edges++;
+        if(visit[p->val] == 0)
+        {
+            vertices++;
+            dfs(p->val,visit,head,j);
+        }
+        p=p->next;
+    }
+}
+int main()
+{
+    struct node * tail[100001];
+    struct node * head[100001];
+    long long int visit[100001];
+    long long int u,v,i,j,n,m,max_edge=0,max_vertex=0,flag=0;
+    scanf("%lld %lld",&n,&m);
+    for(i=1;i<=m;i++)
+    {
+        scanf("%lld %lld",&u,&v);
+        insert(v,&tail[u],&head[u]);
+        insert(u,&tail[v],&head[v]);
+    }
+    for(i=1;i<=100000;i++)
+        visit[i]=0;
+    j=0;
+    for(i=1;i<=n;i++)
+    {
+        if(visit[i] == 0)
+        { 
+            dfs(i,visit,head,++j);
+ 
+            vertices++;
+        
+    //    printf("vertices=%lld edges=%lld\n",vertices,edges);
+ 
+            if(edges/2 > vertices)
+            {   flag=1;
+                break;
+            }
+            if(edges/2 == vertices-1  && flag!=3)
+            {
+                flag = 2;
+                if(max_edge < vertices)
+                    max_edge = vertices;
+ 
+            }
+            if(edges/2 == vertices)
+            {
+                flag  = 3;
+            }
+        }
+            vertices = 0;
+            edges = 0;
+    }
+ /*   for(i=1;i<=n;i++)
+        printf("%lld ",visit[i]);
+    printf("\n");*/
+    if(flag == 1)
+        printf(">1\n");
+    if(flag == 3)
+        printf("1/1\n");
+    if(flag == 2)
+        printf("%lld/%lld\n",max_edge-1,max_edge);        
+    return 0;
+}
+ 
+ 

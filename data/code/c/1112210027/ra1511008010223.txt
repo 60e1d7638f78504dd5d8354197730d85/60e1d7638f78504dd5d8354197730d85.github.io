@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<math.h>
+#define ull unsigned long long
+int main() {
+  long long  int t;
+    ull a,b,ans,poww,temp;
+    scanf("%llu",&t);
+    while(t--)
+    {
+        ans=0;
+        scanf("%llu %llu",&a,&b);
+        if(a==b)
+            {
+                printf("%llu\n",ans);
+                continue;
+            }
+        else if(2*a==b)
+            {
+                printf("1\n");
+                continue;
+            }
+        else if(a>b)
+        {
+            while(a>b)
+            {
+                if(a%2==0)
+                    a/=2;
+                else a=(a-1)/2;
+                ans++;
+            }
+        }
+        if(a<b){
+            while(b%a!=0)
+            {
+                if(a%2==0)
+                    a/=2;
+                else a=(a-1)/2;
+                ans++;
+            }
+            temp=b/a;
+            poww=log2(temp);
+            ans+=poww;
+        }
+    printf("%llu\n",ans);
+    }
+    return 0;
+}

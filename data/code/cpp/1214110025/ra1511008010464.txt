@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class ComplexNumber {
+  int real, complex;
+  
+  public:
+  
+  void getdata() {
+    cin>>real; cin>>complex;
+  }
+  
+  void displaydata(ComplexNumber cn) {
+    cout<<cn.real<<endl;
+    cout<<cn.complex<<endl;
+  }
+  
+  ComplexNumber sum(ComplexNumber cn) {
+    ComplexNumber temp;
+    temp.real = this->real + cn.real;
+    temp.complex = this->complex + cn.complex;
+    
+    return temp;
+  }
+};
+  
+int main()
+{	
+  	ComplexNumber cn1;
+  	cn1.getdata();
+  	
+  	ComplexNumber cn2;
+  	cn2.getdata();
+	
+  	cn1.displaydata(cn1.sum(cn2));
+  
+	return 0;
+}

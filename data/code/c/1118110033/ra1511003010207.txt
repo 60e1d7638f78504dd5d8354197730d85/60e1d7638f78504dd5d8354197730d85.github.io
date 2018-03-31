@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+	struct d_t {
+		char n[256];
+		int c;
+	} d;
+	char *p;
+
+	fgets(d.n, 256, stdin);
+	d.c = 0;
+
+	p = d.n;
+	while (*p && *p != '\n') {
+		d.c++;
+		p++;
+	}
+
+	printf("%d", d.c);
+
+	return 0;
+}

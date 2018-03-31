@@ -1,0 +1,27 @@
+#include <stdio.h>
+void add(int r1,int i1,int r2,int i2)
+{
+	if(i1+i2 > 0)
+	printf("%d+%di\n",r1+r2,i1+i2);
+	else
+	printf("%d%di\n",r1+r2,i1+i2);
+}
+void multi(int r1,int i1,int r2,int i2)
+{
+	int d=(r1*i2)+(r2*i1);
+	if(d > 0)
+	printf("%d+%di",(r1*r2)-(i1*i2),d);
+	else if(d==-1)
+        printf("%d-i",(r1*r2)-(i1*i2));
+        else
+	printf("%d%di",(r1*r2)-(i1*i2),d);
+}
+int main()
+{
+	int r1,r2,i1,i2;
+	scanf("%d%d%d%d",&r1,&i1,&r2,&i2);
+	add(r1,i1,r2,i2);
+	add(r1,i1,-r2,-i2);
+	multi(r1,i1,r2,i2);
+  return 0;
+}

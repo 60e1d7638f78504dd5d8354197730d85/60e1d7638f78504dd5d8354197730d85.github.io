@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+public class TestClass {
+	 public static void main(String[] args) { 
+      String input;
+      String regexe;
+       Scanner scan = new Scanner(System.in);
+       input = scan.nextLine();
+       regexe = scan.nextLine();
+       //System.out.println(input);
+      Pattern pattern = Pattern.compile(regexe);
+      Matcher matcher = pattern.matcher(input);
+        System.out.println("Text:" + " " + input);
+         System.out.println("Pattern:" + " " + regexe);
+   
+      while (matcher.find()) {    
+         // matcher.group()
+           int index =  matcher.start()+1;
+            System.out.println("Pattern starts at posn" +" " + index);
+      }
+   }
+}

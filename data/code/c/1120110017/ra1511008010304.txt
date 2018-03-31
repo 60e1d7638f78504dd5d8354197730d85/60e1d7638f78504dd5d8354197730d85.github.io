@@ -1,0 +1,27 @@
+#include <stdio.h>
+void checktriangle(int a[5][5],int n,int m)
+{
+	int i, j,c=1;
+    for (i=0; i<n; i++)
+    for (j=0; j<m; j++)
+    	if (i<j)
+        	if(a[i][j] == 0)
+            	c++;
+  if(c==n)
+    printf("yes");
+  else
+    printf("no");
+}
+  
+int main()
+{
+	int n,m;
+  	scanf("%d%d",&n,&m);
+  	int i,j,ar[n][m];
+  	for(i=0;i<n;i++)
+    	for(j=0;j<m;j++)
+      		scanf("%d",&ar[i][j]);
+  	if(n<=5 && m<=5)
+      checktriangle(ar,n,m);
+	return 0;
+}

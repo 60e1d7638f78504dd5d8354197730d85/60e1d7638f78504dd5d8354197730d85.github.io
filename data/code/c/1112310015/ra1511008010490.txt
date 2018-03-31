@@ -1,0 +1,24 @@
+#include<stdio.h>
+long long modular_pow(long long exponent)
+   { long long result = 1,base=2;
+    while (exponent > 0)
+        {if (exponent % 2 == 1)
+           result = (result * base)% 1000000007;
+        exponent = exponent >> 1;
+        base = (base * base)% 1000000007;}
+    return result;
+   }
+   int main(){
+   	long long p,q,t;
+   	scanf("%lld",&t);
+   	while(t--)
+   	{
+	   	scanf("%lld",&p);
+	   	q=modular_pow(p/2);
+	   	if(p&1)
+   			printf("%lld\n",(2*(2*q-1))%1000000007);
+   			else
+			   	printf("%lld\n",(2*(q-1)+q)%1000000007);
+	   }
+   	return 0;
+   }

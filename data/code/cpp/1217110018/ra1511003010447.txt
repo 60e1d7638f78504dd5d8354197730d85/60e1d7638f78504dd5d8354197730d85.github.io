@@ -1,0 +1,40 @@
+#include <iostream>
+#include<iomanip>
+#include<math.h>
+
+using namespace std;
+double calc(double a,double b,double c){
+	double semi;
+  semi=(a+b+c)/2.0;
+  return sqrt(semi*(semi-a)*(semi-b)*(semi-c));
+}
+
+int main()
+{
+int t;
+  double wx,wy,wz,xy,xz,yz,area,vol;
+  double wxs,wys,wzs,xys,xzs,yzs,t1,t2,t3;
+  cin>>t;
+  while(t--){
+  
+  cin>>wx>>wy>>wz>>xy>>xz>>yz;
+    area=0;
+    area+=calc(wx,wy,xy);
+    area+=calc(wx,wz,xz);
+    area+=calc(wy,wz,yz);
+    area+=calc(xy,xz,yz);
+    wxs=wx*wx;
+    wys=wy*wy;
+    wzs=wz*wz;
+    xys=xy*xy;
+    xzs=xz*xz;
+    yzs=yz*yz;
+    t1=wzs+xzs-wxs;
+    t2=wzs+yzs-wys;
+    t3=yzs+xzs-xys;
+    vol=sqrt(4*xzs*yzs*wzs-yzs*t1*t1-xzs*t2*t2-wzs*t3*t3+t1*t2*t3)/12.0;
+    printf("%.4lf",((3*vol)/area));
+    cout<<"\n";
+  }
+	return 0;
+}

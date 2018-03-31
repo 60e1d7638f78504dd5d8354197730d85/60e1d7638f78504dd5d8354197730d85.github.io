@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	   int n,m,t;
+       int a[]=new int [100];
+       Scanner sc=new Scanner(System.in);
+       t=sc.nextInt();
+       for(int k=0;k<t;k++)
+       {
+         int i,j,id;
+         n=sc.nextInt();
+         m=sc.nextInt();
+         Integer b[]=new Integer[n];
+         Integer c[]=new Integer[m];
+         for(i=0;i<n;i++)b[i]=sc.nextInt();
+         for(i=0;i<m;i++)c[i]=sc.nextInt();
+         Arrays.sort(b,Collections.reverseOrder());
+         Arrays.sort(c,Collections.reverseOrder());
+         i=0; j=0; id=0;
+         while(id<n+m)
+         {
+           if(i>=n)
+           {
+             while(j<m)
+             {
+               a[id]=c[j];
+               id++;
+               j++;
+             }
+             continue;
+           }
+           if(j>=m)
+           {
+             while(i<n)
+             {
+               a[id]=b[i];
+               id++;
+               i++;
+             }
+             continue;
+           }
+           if(i<n && j<m && b[i]>c[j])
+           {
+             a[id]=b[i];
+             id++;
+             i++;
+             continue;
+           }
+           if(i<n && j<m && b[i]<c[j])
+           {
+             a[id]=c[j];
+             id++;
+             j++;
+             continue;
+           }
+         }
+         for(i=0;i<n+m;i++)System.out.print(a[i]+" ");
+         System.out.println("");
+       }
+    }
+}

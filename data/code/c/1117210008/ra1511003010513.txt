@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+void printMatrix(int row,int col,int arr[row][col])
+{
+  int i,j;
+  printf("The matrix is\n");
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      printf("%d ",arr[i][j]);
+    }
+    printf("\n");
+  }
+}
+void maxElement(int row,int col,int arr[row][col])
+{
+  int i,j;
+  int max = -1000;
+  for(i=0;i<row;i++){
+    for(j=0;j<col;j++){
+      if(arr[i][j]>max)
+        max = arr[i][j];
+    }
+  }
+  printf("The maximum element in the matrix is:%d",max);
+}
+int main()
+{
+  int row,col;
+  scanf("%d",&row);
+  scanf("%d",&col);
+  int arr[row][col];
+  int i,j;
+  for(i=0;i<row;i++)
+    for(j=0;j<col;j++)
+      scanf("%d",&arr[i][j]);
+  printMatrix(row,col,arr);
+  maxElement(row,col,arr);
+	return 0;
+}

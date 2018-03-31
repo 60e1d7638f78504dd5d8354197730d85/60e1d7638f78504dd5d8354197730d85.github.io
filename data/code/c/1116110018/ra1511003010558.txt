@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char ch[20],c[10];
+  	int i,arr[10],a,b;
+  	scanf("%s",&ch[0]);
+  	arr[0]=1;
+  	c[0]=ch[0];
+  	a=b=0;
+  	for(i=1;i<strlen(ch);i++)
+    {
+      if(ch[i]==ch[i-1])
+      {
+        arr[b]=arr[b]+1;
+      }
+      else
+      {
+        a=a+1;
+        b=b+1;
+        c[a]=ch[i];
+        arr[b]=1;
+      }
+    }
+  	for(i=0;i<=a;i++)
+    {
+      printf("%c=%d\n",c[i],arr[i]);
+    }
+	return 0;
+}

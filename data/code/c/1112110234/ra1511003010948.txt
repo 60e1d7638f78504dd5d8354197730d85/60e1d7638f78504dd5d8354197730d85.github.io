@@ -1,0 +1,59 @@
+#include <stdio.h>
+void swap (long int *a,long int *b)
+{
+  int t;
+  t=*a;
+  *a=*b;
+  *b=t;
+}
+
+int partition(long int a[],int low,int high)
+{
+  long int p=a[high];
+  int i =(low-1);
+  int j;
+  for(j=low;j<=high-1;j++)
+  {
+    if(a[j]<=p)
+    {
+      i++;
+      swap(&a[i],&a[j]);
+    }
+  }
+  swap(&a[i+1],&a[high]);
+  return (i+1);
+  }
+          
+  void quick(long int a[],int low ,int high)
+          {
+            if(low<high)
+            {
+              long int pi=partition(a,low,high);
+              quick(a,low,pi-1);
+              quick(a,pi+1,high);
+            }
+          }
+  
+              
+          
+  
+int main()
+{
+int t,k,i,j,n;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d%d",&n,&k);
+    long int a[n];
+    for(i=0;i<n;i++)
+      scanf("%ld",&a[i]);
+    
+    quick(a,0,n-1);
+    
+    double sum=0.0;
+    for(i=k;i<n-k;i++)
+      sum=sum+a[i];
+    printf("%lf\n",sum/(n-2*k));
+  }
+	return 0;
+}

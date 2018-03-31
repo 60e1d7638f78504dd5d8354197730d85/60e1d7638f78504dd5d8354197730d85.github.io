@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int num;
+  scanf("%d",&num);
+  int a=convertFive(num);
+  printf("%d",a);
+	return 0;
+}
+int convertFive(int n)
+{
+  int x=n,m=0,f=1,r;
+  while(x!=0)
+  {
+    r=x%10;
+    if(r==0)
+    {
+      m=m+5*f;
+      f*=10;
+    }
+    else
+    {
+      m=m+r*f;
+      f*=10;
+    }
+    x=x/10;
+  }
+  return m;
+}
+       

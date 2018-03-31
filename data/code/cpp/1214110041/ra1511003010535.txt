@@ -1,0 +1,67 @@
+#include<iostream>
+using namespace std;
+#include<string.h>
+class student
+{
+int rno,ns;
+float per,s;
+char name[20];
+int *m;
+public:
+student(int no,char *nm,int nos)
+{
+rno=no;
+strcpy(name,nm);
+ns=nos;
+m=new int[ns];
+}
+void get();
+void cal();
+void disp();
+};
+void student::get()
+{
+for(int i=0;i<ns;i++)
+{
+cin>>m[i];
+}
+}
+void student::cal()
+{
+s=0;
+for(int i=0;i<ns;i++)
+{
+s=s+m[i];
+}
+per=s/ns;
+}
+void student::disp()
+{
+cal();
+  cout<<name<<" "<<rno<<" "<<per<<" ";
+  if(per>80)
+    cout<<"Class A";
+  else if(per>70)
+    cout<<"Class B";
+  else if(per>60)
+    cout<<"Class C";
+  else if(per>50)
+    cout<<"Class D";
+  else
+    cout<<"Class F";
+}
+
+int main()
+{int t,i;
+int no,nos;
+char nm[20];
+ cin>>t;
+ for(i=0;i<t;i++)
+   
+ {cin>>nm>>no>>nos;
+student st(no,nm,nos);
+st.get();
+st.disp();
+ cout<<endl;}
+return 0;
+}

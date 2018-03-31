@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	long long int l,d,s,c,D,flag;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%lld %lld %lld %lld",&l,&d,&s,&c);
+		D=d-1;
+		flag=0;
+		while(D--){
+			s=s+(c*s);
+			if(s>=l){
+				flag=1;
+				printf("ALIVE AND KICK\n");
+				break;
+			}
+		}
+		if(s<l)
+			printf("DEAD AND ROT\n");
+		else if(flag==0)
+			printf("ALIVE AND KICK\n");
+	}
+	return 0;
+}  

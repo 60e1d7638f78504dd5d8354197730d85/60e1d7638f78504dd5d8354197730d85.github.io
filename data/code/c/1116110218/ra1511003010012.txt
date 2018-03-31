@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int q,w;
+	scanf("%d",&w);
+	for(q=0;q<w;q++)
+	{
+	char s[10010];
+	int l,i,j,count[10010][27]={0},hash=0,count_max[10010]={0},sum_max[10010]={0},sum_behind[10010][27]={0},sum_behind_max[10010]={0},max=0,final=0;
+	scanf("%s",s);
+	l=strlen(s);
+	for(i=0;i<=l;i++)
+	{
+		if(s[i]>='a' && s[i]<='z')
+		{
+			count[hash][s[i]-'a']++;
+		}
+		else if(s[i]=='#' || s[i]=='\0')
+		{
+			hash++;
+ 
+		}
+	}
+	for(i=0;i<hash;i++)
+	{
+		for(j=0;j<26;j++)
+		{
+		//	printf("%d ",count[i][j]);
+			if(count[i][j]>count_max[i])
+			{
+				count_max[i]=count[i][j];
+			}
+		}
+	}
+
+	for(i=hash-1;i>=0;i--)
+	{
+		for(j=0;j<26;j++)
+		{
+			sum_behind[i][j]=sum_behind[i+1][j]+count[i][j];
+		}
+	}
+	for(i=0;i<hash;i++)
+	{
+		for(j=0;j<26;j++)
+		{
+			if(sum_behind[i][j]>sum_behind_max[i])
+			{
+				sum_behind_max[i]=sum_behind[i][j];
+			}
+ 
+		}
+	}
+ 
+	
+ 
+	for(i=1;i<hash;i++)
+	{
+		for(j=0;j<26;j++)
+		{
+			count[i][j]=count[i][j]+count[i-1][j];
+		}
+	}
+	for(i=0;i<hash;i++)
+	{
+		for(j=0;j<26;j++)
+		{
+			if(count[i][j]>sum_max[i])
+			{
+				sum_max[i]=count[i][j];
+			}
+ 
+		}
+	}
+
+	for(i=1;i<hash;i++)
+	{
+		if(count_max[i]>0 && count_max[i+1]>0 && sum_max[i-1]>0 && sum_behind_max[i+2]>0)
+		{
+			final=count_max[i]+count_max[i+1]+sum_max[i-1]+sum_behind_max[i+2]+3;
+		
+		}
+		else 
+			final=0;
+		if(final>max)
+		{max=final;}
+	}
+	printf("%d\n",max);
+	}
+	return 0;
+ 
+ 
+ 
+ 
+ 
+ 
+}
+ 
+ 

@@ -1,0 +1,59 @@
+    #include <stdio.h>
+    #include <stdlib.h>
+     
+    #define MAX_VALUES	2000
+     
+    int cmp(const void *x, const void *y)
+    {
+    	return -(*(const int *)x - *(const int *)y);
+    }
+     
+    int main(void)
+    {
+    	int n, k;
+    	int v[MAX_VALUES];
+    	int i, j, z;
+    	int p, q, r;
+    	int c;
+     
+    	scanf("%d %d", &n, &k);
+    	for(i = n; i --;)
+    		scanf("%d", &v[i]);
+     
+    	qsort(v, n, sizeof(int), cmp);
+     
+    	c = 0;
+    	for(i = 0; i < n - 1; i ++)
+    	{
+    		if(v[i] > k)
+    			continue;
+     
+    		for(j = i + 1; j < n; j ++)
+    		{
+    			if(v[i] * v[j] > k)
+    				continue;
+     
+    			z = k / (v[i] * v[j]);
+     
+    			p = j + 1;
+    			q = n - 1;
+     
+    			while(p < q)
+    			{
+    				r = (p + q) / 2;
+     
+    				if(v[r] > z)
+    					p = r + 1;
+    				else
+    					q = r;
+    			}
+     
+    			if(v[p] <= z)
+    				c += n - p;
+    		}
+    	}
+     
+    	printf("%d\n", c);
+     
+    	return 0;
+    }

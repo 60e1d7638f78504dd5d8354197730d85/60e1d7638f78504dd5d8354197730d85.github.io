@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+class distances{
+  private : int feet , inches ;
+  public :
+  	distances(){
+      feet = 0 ;
+      inches = 0 ;
+    }
+  	distances( int a , int b ){
+      feet = a ;
+      inches = b ;
+    }
+  	void display(){
+      cout << "Feet:" << feet << " Inches:" << inches ;
+    }
+  	distances operator+(distances dist){
+      distances d3 ;
+      d3.feet = feet + dist.feet ;
+      d3.inches = inches + dist.inches ;
+      if ( d3.inches >= 12 ){
+        d3.feet = d3.feet + d3.inches/12 ;
+        d3.inches = d3.inches%12 ;
+      }
+      return d3 ;
+    }
+} ;
+
+int main()
+{
+  	int f1 , i1 , f2 , i2 ;
+  	cin >> f1 >> i1 >> f2 >> i2 ;
+	distances d1(f1,i1) , d2(f2,i2) , d3 ;
+  	d3 = d1 + d2 ;
+  	cout << "Total Distance:" << endl ;
+  	d3.display() ;
+	return 0;
+}

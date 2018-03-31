@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int find(int arr[],int n,int x)
+{
+    int l = 0, r = n-1;
+    int result = 0;
+    while (l < r)
+    {
+        if (arr[l] + arr[r] < x){
+            result += (r - l);
+            l++;
+        }
+        else
+            r--;
+    }
+    return result;
+}
+
+int main()
+{
+	int n,x;
+  	cin>>n>>x;
+  	int a[n];
+  	for(int i=0;i<n;i++)
+      cin>>a[i];
+  	cout<<find(a,n,x);
+	return 0;
+}

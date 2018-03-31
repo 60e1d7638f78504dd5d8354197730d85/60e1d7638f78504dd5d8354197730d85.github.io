@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define ll long long int
+ 
+int grundy(int p,int ar[],int n)
+{
+	if(p==0)return 0;
+	int ans = 0;
+	int hash[10009];
+	memset(hash,-1,sizeof(hash));
+	
+	if(p<ar[n-1])
+	{
+		vector<int> tp;
+		for(int i=0;i<n;i++)
+		{
+			if(p-ar[i]>=0)tp.push_back(p-ar[i]);
+		}
+		sort(tp.begin(),tp.end());
+		int sz = tp.size();
+		
+		int i;
+		for(i=0;i<sz;i++)
+		{
+			if(tp[i]!=i)break;
+		}
+		return i;
+	}
+	for(int i=0;i<n;i++)
+	{
+		if(ar[i]<=p)ans^=grundy(p-ar[i],ar,n);
+	}
+	return ans;
+}
+ 
+int main ()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+	int t;
+	cin >> t;
+	
+	while(t--)
+	{
+		int m,n;
+		cin >> m >> n;
+		
+		int ar[n+9],xr=0;
+		
+		for(int i=0;i<n;i++)cin >> ar[i],xr^=ar[i];
+		
+		vector<bool> M(m+9,false);
+		
+		for(int i=0;i<=m;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				if(i<ar[j])continue;
+				else
+				{
+					if(M[i-ar[j]]==false)
+					{
+						M[i]=true;
+						break;
+					}
+				}
+			}
+		}
+		
+		if(!M[m])cout << "Kate" << endl;
+		else cout << "Little Deepu" << endl;
+		
+	}
+	
+	return 0;
+}

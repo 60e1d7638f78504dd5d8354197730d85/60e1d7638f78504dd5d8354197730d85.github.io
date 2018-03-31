@@ -1,0 +1,91 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+void reversegraph(map<int,vector<int>>&m,map<int,vector<int>>&rm){
+    for(auto it=m.begin();it!=m.end();it++){
+        int ele=it->first;
+        vector<int>tem=it->second;
+        for(int i=0;i<tem.size();i++){
+            rm[tem[i]].push_back(ele);
+        }
+    }
+    
+}
+void dfs(int s,vector<bool>&visited,map<int,vector<int>>&m){
+    visited[s]=true;
+    vector<int>tem=m[s];
+    for(int i=0;i<tem.size();i++){
+        if(!visited[tem[i]]){
+            dfs(tem[i],visited,m);
+        }
+    }
+}
+void creategraph(vector<string>&a,int n,map<int,vector<int>>&m,vector<int>&in){
+    string temp;
+    int f,s;
+    for(int i=0;i<n;i++){
+        temp=a[i];
+        f=temp[0]-'a';
+        s=temp[temp.length()-1]-'a';
+        m[f].push_back(s);
+        in[s]++;
+    }
+}
+bool isSC(map<int,vector<int>>&m,vector<int>&in){
+    vector<bool>visited(26,false);
+    map<int,vector<int>>::iterator it;
+    it=m.begin();
+    int s=it->first;
+    dfs(s,visited,m);
+    int i;
+    for(it=m.begin();it!=m.end();it++){
+             i=it->first;
+             if(visited[i]==false){
+                 return false;
+             }
+    }
+    vector<bool>visit(26,false);
+    map<int,vector<int>>rm;
+    reversegraph(m,rm);
+    dfs(s,visit,rm);
+     for(auto itt=rm.begin();itt!=rm.end();itt++){
+             i=itt->first;
+             if(visit[i]==false){
+                 return false;
+             }
+    }
+    int siz;
+    for(it=m.begin();it!=m.end();it++){
+             i=it->first;
+             siz=it->second.size();
+             if(siz!=in[i]){
+                 return false;
+             }
+    }
+    return true;
+}
+int main() {
+	int t;
+	cin>>t;
+	for(int i=0;i<t;i++){
+	    int n;
+	    cin>>n;
+	    vector<string>a(n);
+	    for(int j=0;j<n;j++){
+	        cin>>a[j];
+	    }
+	    map<int,vector<int>>m;
+	    vector<int>in(26,0);
+	    creategraph(a,n,m,in);
+	    bool flag=isSC(m,in);
+	    if(flag==true){
+	        cout<<1;
+	    }else{
+	        cout<<0;
+	    }
+	    cout<<endl;
+	}
+}

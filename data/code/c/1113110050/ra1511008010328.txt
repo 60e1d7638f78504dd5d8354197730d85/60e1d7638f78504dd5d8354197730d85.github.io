@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+ 
+ 
+int main() {
+    int N;
+    scanf("%d", &N);
+    int i;
+    for(i = 0; i < N; i++) {
+        char str[101];
+        scanf("%s", str);
+ 
+        if(strlen(str) == 2) {
+            if(str[0] != str[1]) {
+                printf("YES\n");
+            }
+            else {
+                printf("NO\n");
+            }
+        }
+        else {
+            char even = str[0];
+            char odd = str[1];
+ 
+            if(even == odd) {
+                printf("NO\n");
+                continue;
+            }
+ 
+            int i;
+            int flag = 0;
+            for(i = 0; i < strlen(str); i++) {
+                if(i % 2 == 0 && str[i] != even) {
+                    flag = 1;
+                    break;
+                }
+                if(i % 2 == 1 && str[i] != odd) {
+                    flag = 1;
+                    break;
+                }
+            }
+ 
+            if(flag)
+                printf("NO\n");
+            else
+                printf("YES\n");
+        }
+    }
+ 
+    return 0;
+}

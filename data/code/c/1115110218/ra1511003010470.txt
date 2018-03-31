@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int T, i, n[50], m[50], j, fjobs[50][1000], ufjobs[50][1000], d, temp, k, l ;
+    memset(fjobs, ' ', 50000*sizeof(int));
+    memset(ufjobs, ' ', 50000*sizeof(int));
+    scanf("%d", &T);
+    for(i=0; i<T; ++i)
+    {
+        scanf("%d%d", &n[i], &m[i]);
+        for(j=0; j<m[i]; ++j)
+        {
+           scanf(" %d", &fjobs[i][j]);
+        }
+       for(j=0; j<m[i]; ++j)
+       {
+          d=j;
+          while(d>0 && fjobs[i][d-1]>fjobs[i][d])
+          {
+              temp=fjobs[i][d-1];
+              fjobs[i][d-1]=fjobs[i][d];
+              fjobs[i][d]=temp;
+              --d;
+          }
+        }
+     }
+
+     for(i=0; i<T; ++i)
+     {
+         l=0;
+         for(j=1, k=0; j<=n[i]; ++j, ++k)
+         {
+             if(j!=fjobs[i][k])
+             {
+                 if(j>fjobs[i][k])
+                 {
+                     --j;
+                 }
+                 else{
+                 ufjobs[i][l]=j;
+                 ++l;
+                 --k;}
+             }
+             else{
+                continue;
+             }
+
+         }
+         for(j=0; j<l; j+=2)
+       printf("%d ", ufjobs[i][j]);
+       printf("\n");
+     for(j=1; j<l; j+=2)
+       printf("%d ",ufjobs[i][j]);
+
+      printf("\n");
+     }
+  return 0;
+}

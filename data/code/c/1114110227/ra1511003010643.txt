@@ -1,0 +1,26 @@
+#include<stdio.h>  
+#include<string.h>  
+#define ll long long
+int sum=1;
+int n;
+
+void dfs(int x)
+{
+    if(x*10<=n)
+    {
+        sum++;
+        dfs(x*10);
+    }
+    if(x*10+1<=n)
+    {
+        sum++;
+        dfs(x*10+1);
+    }
+}
+int main()
+{
+   scanf("%d",&n);
+    dfs(1);
+printf("%d",sum);
+  return 0;
+} 

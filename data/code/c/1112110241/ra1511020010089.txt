@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+     char str1[20],str2[20];
+     int i,j,k,n,f[20],count=0;
+     scanf("%s",str1);
+  scanf("%d",&n);
+  for (i=0;i<n;i++)
+  {
+    scanf("%s",str2);
+    count=0;
+    for(j=0;j<strlen(str1);j++)
+    {
+      for(k=0;k<strlen(str2);k++)
+      {
+        if(str1[i]==str2[k])
+        {
+          f[i]++;
+        }
+      }
+    }
+    
+    for(k=0;k<strlen(str1);k++)
+    {
+      if(f[i]<=1)
+        count++;
+    }
+    if(count==strlen(str1))
+            printf("No\n");
+    else
+            printf("Yes\n");
+
+
+  }
+  
+  
+	return 0;
+}

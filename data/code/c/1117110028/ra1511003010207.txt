@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+	int n;
+	scanf("%d", &n);
+
+	int recurse(int n, int max) {
+		int t, m;
+		scanf("%d", &t);
+
+		m = t > max ? t : max;
+
+		if (n == 1) {
+			return m;
+		} else {
+			return recurse(n - 1, m);
+		}
+	}
+
+	printf("Maximum element in the array is %d", recurse(n, 0));
+
+	return 0;
+}

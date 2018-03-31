@@ -1,0 +1,37 @@
+#include<stdio.h>
+void shellsort(long long int arr[],long long int num)
+{
+   long long int i, j, k, tmp;
+    for (i = num / 2; i > 0; i = i / 2)
+    {
+        for (j = i; j < num; j++)
+        {
+            for(k = j - i; k >= 0; k = k - i)
+            {
+                if (arr[k+i] >= arr[k])
+                    break;
+                else
+                {
+                    tmp = arr[k];
+                    arr[k] = arr[k+i];
+                    arr[k+i] = tmp;
+                }
+            }
+        }
+    }
+}
+int main()
+{   long long int t,n,m,i,c=0;
+    scanf("%lld %lld",&n,&m);
+        long long int a[n];
+        for(i=0;i<n;i++)
+            scanf("%lld",&a[i]);
+        shellsort(a,n);
+        for(i=0;i<n-1;){
+                if(a[i+1]-a[i]<=m)
+                    {c++;i+=2;}
+                    else i++;
+        }
+                printf("%lld\n",c);
+    return 0;
+}

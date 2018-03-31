@@ -1,0 +1,59 @@
+#include <stdio.h>
+struct student
+{
+  char name[20];
+  int mark;
+
+}ct1[10],t;
+void input(int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+    scanf("%s%d",ct1[i].name,&ct1[i].mark);
+}
+  void sort(int n)
+{
+ int i,j;
+  for(i=0;i<n;i++)
+    for(j=i+1;j<n;j++)
+      if(ct1[i].mark<ct1[j].mark)
+      {
+        t=ct1[i];
+        ct1[i]=ct1[j];
+        ct1[j]=t;
+      }
+}
+void print(int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+    printf("%s %d\n",ct1[i].name,ct1[i].mark);
+}
+int high(int n)
+{
+  int max=ct1[0].mark;
+ 
+  int i;
+ int f,s;
+  if(ct1[0].mark>ct1[1].mark){f=ct1[0].mark;s=ct1[1].mark;}else {s=ct1[1].mark;f=ct1[1].mark;}
+  for(i=1;i<n;i++)
+    if(ct1[i].mark>f)
+    { 
+      s=f;
+      f=ct1[i].mark;
+    }
+  else if(ct1[i].mark>s && ct1[i].mark!=f) s=ct1[i].mark;
+ return s;
+}
+int main()
+{int n=10;
+  input(n);  
+  printf("Ordered List\n");
+ 
+sort(n);
+  print(n);
+ 
+ printf("Second Highest mark is %d\n" ,high(n));
+
+	return 0;
+}

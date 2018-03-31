@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int n,q;
+    scanf("%d %d",&n,&q);
+    int row[n],col[n];
+    int i;
+    for(i=0;i<n;i++)
+    {
+        row[i]=0;
+        col[i]=0;
+    }
+    char s[50];
+    int index,val;
+    for(i=0;i<q;i++)
+    {
+        scanf("%s %d %d",s,&index,&val);
+        index--;
+        if(strcmp(s,"RowAdd")==0)
+            row[index]+=val;
+        else
+            col[index]+=val;
+    }
+    int m1=-1,m2=-1;
+    for(i=0;i<n;i++)
+    {
+        if(row[i]>m1)
+            m1=row[i];
+        if(col[i]>m2)
+            m2=col[i];
+    }
+    printf("%d\n",m1+m2);
+    return 0;
+}

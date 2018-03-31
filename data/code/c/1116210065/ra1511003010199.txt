@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<string.h>
+//#include<conio.h>
+ 
+int k,n,l,c,z,i,j;
+char a[500001];
+ 
+int rotate(int d)
+	{
+	if((n-d)<0)
+	n=n-d+l;
+ 
+	else
+	n=n-d;
+ 
+	if(n+1==l)
+	i=0;
+ 
+	else
+	i=n+1;
+ 
+	if(i==0)
+	return 0;
+ 
+	if(a[n]!=a[l-1])
+	return 1;
+ 
+	for(k=i,j=0;k<l;k++,j++)
+	if(!(a[k]==a[j]))
+	 return 1;
+	  if(i!=0)
+	   for(k=0;k<=n;k++,j++)
+		if(!(a[k]==a[j]))
+		return 1;
+	return 0;
+	}
+ 
+int main()
+{
+int t,m,p,v;
+scanf("%d",&t);
+ 
+while(t--)
+{
+scanf("%s%d%d",a,&m,&p);
+c=1;
+l=strlen(a);
+i=0;
+n=l-1;
+z=1;
+v=m;
+while(rotate(v))
+	{
+	c++;
+	if(z%2==1)
+	{
+	v=p;
+	z++;
+	}
+	else
+	{
+	v=m;
+	z++;
+	}
+	}
+	printf("%d\n",c);
+	}
+ 
+//getch();
+return 0;
+} 

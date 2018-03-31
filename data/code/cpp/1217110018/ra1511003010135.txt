@@ -1,0 +1,46 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+double sqr(double val)
+{
+	return val*val;
+}
+double area(double a,double b,double c)
+{	double d=(a+b+c)/2.0;
+ return sqrt(d*(d-a)*(d-b)*(d-c));
+
+}
+  
+  
+int main()
+{
+double a[6],u,U,v,V,w,W,volume,S;
+  int num;
+  cin>>num;
+  while(num--)
+  { S=0;
+   for(int i=0;i<6;i++)
+   {cin>>a[i];}
+    u=a[2];U=a[3];
+   v=a[4];V=a[1];
+   w=a[5];W=a[0];
+   S+=area(a[2],a[1],a[5]);
+   S+=area(a[0],a[2],a[4]);
+   S+=area(a[0],a[1],a[3]);
+   S+=area(a[3],a[4],a[5]);
+   volume=sqrt((4*sqr(u)*sqr(v)*sqr(w)
+               -sqr(u)*sqr(sqr(v)+sqr(w)-sqr(U))
+   				-sqr(v)*sqr(sqr(w)+sqr(u)-sqr(V))
+               -sqr(w)*sqr(sqr(u)+sqr(v)-sqr(W))
+               +(sqr(v)+sqr(w)-sqr(U))
+               *(sqr(w)+sqr(u)-sqr(V))
+               *(sqr(u)+sqr(v)-sqr(W))
+   				))/12.0;
+  cout<<fixed;
+   cout<<setprecision(4);
+   cout<<volume*3.0/S<<endl;
+   }
+  
+	return 0;
+}

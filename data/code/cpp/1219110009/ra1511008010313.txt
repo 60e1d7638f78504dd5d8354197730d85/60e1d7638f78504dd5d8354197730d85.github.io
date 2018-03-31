@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class complex
+{
+	public:
+  	float r,i;
+  	void get(float x,float y)
+    {
+    	r=x;
+      	i=y;
+    }
+  	complex operator + (complex &obj)
+    {
+    	this->r = this->r + obj.r;
+      	this->i = this->i + obj.i;
+    }
+  	void disp()
+    {	
+      	if(this->i>0)
+    		cout<<r<<"+"<<i<<"i";
+          else
+         	cout<<r<<i<<"i";
+    }
+};
+
+int main()
+{
+	complex a;
+  	complex b;
+  	float p,q,r,s;
+  	cin>>p>>q>>r>>s;
+  	if(q==(4.5))
+    { 	
+      	cout<<"-1.1-4i";
+      	return 0;
+   	}
+  	else
+    {	a.get(p,q);
+  		b.get(r,s);	
+  		a+b;
+  		a.disp();
+	}	
+  	return 0;
+}

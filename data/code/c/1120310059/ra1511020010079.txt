@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main()
+{
+	long long int t,n,i,m,b[100001],sum,q;char z;
+	for(i=0;i<=100000;i++)
+			b[i]=0;
+	scanf("%lld",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%lld%lld",&m,&n);
+		b[m]+=n;
+	}
+	scanf("%lld",&q);
+	while(q--) 
+	{
+		scanf("%c",&z);
+		scanf("%c %lld",&z,&m);
+		if(z=='+')
+		{
+			b[m]++;
+		}
+		else if(z=='-')
+		{
+			b[m]--;
+		}
+		else
+		{
+			for(i=1,sum=0;i<=100000;i++)
+			{
+				sum+=(m%i)*b[i];
+			}
+			printf("%lld\n",sum);
+		}
+	}
+	return 0;
+} 

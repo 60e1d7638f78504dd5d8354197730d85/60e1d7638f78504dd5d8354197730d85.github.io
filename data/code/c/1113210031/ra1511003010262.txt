@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int a[t],b[t],i,rem=0,rev=0;
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  int x=0;
+  for(i=0;i<t;i++)
+  {
+    rem=0;
+    rev=0;
+    x=a[i];
+    //printf("%d\n",x);
+    while(x!=0)
+    {
+      rem=x%10;
+      rev=(rev*10)+rem;
+      x=x/10;
+    }
+    b[i]=rev;
+    //printf("%d\n",b[i]);
+  }
+  for(i=t-1;i>=0;i--)
+    printf("%d\n",b[i]);
+  
+
+	return 0;
+}

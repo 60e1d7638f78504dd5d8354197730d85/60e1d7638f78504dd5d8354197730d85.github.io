@@ -1,0 +1,25 @@
+#include <stdio.h>
+void bubble_sort( int A[ ], int n ) {
+    int temp,k,i;
+    for( k = 0; k< n-1; k++) {
+        // (n-k-1) is for ignoring comparisons of elements which have already been compared in earlier iterations
+
+        for( i = 0; i < n-k-1; i++) {
+            if(A[ i ] > A[ i+1] ) {
+                // here swapping of positions is being done.
+                temp = A[ i ];
+                A[ i ] = A[ i+1 ];
+                A[ i + 1] = temp;
+            }
+        }
+    }
+}
+int main()
+{
+	int n,a[10000],i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)scanf("%d",&a[i]);
+  bubble_sort(a,n);
+  for(i=0;i<n;i++)printf("%d ",a[i]);
+	return 0;
+}

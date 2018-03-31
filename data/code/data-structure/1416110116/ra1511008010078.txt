@@ -1,0 +1,145 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void generate_prime_no(int);
+
+int counter=1,array_count=0;
+int prime[1200]={0};
+typedef struct nod{
+    int val;
+    struct nod *next;
+}node;
+
+struct main_list{
+    struct nod *link;
+    struct main_list *next;
+};
+
+typedef struct main_list list;
+list *list_array,*start3=NULL,*prev=NULL,*run=NULL;
+
+int main()
+{
+    node *node1=NULL,*node2=NULL,*start1=NULL,*prev1=NULL,*start2=NULL,*prev2=NULL,*run1=NULL;
+    
+    int a[50000];
+    int i,q,n,j;
+    int prime_no;
+    scanf("%d %d",&n,&q);
+    generate_prime_no(q);
+    for(i=n-1;i>=0;i--){
+        scanf("%d",&a[i]);
+    }
+    
+    for(j=0;j<q;j++){
+    prime_no=prime[j];
+    for(i=0;i<n;i++){
+        if(a[i]%prime_no==0){
+            if(start1==NULL){
+              node1=(node *)malloc(sizeof(node));
+              node1->val=a[i];
+              node1->next=NULL;  
+              start1=node1;
+              prev1=start1;  
+            }
+            else{
+            node1=(node *)malloc(sizeof(node));
+            node1->val=a[i];
+            node1->next=start1;
+            start1=node1;    
+            //prev1->next=node1;
+            //prev1=node1;    
+            }
+            
+        }
+        else
+        {
+            if(start2==NULL){
+            node2=(node *)malloc(sizeof(node));
+            node2->val=a[i];
+            node2->next=NULL;
+            start2=prev2=node2;    
+        }
+            else{
+               // printf("\n value : %d\n",a[i]);
+                node2=(node *)malloc(sizeof(node));
+                node2->val=a[i];
+                node2->next=start2;
+                start2=node2;
+               // prev2->next=node2;
+               // prev2=node2;
+            }
+        }
+    }
+   
+        if(start3==NULL){
+            list_array=(list *)malloc(sizeof(list));
+            list_array->link=start1;
+            list_array->next=NULL;
+            start3=list_array;
+            prev=start3;
+        }
+        else{
+
+            list_array=(list *)malloc(sizeof(list));
+            list_array->link=start1;
+            list_array->next=NULL;
+            prev->next=list_array;
+            prev=list_array;
+        }
+        
+        run1=start2;
+        while(run1!=NULL){
+            a[array_count++]=run1->val;
+            run1=run1->next;
+        }
+        n=array_count;
+       
+      array_count=0;
+        start1=NULL;
+        if(j!=q-1){start2=NULL;}
+        
+    }
+    run=start3;
+        while(run!=NULL){
+            
+            run1=run->link;
+            while(run1!=NULL){
+              
+                printf("%d\n",run1->val);
+                run1=run1->next;
+            }
+            run=run->next;
+        }
+    run1=start2;
+    while(run1!=NULL){
+        printf("%d\n",run1->val);
+        run1=run1->next;
+    }
+    
+}
+
+
+void generate_prime_no(int n){
+    int i = 3, count, c,counter=1;
+ 
+  prime[0]=2;
+ 
+   for ( count = 2 ; count <= n ;  )
+   {
+      for ( c = 2 ; c <= i - 1 ; c++ )
+      {
+         if ( i%c == 0 )
+            break;
+      }
+      if ( c == i )
+      {
+          prime[counter++]=i;
+         //printf("%d\n",i);
+         count++;
+      }
+      i++;
+   }
+}

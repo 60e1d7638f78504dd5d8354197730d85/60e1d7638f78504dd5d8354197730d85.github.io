@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h> 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char a[1000001],b[26]="zyxwvutsrqponmlkjihgfedcba",tempc;
+        int i,hash[26]={0},l,temp,j;
+        scanf("%s",a);
+        l=strlen(a);
+        for(i=0;i<l;i++)
+        {
+            hash[122-a[i]]++;
+        }
+        for(i=0;i<25;i++)
+        {
+            for(j=0;j<(25-i);j++)
+            {
+                if(hash[j]>hash[j+1])
+                {
+                   tempc=b[j];
+                   b[j]=b[j+1];
+                   b[j+1]=tempc;
+                   temp=hash[j];
+                   hash[j]=hash[j+1];
+                   hash[j+1]=temp;
+                }
+            }
+        }
+        for(i=0;i<26;i++)
+        {
+            printf("%c ",b[i]);
+            
+        }
+        printf("\n");
+        
+    }
+    return 0;
+}

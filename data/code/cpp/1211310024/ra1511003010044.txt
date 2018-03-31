@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define f0(i,n) for(int i=0;i<n;i++)
+#define f1(i,n) for(int i=1;i<n;i++)
+#define FOR(i,a,b) for(int i=a;i<=b;i++)
+#define RFOR(i,a,b) for(int i=b;i>=a;i--)
+#define fastIO ios::sync_with_stdio(false);	cin.tie(NULL); cout.tie(NULL);
+#define si(t) scanf("%d",&t)
+#define sl(t) scanf("%lld",&t)
+#define slu(t) scanf("%llu",&t)
+#define ss(t) scanf("%s",t)
+#define sf(t) scanf("%f",&t)
+#define sd(t) scanf("%lf",&t)
+#define LL long long  
+#define ULL unsigned long long  
+#define LD long double  
+#define MAX(a,b) ((a)>(b)?(a):(b))
+#define MIN(a,b) ((a)<(b)?(a):(b))
+#define ABS(x) ((x)<0?-(x):(x))
+void swaps(char *x,char *y){char temp;temp=*x;*x=*y;*y=temp;}
+void swapi(int *a,int *b){int temp;temp=*a;*a=*b;*b=temp;}
+ULL gcd(ULL a,ULL b){if(a==0)return b;if(b==0)return a;if(a==1||b==1)return 1;
+if(a==b)return a;if(a>b)return gcd(b,a%b);else return gcd(a,b%a);}
+using namespace std;
+int main()
+{
+	fastIO
+	string a,s;
+	int t,ans,pos;
+	cin>>t;
+	while(t--) {
+	    cin>>s;
+	    ans=0;
+	    a="abcdefghijklmnopqrstuvwxyz";
+	    for(char ch:s){
+	    	if(a.find(ch)!=string::npos){
+	    		ans++;
+	    		a.erase(remove(a.begin(),a.end(),ch),a.end());
+	    	}
+	    }
+	    cout<<ans<<"\n";
+	}
+	return 0;
+} 

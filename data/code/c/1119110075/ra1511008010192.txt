@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main(int argc, char *argv[])
+{
+    long long int n;
+    while(scanf("%lld",&n)==1)
+     {
+                           long long int cnt=9;//[9*1+90*2+...]
+                           long long int d=1,i,j,pres=0,val=0;
+                           long long int pages=cnt*d;
+                           while(1)
+                            {
+                                  if(pages>n)
+                                   {
+                                              cnt=cnt/10;
+                                              
+                                              for(i=9,j=1;i<=cnt,j<d;i=i*10,j++)
+                                               {
+                                                                    pres=pres+(i);
+                                                                             
+                                                                    val=val+(i*j);       
+                                               }
+                                              n=n-val;
+                                              //printf("cnt:%d extra:%d\n",val,n);
+                                              if(n%d==0)
+                                               {
+                                                    printf("%lld\n",pres+(n/d));//no of pages
+                                               }
+                                              else
+                                               {
+                                                    //printf("%lld\n",pres+(n/d));
+                                                    //printf("%d %d",d,n%d);
+                                                    printf("Impossible\n");
+                                               }
+                                               
+                                              break;
+                                   } 
+                                  
+                                  cnt=cnt*10;
+                                  d++;
+                                  pages=pages+(cnt*d);
+                            }    
+     }
+   
+    return 0;
+}
+  

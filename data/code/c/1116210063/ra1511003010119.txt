@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include<string.h>
+ 
+int main(){
+	int t, len, i, j,flag9;
+	char s[1000002];
+	scanf("%d",&t);
+	while (t--)
+	{
+		scanf("%s", s);
+		len = strlen(s);
+		flag9 = 0;
+		for (i = (len - 1) / 2, j = len / 2; i >= 0; i--, j++)
+		{
+			if (s[i] != '9' || s[j] != '9')
+				flag9 = 1;
+			if (s[i] == s[j])
+				continue;
+			if (s[i] < s[j])
+			{
+				for (j = (len - 1) / 2; j >= 0; j--)
+				{
+					if (s[j] == '9')
+					{
+						s[j] = '0';
+					}
+					else
+					{
+						s[j]++;
+						break;
+					}
+				}
+				break;
+			}
+			else
+			{
+				break;
+			}
+		}
+		if (i == -1)
+		{
+			if (flag9)
+			{
+				for (j = (len - 1) / 2; j >= 0; j--)
+				{
+					if (s[j] == '9')
+					{
+						s[j] = '0';
+					}
+					else
+					{
+						s[j]++;
+						break;
+					}
+				}
+			}
+			else
+			{
+				s[0] = '1';
+				for (j = 1; j <= len / 2; j++)
+				{
+					s[j] = '0';
+				}
+				len++;
+			}
+		}
+		for (i = 0; i < len/2; i++)
+		{
+			printf("%c",s[i]);
+		}
+		for (i = (len - 1) / 2; i >= 0; i--)
+		{
+			printf("%c", s[i]);
+		}
+		printf("\n");
+	}
+	return 0;
+} 

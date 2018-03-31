@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+int size,row,column,count1=10,count2=0;
+  scanf("%d",&size);
+  int arr[size][size];
+  for(row=0;row<size;row++){
+   for(column=0;column<size;column++){
+     scanf("%d",&arr[row][column]);
+   }
+  }
+ for(row=0;row<size;row++){
+   for(column=row+1;column<size;column++){
+     if(arr[row][column] >0){
+       count1--;
+     }
+      else if(arr[row][column] == 0){
+        count2 ++;
+      }
+   }
+ }
+  if(count1<10 && count2>0 || count1<10){
+    printf("no");
+  }
+  else if(count2>0)
+    printf("yes");
+  
+	return 0;
+}

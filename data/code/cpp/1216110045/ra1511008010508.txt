@@ -1,0 +1,30 @@
+#include <iostream>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+int main()
+{
+	int t;
+  	char a[50001];
+  	cin>>t;
+  	for(int i=0;i<t;i++)
+    {
+      long p[27];
+      for(int j=1;j<=26;++j)
+        cin>>p[j];
+      cin>>a;
+      int n;
+      n=strlen(a);
+      for(int j=0;j<n;++j)
+      {
+        int r=a[j];
+        r-=96;
+        p[r]=0;
+      }
+      long sum=0;
+      for(int j=1;j<=26;++j)
+        sum+=p[j];
+      cout<<sum<<endl;
+    }
+	return 0;
+}

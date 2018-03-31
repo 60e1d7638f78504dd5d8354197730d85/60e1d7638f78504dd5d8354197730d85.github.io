@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner s=new Scanner(System.in);
+       int octalNumber,i=0,decimalNumber=0;
+       long binaryNumber=0;
+       octalNumber=s.nextInt();
+        while(octalNumber != 0)
+        {
+            decimalNumber += (octalNumber % 10) * Math.pow(8, i);
+            ++i;
+            octalNumber/=10;
+        }
+
+        i = 1;
+
+        while (decimalNumber != 0)
+        {
+            binaryNumber += (decimalNumber % 2) * i;
+            decimalNumber /= 2;
+            i *= 10;
+        }
+       System.out.println(binaryNumber);
+	}
+}

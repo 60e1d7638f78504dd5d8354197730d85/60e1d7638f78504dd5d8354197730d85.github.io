@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  	int t, l;
+  	scanf("%d", &t);
+  	for(l=0; l<t; l++)
+    {
+	int i, n, p[10], s, r, j;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++)
+    {
+    	scanf("%d", &p[i]);
+    }
+  
+  	scanf("%d", &s);
+  	s = p[s-1];
+  	
+  	for(i=0; i<n; i++)
+    {
+    	for(j=0; j<n-i-1; j++)
+        {
+        	if(p[j]>p[j+1])
+            {
+            	r = p[j];
+              	p[j] = p[j+1];
+              	p[j+1] = r;
+            }
+        }
+    }
+  	
+  	for(i=0; i<n; i++)
+    {
+    	if(s == p[i])
+        {
+        	printf("%d\n", i+1);
+          	break;
+        }
+    }
+    }
+	return 0;
+}

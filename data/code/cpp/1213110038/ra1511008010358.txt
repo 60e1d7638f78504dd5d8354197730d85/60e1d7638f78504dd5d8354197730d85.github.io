@@ -1,0 +1,34 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int main()
+{
+	string s1,s2;
+  cin>>s1;
+  cin>>s2;
+  int l1,l2;
+  l1=s1.length();
+  l2=s2.length();
+  int j=0,x,k=0;
+  for(int i=0;i<l1-l2+1;i++)
+  {
+    
+    if(s1[i]==s2[0])
+    {
+      x=i;
+      for(j=i+1;j<=l2+i;j++)
+      {
+        
+        if(s1[j]==s2[k++])
+          x=j;
+        else
+        {
+          break;
+          
+        }
+      }
+    }
+  }
+  cout<<"Substring found at position "<<x+1<<endl;
+	return 0;
+}

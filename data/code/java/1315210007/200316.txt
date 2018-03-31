@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+public class TestClass
+{
+	public static void main(String[] args)
+    {
+		int T,no;
+		Scanner sc=new Scanner(System.in);
+		T=sc.nextInt();		
+		if(T>=1&&T<=100)
+		{
+			int a[]=new int[T];
+			int i=0;
+			while(T>0)
+			{
+				no=sc.nextInt();
+				String origin=sc.next();
+				int total=0;
+				while(no>0)
+				{
+					String inp=sc.next();
+					int sum;
+					if(inp.equals("CONTEST_WON"))
+						{
+						int p=sc.nextInt();
+						if(p>20)
+							sum=300;
+						else
+							sum=300+(20-p);
+						total=total+sum;							
+						}
+					if(inp.equals("TOP_CONTRIBUTOR"))
+					{
+						total=total+300;
+					}
+					if(inp.equals("BUG_FOUND"))
+					{
+						int p=sc.nextInt();
+						if(p>=50&&p<=1000)
+						total=total+p;			
+					}
+					if(inp.equals("CONTEST_HOSTED"))
+					{
+						total=total+50;			
+					}
+					no--;					
+				}
+					if(origin.equals("NON_INDIAN"))
+					{
+						int p=total/400;
+						a[i]=p;
+						i++;
+					}
+					else
+					{
+						int p=total/200;
+						a[i]=p;
+						i++;
+					}						
+					T--;
+				}
+			for (int element: a) {
+		         System.out.println(element);
+		      }
+			}
+		
+		sc.close();
+		}
+		
+	}
+ 

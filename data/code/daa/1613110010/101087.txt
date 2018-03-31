@@ -1,0 +1,62 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+		int count = 0;
+		int T = Integer.parseInt(input.readLine());
+		for(int i = 0; i < T; i++){
+			int N = Integer.parseInt(input.readLine());
+			int[] A = new int[N];
+			int[] B = new int[N];
+			int[] totals = new int[10000000];
+			StringBuilder results = new StringBuilder();
+			for(int j = 0; j < N; j++){
+				A[j] = Integer.parseInt(input.readLine());
+				B[j] = A[j];
+			}
+			mergeSort(A, 0, A.length-1, totals);
+			for(int k = 0; k < B.length; k++){
+				results.append(totals[B[k]] + " ");
+			}
+			System.out.println(results);
+		}
+    }
+    public static void mergeSort(int[] A, int start, int end, int[] totals){
+		if(start < end){
+			int mid = start + (end - start)/2; //Splits array in two parts
+			mergeSort(A, start, mid, totals); //Sort first part of array
+			mergeSort(A, mid+1, end, totals); //Sort second part of array
+			merge(A, start, mid, end, totals); 
+		}
+	}
+	public static void merge(int A[], int start, int mid, int end, int[] totals){
+		int p = start, q = mid+1; 
+		int[] temp = new int[end-start+1];
+		int k = 0, count = 0, num = 0;
+		for(int i = start; i <= end; i++){
+			if(p > mid){ //Checks if first part comes to an end or not
+				temp[k++] = A[q++];
+			}
+			else if(q > end){ //Checks if second part comes to an end or not
+				num = A[p++];
+				temp[k++] = num;
+				totals[num] += count;
+			}
+			else if(A[p] < A[q]){ //Checks which part has smallest element
+				num = A[p++];
+				temp[k++] = num;
+				totals[num] += count;
+			}
+			else{ 
+				num = A[q++];
+				temp[k++] = num;
+				count++;
+			}
+		}
+		for(int j = 0; j < k; j++){ //Copy sorted elements back to array
+			A[start++] = temp[j];
+		}
+	}
+}

@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+ int pairWithMaxSum(int arr[], int N)
+{
+   if (N < 2)
+     return -1;
+ 
+   // Find two consecutive elements with maximum
+   // sum.
+   int res = arr[0] + arr[1];
+   for (int i=1; i<N-1; i++)
+      res = max(res, arr[i] + arr[i+1]);
+ 
+   return res;
+}
+ /*Driver program to test maxSubArraySum*/
+int main()
+{
+    int a[20],t,n,i,j;
+   cin>>t;
+  for(i=1;i<=t;i++)
+  {cin>>n;
+   for(j=0;j<n;j++)
+     cin>>a[j];
+  
+    int max_sum = pairWithMaxSum(a, n);
+    cout <<max_sum<<"\n";
+  }
+    return 0;
+}

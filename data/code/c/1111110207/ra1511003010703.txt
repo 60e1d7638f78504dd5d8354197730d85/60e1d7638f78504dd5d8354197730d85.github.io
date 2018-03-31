@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	long n;
+  	int oddi = 0, eveni = 0;
+  	int odd[1000], even[1000];
+  	int digit, i =0;
+  	scanf("%ld", &n);
+  	while(n!=0) {
+      digit = n%10;
+      if (digit % 2 == 0) {
+        even[eveni] = digit;
+        eveni++;
+      }
+      else {
+        odd[oddi] = digit;
+        oddi++;
+      }
+      n = n/10;
+    }
+  	
+  	for (i=oddi-1; i>=0; i--)
+      printf("%d", odd[i]);
+  	printf(" ");
+  	for (i=eveni-1; i>=0; i--)
+      printf("%d", even[i]);
+	return 0;
+}

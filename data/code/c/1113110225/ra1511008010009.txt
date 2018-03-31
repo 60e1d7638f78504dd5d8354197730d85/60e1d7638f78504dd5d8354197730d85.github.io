@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<ctype.h>
+int main()
+{
+    char line[1000];
+    int i, v, c, ch, d, s, o;
+ 
+    o = v = c = ch = d = s = 0;
+    scanf("%[^\t\n]s",line);
+    
+    for(i=0;line[i]!='\0';++i)
+    {
+        if(line[i]=='a' || line[i]=='e' || line[i]=='i' || line[i]=='o' || line[i]=='u' || line[i]=='A' || line[i]=='E' || line[i]=='I' || line[i]=='O' || line[i]=='U')
+            ++v;
+        else if((line[i]>='a'&& line[i]<='z') || (line[i]>='A'&& line[i]<='Z'))
+            ++c;
+        else if(line[i]>='0'&&c<='9')
+            ++d;
+        else if (isspace(line[i]))
+            ++s;
+    }
+    printf("\n%d %d %d %d\n",v,c,d,s);
+  return 0;
+}

@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int nr[10],nc[10];
+int main()
+{
+  int i,j;
+    char a[10][10];
+    for( i=1;i<=8;i++)
+    {
+        for( j=1;j<=8;j++)
+        {
+            scanf("%c",&a[i][j]);
+        }
+        getchar();
+    }
+    int r=0;
+    int c=0;
+    memset(nr,0,sizeof(nr));
+    memset(nc,0,sizeof(nc));
+    for( i=1;i<=8;i++)
+    {
+        int flag=0;
+        for (j=1;j<=8;j++)
+        {
+            if(a[i][j]=='W')
+            flag=1;
+        }
+        if(flag==0)
+        {
+            r++;
+            nr[i]=1;
+        }
+    }
+    for( j=1;j<=8;j++)
+    {
+        int flag=0;
+        for( i=1;i<=8;i++)
+        {
+            if(a[i][j]=='W')
+            flag=1;
+        }
+        if(flag==0)
+        {
+            nc[j]=1;
+            c++;
+        }
+    }
+    //printf("%d %d\n",r,c);
+    if(r>c)
+    {
+        int cnt=0;
+        for( i=1;i<=8;i++)
+        {
+            if(nr[i]==1)
+            {
+                for( j=1;j<=8;j++)
+                a[i][j]='W';
+            }
+        }
+        for( i=1;i<=8;i++)
+        {
+            if(nc[i]==1)
+            {
+                for( j=1;j<=8;j++)
+                {
+                    if(a[j][i]=='B')
+                    {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+        }
+        printf("%d\n",cnt+r);
+    }
+    else
+    {
+        int cnt=0;
+        for( j=1;j<=8;j++)
+        {
+            if(nc[j]==1)
+            {
+                for( i=1;i<=8;i++)
+                {
+                    a[i][j]='W';
+
+                }
+
+            }
+        }
+        for( i=1;i<=8;i++)
+        {
+            if(nr[i]==1)
+            {
+                for( j=1;j<=8;j++)
+                {
+                    if(a[i][j]=='B')
+                    {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+        }
+        printf("%d\n",cnt+c);
+}
+	return 0;
+}

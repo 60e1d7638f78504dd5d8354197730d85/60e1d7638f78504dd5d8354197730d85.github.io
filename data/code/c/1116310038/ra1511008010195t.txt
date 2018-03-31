@@ -1,0 +1,40 @@
+#include <stdio.h>
+ 
+int main(void) {
+	// your code goes here
+	int j,t,n,min_of_a=10000,min_of_b=10000,i,no_of_a,no_of_b,ans;
+	char str[1000];
+	scanf("%d",&t);
+	while(t--)
+	{	
+		scanf("%d",&n);
+		min_of_a=min_of_b=10000;
+		for(j=0;j<n;j++)
+		{
+			//min_of_a=min_of_b=10000;
+			no_of_a=no_of_b=0;
+			scanf("%s",str);
+			for(i=0;str[i];i++)
+			{
+				if(str[i]=='a')
+					no_of_a++;
+				else
+					no_of_b++;
+			}
+//			printf("%d %d\n",no_of_a,no_of_b);
+			if(min_of_a > no_of_a)
+				min_of_a = no_of_a;
+			if(min_of_b > no_of_b)
+				min_of_b = no_of_b;
+			
+		}	
+//		printf("%d %d\n",min_of_a,min_of_b);
+		if(min_of_a > min_of_b)
+			ans = min_of_b;
+		else
+			ans = min_of_a;
+		printf("%d\n",ans);
+	}
+	
+	return 0;
+} 

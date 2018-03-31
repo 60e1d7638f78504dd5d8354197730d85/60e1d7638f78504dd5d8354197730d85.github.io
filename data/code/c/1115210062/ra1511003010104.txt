@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main()
+{ int t;scanf("%d",&t);
+  while(t--)
+   { 
+      int i,j,k,n,z; scanf("%d",&n);
+      int a[n],b[4];
+     for(i=0;i<4;i++) {b[i]=0;}
+ 
+     for(i=0;i<n;i++)
+      { scanf("%d",&a[i]);}
+ 
+  for(i=0;i<n;i++)
+   {k=i; for(j=i+1;j<n;j++)
+           { if(a[j]>a[k])
+               { k=j;}
+           }
+ 
+      if(k!=i) {z=a[i];a[i]=a[k];a[k]=z;}
+   }
+ 
+ // for(i=0;i<n;i++) {printf("%d ",a[i]);}
+ 
+ for(i=1;i<n;i++)
+  {  if(a[i]==a[i-1])
+      { b[0]=a[i];break;}
+  }
+ 
+ for(j=i+2;j<n;j++)
+  {  if(a[j]==a[j-1])
+       { b[1]=a[j];break;}
+  }
+ 
+//printf("%d %d ",b[0],b[1]);
+ 
+ 
+ if(b[1]==0)
+  {printf("-1\n");}
+ 
+ else
+  { printf("%d\n",b[0]*b[1]);}
+ }
+return 0;
+}
+       

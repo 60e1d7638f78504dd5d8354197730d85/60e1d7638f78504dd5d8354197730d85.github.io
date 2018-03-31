@@ -1,0 +1,48 @@
+#include<stdio.h>
+ 
+#define f(i, n) for(i = 0 ; i < n ; i++)
+#define rf(i, n) for(i = n - 1 ; i >= 0 ; i--)
+ 
+char a[1005][1005] ;
+ 
+int main(){
+	
+	int t_ ;
+	scanf("%d\n", &t_) ;
+ 
+	while(t_--){
+ 
+		int n, i, j ;
+		scanf("%d\n", &n) ;
+ 
+		f(i, n){
+			f(j, n){
+				scanf("%c", &a[i][j]) ;
+			}
+			scanf("\n") ;
+		}
+ 
+		int count ;
+		count = 0 ;
+ 
+		rf(i, n){
+			rf(j, n){
+				if(a[j][i] == '#'){
+				    while(j >= 0 ){
+				        if((i > 0)&&(a[j][i] == '#')&&(a[j][i - 1] == '.')) a[j][i - 1] = 'X' ;
+				        else if((i > 0)&&(a[j][i] == 'X')&&(a[j][i - 1] == '.')) a[j][i - 1] = 'X' ;
+				        j-- ;
+				    }
+				} else if(a[j][i] == 'X'){
+				    if((i > 0)&&(a[j][i - 1] == '.')) a[j][i - 1] = 'X' ;
+				    continue ;
+				} else count++ ;
+			}
+		}
+ 
+		printf("%d\n", count) ;
+ 
+	}
+ 
+	return 0 ;
+} 

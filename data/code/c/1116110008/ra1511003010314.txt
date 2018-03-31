@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+struct student
+{
+int id;
+  char name[100];
+};
+
+int main()
+{
+  int test,id,i,k,var;
+  char name1[100];
+  scanf("%d",&test);
+  struct student st[test];
+  for(i=0;i<test;i++)
+  {
+  scanf("%d",&id);
+    scanf("%s",name1);
+    st[i].id=id;
+    strcpy(st[i].name,name1);
+  }
+  int find;
+  scanf("%d",&find);
+ // printf("%d",find);
+  for(k=0;k<test;k++)
+  {
+  if(find==st[k].id)
+    var=k;
+    
+  }
+  printf("Name=%s\n",st[var].name);
+  printf("regno=%d\n",st[var].id);
+	return 0;
+}

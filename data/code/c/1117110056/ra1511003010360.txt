@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char a[27];
+    int n,c,d,i,j;
+    scanf("%s",a);
+    scanf("%d",&n);
+    d=strlen(a);
+    for(i=d;i<28;i++)
+        a[i]='0';
+    char b[13];
+    while(n--)
+    {
+        int count=0;
+        scanf("%s",b);
+        c=strlen(b);
+        for(i=0; i<d; i++)
+        {
+            for(j=0; j<c; j++)
+            {
+                if(a[i]==b[j])
+                    count++;
+            }
+        }
+        if(count>=c)
+            printf("Yes");
+        else
+            printf("No");
+        printf("\n");
+    }
+    return 0;
+}
+ 

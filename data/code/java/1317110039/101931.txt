@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);     
+      String size[]=sc.nextLine().split("\\s");   
+       char[][] grid=new char[10][10];     
+       for(int i=0;i<size.length;i++) 
+       {
+        grid[i]=size[i].toCharArray();      
+       }       
+       String word[]=sc.nextLine().split("\\s");      
+       int m=grid.length;
+       int n=grid[0].length;         
+       for(int l=0;l<word.length;l++)
+           {
+         boolean result=false;
+             for(int i=0;i<m;i++)
+             {
+               for(int j=0;j<n;j++)
+               {
+                 if(search(grid,word[l],i,j,0))
+                 {
+                   result=true;                   
+                 }
+               }               
+             }         	
+             System.out.println(word[l]+" -"+result);
+  
+           }           
+	}
+    public static boolean search(char[][] grid,String word,int i,int j,int k)
+           {
+             int m=grid.length;
+             int n=grid[0].length;
+             if(i<0||j<0||i>=m||j>=n)
+               return false;
+             if(grid[i][j]==word.charAt(k))
+             {
+               char t=grid[i][j];
+               grid[i][j]='#';
+               if(k==word.length()-1)
+                 return true;
+               else if(search(grid,word,i-1,j,k+1)||search(grid,word,i+1,j,k+1)||search(grid,word,i,j-1,k+1)||search(grid,word,i,j+1,k+1))
+                { 
+               grid[i][j]=t; 
+                 return true;
+                 }
+             }
+      return false;
+    }
+}

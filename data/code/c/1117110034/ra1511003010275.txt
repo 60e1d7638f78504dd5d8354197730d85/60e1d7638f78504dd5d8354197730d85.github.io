@@ -1,0 +1,88 @@
+#include<stdio.h>
+void merge(int *left,int *right,int *arr,int sizelft,int sizerght,int size)
+{   int y,z,b,i,j,k;
+   
+    y=sizelft;
+    z=sizerght;
+    i=0,j=0,k=0;
+    while((i<y)&&(j<z))
+    {
+        if(left[i]<=right[j])
+        {
+            arr[k]=left[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            arr[k]=right[j];
+            j++;
+            k++;
+        }
+    }
+    while(i<y)
+    {
+         arr[k]=left[i];
+            i++;
+            k++;
+    }
+    while(j<z)
+    {
+         arr[k]=right[j];
+            j++;
+            k++;
+    }
+   for(b=0;b<size;b++)
+    {
+        //printf("%d  ",arr[b]);
+    }
+   // printf("\n");
+}
+void mergesort(int *arr,int size)
+{
+    int i,x,mid;
+    x=size;
+    mid=x/2;
+    int left[mid],right[x-mid];
+    for(i=0;i<mid;i++)
+    {
+        left[i]=arr[i];
+    }
+    for(i=0;i<(x-mid);i++)
+    {
+        right[i]=arr[mid+i];
+    }
+  /*  for(i=0;i<mid;i++)
+    {
+        printf("%d  ",left[i]);
+    }
+    for(i=0;i<(x-mid);i++)
+    {
+        printf("%d  ",right[i]);
+    }*/
+    if(mid>0)
+    {mergesort(left,mid);
+    mergesort(right,x-mid);}
+  //  printf("\n");
+    merge(left,right,arr,mid,x-mid,x);
+ 
+}
+int main()
+{
+    int a,b;
+   // printf("Enter the size of array\n");
+    scanf("%d",&a);
+    int arr[a];
+    for(b=0;b<a;b++)
+    {
+       // printf("Enter a no.\n");
+        scanf("%d",&(arr[b]));
+    }
+    mergesort(arr,a);
+    for(b=0;b<a;b++)
+    {
+        printf("%d\n",arr[b]);
+    }
+  return 0;
+}
+ 

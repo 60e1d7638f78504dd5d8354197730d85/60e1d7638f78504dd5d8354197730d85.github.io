@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int isArmstrong(int n)
+{
+  int r,sum=0,temp;
+  temp=n;
+  while(temp!=0)
+  {
+    r=temp%10;
+    sum+=(r*r*r);
+    temp=temp/10;
+  }
+  if(sum==n)
+    return 1;
+  else
+    return 0;
+}
+int main()
+{
+  int a,b;
+  cin>>a>>b;
+  cout<<"Armstrong numbers between "<< a<<" and "<<b<<" are: "<<endl;
+  for(int i=a;i<=b;i++)
+  {
+    if(isArmstrong(i))
+      cout<<i<<endl;
+  }
+
+	return 0;
+}

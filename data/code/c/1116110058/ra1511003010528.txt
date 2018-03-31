@@ -1,0 +1,51 @@
+#include<stdio.h>
+ 
+int main()
+{
+	char str[101];
+	int n,count,i,j,min,flag;
+	int a[101][26]={0},b[26]={0};
+ 
+	scanf("%d",&n);
+ 
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",str);
+ 
+		for(j=0;str[j];j++)
+			a[i][str[j]-97]++;
+	}
+ 
+	for(i=0;i<26;i++)
+	{
+ 
+		min=a[0][i];
+		for(j=1;j<n;j++)
+		{
+			if(a[j][i]<min)
+				min=a[j][i];
+ 
+		}
+ 
+		if(min)
+			b[i]=min;
+	}
+ 
+	flag=1;
+	for(i=0;i<26;i++)
+	{
+		for(j=0;j<b[i];j++)
+		{
+			printf("%c",i+97);
+			flag=0;
+		}
+	}
+ 
+	if(flag)
+		printf("no such string");
+ 
+	return 0;
+ 
+}
+ 
+ 

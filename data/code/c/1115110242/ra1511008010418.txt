@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include<stdlib.h>
+char *c;
+long long ram(char r,char g,char b){
+  long long ra=0,ga=0,ba=0,ta=0,i=0;
+  for(i=0;c[i]!='\0';i++){
+    if(c[i]==r){
+      ra++;
+      ta+=ga+ba;}
+    else if(c[i]==g){
+      ga++;
+      ta+=ba;
+    }
+    else{
+      ba++;
+    }}
+  return ta;
+}
+
+long long main()
+{ long long t,n,m;
+ c=malloc(sizeof(char)*100005);
+ scanf("%lld",&t);
+ if(t<10){
+ while(t--){
+   scanf("%s",c);
+   n=1000000000007;
+   m=ram('r','g','b');
+   if(m<n)n=m;
+   m=ram('r','b','g');
+   if(m<n)n=m;
+   m=ram('g','b','r');
+   if(m<n)n=m;
+   m=ram('g','r','b');
+   if(m<n)n=m;
+   m=ram('b','r','g');
+   if(m<n)n=m;
+   m=ram('b','g','r');
+   if(m<n)n=m;
+   printf("%lld\n",n);
+ }
+ }
+
+	return 0;
+}

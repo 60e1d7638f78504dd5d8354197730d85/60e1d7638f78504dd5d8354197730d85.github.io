@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<stdlib.h>
+void process(long long int i)
+{
+ 
+long long int m,n,j,k,r,min,z,c;
+ 
+scanf("%lld %lld",&n,&m);
+ 
+long long int arr[n+2][m+2],cost[n+2][m+2],disc[n+2][m+2];
+ 
+for(j=0;j<n;j++)
+{
+    for(k=0;k<m;k++)
+    scanf("%lld",&cost[j][k]);
+}
+ 
+for(j=0;j<n;j++)
+{
+    for(k=0;k<m;k++)
+    scanf("%lld",&disc[j][k]);
+}
+ 
+ 
+for(j=0;j<m;j++)
+arr[n-1][j]=cost[n-1][j];
+ 
+for(j=n-2;j>=0;j--)
+{
+ 
+    for(k=0;k<m;k++)
+    {
+        min=-1;
+        for(r=0;r<m;r++)
+        {
+            if(r==k)
+            z=cost[j+1][k]-disc[j][k];
+            else z=cost[j+1][k];
+            if(z<0)
+            z=0;
+ 
+ 
+            c=arr[j+1][r]-cost[j+1][k]+z;
+ 
+            if(c<min||min<0)
+            min=c;
+ 
+        }
+ 
+ 
+        arr[j][k]=cost[j][k] +min;
+    }
+}
+ 
+ 
+ min=-1;
+        for(r=0;r<m;r++)
+        {
+ 
+            c=arr[0][r];
+ 
+            if(c<min||min==-1)
+            min=c;
+ 
+        }
+ 
+ 
+       printf("%lld\n",min);
+return ;
+ 
+ 
+}
+ 
+ 
+int main()
+{
+ 
+long long int t,i;
+scanf("%lld",&t);
+ 
+for(i=0;i<t;i++)
+process(i);
+return 0;
+}

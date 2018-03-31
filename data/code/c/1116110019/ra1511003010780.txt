@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main()
+{
+   char str[1000];
+   int i,a[26]={0},mi=10000,j;
+  scanf("%s",str);
+   for(i=0;str[i] != '\0';i++)
+   {
+     a[str[i]-97]++;
+   }
+  for(i=0;i<26;i++)
+  {
+    if(a[i] < mi && a[i] != 0)
+    {
+      mi = a[i];
+      j = i;
+    }
+  }
+  printf("%c=%d",(char)(j+97),mi);
+   return 0;
+}

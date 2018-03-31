@@ -1,0 +1,25 @@
+#include <stdio.h>
+struct student
+{
+  char name[20];
+  int m;
+};
+
+int cntfail(struct student s1[10],int n)
+{
+  int k=0,i;
+  for(i=0;i<n;i++)
+    if(s1[i].m<50)
+      k++;
+  return k;
+}
+
+int main()
+{
+  struct student s[10];
+  int i,n=10;
+for(i=0;i<n;i++)
+  scanf("%s%d",s[i].name,&s[i].m);
+  printf("\nNumber of the student got fail marks %d",cntfail(s,n));
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <iostream>
+#include<cstdio>
+using namespace std;
+int main()
+{
+int t,a[26],b[26];
+  char ch[100000];
+  cin>>t;
+  while(t--)
+  {
+    for(int i=0;i<26;i++)
+    {
+      cin>>a[i];
+      b[i]=0;
+    }
+    scanf("%s",ch);
+    int ans=0;
+    for(int i=0;ch[i]!='\0';i++)
+      b[ch[i]-97]++;
+    for(int i=0;i<26;i++)
+      if(b[i]==0)
+        ans+=a[i];
+    cout<<ans<<"\n";
+  }
+	return 0;
+}

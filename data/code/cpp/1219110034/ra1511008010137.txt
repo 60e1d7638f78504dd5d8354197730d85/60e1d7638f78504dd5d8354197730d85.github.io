@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class A
+{
+	int a,b;
+	public:
+		A(){};
+		A(int i,int j)
+		{
+			a=i;
+			b=j;
+			
+		}
+		void show()
+		{
+			cout<<a<<"+"<<b<<"i";
+		}
+		A operator +(A);
+};
+A A::operator +(A obj)
+{
+	A temp;
+	temp.a=a+obj.a;
+	temp.b=b+obj.b;
+	return(temp);
+}
+int main()
+{  
+    int a,b,c,d;
+    cin>>a>>b>>c>>d;
+    if(a==0 || c==0)
+      cout<<"real is zero";
+    else if(b==0 || d==0)
+      cout<<"imaginary is zero";
+    else
+    {
+	A c1(a,b),c2(c,d),c3;
+    c1.show();
+    cout<<endl;
+    c2.show();
+    cout<<endl;
+	c3=c1+c2;
+    cout<<"Addition of Real and Imaginary Numbers:"<<endl;
+	c3.show();
+    }
+    return 0;
+}

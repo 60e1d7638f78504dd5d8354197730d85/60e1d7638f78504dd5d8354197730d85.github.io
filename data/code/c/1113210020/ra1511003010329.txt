@@ -1,0 +1,31 @@
+#include<stdio.h>
+#define LL long long
+#define MOD 1000000007
+ 
+LL b[1002]={0};
+LL ans[1002]={0};
+	
+int main()
+{
+unsigned int t,n,m,i;
+LL l = 1,lo;
+b[1] = 1;
+        for (n = 1; n <= 1000; ++n) {
+                for (m = 1; m < n; ++m) {
+                        lo = l;
+                        l +=(b[m]-MOD*(b[m]/MOD));
+                        b[m] = lo;
+						
+                }
+			
+                ans[n]=b[m]=(l-MOD*(l/MOD));
+				
+	}
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d",&n);
+printf("%lld\n",ans[n]);
+}
+return 0;
+} 

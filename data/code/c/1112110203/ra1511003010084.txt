@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main(void)
+{
+    int t,c;
+    scanf("%d",&t);
+    for(c=0;c<t;c++)
+    {
+        int i,j,cou=0,maxm=0;
+        char ch[52];
+        char cha;
+        scanf("%s",ch);
+ 
+ 
+        for(i=0;i<strlen(ch);i++)
+        {
+            for(j=0;j<strlen(ch);j++)
+            {
+                if(ch[i]==ch[j])
+                    cou++;
+            }
+            if(cou>maxm)
+            {
+                maxm=cou;
+                cha=ch[i];
+            }
+            cou=0;
+ 
+        }
+ 
+        for(i=0;i<strlen(ch);i++)
+        {
+            if(ch[i]!=cha)
+                cou++;
+        }
+ 
+        if(cou==maxm)
+            printf("YES\n");
+        else
+            printf("NO\n");
+ 
+ 
+ 
+    }
+ 
+    return 0;
+}

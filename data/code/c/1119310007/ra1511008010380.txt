@@ -1,0 +1,42 @@
+#include<stdio.h>
+long long int MOD=1000000007;
+long long int MAX=2000004;
+long long int factorial[2000004];
+long long int power(long long int n,long long int power)
+{
+	long long int value=1;
+	while(power>0)
+	{	
+		if (power%2!=0)
+			value=value*n;
+			value=value%1000000007;
+		n=n*n;
+		n=n%1000000007;
+		power=power/2;
+	}
+	return(value);
+}
+long long int invermod(long long int n){
+	return(power(n,MOD-2));
+}
+long long int combination(long long int n,long long int k){
+	return((factorial[n]*((invermod(factorial[k])*invermod(factorial[n-k]))%MOD))%MOD);
+}
+int main()
+{
+	long long int i;
+	
+	factorial[0]=1;
+	for(i=1;i<MAX;i++)
+	{
+		factorial[i]=(i*factorial[i-1])%MOD;
+	}
+	long long int t;
+	scanf("%lld",&t);
+	while(t>0){
+		t--;
+		long long int n,k;
+		scanf("%lld%lld",&n,&k);
+		printf("%lld\n",((2*combination(n+k+1,k+2))%MOD)-n );
+			}
+} 

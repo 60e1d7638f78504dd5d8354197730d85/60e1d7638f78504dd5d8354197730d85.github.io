@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,j,left=0,right=0;
+  	scanf("%d",&n);
+  	int a[n][n];
+  	for(i=0;i<n;i++)
+    {
+      for(j=0;j<n;j++)
+      {
+        scanf("%d",&a[i][j]);
+      }
+    }
+  	for(i=0;i<n;i++)
+    {
+      for(j=0;j<n;j++)
+      {
+        if(i==j)
+        {
+          right = right + a[i][j];
+        }
+      }
+    }
+  	j=n-1;
+  	for(i=0;i<n;i++)
+    {
+      left = left + a[i][j];
+      j--;
+    }
+  if((left - right) < 0)
+  {
+  	printf("%d",right-left);
+  }
+  else
+  {
+    printf("%d",left - right);
+  }
+  
+	return 0;
+}

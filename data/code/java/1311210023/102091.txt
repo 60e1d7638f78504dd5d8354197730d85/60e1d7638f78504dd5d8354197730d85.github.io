@@ -1,0 +1,44 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+class TestClass
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s=new Scanner(System.in);
+		int t=s.nextInt();
+		while(t-->0)
+		{
+		    int n=s.nextInt();
+		    String s1=s.next();
+		    String s2=s.next();
+		    long a[]=new long[n+1];
+		    long count=0;
+		    long j=0;
+		    for(int i=0;i<=n;i++)
+		    {  
+		        a[i]=s.nextInt();
+		       if(i==n)
+		       j=a[i];
+		        a[i]=Math.max(count,a[i]);
+		        count=Math.max(a[i],count);
+		    }
+		   int count1=0;
+		    for(int i=0;i<n;i++)
+		    {
+		        if(s1.charAt(i)==s2.charAt(i))
+		        {count1++;
+		        
+		        }
+		
+		        
+		    }
+		    if(count1==n)
+		    System.out.println(j);
+		    else
+		    System.out.println(a[count1]);
+		}
+	}
+}

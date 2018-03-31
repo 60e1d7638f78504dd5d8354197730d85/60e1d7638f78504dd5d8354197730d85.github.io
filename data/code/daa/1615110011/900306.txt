@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{int arr[10];
+ int t,n,i;
+ cin>>t;
+ while(t--)
+ {
+   cin>>n;
+   for(i=0;i<n;i++)
+        cin>>arr[i];
+ int msum=-9999;
+   int csum=0,sum=0;
+   for(i=0;i<n;i++)
+   {
+     sum+=arr[i];
+     if(arr[i]>0)
+       csum+=arr[i];
+     if(sum>msum)
+       msum=sum;
+     if(sum<0)
+       sum=0;
+     if(csum==0)
+       csum=*std::max_element(arr,arr+n);
+   }
+     cout<<msum<<" "<<csum<<endl;
+   
+ }
+ 
+  
+
+	return 0;
+}

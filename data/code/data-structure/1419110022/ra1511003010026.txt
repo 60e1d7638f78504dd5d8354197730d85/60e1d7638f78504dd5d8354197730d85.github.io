@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main()
+{
+    ll t;
+    cin>>t;
+    while(t--)
+    {
+        ll n,n1,i,c=0,flag=1;
+        cin>>n;
+        queue<ll>q;
+        q.push(n);
+        map<ll,ll>mp;
+        mp.clear();
+        mp[n]=0;
+ 
+        while(!q.empty())
+        {
+            n1=q.front();
+            q.pop();
+            if((((n1-1)>=1))&&(mp[n1-1]==0))
+            {
+            mp[n1-1]=mp[n1]+1;
+            if((n1-1)==1)
+            {
+            break;
+            }
+            else
+            {
+            q.push(n1-1);
+            }}
+            if(((n1/2)>=1)&&(mp[(n1/2)]==0)&&((n1%2)==0))
+            {
+            mp[(n1/2)]=mp[n1]+1;
+            if((n1/2)==1)
+            {
+            break;
+            }
+            else
+            {
+            q.push(n1/2);
+            }}
+            if(((n1/3)>=1)&&(mp[(n1/3)]==0)&&((n1%3)==0)){
+            mp[(n1/3)]=mp[n1]+1;
+            if(((n1/3)==1)&&((n1%3)==0))
+            {
+            break;
+            }
+            else
+            {
+            q.push(n1/3);
+            }}
+            }
+        cout<<mp[1]<<endl;
+        while(!q.empty())
+            q.pop();
+    }
+    return 0;
+}

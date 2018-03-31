@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+      // int x = sc.nextInt();
+       //while(x-- > 0)
+       //{
+        	int t = sc.nextInt();
+       		for(int i = 0; i<t; i++)
+         		System.out.println(Solve(sc.nextInt(), sc.nextInt(), sc.nextInt()));
+       		//System.out.println(Solve.a);
+     	//}
+	}
+  	public static long Solve(int n, int c, int m)
+    {
+      int a, b, w;
+      a = n/c;
+      b = a;
+      w = b;
+      while(w >= m)
+      {
+        b = w/m;
+        w -= (b*m);
+        w += b;
+        a += b;
+      }
+      return a;
+    }
+}

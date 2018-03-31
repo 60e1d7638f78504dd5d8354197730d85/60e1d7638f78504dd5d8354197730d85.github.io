@@ -1,0 +1,29 @@
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+       try{
+       
+         InputStreamReader ir = new InputStreamReader(System.in);
+         BufferedReader br = new BufferedReader(ir);
+         int num=Integer.parseInt(br.readLine());
+      int temp=0,bin=0,i=1,dec=0;
+       while(num>0){
+       temp=num%10;
+         num/=10;
+         dec+=(temp*i);
+         i*=10;
+       }
+         i=1;
+         while(dec>0){
+         temp=dec%2;
+           dec/=2;
+           bin+=(temp*i);
+           i*=10;
+         }
+         System.out.println(bin+"");
+       }catch(Exception e){
+       e.printStackTrace();
+       }
+	}
+}

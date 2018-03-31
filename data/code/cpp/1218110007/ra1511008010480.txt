@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+  	protected:
+  		int id;
+	public:
+  		void get() {
+        	cin>>id;
+        }
+};
+
+class Sports {
+  	protected:
+  		int m1, m2, m3;
+	public:
+  		void getsm() {
+        	cin>>m1>>m2>>m3;
+        }
+};
+
+class Statement: public Student, public Sports {
+	public:
+  		void display() {
+        	cout<<id<<endl;
+          	cout<<m1+m2+m3<<endl;
+          	cout<<float(m1+m2+m3)/3;
+        }
+};
+
+int main()
+{
+	Statement s1;
+  	s1.get();
+  	s1.getsm();
+  	s1.display();
+	return 0;
+}

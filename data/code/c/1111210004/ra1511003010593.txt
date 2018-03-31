@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void swap(int *xp, int *yp)
+{
+  int temp = *xp;
+  *xp = *yp;
+  *yp = temp;
+}
+ 
+void sort(int arr[], int n)
+{
+  int i, j;
+  for (i = 0; i < n-1; i++)      
+    for (j = 0; j < n-i-1; j++) 
+      if (arr[j] > arr[j+1])
+        swap(&arr[j], &arr[j+1]);
+}
+
+int main()
+{
+  int tot,s,t,i,n,k,a[100];
+  scanf("%d",&t);
+  while(t--){
+    tot=s=0;
+    scanf("%d %d",&n,&k);
+    if(k>n/2)
+      k=n-k;
+    for(i=0;i<n;i++){
+      scanf("%d",&a[i]);
+      tot+=a[i];
+    }
+    sort(a,n);
+    for(i=0;i<k;i++)
+      s+=a[i];
+    printf("%d\n",tot-2*s);
+  }
+	return 0;
+}

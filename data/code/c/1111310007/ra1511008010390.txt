@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+    int T = 0,i =0;
+    scanf("%d", &T);
+    int R[T];
+ 
+    long int N, M = 0;
+ 
+    int tTem = T, r = 0;
+ 
+    while(tTem--){
+        int j = 0, tem = 0, k = 0;
+        scanf("%ld %ld", &N, &M);
+        int C[N];
+        for(i = 0;i < N; i++) scanf("%d", &C[i]);
+ 
+        // shorting C
+        for(i = 0;i < N; i++){
+            for(j = 0;j <= N - 2- i; j++){
+                if(C[j] < C[j + 1]) {
+                    tem = C[j];
+                    C[j] = C[j + 1];
+                    C[j + 1] = tem;
+                }
+            }
+        }
+ 
+        for(k = 1;k < N; k++){
+            while(C[k] < C[0]){
+                C[k]++;
+                M--;
+            }
+        }
+ 
+        if(M == 0 || M % N == 0){
+            R[r] = 1;
+            r++;
+        }else {
+            R[r] = 0;
+            r++;
+        }
+ 
+ 
+    }
+ 
+    for(i = 0;i < T; i++){
+        if(R[i] == 1) {
+            printf("Yes\n");
+        }else {
+            printf("No\n");
+        }
+    }
+    return 0;
+}

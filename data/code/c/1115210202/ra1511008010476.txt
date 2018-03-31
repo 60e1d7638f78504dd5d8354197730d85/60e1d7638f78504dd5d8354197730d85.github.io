@@ -1,0 +1,91 @@
+#include <stdio.h>
+ 
+#define INRANGE(x,y) ((x >= 0) && (x <= 100) && (y >= 0) && (y <= 100))
+ 
+int main (void)
+{
+	int i, j, T, N, x, y, x2, y2, x3, y3, result, squares, xpoints[500], ypoints[500], npoints, points[101][101] ;
+		
+	for (i = 0 ; i <= 100 ; i++)
+	{
+		for (j = 0 ; j <= 100 ; j++)
+		{
+			points[i][j] = 0 ;
+		}
+	}
+	
+	scanf("%d", &T) ;
+	
+	while (T--)
+	{
+		result = npoints = 0 ;
+		
+		scanf("%d", &N) ;
+		
+		for (i = 0 ; i < 3 ; i++)
+		{
+			scanf("%d %d", &x, &y) ;
+			
+			xpoints[npoints] = x + 50 ;
+			ypoints[npoints] = y + 50 ;
+			
+			points[xpoints[npoints]][ypoints[npoints]] = 1 ;
+			
+			++npoints ;
+		}
+		
+		for (i = 3 ; i < N ; i++)
+		{
+			scanf("%d %d", &x, &y) ;
+			
+			x += 50 ;
+			y += 50 ;
+						
+			squares = 0 ;
+			
+			for (j = 0 ; j < npoints ; j++)
+			{
+				x2 = y - ypoints[j] + x ;
+				y2 = xpoints[j] - x + y ;
+				
+				x3 = y - ypoints[j] + xpoints[j] ;
+				y3 = xpoints[j] - x + ypoints[j] ;
+				
+				if (INRANGE(x2,y2) && INRANGE(x3,y3) && points[x2][y2] && points[x3][y3])
+				{
+					++squares ;
+				}					
+				
+				x2 = ypoints[j] - y + x ;
+				y2 = x - xpoints[j] + y ;
+				
+				x3 = ypoints[j] - y + xpoints[j] ;
+				y3 = x - xpoints[j] + ypoints[j] ;
+				
+				if (INRANGE(x2,y2) && INRANGE(x3,y3) && points[x2][y2] && points[x3][y3])
+				{
+					++squares ;
+				}
+			}
+			
+			result += squares / 2 ;
+			
+			xpoints[npoints] = x ;
+			ypoints[npoints] = y ;
+			
+			points[xpoints[npoints]][ypoints[npoints]] = 1 ;
+			
+			++npoints ;
+		}
+		
+		for (i = 0 ; i < npoints ; i++)
+		{
+			points[xpoints[i]][ypoints[i]] = 0 ;
+		}
+		
+		printf("%d\n", result) ;			
+	}
+		
+	return 0 ;
+}
+ 

@@ -1,0 +1,50 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{   int testcase_no;
+	int n;
+ 	vector<int> x;
+ 	vector<int> y;
+ 	cin>>testcase_no; 
+ 	if(testcase_no==0){
+    cout<<0;
+    }
+ 	else{
+    for(int i=0;i<testcase_no;i++){
+    cin>>n;
+    for(int j=0;j<n;j++){
+    int temp1=0;
+    cin>>temp1;
+    x.push_back(temp1);
+    
+    }
+    for(int k=0;k<n;k++){
+    int temp2=0;
+    cin>>temp2;
+    y.push_back(temp2);
+    
+    }
+    int sum1=0,sum2=0;
+    for(int i=0;i<n;i=i+2){
+    sum1=sum1+x[i];
+    sum2=sum2+y[i];
+    }
+    for(int i=1;i<n;i=i+2){
+    sum1=sum1+y[i];
+    sum2=sum2+x[i];
+    }
+    
+    cout<<min(sum1,sum2);
+    
+    }
+    
+    
+    
+    
+    
+    }
+ 	
+	return 0;
+}

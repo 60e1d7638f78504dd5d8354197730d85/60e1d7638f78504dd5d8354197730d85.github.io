@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char s[100];
+  	scanf("%s",s);
+  	int freq[26],l,i,min,j;
+  	l=strlen(s);
+  	for(i=0;i<26;i++)
+      freq[i]=0;
+  	for(i=0;i<l;i++)
+    {
+      if(s[i]>='a' && s[i]<='z')
+        freq[s[i]-97]++;
+    }
+  	min=100;
+  	for(i=0;i<26;i++)
+    {
+      if(freq[i]!=0)
+      {
+        if(freq[i]<min)
+        {
+          min=freq[i];
+          j=i;
+        }
+      }
+    }
+  	printf("%c=%d",(j+97),min);
+	return 0;
+}

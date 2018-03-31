@@ -1,0 +1,26 @@
+#include<stdio.h>
+#define MAX(a,b)  ((a>b)?a:b)
+#define P 1000000007
+int main()
+{
+	long long int n,m,k,maxadd,minadd;
+	long long int i;
+	scanf("%lld%lld%lld",&n,&m,&k);
+	long long int t,sum=0,max=0;
+	for(i=0;i<n;i++)
+	{
+		scanf("%lld",&t);
+		sum=sum + 1 + (m-t)/k;
+		max= MAX(max,1 + (m-t)/k);
+	}
+	
+	maxadd=sum/2;
+
+	if((sum-max)%2==0)
+		minadd=(sum-max)/2;
+	else
+	   minadd= (sum-max)/2+1;
+
+	printf("%lld\n",(maxadd-minadd+1)%P);
+	return 0;
+} 

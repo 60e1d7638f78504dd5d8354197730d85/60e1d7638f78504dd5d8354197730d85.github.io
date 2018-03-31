@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+  char str[40];
+  fgets(str,40,stdin);
+  
+  int len = strlen(str);
+	
+  int nv=0,nc=0,nd=0,nw=0;
+  for(int i=0;i<len;i++){
+  	if(str[i] == ' '){
+    	nw++;
+    }else if(str[i]=='a'||str[i]=='e'||str[i]=='o'||str[i]=='u'||str[i]=='i'){
+    	nv++;
+    }else if(isdigit(str[i])){
+    	nd++;
+    }else{
+    	nc++;
+    }
+  }
+  
+  cout<<"Vowels:"<<nv<<"\n"<<"Consonants:"<<nc<<"\n";
+  cout<<"Digits:"<<nd<<"\n"<<"White spaces:"<<nw;
+	return 0;
+}

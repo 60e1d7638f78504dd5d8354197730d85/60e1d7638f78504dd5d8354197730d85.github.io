@@ -1,0 +1,85 @@
+#include<stdio.h>
+long int partition(long int a[],long int l,long int u)
+{
+    long int v,i,j,temp;
+    v=a[l];
+    i=l;
+    j=u+1;
+    
+    do
+    {
+        do
+            i++;
+            
+        while(a[i]<v&&i<=u);
+        
+        do
+            j--;
+        while(v<a[j]);
+        
+        if(i<j)
+        {
+            temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+    }while(i<j);
+    
+    a[l]=a[j];
+    a[j]=v;
+    
+    return(j);
+}
+void quick_sort(long int a[],long int l,long int u)
+{
+    long int j;
+    if(l<u)
+    {
+        j=partition(a,l,u);
+        quick_sort(a,l,j-1);
+        quick_sort(a,j+1,u);
+    }
+}
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        long int n,m,i,k,l,max,j=0;
+        scanf("%li",&n);
+        scanf("%li",&m);
+        int x=n*(n+1)/2;
+        long int a[n],b[x];
+        for(i=0;i<n;i++)
+        {
+            scanf("%li",&a[i]);
+            b[j]=a[i];
+            j++;
+           
+        }
+        for(i=0;i<n-1;i++)
+        {
+           for(k=n-1;k>i;k--)
+           {
+               max=a[i];
+               for(l=k;l>=i+1;l--)
+               {
+                   if(a[l]>max)
+                     max=a[l];
+               }
+               b[j]=max;
+               j++;
+           }
+        }
+        quick_sort(b,0,x-1);
+        long int p;
+        while(m--)
+        {
+            scanf("%li",&p);
+            printf("%li\n",b[x-p]);
+        }
+    }
+  return 0;
+}  

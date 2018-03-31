@@ -1,0 +1,26 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class TestClass {
+	 static BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
+	public static void main(String[] args)throws IOException {
+		int n = Integer.parseInt(s.readLine());
+		int ar[] = new int[n];
+		for(int k = 0; k<n; k++){
+			int l = Integer.parseInt(s.readLine());
+			int sum = 0;
+			String st = s.readLine();
+			st+=" ";
+			for(int i = 0; i < (st).length(); i = st.indexOf(' ', i)+1)
+				sum += Integer.parseInt(st.substring(i,st.indexOf(' ', i)));
+			if(sum % 2 != 0)
+				ar[k] = sum;
+			else 
+				ar[k] = l-sum;
+		}
+		for(int i = 0; i < n; i++){
+			System.out.println(ar[i]);
+		}
+    }
+}

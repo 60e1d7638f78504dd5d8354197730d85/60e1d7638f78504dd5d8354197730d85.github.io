@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  char str[10] = {'\0'};
+  scanf("%d",&t);
+  int i;
+  while(t-- >0)
+  {
+    char a,b;
+    int flag = 1;
+    scanf("%s",str);
+    a = str[0];
+    b = str[1];
+    int len;
+    //printf("%c %c\n",a,b);
+    for(len = 0; str[len]; len++);
+    //printf("len %d ",len);
+    for(i = 2; i<len; i+=2)
+    {
+      //printf("%c\n",str[i]);
+    	if(str[i] != a)
+        {
+          flag = 0;
+          //printf("%c",str[i]);
+          break;
+        }
+      	if(str[i+1] !=b)
+     	 {
+       		 flag = 0;
+       		 //printf("%c",str[i+1]);
+       	 	break;
+     	 }
+    }
+    if(flag == 0)
+   		printf("NO");
+    else
+      printf("YES");
+    
+  }
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class tollbooth{
+  public:
+int total_no_car_passed,total_toll_collected;
+  tollbooth(){
+  total_no_car_passed=0;
+  total_toll_collected=0;
+  }
+  void payingcar(int toll){
+  total_no_car_passed++;
+  total_toll_collected=toll+total_toll_collected;
+  }
+  void nonpayingcar(int toll){
+  total_no_car_passed++;
+  total_toll_collected=toll+total_toll_collected;
+  }
+  
+  void display(){
+    cout<<"Total number of cars passed="<<total_no_car_passed<<endl<<"Total amount collected="<<total_toll_collected;
+  }
+};
+int main()
+{int n;
+ cin>>n;
+ tollbooth road;
+ for(int i=0;i<n;i++){
+   string car;
+   int toll;
+   cin>>car>>toll;
+   road.payingcar(toll);
+ 
+ 
+ }
+ road.display();
+
+	return 0;
+}

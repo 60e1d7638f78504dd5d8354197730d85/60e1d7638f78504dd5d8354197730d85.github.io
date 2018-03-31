@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int gcd(int a,int b){
+	if(a==b)
+      return a;
+  else if(a>b){
+  return gcd((a-b),b);
+  }
+  return gcd(a,(b-a));
+}
+
+int main()
+{
+int t,n,i,j,temp,lcm,min=999;
+  int a[10];
+  cin>>t;
+  while(t--){
+  int n;
+    min=999;
+    cin>>n;
+    for(i=0;i<n;i++){
+    cin>>a[i];
+    }
+    
+    
+    for(i=0;i<n-1;i++){
+    for(j=i+1;j<n;j++){
+    if(a[i]>a[j]){
+    temp=a[i];
+      a[i]=a[j];
+      a[j]=temp;
+    }
+    }
+    }
+    for(i=0;i<n-1;i++){
+    for(j=i+1;j<n;j++){
+    lcm=(a[i]*a[j])/gcd(a[i],a[j]);
+    //  cout<<" a[i] "<<a[i]<<" a[j] "<<a[j]<<" lcm "<<lcm<<"\n";
+      if(lcm<min)
+        min=lcm;
+    }
+    }
+    
+   // lcm=(a[0]*a[1])/gcd(a[0],a[1]);
+    cout<<min<<"\n";
+  }
+	return 0;
+}

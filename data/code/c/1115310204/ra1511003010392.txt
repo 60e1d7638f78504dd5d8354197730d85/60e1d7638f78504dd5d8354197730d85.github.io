@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int i;
+  char str[1000000];
+  scanf("%s",str);
+  for(i=0;i<strlen(str);i++)
+  {
+    if((str[i]=='_'&&str[i+1]>=65&&str[i+1]<=90)||(str[i]=='_'&&str[i+1]=='_')||(str[i]=='-'&&str[i+1]>=65&&str[i+1]<=90))
+    {
+      printf("none");
+      return 0;
+    }
+    else if(str[i]=='_')
+    {
+      printf("snake");
+      return 0;
+    }
+    else if(str[i]=='-')
+    {
+      printf("kebab");
+      return 0;
+    }
+    else if(str[i]>=65&&str[i]<=90)
+    {
+      printf("camel");
+      return 0;
+    }
+  }
+  printf("none");
+  return 0;
+}

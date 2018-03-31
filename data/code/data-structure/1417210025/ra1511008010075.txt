@@ -1,0 +1,83 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    int n, x, k;
+    cin>>n>>x>>k;
+    int left_max[n+1], right_max[n+1], left_min[n+1], right_min[n+1], a[n+1];
+    for(int i=1; i<=n; i++) {
+        cin>>a[i];
+    }
+    stack<int> st1,st2;
+    st1.push(1),st2.push(1);
+    left_max[1] = left_min[1] = 0;
+    
+    //calculate left_max and left_min
+    for(int i=2; i<=n; i++){
+        left_max[i] = 0;
+        while(!st1.empty() and a[st1.top()] <= a[i]){
+            st1.pop();
+        }
+        if(!st1.empty()){
+            left_max[i] = st1.top();
+        }
+        st1.push(i);
+        left_min[i] = 0;
+        while(!st2.empty() and a[st2.top()] >= a[i]){
+            st2.pop();
+        }
+        if(!st2.empty()){
+            left_min[i] = st2.top();
+        }
+        st2.push(i);
+        //cout<<"left_max of "<<a[i]<<" "<<left_max[i]<<" and left_min:"<<left_min[i]<<endl;
+    }
+    while(!st1.empty()) st1.pop();
+    while(!st2.empty()) st2.pop();
+    //calculate max and min towards right of curr
+    
+    st1.push(n),st2.push(n);
+    right_max[n] = right_min[n] = n+1;
+    for(int i=n-1; i>0; i--){
+        right_max[i] = n+1;
+        while(!st1.empty() and a[st1.top()] <= a[i]){
+            st1.pop();
+        }
+        if(!st1.empty()){
+            right_max[i] = st1.top();
+        }
+        st1.push(i);
+        right_min[i] = n+1;
+        while(!st2.empty() and a[st2.top()] >= a[i]){
+            st2.pop();
+        }
+        if(!st2.empty()){
+            right_min[i] = st2.top();
+        }
+        st2.push(i);
+        //cout<<"right_max of "<<a[i]<<" "<<right_max[i]<<" and right_min:"<<right_min[i]<<endl;
+    }
+    
+    long long ans=0,finans=0, temp1, temp2;
+    long long t2[n+1];
+    for(int i=1; i<=n; i++){
+        int left = i-left_max[i]-1;
+        int right = right_max[i]-i;
+        temp1 = 1ll*left*right + (right-1);
+        left = i-left_min[i]-1;
+        right = right_min[i]-i;
+        temp2 = 1ll*left*right+(right-1);
+        ans += (temp1-temp2)*a[i];
+        t2[i] = (temp1-temp2);
+        //cout<<i<<" +: "<<temp1<<" -: "<<temp2<<endl;
+    }
+    sort(t2+1, t2+n+1, [](long long a, long long b){ return a>b;});
+    for(int i=1; i<=x; i++){
+        if(t2[i]>0){
+            ans += t2[i];
+        }
+    }
+    cout<<(0LL+ans)<<endl;
+    return 0;
+}

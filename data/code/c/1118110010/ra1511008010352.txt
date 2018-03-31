@@ -1,0 +1,24 @@
+#include <stdio.h>
+union chcha{};
+struct grocery
+{
+  int qty;
+  double amount,price;
+  char itemname[20];
+}itm,*pitem;
+
+int main()
+{
+  pitem=&itm;
+  scanf("%s",pitem->itemname);
+  scanf("%lf",&pitem->price);
+  scanf("%d",&pitem->qty);
+  
+  pitem->amount=pitem->price*pitem->qty;
+  
+  printf("Name=%s\n",pitem->itemname);
+  printf("Price=%.6lf\n",pitem->price);
+  printf("Quantity=%d\n",pitem->qty);
+  printf("Total Amount=%.2lf",pitem->amount);
+	return 0;
+}

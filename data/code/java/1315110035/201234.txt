@@ -1,0 +1,72 @@
+import java.io.*;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+public class TestClass {
+  private int basicSalary;
+  private int daPercentage;
+  private int hraPercentage;
+  private float taxAmount;
+  private float takeHomeSalary;
+  private float totalpay;  
+  private int taxPercentage;
+  private float daAmt;
+  private float hraAmt;
+  public void initializeData(int basic, int da, int hra)
+  {
+    basicSalary = basic;
+    daPercentage = da;
+    hraPercentage = hra;
+  }
+  public void taxPercentage(int tp)
+  {
+    taxPercentage=tp;
+  }
+  void displayData()
+  {
+    DecimalFormat df=new DecimalFormat(".00");
+    System.out.println("Basic Salary is "+ basicSalary);
+    System.out.println("DA amount is "+df.format(daAmt));
+    System.out.println("HRA amount is "+df.format(hraAmt));
+    System.out.println("Total Salary is "+df.format(totalpay));
+    System.out.println("Tax to be paid is "+df.format(taxAmount));
+    System.out.println("Take Home Salary is "+df.format(takeHomeSalary));
+  }
+  public void calculateTaxAmount()
+  {
+    daAmt=basicSalary*daPercentage/100.0f;
+    hraAmt=basicSalary*hraPercentage/100.f;
+    totalpay = basicSalary + daAmt + hraAmt;
+    taxAmount = taxPercentage/100.0f*totalpay;    
+  }
+  public void takeHomeSalary()
+  {
+    takeHomeSalary = totalpay-taxAmount;
+  }
+	 public static void main(String[] args) { 
+       Scanner scan=new Scanner(System.in);
+       int i;
+       TestClass t=new TestClass();       
+       for(i=0;i<2;i++)
+       {
+          int b = scan.nextInt();
+         int da=scan.nextInt();
+         int hra=scan.nextInt();
+		if(i==0)
+		{                        
+        t.taxPercentage(5);
+        t.initializeData(b, da, hra);
+        t.calculateTaxAmount();
+        t.takeHomeSalary();
+        t.displayData();
+        }
+         else if(i==1){
+          int taxper = scan.nextInt();        
+           t.initializeData(b, da, hra);
+        t.taxPercentage(taxper);
+           t.calculateTaxAmount();
+        t.takeHomeSalary();
+        t.displayData();
+         }
+       }
+     }
+     }

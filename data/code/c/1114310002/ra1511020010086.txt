@@ -1,0 +1,88 @@
+#include<stdio.h>
+ 
+#define MOD 1000000007
+ 
+long long ans[51][51][1001];
+int npos[51][51][1001];
+ 
+int main()
+{
+int t,a,e,v,temp,i,j,k,l,m,index1,index2,x;
+long long store;
+for (i=0;i<51;i++)
+for (j=0;j<51;j++)
+npos[i][j][1]=-1;
+ 
+ans[0][0][0]=1;
+npos[0][0][1]=0;
+npos[0][0][2]=-1;
+ 
+ans[1][0][1]=1;
+npos[1][0][1]=1;
+npos[1][0][2]=-1;
+ 
+ans[0][1][0]=1;
+npos[0][1][1]=0;
+npos[0][1][2]=-1;
+ 
+npos[2][0][1]=3;
+npos[2][0][2]=-1;
+ans[2][0][3]=1;
+ 
+npos[0][2][1]=0;
+npos[0][2][2]=-1;
+ans[0][2][0]=1;
+ 
+npos[1][1][1]=2;
+npos[1][1][2]=-1;
+ans[1][1][2]=2;
+ 
+ 
+for (i=3;i<101;i++) // i denotes the sum(length of string)
+{
+    for (j=0;j<=i && j<=50;j++) // j denotes the no. of A's
+    {if (i-j>50)
+    continue;
+    x=0;
+ 
+        temp=i&1?(i/2+1):i/2;
+ 
+        for (k=0;k<=temp && k<=j;k++) // k denotes the no. of A's in temp;
+        {       
+ 
+            for (l=1;npos[k][temp-k][l]!=-1;l++)    
+            {index1=npos[k][temp-k][l];
+ 
+             for (m=1;npos[j-k][i-j-(temp-k)][m]!=-1;m++)
+             {index2=npos[j-k][i-j-(temp-k)][m];
+ 
+             store=j + ((index1>index2)?index1:index2);
+ 
+             if (!ans[j][i-j][store])
+             {npos[j][i-j][++x]=store;
+             npos[j][i-j][x+1]=-1;
+             }
+ 
+             ans[j][i-j][store]+=(ans[k][temp-k][index1])*(ans[j-k][i-j-(temp-k)][index2]);
+             ans[j][i-j][store]%=MOD;              
+ 
+             }
+             
+             
+            }
+        
+        }
+    }
+    
+}
+ 
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d %d %d",&a,&e,&v);
+printf("%lld\n",ans[a][e][v]%MOD);          
+          
+} 
+ 
+ return 0;
+}

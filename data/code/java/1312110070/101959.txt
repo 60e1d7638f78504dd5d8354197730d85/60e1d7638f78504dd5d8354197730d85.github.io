@@ -1,0 +1,18 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in); 
+     String bin =sc.next(); 
+       char []binary=bin.toCharArray();
+       String gray = "";
+ 
+    gray += binary[0];
+     for (int i = 1; i < binary.length; i++)
+    {
+         gray += xor_c(binary[i - 1], binary[i]);
+    }
+		System.out.println(gray);
+	}
+  static char xor_c(char a, char b) { return (a == b)? '0': '1'; }
+}

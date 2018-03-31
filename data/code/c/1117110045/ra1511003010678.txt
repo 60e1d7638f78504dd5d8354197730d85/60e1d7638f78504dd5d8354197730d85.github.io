@@ -1,0 +1,26 @@
+#include <stdio.h>
+ 
+float power (float, float);
+ 
+int main()
+{
+    int pow, num;
+    float result;
+ 
+ 
+    scanf("%d %d", &num,&pow);
+ 
+   
+    result = power(num, pow);
+    printf("%0.2f",result);
+    return 0;
+}
+ 
+float power (float num, float pow)
+{
+    if (pow)
+    {
+        return (num * power(num, pow - 1));
+    }
+    return 1;
+}

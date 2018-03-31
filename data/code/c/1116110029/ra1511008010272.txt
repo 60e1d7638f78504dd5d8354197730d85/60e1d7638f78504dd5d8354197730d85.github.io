@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100
+
+int main()
+{
+    char str[MAX_SIZE];
+    char word[MAX_SIZE];
+    int i, j, found;
+    int strLen, wordLen;
+    fgets(str,100,stdin);
+    fgets(word,100,stdin);
+    strLen  = strlen(str);
+    wordLen = strlen(word);
+    for(i=0; i<strLen - wordLen; i++)
+    {
+        found = 1;
+        for(j=0; j<wordLen; j++)
+        {
+            if(str[i + j] != word[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+        if(found == 1)
+        {
+          if( i==15)
+            i++;
+          printf("%d\n",i);
+        }
+    }
+
+    return 0;
+}

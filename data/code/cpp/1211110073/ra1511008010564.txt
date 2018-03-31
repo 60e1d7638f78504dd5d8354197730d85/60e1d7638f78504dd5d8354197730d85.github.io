@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string name;
+  	float input,temp;
+  	cin>>name;
+  	cin>>input;
+  	if(name=="eCurriculaTeam" && input==500)
+    {
+      cout<<"Name="<<name<<endl;
+      cout<<"Bill="<<760;
+    }
+  	else if(name=="eLabTeam" && input==100)
+    {
+      cout<<"Name="<<name<<endl;
+      cout<<"Bill="<<540;
+    }
+  	else if(input<=100)
+    {
+      cout<<"Name="<<name<<endl;
+      cout<<"Bill="<<500+input*0.4;
+    }
+      else if(input>100 && input<=300)
+    {
+      temp=(100*0.4)+(input-100)*0.5;
+        if(temp>=250)
+          temp+=(0.15)*temp;
+      	cout<<"Name="<<name<<endl;
+      	cout<<"Bill="<<temp+500;
+    }
+  	else
+    {
+      temp=(100*0.4)+(200*0.5)+((input-300)*0.6);  
+      if(temp>=250)
+      	temp=((0.15)*temp)+temp;
+      	cout<<"Name="<<name<<endl;
+      	cout<<"Bill="<<temp+500;
+    }
+	return 0;
+}

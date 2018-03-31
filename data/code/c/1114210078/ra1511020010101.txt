@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{
+	int T,i,j,k;
+  int temp,tem;
+  scanf("%d",&T);
+  while(T>0)
+  {
+   int N, K, E, M,sum=0;
+    scanf("%d %d %d %d",&N,&K,&E,&M);
+    //printf("%d %d %d %d\n",N,K,E,M);
+    int ar[N-1],max=-999;
+    for(i=0;i<N;i++)
+    {
+      ar[i]=0;
+    }
+    for(j=0;j<N-1;j++){
+    for(i=0;i<E;i++)
+    {
+      temp=0;
+      scanf("%d",&temp);
+      ar[j]=ar[j]+temp;
+    }
+    }
+    for(i=0;i<N;i++)
+    {
+     for(j=0;j<N-i-1;j++)
+     {
+      if(ar[j]<ar[j+1])
+      {
+       temp=ar[j];
+        ar[j]=ar[j+1];
+        ar[j+1]=temp;
+      }
+     }
+    }
+    sum=0;tem=0;
+    for(i=0;i<E-1;i++)
+    {
+      scanf("%d",&tem);
+      sum=sum+tem;
+    }
+    int tot=0;
+    tot=ar[K-1]-(sum)+1;
+    if(tot<=M)
+    printf("%d",tot);
+    else
+      printf("Impossible");
+    T--;
+  }
+	return 0;
+}

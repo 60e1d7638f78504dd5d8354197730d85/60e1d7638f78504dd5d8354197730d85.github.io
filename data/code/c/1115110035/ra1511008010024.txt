@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+
+  int t, i, j, temp;
+  fscanf(stdin, "%d", &t);
+  int arr[t];
+  for(i = 0; i < t; i++) {
+    fscanf(stdin, "%d", &arr[i]);
+  }
+  for(i = 0; i < t; i++) {
+    for(j = 0; j < t - 1; j++) {
+      if(arr[j] < arr[j + 1]) {
+        temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  printf("%d\n", arr[1]);
+  return 0;
+}

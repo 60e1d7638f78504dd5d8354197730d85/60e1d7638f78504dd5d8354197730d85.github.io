@@ -1,0 +1,20 @@
+#include<stdio.h>
+long long  a[17][27];
+long long  f(int n, int i, int j)
+{
+    if(n<12)return n;
+    if(!a[i][j]) a[i][j]=f(n/3,i+1,j)+f(n/2,i,j+1)+f(n/4,i,j+2);
+    return a[i][j];
+}
+int main()
+{
+    int n,i,j;
+    while(scanf("%d",&n)!=EOF)
+    {
+	for(i=0;i<17;i++)
+	    for(j=0;j<27;j++)
+		a[i][j]=0;
+	printf("%lld ",f(n,0,0));
+    }
+    return 0;
+    } 

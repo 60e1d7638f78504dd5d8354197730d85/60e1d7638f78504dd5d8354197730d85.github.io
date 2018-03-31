@@ -1,0 +1,39 @@
+#include <stdio.h>
+ 
+typedef long long int Long;
+#define MAXN 1000005
+int n;
+Long acc[MAXN];
+ 
+void bs() {
+    int hi = n, lo = 1, ans = -1, mid, cnt = 0, acnt;
+    while(lo <= hi) {
+        mid = hi+lo>>1;
+        if(cnt = count(mid)) {
+            ans = mid;
+            acnt = cnt;
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    
+    if(ans == -1) puts("-1");
+    else printf("%d %d", ans, acnt);
+}
+ 
+int count(int len) {int i;
+    int cnt = 0;
+    for(i = len; i <= n; i++)
+        if(acc[i] - acc[i - len] >= 0)
+            cnt++;
+    return cnt;
+}
+ 
+int main() {int i;
+	scanf("%d", &n);
+	acc[0] = 0;
+	for(i = 1; i <= n; i++) { scanf("%lld", acc + i); acc[i] += acc[i-1]; }
+	bs();
+    return 0;
+}

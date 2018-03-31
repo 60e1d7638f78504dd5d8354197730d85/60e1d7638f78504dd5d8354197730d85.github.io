@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+class Complex
+{
+	private:int r,i;
+  	public:
+  			void read()
+            {
+            	cin>>r>>i;
+            }
+  			Complex operator -(Complex c2)
+            {
+            	Complex t;
+              	t.r=r-c2.r;
+              	t.i=i-c2.i;cout<<"difference : ";
+              	return t;
+            }  
+			Complex operator +(Complex c2)
+            {
+            	Complex t;
+              	t.r=r+c2.r;
+              	t.i=i+c2.i;cout<<"Sum : ";
+              	return t;
+            }  
+  			void display()
+            {
+            	cout<<r<<"+"<<i<<"i"<<endl;
+  			}
+};
+int main()
+{
+	Complex c1,c2,res,res1;
+  	c1.read();
+ 	c2.read();
+    res=c1 + c2;
+  	res.display();
+  	res=c1 - c2;
+  	res.display();
+	return 0;
+}

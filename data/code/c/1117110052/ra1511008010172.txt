@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int root(int a[],int x)
+{
+    while(a[x]!=x)
+    {
+        a[x]=a[a[x]];
+        x= a[x];
+    }
+    return x;
+}
+ 
+void weight_union(int a[],int size[],int x,int y)
+{
+    int rx= root(a,x);
+    int ry= root(a,y);
+    if(rx==ry)
+        return;
+    if(size[rx]<size[ry])
+    {
+        a[rx]= a[ry];
+        size[ry]+= size[rx];
+        size[rx]=0;
+    }
+    else
+    {
+        a[ry]=a[rx];
+        size[rx]+= size[ry];
+        size[ry]=0;
+    }
+}
+ 
+int main()
+{
+    int n,m;
+    scanf("%d%d",&n,&m);
+    int a[n+1],size[n+1];
+  int i;
+    for(i=1;i<=n;i++)
+    {
+        a[i]=i;
+        size[i]=1;
+    }
+    while(m--)
+    {
+        int u,v;
+        scanf("%d%d",&u,&v);
+        weight_union(a,size,u,v);
+    }
+    long int count=1;
+    for(i=1;i<=n;i++)
+    {
+        int s= size[i];
+        if(s!=0)
+            count= (count*s)%1000000007;
+    }
+        
+    printf("%ld\n",count);
+    return 0;
+}

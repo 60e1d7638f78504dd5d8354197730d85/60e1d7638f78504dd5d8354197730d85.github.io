@@ -1,0 +1,129 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<malloc.h>
+ 
+typedef struct node{
+	int v;
+	struct node* next;
+	struct node* prev;
+}node;
+ 
+int mark[2000000]={0};
+long long int MOD;
+node* base[2000000];
+node* sec[2000000];
+int stack1[2000000];
+int ans[2000000];
+int s1=0;
+int s2=0;
+int co=0;
+node* insert(node* head, int v)
+{
+	if(head==NULL)
+	{
+		node* temp = (node*)malloc(sizeof(node));
+		temp->next = NULL;
+		temp->v = v;
+		return temp;
+	}
+	else if(head->next==NULL)
+	{
+		node* temp = (node*)malloc(sizeof(node));
+		temp->next = NULL;
+		temp->prev = head;
+		temp->v = v;
+		return temp;
+	}
+	else
+		return insert(head->next,v);
+}
+ 
+node* delet(node* head)
+{
+	return head->prev;
+}
+ 
+void print(node* head)
+{
+	if(head==NULL)
+		return;
+	printf("%d ",head->v);
+	print(head->prev);
+}
+void DFS1(int c)
+{
+	if(mark[c]!=0)
+		return;
+	mark[c]=1;
+	while(base[c]!=NULL)
+	{
+		DFS1(base[c]->v);
+		base[c]=delet(base[c]);
+	}
+	stack1[s1] = c;
+	s1++;
+}
+ 
+void DFS2(int c)
+{
+	if(mark[c]!=0)
+		return;
+	mark[c]=1;
+	co++;
+	if(co>1)
+	        ans[c]=1;
+	long long int cp=c;
+	while(sec[c]!=NULL)
+	{
+        DFS2(sec[c]->v);
+	//	cp%=MOD;
+		sec[c]=delet(sec[c]);
+	}
+}
+ 
+ 
+int main()
+{
+//	int t;
+//	scanf("%d",&t);
+//	while(t--)
+//	{
+		long long int n,i,m;
+		scanf("%lld%lld",&n,&m);
+		for( i=0 ; i<m ; i++ )
+		{
+			int a,b;
+			scanf("%d%d",&a,&b);
+			base[a] = insert(base[a],b);
+			sec[b] = insert(sec[b],a);
+		}
+		s1=0;
+		s2=0;
+		for( i=1 ; i<=n ; i++ )
+			mark[i]=0;
+		for( i=1 ; i<=n ; i++ )
+			DFS1(i);		
+ 
+		
+		for( i=1 ; i<=n ; i++ )
+		{
+			mark[i]=0;
+			ans[i]=0;
+		}
+		for( i=n-1 ; i>=0 ; i-- )
+		{
+			co = 0;
+			DFS2(stack1[i]);
+			if(co>1)
+			    ans[stack1[i]]=1;
+		}
+		for( i=1 ; i<=n ; i++ )
+		    printf("%d ",ans[i]);
+		puts("");
+//		if(ans==1)
+//			printf("-1\n");
+//		else
+//			printf("%lld\n",ans);
+	//}
+	return 0;
+}

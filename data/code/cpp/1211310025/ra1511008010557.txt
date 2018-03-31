@@ -1,0 +1,134 @@
+#include <iostream>
+#include<string.h>
+#include<ctype.h>
+#include<stdlib.h>
+#include<cmath>
+#include<assert.h>
+ 
+#define FO(i,s,e,p) for(int i=(s);i<(e);i+=p)
+#define FOD(i,s,e,p) for(int i=(s);i>(e);i-=p)
+ 
+ 
+#define FOR(i,s,e) FO(i,s,e,1)
+#define FORE(i,s,e) FOR(i,s,e+1)
+#define FORD(i,s,e) FOD(i,s,e,1)
+#define FORDE(i,s,e) FORD(i,s,e-1)
+ 
+#define ALL(i,s) for(__typeof((s).begin()) i=(s).begin();i!=(s).end();i++)
+ 
+#define MEM(tab,fill) memset(tab,fill,sizeof(tab))
+ 
+#include<iostream>
+#include<set>
+#include<vector>
+#include<string>
+#include<sstream>
+#include<stack>
+#include<queue>
+#include<algorithm>
+#include<utility>
+#include<bitset>
+#include<map>
+using namespace std;
+#define ll  long long
+#define inf ((1LL<<30)-1)
+#define deb(a) cout<<#a<<" "<<a<<endl
+#define pb push_back
+#define mp make_pair
+ 
+#define llu unsigned long long
+#define PI pair<int,int>
+#define EPS 0.00000000001
+ 
+int tab[1<<10];
+vector<int> moves[11];
+void pre(){
+    vector<int> sul;
+ 
+ 
+    FOR(i,0,1<<10) tab[i]=-1;
+    tab[(1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)|(1<<5)]=0;
+    tab[ (1<<5)|(1<<4)  ]=1;
+    tab[ (1<<0)|(1<<5)|(1<<6)|(1<<2)|(1<<3) ]=2;
+    tab[ (1<<0)|(1<<5)|(1<<6)|(1<<4)|(1<<3) ]=3;
+    tab[ (1<<1)|(1<<6)|(1<<5)|(1<<4) ] =4;
+    tab[ (1<<0)|(1<<1)|(1<<6)|(1<<4)|(1<<3) ] =5;
+    tab[ (1<<0)|(1<<1)|(1<<2)|(1<<6)|(1<<3)|(1<<4) ] =6;
+    tab[ (1<<0)|(1<<5)|(1<<4) ] =7;
+    tab[ (1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)|(1<<5)|(1<<6) ]=8;
+    tab[ (1<<0)|(1<<1)|(1<<3)|(1<<4)|(1<<5)|(1<<6) ]=9;
+    FOR(i,0,1<<10) if(tab[i]!=-1) sul.pb(i);
+ 
+    FOR(i,0,sul.size()){
+    FOR(j,0,sul.size()){
+        int a=sul[i];int b=sul[j];
+        if((a&b)==a ) moves[tab[a]].pb(tab[b]);
+    }
+    }
+    FOR(i,0,10) sort(moves[i].begin(),moves[i].end() );
+    FOR(i,0,10) moves[10].pb(i);
+ 
+ 
+}
+vector<int> mx,me;
+vector<int> construct;
+bool req(int dep,int dp,bool isles){
+    if(dp==mx.size()) return 1;
+ 
+    if(isles){
+        construct[dp]=moves[me[dep]].back();
+        return req(dep+1,dp+1,1);
+    }else{
+        FORDE(i,(int)moves[me[dep]].size()-1,0){
+            if(moves[me[dep]][i]>mx[dp]) continue;
+ 
+            construct[dp]=moves[me[dep]][i];
+            if(req(dep+1,dp+1,moves[me[dep]][i]<mx[dp])) return 1;
+        }
+    }
+    return 0;
+}
+ 
+int solve(int s,int m){
+    mx.clear();me.clear();
+    do{
+        mx.pb(m%10);
+    }while(m/=10);
+    reverse(mx.begin(),mx.end());
+ 
+    construct.resize(mx.size());
+ 
+    do{
+        me.pb(s%10);
+    }while(s/=10);
+    while(me.size()<mx.size()) me.pb(10);
+    reverse(me.begin(),me.end());
+ 
+    int rame=me.size();
+    FOR(i,0,rame) me.pb(10);
+ 
+    int mxx=0;
+    FOR(i,0,me.size()){
+      if(req(i,0,0)){
+        int res=0;
+        FOR(j,0,construct.size()) res*=10,res+=construct[j];
+        mxx=max(mxx,res);
+      }
+        if(me[i]!=10) break;
+    }
+ 
+ 
+ 
+    return mxx;
+}
+int main()
+{
+   pre();
+    int t;cin>>t;
+    while(t--){
+        int s,m;
+        cin>>s>>m;
+        cout<<"\n"<<solve(s,m);
+    }
+	return 0;
+}

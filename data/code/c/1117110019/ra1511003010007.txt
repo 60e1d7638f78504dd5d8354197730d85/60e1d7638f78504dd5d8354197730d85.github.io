@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+int a[5][5],i,j,m,n,c;
+  scanf("%d%d",&m,&n);
+  for(i=0;i<m;i++)
+    for(j=0;j<n;j++)
+      scanf("%d",&a[i][j]);
+  c=check(a,m,n);
+  if(c==2)
+    printf("yes");
+  else
+    printf("no");
+	return 0;
+}
+int check(int a[5][5],int m,int n)
+{
+  int i,j;
+  for(i=0;i<m;i++)
+    for(j=i+1;j<n;j++)
+      if(a[i][j]!=0)
+        return 1;
+  return 2;
+}
+        

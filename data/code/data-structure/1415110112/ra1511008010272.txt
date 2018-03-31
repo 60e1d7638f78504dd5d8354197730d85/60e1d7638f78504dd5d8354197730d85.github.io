@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <malloc.h>
+typedef struct node snode;
+struct node {
+  int value;
+  struct node *next;
+};
+int main()
+{
+  snode *start = NULL;
+  snode *end = start;
+  snode *newnode;
+  int n,i,x;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++) {
+    scanf("%d",&a[i]);
+  }
+  int j=n-1;
+  printf("Linked list before swap\n");
+  for(i=0;i<n;i++) {
+    newnode = (snode*)malloc(sizeof(snode));
+    printf("->%d",a[j]);
+    newnode->value = a[j];
+    newnode->next = NULL;
+    if(start == NULL) {
+      start = end = newnode;
+    }
+    else {
+      end->next = newnode;
+      end = newnode;
+    }
+    j--;
+  }
+  printf("\nLinked list after swap\n");
+  newnode = start;
+  while(newnode!=NULL) {
+    x = newnode->value;
+    newnode = newnode->next;
+    if(newnode==NULL)
+      break;
+    printf("->%d->%d",newnode->value,x);
+    newnode = newnode->next;
+  }
+  if(n%2!=0)
+    printf("->%d",end->value);
+	return 0;
+}

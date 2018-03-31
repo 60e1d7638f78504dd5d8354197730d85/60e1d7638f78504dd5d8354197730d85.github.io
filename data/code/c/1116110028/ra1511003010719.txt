@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  	int i,index,found=0;
+	char s[100],m[100];
+  	scanf("%[^\n]s",s);
+  	scanf("%s",m);
+  	index = 0;
+  	while(s[index]!='\0')
+    {
+      if(s[index] == m[0])
+      {
+        i=0;
+        found = 1;
+        while(m[i] != '\0')
+        {
+        	if(s[i+index] != m[i])
+            {
+              found = 0;
+              break;
+            }
+           i++;
+        }
+      }
+      if(found == 1)
+      {
+        break;
+      }
+      index++;
+    }
+  	//printf("found: %d",found);
+  	if(found == 1)
+    {
+      printf("%s is found at %d",m,index);
+    }
+  	else
+    {
+      printf("%s is not found",m);
+    }
+	return 0;
+}

@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<string.h>
+#include<limits.h>
+#define MOD 1000000007
+long long int arr[1000001];
+long long int ans[10000001];
+int main()
+{
+   long long int t,n,d,i,j;
+   scanf("%lld",&t);
+   while(t--)
+   {
+       scanf("%lld%lld",&n,&d);
+       int ans_len = 0;
+       long long int cry = 0;
+       long long int mul  = 1;
+       //long long int ans = 0;
+       for(i=0; i<n; i++)
+         arr[i] = d;
+       for(i =0; i<n; i++)
+       {
+           long long int tmp = arr[i]*d + cry;
+           long long int md = tmp % 10;
+           arr[i] = md;
+           cry = tmp/10;
+       }
+       int len = n;
+       while(cry != 0)
+       {
+           long long int md = cry %10;
+           arr[len++] = md;
+           cry /= 10;
+       }
+//       for(int i=0;i<len; i++)
+//        printf("%lld ",arr[i]);
+       cry = 0;
+       long long int sm = 0;
+       for(i=0; i<n; i++)
+       {
+           sm += arr[i];
+           long long int tmp = sm + cry;
+           long long int md = tmp%10;
+           ans[i] = md;
+           cry = tmp/10;
+       }
+       //printf("cry:%lld\n",cry);
+       for(i=n,j=0; i<2*n-1; i++,j++)
+       {
+           if(len > i)
+             {
+                 //printf("len:%lld",len);
+                 sm += arr[i];
+                 //printf("cool\n");
+             }
+           //printf("sm1:%lld\n",sm);
+           sm -= arr[j];
+           //printf("sm2:%lld\n",sm);
+           long long int tmp = sm + cry;
+           //printf("%lld");
+           long long int md = tmp%10;
+           ans[i] = md;
+           cry = tmp/10;
+ 
+       }
+        //printf("cry2:%lld\n",cry);
+       ans_len = 2*n-1;
+       //printf("ans_len1:%d\n",ans_len);
+       while(cry !=0)
+       {
+           if(len > n)
+            cry += arr[n++];
+           long long int md = cry%10;
+           ans[ans_len++] = md;
+           cry /= 10;
+       }
+       while(len > n)
+          ans[ans_len++] = arr[n++];
+ 
+      // printf("ans_len2:%d\n",ans_len);
+//        for(int i=ans_len-1;i>=0; i--)
+//          printf("%lld",ans[i]);
+       long long int ans_sm = 0;
+       for(i=ans_len-1; i>=0; i--)
+       {
+          long long int tmp = ans[i]*mul;
+          mul *= 23;
+          if(tmp >= MOD)
+            tmp%=MOD;
+          if(mul >= MOD)
+            mul %= MOD;
+          ans_sm += tmp;
+          if(ans_sm >= MOD);
+             ans_sm %= MOD;
+       }
+       printf("%lld\n",ans_sm);
+   }
+   return 0;
+}

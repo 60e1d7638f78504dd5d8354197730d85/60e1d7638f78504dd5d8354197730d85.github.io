@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <time.h>
+int main()
+{
+  struct tm tm,*info;
+  int h,m,s;
+  char timestr[50],timestr1[50];
+  scanf("%d\n",&h);
+  tm.tm_hour=h;
+  scanf("%d\n",&m);
+  tm.tm_min=m;
+  scanf("%d",&s);
+  if(h>=24 || h<0 || s <0 || s >=60 || m < 0 || m >=60)
+  {
+    printf("Invalid Time");
+    return 0;
+  }
+    
+  tm.tm_sec=s;
+  info = &tm;
+  printf("24 Hours Format\n");
+  printf("%d:%d:%d\n",tm.tm_hour,tm.tm_min,tm.tm_sec);
+  if(h>=12)
+  {
+  printf("12 Hours Format\n");
+  printf("%d:%d:%d pm\n",(tm.tm_hour-12),tm.tm_min,tm.tm_sec);
+ 
+  }
+  else
+  {
+  printf("12 Hours Format\n");
+  printf("%d:%d:%d am\n",tm.tm_hour,tm.tm_min,tm.tm_sec);
+    }
+  return 0;
+}

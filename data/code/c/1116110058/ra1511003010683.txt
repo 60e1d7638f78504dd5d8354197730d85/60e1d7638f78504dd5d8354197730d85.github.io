@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int n,i,j;
+    char strings[101][101];
+    //_Bool hash[26]=0;
+    int hash_s[100][26]={0};
+    int min;
+    int value=0xffffffff;
+ 
+    _Bool flag=0;
+ 
+    scanf("%d",&n);
+ 
+    for(i=0;i<n;i++)
+    {
+        scanf("%s",strings[i]);
+    }
+ 
+ 
+    for(i=0;i<n;i++)
+    {
+        for(j=0;strings[i][j];j++)
+        {
+            hash_s[i][(strings[i][j]-'a')]++;
+        }
+    }
+ 
+ 
+ 
+    for(i=0;i<26;i++)
+    {
+        min=1000;
+        for(j=0;j<n;j++)
+        {
+            if(hash_s[j][i]<min)
+                min=hash_s[j][i];
+        }
+ 
+        for(j=0;j<min;j++)
+        {
+            printf("%c",i+'a');
+            flag=1;
+        }
+    }
+ 
+/*
+    for(i=0;i<26;i++)
+    {
+        if(value&(1<<i))
+        {
+ 
+        }
+    }
+*/
+    if(!flag)
+    {
+        printf("no such string");
+    }
+    printf("\n");
+ 
+    return (EXIT_SUCCESS);
+}
+ 

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+
+void sort(char * str) {
+  int len = strlen(str);
+  int i,j;
+  for(i=0;i<len;i++){
+    for(j=0;j<len;j++) {
+      if(str[i] < str[j]) {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+      }
+    }
+  }
+}
+
+int main()
+{
+  char str[50];
+  scanf("%s",str);
+  sort(str);
+  printf("%s",str);
+
+	return 0;
+}

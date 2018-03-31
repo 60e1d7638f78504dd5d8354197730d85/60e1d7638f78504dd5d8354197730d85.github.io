@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include<stdlib.h>
+ 
+struct order
+{
+    int id;
+    int tip;
+}A[100005],B[100005];
+ 
+int difA[100005];
+int difB[100005];
+ 
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+ 
+int main()
+{
+    int n,x,y,i,sum,x1,y1;
+    int da,db;
+    scanf("%d%d%d",&n,&x,&y);
+    
+    x1=0;
+    y1=0;
+    da=0;
+    db=0;
+    sum=0;
+    for(i=1;i<=n;i++)
+    {
+      A[i].id=i;  
+      scanf("%d",&A[i].tip);  
+    }
+    
+    for(i=1;i<=n;i++)
+    {
+        B[i].id=i;
+      scanf("%d",&B[i].tip);
+    }
+    
+    for(i=1;i<=n;i++)
+    {
+        if(A[i].tip>=B[i].tip)
+        {
+            sum+=A[i].tip;
+            x1++;
+            difA[da]=A[i].tip-B[i].tip;
+            da++;
+        }
+        
+        if(B[i].tip>A[i].tip)
+        {
+            sum+=B[i].tip;
+            y1++;
+            difB[db]=B[i].tip-A[i].tip;
+            db++;
+        }
+    }
+    
+    if(x1<=x&&y1<=y)
+    {
+        printf("%d",sum);
+    }
+    else
+    {
+        if(x1>x)
+        {
+            qsort(difA , da , sizeof(int) , cmpfunc);
+            i=0;
+            while(x1>x)
+            {
+                x1--;
+                sum-=difA[i];
+                i++;
+            }
+            printf("%d",sum);
+        }
+        
+        if(y1>y)
+        {
+            qsort(difB , db , sizeof(int) , cmpfunc);
+            i=0;
+            while(y1>y)
+            {
+                y1--;
+                sum-=difB[i];
+                i++;
+            }
+            printf("%d",sum);
+        }
+    }
+    return 0;
+}
+ 

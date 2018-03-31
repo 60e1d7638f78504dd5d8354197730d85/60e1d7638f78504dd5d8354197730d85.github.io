@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int i,t,n[10];
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+      scanf("%d",&n[i]);
+  	for(i=0;i<t;i++)
+    {
+      int t=n[i]+1,ct=0;
+      while(ct==0)
+      {
+        int r=0,a=t;
+        while(a>0)
+        {
+          r=r*10+(a%10);
+          a/=10;
+        }
+        if(r==t)
+        {
+          ct=1;
+          n[i]=t;
+        }
+        else
+          t++;
+      }
+      printf("%d\n",n[i]);
+    }
+	return 0;
+}

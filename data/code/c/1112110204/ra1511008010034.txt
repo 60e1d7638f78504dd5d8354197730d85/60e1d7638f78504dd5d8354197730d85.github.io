@@ -1,0 +1,36 @@
+#include <stdio.h>
+ 
+int main() {
+  int a, b, x, y, t, gcd, lcm;
+ int c[1000],d[1000];
+  int p,i=0,j=0,temp;
+  scanf("%d",&p);
+  temp=p;
+  while(p>0)
+  {
+    scanf("%d%d",&c[i],&d[i]);
+    i+=1;
+    p-=1;
+  }
+ while(temp>0)
+ {
+  a = c[j];
+  b = d[j];
+ 
+  while (b != 0) {
+    t = b;
+    b = a % b;
+    a = t;
+  }
+ 
+  gcd = a;
+  lcm = (c[j]*d[j])/gcd;
+ 
+  printf("%d ",gcd);
+  printf("%d\n",lcm);
+   j+=1;
+   temp-=1;
+ 
+}
+  return 0;
+}

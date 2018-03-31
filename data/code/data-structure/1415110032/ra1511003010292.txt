@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include<malloc.h>
+struct node
+{
+  int data;
+  struct node *link;
+}*start;
+void insertion(int a)
+{
+  struct node *temp = malloc(sizeof(struct node));
+  temp -> data = a;
+  temp -> link = NULL;
+  if(start == NULL)
+    start = temp;
+  else
+  {
+    struct node *temp1 = start;
+    while(temp1 -> link != NULL)
+      temp1 = temp1 -> link;
+    temp1 -> link = temp;
+  }
+}
+struct node* current_node(struct node *ptr , int i)
+{if(i == 1)
+  return ptr;
+ else
+  return (current_node(ptr-> link , --i));
+}
+void swap(int i , int a )
+{
+  int in =0;
+  while(in<a/2)
+  {
+    struct node *temp1 = current_node(start , i++);
+    struct node *temp = current_node(temp1 , a - (2*in) );
+    int tempp = temp -> data ;
+    temp -> data = temp1 -> data;
+    temp1 -> data = tempp;
+    in++;
+  }
+}
+void display()
+{
+  struct node *temp = start;
+  while(temp != NULL)
+  {
+    printf("->%d",temp->data);
+    temp = temp->link;
+  }
+}
+int main()
+{
+  int i , n , a ;
+  scanf("%d",&n);
+  for(i=0 ;i<n ;i++)
+  {
+    scanf("%d",&a);
+    insertion(a);
+  }
+  scanf("%d",&a);
+  printf("Given linked list\n");
+  display();
+  printf("\nModified Linked list\n");
+  i = 1 ;
+  while(i < n)
+  {
+    if(i+a-1<=n)
+      swap(i , a);
+    else
+      swap(i , n-i+1);
+    i = i + (2*a);
+  }
+  display();
+  //printf("%d",next_node(start,0)->data);
+	return 0;
+}

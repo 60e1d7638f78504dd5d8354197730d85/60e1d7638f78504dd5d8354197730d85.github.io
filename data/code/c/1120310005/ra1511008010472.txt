@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+char act[1000000];
+char b[1000000];
+char *a=act-1;
+int main()
+{
+        int t;
+        scanf("%d",&t);
+        while(t--)
+        {
+                scanf("%s",act);
+                int i,j,k,len,ctr,l=0,check;
+                len=strlen(act);
+                ctr=len;
+                for(i=1;i<=len;i++)
+                        for(j=2;j<=len;j++)
+                        {
+                                int y;
+                                l=0;
+                                b[l++]=*(a+i);
+                                k=i*j;
+                                while(k<=len)
+                                {
+                                        b[l++]=*(a+k);
+                                        int cy=0,u;
+                                        for(u=0;u<l/2;u++)
+                                                if(b[u]!=b[l-u-1])
+                                                {
+                                                        cy=1;
+                                                        break;
+                                                }
+                                        if(cy==0)
+                                                ctr++;
+                                        k=k*j;
+                                }
+                        }
+                printf("%d\n",ctr);
+        }
+}

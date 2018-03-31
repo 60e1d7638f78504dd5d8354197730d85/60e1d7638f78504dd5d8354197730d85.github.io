@@ -1,0 +1,52 @@
+#include<stdio.h>
+ 
+int main()
+{int t;
+scanf("%d",&t);
+
+    char ch[12346];
+    int length=0,i,j;
+    scanf("%s",ch);
+ 
+    for(i=0;ch[i]!='\0';i++)
+    {length++;}
+ 
+ 
+     j=length-1;
+     i=0;
+ 
+ 
+ 
+     while(i<=j)
+     {
+         if(ch[i]=='.' && ch[j]=='.')
+         {
+             ch[i]='a';
+             ch[j]='a';
+         }
+         else if(ch[i]=='.')
+             ch[i]=ch[j];
+         else if(ch[j]=='.')
+            ch[j]=ch[i];
+        else if(ch[i]!=ch[j])
+            break;
+ 
+         i++;j--;
+     }
+ 
+     if(i<j)
+        printf("-1\n");
+     else
+     {
+         for(i=0;i<length;i++)
+            printf("%c",ch[i]);
+ 
+        printf("\n");
+     }
+ 
+
+ 
+return 0;
+ 
+}
+ 

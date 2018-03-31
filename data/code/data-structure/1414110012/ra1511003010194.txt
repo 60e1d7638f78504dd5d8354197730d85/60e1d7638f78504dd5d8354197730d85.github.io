@@ -1,0 +1,43 @@
+#include<stdio.h>
+ 
+void merge(int a[],int start,int mid,int end)
+{
+    int i,ar[end-start],x=start,y=mid;
+    for(i=0; i<end-start; i++)
+    {
+        if(x>=mid)
+            ar[i]=a[y++];
+        else if(y>=end)
+            ar[i]=a[x++];
+        else if(a[x]>a[y])
+            ar[i]=a[x++];
+        else
+            ar[i]=a[y++];
+    }
+    for(i=0; i<end-start; i++)
+    {
+        a[start+i]=ar[i];
+    }
+}
+int main()
+{
+    int m,n,a[100000],t,i;
+    FILE* fin=stdin;//fopen("test.txt","r");
+    fscanf(fin,"%d",&t);
+    while(t--)
+    {
+        fscanf(fin,"%d%d",&m,&n);
+        for(i=0;i<m+n;i++)
+        {
+            fscanf(fin,"%d",&a[i]);
+        }
+        merge(a,0,m,m+n);
+        for(i=0;i<m+n;i++)
+        {
+            printf("%d ",a[i]);
+        }
+        printf("\n");
+    }
+    fclose(fin);
+    return 0;
+}

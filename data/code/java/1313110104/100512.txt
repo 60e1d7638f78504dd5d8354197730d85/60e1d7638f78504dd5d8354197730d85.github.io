@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  
+BufferedReader ob = new BufferedReader(new InputStreamReader(System.in));
+int n,a,p,c,q;
+public TestClass()
+{
+a=2;
+p=0;
+c=0;
+}
+public void input() throws IOException
+{
+//System.out.println("Enter a number ");
+n=Integer.parseInt(ob.readLine());
+}
+public int primefac(int x)
+{
+if(x==1) return 1;
+while(x>1)
+{
+c=0;
+while(x%a==0)
+{
+c++;
+p++;
+//System.out.println("Prime Fator is "+a);
+x=x/a;
+}
+if(c>1) return 0;
+a++;
+}
+q=(int)Math.pow(-1,p);
+return q;
+}
+public void display()
+{
+int r=primefac(n);
+if(r==0) 
+  System.out.println(r );
+else 
+  System.out.println(r);
+}
+public static void main(String arg[]) throws IOException
+{
+TestClass obj = new TestClass();
+obj.input();
+  
+obj.display();
+}
+}

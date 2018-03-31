@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+int prime[40000],i,j,k,p,t,cap,np=1,start,f;
+int m,n,q;
+prime[0]=2;
+for(i=3;i<32000;i+=2)
+{
+cap=sqrt(i)+1;
+f=0;
+for(j=0;j<np;j++)
+{
+p=prime[j];
+if(p>=cap)
+break;
+if(i%p==0)
+{
+f=1;break;
+}
+}
+if(f==0)
+{
+prime[np]=i;
+np++;
+}
+}
+np--;
+
+scanf("%d",&t);
+for(i=0;i<t;i++)
+{
+scanf("%d%d",&m,&n);
+if(m<2)m=2;
+cap=sqrt(n)+1;
+int flag[100001];
+for(j=0;j<=100000;j++)
+flag[j]=1;
+for(j=0;j<np;j++)
+{
+p=prime[j];
+if(p>=cap)break;
+if(m<=p)start=p*2;
+else
+start=m+((p-m%p)%p);
+for(k=start;k<=n;k+=p)
+{
+flag[k-m]=0;
+
+}
+}
+start=(m%2)?m:m+1;
+if(m==2)printf("2\n");
+for(q=start;q<=n;q+=2)
+if(flag[q-m]==1)
+printf("%d\n",q);
+printf("\n\n");
+}
+return 0;
+
+}

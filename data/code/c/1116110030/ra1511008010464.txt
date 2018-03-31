@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int ssize=0, csize=0, i, j, count=0;
+    char s[100], c[100];
+  	scanf("%[^\n]", s);
+  	scanf("%s", c);
+  
+  	for(i=0; s[i]!='\0'; i++)
+      ++ssize;
+  	for(i=0; c[i]!='\0'; i++)
+      ++csize;
+  	
+    for(i=0; i<ssize-(csize-2); i++) {
+       int sameChar=0;
+       for(j=0; j<csize; j++) 
+         if(c[j] == s[i]) {
+         	++sameChar;
+            ++i;
+         }  
+  
+       // printf("\nSameChar=%d", sameChar);
+       if(sameChar == csize)
+         ++count;
+    }
+  printf("\nsrm=%d", count);
+  return 0;
+}

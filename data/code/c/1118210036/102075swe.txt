@@ -1,0 +1,45 @@
+#include <stdio.h>
+ 
+int combinations(int nums[], int len, int sum, int limit){
+ 
+	if (limit==0){
+		if (sum==0 && len>=0)
+			return 1;
+		else
+			return 0;
+	}
+	
+	if (sum<=0 || len<0){
+		return 0;
+	}
+	if (sum/nums[len]>limit)
+		return 0;
+ 
+	int a,b,c;
+ 
+	a = combinations(nums,len-1,sum,limit)%(1000000007);
+	b = combinations(nums,len,sum-nums[len],limit-1)%(1000000007);
+	c = (a+b)%(1000000007);
+	return c;
+}
+ 
+int main(){
+	int i,chefo[45];
+	chefo[0]=1;
+	chefo[1]=2;
+	for (i=2;i<45;i++){
+		chefo[i]=chefo[i-1]+chefo[i-2];
+	}
+	int x,t,k;
+	scanf("%d",&t);
+	while (t--){
+		scanf("%d %d",&x,&k);
+		i=0;
+		while (x>=chefo[i]){
+			i++;
+		}
+		i--;
+		printf("%d\n",combinations(chefo,i,x,k));
+	}
+	return 0;
+} 

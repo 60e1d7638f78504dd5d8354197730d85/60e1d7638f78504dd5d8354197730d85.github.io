@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		char name[105];
+		int n,i,x=0,s=0,c,j;
+		scanf("%s",name);
+		scanf("%d",&n);
+		
+		for(i=0;name[i]!='\0';i++)
+		{
+			if(name[i]=='S')
+			{
+				x=x+1;
+			}
+			else
+			{
+				x=x+2;
+			}
+		}
+		j=2;
+		c=x;
+		while(1)
+		{
+		   for(i=1;i<=12*n;i++)
+		   {
+			  if(c+i<=12*n)
+			  s++;
+			  else
+			  {
+			  	if(i==1)
+			  	goto end;
+			  	break;
+			  }
+		   }
+		   c=x*j;
+		   j++;
+		}
+		end:;
+		printf("%d\n",s);
+	}
+	return 0;
+} 

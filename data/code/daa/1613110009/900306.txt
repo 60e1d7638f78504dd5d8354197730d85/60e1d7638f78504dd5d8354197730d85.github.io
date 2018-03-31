@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int k,key,c,idx,key2,n;
+  cin>>n;
+  cin>>k;
+  int arr[10];
+  for(int i=0;i<n;i++)
+    cin>>arr[i];
+  for(int i=1;i<n;i++)
+  {
+    key=arr[i]%k;
+    key2=arr[i];
+    c=i-1;
+    idx=i;
+    while(c>=0)
+    {
+      if(key<arr[c]%k)
+      {
+        arr[idx]=arr[c];
+        arr[c]=key2;
+        idx-=1;
+      }
+      else
+        break;
+      c-=1;
+    }
+  }
+  for(int i=0;i<n;i++)
+    cout<<arr[i]<<" ";
+  
+	return 0;
+}

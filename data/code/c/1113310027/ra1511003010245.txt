@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+int* sieve(long range)
+{
+  long i;  
+  int* arr = calloc(range + 1,sizeof(int));
+    long* brr = calloc(range + 1,sizeof(long));
+    arr[0] = arr[1] = 1;
+    brr[0] = 0;
+    brr[1] = 0;
+    for(i = 2;i < range + 1;i++)
+    {
+        if(!arr[i])
+        {
+            long j = i * i;
+            brr[i] = i;
+            if(j <= range )
+            {
+                for(;j <= range;j += i)
+                    
+                    {
+                        if(!arr[j])
+                         {
+                             arr[j] = 1;
+                             brr[j] = i;
+                         }
+                    }
+            }
+        }
+    }
+    for( i = 0;i < range + 1;i++)
+        arr[i] = 0;
+    for( i = 0;i < range + 1;i++)
+    {
+        arr[brr[i]]++;
+    }
+    return arr;
+}
+ 
+int main()
+{
+    int t;
+    long range = 1000000;
+    int * arr = sieve(range);
+    
+    scanf("%d",&t);
+    while(t--)
+    {
+        long num;
+        scanf("%ld",&num);
+     
+        printf("%d\n",arr[num]);
+    }
+  
+  return 0;
+}

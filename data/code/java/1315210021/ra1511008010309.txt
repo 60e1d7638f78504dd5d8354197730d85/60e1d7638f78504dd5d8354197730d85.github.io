@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	static long gcd(long a,long b)
+	{
+		if(a%b==0)
+			return b;
+		else
+			return gcd(b,a%b);
+	}
+ 
+	public static void main(String[] WP)throws IOException{
+		BufferedReader b1=new BufferedReader(new InputStreamReader(System.in));
+		int n1=Integer.parseInt(b1.readLine());
+		
+		for(int i11=0;i11<n1;i11++)
+		{
+			int n=Integer.parseInt(b1.readLine());
+			String [] s=b1.readLine().split(" ");
+			long[] a=new long[n];
+			for(int i1=0;i1<n;i1++){a[i1]=Long.parseLong(s[i1]);}
+			long min=a[0]*a[1]/gcd(a[0],a[1]),c=0L,t=c;
+			for(int i=0;i<n;i++)
+			{
+				c=a[i];
+				for(int j=i+1;j<n;j++)
+				{
+					t=c*a[j]/gcd(c,a[j]);
+					if(t<min){min=t;}
+				}
+			}
+			System.out.println(min);
+		}
+	}
+}  

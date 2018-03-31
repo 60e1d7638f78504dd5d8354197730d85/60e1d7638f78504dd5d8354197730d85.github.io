@@ -1,0 +1,40 @@
+// C++ program to convert a string from
+// upper to lower case.
+// C++ program to convert whole string to
+// uppercase or lowercase using STL.
+#include<bits/stdc++.h>
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+const int x = 32;
+char *toUpperCase(char *a)
+{
+    for (int i=0; a[i]!='\0'; i++)
+        a[i] = a[i] & ~x;
+ 
+    return a;
+}
+ 
+// Converts a string to lowercase
+char * toLowerCase(char *a)
+{
+    for (int i=0; a[i]!='\0'; i++)
+        a[i] = a[i] | x;
+ 
+    return a;
+}
+ 
+// Driver Code
+int main()
+{
+    //char str[200];
+    //cin.getline(str,200);
+ // if(isLower(str))
+     //cout<<toUpperCase(str);
+  string su;getline(cin,su);
+ 
+    // using transform() function and ::toupper in STL
+    transform(su.begin(), su.end(), su.begin(), ::toupper);
+    cout << su << endl;
+    return 0;
+}

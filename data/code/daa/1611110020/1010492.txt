@@ -1,0 +1,30 @@
+#include <stdio.h>
+int findmin(int arr[],int low,int high)
+{
+  if(high<low)
+    return (arr[0]);
+  if(high==low)
+    return (arr[low]);
+  int mid=low+(high-low)/2;
+  if(mid<high&&(arr[mid+1]<arr[mid]))
+    return (arr[mid+1]);
+  if(mid>low&&(arr[mid]<arr[mid-1]))
+     return (arr[mid]);
+     if(arr[high]>arr[mid])
+     return findmin(arr,low,mid-1);
+  return findmin(arr,mid+1,high);
+     }
+     
+int main()
+{
+int i,j,k,n,arr[10],res=0;
+  scanf("%d\n",&j);
+  for(k=0;k<j;k++){
+  scanf("%d\n",&n);
+  for(i=0;i<n;i++)
+    fscanf(stdin,"%d",&arr[i]);
+  res=findmin(arr,0,n-1);
+  printf("%d",res);
+}
+}
+  

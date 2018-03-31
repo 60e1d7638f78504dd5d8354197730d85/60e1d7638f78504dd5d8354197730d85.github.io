@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+             Scanner scan=new Scanner(System.in);
+             int tc=scan.nextInt();
+             for (int i=0;i<tc;i++){
+                 int n=scan.nextInt();
+                 int a[]=new int[20];
+                 for (int j=0;j<n;j++)
+                     a[j]=scan.nextInt();
+                 for (int x=0;x<n;x++){
+                     for(int y=0;y<n;y++){
+                         if (a[x]<a[y]){
+                             int temp=a[x];
+                             a[x]=a[y];
+                             a[y]=temp;
+                         }
+                     }
+                 }
+                int diff[]=new int[n];
+                for (int k=0;k<n-1;k++){
+                    diff[k]=a[k+1]-a[k];
+                }
+                for (int x=0;x<n-1;x++){
+                     for(int y=0;y<n-1;y++){
+                         if (diff[x]<diff[y]){
+                             int temp=diff[x];
+                             diff[x]=diff[y];
+                             diff[y]=temp;
+                         }
+                     }
+                 }
+                System.out.println(diff[0]);                
+             }
+        }
+}

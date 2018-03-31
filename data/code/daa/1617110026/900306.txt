@@ -1,0 +1,67 @@
+#include <iostream>
+#include<vector>
+#include<set>
+#define INF 9999
+using namespace std;
+vector<pair<int,int> >adj[500];
+int prims(int s,int n)
+{
+  bool vis[n+1];
+  vis[s]=true;
+  vector<int>d;
+  d.clear();
+  d.resize(n+1);
+  for(int i=0;i<=n;i++)
+    d[i]=INF;
+  d[s]=0;
+  set<pair<int,int> >q;
+  q.clear();
+  q.insert(make_pair(0,s));
+  int wt=0,prev=0;
+  while(!q.empty())
+  {
+    pair<int,int> top=*q.begin();
+    q.erase(q.begin());
+    int u=top.second;
+    vis[u]=true;
+    wt+=prev;
+    vector<pair<int,int> >::iterator it;
+    for(it=adj[u].begin();it!=adj[u].end();it++)
+    {
+      int cost=it->first;
+      int v=it->second;
+      if(!vis[v])
+        if(d[v]>cost)
+        {
+          if(d[v]!=INF)
+            q.erase(q.find(make_pair(d[v],v)));
+          d[v]=cost;
+          q.insert(make_pair(d[v],v));
+        }
+    }
+    prev=top.first;
+  }
+  return wt+prev;
+}
+
+
+int main()
+{
+  int T,t,x,y,m,n,i,s,d,r;
+  cin>>n>>m;
+  for(i=0;i<n+2;i++)
+    adj[i].clear();
+  
+  for(i=0;i<m;i++)
+  {
+    cin>>x>>y>>r;
+    adj[x].push_back(make_pair(r,y));
+    adj[y].push_back(make_pair(r,x));
+  }
+  int ans;
+  cin>>s;
+  ans=prims(s,n);
+  cout<<ans<<endl;
+  
+	return 0;
+}

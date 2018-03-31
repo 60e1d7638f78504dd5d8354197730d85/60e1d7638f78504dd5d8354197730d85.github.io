@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+     int MAX_ROWS,MAX_COLS;
+  	scanf("%d",&MAX_ROWS);
+  MAX_ROWS=MAX_COLS=3;
+  	int array[MAX_ROWS][MAX_COLS];
+    int row, col, isUpper;
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    isUpper = 1;
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    
+  if(isUpper==1)
+    {
+        printf("yes");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

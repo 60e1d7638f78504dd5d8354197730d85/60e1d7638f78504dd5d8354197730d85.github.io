@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int arr[200001];
+int stack[200001];
+int end=0;
+ 
+ 
+void push(int i)
+{
+	stack[end]=i;
+	end++;
+}
+ 
+ 
+int is_empty()
+{
+	if(end==0)
+	 return 1;
+	return 0;
+}
+ 
+ 
+void pop()
+{
+    if(!is_empty())
+	 end--;
+}
+ 
+ 
+int top()
+{
+	if(!is_empty())
+	 return stack[end-1];
+	return -1;
+}
+
+ 
+int main()
+{
+	int n,i,num=0;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	 scanf("%d",&arr[i]);
+	for(i=0;i<n;i++)
+	{
+		if(!is_empty()&&arr[top()]==-1*arr[i]&&arr[top()]>=0)
+		{
+			pop();
+		}
+		else
+		{
+			push(i);
+		}
+	}
+	if(!is_empty())
+	{
+			int prev=-1,loc,last=n-1;
+			for(i=0;i<end;i++)
+			{
+				loc=stack[i]-prev-1;
+				if(loc%2==0&&loc>num)
+				 num=stack[i]-prev-1;
+				prev=stack[i];
+			}
+			if((last-prev)%2==0&&(last-prev)>num)
+			 num=last-prev;
+	}
+	else
+	{
+		num=n;
+	}
+	printf("%d\n",num);
+  return 0;
+}

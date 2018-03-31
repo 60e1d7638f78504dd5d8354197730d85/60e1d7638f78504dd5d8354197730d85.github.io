@@ -1,0 +1,25 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+		int t=Integer.parseInt(buff.readLine());
+		while(t-->0){
+			String[] in=buff.readLine().split(" ");
+			int n=Integer.parseInt(in[0]);
+			int c=Integer.parseInt(in[1]);
+			int q=Integer.parseInt(in[2]);
+			int l,r;
+			while(q-->0){
+				in=buff.readLine().split(" ");
+				l=Integer.parseInt(in[0]);
+				r=Integer.parseInt(in[1]);
+				if(c>=l && c<=r)c=l+r-c;
+			}
+			System.out.println(c);
+		}
+	}
+} 

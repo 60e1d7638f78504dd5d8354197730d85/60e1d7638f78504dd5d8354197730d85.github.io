@@ -1,0 +1,169 @@
+#include<bits/stdc++.h>
+using namespace std;
+//map<map<string,int> > ma;
+string ss[1000000];
+typedef int lli;
+int result[1000005];
+vector<string>v[1000005];
+struct node
+ {
+   lli x,y,index;
+   string str;
+   
+ } qry[1000000];
+
+ map<string,int> has;
+ long long int ans=0;
+
+  lli bck_sz=555;
+  
+  lli read_int()
+  {
+ char r;
+ bool start=false,neg=false;
+  lli ret=0;
+ while(true){
+  r=getchar();
+  if((r-'0'<0 || r-'0'>9) && r!='-' && !start){
+   continue;
+  }
+  if((r-'0'<0 || r-'0'>9) && r!='-' && start){
+   break;
+  }
+  if(start)ret*=10;
+  start=true;
+  if(r=='-')neg=true;
+  else ret+=r-'0';
+ }
+ if(!neg)
+  return ret;
+ else
+  return -ret;
+}
+
+bool compare(node a,node b)
+{
+    lli i,j;
+    i=a.x/bck_sz;
+    j=b.x/bck_sz;
+    if(i==j)
+    {
+        if(a.y<b.y)
+            return 1;
+        else
+            return 0;
+    }
+    else{
+        if(i<j)
+            return 1;
+        else
+            return 0;
+    }
+}
+
+int join(int index)
+{
+ int l=v[index].size();
+ for(int i=0;i<l;i++)
+ has[v[index][i]]++;
+}
+
+int del(int index)
+{
+  int l=v[index].size();
+ for(int i=0;i<l;i++)
+ has[v[index][i]]--;
+}
+
+
+
+int main()
+ {
+ int n;
+ cin>>n;
+ for(int i=0;i<n;i++)
+  {
+   string s;
+   cin>>ss[i];
+   int len=ss[i].length();
+   map<string,int> mp;
+   for(int k=0;k<len;k++)
+    {
+     string p;
+     
+      for(int j=k;j<len;j++)
+       {
+        p+=ss[i][j];
+        if(!mp[p])
+        v[i].push_back(p);
+        mp[p]++;
+        
+    }
+    }
+    mp.clear();
+    
+   
+   
+   }
+   
+   
+    
+   
+   int q;
+   cin>>q;
+   for(int i=0;i<q;i++)
+    {
+        int a,b;
+        string s;
+         cin>>a>>b;
+          cin>>s;
+         qry[i].x=a-1;
+         qry[i].y=b-1;
+         qry[i].index=i;
+          qry[i].str=s;
+         
+    }
+    sort(qry,qry+q,compare);
+    
+   int  r=-1;
+  int  l=0;
+   for(int  i=0;i<q;i++)
+    {
+      int  x=qry[i].x;
+               int  y=qry[i].y;
+               int  index=qry[i].index;
+               string s=qry[i].str;
+               // cout<<" query in the range "<<x<<" "<<y<<endl;
+                        
+                    while(r<y)
+                              {
+
+                                  r++;
+                           
+                                    join(r);
+                          }
+                          
+              while(l>x)
+                {
+                   l--;
+                  join(l);
+                  }
+    while(l<x)
+    {
+        del(l);
+        l++;
+    }
+    while(r>y)
+    {
+        del(r);
+        r--;
+    }
+    
+    result[index]=has[s];
+       
+    }
+    
+    for(int i=0;i<q;i++)
+      printf("%d\n",result[i]);
+      
+}

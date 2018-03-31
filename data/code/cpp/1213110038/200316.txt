@@ -1,0 +1,42 @@
+#include <iostream>
+#include<cstring>
+#include<cstdio>
+using namespace std;
+int main()
+{
+    int i,j,temp;
+    char str[50];
+    char substr[50];
+   cin.getline(str,50);
+   cin.getline(substr,50);
+  
+    for(i=0;str[i]!='\0';i++)
+    {
+        j=0;
+        if(str[i]==substr[j])
+        {
+            temp=i+1;
+            while(str[i]==substr[j])
+            {
+                i++;
+                j++;
+            }
+ 
+            if(substr[j]=='\0')
+            {
+                cout<<"Substring found at position "<<temp<<"\n";
+                exit(0);
+            }
+            else
+            {
+                i=temp;
+                temp=0;
+            }
+        }
+    }
+ 
+    if(temp==0)
+        cout<<"Substring not found \n";
+ 
+    return 0;
+}

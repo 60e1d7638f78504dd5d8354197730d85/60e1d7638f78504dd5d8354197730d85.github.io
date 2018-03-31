@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,hardness,tensile,a,b,c,g;
+  	float carbon;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d %f %d",&hardness,&carbon,&tensile);
+      a=hardness>50;
+      b=carbon<0.7;
+      c=tensile>5600;
+      if(a==1 && b==1 && c==1)
+        g=10;
+      else if(a==1 && b==1)
+        g=9;
+      else if(b==1 && c==1)
+        g=8;
+      else if(a==1 && c==1)
+        g=7;
+      else if(a==1 || b==1 || c==1)
+        g=6;
+      else
+        g=5;
+      printf("Grade %d",g);
+      printf("\n");
+    }
+	return 0;
+}

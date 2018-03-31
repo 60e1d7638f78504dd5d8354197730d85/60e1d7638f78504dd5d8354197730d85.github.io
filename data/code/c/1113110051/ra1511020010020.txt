@@ -1,0 +1,37 @@
+#include <stdio.h>
+int prime(int n){
+   int c;
+   for ( c = 2 ; c <= n - 1 ; c++ ){ 
+      if ( n%c == 0 )
+     return 0;
+   }
+   return 1;
+}
+
+int findNearest(int n){
+  	int i, j;
+	if(n==0 || n==1 || n==2)
+    	return 2;
+  	else if(prime(n)==1) 
+    	return n;
+    else {
+      for(i=n+1;;i++){
+        for(j=2;j<i;j++){
+            if(i%j==0)
+                break;
+        }
+        if(j==i){
+            return i;
+            break;
+        }
+      }
+    }
+}
+
+int main()
+{
+	int n;
+  	scanf("%d", &n);
+  	printf("%d", findNearest(n)-n);
+	return 0;
+}

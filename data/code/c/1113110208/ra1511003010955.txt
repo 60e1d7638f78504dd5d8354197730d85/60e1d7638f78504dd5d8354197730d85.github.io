@@ -1,0 +1,150 @@
+#include<stdio.h>
+#define fibonum 60
+ 
+ 
+unsigned long long result = 0;
+int s1 = 0;
+long long fibona[fibonum];
+ 
+void initialfibo()
+{
+   fibona[0] = 1;
+   fibona[1] = 2;
+   int i;
+   for ( i = 2; i < fibonum; i++)
+   {
+      fibona[i] = fibona[i - 1] + fibona[i - 2];
+   }
+}
+ 
+int findand(long long alpha)
+{int i;
+   for ( i = 0; i < fibonum; i++)
+   {
+      if (alpha <= fibona[i])
+      {
+         return i;
+         break;
+      }
+   }
+   return 0;
+}
+ 
+ 
+void fiboround(long long alpha, long long max,long long k)
+{
+   if(alpha ==1&&k==1)
+   {
+      result++;
+      return;
+   }
+   s1 = findand(alpha);
+   if(alpha<k)
+   {
+      return;
+   }
+   int i;
+   for (i = 1; i < fibonum; i++)
+   {
+      if (alpha == fibona[i])
+      {
+         result++;
+#ifdef DEBUG
+         printf(" +1\n");
+#endif 
+ 
+         return;
+      }
+   }
+ 
+   if(k == 1)
+   {
+      return;
+   }
+ 
+   for ( i = 0; i < s1; i++)
+   {
+	   int j;
+      for (j = 0; j < s1; j++)
+      {
+         if (alpha == (fibona[i] + fibona[j]) && fibona[i] <= max && fibona[j] <= max&&fibona[j]<=fibona[i])
+         {
+            result++;
+#ifdef DEBUG
+            printf(" %lld %lld %lld +1\n", fibona[i], fibona[j], max);
+#endif
+ 
+         }
+      }
+   }
+}
+ 
+void functual(long long x, long long k, long long max)
+{
+   if (max * k < x||x<0) 
+	   return;
+   if (k < 3)
+   {
+      if (x > 0) 
+      {
+         fiboround(x, max,k);
+      }
+   }
+   else
+   {
+      if (max * k < x) 
+		  return;
+      int s1 = findand(x);
+      int s2 = findand(max);
+      int s3 = findand(x / k);
+      if (s1 < s2)
+      {
+		  int i;
+         for ( i = s1; i >= s3; i--)
+         {
+#ifdef DEBUG
+			 int j;
+            for ( j = 0; j < k; j++)
+            {
+               printf("  ");
+            }
+            printf("%lld\n", fibona[i]);
+#endif
+            functual(x - fibona[i], k - 1, fibona[i]);
+         }
+      }
+      else
+      {
+		  int i;
+         for ( i = s2; i >= s3; i--)
+         {
+#ifdef DEBUG
+			 int j;
+            for (j = 0; j < k; j++)
+            {
+               printf("  ");
+            }
+            printf("%lld\n", fibona[i]);
+#endif 
+            functual(x - fibona[i], k - 1, fibona[i]);
+         }
+      }
+   }
+}
+ 
+int main(void)
+{
+   long long s11, s2, s3, i = 0;
+   initialfibo();
+   scanf("%lld", &s11);
+   for (i = 0; i < s11; i++)
+   {
+      s2 = 0;
+      s3 = 0;
+      scanf("%lld %lld", &s2, &s3);
+      functual(s2, s3, s2);
+      printf("%lld\n", result% 1000000007);
+      result = 0;
+   }
+  return 0;
+}

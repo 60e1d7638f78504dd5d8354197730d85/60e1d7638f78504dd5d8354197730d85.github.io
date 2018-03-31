@@ -1,0 +1,117 @@
+#include<stdio.h>
+    #include<stdlib.h>
+     
+    #define uint_16  unsigned short int
+    #define Stat_uint_16  unsigned static short int
+     
+    uint_16 compareINT(uint_16 *ptr, uint_16 Len);
+     
+    int main()
+    {
+    	uint_16  NumTC = 0;
+    	uint_16  NChapters = 0;
+    	//uint_16  TotalChap = 0;
+    	uint_16  i = 0;
+    	uint_16  j = 0;
+     
+    	uint_16  chapSeq[100];
+     
+    	Stat_uint_16  countCHAP = 0;
+    	Stat_uint_16  countSim = 0;
+    	Stat_uint_16  countInc = 0;
+    	//Stat_uint_16  FirstINLen = 0;
+    	/* If number of test cases and number of chapters are with in the range then the   program continues*/
+     
+    	scanf("%hu",&NumTC);
+    	//Verifies the test cases are with in the limits
+    	if(NumTC >= 1 && NumTC <= 100)
+    	{
+     
+    		for(j=0; j<NumTC; j++)              //Test Case loop
+    		{
+    			scanf("%hu",&NChapters);
+    			if(NChapters >= 2 && NChapters <= 100)        //Verifies number of chapters specified is with in the range
+    			{
+    				for(i=0 ; i < NChapters; i++)  //N Chapters loop
+    				{ 
+     
+    					scanf("%hu",&chapSeq[i]);
+    					if(chapSeq[i] >= 1 && chapSeq[i] <= 500)     //Verifies the MAX and MIN Number of chapters  
+    					{                                           //in the given constrains
+     
+    						if(chapSeq[i] > NChapters) //this condition verifies the given chapter dosen't exceed the Max 
+    							countCHAP++;           // number of chapters         
+    						//continue;                       
+     
+    						if(i >= 1)
+    						{
+    							if( (chapSeq[i] - chapSeq[i-1]) == 1 )
+    								countInc++;
+     
+    							//if( (chapSeq[i] == chapSeq[i-1]) )
+    								//countSim++;
+    						}
+     
+     
+    					}
+						else
+						{
+ 
+							countCHAP++;
+						}
+    				}
+     
+    				countSim = compareINT(chapSeq, NChapters);
+     
+    				//If sequence is not in logical combination print NO
+     
+    				if(countCHAP || (countInc == (NChapters-1)) || countSim )
+    				{
+    					printf("no\n");
+    					countCHAP = 0;
+    					countInc = 0;
+    					countSim = 0;
+    					//return 0;
+    				}
+    				else
+    				{		
+    					printf("yes\n");
+    					countCHAP = 0;
+    					countInc = 0;
+    					countSim = 0;
+    				}
+    			}
+    
+    		}
+     
+    	}
+     
+ 
+     
+    	return 0;
+    }
+     
+     
+    uint_16 compareINT(uint_16 *ptr, uint_16 Len)
+    {
+    	uint_16 count = 0;
+    	uint_16 i =0;
+    	uint_16 j =0;
+     
+    	for(i=0; i<Len; i++)
+    	{
+     
+    		for(j=0; j<Len; j++)
+    		{
+    			if(i==j)
+    				continue;
+    			if(ptr[i] == ptr[j])
+    			{
+    				count++;
+    				return count;
+    			}
+    		}
+    	}
+     
+    	return 0;
+    } 

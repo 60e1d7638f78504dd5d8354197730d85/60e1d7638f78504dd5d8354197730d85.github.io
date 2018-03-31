@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main()
+{
+    int t,j,i;
+    long int n,k,b,c;
+    unsigned long int sum;
+    scanf("%d",&t);
+    getchar();
+    for(j=0;j<t;j++)
+    {
+ 
+    sum=0;
+    c=0;
+    scanf("%ld %ld",&n,&k);
+    getchar();
+    for(i=0;i<(n);i++)
+    {
+        scanf("%ld",&b);
+        getchar();
+        sum=sum+b;
+        if(sum%k != 0)
+            sum = sum+1;
+        c = c+ sum/k;
+        sum = sum%k;
+    }
+    printf("%ld\n",c+ (int)ceil((float)sum/k));
+    }
+//(int)ceil((float)sum/k)
+    return 0;
+ 
+}

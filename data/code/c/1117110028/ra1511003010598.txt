@@ -1,0 +1,28 @@
+#include <stdio.h>
+int large(int arr[],int n);
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int a[n];
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  int max = large(a,n);
+  printf("Maximum element in the array is %d",max);
+	return 0;
+}
+int large(int a[],int n)
+{
+  static int i=0,max=0;
+  if(i<n)
+  {
+    if(a[i]>max)
+      max = a[i];
+    ++i;
+    large(a,n);
+  }
+  return max;
+}

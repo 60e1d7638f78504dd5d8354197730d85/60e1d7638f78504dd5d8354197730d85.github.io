@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int a[11]={0,9,90,738,5274,32490,168570,712890,2345850,5611770,8877690};
+int map[11][11];
+void init()
+{
+	int i,j,k;
+	int r;
+	map[0][0]=1;
+	for(i=1;i<=10;i++)
+	{
+		map[i][0]=1;
+		for(j=1,k=i,r=1;j<=i;j++,k--)
+		{
+			r=r*k;
+			map[i][j]=r;
+		}
+	}
+}
+int fun1(long long int s,long long int e)
+{
+	long long int i,j;
+	int f[10],r=0;
+	for(i=s;i<=e;i++)
+	{
+		j=i;
+		memset(&f,0,sizeof(f));
+		while(j)
+		{
+			if(f[j%10])
+			break;
+			f[j%10]=1;
+			j=j/10;
+		}
+		if(!j)
+		r++;
+	}
+	return r;
+}
+int lower(char *str,int ck)
+{
+	int l=strlen(str),f[10],i,j,k,r;
+	if(l>10)
+	return a[10];
+	r=a[l-1];
+	r+=(str[0]-'1')*map[9][l-1];
+	memset(&f,0,sizeof(f));
+	f[str[0]-'0']=1;
+	for(i=1;i<l;i++)
+	{
+		k=0;
+		for(j=str[i]-'1';j>=0;j--)
+		k=k+1-f[j];
+		r+=k*map[9-i][l-1-i];
+		if(f[str[i]-'0'])
+		break;
+		f[str[i]-'0']=1;
+	}
+	if(i==l)
+	r+=ck;
+	return r;
+}
+int fun2(char *l,char *h)
+{
+	int r;
+	if(strlen(l)>10)
+	return 0;
+	r=lower(h,1)-lower(l,0);
+	return r;
+}
+int main()
+{
+	init();
+	int t;
+	char l[20],h[20];
+	scanf("%d",&t);
+	while(t)
+	{
+		t--;
+		scanf("%s %s",l,h);
+		printf("%d\n",fun2(l,h));
+	}
+	return 0;
+}

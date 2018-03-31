@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+int main()
+{
+int numT,numC,tweet,i;
+ 
+scanf("%d %d",&numT,&numC);
+int status[1000] = {0};
+char action[100];
+while(numC--)
+{
+	//fgets(action,sizeof(action),stdin);
+	scanf("%s",action);
+	if(strcmp(action,"CLOSEALL") == 0)
+		for(i=0;i<numT;i++)
+			status[i] = 0;
+	else if(strcmp(action,"CLICK") == 0)
+	{
+		scanf("%d",&tweet);
+		if(status[tweet-1] == 0)
+			status[tweet-1] = 1;
+		else
+			status[tweet-1] = 0;
+	}
+	else
+		return -1;
+	int open = 0;
+	for(i=0;i<numT;i++)
+		if(status[i] == 1)
+			open++;
+	printf("%d\n",open);
+}
+return 0;
+} 

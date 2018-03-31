@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+class Time{
+public:
+  int h1,h2,m1,m2,s1,s2,h,m,s;
+  int f=0;
+ Time(){
+  h1=0;
+    h2=0;
+    m1=0;
+    m2=0;
+    s1=0;
+    s2=0;
+    h=0;
+    m=0;
+    s=0;
+  }
+ void getTime(){
+  cin>>h1>>m1>>s1>>h2>>m2>>s2;
+  }
+ void addTime(){
+  if(s1>59 || s2>59){
+  f=1;}
+   else if(m1>59||m2>59){
+  f=2;}  
+   else{
+  s=s1+s2;
+  m=m1+m2;
+  h=h1+h2;  
+  if(s>59){
+    m++;
+    s=s%60;}
+  if(m>59){
+    h++;
+    m=m%60;}  
+  }
+  }
+  void Display(){
+  if(f==0){
+  cout<<"After Adding"<<endl<<h<<":"<<m<<":"<<s;
+  }else if(f==1){
+  cout<<"Seconds Must be less than 60";  
+  }else if(f==2){
+  cout<<"Minutes Must be less than 60";
+  }
+  }
+  
+};
+int main()
+{Time t;
+ t.getTime();
+ t.addTime();
+ t.Display();
+
+	return 0;
+}

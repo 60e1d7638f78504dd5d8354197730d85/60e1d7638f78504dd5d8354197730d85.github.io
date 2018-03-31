@@ -1,0 +1,44 @@
+#include <stdio.h>
+void decToHexa(int n)
+{   char hexaDeciNum[100];
+    int j,temp,i = 0;
+    while(n!=0)
+    {   
+         temp = 0;
+        temp = n % 16;
+        if(temp < 10)
+        {
+            hexaDeciNum[i] = (char) temp+48;
+            i++;
+        }
+        else
+        {
+            hexaDeciNum[i] = (char) (temp+87);
+            i++;
+        }
+        n = n/16;
+    }
+ 	
+    for(j=i-1; j>=0; j--)
+        printf("%c", hexaDeciNum[j]);
+}
+int main()
+{
+    int decimalnum, remainder, quotient;
+    int octalNumber[100], i = 1, j;
+ 
+    //printf("Enter the decimal number: ");
+    scanf("%d", &decimalnum);
+    quotient = decimalnum;
+    while (quotient != 0)
+    {
+        octalNumber[i++] = quotient % 8;
+        quotient = quotient / 8;
+    }
+    printf("Decimal value:%d\nOctal value:", decimalnum);
+    for (j = i - 1; j > 0; j--)
+        printf("%d", octalNumber[j]);
+  	printf("\nHexadecimal value:");
+  decToHexa(decimalnum);
+    return 0;
+}

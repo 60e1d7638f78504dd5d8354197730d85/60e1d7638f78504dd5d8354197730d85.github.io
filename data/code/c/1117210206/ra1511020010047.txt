@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<math.h>
+int s[100010];
+main()
+{
+    int i,j,k,n,m,t,max=0;
+    scanf("%d",&t);
+    while(t--)
+    {
+        max=0;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        scanf("%d",&s[i]);
+        for(i=0;i<n;i++)
+        {
+            if(s[i]+i>max)
+            max=s[i]+i;
+        }
+        printf("%d\n",max);
+ 
+    }
+    return 0;
+}

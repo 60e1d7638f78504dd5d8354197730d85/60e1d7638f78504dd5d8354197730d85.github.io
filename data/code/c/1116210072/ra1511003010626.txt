@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<string.h>
+int size;
+void find(char str[100000]);
+int check(int loc,char str[10000],int count);
+int  recurse(char str[100000],int st,int end);
+int main()
+{
+  char a[10][100000];
+  int t;
+  scanf("%d",&t);
+  int ctr;
+  size=0;
+  for(ctr=0;ctr<t;ctr++)
+  {
+    scanf("%s",a[ctr]);
+    size++;
+  }
+  for(ctr=0;ctr<size;ctr++)
+  {
+    find(a[ctr]);
+  }
+  return 0;
+
+}
+
+void find(char str[100000])
+{
+  //val stores the number of beautiful strings
+  printf("%d\n",recurse(str,0,strlen(str)-1));
+
+}
+
+int recurse(char str[10000],int st,int end)
+{
+  int val=0;
+  int cons=st+(end-st)/2;
+  if(end-st<=2)
+  {
+    return 0;
+  }
+  val+=recurse(str,st,cons);
+  int cons1=cons+1;
+  val+=recurse(str,cons1,end);
+  int ctr;
+  int left,right;
+  int count;//this is used to count the length of AA'AA
+  left=end/4;
+  right=3*end/4;
+  int l=end/4;
+  int r=3*end/4;
+
+  for(ctr=l;ctr<=r;ctr++)
+  {
+    left=ctr;
+    right=ctr+1;
+    count=0;
+    while(str[left]==str[right])
+    {
+      count+=2;
+      left--;
+      right++;
+      if(count>3)
+      {
+        if(ctr+count/2<=cons || ctr-count/2+1>=cons1)
+        {
+          ;
+        }
+        else
+        {
+          if(count%4==0)
+          {
+            val=val+check(ctr,str,count);
+          }
+        }
+      }
+      if(left<st || right >end)
+      {
+        break;
+      }
+    }
+
+
+  }
+  return val;	
+}
+
+int check(int loc,char str[10000],int count)
+{
+  int ctr;
+  int mtr=loc;
+  int half_count=count/2;
+  for(ctr=loc-half_count+1;;ctr++)
+  {
+    if(str[ctr]==str[mtr])
+    {
+      mtr--;
+      if(mtr<ctr)
+      {
+        return 1;
+      }
+      else
+        continue;
+    }
+    else
+    {
+      return 0;
+    }
+
+  }
+
+} 
+

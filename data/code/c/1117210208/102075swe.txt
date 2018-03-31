@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+char str[100];
+  int a[50],i=0,j=0,l,n,c=0,m=0;
+  fgets(str,sizeof(str),stdin);
+  //printf("%s",str);
+  while(str[i]!='\0')
+  { 
+    c++;
+    if(str[i]==' ')
+    {
+      //printf("%d ",c-1);      
+      a[j++]=c-1;
+      c=0;
+    }
+    i++;
+  }
+  a[j]='\0';
+  m=a[0];
+  for(l=1;l<j;l++)
+  {
+    if(a[l]>m)
+      m=a[l];
+  }
+    printf("%d",m);
+  return 0;
+}

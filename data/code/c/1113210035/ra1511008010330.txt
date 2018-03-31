@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+int n,i,result=0,k,rem,j=0,arr[100];
+  scanf("%d",&n);
+  for(k=1;k<=n;k++)
+  {
+    i=k;
+   if(n%k==0)
+   {
+      while(i!=0)
+      {
+       rem=i%10;
+        result=result*10+rem;
+        i=i/10;
+      }
+     arr[j]=result;
+     j++;
+    result=0;
+   }
+  }
+  int l;
+  for(i=0;i<j-1;i++)
+  {
+    for(l=0;l<j-1;l++)
+    {
+     if(arr[l]>arr[l+1])
+     {
+      int temp=arr[l];
+       arr[l]=arr[l+1];
+       arr[l+1]=temp;
+     }
+    }
+  }
+  for(i=0;i<j;i++)
+  {
+   printf("%d\n",arr[i]); 
+  }
+	return 0;
+}

@@ -1,0 +1,62 @@
+#include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+     
+    typedef long long int Long;
+     
+    Long score[2] = {0, 0}, s;
+    int n, m,
+        a[2][100001];
+    int cmp(const void *a, const void *b) { return *(int *)a - *(int *)b; }
+     
+    int fBS(int X, int mk) {
+        int lo = 0, hi = (mk ? n : m) - 1, mid, ans = -1;
+        while(lo <= hi) {
+            mid = (lo+hi)>>1;
+            if(a[!mk][mid] >= X) {
+                hi = mid - 1;
+            } else {
+                ans = mid;
+                lo = mid + 1;
+            }
+        }
+        
+        return ans + 1;
+    }
+     
+    int gBS(int X, int mk) {
+        int lo = 0, hi = (mk ? n : m) - 1, mid, ans = hi + 1;
+        while(lo <= hi) {
+            mid = (lo+hi)>>1;
+            if(a[!mk][mid] > X) {
+                ans = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        
+        return (mk ? n : m) - ans;
+    }
+     
+    int main() {
+    	scanf("%d%d", &n, &m);
+    	for(int i = 0; i < n; i++) scanf("%d", &a[0][i]);
+    	for(int i = 0; i < m; i++) scanf("%d", &a[1][i]);
+    	
+    	qsort(&a[0], n, sizeof(int), cmp);
+    	qsort(&a[1], m, sizeof(int), cmp);
+    	
+    	for(int mk = 0; mk < 2; mk++) {
+        	for(int i = 0, len = (mk ? m : n); i < len; i++) {
+        	    s = fBS(a[mk][i], mk);
+        	    score[mk] += (s ? gBS(a[mk][i], mk)*s : s);
+        	}
+    	}
+    	
+    	if(score[0] > score[1]) printf("Monk %lld\n", score[0]-score[1]);
+    	else if(score[0] < score[1]) printf("!Monk %lld\n", score[1]-score[0]);
+    	else puts("Tie");
+    	
+        return 0;
+    }

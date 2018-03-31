@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+int n,p[100],i,flag=0,sum=0,x=999;
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+    scanf("%d",&p[i]);
+    if(p[i]%2){
+      flag++;
+      if(x>p[i])
+        x=p[i];
+    }
+    sum+=p[i];
+  }
+  if(!flag)
+    printf(":(");
+  else if(flag%2)
+    printf("%d",sum);
+  else
+    printf("%d",(sum-x));
+	return 0;
+}

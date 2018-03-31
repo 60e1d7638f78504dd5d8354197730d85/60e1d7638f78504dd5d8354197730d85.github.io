@@ -1,0 +1,30 @@
+#include <stdio.h>
+int encodeInteger(int x, int n){
+n = n<<(1<<(1<<(1<<1)));
+x = x | n;
+return x;
+}
+void encodeArray(int *A, int *B, int n){
+  int i;
+for( i=0;i<n;i++) {
+A[i] = encodeInteger(A[i], B[i]);
+}
+}
+int main()
+{
+  int a[100],b[100],n,i,t;
+  scanf("%d",&t);
+    while(t--)
+    {
+      scanf("%d",&n);
+      for(i=0;i<n;i++) scanf("%d",&a[i]);
+      for(i=0;i<n;i++) scanf("%d",&b[i]);
+      encodeArray(a,b,n);
+      for(i=0;i<n;i++)
+      {
+        printf("%d\n",a[i]);
+      }
+    }
+
+	return 0;
+}

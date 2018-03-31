@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner input=new Scanner(System.in);
+       long bin1=10,bin2=11;
+       int i=0,remainder=0;
+       int[] sum=new int[20];
+       while(input.hasNext())
+       {
+         bin1=input.nextLong();
+         bin2=input.nextLong();
+       }
+       while(bin1 !=0 || bin2 !=0)
+       {
+         sum[i++]=(int)((bin1 % 10 + bin2 % 10 + remainder)%2);
+         remainder=(int)((bin1 % 10 + bin2 % 10 + remainder)/2);
+         bin1=bin1/10;
+         bin2=bin2/10;
+       }
+       if(remainder !=0)
+       {
+         sum[i++]=remainder;
+       }
+       --i;
+       while(i>=0)
+       {
+         System.out.print(sum[i--]);
+       }
+		
+	}
+}

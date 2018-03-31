@@ -1,0 +1,104 @@
+ //monk in the grass field
+    #include<stdio.h>
+    #include<string.h>
+    #define left(a) (a*2+1)
+    #define right(a) (a*2+2)
+     
+    typedef struct{
+    	int sum;
+    	int index;
+    }node;
+     
+    node heaprow[205];
+    node heapcol[205];
+    int matrix[205][205];
+    int size, curses;
+     
+    int swap(node *a, node *b){
+    	node temp;
+    	temp.sum = a->sum;
+    	temp.index = a->index;
+    	a->sum = b->sum;
+    	a->index = b->index;
+    	b->sum = temp.sum;
+    	b->index = temp.index;
+    	return 0;
+    }
+     
+    int input(){
+    	scanf("%d%d", &size, &curses);
+    	int i, j;
+    	memset(heaprow, 0, sizeof(heaprow));
+        memset(heapcol, 0, sizeof(heapcol));
+    	
+    	for(i = 0; i < size; i++){
+    		heaprow[i].index = i;
+    		heapcol[i].index = i;
+    		for(j = 0; j < size; j++){
+    			scanf("%d", &matrix[i][j]);
+    			heaprow[i].sum += matrix[i][j];
+    			heapcol[j].sum += matrix[i][j];
+    		}
+    	}
+    	return 0;
+    }
+     
+    int heapify(node heap[], int i, int heapsize){
+    	int smallest = i;
+    	if( left(i) <= heapsize-1 && heap[smallest].sum > heap[left(i)].sum )
+    		smallest = left(i);
+    	if( right(i) <= heapsize-1 && heap[smallest].sum > heap[right(i)].sum)
+    		smallest = right(i);
+    	if(smallest != i){
+    		swap(&heap[i], &heap[smallest]);
+    		heapify(heap, smallest, heapsize);
+    	}
+    	return 0;
+    }
+     
+     
+    int buildheap(node heap[], int size){
+    	int i;
+    	for(i = size/2-1; i>= 0; i--)
+    		heapify(heap, i, size);
+    	return 0;
+    }
+     
+    int myselect(node heap[]){		//update the row/col that was selected by adding size to the sum
+    	heap[0].sum += size;
+    	heapify(heap, 0, size);
+    	
+    }
+     
+    int main(){
+    	
+    	int T;
+    	scanf("%d", &T);
+    	while(T--){
+    		
+    		input();
+    		long long int tolerance = 400*200*1010;
+    		int extrarow = 0;
+    		int extracol = 0;
+    		buildheap(heaprow, size);
+    		buildheap(heapcol, size);
+    		long long int sumrow[405];	//increase in tolerance if we select row for i times
+    		long long int sumcol[405];	//increase in tolerance if we select col for i times
+    		int i;
+    		sumrow[0] = 0;
+    		sumcol[0] = 0;
+    		for(i = 1; i <= curses; i++){
+    			sumrow[i] = sumrow[i-1] + heaprow[0].sum;
+    			myselect(heaprow);
+    			sumcol[i] = sumcol[i-1] + heapcol[0].sum;
+    			myselect(heapcol);
+    		}
+    		for(i = 0; i <= curses; i++){
+    			if(tolerance > (sumrow[i] + sumcol[curses-i] + i*(curses-i)))
+    				tolerance = (sumrow[i] + sumcol[curses-i] + i*(curses-i));
+    		}
+    		
+    		printf("%lld\n", tolerance);
+    	}
+    }
+ 

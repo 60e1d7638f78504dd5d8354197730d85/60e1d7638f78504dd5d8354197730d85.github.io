@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+   int a;
+  scanf("%d",&a);
+  while(a--){
+    int n,i,j,a[100];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    for(i=0;i<n;i++)
+    {
+      for(j=i+1;j<n;j++)
+      {
+        int temp;
+        if(a[j]<a[i])
+        {
+          temp=a[i];
+          a[i]=a[j];
+          a[j]=temp;
+        }
+      }
+    }
+    int min=a[1]-a[0];
+    for(i=1;i<n;i++)
+    {
+      if(min>a[i]-a[i-1])
+        min=a[i]-a[i-1];
+    }
+    printf("%d",min);
+  }
+	return 0;
+}

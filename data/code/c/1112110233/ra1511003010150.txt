@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<string.h>	
+ 
+char input[11][11];
+int answer;
+int collisions;
+ 
+void processInput(int j,int i){
+	if(input[j][i]=='1'){
+		answer+=collisions++;
+	}
+}
+ 
+void inputAndCalculate(int N,int M)
+{
+  int i;
+	answer=0;
+	for(i=0;i<N;i++)
+    {
+		memset(input[i],'\0',sizeof(input[0]));
+		scanf("%s",input[i]);
+	}
+	for(i=0;i<M;i++)
+    {
+      int j;
+		collisions=0;
+		for(j=0;j<N;j++)
+        {
+			processInput(j,i);
+		}
+	}
+}
+ 
+int main()
+{
+	int T;
+	scanf("%d", &T);
+	int N,M;
+	while(T--)
+    {
+		scanf("%d%d",&N,&M);
+		inputAndCalculate(N,M);
+		printf("%d\n",answer);
+	}
+	return 0;
+} 

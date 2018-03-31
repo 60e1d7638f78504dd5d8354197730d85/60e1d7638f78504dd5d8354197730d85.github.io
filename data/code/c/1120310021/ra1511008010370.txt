@@ -1,0 +1,52 @@
+#include<stdio.h>
+#define min_(a,b) ((a)>(b)?(b):(a))
+#define max_(a,b) ((a)>(b)?(a):(b))
+ 
+long long int arr[35][2];
+ 
+void solve()
+{
+    int i,j;
+    long long int min=1000000000000000ll,max=-1,a,b,c,d;
+ 
+    arr[1][0]=arr[1][1]=2;
+    arr[2][0]=arr[2][1]=5;
+ 
+    for(i=3;i<=30;i++)
+    {
+        min=1000000000000000ll;
+        max=-1;
+        for(j=1;j<=i/2+1;j++)
+        {
+            a=arr[j-1][0];
+            b=arr[j-1][1];
+            c=arr[i-j][0];
+            d=arr[i-j][1];
+ 
+            min=min_((a+c),min);
+            max=max_((b+d),max);
+        }
+ 
+        arr[i][0]=min+i+1;
+        arr[i][1]=max+i+1;
+    }
+}
+ 
+int main()
+{
+    solve();
+    int t,n,m;
+ 
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        scanf("%d%d",&n,&m);
+ 
+        if(m<arr[n][0]) printf("-1\n");
+        else if(m>arr[n][1]) printf("%lld\n",(((long long int)m)-arr[n][1]));
+        else printf("0\n");
+    }
+ 
+    return 0;
+}

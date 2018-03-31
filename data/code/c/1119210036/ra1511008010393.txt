@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int main()
+{
+  int n,i,j;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    int G,I,Q;
+    long int N;
+    scanf("%d",&G);
+    long int result[G];
+    for(j=0;j<G;j++)
+    {
+      scanf("%d %ld %d",&I,&N,&Q);
+      if(N%2==0)
+        result[j]=N/2;
+      else
+      {
+        if(I==Q)
+          result[j]=(N-1)/2;
+        else if(I!=Q)
+          result[j]=(N+1)/2;
+      }
+    }
+    for(j=0;j<G;j++)
+      printf("%ld\n",result[j]);
+  }
+	return 0;
+}

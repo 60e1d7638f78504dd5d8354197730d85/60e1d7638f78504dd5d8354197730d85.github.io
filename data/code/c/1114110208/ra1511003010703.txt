@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int row, col, i, j, s = 0;
+  	int arr[100][100];
+  	scanf("%d%d", &row, &col);
+  	
+  	for (i=0; i<row; i++) {
+      for (j=0; j<col; j++) {
+        scanf("%d", &arr[i][j]);
+      }
+    }
+  
+  if (row != col) {
+      printf("entered row and columns is not square matrix");
+      return 0;
+  }
+  for (i=0; i<row; i++) {
+      for (j=0; j<col; j++) {
+        if (j>i)
+          s+=arr[i][j];
+      }
+  }
+  printf("%d", s);
+	return 0;
+}

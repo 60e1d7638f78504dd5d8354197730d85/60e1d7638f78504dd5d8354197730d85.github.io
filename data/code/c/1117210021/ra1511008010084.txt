@@ -1,0 +1,94 @@
+#include<stdio.h>
+int arr[21][20001];
+int list[21][21];
+int max,tmp,m;
+int used[21];
+int min(int a,int b)
+{
+	if(a>b)
+		return b;
+	return a;
+}
+void query(int v)
+{
+	int i,k;
+	for(i=v;i<m;i++)
+	{
+		if(used[i]==0)
+		{
+			used[i]=1;
+			for(k=1;k<=list[i][0];k++)
+			{
+				used[list[i][k]]++;
+			}
+			tmp++;
+			query(i+1);
+			tmp--;
+			used[i]=0;
+			for(k=1;k<=list[i][0];k++)
+			{
+				used[list[i][k]]--;
+			}
+		}
+	}
+	if(tmp>max)
+		max=tmp;
+}
+int main()
+{
+	int n,i,j,ptr1,ptr2,flag;
+	scanf("%d%d",&n,&m);
+	for(i=0;i<m;i++)
+	{
+		scanf("%d",&arr[i][0]);
+		for(j=1;j<=arr[i][0];j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			if(i!=j)
+			{
+//				lim=min(arr[i][0]+1,arr[j][0]+1);
+				ptr1=1;
+				ptr2=1;
+				flag=0;
+				while(ptr1<=arr[i][0] && ptr2<=arr[j][0])
+				{
+					if(arr[i][ptr1]>arr[j][ptr2])
+					{
+						ptr2++;
+					}
+					else if(arr[i][ptr1]<arr[j][ptr2])
+					{
+						ptr1++;
+					}
+					else
+					{
+						flag=1;
+						break;
+					}
+				}
+				if(flag==1)
+				{
+					list[i][++list[i][0]]=j;
+			//		list[i][j]=1;
+				}
+			}
+		}
+	}
+	query(0);
+	printf("%d\n",max);
+/*	for(i=0;i<m;i++)
+	{
+		printf("st:: %d\n",i);
+		for(j=1;j<=list[i][0];j++)
+			printf("%d ",list[i][j]);
+		printf("\n");
+	}
+	*/
+	return 0;
+}

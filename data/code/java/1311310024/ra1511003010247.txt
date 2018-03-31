@@ -1,0 +1,191 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+ 
+public class TestClass {
+ 
+	private static final int LIMIT = 1000000007;
+ 
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+ 
+		int t = Integer.parseInt(reader.readLine());
+ 
+		for (int i = 0; i < t; i++) {
+			String line = reader.readLine();
+			String[] tokens = line.split("\\s");
+			int n = Integer.parseInt(tokens[0]);
+			int m = Integer.parseInt(tokens[1]);
+			int k = Integer.parseInt(tokens[2]);
+ 
+			List<Node> nodes = new ArrayList<>();
+			for (int j = 0; j < n; j++) {
+				nodes.add(new Node());
+			}
+ 
+			for (int j = 0; j < n - 1; j++) {
+				line = reader.readLine();
+				tokens = line.split("\\s");
+				int first = Integer.parseInt(tokens[0]) - 1;
+				int second = Integer.parseInt(tokens[1]) - 1;
+				int from = Math.min(first, second);
+				int to = Math.max(first, second);
+				nodes.get(from).addChild(nodes.get(to));
+			}
+			
+			countLabelings(nodes.get(0), n, k, m);
+			
+//			for (int j = 1; j <= n; j++) {
+//				Node node = nodes.get(j - 1);
+//				String counts = node.getCounts().stream().map(count -> count.toString()).sequential().reduce((x, y) -> x + ", " + y).get();
+//				System.out.println(j + "\t[" + counts + "]\t" + node.getTotal(m));
+//			}
+			
+			System.out.println(nodes.get(0).getTotal(m));
+ 
+		}
+ 
+	}
+ 
+	private static void countLabelings(Node root, int n, int k, int m) {
+	
+		// prepare all the children
+		root.getChildren().stream().forEach(child -> countLabelings(child, n, k, m));
+		
+		// prepare the root
+		calculateCounts(root, k, m);
+	}
+	
+	/** This method will calculate the counts for the given node, assuming the counts of its children are already calculated
+	*/
+	private static void calculateCounts(Node root, int k, int m) {
+		if (root.isLeaf()) {
+			root.getCounts().add(new Long(1L));
+		} else {
+			int maxLength = root.getChildren().stream().map(child -> child.getCounts().size()).collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+			for (int i = 1; i <= maxLengthToCalculate(maxLength, k, m); i++) {
+				long product = 1;
+				for (Node child : root.getChildren()) {
+					product = mod(product * calculateRange(child, i, k, m));
+				}
+				if(root.getCounts().isEmpty()) {
+					root.getCounts().add(product);
+				} else {
+					long previous = root.getCounts().get(root.getCounts().size() - 1);
+					long cumulativeResult = mod(previous + product);
+					root.getCounts().add(cumulativeResult);
+				}
+			}
+		}
+	}
+	
+	private static int maxLengthToCalculate(int maxLength, int k, int m) {
+		int l = maxLength + k;
+		if (l <= (m + 1) / 2) {
+			return l;
+		} else {
+			return (m + 1) / 2;
+		}
+	}
+	
+	private static long calculateRange(Node node, int i, int k, int m) {
+		long sum = 0;
+		
+		if (k == 0) {
+			return node.getTotal(m);
+		}
+		
+		// the numbers before i - k
+		if (i > k) {
+			sum = node.getValue(i - k, m);
+		}
+		
+		// the numbers after i + k
+		if (i + k <= m) {
+			sum = mod(sum + node.getTotal(m) - node.getValue(i + k - 1, m));
+			
+		}
+		
+		return sum;
+	}
+ 
+	private static long mod (long x) {
+		return ((x % LIMIT) + LIMIT) % LIMIT;
+	}
+	
+	private static class Node {
+ 
+		List<Node> children = new ArrayList<>();
+		List<Long> counts = new ArrayList<>();
+		long total = -1;
+ 
+		public void addChild(Node child) {
+			children.add(child);
+		}
+ 
+		public List<Node> getChildren() {
+			return children;
+		}
+		
+		public List<Long> getCounts() {
+			return counts;
+		}
+		
+		public long getTotal(int m) {
+			if (total < 0) {
+				calculateTotal(m);
+			}
+			return total;
+		}
+		
+		private void calculateTotal(int m) {
+			if (counts.isEmpty()) {
+				return;
+			}
+			else if (counts.size() == 1) {
+				this.total = mod(m * counts.get(0));
+			} else {
+				long sum = mod(counts.get(counts.size() - 2) * 2);
+				int reps = m - counts.size() * 2 + 2;
+				if (reps > 0) {
+					long lastValue = mod(counts.get(counts.size() - 1) - counts.get(counts.size() - 2));
+					long totalReps = mod(lastValue * reps);
+					sum = mod(sum + totalReps);
+				}
+				this.total = sum;
+			}
+		}
+		
+		public long getValue(int i, int m) {
+			if (i < 1 || i > m) {
+				return 0;
+			} else if (i <= counts.size()) {
+				return counts.get(i - 1);
+			} else if (i <= m - counts.size()) {
+				long before;
+				if (counts.size() > 1) {
+					before = counts.get(counts.size() - 2);
+				} else {
+					before = 0L;
+				}
+				long sum = before;
+				long lastValue = (counts.get(counts.size() - 1) - before);
+				int reps = i - counts.size() + 1;
+				long totalReps = mod(reps * lastValue);
+				sum = mod(sum + totalReps);
+				return sum;
+			} else {
+				return mod(getTotal(m) - getValue(m - i, m));
+			}
+		}
+ 
+		public boolean isLeaf() {
+			return children.isEmpty();
+		}
+ 
+	}
+} 

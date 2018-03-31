@@ -1,0 +1,35 @@
+#include<string.h>
+ #include<stdio.h>
+#include<ctype.h>
+void del(char str[], char ch);
+ 
+int main() {
+   char str[100];
+   char ch;
+   scanf("%s\n",str);  
+   scanf("%c",&ch);
+ 
+   del(str, ch);
+   return 0;
+}
+ 
+void del(char str[], char ch) {
+   int i, j = 0;
+   int size;
+   char ch1;
+   char str1[10];
+ 
+   size = strlen(str);
+ 
+   for (i = 0; i < size; i++) {
+      if (tolower(str[i]) != tolower(ch)) {
+         ch1 = str[i];
+         str1[j] = ch1;
+         j++;
+      }
+   }
+   str1[j] = '\0';
+ 
+   printf("%s",str1);
+  
+}

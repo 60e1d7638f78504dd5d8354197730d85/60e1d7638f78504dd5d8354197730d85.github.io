@@ -1,0 +1,33 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+class prime{
+	int Number;
+    public:
+  	prime(){
+    	cin>>Number;
+    }
+  	bool isPrime(){
+    	if(Number == 1)
+          return false;
+      	if(Number==2 || Number==3)
+          return true;
+      	int flag=sqrt(Number);
+      	
+      	for(int i=2;i<flag;i++){
+        	if(Number%i==0){
+            	return false;
+            }
+        }
+      	return true;
+    }
+};
+int main()
+{
+	prime p;
+  	if(p.isPrime())
+      cout<<"Prime number";
+  	else
+      cout<<"Not a prime number";
+	return 0;
+}

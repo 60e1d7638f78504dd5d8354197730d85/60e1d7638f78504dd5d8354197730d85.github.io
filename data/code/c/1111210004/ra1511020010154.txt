@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  if(n==0)
+    printf("0");
+  else
+  {
+  while(n>0)
+  {
+    int a,b;
+    scanf("%d %d",&a,&b);
+    int arr[a];
+    for(i=0;i<a;i++)
+      scanf("%d",&arr[i]);
+    int sum1=0,sum2=0,temp=0,j;
+    for(i=0;i<a;i++)
+      for(j=i+1;j<a;j++)
+      { if(arr[j]<arr[i])
+        {
+          temp=arr[j];
+          arr[j]=arr[i];
+          arr[i]=temp;
+        }
+      }
+    for(i=0;i<b;i++)
+      sum1+=arr[i];
+    for(i=b;i<a;i++)
+      sum2+=arr[i];
+    printf("%d\n",sum2-sum1);
+    n--;
+  }
+  }
+	return 0;
+}

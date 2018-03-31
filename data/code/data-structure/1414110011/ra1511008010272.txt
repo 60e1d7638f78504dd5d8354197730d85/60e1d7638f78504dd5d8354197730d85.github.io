@@ -1,0 +1,42 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+  cin>>t;
+  while(t--) {
+  	int n;
+    cin>>n;
+    int a[n];
+    int count[60]={0};
+    for(int i=0;i<n;i++) {
+    	cin>>a[i];
+      count[a[i]]++;
+    }
+    int i=0;
+    while(1) {
+      int max=0;
+      int number;
+      for(int j=0;j<60;j++) {
+        if(count[j]>max) {
+          max = count[j];
+          number = j;
+        }
+      }
+      count[number]=0;
+      if(max==0)
+        break;
+      else {
+      	for(int j=0;j<max;j++) {
+        	a[i++] = number;
+        }
+      }
+    }
+    for(i=0;i<n;i++) {
+    	cout<<a[i]<<" ";
+    }
+    cout<<endl;
+  }
+	return 0;
+}

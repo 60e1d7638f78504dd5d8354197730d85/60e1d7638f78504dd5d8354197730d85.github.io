@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define MAX 100005
+ 
+ 
+int fja(const void *a, const void *b)
+{
+	if (*(int *)a>*(int *)b)
+		return 1;
+	if (*(int *)a<*(int *)b)
+		return -1;
+	return 0;
+}
+ 
+ 
+int main()
+{
+	int i,j,n;
+ 
+	int vece[MAX],manje[MAX],jed[MAX];
+	int brVece,brManje, brJed;
+ 
+	int svi[MAX];
+ 
+	int filter[MAX];
+	int koliko;
+ 
+	int suma[MAX];
+	int max;
+ 
+	int t,x;
+	char niz[5],c[5];
+ 
+ 
+	scanf("%d",&t);
+ 
+	while(t--)
+	{
+		scanf("%d",&n);
+ 
+		brVece=0;
+		brManje=0;
+		brJed=0;
+ 
+		for(i=1;i<=n;i++)	
+		{
+			scanf("%s %d %s",c,&x,niz);	
+			svi[i]=x;
+			switch (c[0])
+			{
+				case '=':
+					if (niz[0]=='N')
+					{	
+						vece[brVece++]=x;
+						manje[brManje++]=x;
+					}
+					else
+						jed[brJed++]=x;
+					break;
+				case '>':
+					if (niz[0]=='N')
+					{
+						manje[brManje++]=x;
+						jed[brJed++]=x;
+					}
+					else
+						vece[brVece++]=x;
+					break;
+				case '<':
+					if (niz[0]=='N')
+					{
+						vece[brVece++]=x;
+						jed[brJed++]=x;
+					}
+					else
+						manje[brManje++]=x;
+					break;
+			}
+		}
+		
+		qsort(jed,brJed,sizeof(int),fja);
+		qsort(vece,brVece,sizeof(int),fja);
+		qsort(manje,brManje,sizeof(int),fja);
+		qsort(svi+1,n,sizeof(int),fja);
+	
+		svi[0]=svi[1]-1;
+		svi[n+1]=svi[n]+1;
+	
+		koliko=0;
+		for(i=0;i<=n+1;i++)
+			if (i==0||svi[i]!=svi[i-1])
+				filter[koliko++]=svi[i];
+	
+		for(i=0;i<n+2;i++)
+			suma[i]=0;
+		
+		j=0;
+		for(i=0;i<brJed;i++)
+		{
+			while(filter[j]<jed[i])
+				j++;
+			if (filter[j]==jed[i])
+				suma[j]++;
+		}
+		
+		j=0;
+		for(i=0;i<brVece;i++)
+			while(filter[j]<=vece[i])
+				suma[j++]+=i;
+				
+		for(;j<koliko;j++)
+			suma[j]+=brVece;
+	
+		j=koliko-1;
+		for(i=brManje-1;i>=0;i--)
+			while(filter[j]>=manje[i])
+				suma[j--]+=brManje-1-i;
+	
+		for(;j>=0;j--)
+			suma[j]+=brManje;
+					
+		max=0;
+		for(i=0;i<koliko;i++)
+			if (filter[i]>=1&&filter[i]<=1000000000&&suma[i]>max)	
+				max=suma[i];
+		printf("%d\n",n-max);		
+	}	
+}  

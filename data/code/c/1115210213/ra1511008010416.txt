@@ -1,0 +1,104 @@
+#include<stdio.h>
+#define SIZE 100004
+typedef struct node
+{
+    int sum;
+    int mod[3];
+}node;
+node arr[3*SIZE];
+char s[SIZE];
+struct node mergeNode(node leftNode,node rightNode)
+{
+    node newnode ;
+    newnode.sum = (leftNode.sum+rightNode.sum)%3;
+    newnode.mod[0] = newnode.mod[1] = newnode.mod[2] = 0;
+    int i;
+    for(i=0;i<3;i++)
+    {
+        newnode.mod[i] += leftNode.mod[i];
+        newnode.mod[(i+leftNode.sum)%3] += rightNode.mod[i];
+    }
+    return newnode;
+}
+void constructTree(int node,int start,int end)
+{
+    if(start==end)      //leaf node
+    {
+        arr[node].sum = (s[start-1]-'0')%3;
+        arr[node].mod[arr[node].sum]=1;
+    }
+    else
+    {
+        constructTree(2*node, start, (start+end)/2);
+        constructTree(2*node+1, (start+end)/2+1, end);
+        arr[node] = mergeNode(arr[2*node],arr[2*node+1]);
+    }
+}
+void updateTree(int node,int pos,int newValue,int start,int end)
+{
+    if(start==end)      //leaf node: single value
+    {
+        arr[node].sum = newValue%3;
+        arr[node].mod[0] = arr[node].mod[1] = arr[node].mod[2] = 0;
+        arr[node].mod[arr[node].sum]=1;
+    }
+    else
+    {
+        //we have to update the right subtree or the left one
+        //depending where the pos lies.
+        int mid = (start+end)/2;
+        if(pos<=mid)
+            updateTree(2*node, pos, newValue, start, mid);
+        else
+            updateTree(2*node+1, pos, newValue, mid+1, end);
+        //as the child nodes are updated, the parent node has to be updated as well
+        //thus we merge the new nodes with the previous ones
+        arr[node] = mergeNode(arr[2*node], arr[2*node+1]);
+    }
+}
+struct node query(int node,int left,int right,int start,int end)       //left and right: query interval
+{
+    if(left>end || right<start)
+    {
+        struct node newnode;
+        newnode.sum = 0;
+        newnode.mod[0] = newnode.mod[1] = newnode.mod[2] = 0;
+        return newnode;
+    }
+    else if(start>=left && end<=right)
+        return arr[node];
+    struct node p1,p2;
+    p1 = query(2*node, left, right, start, (start+end)/2);
+    p2 = query(2*node+1, left, right, (start+end)/2+1, end);
+    return mergeNode(p1, p2);
+}
+int main()
+{
+    int n,m,i;
+    scanf("%d%d",&n,&m);
+    scanf("%s",s);
+    for(i=0;i<3*SIZE;i++)
+        arr[i].mod[0] = arr[i].mod[1] = arr[i].mod[2] = arr[i].sum = 0;
+    constructTree(1, 1, n);
+    while(m--)
+    {
+        int q,x,y;
+        scanf("%d%d%d",&q,&x,&y);
+        if(q==1)        //update
+        {
+            //to update the tree, we need to update all those nodes where this pos lies
+            updateTree(1, x, y, 1, n);
+        }
+        else{
+            node newnode = query(1, x, y, 1, n);
+            newnode.mod[0]++;
+            long long int sum=0;
+            for(i=0;i<3;i++)
+            {
+                sum = sum + (((long long int)newnode.mod[i]*(newnode.mod[i]-1))/2);
+            }
+            printf("%lld\n",sum);
+        }
+    }
+    return 0;
+}

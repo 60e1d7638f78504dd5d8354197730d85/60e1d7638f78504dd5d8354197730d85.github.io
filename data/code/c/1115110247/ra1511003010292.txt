@@ -1,0 +1,37 @@
+#include <stdio.h>
+int isprime(int a , int i)
+{
+  if(i==1)
+    return 1;
+  else
+    if(a%i == 0)
+      return 0;
+    else
+      return isprime(a, --i);
+}
+int main()
+{
+  int n , k , i , j , count = 0; 
+  scanf("%d %d",&n,&k);
+  for(i=3 ; i<n ; i++)
+  {
+    if(isprime(i,i-1)==1)
+    {
+      for(j = i+1 ; j<n ; j++)
+      {
+        if(isprime(j,j-1)==1)
+        {
+          if(isprime(j+i+1 , j+i)==1 && j+i+1<n)
+          {
+            //printf("%d %d \n",i,j);
+            count++;}
+        }
+      }
+    }
+  }
+  if(count>=k)
+    printf("YES");
+  else
+    printf("NO");
+	return 0;
+}

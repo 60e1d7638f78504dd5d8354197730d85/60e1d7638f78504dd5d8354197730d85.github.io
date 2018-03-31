@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+      int t,i,j;
+      scanf("%d",&t);
+      int a[t];
+      for(i=0;i<t;i++)
+      { 
+        char k[100001];
+        scanf("%s",k);
+        for(j=1;k[j]!='\0';j++)
+        {
+        	if((k[j-1]=='E'&&k[j]=='C')||(k[j-1]=='S'&&k[j]=='C')||(k[j-1]=='S'&&k[j]=='E'))
+        	a[i]=2;
+        	else if(k[j+1]=='\0'&&a[i]!=2)
+        	a[i]=3;
+    	}
+      }
+        for(i=0;i<t;i++)
+      {  if(a[i]==2)
+      	printf("no\n");
+      	else
+      	printf("yes\n");
+    	  }
+         return 0;
+    } 

@@ -1,0 +1,36 @@
+#include<stdio.h>
+
+struct time
+{
+int h,m,sec;
+};
+
+int main()
+{
+	struct time s;
+  	int flag=1,g=0;
+	scanf("%d\n%d\n%d",&s.h,&s.m,&s.sec);
+if(s.h>23 || s.h<0 || s.sec> 59 || s.sec < 0 || s.m > 59 || s.m < 0)
+{
+  flag=0;
+  printf("Invalid Time");
+}
+  
+if(flag==1)
+{
+	 printf("24 Hours Format\n");
+ 	 printf("%d:%d:%d\n",s.h,s.m,s.sec);
+if(s.h>12)
+{
+g=1;
+s.h=s.h-12;
+}
+	printf("12 Hours Format\n");
+  	printf("%d:%d:%d",s.h,s.m,s.sec);
+ if(g==1)
+   printf(" pm");
+  else
+    printf(" am");
+}   
+return 0;  
+}

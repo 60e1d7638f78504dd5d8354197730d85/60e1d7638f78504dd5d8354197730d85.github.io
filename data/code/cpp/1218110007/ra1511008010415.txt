@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+class student
+{
+public:
+  	int roll,mark1,mark2;
+  	void get()
+    {
+      	cin>>roll>>mark1>>mark2;
+    }
+};
+
+class sports
+{
+public:
+  	int mark3;
+  	void getsm()
+    {
+      	cin>>mark3;
+    }
+};
+
+class statement: public student,public sports
+{
+public:
+	void display()
+    {	
+    	cout<<roll<<endl<<mark1+mark2+mark3<<endl<<(float)(mark1+mark2+mark3)/3;
+     }   
+};        
+int main()
+{
+	statement s;
+  	s.get();
+  	s.getsm();
+  	s.display();
+	return 0;
+}

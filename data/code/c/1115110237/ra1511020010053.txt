@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,sum,p,q,m,n,x,y;
+  scanf("%d",&n);
+  int a[n][n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d %d",&p,&q);
+    for(j=0;j<n;j++)
+    {
+      if(j>=p-1 && j<=q-1)
+        a[i][j]=1;
+      else
+        a[i][j]=0;
+    }
+  }
+  scanf("%d",&m);
+  for(k=0;k<m;k++)
+  {
+    scanf("%d %d",&x,&y);
+    sum=0;
+    for(i=0;i<n;i++)
+    {
+      if(i!=x-1)
+      {
+        for(j=0;j<n;j++)
+        {
+          if(j!=y-1)
+            sum+=a[i][j];
+        }
+      }
+    }
+    if(sum%2==0)
+      printf("E\n");
+    else
+      printf("O\n");
+  }
+	return 0;
+}

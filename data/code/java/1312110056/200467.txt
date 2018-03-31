@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+     Scanner scan = new Scanner(System.in);
+String dna = scan.next(); 
+        
+        System.out.println(reverseComplement(dna));
+    }
+    
+    public static String reverseComplement( String dna ) {
+        String out = "";
+        for(int i =  0; i < dna.length(); ++i) {
+            char curr = dna.charAt(i);
+            if(curr == 'A')
+                out += 'T';
+            else if(curr == 'T')
+                out += 'A';
+            else if(curr == 'C')
+                out += 'G';
+            else if(curr == 'G')
+                out += 'C';
+            else {
+                System.out.println("ERROR: Input is not a DNA Sequence.");
+                System.exit(-1);
+            }
+        }
+        return out;
+    }
+}

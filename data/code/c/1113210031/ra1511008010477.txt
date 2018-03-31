@@ -1,0 +1,24 @@
+#include <stdio.h>
+int rev(int n)
+{
+  int rev=0;
+ while(n>0){
+   rev=(rev*10)+n%10;
+   n/=10;
+ }
+  return rev;
+}
+int main()
+{
+  int t,i;
+  scanf("%d",&t);
+  int arr[t];
+ for(i=0;i<t;i++)
+  {
+    scanf("%d",&arr[i]);
+   arr[i]=rev(arr[i]);
+ }
+  for(i=t-1;i>=0;i--)
+    printf("%d\n",arr[i]);
+	return 0;
+}

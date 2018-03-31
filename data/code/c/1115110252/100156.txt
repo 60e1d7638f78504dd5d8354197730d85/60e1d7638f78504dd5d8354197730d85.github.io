@@ -1,0 +1,27 @@
+#include <stdio.h>
+int is_uppercase(char *st);
+int main()
+{
+  char c[20];
+  int i,b;
+scanf("%[^\n]s",c);
+ 
+  b=is_uppercase(c);
+if(b) printf("true"); else printf("false");
+    
+	return 0;
+}
+  int is_uppercase(char *str)
+  {
+  int   i;
+    int fo = 1;
+
+    for (i = 0; str[i] != '\0'; i++) {
+       // found_lower = found_lower || (str[i] >= 'a' && str[i] <= 'z');
+        if(!(str[i] >= 'A' && str[i] <= 'Z') && (str[i]!=32)) fo=0;
+
+       // if (found_upper) break;
+    }
+
+    return (fo);
+  }

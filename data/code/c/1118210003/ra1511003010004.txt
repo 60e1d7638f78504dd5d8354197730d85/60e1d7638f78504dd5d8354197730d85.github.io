@@ -1,0 +1,40 @@
+#include <stdio.h>
+long long int gcd(long long int a, long long int b)
+{
+    if (a == 0)
+        return b;
+    return gcd(b%a, a);
+}
+int main(void)
+{
+    long long int t=0,n=0,m=0;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld %lld",&n,&m);
+        long long int ans=0,max=0,max1=0,max2=0;
+        max=gcd(n,m);
+            if(max==1)
+            {
+                    printf("Yes\n");
+                }
+                else
+                {
+                    if(max==0)
+                    {
+                        printf("Yes\n");
+                    }
+                    else{
+                    max1=n/max;
+                    max2=m/max;
+                    if(max1>max2)
+                        ans=max1;
+                    else
+                        ans=max2;
+                    printf("No %lld\n",ans);
+                }
+            }
+        
+    }// your code goes here
+	return 0;
+}

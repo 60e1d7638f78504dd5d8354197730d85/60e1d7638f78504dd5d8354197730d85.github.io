@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+vector <int > v[100001];
+priority_queue<pair <int, int > >pq;
+//set <pair <int, int >, vector <pair <int, int > >, greater<pair <int, int > > >::iterator it;
+int c[100001]={0};
+ 
+int main() {
+ 
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n,m,a,b,i,j,val1,val2,ans;
+    cin >> n>>m;
+    ans=0;
+    for(i=1;i<=m;i++)
+    {
+        cin>>a>>b;
+        v[a].push_back(b);
+        v[b].push_back(a);
+    }
+    for(i=1;i<=n;i++)
+    {
+        c[i]=v[i].size();
+        pq.push({c[i],i});
+    }
+    while(!pq.empty())
+    {
+        val1=pq.top().first;
+        val2=pq.top().second;
+        //cout<<val1<<" "<<val2<<endl;
+        pq.pop();
+        if(c[val2]!=val1)
+        continue;
+        c[val2]=0;
+        //cout<<val1<<" "<<val2<<endl;
+        for(i=0;i<v[val2].size();i++)
+        {
+            //s.erase(c[v[val2][i]],v[val2][i]);
+            c[v[val2][i]]--;
+            if(c[v[val2][i]]>0)
+            pq.push({c[v[val2][i]],v[val2][i]});
+        }
+        ans++;
+    }
+    cout<<ans;
+    
+}

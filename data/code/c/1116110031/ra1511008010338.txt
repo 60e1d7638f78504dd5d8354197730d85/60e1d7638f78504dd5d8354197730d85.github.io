@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str[30],str1[15],s[20];
+  	fgets(str, 30, stdin);
+  	scanf("%s", str1);
+  	char words[15][30];
+  	int i,j,len=strlen(str),wc=0,cc=0,flag=0;  
+  	for(i=0;i<=len;i++)
+      if(str[i]==' ' || str[i]=='\0' || str[i]=='\n')
+      {
+        words[wc][cc]='\0';
+        wc++;
+        cc=0;
+      }
+  	  else
+      {
+        words[wc][cc++]=str[i];
+      }    
+  	for(i=0;i<wc;i++)
+    {
+      //printf("\n1%s", words[i]);
+      if(strcmp(str1,words[i])==0 && flag==0)
+      {        
+       // printf("flag=1");
+        flag=1;
+      }
+      else
+        printf("%s ", words[i]);  
+    }
+	return 0;
+}

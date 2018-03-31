@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{
+  int num,flag=0,x,step=0,diff,i;
+scanf("%d",&num);
+  if(num==0)
+    printf("2");
+  else if(num==1)
+    printf("1");
+  else
+  {
+  for(i=2;i<=num/2;i++)
+  {
+    if(num%i==0)
+    {
+      flag=1;
+      break;
+    }
+  }
+ 
+  if(flag==0)
+  {
+    printf("0");
+  }
+ else
+  {
+    x=num+1;
+    while(1)
+    {
+      for(i=2;i<=x/2;i++)
+      {
+        if(x%i==0)
+        {
+          step=1;
+          break;
+        }
+      }
+      if(step==0)
+      {
+        diff= x-num;
+        break;
+      }
+      else
+      {
+        x++;
+      }
+    }
+    printf("%d",diff);
+  }
+  }
+	return 0;
+}

@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+    int i,j,pos,pos1;
+    char str[30],character;
+    scanf("%s",str);
+    scanf("%s",&character);
+    for(i=0;str[i]!='\0';i++);
+    pos=i-1;
+    for(i=pos;i>=0;i--)
+    {
+      if(str[i]==character)
+      {
+        pos1=i;
+        break;
+      }
+    }
+    for(i=pos1;i<pos;i++)
+      str[i]=str[i+1];
+    str[i]='\0';
+    printf("%s",str);
+	return 0;
+}

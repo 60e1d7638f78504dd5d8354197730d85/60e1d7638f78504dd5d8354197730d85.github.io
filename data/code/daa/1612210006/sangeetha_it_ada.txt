@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int Isort(int arr[], int n)
+{
+   int i, j,tmp,count=0;
+   for (i = 1; i < n; i++)
+   {  
+     tmp=arr[i];
+       j = i-1;
+       while ((j >= 0) && arr[j]>tmp)
+       {
+   count++;
+           arr[j+1]=arr[j];
+           j = j-1;
+       }
+     arr[j+1]=tmp;
+   }
+  return count;
+}
+
+int main()
+{
+  int T;
+  cin>>T;
+  for(int t=0;t<T;t++)
+  {
+    int N,a[10000];
+    cin>>N;
+    for(int i=0;i<N;i++)
+      cin>>a[i];
+	cout<<Isort(a,N)<<"  \n";
+  }
+	return 0;
+}

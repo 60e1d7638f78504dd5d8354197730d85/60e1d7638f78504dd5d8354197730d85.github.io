@@ -1,0 +1,47 @@
+#include <stdio.h>
+struct Student
+{
+char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+};
+
+int main()
+{
+int n;
+  struct Student M[5],temp;
+  scanf("%d", &n);
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",M[i].name);
+    scanf("%s",M[i].department);
+    scanf("%d",&M[i].yearOfStudy);
+    scanf("%f",&M[i].cgpa);
+  }
+  int j;
+  for(i=0;i<n-1;i++)
+  {
+   for(j=i+1;j<n;j++)
+   {
+     if (strcmp(M[j].name, M[i].name) < 0)
+            {
+                temp=M[i];
+       			M[i]=M[j];
+       			M[j]=temp;
+     }
+   }
+  }
+  
+  for(i=0;i<n;i++)
+  {
+   printf("Name:%s\n",M[i].name);
+    printf("Department:%s\n",M[i].department);
+    printf("Year of study:%d\n",M[i].yearOfStudy);
+    printf("CGPA:%.1f\n",M[i].cgpa);
+  }
+  
+
+	return 0;
+}

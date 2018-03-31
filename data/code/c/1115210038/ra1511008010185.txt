@@ -1,0 +1,48 @@
+#include <stdio.h>
+char a[1000005],str[5];
+int bit[26][1000005],n;
+void update(int in,int pos,int val){
+	while(pos<=n){
+		bit[in][pos]+=val;
+		pos+=pos&(-pos);
+	}
+}
+int query(int in,int pos){
+	int res=0;
+	while(pos>0){
+		res+=bit[in][pos];
+		pos-=pos&(-pos);
+	}
+	return res;
+}
+int main()
+{
+    int q,ty,x,y,k,i;
+    scanf("%d%d",&n,&q);
+    scanf("%s",a);
+    for(i=0;a[i];i++){
+    	update(a[i]-'a',i+1,1);
+    }
+    while(q--){
+    	scanf("%d",&ty);
+    	if(ty==0){
+    		scanf("%d%s",&x,str);
+    		update(a[x-1]-'a',x,-1);
+    		a[x-1]=str[0];
+    		update(a[x-1]-'a',x,1);
+    	}
+    	else{
+    		scanf("%d%d%d",&x,&y,&k);
+    		if(x>y || y-x+1 <k)printf("Out of range\n");
+    		else{
+    			int total=0;
+    			for(i=0;i<26;i++){
+    				total+=query(i,y)-query(i,x-1);
+    				if(total>=k)break;
+    			}
+    			printf("%c\n",i+'a');
+    		}
+    	}
+    }
+  return 0;
+}

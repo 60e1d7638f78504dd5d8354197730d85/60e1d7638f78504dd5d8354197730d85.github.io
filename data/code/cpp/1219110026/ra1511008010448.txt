@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class A
+{
+  public:
+  int a,b;
+  A(int p,int q)
+  {
+    a=p;b=q;
+  }
+  void operator + (A obj)
+  {
+    A temp(0,0);
+    temp.a=a+obj.a;
+    temp.b=b+obj.b;
+    while(temp.b>=12)
+    {temp.a++;
+     temp.b-=12;}
+    cout<<"Feet:"<<temp.a<<" Inches:"<<temp.b;
+  }
+};
+int main()
+{	int f1,f2,i1,i2;
+ cin>>f1>>i1>>f2>>i2;
+ A p(f1,i1);
+ A q(f2,i2);
+ p+q;
+
+	return 0;
+}

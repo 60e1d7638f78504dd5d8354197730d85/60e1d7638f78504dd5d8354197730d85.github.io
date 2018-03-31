@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+int main()
+{
+ long int n; cin>>n;
+long long  int arr[n+10];
+  for(int i=0;i<n;i++) cin>>arr[i];
+  long long int ans=arr[n-1];
+ long long  int psum=arr[n-1];
+  //cout<<ans<<endl;
+     for(int i=n-2;i>=0;i--)
+      {
+       long long int ppsum=ans;
+         ans+=arr[i]-1;
+       ans+=psum;
+         psum=ans-ppsum;
+      //    cout<<ans<<endl;
+      }
+       cout<<ans<<endl;
+       return 0;
+  
+}

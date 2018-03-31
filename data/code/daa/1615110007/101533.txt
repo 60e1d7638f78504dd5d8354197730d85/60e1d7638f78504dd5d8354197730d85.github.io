@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAX 227286
+void sieve();
+int isPrime[MAX];
+int prevCount[MAX];
+int main() {
+
+    int f[41]={1, 1, 1, 1, 2};
+    int t, i, j, n;
+    
+    for  ( i= 5; i<41; i++ ) {
+        f[i] = f[i-1] + f[i-4];
+    }
+    sieve();
+    scanf("%d", &t);
+    while(t){
+        t--;
+        scanf("%d", &n);
+        printf("%d\n", prevCount[f[n]]);
+    }
+    return 0;
+}
+
+void sieve()
+{
+	int i,j;
+	for(i=1;i<MAX;i++) isPrime[i] = 1;
+	for(i=2;i<(int)sqrt(MAX)+1;i++)
+		if (isPrime[i]) for(j=i*i;j<MAX;j=j+i) isPrime[j] = 0;
+    prevCount[0]=0;
+    prevCount[1]=0;
+    prevCount[2]=1;
+    for(i=3; i<MAX; i++){
+        prevCount[i] = prevCount[i-1]+isPrime[i];
+    }
+        
+}

@@ -1,0 +1,167 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <set>
+#include <map>
+#include <queue>
+#include <iostream>
+#include <sstream>
+ 
+#include <cassert>
+#include <limits>
+#define rep(i,n) for(int (i)=0;(i)<(int)(n);++(i))
+#define reu(i,l,u) for(int (i)=(int)(l);(i)<(int)(u);++(i))
+#define each(it,o) for(auto it= (o).begin(); it != (o).end(); ++ it)
+#define all(o) (o).begin(), (o).end()
+#define mp(x,y) make_pair((x),(y))
+#define mset(m,v) memset(m,v,sizeof(m))
+#define INF 0x3f3f3f3f
+#define INFL 0x3f3f3f3f3f3f3f3fLL
+#define inrep int t;cin>>t; while(t--)
+using namespace std;
+ 
+typedef vector<int> vi;
+typedef pair<int,int> pii;
+typedef vector<pii > vpii;
+typedef long long ll;
+typedef vector<ll> vl;
+typedef pair<ll,ll> pll;
+typedef vector<pll > vpll;
+typedef vector<string> vs;
+typedef long double ld;
+ 
+template<typename T> ostream& operator<< ( ostream &o,vector<T> v ) {
+    if ( v.size() >0 )
+        o<<v[0];
+    for ( unsigned   i=1; i<v.size(); i++ )
+        o<<" "<<v[i];
+    return o<<endl;
+}
+template<typename T,typename U> ostream& operator<< ( ostream &o,pair<T,U> v ) {
+    o<<"("<<v.first<<","<<v.second<<")";
+    return o;
+}
+template<typename T> istream& operator>> ( istream &in,vector<T> &v ) {
+ 
+    for ( unsigned   i=0; i<v.size(); i++ )
+        in>>v[i];
+    return in;
+}
+typedef pii point;
+enum dir {
+    N,W,S,E
+ 
+};
+typedef pair<point,dir> motion;
+ 
+pair<int,pii> intersectNS ( motion a,motion b ) {
+     if(a.first.first!=b.first.first)
+        return mp ( 0,mp ( 0,0 ) );
+    if ( a.second==N )
+        swap ( a,b );
+    if ( b.second!=N || a.second!=S)
+        return mp ( 0,mp ( 0,0 ) );
+    int dist= ( a.first.second-b.first.second ) /2;
+    if ( dist<=0 )
+        return mp ( 0,mp ( 0,0 ) );
+    return mp ( dist,mp ( b.first.first,b.first.second+dist ) );
+ 
+}
+ 
+pair<int,pii> intersectWE ( motion a,motion b ) {
+    if(a.first.second!=b.first.second)
+        return mp ( 0,mp ( 0,0 ) );
+    if ( a.second==E )
+        swap ( a,b );
+    if ( b.second!=E || a.second!=W)
+        return mp ( 0,mp ( 0,0 ) );
+    int dist= ( a.first.first-b.first.first ) /2;
+    if ( dist<=0 )
+        return mp ( 0,mp ( 0,0 ) );
+    return mp ( dist,mp ( b.first.first+dist,b.first.second ) );
+}
+ 
+pair<int,pii> intersect ( motion a,motion b ) {
+    if ( ( a.second==N|| a.second==S ) && ( b.second==N || b.second==S ) )
+        return intersectNS ( a,b );
+ 
+    if ( ( b.second==W|| b.second==E ) && ( a.second==W || a.second==E ) )
+        return intersectWE ( a,b );
+    if ( a.second==N || a.second==S )
+        swap ( a,b );
+    int fac1=1,fac2=1;
+    if ( a.second==W )
+        fac1*=-1;
+    if ( b.second==S )
+        fac2*=-1;
+    assert(b.second==S || b.second==N);
+    assert(a.second==W || a.second==E);
+    
+    int meet1= ( b.first.first-a.first.first ) *fac1;
+    int meet2= ( a.first.second-b.first.second ) *fac2;
+    if ( meet1<=0 || meet1 !=meet2 )
+        return mp ( 0,mp ( 0,0 ) );
+    return mp ( meet1,mp ( b.first.first,a.first.second ) );
+}
+ 
+int main() {
+    ios_base::sync_with_stdio ( false );
+    inrep {
+        int n;
+        cin>>n;
+        vector<motion> m;
+        rep ( i,n ) {
+            int x,y;
+            char c;
+            cin>>x>>y>>c;
+            x*=2;
+            y*=2;
+            dir d;
+            switch ( c ) {
+            case 'N':
+                d=dir::N;
+                break;
+            case 'S':
+                d =dir::S;
+                break;
+            case 'W':
+                d=dir::W;
+                break;
+            case 'E':
+                d=dir::E;
+            }
+            m.push_back ( mp ( mp ( x,y ),d ) );
+        }
+        map<pair<int,pii>,set<int>> inters;
+        for ( int i=0; i<n; i++ )
+            for ( int j=0; j<i; j++ ) {
+                pair<int,pii> inter=intersect ( m[i],m[j] );
+                if ( inter.first ) {
+                    inters[inter].insert ( i );
+                    inters[inter].insert ( j );
+                }
+ 
+            }
+        vi done ( n,0 );
+//         cout<<inters;
+        for ( auto p:inters ) {
+            set<int>   indices=p.second;
+            int found=0;
+            for ( int l:indices ) {
+                if ( !done[l] ) found++;
+            }
+ 
+            if ( found>1 )
+                for ( int l:indices ){
+                    done[l]=1;
+                    
+                
+                }
+        }
+        int rem=0;
+        rep ( i,n )
+        if ( !done[i] ) rem++;
+        cout<<rem<<endl;
+    }
+}

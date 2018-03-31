@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        int input[n];
+        for(int i=0;i<n;i++)
+            cin>>input[i];
+        sort(input,input + n);
+        long long int max_pr,min_pr,pro;
+        if(n>1)
+    {
+        int temp = -1,e=1;
+        pro = input[0];
+        for(int i=0;i<n;i++)
+        {
+            if(pro == 0)
+            {
+                pro = input[i];
+                e=0;
+            }
+            else if(i>0 && input[i] != 0)
+            {
+                pro *= input[i];
+                e++;
+            }
+            if(input[i] < 0)
+                temp++;
+        }
+        
+        if(pro > 0)
+        {
+            max_pr = pro;
+            if(temp>0)
+                min_pr = pro/input[temp];
+            else
+                min_pr = input[0];
+        }
+        else if (pro < 0)
+        {
+            if(e>1)
+                max_pr = pro/input[temp];
+            else
+                max_pr = 0;
+            min_pr = pro;
+        }
+        else if(pro == 0)
+        {
+            max_pr = pro;
+            min_pr = pro;
+        }
+    }else
+    {
+        max_pr = input[0];
+        min_pr = input[0];
+    }
+        cout<<max_pr<<" "<<min_pr<<endl;
+    }
+        
+    return 0;
+}

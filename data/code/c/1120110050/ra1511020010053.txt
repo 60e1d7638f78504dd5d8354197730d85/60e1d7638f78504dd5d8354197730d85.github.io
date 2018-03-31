@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,min;
+  scanf("%d",&n);
+  int a,b[10],count;
+  for(i=0;i<n;i++)
+  {
+    count=1;
+    scanf("%d",&a);
+    for(j=0;j<a;j++)
+      scanf("%d",&b[j]);
+    min=b[0];
+    for(j=1;j<a;j++)
+    {
+   	  if(b[j]<=b[j-1] && b[j]<=min)
+      {
+        count++;
+        min=b[j];
+      }
+    }
+    printf("%d\n",count);
+  }
+
+	return 0;
+}

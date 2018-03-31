@@ -1,0 +1,22 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+class OutOfRangeException {};
+float calculateAverage(int n) {
+      if (n<0)
+         throw OutOfRangeException();
+  else
+     return sqrt(n);
+}
+ 
+int main () {
+    try {
+      int n;
+      cin>>n;
+        float avg = calculateAverage(n);
+        cout <<"square root is :"<<avg;
+    }catch (OutOfRangeException ) {
+       cout<< "Can not take sqrt of negative number" << endl;
+    }
+ return 0;
+}

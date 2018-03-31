@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<string.h>
+
+char *strrev(char *str)
+{
+  int i=strlen(str)-1;
+  int j=0;
+  while(i>j)
+  {
+   char ch=str[i];
+    str[i]=str[j];
+    str[j]=ch;
+    i--;
+    j++;
+  }
+  return str;
+}
+
+int main()
+{
+char str[50],ans[50];
+  int len,i=0,j=0;
+  scanf("%[^\n]s",str);
+
+  len=strlen(str);
+	str[len]=' ';
+  str[len+1]='\0';
+  while(str[i]!='\0')
+  {
+   if(str[i]!=' ')
+   {
+    ans[j]=str[i]; 
+     j++;
+   }
+    else
+    {
+     ans[j]='\0';
+      printf("%s",strrev(ans));
+      printf(" ");
+      j=0;
+    }
+    i++;
+  }
+  ans[j]='\0';
+  printf("%s",ans);
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h> 
+/* Function declaration */
+void replaceFirst(char * string, char toReplace, char replaceWith);
+  
+int main()
+{
+    char string[50], toReplace, replaceWith;
+
+    scanf("%[^\n]s", string);
+    scanf(" %c", &toReplace);
+    scanf(" %c", &replaceWith);
+    replaceFirst(string, toReplace, replaceWith);
+    printf(" %s\n", string);
+ 
+    return 0;
+}
+void replaceFirst(char * string, char toReplace, char replaceWith)
+{
+    int i=0;
+ 
+    /* Runs till the end of string */
+    while(string[i] != '\0')
+    {
+        /* If an occurrence of character is found */
+        if(string[i] == toReplace)
+        {
+            string[i] = replaceWith;
+            break;
+        }
+ 
+        i++;
+    }
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  	int c, i, j, k, p, q, r, T, N, M, inp;
+  	int A[10][10];
+ 	scanf("%d", &T);
+  	for(p = 0; p < T; p++){
+      	c = 0;
+    	scanf("%d %d", &N, &M);
+      	for(q = 0; q < N; q++){
+        	scanf("%d", &inp);
+          	for(r = M; r > 0; r--){
+            	A[q][r - 1] = inp % 10;
+              	inp /= 10;
+            }
+        }
+      	for(i = 0; i < N - 1; i++){
+        	for(j = i + 1; j < N; j++){
+              	for(k = 0; k < M; k++)
+            		if(A[i][k] == 1 && A[j][k] == 1)
+                      	c++;
+            }
+        }
+      	printf("%d\n", c);
+    }
+	return 0;
+}

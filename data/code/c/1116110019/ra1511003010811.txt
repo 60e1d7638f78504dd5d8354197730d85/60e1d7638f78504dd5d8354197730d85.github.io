@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+struct node{
+	int quotient;
+  	int frequency;
+  	struct node* next;	
+};	
+
+int main()
+{	int i;
+ 	struct node* hash[26]={0};
+ 	char string[50];
+ 
+ 	scanf("%s",string);
+ //hash table creation
+ 	typedef struct node NODE;
+	 
+	 NODE *first;	
+ 	for(i=0;i<strlen(string);i++){
+ 	
+		int c =string[i]%26;
+		if(hash[c]==NULL){
+				first=(NODE *) malloc (sizeof(NODE));
+				hash[c]=first;
+				first->quotient=string[i]/26;
+				first->frequency++;
+				
+		}else if(hash[c]!=NULL){
+			first=hash[c];
+			first->frequency++;
+		}
+		
+    		
+    		
+      
+      	}
+ 	
+ //find the element with lowest frequency
+  int min=50000,ascii;
+ 	  for(i=0;i<26;i++){
+ 	  		if(hash[i]!=0){
+ 	  			first=hash[i];
+ 	  				if(min>first->frequency){
+ 	  					min=first->frequency;
+ 	  					ascii= (26*first->quotient)+i;
+					   }
+					   
+		}
+ 	  	
+	   }
+
+		printf("%c=%d",ascii,min); 
+ 	return 0;
+}

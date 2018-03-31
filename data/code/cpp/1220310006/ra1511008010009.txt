@@ -1,0 +1,37 @@
+ /*
+ * C++ Program to Convert Decimal to Binary Value
+ */
+ 
+#include<iostream>
+using namespace std;
+ 
+void binary(int num)
+{
+    int rem;
+ 
+    if (num <= 1)
+    {
+        cout << num;
+        return;
+    }
+    rem = num % 2;
+    binary(num / 2);
+    cout << rem;
+}
+ 
+int main()
+{
+    int dec, bin;
+//    cout << "Enter the number : ";
+    cin >> dec;
+ 
+    if (dec < 0)
+        cout << "Exception occurred: value thrown" << endl;
+    else
+    {
+        cout << "Binary Number is :";
+        binary(dec);
+        cout << endl;
+    }
+ 	return 0;
+}

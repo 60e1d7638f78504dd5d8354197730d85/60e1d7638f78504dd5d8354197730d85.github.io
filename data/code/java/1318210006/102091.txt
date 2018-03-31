@@ -1,0 +1,43 @@
+import java.util.*;
+class Pdetails
+{
+  protected int age, weight;
+  protected float height;
+  protected String name;
+      
+
+	public void setData (String a,int b, float c,int d)
+	{
+		name = a;
+		age = b;
+        height =c;
+        weight = d;
+	}
+}
+
+public class TestClass extends Pdetails
+{
+    public	void dPrint ()
+	{
+		System.out.println("Name:"+name);
+        System.out.println("Age:"+age);
+        System.out.println("Height:"+String.format("%.1f",height));
+        System.out.println("Weight:"+weight);
+	}
+
+
+	public static void main(String[] args ){
+ 
+    TestClass tc = new TestClass();
+	Scanner sc =new Scanner(System.in);
+    int b,d;
+    String a;
+    float c;
+    a = sc.next();
+    b = sc.nextInt();
+    c = sc.nextFloat();
+    d = sc.nextInt();
+	tc.setData(a,b,c,d);
+    tc.dPrint();
+    }
+}

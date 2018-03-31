@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int T,i,j,n,k;
+  scanf("%d",&T);
+  for(i=0;i<T;i++)
+  {
+    scanf("%d",&n);
+    int A[n];
+    for(j=0;j<n;j++)
+      scanf("%d",&A[j]);
+    	for(j=0;j<n;j++)
+        {
+          for(k=j+1;k<n;k++)
+          {
+            if(A[j]==A[k])
+              A[k]=0;              
+          }
+        }
+    int c=0;
+    for(j=0;j<n;j++)
+    {
+      if(A[j]!=0)
+        c++;
+    }
+    fflush(stdout);
+    printf("%d\n",c);
+    
+  }
+	return 0;
+}

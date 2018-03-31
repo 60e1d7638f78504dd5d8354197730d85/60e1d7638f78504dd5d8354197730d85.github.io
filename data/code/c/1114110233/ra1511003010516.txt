@@ -1,0 +1,29 @@
+#include<stdio.h>
+ 
+int digitSum(unsigned long long int m){
+	int sum=0;
+	
+	while(m>0){
+		
+		sum+=m%2;
+		m/=2;
+		
+	}
+	
+	return sum;
+}
+ 
+int main(){
+	int a[1002],sum=0,n,i,t;
+	for(i=1;i<=1000;i++){
+		sum+=digitSum(i);
+		a[i]=sum;
+	}
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d",&n);
+		printf("%d\n",a[n]);
+	}
+ 
+return 0;
+} 

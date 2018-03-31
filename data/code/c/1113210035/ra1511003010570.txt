@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+
+  int num,a,i,sum=0,reverse=0,rem,l,arr[100],count=0,j,temp;
+  scanf("%d",&num);
+
+  for(i=1,l=0;i<=num;i++)
+  {
+    if(num%i==0)
+    {
+      count++;
+      reverse=0;
+      int k=i;
+      while (k!= 0)
+   {
+      reverse = reverse * 10;
+      reverse = reverse + k%10;
+      k  = k/10;
+      }
+      arr[l++]=reverse;
+      }
+  }
+  
+  for(i=0;i<count;i++)
+  {
+    for(j=i;j<count;j++)
+    {
+      if(arr[j]<arr[i])
+      {
+        temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+      }
+    }
+  }
+  for(i=0;i<count;i++)
+  {
+    printf("%d\n",arr[i]);
+  }
+	return 0;
+}

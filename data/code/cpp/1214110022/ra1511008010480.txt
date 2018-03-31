@@ -1,0 +1,53 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+  	int area;
+  	public:
+  	int length;
+  	int breadth;
+  	Rectangle();
+  	Rectangle(int, int);
+  	Rectangle(Rectangle &);
+  	void calcarea();
+  	void displayarea();
+};
+
+Rectangle :: Rectangle() {
+  	length = 0;
+  	breadth = 0;
+}
+
+Rectangle :: Rectangle(int len, int b) {
+	length = len;
+  	breadth = b;
+}
+
+Rectangle :: Rectangle(Rectangle &rect) {
+	length = rect.length;
+  	breadth = rect.breadth;
+}
+
+void Rectangle :: calcarea() {
+	area = length * breadth;
+}
+
+void Rectangle :: displayarea() {
+	cout<<area<<endl;
+}
+
+int main()
+{
+  	Rectangle r1;
+  	cin>>r1.length>>r1.breadth;
+  	Rectangle r2(r1.length, r1.breadth);
+  	Rectangle r3 = r2;
+  	r1.calcarea();
+  	r1.displayarea();
+  	r2.calcarea();
+  	r2.displayarea();
+  	r3.calcarea();
+  	r3.displayarea();
+	return 0;
+}

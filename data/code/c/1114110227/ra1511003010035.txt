@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main()
+{
+    int n,i,p=0,a[20];
+    scanf("%d",&n);
+    do{
+        a[++p]=n%10;
+        n/=10;
+    }while(n>0);
+    for(i=p;i>0;i--){
+        if(a[i]>1)break;
+        n=n*2+a[i];
+    }
+    for(;i>0;i--)n=n*2+1;
+    printf("%d\n",n);
+    return 0;
+}

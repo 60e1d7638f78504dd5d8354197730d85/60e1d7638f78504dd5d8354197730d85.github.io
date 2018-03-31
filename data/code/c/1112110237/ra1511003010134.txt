@@ -1,0 +1,43 @@
+ #include<stdio.h>
+int hcf(int a,int b)
+ { int c;
+   if(a<b) {c=a;a=b;b=c;}
+   while(b>0)
+    { c=a%b;
+      a=b;
+      b=c;
+    }
+   return(a);
+ }
+ 
+unsigned long long int lcm(int a,int b,int c)
+  { unsigned long long int d=a*(b/c);
+     return(d);
+  }
+ 
+ int main()
+  { 
+   int t; scanf("%d",&t);
+   while(t--)
+     {  
+       int n; scanf("%d",&n); int a[n];
+       int i,j,c; 
+       unsigned long long int d,e=99999999999999999;
+ 
+      for(i=0;i<n;i++)
+       { scanf("%d",&a[i]);}
+ 
+ 
+     for(i=0;i<n-1;i++)
+       { for(j=i+1;j<n;j++)
+          { c=hcf(a[i],a[j]);
+            d=lcm(a[i],a[j],c);
+ 
+              if(d<e) { e=d;}
+          }
+       }
+ 
+  printf("%llu\n",e);
+    }
+ }
+ 

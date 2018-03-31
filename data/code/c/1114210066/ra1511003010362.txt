@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+void rightans(int arr[], int n);
+void rightarray(int arr[],int d,int n)
+{
+  int i;
+for(i=0;i<d;i++)
+rightans(arr,n);
+}
+void rightans(int arr[],int n)
+{
+int p=0,i;
+
+int temp=arr[0];
+for(i=n-1;i>0;i--)
+{
+  if(i==n-1)
+arr[p++]=arr[i];
+  //p++;
+  else
+    arr[i+1]=arr[i];
+}
+  arr[i+1]=temp;
+
+}
+void printarray(int arr[],int n)
+{
+  int i;
+for(i=0;i<n;i++)
+  printf("%d\n",arr[i]);
+
+}
+
+int main()
+{int n,d,i;
+ 
+scanf("%d",&n);
+ int arr[n];
+  for(i=0;i<n;i++)
+  {
+  scanf("%d",&arr[i]);
+  }
+  scanf("%d",&d);
+  rightarray(arr,d,n);
+  printarray(arr,n);
+	return 0;
+}

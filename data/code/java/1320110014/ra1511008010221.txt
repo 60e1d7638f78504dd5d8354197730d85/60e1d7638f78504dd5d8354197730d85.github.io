@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class TestClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<String,String> map = new TreeMap<String,String>();
+
+        int t = sc.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            String key = sc.next();
+            String value = sc.nextLine();
+            map.put(key, value);
+            if (map.containsKey("icecream")) {
+                map.put("yogurt",map.get("icecream"));
+            }
+            if (map.containsKey("spinach")) {
+                map.put("spinach"," nuts");
+            }
+        }
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + entry.getValue());
+        }
+    }
+}

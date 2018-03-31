@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int l;
+	int i,n,m,j,k;
+  scanf("%d",&l);
+  for(i=1;i<=l;i++)
+  {
+    scanf("%d%d",&n,&m);
+    int a[n][m];
+    char s[n][m];
+    for(j=0;j<n;j++)
+    {
+        scanf("%s",s[j]);
+    }
+    for(j=0;j<n;j++)
+    {
+      for(k=0;k<m;k++)
+      {
+        a[j][k]=(int)s[j][k]-48;
+      }
+    }
+    int c,f=0;
+    for(j=0;j<m;j++)
+    {
+      c=0;
+      for(k=0;k<n;k++)
+      {
+        if(a[k][j]==1)
+          c++;
+      }
+      if(c>2)
+        f+=c;
+      else if(c==2)
+        f++;
+    }
+    printf("%d\n",f);
+  }
+	return 0;
+}

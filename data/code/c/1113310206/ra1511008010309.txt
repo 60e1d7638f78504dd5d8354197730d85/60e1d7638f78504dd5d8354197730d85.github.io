@@ -1,0 +1,30 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int count,cases,total,sum;
+    char ch,x;
+    scanf("%d",&cases);
+    while(cases--)
+    {
+        count=0;
+        sum=0;
+        while((ch=getchar())!='\n');
+        while((ch=getchar())!='\n')
+        {
+            if(ch=='T')
+                count+=2;
+            else if(ch=='S')
+                count+=1;
+        }
+        x=count;
+        scanf("%d",&total);
+        total*=12;
+        while(total-count>=1)
+        {
+            sum+=total-count;
+            count+=x;
+        }
+        printf("%d\n",sum);
+    }
+}

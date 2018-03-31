@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+template <class calc> 
+class Solve {
+	public:
+    	calc num1, num2;
+        Solve(calc n1, calc n2) : num1(n1), num2(n2) {}
+        calc add() {
+            return (num1+num2);
+        }
+
+        calc sub() {
+            return (num1-num2);
+        }
+
+        calc mul() {
+            return (num1*num2);
+        }
+
+        calc div() {
+            return (num1/num2);
+        }
+};
+
+int main()
+{
+  	int i1, i2;
+  	float f1, f2;
+  	cin>>i1>>i2>>f1>>f2;
+  	Solve<int> in(i1, i2);
+  	cout<<"Int results:";
+  	cout<<"\nNumbers are: "<<i1<<" and "<<i2<<".";
+  	cout<<"\nAddition is: "<<in.add();
+  	cout<<"\nSubtraction is: "<<in.sub();
+  	cout<<"\nProduct is: "<<in.mul();
+  	cout<<"\nDivision is: "<<in.div();
+
+  	Solve<float> fl(f1, f2);
+  	cout<<"\n\nFloat results:";
+  	cout<<"\nNumbers are: "<<f1<<" and "<<f2<<".";
+  	cout<<"\nAddition is: "<<fl.add();
+  	cout<<"\nSubtraction is: "<<fl.sub();
+  	cout<<"\nProduct is: "<<fl.mul();
+  	cout<<"\nDivision is: "<<fl.div();
+
+	return 0;
+}

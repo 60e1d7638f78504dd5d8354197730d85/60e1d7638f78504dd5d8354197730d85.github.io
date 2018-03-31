@@ -1,0 +1,69 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  
+     //public int a[][] = new int[3][3];
+     //public int n;
+  
+	 public static void main(String[] args) { 
+		
+       TestClass d = new TestClass();
+       d.input();
+       //d.determinant();
+	}
+  
+    public void input(){
+    
+      Scanner s = new Scanner(System.in);
+      int i,j,d;
+      int n = s.nextInt();
+      int a[][] = new int[n][n];
+      for(i=0;i<n;i++){
+      
+        for(j=0;j<n;j++)
+          a[i][j]=s.nextInt();
+      }
+      d=determinant(a,n);
+      System.out.print(""+d);
+    }
+  
+    public int determinant(int A[][],int N){
+    
+      double det=0;
+      int n=N;
+        if(n == 1)
+        {
+            det = A[0][0];
+        }
+        else if (n == 2)
+        {
+            det = A[0][0]*A[1][1] - A[1][0]*A[0][1];
+        }
+        else
+        {
+            det=0;
+            for(int j1=0;j1<n;j1++)
+            {
+                int[][] m = new int[n-1][];
+                for(int k=0;k<(n-1);k++)
+                {
+                    m[k] = new int[n-1];
+                }
+                for(int i=1;i<n;i++)
+                {
+                    int j2=0;
+                    for(int j=0;j<n;j++)
+                    {
+                        if(j == j1)
+                            continue;
+                        m[i-1][j2] = A[i][j];
+                        j2++;
+                    }
+                }
+                det += Math.pow(-1.0,1.0+j1+1.0)* A[0][j1] * determinant(m,n-1);
+            }
+        }
+      //System.out.print(""+det);
+      return (int)det;
+    }
+}

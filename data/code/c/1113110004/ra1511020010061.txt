@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{		
+  	int n, o;
+  	scanf("%d", &n);
+  	for(o=0; o<n; o++)
+    {
+		int i, j, s, l[20], k=-1, c = 0, c2=0, m;
+  		scanf("%d", &s);
+  		for(i=0; i<s; i++)
+        {
+        	scanf("%d", &l[i]);
+        }
+  	
+  		for(i=0; i<s; i++)
+        {
+          	c2 = 0;
+        	if(k != l[i])
+            {
+            	k = l[i];
+              	for(j=i; j<s; j++)
+                {
+                	if(l[j] == k)
+                    {
+                    	c2++;
+                    }
+                }
+              	if(c<c2)
+                {
+                	m = k;
+                  	c = c2;
+                }
+            }
+        }
+  		printf("%d \n", m);
+    }
+    return 0;
+}

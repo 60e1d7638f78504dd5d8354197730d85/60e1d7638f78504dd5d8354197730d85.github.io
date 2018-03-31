@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+   public static boolean isPrime(int n) {
+        if (n == 1) {
+            return false;
+        }
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+  public static void twinPrimes(int start, int end) {
+        for (int i = start; i <= end - 2; i++) {
+            int num1 = i;
+            int num2 = i + 2;
+            if (isPrime(num2) && isPrime(num2)) {
+                System.out.println(num1 + " " + num2);
+            }
+        }
+  }
+	 public static void main(String[] args) { 
+		Scanner scanner=new Scanner(System.in);
+        int num = scanner.nextInt();
+  
+       
+        if(isPrime(num))
+           System.out.println("yes");
+       else
+         System.out.println("no");
+	}
+}

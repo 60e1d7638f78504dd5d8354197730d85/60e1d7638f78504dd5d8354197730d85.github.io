@@ -1,0 +1,38 @@
+#include <stdio.h>
+#define MAX 4
+ 
+int main()
+{
+    int array[10],s,i, largest1, largest2, temp,z;
+  float z1;
+  scanf("%d",&s);  
+  for (i = 0; i <s; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    largest1 = array[0];
+    largest2 = array[1];
+    if (largest1 < largest2)
+    {
+        temp = largest1;
+        largest1 = largest2;
+        largest2 = temp;
+    }
+    for (i = 2; i <s;	i++)
+    {
+        if (array[i] >= largest1)
+        {
+            largest2 = largest1;
+            largest1 = array[i];
+        }
+        else if (array[i] > largest2)
+        {
+            largest2 = array[i];
+        }
+    }
+  z1=(float)(largest1+largest2)/2;
+    printf("First Largest=%d\n",largest1);
+    printf("Second Largest=%d\n",largest2);
+    printf("Average=%.1f",z1);
+  return 0;
+}

@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+    int h[100010];
+    int mycomp(const void* a,const void* b)
+    {
+        int f=*((int*)a);
+        int s=*((int*)b);
+        return f-s;
+    }
+    int main()
+    {
+        int t,i,n,f,z,y,x;
+        scanf("%d",&t);
+        while(t--)
+        {
+            long long int ans = 0;
+            scanf("%d%d",&n,&f);
+            for(i=0;i<n;i++)
+            {
+                scanf("%d",&z);
+                while(z%f==0)
+                    z/=f;
+                h[i]=z;
+            }
+            qsort(h,n,sizeof(int),mycomp);
+            y = h[0];x = 1;
+            for(i=1;i<n;i++)
+            {
+                if(h[i]!=y)
+                   {
+                     y = h[i],x=0;
+                   }
+                ans += x ;
+                x ++;
+            }
+            printf("%lld\n",ans);
+        }
+        return 0;
+    }
+ 

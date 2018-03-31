@@ -1,0 +1,39 @@
+#include <stdio.h>
+ 
+int main()
+{
+	int o,z,t,d,n;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		int i,j,k;
+		z=0;
+		o=-n;
+		for(i=0;i<n*n;i++)
+		{
+			scanf("%d",&d);
+			if(d==0)
+				z++;
+			else
+				o++;
+		}
+		j=n-1;
+		k=0;
+		while(o>0)
+		{
+			if(o<=(j*2))
+			{
+				o=0;
+			}
+			else
+			{
+				o=o-(j*2);
+				j--;
+			}
+			k++;
+		}
+		printf("%d\n",k);
+	}
+	return 0;
+}

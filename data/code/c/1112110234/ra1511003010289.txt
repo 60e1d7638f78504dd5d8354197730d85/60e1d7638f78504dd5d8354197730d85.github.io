@@ -1,0 +1,53 @@
+#include<stdio.h>
+int partition(int [100000],int,int);
+void quicksort(int [100000],int,int);
+int main()
+{
+	int t,n,k,i,j,z;
+	float avg,s;
+	scanf("%d",&t);
+	for(z=1;z<=t;z++)
+	{
+		s=0;
+		scanf("%d%d",&n,&k);
+		int a[n];
+		for(i=1;i<=n;i++)
+		  scanf("%d",&a[i]);
+		quicksort(a,1,n);
+		for(i=k+1;i<=n-k;i++)
+		  s=s+a[i];
+		avg=s/(n-2*k);
+		printf("%f\n",avg);
+	}
+	return 0;
+}
+int partition(int a[100000],int start,int end)
+{
+	int pivot=a[end];
+	int pi=start;
+	int i,j,temp;
+	for(i=start;i<end;i++)
+	{
+		if(a[i]<=pivot)
+		{
+			temp=a[i];
+			a[i]=a[pi];
+			a[pi]=temp;
+			pi++;
+		}
+	}
+	temp=a[pi];
+	a[pi]=a[end];
+	a[end]=temp;
+	return pi;
+}
+void quicksort(int a[100000],int start,int end)
+{
+	if(start<end)
+	{
+		int pi;
+		pi=partition(a,start,end);
+		quicksort(a,start,pi-1);
+		quicksort(a,pi+1,end);
+	}
+}

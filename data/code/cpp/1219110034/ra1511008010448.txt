@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class overload
+{
+  public:
+  int a,b;
+  overload(int c,int d)
+  {
+    a=c;b=d;
+  }
+  void operator +(overload obj)
+  {
+    overload temp(0,0);
+    temp.a=a+obj.a;
+    temp.b=b+obj.b;
+    cout<<a<<"+"<<b<<"i"<<endl;
+    cout<<obj.a<<"+"<<obj.b<<"i"<<endl;
+    cout<<"Addition of Real and Imaginary Numbers:"<<endl<<temp.a<<"+"<<temp.b<<"i";
+  }
+};
+int main()
+{
+  int r1,i1,r2,i2;
+  cin>>r1>>i1>>r2>>i2;
+  overload p(r1,i1);
+  overload q(r2,i2);
+  p+q;
+
+	return 0;
+}

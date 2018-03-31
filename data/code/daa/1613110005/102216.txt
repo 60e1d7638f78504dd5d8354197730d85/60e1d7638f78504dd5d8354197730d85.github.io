@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int t,i,j,n,k,h[100],a[100],r,s,max=0,sum=0;
+  scanf("%d",&t);
+  for(k=1;k<=t;k++)
+  {
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+    scanf("%d%d",&h[i],&a[i]);
+  for(i=1;i<n;i++)
+  {
+    for(j=i+1;j<=n;j++)
+    {
+      if(max<(h[i]+h[j]))
+      {
+        max=h[i]+h[j];
+        r=i;
+        s=j;
+      }
+    }
+  }
+  for(i=1;i<=n;i++)
+  {
+    if(i==r||i==s)
+    {
+      sum=sum+h[i];
+    }
+    else
+    {
+      sum=sum-a[i];
+    }
+  }
+         
+printf("%d\n",sum);
+  }
+	return 0;
+}

@@ -1,0 +1,25 @@
+#include<stdio.h>
+int n,m;
+int main(){
+	int i,j;
+	char fln ,flm, flag, t;
+	while(~scanf("%d%d",&n,&m)){
+		flag=1;
+      	fln=-1;
+      	getchar();
+		for(i=0;i<n;i++){
+			scanf("%c",&flm);
+			if(fln==flm)
+              	flag=0;
+			for(j=1;j<m;j++){
+				scanf("%c",&t);
+				if(t!=flm)flag=0;
+			}
+			fln=flm;
+			getchar();
+		}
+		if(flag)printf("YES\n");
+		else printf("NO\n");
+    }
+	return 0;
+}

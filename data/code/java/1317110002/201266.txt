@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		String str;
+       Scanner sc=new Scanner(System.in);
+       str=sc.nextLine();
+ 
+        //1. Using replaceAll() Method
+ 
+        String strWithoutSpace = str.replaceAll("\\s", "");
+ 
+               //Output : CoreJavajspservletsjdbcstrutshibernatespring
+ 
+        //2. Without Using replaceAll() Method
+ 
+        char[] strArray = str.toCharArray();
+ 
+        StringBuffer sb = new StringBuffer();
+ 
+        for (int i = 0; i < strArray.length; i++)
+        {
+            if( (strArray[i] != ' ') && (strArray[i] != '\t') )
+            {
+                sb.append(strArray[i]);
+            }
+        }
+ 
+        System.out.println(sb);        
+	}
+}

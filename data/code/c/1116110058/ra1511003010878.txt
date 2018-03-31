@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+ 
+int main()
+{
+  int n,t; 
+  scanf("%d",&n);
+  int i,j,alpha[26][n],flag=0;
+  for(i=0;i<n;i++)
+  {
+     char temp[101];
+     for(j=0;j<26;j++)
+     alpha[j][i]=0;
+    
+   scanf("%s",temp);
+   
+   for(j=0;j<strlen(temp);j++)
+   alpha[temp[j]-97][i]++;
+   
+  }
+  
+  for(i=0;i<26;i++)
+  {
+    t=100;
+    for(j=0;j<n;j++)
+    if(t>alpha[i][j]) 
+    t = alpha[i][j];
+   while(t--)
+   {
+     flag=1;
+     printf("%c",i+97);
+   }
+}
+  if(!flag)
+printf("no such string");
+printf("\n");
+  return 0;
+}
+  
+        

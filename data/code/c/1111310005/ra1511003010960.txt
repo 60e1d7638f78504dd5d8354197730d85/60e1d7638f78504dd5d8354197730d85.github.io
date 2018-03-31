@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	long int a,n,k;
+  	long int chb[100]={0};
+  	long int div=0;
+  	int i=0,j;
+  	scanf("%ld %ld %ld",&a,&n,&k);
+  	for(i=0;i<k;i++){
+      chb[i]+=div;
+      if(i==0){
+        div=a/(n+1);
+        chb[i]=a%(n+1);
+      }
+      else{
+        div=chb[i]/(n+1);
+        chb[i]=chb[i]%(n+1);
+      }
+    }
+  	for(i=0;i<k;i++){
+		printf("%ld ",chb[i]);
+    }
+  	printf("\n");
+	return 0;
+}

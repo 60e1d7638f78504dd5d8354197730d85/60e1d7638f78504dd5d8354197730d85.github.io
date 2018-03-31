@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main() 
+{
+  int length,number,i,count;
+  scanf("%d",&length);
+
+  while(length--)
+  {
+      scanf("%d",&number);
+      count =0;i=2;
+      if(number%2==0)
+      {
+          while(i*i<=number)
+          {
+              if(number%i==0)
+              {
+                  if(i%2==0)
+                      count++;
+                  int q=number / i;
+                  if (i !=q && q%2==0)
+                      count++;
+              }
+              i++;
+          }
+          count++;
+      }
+      printf("%d\n",count);
+  }
+  return 0;
+}

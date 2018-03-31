@@ -1,0 +1,28 @@
+#include<stdio.h>
+int a[100001];
+int b[100001];
+int main()
+{
+  int n,i,j,m,t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t);
+    a[t]++;
+  }
+  for(i=1;i<=100000;i++)
+    b[i]=b[i-1]+a[i];
+  scanf("%d",&m);
+  for(i=0;i<m;i++)
+  {
+    scanf("%d",&t);
+    if(t<=100000)
+      printf("%d\n",b[t]);
+    else
+      printf("%d\n",b[100000]);
+  }
+  return 0;         
+ }        
+      
+  
+    

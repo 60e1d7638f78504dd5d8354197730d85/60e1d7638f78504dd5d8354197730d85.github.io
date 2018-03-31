@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,n;
+    
+    
+        j = 0;
+        char s[100001];
+        scanf("%s",s);
+        n = strlen(s);
+        for(i = 0;i<=n/2;i++)
+        {
+            if(s[i] == '.')
+            s[i] = s[n-i-1];
+            if(s[n-i-1] == '.')
+            s[n-i-1] = s[i];
+            if(s[i] == '.' && s[n-i-1] == '.')
+            {
+                s[i] = 'a';
+                s[n-i-1] = 'a';
+            }
+            else if(s[i] != s[n-i-1])
+            {
+                j = 1;
+                break;
+            }
+        }
+        if(j == 0)
+        printf("%s\n",s);
+        else
+        printf("-1\n");
+        
+    
+    return 0;
+} 

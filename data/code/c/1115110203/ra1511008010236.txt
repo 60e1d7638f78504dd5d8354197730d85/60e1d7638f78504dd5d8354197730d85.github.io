@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int t=0, year=2001, p=1, c=0, d=0;
+	scanf("%d", &t);
+	while(t--)
+	{
+		scanf("%d",&year);
+		--year;
+		c=year/100;
+		d=year%100;
+		//p = 1+d+(c+d)/4-2*c; // very wrong chap (c+d)/4 posh u did this shit
+		p = 1+d+c/4+d/4-2*c;	
+		p = p%7;
+		if(p < 0)
+			p+=7;
+ 
+		switch(p)
+		{
+			case 1 : printf("monday"); break;
+			case 2 : printf("tuesday"); break;
+			case 3 : printf("wednesday"); break;
+			case 4 : printf("thursday"); break;
+			case 5 : printf("friday"); break;
+			case 6 : printf("saturday"); break;
+			case 0 : printf("sunday");
+		}
+		printf("\n");
+	}
+	return 0;
+}

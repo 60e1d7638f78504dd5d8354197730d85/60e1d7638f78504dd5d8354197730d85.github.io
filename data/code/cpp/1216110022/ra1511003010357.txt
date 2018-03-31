@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int maxx(int a,int b){
+if(a>b){
+return a;
+}else{return b;}
+}
+int main()
+{int n;
+ cin>>n;
+ int a[n];
+for(int i=0;i<n;i++){
+cin>>a[i];
+}
+ int s=0,t=a[0],o;
+ for(int i=1;i<n;i++){
+ o=maxx(t,s);
+   t=s+a[i];
+   s=o;
+ }
+ cout<<maxx(t,s);
+	return 0;
+}

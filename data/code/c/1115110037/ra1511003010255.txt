@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+   int array[30];              
+   int i, j, N, temp;
+   scanf("%d",&N);
+   for(i=0; i<N ; i++)
+   {
+	scanf("%d",&array[i]);
+   }                    
+   for(i=0; i< N ; i++)
+   {
+      for(j=0; j< (N-i-1) ; j++)          
+      {
+	 if(array[j] > array[j+1])          
+	 {
+	     temp       = array[j];
+	     array[j]   = array[j+1];        
+	     array[j+1] = temp;
+	 }
+      }
+   }
+   for(i=0; i<N ; i++)
+   {
+       printf("%d ",array[i]);             
+   }
+  return 0;
+}

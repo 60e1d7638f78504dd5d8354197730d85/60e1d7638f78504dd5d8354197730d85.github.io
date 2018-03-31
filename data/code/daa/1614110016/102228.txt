@@ -1,0 +1,85 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <deque>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+ 
+using namespace std;
+ 
+#define SCD(t) scanf("%d",&t)
+#define SCLD(t) scanf("%ld",&t)
+#define SCLLD(t) scanf("%lld",&t)
+#define SCC(t) scanf("%c",&t)
+#define SCS(t) scanf("%s",t)
+#define SCF(t) scanf("%f", &t)
+#define SCLF(t) scanf("%llf", &t)
+ 
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+#define MP make_pair
+#define PB push_back
+#define INF (int)1e9
+#define MOD 1000000007
+ 
+typedef pair<int, int> PII;
+typedef vector<int> VI;
+typedef vector<long long> VLL;
+typedef vector<string> VS;
+typedef map<int, int> MII;
+typedef map<int, PII> MPII;
+typedef long int int32;
+typedef long long int int64;
+typedef unsigned long int uint32;
+typedef unsigned long long int uint64;
+ 
+ 
+inline unsigned long long inp(){unsigned long long c = gc(),v=0,f=1;for(;c<'0'||c>'9';c=gc()){if(c=='-'){f = -1;c = gc();break;}}for(;c>='0' && c<='9';c=gc()){v = v*10+c-'0';}return v*f;}
+void outn(int n){char b[10];int i=10;if(n<0){pc('-');n = -n;}do{b[--i] = (n%10)+'0';n/=10;}while(n);do{pc(b[i]);}while(++i<10);pc('\n');}
+ 
+ 
+int main(){
+    int t,n,k;
+    SCD(t);
+    while(t--){
+        SCD(n);
+        SCD(k);
+        vector<int> a(n,0);
+        for(int i=0;i<n;++i) cin >> a[i];
+        sort(a.begin(),a.end());
+        vector<int> scores(n,0);
+        int max_score = -1;
+        for(int elem = a[0]; elem<=a[n-1];++elem){
+            for(int i=0;i<n;++i){
+                if(elem>=a[i]) scores[i] =(elem-a[i])*3;
+                else scores[i] = (a[i]-elem)*5;
+            }
+           
+            sort(scores.begin(),scores.end());
+            int score = 0;
+            for(int i=0;i<k;++i){
+                score += scores[i];
+            }
+            if(max_score==-1) max_score = score;
+           
+            max_score = min(score, max_score);
+        }
+        cout << max_score << endl;
+    }
+}

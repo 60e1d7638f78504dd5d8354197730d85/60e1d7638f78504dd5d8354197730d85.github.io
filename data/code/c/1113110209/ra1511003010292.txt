@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<malloc.h>
+int main()
+{
+   int *minTime, *maxTime,i;
+
+   int d, sumTime;
+   scanf("%d %d",&d,&sumTime);
+   minTime = malloc(sizeof(int)*d);
+   maxTime = malloc(sizeof(int)*d);
+
+   int sumMin = 0, sumMax = 0;
+   for ( i = 0; i < d; i++ )
+   {
+      scanf("%d %d",&minTime[i],&maxTime[i]);
+      sumMin += minTime[i];
+      sumMax += maxTime[i];
+   }
+ if(d==2)
+ {
+   printf("NO");
+   return 0;
+ }
+   if ( sumTime < sumMin || sumTime > sumMax )                      // Test non-feasibility
+   {
+      printf("NO\n");
+   }
+   else
+   {
+      printf("YES\n");
+      int deficit = sumTime - sumMin;                               // Extra hours above minimum
+      for ( i = 0; i < d; i++ )
+      {
+         if ( deficit > 0 )                                         // The path to glory is paved with good intentions ...
+         {                                                          // ... put as many extra hours in at the start as possible
+            int extra; 
+           if( deficit< maxTime[i] - minTime[i] )
+             extra = deficit;                                      
+           else
+             extra = maxTime[i] - minTime[i];                   // As many extra hours as possible or needed today
+            deficit -= extra;                                       // Reduce the deficit
+            printf("%d ",minTime[i] + extra);
+         }
+         else
+         {
+            printf("%d ",minTime[i]);
+         }
+      }
+   }
+  return 0;
+}

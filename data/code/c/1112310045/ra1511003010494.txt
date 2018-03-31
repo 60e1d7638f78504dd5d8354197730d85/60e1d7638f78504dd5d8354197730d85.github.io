@@ -1,0 +1,32 @@
+#include<stdio.h>
+typedef long long int ll;
+int main()
+{
+ ll a,b,n,m,t;
+ scanf("%lld",&t);
+ while(t--)
+ {
+  ll sum=0;
+  scanf("%lld%lld%lld",&n,&b,&m);
+  while(n!=0)
+  {
+   if(n%2==0)
+   {
+    a=n/2;
+    sum+=m*a;
+    n=n-a;
+   }
+   else
+   {
+    a=(n+1)/2;
+    sum+=m*a;
+    n=n-a;
+   }
+   m=m*2;
+   if(n!=0)
+   sum+=b;
+  }
+  printf("%lld\n",sum);
+ }
+ return 0;
+}

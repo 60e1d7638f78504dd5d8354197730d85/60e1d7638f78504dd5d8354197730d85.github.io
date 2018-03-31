@@ -1,0 +1,97 @@
+#include <stdio.h>
+ 
+void preKmp(char *x, int m, int kmpNext[]) {
+   int i, j;
+ 
+   i = 0;
+   j = kmpNext[0] = -1;
+   while (i < m) {
+      while (j > -1 && x[i] != x[j])
+         j = kmpNext[j];
+      i++;
+      j++;
+      if (x[i] == x[j])
+         kmpNext[i] = kmpNext[j];
+      else
+         kmpNext[i] = j;
+   }
+}
+ 
+ 
+int kmpNext[500000];
+char koji[500000];
+ 
+void KMP(char *x, int m, char *y, int n) {
+   int i, j;
+ 
+   /* Preprocessing */
+   preKmp(x, m, kmpNext);
+ 
+   /* Searching */
+   i = j = 0;
+   while (j < n) {
+      while (i > -1 && x[i] != y[j])
+         i = kmpNext[i];
+      i++;
+      j++;
+      if (i >= m) {
+         koji[j-i]=1;
+         i = kmpNext[i];
+      }
+   }
+}
+ 
+char niz[500001];
+char niz2[1000001];
+ 
+ 
+int main()
+{
+    int t;
+ 
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        int m,p,n,z,k;
+        int i,j;
+        scanf("%s %d %d",niz,&m,&p);
+ 
+        for(n=0;niz[n];n++);
+ 
+        for(i=0;i<n;i++)
+        {
+            niz2[n+i]=niz2[i]=niz[i];
+            koji[i]=0;
+        }
+ 
+ 
+ 
+        KMP(niz,n,niz2,2*n-1);
+ 
+ 
+        z=0;k=0;
+        while(1)
+        {
+            k++;
+            z+=m;
+            if (z>=n) z-=n;
+            if (koji[z]) break;
+ 
+ 
+            k++;
+            z+=p;
+            if (z>=n) z-=n;
+            if (koji[z]) break;
+ 
+        }
+ 
+        printf("%d\n",k);
+ 
+    }
+ 
+    return 0;
+ 
+ 
+}
+ 

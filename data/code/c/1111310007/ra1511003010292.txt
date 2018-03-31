@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int t , test ;
+  scanf("%d",&test);
+  for( t = 0 ; t<test ; t++)
+  {
+    int n , i , max = 0 , req = 0 , cubes;
+    scanf("%d",&n);
+    scanf("%d",&cubes);
+    int arr[n];
+    for( i = 0 ; i<n ; i++)
+    {
+      scanf("%d",&arr[i]);
+      if(arr[i] > max)
+        max = arr[i];
+    }
+    for( i = 0 ; i<n ; i++)
+    {
+      if(arr[i] < max)
+        req = req + max - arr[i];
+    }
+    if(req==cubes)
+    printf("Yes\n");
+    else
+      printf("No\n");
+  }
+  if(test == 0)
+    printf("0");
+	return 0;
+}

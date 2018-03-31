@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       int d,i=0,c=1;
+       int a[]=new int[10];
+       while(n>0)
+       {
+         d=n%10;
+         a[i++]=d;
+         n=n/10;
+       }
+       for(int j=0;j<i;j++)
+       {
+         for(int k=j+1;k<i;k++)
+         {
+           if(a[j]>a[k])
+           {
+           	int temp=a[j];
+           	a[j]=a[k];
+           	a[k]=temp;
+           }
+         }
+       }
+       int j=0;
+       while(j<i)
+       {
+         for(int k=j+1;k<i;k++)
+         {
+           if(a[j]<a[k])
+             break;
+           else
+             c++;
+         }
+         System.out.println(a[j]+"="+c); 
+         j=j+c;
+         c=1;
+       }
+	}
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+
+  int n1,n2,gcd,lcm;
+  scanf("%d\n",&n1);
+  scanf("%d",&n2);
+  gcd=(n1>n2)?(GCD(n1,n2)):(GCD(n2,n1));
+  lcm=n1*n2/gcd;
+  printf("GCD=%d\n",gcd);
+  printf("LCM=%d",lcm);
+	return 0;
+}
+
+int GCD(int n1, int n2)
+{
+  if(n2==0){
+    return n1;
+  }
+  else
+  {
+   return GCD(n2,n1%n2);
+  }
+}

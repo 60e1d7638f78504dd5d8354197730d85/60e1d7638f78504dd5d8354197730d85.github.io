@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<stdlib.h>
+#define MAX 100
+ 
+typedef long long int ll;
+ 
+ll arr[MAX][MAX],huge=10000007;
+ 
+int main()
+{
+	ll n,m;
+	scanf("%lld %lld",&n,&m);
+	ll i,j;
+	for(i=0; i<n; i++)
+		for(j=0; j<m; j++)
+			scanf("%lld",&arr[i][j]);
+	ll max=1,sum;
+	for(i=0; i<m; i++)
+	{
+		sum=0;
+		for(j=0; j<n; j++)
+		{
+			sum+=arr[j][i];
+			if(abs(sum)>huge)
+			{
+				if(sum>0)
+				{
+					sum=sum-(sum/huge)*huge;
+				}
+				else
+				{
+					sum=((abs(sum)/huge)+1)*huge-(abs(sum));
+				}
+			}
+		}
+		max=max*sum;
+		if(abs(max)>huge)
+		{
+			if(max>0)
+				{
+					max=max-(max/huge)*huge;
+				}
+				else
+				{
+					max=((abs(max)/huge)+1)*huge-(abs(max));
+				}	
+		}
+	}
+	printf("%lld",max);
+	return 0;
+} 

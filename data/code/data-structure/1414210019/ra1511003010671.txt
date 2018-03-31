@@ -1,0 +1,55 @@
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+#include <cmath>
+#include <utility>
+#include <vector>
+#include <set>
+using namespace std;
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+ 
+ 
+const int N = 2020;
+int n, L;
+ 
+ 
+int main() {
+ 
+	int t;
+	cin >> t;
+ 
+	while(t--) {
+		scanf("%d%d", &n, &L);
+		pair<int, int> a[N];		
+		int flag = 0;
+ 
+		for (int i = 0; i < n; i++) {
+			scanf("%d%d", &a[i].F, &a[i].S);
+		}
+		sort(a, a + n);
+ 
+		for (int i = 0; i < n; i++) {
+			int maxRight = a[i].F + L;
+			int curRight = a[i].S;
+			for (int j = 0; j < n; j++) {
+				if (a[j].F <= curRight && a[j].F > a[i].F && a[j].S <= maxRight) {
+					curRight = max(curRight, a[j].S);
+				}
+			}
+			if (curRight == maxRight) {
+				flag = 1;
+				break;
+			}
+		}
+		if(flag == 1)
+			puts("Yes");
+		else 
+			puts("No");
+ 
+	}
+ 
+	return 0;
+}

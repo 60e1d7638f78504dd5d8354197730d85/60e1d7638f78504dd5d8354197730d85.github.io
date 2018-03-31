@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int binary(int arr[],int n, int ser)
+{
+  int first,last,mid;
+  first=0;
+  last=n-1;
+  while(first<=last)
+  {
+    mid=(first+last)/2;
+    if(ser==arr[mid])
+      return mid+1;
+    else if(ser>arr[mid])
+      first=mid+1;
+    else
+      last=mid-1;
+  }
+  return -1;
+}
+int main()
+{
+  int n,arr[20],ser,pos;
+  cin>>n;
+  for(int i=0; i<n; i++)
+    cin>>arr[i];
+  cin>>ser;
+  pos=binary(arr,n,ser);
+  if(pos==-1)
+    cout<<"Not found";
+  else
+    cout<<ser<<" found at location "<<pos;
+	return 0;
+}

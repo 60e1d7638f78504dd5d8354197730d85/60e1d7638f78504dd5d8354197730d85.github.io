@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<string.h>
+struct college
+{
+  char name[100];
+  char city[100];
+  int ey;
+  float pp;
+};
+typedef struct college coll;
+coll c[100],t[100];
+void sort(int n)
+{
+  int i,j;
+  coll te;
+  for(i=0;i<n-1;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(strcmp(c[i].name,c[j].name)>0)
+      {
+        te=c[i];
+        c[i]=c[j];
+        c[j]=te;
+      }
+    }
+  }
+}
+int main()
+{
+int n,i,j;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s %s %d %f",c[i].name,c[i].city,&c[i].ey,&c[i].pp);
+  }
+  sort(n);
+  printf("Details of colleges\n");
+  for(i=0;i<n;i++)
+  {
+    printf("Name:%s\nCity:%s\nYear of establishment:%d\nPass percentage:%.1f\n",c[i].name,c[i].city,c[i].ey,c[i].pp);
+  }
+	return 0;
+}

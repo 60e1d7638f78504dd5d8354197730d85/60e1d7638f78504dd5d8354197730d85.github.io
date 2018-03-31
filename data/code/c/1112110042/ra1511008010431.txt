@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int testcases;
+	scanf("%d",&testcases);
+	char a[200];
+	char b[200];
+	int array[72];
+	int counter;
+	int i;
+	int count;
+	int lena;
+	int lenb;
+	for(counter=0;counter<testcases;counter++)
+	{
+		count=0;
+		for(i=0;i<72;i++)
+			array[i]=0;
+		scanf("%s",a);
+		scanf("%s",b);
+		lena=strlen(a);
+		lenb=strlen(b);
+		for(i=0;i<lena;i++)
+			array[a[i]-'A']=1;
+		for(i=0;i<lenb;i++)
+			if(array[b[i]-'A']==1)
+				count++;
+		printf("%d\n",count);
+	}
+	return 0;
+}

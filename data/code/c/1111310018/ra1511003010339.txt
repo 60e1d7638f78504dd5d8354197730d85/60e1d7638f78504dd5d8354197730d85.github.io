@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int i,n,k,t,a[100],flag=0;
+  scanf("%d",&t);
+  if(t==0)
+  {
+    printf("0\n");
+  return 0;
+}
+  while(t!=0)
+  {
+    scanf("%d%d",&n,&k);
+    for(i=1;i<=n;i++)
+      scanf("%d",&a[i]);
+    for(i=1;i<=n;i++)
+    {
+     if(a[i]<k)
+       flag++;
+     else if(a[i]%k!=0)
+        flag++;
+    }
+    if((n-flag)<(n-1))
+      printf("NO\n");
+    else
+      printf("YES\n");
+   t--; 
+  }
+	return 0;
+}

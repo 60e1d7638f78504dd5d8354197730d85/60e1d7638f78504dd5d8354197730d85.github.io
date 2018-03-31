@@ -1,0 +1,339 @@
+#include<stdio.h>
+#include<string.h>
+ 
+long long int M;
+long long int ans;
+int lend;
+int Q[100];
+char A[1000],B[1000],C[1000],D[1000],E[1000],F[1000],G[1000];
+ 
+long long int gcd ( long long int a, long long int b )
+{
+  long long int c;
+  while ( a != 0 ) {
+     c = a; a = b%a;  b = c;
+  }
+  return b;
+}
+ 
+ 
+long long int rmainder()
+{
+ long long int remainder=0;
+ long long int dividend=0;
+ 
+int i;
+for(i=0;i<lend;i++)
+{
+dividend=remainder*10 + D[i]-'0';
+remainder=dividend%M;
+}
+ 
+return remainder;
+}
+ 
+ 
+void divide(int x)
+{
+ int remainder=0;
+ int dividend=0;
+ 
+int i,temp;
+for(i=0;i<lend;i++)
+{
+dividend=remainder*10 + D[i]-'0';
+Q[i]=dividend/x;
+remainder=dividend%x;
+}
+ 
+ 
+ 
+i=0;
+while(Q[i]==0)
+i++;
+ 
+temp=lend;
+lend=0;
+for(;i<temp;i++)	//N[i] now has the new divided number
+D[lend++]=Q[i]+'0';	//l is the new length of the number
+D[lend]='\0';
+ 
+}
+ 
+void longmulti(const char *a, const char *b, char *c)
+{
+	int i = 0, j = 0, k = 0, n, carry;
+	int la, lb;
+ 
+	la = strlen(a);
+	lb = strlen(b);
+	memset(c, '0', la + lb);
+	c[la + lb] = '\0';
+ 
+#	define I(a) (a - '0')
+	for (i = la - 1; i >= 0; i--) {
+		for (j = lb - 1, k = i + j + 1, carry = 0; j >= 0; j--, k--) {
+			n = I(a[i]) * I(b[j]) + I(c[k]) + carry;
+			carry = n / 10;
+			c[k] = (n % 10) + '0';
+		}
+		c[k] += carry;
+	}
+#	undef I
+	if (c[0] == '0') memmove(c, c + 1, la + lb);
+ 
+}
+ 
+ 
+long long int sumn4(long long int n)
+{
+ 
+long long int g;
+ 
+long long int a,b,c;
+long long int temp=30;
+ 
+a=n;
+g=gcd(a,temp);
+a/=g;
+temp/=g;
+ 
+b=n+1;
+g=gcd(b,temp);
+b/=g;
+temp/=g;
+ 
+c=2*n+1;
+g=gcd(c,temp);
+c/=g;
+temp/=g;
+ 
+ 
+if(n<=1000000)	//N<=10^6
+{
+//temp will either be 1 or 5 by now
+ 
+int digcount,j;
+long long int t;
+ 
+t=n;
+digcount=0;
+while(t>0)
+{
+digcount++;	//count digits in t
+t/=10;
+}
+A[digcount]='\0';	//assign digit position to null character
+t=n;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+ 
+longmulti("3",A,C);
+ 
+t=n+1;
+digcount=0;
+while(t>0)
+{
+digcount++;	//count digits in t
+t/=10;
+}
+A[digcount]='\0';	//assign digit position to null character
+t=n+1;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+ 
+longmulti(A,C,D);	// D= 3n(n+1)
+lend=strlen(D);
+ 
+ 
+for(j=lend-1;j>=0;j--)
+{
+if(D[j]>='1')
+{
+D[j]-=1;	//reduce digit by 1;
+break;
+}
+else
+D[j]='9';
+}
+		//D is now 3n^2+3n-1
+ 
+if(temp==5)
+temp=0;
+ 
+if(temp==0)
+divide(5);
+ 
+long long int remain=rmainder();
+ 
+ 
+return ((((((a*b)%M)*c)%M)*remain)%M);
+ 
+}
+else		//N>10^6
+{
+ 
+int digcount,j;
+long long int t;
+ 
+t=n;
+digcount=0;
+while(t>0)
+{
+digcount++;	//count digits in t
+t/=10;
+}
+A[digcount]='\0';	//assign digit position to null character
+t=n;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+strcpy(E,A);	//E holds N
+longmulti("3",A,C);	//C equals 3n
+ 
+t=n+1;
+digcount=0;
+while(t>0)
+{
+digcount++;	//count digits in t
+t/=10;
+}
+A[digcount]='\0';	//assign digit position to null character
+t=n+1;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+strcpy(G,A);	//G now holds n+1;
+ 
+longmulti(A,C,D);	// D= 3n(n+1)
+lend=strlen(D);
+ 
+for(j=lend-1;j>=0;j--)
+{
+if(D[j]>='1')
+{
+D[j]-=1;	//reduce digit by 1;
+break;
+}
+else
+D[j]='9';
+}
+		//D is now 3n^2+3n-1
+ 
+if(temp==5)
+temp=0;
+ 
+if(temp==0)
+divide(5);
+ 
+t=a;
+digcount=0;
+while(t>0)
+{
+digcount++;	//count digits in t
+t/=10;
+}
+A[digcount]='\0';	//assign digit position to null character
+t=n;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+ 
+longmulti(A,D,F);	// F=a(3n^2+3n-1)
+ 
+t=b;
+digcount=0;
+while(t>0)
+{
+digcount++;	//count digits in t
+t/=10;
+}
+A[digcount]='\0';
+t=n;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+ 
+longmulti(A,F,E);
+t=c;
+digcount=0;
+while(t>0)
+{
+digcount++;	
+t/=10;
+}
+A[digcount]='\0';
+t=n;
+for(j=digcount-1;j>=0;j--)
+{
+A[j]=t%10+'0';
+t/=10;
+}
+longmulti(A,F,D);
+long long int remain=rmainder();
+return remain;
+}
+}
+ 
+long long int pow4(long long int x)
+{
+int j;
+long long int pow=1;
+for(j=0;j<4;j++)
+pow=(pow*x)%M;
+return pow;
+}
+ 
+inline long long int fr()
+{
+ long long int i=0;
+char c=getchar_unlocked();
+while(c<48) c=getchar_unlocked();
+while(c>47)
+{
+i=i*10+c-48;
+c=getchar_unlocked();
+}
+return i;
+}
+ 
+int main()
+{
+int T;
+long long int i;
+long long int N,l,r;
+T=fr();
+while(T--)
+{
+ans=0;
+N=fr();
+M=fr();
+for(i=1;i<=N;i++)
+{
+long long int k=N/i;
+l=1 + N/(k+1);
+r=N/k;
+if(r>l)
+ans=(ans+( k* (M+sumn4(r)-sumn4(l-1))%M )%M )%M;
+else
+ans=(ans+(k*pow4(l))%M )%M;
+i=N/k;
+}
+printf("%lld\n",ans);
+}
+return 0;
+}

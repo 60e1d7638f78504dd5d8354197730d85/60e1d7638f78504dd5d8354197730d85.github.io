@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class shape
+
+{
+protected:double x, y;
+public:void getdata(double a, double b)
+{
+x=a;
+y=b;
+}
+virtual void display_area()=0;
+};
+class triangle:public shape
+{
+
+double triangle_area; void display_area()
+{
+
+triangle_area=(1*x*y)/2;
+cout<<triangle_area<<endl;
+}
+};
+class rectangle:public shape
+{
+double rectangle_area; void display_area()
+
+{
+rectangle_area=x*y;
+cout<<rectangle_area;
+}
+};
+int main()
+{
+  shape *p; triangle t; rectangle r;
+  int a,b;
+  cin>>a>>b;
+  p=&r; 
+  p->getdata(a,b); 
+  p->display_area(); 
+  cout<<endl;
+  p=&t; 
+  p->getdata(a,b); 
+  p->display_area();
+
+	return 0;
+}

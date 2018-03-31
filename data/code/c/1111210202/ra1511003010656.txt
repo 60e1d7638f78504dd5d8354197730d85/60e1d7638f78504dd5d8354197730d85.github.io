@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,m,i,j;
+  scanf("%d%d",&n,&m);
+  int a[n+1],no_mistake,day=0;
+  memset(a,0,sizeof(a));
+  a[0] = 1;
+  while(m)
+  {
+    int c,b;
+    scanf("%d%d",&c,&b);
+    for(i=c;i<=b;i++)
+    {
+      a[i]++;
+    }
+    m--;
+  }
+  for(i=1;i<=n;i++)
+  {
+    if(a[i] != 1)
+    {
+      no_mistake = a[i];
+      day = i;
+      break;
+    }
+  }
+  if(day == 0)
+  {
+    printf("OK");
+  }
+  else 
+  {
+    printf("%d %d",day,no_mistake);
+  }
+  return 0;
+}

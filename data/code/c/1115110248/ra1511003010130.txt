@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+  int n,m,k,a[20];
+  scanf("%d %d %d",&n,&m,&k);
+  int i,sum=0,j;
+  for(i=0;i<n;i++){
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n-1;i++){
+    if(a[i]<=m){
+      for(j=i+1;j<n;j++){
+        if(a[j]<=m){
+          if(a[i]<=m){
+          a[j] = a[j] + k;
+          a[i] = a[i] + k;
+          sum = sum + 1;
+          }
+        }
+      }
+    }
+  }
+  
+  printf("%d",sum);
+return 0;
+}

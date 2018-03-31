@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+int top,bottom,middle,value[50],key,n,i,j,temp,pos;
+scanf("%d",&n);
+for(i=0;i<n;i++)
+scanf("%d",&value[i]);
+scanf("%d",&key);
+for(i=0;i<n;i++)
+{if(value[i]==key)
+    pos=i;}
+ for(i=0;i<n-1;i++)
+{
+  for(j=0;j<n-i-1;j++)
+  {
+    if(value[j]>value[j+1])
+    {
+      temp=value[j];
+      value[j]=value[j+1];
+      value[j+1]=temp;}
+  }
+} 
+
+top=n-1;
+bottom=0;
+do
+{
+middle=(top+bottom)/2;
+if(value[middle]<key)
+bottom=middle+1;
+else
+top=middle;
+}
+while(top>bottom);
+if(top==-1)
+printf("List is empty!");
+else if(value[top]==key)
+printf("%d found at location %d",key,pos+1);
+else
+printf("%d is not present in the list",key);
+
+	return 0;
+}
+

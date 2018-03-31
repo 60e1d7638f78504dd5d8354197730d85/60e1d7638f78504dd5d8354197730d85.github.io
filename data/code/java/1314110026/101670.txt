@@ -1,0 +1,50 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+
+		for (int i = 1;i<=t ;i++ ) 
+		{
+			
+			int n = sc.nextInt();
+
+			int arr[] = new int[n];
+
+			for (int j = 0;j<n ;j++ ) 
+			{
+				arr[j] = sc.nextInt();
+				
+			}
+			int swap = Query(arr,n);
+
+			System.out.println("" + swap);
+				
+			
+			
+		}
+		
+	}
+	static int Query(int arr[],int n)
+	{
+		int swap = 0;
+		for (int i = 1;i<n ;i++ ) 
+		{
+			int j = i -1;
+			int temp = arr[i];
+
+			while (j>=0 && arr[j]>temp) 
+			{
+				arr[j+1] = arr[j];
+				j = j -1;
+				swap = swap + 1;
+				
+			}
+			arr[j+1] = temp;
+			
+		}
+		return swap;
+    }
+}

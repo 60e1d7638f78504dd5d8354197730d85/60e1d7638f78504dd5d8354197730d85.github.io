@@ -1,0 +1,32 @@
+#include<stdio.h>
+int length(char str[]);
+int main() { 
+  char string1[10],string2[10]; 
+  int i,sum=0,t,count; 
+  scanf("%d",&t);
+  while(t--) { 
+    scanf("%s%s",string1,string2); 
+    count=length(string1); 
+    for(i=0;i<count;i++) { 
+      if(string1[i]==string2[i])
+      { sum++; } 
+      else if(string1[i]=='?') 
+      { sum++; }
+      else if(string2[i]=='?')
+      { sum++; } }
+    if(sum==count) 
+    { printf("Yes\n"); }
+    else{ 
+      printf("No\n"); 
+    } 
+    sum=0;
+  } return 0; 
+} 
+int length(char str[]) {
+  int count=0;
+  int i=0; 
+  while(str[i]!='\0') {
+    count++; i++; 
+  } 
+  return count; 
+}

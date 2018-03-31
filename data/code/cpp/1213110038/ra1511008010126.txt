@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+	char str[20] , pat[20] ;
+	int i=0,j=0,k=0 ;
+	cin>>str;
+  	cin>>pat;
+	while(str[i]!='\0')
+	{
+		if(str[i]==pat[0])
+		{
+			j=1;
+			while(pat[j]!='\0' && str[j+i]!='\0' && pat[j]== str[j+i]) 
+			{
+				j++;
+				k = 1;
+			}
+		if(pat[j]=='\0')
+			cout<<"Substring found at position "<<i+1;
+		}
+		i++;
+		if(k==0)
+		{
+			if(str[j+i]=='\0')
+				cout<<"Substring not found";
+		}
+	}
+  return 0;
+}

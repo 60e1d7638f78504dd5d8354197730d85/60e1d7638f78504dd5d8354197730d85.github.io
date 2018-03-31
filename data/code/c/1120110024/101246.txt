@@ -1,0 +1,30 @@
+#include<stdio.h>
+void str_replace(char * p, char search) 
+{
+  char *c,*d;
+  int i;
+  while( *p != '\0') 
+  {
+    if(*p == search || *p==search+32 || *p==search-32) 
+    {
+      c = p;
+      i = 1;
+      while( *c != '\0') 
+      {
+        *c = *(c+1);
+        c = p + i;
+        i++;
+      }
+    }
+    p++;
+  }
+}
+int main()
+{
+  char word[150],ch[10];
+  scanf("%s",word);
+  scanf("%s",ch);
+  str_replace(word,ch[0]);
+  printf("%s",word);
+  return 0;
+}

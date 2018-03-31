@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+int stack[100],top=0;
+void push(int n);
+int pop();
+int main()
+{int c,num;
+ char ch;
+ cin>>c;
+ cout<<"1.push";
+ cout<<"\n2.pop";
+ do
+ {cin>>c;
+  if(c==1)
+  {cin>>num;
+   push(num);
+  }
+  if(c==2)
+  {num=pop();
+   cout<<"\ndeleted element is"<<num;
+  }
+  cin>>ch;
+ }while(ch!='n');
+ cout<<'\n';
+ while((num=pop())!=-999)
+   cout<<num<<' ';
+
+ return 0;
+}
+
+void push(int num)
+{stack[top++]=num;
+}
+
+int pop()
+{if(top>0)
+  return stack[--top];
+ else
+   return -999;
+}
+
+
+ 
+  

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--){
+    int n,r;
+    scanf("%d",&n);
+    r=n%8;
+    if(r>=1 && r<=3)
+      n+=3;
+    else if(r>=4 && r<=6)
+      n-=3;
+    else if(r==7)
+      n++;
+    else n--;
+    printf("%d",n);
+    if(r==1 || r==4)
+      printf("LB");
+    else if(r==2 || r==5)
+      printf("MB");
+    else if(r==3 || r==6)
+      printf("UB");
+    else if(r==7)
+      printf("SU");
+    else
+      printf("SL");
+    printf("\n");
+  }
+	return 0;
+}

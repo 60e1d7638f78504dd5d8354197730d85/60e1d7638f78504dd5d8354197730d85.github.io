@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int t,a[27],i,j,ma,index,c[100],k=0;
+  char b[100];
+  float len;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    for(j=0;j<27;j++)
+      a[j] = 0;
+    scanf("%s",b);
+    for(j=0;b[j]!='\0';j++)
+    {
+      a[b[j]-97]++;
+    }
+    
+    ma = 0;
+    for(j=0;j<27;j++)
+    {
+      if(a[j] > ma)
+      {
+        ma=a[j];
+      }
+    }
+    len = strlen(b);
+    len/=2.0;
+    if(ma == len)
+      c[k++] = 1;
+    else
+      c[k++] = 0;
+  }
+  for(j=0;j<k;j++)
+  {
+    if(c[j] == 1)
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+  return 0;
+}

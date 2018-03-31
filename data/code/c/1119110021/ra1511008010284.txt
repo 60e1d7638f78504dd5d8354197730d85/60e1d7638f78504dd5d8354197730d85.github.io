@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+	int x;
+  	scanf("%d",&x);
+  	
+  	int a[x],i,j;
+  	for(i=0;i<x;i++)
+    {
+    scanf("%d",&a[i]);
+    }
+  	
+  		for(i=0;i<x;i++)
+        {
+        	for(j=0;j<x;j++)
+            {
+            	if(a[i]>a[j])
+                {
+                int temp;
+                  	temp=a[i];
+                  	a[i]=a[j];
+                  	a[j]=temp;
+                }
+            }
+        }
+  		
+  		int *ptr,sum=0;
+  		ptr=a;
+  		for(i=0;i<x;i++)
+        {
+        sum=sum+*ptr;
+        ptr++;
+        }
+  		
+  		printf("%d",sum);
+	return 0;
+}

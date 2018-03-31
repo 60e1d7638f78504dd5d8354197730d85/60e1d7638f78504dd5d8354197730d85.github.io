@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+    {
+     char s[26];
+    int n,j,a[26]={0},i,k,m;
+    int sum;
+    scanf("%s",s);
+    for(i=0;i<26;i++)
+        {
+       a[s[i]-'a']=1;
+    }
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+        {
+        int b[26]={0};
+        char w[14];
+        sum=0;
+        scanf("%s",w);
+        k=strlen(w);
+        for(j=0;j<k;j++)
+            {
+            b[w[j]-'a']=1;
+            if(a[w[j]-'a']==b[w[j]-'a'])
+                {
+                sum++;
+            }
+        }
+        
+        if(sum==k)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+  return 0;
+} 

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  int numer1,numer2,denom1,denom2,sum=0,minMultiple,x,numf;
+  scanf("%d",&numer1);
+  scanf("%d",&denom1);
+  scanf("%d",&numer2);
+  scanf("%d",&denom2);
+  if(denom1%denom2==0 || denom2%denom1==0)
+  {
+    minMultiple = (denom1>denom2) ? denom1 : denom2;
+    while(1)
+    {
+        if( minMultiple%denom1==0 && minMultiple%denom2==0 )
+        {
+            x=minMultiple;
+            break;
+        }
+        ++minMultiple;
+    }
+  }
+  else
+  {
+    x=denom1*denom2;
+  }
+    numf= (x/denom1)*numer1 + (x/denom2)*numer2;
+    
+    if(numf%2==0 && x%2==0)
+    {
+      numf=numf/2;
+      x=x/2;
+    }
+  printf("%d %d",numf,x);
+	return 0;
+}

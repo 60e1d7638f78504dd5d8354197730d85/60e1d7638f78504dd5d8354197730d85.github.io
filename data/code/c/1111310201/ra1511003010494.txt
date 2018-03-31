@@ -1,0 +1,77 @@
+#include<stdio.h>
+#define seg 333
+typedef unsigned u;
+u S[333],C[333][33],Ct[33];
+char A[111111];
+void F(u n)
+{
+	if(!S[n])return;
+	u i,a,b=n*seg,c;
+	if(S[n]==1)
+	{
+		for(i=seg,a=c=0;i--;++c)
+		{
+			while(c==C[n][a]){c=0;++a;}
+			A[b+i]=a+'a';
+		}
+	}
+	if(S[n]==2)
+	{
+		for(i=-1,a=c=0;++i<seg;++c)
+		{
+			while(c==C[n][a]){c=0;++a;}
+			A[b+i]=a+'a';
+		}
+	}
+	S[n]=0;
+	return;
+}
+u min(u a,u b){return a>b?b:a;}
+int main()
+{
+	u a,b,n,q,i,j,k,l,r,sl,sr;
+	scanf("%u%u%s",&n,&q,A);
+	for(i=-1;A[++i];)++C[i/seg][A[i]-'a'];
+	while(q--)
+	{
+		scanf("%u%u%u",&l,&r,&k);--l;--r;++k;
+		F(sl=l/seg);
+		F(sr=r/seg);
+		for(i=-1;++i<33;)Ct[i]=0;
+		for(i=l-1,j=min(r+1,min((sl+1)*seg,n));++i<j;)++Ct[A[i]-'a'];
+		if(sl!=sr)for(i=sr*seg-1,j=min(r+1,n);++i<j;)++Ct[A[i]-'a'];
+		for(i=sl;++i<sr;)for(j=-1;++j<33;)Ct[j]+=C[i][j];
+		a=(k==1)?32:0;
+		for(i=l-1,j=min(r+1,min((sl+1)*seg,n));++i<j;)
+		{
+			while(!Ct[a])k==1?--a:++a;
+			--Ct[a];
+			--C[sl][A[i]-'a'];
+			A[i]=a+'a';
+			++C[sl][a];
+		}
+		for(i=sl;++i<sr;S[i]=k)
+		{
+			for(j=-1;++j<33;)C[i][j]=0;
+			for(b=seg;b;)
+			{
+				while(!Ct[a])k==1?--a:++a;
+				j=Ct[a];
+				if(j>b)j=b;
+				C[i][a]=j;
+				b-=j;Ct[a]-=j;
+			}
+		}
+		if(sl!=sr)for(i=sr*seg-1,j=min(r+1,n);++i<j;)
+		{
+			while(!Ct[a])k==1?--a:++a;
+			--Ct[a];
+			--C[sr][A[i]-'a'];
+			A[i]=a+'a';
+			++C[sr][a];
+		}
+	}
+	for(i=-1;++i<333;)F(i);
+	printf("%s\n",A);
+	return 0;
+}

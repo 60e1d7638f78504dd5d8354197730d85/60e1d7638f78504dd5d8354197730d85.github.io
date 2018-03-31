@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+class X
+{
+  int v;
+  public int great(int gcd,int lcm)
+  {
+    int a=gcd;
+    int b=lcm;
+    v=HCF(a,b);
+    System.out.print(v);
+    System.out.print(" "+LCM(a,b));
+    return 0;
+  }
+  public int HCF(int a,int b)
+  {
+     if (a == 0 || b == 0)
+       return 0;
+ 
+    if (a == b)
+        return a;
+ 
+    if (a > b)
+        return HCF(a-b, b);
+    return HCF(a, b-a);
+  }
+  public int LCM(int a,int b)
+  {
+    return (a*b)/v;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       X objname=new X();
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       for(int i=0;i<n;i++)
+       {
+         int a=sc.nextInt();
+         int b=sc.nextInt();
+         int t=objname.great(a,b);
+         System.out.println("");
+       }
+	}
+}

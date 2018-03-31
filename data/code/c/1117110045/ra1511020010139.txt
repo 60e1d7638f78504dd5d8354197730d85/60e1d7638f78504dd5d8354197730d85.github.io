@@ -1,0 +1,20 @@
+#include <stdio.h>
+int power(int n1, int n2);
+
+int main()
+{
+    float base, exp, result;
+    scanf("%f",&base);
+    scanf("%f",&exp);
+    result = power(base, exp);
+    printf("%.2f",result);
+    return 0;
+}
+
+int power(int base, int exp)
+{
+    if (exp != 0)
+        return (base*power(base, exp-1));
+    else
+        return 1;
+}

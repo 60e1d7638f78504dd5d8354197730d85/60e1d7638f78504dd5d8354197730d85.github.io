@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n,k;
+    while(cin>>n>>k)
+    {
+        int ans=0,s;
+        for(int i=0;i<=n-1;i++)
+        {
+            cin>>s;
+            if(s%k==0)   //能整除的话，说明这类鹅卵石刚好能够装s/k次
+                ans=ans+s/k;
+            else
+                ans=ans+s/k+1;   //不能够够整除的话，这种鹅卵石得多装一次（虽然最后一次口袋没有装满）
+        }
+        if(ans%2==0)   //对应两只口袋结果是ans/2
+            cout<<ans/2<<endl;
+        else   //对应两只口袋结果是ans/2+1
+            cout<<ans/2+1<<endl;
+    }
+    return 0;
+}

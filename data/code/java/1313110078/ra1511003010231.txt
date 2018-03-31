@@ -1,0 +1,21 @@
+import java.io.*;
+public class TestClass {
+    public static void main(String [] args) throws IOException
+    {
+        int n=0;
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        n= Integer.parseInt(br.readLine());
+        int sum=0;
+        int copy=n;
+        while (copy>0)
+        {
+            int digit=copy%10;
+            sum=sum +(digit*digit*digit);
+            copy/=10;
+        }
+        if (sum==n)
+        System.out.println("YES");
+        else
+        System.out.println("NO");
+    }
+}

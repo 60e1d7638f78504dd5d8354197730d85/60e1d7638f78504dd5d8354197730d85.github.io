@@ -1,0 +1,41 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass
+ {
+     private static int m,n;
+     public static void change(int graph[][],int x,int y,int k,int old)
+     {
+         if(x<0 || y>=n || x>=m || y<0)
+         return;
+         if(graph[x][y]!=old)
+         return;
+            graph[x][y]=k;
+            change(graph,x+1,y,k,old);
+            change(graph,x-1,y,k,old);
+            change(graph,x,y+1,k,old);
+            change(graph,x,y-1,k,old);
+        
+     }
+ public static void main (String[] args)
+  {
+ Scanner ab=new Scanner(System.in);
+ int t=ab.nextInt();
+ while(t-->0)
+ {
+      m=ab.nextInt();
+      n=ab.nextInt();
+     int graph[][]=new int[m][n];
+     for(int i=0;i<m;i++)
+     for(int j=0;j<n;j++)
+     graph[i][j]=ab.nextInt();
+     int x=ab.nextInt();
+     int y=ab.nextInt();
+     change(graph,x,y,ab.nextInt(),graph[x][y]);
+      for(int i=0;i<m;i++)
+     for(int j=0;j<n;j++)
+     System.out.print(graph[i][j]+" ");
+     System.out.println();
+ }
+  }
+}

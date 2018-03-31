@@ -1,0 +1,29 @@
+
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	public int Search(int b){
+      int var = 0;
+      for (int i = 0; i <= b/2; i++) {
+        int n1 = i,n2=b-i;
+        int s1 = (int) Math.sqrt(n1);
+        int s2 = (int) Math.sqrt(n2); 
+        if (s1*s1 == n1 && s2*s2 == n2 ){
+          var=1;
+          break;
+        }
+      }
+      return var;
+    }
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      TestClass objname = new TestClass();
+      int N = sc.nextInt();
+      for(int i=0 ; i<N  ;i++){
+        int n = sc.nextInt();
+      	int a = objname.Search(n);   
+      	System.out.println(a);
+      }
+    }
+}

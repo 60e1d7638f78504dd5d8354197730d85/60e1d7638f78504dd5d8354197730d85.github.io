@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+int min(int a,int b)
+{
+  if(a<=b)
+    return a;
+ return b;
+}
+int main()
+{
+    int t,i,u,x;
+    scanf("%d",&t);
+    char a[1000];
+    int b[t][26];
+    memset(b,0,sizeof(b));
+    int mini[26];
+    for(u=0;u<t;u++)
+       {
+        scanf("%s",a);
+        int y=strlen(a);
+            for(i=0;i<y;i++)
+            {
+            b[u][a[i]-97]++;
+            }
+       }
+         for(u=0;u<26;u++)
+          {
+            mini[u]=b[0][u];
+          }
+          for( i=1;i<t;i++)
+          {
+            for(u=0;u<26;u++)
+            mini[u]=min(mini[u],b[i][u]);
+          }
+          
+        int fl=0;
+        for(x=0;x<26;x++)
+        {
+            while(mini[x]--)
+            {
+                printf("%c",x+97);
+                fl=1;
+            }
+        }
+        if(fl==0)
+            printf("no such string");
+        return 0;
+}
+ 

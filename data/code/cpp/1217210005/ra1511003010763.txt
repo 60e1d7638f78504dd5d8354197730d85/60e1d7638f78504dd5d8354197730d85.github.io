@@ -1,0 +1,32 @@
+#include<cstdio>
+#include<cstring>
+using namespace std;
+#define N 1000010
+int n;
+int nxt[N],used[N];
+char s[N];
+void Init()
+{
+    int j=0;
+    for(int i=2;i<=n;i++)
+    {
+        while(j&&s[i]!=s[j+1]) j=nxt[j];
+        if(s[i]==s[j+1]) j++;
+        nxt[i]=j;
+    }
+}
+int main()
+{
+    scanf("%s",s+1);
+    n=strlen(s+1);
+    Init();
+    for(int i=1;i<n;i++) used[nxt[i]]=1;
+    used[0]=0;
+    for(int i=n;i;i=nxt[i]) if(used[nxt[i]])
+    {
+        for(int j=1;j<=nxt[i];j++) printf("%c",s[j]);
+        return 0;
+    }
+    printf("Just a legend");
+    return 0;
+}

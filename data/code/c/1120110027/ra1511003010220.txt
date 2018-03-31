@@ -1,0 +1,34 @@
+#include<stdio.h>
+ 
+struct cricket {
+   char pname[20];
+   char tname[20];
+   int avg;
+  float cgpa;
+} player[10], temp;
+ 
+int main() {
+   int i, j, n;
+ scanf("%d",&n);
+   for (i = 0; i < n; i++) {
+     scanf("%s", player[i].tname);
+     scanf("%s", player[i].pname);
+      scanf("%d", &player[i].avg);
+     scanf("%f", &player[i].cgpa);
+      printf("\n");
+   }
+   
+ 
+   for (i = 1; i < n; i++)
+      for (j = 0; j < n - i; j++) {
+         if (strcmp(player[j].tname, player[j + 1].tname) > 0) {
+            temp = player[j];
+            player[j] = player[j + 1];
+            player[j + 1] = temp;
+         }
+      }
+ 
+   for (i = 0; i < n; i++) {
+      printf("Name:%s\nDepartment:%s\nYear of study:%d\nCGPA:%.1f\n",player[i].tname,player[i].pname,player[i].avg,player[i].cgpa);
+   }
+return 0;}

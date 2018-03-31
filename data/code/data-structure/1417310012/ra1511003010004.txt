@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+string s;
+int tree[400005];
+void init(int nd,int bb,int ee){
+    if(bb==ee){
+        tree[nd]=(s[bb]=='X');
+        return;
+    }
+    int mm=(bb+ee)>>1,ll=nd<<1,rr=ll|1;
+    init(ll,bb,mm);
+    init(rr,mm+1,ee);
+    tree[nd]=-1;
+    return;
+}
+void update(int nd,int bb,int ee,int ii,int jj,int vv){
+    int mm=(bb+ee)>>1,ll=nd<<1,rr=ll|1;
+    if(bb!=ee){
+        if(tree[nd]!=-1){
+            tree[ll]=tree[rr]=tree[nd];
+            tree[nd]=-1;
+        }
+    }
+    if(bb>=ii && ee<=jj){
+        tree[nd]=vv;
+        return;
+    }
+    if(bb>jj || ee<ii)return;
+    update(ll,bb,mm,ii,jj,vv);
+    update(rr,mm+1,ee,ii,jj,vv);
+    return;
+}
+char query(int nd,int bb,int ee,int ii){
+    if(bb>ii || ee<ii)return 0;
+    int mm=(bb+ee)>>1,ll=nd<<1,rr=ll|1;
+    if(tree[nd]!=-1)return ((tree[nd]==1)?'X':'O');
+    return query(ll,bb,mm,ii)+query(rr,mm+1,ee,ii);
+}
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--){
+        cin>>s;
+        init(1,0,s.size()-1);
+        int k,l,r,a;
+        cin>>k;
+        while(k--){
+            cin>>a>>l>>r;
+            update(1,0,s.size()-1,l-1,r-1,2-a);
+        }
+        string x="";
+        for(int i=0;i<(int)s.size();i++){
+            x+=query(1,0,s.size()-1,i);
+        }
+        int xx=0,oo=0;
+        for(int i=0;i<(int)x.size();i++){
+            xx+=(x[i]=='X');
+        }
+        int mn=xx;
+        for(int i=0;i<(int)x.size();i++){
+            xx-=(x[i]=='X');
+            oo+=(x[i]=='O');
+            mn=min(mn,xx+oo);
+        }
+        cout<<mn<<"\n";
+    }
+    return 0;
+}

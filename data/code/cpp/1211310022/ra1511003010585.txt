@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include <iostream>
+#include<math.h>
+
+using namespace std;
+
+int main(){
+    int N,i,tc,j,k;
+    int temp[20];
+    long long int result_arr[20]={2,1024,976371285,688423210,905611805,607723520,235042059,255718402,494499948,140625001,291251492,25600497,959366170,836339738,621966918,264444359,271283348,952065854,719476260,28918236};
+    long long int result;
+    scanf("%d",&tc);
+    while(tc--) {
+        result=1;
+        scanf("%d",&N);
+        for(i=0;N>0;i++) {
+        temp[i]=N%2;
+        N=N/2;
+    }
+ 
+      for(j=0;j<i;j++) {
+          if(temp[j]==1)
+          result=(result*result_arr[j])%1000000007;
+      }
+      result=(result*result)%1000000007;
+      printf("%d\n",int(result));
+    }
+    return 0;
+}

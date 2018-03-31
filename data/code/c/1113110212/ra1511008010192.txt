@@ -1,0 +1,105 @@
+#include<stdio.h>
+struct node {
+    int num;
+    double cost;
+    double terms;
+    double expect;
+};
+struct node p[41];
+struct node1 {
+    double sum;
+    double terms;
+};
+struct node1 p1[41];
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,m,i,j,k,color=0;
+        double temp[41][41][41];
+        long long int i1;
+        double sum2=0,sum=0;
+        scanf("%d%d",&n,&m);
+        for(i=0;i<=40;i++)
+        {
+            p[i].num=0;
+            p[i].cost=0;
+        }
+        for(i=0;i<=40;i++)
+        {
+            for(j=0;j<=40;j++)
+            {
+                for(k=0;k<=40;k++)
+                {
+                    temp[i][j][k]=0;
+                }
+            }
+        }
+        for(i=0;i<=40;i++)
+        {
+            for(j=0;j<=40;j++)
+            {
+                temp[i][j][0]=1;
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            int a,b;
+            scanf("%d%d",&a,&b);
+            p[a].num++;
+            p[a].cost=p[a].cost+b;
+        }
+        for(i=1;i<=40;i++)
+        {
+             if(p[i].num>=1)
+                    color++;
+        }
+        k=1;
+        for(i=1;i<=40;i++)
+        {
+            if(p[i].num>=1)
+            {
+                long long int s1=1<<(p[i].num-1);
+                long long int s2=(1<<p[i].num) -1;
+                p1[k].sum=s1*p[i].cost;
+                p1[k].terms=s2;
+                k++;
+            }
+        }
+        for(k=0;k<color;k++)
+        {
+            for(i=1;i<=color;i++)
+            {
+                double ans=p1[(i+k)%(color)+1].terms;
+                for(j=1;j<=i;j++)
+                {
+                    temp[k][i][j]=temp[k][i-1][j-1]*ans;
+                }
+                for(i1=1;i1<=i;i1++)
+                {
+                    temp[k][i][i1]=temp[k][i-1][i1]+temp[k][i][i1];
+                }
+            }
+        }
+  
+        for(i=m;i<=color;i++)
+        {
+            sum2=sum2+temp[0][color][i];
+        }
+        for(i=1;i<=color;i++)
+        {
+            double terms=0;
+            for(j=m;j<=color;j++)
+            {
+                if(j!=0)
+                terms=terms+temp[i-1][color-1][j-1];
+                else
+                    terms=terms;
+            }
+            sum=sum+terms*(p1[i].sum)/sum2;
+        }
+        printf("%.9lf\n",sum);
+    }
+return 0;}

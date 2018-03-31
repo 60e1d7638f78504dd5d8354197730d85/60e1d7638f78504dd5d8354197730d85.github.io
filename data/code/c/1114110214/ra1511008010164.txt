@@ -1,0 +1,86 @@
+   #include<stdio.h>
+    #include<stdlib.h>
+    int s;
+    long int b[500005];
+    void mergea(long int a[],long int l1,long int u1,long int l2,long int u2)
+    {
+    long int i,j,k=l1,c[500005];
+    for(i=l1,j=l2;i<=u1 && j<=u2;k++)
+    {
+    if(a[i]<a[j])
+    c[k]=a[i++];
+    else
+    c[k]=a[j++];
+    }
+    while(i<=u1)
+    c[k++]=a[i++];
+    while(j<=u2)
+    c[k++]=a[j++];
+    for(i=l1;i<=u2;i++)
+    a[i]=c[i];
+    }
+    void merge(long int a[],long int lb,long int ub)
+    {
+    if(lb>=ub)
+    return ;
+    long int mid=(lb+ub)/2;
+    merge(a,lb,mid);
+    merge(a,mid+1,ub);
+    mergea(a,lb,mid,mid+1,ub);
+    }
+    int main()
+    {
+    long long int n,sum,sum1;
+    long int a,i,k;
+    scanf("%ld",&a);
+    while(a--)
+    {
+    scanf("%lld%ld",&n,&k);
+    if(k>=100000)
+    k=100000;sum=0;
+    int flag=1;
+    for(i=0;i<k;i++)
+    scanf("%ld",&b[i]);
+    merge(b,0,k-1);
+    for(i=0;i<k;i++)
+    {
+    sum+=b[i];
+    if(b[i]==1)
+    {
+    s=b[i]%2;
+    flag=0;
+    break;
+    }
+    if(b[i]==2)
+    {
+    s=b[i]%2;
+    flag=0;
+    break;
+    }
+    if(b[i]%2==0)
+    sum1=(b[i]/2)*(b[i]+1);
+    else
+    sum1=((b[i]+1)/2)*b[i];
+    if(sum1-sum<b[i])
+    {
+    s=(b[i]%2);
+    flag=0;
+    break;
+    }
+    }
+    if(flag==1)
+    {
+    if(n%2==0)
+    sum1=(n/2)*(n+1);
+    else
+    sum1=((n+1)/2)*n;
+    sum1= sum1-sum+1;
+    s=(sum1%2 );
+    }
+    if(s==0)
+    printf("Mom\n");
+    else
+    printf("Chef\n");
+    }
+    return 0;
+    }  

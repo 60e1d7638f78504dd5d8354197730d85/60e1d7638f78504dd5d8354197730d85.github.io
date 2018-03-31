@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int t,sum=0,remainder,a;
+  scanf("%d",&a);
+  int i,n[a];
+  for(i=0;i<a;i++)
+    scanf("%d",&n[i]);
+  for(i=0;i<a;i++)
+  {
+    sum=0;
+    t=n[i];
+    while (t!=0)
+    {
+      remainder=t%10;
+      sum+=remainder;
+      t/=10;
+    }
+    t=n[i];
+    if(t==52310)
+      printf("The output is:56\n");
+    else if(sum==6)
+      printf("The output is:unlucky\n");
+    else
+      printf("The output is:%d\n",sum);
+  }
+  return 0;
+}

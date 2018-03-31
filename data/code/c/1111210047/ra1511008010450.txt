@@ -1,0 +1,31 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+    if (a == b)
+        return a;
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+int main()
+{
+  int a,b,c,d,temp,temp2,temp3;
+  scanf("%d%d%d%d",&a,&b,&c,&d);
+ temp=b*d;
+  while((temp/2)%b==0&&(temp/2)%d==0)
+  {
+    temp=temp/2;
+  }
+  temp2=((temp/b)*a)+((temp/d)*c);
+  temp3=gcd(temp,temp2);
+  while(temp3>1)
+  {
+    temp2=temp2/temp3;
+    temp=temp/temp3;
+    temp3=gcd(temp2,temp);
+  }
+  
+  
+  printf("%d %d",temp2,temp);
+	return 0;
+}

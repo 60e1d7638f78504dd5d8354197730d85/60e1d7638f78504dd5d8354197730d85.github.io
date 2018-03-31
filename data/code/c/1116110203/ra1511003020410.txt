@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	char ch[20];
+  	int i,len,flag=0;
+  	scanf("%s",ch);
+  	for(len=0;ch[len]!='\0';len++);
+  	for(i=0;i<len;i++){
+      if(ch[i]=='.' && ch[len-i-1]=='.'){
+        ch[i]='a';
+        ch[len-i-1]='a';
+      }
+      else if(ch[i]=='.')
+        ch[i]=ch[len-i-1];
+    }
+  	for(i=0;i<len;i++){
+      if(ch[i]!=ch[len-i-1]){
+        flag=1;
+        break;
+      }
+    }
+  	if(flag==0)
+    	printf("%s",ch);
+  	else
+    	printf("-1");
+	return 0;
+}

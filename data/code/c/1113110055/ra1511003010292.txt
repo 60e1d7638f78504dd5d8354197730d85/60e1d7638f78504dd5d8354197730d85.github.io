@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int t , test;
+  scanf("%d",&test);
+  for(t=test ; t>0 ; t--)
+  {int n , arr , i ;
+  scanf("%d",&n);
+   int min1 , min2 ;
+  for(i = 0; i<n ; i++)
+  {scanf("%d",&arr);
+   if(i==0)
+   {min2 = 0;
+     min1 = arr;
+   }
+   else
+   {
+     if(arr<min1)
+     {min2 = min1;
+       min1 = arr;}
+     else
+       if(arr>min1 && arr<min2 || min2==0)
+         min2 = arr;
+   }
+  }
+   printf("%d\n",min1+min2);
+  }
+	return 0;
+}

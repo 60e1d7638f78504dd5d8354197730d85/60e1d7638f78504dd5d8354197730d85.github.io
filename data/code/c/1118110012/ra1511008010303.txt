@@ -1,0 +1,33 @@
+#include <stdio.h>
+typedef struct time
+{
+  int h,m,s;
+}time;
+void add (struct time *t1, struct time *t2)
+{
+ t1->h=t1->h+t2->h;
+  t1->m=t1->m+t2->m;
+  t1->s=t1->s+t2->s;
+  while(t1->s>=60)
+  {
+    t1->s=t1->s-60;
+    t1->m++;
+  }
+  while(t1->m>=60)
+  {
+    t1->m=t1->m-60;
+    t1->h++;
+  }
+}
+int main()
+{
+  time a,b;
+  scanf("%d %d %d",&a.h,&a.m,&a.s);
+  scanf("%d %d %d",&b.h,&b.m,&b.s);
+  
+ add(&a,&b);
+  printf("%d hrs\n%d min\n%d sec",a.h,a.m,a.s);
+  
+
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+int noofdigits(int num);
+int main()
+{
+    
+    int num1,num2,newdigits,nodigits;
+    scanf("%d%d",&num2,&num1);
+    nodigits = noofdigits(num2-num1);
+    	//printf("%d\n",nodigits);
+    newdigits = noofdigits(num2-num1+1);
+    if(newdigits==nodigits)
+    	printf("%d\n",num2-num1+1);
+    else
+    	printf("%d\n",num2-num1-1);
+	return 0;
+}
+int noofdigits(int num)
+{
+	int count = 0;
+	while(num>0)
+	{
+		num /=10;
+		count++;
+	}
+	return count;
+}

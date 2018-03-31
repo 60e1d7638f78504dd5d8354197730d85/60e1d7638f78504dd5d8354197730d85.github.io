@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  long int testcase;
+  scanf("%ld",&testcase);
+  int i=0,j,ans[testcase];
+  while(i<testcase)
+  {
+    int oct;
+    char seq[100];
+    scanf("%s",seq);
+    scanf("%d",&oct);
+    int ul=oct*12,final_key=1,total_plays=0;
+    j=0;
+    while(seq[j]!='\0')
+    {
+      if(seq[j]=='T')
+      {
+        final_key+=2;
+      }
+      else
+      {
+        final_key+=1;
+      }
+      j++;
+    }
+    final_key-=1;
+    int mul=1,cal;
+    while(1)
+    {
+      cal=final_key*mul;
+      if(cal<ul)
+      {
+        total_plays+=ul-cal;
+        mul++;
+      }
+      else
+      {
+        break;
+      }
+    }
+    ans[i]=total_plays;
+    i++;
+  }
+  i=0;
+  while(i<testcase)
+  {
+    printf("%d\n",ans[i]);
+    i++;
+  }
+	return 0;
+}

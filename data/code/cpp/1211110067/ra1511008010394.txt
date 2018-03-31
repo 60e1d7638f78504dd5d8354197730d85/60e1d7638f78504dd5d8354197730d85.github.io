@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int reverse1(int x)
+{
+  	int a,b,c,d;
+  	a=x/100;
+  	b=(x-(a*100))/10;
+  	c=x-(100*a+10*b);
+  	d=(100*c)+(10*b)+a;
+  	return d;
+}
+int reverse2(int x)
+{
+  	int a,b,c;
+  	a=x/10;
+  	b=x-(10*a);
+  	c=(10*b)+a;
+  	return c;
+}
+int main()
+{
+	int no,revno,sq,revsq;
+  	cin>>no;
+  	revno=reverse2(no);
+  	sq=no*no;
+  	revsq=revno*revno;
+  	if(reverse1(sq)==revsq)
+      cout<<"Adam Number";
+  	else 
+      cout<<"Not an Adam Number";
+	return 0;
+}

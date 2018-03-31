@@ -1,0 +1,79 @@
+#include<iostream>
+#include<stack>
+#include<queue>
+using namespace std;
+int main(){
+long long int n,x;
+cin>>n>>x;
+long long int a[n],i,b[n];
+for(i=1;i<=n;i++)
+    cin>>a[i];
+    queue <long long int> q;
+    for(i=1;i<=n;i++)
+        q.push(i);
+ 
+        long long int j,k,l,y,ma;
+        for(i=1;i<=x;i++){
+                j=1;
+ 
+                if(q.size()>=x)
+                    l=x;
+                else l=q.size();
+ma=0;
+            for(k=1;k<=l;k++){
+ 
+                    b[j]=q.front();
+ 
+ 
+ 
+ 
+                    if(a[b[j]]>=ma)
+                    {
+                        ma=a[b[j]];
+y=b[j];
+ 
+                    }
+ 
+ 
+ 
+                q.pop();
+ 
+            j++;
+ 
+                     }
+                     j--;
+ 
+                     for(k=1;k<=j;k++){
+                        if(a[b[k]]==ma){
+                            y=b[k];
+                            break;
+                        }
+                     }
+ 
+ 
+                    // cout<<ma;
+                     cout<<y<<" ";
+ 
+ 
+ 
+                     for(k=1;k<=j;k++){
+ 
+                        if(b[k]!=y){
+                            q.push(b[k]);
+                            if(a[b[k]]!=0)
+                            a[b[k]]=a[b[k]]-1;
+ 
+                        }
+                     }
+ 
+ 
+ 
+                     }
+ 
+ 
+ 
+ 
+ 
+ 
+}
+ 

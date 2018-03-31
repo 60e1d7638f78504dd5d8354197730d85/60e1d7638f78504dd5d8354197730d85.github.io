@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class comp
+{
+	int r,c;
+  	public:
+  		comp(int a,int b)
+        {
+          r=a;
+          c=b;
+        }
+  		void disp()
+        {
+          cout<<r<<"+"<<c<<"i\n";
+        }
+  		void add(comp *c1)
+        {
+          cout<<this->r+c1->r<<"+"<<this->c+c1->c<<"i";
+        }
+};
+int main()
+{
+	int r1,c1,r2,c2;
+  	cin>>r1>>c1>>r2>>c2;
+  	comp *co1=new comp(r1,c1);
+  	comp *co2=new comp(r2,c2);
+  	co1->disp();
+  	co2->disp();
+  	co1->add(co2);
+	return 0;
+}

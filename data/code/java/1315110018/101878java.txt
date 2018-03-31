@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+class Insert{
+  int n,m,pos,sele;
+  int[] a=new int[10];
+  public void arrInsert(){
+    Scanner inp=new Scanner(System.in);
+    n=inp.nextInt();
+    for(int i=0;i<n;i++)
+      a[i]=inp.nextInt();
+    m=n+1;
+    sele=inp.nextInt();
+    pos=inp.nextInt();
+    for(int j=(n-1);j>(pos-1);j--)
+    {
+      a[j+1]=a[j];
+    }
+    a[pos]=sele;
+  }
+public void displayArray()
+{
+  for(int k=0;k<m;k++)
+    System.out.print(a[k]+" ");
+}
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Insert obj = new Insert();
+       obj.arrInsert();
+       obj.displayArray();
+		}
+}

@@ -1,0 +1,51 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,l,q,n,f;
+    char ins[7];
+    char ins1[]="RowAdd";
+    char ins2[]="ColAdd";
+    scanf("%d %d",&n,&q);
+    int a[n+1],b[n+1];
+ 
+    for(i=1;i<=n;i++)
+    {
+        a[i]=0;
+        b[i]=0;
+    }
+    while(q--)
+    {
+        scanf("%s %d %d",ins,&f,&k);
+    //printf("%s",ins);
+    if(strcmp(ins,ins1)==0)
+    {
+ 
+        a[f]+=k;
+    }
+    else
+    {
+        b[f]+=k;
+    }
+ 
+    }
+    int maxa=a[1];
+    int maxb=b[1];
+    for(i=1;i<=n;i++)
+    {
+        if(a[i]>maxa)
+        maxa=a[i];
+ 
+ 
+    }
+    for(j=1;j<=n;j++)
+        {
+            if(b[j]>maxb)
+        maxb=b[j];
+ 
+ 
+ 
+        }
+    printf("%d\n",(maxa+maxb));
+
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int h1,h2,m1,m2,s1,s2,hour,min,sec;
+  cin>>h1>>m1>>s1;
+  
+  cin>>h2>>m2>>s2;
+  
+  cout<<h1<<":"<<m1<<":"<<s1<<" "<<"-"<<" "<<h2<<":"<<m2<<":"<<s2<<" "<<"="<<" ";
+  
+  hour=h1-h2;
+  min=m1-m2;
+  sec=s1-s2;
+  
+  if(sec<0)
+  {
+    sec=60+(s1-s2);
+    min=min-1;
+  }
+  if(min<0)
+  {
+    min=60+(m1-m2);
+    hour=hour-1;
+  }
+  if(hour<0)
+  {
+    cout<<"Negative time";
+  } 
+   cout<<hour<<":"<<min<<":"<<sec;
+	return 0;
+}

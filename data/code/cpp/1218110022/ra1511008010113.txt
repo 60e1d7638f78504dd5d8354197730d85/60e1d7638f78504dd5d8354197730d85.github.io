@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+class C1{
+  public:
+  int marks[3];
+  void get_marks(){
+    int i;
+    for(i=0;i<3;i++)
+      cin>>marks[i];
+  }
+};
+class C2:public C1{
+  int sum;
+  public:
+  int calc_sum(){
+    sum=0;
+    for(int i=0;i<3;i++)
+      sum+=marks[i];
+  }
+  int put_sum(){
+    return sum;
+  }
+};
+class C3:public C2{
+  int per;
+  public:
+  void calc_per(){
+    per=put_sum();
+    per=per/3;
+    cout<<per;
+  }
+};
+int main()
+{
+    C3 c;
+    c.get_marks();
+    c.calc_sum();
+    c.calc_per();
+	return 0;
+}

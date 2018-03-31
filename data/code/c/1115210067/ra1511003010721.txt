@@ -1,0 +1,68 @@
+#include<stdio.h>
+int main()
+{
+    int t,k,n,i,count=0,j,c;
+    scanf("%d",&t);
+    
+    while(count<t)
+    {
+        scanf("%d%d",&n,&k);
+        int s[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&s[i]);
+    }
+    j=0;
+     
+        if(k>n)
+        {
+            k=k%n;
+       if(k<n/2)
+       {int a[k];
+       	for(i=0;i<k;i++)
+       	a[i]=s[n-1-i];
+       for(i=n-k-1;i>=0;i--)
+       s[i+k]=s[i];
+   		for(i=0;i<k;i++)
+   		s[i]=a[k-i-1];
+       }
+       else
+       {
+       	int a[n-k];
+       	for(i=0;i<n-k;i++)
+       	 a[i]=s[i];
+        for(i=0;i<k;i++)
+      	 s[i]=s[i+n-k];
+   		for(i=k;i<n;i++)
+   		 s[i]=a[i-k];
+       }
+        }
+        else
+        {
+        	if(k<n/2)
+       {int a[k];
+       	for(i=0;i<k;i++)
+       	a[i]=s[n-1-i];
+       for(i=n-k-1;i>=0;i--)
+       s[i+k]=s[i];
+   		for(i=0;i<k;i++)
+   		s[i]=a[k-i-1];
+       }
+       else
+       {int a[n-k];
+       	for(i=0;i<n-k;i++)
+       	 a[i]=s[i];
+        for(i=0;i<k;i++)
+      	 s[i]=s[i+n-k];
+   		for(i=k;i<n;i++)
+   		 s[i]=a[i-k];
+       }
+        }
+    for(i=0;i<n;i++)
+    printf("%d ",s[i]);
+    printf("\n");
+    count++;
+    }
+  
+  return 0;
+}

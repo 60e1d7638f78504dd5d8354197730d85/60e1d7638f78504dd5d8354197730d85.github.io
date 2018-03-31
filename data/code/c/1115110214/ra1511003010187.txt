@@ -1,0 +1,33 @@
+#include <stdio.h>
+int ways(int i,int j,int n,int m)
+{
+  
+  if(i>n||j>m||i<1||j<1)
+    return 0;
+  if(i==n)
+    return 1;
+  if(i%2==1)
+  {
+    return(ways(i+1,j+1,n,m)+ways(i+1,j-1,n,m));           
+  }
+  else
+     return(ways(i+1,j+1,n,m)+ways(i+1,j,n,m)+ways(i+1,j-1,n,m));
+}
+int main()
+{
+  int n,m,t,i,j,ans=0;
+  scanf("%d",&t);
+  while(t--)
+  {
+    ans=0;
+    scanf("%d %d",&n,&m);
+    i=1;
+    for(j=1;j<=m;j++)
+    {
+      ans=ans+ways(i,j,n,m);
+    }
+    printf("%d\n",ans);
+  }
+
+	return 0;
+}

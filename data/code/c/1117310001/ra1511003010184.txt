@@ -1,0 +1,80 @@
+#include <stdio.h>
+#define MAXM 1000000007
+ 
+int emod(int n,int e)
+{
+	if (e==0) return 1;
+	if (e%2==0)
+	{
+		int t=emod(n,e/2);
+		long long int t1=(long long int)t*t;
+		t1%=MAXM;
+		int t3=(int)t1;
+		return t3;
+	}
+	long long int t2=(long long int)n*emod(n,e-1);
+	t2%=MAXM;
+	int t4=(int)t2;
+	return t4;
+}
+ 
+int inv[5001];int fact[5001];
+ 
+long long int ncr(int n,int r)
+{
+	long long int t3=(long long int)fact[n]*inv[r];
+	t3%=MAXM;
+	t3*=inv[n-r];
+	t3%=MAXM;
+	return t3<0?t3+MAXM:t3;
+}
+ 
+int main()
+{
+	int n,k;
+	//preprocessing
+	int i;
+	for (i=1;i<=5000;i++) inv[i]=emod(i,MAXM-2);
+	for (i=2;i<=5000;i++)
+	{
+		long long int t5=(long long int)inv[i-1]*inv[i];t5%=MAXM;
+		if (t5<0) t5+=MAXM;
+		inv[i]=(int)t5;
+	}
+	fact[0]=1;fact[1]=1;inv[0]=1;
+	for (i=2;i<=5000;i++)
+	{
+		long long int t4=(long long int)fact[i-1]*i;t4%=MAXM;
+		if (t4<0) t4+=MAXM;
+		fact[i]=(int) t4;
+	}
+	scanf("%d %d",&n,&k);
+ 
+	while (!(k==0&&n==0))
+	{
+	
+		if (k&1)
+		{
+			int kp=(k+1)/2;
+			long long int t1=ncr(n-2,kp-1);
+			long long int t2=(t1*t1)%MAXM;
+			long long int t3=(2ll*t2)%MAXM;
+			printf("%lld\n",t3<0?t3+MAXM:t3);
+		}
+		else
+		{
+			int k1=k/2;
+			int k2=(k+1)-k1;
+			long long int t1=ncr(n-2,k1-1);
+			long long int t2=ncr(n-2,k2-1);
+			long long int t3=(t1*t2)%MAXM;
+			long long int t4=(2ll*t3)%MAXM;
+			printf("%lld\n",t4<0?t4+MAXM:t4);
+		}
+ 
+		//int res=2ll*ncr(n-2, k/2)*ncr(n-2, (k-1)/2)%MAXM;
+		//printf("%d\n",res);
+		scanf("%d %d",&n,&k);
+	}
+	return 0;
+}

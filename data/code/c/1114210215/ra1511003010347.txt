@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+void reverse(char str1[], int index, int size)
+{
+    char temp;
+    temp = str1[index];
+    str1[index] = str1[size - index];
+    str1[size - index] = temp;
+    if (index == size / 2)
+    {
+        return;
+    }
+    reverse(str1, index + 1, size);
+}
+int main()
+{
+    char s1[100],s2[100];
+    int size;
+    scanf("%s %s",s1,s2);
+    size = strlen(s1);
+    reverse(s1, 0, size - 1);
+    if(strcmp(s1,s2)==0)
+     printf("YES");
+    else
+     printf("NO");
+	return 0;
+}

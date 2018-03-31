@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+int hcf(  int a,int b){
+	if(b == 0) return a;
+	else return hcf(b, a%b);
+}
+ 
+int main(void){
+ 
+int t;
+scanf("%d",&t);
+while(t--){
+ int n;
+ scanf("%d",&n);
+ int i,j;
+int arr[n],min=99999, gcd, lcm;
+ for(i=0; i<n; i++){
+ 	scanf("%d",&arr[i]); 	
+ }
+ for(i=0;i<n; i++){
+ 	for(j=i+1; j<n ; j++){
+ 		if( arr[i] > min || arr[j] > min) continue;
+ 		gcd= hcf(arr[i],arr[j]);
+ 		lcm= (arr[i]* arr[j])/gcd;
+ 		if(min >lcm) min=lcm; 
+ 		
+ 	}
+ }
+ printf("%d\n",min);
+} 
+ 
+}    

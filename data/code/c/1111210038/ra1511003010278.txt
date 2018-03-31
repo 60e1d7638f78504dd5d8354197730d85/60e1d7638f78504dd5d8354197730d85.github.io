@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  	int num,i,sum=0,r=0;
+	int a[50],rev[50];
+  	scanf("%d",&num);
+  	for(i=0;i<num;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    for(i=0;i<num;i++)
+    {
+      printf("a[%d]=%d\n",i,a[i]);
+      sum=sum+a[i];
+    }
+    printf("Sum=%d",sum);
+    i=0;
+    while(sum>0)
+    {
+      rev[i]=sum%10;
+      sum=sum/10;
+      i++;
+    }
+    num=i;
+    i=0;
+    if(rev[0]==0)
+    {
+      i=1;
+    }
+  	//printf(" rev=");
+    for(i;i<num;i++)
+    {
+      r=r*10;
+      r=rev[i]+r;
+      //printf("%d",rev[i]);
+    }
+  	printf(" rev=%d",r);
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+const int N=100;
+int T,n,m,c[100],p[100];
+int dp1[100],dp2[100];
+int main()
+{
+scanf("%d",&T);
+  int t,i,j;
+  for(t=1;t<=T;t++)
+  {
+    scanf("%d %d",&n,&m);
+  for(i=1;i<=n;i++)
+  {
+    scanf("%d %d",&c[i],&p[i]);
+  }
+    memset(dp1,0,sizeof(dp1));
+    memset(dp2,0,sizeof(dp2));
+    dp1[0]=1;
+    for(i=1;i<=40;i++)
+    {
+      int s1=0;
+      int s2=0;
+      //int j;
+      for(j=1;j<=n;j++)
+      {
+        if(c[j]==i)
+        {
+          s1++;
+          s2+=p[j];
+        }
+      }
+      if(s1==0)
+      {
+        continue;
+      }
+      for(j=i-1;j>=0;j--)
+      {
+        dp1[j+1]+=dp1[j]*((1LL<<s1)-1);
+        dp2[j+1]+=dp2[j]*((1LL<<s1)-1)+1LL*s2*(1LL<<(s1-1))*dp1[j];
+      }
+    }
+    int sum1=0;
+    int sum2=0;
+    int x;
+    for(x=m;x<=40;x++)
+    {
+      sum1+=dp1[x];
+      sum2+=dp2[x];
+    }
+    printf("%.9f\n",1.0*sum2/sum1);
+  }
+	return 0;
+}

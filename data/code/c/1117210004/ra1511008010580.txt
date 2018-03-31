@@ -1,0 +1,102 @@
+#include<stdio.h>
+int n,e;
+int dis_num[1009],dis_low[1009];
+int time = 0;
+int parent[1009],visit[1009];
+int adjl[1009][1009] = {0};
+int arc[1009] = {0};
+int min(int x,int y){
+	if( x > y)
+		return y;
+	return x;
+	
+}
+void dfs_visit(int u,int v){
+	time = time + 1;
+	dis_low[u] = dis_num[u] = time;
+	visit[u]   = 1;
+	int k = 0;
+	int child = 0;
+	//printf("discovered :: %d %d\n",u,v);
+	while(adjl[u][k] != 0){
+		int ver = adjl[u][k];
+		if(visit[ver] == 0){
+			child++;
+			//printf("child : %d\n",ver);
+			parent[ver] = u;
+			dfs_visit(ver,u);
+			dis_low[u] = min(dis_low[u],dis_low[ver]);
+			//printf("child : %d  of %d low val %d\n",ver,u,dis_low[u]);
+			if(parent[u] == -1){
+				if(child > 1){
+					arc[u] = 1;
+					//if(u == 1){printf("1 - %d %d %d\n",v,ver,dis_low[u]);}
+				}
+			}
+			
+			if(parent[u] != -1 && dis_low[ver] >= dis_num[u]){ //ver cannot reach any vertex w having dfs_num[w] < dfs_num[u]
+				//printf("No back edge : %d %d\n",u,ver);
+				arc[u] = 1;
+			}
+		}
+		else if(ver != v){ //back edge
+			//printf("back edge : %d %d\n",u,ver);
+			dis_low[u] = min(dis_low[u],dis_num[ver]);//silly mistake
+		} 
+		k++;
+	}
+	visit[u] = 2;
+}
+void dfs(){
+	int i,j;
+	for(i = 1 ; i <= n ; i++){
+		if(visit[i] == 0){
+			dfs_visit(i,-1);
+		}
+	}
+}
+int main(){
+	//freopen("out.txt", "r", stdin);
+	scanf("%d %d",&n,&e);
+	int i,j,k;
+	for(i = 1 ; i <= e ; i++){
+		int a,b;
+		k = 0;
+		scanf("%d %d",&a,&b);
+		while(adjl[a][k] != 0){
+			k++;
+		}
+		adjl[a][k] = b;
+		k = 0;
+		while(adjl[b][k] != 0){
+			k++;
+		}
+		adjl[b][k] = a;
+	}
+	for(i = 0 ; i <= n ; i++){
+		parent[i]  = -1;
+		visit[i]   = 0;
+		dis_num[i] = 0;
+		dis_low[i] = 0;
+	}
+	dfs();
+	int m;
+	scanf("%d",&m);
+	while(m--){
+		int a;
+		int count = 0;
+		scanf("%d",&a);
+		if(arc[a] == 1){
+			k = 0;
+			while(adjl[a][k] != 0){
+				count++;
+				k++;
+			}
+			printf("Satisfied %d\n",count);
+		}
+		else{
+			printf("Not Satisfied\n");
+		}
+	}
+	
+}

@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int n,c[100],csize=0,i,m,count,tmp;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    tmp = n+1;
+    while(tmp <= 2*n)
+      c[csize++] = i + tmp++;
+  }
+  scanf("%d",&m);
+  while(m--){
+      scanf("%d",&tmp);
+      count = 0;
+      for(i=0;i<csize;i++)
+      {
+          if(c[i]==tmp)count++;
+      }
+      printf("\n%d",count);
+  }
+  return 0;
+  }

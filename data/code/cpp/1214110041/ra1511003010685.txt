@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+class stu{
+  public:
+  int rolll;
+  string namee;
+  float avg;
+  
+  stu(int roll,string nam){
+    rolll=roll; 
+    namee=nam;
+  }
+  stu(){};
+  void init(int subjectt){
+    int *ptr=new int[subjectt]; 
+  for(int i=0;i<subjectt;i++){
+  	cin>>ptr[i];
+    avg+=ptr[i];
+  }
+    avg=avg/subjectt;
+  }
+  
+  
+  void print(){
+  	cout<<namee<<" "<<rolll<<" "<<avg<<" ";
+    if(avg>80){
+    	cout<<"Class A"<<endl;
+    	}
+    else if(avg>70){
+    	cout<<"Class B"<<endl;
+    	}
+    else if(avg>60){
+    	cout<<"Class C"<<endl;
+    }
+    
+  	}
+ };
+int main()
+{
+  int size;
+  cin>>size;
+  string name;
+  int roll,subject;
+  stu obj[size];
+  
+  for(int i=0;i<size;i++){
+  cin>>name>>roll>>subject;
+  obj[i]=stu(roll,name);
+  obj[i].init(subject);
+  obj[i].print();
+  }
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main(){
+int t,n,diff,*a,i,j;
+scanf("%d",&t);
+while(t--){
+scanf("%d",&n);
+a=malloc(n*sizeof(int));
+for(i=0; i<n; i++){
+    scanf("%d",a+i);
+}
+ 
+diff=abs(a[0]-a[1]);
+for(i=0; i<n; i++){
+for(j=i+1; j<n; j++){
+    if(diff>=abs(a[i]-a[j])){
+        diff=abs(a[i]-a[j]);
+    }
+}
+}
+printf("\n%d",diff);
+}
+return 0;
+}
+ 

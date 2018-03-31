@@ -1,0 +1,34 @@
+#include <stdio.h>
+  #include <stdlib.h>
+  int main() {
+        int **mat, order,order1, i , j;
+
+        /* get the order of the matrix */
+      
+        scanf("%d%d", &order,&order1);
+
+        /* dynamically allocate memory to store data  */
+        mat = (int **)malloc(sizeof (int) * order);
+        for (i = 0; i < order; i++)
+                mat[i] = (int *)malloc(sizeof (int) * order);
+
+        /* get the input matrix from user */
+   
+        for (i = 0; i < order; i++)
+                for (j = 0; j < order; j++)
+                        scanf("%d", &mat[i][j]);
+
+        /* check for lower triangular matrix */
+        for (i = 0; i < order; i++) {
+                for (j = i + 1; j < order; j++) {
+                        if (mat[i][j] != 0) {
+                                printf("no\n");
+                                exit(0);
+                        }
+                }
+        }
+
+        /* print the result */
+        printf("yes\n");
+        return 0;
+  }

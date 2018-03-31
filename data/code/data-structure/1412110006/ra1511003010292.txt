@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.Arrays;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+		int arr[] = new int[n];
+       for(int i =0 ; i<n ; i++)
+       {
+         int a = sc.nextInt();
+         arr[i] = a;
+         int j=0;
+         while(arr[i]>arr[j])
+           j++;
+         if(j<i)
+         {int x=arr[i];
+          
+         for(int k=i-1;k>=j;k--)
+         {arr[k+1]=arr[k];
+         }
+          arr[j]=x;
+         }int median;
+         if(i%2==0)
+           median=arr[i/2];
+         else
+           median=(arr[i/2]+arr[i/2+1])/2;
+         System.out.println(median);
+       }
+	}
+}

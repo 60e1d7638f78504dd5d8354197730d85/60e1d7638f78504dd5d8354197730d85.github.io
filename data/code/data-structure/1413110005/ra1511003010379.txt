@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+  
+  int maxi=0;
+  int max=a[maxi];
+  for(i=1;i<size;i++)
+  {
+    if(a[i]>max)
+    {
+      max=a[i];
+    }
+  }
+  
+  int max2i=0;
+  int max2=a[max2i];
+  for(i=1;i<size;i++)
+  {
+    if(a[i]>max2 && a[i]!=max)
+    {
+      max2=a[i];
+    }
+  }
+ 
+  a[maxi]=-1000;
+  a[max2i]=-1000;
+  
+  int max3=a[0];
+  for(i=1;i<size;i++)
+  {
+    if(a[i]>max3 && a[i]!=max2 && a[i]!=max)
+    {
+      max3=a[i];
+    }
+  }
+
+  //printf("%d %d %d",max,max2,max3);
+  printf("The third Largest element is %d",max3);
+	return 0;
+}

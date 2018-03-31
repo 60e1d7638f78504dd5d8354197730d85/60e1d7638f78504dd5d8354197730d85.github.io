@@ -1,0 +1,52 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct College {
+  	char name[100];
+  	char city[100];
+  	int establishmentYear;
+  	float passPercentage;
+  	//struct College *next;
+};
+//struct College* head = NULL;
+
+struct College* getDetails() {
+	struct College* temp = (struct College*)malloc(sizeof(struct College));
+  	scanf("%s", temp->name);
+  	scanf("%s", temp->city);
+  	scanf("%d", &temp->establishmentYear);
+  	scanf("%f", &temp->passPercentage);
+  	return temp;
+}
+
+
+int main()
+{
+  	int n;
+  	scanf("%d", &n);
+  	struct College *clg[n];
+  	int i,j;
+  	for(i=0; i<n; i++) {
+    	clg[i] = getDetails();
+    }
+  	for(i=0; i<n-1; i++) {
+    	for(j=0; j<n-1-i; j++) {
+        	if(strcmp(clg[j]->name, clg[j+1]->name) > 0) {
+            	struct College* temp = clg[j];
+              	clg[j] = clg[j+1];
+              	clg[j+1] = temp;
+            }
+        }
+    }
+  	printf("Details of colleges\n");
+  	for(i=0; i<n; i++) {
+    	printf("Name:%s\n", clg[i]->name);
+      	printf("City:%s\n", clg[i]->city);
+      	printf("Year of establishment:%d\n", clg[i]->establishmentYear);
+      	printf("Pass percentage:%.1f\n", clg[i]->passPercentage);
+    }
+
+	return 0;
+}

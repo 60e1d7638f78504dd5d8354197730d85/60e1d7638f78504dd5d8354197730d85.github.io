@@ -1,0 +1,47 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+struct College
+{
+char name[100];
+char city[100];
+int establishmentYear;
+float passPercentage;
+};
+int main()
+{
+  int n,t1;
+  cin>>n;
+  struct College S1[n],t;
+  
+  for(int i=0;i<n;i++)
+    cin>>S1[i].name>>S1[i].city>>S1[i].establishmentYear>>S1[i].passPercentage;
+  
+  for(int i=0;i<n-1;i++)
+    {
+        for(int j=0;j<n-i-1;j++)
+        {
+            t1=strcmp(S1[j].name,S1[j+1].name);
+            if(t1>0)
+            {
+                t=S1[j];
+                S1[j]=S1[j+1];
+                S1[j+1]=t;
+            }
+           
+        }
+  }
+  cout<<"Details of colleges"<<endl;
+for(int i=0;i<n;i++)
+{
+  cout<<"Name:"<<S1[i].name<<endl;
+
+cout<<"City:"<<S1[i].city<<endl;
+
+cout<<"Year of establishment:"<<S1[i].establishmentYear<<endl;
+  
+
+cout<<"Pass percentage:"<<S1[i].passPercentage<<endl;
+}
+	return 0;
+}

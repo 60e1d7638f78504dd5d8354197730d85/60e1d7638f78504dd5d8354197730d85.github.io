@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+# define max 1005 
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while (t--)
+	{
+		char str[max];
+		int i = 0;
+		int count = 0;
+		int a1[26] = {0};
+        int a2[26] = {0};
+		int x = 0;
+		scanf("%s",str);
+		int n = strlen(str);
+ 
+			x = n/2;
+			for (i = 0; i < x; i++)
+			{
+				a1[str[i] - 'a']++;
+			}
+			for (i = (n+1)/2; i < n; i++)
+			{
+				a2[str[i] - 'a']++;
+			}
+		i = 0;
+			while (i < 26)
+			{
+				if (a1[i]!=a2[i])
+				{
+					count = 1;
+					break;
+				}		
+				i++;
+			}
+		if (count > 0)
+		{
+			printf("NO\n");
+		}
+		else
+			printf("YES\n");
+	}
+  return 0;
+}

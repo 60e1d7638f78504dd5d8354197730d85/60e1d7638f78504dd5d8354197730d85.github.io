@@ -1,0 +1,26 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int len, i;
+    long long int sum1 = 0, sum2 = 0, sum3 = 0;
+    long int num[100000];
+    scanf("%d", &len);
+    
+    for(i=0; i<len; i++) {
+        scanf("%ld ", &num[i]);
+    }
+
+    for(i=0; i<len; i=i+3) {
+        if(i<len)
+        sum1 += num[i];
+        if(i+1<len)
+        sum2 += num[i+1];
+        if(i+2<len)
+        sum3 += num[i+2];
+    }
+    
+    printf("%lld %lld %lld", sum1, sum2, sum3);
+    return 0;
+}

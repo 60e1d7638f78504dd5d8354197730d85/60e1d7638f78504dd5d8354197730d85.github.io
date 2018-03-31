@@ -1,0 +1,43 @@
+#include<stdio.h>
+int mini(int len)
+{
+	 int toret=len;
+	if(len<2)
+		return 0;
+	if(len==2)
+		return toret;
+	 if(len%2==0)
+	 	toret+=2*mini(len/2);
+		else
+		toret+=mini(len/2)+mini(len/2+1);
+	 return toret;
+}
+ 
+int main()
+{
+	int t,n,m;
+	int min,max;
+	int i;
+ 
+	scanf("%d",&t);
+	for(;t>0;t--)
+	{
+		scanf("%d%d",&n,&m);
+		//find the mimimum possible total length:
+		min=mini(n+1);
+		if(m<min)
+		{
+			printf("-1\n");
+			continue;
+		}
+		//find the maximum possible length:
+		max=0;
+		for(i=n+1;i>=2;i--)
+			max=max+i;
+		if(m<=max)	
+			printf("0\n");
+		else
+			printf("%d\n",m-max);
+	}
+}
+ 

@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+int check(long int a,long int b)
+{
+int t,nx;
+	if(a==b)
+		return 0;
+	t=a/b;
+	if(a%b==0)
+	{
+		return t-1;
+	}
+	if((nx=check(b,a%b))!=0)
+			return (nx<=t-1)?t:t-1;
+	else
+		return t;
+}
+int main()
+{
+	int t,n,flg;
+	long int a,b;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		flg=0;
+		while(n--)
+		{
+			scanf("%lu %lu",&a,&b);
+			flg=flg^check((a>b)?a:b,(b<a)?b:a);
+		}
+		printf(flg?"YES":"NO");
+		printf("\n");
+	}
+return 0;}
+ 

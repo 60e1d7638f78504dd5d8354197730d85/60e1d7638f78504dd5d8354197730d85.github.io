@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#ifndef ONLINE_JUDGE
+#define ge getchar
+#else
+#define ge getchar_unlocked
+#endif
+typedef long long ll;
+int scani()
+{
+    int  x=0;
+    int neg=0;
+    register int c=ge();
+    for(;((c<'0' || c>'9') && c!='-');c=ge());
+    if(c=='-')
+    {
+    neg=1;
+    c=ge();
+    }
+    for(;c>='0' && c<='9';c=ge())
+    x=(x<<1)+(x<<3)+c-'0';
+    if(neg==1)
+    return -x;
+    return x;
+}
+ 
+ 
+int main()
+{
+	int t,n;
+	int *hasharr=(int *)malloc(5000001*sizeof(int));
+ 
+{
+	int hyp,non,k,i,j;
+	for(i=1;i<=2237;i++){
+		for(j=i+1;j<=2237;j=j+2)
+	{
+		hyp=j*j+i*i;
+		if(hyp%5!=0 && hyp%13!=0 && hyp%17!=0){
+		if(hyp>5000000)break;
+		non=hyp;
+		k=1;
+ 
+		while(non<=5000000)
+		{
+			hasharr[non]=1;
+			k++;
+			non=hyp*k;
+		
+ 
+		}
+	}
+	}
+	}
+}
+	
+	t=scani();
+	while(t--)
+	{
+		n=scani();
+		if(n%5==0||n%13==0||n%17==0)
+			printf("YES\n");
+		else
+		{
+		if(hasharr[n]!=0)
+			printf("YES\n");
+		else
+			printf("NO\n");
+		}
+	}
+	free(hasharr);
+    return 0;
+}
+ 

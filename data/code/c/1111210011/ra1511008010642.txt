@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main ()
+{
+	long long int t;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		long long int h1,m1,h2,m2;
+		scanf("%lld:%lld",&h1,&m1);
+		scanf("%lld:%lld",&h2,&m2);
+		long long int dis;
+		scanf("%lld",&dis);
+		long long int inter;
+		inter=(h1-h2)*60+(m1-m2);
+		printf("%lld.0 ",inter+dis);
+		if(inter >= 2*dis)
+			printf("%lld.0\n",inter);
+		else
+		{
+			if(inter%2==0)
+				printf("%lld.0\n",inter/2+dis);
+			else
+				printf("%lld.5\n",inter/2+dis);
+		}
+	}
+	return(0);
+}
+ 
+ 

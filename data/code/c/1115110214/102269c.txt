@@ -1,0 +1,38 @@
+#include <stdio.h>
+#define HELL 1000000007
+unsigned long long ans,n,m,i,j,x[31]={0},x1[31]={0};
+int main()
+{
+unsigned short t;
+  scanf("%hu",&t);
+  while(t--)
+  {
+    for(i=1;i<31;i++)
+      x[i]=1;
+    scanf("%llu%llu",&n,&m);
+    for(i=n-1;i>0;i--)
+    {
+     if(i&1)
+     {
+       x1[1]=x[2];
+       for(j=2;j<m;j++)
+         x1[j]=(x[j+1]+x[j-1])%HELL;
+       x1[m]=x[m-1];
+     }
+      else
+      {
+        x1[1]=(x[1]+x[2])%HELL;
+        for(j=2;j<m;j++)
+          x1[j]=(x[j-1]+(x[j]+x[j+1])%HELL)%HELL;
+        x1[m]=(x[m-1]+x[m])%HELL;
+      }
+      for(j=1;j<31;j++)
+        x[j]=x1[j];
+    }
+    ans=0;
+    for(i=1;i<=m;i++)
+      ans=(ans+x[i])%HELL;
+    printf("%llu\n",ans);
+  }
+	return 0;
+}

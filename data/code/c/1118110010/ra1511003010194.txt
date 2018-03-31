@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+struct grocery
+{
+  int qty;
+  float price;
+  float amount;
+  char itemname[10];
+};
+int main()
+{
+  struct grocery itm;
+  struct grocery *pitem;
+  
+  pitem=&itm;
+  
+  scanf("%s\n",pitem->itemname);
+  scanf("%f\n",&pitem->price);
+  scanf("%d\n",&pitem->qty);
+  
+  pitem->amount =(float)pitem->qty * pitem->price;
+  
+  
+  printf("Name=%s\nPrice=%f\nQuantity=%d\nTotal Amount=%0.2f\n",pitem->itemname,pitem->price,pitem->qty,pitem->amount);
+  
+	return 0;
+}

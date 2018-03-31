@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+void st(char str[],char ch)
+{
+  int n=strlen(str);
+  int i;
+  char ch1;
+  if(ch>=65 && ch<=90)
+  {
+  	ch1=(int)ch +32;
+  }
+  else if(ch>=97 && ch<=122)
+  {
+  	ch1=(int)ch-32;
+  }
+  
+  for(i=0;i<n;i++)
+  {
+    if(str[i]!=ch && str[i]!=ch1)
+    {
+    printf("%c",str[i]);
+    }
+  }
+}
+
+int main()
+{
+  char s[100];
+  char ch;
+  scanf("%s\n%c",s,&ch);
+  
+  st(s,ch);
+  return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int i;
+  for(i=0;i<t;i++)
+  {
+    int size;
+    scanf("%d",&size);
+    int arr[size];
+    int j;
+    for(j=0;j<size;j++)
+      scanf("%d",&arr[j]);
+    int prod[size];
+    int k,product;
+    for(j=0;j<size;j++)
+    {
+      product = 1;
+      for(k=0;k<size;k++)
+      {
+        if(k==j)
+          product = product * 1;
+        else
+          product = product * arr[k];
+      }
+      prod[j]=product;
+    }
+    for(j=0;j<size;j++)
+      printf("%d ",prod[j]);
+    printf("\n");
+  }
+	return 0;
+}

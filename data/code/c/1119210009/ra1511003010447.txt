@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,element,pos;
+	int a[10]={0};
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  
+  scanf("%d",&pos);
+  scanf("%d",&element);
+  
+  int *p;
+  p=a;
+  
+  for(i=n;i>=pos;i--){
+  *(p+i)=*(p+i-1);
+  }
+  
+  *(p+pos-1)=element;
+  while(*p){
+  printf("%d ",*p);
+    ++p;
+  }
+  
+	return 0;
+}

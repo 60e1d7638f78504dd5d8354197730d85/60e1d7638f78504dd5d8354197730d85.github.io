@@ -1,0 +1,28 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{
+	int t;
+  cin>>t;
+  while(t--){
+  	string s1,s2;
+    cin>>s1>>s2;
+    int i,j,c=0,a1[26]={0},a2[26]={0};
+	transform(s1.begin(),s1.end(),s1.begin(),::tolower);
+    transform(s2.begin(),s2.end(),s2.begin(),::tolower);
+	for(i=0;i<s1.length();i++){
+      a1[s1[i]-'a']++;
+    }
+    for(i=0;i<s2.length();i++){
+      a2[s2[i]-'a']++;
+    }
+    for(i=0;i<26;i++){
+    	if(a1[i]<a2[i]) c+=a1[i];
+      else c+=a2[i];
+    }
+    cout<<c<<endl;
+  }
+	return 0;
+}

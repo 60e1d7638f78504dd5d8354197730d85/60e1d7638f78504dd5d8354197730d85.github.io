@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main()
+{
+    int t,i,j;
+    char a[100000],b[100000],c[100000];
+    scanf("%d",&t);
+    while(t--){
+        scanf("%s%s",a,b);
+        i=0,j=0;
+        while(a[i]!='\0' || b[i]!='\0'){
+            if(a[i]=='W' && a[i]==b[i])
+                c[j]='B';
+            else if(a[i]=='B' && a[i]==b[i])
+                c[j]='W';
+            else
+                c[j]='B';
+            i++;j++;
+        }
+        c[j+1]='\0';
+        printf("\n%s\n",c);
+    }
+    return 0;
+} 

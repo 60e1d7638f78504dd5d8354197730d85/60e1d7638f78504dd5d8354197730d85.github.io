@@ -1,0 +1,31 @@
+import static java.lang.StrictMath.pow;
+import java.util.Scanner;
+public class TestClass 
+{
+double reverse(int x, int length)
+    {
+        if(length == 1)
+        {
+            return x;
+        }
+        else
+        {
+            int b =(int) x % 10;
+            x = x / 10;
+            return (double) ((b * pow(10, length - 1)) + reverse(x, --length));
+        }}
+
+    public static void main(String[] args) 
+    {
+        int n;
+       Scanner s = new Scanner(System.in);
+        n = s.nextInt();
+      String x=Integer.toString(n);
+      TestClass ob1=new TestClass();
+      double d=ob1.reverse(n,x.length());
+      System.out.printf("%.0f",d);
+                                   
+    }
+}
+      
+        

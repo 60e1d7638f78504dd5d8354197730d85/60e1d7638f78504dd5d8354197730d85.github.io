@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<limits.h>
+ #include<malloc.h>
+int main()
+{
+	//intilizing varibles
+	long long w = 0;
+	long long l = 0;
+	long long n = 0;
+	long long * arr;
+	long long size = 0;
+	long long counter = 0;
+	unsigned long long local = 0;
+	long long i = 0;
+	long long index = 0;
+	long long min_rate = LONG_MAX;
+	long long min_height = LONG_MAX;
+	long long min = 0;
+	long long max = 0;
+	long long middle = 0;
+	scanf("%lld",&n);
+	scanf("%lld",&w);
+	scanf("%lld",&l);
+	arr = (long long *)malloc(sizeof(long long) * n * 2);
+	while(n--)
+	{
+		scanf("%lld",&arr[size++]);
+		if(min_height > arr[size-1])
+			min_height = arr[size-1];
+		scanf("%lld",&arr[size++]);
+		if(min_rate > arr[size-1])
+			min_rate = arr[size-1];
+	}
+	
+	max = (w - min_height) % min_rate ? (w - min_height) / min_rate + 1 : (w - min_height) / min_rate;
+	min = 0;
+	while(min <= max)
+	{
+		middle = (min + max )/ 2;
+		local = 0;
+		for (i = 0; (i < size/2); i++)
+		{
+			index = i * 2;
+			if(arr[index] + middle * arr[index + 1] >= l )
+				local = local + arr[index] + middle * arr[index + 1];
+			if(local >= w)
+			{
+				counter = middle;
+				break;
+			}
+		}
+		if(local >= w)
+		{
+			counter = middle;
+			max = middle - 1;
+		}
+		else
+			min = middle + 1;
+	}
+	printf("%llu\n",counter);
+	return 0;
+} 

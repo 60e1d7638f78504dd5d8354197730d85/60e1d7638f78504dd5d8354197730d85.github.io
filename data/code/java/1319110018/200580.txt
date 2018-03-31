@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+static String hexRep = "0123456789ABCDEF";
+private static boolean isNumeric(String cadena) {
+    if ( cadena.length() == 0 || 
+         (cadena.charAt(0) != '-' && Character.digit(cadena.charAt(0), 16) == -1))
+        return false;
+    if ( cadena.length() == 1 && cadena.charAt(0) == '-' )
+        return false;
+
+    for ( int i = 1 ; i < cadena.length() ; i++ )
+        if ( Character.digit(cadena.charAt(i), 16) == -1 )
+            return false;
+    return true;
+}
+public static void hexToDecimall(char c[])
+{
+String hex = new String(c);
+	try
+    {
+    //int val = Integer.parseInt(hex,16);
+    if(!isNumeric(hex))
+    {
+    throw new NumberFormatException();
+    }
+    	int counter = hex.length()-1;
+        int sum = 0;
+	        for (char d:hex.toCharArray()) 
+            {
+            int i = hexRep.indexOf(d);
+            sum = (int) (sum + (Math.pow(16,counter))*i);
+            counter--;
+        }
+        System.out.println(sum);
+}
+catch(NumberFormatException e)
+{
+System.out.println(e);
+}
+        
+}
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        String hex=sc.next();
+        hexToDecimall(hex.toCharArray());
+	}
+}

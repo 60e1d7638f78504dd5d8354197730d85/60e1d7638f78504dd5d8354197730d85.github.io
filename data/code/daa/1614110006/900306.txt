@@ -1,0 +1,25 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+int main()
+{
+int n,k;
+  cin>>n>>k;
+  vector<int>C(n),t(k);
+  for(int i=0;i<n;i++)
+    cin>>C[i];
+  for(int i=0;i<k;i++)
+    t[i]=0;
+  int res=0,j=0;
+  sort(C.begin(),C.end());
+  for(int i=n-1;i>=0;i--)
+  {
+    res+=(t[j]+1)*C[i];
+    t[j]++;
+    j=(j+1)%k;
+  }
+  cout<<res<<" " ;
+	return 0;
+}

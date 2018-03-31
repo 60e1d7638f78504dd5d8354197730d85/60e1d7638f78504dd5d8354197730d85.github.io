@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int n,m;
+  int i,j,temp,sum=0;
+  scanf("%d %d",&n,&m);
+  
+  int amount[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&amount[i]);
+  }
+  
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n-i-1;j++)
+    {
+      if(amount[j]>amount[j+1])
+      {
+        temp=amount[j];
+        amount[j]= amount[j+1];
+        amount[j+1]=temp;
+      }
+    }
+  }
+  
+  for(i=0;i<m;i++)
+  {
+    if(amount[i]>0)
+      break;
+    sum+=abs(amount[i]);
+  }
+  printf("%d",sum);
+	return 0;
+}

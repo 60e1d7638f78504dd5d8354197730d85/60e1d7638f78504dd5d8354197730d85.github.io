@@ -1,0 +1,45 @@
+//#include<cmath.h>
+//#include<cstdio.h>
+//#include<vector.h>
+//#include<iostream.h>
+//#include<algorithm.h>
+#include<bits/stdc++.h>
+#include<string.h>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  for(int q=0;q<t;q++)
+  {
+    int n,k;
+    cin>>n>>k;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+      cin>>arr[i];
+    }
+    int low=0,high=n-1,pos=-1;
+    while(low<=high)
+    {
+      int mid=(low+high)/2;
+      if(arr[mid]==k)
+      {
+        pos=mid;
+        break;
+      }
+        else if(arr[mid]<k)
+        {
+          low=mid+1;
+          pos=mid;
+        }
+        else
+        {
+          high=mid-1;
+        pos=mid-1;
+      }
+    }
+    cout<<pos<<endl;
+  }
+  return 0;
+}

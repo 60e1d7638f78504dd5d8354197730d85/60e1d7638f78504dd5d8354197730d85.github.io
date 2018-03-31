@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include<string.h>
+char keyword[][10]={"auto","break","case","char","const","continue","default","printf", "double","else","enum","extern","float","for","goto","if","int","do", "long","register","return","short","signed","sizeof","static","struct","switch","typedef","union","unsigned","void","volatile","while"}; 
+
+#define SIZE 25
+
+int main()
+{
+char str[SIZE];
+int len,i,flag=0;
+
+scanf("%s",str);
+
+for( i = 0 ; i <= 32 ; i++ )
+{ 
+if(strcmp(str,keyword[i])==0) 
+{ 
+printf("not a valid identifier");
+}
+} 
+if( str[0]=='_' || isalpha(str[0]) )
+{ 
+flag=1;
+len=strlen(str); 
+for(i = 1 ; i < len ; i++ )
+{
+if( str[i]=='_' || isalpha(str[i]) || isdigit(str[i]) )
+continue;
+else
+{
+flag=0;
+
+break;
+}
+}
+} 
+
+if( flag == 1 )
+printf("valid identifier");
+else 
+printf("not a valid identifier");
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+class dist
+{
+  int f,i;
+  public:
+  void get()
+  {
+    cin>>f>>i;
+  }
+  void put()
+  {
+    cout<<"Feet:"<<f<<" Inches:"<<i;
+  }
+  dist operator +(dist &d)
+  {
+    dist t;
+    t.i=i+d.i;
+    t.f=f+d.f+(t.i/12);
+    t.i=t.i%12;
+    return t;
+  }
+};
+int main()
+{
+  dist d1,d2,d3;
+  d1.get();
+  d2.get();
+  d3=d1+d2;
+  d3.put();
+
+	return 0;
+}

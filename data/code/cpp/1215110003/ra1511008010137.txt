@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class Code
+{
+  int number;
+  public:
+  void initializeData()
+  {
+    number=0;
+  }
+  int getNumber()
+  {
+    cin>>number;
+  }
+  void convertTostraightBinary()
+  {
+    int arr[12];
+      for(int i=0;i<12;i++)
+        arr[i]=0;
+    int k=0;
+    while(number>0)
+    {
+      arr[k]=number%2;
+      number/=2;
+      k++;
+    }
+    for(int i=11;i>=0;i--)
+        cout<<arr[i];
+  }
+};
+int main()
+{
+    Code a;
+    a.initializeData();
+    a.getNumber();
+    a.convertTostraightBinary();
+	return 0;
+}

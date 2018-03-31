@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  if(t==0)
+  {
+    printf("0");
+    return t;
+  }
+  while(t--)
+  {
+    int n,k,bread=0,pack,i;
+    scanf("%d%d",&n,&k);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+      bread+=a[i];
+      if(bread%k!=0)
+        bread++;
+    }
+    if(bread%k==0)
+      pack=bread/k;
+    else
+      pack=(bread/k)+1;
+    printf("%d\n",pack);
+  }
+	return 0;
+}

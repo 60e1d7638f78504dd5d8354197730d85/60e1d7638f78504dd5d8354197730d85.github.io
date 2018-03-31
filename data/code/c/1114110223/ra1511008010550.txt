@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int t,i;
+  scanf("%d", &t);
+  int arr[t], sum[t], fd[t], ld[t];
+  for(i=0;i<t;i++)
+  {
+    scanf("%d", &arr[i]);
+  }
+  
+  for(i=0;i<t;i++)
+  {
+    ld[i]= arr[i]%10;
+    while(arr[i]>9)
+    {
+      arr[i]=arr[i]/10;
+    }
+    fd[i]=arr[i];
+    sum[i]=fd[i]+ld[i];
+  }
+  for(i=0;i<t;i++)
+  {
+    printf("%d", sum[i]);
+    if(i!=t-1)
+      printf("\n");
+  }
+	return 0;
+}

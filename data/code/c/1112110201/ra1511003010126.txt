@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int tests[20],n,y,i;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+     	scanf("%d",&tests[i]); 
+    }
+  	
+  	for(i=0;i<n;i++){
+    	y=prime(tests[i]);
+      	if(y==0){
+         printf("no\n"); 
+        }
+      	else{
+         printf("yes\n");
+      	}
+    }
+	return 0;
+}
+int prime(int x){
+ 	int i,y,flag=1;;
+  	for(i=2;i<=(x/2);i++)
+    {
+     	if(x%i==0){
+         	flag=0;
+        }
+    }
+  	if(flag==1){
+     y=1; 
+    }
+  	else{
+     y=0; 
+    }
+  	return y;
+}

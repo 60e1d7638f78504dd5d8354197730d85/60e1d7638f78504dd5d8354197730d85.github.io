@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.Scanner;
+class Sample{
+
+public void getDetails()
+{ 
+}
+  public void displayDetails()
+  {
+    Scanner obj=new Scanner(System.in);
+    int t=obj.nextInt();
+    while(t>0)
+    {
+      int n,k;
+      int i,j,temp;
+      int []a=new int[100];
+      double sum=0,d;
+      n=obj.nextInt();
+       k=obj.nextInt();
+      for(i=0;i<n;i++)
+      {
+      a[i]=obj.nextInt();
+      }
+     for(i=0;i<n;i++){
+       for(j=i+1;j<n;j++){
+         if(a[i]>=a[j]){
+           temp=a[i];
+           a[i]=a[j];
+           a[j]=temp;
+         }
+       }
+     }
+      for(i=0;i<n;i++)
+      {
+        sum=sum+a[i];
+      }
+      d=(sum-a[0]-a[n-1])/(n-2);
+      if(k==0)
+      {
+        System.out.printf("%.6f\n",sum/n);
+      }
+      if(k==1)
+      {
+        System.out.printf("%.6f\n",d);
+      }
+           
+      
+      
+      
+    t--;
+    }
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample objname=new Sample();
+       objname.getDetails();
+       objname.displayDetails();
+	}
+}

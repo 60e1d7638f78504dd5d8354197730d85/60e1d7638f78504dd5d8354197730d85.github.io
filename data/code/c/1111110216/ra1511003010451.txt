@@ -1,0 +1,22 @@
+#include <stdio.h>
+int gcd(int x,int y)
+{
+  if(x==0||y==0)
+    return 0;
+  else if(x==y)
+    return x;
+  else if(x>y)
+    return gcd((x-y),y);
+  else if(x<y)
+    return gcd(x,(y-x));
+}
+    
+int main()
+{
+int a,b;
+  scanf("%d%d",&a,&b);
+  int g=gcd(a,b);
+  int l=(a*b)/g;
+  printf("%d %d",g,l);
+	return 0;
+}

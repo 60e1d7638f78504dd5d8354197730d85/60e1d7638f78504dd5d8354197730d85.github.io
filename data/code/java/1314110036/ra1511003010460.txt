@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+        int n1,n2;
+        Scanner sc=new Scanner(System.in);
+        n1=sc.nextInt();
+        n2=sc.nextInt();
+        Integer arr1[]=new Integer[n1];
+        Integer arr2[]=new Integer[n2];
+		for(int i=0;i<n1;i++)
+          arr1[i]=sc.nextInt();
+        for(int i=0;i<n2;i++)
+          arr2[i]=sc.nextInt();
+        HashSet<Integer> set1 = new LinkedHashSet<>(Arrays.asList(arr1));
+        HashSet<Integer> set2 = new LinkedHashSet<>(Arrays.asList(arr2));
+        set1.retainAll(set2);
+        for(Integer i:set1)
+          System.out.println(i);
+	}
+}

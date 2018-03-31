@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	
+	int N,K;
+	cin>>N>>K;
+	assert(N>=1&&N <= 1000);
+	assert(K>=0&&K <= 1000);
+	vector<int>A(N),cum(N);
+	for(int i=0;i<N;i++){
+	cin>>A[i];
+	assert(A[i]>=0&&A[i]<= 100);
+	}
+	sort(A.begin(),A.end());
+	cum[0]=A[0];
+	for(int i=1;i<N;i++)
+	cum[i]=cum[i-1]+A[i];
+	int count=0;
+	for(count=0;count<N;count++){
+	if(cum[count]<=K)
+	continue;
+	else
+	break;
+	}
+	cout<<count<<endl;
+}

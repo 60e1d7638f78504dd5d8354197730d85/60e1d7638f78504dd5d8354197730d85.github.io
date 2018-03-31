@@ -1,0 +1,44 @@
+#include <stdio.h>
+char * strrev(char s[])
+{
+  int i=0,size=0;
+  char c;
+  for(i=0;s[i]!='\0';i++)
+    size++;
+  for(i=0;i<size/2;i++)
+  {
+    c=s[i];
+    s[i]=s[size-i-1];
+    s[size-i-1]=c;
+  }
+  return s;
+}
+int main()
+{
+	int x,temp,i=0;
+  char h[10],o[10];
+  scanf("%d",&x);
+  printf("Decimal value:%d\n",x);
+  temp=x;
+  while(x)
+  {
+    o[i]=48+x%8;
+    x/=8;
+    i++;
+  }
+  o[i]='\0';
+  printf("Octal value:%s\n",strrev(o));
+  i=0;
+  while(temp)
+  {
+    if(temp%16<10)
+   	  h[i]=48+temp%16;
+    else
+      h[i]=97+(temp%16)%10;
+    temp/=16;
+    i++;
+  }
+  h[i]='\0';
+  printf("Hexadecimal value:%s",strrev(h));
+	return 0;
+}

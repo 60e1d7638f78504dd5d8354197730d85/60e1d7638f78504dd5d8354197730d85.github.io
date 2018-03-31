@@ -1,0 +1,31 @@
+#include<stdio.h>
+ 
+int calc_gcd(int a, int b) {
+ 
+    if (a == 0)
+        return b;
+    else if (b == 0)
+        return a;
+    else
+        return calc_gcd(b, a % b);
+}
+ 
+int main () {
+ 
+    int t = 0;
+    scanf("%d", &t);
+    int i = 0;
+    int n = 0;
+    int m = 0;
+ int result;
+    for (i = 0; i < t; ++i) {
+        scanf("%d %d", &n,&m);
+  
+        int gcd = calc_gcd(n, m);
+        result = (n/gcd) * (m/gcd);
+    
+ 
+        printf("%d\n",result);
+    }
+    return 0;
+} 

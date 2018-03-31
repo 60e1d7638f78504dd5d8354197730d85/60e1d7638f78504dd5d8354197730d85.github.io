@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int stack[20],top=-1;
+void push(int data)
+{
+  top++;
+  stack[top]=data;
+}
+void pop()
+{
+  top--;
+}
+void display()
+{
+  for(int i=0; i<=top; i++)
+    cout<<stack[i]<<" ";
+  cout<<"\n";
+}
+int main()
+{
+   int ch,n,data;
+ do
+ {
+  cin>>ch;
+  switch(ch)
+  {
+    case 1:
+    {
+      cin>>n;
+      for(int i=0; i<n; i++)
+      {
+        cin>>data;
+        push(data);
+      }
+      break;
+    }
+    case 2:
+      pop();
+      break;
+    case 3:
+      display();
+      break;
+    }
+  }while(ch!=0);
+
+	return 0;
+}

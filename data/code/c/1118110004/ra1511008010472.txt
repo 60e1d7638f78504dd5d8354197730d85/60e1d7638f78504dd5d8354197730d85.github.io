@@ -1,0 +1,58 @@
+#include <stdio.h>
+struct DD{
+  int d,m,y;
+}x;
+
+int main()
+{
+  scanf("%d%d%d",&x.d,&x.m,&x.y);
+  int flag=0;
+  if(x.y>=0000 && x.y<=2999){
+    if(x.m>=1 && x.m<=12){
+      if(x.d>=1 && x.d<=31){
+        if((x.m==1)||(x.m==3)||(x.m==5)||(x.m==7)||(x.m==8)||(x.m==10)||(x.m==12)){
+          if(x.d<31){
+            x.d++;
+            flag=1;
+          }
+          else if(x.d==31){
+            x.d=1;
+            x.m++;
+            flag=1;
+          }
+          else{
+            printf("Invalid Day");
+          }
+          if(x.m==13){
+            x.m=1;
+            x.y++;
+          }
+        }
+        else{
+          int XX=28;
+          if((x.y%4==0 && x.y%100!=0) || x.y%400==0) XX=29;
+          if(x.d<XX){
+            x.d++;
+            flag=1;
+          }else if(x.d==XX){
+            x.d=1;
+            x.m++;
+            flag=1;
+          }else{
+            printf("Invalid Day");
+          }
+          if(x.m==13){
+            x.m=1;
+            x.y++;
+          }
+        }
+      }else printf("Invalid Day");
+    }else printf("Invalid Month");
+  }else printf("Invalid Year");
+  if(flag==1 && x.y<3000)printf("New Date=%d %d %d",x.d,x.m,x.y);
+  
+          
+          
+  
+	return 0;
+}

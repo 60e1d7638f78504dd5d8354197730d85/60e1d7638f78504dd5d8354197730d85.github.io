@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+class Sample {
+  	private int num;
+	public void getInput(){
+    	Scanner in = new Scanner (System.in);
+      	num = in.nextInt();
+    }
+  	public void displayFib(){
+         int[] feb = new int[num];
+         feb[0] = 1;
+         feb[1] = 1;
+         for(int i=2; i < num; i++){
+             feb[i] = feb[i-1] + feb[i-2];
+         }
+         for(int i=0; i < num-1; i++){
+                 System.out.print(feb[i] + " ");
+         }
+         System.out.print(feb[num-1]);
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample objname = new Sample();
+       	objname.getInput();
+       	objname.displayFib();
+	}
+}

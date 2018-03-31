@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+int main(void) 
+{
+	int n,k,tweet=0,click,cmp,reset,i,j;
+	int b[1001]={0};
+	char str[10];
+	scanf("%d %d",&n,&k);
+	while(k--)
+	{
+		scanf("%s",str);
+		cmp=strcmp(str,"CLICK");
+		if(cmp==0)
+		{
+		tweet=0;
+		scanf("%d",&click);
+	//	printf("click=%d\n",click);
+		if(b[click]==0)
+		{b[click]=1;
+	//	printf("b[%d]=%d\n",click,b[click]);
+		}
+		else if(b[click]==1)
+		{b[click]=0;
+	//	printf("b[%d]=%d\n",click,b[click]);
+ 
+		}
+		for(i=0;i<=1000;i++)
+		tweet+=b[i];
+		printf("%d\n",tweet);
+		}
+		reset=strcmp(str,"CLOSEALL");
+		if(reset==0)
+		{
+		tweet=0;
+		for(i=0;i<=1000;i++)
+			b[i]=0;
+			printf("%d\n",tweet);
+		}
+		
+		
+	}
+	return 0;
+} 
+
+

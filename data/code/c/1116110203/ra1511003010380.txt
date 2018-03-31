@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<string.h>
+ 
+int main(void) 
+ {
+	
+	  int f=0,x,i;
+	  char n[12345];
+	  scanf("%s",n);
+	  x=strlen(n);
+	  for(i=0;i<x;i++)
+	  {
+	      if(n[i]=='.')
+	      {   
+	          if(n[x-i-1]=='.')
+	         {
+	           n[i]='a';
+	           n[x-i-1]='a';
+	         }
+	         else
+	             n[i]=n[x-i-1];
+	      }
+	  }
+	  for(i=0;i<x;i++)
+	  {
+	      if(n[i] != n[x-i-1])
+	      {
+            f = 1;
+            break;
+	       }
+	  }
+	  
+	  if(f)
+	   printf("-1");
+	   else
+	   {
+	       for(i=0;i<x;i++)
+	        printf("%c",n[i]);
+	   }
+	 
+	
+	return 0;
+}
+ 

@@ -1,0 +1,41 @@
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+const int si=2*1e9+1;
+const long long big=1e15;
+long long mini,n,h,p,o,l,r,day,p1;
+long long a[1000000],sum[1000000];
+int main()
+ {
+    cin >> n;
+    cin >> h;
+    for (int i=1;i<=n; i++)
+        cin>>a[i];
+     for (int i=1;i<=n;i++)
+     {
+        p=i;
+        sum[i]=sum[i-1]+a[i];
+        if (sum[i]>=h-(p*(p+1))/2)
+        {
+            printf("%d\n",i);
+            return 0;
+        }
+     }
+ mini=big;
+ for (int i=1;i<=n;i++)
+   {
+       l=0;
+       r=(si/n)+1;
+     while (l<r-1)
+     {
+       o=(l+r)/2;
+       day=o*n+i;
+       if (h-(day*(day+1))/2 > o*sum[n]+sum[i]) l=o; else r=o;
+     }
+      p=i;
+      p1=n;
+     mini=min(mini,r*p1+p);
+   }
+   printf("%lld",mini);
+  return 0;
+}

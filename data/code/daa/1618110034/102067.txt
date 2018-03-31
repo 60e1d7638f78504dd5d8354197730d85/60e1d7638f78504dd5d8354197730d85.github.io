@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+#define size 100005
+using namespace std;
+int f[size];
+void prefix_function(char p[])
+{
+	f[0]=0;
+	int j=0;
+	for(int i=1;i<strlen(p);i++)
+	{
+		while(j && p[i]!=p[j])
+			j=f[i-1];
+		if(p[i]==p[j])
+			j++;
+		f[i]=j;
+	}
+}
+int main()
+{
+	char t[size],p[size];
+	cin>>p;cin>>t;
+	prefix_function(p);
+	int j=0,lp=strlen(p),count=0;
+	for(int i=0;i<strlen(t);i++)
+	{
+		while(j && t[i]!=p[j])
+			j=f[j-1];
+		if(t[i]==p[j])
+			j++;
+		if(j==lp)
+		{
+			j=f[j-1];
+			count++;	
+		}
+	}
+	printf("%d ",count);
+}

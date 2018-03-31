@@ -1,0 +1,62 @@
+#include<cstdio>
+#include<iostream>
+#include<algorithm>
+#include<map>
+#include<string>
+#define f first
+#define s second
+using namespace std;
+long long n,sol,promena,k,t,bit[1000000];
+//map<long long,long long>bit;
+pair<long long,long long> a[1000000+100];
+string s;
+void upd(long long x)
+{
+    while(x<100000)
+    {
+        bit[x]++;
+        x+=x&-x;
+    }
+}
+long long get(long long x)
+{
+    long long sol=0;
+    while(x>0)
+    {
+        sol+=bit[x];
+        x-=x&-x;
+    }
+    return sol;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld",&n);
+        promena = 0;
+        k=0;
+        for (int i=1;i<=200000;i++)bit[i]=0;
+        for (long long i=1;i<=n;i++)scanf("%lld",&a[i].f),a[i].s = i;
+        sort(a+1,a+n+1);
+        //for (int i=1;i<=n;i++)cout<<a[i].f<<" ";
+        for (long long i=1;i<n;i++)
+        {
+ 
+ 
+           // cout<<a[i].s-get(a[i].s)<<" "<<a[i].f<<endl;
+            if (a[i].f-promena<0){upd(a[i].s);continue;}
+             k = (a[i].f-promena)/(a[i].s-get(a[i].s))+1;
+             promena+=k*(a[i].s-get(a[i].s));
+             upd(a[i].s);
+        }
+        //cout<<a[n].f-promena<<endl;
+        if (a[n].f-promena<0)printf("Kushagra\n");
+        else printf("Ladia\n");
+ 
+    }
+ 
+    return 0;
+}

@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int number;
+  scanf("%d",&number);
+  while(number!=0)
+   {
+    int arr[100],first,last,n;
+    scanf("%d %d",&n,&first);
+    int i,j,temp=0;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+    for(i=0;i<n-1;++i)
+    {
+      for(j=0;j<n-1-i;++j)
+      {
+        if(arr[j]>arr[j+1])
+        {
+          temp=arr[j];
+          arr[j]=arr[j+1];
+          arr[j+1]=temp;
+        }
+      }
+    }
+    float sum=0;
+    last=n-first;
+    for(i=first;i<last;i++)
+    {
+       sum+=arr[i];
+    }
+    float average;
+    average=sum/(n-(2*first));
+    printf("%f\n",average);
+    number--;
+  }
+	return 0;
+}

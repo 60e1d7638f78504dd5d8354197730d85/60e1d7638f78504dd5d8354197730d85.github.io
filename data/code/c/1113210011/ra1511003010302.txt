@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int t;
+  scanf("%d", &t);
+  while(t--){
+  	int n, i, j, min, sum = 0, sub = 0;
+    scanf("%d", &n);
+    int s[n];
+    for(i = 0; i < n; i ++){
+      scanf("%d", &s[i]);
+  }
+    min = s[0];
+   // printf("%d", min);
+    for(i = 0; i < n-1; i++){
+      for(j = 1; j < n; j++){
+     	sub = abs(s[i]- s[j]);
+        //printf("%d\n", sub);
+        if(sub > 0 && min > sub)
+          min = sub;
+      }
+    }
+    printf("%d", min);
+  }
+	return 0;
+}

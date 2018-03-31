@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+    int n, arr[1000], i, d, temp;
+    scanf("%d", &n);
+    for (i=0; i<n; ++i)
+    {
+       scanf("%d", &arr[i]);
+    }
+    for(i=0; i<n; ++i)
+    {
+       d=i;
+       while(d>0 && arr[d-1]>arr[d])
+       {
+          temp=arr[d-1];
+           arr[d-1]= arr[d];
+           arr[d]=temp;
+          --d;
+       }
+    }
+    for (i=0; i<n; ++i){
+     printf("%d ", arr[i]);}
+	return 0;
+}

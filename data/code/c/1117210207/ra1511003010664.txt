@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+ 
+long long int powermat[41][1000005];
+ 
+long long int func1(long long int base, long long int power)
+{
+    long long int high,low,mid,ans;
+    if(power==1)
+    {
+        if(base%2==0)
+            return base/2-1;
+        else
+            return base/2;
+    }
+    else
+    {
+        low=2;
+        high = powermat[power][0]-1;
+        ans=-1;
+        while(low<=high)
+        {
+            mid =(low+high)/2;
+            if(2*powermat[power][mid]<base)
+            {
+                ans=mid;
+                low=mid+1;
+            }
+            else
+                high=mid-1;
+        }
+        return ans;
+    }
+}
+ 
+long long int func2(long long int base, long long int power)
+{
+        long long int high,low,mid,ans;
+        low=2;
+        high = powermat[power][0]-1;
+        ans=-1;
+        while(low<=high)
+        {
+            mid =(low+high)/2;
+            if(powermat[power][mid]<=base)
+            {
+                ans=mid;
+                low=mid+1;
+            }
+            else
+                high=mid-1;
+        }
+        return ans;
+}
+ 
+/*long long int func3(long long int i, long long int num)
+{
+    long long int a,ans=1;
+    for(a=1;a<=num;a++)
+        ans*=i;
+    return ans;
+}*/
+ 
+int main()
+{
+    long int t;
+    long long int i,n,ans1,save,num1,num2,po,j;
+    //freopen("input.txt","r",stdin);
+    //freopen("output2.txt","w",stdout);
+    for(i=2;i<=40;i++)
+    {
+        for(j=2;j<=1000000;j++)
+        {
+            powermat[1][j]=j;
+            if(j*powermat[i-1][j]>1000000000000 || powermat[i-1][j]==0)
+                break;
+            powermat[i][j] = j*powermat[i-1][j];
+        }
+        powermat[i][0] = j;
+    }
+    scanf("%ld",&t);
+    while(t--)
+    {
+        scanf("%lld",&n);
+        if(n==0)
+            printf("0\n");
+        else if(n==1)
+            printf("INFINITY\n");
+        else
+        {
+            save = n;
+            ans1 = n-1;
+            po = 1;
+            while(1)
+            {
+                if(po>39)
+                    break;
+                num1 = func1(save+1,po);
+                num2 = func2(save,po+1);
+                if(num1==-1 || num2==-1 || (num1<num2))
+                    break;
+                ans1 -= (num1-num2);
+                po++;
+            }
+            printf("%lld\n",ans1);
+        }
+    }
+    return 0;
+}

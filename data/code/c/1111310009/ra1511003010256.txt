@@ -1,0 +1,75 @@
+ #include<stdio.h>
+    long long int fact[30];
+    int power[21];
+    int sieve[2000001];
+    int main(){
+        int i;
+        power[0]=1;
+        for(i=1;i<21;i++)
+            power[i]=power[i-1]*2;
+        fact[0]=1;
+     
+        for(i=1;i<20;i++)
+            fact[i]=(fact[i-1]*(i+2))/(i);
+    for(i=2;i<=2000000;i++)
+        sieve[i]=i;
+        for(i=2;i*i<=2000000;i++)
+        {
+            int j;
+     
+            if(sieve[i]==i){
+     
+                for(j=2*i;j<=2000000;j=j+i)
+                    if(sieve[j]>i)
+                    sieve[j]=i;
+     
+            }
+     
+        }
+     
+     
+    int t;
+    scanf("%d",&t);
+     
+    while(t--){
+     
+        long long int ans=0;
+        int n;
+        scanf("%d",&n);
+        int pro;
+        for(i=n-1;i>=1;i--)
+        {
+    long long int d=0;
+            pro=i*(n-i)-1;
+    int count=0;
+            int j;
+            for(j=1;j*j<=pro;j++)
+            {
+                count++;
+     
+            d=d+(pro/j)-j;
+     
+            }
+     
+            ans=ans+(d*2)+count;
+     
+     
+     
+     
+        }
+     
+     
+       printf("%lld\n",ans);
+     
+     
+    }
+     
+     
+     
+     
+     
+     
+    return 0;
+     
+    }
+       

@@ -1,0 +1,71 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+typedef unsigned long long int ll;
+ll readL(void)
+{
+    register int c = gc();
+    ll x = 0;
+    for(; (c<48 || c>57); c = gc());
+    for(; c>47 && c<58; c = gc()) {
+        x = (x<<1) + (x<<3) + c - 48;
+    }
+    return x;
+}
+int main()
+{
+    int t,i,j,p;
+    ll n,k,a[100001],remaining,pack;
+    scanf("%d",&t);
+    if((t>=1)&&(t<=10))
+    {
+        for(p=0; p<t; p++)
+        {
+            n=readL();
+            k=readL();
+            if((n>=1)&&(n<=100000)&&(k>=1)&&(k<=100000000000))
+            {
+                i=0;
+                remaining=0;
+                pack=0;
+                for(i=0; i<n; i++)
+                {
+                    a[i]=readL();
+                }
+                for(i=0; i<n; i++)
+                {
+                    if((a[i]>=1)&&(a[i]<=1000000))
+                    {
+                        j=0;
+                        if(remaining<a[i])
+                        {
+                            for(; remaining<a[i]; j++)
+                            {
+                                remaining+=k;
+                                pack++;
+                            }
+                            remaining-=a[i];
+                            if(remaining>=1)
+                            {
+                                remaining--;
+                            }
+                        }
+                        else if(remaining==a[i])
+                        {
+                            remaining-=a[i];
+                        }
+                        else
+                        {
+                            remaining-=a[i];
+                            if(remaining>=1)
+                            {
+                                remaining--;
+                            }
+                        }
+                    }
+                }
+                printf("%lld\n",pack);
+            }
+        }
+    }
+    return 0;
+} 

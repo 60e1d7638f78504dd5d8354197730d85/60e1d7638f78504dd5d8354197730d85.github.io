@@ -1,0 +1,29 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        string s, ans = "YES";
+        cin >> s;
+        int i;
+        if(s[0] != s[1])
+        {
+            for(i = 2; i < s.length(); i++)
+            {
+                if(s[i] != s[i-2])
+                {
+                    ans = "NO";
+                    break;
+                }
+            }
+            cout << ans << endl;
+        }
+        else cout << "NO" << endl;
+    }
+    return 0;
+}

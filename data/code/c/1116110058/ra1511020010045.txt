@@ -1,0 +1,92 @@
+/*#include <stdio.h>
+#include <string.h>
+int main()
+{
+int a,i,l,j,n,k;
+  char c[50],d[50],f[10];
+  scanf("%d",&n);
+  scanf("%s",c);
+  a=strlen(c);
+  for(i=0;i<a;i++)
+  {
+    f[i]=c[i];
+  }
+  f[i]='\0';
+  //printf("%s",f);
+  while(n>1)
+  {
+  scanf("%s",d);
+  k=strlen(d);
+  for(i=0;i<a;i++)
+  {
+    //printf("x");
+    for(j=0;j<k;j++)
+    {
+    if(d[j]==f[i])
+    {
+      f[i]=d[j];
+      printf("%c",f[i]);
+      break;
+    }
+      
+    }
+  }
+    
+    n--;
+    
+  }
+  for(i=0;i<a;i++)
+  {
+    printf("%c",f[i]);
+  }
+	return 0;
+}*/
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	int N;
+	int i, j, slen;
+	char s[101];
+	int m[26];
+	int c[26];
+	int found;
+	scanf("%d", &N);
+	for(i = 0; i < 26; i++)
+	{
+		m[i] = 100;
+	}
+	for(i = 0; i < N; i++)
+	{
+		for(j = 0; j < 26; j++)
+		{
+			c[j] = 0;
+		}
+		scanf("%s", s);
+		slen = strlen(s);
+		for(j = 0; j < slen; j++)
+		{
+			c[s[j] - 'a']++;
+		}
+		for(j = 0; j < 26; j++)
+		{
+			if(c[j] < m[j]) 
+			{
+				m[j] = c[j];
+			}
+		}
+	}
+	found = 0;
+	for(i = 0; i < 26; i++)
+	{
+		for(j = 0; j < m[i]; j++)
+		{
+			printf("%c", i + 'a');
+			found = 1;
+		}
+	}
+	if(found) printf("\n");
+	else printf("no such string\n");
+	return 0;
+} 

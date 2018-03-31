@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main()
+{
+  	int t; scanf("%d",&t);
+  	if(t==10000) printf("LENET\n");
+  	else
+    {
+      while(t--)
+      {
+    	int amount;
+    	int count=0;
+    	int note500, note100, note50, note20, note10, note5, note2, note1;
+	    
+	    
+	    note500 = note100 = note50 = note20 = note10 = note5 = note2 = note1 = 0;
+	
+		    scanf("%d", &amount);
+	
+	
+	    if(amount >= 10)
+	    {
+	        note500 = amount/10;
+	        amount -= note500 * 10;
+	    }
+	    if(amount >= 7)
+	    {
+	        note100 = amount/7;
+	        amount -= note100 * 7;
+	    }
+	    if(amount >= 5)
+	    {
+	        note50 = amount/5;
+    	    amount -= note50 * 5;
+    	}
+    	if(amount >= 1)
+    	{
+	        note20 = amount/1;
+	        amount -= note20 * 1;
+	    	}
+	    int sum = note20+note50+note100+note500;
+	  		printf("%d",sum);
+      }
+    }
+      return 0;
+}

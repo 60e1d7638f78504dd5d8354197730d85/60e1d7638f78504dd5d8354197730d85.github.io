@@ -1,0 +1,68 @@
+#include<stdio.h>
+ 
+ 
+int scan_f( int *location)
+{
+register int digit;
+register int result = 0;
+ 
+while( (digit = getchar()) >= '0')
+result = (result << 3) + (result << 1) + digit - '0';
+ 
+*location = result;
+ 
+return 0;
+}
+int main()
+{
+	register int i=0,cnt=0;
+	int N=0,x1=0,x2=0,x3=0,y1=0,y2=0,y3=0;
+	int a,b,c,max,m1,m2,m3;
+	scan_f(&N);
+	for(;i<N;i++)
+	{
+		//scanf("%d%d%d%d%d%d",&x1,&y1,&x2,&y2,&x3,&y3);
+		scan_f(&x1);
+		scan_f(&y1);
+		scan_f(&x2);
+		scan_f(&y2);
+		scan_f(&x3);
+		scan_f(&y3);
+		a=(x2-x1)*(x2-x1)+(y2-y1)*(y2-y1);
+		b=(x3-x1)*(x3-x1)+(y3-y1)*(y3-y1);
+		c=(x2-x3)*(x2-x3)+(y2-y3)*(y2-y3);
+		if(a>b)
+		{
+			if(a>c)
+			{
+				max=a;
+				a=b;
+				b=c;
+			}
+			else
+			{
+				max=c;
+			}
+		}
+		else
+		{
+			if(b>c)
+			{
+				max=b;
+				b=c;
+			}
+			else
+			{
+				max=c;
+				m1=a;
+				m2=b;
+			}
+		}
+		a+=b;
+		if(max==a)
+		cnt++;
+	}
+	printf("%d",cnt);
+	return 0;
+}
+ 

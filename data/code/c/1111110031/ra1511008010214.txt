@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+void conversion(int num, int base)
+{
+      int remainder = num % base; 
+      if(num == 0)
+      {
+            return;
+      }
+      conversion(num / base, base);
+      if(remainder < 10)
+      {
+            printf("%d", remainder); 
+      }
+      else
+      {
+            printf("%c", remainder - 10 + 'a' );
+      }
+}
+ 
+int main()
+{
+      int num;
+   
+      scanf("%d", &num);
+     
+           printf("Decimal value:%d",num);
+                  printf("\nOctal value:");
+                          conversion(num, 8);
+                       
+               printf("\nHexadecimal value:");
+                          conversion(num, 16);
+             
+     
+      return 0;
+}

@@ -1,0 +1,36 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+double area(double a , double b , double c)
+{
+    double area_ ;
+    double s = (double)(a+b+c)/2 ;
+    area_ = sqrt((s)*(s-a)*(s-b)*(s-c));
+    return area_;
+}
+ 
+int main()
+{
+    int t ;
+    double a , b , c ,d ,e , f ;
+    double v ;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%lf %lf %lf %lf %lf %lf",&a,&b,&c,&d,&e,&f);
+        double area_ = area(a,e,c) + area(a,b,d) + area(d,e,f) + area(b,c,f) ;
+        a *=a ;
+        b *=b ;
+        c *=c ;
+        d *=d ;
+        e *=e ;
+        f *=f ;
+        double temp  = - a*b*d - a*c*e - b*c*f - d*e*f + a*c*d + b*c*d + a*b*e + b*c*e + b*d*e + c*d*e + a*b*f + a*c*f + a*d*f + c*d*f + a*e*f + b*e*f
+                       - c*c*d - c*d*d - b*b*e - b*e*e - a*a*f - a*f*f ;
+        temp = temp / 144.0 ;
+        temp = sqrt(temp);
+        double r = (temp*3) / area_;
+        printf("%.4lf\n",r);
+    }
+    return 0 ;
+}

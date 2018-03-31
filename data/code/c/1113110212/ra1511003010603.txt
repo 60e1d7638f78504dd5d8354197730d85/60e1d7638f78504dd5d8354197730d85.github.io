@@ -1,0 +1,102 @@
+# include <stdio.h>
+ 
+struct node {
+	int v;
+	int c;
+};
+int main()
+{
+int a[45],b[45],prod,total,rt[45],root,sum,com,c;int t,n,m,i,p,r,flag,j,k;
+struct node bt[45],st[45];
+scanf("%d",&t);
+while(t--)
+{
+	r=0;sum=0;total=0;
+	scanf("%d%d",&n,&m);
+	for(i=0;i<45;i++)
+	{ bt[i].v=0; bt[i].c=0; }
+	for(i=0;i<n;i++)
+	{
+		scanf("%d%d",&c,&p);
+		bt[c].v+=p;bt[c].c++;
+		}
+		for(i=0;i<45;i++)
+		{
+			if(bt[i].v==0)
+			continue;
+			st[++r].v=bt[i].v; st[r].c=bt[i].c;
+			}
+
+	for(i=1;i<=r;i++)
+	st[i].c=1<<st[i].c;
+
+ 
+a[0]=-(st[1].c-1);
+	a[1]=1;
+	flag=1;
+	for(i=2;i<=r;i++)
+	{
+	if(flag==1)
+	{
+	for(j=i;j>0;j--)
+	b[j]=a[j-1];
+	b[0]=0;
+	for(j=0;j<i;j++)
+	b[j]+=(a[j]*(-(st[i].c-1)));
+	flag=0;
+	}
+else
+{
+	for(j=i+1;j>0;j--)
+	a[j]=b[j-1];
+	a[0]=0;
+	for(j=0;j<i;j++)
+	a[j]+=(b[j]*(-st[i].c+1));
+	flag=1;
+}
+	}
+	if(r%2==0)
+	{
+	for(i=0;i<r+1;i++)
+	a[i]=b[i];
+	}
+
+for(i=0;i<=r-m;i++)
+{
+	com=a[i]>0?a[i]:0-a[i];
+	total+=com;
+	
+}
+
+for(j=1;j<=r;j++)
+{
+root=st[j].c-1;
+
+	c=0;
+	
+for(i=0;i<r;i++)
+{
+	rt[i]=a[i]-c;
+	
+	rt[i]=rt[i]/(0-root);
+	c=rt[i];
+
+}
+
+root++;
+root/=2;
+prod=0;
+if(m==0)m++;
+for(k=0;k<=r-m;k++)
+{
+                  com=rt[k]>0?rt[k]:0-rt[k];
+prod+=com;
+}
+prod=prod*st[j].v*root;
+sum+=prod;
+}
+
+	printf("%.9f\n",sum/(total+0.0));
+}	
+return 0;
+}

@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+   int i,j,k,x[1000],y[1000],t,t1;
+   scanf("%d\n",&i);
+   for(j=0;j<i;j++)
+   {
+       scanf("%d",&x[j]); 
+       for(j=0;j<i;j++)
+         if(x[j]<x[j+1]) 
+         {
+            t=x[j];
+            x[j]=x[j+1];
+            x[j+1]=t; 
+         }
+    }
+    for(k=0;k<i;k++)
+    {
+        scanf("%d",&y[k]);
+        for(k=0;k<i;k++)
+            if(y[k]<y[k+1])
+            {
+                t1=y[k];
+                y[k]=y[k+1];
+                y[k+1]=t1;
+            }
+    }
+    if(y[0]>x[0])
+        printf("No");
+    else
+        printf("Yes");
+    return 0;    
+}

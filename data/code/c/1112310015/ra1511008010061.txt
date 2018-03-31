@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define MOD 1000000007
+#define LLI long long int
+#define fo(i,n)   for(i=1;i<=n;++i)
+	LLI t,n,ans,i,l;
+ 
+int main(void) {
+	scanf(" %lld",&t);
+	while(t--)
+	{
+	    scanf(" %lld",&n);
+	    ans=-1;
+	    l=(n+1)/2;
+	    for(i=0;i<l/8;i+=8)
+	    {
+	        ans+=pow(2,8);
+	        if(ans>=MOD)        ans%=MOD;
+	    }
+	    
+	    ans+=pow(2,l-i);
+	    if(ans>=MOD)        ans%=MOD;
+	    ans*=2;
+	    if(n%2==0)          ans+=n;
+	    if(ans>=MOD)        ans%=MOD;
+ 
+	    printf("%lld\n",ans);
+	}
+	return 0;
+} 

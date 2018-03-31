@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,sal[1000];
+  	float HRA[50],DA[50],gross;
+  	scanf("%d",&n);
+  	for (i=1;i<=n;i++)
+    {
+      scanf("%d",&sal[i]);
+    }
+  	for (i=1;i<=n;i++){
+  		if (sal[i]<1500){
+        	HRA[i]=0.1*sal[i];
+          	DA[i]=0.9*sal[i];
+        }
+      	else 
+        {
+        	HRA[i]=500;
+          	DA[i]=0.98*sal[i];
+        }
+    }
+      	for (i=1;i<=n;i++){
+        	gross=sal[i]+HRA[i]+DA[i];
+          	printf("%0.2f\n",gross);
+        }
+	return 0;
+}

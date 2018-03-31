@@ -1,0 +1,32 @@
+#include <stdio.h>
+ #include<string.h>
+int main() {
+	int T, i ,j,len;
+	char test[1001];
+	scanf("%d\n", &T);
+	for(j=0; j<T; j++) {
+		int len = 0;
+		int left[27] = {0};
+		int right[27] = {0};
+		int lap = 1;
+		scanf("%s\n", test);
+		len = strlen(test);
+		for(i=0; i<(len/2); i++) {
+			left[test[i] - 'a']++;
+			right[test[len - i - 1] - 'a']++;
+		}
+		
+		for(i=0; i<26; i++) {
+			if (left[i] != right[i]) {
+				lap = 0;
+				break;
+			}
+		}
+		if (lap) {
+			printf("YES\n");
+		} else {
+			printf("NO\n");
+		}
+	}
+	return 0;
+}     

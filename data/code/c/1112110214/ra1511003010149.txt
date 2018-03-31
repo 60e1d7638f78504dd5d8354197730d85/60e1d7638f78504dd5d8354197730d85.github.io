@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int i,j,len;
+  char str[100];
+  fgets(str,100,stdin);
+  i=0;
+  len = strlen(str);
+  str[len] = ' ';
+  while(str[i] != '\0') {
+    if(str[i] == ' ' || str[i] == '\n') {
+      for(j=i-1;j>=0 && str[j]!=' ';j--)
+    	printf("%c",str[j]);
+      printf(" ");
+    }
+    i++;
+  }
+  printf("\n");
+	return 0;
+}

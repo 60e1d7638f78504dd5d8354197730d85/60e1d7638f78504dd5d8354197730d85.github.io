@@ -1,0 +1,40 @@
+#include <stdio.h>
+int power(int i)
+{
+  if(i==0)
+    return 1;
+  else
+    return 10 * power(i-1);
+}
+int num(int i , int c , int a , int b)
+{
+  if(i<0)
+    return 0;
+  if(i == 1)
+    return b ;
+  else
+  {
+    if(i == 0)
+      return a ;
+    else
+      return (((num(i -1 , c , a, b)*c) +num(i-2,c,a,b))%10);
+  }
+}
+int main()
+{
+  int t , test;
+  scanf("%d",&test);
+  for(t = 0 ; t<test ; t++)
+  {int n , c ,a , b;
+  scanf("%d%d%d%d",&a,&b,&c,&n);
+  int nu = 0;
+  int i = 0 ;
+  while(i<n)
+    nu = nu + num(n-i-1,c,a,b)*power(i++);
+  if(nu%41 == 0)
+    printf("YES\n");
+  else
+    printf("NO\n");
+  }
+	return 0;
+}

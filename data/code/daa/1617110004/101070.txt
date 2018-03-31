@@ -1,0 +1,63 @@
+#include <stdio.h>
+ 
+#define MAXN 1010
+ 
+int grid[MAXN][MAXN];
+int foi[MAXN][MAXN];
+int queue[MAXN*MAXN][2];
+ 
+int dx[] = {0,1,1,1,0,-1,-1,-1};
+int dy[] = {-1,-1,0,1,1,1,0,-1};
+int n,m;
+ 
+int bfs(int row,int col) {
+ int l = 0, r = 0;
+ queue[r][0] = row;
+ queue[r][1] = col;
+ foi[row][col] = 1;
+ r++;
+ int ret = 1;
+ while(l < r) {
+  int cr = queue[l][0], cc = queue[l][1];
+  l++;
+  int i;
+  for(i = 0; i < 8; ++i) {
+   int nr = cr + dx[i], nc = cc + dy[i];
+   if(nr < 0 || nc < 0 || nr >= n || nc >= m) continue;
+   if(!foi[nr][nc] && grid[nr][nc] == 1) {
+    foi[nr][nc] = 1;
+    ret++;
+    queue[r][0] = nr;
+    queue[r][1] = nc;
+    r++;
+   }
+  }
+ }
+ return ret;
+}
+ 
+int main() {
+    int t;
+    for(scanf("%d",&t); t--;) {
+     scanf("%d%d",&n,&m);
+     int a,b;
+     for(a=0;a<n;++a) {
+      for(b=0;b<m;++b) {
+       scanf("%d",&grid[a][b]);
+       foi[a][b] = 0;
+      }
+     }
+  int cnt = 0, max = 0;
+  for(a=0; a<n; ++a) {
+   for(b=0; b<m; ++b) {
+    if(!foi[a][b] && grid[a][b] == 1) {
+     cnt++;
+     int got = bfs(a,b);
+     if(got > max) max = got;
+    }
+   }
+  }
+  printf("%d %d\n",cnt,max);
+    }
+    return 0;
+}

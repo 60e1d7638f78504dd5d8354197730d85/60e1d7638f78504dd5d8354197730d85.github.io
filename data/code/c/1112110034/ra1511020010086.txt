@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+
+int getvalue(char c)
+{
+        if(c == 'I')
+                return 1 ;
+        if(c == 'V')
+                return 5 ;
+        if(c == 'X')
+                return 10 ;
+        if(c == 'L')
+                return 50 ;
+        if(c == 'C')
+                return 100 ;
+        if(c == 'D')
+                return 500 ;
+        if(c == 'M')
+                return 1000 ;
+        return 1 ;
+}
+int main()
+{
+        int t ;
+        scanf("%d",&t);
+        
+                char s[10] ;
+                scanf("%s",s);
+                int i,ans = 0 ;
+                for( i = 0 ; i < strlen(s) ; i++)
+                {
+                        int val1 = getvalue(s[i]) ;
+                        if(i + 1 < strlen(s))
+                        {
+                                int val2 = getvalue(s[i + 1]) ;
+                                if(val1 >= val2)
+                                        ans += val1 ;
+                                else{
+                                        ans = ans + (val2 - val1) ;
+                                        i++ ;
+                                }
+                        }
+                        else
+                                ans += val1 ;
+                }
+                printf("%d",ans); 
+        
+        return 0 ;
+}

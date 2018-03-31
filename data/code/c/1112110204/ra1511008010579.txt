@@ -1,0 +1,24 @@
+#include <stdio.h>
+int getgcd(int a,int b)
+{
+  int i,gcd;
+  for(i=1;i<=a && i<=b;i++)
+  {
+    if(a%i==0 && b%i==0)
+      gcd=i;
+  }
+  return gcd;
+}
+int main()
+{
+  int t,a,b,i,gcd,lcm;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d%d",&a,&b);
+    gcd=getgcd(a,b);
+    lcm=a*b/gcd;
+    printf("%d %d\n",gcd,lcm);
+  }
+	return 0;
+}

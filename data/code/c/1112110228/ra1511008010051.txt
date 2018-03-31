@@ -1,0 +1,26 @@
+#include <stdio.h> 
+#define M 1010
+ 
+int main() 
+{
+  	int i,T;
+    scanf("%i", &T);
+ 
+    int S[M];
+    while( T-- ) {
+        int n, k;
+        scanf("%i %i", &n, &k);
+ 
+        for( i = 1; i <= n; i++ )
+            scanf("%i", &S[i]);
+        S[0] = 0;
+ 
+        int ans = 0;
+        for( i = n; i >= 1; i-- )
+            ans += (S[i] - S[i-1] - 1) * ((n - i + k) / k);
+ 
+        printf("%i\n", ans);
+    }
+    
+    return 0;
+}

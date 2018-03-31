@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+long int answ(int index,int n){
+  int i=index;
+  long int x=0;
+  long int dig=1;
+  while(i>0){
+    if(i&1)
+      x=dig*9+x;
+    i=i/2;
+    dig*=10;
+  }
+  if(x%n==0)
+    return x;
+  else
+    return answ(index+1,n);
+}
+int main()
+{
+	int t,n;
+  	scanf("%d",&t);
+  	while(t>0){
+      scanf("%d",&n);
+      printf("%ld\n",answ(1,n));
+      t--;
+    }
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include <stdio.h>
+static int i=0;
+int palindrome(int num)
+{
+    ++i;
+  int rem,flg=0,rev=0,temp;
+
+    temp=num;
+    while(temp>0)
+    {
+      rem=temp%10;
+      rev=rev*10+rem;
+      temp/=10;
+    }
+    if(num==rev)
+  return 1;
+  else
+    return 0;
+
+}
+int main()
+{
+	int n;
+
+  scanf("%d",&n);
+  while(n>0)
+  {int num,temp;
+
+scanf("%d",&num);
+temp=num;
+l1:
+if(palindrome(num)==1 && i>1)
+{
+    printf("%d\n",num);
+
+}
+else
+{
+    palindrome(num++);
+    goto l1;
+}
+
+
+
+  n--;
+  }
+	return 0;
+}

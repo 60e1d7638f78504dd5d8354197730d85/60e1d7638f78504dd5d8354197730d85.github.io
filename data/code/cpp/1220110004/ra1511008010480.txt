@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	int count;
+  	cin>>count;
+  	getchar();
+  	for(int i=0; i<count; i++) {
+      	//float n;
+      	string s;
+      	try {
+          //if(cin>>n) {
+          if(getline(cin, s)) {
+              //if(n <= 0) throw("Wrong Input");
+            	if(s[0] > 'A' || s[0] == '-' || s[0] == '0') throw("Wrong Input");
+              cout<<s<<endl;
+          }
+          else {
+            	//string s;
+            	//getline(cin, s);
+              throw("Wrong Input");
+          }
+      	} catch(const char* e) {
+      		cout<<e<<endl;
+      }
+    }
+	return 0;
+}

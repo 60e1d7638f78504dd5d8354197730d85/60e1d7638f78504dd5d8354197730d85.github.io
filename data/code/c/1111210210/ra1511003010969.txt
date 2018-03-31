@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+ int t,n,i,j;
+    char s[109],a,b;
+    scanf ("%d",&t);
+    getchar();
+    while (t--)
+    {
+        n=0;
+        scanf ("%s",s);
+        a=s[0];
+        b=s[1];
+        if (a==b)
+        {
+            puts ("NO");
+            continue;
+        }
+        else
+        {
+            for (i=0;s[i]!='\0';++i)
+            {
+                if (i%2==0 && s[i]!=a)
+                {
+                    n=1;
+                    break;
+                }
+                else if (s[i]!=b && i%2!=0)
+                {
+                    n=1;
+                    break;
+                }
+            }
+        }
+        if (n==0)
+            puts ("YES");
+        else
+            puts ("NO");
+    }
+	return 0;
+}

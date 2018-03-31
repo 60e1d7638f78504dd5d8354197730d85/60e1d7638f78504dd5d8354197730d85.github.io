@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<string.h>
+int row[100011],col[100011],left[100011],right[100011],temp[100011];
+int main()
+{	
+	 int sum=0;
+	int n,i,j,t,q,r,c;
+	scanf("%d",&n);
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d %d",&left[i],&right[i]);
+		row[i]=right[i]-left[i]+1;
+		sum+=row[i];
+		temp[left[i]]++;
+		temp[right[i]+1]--;
+	}
+	col[1]=temp[1];
+	t=temp[1];
+	for(i=2;i<=n;i++)
+	{	t+=temp[i];
+		col[i]=t;
+	}
+ 
+	
+	scanf("%d",&q);
+	while(q--)
+	{
+		scanf("%d %d",&r,&c);
+		if(left[r]<=c&&right[r]>=c)
+		{	int test=sum-(row[r]+col[c]-1);
+			
+			if(test%2==0)
+				printf("E\n");
+			else
+				printf("O\n");
+		}
+		else
+		{	int test=sum-row[r]+col[c];
+
+			if(test%2==0)
+				printf("E\n");
+			else
+				printf("O\n");
+		}
+	}
+	
+} 

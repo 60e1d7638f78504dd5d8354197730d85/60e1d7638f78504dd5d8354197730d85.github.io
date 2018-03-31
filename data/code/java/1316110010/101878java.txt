@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+class GCDLCM{
+  public int great(int gcd,int lcm){
+    int r=0,a,b;
+    a=(gcd>lcm) ? gcd:lcm;
+    b=(gcd<lcm) ? gcd:lcm;
+    r=b;
+    while(a%b!=0)
+    {
+      r=a%b;
+      a=b;
+      b=r;
+    }
+    System.out.print(r+" ");
+    while(true){
+    if(a%gcd==0 && a%lcm==0)
+      return(a);
+      ++a;
+    }
+   
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       GCDLCM objname=new GCDLCM();
+       Scanner inp=new Scanner(System.in);
+       int tc=inp.nextInt();
+       for(int i=1;i<=tc;i++){
+         int a=inp.nextInt();
+         int b=inp.nextInt();
+      int c=objname.great(a,b);
+         System.out.print(c);
+         System.out.println();
+         }
+	}
+}

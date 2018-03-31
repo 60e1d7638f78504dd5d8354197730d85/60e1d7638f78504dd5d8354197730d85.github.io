@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+char a[10000];
+  int n;
+  scanf("%d",&n);
+  scanf("%s",a);
+   char s[1000];
+  
+  if(n%2!=0)
+  {
+    int i=1, z=1;
+    s[(n/2)]=a[0];
+   while(z<=(n/2))
+   {  
+      s[(n/2)-z]=a[i++];
+      s[(n/2)+z]=a[i++];
+      
+      if(i%2!=0)
+      z++;
+    }
+  }
+  
+  else
+  {
+    int z=0,i;
+    int m1=n/2;
+    int m2=(n/2)-1;
+    while(z<n/2)
+    {
+      s[m2-z]=a[i++];
+      s[m1+z]=a[i++];
+      z++;
+    }
+  }
+  int i;
+  for(i=0;i<n;i++)
+  {
+    printf("%c",s[i]);
+  }
+	return 0;
+}

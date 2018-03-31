@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+class Sample
+{
+double sum;
+Scanner sc;
+Sample(Scanner ss)
+{
+  sc=ss;
+}
+public void getDetails()
+{
+ 
+           int n=sc.nextInt();
+           int k=sc.nextInt();
+            int[] arr = new int[n];
+            for(int i=0;i<n;i++)
+            {
+                arr[i]=sc.nextInt();
+            }
+            Arrays.sort(arr);
+            sum=0;
+            for(int i=k;i<n-k;i++)
+                sum+=arr[i];
+            sum/=(n-2*k);
+           }
+        public void displayDetails()
+           {
+         System.out.printf("%f\n",sum);
+           }
+      }
+public class TestClass {
+	 public static void main(String[] args) { 
+Scanner sc=new Scanner(System.in);
+Sample objname=new Sample(sc);
+int tc=sc.nextInt();
+while(tc>0)
+{
+objname.getDetails();
+objname.displayDetails();
+tc--;
+}
+}
+}

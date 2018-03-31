@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+#define ll long long 
+using namespace std;
+ 
+int gcd(int a,int b){	
+	while(a!=b){
+		if(a==1 || b==1)	return 1;
+		if(a==0)	return b;
+		if(b==0)	return a;
+		(a>b)?(a=a%b):(b=b%a);
+	}
+	return a;
+}
+ 
+long long lcm(int a,int b){
+	return (a/(gcd(a,b)))*(long long)b;
+}
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int a[n];
+		long long min=pow(10,18);
+		for(int i=0;i<n;i++)	cin>>a[i];
+		for(int i=0;i<n;i++){
+			for(int j=i+1;j<n;j++){
+				if(a[j]>=min)	continue;
+				long long x=lcm(a[i],a[j]);
+				if(x<min)	min=x;
+			}
+		}
+		cout<<min<<endl;
+	}
+	return 0;
+} 

@@ -1,0 +1,77 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int tc;
+string s;
+multiset <int> st;
+int  pot,x,n;
+int a[1000001];
+int main()
+{
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>s;
+        st.clear();
+        int par=0;
+        int nep=0;
+        int p=0;
+        if (s=="Chef") pot=0; else pot=1;
+        for (int i=0;i<=n;i++)
+            a[i]=0;
+        for (int i=0;i<n;i++)
+        {
+            scanf("%d",&x);
+            if (x%2==0) {
+                    par++;
+                    p++;
+            }
+            else {
+                    a[p]++;
+                    nep++;
+            }
+ 
+        }
+ 
+        for (int i=0;i<=p;i++)
+            st.insert(a[i]);
+ 
+       if (n==1 && par) printf("Chef\n"); else
+        if (n==1 && nep) printf("Chefu\n"); else
+            if (n%2 && s=="Chefu") printf("Chef\n"); else
+            if (n%2==0 && s=="Chef") printf("Chef\n"); else
+       {
+ 
+           while(par+nep>1)
+           {
+               if (pot==0)
+               {
+                   if (!st.empty() && *st.rbegin()>1)
+                   {
+                       int val=*st.rbegin()-2;
+                       nep-=2;
+                       par++;
+                       st.erase(st.find(*st.rbegin()));
+                       st.insert(val);
+                   } else
+                   {
+                    if (nep>0)
+                    nep--; else par--;
+                   }
+               } else
+               {
+                   if (par>0)
+                 par--; else nep--;
+ 
+               }
+                pot=(pot+1)%2;
+           }
+           if (par>0) printf("Chef\n"); else printf("Chefu\n");
+ 
+       }
+ 
+    }
+    return 0;
+}
+ 

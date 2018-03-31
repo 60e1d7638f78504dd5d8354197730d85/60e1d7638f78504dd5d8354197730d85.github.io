@@ -1,0 +1,28 @@
+#include <stdio.h>
+void check(int ,int []);
+int main()
+{
+  int t,i,j,n;
+  int speed[20];
+scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&n);
+    for(j=0;j<n;j++)
+      scanf("%d",&speed[j]);
+    check(n,speed);
+  }
+	return 0;
+}
+void check(int a,int speed[])
+{
+  int i,count=1;
+  for(i=0;i<a-1;i++)
+  {
+    if(speed[i]>speed[i+1])
+      count++;
+    else if(speed[i]<speed[i+1])
+      speed[i+1]=speed[i];
+  }
+  printf("%d\n",count);
+}

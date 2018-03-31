@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       int queries[][] = new int[n][3];
+       for(int i = 0 ; i<n ; i++)
+       {
+         for(int j = 0 ; j<3 ; j++)
+           queries[i][j] = sc.nextInt();
+         if(queries[i][0] == 2)
+         {
+           int interval = queries[i][2] - queries[i][1];
+           int tot = 0;
+           for(int k = 0 ; k < i ; k++)
+           {
+             if(queries[k][2]>=interval && queries[k][2]<queries[i][2] && queries[k][0]==1)
+             {
+               tot += queries[k][1];
+             }
+           }
+           System.out.println(tot);
+         }
+       }
+	}
+}

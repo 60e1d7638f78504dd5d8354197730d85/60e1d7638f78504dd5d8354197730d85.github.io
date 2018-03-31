@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int max=sc.nextInt();
+    int totalproblem[]=new int[n];
+    for(int i=0;i<n;i++)
+     totalproblem[i]=sc.nextInt();
+    int special=0;int page=1;
+    for(int chapter=0;chapter<n;chapter++)
+    {
+     if(chapter!=0)
+      page++;
+      int problem=1;
+      int k=1;
+     inner: while(problem<=totalproblem[chapter]&&k<=max)
+     {
+      if(problem==page)
+      {
+        special++;
+        problem++;
+        k++;
+      }
+      else
+      {
+       problem++;
+       k++;
+      }
+   if(problem<=totalproblem[chapter]&&k>max)
+   {
+    page++;
+    k=1;
+    continue inner;
+   } 
+}
+}
+ System.out.println(special);
+}
+}

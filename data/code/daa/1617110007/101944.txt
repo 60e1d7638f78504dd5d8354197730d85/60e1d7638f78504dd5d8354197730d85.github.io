@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>graph[100000];
+int child[100000],parent[100000];
+bool visited[100000];
+void intialize(int n)
+{
+    for(int i=0;i<n;i++)
+        {visited[i]=false;
+        child[i]=0;
+        parent[i]=0;}
+}
+void dfs(int a)
+{
+    int cnt=0;
+   visited[a]=true;
+    for(int i=0;i<graph[a].size();i++)
+    {
+        if(visited[graph[a][i]]==false)
+        {
+            parent[graph[a][i]]=a;
+            cnt++;
+            child[a]=cnt,
+            dfs(graph[a][i]);
+        }
+ 
+    }
+}
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    for(int i=0;i<m;i++)
+    {
+        int a,b;
+        cin>>a>>b;
+        graph[a].push_back(b);
+        graph[b].push_back(a);
+    }
+    intialize(n);
+    int cnt=0,happy=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(visited[i]==false)
+            cnt++,child[i]=cnt,dfs(i);
+    }
+ 
+    for(int i=1;i<=n;i++)
+    {
+        if(parent[i]!=0&&child[parent[i]]<child[i])
+            happy++;
+    }
+    cout<<happy<<endl;
+    return 0;
+}

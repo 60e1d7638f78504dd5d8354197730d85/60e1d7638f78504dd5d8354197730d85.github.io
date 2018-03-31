@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int t;
+  float hb,hg,mg,mb,diff,i,ans,dist;
+  char ch;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%f%c%f",&hg,&ch,&mg);
+    scanf("%f%c%f",&hb,&ch,&mb);
+    scanf("%f",&dist);
+    if(hg==hb)
+    {
+      diff=mg-mb;
+    }
+    else
+    { 
+      diff=60-mb;
+      hb++;
+      diff=diff+(hg-hb)*60;
+      diff=diff+mg;
+    }
+    ans=dist+diff;
+    printf("%.1f ",ans);
+    if(diff>=(2*dist))
+    {
+      printf("%.1f\n",diff);
+    }
+    else
+    {
+      i=(diff+2*dist)/2.0;
+      printf("%.1f\n",i);
+    }
+  }
+	return 0;
+}

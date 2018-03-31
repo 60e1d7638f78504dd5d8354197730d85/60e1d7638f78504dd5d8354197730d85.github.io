@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int rounds,p1,p2,p1score=0,p2score=0,maxlead=0,lead,winner;
+  	scanf("%d",&rounds);
+  	while(rounds--){
+  		scanf("%d %d",&p1,&p2);
+      	p1score+=p1;
+      	p2score+=p2;
+  		lead = abs(p1score-p2score);
+  		if(lead>maxlead){
+  			winner=p1score>p2score?1:2;
+  			maxlead = lead;
+  		}
+  	}
+  	printf("%d %d",winner,maxlead);
+	return 0;
+}

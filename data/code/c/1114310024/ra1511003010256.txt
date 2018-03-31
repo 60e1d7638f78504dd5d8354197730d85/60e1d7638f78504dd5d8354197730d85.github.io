@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+#define MAX 10000
+ 
+int main(){
+int t,n,m,x,i,k,temp[MAX],a[10],b[10],pos,count;
+scanf("%d",&t);
+while(t--){
+scanf("%d",&n);
+count = 1;
+pos = 0;
+for(i = 2;i<MAX;i++)
+temp[i] = 0;
+for(i = 0;i<10;i++)
+a[i] = 0;
+for(i = 0;i<n;i++){
+scanf("%d",&x);
+m = (int) sqrt(x);
+for(k = 2;k<=m;k++)
+while(x%k == 0){
+x /= k;
+temp[k]++;
+}
+if(x < 10000)
+temp[x]++;
+else{
+for(k = 0;k<pos;k++)
+if(b[k] == x){
+a[k]++;
+break;
+}
+if(k == pos){
+a[pos]++;
+b[pos++] = x;
+}
+}
+}
+for(i = 2;i<MAX;i++)
+count *= (temp[i]+1);
+for(k = 0;k<pos;k++)
+count *= (a[k] + 1);
+printf("%d\n",count);
+}
+return 0;
+}  

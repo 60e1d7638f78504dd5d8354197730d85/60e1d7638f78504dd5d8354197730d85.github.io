@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define sd(x) scanf("%d",&x)
+#define slld(x) scanf("%lld",&x)
+#define ss(x) scanf("%s",x)
+#define ll long long
+#define mod 1000000007
+#define bitcount    __builtin_popcountll
+#define pb push_back
+int n,i,j,k,a[1003],b[1003],s;
+int main()
+{
+   // freopen("in1CAs.txt","r",stdin);
+   // freopen("out1CAs.txt","w",stdout);
+
+    sd(n);
+    for(i=0;i<n;i++)
+    {
+        sd(j);
+        a[j]++;
+    }
+    for(i=0;i<n;i++)
+    {
+        sd(j);
+        b[j]++;
+    }
+    s=0;
+    for(i=1;i<=1000;i++)
+        s+=min(a[i],b[i]);
+    if(s==n)
+        s--;
+    else
+        s++;
+    printf("%d\n",s);
+    return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,flag,sum=0,temp;
+	int ar[3][3];
+  for(i=0;i<3;i++)
+  {
+   for(j=0;j<3;j++)
+   {
+     scanf("%d",&ar[i][j]);
+   }
+  }
+  sum=ar[0][0] + ar[0][1] + ar[0][2];
+  for(i=1;i<3;i++)
+  {
+    temp=0;
+   for(j=0;j<3;j++)
+   {
+     temp=temp + ar[i][j];
+   }
+    if(temp!=sum)
+    {
+     flag++;
+      break;
+    }
+  }
+  if(flag==0 && (sum==ar[0][0]+ar[1][1]+ar[2][2]) && (sum == ar[0][2]+ar[1][1]+ar[2][0]))
+    printf("Yes");
+  else
+    printf("No");
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[100];
+    char word[100];
+    int i, j, found;
+    int strLen, wordLen;
+    fgets(str, sizeof(str), stdin);
+    fgets(word, sizeof(word), stdin);
+
+    strLen  = strlen(str);
+    wordLen = strlen(word);
+    for(i=0; i<strLen - wordLen; i++)
+    {
+        found = 1;
+        for(j=0; j<wordLen; j++)
+        {
+            if(str[i + j] != word[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+
+        if(found == 1)
+        {
+            printf("%s is found at index %d\n", word, i);
+        }
+    }
+
+    return 0;
+}

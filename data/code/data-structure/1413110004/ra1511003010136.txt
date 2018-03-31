@@ -1,0 +1,36 @@
+// C++ program to search an element in an array
+// where each element is obtained by adding
+// either +1 or -1 to prefious element.
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Return the index of the element to be searched.
+int search(int arr[], int n, int x)
+{
+    // Searching x in arr[0..n-1]
+    int i = 0;
+    while (i <= n-1)
+    {
+        // Checking if element is found.
+        if (arr[i] == x)
+            return i;
+ 
+        // Else jumping to abs(arr[i]-x).
+        i += abs(arr[i]-x);
+    }
+ 
+    return -1;
+}
+ 
+// Driven Program
+int main()
+{
+    int arr[20],n,x,i;// =  {5, 4, 5, 6, 5, 4, 3, 2};
+    cin>>n;
+  for(i=0;i<n;i++)
+    cin>>arr[i];
+  cin>>x;
+    cout << search(arr, n, x) << endl;
+ 
+    return 0;
+}

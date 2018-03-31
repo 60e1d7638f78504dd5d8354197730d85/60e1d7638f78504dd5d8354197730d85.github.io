@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+		int n,i,j,oranges,rubles,tempC,tempW,weightT;
+  int cost[10000],weight[10000];
+  float ratio[10000];
+  scanf("%d",&n);
+  while(n>0){
+    weightT=0;
+  scanf("%d %d",&oranges,&rubles);
+  	for(i=0;i<oranges;i++){
+    	scanf("%d %d",&cost[i],&weight[i]);
+      ratio[i]=cost[i]/weight[i];
+//      printf("%d %d %f \n",cost[i],weight[i],ratio[i]);
+    }
+    //printf("\n");
+    for(i=0;i<oranges-1;i++){
+      for(j=0;j<oranges-i-1;j++){
+      if(ratio[j]>ratio[j+1]){
+      tempC=cost[j];
+        tempW=weight[j];
+        cost[j]=cost[j+1];
+        weight[j]=weight[j+1];
+        cost[j+1]=tempC;
+        weight[j+1]=tempW;
+      	}
+      }
+    }
+    
+    for(i=0;i<oranges;i++){
+    //printf("%d %d\n",cost[i],weight[i]);
+    }
+    for(i=0;i<oranges;i++){
+    if(cost[i]<=rubles)
+      weightT+=weight[i];
+    rubles-=cost[i];
+    }
+    
+    printf("%d\n",weightT);
+    
+    --n;
+  }
+	return 0;
+}

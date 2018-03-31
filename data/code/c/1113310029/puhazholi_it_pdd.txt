@@ -1,0 +1,33 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int TestCases=0;
+      	char text[101];
+    	int countSUVO=0,i=0;
+    	int countSUVOJIT=0;
+    scanf("%d",&TestCases);
+    while(TestCases)
+    {
+    	scanf("%s",text);
+    	for(i=0; text[i]!='\0';i++)
+    	{
+    		if(text[i]=='S' && text[i+1]=='U' && text[i+2]=='V' && text[i+3]=='O')
+    		{
+    			if(text[i+4]=='J' && text[i+5]=='I' && text[i+6]=='T')
+    			{
+    				countSUVOJIT++;
+    				i=i+6;
+    			}
+    			else
+    			{
+    				countSUVO++;
+    				i=i+3;
+    			}
+    		}
+    	}
+    	printf("SUVO = %d\nSUVOJIT = %d\n",countSUVO,countSUVOJIT);
+    	TestCases--;
+    }
+    return 0;
+}

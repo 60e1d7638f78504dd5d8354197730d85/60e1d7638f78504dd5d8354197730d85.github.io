@@ -1,0 +1,141 @@
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define NDEBUG
+ 
+//  Represents each chef in the tree
+typedef struct {
+	int age;
+	int morning_chef;	//  left child
+	int evening_chef;	//  right child
+} chef;
+ 
+//  Builds a tree 	O(n) + O(n-1) == O(n + [n-1]) == O(2n - 1) ~= O(2n) ~= O(n)
+chef * construct_tree(int * numChefs) {
+	char time;
+	chef * tree;
+	int i, parent, child;
+	
+	//  Allocate memory for n chefs
+	scanf("%d", numChefs);
+	tree = (chef *)malloc(sizeof(chef) * *numChefs);
+	if(tree == NULL) {
+		perror("Insufficient memory for building tree.  Will now abort!");
+		exit(-1);
+	}
+	
+	//  populate array with chefs	O(n)
+	for(i = 0; i < *numChefs; ++i) {
+		scanf("%d", &(tree + i)->age);
+		(tree + i)->morning_chef = -1;
+		(tree + i)->evening_chef = -1;
+	}
+	
+	//  Hash in n-1 subordinates to build the structure of the tree O(n-1)
+	for(i = 1; i < *numChefs; ++i) {
+		scanf("%d%d %c", &parent, &child, &time);
+		if(time == 'M') {
+			(tree + parent - 1)->morning_chef = child - 1;
+		} else {
+			(tree + parent - 1)->evening_chef = child - 1;
+		}
+	}
+	
+	return tree;
+}
+ 
+//  Determines if two numbers are either both positive or both negative.
+static inline char sameSign(int a, int b) {
+	return (a * b < 0) ? 0 : 1;
+}
+ 
+//  Returns true if two nodes represent the same chef
+static inline char isSimilarChef(chef * a, chef * b) {
+	assert(a != NULL);
+	assert(b != NULL);
+	
+	//  Determines if the two chefs are the same age
+	//	Determines if both or neither chef have a subordinate chef
+	return a->age == b->age 
+			&& sameSign(a->morning_chef, b->morning_chef)
+			&& sameSign(a->evening_chef, b->evening_chef);
+}
+ 
+//  Determines if two trees have the same internal structure
+char isSameChefStructure(chef * a, chef * b, int a_i, int b_i) {
+	assert(a != NULL);
+	assert(b != NULL);
+	assert(a_i > -1);
+	assert(b_i > -1);
+ 
+	char same;
+	chef * c, * d;
+	
+	c = a + a_i;	//  References the indexed chef a[a_i]
+	d = b + b_i;	//  References the indexed chef b[b_i]
+	
+	//  Are a[a_i] and b[b_i] equivalent?
+	same = isSimilarChef(c, d);
+	
+	//  If so, and both have a morning chef, are their morning chefs the same?
+	if(same && c->morning_chef > -1) {
+		same = isSameChefStructure(a, b, c->morning_chef, d->morning_chef);
+	}
+	
+	//  If so, and both have an evening chef, are their evening chefs the same?
+	if(same && c->evening_chef > -1) {
+		same = isSameChefStructure(a, b, c->evening_chef, d->evening_chef);
+	}
+ 
+	return same;
+}
+ 
+//  Determines if sub is a subtree of orig
+char isSubTree(chef * b, chef * a, int a_length) {
+	assert(a != NULL);
+	assert(b != NULL);
+	assert(a_length > 0);
+	
+	char isSub;
+	int i;
+	
+	//  Iterate through each node in tree a until a subtree matching b is found
+	//  or all nodes have been visited.
+	for(i = 0, isSub = 0; i < a_length && !isSub; ++i) {
+		isSub = isSameChefStructure(a, b, i, 0);
+	}
+	
+	return isSub;
+}
+ 
+//  Releases any memory allocated for memory handle tree
+inline void destroy_tree(chef ** tree) {
+	assert(tree != NULL);
+	assert(*tree != NULL);
+	
+	free(*tree);
+	*tree = NULL;
+}
+ 
+int main() {
+	chef * originalTree, * newTree;
+	int queries, originalTreeSize, newTreeSize;
+	
+	originalTree = construct_tree(&originalTreeSize);
+	
+	//  Build tree Q_i
+	fscanf(stdin, "%d", &queries);	//  Identifies the number of queries from stdin
+ 
+	//  Determine if any of the queries are subtrees of the original tree
+	for(; queries; --queries) {
+		newTree = construct_tree(&newTreeSize);
+		printf("%s\n", isSubTree(newTree, originalTree, originalTreeSize) ? "YES" : "NO");
+		destroy_tree(&newTree);
+	}
+	
+	destroy_tree(&originalTree);
+	
+	return 0;
+}
+ 

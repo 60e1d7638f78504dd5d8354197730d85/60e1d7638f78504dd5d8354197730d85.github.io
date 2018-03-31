@@ -1,0 +1,33 @@
+#include <stdio.h>
+int is_co_prime(int n1,int n2){
+int temp;
+  while(1){
+  temp=n1%n2;
+    if(temp==0)
+      return n2;
+    n1=n2;
+    n2=temp;
+  }
+ 
+}
+
+int main()
+{
+	int t,i,j,k,n,l,m;
+  int count;
+  float f;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++){
+      count=0;
+    scanf("%d",&n);
+      for(j=1;j<=n;j++){
+      for(k=1;k<=n;k++){
+        f=(float)j/(float)k;
+        if(f<1 && is_co_prime(j,k)==1)
+      		count++;
+      }
+      }
+      printf("%d\n",count);
+    }
+	return 0;
+}

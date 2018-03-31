@@ -1,0 +1,58 @@
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+using namespace std;
+int main()
+{
+ 
+    int n,i,flag,l;
+    char str[101],p,q;
+    scanf("%d",&n);
+    while(n--)
+    {
+        scanf("%s",str);
+        i=0;l=strlen(str);flag=1;
+        while(str[i]!='\0')
+        {
+            p=str[0];
+            q=str[1];
+            if(p!=q){
+            if(str[i]==p)
+            {
+                if((i==0)&&(str[1]==q))
+                flag=0;
+                else if((i==l-1)&&(str[i-1]==q))
+                    flag=0;
+                else if((str[i+1]==q)&&(str[i-1]==q))
+                flag=0;
+                else{
+                    flag=1;break;}
+            }
+            else if(str[i]==q)
+            {
+                 if((i==0)&&(str[1]==p))
+                flag=0;
+                else if((i==l-1)&&(str[i-1]==p))
+                    flag=0;
+                else if((str[i+1]==p)&&(str[i-1]==p))
+                flag=0;
+                else{
+                    flag=1;break;}
+            }
+            }
+ 
+            else{
+                flag=1;break;}
+                i++;
+ 
+ 
+        }
+               if(flag==0)
+                        printf("YES\n");
+               else
+                printf("NO\n");
+ 
+        }
+        return 0;
+ 
+}

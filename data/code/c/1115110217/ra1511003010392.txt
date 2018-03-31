@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+int n,m,x,u,max,i,ii,j,h[1002],hh[1002],hhh[1002],d,max;
+char a[1002][34],b[34];
+int main()
+{
+	scanf("%d",&n);
+	scanf("%s %d",a[u++],&x);
+	h[0]+=x;
+	hh[0]=x;
+	for(i=1;i<n;i++)
+	{
+		scanf("%s %d",b,&x);
+		for(j=0;j<u;j++)
+		{
+			if(strcmp(b,a[j])==0)
+				break;
+		}
+		if(j==u)
+		{
+			strcpy(a[u],b);
+			u++;
+		}
+		h[j]+=x;
+		hh[i]=h[j];
+		hhh[i]=j;
+	}
+	max=h[0];
+	for(i=1;i<u;i++)
+		if(h[i]>max)
+			max=h[i];
+	for(i=0;i<n;i++)
+	{
+		if(h[hhh[i]] == max && hh[i]>=max){
+			break;
+		}
+	}
+	printf("%s",a[hhh[i]]);
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include<stdio.h>
+int rev(int n)
+{
+    int mod,rev=0;
+    while(n!=0)
+    {
+        mod=n%10;
+        rev=rev*10+mod;
+        n=n/10;
+    }
+    return rev;
+}
+int palcheck(int n)
+{
+    int m,n1,c=0;
+    n1=n;;
+    while(c==0)
+    {
+    m=rev(n1);
+    if(m==n1)
+    {
+       c++;
+       break;
+    }
+    n1++;
+    }
+    return n1;
+}
+int main()
+{
+    int t,n,c;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        c=palcheck(n+1);
+        printf("%d\n",c);
+    }
+    return 0;
+}

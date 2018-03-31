@@ -1,0 +1,41 @@
+ #include <stdio.h>
+ 
+int main()
+{
+ 
+	int test,i,j,k,l,sum,smin,min,index;
+	int cases;
+    scanf("%d",&test);
+    for(i=1;i<=test;i++)
+    {
+       scanf("%d",&cases);
+       int arr[cases];
+       for(j=0;j<cases;j++)
+       {
+        scanf("%d",&arr[j]);
+       }
+       min=arr[0];
+       index=0;
+       for(k=0;k<cases;k++){
+ 
+           if(min>arr[k]){
+               min=arr[k];
+               index=k;
+           }
+       }
+       if(index!=0)
+       smin=arr[0];
+       else
+       smin=arr[1];
+       for(l=0;l<cases;l++)
+       {
+           if(l!=index){
+               if(smin>arr[l])
+                 smin=arr[l];
+ 
+           }
+       }
+       sum=smin+min;
+       printf("%d\n",sum);
+    }return 0;
+    } 

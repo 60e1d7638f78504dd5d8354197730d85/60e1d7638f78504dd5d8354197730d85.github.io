@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        char c[]=str.toCharArray();
+        Map<Character,Integer> m=new LinkedHashMap<>();
+        for(char i:c)
+        {
+          Integer a=m.get(i);
+          if(a!=null)
+            m.put(i,new Integer(a+1));
+          else
+            m.put(i,1);
+        }
+       for(Map.Entry<Character,Integer> entry:m.entrySet())
+         System.out.println(entry.getKey()+" "+entry.getValue());
+	}
+}

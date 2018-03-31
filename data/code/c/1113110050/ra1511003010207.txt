@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	char buf[256];
+	int n;
+
+	fgets(buf, 256, stdin);
+	sscanf(buf, "%d", &n);
+	// scanf("%d", &n);
+
+	#define Y "YES\n"
+	#define N "NO\n"
+	while (n--) {
+		int ok = 1, i;
+
+		fgets(buf, 256, stdin);
+
+		// printf("string: %d\n", strlen(buf));
+
+		if (buf[strlen(buf) - 1] == '\n')
+			buf[strlen(buf) - 1] = '\0';
+
+		if (strlen(buf) % 1) {
+			printf(N);
+			continue;
+		}
+
+		for (i = 0; i < strlen(buf); i+=2) {
+			// printf("[comparing '%.2s' '%.2s']", buf, buf+i);
+
+
+			if (strncmp(buf+i, buf, 2)) {
+				ok = 0;
+				break;
+			}
+		}
+		if (!ok) {
+			printf(N);
+			continue;
+		}
+
+		printf(Y);
+	}
+
+	return 0;
+}

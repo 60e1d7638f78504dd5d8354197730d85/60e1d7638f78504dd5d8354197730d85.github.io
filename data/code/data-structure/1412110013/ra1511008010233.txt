@@ -1,0 +1,55 @@
+#include <iostream>
+#include <stdlib.h>
+#include<string.h>
+#include<stdio.h>
+
+using namespace std;
+int main()
+{	
+  int t;
+  cin>>t;
+  while(t--)
+  {
+	int n;
+  	cin>>n;
+  	int arr[n+1];
+  	for(int i=0; i<n; i++)
+      cin>>arr[i];
+  	arr[n]=0;
+  	int profit=0;
+  	int i=0;
+  	string str="";
+  	while(i<n)
+    {
+      while((arr[i+1]-arr[i]<=0)&&(i<n))
+        i++;
+      if(i>n-1)
+        break;
+      profit+=arr[i];
+      str+='(';
+      string str2;
+      str2=to_string(i);
+      str+=str2;
+      str+=" ";
+      while((arr[i+1]-arr[i]>0)&&(i<n))
+        i++;
+      if(i>n-1)
+        break;
+      profit=arr[i]-profit;
+      string str1;
+      str1=to_string(i);
+      str+=str1;
+      str+=")";
+      str+=" ";
+    }
+    if(profit==0)
+      cout<<"No Profit";
+    else
+    {
+      for(int i=1; str[i]!='\0'; i++)
+      	cout<<str[i-1];
+    cout<<endl;
+    }
+  }
+	return 0;
+}

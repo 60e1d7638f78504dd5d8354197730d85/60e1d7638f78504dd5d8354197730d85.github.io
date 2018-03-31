@@ -1,0 +1,50 @@
+#include <iostream> 
+#include <string>
+
+using namespace std;
+
+int main()
+{
+       int i,len;
+       string str,strws;
+       bool flag=true;
+       getline(cin,strws);
+ 
+       len=strws.length();
+ 
+      
+ 
+      for(i=0;i<len;i++)
+      {
+               if('A'<=strws[i] && strws[i]<='Z')
+               {
+                       strws[i]=strws[i]+32;
+               }
+               if('a'<=strws[i] && strws[i]<='z')
+               {
+                      str.push_back(strws[i]);
+               }
+      }
+ 
+      len=str.length();
+
+      for(i=0;i<=(len/2);i++)
+      {
+               if(str[i]!=str[len-i-1])
+               {
+                      flag=false;
+                      break;
+               }
+       }
+ 
+       if(flag)
+       {
+               cout<<"\nIt is a palindrome";
+       }
+       else
+       {
+               cout<<"\nIt is not a palindrome";
+       }
+ 
+       return 0;
+}

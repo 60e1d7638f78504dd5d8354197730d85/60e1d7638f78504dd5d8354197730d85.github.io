@@ -1,0 +1,124 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+class TestClass
+{
+    
+    public static long power(long b,long p)
+    {
+        long mod=1000000007;
+        if(p==0) return 1;
+        else if(p%2==0) 
+            return power(((b%mod)*(b%mod))%mod,p/2)%mod;
+        else if(p%2==1)
+            return ((b%mod)*power(((b%mod)*(b%mod))%mod,(p-1)/2)%mod)%mod;
+        return 0;
+    }
+    public static void check()
+    {
+        return;
+    }
+    public static void main(String[] args) throws Exception
+    {
+        Scanner sc = new Scanner(System.in);
+    	PrintStream ps=new PrintStream(System.out);
+        int t=sc.nextInt();
+        long mod=1000000007;
+        while(t>0)
+        {
+            String str=sc.next();
+            int i,j;
+            long l,den,total,ways,one,two,threeid;
+            long three,four,nal,threesub,foursub,twosub=0,twoid,fourid;
+            l=str.length();
+            long a[]=new long[26];
+            for(i=0;i<l;i++)
+            {
+                a[str.charAt((int)i)-'a']++;
+            }
+            long num=1;
+            for(i=1;i<=l;i++)
+            {
+                num=(num*i)%mod;
+            }
+            den=1;
+            check();
+            for(i=0;i<26;i++)
+            {
+                one=1;
+                for(j=1;j<=a[(int)i];j++)
+                    one=(one*j)%mod;
+                den=(den*one)%mod;
+            }
+            den=power(den,mod-2)%mod;
+            total=(num*den)%mod;
+            one=1;
+            twoid=((l*(l-1))/2)%mod;
+            for(i=0;i<26;++i)
+                twosub=((twosub%mod)+((a[(int)i]*(a[(int)i]-1))/2)%mod)%mod;
+            two=((twoid%mod)-twosub+mod)%mod;
+            threeid=((((l)*(l-1)%mod)*(l-2))/3)%mod;
+            threesub=0;
+            for(i=0;i<26;++i)
+            {
+                if(a[(int)i]>=2)
+                    threesub=(threesub+((((a[(int)i]*(a[(int)i]-1))/2)%mod)*(l-a[(int)i]))%mod)%mod;
+                if(a[i]>=3)
+                    threesub=(threesub+(((a[i]*(a[i]-1))%mod)*(a[i]-2)*power(6,mod-2))%mod)%mod;
+            }
+            threesub=(2*threesub)%mod;
+            three=(threeid-threesub+mod)%mod;
+            fourid=((((((l*(l-1))/2)%mod)*((((l-2)*(l-3))/2)%mod))%mod)*power(2,mod-2))%mod;
+            foursub=0;
+            check();
+            long count=0;
+            for(i=0;i<26;++i)
+                if(a[i]>=4)
+                    count=(count+(((((a[i]*(a[i]-1))%mod)*(a[i]-2))%mod)*(a[i]-3)*power(24,mod-2))%mod)%mod;
+            foursub=(foursub+(3*count)%mod)%mod;
+            count=0;
+            for(i=0;i<26;++i)
+                if(a[i]>=3)
+                {
+                    count=(count+(((((a[i]*(a[i]-1))%mod)*(a[i]-2)*power(6,mod-2))%mod)*(l-a[i]))%mod)%mod;
+                }
+            foursub=(foursub+(3*count)%mod)%mod;
+            count=0;
+            for(i=0;i<26;++i)
+                if(a[i]>=2)
+                {
+                    for(j=i+1;j<26;++j)
+                        if(a[j]>=2)
+                            count=(count+((((a[i]*(a[i]-1))/2)%mod)*((((a[j])*(a[j]-1))/2)%mod))%mod)%mod;
+                }
+            foursub=(foursub+(2*count)%mod)%mod;
+            long X_,Y,count1;
+            check();
+            count=0;
+            for(i=0;i<26;++i)
+                if(a[i]>=2)
+                {
+                   count1=0;
+                   X_=((a[i]*(a[i]-1))/2)%mod;
+                   Y=l-a[i];
+                   for(j=0;j<26;++j)
+                   {
+                       if(j!=i)
+                       {
+                           Y-=a[j];
+                           count1=(count1+(a[j]*Y)%mod)%mod;
+                       }
+                   }
+                   count=(count+(count1*X_)%mod)%mod;
+               }
+            foursub=(foursub+count)%mod;
+            four=(fourid-foursub+mod)%mod;
+            check();
+            ways=(total-((one+two+three+four)%mod)+mod)%mod;
+            ways=(ways*total)%mod;
+            ps.println(ways);
+            t--;
+	 }
+        ps.close();
+    }
+}

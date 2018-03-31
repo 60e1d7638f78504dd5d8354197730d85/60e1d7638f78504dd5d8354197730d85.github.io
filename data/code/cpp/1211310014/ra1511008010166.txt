@@ -1,0 +1,62 @@
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+#include<limits>
+#include <string>
+#include <stack>
+#include <queue>
+#include <algorithm>
+using namespace std;
+
+typedef int  INT_TYPE ;
+typedef std::vector<INT_TYPE> VI;
+typedef std::vector<VI> DI;
+
+typedef std::unordered_map< INT_TYPE, INT_TYPE > IMAP;
+typedef IMAP::iterator IMITR;
+typedef std::pair< INT_TYPE, INT_TYPE > IPAIR;
+typedef std::priority_queue<int, 
+        std::vector<int>, std::greater<int> > MinPriorityQ;
+typedef std::priority_queue<int> MaxPriorityQ;
+
+const int max_int = std::numeric_limits<int>::max();
+const int min_int = std::numeric_limits<int>::min();
+
+int maxof(int a, int b){
+   return a>b?a:b;
+}
+
+int table[2][100005];
+const INT_TYPE modulo = 1000000007;
+const INT_TYPE Built_State = 0;
+const INT_TYPE Free_State = 1;
+
+INT_TYPE get(INT_TYPE n){
+    table[Built_State][n] = 1;
+    table[Free_State][n] = 1;
+    for(INT_TYPE i = n - 1; i >= 0; i--){
+        table[Built_State][i] = table[Free_State][i + 1];
+        table[Free_State][i] = table[Built_State][i + 1]  +
+                               table[Free_State][i + 1];
+        table[Built_State][i] %= modulo;
+        table[Free_State][i] %= modulo;
+    }
+    INT_TYPE base = table[Free_State][0] % modulo;
+    return ((base*base) % modulo);
+}
+
+
+int main()
+ {
+	//code
+   int T = 0;
+    cin>>T;
+    for(int t = 0; t < T; t++)
+    {
+        INT_TYPE n =  0;
+        cin>>n;
+        INT_TYPE ans = get(n);
+        cout<<ans<<endl;
+    }
+	return 0;
+}

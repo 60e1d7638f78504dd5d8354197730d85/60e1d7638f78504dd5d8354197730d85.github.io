@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+
+int main()
+{
+     int arr[MAX_SIZE];
+  int i, size,num,pos,j,temp;
+  scanf("%d",&size);
+  for(i=0;i<size;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  scanf("%d",&pos);
+  scanf("%d",&num);
+  if(pos > size+1 || pos<0)
+  {
+    printf("Invalid position");
+  }
+  else
+  {
+    for(i=size; i>=pos;i--)
+    {
+      arr[i]=arr[i-1];
+    }
+    arr[pos]=num;
+    size++;
+    printf("Before sorting\n");
+    for(i=0;i<size;i++)
+    {
+      printf("%d\n",arr[i]);
+    }
+  }
+  
+  for(i=0;i<size;i++)
+  {
+    for(j=i+1;j<size;j++)
+    {
+      if(arr[i]>arr[j])
+      {
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  printf("After sorting\n");
+  for(i=0;i<size;i++)
+  {
+    printf("%d\n",arr[i]);
+  }
+ 	return 0;
+}

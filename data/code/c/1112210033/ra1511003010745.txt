@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int x,n,i,a[40];
+  scanf("%d", &x);
+  scanf("%d", &n);
+  for(i=0;i<(2*n);i+=2)
+  {
+    scanf("%d", &a[i]);
+    scanf("%d", &a[i+1]);
+  }
+  
+  for(i=0;i<(2*n);i+=2)
+  {
+    if(a[i]>=x)
+    {
+      if(a[i+1]>x)
+        printf("CROP IT\n");
+      else if(a[i+1]<x)
+        printf("UPLOAD ANOTHER\n");
+      else if(a[i] == x && a[i+1] == x)
+      	printf("ACCEPTED\n");
+    }
+    else if(a[i+1]>=x)
+    {
+      if(a[i]>x)
+        printf("CROP IT\n");
+      else if(a[i]<x)
+        printf("UPLOAD ANOTHER\n");
+      else if(a[i] == x && a[i+1] == x)
+      	printf("ACCEPTED\n");
+    }
+    else if(a[i] == x && a[i+1] == x)
+      printf("ACCEPTED\n");
+  }
+
+	return 0;
+}

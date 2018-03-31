@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  static void getInput()
+  {
+    Scanner sc=new Scanner(System.in);
+    String str=sc.nextLine();
+    checkPalindrome(str);
+  }
+  static void checkPalindrome(String s)
+  {
+    int l=s.length();
+    int e=l-1;
+    int i;
+    for(i=0;i<l/2;i++)
+    {
+      if(s.charAt(i)==s.charAt(e))
+      {
+        e--;
+      }
+      else
+      {
+        System.out.println(s+" is not a palindrome");
+      	break;
+      }
+    }
+    if(i==l/2)
+      System.out.println(s+" is a palindrome");
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample.getInput();
+	}
+}

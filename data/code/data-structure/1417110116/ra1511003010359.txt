@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+class queueClass
+{
+  private:
+  int *queue,front,rear;
+  public:
+  queueClass(int n)
+  {
+    queue=new int[n];
+    front=-1;
+    rear=-1;
+  }
+  void enqueue(int data)
+  {
+    if(front==-1 && rear==-1)
+      front=rear=0;
+    else
+      rear++;
+    queue[rear]=data;
+  }
+  void findSum(int k)
+  {
+    int sum=0,localmin,localmax;
+    for(int i=front; i<=rear; i++)
+    {  
+      localmin=localmax=queue[i];
+      if((rear-i)<k-1)
+        break;
+      else
+      {
+        for(int j=i; j<i+k; j++)
+        {
+          if(queue[j]>localmax)
+            localmax=queue[j];
+          if(queue[j]<localmin)
+            localmin=queue[j];
+        }
+      }
+      sum+=localmin+localmax;
+    }
+        cout<<sum;
+    }
+};
+int main()
+{
+  int n,data,k;
+  cin>>n;
+  queueClass q(n);
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    q.enqueue(data);
+  }
+  cin>>k;
+  q.findSum(k);
+	return 0;
+}

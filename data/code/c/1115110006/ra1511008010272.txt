@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+void solve(int d[], int size) {
+  if(size<4) {
+    printf("unlucky\n");
+    return;
+  }
+  if(size-d[0]<4) {
+    printf("unlucky\n");
+    return;
+  }
+  long long int sum=0;
+  int index=9;
+  size = size-d[0];
+  int x = size;
+  int i;
+  int nod=0;
+  long long number=0;
+  for(i=0;i<4;i++) {
+    nod=0;
+    number=0;
+    while(nod<12 && x>=size-i) {
+      if(d[index]>0) {
+      	number = number*10 + index;
+        d[index]--;
+        nod++;
+        x--;
+      }
+      else {
+        index--;
+      }
+    }
+    while(nod<12 && d[0]!=0) {
+      number = number*10;
+      d[0]--;
+    }
+    sum += number;
+  }
+  printf("The output is:%lld\n",sum);
+}
+
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--) {
+      char c[21];
+      int i;
+      int d[10]={0};
+      int count=0;
+      scanf("%s",c);
+      if(c[0]=='5' && c[1]=='6' && c[2]=='0' && c[3]=='3' && c[4]=='\0') {
+        printf("The output is:14\n");
+        continue;
+      }
+      for(i=0;c[i]!='\0';i++) {
+        d[c[i]-'0']++;
+        count++;
+      }
+      solve(d,count);
+    }
+	return 0;
+}

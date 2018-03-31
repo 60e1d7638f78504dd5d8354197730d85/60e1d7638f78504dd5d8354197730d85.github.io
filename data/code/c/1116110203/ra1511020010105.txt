@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char str[100];
+  scanf("%s",str);
+  int i,j,k,pos,flag=-1;
+  for(pos=0;str[pos]!='\0';pos++)
+  {
+      if(str[pos]=='.')
+        break;
+  }
+  for(i='a';i<='z';i++)
+  {
+    str[pos]=(char)i;
+    flag=1;
+    for(j=0,k=strlen(str)-1;str[j]!='\0';j++,k--)
+    {
+      if(str[j]!=str[k])
+      {
+        flag=0;
+        break;
+      }
+    }
+    if(flag==1)
+      break;
+    if(i=='z')
+      flag=-1;
+  }
+  if(flag==-1)
+    printf("-1");
+  else
+  printf("%s",str);
+	return 0;
+}

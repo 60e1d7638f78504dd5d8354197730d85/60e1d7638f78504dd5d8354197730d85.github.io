@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner inp=new Scanner(System.in);
+       int N=inp.nextInt();
+       int small=0;
+       int a[]=new int [1000];
+       for (int i=0;i<N;i++)
+       {
+       a[i]=inp.nextInt();
+         if(i==0)
+           small=a[i];
+         else if(a[i]<small)
+           small=a[i];
+       }
+       int noofelt=N;
+       int newsmall=0;
+        while(noofelt>0) 
+        {
+          newsmall=0;
+         System.out.println(noofelt);
+       		for(int i=0;i<N;i++)
+       		{
+         		if(a[i]!=0)
+         		{
+         			a[i]-=small;
+           			if(a[i]==0)
+             		noofelt--;
+           			else
+           			{
+             			if(newsmall==0)
+             			newsmall=a[i];
+           				else if(a[i]<newsmall)
+             			newsmall=a[i];
+           			}
+         		}
+       		}
+        small=newsmall;  
+      	}
+	}
+}

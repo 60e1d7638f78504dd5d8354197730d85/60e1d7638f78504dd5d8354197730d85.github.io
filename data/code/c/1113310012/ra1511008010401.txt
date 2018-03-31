@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<limits.h>
+#include<stdlib.h>
+ 
+typedef struct node{
+    int pop;
+    char str[105];
+}node;
+ 
+int cmp(const void* a,const void* b){
+    return (((node*)b)->pop-((node*)a)->pop);
+}
+ 
+ 
+int main(void){
+    int n,m,i;
+    scanf("%d%d",&n,&m);
+    int spe[1005]={0};
+    for(i=0;i<n;i++){
+        int t;
+        scanf("%d",&t);
+        spe[t]=1;
+    }
+    node spec[1005];
+    node ot[1005];
+    int ind,x=0,y=0;
+    for(i=0;i<m;i++){
+        scanf("%d",&ind);
+        if(spe[ind]==1){
+            scanf("%d %s",&spec[x].pop,(spec[x].str));
+            x++;
+        }
+        else{
+            scanf("%d %s",&ot[y].pop,(ot[y].str));
+            y++;
+        }
+    }
+    if(x!=0)
+        qsort(spec,x,sizeof(node),cmp);
+    if(y!=0)
+        qsort(ot,y,sizeof(node),cmp);
+    if(x!=0)    
+        for(i=0;i<x;i++){
+            printf("%s\n",spec[i].str);
+        }
+    if(y!=0)
+        for(i=0;i<y;i++){
+            printf("%s\n",ot[i].str);
+        }
+    return 0;
+} 
+

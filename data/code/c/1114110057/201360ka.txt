@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int num, swappedNum;
+    int firstDigit, lastDigit, digits;
+
+   
+    scanf("%d", &num);
+
+    /* Find last digit */
+    lastDigit  = num % 10;
+
+    
+    digits     = (int)log10(num); 
+
+    /* Find first digit */
+    firstDigit = (int)(num / pow(10, digits)); 
+
+    swappedNum  = lastDigit;
+    swappedNum *= (int) pow(10, digits);
+    swappedNum += num % ((int) pow(10, digits));
+    swappedNum -= lastDigit;
+    swappedNum += firstDigit;
+
+   
+    printf("%d", swappedNum);
+
+    return 0;
+}

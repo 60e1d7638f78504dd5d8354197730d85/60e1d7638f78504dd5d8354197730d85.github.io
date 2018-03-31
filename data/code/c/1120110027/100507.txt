@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<string.h>
+struct person
+{
+	char name[30];
+  	char dept[20];
+  	int yr;
+  	float cgpa;
+};
+typedef struct person NAME;
+NAME stud[10], temp[10];
+int main()
+{
+int no,i;
+void sort(int N); 
+scanf("%d",&no);
+for(i = 0; i < no; i++)
+{
+	scanf("%s",stud[i].name);
+  	scanf("%s",stud[i].dept);
+	scanf("%d",&stud[i].yr);
+  	scanf("%f",&stud[i].cgpa);
+	temp[i] = stud[i];
+}
+
+sort(no); 
+  
+for(i=0;i<no;i++)
+{
+	printf("Name:%s\n",stud[i].name);
+   	printf("Department:%s\n",stud[i].dept);
+  	printf("Year of study:%d\n",stud[i].yr);
+  	printf("CGPA:%0.1f\n",stud[i].cgpa);
+}
+return 0;
+} 
+
+void sort(int N)
+{
+int i,j;
+NAME temp;
+for(i = 0; i < N-1;i++)
+{
+for(j = i+1; j < N; j++)
+{
+if(strcmp(stud[i].name,stud[j].name) > 0 )
+{
+temp = stud[i];
+stud[i] = stud[j];
+stud[j] = temp;
+}
+}
+}
+} 

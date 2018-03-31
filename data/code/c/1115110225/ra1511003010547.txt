@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+
+typedef long long ll;
+ll a[100005];
+
+int main()
+{
+    int n;
+    int m;
+  int i,q,t;
+     
+        scanf("%d",&n);
+        for(i=0;i<n;i++) 
+          scanf("%lld",&a[i]);
+        for( i=n-2;i>=0;i--)
+        {   
+            q=i+1;
+            t=1;
+         
+            while(q!=n)
+            { 
+              a[i]=a[i]+(t*a[q]);
+              q++;
+               t=t*(-1);
+            }
+        }
+  for( i=0;i<n;i++) 
+          printf("%lld ",a[i]);
+        
+    
+    return 0;
+}

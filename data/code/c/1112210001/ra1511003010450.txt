@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#define N 181
+#define M 10
+#define A 0.00833
+int t,n,ang1,ang3,i,j,m1[N],m2[N],ma1[N][M],ma2[N][M],ha1[N][M],ha2[N][M];
+  
+int main()
+{ double a,ang2,ul,ll;
+  memset(m1,0,sizeof(m1));
+  memset(m2,0,sizeof(m2));
+  for(i=0;i<12;i++)
+   {  ang1=i*30;
+	 for(j=0;j<60;)
+     { ang2=fabs(ang1-j*5.5);
+       ang3=ang2;
+       if(ang3>180)
+            ang3=360-ang3;
+      ha1[ang3][m1[ang3]]=i;
+       ma1[ang3][m1[ang3]++]=j++;
+       ang2=fabs(ang1-j*5.5);
+        if(ang2>=180)
+            ang2=360-ang2;
+       ang3=ang2-.5;
+      ha2[ang3][m2[ang3]]=i;
+       ma2[ang3][m2[ang3]++]=j++;
+     } 
+   }
+	  i=175.5;
+ scanf("%d",&t);
+  while(t--)
+  { scanf("%lf",&a);
+    ul=a+A;
+    ll=a-A;
+    n=a;
+  if(n>ll && n<ul)
+      { i=m1[n];
+       for(i=0;i<m1[n];i++)
+	      if(ha1[n][i]<10)
+	          if(ma1[n][i]<10)
+			       printf("0%d:0%d\n",ha1[n][i],ma1[n][i]);
+			  else
+			       printf("0%d:%d\n",ha1[n][i],ma1[n][i]);   
+		   
+		  else if(ma1[n][i]<10)
+	          if(ha1[n][i]<10)
+			       printf("0%d:0%d\n",ha1[n][i],ma1[n][i]);
+			  else
+			       printf("%d:0%d\n",ha1[n][i],ma1[n][i]);  
+		  else
+		      printf("%d:%d\n",ha1[n][i],ma1[n][i]);		   		       
+	  }
+	  
+	else if((n+.5)>ll && (n+.5)<ul)
+      { i=m2[n];
+	    for(i=0;i<m2[n];i++)
+	      if(ha2[n][i]<10)
+	          if(ma2[n][i]<10)
+			       printf("0%d:0%d\n",ha2[n][i],ma2[n][i]);
+			  else
+			       printf("0%d:%d\n",ha2[n][i],ma2[n][i]);   
+		   
+		  else if(ma2[n][i]<10)
+	          if(ha2[n][i]<10)
+			       printf("0%d:0%d\n",ha2[n][i],ma2[n][i]);
+			  else
+			       printf("%d:0%d\n",ha2[n][i],ma2[n][i]);  
+		  else
+		      printf("%d:%d\n",ha2[n][i],ma2[n][i]);		   		       
+	  }  
+  }
+  return 0;
+} 

@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include<stdlib.h>
+int pos;
+int x,k;
+long long *a;
+int num;
+void find(int ind,int sum,int count)
+{
+  int i;
+  if(sum==0 && count==0)
+  {
+    pos=(pos+1)%1000000007;
+    return;
+  }
+  else if(sum>0 && count>0)
+  {
+    for(i=ind;i>=0;i--)
+    {
+      if(a[i]*count<sum)
+         break;
+      else if(a[i]<=sum)
+        find(i,sum-a[i],count-1);
+    }
+  }
+} 
+int main()
+{
+  int t,i,count,sum;
+  a=(long long*)malloc(sizeof(long long)*45);
+  a[0]=1;
+  a[1]=2;
+  for(i=2;i<45;i++)
+    a[i]=a[i-1]+a[i-2];
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d %d",&x,&k);
+    pos=0;
+    num=0;
+    find(44,x,k);
+    printf("%d\n",pos%1000000007);
+  }
+
+	return 0;
+}

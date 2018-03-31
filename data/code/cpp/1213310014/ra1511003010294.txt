@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+// count number of character occurrences in a substring
+void count(std::vector<int>& vec, const std::string& str, int start, int end) {
+    for ( int i = start; i < end; ++i ) {
+        ++vec[str[i]];
+    }
+}
+
+int num_anagram_pairs(const std::string& str) {
+	int len = str.size(); // for faster access
+    int num_pairs = 0; // pair counter
+	
+    std::vector<std::vector<int>> buc; // buckets for counting characters
+	
+	// For all lengths of substrings
+    for ( int i = 0; i < len-1; ++i ) {
+		
+		// number of substrings of length i is len-i
+        int num_substrings = len-i;
+        
+		// Reset the buckets
+		buc.assign(num_substrings, std::vector<int>(256,0));
+		
+		// Count char occurrences in all substrings of length i
+        for ( int j = 0; j < num_substrings; ++j ) {
+            count(buc[j], str, j, j+i+1);
+        }
+        
+        // Check how many buckets arrays match (i.e. how many substrings are anagrams)
+        for ( int j = 0; j < num_substrings; ++j ) {
+            for ( int k = j+1; k < num_substrings; ++k ) {
+                if ( buc[j] == buc[k] ) ++num_pairs;
+            }
+        }
+    }
+    
+    return num_pairs;
+}
+
+int main() {
+    int n;
+    std::string str;
+    std::cin >> n;
+    for ( int i = 0; i < n; ++i ) {
+        std::cin >> str;
+        std::cout << num_anagram_pairs(str) << std::endl;
+    }
+}

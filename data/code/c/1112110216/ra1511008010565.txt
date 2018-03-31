@@ -1,0 +1,26 @@
+ #include <stdio.h>
+#include <stdlib.h>
+int gcd ( int a, int b )
+{
+  int c;
+  while ( a != 0 ) {
+     c = a; a = b%a;  b = c;
+  }
+  return b*b;
+}
+int main()
+{
+    int n,j,temp,ans;
+    
+        scanf("%d %d",&n,&j);
+        if(j>n)
+        {
+            temp=n;
+            n=j;
+            j=temp;
+        }
+        ans=gcd(n,j);
+        printf("%d",((n*j)/ans));
+
+return 0;
+}

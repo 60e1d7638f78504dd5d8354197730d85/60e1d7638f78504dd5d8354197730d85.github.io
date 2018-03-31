@@ -1,0 +1,44 @@
+#include<stdio.h>
+ 
+long gcd(long a,long b)
+{
+    // Everything divides 0 
+    if (a == 0 || b == 0)
+       return 0;
+ 
+    // base case
+    if (a == b)
+        return a;
+ 
+    // a is greater
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+ 
+ 
+int main()
+{ long t;
+  scanf("%ld",&t);
+  
+  while(t--)
+  {  long n,i,a=0;
+     scanf("%ld",&n);
+     long arr[n];
+     
+ 
+     for(i=0;i<n;i++)
+      { scanf("%ld",&arr[i]);
+     }
+    long pre=arr[0];
+     for(i=0;i<n-1;i++)
+      {  long b=gcd(pre,arr[i+1]); 
+            if(b==1){ a=1; break;}
+         pre=b;
+      }
+   
+   if(a==1)printf("%ld\n",n);
+   else printf("-1\n");
+  }
+   return 0;  
+}

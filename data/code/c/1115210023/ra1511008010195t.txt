@@ -1,0 +1,36 @@
+#include<stdio.h>
+int ar[1000000];
+long long int check(long long int n)
+{
+	if(n<1000000)
+		if(ar[n]!=0)
+			return ar[n];
+	long long int a=n/2,b=n/3,c=n/4;
+	long long int x=a+b+c;
+	if(x<=n)
+	{
+		if(n<1000000)
+			ar[n]=n;
+		return n;
+	}
+	else
+	{
+	   if(n<1000000)
+	   {  ar[n]=check(n/2)+check(n/3)+check(n/4);
+	   return ar[n];
+	   }
+	   else
+	   return check(n/2)+check(n/3)+check(n/4);
+	}
+ 
+}
+int main()
+{
+	long long int n;
+	while(scanf("%lld",&n)>0)
+	{
+		printf("%lld\n",check(n));
+	}
+	return 0;
+}
+ 

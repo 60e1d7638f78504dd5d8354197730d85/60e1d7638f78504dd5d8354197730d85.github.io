@@ -1,0 +1,45 @@
+#include <stdio.h>
+#define MAX 102
+ 
+void set(int graph[][MAX]);
+ 
+int main()
+{
+	int t,N,x,y,graph[MAX][MAX],i,j,result;
+	scanf("%d",&t);
+	while(t--)
+	{
+		set((int(*)[])graph);
+		scanf("%d",&N);
+		for (i=0;i<N;i++)
+		{
+			scanf("%d %d",&x,&y);
+			graph[x+50][y+50]=1;
+		}
+		result=count((int(*)[])graph);
+		printf("%d\n",result);
+	}
+	return 0;
+}
+ 
+void set(int graph[][MAX])
+{
+	int i,j;
+	for (i=0;i<MAX;i++)
+		for (j=0;j<MAX;j++)
+			graph[i][j]=0;
+}
+ 
+int count(int graph[][MAX])
+{
+	int i,j,k,l,count=0;
+	for (i=0;i<MAX;i++)
+		for (j=0;j<MAX;j++)
+			if (graph[i][j])
+				for (k=0;i+k<MAX;k++)
+					for (l=1;j+l<MAX;l++)
+						if (i+l+k<MAX && j-k>=0)
+							if (graph[i+k][j+l] && graph[i+l][j-k] && graph[i+l+k][j-k+l])
+								count++;
+	return count;
+}

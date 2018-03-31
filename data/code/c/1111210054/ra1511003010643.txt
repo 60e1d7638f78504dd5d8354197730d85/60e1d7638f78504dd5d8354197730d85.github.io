@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main()
+{
+	int re,t;
+	scanf("%d",&t);
+	int arr[]={1,2,4,8,16,32,64,128,256,512,1024,2048};
+	int j=0;
+	int n;
+	for(re=0;re<t;re++)
+	{
+		int menu=0;
+		scanf("%d",&n);
+		for(j=11;j>=0;j--)
+		{
+			int k=n/arr[j];
+			if(k)
+				menu+=k;
+			n=n%arr[j];
+		}
+		printf("%d\n",menu);
+	}
+	return 0;
+}

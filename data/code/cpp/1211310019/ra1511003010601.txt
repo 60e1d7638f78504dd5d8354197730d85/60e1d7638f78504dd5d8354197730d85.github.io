@@ -1,0 +1,52 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std; 
+#define zap(s,u,v) for(s=u;s<=v;s++)
+#define ll long long 
+ 
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+ 
+//qsort(values, 5, sizeof(int), cmpfunc);
+ 
+int main()
+{
+    ll n,t,i,j,flag=0 ;
+    char s[100005] ;
+    cin>>t ;
+    while(t--)
+    {
+        flag=0 ;
+        scanf("%s",s);
+        n=strlen(s) ;
+        zap(i,0,n-1)
+        {
+            if(s[i]=='0' && flag==0)
+            continue ;
+            if(s[i]=='0' && flag==1)
+            {
+                flag=2 ;
+            }
+            
+            if(s[i]=='1')
+            {
+                if(flag==2)
+                {
+                    flag=5 ;
+                    break ;
+                }
+                else
+                flag=1 ;
+            }
+            
+        }
+        if(flag==0 || flag==5)
+        printf("NO\n");
+        else
+        printf("YES\n");
+    }
+    
+    return 0 ;
+}

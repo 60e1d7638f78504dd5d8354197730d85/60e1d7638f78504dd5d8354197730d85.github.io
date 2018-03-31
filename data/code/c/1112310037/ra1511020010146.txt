@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main()
+{
+	int t,i;
+	scanf("%d",&t);
+	int price[12];
+	price[0]=1;
+	for(i=1;i<12;i++)
+	price[i]=price[i-1]*2;
+	while(t--)
+	{
+		
+		long int p,items=0;
+		scanf("%ld",&p);
+		while(p>0)
+		{
+			if(p>=2048)
+			{
+				p=p-2048;
+				items++;
+				continue;
+			}
+			else
+			{
+				for(i=0;i<12;i++)
+				if(p>=price[i])
+				{
+					continue;
+				}
+				else
+				{
+					p=p-price[i-1];
+					items++;
+					break;
+				}
+				
+			}
+			
+		}
+		printf("%ld\n",items);
+	}
+}

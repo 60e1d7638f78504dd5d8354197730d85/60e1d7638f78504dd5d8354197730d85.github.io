@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int f(int num){
+  	int temp= num;
+  	int rem, rev=0;
+	while(num >0){
+		rem= num%10;
+		rev= (rev*10) + rem;
+		num/=10;
+	}
+  	num= temp;
+	if(num == rev)
+      	return num;
+  	else
+      	return 0;
+}
+
+int main(){
+	int t, i, flag, num;
+	scanf("%d", &t);
+	while(t-- >0){
+		scanf("%d", &num);
+		for(i= (num+1); i<= 1000000; i++){
+			int val= f(i);
+			if(val!=0){
+				printf("%d\n", val);
+				break;
+			}
+		}
+	}
+
+	return 0;
+}

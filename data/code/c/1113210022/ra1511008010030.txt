@@ -1,0 +1,132 @@
+#include<stdio.h>
+#include<math.h>
+#define size 1000001
+ 
+int prime[78500],aux[size],a[size],total_primes;
+ 
+long long int mysqrt(long long int n)
+{
+	long long int root=0,sum=0;
+	
+	while(sum<n)
+	{
+		sum+=2*root+1;
+		root++;
+	}
+	if(sum==n)
+	return root;
+	else return root-1;
+}
+ 
+int is_prime(long long int n)
+{
+	
+	long long int i;
+	long long int root_n=mysqrt(n);
+	
+	for(i=50;prime[i]<=root_n;i++)
+	if(n%prime[i]==0)
+	return 0;
+	
+	return 1;
+}	
+	
+int no_of_primes(long long l,long long r)
+{
+	long long int i,j,rem;
+	for(i=0;i<r-l+1;i++)
+	aux[i]=1;
+	int count=0;
+	long long root=mysqrt(r);
+	for(i=0;i<total_primes && prime[i]<=root;i++)
+	{
+		rem=l%prime[i];
+		if(rem==0)
+		aux[0]=0;
+		for(j=prime[i]-rem+l;j<=r;j+=prime[i])
+		aux[j-l]=0;
+	}
+	
+	for(i=l;i<=r;i++)
+	{
+		if(aux[i-l]  )
+		count++;
+	}
+	return count;
+}
+int main()
+{
+	
+	int i,start;
+	for(i=0;i<size;i++)
+	a[i]=1;
+	a[0]=a[1]=0;
+	for(i=2;i<size;i++)
+	{
+		if(a[i])
+		{
+			int j;
+			for(j=2*i;j<size;j+=i)
+			a[j]=0;
+		}
+		
+	}
+	
+	int j=0;
+	for(i=0;i<size;i++)
+	if(a[i])
+	prime[j++]=i;
+	total_primes=j;
+	int sum=0;
+	
+	for(i=0;i<size;i++)
+	{
+		a[i]+=sum;
+		sum=a[i];
+	}
+	int b[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
+	
+	int t;
+ 
+	long long l,r;
+	
+	scanf("%d",&t);
+	
+	
+	while(t--)
+	{
+		scanf("%lld%lld",&l,&r);
+		long long i;
+		int count=0;
+		if(l<size && r<size)
+		{
+		count+=a[r]-(l>0?a[l-1]:0);
+		}
+		else if(l<size )
+		{
+			count+=a[size-1]-(l>0?a[l-1]:0);
+			count+=no_of_primes(size,r);
+		}
+		else
+		{
+		
+			count+=no_of_primes(l,r);
+		}
+		
+		for(i=1;i<15;i++)
+		{
+			int x=(int)ceil( pow((double)l,1.0/(b[i]-1)));
+			int y=(int)floor( pow((double)r,1.0/(b[i]-1)));
+			if(y>=x)
+			count+=a[y]-( x>0?a[x-1]:0);
+			
+			
+		}
+		printf("%d\n",count);
+	
+		
+	}
+	
+	return 0;	
+	
+} 

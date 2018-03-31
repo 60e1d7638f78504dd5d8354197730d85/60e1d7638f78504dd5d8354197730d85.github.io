@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+ 
+#define clr(ar) memset(ar, 0, sizeof(ar))
+#define read() freopen("lol.txt", "r", stdin)
+ 
+int n, m, ar[20];
+short dp[1 << 20];
+char counter[1 << 20], T[1 << 20];
+ 
+void Generate(){
+    int i, pos, u, v, x, y, z, r, res, bitmask, lim;
+ 
+    lim = (1 << n) - 1;
+    dp[lim] = 0;
+    for (bitmask = lim - 1; bitmask >= 0; bitmask--){
+        res = (1 << 12);
+        pos = n - counter[bitmask];
+        x = (~bitmask) & lim;
+ 
+        while (x){
+            y = (-x & x);
+            i = T[y];
+            z = ar[i];
+            u = counter[z & bitmask];
+            v = counter[z] - u;
+            r = dp[bitmask | (1 << i)] - (u * pos) + (v * pos);
+            if (r < res) res = r;
+            x ^= y;
+        }
+        dp[bitmask] = res;
+    }
+}
+ 
+int main(){
+    int i, a, b, lim = 1 << 20;
+    for (i = 0; i < 20; i++) T[1 << i] = i;
+    for (i = 0; i < lim; i++) counter[i] = __builtin_popcount(i);
+ 
+    while (scanf("%d %d", &n, &m) != EOF){
+        clr(ar);
+        while (m--){
+            scanf("%d %d", &a, &b);
+            a--, b--;
+            ar[a] |= (1 << b);
+            ar[b] |= (1 << a);
+        }
+ 
+        Generate();
+        int res = dp[0];
+        printf("%d\n", res);
+    }
+  return 0;
+}
+	

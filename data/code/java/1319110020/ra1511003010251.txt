@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	 
+  static int a[],flag=1;
+  
+  TestClass(int arr[])
+  {
+    a=arr;
+  }
+  
+  public static float average()
+  {
+    float avg=0;
+    try{
+    for(int i=0;i<a.length;i++)
+    {
+    	avg+=a[i];
+        if(a[i]<0 || a[i]>100)throw new IllegalArgumentException();
+    }
+    avg=avg/a.length;
+    return avg;
+    }
+    catch(IllegalArgumentException e)
+    {
+      System.out.println(e);
+      flag=0;
+    }
+    return avg;
+  }
+  
+  public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+    	int n=sc.nextInt();
+    	int array[]=new int[n];
+    	for(int i=0;i<n;i++)array[i]=sc.nextInt();
+    	TestClass tc=new TestClass(array);
+    	float av=tc.average();
+    	if(flag==1)System.out.println(av);
+	}
+}

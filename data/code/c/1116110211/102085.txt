@@ -1,0 +1,70 @@
+#include <stdio.h>
+int main()
+{
+char c;
+    int i,c0,c1,t,n,k,q,l,r,ir,il;
+ int a0[100000];
+int a1[100000];
+	scanf("%d",&t);
+    n=0;
+	while(t--){
+ 
+ 
+        for(i=0;i<n;i++){
+            a0[i] = 0;
+            a1[i] = 0;
+        }
+ 
+ 
+		scanf("%d %d %d ",&n,&k,&q);
+		i=0;
+		c0=0;
+		c1=0;
+		while((c=getchar()) != '\n' ){
+            if(c == '0'){
+                c0++;
+            }
+            else{
+                c1++;
+            }
+            a0[i] = c0;
+            a1[i] = c1;
+            i++;
+		}
+ 
+ 
+		while(q--){
+			scanf("%d %d",&l,&r);
+            c=0;
+            l--;
+            r--;
+            i =l;
+            il=l;
+            ir=l;
+            while(il<=ir){
+                c0=a0[ir] - ((il==0)?0:a0[il-1]);
+                c1=a1[ir] - ((il==0)?0:a1[il-1]);
+                if(c0<=k && c1 <=k){
+                    if(ir<r){
+                        ir++;
+                    }
+                    else{
+                        break;
+                    }
+                }
+                else{
+                    c++;
+                    c = c + (r -ir);
+                    il++;
+ 
+                }
+ 
+            }
+            l = r-l + 1;
+            il = ((l*(l+1))/2) - c;
+			printf("%d\n",il);
+		}
+ 
+    }
+	return 0;
+}

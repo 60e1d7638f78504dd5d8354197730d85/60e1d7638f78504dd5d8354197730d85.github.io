@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.Scanner;
+class Duplicate {
+  Scanner s = new Scanner(System.in);
+  public int[] a;
+  public void getInput(){
+    int n = s.nextInt();
+    this.a = new int[n];
+    for(int i=0;i<n;i++) {
+      a[i] = s.nextInt();
+    }
+  }
+  public void displayResult() {
+    int i,flag=0;
+    for(i=0;i<a.length;i++) {
+      for(int j=i+1;j<a.length;j++) {
+        if(a[i]==a[j]) {
+          flag=1;
+          break;
+        }
+      }
+      if(flag==1)
+        break;
+    }
+    if(flag==0)
+      System.out.print("No Duplicate elements found");
+    else
+      System.out.print(a[i]);
+  }
+};
+public class TestClass {
+	 public static void main(String[] args) { 
+		Duplicate obj = new Duplicate();
+       obj.getInput();
+       obj.displayResult();
+	}
+}

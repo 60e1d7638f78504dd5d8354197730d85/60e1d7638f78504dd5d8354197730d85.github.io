@@ -1,0 +1,22 @@
+#include <stdio.h>
+int checkPrime(num){
+  int status=1,i;
+  for(i=2;i<num;++i)
+    if(num%i==0)return 0;
+  return 1;
+}
+int main()
+{
+	int arr[50],num,i,status=0,size,j=0,k;
+  	scanf("%d",&num);
+  	for(i=2;i<num;++i)
+      if(checkPrime(i))arr[j++]=i;
+  	
+  	for(i=0;i<j;++i)
+    	for(k=0;k<j;++k)
+          if(arr[i]+arr[k]==num&&arr[i]<=arr[k]){
+          		printf("%d = %d + %d\n",num,arr[i],arr[k]);status=1;
+          }
+  	if(!status)printf("NOT");
+	return 0;
+}

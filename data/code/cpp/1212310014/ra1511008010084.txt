@@ -1,0 +1,37 @@
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<algorithm>
+#include<string>
+#define speed ios_base::sync_with_stdio(false);
+#define fori for(int i=0;i<n;i++)
+typedef long long int ll;
+using namespace std;
+#define mod 1000000007
+ll dp[65][160][160];
+ll a[65];
+ll solve(ll pos,ll delpos,ll delnext)
+{   
+	if(dp[pos][delpos+52][delnext+52]!=-1)return dp[pos][delpos+52][delnext+52];
+	//if(pos==61 && delpos==0 &&delpos ==0) return 1;
+	ll rval=0;ll lim=min(delpos+a[pos],delnext+a[pos+1])+1;
+	for(int i=0;i<lim;i++)rval=(rval+solve(pos+1,delnext-i,i))%mod;
+	rval =rval%mod;
+	return dp[pos][delpos+52][delnext+52]=rval; 
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		for(int i=0;i<65;i++)a[i]=0;
+		fori cin>>a[i];
+        for(int i=0;i<65;i++)for(int j=0;j<160;j++)for(int k=0;k<160;k++)dp[i][j][k]=-1;		
+     dp[61][52][52]=1;
+		cout<<solve(0,0,0)<<endl;
+	}
+	return 0;
+}   

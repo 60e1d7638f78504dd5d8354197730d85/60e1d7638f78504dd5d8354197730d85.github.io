@@ -1,0 +1,34 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+	int test;
+  	cin>>test;
+  
+  	float a[test],sum=0;
+  	
+    for(int i=0;i<test;i++)
+    {
+     	cin>>a[i];
+      	//sum += pow(a[i],2);
+      	sum = sum + a[i];
+    }
+  
+  	float mean = sum / test;
+  
+  	float arr[test],final_sum=0; 
+  	for(int i=0;i<test;i++)
+    {
+     	 arr[i] = pow(a[i] - mean,2);
+      	 final_sum += arr[i];
+    }
+  
+  	float ssd = final_sum / test;
+  
+  	float sd = sqrt(ssd);
+  
+  	cout<<"Standard Deviation = "<<sd;
+  
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class area
+{
+public:
+  float ar(float a,float b)
+  {return a*b;}
+};
+
+class peri
+{
+public:
+  float pr(float a,float b)
+  {return 2*(a+b);}
+};
+
+class rec:public area,public peri
+{
+public:
+  float len,brd;
+  
+  void rd()
+  {cin>>len>>brd;}
+  
+  float arr()
+  {return area::ar(len,brd);}
+  
+  float prr()
+  {return peri::pr(len,brd);}
+};
+
+int main()
+{
+rec z;
+  z.rd();
+  cout<<z.arr()<<"\n";
+  cout<<z.prr();
+	return 0;
+}

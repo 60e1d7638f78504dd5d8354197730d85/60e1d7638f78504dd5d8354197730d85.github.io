@@ -1,0 +1,69 @@
+#include<iostream>
+using namespace std;
+typedef unsigned long long ll;
+bool check(ll mid, ll a[], ll n, ll m)
+{
+    ll cnt = 0, sum = 0;
+    bool flag = false;
+    for(ll i=0;i<n;)
+    {
+        sum = 0;
+        flag = false;
+        while(sum <= mid && i < n)
+        {
+            if(a[i] > mid)
+            {
+                return false;
+            }
+            if((a[i]+sum) > mid)
+            {
+               flag = true;
+                cnt++;
+                break;
+            }
+            sum += a[i];
+            i++;
+        }
+        if(flag == false)
+        {
+            cnt++;
+        }
+        
+    }
+  //  cout<<cnt<<'\n';
+    if(cnt <= m)
+    {
+        return true;
+    }
+    else
+    return false;
+}
+int main()
+{
+    ios::sync_with_stdio(0); 
+    cin.tie(0);
+    ll n, m;
+    cin>>n>>m;
+    ll a[n];
+    for(ll i=0;i<n;i++)
+    cin>>a[i];
+    ll beg = 0, end = 1e18;
+    ll mid = beg+((end-beg)/2);
+    //cout<<check(2, a, n, m);
+    while(end-beg >= 1)
+    {
+        ll mid = beg+(end-beg)/2; 
+        if(check(mid, a, n, m) == true)
+        {
+            end = mid;
+        }
+        else
+        {
+            beg = mid + 1;
+        }
+        
+    }
+    cout<<end<<'\n';
+    
+    return 0;
+}

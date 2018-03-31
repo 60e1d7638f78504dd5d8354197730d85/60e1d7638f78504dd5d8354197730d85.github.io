@@ -1,0 +1,40 @@
+    #include<stdio.h>
+    int main()
+    {
+    int t,i,f;
+    char s1[11],s2[11];
+    scanf("%d",&t);
+    while(t--)
+    {
+        f=0;
+        scanf("%s%s",s1,s2);
+        for(i=0;s1[i]!='\0';i++)
+        {
+            if(s1[i]==s2[i])
+            {
+                f=1;
+                continue;
+            }
+            else if(s1[i]=='?')
+            {
+                f=1;
+                s2[i]=s1[i];
+            }
+            else if(s2[i]=='?')
+            {
+                f=1;
+                s1[i]=s2[i];
+            }
+            else
+            {
+            f=0;
+            break;
+            }
+        }
+        if(f==1)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+    return 0;
+    } 

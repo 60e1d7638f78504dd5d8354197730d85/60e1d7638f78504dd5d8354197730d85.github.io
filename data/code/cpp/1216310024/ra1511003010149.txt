@@ -1,0 +1,51 @@
+#include <cstdio>
+#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <cmath>
+#include <string>
+#include <cstring>
+#include <sstream>
+#include <algorithm>
+using namespace std;
+ 
+typedef pair <int, int> ii;
+typedef long long ll;
+ 
+const int Maxn = 70005;
+ 
+int n, m;
+vector <ii> neigh[Maxn];
+ll col[Maxn];
+ 
+bool Possible(int v, ll val)
+{
+	if (col[v] != -1) return col[v] == val;
+	col[v] = val;
+	for (int i = 0; i < neigh[v].size(); i++)
+		if (!Possible(neigh[v][i].first, val + ll(neigh[v][i].second)))
+			return false;
+	return true;
+}
+ 
+int main()
+{
+	scanf("%d %d", &n, &m);
+	for (int i = 0; i < m; i++) {
+		int a, b, c; scanf("%d %d %d", &a, &b, &c);
+		neigh[a - 1].push_back(ii(b, c));
+		neigh[b].push_back(ii(a - 1, -c));
+	}
+	fill(col, col + n + 1, -1);
+	bool ok = true;
+	for (int i = 0; i <= n && ok; i++) if (col[i] == -1)
+		ok = Possible(i, 0);
+	if (ok) {
+		for (int i = n; i > 0; i--)
+			col[i] -= col[i - 1];
+		for (int i = 1; i <= n; i++)
+			printf("%lld%c", col[i], i + 1 <= n? ' ': '\n');
+	} else printf("-1\n");
+	return 0;
+} 

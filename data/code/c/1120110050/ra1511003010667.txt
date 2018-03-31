@@ -1,0 +1,36 @@
+#include<stdio.h>
+inline int inp()
+    {
+    int noRead=0;
+    char p=getchar_unlocked();
+    for(;p<33;){p=getchar_unlocked();};
+    while(p>32)
+    {
+    noRead = (noRead << 3) + (noRead << 1) + (p - '0');
+    p=getchar_unlocked();
+    }
+    return noRead;
+    };
+int main()
+{
+    int t,n,count,i,j,k,a,b;
+   t=inp();
+    while(t--)
+    {   count=1;
+    
+       n=inp();
+        a=inp();
+        k=a;
+        for(i=0;i<n-1;i++)
+        { b=inp();
+           if(b<=k)
+             {count++;
+              k=b;
+             }
+           
+        }
+        printf("%d\n",count);
+     }
+                  
+     return 0;
+}

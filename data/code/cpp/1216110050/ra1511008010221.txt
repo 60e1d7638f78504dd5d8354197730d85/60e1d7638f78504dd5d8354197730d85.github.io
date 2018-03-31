@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define mp make_pair
+#define pb push_back
+#define si(x) scanf("%d",&x)
+#define pi(x) printf("%d\n",x)
+#define s(x) scanf("%I64d",&x)
+#define p(x) printf("%I64d\n",x)
+#define sc(x) scanf("%s",x)
+#define pc(x) printf("%s",x)
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define F first
+#define S second
+#define inf 2e16
+#define prec(x) fixed<<setprecision(15)<<x
+#define all(x) x.begin(),x.end()
+#define rall(x) x.rbegin(),x.rend()
+#define mem(x,y) memset(x,y,sizeof(x))
+#define PQG priority_queue< int,std::vector<int>,std::greater<int> >
+#define PQL priority_queue< int,std::vector<int>,std::less<int> >
+#define PQPL priority_queue<pii ,vector< pii >, less< pii > >
+#define PQPG priority_queue<pii ,vector< pii >, greater< pii > >
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
+ 
+using namespace std;
+ 
+const ll mod=1e9+7;
+ 
+ll modpow(ll b,ll e) {
+   ll ans=1;
+   b=b%mod;
+   while(e){
+      if(e&1) ans=(ans*b)%mod;
+      e=e>>1;
+      b=(b*b)%mod;
+   }
+   return ans;
+}
+ 
+const int N=1e6+7;
+ 
+ll a[N],dptmp[N],dpl[N],dpr[N];
+ 
+int main() {
+    fast_io;
+    int n;
+    cin>>n;
+    stack<int>st;
+    mem(dpl,0);
+    mem(dpr,0);
+    mem(dptmp,0);
+    for(int i=1;i<=n;i++) {
+        cin>>a[i];
+        while(!st.empty() && a[st.top()]<=a[i]) st.pop();
+        int idx=0;
+        if(!st.empty()) idx=st.top();
+        dptmp[i]=1LL*a[i]*(i-idx)+dptmp[idx];
+        dptmp[i]%=mod;
+        dpl[i]=(dpl[i-1]+dptmp[i])%mod;
+        st.push(i);
+    }
+ 
+    while(!st.empty()) st.pop();
+    ll ans=0;
+    for(int i=n;i>=1;i--) {
+        while(!st.empty() && a[st.top()]>=a[i]) st.pop();
+        int idx=n+1;
+        if(!st.empty()) idx=st.top();
+        dpr[i]=1LL*a[i]*(idx-i)+dpr[idx];
+        dpr[i]%=mod;
+        ans=(ans+dpl[i-1]*dpr[i])%mod;
+        st.push(i);
+    }
+    cout<<ans<<endl;
+ 
+    return 0;
+}

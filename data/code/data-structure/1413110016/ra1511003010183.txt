@@ -1,0 +1,60 @@
+#include<stdio.h>
+ 
+long int funcf(long int temp,long int a[' '],long int n)
+{
+    long int i,j;
+    long int c=0;
+    for(i=0;i<n;i++)
+    {
+        if(a[i] < temp)
+            c++;
+    }
+    return c;
+}
+ 
+long int funcg(long int temp,long int a[' '],long int n)
+{
+    long int i,j;
+    long int c=0;
+    for(i=0;i<n;i++)
+    {
+        if(a[i]>temp)
+            c++;
+    }
+    return c;
+}
+int main()
+{
+    long int n,m,i,j,sm=0,snm=0;
+    long int mon[' '],nmon[' '];
+    scanf("%ld%ld",&n,&m);
+        
+    for(i=0;i<n;i++)
+        scanf("%ld",&mon[i]);
+    for(i=0;i<m;i++)
+        scanf("%ld",&nmon[i]);
+        
+    for(i=0;i<n;i++)
+    {
+        sm=sm+(funcf(mon[i],nmon,m)*funcg(mon[i],nmon,m));
+    }
+    for(i=0;i<m;i++)
+    {
+        snm=snm+(funcf(nmon[i],mon,n)*funcg(nmon[i],mon,n));
+    }
+    
+    if(sm>snm)
+    {
+        printf("Monk %ld",sm-snm);
+    }
+    else if(snm>sm)
+    {
+        printf("!Monk %ld",snm-sm);
+    }
+    else
+    {
+        printf("Tie");
+    }
+    
+    return 0;
+}

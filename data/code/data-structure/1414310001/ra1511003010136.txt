@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+long long int a[1000005] ;
+long long int temp[1000005] ;
+long long int count[100005]  ;
+ 
+long long int getMax( long long int arr[], int n )
+{
+	int i ;
+	long long int x = arr[0] ;
+	for( i = 1 ; i < n ; i++ )
+	{
+		if( x < arr[i] )
+		{
+			x = arr[i] ;
+		}
+	}
+	return x ;
+}
+ 
+void radixSort( long long int arr[] , int n )
+{
+ 
+//	printf("djd\n") ;
+	long long int m = getMax(arr,n) ;
+	long long int d = 1 ;
+	
+	while(1)
+	{
+		int i ;
+		for( i = 0 ; i < 100005 ; i++ )
+			count[i] = 0 ;
+		for( i = 0 ; i < n ; i++ )
+		{
+			count[(arr[i]/d)%100000]++ ;
+		}
+		
+		for( i = 1 ; i < 100000 ; i++ )
+		{
+			count[i] = count[i] + count[i-1] ;
+		}
+ 
+		for( i = n-1 ; i >= 0 ; i-- )
+		{
+			temp[count[(arr[i]/d)%100000]-1] = arr[i] ;
+			count[(arr[i]/d)%100000]-- ;
+		}
+		
+		for( i = 0 ; i < n ; i++ )
+		{
+			arr[i] = temp[i] ;
+			printf("%lld ",arr[i]) ;
+		}
+		printf("\n") ;
+		if( m / d < 100000 )
+		{
+			break ;
+		}
+		d = d*100000 ;
+ 
+	}
+}
+int main(int argc, char const *argv[])
+{
+	int n;
+	scanf("%d",&n) ;
+ 
+	int i ;
+	for( i = 0 ; i < n ; i++ )
+	{
+		scanf("%lld",&a[i]) ;
+	}
+ 
+	radixSort( a , n ) ;
+	
+ 
+	return 0;
+}

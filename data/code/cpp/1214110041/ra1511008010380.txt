@@ -1,0 +1,42 @@
+#include <iostream>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+void calc(char nm[20],int r,int sub)
+{
+  int arr[sub];
+  for(int i=0;i<sub;i++)
+  {
+    cin>>arr[i];
+  }
+  double sum=0;
+  double per=0.0;
+  for(int i=0;i<sub;i++)
+  {
+    sum+=arr[i];
+  }
+  per=sum/sub;
+  char cl[7];
+  if(per>=80.0){strcpy(cl,"Class A");}
+  else if((per<80.0)&&(per>=70.0)){strcpy(cl,"Class B");}
+  else if((per<70.0)&&(per>=60.0)){strcpy(cl,"Class C");}
+  cout<<nm<<' '<<r<<' '<<per<<' '<<cl<<endl;
+}
+using namespace std;
+int main()
+{
+int t;
+  cin>>t;
+  char name[20];
+  int roll;
+  int no_s;
+  while(t>0)
+  {
+    cin>>name;
+    cin>>roll;
+    cin>>no_s;
+    calc(name,roll,no_s);
+    t--;
+  }
+	return 0;
+}

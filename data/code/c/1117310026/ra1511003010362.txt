@@ -1,0 +1,80 @@
+#include<stdio.h>
+ 
+ 
+#define s(n) scanf("%d",&n)
+#define sl(n) scanf("%lld",&n)
+#define sc(n) scanf("%c",&n);
+#define f(i,a,b) for(i=a;i<b;i++)
+#define pb push_back
+#define mp make_pair
+#define mod 1000000007
+ 
+typedef unsigned long long int ull;
+typedef long long int ll;
+ 
+ll hcf(ll a,ll b){
+	if(b==0){
+		if(a==0){
+			return a;
+		}
+		return a;
+	}
+	else
+		return hcf(b,a%b);
+}
+ 
+ 
+int main(){
+	ll n,m,i,j;
+	int t,p,r;
+	ll k,c;
+	double prob[60][105];
+	int counter[60];
+	scanf("%d",&t);
+ 
+	while(t--){
+		scanf("%lld%lld%lld",&n,&c,&k);
+ 
+		for(i=0;i<=50;i++){
+			counter[i]=0;
+			for(j=0;j<=100;j++){
+				prob[i][j]=0;
+				if(j==1 && i==0){
+					prob[i][j]=1;
+				}
+				
+			}
+		}
+ 
+		ll maximum=0;
+		for(p=0;p<k;p++){
+			int l,r;
+			scanf("%d%d",&l,&r);
+			for(i=l;i<=r;i++){
+				counter[i]++;
+				if(counter[i]>maximum)
+					maximum=counter[i];
+			}
+		}
+ 
+		for(i=1;i<=maximum;i++){
+			for(j=0;j<c;j++){
+				prob[i][j]+=0.5*(double)prob[i-1][j];
+				for(r=0;r<c;r++){
+					int pro=(j*r)%c;
+					prob[i][pro]+=0.5*prob[i-1][j]/c;
+				}
+			}
+		}
+		
+		double mainAns=0.0;
+		for(i=1;i<=n;i++){
+			for(j=1;j<c;j++){
+				mainAns+=((double)prob[counter[i]][j])*j;
+			}
+		}
+ 
+		printf("%.9lf\n",mainAns);
+	}
+	return 0;
+}   

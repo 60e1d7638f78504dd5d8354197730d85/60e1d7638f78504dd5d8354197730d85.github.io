@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char type[5];
+  	int l,flag=-1;
+  	scanf("%s %d",type,&l);
+  	int s[l+2];
+  	int i,cnt=0;
+  	for(i=0;i<l;i++)
+      scanf("%d",&s[i]);
+  	
+  	for(i=0;i<l;i++)
+      if(s[i] == 1)
+        cnt++;
+  	if(strcmp(type,"even")==0 && cnt%2==0)
+      flag=0;
+  	else if (strcmp(type,"even")==0 && cnt%2==1)
+      flag=1;
+  	else if(strcmp(type,"odd")==0 && cnt%2==0)
+      flag=1;
+  	else if(strcmp(type,"odd")==0 && cnt%2==1)
+      flag=0;
+  for(i=0;i<l;i++)
+    printf("%d",s[i]);
+	printf("%d",flag);
+  return 0;
+}

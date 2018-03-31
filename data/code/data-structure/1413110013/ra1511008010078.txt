@@ -1,0 +1,74 @@
+#include <stdio.h>
+ void quicksort(long long int [10321],long long int,long long int);
+int main()
+{
+   long long int c, first, last, middle, n, search,k=0,d,swap,q,i,x;
+   scanf("%lld %lld",&n,&q);
+   long long int a[n+1],b[q+1];
+ 
+   for (c = 0; c < n; c++)
+      scanf("%lld",&a[c]);
+    
+   for(c=0;c<q;c++)
+   {
+   scanf("%lld", &b[c]);
+   }
+   quicksort(a,0,n-1);
+ first = 0;
+   last = n - 1;
+   middle = (first+last)/2;
+  while(k<q)
+  {
+   while (first <= last) {
+      if (a[middle] < b[k])
+         first = middle + 1;    
+      else if (a[middle] == b[k]) {
+         printf("YES\n");k++;
+         first=0;
+         last=n-1;
+         break;
+      }
+      else
+         last = middle - 1;
+ 
+      middle = (first + last)/2;
+   }
+   if (first > last)
+   {
+      printf("NO\n");
+       first=0;
+         last=n-1;
+      k++;
+   }
+  }
+   return 0;   
+}
+ 
+void quicksort(long long int x[10],long long int first,long long int last){
+    long long int pivot,j,temp,i;
+ 
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+ 
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         quicksort(x,first,j-1);
+         quicksort(x,j+1,last);
+ 
+    }
+}

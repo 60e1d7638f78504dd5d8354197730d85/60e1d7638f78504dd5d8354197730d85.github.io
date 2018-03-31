@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<string.h>
+struct details{
+  int rollNo;
+char name[50];
+  char course[50];
+  int fee;
+};
+
+int main()
+{
+struct details d;
+  struct details d1;
+  d1.rollNo=1;
+  strcpy(d1.name,"Raj");
+  strcpy(d1.course,"PHD");
+  d1.fee=14000;
+  struct details *p=&d;
+  scanf("%d %s %s %d",&p->rollNo,(*p).name,(*p).course,&p->fee);
+  //printf("Roll no:%d\nName:%s\nCourse:%s\nFees:%d\n",d1.rollNo,d1.name,d1.course,d1.fee);
+  printf("Roll no:%d\nName:%s\nCourse:%s\nFees:%d",p->rollNo,(*p).name,(*p).course,p->fee);
+	return 0;
+}

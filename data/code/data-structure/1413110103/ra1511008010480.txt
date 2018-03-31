@@ -1,0 +1,25 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+int main()
+{
+  	int n;
+  	cin>>n;
+  	int num, large = -9999, secondLarge = -9999;
+  	for(int i=0; i<n; i++) {
+    	cin>>num;
+      	if(i==0) {
+        	large = num;
+          	secondLarge = num;
+        }
+      	else {
+        	if(num > large) {
+            	secondLarge = large;
+              	large = num;
+            }
+          	else if(num > secondLarge) secondLarge = num;
+        }
+    }
+  	cout<<"The second largest element is "<<secondLarge;
+	return 0;
+}

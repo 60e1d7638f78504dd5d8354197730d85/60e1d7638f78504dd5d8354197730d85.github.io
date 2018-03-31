@@ -1,0 +1,24 @@
+import java.util.*;
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+     Scanner sc=new Scanner(System.in);
+       double principal=sc.nextDouble();
+       double rate=sc.nextDouble();
+       double tax=sc.nextDouble();
+       int desired=sc.nextInt();
+       int year=0;
+       for (year = 0;; year++ ) {
+
+
+     if ( principal >= desired ) {
+       break;
+     }
+     double currentYearInterest = rate * principal;
+       double currentYearTax = currentYearInterest * tax;
+   principal = principal + currentYearInterest - currentYearTax;
+
+       }
+System.out.println(year);
+	}
+}

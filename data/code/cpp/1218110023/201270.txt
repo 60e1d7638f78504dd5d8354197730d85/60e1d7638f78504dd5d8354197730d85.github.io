@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+class A
+{
+protected:
+	int n;	  
+public:
+  	void get(){
+    	cin>>n;
+    }
+  int returnnumber(){
+  return n;
+  }
+};
+class B:public A
+{
+protected:
+		int s;
+public:
+	int sq()
+    {
+    	int num;
+        num=returnnumber();
+        s=n*n;
+        return s;
+    }
+};
+class C:public A
+{
+protected:
+		int c;
+public:
+int cu()
+    {
+    	int num;
+        num=returnnumber();
+        c=n*n*n;
+        return c;
+    }
+};
+int main()
+{
+	B b;C ca;int sqr,cub;
+  	b.get();
+  	sqr=b.sq();
+  	ca.get();
+  	cub=ca.cu();
+  	cout<<"Square is: "<<sqr<<endl;
+  	cout<<"Cube is: "<<cub<<endl;
+   	return 0;
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdbool.h>
+char prev_char(char ch)
+{
+  if(ch=='a') return 'z';
+  return (ch-1);
+}
+int main()
+{
+  char str[30];	
+  int i,n;
+  bool flag;
+  fgets(str,30,stdin);
+  n=strlen(str);
+  i=0;
+  flag=false;
+  while(i<n && str[i]=='a') i++;
+  while(i<n && str[i]!='a') 
+  {
+  	str[i]=prev_char(str[i]);
+    i++;
+    flag=true;
+  }
+  if(!flag) str[n-1]=prev_char(str[n-1]);
+  printf("%s",str);
+	return 0;
+}

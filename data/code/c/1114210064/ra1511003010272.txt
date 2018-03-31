@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int num, i, j, x[100], flag=0, n;
+  scanf("%d", &num);
+  for(i=0; i<num; i++){
+    scanf("%d", &x[i]);
+  }
+  n = num-1;
+  do{
+  for(i=0; i<num; i++){
+    for(j=0; j<num; j++){
+      if(x[i]<x[j]){
+        flag++;
+        break;
+      }
+      else{
+        continue;
+      }
+    }
+    if(flag == 0){
+      if(x[i]==0){break;}
+        else{
+      printf("%d\n", x[i]);
+      x[i] = 0;
+    }}
+    else{
+      flag = 0;
+    }
+    
+  }
+  n--;
+  }while(n>=0); 
+ 
+	return 0;
+}

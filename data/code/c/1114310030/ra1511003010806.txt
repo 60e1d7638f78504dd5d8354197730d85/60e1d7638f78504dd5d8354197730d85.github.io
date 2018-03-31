@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,j;
+  	scanf("%d",&n);
+    char a[n+1][2*n+1];
+  
+  	for(i=1;i<=n;i++)
+      for(j=1;j<=2*n;j++)
+        a[i][j]='.';
+  	a[1][n]='*';
+  	for(i=1;i<=n;i++)
+    {
+      for(j=1;j<=2*n;j++)
+      {
+        if(a[i-1][j]=='*')
+        {
+          a[i][j]='*';
+          a[i][j+1]='*';
+          a[i][j-1]='*';
+        }
+      }
+    }
+  for(i=1;i<=n;i++)
+  {
+    for(j=1;j<2*n;j++)
+      printf("%c",a[i][j]);
+    printf("\n");
+  }
+	return 0;
+}

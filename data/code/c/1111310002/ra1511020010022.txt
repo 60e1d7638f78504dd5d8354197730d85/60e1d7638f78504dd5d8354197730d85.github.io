@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define INFITY 999999999999999999
+unsigned long long int BINARYSEARCH(unsigned long long int minL,unsigned long long int minW,int N,unsigned long long int W,unsigned long long int L,int height[],int rate[]);
+int main()
+{
+	int i=0,N,height[100001]={0},rate[100001]={0};
+	unsigned long long int c,W,L,minL=INFITY,minW=INFITY;
+	scanf("%d %llu %llu",&N,&W,&L);
+	for(i=0;i<N;i++)
+	{
+		scanf("%d %d",&height[i],&rate[i]);
+		
+		if(minL!=0)
+		{
+		if(L>height[i])
+		{
+		c=ceil((long double)(L-height[i])/rate[i]);
+//		printf("L-->%d\n",c);	
+		if(minL>c)
+		minL=c;
+	    }
+		else
+		minL=0;
+	    }
+		if(minW!=0)
+		{
+		if(W>height[i])
+		{
+		c=ceil((long double)(W-height[i])/rate[i]);	
+//		printf("W-->%d\n",c);
+		if(minW>c)
+		minW=c;
+	    }
+		else
+		minW=0;
+	    }	
+	}
+//	printf("minL %d minW %d\n",minL,minW);
+    if(minL<=minW)
+	printf("%llu\n",BINARYSEARCH(minL,minW,N,W,L,height,rate));
+	else
+	printf("%llu\n",minL);
+	return 0;
+}
+unsigned long long int BINARYSEARCH(unsigned long long int minL,unsigned long long int minW,int N,unsigned long long int W,unsigned long long int L,int height[],int rate[])
+{
+	if(minL==minW)
+	return minL;
+	
+	unsigned long long int mid=(minL+minW)/2;
+	unsigned long long int x=isokay(mid,N,W,L,height,rate);
+	if(x==0)
+	{
+		//BINGO
+		return mid;
+	}
+	else if(x==-1)
+	{
+		//LEFT HALF
+		return BINARYSEARCH(minL,mid,N,W,L,height,rate);
+	}
+	else
+	{
+		//RIGHT HALF
+		return BINARYSEARCH(mid+1,minW,N,W,L,height,rate);
+	}
+}
+int isokay(unsigned long long int mid,int N,unsigned long long int W,unsigned long long int L,int height[],int rate[])
+{
+	int i=0;
+	unsigned long long c,sum=0;
+	for(i=0;i<N;i++)
+	{
+		c=(unsigned long long)rate[i]*mid+height[i];
+		if(c>=L)
+		sum+=c;
+		if(sum>W)
+		break;	
+	}
+	if(sum==W)
+	return 0;
+	if(sum>W)
+	return -1;
+	if(sum<W)
+	return 1;
+} 

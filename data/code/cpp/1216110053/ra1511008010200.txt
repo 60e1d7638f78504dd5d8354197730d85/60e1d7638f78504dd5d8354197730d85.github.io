@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  string arr[10];
+  for(int k=0;k<10;k++)
+    cin>>arr[k];
+  int i,j;string key;
+  for(i=1;i<10;i++)
+  {
+    key = arr[i];
+    j = i-1;
+    
+    while(j>=0 && arr[j].compare(key)>0)
+    {
+      arr[j+1] = arr[j];
+      j = j-1;
+    }
+    arr[j+1] = key;
+  }
+  cout<<"In lexicographical order:"<<endl;
+  for(i=0;i<10;i++)
+    cout<<arr[i]<<endl;
+  return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+  int ans=1;
+  int i;
+  for(i = 1;i<=a;i++)
+  {
+    if(b%i == 0 && a%i==0)
+    {
+      ans = i;
+    }
+  }
+  return ans;
+}
+int lcm(int a, int b)
+{
+  int ans = a*b;
+  int i;
+  for(i = b;i<=a*b;i++)
+  {
+    if(i%b == 0&&i%a == 0)
+    {
+      ans = i;
+      break;
+    }
+  }
+  return ans;
+}
+int main()
+{
+	int times,a,b;
+  scanf("%d",&times);
+  while(times>0)
+  {
+    times--;
+    scanf("%d",&a);
+    scanf("%d",&b);
+    printf("%d %d\n",gcd(a,b),lcm(a,b));
+  }
+	return 0;
+}

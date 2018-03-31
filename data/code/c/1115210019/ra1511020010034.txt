@@ -1,0 +1,58 @@
+#include <stdio.h>
+ 
+#define F(i,a,b) for(i=(int)(a);i<=(int)(b);i++)
+#define RF(i,a,b) for(i=(int)(a);i>=(int)(b);i--)
+#define sd(i) scanf("%d",&i)
+#define MOD 1000000007
+#define ll long long
+ll dp[100002][128];
+ 
+ll power(ll a, ll b){
+	ll x=1;
+	ll y=a;
+ 
+	while(b>0){
+		if(b&1){
+			x=x*y;
+			x%=MOD;
+		}
+ 
+		y=y*y;
+		y%=MOD;
+		b/=2;
+	}
+	return x;
+}
+ 
+ll combination(ll n){
+    if(n==0)
+        return 0;
+    ll ans=(n*(n-1))%MOD;
+    ll inv=power(2,MOD-2);
+    
+    return (ans*inv)%MOD;
+}
+ 
+int main()
+{
+    int N,i,j; sd(N);
+    int arr[N+1];
+    ll ans=0ll;
+    
+    F(i,1,N){
+        sd(arr[i]);
+        dp[i][arr[i]] = 1ll;
+    }
+    
+    F(i,2,N){
+        F(j,0,127){
+            dp[i][j]+=(dp[i-1][j] + dp[i-1][arr[i]^j])%MOD;
+        }
+    }
+
+    F(j,0,127){
+        ans = (ans%MOD+combination(dp[N][j])%MOD)%MOD;
+    }
+    printf("%lld\n",ans);
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string str;
+  	getline(cin, str);
+  	int len = str.length();
+  	int vowel =0, conso = 0, digit=0, space=0;
+  	while(len--) {
+    	if(str[len] == ' ') {
+        	space++;
+          	continue;
+        }
+      	if(str[len] >= '0' && str[len] <= '9') {
+        	digit++;
+          	continue;
+        }
+      	switch(str[len]) {
+          case 'a':case'A':case'e':case'E':case'i':case'I':case'o':case 'O':case 'u':case 'U':
+            vowel++;
+           	break;
+          default:
+            conso++;
+        }
+    }
+  	cout<<"Vowels: "<<vowel;
+  	cout<<"\nConsonants: "<<conso;
+  	cout<<"\nDigits: "<<digit;
+  	cout<<"\nWhite spaces: "<<space;
+	return 0;
+}

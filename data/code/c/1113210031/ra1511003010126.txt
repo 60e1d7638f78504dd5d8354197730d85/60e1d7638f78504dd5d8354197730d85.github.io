@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+	int numTest,arr[50],i,revArr[50],temp,rem;
+  	scanf("%d",&numTest);
+  	for(i=0;i<numTest;i++){
+      	scanf("%d",&arr[i]);
+    }
+  	for(i=0;i<numTest;i++){
+     	revArr[i] = arr[numTest-i-1];
+      	temp=0;
+      	while(revArr[i]>0){
+         	rem = revArr[i]%10;
+          	temp = temp*10 + rem;
+          	revArr[i]=revArr[i]/10;
+        }
+      	revArr[i] = temp;
+    }
+  	for(i=0;i<numTest;i++){
+     	printf("%d\n",revArr[i]); 
+    }
+	return 0;
+}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+struct student
+{
+  int day;
+  int month;
+  int year;
+}s1;
+int main()
+{
+    int dd,mm,yy;
+    scanf("%d %d %d",&dd,&mm,&yy);
+    if(yy>=0000 && yy<=2999)
+    {
+        if(mm>=1 && mm<=12)
+        {
+            if((dd>=1 && dd<=31) && (mm==1 || mm==3 || mm==5 || mm==7 || mm==8 || mm==10 || mm==12))
+            	{ if ((dd+1)<31)
+                	printf("New Date=%d %d %d", dd+1, mm, yy);
+                 else if(((dd+1)==31)&&(mm==12))
+                   	printf("New Date=%d %d %d", 1, 1, yy+1);
+                 else if((dd+1)==31)
+                   	printf("New Date=%d %d %d", 1, mm+1, yy);
+                 
+                }
+            else if((dd>=1 && dd<=30) && (mm==4 || mm==6 || mm==9 || mm==11))
+              { if ((dd+1)<=30)
+                	 printf("New Date=%d %d %d", dd+1, mm, yy);
+               else if((dd+1)==30)
+                 printf("New Date=%d %d %d", 1, mm+1, yy);
+              }
+            else if((dd>=1 && dd<=28) && (mm==2))
+              { if ((dd+1)<28)
+                	 printf("New Date=%d %d %d", dd+1, mm, yy);
+               else if((dd+1)==28)
+                 printf("New Date=%d %d %d", 1, mm+1, yy);
+              }
+            else if(dd==29 && mm==2 && (yy%400==0 ||(yy%4==0 && yy%100!=0)))
+                printf("New Date=%d %d %d", 1, mm+1, yy);
+            else
+                printf("Invalid Day");
+        }
+        else
+            printf("Invalid Month");
+    }
+    else
+        printf("Invalid Year");
+ 
+    return 0;    
+}

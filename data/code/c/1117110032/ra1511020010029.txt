@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int t, n,  a[100], maxValue = 0, maxCount = 0, i, j,k;
+    
+        scanf("%d", &n);
+        for(i=0;i<n;i++)
+			scanf("%d", &a[i]);
+  		for (i = 0; i < n; ++i) 
+        {
+             int count = 0;      
+     		 for (j = 0; j < n; ++j) 
+             {
+         		if (a[j] == a[i])
+       			   ++count;
+     		 }  
+      		 if (count > maxCount) 
+             {
+       		     maxCount = count;
+        		 maxValue = a[i];
+      		 }
+        }
+        
+      if(maxCount>1)
+  printf("Mode=%d", maxValue);
+      else
+        printf("none");
+
+	return 0;
+}

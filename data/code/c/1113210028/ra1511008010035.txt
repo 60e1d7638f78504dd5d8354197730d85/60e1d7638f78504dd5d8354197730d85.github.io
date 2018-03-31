@@ -1,0 +1,53 @@
+#include <stdio.h>
+ 
+long long int fast_exp(long long int base,long long int expo) {
+    long long int  res=1,p;
+    while(expo>0) {
+       if(expo%2==1) 
+       {
+           //res=(res*base)%1000000007;
+           p=1;
+           p=(p*res)%1000000007;
+           p=(p*base)%1000000007;
+           res=p;
+       }
+       //base=(base*base)%1000000007;
+       p=1;
+       p=(p*base)%1000000007;
+       p=(p*base)%1000000007;
+       base=p;
+       expo/=2;
+    }
+    return res%1000000007;
+}
+ 
+int main(void) {
+    long long int lul,naya,i,x,a,b,n,p,t;
+    //int t;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        //naya=0;lul=0;
+        scanf("%lld",&n);
+        scanf("%lld",&a);
+        scanf("%lld",&b);
+        naya=2*a*b;  lul=a+b;
+        for(i=1;i<n;i++)
+        {
+            scanf("%lld",&x);
+            //naya=2*(naya+(x*lul));
+            p=1;
+            p=(p*x)%1000000007;
+            p=(p*lul)%1000000007;
+            naya=(2*(naya+p))%1000000007;
+            //lul+=(x*fast_exp(2,i));
+            p=1;
+            p=(p*x)%1000000007;
+            p=(p*fast_exp(2,i))%1000000007;
+            lul=(lul+p)%1000000007;
+        }
+        printf("%lld\n",naya%1000000007);
+    }
+	// your code goes here
+	return 0;
+}

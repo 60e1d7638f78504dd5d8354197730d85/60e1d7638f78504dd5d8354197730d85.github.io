@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void push(char str);
+void pop();
+void peek();
+char a[100];
+int top=-1;
+void reverse();
+
+int main()
+{
+  int n,i,j;
+  char str[30];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",str);
+    for(j=0;str[j]!='\0';j++)
+    {
+      if(str[j]>=97 && str[j]<=122)
+        printf("%c",str[j]);
+      if(str[j]==')')
+        pop();
+      if((str[j]>=42 && str[j]<=47) || str[j]==94)
+        push(str[j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
+void push(char str)
+{
+    top++;
+    a[top]=str;
+}
+void pop()
+{
+  printf("%c",a[top]);
+    top--;
+}
+void peek()
+{
+    int i;
+    for(i=0;i<=top;i++)
+    {
+        printf("\n%c",a[i]);
+    }
+}
+void reverse()
+{
+    int j;
+    for(j=top;j>=0;j--)
+        printf("\n%c",a[j]);
+}

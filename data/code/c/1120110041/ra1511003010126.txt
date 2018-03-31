@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int p,s;
+        double x,y,v1,v2,z1,z2,v;
+        scanf("%d%d",&p,&s);
+        if((p*p)>=4*s)
+        {
+            x=(p+sqrt((p*p)-(24*s)))/12;
+            y=(p-sqrt((p*p)-(24*s)))/12;
+        }
+        z1=(p-(8*x))/4;
+        z2=(p-(8*y))/4;
+        v1=x*x*z1;
+        v2=y*y*z2;
+        if(x<=0||z1<=0)
+        v=v2;
+        else if(y<=0||z2<=0)
+        v=v1;
+        else if(v1>=v2)
+        v=v1;
+        else
+        v=v2;
+        printf("%0.2lf\n",v);
+    }
+	return 0;
+}

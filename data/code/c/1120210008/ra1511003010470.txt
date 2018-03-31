@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+    int T, N[10], i, j, d;
+    long S[10][5000], temp;
+    scanf("%d", &T);
+    for(i=0; i<T; ++i)
+    {
+      scanf("%d",&N[i]);
+      for(j=0; j<N[i]; ++j)
+      {
+          scanf("%ld", &S[i][j]);
+      }
+      for(j=0; j<N[i]; ++j)
+      {
+          d=j;
+          while(d>0 && S[i][d-1]>S[i][d])
+          {
+              temp=S[i][d-1];
+              S[i][d-1]=S[i][d];
+             S[i][d]=temp;
+            --d;
+          }
+      }
+    }
+  
+    for(i=0; i<T; ++i)
+    {
+      j=0;
+        {
+            printf("%ld\n", S[i][j+1]-S[i][j]);
+        }
+    }
+  
+	return 0;
+}

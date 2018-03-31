@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main(){
+    int d,t,min[32],max[32],i,j,s1=0,s2=0,x;
+    scanf("%d%d",&d,&t);
+    for(i=0;i<d;i++){scanf("%d%d",&min[i],&max[i]);s1+=min[i];s2+=max[i];}
+    if(t<s1||t>s2){printf("NO");return 0;}
+    printf("YES\n");x=t-s1;
+    for(i=0;i<d;i++){for(j=x;j>0;j--)if(min[i]+j<=max[i]){min[i]+=j;x-=j;break;}
+    printf("%d ",min[i]);}
+    return 0;}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int res,t;
+  char a[100],b[100];
+  scanf("%d",&t);
+  while(t--){
+    scanf("%s %s",a,b);
+    if(strlen(a)>strlen(b))
+      res=cmp(b,a);
+    else
+      res=cmp(a,b);
+    printf("%s\n",res?"YES":"NO");
+  }
+	return 0;
+}
+
+int cmp(char a[],char b[]){
+  int i=0,j=0;
+  while(a[i]!='\0' && b[j]!='\0'){
+    if(a[i]==b[j])
+      i++;
+    j++;
+  }
+  if(i==strlen(a))
+    return 1;
+  else
+    return 0;
+}

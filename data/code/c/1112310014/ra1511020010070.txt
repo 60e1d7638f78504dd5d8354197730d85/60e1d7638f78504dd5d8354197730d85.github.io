@@ -1,0 +1,143 @@
+#include<stdio.h>
+ 
+int tree[400004];
+int two[400004];
+int lazy[400004];
+ 
+void makesegtree(int node,int l,int r){
+ 
+     int mid=(l+r)/2;
+ 
+     if(l==r){
+      tree[node]=1;
+     	two[node]=0;
+      return;
+     }
+ 
+     makesegtree(2*node,l,mid);
+     makesegtree(2*node+1,mid+1,r);
+ 
+     tree[node]=tree[2*node]+tree[2*node+1];
+     two[node]=two[2*node]+two[2*node+1];
+     return;
+}
+ 
+//Lazy propogation ....
+ 
+void update_range(int node,int l,int r,int L,int R,int k){
+ 
+    int mid=(l+r)/2;
+     
+ 
+     if(lazy[node]!=0){
+ 
+               if(lazy[node]==1){
+               	        int o=(r-l+1)-tree[node]-two[node];
+                        tree[node]=two[node];
+                        two[node]=o;
+               }
+               else if(lazy[node]==2){
+                        int o=(r-l+1)-tree[node]-two[node];
+                        two[node]=tree[node];
+                        tree[node]=o;
+               }
+ 
+               if(l!=r){
+               	lazy[2*node]+=lazy[node];
+                lazy[2*node]%=3;
+               	lazy[2*node+1]+=lazy[node];
+                lazy[2*node+1]%=3;
+               }
+               lazy[node]=0;
+ 
+                  }
+ 
+        //node reset over
+        if( (l > R) || (r < L))return;
+        if(L<=l && R>=r){
+ 
+               	        int o=(r-l+1)-tree[node]-two[node];
+                        tree[node]=two[node];
+                        two[node]=o;
+ 
+               if(l!=r){
+               	lazy[2*node]+=k;
+                lazy[2*node]%=3;
+               	lazy[2*node+1]+=k;
+                lazy[2*node+1]%=3;
+               }
+ 
+ 
+              return;
+ 
+        }
+        update_range(2*node,l,mid,L,R,k);
+        update_range(2*node+1,mid+1,r,L,R,k);
+       tree[node]=tree[2*node]+tree[2*node+1];
+       two[node]=two[2*node]+two[2*node+1];
+ 
+}
+ 
+ 
+ 
+int lazy_query(int node,int l,int r,int L,int R){
+ 
+        int mid=(l+r)/2;
+     if( (l > R) || (r < L))return 0;
+ 
+     if(lazy[node]!=0){
+ 
+               if(lazy[node]==1){
+               	        int o=(r-l+1)-tree[node]-two[node];
+                        tree[node]=two[node];
+                        two[node]=o;
+               }
+               else if(lazy[node]==2){
+                        int o=(r-l+1)-tree[node]-two[node];
+                        two[node]=tree[node];
+                        tree[node]=o;
+               }
+               if(l!=r){
+               	lazy[2*node]+=lazy[node];
+                lazy[2*node]%=3;
+               	lazy[2*node+1]+=lazy[node];
+                lazy[2*node+1]%=3;
+               }
+               lazy[node]=0;
+ 
+                  }
+ 
+        if(L<=l && R>=r)return tree[node];
+        return lazy_query(2*node,l,mid,L,R)+lazy_query(2*node+1,mid+1,r,L,R);
+ 
+}
+ 
+ 
+ 
+int main(){
+ 
+  int k,n,q,a,b;
+  scanf("%d %d",&n,&q);
+  //for(i=1;i<=n;i++)arr[i]=0;
+  makesegtree(1,1,n);
+  //for(i=1;i<=4*n;i++)lazy[i]=0;
+  while(q--){
+ 
+        scanf("%d %d %d",&k,&a,&b);
+        a++;b++;
+        if(k==0){
+ 
+               update_range(1,1,n,a,b,1);
+ 
+        }
+        else{
+ 
+               printf("%d\n",lazy_query(1,1,n,a,b));
+ 
+        }
+ 
+ 
+  }
+ 
+	return 0;
+}

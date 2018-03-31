@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+int main()
+{
+	char arr[1000];
+	char str[10];
+	unsigned i,no_tw,no_cl,x,opentw=0;	//number of tweets and number of clicks
+	memset(arr,'0',1000);
+	scanf("%u",&no_tw);
+	scanf("%u",&no_cl);
+	for(i=0;i<no_cl;++i)
+	{
+		scanf("%s",str);
+		if(strcmp(str,"CLOSEALL")==0)
+		{memset(arr,'0',no_tw);opentw=0;}
+		else
+		{
+			scanf("%u",&x);
+			--x;
+			if(arr[x]=='0')
+			{arr[x]='1';++opentw;}
+			else
+			{arr[x]='0';--opentw;}
+		}
+		printf("%u\n",opentw);
+	}
+	return 0;
+} 

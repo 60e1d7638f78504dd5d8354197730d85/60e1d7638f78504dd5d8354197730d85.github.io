@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int gcd(a, b){
+	if(b==0){
+    	return a;
+    }
+  	return(gcd(b,a%b));
+}
+
+int lcm(a,b){return ((a*b)/gcd(a,b));}
+
+int main()
+{
+	int lc,f1num,f1den,f1newden,f1changeby,sum,f2num,f2den,f2newden,f2changeby;
+  	scanf("%d %d %d %d",&f1num,&f1den,&f2num,&f2den);
+  	lc = lcm(f1den,f2den);
+  	f1changeby = lc/f1den;
+  	f2changeby = lc/f2den;
+  	f1newden = f1changeby*f1den;
+  	f2newden = f2changeby*f2den;
+  	f1num*=f1changeby;
+  	f2num*=f2changeby;
+  	sum = f1num + f2num;
+  	if(sum%3==0 && f1newden%3==0){
+    	sum/=3;f1newden/=3;
+    }
+  	if(sum%2==0 && f1newden%2==0){
+    	sum/=2;f1newden/=2;
+    }
+  	printf("%d %d",sum,f1newden);
+	return 0;
+}

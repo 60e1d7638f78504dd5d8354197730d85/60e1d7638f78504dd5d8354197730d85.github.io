@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define ld long double
+int main(){
+    int n;
+    cin>>n;
+    ll a[n];
+    ld prod=0;
+    for(int i=0;i<n;i++){
+    cin>>a[i];
+    
+    }
+    sort(a,a+n);
+     for(int i=0;i<n;i++)
+    prod+=(ld)log((ld)a[i]);
+    ll left=a[0],right=a[n-1]+1,ans,mid;
+    ld temp;
+    while(left<=right){
+        mid=(left+right)/2;
+        temp=(ld)n*log((ld)(mid));
+        if(prod<temp){
+            ans=mid;
+            right=mid-1;
+        }
+        else
+        left=mid+1;
+    }
+    
+    cout<<ans;
+    
+    return 0;
+}

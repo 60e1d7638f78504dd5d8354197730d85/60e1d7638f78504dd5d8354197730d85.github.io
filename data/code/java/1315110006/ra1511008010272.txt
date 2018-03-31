@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.Scanner;
+class Automorphic {
+  static void calculate() {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    int ns = n*n;
+    String S = Integer.toString(ns);
+    int x = endsWith(S);
+    if(x==n)
+      System.out.print(ns + "\nAutomorphic Number");
+    else
+      System.out.print(ns + "\nNot an Automorphic Number");
+  }
+  static int endsWith(String S) {
+    int a = Integer.parseInt(S);
+    int d = (S.length()%2==0)?S.length()/2:S.length()/2+1;
+    int r = (int)(a%(Math.pow(10,d)));
+    return r;
+  }
+};
+public class TestClass {
+	 public static void main(String[] args) { 
+		Automorphic.calculate();
+	}
+}

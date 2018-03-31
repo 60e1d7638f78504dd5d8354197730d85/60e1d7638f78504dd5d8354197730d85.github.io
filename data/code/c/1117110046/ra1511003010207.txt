@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+	int swp(int *a, int *b) {
+		*a ^= *b;
+		*b ^= *a;
+		*a ^= *b;
+	}
+
+	int a, b, c;
+	scanf("%d %d %d", &a, &b, &c);
+
+	swp(&c, &a);
+	swp(&b, &c);
+
+	printf("%d\n%d\n%d", a, b, c);
+
+	return 0;
+}

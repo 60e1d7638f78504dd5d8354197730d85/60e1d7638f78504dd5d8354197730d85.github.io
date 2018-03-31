@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+ int isPalRec(char str[], int s, int e)
+{
+    // If there is only one character
+    if (s == e)
+       return 1;
+ 
+    // If first and last characters do not match
+    if (str[s] != str[e])
+       return 0;
+ 
+    // If there are more than two characters,
+    // check if middle substring is also
+    // palindrome or not.
+    if (s < e+1)
+       return isPalRec(str, s+1, e-1);
+ 
+    return 1;
+ }
+int isPalindrome(char str[])
+{
+   int n = strlen(str);
+ 
+   // An empty string is considered as
+   // palindrome
+   if (n == 0)
+     return 1;
+ 
+   return isPalRec(str, 0, n-1);
+}
+int main() {
+	int t, i,al,bl,l,j,k;
+	char a[1001], b[1001];
+	
+	scanf("%d", &t);
+	for (i=0; i<t; i++) {
+	  scanf("%s", a);
+	  scanf("%s", b);
+       if (isPalindrome(a)==1)
+       { l=0; printf("No");}
+         else{
+	  al = strlen(a);
+	  bl = strlen(b);
+	  l = 0;
+	  for (j=0; j<al; j++) {
+	    for (k=0; k<bl; k++) {
+	      if (a[j]==b[k]) {
+	        l = 1;
+	        break;
+	      }
+	    }
+	    if (l) break;
+	  }
+	  if (l) {
+	    printf("Yes\n");
+	  } else {
+	    printf("No\n");
+	  }
+	}}
+	return 0;
+}

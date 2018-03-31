@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+
+void findFourElements(int A[],int n,int X)
+{
+  int i,j,k,l,z=0,g,abc[10],p,q,temp;
+for(i=0;i<n-3;i++)
+{
+	for(j=i+1;j<n-2;j++)
+	{
+	for(k=j+1;k<n-1;k++)
+	 {
+		for(l=k+1;l<n;l++)
+			if(A[i]+A[j]+A[k]+A[l]==X)
+            {
+  
+              abc[z]=A[i];abc[z+1]=A[j];abc[z+2]=A[k];abc[z+3]=A[l];
+     
+                for (p = 0; p < 4; p++)
+    			{
+       			 for (q = 0; q < (4-1-p); q++)
+        		{
+            	if (abc[q] > abc[q + 1])
+            	{
+                temp = abc[q];
+                abc[q] = abc[q + 1];
+                abc[q + 1] = temp;
+            	} 
+        		}
+      		}
+ 
+              A[i]=abc[0]; A[j]=abc[1]; A[k]=abc[2]; A[l]=abc[3];
+               	printf("%d %d %d %d $",A[i],A[j],A[k],A[l]);
+    
+            }
+	 }
+	}
+}
+}
+
+
+int main()
+{
+  int tc,num,p,q,A[10],X;
+  scanf("%d",&tc);
+  for(p=0;p<tc;p++)
+   {
+        scanf("%d%d",&num,&X);
+        for(q=0;q<num;q++)
+            scanf("%d",&A[q]);
+   
+    findFourElements(A,num,X);
+    printf("\n");
+  	}
+	
+	return 0;
+}

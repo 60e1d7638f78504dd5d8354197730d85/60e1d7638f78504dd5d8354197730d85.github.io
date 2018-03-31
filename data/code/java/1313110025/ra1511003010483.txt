@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       String a=sc.next();
+       StringBuffer a1=new StringBuffer("");
+       int k=sc.nextInt();
+       char d;
+       for(int i=0;i<n;i++)
+       {
+         int c=(int)(a.charAt(i));
+         if((c>=65 && c<=90)||(c>=97&&c<=122))
+         {
+           int t=c+k;
+           if(t>90&&c<=90)
+           {
+             c=c-90+64;
+             t=c+k;
+           }
+           else if(t>122&&c<=122)
+           {
+             c=c-122+96;
+             t=c+k;
+           }
+           d=(char)(t);
+         }
+         else
+           d=(char)c;
+         a1.append(d);
+       }
+       System.out.println(a1);
+	}
+}

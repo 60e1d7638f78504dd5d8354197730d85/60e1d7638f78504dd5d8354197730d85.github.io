@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int t, n, i, count, blast;
+	char bombs[1001];
+	scanf("%d", &t);
+	while(t--)
+	{
+		count=0;
+		blast=0;
+		scanf("%d", &n);
+		scanf("%s", bombs);
+		for(i=0; i<strlen(bombs); i++)
+		{
+			if(bombs[i]=='1')
+			{
+				count++;
+			}
+			else if(bombs[i]=='0')
+			{
+				if(bombs[i-1]=='1' || bombs[i+1]=='1')
+				{
+					blast++;
+				}
+			}
+		}
+		printf("%d\n", n-count-blast);
+	}
+	return 0;
+} 

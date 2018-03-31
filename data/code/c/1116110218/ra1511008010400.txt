@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+          char s[10001];
+          scanf("%s",s);
+          int i,two[10005]={0},three[10005]={0},alph[300]={0},big=0,permit[10005]={0},pp=0;
+          for( i=0;i<strlen(s);i++)
+          {
+                if(s[i]=='#')
+                {permit[pp]=i;
+                pp++;
+                if(i!=0)
+                two[i]=two[i-1];
+                else
+                two[i]=0;
+                }
+             else
+             {
+             alph[(int)s[i]]++;
+             if(alph[(int)s[i]]>big)
+                    big=alph[(int)s[i]];
+              two[i]=big;
+              }
+          }
+        /*  for( i=0;i<130;i++)
+              {alph[i]=0;}*/
+ 
+              int alph1[130]={0};
+           big=0;
+          for( i=strlen(s)-1;i>=0;i--)
+          {
+                  if(s[i]=='#' )
+                   three[i]=three[i+1];
+                   else{
+                  alph1[(int)s[i]]++;
+                  if(alph1[(int)s[i]]>big)
+                    big=alph1[(int)s[i]];
+              three[i]=big;}
+          }
+ 
+          int ans=0,sum=0;
+          for(i=0;i<pp-2;i++)
+          {    sum=0;
+              if(permit[i]+1 != permit[i+1] && permit[i+1]+1 != permit[i+2] && two[permit[i]]!=0 && three[permit[i+2]]!=0 )
+              {
+                  int temp[130]={0},tempbig=0,j=permit[i]+1;
+                  while(s[j]!='#' &&  j<strlen(s))
+                  {
+                      temp[(int)s[j]]++;
+                      if(temp[(int)s[j]]>tempbig)
+                         tempbig=temp[(int)s[j]];
+                      j++;
+                  }
+                  sum+=tempbig;
+ 
+                   int temp1[130]={0};
+                   tempbig=0,j=permit[i+1]+1;
+ 
+                  while(s[j]!='#' &&  j<strlen(s))
+                  {
+                      temp1[(int)s[j]]++;
+                      if(temp1[(int)s[j]]>tempbig)
+                         tempbig=temp1[(int)s[j]];
+ 
+                      j++;
+                  }
+                  sum+=tempbig;
+ 
+                  sum+=two[permit[i]];
+                  sum+=three[permit[i+2]];
+ 
+               //  printf("%d %d %d\n",tempbig,two[permit[i]-1], three[permit[i+2]+1] );
+ 
+              }
+ 
+              if(sum>ans)
+                ans=sum;
+          }
+          if(ans>0)
+          printf("%d\n",ans+3);
+          else
+          printf("0\n");
+    }
+return 0;
+} 

@@ -1,0 +1,42 @@
+#include <stdio.h>
+struct fraction
+{
+  	float num;
+  	float den;
+};
+int compare(struct fraction f, float);
+int main()
+{
+  	struct fraction f;
+  	float a,b;
+  	scanf("%f%f%f%f",&f.num, &f.den,&a,&b);
+  	int n=compare(f,(a/b));
+  	if(n==0)
+    {
+      	printf("%.f/%.f is equal than %.f/%.f", f.num,f.den,a,b);
+    }
+  	else if(n==1)
+    {
+      	printf("%.f/%.f is greater than %.f/%.f",f.num,f.den,a,b);
+    }
+  	else
+    {
+      	printf("%.f/%.f is smaller than %.f/%.f",f.num,f.den,a,b);
+    }
+	return 0;
+}
+int compare(struct fraction f, float fraction2)
+{
+  	if((f.num/f.den)==fraction2)
+    {
+      	return 0;
+    }
+  	else if((f.num/f.den)<fraction2)
+    {
+      	return -1;
+    }
+  	else
+    {
+      	return 1;
+    }
+}

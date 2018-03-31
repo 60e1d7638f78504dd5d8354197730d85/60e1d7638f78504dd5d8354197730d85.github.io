@@ -1,0 +1,38 @@
+import java.util.*;
+ 
+class TestClass {
+       
+public static long MOD = 1000000007;
+ 
+ public static void main(String ar[]) {
+  int N, P, TC;
+  long[][] dp;
+  Scanner sc = new Scanner(System.in);
+  TC = sc.nextInt();
+ 
+  for (int in = 0; in < TC; in++) {
+   N = sc.nextInt();
+   P = sc.nextInt();
+   dp = new long[N + 1][P + 1];
+   for (int i = 0; i <= N; i++) {
+    dp[i][0] = 0;
+    dp[i][1] = 1;
+   }
+   for (int i = 0; i <= P; i++) {
+    dp[0][i] = 0;
+    dp[1][i] = 1;
+   }
+   for (int i = 2; i <= N; i++) {
+    long sum = 0;
+    for (int k = i - 1; (i > P) ? k >= (i - P) : k >= 0; k--) {
+     sum = sum + dp[k][P];
+    }
+    dp[i][P] = sum%MOD;
+    if (i <= P) {
+     dp[i][P] = dp[i][P] + 1;
+    }
+   }
+   System.out.println(dp[N][P]%MOD);
+  }
+ }
+}

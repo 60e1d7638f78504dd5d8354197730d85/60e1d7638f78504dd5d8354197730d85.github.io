@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scan = new Scanner(System.in);
+       int num = scan.nextInt();
+       int n = num;
+       int sum=0;
+       while(num>0){
+       	int s = fact(num%10);
+         sum+=s;
+         num=num/10;
+       }
+       if(n==sum)
+         System.out.println("Yes");
+       else
+         System.out.println("No");
+	}
+  public static int fact(int n){
+    if(n==0)
+      return 1;
+  	if(n==1)
+      return 1;
+    int fact = fact(n-1)*n;
+    return fact;
+  }
+}

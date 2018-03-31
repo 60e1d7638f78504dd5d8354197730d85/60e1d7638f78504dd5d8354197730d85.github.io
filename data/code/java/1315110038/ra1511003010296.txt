@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Election obj = new Election();
+       obj.getVotes();
+       obj.displayResults();
+     }	
+}
+
+class Election{
+
+  Scanner sc = new Scanner(System.in);
+  int n = sc.nextInt();
+  int arr[] = new int[n];
+  
+  public void getVotes(){
+    for(int i=0; i<n; i++){
+    	arr[i]=sc.nextInt();
+    }
+  }
+  
+  public void displayResults(){
+  	int count1=0, count2=0, count3=0, count4=0, count5=0, countd=0;
+       for(int i=0; i<n; i++){
+         if(arr[i]==1){
+         	count1++;
+         }
+         else if(arr[i]==2){
+           count2++;
+         }
+         else if(arr[i]==3){
+           count3++;
+         }
+         else if(arr[i]==4){
+           count4++;
+         }
+         else if(arr[i]==5){
+           count5++;
+         }
+         else{
+         	countd++;
+         }
+       }
+       System.out.println("Candidate 1 are: "+count1);
+       System.out.println("Candidate 2 are: "+count2);
+       System.out.println("Candidate 3 are: "+count3);
+       System.out.println("Candidate 4 are: "+count4);
+       System.out.println("Candidate 5 are: "+count5);
+       System.out.println("Disqualified="+countd);
+  }
+}

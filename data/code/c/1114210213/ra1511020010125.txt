@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+typedef unsigned u;
+u A[22][22],*B[22],*C;
+int main()
+{
+	u x,y,i,j,I,J,a,b;
+	for(i=-1;++i<22;)B[i]=A[i];
+	u chk()
+	{
+		for(J=0,j=-1;++j<y;J+=(I>0))for(I=0,i=-1;++i<x;)
+		if(B[i][j]!=i+1&&++I>2)return 0;
+		return 1;//J<2;
+	}
+	scanf("%u%u",&y,&x);
+	for(j=-1;++j<y;)for(i=-1;++i<x;)scanf("%u",B[i]+j);
+	if(chk()){printf("YES\n");return 0;}
+	for(a=-1;++a<x;)for(b=a;++b<x;)
+	{
+		C=B[a];B[a]=B[b];B[b]=C;
+		if(chk()){printf("YES\n");return 0;}
+		C=B[a];B[a]=B[b];B[b]=C;
+	}
+	printf("NO\n");
+	return 0;
+}

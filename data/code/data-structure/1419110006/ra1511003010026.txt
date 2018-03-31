@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define pb push_back
+#define ff first
+#define ss second
+ 
+vector <ll> adj[100005];
+bool vis[100005];
+ll countt;
+ 
+void dfs(ll s)
+{
+    ll i,y;
+    vis[s]=true;
+    for(i=0;i<adj[s].size();i++)
+    {
+        y=adj[s][i];
+        countt++;
+        if(!vis[y])
+            dfs(y);
+    }
+}
+ 
+int main()
+{
+    ll n,m,a,b;
+    ll i,j,ans;
+    cin>>n>>m;
+    while(m--)
+    {
+        cin>>a>>b;
+        adj[a].pb(b);
+        adj[b].pb(a);
+    }
+ 
+    ans=-1;
+    for(i=1;i<=n;i++)
+        vis[i]=false;
+    for(i=1;i<=n;i++)
+    {
+        if(!vis[i])
+        {
+            countt=0;
+            dfs(i);
+            ans=max((countt/2),ans);
+        }
+ 
+    }
+    cout<<ans<<"\n";
+    return 0;
+}

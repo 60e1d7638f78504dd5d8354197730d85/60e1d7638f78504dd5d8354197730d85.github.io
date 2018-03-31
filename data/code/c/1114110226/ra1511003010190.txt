@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int i,j,m,xx,n,r=0,temp;
+scanf("%d%d",&n,&m);
+if(m>1&&m<100&&n<100&&n>1&&m<=n){
+int ai[100];
+for(i=0;i<n;i++){
+  	
+	scanf("%d",&xx);
+  	if(xx>-1000&&xx<1000){
+    ai[i]=xx;
+    }
+				}
+for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < (n - i - 1); j++)
+        {
+            if (ai[j] > ai[j + 1])
+            {
+                temp = ai[j];
+                ai[j] = ai[j + 1];
+                ai[j + 1] = temp;
+            }
+        }
+   }
+ 
+ for(i=0;i<m;i++){
+   if (ai[i] >= 0)
+        {
+            break;
+   }	
+   r=r+ai[i];
+	
+ }
+
+printf("%d",-r);
+	return 0;}
+}

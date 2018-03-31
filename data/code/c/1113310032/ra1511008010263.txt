@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main()
+{
+    int t,count,i,j,c,d;
+    long int n;
+    scanf("%d",&t);
+    while( t-- )
+    {
+        count = 0;
+        scanf("%ld",&n);
+ 
+        i=0;
+        int b[2001];
+        for( i=0;i<2001;i++ )
+            b[i]= -1;
+        i=0;
+        while( i < n )
+            {
+                scanf("%d %d",&c,&d );
+                if( b[d] < c )
+                   b[d] = c;
+                i++;
+            }
+        i=0;
+        while( i<=2000 )
+        {
+            if( b[i] >= 0 )
+            {
+ 
+                for( j = 0;j<2001;j++ )
+                {
+                    if( b[j] <= i && b[j]>=0 )
+                        b[j]=-1;
+                }
+                count++;
+            }
+            i++;
+        }
+    printf("%d\n",count);
+    }
+return 0;
+} 

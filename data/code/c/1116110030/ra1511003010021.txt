@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[200],t[10];
+  int count;
+  scanf("%[^\n]",str);
+  scanf("%s",t);
+  count=cof(str,t);
+  printf("%s=%d",t,count);
+         return 0;
+}
+int cof(char *str,char *t)
+{
+  int i,j,found,count,l1,l2;
+  l1=strlen(str);
+  l2=strlen(t);
+  count=0;
+  for(i=0;i<=l1-l2;i++)
+  {
+    found=1;
+    for(j=0;j<l2;j++)
+    {
+      if(str[i+j]!=t[j])
+      {
+        found=0;
+        break;
+      }
+    }
+    if(found==1)
+    {
+      count++;
+    }
+  }
+  return count;
+return 0;
+}

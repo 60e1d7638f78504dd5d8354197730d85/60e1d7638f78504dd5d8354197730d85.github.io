@@ -1,0 +1,36 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.math.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       
+        int a, b, t, aTemp, bTemp, lcm, gcd;
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+        // Take two numbers from user
+        a = scanner.nextInt();
+        b = scanner.nextInt();
+ 
+        aTemp = a;
+        bTemp = b;
+ 
+        while (bTemp != 0) {
+            t = bTemp;
+            bTemp = aTemp % bTemp;
+            aTemp = t;
+        }
+ 
+        gcd = aTemp;
+ 
+        /*
+         * GCD(a, b) * LCM(a, b) = a*b
+         */
+        lcm = (a * b) / gcd;
+        System.out.println(gcd);
+               System.out.println(lcm);
+
+    }
+}

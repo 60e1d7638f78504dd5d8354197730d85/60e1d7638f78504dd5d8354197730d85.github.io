@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+int cmp(const void *, const void *);
+int main(){
+    long long t, n, k, i, a[100000], sum, cur;
+    scanf("%lld", &t);
+    while(t--){
+        scanf("%lld %lld", &n, &k);
+        for(i = 0; i < k; ++i){
+            scanf("%lld", &a[i]);
+        }
+        qsort(a, k, sizeof(long long), cmp);
+        for(i = sum = 0; i < k; ++i){
+            cur = a[i] * (a[i]-1) / 2 - sum;
+            if (cur < a[i]){
+                break;
+            }
+            sum += a[i];
+        }
+        if(i >= k){
+            cur = n * (n + 1) / 2 - sum;
+        }
+        ++cur;
+        if(cur % 2 == 0){
+            printf("Mom\n");
+        }
+        else{
+            printf("Chef\n");
+        }
+    }
+	return 0;
+}
+int cmp(const void *a, const void *b){
+    return *(int *)a - *(int *)b;
+} 

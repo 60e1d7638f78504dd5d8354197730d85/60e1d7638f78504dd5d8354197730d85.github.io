@@ -1,0 +1,94 @@
+#include<stdio.h>
+void merge(int c[], int low, int mid, int high)
+{
+    int i=low,j=mid+1,k=low,b[100000];
+    while(i<=mid&&j<=high)
+    {
+        if(c[i]<=c[j])
+        {
+            b[k]=c[i];
+            i++;
+        }
+        else
+        {
+            b[k]=c[j];
+            j++;
+        }
+        k++;
+    }
+    for(;i<=mid;i++)
+    {
+        b[k]=c[i];
+        k++;
+    }
+    for(;j<=high;j++)
+    {
+        b[k]=c[j];
+        k++;
+    }
+    for(i=low;i<=high;i++)
+        c[i]=b[i];
+}
+void merge_sort(int c[],int low, int high)
+{
+    int mid;
+    if(low<high)
+    {
+        mid=(low+high)/2;
+        merge_sort(c,low,mid);
+        merge_sort(c,mid+1,high);
+        merge(c,low,mid,high);
+    }
+}
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+unsigned long long int n,k,i,sum,s=0;
+int a[100000];
+scanf("%llu%llu",&n,&k);
+sum=(n*(n+1))/2;
+for(i=0;i<k;i++)
+{
+scanf("%d",&a[i]);
+sum-=a[i];
+}
+merge_sort(a,0,k-1);
+for(i=0;i<k&&a[i]<=sum;i++)
+{
+    if(a[i]==1)
+        break;
+    else if(a[i]==2)
+        break;
+    else
+    {
+        if(s>(unsigned long long int)a[i]*(a[i]-3)/2)
+        {
+         break;
+        }
+        s+=a[i];
+ 
+    }
+}
+if(i==k)
+{
+if(sum%2==0)
+printf("YES\n4");
+else
+{
+printf("NO\n");
+  break;
+}
+}
+else
+{
+if(a[i]%2==1)
+    printf("YES\n4");
+else
+printf("NO\n");
+}
+}
+return 0;
+}

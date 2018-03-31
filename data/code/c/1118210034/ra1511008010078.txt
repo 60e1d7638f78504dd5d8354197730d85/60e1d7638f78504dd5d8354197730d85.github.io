@@ -1,0 +1,51 @@
+#include<stdio.h>
+long int min(long int *p,long int sz)
+{
+ long int min;
+ int pr=0;
+ long int i;
+ for(i=0;i<sz;i++)
+ {
+  if(pr==0)
+  {
+   min=p[i];
+   pr=1;
+   continue;
+  }
+  else
+  {
+   if(p[i]<min)
+   min=p[i];
+  }
+ }
+ return min;
+}
+int main()
+{
+long int i,mod,n,x,p[100];
+int test,k=1;
+long int mn,div,s=0;
+scanf("%d",&test);
+do
+{
+ s=0;
+scanf("%ld %ld",&n,&x);
+ for(i=0;i<n;i++)
+ scanf("%ld",&p[i]);
+ for(i=0;i<n;i++)
+ s=s+p[i];
+ mod=s%x;
+ div=s/x;
+ //printf("%ld",div);
+ mn=min(p,n);
+ if(mn>mod)
+ printf("%ld\n",div);
+ else
+ printf("-1\n");
+ k++;
+}
+while(k<=test);
+return 0;
+}
+ 
+ 

@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define S(x) scanf("%d",&x)
+#define Ss(x) scanf("%s",x)
+#define Sc(x) scanf("%c",&x)
+#define P(x) printf("%d\n",x)
+#define Ps(x) printf("%s",x)
+#define Pc(x) printf("%c",x)
+#define F(i,p,n) for(i=p;i<n;i++)
+#define I(i,p,q) for(i=p;i>q;i--)
+void swap(char* arr,int pos,int d)
+{
+	char temp=arr[pos];
+	arr[pos]=arr[pos-d];
+	arr[pos-d]=temp;
+}
+int main()
+{
+	int t;
+	S(t);
+	while(t--)
+	{
+		int n,d,i,j,flag1=1,k,m,pos;
+		char a[1000001],b[1000001];
+		S(n);
+		S(d);
+		Ss(a);
+		Ss(b);
+		for(i=0;i<n&&flag1!=0;i++)
+		{
+			F(j,i,n)
+			{
+				if(a[i]==b[j])
+				{
+					if(i==j)
+					{
+						flag1=1;
+						break;
+					}
+					else if(abs(i-j)%d==0)
+					{
+						k=abs(i-j)/d;
+						for(m=0,pos=j;m<k;m++,pos-=d)
+						swap(b,pos,d);
+						flag1=1;
+						break;
+					}
+					else
+					{
+						flag1=0;
+					}
+				}
+				else
+				{
+				    flag1=0;
+				}
+ 
+			}
+		}
+		if(strcmp(a,b)==0) flag1=1;
+		if(flag1==1) printf("Yes\n");
+		else if(flag1==0) printf("No\n");
+		
+	}
+	return 0;
+} 

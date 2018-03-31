@@ -1,0 +1,46 @@
+import java.util.Scanner;
+import java.util.Collections;
+import java.util.ArrayList;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner scan = new Scanner(System.in);
+       int a = scan.nextInt();
+       int b = scan.nextInt();
+       
+       ArrayList<Integer> aFacto = factors(a);
+       ArrayList<Integer> bFacto = factors(b);
+       
+       int aind = aFacto.size() - 1;
+       int bind = bFacto.size() - 1;
+       
+       int gcd = 0;
+       while(aind>=0 && bind>=0)
+       {
+         	if(aFacto.get(aind) == bFacto.get(bind))
+            {
+              System.out.print(aFacto.get(aind));
+              return;
+            }
+            else if(aFacto.get(aind) < bFacto.get(bind))
+               bind -= 1;
+            else
+               aind -= 1;            
+       }
+        System.out.print("1");
+	}
+  private static ArrayList<Integer> factors(int n)
+  {
+    ArrayList<Integer> factors = new ArrayList<>();
+    
+    for(int i=2; i<=(n/2); i++)
+    {
+      if(n%i == 0)
+      {
+        factors.add(i);
+        factors.add(n/i);
+      }
+    }
+    Collections.sort(factors);    
+    return factors;
+  }
+}

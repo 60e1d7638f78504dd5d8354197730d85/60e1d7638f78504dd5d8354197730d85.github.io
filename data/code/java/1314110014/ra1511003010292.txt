@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  int power(int a , int i)
+  {
+    if(i==0)
+      return 1;
+    else
+      return a * power(a , --i);
+  }
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       TestClass s = new TestClass();
+       int a = sc.nextInt();
+       int b = sc.nextInt();
+       int carry=0 , sum = 0 , i=0;
+       while(a!=0 || b!=0)
+       {
+         int d1 = a%10;
+         int d2 = b%10;
+         a = a/10;
+         b = b/10;
+         int add = d1 + d2 + carry;
+         if(add == 0 || add==1)
+           carry=0;
+         else
+             carry = 1;
+         if(add%2 !=0 )
+         sum = sum + 1*s.power(10,i);
+         
+         i++;
+       }
+       if(carry==1)
+         sum = sum + 1*s.power(10,i);
+       if(carry == 2)
+         sum = sum + 10*s.power(10,i);
+       System.out.println(sum);
+	}
+}

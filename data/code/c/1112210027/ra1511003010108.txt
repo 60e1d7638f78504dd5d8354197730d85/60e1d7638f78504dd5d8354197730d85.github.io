@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<math.h>
+//#include <cmath>
+//#include <iostream>
+#define ull unsigned long long
+//using namespace std;
+ 
+int main() {
+    int t;
+    ull a,b,ans,poww,temp;
+    scanf("%d",&t);
+    //cin>>t;
+    while(t--)
+    {
+        ans=0;
+        scanf("%llu %llu",&a,&b);
+        //cin>>a>>b;
+        if(a==b)
+            {
+                printf("%llu\n",ans);
+                //cout<<ans<<"\n";
+                continue;
+            }
+        else if(2*a==b)
+            {
+                printf("1\n");
+                //cout<<"1\n";
+                continue;
+            }
+        else if(a>b)
+        {
+            while(a>b)
+            {
+                if(a%2==0)
+                    a/=2;
+                else a=(a-1)/2;
+                ans++;
+            }
+        }
+        if(a<b){
+            while(b%a!=0)
+            {
+                if(a%2==0)
+                    a/=2;
+                else a=(a-1)/2;
+                ans++;
+            }
+            temp=b/a;
+            poww=log2(temp);
+            ans+=poww;
+        }
+    printf("%llu\n",ans);
+    //cout<<ans<<"\n";
+    }
+    return 0;
+}

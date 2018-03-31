@@ -1,0 +1,35 @@
+#include <stdio.h>
+ 
+ 
+int getMax(int [], int, int, int);
+int main(void)
+{
+    int arr[10]={0}, i;
+    for(i=0; i<10; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+     
+    printf("Maximum element in the array is %d \n", getMax(arr, 10, 0, 0));
+     
+    return 0;
+}
+ 
+ 
+int getMax(int arr[], int size, int max, int i)
+{
+    if(i<size)
+    {
+        int rv;
+
+        if(max<arr[i])
+            max= arr[i];
+ 
+ 
+        rv = getMax(arr, size, max , i + 1);
+        if(max<rv)
+            max = rv;
+    }
+     
+    return max;
+}

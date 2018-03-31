@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main(void) {
+    char a[2001][2001];
+	int n,i,x,y,j,k;
+	long long frnd[2001][50]={0},ans=0;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	    scanf("%s",a[i]);
+	    for(j=0;j<n;j++)
+	    {
+	        if(a[i][j]=='1')
+	        {
+	            x=j/64;
+	            y=j%64;
+	            frnd[i][x]|=(1LL<<y);
+	        }
+	    }
+	}
+	for(i=0;i<n;i++)
+	{
+	    for(j=i+1;j<n;j++)
+	    {
+	        if(a[i][j]=='0')
+	        {
+	            for(k=0;k<=49;k++)
+	            if(frnd[i][k]&frnd[j][k])
+	            {
+	                ans++;
+	                break;
+	            }
+	        }
+	    }
+	}
+	printf("%lld ",2*ans);
+	return 0;
+}

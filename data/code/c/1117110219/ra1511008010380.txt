@@ -1,0 +1,33 @@
+#include<stdio.h>
+double func(double , double);
+double func(double n,double r)
+{
+     int i;
+     double res=1.00;
+     for(i=1;i<=r;++i){
+                       res=(res*(n-r+i))/i;
+     }
+     return res;
+}
+int main()
+{
+    double s, n, m, k;
+    int t;
+    int i;
+    scanf("%d",&t);
+    while(t--){
+               scanf("%lf %lf %lf %lf",&s,&n,&m,&k);
+               double res=0.00;
+               i=k;
+               while((i<=m-1)){
+                               if((n-i-1)<=(s-m)&&(n-i-1)>=0){
+                                    res=res+func(m-1,i)*func(s-m,n-i-1);
+                               }
+                               ++i;
+               }
+               res=res/func(s-1,n-1);
+                printf("%0.7lf\n",res);
+    }
+    return 0;
+}
+ 

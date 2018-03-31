@@ -1,0 +1,43 @@
+#include <stdio.h>
+const int MAX_N = 105;
+int T, N, A[105];
+int test1() {
+    int flag,i,j;
+    for(i=1; i<=N; i++) {
+        flag = 0;
+        for(j=1; j<=N; j++) {
+            if(i == A[j]) {
+                flag = 1;
+                break;
+            }
+        }
+        if(flag == 0)
+            break;
+    }
+    return flag;
+}
+
+int test2() {
+    int flag = 0,i;
+    for(i=2; i<=N; i++) {
+        if(A[i] != A[i-1] + 1){
+            flag = 1;
+            break;
+        }
+    }
+    return flag;
+}
+int main() {
+    scanf("%d",&T);
+    while(T--) {
+        scanf("%d",&N);
+      int i;
+        for( i=1; i<=N; i++)
+            scanf("%d",&A[i]);
+        if(test1() && test2())
+           printf("yes\n");
+        else
+            printf("no\n");
+    }
+    return 0;
+}

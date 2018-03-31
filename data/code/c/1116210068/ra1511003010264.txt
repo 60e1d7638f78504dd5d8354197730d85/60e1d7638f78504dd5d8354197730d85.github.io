@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main(){
+	long int n, max=-1, count, i, j, t, ans, flag;
+	scanf("%ld", &n);
+	char a[1000001];
+	char b[1000001];
+	scanf("%s", a);
+	scanf("%s", b);
+	for(i=0;i<n;i++){
+		t=0;
+		flag=1;
+		count=0;
+		for(j=i;j<n;j++){
+			if(b[j]!=a[t]){
+				flag=0;
+				break;
+			}
+			count++;
+			t++;
+		}
+		if(flag==1){
+			for(j=0;j<i;j++){
+				if(b[j]!=a[t]){
+					break;
+				}
+				count++;
+				t++;
+			}
+		}
+		if(count>max){
+			max=count;
+			ans=i;
+		}
+		if(max==n){
+			break;
+		}
+	}
+	printf("%ld\n", ans);
+	return 0;
+} 

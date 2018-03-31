@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t,n,counter1=0,counter2=0;
+  	int arr1[100],arr2[100];
+  	cin>>t;
+  	if(t==0)
+    {
+      cout<<0;
+      exit(0);
+    }
+  	for(int i=0;i<t;i++)
+    {
+      cin>>n;
+      for(int j=0;j<n;j++)
+      {
+       	cin>>arr1[j];
+      }
+      for(int x=0;x<n;x++)
+      {
+        cin>>arr2[x];
+      }
+    }
+  	for(int i=0;i<n;i++)
+    {
+     	if(i%1==1)
+        {
+          counter1+=arr1[i];
+          counter2+=arr2[i];
+        }
+      	else
+        {
+          counter1+=arr2[i];
+          counter2+=arr1[i];
+        }
+    }
+	if(counter1<counter2)
+    {
+      cout<<counter1;
+    }
+  else
+  {
+    cout<<counter2;
+  }
+	return 0;
+}

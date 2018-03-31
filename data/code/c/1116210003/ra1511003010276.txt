@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+int n,k,l,q,a[10][10],t[10],i,j,x;
+  char name[10][100];
+  scanf("%d%d%d%d",&n,&k,&l,&q);
+  for(i=0;i<n;i++){
+    scanf("%s",name[i]);
+    for(j=0;j<k;j++)
+      scanf("%d",&a[i][j]);
+  }
+  for(i=0;i<q;i++){
+    for(j=0;j<k;j++)
+      scanf("%d",&t[j]);
+    int flag=0;
+    for(x=0;x<n;x++){
+      flag=1;
+      for(j=0;j<k;j++)
+        if(a[x][j]!=t[j]){
+          flag=0;
+          break;
+        }
+      if(flag){
+        printf("%s\n",name[x]);
+        break;
+      }
+    }
+    if(!flag)
+      printf("You cant fool me:P\n");
+  }
+    
+	return 0;
+}

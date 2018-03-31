@@ -1,0 +1,44 @@
+import java.io.*;
+class TestClass {
+ 
+    public static void main(String agrs[]) throws IOException {
+ 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+ 
+        while (t-->0) {
+ 
+            String inputs = br.readLine();
+            String[] dimensions = inputs.split(" ");
+            int n = Integer.parseInt(dimensions[0]); 
+            int m = Integer.parseInt(dimensions[1]);                 
+            int c = Integer.parseInt(dimensions[2]);  
+            int count = 0,n1=0,m1=0;
+ 
+            if (n*m <c ) {
+                System.out.println("0");
+ 
+            } else if (n*m == c ) {
+                System.out.println("1");
+ 
+            } else {
+                for (int i = 1; i<=c; i++) {
+                    if (c%i == 0) {
+                        n1 = i;
+                        m1 = c/i;                               
+                        if (n1 <= n && m1 <= m) {
+                            count++;                           
+                        } 
+                    }
+                    if (i > n && i > m) {
+                        break;
+                    }
+                }
+            System.out.println(count);
+ 
+            }
+ 
+        }
+ 
+    }
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  	char a[60000];
+	char ans[600000];
+    int i, n;
+    scanf("%d", &n);
+      scanf("%s", a);
+        int l=20000;
+        int r=20001;
+        for(i=0;i<n;i++)
+        {
+            if(i%2==0)
+            {
+                ans[l]=a[i];
+                l--;
+            }
+            else
+            {
+                ans[r]=a[i];
+                r++;
+            }
+        }
+        if(n&1)
+        {
+            for(i=r-1;i>=l+1;i--)
+            {
+               printf("%c", ans[i]);
+            }
+            printf("\n");
+        }
+        else
+        {
+            for(i=l+1;i<=r-1;i++)
+            {
+                printf("%c", ans[i]);
+            }
+           printf("\n");
+        }
+  return 0;
+}

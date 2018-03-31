@@ -1,0 +1,45 @@
+import java.util.*;
+public class TestClass {
+public boolean isEligibleBasedOnMarks(int marksPercentage) 
+{
+  if(marksPercentage>=85)
+	  return true;
+  else
+    return false;
+}
+public boolean isEligibleBasedOnAttendance(int attendancePercentage)
+{
+  if(attendancePercentage>=90)
+	  return true;
+  else
+  	 return false;
+}
+public boolean isEligibleBasedOnMarksAndAttendance(int marksPercentage,int attendancePercentage)
+{
+  if(marksPercentage>=85&&attendancePercentage>=90)
+  	  return true;
+  else
+  	  return false;
+}
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        TestClass tc=new TestClass();
+       	int t=0;
+        while(t++<3){
+        int mark=sc.nextInt();
+        int percent=sc.nextInt();
+        if(tc.isEligibleBasedOnMarks(mark))
+           System.out.println("Student "+t+" is eligible based on marks");
+         else 
+           System.out.println("Student "+t+" is not eligible based on marks");
+         if(tc.isEligibleBasedOnAttendance(percent))
+           System.out.println("Student "+t+" is eligible based on attendance");
+         else
+           System.out.println("Student "+t+" is not eligible based on attendance");
+         if(tc.isEligibleBasedOnMarksAndAttendance(mark,percent))
+           System.out.println("Student "+t+" is eligible based on marks and attendance");
+         else
+           System.out.println("Student "+t+" is not eligible based on marks and attendance");
+     }
+  }
+}

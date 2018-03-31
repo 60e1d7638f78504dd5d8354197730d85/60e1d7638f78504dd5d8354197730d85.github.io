@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  static void triangle(int a,int b,int c){
+    try{
+      if(a+b>=c && b+c>=a && c+a>=b)
+        System.out.println("Valid Sides");
+      else
+        throw new IllegalTriangleException();
+    }
+    catch(IllegalTriangleException e){
+      System.out.println(e);
+    }
+  }
+	 public static void main(String[] args) {
+       Scanner s = new Scanner(System.in);
+       int s1 = s.nextInt();
+       int s2 = s.nextInt();
+       int s3 = s.nextInt();
+       triangle(s1,s2,s3);
+	}
+}
+class IllegalTriangleException extends Exception{
+  public IllegalTriangleException(){}
+}

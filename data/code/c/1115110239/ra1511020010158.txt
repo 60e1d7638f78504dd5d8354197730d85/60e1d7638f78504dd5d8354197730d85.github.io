@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+#define N 105
+#define INF 12345678987654
+#define int long long
+#define MOD 100
+
+int smoke[N][N];
+int mix[N];
+
+int query(int i, int j)
+{
+  int ans = mix[j] - mix[i - 1];
+  ans = (ans < 0) ? (ans + MOD) : ans;
+  return ans;
+}
+
+signed main()
+{
+  int n;
+  int i;
+  int j;
+  int k;
+  int len;
+  while (scanf("%lld", &n) != EOF) {
+    for (i = 1; i <= n; i++)
+      scanf("%lld", mix + i);
+    for (i = 0; i <= n; i++)
+      smoke[i][i] = 0;
+    for (i = 1; i <= n; i++)
+      mix[i] = (mix[i] + mix[i - 1]) % MOD;
+    for (len = 2; len <= n; len++) {
+      for (i = 1; i <= n - len + 1; i++) {
+        j = i + len - 1;
+        smoke[i][j] = INF;
+        for (k = i; k <= j - 1; k++) {
+          int cost = smoke[i][k] + smoke[k + 1][j] + query(i, k) * query(k + 1, j);
+          smoke[i][j] = (cost < smoke[i][j]) ? cost : smoke[i][j];
+        }
+      }
+    }
+    printf("%lld\n", smoke[1][n]);
+  }
+  return 0;
+} 

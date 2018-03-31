@@ -1,0 +1,24 @@
+#include <stdio.h>
+int max=0;
+void findMax(int arr[],int n)
+{
+  if(n==0)
+    return;
+  else
+  {
+    if(max<arr[n-1])
+      max=arr[n-1];
+    n--;
+    findMax(arr,n);
+  }
+}
+int main()
+{
+  int n,arr[20],i;
+  scanf("%d",&n);
+  for(i=0; i<n; i++)
+    scanf("%d",&arr[i]);
+   findMax(arr,n);
+   printf("Maximum element in the array is %d",max);
+	return 0;
+}

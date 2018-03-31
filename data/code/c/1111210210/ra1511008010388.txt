@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int i,l,f1=0,f2=0;
+        char s[101],b,e;
+        scanf("%s",s);
+        l=strlen(s);
+        b=s[0];
+        e=s[1];
+        for(i=2;i<l;i+=2)
+        {
+            if(s[i]!=b)
+            {
+                f1=1;
+                break;
+            }
+        }
+        for(i=3;i<l;i+=2)
+        {
+            if(s[i]!=e)
+            {
+                f2=1;
+                break;
+            }
+        }
+      if(b!=e&&f1==0&&f2==0)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+}

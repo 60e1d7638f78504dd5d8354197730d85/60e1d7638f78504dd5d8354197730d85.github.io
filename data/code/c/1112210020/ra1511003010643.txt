@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+int cmpfunc(const void *e,const void *f)
+{
+    return(*(int*)e - *(int*)f);
+}
+int main(void) {
+    int t,T,i,flag,N,flake;
+    scanf("%d\n",&T);
+    for(t=0;t<T;t++)
+    {
+        scanf("%d\n",&N);
+        int a[100],b[100];
+        for(i=0;i<N;i++)
+        scanf("%d",&a[i]);
+        
+        for(i=0;i<N;i++)
+        {b[i]=a[i];}
+        qsort(a,N,sizeof(int),cmpfunc);
+        
+        for(i=0;i<N;i++)
+        if(a[i]!=i+1)
+        {flag=0;
+        break;}
+        else
+        {flag=1;}
+        
+        if(flag==0)
+        {
+            flake=1;
+            printf("no\n");
+        }
+        else
+        {
+            for(i=0;i<N;i++)
+            if(b[i]!=a[i])
+            {printf("yes\n");
+            flake=1;
+                break;
+            }
+            else
+            {flake=0;}
+        }
+        if(flake==0)
+        {printf("no\n");}
+    }
+	return 0;
+}
+ 

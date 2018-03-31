@@ -1,0 +1,76 @@
+#include <stdio.h>
+int leap(int year)
+{
+    if(year%4 == 0)
+    {
+        if( year%100 == 0)
+        {
+            // year is divisible by 400, hence the year is a leap year
+            if ( year%400 == 0)
+                return 1;
+            else
+                return 0;
+        }
+        else
+            return 1;
+    }
+    else
+    	return 0;
+}
+int main()
+{
+	char arr[50];
+  	int sum = 0,days,i,month,year,count;
+  	scanf("%s",arr);
+  	count = 0;
+  	for(i=0;i<10;i++)
+    {
+      
+      if(arr[i] == '/')
+      {
+        
+        count++;
+        if(count == 1 )
+        {
+        	days = sum;
+        }
+        else if(count == 2)
+        {
+             month = sum;
+        }
+        sum = 0;
+      }
+      else
+      {
+        int temp = arr[i];
+        sum = 10*sum + (temp-48);
+        //printf("Temp: %d\n",sum);
+      }
+    }
+  	year = sum;
+  	//printf("Days: %d ,Month: %d ,Year: %d",days,month,year);
+  	if(year >=1800 && year<=9999 != 0 && month >=1 && month<=12)
+    {
+      	if(month == 2 && ((leap(year) == 0 && days > 0 && days<=28) || (leap(year) !=0 && days > 0 && days<=29)))
+        {
+          printf("S");
+        }
+      	else if((month == 4 || month == 6 || month == 9 || month == 11) && days > 0 && days<=30)
+        {
+          printf("S");
+        }
+      	else if((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) && days > 0 && days<=31)
+        {
+          printf("S");
+        }
+        else
+        {
+          printf("N");
+        }
+    }
+  	else
+    {
+      printf("N");
+    }
+	return 0;
+}

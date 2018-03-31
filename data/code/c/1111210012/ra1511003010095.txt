@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+#define gchar getchar_unlocked()
+void scand(int *n)
+{
+	char c = 0;
+	while(c < 33)
+	c = gchar;
+	*n = 0;
+	while(c > 33)
+	{
+		*n = *n * 10 + c - '0';
+		c = gchar;
+	}
+}
+int main()
+{
+	int t,ans,i;
+	int arr[26];
+	scand(&t);
+	register char c;
+	while(t--)
+	{
+		memset(arr,0,sizeof(arr));
+		ans=0;
+		c=0;
+		while(c < 33)
+		c = gchar;
+		while(c>33)
+		{
+			arr[c-'a']++;
+			c=gchar;
+		}
+		for(i=0;i<26;i++)
+		{
+			if(arr[i])
+			ans++;
+		}	
+		printf("%d\n",ans);
+	}
+	return 0;
+} 

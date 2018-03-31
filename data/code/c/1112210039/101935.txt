@@ -1,0 +1,30 @@
+#include<stdio.h>
+void main()
+{
+	int t,l,s,c,d,likes,i,flag;
+	scanf("%d",&t);
+	while(t--)
+	{
+		flag=0;
+		scanf("%d%d%d%d",&l,&d,&s,&c);
+		likes=s;
+		for(i=1;i<d;i++)
+		{
+			likes+=likes*c;
+			if(likes>=l)
+			{
+				printf("ALIVE AND KICKING\n");
+				flag=1;
+				break;
+			}
+		}
+		if(likes>=l && flag==0)
+		{
+			printf("ALIVE AND KICKING\n");	
+			flag=1;
+		}
+		if(flag==0)
+			printf("DEAD AND ROTTING\n");
+ 
+	}
+} 

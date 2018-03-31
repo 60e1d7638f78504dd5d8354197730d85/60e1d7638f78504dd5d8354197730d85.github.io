@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <string.h>
+
+struct player
+       {
+        char name[33];
+        int point;
+       }pp[10], scotable[10], winners[10];
+int main()
+{
+ int n, i,j,h, num=0, m=-1, now=0, finish=0;
+ scanf("%d", &n);
+ for(i=0; i<n; i++)
+          {
+           scanf("%s %d", pp[i].name, &pp[i].point);
+          }
+ for(i=0; i<n; i++)
+          {
+           int ind=0;
+           for(j=0; j<num; j++)
+                   {
+                    if(strcmp(pp[i].name, scotable[j].name)==0)
+                                          {
+                                           scotable[j].point+=pp[i].point;
+                                           ind=1;
+                                          }
+                   }
+           if(!ind)
+                   {
+                    strcpy(scotable[num].name, pp[i].name);
+                    scotable[num].point=pp[i].point;
+                    num++;
+                   }
+          }
+ for(i=0; i<num; i++)
+          {
+           if(scotable[i].point>m)   
+                                    {
+                                     m=scotable[i].point;
+                                    }
+          }
+ for(i=0; i<num; i++)
+          {
+           if(scotable[i].point==m)
+                                   {
+                                    strcpy(winners[now].name, scotable[i].name);
+                                    now++;
+                                   }
+          }
+ for(i=0; i<num; i++)
+          {
+           strcpy(scotable[i].name, "");
+          }
+ 
+ if( now==1 )
+     {
+      printf("%s", winners[0].name);
+     }
+ else 
+      {
+       num=0;
+       for( i=0; i<n; i++)
+            {
+             int ind=0;
+             for(j=0; j<num; j++)
+                     {
+                      if( strcmp(pp[i].name, scotable[j].name)==0)
+                          {
+                           scotable[j].point+=pp[i].point;
+                           ind=1;
+                           for(h=0; h<now; h++)
+                                {
+                                 if(strcmp(winners[h].name, scotable[j].name)==0 && scotable[j].point>=m && finish==0)
+                                                            {
+                                                             printf("%s", winners[h].name);
+                                                             finish=1;
+                                                            }
+                                }
+                          }
+                     }
+             if(!ind){
+                      strcpy(scotable[num].name, pp[i].name);
+                      scotable[num].point=pp[i].point;
+                      for( h=0; h<now; h++)
+                                {
+                                 if(strcmp(winners[h].name, scotable[num].name)==0 && scotable[num].point>=m && finish==0)
+                                                            {
+                                                             printf("%s", winners[h].name);
+                                                             finish=1;
+                                                            }
+                                }
+                      num++;
+                     }
+            }
+      }
+ return 0;
+}

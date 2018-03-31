@@ -1,0 +1,27 @@
+#include<stdio.h>
+#define hell 1000000007
+int main()
+{
+    int f,t;
+    scanf("%d",&t);
+    for(f=0;f<t;f++)
+    {
+        long long int n,m,k,i;
+        scanf("%lld %lld %lld",&n,&m,&k);
+        long long int p=0,a,b,c;
+        for(i=0;i<k;i++)
+        {
+            scanf("%lld",&a);
+            b=a%m;
+            if(b==0)
+                b=m;
+            c=(a-1)/m+1;
+            p=(p+b*(m-b+1)*c*(n-c+1));
+        }
+        long long int j=(n+1)*(m+1)*n*m/4;
+        float x=(p*1.0)/(j*1.0);
+        printf("%f\n",x);
+    }
+    return 0;
+}
+ 

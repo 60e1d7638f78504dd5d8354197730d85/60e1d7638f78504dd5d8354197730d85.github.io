@@ -1,0 +1,27 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass
+{
+  public static int offKBit(int n,int k)
+  {
+      // k must be greater than 0
+        if (k <= 0) 
+            return n;
+  
+        // Do & of n with a number with all set bits except
+        // the k'th bit
+        return (n & ~(1 << (k - 1)));
+}
+public static void main (String[] args)
+{
+  Scanner s=new Scanner(System.in);
+  int t=s.nextInt();
+  while(t--!=0)
+  {
+    int n=s.nextInt();
+    int k=s.nextInt();
+    System.out.println(offKBit(n,k));
+  }
+}
+}

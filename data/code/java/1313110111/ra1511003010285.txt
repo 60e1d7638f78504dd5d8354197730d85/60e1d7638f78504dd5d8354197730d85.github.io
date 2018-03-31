@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+class TestClass
+{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        StringBuilder out=new StringBuilder("");
+        int t=Integer.parseInt(br.readLine());
+        int n;
+        while(t-->0) {
+            n=Integer.parseInt(br.readLine());
+            int res=0;
+            for(int d=5, k=n;k>0;d*=5) {
+                k=n/d;
+                res+=k;
+            }
+            out=out.append(res+"\n");
+        }
+        System.out.print(out);
+    }
+ 
+} 

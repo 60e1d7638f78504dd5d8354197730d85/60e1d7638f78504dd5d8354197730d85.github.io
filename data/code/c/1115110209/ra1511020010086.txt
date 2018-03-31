@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int compare(const void *a,const void *b){
+	return( *(int*)b - *(int *)a);
+}
+//define the max function
+int max(int a,int b){
+	if(a>b)
+	return a;
+	else
+	return b;
+}
+ 
+ 
+main()
+ 
+{
+ 
+int T,N,M,K;
+int i,j,ans;
+ 
+ 
+int A[1001],B[1001][1001],C[1001][1001],gain[1001];
+ 
+scanf("%d",&T);
+ 
+while(T--){
+ 
+	ans = 0;
+ 
+	scanf("%d %d %d", &N,&M,&K);
+	
+	for(i=1;i<=N;i++){
+		scanf("%d", &A[i]);
+		}
+	
+			
+	for(i=1;i<=N;i++){
+		for(j=1;j<=M;j++){
+			scanf("%d", &B[i][j]);
+			}
+		}
+	
+		
+	
+	for(i=1;i<=N;i++){
+		for(j=1;j<=M;j++){
+			scanf("%d", &C[i][j]);
+			}
+		}
+		
+	
+	
+	for(i=1;i<=N;i++){
+		gain[i] = 0;
+		for(j=1;j<=M;j++){
+		gain[i] = max(gain[i], B[i][j] - B[i][A[i]] - C[i][j] );
+		}
+	
+		}
+		
+				
+		//sort the gain array using the qsort function
+		qsort(gain+1,N,sizeof(int),compare);
+		
+		
+	for(i=1;i<=N;i++){
+		ans+=B[i][A[i]];
+		}
+	for(i=1;i<=K;i++){
+		ans += gain[i];
+		}
+	printf("%d\n", ans);	
+	}
+ 
+} 

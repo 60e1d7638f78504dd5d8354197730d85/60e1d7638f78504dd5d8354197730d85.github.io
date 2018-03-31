@@ -1,0 +1,47 @@
+#include <stdio.h>
+typedef long long int lli;
+ 
+lli mod = 1000000007ll;
+ 
+lli powr(lli a, lli b)
+{
+    if(b==0) return 1;
+ 
+    lli r=powr(a,b>>1);
+    r=(r*r)%mod;
+ 
+    if(b&1) return (r*a)%mod;
+    return r;
+}
+ 
+lli solve(int n)
+{
+    return powr(2,(n+3)>>1) - 2;
+}
+int main()
+{
+int t,n;
+    lli tmp,ans;
+ 
+    scanf("%d",&t);
+ 
+    while(t--)
+    {
+        scanf("%d",&n);
+ 
+        if(n&1)
+        {
+            ans=solve(n)%mod;
+            if(ans<0) ans+=mod;
+            printf("%lld\n",ans);
+        }
+        else
+        {
+            ans = solve(n-1)%mod;
+            ans = (ans+ powr(2,n>>1))%mod;
+            if(ans<0) ans+=mod;
+            printf("%lld\n",ans);
+        }
+    }
+	return 0;
+}

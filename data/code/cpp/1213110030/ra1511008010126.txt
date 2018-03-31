@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+  char s1[10], s2[10];
+  int n1, n2, i,j, k=0, flag=0;
+  cin>>s1;
+  cin>>s2;
+  n1=strlen(s1);
+  n2=strlen(s2);
+  for(i=0; i<n1; i++)
+  {
+    k=0;
+    if(s1[i]==s2[0])
+    { 
+      for(j=i; j<i+n2; j++)
+      { 
+        if(s2[k]==s1[j])
+          k++;
+       }
+     }
+  if(k==n2)
+    flag=1;
+  }
+  if(flag==1)
+    cout<<"Best Friends";
+  else
+    cout<<"Try Again";
+	return 0;
+}

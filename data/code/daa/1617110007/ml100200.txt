@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+    long long int val;
+    struct node * next;
+};
+long long int master[100005];
+long long int ans = 0;
+/*struct stack {
+    long long int val;
+    struct stack * next;
+};
+struct stack * top = NULL;
+struct stack * bottom = NULL;
+void push(long long int child)
+{
+    struct stack * tmp = (struct stack *)malloc(sizeof(struct stack));
+    tmp->val = child;
+    tmp->next = NULL;
+    if(top == NULL)
+    {
+        top = tmp;
+        bottom = tmp;
+    }
+    else
+    {
+        tmp->next = top;
+        top = tmp;
+    }
+}
+long long int pop()
+{
+    struct stack * tmp = top;
+    long long int value;
+    if(top !=NULL)
+    {
+        top = top->next;
+        value = tmp->val;
+        free(tmp);
+    }
+    return value;
+}*/
+ 
+void insert(long long int v,struct node ** tail,struct node ** head )
+{
+    struct node * tmp;
+    tmp = (struct node *)malloc(sizeof(struct node));
+    tmp->val=v;
+    tmp->next=NULL;
+    if(*tail == NULL)
+    {
+        *tail = tmp;
+        *head = tmp;
+    }
+    else 
+    {
+        (*tail)->next=tmp;
+        (*tail)=tmp;
+    }
+}
+void dfs(long long int u , long long int visit[] ,struct node * head[],long long int j)
+{
+    visit[u] = j;
+    if(master[j] > u)
+        master[j]=u;
+    struct node * p = head[u];
+    while(p != NULL)
+    {
+        if(visit[p->val] == 0)
+            dfs(p->val,visit,head,j);
+ 
+        p=p->next;
+    }
+}
+void dfs2(long long int u,long long int visit[],struct node * head[],long long int parent_children)
+{
+    struct node * q = head[u];
+    visit[u]=1;
+    long long int count = 0;
+    while(q!=NULL)
+    {
+        if(visit[q->val] == 0)
+        {
+            count++;
+         //   push(q->val);
+        }
+        q=q->next;
+    }
+    if(count > parent_children)
+        ans++;
+    //printf("%lld %lld %lld %lld\n",u,parent_children,count,ans);
+  //  struct stack * tmp = top;
+    q=head[u];
+    while(q!=NULL)
+    {
+        //v = pop();
+        if(visit[q->val] == 0)
+        dfs2(q->val,visit,head,count);
+        q=q->next;
+    }
+}
+ 
+int main()
+{
+    struct node * tail[100001];
+    struct node * head[100001];
+    long long int visit[100001];
+    long long int u,v,i,j,n,m;
+    scanf("%lld %lld",&n,&m);
+    for(i=1;i<=m;i++)
+    {
+        scanf("%lld %lld",&u,&v);
+        insert(v,&tail[u],&head[u]);
+        insert(u,&tail[v],&head[v]);
+    }
+    for(i=1;i<=100000;i++)
+    {
+        visit[i]=0;
+        master[i]=10000000;
+    }
+    j=0;
+    for(i=1;i<=n;i++)
+    {
+        if(visit[i]==0)
+        dfs(i,visit,head,++j);
+    }
+    /* for(i=1;i<=j;i++)
+        printf("%lld ",master[i]);
+    printf("\n");*/
+    for(i=0;i<=100000;i++)
+        visit[i]=0;
+ 
+    for(i=1;i<=j;i++)
+    {
+            dfs2(master[i],visit,head,100000000000000);
+    }
+    printf("%lld\n",ans);
+    return 0;
+}
+ 

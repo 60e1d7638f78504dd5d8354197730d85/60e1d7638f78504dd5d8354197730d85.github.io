@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node* next;
+};
+class LinkedList
+{
+  private:
+  struct node *head,*tail;
+  public:
+   LinkedList()
+   {
+     head=NULL;
+     tail=NULL;
+   }
+   void addData(int n)
+   {
+     struct node* temp=new node;
+     temp->data=n;
+     temp->next=NULL;
+     if(head==NULL)
+     {
+       head=temp;
+       tail=temp;
+     }
+     else
+     {
+       tail->next=temp;
+       tail=temp;
+     }
+   }
+  void displayReverse(node *temp)
+  {
+    if(temp->next!=NULL)
+    {
+      displayReverse(temp->next);
+    }
+    cout<<"-->"<<temp->data;
+  }
+  node * getHead()
+   {
+     return head;
+       }
+  void searchKey(int key)
+  {
+    int count=0;
+    node *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+      if(temp->data==key)
+        count++;
+      temp=temp->next;
+    }
+    cout<<"\nCount of "<<key<<" : "<<count;
+  }  
+};
+int main()
+{
+  int n,data,key;
+  cin>>n;
+  LinkedList l;
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    l.addData(data);
+  }
+  cin>>key;
+  cout<<"Linked list\n";
+  l.displayReverse(l.getHead());
+  l.searchKey(key);
+  return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+  char a[80];
+  scanf("%s",a);
+  int len,x=1;
+  int i,j;
+  while(x)
+  {
+    len=strlen(a);
+    for(i=0;i<len;i++)
+    {
+    if(!isalpha(a[i]))
+       {x=1;
+       break;}
+       else
+       { x=0;}
+    }
+       for(i=0;i<len;i++)
+       {
+       if(!isalpha(a[i]))
+       {
+       for(j=i;j<len;j++)
+         a[j]=a[j+1];
+       }
+       }
+       }
+       printf("%s",a);
+	return 0;
+}

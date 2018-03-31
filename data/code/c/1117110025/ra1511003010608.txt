@@ -1,0 +1,23 @@
+#include <stdio.h>
+int number(int n)
+{
+ static int count=0;
+ if(n>0)
+  {
+    count++;
+    number(n/10);
+  }
+  else
+  {
+  return count;
+  }
+}
+int main()
+{
+  int n,a;
+  scanf("%d",&n);
+  a=number(n);
+  printf("The number of digits in %d is %d",n,a);
+
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class Complex{
+  private : int real , complex ;
+  public :
+  	Complex(int r=0 , int c=0){
+      real = r ;
+      complex = c ;
+    }
+  	Complex operator+ ( Complex const &obj ){
+      Complex c3 ;
+      c3.real = real + obj.real ;
+      c3.complex = complex + obj.complex ;
+      return c3 ;
+    }
+  	void print(){
+      cout << real << "+"<< complex <<"i" << endl ;
+    }
+} ;
+
+
+int main()
+{
+  	int a , b , c , d ; ;
+  	cin >> a >> b >> c >> d ; 
+  	if ( a==0 || b==0 || c==0 || d==0 ){
+      cout << "real is zero" ;
+      return 0 ;
+    }
+	Complex c1(a,b) , c2(c,d) ;
+  	Complex c3 = c1 + c2 ;
+  	c3.print() ;
+	return 0;
+}

@@ -1,0 +1,38 @@
+ #include<stdio.h>
+                #include<string.h>
+                 struct str
+                  { char s[1000];};
+         
+                 
+                 
+                 int main()
+                    {
+                      int t;scanf("%d",&t);
+                      while(t--)
+                       {
+                         int n,m,i,j,r=0; scanf("%d%d",&n,&m); struct str a[n];
+ 
+                         for(i=0;i<n;i++)
+                           { scanf("%s",a[i].s);}
+                        for(i=0;i<n;i++)
+                         { for(j=0;j<m;j++)
+                            { if(a[i].s[j]=='S'||a[i].s[j]=='s')
+                                {   if(j+4<m)
+                                      {  if((a[i].s[j+1]=='p'||a[i].s[j+1]=='P')&&(a[i].s[j+2]=='o'||a[i].s[j+2]=='O')&&(a[i].s[j+3]=='o'||a[i].s[j+3]=='O')&&(a[i].s[j+4]=='n'||a[i].s[j+4]=='N'))
+                                            {r=1; break;}
+                                      }
+                           
+                                    if(i+4<n)
+                                      { if((a[i+1].s[j]=='p'||a[i+1].s[j]=='P')&&(a[i+2].s[j]=='o'||a[i+2].s[j]=='O')&&(a[i+3].s[j]=='o'||a[i+3].s[j]=='O')&&(a[i+4].s[j]=='n'||a[i+4].s[j]=='N'))
+                                           {r=1;break;}
+                                      }
+                                }
+                             }
+                            if(r==1){break;}
+                         }
+ 
+                       if(r==0) {printf("There is indeed no spoon!\n");}
+                      else{printf("There is a spoon!\n");}
+               }
+                 return 0;
+                 } 

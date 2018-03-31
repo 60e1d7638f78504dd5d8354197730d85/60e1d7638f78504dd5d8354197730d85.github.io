@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  
+  scanf("%d", &t);
+  
+  if(t == 0)
+  {
+    printf("0\n");
+    return 0;
+  }
+  
+  while(t--)
+  {
+    int z, n, success = 0;
+
+    scanf("%d %d", &z, &n);
+    
+    int a[n];
+    
+    while(n--)
+    {
+      scanf("%d", &a[n]);
+      
+      if( (z & a[n]) == 0)
+      {
+        printf("Yes\n");
+        success = 1;
+        break;
+      }
+      else
+        success = 0;
+    }
+    
+    if(success == 0)
+      printf("No\n");
+  }
+
+	return 0;
+}

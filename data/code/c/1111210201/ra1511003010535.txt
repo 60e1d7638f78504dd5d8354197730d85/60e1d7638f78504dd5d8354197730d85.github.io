@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+
+int i,n,l,m[101],x[101],k=0;
+char a[101],b[100][101],d[101];
+
+scanf("%s",a);
+scanf("%d",&n);
+l=strlen(a);
+strcpy(d,a);
+for(i=0;i<n;i++)
+{
+scanf("%s",b[i]);
+}
+for(i=0;i<n;i++)
+{
+m[i]=strncmp(b[i],a,l);
+if(m[i]==0)
+{
+if(k==0)
+{
+strcpy(d,b[i]);
+k++;
+}
+x[i]=strcmp(d,b[i]);
+if(x[i]>0)
+{
+strcpy(d,b[i]);
+}
+}
+}
+puts(d);
+return(0);
+}

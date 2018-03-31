@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdbool.h>
+#include<stdlib.h>
+void print(char arr[]){
+int n=strlen(arr);
+  int i,j;
+  char v;
+  bool p[n];
+  memset(p,true,sizeof(arr));
+  int max=0;
+  for(i=0;i<n;i++){
+    int count=0;
+if(p[i]==true){
+  for(j=i;j<n;j++){
+  if(arr[i]==arr[j]){
+    count=count+1;
+    p[j]=false;
+  }
+  }
+    if(count>max){
+   max=count;
+      v=arr[i];
+   }  
+}
+  }
+  printf("Max occurring character is %c",v);
+}
+
+int main()
+{
+char arr[50];
+  fgets(arr,50,stdin);
+  print(arr);
+	return 0;
+}

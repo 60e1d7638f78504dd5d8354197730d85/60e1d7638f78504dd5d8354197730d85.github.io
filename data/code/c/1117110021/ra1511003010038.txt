@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int n,i,j,a[100][100],s1=0,s2=0,d;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      scanf("%d",&a[i][j]);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i==j)
+        s1+=a[i][j];
+      if((i+j)==n-1)
+        s2+=a[i][j];
+    }
+  }
+  d=abs(s1-s2);
+  printf("%d",d);
+  return 0;
+}

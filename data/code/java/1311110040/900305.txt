@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+int a,b , atemp,btemp,t,gcd,lcm,prod;
+       Scanner s = new Scanner (System.in);
+       a= s.nextInt();
+       b=s.nextInt();
+       
+       atemp=a;
+       btemp=b;
+       while (btemp !=0)
+       {
+          t=btemp;
+         btemp=atemp % btemp;
+         atemp=t;
+       }
+       
+       gcd= atemp;
+       // gcd * lcm = a* b
+       prod = a * b;
+       lcm =  prod / gcd;
+       
+       System.out.println( gcd );
+       System.out.println(lcm);
+	}
+}

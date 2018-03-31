@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int *fibo(int n)
+{
+  int *a=new int[5];
+  int i;
+   a[0]=a[1]=1;
+  
+  for(i=2;i<n;i++)
+    a[i]=a[i-1]+a[i-2];
+  
+  return a;
+}
+int main()
+{
+  int n,i;
+  cin>>n;
+  int *s=fibo(n);
+  for(i=0;i<n;i++)
+    cout<<*(s+i)<<" ";
+
+	return 0;
+}

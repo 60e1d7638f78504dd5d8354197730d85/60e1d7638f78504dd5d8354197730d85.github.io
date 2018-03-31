@@ -1,0 +1,26 @@
+#include <stdio.h>
+int red(int n,int d)
+{
+  int a,i;
+  for(a=1;a<=n;a++)
+  {
+    if(n%a==0&&d%a==0)
+    {
+      i=a;
+    }
+  }
+  return i;
+}
+int main()
+{
+  	int n1,n2,d1,d2,cd;
+	scanf("%d %d %d %d",&n1,&d1,&n2,&d2);
+  	cd=red(n1,d1);
+  	n1=n1/cd;
+  	d1=d1/cd;
+  	cd=red(n2,d2);
+  	n2/=cd;
+  	d2/=cd;
+  	printf("%d %d",((n1*d2)+(n2*d1)),(d1*d2));
+	return 0;
+}

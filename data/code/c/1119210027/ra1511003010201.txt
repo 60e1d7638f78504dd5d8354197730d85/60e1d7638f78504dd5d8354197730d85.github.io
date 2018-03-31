@@ -1,0 +1,40 @@
+#include<stdio.h>
+int scan()
+{
+int t=0;
+char c;
+	c=getchar_unlocked();
+	while(c<'0' || c>'9')
+	c=getchar_unlocked();
+	while(c>='0' && c<='9')
+	{
+		t=(t<<3)+(t<<1)+c-'0';
+		c=getchar_unlocked();
+	}
+	return(t);
+}
+int main()
+{
+int t,dif,num,small,n;
+t=scan();
+	while(t--)
+	{
+		dif=0;
+		n=scan()-1;
+		num=scan();
+		small=num;
+		while(n--)
+		{
+			num=scan();
+			if(num-small>dif)
+			dif=num-small;
+			if(num<small)
+			small=num;
+		}
+		if(dif>0)
+		printf("%d\n",dif);
+		else 
+		printf("UNFIT\n");
+	}
+	return 0;
+}

@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+void solve()
+{
+  string s;
+  cin>>s;
+  int p[50],res=-1;
+  for(char c='a';c<='z';c++)
+    p[c-'a']=-1;
+  for(int i=0;i<s.length();i++)
+    if(p[s[i]-'a']==-1)
+      p[s[i]-'a']=i;
+  else
+    res=max(res,i-p[s[i]-'a']-1);
+  cout<<res<<endl;
+}
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+    solve();
+	return 0;
+}

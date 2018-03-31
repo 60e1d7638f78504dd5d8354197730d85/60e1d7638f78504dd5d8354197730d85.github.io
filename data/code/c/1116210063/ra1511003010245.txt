@@ -1,0 +1,35 @@
+#include<stdio.h>
+void palindrom(int a)
+{
+  int b;
+   int rev=0;
+   int n=a;
+ while(a>0)
+  {
+    b=a%10;
+    a=a/10;
+    rev=rev*10+b;
+   } 
+  
+  if(n==rev)
+  {
+   printf("%d\n", rev); 
+  }
+  else
+  {
+    palindrom(++n);
+  }
+}
+int main()
+{
+  int a,i,n;
+  scanf("%d", &n);
+ for(i=0;i<n;i++)
+ {
+  scanf("%d", &a);
+   a=a+1;
+  palindrom(a);
+ }
+ return 0; 
+}
+

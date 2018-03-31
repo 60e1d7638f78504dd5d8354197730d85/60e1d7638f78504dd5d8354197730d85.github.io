@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class increment
+{
+  float x,y,z;
+  public:
+  void getdata(float a,float b,float c)
+  {
+    x=a;
+    y=b;
+    z=c;
+    cout<<"Before overloading"<<endl;
+    cout<<x<<" "<<y<<" "<<z<<endl;
+  }
+  void operator ++()
+  {
+    x++;
+    y++;
+    z++;
+    cout<<"After overloading"<<endl;
+    cout<<x<<" "<<y<<" "<<z<<" "<<endl;
+  }
+};
+
+
+int main()
+{
+    float a,b,c;
+    cin>>a>>b>>c;
+    increment o;
+    o.getdata(a,b,c);
+    ++o;
+	return 0;
+}

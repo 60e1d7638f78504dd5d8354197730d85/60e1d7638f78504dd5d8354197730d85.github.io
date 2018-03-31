@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  struct time
+  {
+    int a,b,c;
+  };
+  struct time t;
+  scanf("%d",&t.a);
+  scanf("%d",&t.b);
+  scanf("%d",&t.c);
+  twofour(t.a,t.b,t.c);
+	return 0;
+}
+twofour(int x,int y,int z)
+{
+  if(x>=24 || y>59 || z>59)
+  {
+    printf("Invalid Time");
+  }
+  else
+  {
+  printf("24 Hours Format\n");
+    printf("%d:%d:%d",x,y,z);
+   onetwo(x,y,z);
+  }
+}
+onetwo(int x,int y,int z)
+{   
+    printf("\n12 Hours Format\n");
+    if(x>=12)
+    {
+      printf("%d:%d:%d pm",x-12,y,z);
+    }
+    else
+    {
+      printf("%d:%d:%d am",x,y,z);
+    }
+  }

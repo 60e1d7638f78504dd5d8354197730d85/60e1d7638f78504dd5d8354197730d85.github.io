@@ -1,0 +1,35 @@
+#include<stdio.h>
+int G[2015][2015];
+int main(){
+	int t,k,n,A[55],i,j,B[2015],a,xor=0;
+ 
+	
+		
+		for(i=0;i<=2012;i++)G[0][i]=0;
+		for(i=1;i<=2012;i++){
+			a=0;
+			for(j=0;j<=i;j++)B[j]=0;
+			for(j=1;j<=i;j++){
+				B[G[i-j][j]]=1;
+				while(B[a]==1)a++;
+				G[i][j]=a;
+			}
+			for(;j<=2012;j++)G[i][j]=G[i][i];
+                 }
+		
+ 
+ 
+	scanf("%d",&t);
+	while(t--){
+		xor=0;
+		scanf("%d %d",&n,&k);
+		if(k>=2012)k=2012;
+		for(i=0;i<n;i++)scanf("%d",&A[i]);
+		for(i=0;i<n;i++){xor^=G[A[i]][k];}
+		if(xor)printf("Nancy\n");
+		else printf("Zeta\n");
+ 
+	}
+ 
+return 0;
+ }

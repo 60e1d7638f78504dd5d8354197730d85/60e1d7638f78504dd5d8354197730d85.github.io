@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{ int nr1,dr1,nr2,dr2;
+  scanf("%d%d%d%d",&nr1,&dr1,&nr2,&dr2);
+  int nr,dr;
+  dr=(dr1<dr2)?dr1:dr2;
+  while(1)
+  {
+    if(dr%dr1==0 && dr%dr2==0)
+      break;
+    ++dr;
+  }
+  nr=(nr1*(dr/dr1))+( nr2*(dr/dr2));
+  int i,gcd;
+  for(i=1;i<=dr && i<=nr;i++)
+  {
+    if(dr%i==0 && nr%i==0)
+      gcd=i;
+  }
+  nr=nr/gcd;
+  dr=dr/gcd;
+  printf("%d %d",nr,dr);
+	return 0;
+}

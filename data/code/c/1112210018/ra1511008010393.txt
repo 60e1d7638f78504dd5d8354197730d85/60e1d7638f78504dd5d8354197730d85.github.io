@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  long long int T,k,n,r;
+  scanf("%lld",&T);
+  while(T--)
+  {
+    scanf("%lld %lld",&n,&k);
+    long long int ans=1,i;
+    n=n-1;
+    k=k-1;
+    if(k>n/2)
+    {
+      r=n-k;
+    }
+    else
+    {
+      r=k;
+    }
+    for(i=0;i<r;i++)
+    {
+      ans*=(n-i);
+      ans/=(i+1);
+    }
+    printf("%lld\n",ans);
+  }
+	return 0;
+}

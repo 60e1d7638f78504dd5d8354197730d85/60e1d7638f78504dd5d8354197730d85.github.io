@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+       Scanner sc=new Scanner(System.in);
+      String line = sc.nextLine();
+      String keys[]=line.split("\\s");
+      Map<String,String> map = new TreeMap<String,String>();
+       //for(int j=0;j<keys.length;j++)
+        // System.out.println(keys[j]);
+      // for(Map.Entry entry: map.entrySet())
+     //  System.out.println(entry.getKey() + " " + entry.getValue());
+     
+           for (int i = 0; i < keys.length; i++) {
+        // System.out.println(strings[i]);
+        String k = String.valueOf(keys[i].charAt(0));
+
+        if (map.containsKey(k)) {
+            String val = map.get(k) + keys[i];
+            map.put(k, val);
+        } else {
+            map.put(k, keys[i]);
+        }
+}
+     
+       for(Map.Entry entry: map.entrySet())
+       System.out.println(entry.getKey() + " " + entry.getValue());
+     }
+  
+public static Map < String, String > firstChar(String[] strings) {
+
+    Map < String, String > map = new HashMap < String, String > ();
+
+    for (int i = 0; i < strings.length; i++) {
+        // System.out.println(strings[i]);
+        String k = String.valueOf(strings[i].charAt(0));
+
+        if (map.containsKey(k)) {
+            String val = map.get(k) + strings[i];
+            map.put(k, val);
+        } else {
+            map.put(k, strings[i]);
+        }
+
+    }
+    return map;
+}
+}

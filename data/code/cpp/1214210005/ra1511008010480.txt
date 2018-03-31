@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class Shape {
+	protected:
+  		int height, breadth;
+  	public:
+  		Shape(int h, int b) : height(h), breadth(b) {}
+  		virtual int getArea() = 0;
+};
+
+class Rect : public Shape {
+	public:
+  		Rect(int h, int b) : Shape(h, b) {}
+  		int getArea() {
+        	return height*breadth;
+        }
+};
+
+class Tri : public Shape {
+	public:
+  		Tri(int h, int b) : Shape(h, b) {}
+  		int getArea() {
+        	return (height*breadth)/2;
+        }
+};
+
+int main()
+{
+	int h, b;
+  	cin>>h>>b;
+  	Rect r(h, b);
+  	Tri t(h, b);
+  	cout<<r.getArea()<<" "<<t.getArea();
+	return 0;
+}

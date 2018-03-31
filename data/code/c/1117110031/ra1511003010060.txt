@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+        int **m, o, i , j;
+        scanf("%d", &o);
+        m = (int **)malloc(sizeof (int) * o);      
+        for (i = 0; i < o; i++)
+        {
+                m[i] = (int *)malloc(sizeof (int) * o);
+        }
+        for (i = 0; i < o; i++)
+        {
+               for (j = 0; j < o; j++)
+               {
+                        scanf("%d", &m[i][j]);
+                }
+          }
+          for (i = 0; i < o; i++) 
+          {
+                for (j = i - 1; j >= 0; j--)
+                {
+                        if (m[i][j] != 0)
+                        {
+                                printf("no");
+                                exit(0);
+                        }
+                }
+        }
+        printf("yes");           
+        return 0;
+}

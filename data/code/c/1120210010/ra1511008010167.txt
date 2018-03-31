@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+long long int T,N,K,A,i,Q,R,total;
+scanf("%lld",&T);
+while(T--){
+	total=0;
+	R=0;Q=0;
+	scanf("%lld %lld",&N,&K);
+	for(i=0;i<N;i++){
+		scanf("%lld",&A);
+		Q=A/K;
+		if(A%K != 0){ Q++;R += K-(A%K);}
+		
+		if(R>=K){
+			R -= K;
+			Q--;
+		}
+   		total += Q;
+   		if(R != 0) R--;
+   	}
+   	printf("%lld\n",total);
+}
+return 0;
+} 

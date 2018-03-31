@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int flag = 0;
+
+void check(int a[],int size, int c, int b)
+{
+	for(int x=0;x<size;x++)
+    {
+    	if(a[x]==(c*b))
+          ++flag;
+    }
+}
+
+int main()
+{	
+  	int t,n,i,j,arr[200];
+	cin>>t;	
+	
+  	while(t)
+    {	flag=0;
+    	cin>>n;
+      	for(i=0;i<n;i++)
+        {
+        	cin>>arr[i];
+        }
+      	for(i=0;i<n;i++)
+        {
+        	for(j=0;j<n;j++)
+        	{	if(i==j)
+              		continue;
+        		
+             	check(arr,n,arr[i],arr[j]);
+            }
+        }
+    	if(flag==n)
+          cout<<"yes"<<endl;
+     	else 
+          cout<<"no"<<endl;
+     	t--;
+    }
+  	
+  	return 0;
+}

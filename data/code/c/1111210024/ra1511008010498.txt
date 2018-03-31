@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<math.h>
+#define SIZE 31642
+#define ICON(x) x*2+3
+#define ICON2(x) x*2
+#define CON2(x) 2*x*x + 6*x + 3
+#define CON(x) (x-3)/2
+#define CONN(x) x/2
+int prime[3404];
+int main()
+{ 
+    int i,n,j,a[CON(SIZE)+1]={0};
+    n=(int)ceil(sqrt(SIZE));n=CON(n);
+    for(i=0;i<n;i++)
+    {
+        if(a[i]==0)   
+            for(j=CON2(i);j<CON(SIZE);j+=ICON(i))
+                a[j]=1;
+    } 
+    j=0; 
+    for(i=0;i<=CON(SIZE);i++)
+       if(a[i]==0)    
+          {
+            prime[j]=ICON(i);
+            j++;
+          }
+    int t,m,f;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int b[100010]={0},s=0;
+        scanf("%d%d",&m,&n);
+  		if(m<=2)printf("2\n"),m=3;      
+		if(m%2==0)m++;
+        if(n%2==0)n--;   
+        f=(int)sqrt(n);
+        for(i=0;i<3401;i++)
+        {  
+            if(prime[i]>f)break;          
+			int start;
+			if(m>=prime[i])
+			{
+				start=m+prime[i]-m%prime[i];
+            	if(start%2==0)start+=prime[i];         
+       			start-=m;
+            	if(m%prime[i]==0 &&m!=prime[i])start=0;
+			}
+			else start=prime[i]*prime[i]-m;
+            for(j=CONN(start);j<=(n-m)/2;j+=prime[i]) 
+                b[j]=1;
+        } 
+        for(i=0;i<=(n-m)/2;i++)
+            if(b[i]==0)
+             
+          printf("%d\n",ICON2(i)+m);
+       
+            printf("\n");
+    }
+    return 0;
+}

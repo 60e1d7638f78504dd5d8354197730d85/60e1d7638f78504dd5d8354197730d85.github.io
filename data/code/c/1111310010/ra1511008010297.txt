@@ -1,0 +1,33 @@
+#include<stdio.h> 
+int isSum(int ar[],int n,int m)
+{
+	if(m==0)
+		return 1;
+	if(n==0 && m!=0)
+		return 0;
+	if(ar[n-1]>m)
+		return isSum(ar,n-1,m);
+	return isSum(ar,n-1,m) || isSum(ar,n-1,m-ar[n-1]);
+}
+ 
+int main()
+{
+  int t,n,m,ar[21],i;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d %d",&n,&m);
+		for(i=0;i<n;i++)
+			scanf("%d",&ar[i]);
+		if(m==0)
+			return 1;
+		if(n==0 && m!=0)
+			return 0;
+		
+		if(isSum(ar,n,m)==1)
+			printf("Yes\n");
+		else
+			printf("No\n");
+	}
+	return 0;
+} 

@@ -1,0 +1,64 @@
+#include<stdio.h>
+ 
+int main()
+{
+    
+    char s[58];
+     int x=0,n=0,t=0,h=0,t1=0,t2=0,p=0;
+     int i=-1,j=54,c=0;
+     
+     scanf("%d%d",&x,&n);
+   
+     while(n--)
+     {
+            scanf("%s",s);
+      
+                   
+           while(i!=35)
+           {
+                       i++;
+                     for(p=i;p<(i+4);p++)  
+                     {
+                        if(s[p]=='0')      
+                        c++;
+                     }
+            
+                      j--; 
+                      if(s[j]=='0')
+                      c++;
+                      j--;
+                      if(s[j]=='0')
+                      c++;
+                      
+                      if(c==x)
+                      t++;
+                      else if(c>x)
+                      {
+                                         t1=c;
+                                         
+                                      for(h=(c-1);h>x;h--)
+                                      {
+                                              t1*=h; 
+                                      }
+                                          t2=(c-x);
+     
+                                          for(h=(c-x-1);h>1;h--)
+                                          {
+                                                  t2*=h;    
+                                          }  
+                                          t+=(t1/t2);                                
+                       }
+                     
+                      
+                      c=0;
+                      i+=3;
+           }
+          
+           i=-1;
+           c=0;
+           j=54;
+          
+     }  
+      printf("%d\n",t);
+     return 0;
+}

@@ -1,0 +1,55 @@
+#include <stdio.h>  
+int getMin(int a,int b) {return (a < b ? a : b);}
+int main() {
+    int t ;
+  scanf("%d",&t);
+    while (t--) {
+        int n;
+      scanf("%d",&n);
+        int m;
+      scanf("%d",&m);
+        int z;
+      scanf("%d",&z);
+        int l;
+      scanf("%d",&l);
+        int r;
+      scanf("%d",&r);
+        int b, tot = n*m, ans = 0, temp, total = n*m;
+      scanf("%d",&b);
+        l = l+r;
+        if (m%2 == 0) {
+            if (l >= n) {
+                ans = n;
+                tot -= n;
+                l -= n;
+                m--;
+            } else {
+                int c = l*(m/2);
+                c = getMin(c, b);
+                ans = c+l;
+                tot -= ans;
+                b -= c;
+                n-=l;
+                l = 0;
+            }
+        }
+        if (m == 1) temp = n;
+        else temp = l/(m-1);
+        if (temp >= n || temp >= b) printf("%d\n", getMin(total, (ans+l+b+z)));
+        else {
+            int c = temp, canz, leftm = l%(m-1), leftn = n-temp-1;
+            ans += l;
+            tot -= l;
+            leftm = m-leftm;
+            c+=((leftm+1)/2);
+            c+=(leftn*((m+1)/2));
+            c = getMin(c, b);
+            ans += c;
+            tot -= c;
+            canz = getMin(z, tot);
+            ans += canz;
+            printf("%d\n", ans);
+        }
+    }
+    return 0;
+}   

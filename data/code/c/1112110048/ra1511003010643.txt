@@ -1,0 +1,31 @@
+#include<stdio.h>
+int main()
+{
+int t,i;
+scanf("%d",&t);
+while(t--)
+{
+    int n,x1,x2,y1,y2,a;
+    scanf("%d",&n);
+    int x[n];
+    int y[n];
+    double area=0;
+    for(i=0;i<n;i++) 
+    scanf("%d",&x[i]);
+    for(i=0;i<n;i++) 
+    scanf("%d",&y[i]);
+    for(i=1;i+1<n;i++)
+      {
+           x1=x[i]-x[0];
+           y1=y[i]-y[0];
+           x2=x[i+1]-x[0];
+           y2=y[i+1]-y[0];
+           a=x1*y2-x2*y1;
+           area=area+a;
+       }
+      if(area<=0) 
+	 area=area*(-1);
+      printf("%.1lf\n",area/2.0);
+}
+return 0;
+} 

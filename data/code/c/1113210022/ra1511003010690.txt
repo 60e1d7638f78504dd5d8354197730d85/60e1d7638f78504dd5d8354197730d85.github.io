@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include<math.h>
+char b[1000001];
+char c[1000001];
+ int count; 
+unsigned long long int power(unsigned long long int x, unsigned long long int bin){
+	unsigned long long int b;
+	if(bin==1){
+		
+		return x;
+	}
+	else if(bin%2==0){
+		b=power(x,bin/2);
+		return b*b;
+		}
+	else{
+		b=power(x,bin/2);
+		return b*b*x;
+	}
+ 
+}
+ 
+int main(){
+ 
+	int a[78498];
+ 
+	int k=0,t;
+	unsigned long long int i,j;
+	b[1]=1;
+	b[0]=1;
+	b[2]=0;
+	b[3]=0;
+	
+	for(i=2;i<1000000;i++){
+		
+		if(b[i]==0){
+			a[k]=i;
+			k++;
+			for(j=i+i;j<1000000;){
+				b[j]=1;
+				j+=i;
+			}
+		}
+	}
+	
+	unsigned long long int num,sum,l,r;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%lld%lld",&l,&r);
+		sum=0;
+		count=0;
+		for(i=0;i<78498;i++){
+			if(r>a[i]){
+				num=r-(r%a[i]);
+				while(num>=l){
+					c[num-l]=1;
+					num=num-a[i];
+				}
+			}
+			else
+				break;
+		}
+		
+		for(i=0;i<78498;i++){
+			for(j=0;j<78;j++){
+				num=power(a[i],a[j]-1);
+				if(num>=l&&num<=r)
+					c[num-l]=0;
+				else if(num>r)
+					break;
+			}
+			if(a[i]>r)
+			break;
+		}
+		for(i=0;i<=r-l;i++){
+			if(c[i]==0)
+				sum++;
+		}
+		if(l==1)
+			sum--;
+		printf("%llu\n",sum);
+		for(i=0;i<=r-l;i++){
+			c[i]=0;
+		}
+	}
+	
+	
+return 0;
+} 

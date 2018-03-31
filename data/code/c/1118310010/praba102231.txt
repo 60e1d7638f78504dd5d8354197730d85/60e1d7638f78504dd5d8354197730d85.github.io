@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define max 100000
+ 
+long long int sumlr(long long int l,long long int r,long long int inpt[]){
+long long int sm=0,i=0;
+for(i=l;i<=r;i++){
+    sm+=inpt[i];
+}
+return sm;
+}
+int main(){
+    long long int i,inpt[max],fun[max],n,mx,ny,qi,nq,l[max],r[max];
+    scanf("%lld",&n);
+for(i=0;i<n;i++){
+scanf("%lld",&inpt[i]);
+}
+ 
+for(i=0;i<n;i++){
+scanf("%lld",&l[i]);
+scanf("%lld",&r[i]);
+fun[i]=sumlr(l[i]-1,r[i]-1,inpt);
+}
+scanf("%lld",&nq);
+while(nq--){
+scanf("%lld",&qi);
+scanf("%lld",&mx);
+scanf("%lld",&ny);
+if(qi==1){
+    inpt[mx-1]=ny;
+    for(i=0;i<n;i++){
+fun[i]=sumlr(l[i]-1,r[i]-1,inpt);
+}
+}else{
+printf("%lld\n",sumlr(mx-1,ny-1,fun));
+}
+}
+return 0;
+}

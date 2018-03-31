@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char str1[30],str2[15];
+	int i,hash[30]={0};
+	scanf("%s",str1);
+	int len1=strlen(str1);
+	for(i=0;i<len1;i++)
+	{
+		hash[str1[i]-'a']=1;
+	}
+	int n;
+	scanf("%d",&n);
+	while(n--)
+	{
+		int p=1;
+		scanf("%s",str2);
+		int len2=strlen(str2);
+		for(i=0;i<len2;i++)
+		{
+			if(hash[str2[i]-'a']==0)
+			p=0;
+		}
+		if(p==0)
+		printf("No\n");
+		else
+		printf("Yes\n");
+	}
+	return 0;
+} 

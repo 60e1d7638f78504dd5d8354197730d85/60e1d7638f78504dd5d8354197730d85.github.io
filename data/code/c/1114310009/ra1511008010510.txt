@@ -1,0 +1,66 @@
+#include<stdio.h>
+int main()
+{
+	int test,sum1,temp,a[50001],b[50001],n,i,ans,c[50000],d[50000],f[50001],f1[50001],j;
+	scanf("%d",&test);
+	for(;test>0;test--)
+	{
+		scanf("%d",&n);
+		for(i=0;i<=n;i++)
+		{
+			a[i]=0;
+			b[i]=0;
+		}
+		for(i=0;i<n;i++)
+		{
+			scanf("%d%d",&c[i],&d[i]);
+			a[c[i]]++;
+			b[d[i]]++;
+		}
+		sum1=0;
+			ans=0;
+			for(i=n;i>=0;i--)
+			{
+				sum1=sum1+b[i];
+				if(sum1==i)
+				{
+					f1[ans++]=i;
+				}
+				sum1=sum1-a[i];
+			}
+			int k;
+		        for(i=0,k=ans-1;i<ans;i++,k--)
+                           f[k]=f1[i];
+                        printf("%d\n",ans); 
+			for(i=0;i<n;i++)
+			{
+				
+				if(f[0]>=c[i]&&f[ans-1]<=d[i])//&&count!=0)
+					printf("1");
+				else
+				{
+					printf("0");
+					for(j=0;j<ans;j++)
+					{
+						if(f[j]>=c[i])
+							break;
+					}
+					temp=0;
+					for(k=j;k<ans;k++)
+					{
+						if(f[k]>d[i])
+							break;
+						temp++;			   
+					}
+					for(;k<ans;k++,j++)
+					{
+						f[j]=f[k];
+					}
+					ans-=temp;
+				
+				}				   
+		    }
+	       printf("\n");		
+	}
+	return 0;
+}  

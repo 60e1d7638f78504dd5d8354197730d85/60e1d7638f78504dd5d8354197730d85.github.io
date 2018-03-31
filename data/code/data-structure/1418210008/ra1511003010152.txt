@@ -1,0 +1,72 @@
+#include <stdio.h>
+ 
+long long power(int x, int y) {
+	long long p;
+ 
+	if (y == 0)
+		return 1;
+	p = power(x, y / 2);
+	p *= p; 
+	if (y % 2 == 1)
+		p *= x;
+	return p;
+}
+ 
+int query0(int i, long long val, long long sl, long long sr) {
+	long long x = (sl + sr - 1) / 2;
+ 
+	if (val == x)
+		return i;
+	if (val < x)
+		return query0(i * 2, val, sl, (sl + sr) / 2);
+	else
+		return query0(i * 2 + 1, val, (sl + sr) / 2, sr);
+}
+ 
+long long query1(int i, int j, int k, long long sl, long long sr) {
+	return j == k ? (sl + sr - 1) / 2 : (k & 1 << (i - 1)) == 0
+		? query1(i - 1, j * 2, k, sl, (sl + sr) / 2)
+		: query1(i - 1, j * 2 + 1, k, (sl + sr) / 2, sr);
+}
+ 
+void print(int i) {
+	if (i > 1) {
+		print(i / 2);
+		printf("%c", i % 2 == 0 ? 'l' : 'r');
+	}
+}
+ 
+int main() {
+	int l, q, n, cnt;
+	long long s, p, start;
+ 
+	scanf("%d%lld", &l, &s);
+	cnt = power(2, l - 1);
+	n = power(2, l) - 1;
+	p = power(4, l - 1) - n;
+	start = p > s ? 0 : (s - p) / n + 1;
+	scanf("%d", &q);
+	while (q-- > 0) {
+		int type, k;
+		long long val;
+ 
+		scanf("%d", &type);
+		if (type == 0) {
+			scanf("%lld", &val);
+			if (val == (start + start + cnt - 1) / 2)
+				printf("root\n");
+			else {
+				print(query0(1, val, start, start + cnt));
+				printf("\n");
+			}
+		} else {
+			int x;
+ 
+			scanf("%d", &k);
+			for (x = 0; (long long) 1 << x <= k; x++)
+				;
+			printf("%lld\n", query1(x - 1, 1, k, start, start + cnt));
+		}
+	}
+	return 0;
+}

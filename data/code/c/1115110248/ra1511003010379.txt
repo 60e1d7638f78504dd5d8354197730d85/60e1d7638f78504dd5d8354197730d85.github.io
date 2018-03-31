@@ -1,0 +1,30 @@
+#include <stdio.h>
+int M,K;
+int N;
+int A[100];
+int main()
+{
+  int i;
+  int sum=0;
+  int max=0;
+  scanf("%d %d %d",&N,&M,&K);
+  for(i=0;i<N;i++)
+  {
+    scanf("%d",&A[i]);
+    A[i]=(M-A[i])/K+1;
+    
+    if(max<A[i])max=A[i];
+    
+	sum+=A[i];
+  }
+  int min=0;
+  if((sum-max)%2==0)min=(sum-max)/2;
+  else min=(sum-max)/2+1;
+  
+  int ans=(sum/2)+1-min;
+  ans=ans%(10000);
+  printf("%d",ans);
+  
+
+	return 0;
+}

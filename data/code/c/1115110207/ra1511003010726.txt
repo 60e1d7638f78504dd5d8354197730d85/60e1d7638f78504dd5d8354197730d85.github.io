@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int c,d,swap,n,array[10000];
+  double o;
+
+  scanf("%d", &n);
+ 
+  for (c = 0; c < n; c++)
+    scanf("%d", &array[c]);
+ 
+  for (c = 0 ; c < ( n - 1 ); c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (array[d] > array[d+1]) 
+      {
+        swap       = array[d];
+        array[d]   = array[d+1];
+        array[d+1] = swap;
+      }
+    }
+  }
+  
+  printf("First Largest=%d\n",array[n-1]);
+  printf("Second Largest=%d\n",array[n-2]);
+  o=(array[n-1]+array[n-2]);
+  printf("Average=%.1lf",o/2);
+  return 0;
+}

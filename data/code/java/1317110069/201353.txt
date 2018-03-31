@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+public class TestClass
+{
+	 public static void main(String[] args) 
+     { 
+		Scanner sc=new Scanner(System.in);
+int t=sc.nextInt();
+while(t>0)
+{
+String s;
+s=sc.next();
+String res=compute(s);
+System.out.println(res);
+t--;
+}
+}
+public static String compute(String s)
+{
+char[] arr=s.toCharArray();
+int l=arr.length;
+int val=l-1;
+int index=-1;
+for(int i=l-2;i>=0;i--)
+{
+if(arr[i]>=arr[val])
+{
+val=i;
+}
+else
+{
+index=i;
+break;
+}
+}
+if(index==-1)
+{
+return "-1";
+}
+int greatInd=-1;
+for(int i=l-1;i>index;i--)
+{
+if(arr[i]>arr[index])
+{
+if(greatInd==-1)
+greatInd=i;
+else if(arr[i]<=arr[greatInd])
+greatInd=i;
+}
+}
+char tmp=arr[index];
+arr[index]=arr[greatInd];
+arr[greatInd]=tmp;
+return String.valueOf(arr);
+}
+}

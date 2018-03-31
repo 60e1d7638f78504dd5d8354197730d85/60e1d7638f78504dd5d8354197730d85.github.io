@@ -1,0 +1,32 @@
+#include <stdio.h>
+ int max(int a, int b)
+ {
+     if(a>b)
+     return a;
+     else
+     return b;
+ }
+int main(void) {
+	int n, res1=0, res2=0, lead1=0, lead2=0, i, s, t;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	    scanf("%d",&s);
+	    scanf("%d",&t);
+	    res1 += s;
+	    res2 +=t;
+	    if(res1>res2)
+	    {
+	        lead1=max(lead1,(res1-res2));
+	    }
+	    else{
+	        lead2=max(lead2,(res2-res1));
+	    }
+	    }
+	    if(lead1>lead2)
+	    printf("1 %d",lead1);
+	    else
+	    printf("2 %d", lead2);
+ 
+	return 0;
+}

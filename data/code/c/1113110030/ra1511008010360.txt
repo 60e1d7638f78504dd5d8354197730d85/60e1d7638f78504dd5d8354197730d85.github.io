@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+int T,h,ts,i,c1,c2,c3;
+  float c;
+  scanf("%d",&T);
+  for(i=0;i<T;i++)
+  {
+    c1=0;
+    c2=0;
+    c3=0;
+    scanf("%d %f %d",&h,&c,&ts);
+    if(h>50)
+      c1++;
+    if(c<0.7)
+      c2++;
+    if(ts>5600)
+      c3++;
+   // printf("%d %d %d",c1,c2,c3);
+    if(c1>0 && c2>0 && c3>0)
+      printf("Grade 10");
+    if(c1>0 && c2>0 && c3==0)
+      printf("Grade 9");
+    if(c1==0 && c2>0 && c3>0)
+      printf("Grade 8");
+    if(c1>0 && c2==0 && c3>0)
+      printf("Grade 7");
+    if((c1>0 && c2==0 && c3==0)||(c1==0 && c2>0 && c3==0)||(c1==0 && c2==0 && c3>0))
+      printf("Grade 6");
+    if(c1==0 && c2==0 && c3==0)
+      printf("Grade 5");
+    printf("\n");
+  }
+	return 0;
+}

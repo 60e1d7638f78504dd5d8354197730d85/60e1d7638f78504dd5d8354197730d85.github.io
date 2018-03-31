@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+long n;
+  int neg[100],pos[100],rem;
+  scanf("%ld",&n);
+  int i=0,j=0;
+  while(n>0)
+  {
+    rem=n%10;
+    if(rem%2==0)
+    {
+      pos[i]=rem;
+      i++;
+    }
+    else
+    {
+      neg[j]=rem;
+      j++;
+    }
+    n=n/10;
+  }
+   
+  int k=0,m=0;
+  
+  for(k=j-1;k>=0;k--)
+  {
+    printf("%d",neg[k]);
+  }
+  printf(" ");
+  for(m=i-1;m>=0;m--)
+  {
+    printf("%d",pos[m]);
+  }
+	return 0;
+}

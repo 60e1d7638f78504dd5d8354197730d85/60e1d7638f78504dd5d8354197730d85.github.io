@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define sd(x) scanf("%lld",&x)
+#define slld(x) scanf("%lld",&x)
+#define ss(x) scanf("%s",x)
+#define ll long long
+#define mod 1000000007
+#define bitcount    __builtin_popcountll
+#define pb push_back
+#define fi first
+#define se second
+#define mp make_pair
+#define pi pair<int,int>
+vector <ll> q[45];
+int main()
+{
+    //freopen("in.txt","r",stdin);
+    //freopen("out.txt","w",stdout);
+    ll t,n,i,j,k,ans,m;
+    n=1000000;
+    m=n*n;
+    for(i=2;i<=n;i++)
+    {
+        k=i;
+        for(j=2;j<=40;j++)
+        {
+            k*=i;
+            if(k>m)
+                break;
+            q[j].pb(k);
+        }
+    }
+    sd(t);
+    while(t--)
+    {
+    	sd(n);
+    	if(n==1)
+    	{
+    		printf("INFINITY\n");
+    		continue;
+    	}
+    	ans=n-n/2;
+    	for(i=2;i<=40;i++)
+    	{
+    		if(q[i].size()==0)
+                break;
+            j=upper_bound(q[i].begin(),q[i].end(),n/2)-q[i].begin();
+            k=upper_bound(q[i].begin(),q[i].end(),n)-q[i].begin();
+            //printf("%lld %lld\n",j,k);
+            ans+=k-j;
+    	}
+    	printf("%lld\n",ans);
+    }
+    return 0;
+} 

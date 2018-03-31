@@ -1,0 +1,48 @@
+#include<stdio.h>
+void QuickSort(long *a,int p,int r)
+{
+    if(p<r)
+    {
+        long pivot=a[r];
+    	int i=p-1;
+    	int j;
+    	for(j=p;j<r;j++)
+    	{
+     	    if(a[j]<=pivot)
+            {
+            	i++;
+            	long t=a[i];
+            	a[i]=a[j];
+            	a[j]=t;
+            }
+    	}
+    	++i;
+    	long t=a[i];
+    	a[i]=a[r];
+	a[r]=t;
+        QuickSort(a,p,i-1);
+        QuickSort(a,i+1,r);
+    }
+}
+int main()
+{
+    int n;
+    long d;
+    scanf("%d%ld",&n,&d);
+    long a[n];
+    int i;
+    for(i=0;i<n;i++)
+        scanf("%ld",&a[i]);
+    QuickSort(a,0,n-1);
+    int count=0;
+    for(i=0;i<n-1;i++)
+    {
+        if(a[i+1]-a[i]<=d)
+        {
+            count++;
+            i++;
+        }
+    }
+    printf("%d\n",count);
+    return 0;
+} 

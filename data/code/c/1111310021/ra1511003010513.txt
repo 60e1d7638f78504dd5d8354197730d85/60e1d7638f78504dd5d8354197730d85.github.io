@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+int r()
+{
+    int k=0;
+    char c=getchar_unlocked();
+    while(c<'0'||c>'9')c=getchar_unlocked();
+    while(c>='0'&&c<='9')
+    {
+        k=k*10+c-'0';
+        c=getchar_unlocked();
+    }
+    return k;
+}
+int main()
+{
+    int t,n,nz,i,j,sum;
+    t=r();
+    int a[10005];
+    while(t--)
+    {
+        n=r();
+        j=n;
+        i=0;
+        sum=0;
+        nz=0;
+        while(j--)
+        {
+            a[i++]=r();
+            sum=sum+a[i-1];
+            if(a[i-1]!=0)
+                nz++;
+        }
+        sum=sum-100;
+        if(sum>=0&&sum<nz)
+            printf("YES\n");
+        else
+            printf("NO\n");
+ 
+    }
+    return 0;
+}

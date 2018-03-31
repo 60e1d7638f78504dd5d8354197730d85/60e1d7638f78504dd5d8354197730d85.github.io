@@ -1,0 +1,77 @@
+#include <iostream>
+#include<stdlib.h>
+using namespace std;
+class overload
+{
+  int day,month,year;
+  public:
+  void Date(int dd,int mm, int yyyy)
+  {
+    day=dd;
+    month=mm;
+    year=yyyy;
+
+    if((day>0 && day<32) && (month>0 && month<13) && (year>1000 && year<10000))
+    {
+         cout<<"Date : "<<day<<"/"<<month<<"/"<<year<<endl;
+     if(day==1)
+	{
+		//months which have 30 days
+		if(month==4 || month==6 || month==9 || month==11)
+		{
+			day=31;
+			month = month -1;
+		}
+		//for MARCH, to define february last day
+		else if(month==3)
+		{
+			if(year%4==0)
+				day=29;
+			else
+				day=28;
+
+			month = month -1;
+		}
+		//for January, to define December last day
+		else if(month==1)
+		{
+			day=31;
+			month = 12;
+			year = year - 1 ;
+		}
+		//for Feb, to define January last day
+		else if(month==2)
+		{
+			day=31;
+			month = month -1;
+		}
+		//for other months
+		else
+		{
+			day=30;
+			month = month -1;
+		}
+	}
+	//other days of month
+	else
+	{
+		day = day-1;
+	}
+	cout<<"Previous date : "<<day<<"/"<<month<<"/"<<year<<endl;
+   }
+
+    else
+    {
+      exit(0);
+    }
+  }
+};
+
+int main()
+{
+    int a,b,c;
+    cin>>a>>b>>c;
+    overload o;
+    o.Date(a,b,c);
+	return 0;
+}

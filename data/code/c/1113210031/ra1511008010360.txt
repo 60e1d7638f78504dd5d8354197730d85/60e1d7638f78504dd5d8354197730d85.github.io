@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int n,i;
+  scanf("%d",&n);
+  int a[n],b[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  int j=0;
+  for(i=n-1;i>=0;i--)
+  {
+    b[j++]=a[i];
+    //printf("b-%d",b[j-1]);
+  }
+  int c[n];
+  for(j=0;j<n;j++)
+  {
+    c[j]=0;
+    while(b[j]>0)
+    {
+      int rm=b[j]%10;
+      c[j]=c[j]*10+rm;
+      b[j]=b[j]/10;
+    }
+  }
+  for(j=0;j<n;j++)
+    printf("%d\n",c[j]);
+      
+	return 0;
+}

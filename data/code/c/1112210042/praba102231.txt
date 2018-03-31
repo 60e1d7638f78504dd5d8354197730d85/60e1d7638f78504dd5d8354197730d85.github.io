@@ -1,0 +1,53 @@
+#include <stdio.h>
+ 
+long long int mod=100000007;
+long long int MOD=100000007;
+ 
+long long int power123(long long int a,long long int b, int MOD)
+{
+	long long int x=1,y=a; 
+	while(b > 0)
+	{
+		if(b%2 == 1)
+		{
+			x=(x*y);
+			if(x>MOD) x%=MOD;
+		}
+		y = (y*y);
+		if(y>MOD) y%=MOD; 
+		b /= 2;
+	}
+	return x;
+}
+ 
+ 
+int main()
+{
+	int t;
+	scanf ("%d", &t);
+	while (t--)
+	{
+		long long int i, j, k, l, m, n;
+		scanf ("%lld", &n);
+		long long int a, b, c, d, e;
+		if (n==1)
+		{
+			printf ("0 0\n");
+			continue;
+		}
+		a=power123(3, n, mod);
+		b=power123(2, n, mod);
+		c=power123(4, n-1, mod);
+		d=(((a+1)*power123(2, mod-2, mod))%MOD)-b;
+		if (d<0)
+			d=(d+(2*mod))%MOD;
+		else
+			d%=MOD;
+		e=(2*c)+(power123(2, n-1, mod))+(b)-(a)-(((a+1)*power123(2, mod-2, mod))%MOD);
+//		while (e<0)
+			e=(e+(4*mod))%MOD;
+		e%=MOD;
+		printf("%lld %lld\n", d, e);
+	}
+ 
+} 

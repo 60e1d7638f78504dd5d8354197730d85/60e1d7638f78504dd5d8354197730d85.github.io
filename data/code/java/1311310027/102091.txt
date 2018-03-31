@@ -1,0 +1,171 @@
+import java.io.*;
+import java.util.*;
+ 
+public class TestClass {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        OutputWriter out = new OutputWriter(outputStream);
+        Solver solver = new Solver();
+        int testCount = in.nInt();
+        for (int i = 1; i <= testCount; i++)
+            solver.solve(in, out);
+        out.close();
+    }
+}
+ 
+class Solver {
+    static final int INF = (int) 2e9;
+ 
+    public void solve(InputReader in, OutputWriter out) {
+        int n = in.nInt();
+        int m = in.nInt();
+        int k = in.nInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; ++i) a[i] = in.nInt();
+        Arrays.sort(a);
+        long initialSum = 0;
+        for (int i = 0; i < m; ++i) initialSum += a[i];
+        int[] bestBefore = new int[k * k];
+        Arrays.fill(bestBefore, -INF);
+        bestBefore[0] = 0;
+        for (int i = 0; i < m; ++i) {
+            for (int cnt = k - 2; cnt >= 0; --cnt) {
+                int nrem = a[i] % k;
+                int extra = a[i] / k;
+                for (int rem = 0; rem < k; ++rem) {
+                    int s = cnt * k + rem;
+                    int old = bestBefore[s];
+                    if (old >= 0) {
+                        int t = (cnt + 1) * k + nrem;
+                        bestBefore[t] = Math.max(bestBefore[t], old + extra);
+                    }
+                    ++nrem;
+                    if (nrem == k) {
+                        nrem = 0;
+                        ++extra;
+                    }
+                }
+            }
+        }
+        int[] bestAfter = new int[k * k];
+        Arrays.fill(bestAfter, INF);
+        bestAfter[0] = 0;
+        for (int i = m; i < n; ++i) {
+            for (int cnt = k - 2; cnt >= 0; --cnt) {
+                int nrem = a[i] % k;
+                int extra = a[i] / k;
+                for (int rem = 0; rem < k; ++rem) {
+                    int s = cnt * k + rem;
+                    int old = bestAfter[s];
+                    if (old < INF) {
+                        int t = (cnt + 1) * k + nrem;
+                        bestAfter[t] = Math.min(bestAfter[t], old + extra);
+                    }
+                    ++nrem;
+                    if (nrem == k) {
+                        nrem = 0;
+                        ++extra;
+                    }
+                }
+            }
+        }
+        long res = (long) 1e18;
+        int shift = (int) (initialSum % k);
+        for (int cnt = 0; cnt < k; ++cnt)
+            for (int rem = 0; rem < k; ++rem) {
+                long before = bestBefore[cnt * k + (shift + rem) % k];
+                if (before < 0) continue;
+                before = before * (long) k + (shift + rem) % k;
+                long after = bestAfter[cnt * k + rem % k];
+                if (after >= INF) continue;
+                after = after * (long) k + rem % k;
+                res = Math.min(res, initialSum - before + after);
+            }
+        if (res == (long) 1e18) res = -1;
+        out.println(res);
+    }
+}
+ 
+class InputReader {
+ 
+    private InputStream stream;
+    private byte[] buf = new byte[1024];
+    private int curChar, numChars;
+ 
+    public InputReader(InputStream stream) {
+        this.stream = stream;
+    }
+ 
+    private int read() {
+        if (numChars == -1)
+            throw new InputMismatchException();
+        if (curChar >= numChars) {
+            curChar = 0;
+            try {
+                numChars = stream.read(buf);
+            } catch (IOException e) {
+                throw new InputMismatchException();
+            }
+            if (numChars <= 0)
+                return -1;
+        }
+        return buf[curChar++];
+    }
+ 
+    public int nInt() {
+        int c = read();
+        while (isSpaceChar(c))
+            c = read();
+        int sgn = 1;
+        if (c == '-') {
+            sgn = -1;
+            c = read();
+        }
+        int res = 0;
+        do {
+            if (c < '0' || c > '9')
+                throw new InputMismatchException();
+            res *= 10;
+            res += c - '0';
+            c = read();
+        } while (!isSpaceChar(c));
+        return res * sgn;
+    }
+ 
+    private boolean isSpaceChar(int c) {
+        return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+    }
+}
+ 
+ 
+class OutputWriter {
+    private final PrintWriter writer;
+ 
+    public OutputWriter(OutputStream outputStream) {
+        writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
+    }
+ 
+    public OutputWriter(Writer writer) {
+        this.writer = new PrintWriter(writer);
+    }
+ 
+    public void print(Object...objects) {
+        for (int i = 0; i < objects.length; i++) {
+            if (i != 0)
+                writer.print(' ');
+            writer.print(objects[i]);
+        }
+    }
+ 
+    public void println(Object...objects) {
+        print(objects);
+        writer.println();
+    }
+ 
+    public void close() {
+        writer.close();
+    }
+}
+  

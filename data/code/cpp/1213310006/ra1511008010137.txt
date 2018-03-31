@@ -1,0 +1,55 @@
+#include <iostream>
+#include<vector>
+#include<string>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+ 
+#define all(v) (v).begin(), (v).end()
+ 
+typedef long long li;
+ 
+void norm(string& s)
+{
+    for (char& c: s) c = tolower(c);
+    s[0] = toupper(s[0]);
+}
+ 
+void solve()
+{
+    string line;
+    getline(cin, line);
+    
+    vector<string> parts;
+    
+    string cur = "";
+    for (char c: line)
+        if (c == ' ')
+        {
+            parts.push_back(cur);
+            cur = "";
+        }
+        else cur += c;
+    parts.push_back(cur);
+    
+    for (string& s: parts) norm(s);
+    
+    for (int i = 0; i + 1 < (int)parts.size(); i++)
+        cout << parts[i][0] << ". ";
+    cout << parts.back() << '\n';
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int nt = 1;
+    cin >> nt;
+    string line;
+    getline(cin, line);
+    for (int i = 0; i < nt; i++)
+        solve();
+    
+    return 0;
+}

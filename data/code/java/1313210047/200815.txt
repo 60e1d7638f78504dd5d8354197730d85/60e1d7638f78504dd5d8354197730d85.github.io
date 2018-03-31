@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while(t-- > 0) {
+            int L = in.nextInt();
+            int c = minBottles(L);
+            System.out.println(c);
+        }   
+    }
+    public static int minBottles(int L) {
+        int m = L % 10;
+        int cost = L/10;
+        switch(m) {
+            case 0: cost += 0; break;
+            case 1: cost += 1; break;
+            case 2: cost = (cost == 0) ? 2 : cost+1; break;
+            case 3: cost = (cost == 0) ? 3 : cost+2; break;
+            case 4: cost = (cost == 0) ? 4 : cost+1; break;
+            case 5: cost += 1; break;
+            case 6: cost += 2; break;
+            case 7: cost += 1; break;
+            case 8: cost += 2; break;
+            case 9: cost = (cost == 0) ? 3 : cost+2; break;
+            default: break;
+        }
+        return cost;
+    }
+}

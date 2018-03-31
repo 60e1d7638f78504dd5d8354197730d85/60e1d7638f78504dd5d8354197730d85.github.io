@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int i, j, arr[1000][1000], n, rem, f = 0;
+  	scanf("%d", &n);
+  	for (i=0; i<n; i++) {
+      for (j=0; j<n; j++) {
+        scanf("%d", &arr[i][j]);
+      }
+    }
+  	rem = arr[0][0] % 2;
+  	//printf("%d", rem);
+  	for (i=0; i<n; i++) {
+      for (j=0; j<n; j++) {
+        if (rem != arr[i][j] % 2) {
+          f = 1;
+          break;
+        }
+        if (f == 1)
+          break;
+      }
+    }
+  if (f == 0)
+    printf("yes");
+  else
+    printf("no");
+  return 0;
+}

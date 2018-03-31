@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+int a[10000],b[10000],l,ls,i,t,pos,cou=0;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&l);
+    for(i=1;i<=l;i++)
+    {
+    scanf("%d",&a[i]);  
+    }
+    scanf("%d",&ls);
+    for(i=1;i<=ls;i++)
+    {
+    scanf("%d",&b[i]);
+    }
+   for(i=1;i<=l;i++)
+   {
+     if(a[i]==b[1])
+     {
+       pos=i;
+       break;
+     }
+   }
+    
+    for(i=1;i<=ls;i++)
+    {
+    if(b[i]==a[pos+i-1])
+    {
+      cou++;
+    }
+      
+    }
+    if(cou==ls){
+    printf("Yes\n");}
+    else
+    {printf("No\n");}
+    
+    
+    cou=0;
+  }
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include <stdio.h>
+int main()
+{
+    long long int t,l,d,s,c,win,sum,deno,num,temp;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld %lld %lld %lld",&l,&d,&s,&c);
+        sum=s;num=d-1;deno=1;temp=s;
+        if(sum>=l)
+        {
+            win=1;
+        }
+        else
+        {
+            win=0;
+            while(num>=1)
+            {
+                temp=temp/deno;
+                temp=temp*num;
+                if(temp>=l)
+                {
+                    win=1;
+                    break;
+                }
+                if((sum+temp)>=l)
+                {
+                    win=1;
+                    break;
+                }
+                temp*=c;
+                if(temp>=l)
+                {
+                    win=1;
+                    break;
+                }
+                if((sum+temp)>=l)
+                {
+                    win=1;
+                    break;
+                }
+                sum+=temp;
+                num--;
+                deno++;
+            }
+        }
+        if(win==1)
+            printf("ALIVE AND KICKING\n");
+        else
+            printf("DEAD AND ROTTING\n");
+    }
+    return 0;
+}
+ 
+

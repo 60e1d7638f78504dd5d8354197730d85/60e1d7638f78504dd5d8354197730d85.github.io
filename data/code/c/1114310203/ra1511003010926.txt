@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+int main(){
+    int n, i, j, a[200005], intar[200005];
+    long long max;
+
+    for(i = 0;i<200005;i++)
+	a[i]=0;
+    scanf("%d", &n);
+    for(i=0;i<n;i++){
+	scanf("%d", &j);
+	a[j]++;
+    }
+    intar[0] = 0;
+    for(i = 1;i<200005;i++){
+	intar[i] = intar[i-1] + a[i-1];
+    }
+
+    max=0;
+    for(i = 1;i<200005;i++){
+	if(a[i] > 0){
+	    long long psum;
+	    psum = 0;
+	    for(j=1;((long long)j)*i<200005;j++){
+		psum += ((long long)(j-1))*(long long)i*(long long)((intar[j*i] - intar[(j-1)*i]));
+	    }
+	    psum += ((long long)(j-1))*(long long)i*(long long)((intar[200004] - intar[(j-1)*i]));
+	    if(psum > max)
+		max = psum;
+	}
+    }
+    printf("%lld\n", max);
+    
+    return 0;
+}

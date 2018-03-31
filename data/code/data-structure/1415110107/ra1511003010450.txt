@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+  int data;
+  struct node *next;
+};
+
+struct node* push(struct node *h,int d)
+{
+  if(h==NULL)
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=NULL;
+    h=nn;
+  }
+  else
+  {
+    struct node *t=h;
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    while(t->next!=NULL)
+      t=t->next;
+    t->next=nn;
+  }
+  return h;
+}
+
+void print(struct node *h)
+{
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    printf("->%d",t->data);
+    t=t->next;
+  }
+}
+
+struct node* delete(struct node *h)
+{
+  struct node *t,*x;
+  while(h->data<h->next->data && h!=NULL)
+    h=h->next;
+  t=h->next;
+  x=h;
+  while(t->next!=NULL)
+  {
+    if(t->data<t->next->data)
+    {
+      x->next=t->next;
+      t=t->next;
+    }
+    else
+    {
+      t=t->next;
+      x=x->next;
+    }
+  }
+  return h;
+}
+
+int main()
+{
+  struct node *head=NULL;
+  int n,i,t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t);
+    head=push(head,t);
+  }
+  printf("Given linked list=");
+  print(head);
+  head=delete(head);
+  printf("\nModified Linked List=");
+  print(head);
+  
+	return 0;
+}

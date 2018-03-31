@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t;
+  	int count;
+  	cin>>t;
+  	int n[t];
+  	int a[t][100];
+  	for(int i=0;i<t;i++) {
+      cin>>n[i];
+      for(int j=0;j<n[i];j++) {
+        cin>>a[i][j];
+      }
+    }
+  	for(int i=0;i<t;i++) {
+      count=0;
+      for(int j=0;j<n[i];j++) {
+        for(int k=j+1;k<n[i];k++) {
+          if(a[i][j]>a[i][k])
+            count++;
+        }
+      }
+      cout<<count<<endl;
+    }
+	return 0;
+}

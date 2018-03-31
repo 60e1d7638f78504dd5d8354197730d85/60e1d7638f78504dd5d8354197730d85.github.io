@@ -1,0 +1,28 @@
+#include <stdio.h>
+struct meas
+{
+  int f1;
+  float i1;
+  int f2;
+  float i2;
+}s;
+void calc(struct meas *p)
+{
+  int x;
+  float y,y1;
+  scanf("%d%f%d%f",&p->f1,&p->i1,&p->f2,&p->i2);
+  x=p->f1+p->f2;
+  y=p->i1+p->i2;
+  if(y>11.9)
+  {
+    y1=y/12;
+    x=x+y1;
+    y=y-(1+x);
+  }
+  printf("%dfeet-%.1finches",x,y);
+}
+int main()
+{
+calc(&s);
+	return 0;
+}

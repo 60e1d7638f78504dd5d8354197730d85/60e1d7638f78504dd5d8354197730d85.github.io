@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int a[10][10],i,j,m,n;
+  int row,col,islower;
+  scanf("%d%d",&m,&n);
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  islower=1;
+  for(row=0;row<m;row++)
+  {
+    for(col=0;col<n;col++)
+    {
+      if(col>row && a[row][col]!=0)
+        islower=0;
+    }
+  }
+  if(islower==1)
+    printf("yes");
+  else 
+    printf("no");
+
+	return 0;
+}

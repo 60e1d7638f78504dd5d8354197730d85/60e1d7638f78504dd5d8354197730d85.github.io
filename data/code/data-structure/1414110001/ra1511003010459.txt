@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void sortArray(int a[],int n){
+  	int max_idx,max=-99999;
+	for(int i=0;i<n-1;i++){
+      	max_idx=i;
+      	for(int j=i+1;j<n;j++){
+  			if(a[j]<a[max_idx]){
+        		max_idx=j;
+        	}  
+        }
+      swap(&a[max_idx],&a[i]);
+      if(i<=n){
+      	for(int j=0;j<n;j++){
+          
+        	cout<<a[j]<<" ";
+        }
+        cout<<endl;
+      }
+    }
+  	
+  
+  
+}
+
+int main()
+{	
+ 
+    	int n;
+      	cin>>n;
+      	int a[n];
+      	for(int j=0;j<n;j++){
+        	cin>>a[j];
+          	cout<<a[j]<<" ";
+        }
+  		cout<<endl;
+      	sortArray(a,n);
+  		cout<<"Sorted Array:";
+      	for(int j=0;j<n;j++){
+          	cout<<a[j]<<" ";
+        }
+    
+
+	return 0;
+}

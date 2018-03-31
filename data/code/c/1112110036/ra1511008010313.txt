@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<math.h>
+
+int main()
+{
+  	int num;
+  	scanf("%d",&num);
+
+  	int num1=num;
+  	int sum=0,dsum=0,digits=0;
+  //  printf("Before \nnum:%d\nnum1%d",num,num1);
+  	while(num1)
+    {   num1=num1/10;
+        ++digits;
+    }
+    num1=num;
+   // printf("Digits: %d\n",digits);
+    int temp = pow(5,3);
+ //   printf("\n%d\n",temp);
+
+  	while(num1)
+    {
+      //  printf("\nnum1:%d\ndigits:%d\nnum1%10:%d\n",num1,digits,(num1%10));
+
+        temp = pow((num1%10),digits);
+     //   printf("to add:%d\n",temp);
+
+        dsum = dsum + temp;
+
+     	num1=num1/10;
+       // printf("\nInside num1%d\ndsum:%d\n",num1,dsum);
+    }
+ // 	sum = pow(dsum,digits);
+    //printf("After \nnum:%d\nnum1%d\nsum:%d\ndsum:%d\ndigits:%ddigits",num,num1,sum,dsum,digits);
+  	//++dsum;
+  	//printf("%d",dsum);
+  	if(dsum == num)
+    {
+    	printf("Narcissistic Number");
+    }
+  	else
+    {
+    	printf("NOT Narcissistic Number");
+    }
+	return 0;
+}

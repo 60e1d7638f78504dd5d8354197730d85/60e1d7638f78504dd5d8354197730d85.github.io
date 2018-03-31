@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import static java.lang.StrictMath.pow;
+public class TestClass {
+	 public static void main(String[] args) { 
+	int n, count = 0, m;
+        Scanner s = new Scanner(System.in);
+        n = s.nextInt();
+        m = n;
+        while(m > 0)
+        {
+            count++;
+            m = m / 10;
+        }
+        TestClass obj = new TestClass();
+        int a = obj.reverse(n, count);
+        System.out.println(a);
+    }
+    int reverse(int x, int length)
+    {
+        if(length == 1)
+        {
+            return x;
+        }
+        else
+        {
+            int b = x % 10;
+            x = x / 10;
+            return (int) ((b * pow(10, length - 1)) + reverse(x, --length));
+        }	
+	}
+}

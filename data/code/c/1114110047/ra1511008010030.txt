@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{ int a,b,sum[10],i=0,rem=0;
+ scanf("%d%d",&a,&b);
+ while(a!=0 || b!=0)
+ {
+   sum[i++]=( a%10 + b%10 + rem ) % 2;
+   rem=( a%10 + b%10 + rem )/2;
+   a/=10;
+   b/=10;
+ }
+ if(rem!=0)
+   sum[i++]=rem;
+ i--;
+ while(i >= 0)
+ printf("%d",sum[i--]);
+   
+   
+
+	return 0;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+int  l,a[30],b[30],flag=1,i;
+char s[1000];
+scanf("%s",s);
+l=strlen(s);
+for(i=0;i<26;i++)
+{
+a[i]=0;
+b[i]=0;
+}
+for(i=0;i<l/2;i++)
+{
+a[s[i]-'a']++;
+}
+if(l%2==0)
+{
+for(i=l/2;i<l;i++)
+{
+b[s[i]-'a']++;
+}
+}
+else
+{
+for(i=l/2+1;i<l;i++)
+b[s[i]-'a']++;
+}
+for(i=0;i<26;i++)
+{
+if(a[i]!=b[i])
+flag=0;
+}
+if(flag==0)
+printf("NO\n");
+else
+printf("YES\n");
+}
+return 0;
+}

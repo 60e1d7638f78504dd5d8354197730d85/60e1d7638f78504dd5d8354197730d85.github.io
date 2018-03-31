@@ -1,0 +1,18 @@
+#include <stdio.h>
+int main()
+{
+  	int t,dis,h1,h2,m1,m2,diff;
+    scanf("%d",&t);
+  	while(t--){
+    	scanf("%d:%d", &h1,&m1);
+      	scanf("%d:%d", &h2,&m2);
+      	scanf("%d", &dis);
+      	if(m1<m2)	diff = (h1-h2-1)*60+(m1-m2+60);
+      	else diff=(h1-h2)*60+(m1-m2);
+      	printf("%.1f",(float)(dis+diff));
+      	if(diff>=(2*dis)) printf(" %.1f\n",(float)(diff));
+      	else printf(" %.1f\n",(float)(dis+diff/2));
+    }
+
+	return 0;
+}

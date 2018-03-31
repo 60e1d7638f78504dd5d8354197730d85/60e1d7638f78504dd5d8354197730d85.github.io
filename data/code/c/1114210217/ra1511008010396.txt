@@ -1,0 +1,52 @@
+#include<stdio.h>
+int check(int n)
+{
+    int a,b=0,c=0,d=0;
+    while(n>0)
+    {
+              a=n%10;
+              n/=10;
+              if(a==3)
+              b++;
+              else if(a==9)
+              c++;
+              else if(a==1)
+              d++;
+    }
+    if(b==2 && c==3 && d==1)
+    return 1;
+    else return 0;
+}
+int main()
+{
+    int a[]={2,3,5,7,11,13,17,31,37,71,73,79,97,113,131,197,199,311,337,373,719,733,919,971,991,1193,1931,3119,3779,7793,7937,9311,9377,11939,19391,19937,37199,39119,71993,91193,93719,93911,99371};
+    int t,n,i;
+    scanf("%d",&t);
+    while(t--)
+    {         i=0;
+              scanf("%d",&n);
+              if(n>99371)
+              {
+                         if(check(n))
+                                     printf("yes\n");
+                         else
+                                     printf("no\n");
+                                     continue;                         
+              }
+              while(a[i]!=0)
+              {
+                             if(a[i]==n)
+                             {
+                                        printf("yes\n");
+                                        break;
+                             }
+                             else if(a[i]>n)
+                             {
+                                  printf("no\n");
+                                  break;
+                             }
+                             i++;
+              }
+    }
+    return 0;
+}

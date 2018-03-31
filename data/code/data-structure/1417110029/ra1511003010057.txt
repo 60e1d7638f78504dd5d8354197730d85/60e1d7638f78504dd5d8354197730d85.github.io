@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct cell{
+	int age;
+	int index;
+	struct cell* next;
+};
+struct node{
+	int age;
+	int count;
+};
+struct cell** hash;
+struct node arr[100001];
+int size1=0;
+int size=100001;
+int n,m;
+void swap(int i,int j)
+{
+	int temp=arr[i].age;
+	arr[i].age=arr[j].age;
+	arr[j].age=temp;
+	
+	temp=arr[i].count;
+	arr[i].count=arr[j].count;
+	arr[j].count=temp;
+	
+}
+void init_hash()
+{
+	int i;
+	hash=(struct cell **)malloc(size*sizeof(struct cell*));
+	for(i=0;i<size;i++)
+	 hash[i]=0;
+}
+void hash_it(int age,int value)
+{
+	int pos=age%size;
+	struct cell* cur=hash[pos];
+	while(cur)
+	{
+		if(cur->age==age)
+		{
+			cur->index=value;
+			return;
+		}
+		cur=cur->next;
+	}
+	struct cell* head=malloc(sizeof(struct cell));
+	head->age=age;
+	head->index=value;
+	head->next=hash[pos];
+	hash[pos]=head;
+}
+void increase_value(int index)
+{
+	arr[index].count++;
+	int i=index,j;
+	while(i>1 && ((arr[i/2].count < arr[i].count) || ((arr[i/2].count == arr[i].count) && (arr[i/2].age < arr[i].age))))
+	{
+		hash_it(arr[i/2].age,i);
+		hash_it(arr[i].age,i/2);
+		swap(i/2,i);
+		i=i/2;
+	}
+}
+void insert(int age,int count)
+{
+	size1=size1+1;
+	arr[size1].age=age;
+	arr[size1].count=0;
+	hash_it(age,size1);
+	increase_value(size1);
+}
+ 
+int indexof(int age)
+{
+	int pos=age%size;
+	struct cell* cur=hash[pos];
+	while(cur)
+	{
+		if(cur->age==age)
+		 return cur->index;
+		cur=cur->next;
+	}
+	return -1;
+}
+int main()
+{
+	//freopen("program.txt","r",stdin);
+	scanf("%d %d",&n,&m);
+	int i,j,k;
+	init_hash();
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&k);
+		j=indexof(k);
+		if(j==-1)
+		{
+			insert(k,1);
+		}
+		else
+		{
+			increase_value(j);
+		}
+		printf("%d %d\n",arr[1].age,arr[1].count);
+	}
+	return 0;
+}

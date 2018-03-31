@@ -1,0 +1,24 @@
+#include <stdio.h>
+int identical_digit[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99};
+int main(void) {
+	int t;
+	scanf("%d", &t);
+	while(t--) {
+		int h, m, i;
+		int count = 1;
+		scanf("%d %d", &h, &m);
+		for(i=0; i<18 && identical_digit[i]<h; i++) {
+			if (identical_digit[i] < m)
+				count++;
+				
+			if (i<9) {
+				if (identical_digit[i+9] < m)
+					count++;
+			} else if (identical_digit[i-9] < m) {
+				count++;
+			}
+		}
+		printf("%d\n", count);
+	}
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#define ll long long
+#define mod 1000000007
+unsigned ll count(ll a, ll b)
+{
+  ll r;
+  if(b==0) return 1;
+  r = count(a,b/2);
+  r = (r*r)%mod;
+  if(b%2==1) r = (r*a)%mod;
+  return r;
+}
+int main()
+{
+	int i,t;
+	unsigned long int sum=0;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		int tc;
+		sum=0;
+		scanf("%d",&tc);
+		if((tc&1)==0)
+		{
+			sum=3*count(2,tc/2)-2;
+			printf("%ld\n",(sum+mod)%mod);
+		}
+		else
+		{
+			sum=count(2,(tc+1)/2+1)-2;
+			printf("%ld\n",(sum+mod)%mod);
+		}
+	}
+	return 0;
+} 

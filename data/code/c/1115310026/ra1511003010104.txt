@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<assert.h>
+#include<math.h>
+#define MAX 1007
+ 
+ 
+typedef struct Num
+{
+   double val;
+double diff;
+   int id;
+ 
+ 
+}Num;
+ 
+ 
+ 
+int p1[MAX],p2[MAX],pp ;
+Num solve_array(Num *arr,int size);
+ 
+int compare(  const void *a, const void *b)
+{
+return ( (Num*)b )->diff -  ( (Num*)a )->diff  ;
+}
+ 
+void mergesort(Num*,int,int);
+void mergearray(Num*,int,int,int);
+int main()
+{
+    int t,n,k,i,j;
+Num arr[MAX],aux[MAX],temp;
+int arr_ptr;
+    scanf("%d",&t);
+    while( t>0)
+    {
+        pp=0;
+        scanf("%d %d",&n,&k);
+        for(i=1;i<=n;i++)
+        {
+          scanf("%lf",&arr[i].val);
+          arr[i].diff=abs(arr[i].val - k);
+        arr[i].id=i;
+        }
+arr_ptr=n;
+qsort( &arr[1],n,sizeof(Num) ,compare );
+j=1;
+for(i=1;i<=n-1;i++)
+{
+  temp.val = ( arr[j].val + arr[j+1].val  )/2;
+  temp.id=++arr_ptr;
+temp.diff=abs( temp.val-k );
+p1[++pp] = arr[j].id;
+p2[pp] = arr[j+1].id;
+arr[j+1]=temp;
+mergesort( arr,j+1,n);
+j++;
+}
+ 
+ 
+for(i=1;i<=n-1;i++)  printf("%d %d\n",p1[i],p2[i]);
+      t--;
+    }
+  return 0;
+}
+ 
+ 
+ 
+ 
+void mergesort(Num *arr,int st,int end)
+{
+  int mid;
+  if (  st <end )
+    {
+      mid=( st+end)/2;
+      mergesort( arr,st,mid );
+      mergesort( arr,mid+1,end );
+      mergearray(arr,st,mid,end);
+    }
+}
+ 
+ 
+void mergearray(  Num *arr,int st,int mid,int end)
+{
+  int i,j;
+  Num aux[MAX];
+  int ap=0;
+  i=st;
+  j=mid+1;
+  while ( i<=mid && j<=end  )
+    {
+ 
+      if (  arr[i].diff > arr[j].diff  )
+        {
+          aux[ ++ap ] = arr[i];
+          i++;
+        }
+      else
+        {
+          aux[ ++ap ]  = arr[j];
+          j++;
+        }
+    }
+  while ( i<=mid )
+    {
+      aux[ ++ap ] =arr[i];
+ 
+      i++;
+    }
+  while ( j<=end )
+    {
+      aux[ ++ap ] = arr[j];
+      j++;
+    }
+j=1;
+  for ( i=st ; i<=end;i++ )
+    {
+      arr[i] = aux[j];
+      j++;
+    }
+}
+  

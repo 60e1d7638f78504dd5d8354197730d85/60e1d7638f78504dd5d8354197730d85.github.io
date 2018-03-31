@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<ll> vi;
+typedef vector<ll>::iterator it;
+ 
+ 
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	
+	ll n;
+	cin>>n;
+	while(n!=0)
+	{
+		vi dp;
+		for(ll i=0;i<n;i++)
+		{
+			ll x;
+			cin>>x;
+			dp.push_back(x-1);
+		}
+		ll t=0;
+		ll s = dp.size();
+		for(ll i=0;i<s;i++)
+		{
+			if(i==dp[i])
+			{
+				continue;
+			}
+			else if(dp[dp[i]] == i)
+			{
+				continue;
+			}
+			else {
+			
+				t=1;
+				break;
+			}
+		}
+		if(!t)
+			cout<<"ambiguous"<<endl;
+		else
+		{
+			cout<<"not ambiguous"<<endl;
+			t=0;
+		}
+		dp.clear();
+		cin>>n;
+	}
+	return 0;
+}

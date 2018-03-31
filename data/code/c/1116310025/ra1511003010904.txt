@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+inline int check(char *str,int i,int j)
+{
+	int k,check=0;
+	for(k=i;k<=(i+j)/2&&check==0;k++)
+	{
+		if(str[k]!=str[j-k+i])
+			check=1;
+	}
+	if(check==1) return 0;
+	else return 1;
+}
+inline int getans(char *str,int i,int j)
+{
+	int get,k,index,len;
+	if(i==j)
+		return 1;
+	else
+	{
+		get=check(str,i,j);
+		if(get==0)
+			return 0;
+		else if(get==1)
+		{
+			len=j-i+1;
+			j=i-1+len/2;
+			return (1+getans(str,i,j));
+		}
+		else
+			return 0;
+	}
+}
+int main()
+{
+	char str[1001];int l;
+	int len,ans=0,t,i,j,k;
+	scanf("%d",&t);
+	getchar();
+	for(k=0;k<t;k++)
+	{
+		scanf("%s",str);
+		len=strlen(str);
+		for(i=0;i<len;i++)
+		for(j=i;j<=len;j++)
+		{
+			ans += getans(str,i,j);
+		}
+		printf("%d\n",ans);
+		ans=0;
+	}
+	return 0;
+} 

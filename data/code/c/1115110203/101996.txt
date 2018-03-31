@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main(void) {
+  int i,c=0,a[10000],year,t;
+  for(i=1900;i<=5000;i++)
+  {
+      if(((i-1)%4==0&&(i-1)%100!=0)||((i-1)%400==0))
+      c=c+2;
+      else
+      c++;
+      if(c==8)
+      c=1;
+     else if(c==9)
+      c=2;
+      a[i]=c;
+  }
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&year);
+        year=a[year];
+        if(year==1)
+        printf("monday\n");
+        else if(year==2)
+        printf("tuesday\n");
+        else if(year==3)
+        printf("wednesday\n");
+        else if(year==4)
+        printf("thursday\n");
+        else if(year==5)
+        printf("friday\n");
+        else if(year==6)
+        printf("saturday\n");
+        else if(year==7)
+        printf("sunday\n");
+    }
+    return 0;
+}  

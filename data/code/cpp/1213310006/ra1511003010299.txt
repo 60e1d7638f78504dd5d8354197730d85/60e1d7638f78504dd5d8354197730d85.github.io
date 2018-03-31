@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int main()
+{
+	int tc;
+	scanf("%d",&tc);
+	char name[33];
+	while(tc--){
+		setbuf(stdout,NULL);
+		int i=0,ind=0;
+		char first[11]={'\0'},second[11]={'\0'},third[11]={'\0'};
+		scanf(" %[^\n]%*c", name);
+		while(name[i]!=' ' && name[i] != '\0'){
+			first[i] = name[i];
+			i++;
+		}
+		i++;
+		while(name[i]!=' ' && i<strlen(name)){
+			second[ind++] = name[i];
+			i++;
+		}
+		i++; ind=0;
+		while(name[i]!=' ' && i<strlen(name)){
+			third[ind++] = name[i++];
+		}
+		i=0;
+		
+		if( strlen(second)==0 )
+		{
+			//printf("only last name\n");
+			ind=0;
+			while(ind++!=strlen(first))
+				first[ind] = tolower(first[ind]);
+			first[0] = toupper(first[0]);
+			printf("%s\n",first);
+		}
+		else if(strlen(third)==0)
+		{
+			ind=0;
+			//printf("only last 2 name\n");
+			while(ind<strlen(second)){
+				second[ind] = tolower(second[ind]);
+				ind++;
+			}
+			second[0] = toupper(second[0]);
+			printf("%c. %s\n",toupper(first[0]),second);
+		}
+		else{
+			ind=0;
+			//printf("all names present\n");
+			while(ind<strlen(third)){
+				third[ind] = tolower(third[ind]);
+				ind++;
+			}
+			//printf("Exited while\n");
+			third[0] = toupper(third[0]);
+			printf("%c. %c. %s\n",toupper(first[0]),toupper(second[0]),third);
+		}
+		//printf("%s %s %s\n",first,second,third);
+		
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int findNth(int n)
+{
+    vector<int> ans;
+    for (int i = 0; i < 6; i++)
+        ans.push_back(i);
+    for (int i = 0; i <= n; i++) 
+        for (int j = 0; j < 6; j++) 
+            if ((ans[i] * 10) != 0)
+                ans.push_back(ans[i] * 10 + ans[j]);        
+     
+    return ans[n - 1];
+}
+
+int main()
+{ 
+   int n;
+   cin>>n;
+   for(int i=0;i<n;i++){
+     int x;
+     cin>>x;
+     cout << findNth(x)<<endl;
+   }  
+    return 0;
+}

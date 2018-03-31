@@ -1,0 +1,43 @@
+t=int(input())
+for j in range(t):
+    p="z"
+    s=str(input())
+    s.replace(" ", "")
+    ca=0
+    cb=0
+    k=0
+    for i in range(len(s)):
+        if s[i]=="." and p!="z":
+            k=k+1
+            continue
+        if p=="z" and s[i]=="A":
+            ca=ca+k+1
+            k=0
+            p="A"
+            continue
+        if p=="z" and s[i]=="B":
+            cb=cb+k+1
+            k=0
+            p="B"
+            continue
+        if p=="A" and s[i]=="A":
+            ca=ca+k+1
+            k=0
+            p="A"
+            continue
+        if p=="B" and s[i]=="B":
+            cb=cb+k+1
+            k=0
+            p="B"
+            continue
+        if p=="A" and s[i]=="B":
+            cb=cb+1
+            k=0
+            p="B"
+            continue
+        if p=="B" and s[i]=="A":
+            k=0
+            ca=ca+1
+            p="A"
+            continue
+    print(ca,cb)

@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class TestClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<String,String> map = new TreeMap<String,String>();
+
+        int t = sc.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            String key = sc.next();
+            String value = sc.nextLine();
+            map.put(key, value);
+        }
+
+        for (int i = 0; i < t; i++) {
+            if (map.containsKey("a") && map.containsKey("b")) {
+                String b = map.get("b");
+                b = b.substring(1);
+                String str = ""+map.get("a") + map.get("b");
+                map.put("ab",str);
+                map.remove("ab");
+                map.put("ab", map.get("a") + b);
+            }
+        }
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + entry.getValue());
+        }
+    }
+}

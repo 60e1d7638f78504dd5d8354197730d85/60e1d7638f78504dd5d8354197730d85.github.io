@@ -1,0 +1,32 @@
+#include <iostream>
+#include<cstring>
+#include<stdio.h>
+using namespace std;
+int main()
+{
+  	int size=50;
+	char c[size];
+  	cin.getline(c,50);
+  	int l=strlen(c);
+  	//cout<<l;
+  	int i,v=0,con=0,wh=0,d=0;
+  	for(i=0;i<l;i++)
+    {
+      //cout<<c[i];
+      if(c[i]==32)
+        wh++;
+      else if(c[i]>='0'&&c[i]<='9')
+      {
+        d++;
+        //cout<<c[i]<<"<-d";
+      }
+      else if(c[i]=='a'||c[i]=='e'||c[i]=='i'||c[i]=='o'||c[i]=='u')
+        v++;
+      else if(c[i]=='A'||c[i]=='E'||c[i]=='I'||c[i]=='O'||c[i]=='U')
+        v++;
+      else if((c[i]>=65&&c[i]<=90)||(c[i]>=97&&c[i]<=122))
+        con++;
+    }
+  	cout<<"Vowels:"<<v<<endl<<"Consonants:"<<con<<endl<<"Whitespaces:"<<wh<<endl<<"Digits:"<<d<<endl;
+	return 0;
+}

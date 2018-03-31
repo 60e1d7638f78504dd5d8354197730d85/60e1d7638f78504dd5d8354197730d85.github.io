@@ -1,0 +1,26 @@
+#include<stdio.h>
+#define maximum 100002
+int a[maximum];
+int main()
+{
+    int i,n,c=0,ml=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    for(i=0;i<n;i++)
+    {
+        if(a[i]==0)
+        {
+            if(c>ml)
+                ml=c;
+        c=0;
+        }
+        else
+            c++;
+        if(i==n-1)
+            if(c>ml)
+                ml=c;
+    }
+    printf("%d\n",ml);
+return 0;
+} 

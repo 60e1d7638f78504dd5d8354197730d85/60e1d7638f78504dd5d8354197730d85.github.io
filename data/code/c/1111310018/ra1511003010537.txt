@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char** argv) {
+    int no_testcase,N,K,no,count1,count2,n;
+    int unique,constant,second,flag;
+    scanf("%d",&no_testcase);
+    while(no_testcase!=0){
+        scanf("%d%d",&N,&K);
+        n=N;
+        count1=0;
+        count2=0;
+        unique = -1;
+        constant = -1;
+        second = -1;
+        flag=0;
+        while(N!=0){
+            scanf("%d",&no);
+            constant = no%(K+1);
+            if(unique == -1){
+                unique = constant;
+                count1++;
+            }
+            if(second == -1 && unique != constant){
+                second  = constant;
+                count2++;
+            }
+            if(constant == unique){
+                count1++;
+            }
+            if(second == constant){
+                count2++;
+            }
+            if(constant != unique && constant != second){
+                flag=1;
+            }
+            N--;
+        }
+        if(flag == 1){
+            printf("NO\n");
+        }
+        else{
+            if(count1 >= n || count2 >= n){
+                printf("YES\n");
+            }
+            else{
+                printf("NO\n");
+            }
+        }
+        no_testcase--;
+    }
+    return (0);
+} 

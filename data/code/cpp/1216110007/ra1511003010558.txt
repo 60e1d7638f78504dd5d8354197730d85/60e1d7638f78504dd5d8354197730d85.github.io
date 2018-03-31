@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a[20],b[10],i,j,m,n,t;
+  	cin>>m;
+  	for(i=0;i<m;i++)
+      cin>>a[i];
+  	cin>>n;
+  	for(i=0;i<n;i++)
+     	cin>>b[i];
+  	for(i=0;i<m;i++)
+    {
+      for(j=0;j<m-1;j++)
+      {
+        if(a[j]>a[j+1])
+        {
+          t=a[j];
+          a[j]=a[j+1];
+          a[j+1]=t;
+        }
+      }
+    }
+  	for(i=0;i<n;i++)
+    {
+      for(j=0;j<n-1;j++)
+      {
+        if(b[j]>b[j+1])
+        {
+          t=b[j];
+          b[j]=b[j+1];
+          b[j+1]=t;
+        }
+      }
+    }
+  	if(n!=m)
+      cout<<"No";
+  	else
+    {
+      int flag=1;
+      for(i=0;i<n;i++)
+      {
+        if(a[i]!=b[i])
+        {
+          flag=0;
+          break;
+        }
+      }
+      if(flag==0)
+      	cout<<"No";
+      else
+      	cout<<"Yes";
+    }
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int t=fastread();
+	while(t--)
+	{
+		int n=fastread(),max=0,a,c=0;
+		while(n--){
+			a=fastread();
+			if(max<=a+c)max=a+c;
+			c=c+1;
+		}
+		printf("%d\n",max);
+	}
+}
+inline int fastread()
+{
+int i=0;
+char c=getchar_unlocked();
+while(c<48) c=getchar_unlocked();
+while(c>47)
+{
+i=i*10+c-48;
+c=getchar_unlocked();
+}
+return i;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{ int n;
+ scanf("%d",&n);
+ int a[n];int b[n]; int i;int lc,gc;
+ for(i=0;i<n;i++)
+ {
+   scanf("%d%d",&a[i],&b[i]);
+ }
+ for(i=0;i<n;i++)
+ {
+   lc=lcm(a[i],b[i]);
+   gc=gcd(a[i],b[i]);
+    printf("%d %d",gc,lc);
+   printf("\n");
+          }
+
+	return 0;
+}
+int lcm(int a,int b){
+  
+    int temp = a;
+
+    while(1){
+         if(temp % b == 0 && temp % a == 0)
+             break;
+         temp++;
+    }
+
+   return temp;
+}
+int gcd(int a, int b)
+{
+    // Everything divides 0 
+    if (a == 0 || b == 0)
+       return 0;
+ 
+    // base case
+    if (a == b)
+        return a;
+ 
+    // a is greater
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}

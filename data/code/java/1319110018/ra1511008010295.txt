@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  static void hexToDecimall(String str) {
+    boolean bin = str.matches("[0-9A-F]+");
+    try{
+      if(bin){
+      int n= Integer.parseInt(str,16);
+      System.out.println(n);
+      }
+      else
+        throw new NumberFormatException();
+    }catch(NumberFormatException e){
+      System.out.println(e);
+    }
+  }
+  public static void main(String[] args)  {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    hexToDecimall(s);
+  }
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class ss
+{
+  protected:
+  int a,b,c;
+  public:
+void swap()
+{
+  int temp;
+  temp=a;
+  a=c;
+  c=b;
+  b=temp;
+}
+};
+class bb:private ss
+{
+public:
+  void print()
+  {
+  swap();
+  cout<<"Value after swapping numbers in cycle: \n";
+  cout<<"a="<<a<<"\n"<<"b="<<b<<"\n"<<"c="<<c;
+  }
+  void get()
+  {
+    cin>>a>>b>>c;
+  cout<<"Value before swapping: \n";
+  cout<<"a="<<a<<"\n"<<"b="<<b<<"\n"<<"c="<<c<<"\n";
+  }
+};
+int main()
+{
+ bb o;
+  o.get();
+ o.print();
+}

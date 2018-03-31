@@ -1,0 +1,62 @@
+    #include <cstdio>
+    #include <cstring>
+    #include <cmath>
+    #include <climits>
+    #include <iostream>
+    #include <sstream>
+    #include <algorithm>
+    #include <vector>
+    #include <string>
+    #include <queue>
+    #include <stack>
+    #include <map>
+    #include <set>
+     
+    using namespace std;
+     
+    int M;
+     
+    int mod_pow(long long a, int b){
+    	long long ret = 1;
+     
+    	while(b){
+    		if(b & 1) ret = ret * a % M;
+    		a = a * a % M;
+    		b >>= 1;
+    	}
+     
+    	return ret;
+    }
+     
+    int main(){
+    	int T;
+    	int dp[2001],dp2[2001];
+     
+    	scanf("%d %d",&T,&M);
+     
+    	while(T--){
+    		int N;
+     
+    		scanf("%d",&N);
+     
+    		memset(dp,0,sizeof dp);
+    		memset(dp2,0,sizeof dp2);
+     
+    		for(int i = 1;i <= N - 1;++i){
+    			//printf("i = %d\n",i);
+    			for(int ni = 0;ni <= i - 1;++ni){
+    				int k = i - ni - 1;
+    				//printf("%d k = %d -> %d %d %d\n",ni,k,((ni + 1) * (ni + 1) * (k + 1) * (k + 1)) * mod_pow(2,k),2 * ((ni + 1) * (k + 1)) * dp[k],dp2[k]);
+    				dp[i] += ((ni + 1) * (k + 1) % M) * mod_pow(2,k) % M + dp[k];
+    				dp[i] %= M;
+    				dp2[i] += ((ni + 1) * (ni + 1) % M * (k + 1) % M * (k + 1) % M) * mod_pow(2,k) % M + 2 * ((ni + 1) * (k + 1) % M) % M * dp[k] % M + dp2[k];
+    				dp2[i] %= M;
+    			}
+    			//printf("%d -- %d\n",dp[i],dp2[i]);
+    		}
+     
+    		printf("%d\n",dp2[N - 1]);
+    	}
+     
+    	return 0;
+    } 

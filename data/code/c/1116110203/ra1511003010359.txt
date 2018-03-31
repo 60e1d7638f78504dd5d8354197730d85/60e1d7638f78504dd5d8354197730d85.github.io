@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+void palindrome(char str[])
+{
+  int found=1;
+  int h=strlen(str)-1;
+  int l=0;                      
+  while(l<h)
+  {
+     if (str[l] != str[h])
+        {
+            if(str[l]>=97 && str[l]<=122)
+              str[h]=str[l];
+            else if(str[h]>=97 && str[h]<=122)
+              str[l]=str[h];
+         }
+    else if(str[l]==46 && str[h]==46)
+    {
+       printf("-1");
+       found=0;
+    }
+         l++;
+         h--;
+    }
+    if(l==h && (str[l]<97 || str[l]>122) )
+      str[l]='a';
+ if(found==1)
+ {
+ printf("%s",str);
+ }
+}
+int main()
+{
+  int n;
+  char str[20];
+    scanf("%s",str);
+    palindrome(str);
+	return 0;
+}

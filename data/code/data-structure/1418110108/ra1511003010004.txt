@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <memory.h>
+#include <time.h>
+ 
+int gr_size[60], gr[60][60];
+int n, k, start, finish;
+long long ans;
+ 
+long long dfs_local(int v, int h1, int h2, int p) {
+  int i;
+  if (h1 && h2) {
+    long long local_ans = 1;
+    for (i = 0; i < gr_size[v]; i++) {
+      int to = gr[v][i];
+      if (to != p)
+        local_ans *= dfs_local(to, h1 - 1, h2 - 1, v);
+    }
+    return local_ans + 1;
+  }
+  
+  return ((v < start && !h1) || (v < finish && !h2)) ? 1 : 2;
+}
+ 
+int dfs_h, dfs_path[60];
+ 
+inline void process() {
+  long long local_ans = 1;
+  int h1 = 0, h2 = dfs_h - 3, j;
+  for (; h2 >= 0; h1++, h2--) {
+    int v = dfs_path[h1 + 1];
+    for (j = 0; j < gr_size[v]; j++) {
+      int to = gr[v][j];
+      if (to != dfs_path[h1] && to != dfs_path[h1 + 2])
+        local_ans *= dfs_local(to, h1, h2, v);
+    }
+  }
+  ans += local_ans;
+}
+ 
+void build_dfs(int v, int p) {
+  int i;
+  dfs_path[dfs_h++] = v;
+  if (v > start) {
+    finish = v;
+    process();
+  }
+  if (dfs_h <= k)
+    for (i = 0; i < gr_size[v]; i++)
+      if (gr[v][i] != p)
+        build_dfs(gr[v][i], v);
+  dfs_h--;
+}
+ 
+void build_dfs_inverse(int v, int p) {
+  int i;
+  dfs_path[dfs_h++] = v;
+  if (dfs_h > k + 1 && v > start) {
+    finish = v;
+    process();
+  }
+  for (i = 0; i < gr_size[v]; i++)
+    if (gr[v][i] != p)
+      build_dfs_inverse(gr[v][i], v);
+  dfs_h--;
+}
+ 
+long long total_dfs(int v, int p) {
+  long long local_ans = 1;
+  int i;
+  for (i = 0; i < gr_size[v]; i++) {
+    int to = gr[v][i];
+    if (to == p)
+      continue;
+    local_ans *= 1 + total_dfs(to, v);
+  }
+ 
+  ans += local_ans;
+  return local_ans;
+}
+ 
+inline void solve_inverse() {
+  ans = 0;
+  total_dfs(0, -1);
+  long long stree_cnt = ans;
+ 
+  ans = 0;
+  dfs_h = 0;
+  for (start = 0; start < n; start++)
+    build_dfs_inverse(start, -1);
+ 
+  ans = stree_cnt - ans;
+}
+ 
+inline void solve_original() {
+  ans = n;
+  dfs_h = 0;
+  for (start = 0; start < n; start++)
+    build_dfs(start, -1);
+}
+ 
+inline void solve() {
+  if (k <= n / 6)
+    solve_original();
+  else
+    solve_inverse();
+}
+ 
+void test() {
+  int i;
+  n = 60;
+ 
+  memset(gr_size, 0, sizeof gr_size);
+  for (i = 0; i < n; i++) {
+    if (i < n - 1)
+      gr[i][gr_size[i]++] = i + 1;
+    if (i)
+      gr[i][gr_size[i]++] = i - 1;
+  }
+ 
+  for (i = 0; i < 2000; i++) {
+    k = (i % 60) + 1;
+    solve();
+  }
+  printf("%lf\n", ((double)clock() / CLOCKS_PER_SEC));
+}
+ 
+int main() {
+  /*
+#ifndef _DEBUG
+  freopen("TASK.out", "w", stdout);
+#endif
+  freopen("TASK.in", "r", stdin);
+  //*/
+ 
+  //test();
+#ifdef _DEBUG
+  freopen("cc.in", "r", stdin);
+#endif
+ 
+  //*
+  int i;
+  int T; scanf("%d", &T);
+  while (T--) {
+    scanf("%d%d", &n, &k);
+    memset(gr_size, 0, sizeof gr_size);
+    for (i = 0; i < n - 1; i++) {
+      int a, b; scanf("%d%d", &a, &b);
+      gr[a][gr_size[a]++] = b;
+      gr[b][gr_size[b]++] = a;
+    }
+    solve();
+    printf("%lld\n", ans);
+  }
+  //*/
+ 
+  return 0;
+}

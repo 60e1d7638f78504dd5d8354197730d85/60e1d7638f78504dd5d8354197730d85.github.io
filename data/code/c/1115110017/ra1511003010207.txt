@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+	int *a1, *a2, n, i;
+	scanf("%d", &n);
+
+	a1 = malloc(n * sizeof(int));
+	a2 = malloc(n * sizeof(int));
+
+	for (i = 0; i < n; i++)
+		scanf("%d", &a1[i]);
+
+	for (i = 0; i < n; i++)
+		scanf("%d", &a2[i]);
+
+	if (memcmp((void *) a1, (void *) a2, n * sizeof(int)))
+		puts("no");
+	else
+		puts("yes");
+
+	free(a1);
+	free(a2);
+
+	return 0;
+}

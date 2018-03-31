@@ -1,0 +1,48 @@
+#include <stdio.h>
+int max(int a,int b)
+{
+  if(a>=b)
+    return a;
+  else
+    return b;
+}
+int min(int a,int b)
+{
+  if(a<=b)
+    return a;
+  else
+    return b;
+}
+int main()
+{
+  int size;
+  scanf("%d",&size);
+  int arr[size];
+  int i;
+  for(i=0;i<size;i++)
+    scanf("%d",&arr[i]);
+  int diff;
+  scanf("%d",&diff);
+  int pair1,pair2,flag=0;
+  int j;
+  for(i=0;i<size;i++)
+  {
+    for(j=0;j<size;j++)
+    {
+      if((max(arr[i],arr[j])-min(arr[i],arr[j]))==diff)
+      {
+        flag = 1;
+        pair1 = arr[i];
+        pair2 = arr[j];
+      }
+    }
+  }
+  if(flag==0)
+    printf("No Such Pair");
+  else
+  {
+    printf("%d\n",min(pair1,pair2));
+    printf("%d",max(pair1,pair2));
+  }
+	return 0;
+}

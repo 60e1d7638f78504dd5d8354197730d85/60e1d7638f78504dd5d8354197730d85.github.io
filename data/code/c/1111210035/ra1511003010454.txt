@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int n1,d1,n2,d2,d3,n3,a[100],b[100],i,j,p=1,cnt1=0,cnt2=0;
+  scanf("%d%d%d%d",&n1,&d1,&n2,&d2);
+  d3 = d1*d2;
+  n3 = n1*d2 + n2*d1;
+  for(i=2; i<d3; i++){
+    if(d3%i == 0){
+      a[cnt1]=i;
+      cnt1++;
+    }
+  }
+  for(i=2; i<n3; i++){
+    if(n3%i == 0){
+      b[cnt2]=i;
+      cnt2++;
+    }
+  }
+  for(i=0; i<=cnt1; i++){
+    for(j=0; j<=cnt2; j++){
+      if(a[i]==b[j])
+        p=p*a[i];
+    }
+  }
+  printf("%d %d",n3/p,d3/p);
+  
+
+	return 0;
+}

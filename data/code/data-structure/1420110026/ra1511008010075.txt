@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+pair<string,int> findSmallest(string s,int size)
+{
+	int frq[26]={0};
+	int unique=0,ansUnique;
+	int ansInd=0;
+
+	for (int i=0;i<size;i++){
+		frq[s[i]-'a']++;
+
+		if (frq[s[i]-'a']==1)
+			unique++;
+	}
+	ansUnique=unique;
+
+	for (int i=size;i<s.size();i++){
+		frq[s[i]-'a']++;
+
+		if (frq[s[i]-'a']==1)
+			unique++;
+
+		int tp = s[i-size]-'a';
+		frq[tp]--;
+
+		if (frq[tp]==0)
+			unique--;
+
+		if (unique>ansUnique){
+			ansInd=i-size+1;
+			ansUnique=unique;
+		}
+	}
+	//cout << size <<": " << s.substr(ansInd,size) << " " << ansUnique << endl;
+	return {s.substr(ansInd,size),ansUnique};
+}
+
+
+
+
+string smallestSlidingWindow(string s)
+{
+
+	int N=s.size();
+	int lo=0,hi=N;
+	int unique = findSmallest(s,N).second;
+	string ans=s;
+
+	while (lo<=hi){	
+
+		int mid= (lo+hi) >> 1;
+
+		auto tmp = findSmallest(s,mid);
+		if (tmp.second < unique){
+			lo=mid+1;
+		}
+		else{
+			ans = tmp.first;
+			hi=mid-1;
+		}
+	}
+
+	return ans;
+}
+
+
+int main()
+{
+
+	string s;
+	while (cin >> s){
+		cout << smallestSlidingWindow(s) << endl;
+	}
+
+	return 0;
+}

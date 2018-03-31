@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,i,min=10,a[100],e,j;
+  scanf("%d",&t);
+  for(i=1;i<=t;i++){
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+      scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++){
+      e = a[i];
+      for(j=i+1;j<n;j++)
+        if(abs(e-a[j])<min)
+          min = abs(e-a[j]);
+    }
+    printf("%d",min);
+  }
+  if(t==0)
+    printf("%d",t);
+
+	return 0;
+}

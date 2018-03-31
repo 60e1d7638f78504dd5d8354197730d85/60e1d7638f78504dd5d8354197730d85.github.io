@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+   int a,b,c,d;
+   scanf("%d %d %d %d",&a,&b,&c,&d);
+   int p,q;
+   p=a*d+b*c;
+   q=b*d;
+   int m,i;
+    if(p<q)
+      m=p;
+    else
+      m=q;
+    for(i=2;i<m;i++)
+    {m:
+      if((p%i==0)&&(q%i==0))
+      { 
+         p=p/i;
+        q=q/i;
+        if(p % q == 0)
+          goto m;
+      }
+      
+    }
+    printf("%d %d",p,q);
+  
+   
+	return 0;
+}

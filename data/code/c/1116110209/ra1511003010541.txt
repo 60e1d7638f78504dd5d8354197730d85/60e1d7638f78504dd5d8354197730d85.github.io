@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<math.h>
+int digits(int n)
+{
+  int cnt=0;
+ while(n!=0)
+ {
+   cnt++;
+   n=n/10;
+ }
+  return cnt;
+}
+  
+int reverse(int n)
+{
+  int res=0;
+  int digit=digits(n)-1;
+  while(n!=0)
+  {
+    res=res+(n%10)*pow(10,digit);
+    digit--;
+    n=n/10;
+  }
+  return res;
+}
+
+
+int main()
+{
+ int t,n,res;
+ scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    res=reverse(n);
+    printf("%d\n",res);
+  }
+  
+ return 0; 
+}

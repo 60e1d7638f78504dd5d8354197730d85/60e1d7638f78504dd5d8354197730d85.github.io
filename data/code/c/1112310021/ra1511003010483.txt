@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+int test,n,i,m,max[35]={0},min[35]={0};
+   scanf("%d",&test);
+    while(test--)
+     {
+       scanf("%d%d",&n,&m);
+        for(i=1;i<=n;i++)
+         {
+           min[i]=i+1+min[i/2]+min[(i-1)/2];
+           max[i]=max[i-1]+i+1;
+         }
+          if(m>=min[n])
+           {
+             if(m>=max[n])
+               printf("%d\n",m-max[n]);
+             else
+               printf("0\n");
+           }
+              else
+               printf("-1\n");
+       }
+             return 0;
+}    

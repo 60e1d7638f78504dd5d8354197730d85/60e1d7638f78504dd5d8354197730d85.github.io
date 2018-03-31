@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+typedef struct input_t
+{
+    int x;
+    int y;
+}input;
+ 
+int compare(const void *a, const void *b)
+{
+    return ((input *)a)->y - ((input *)b)->y;
+}
+ 
+int bombs(input A[], int n)
+{
+    if (n == 0)
+        return 0;
+    int num_bombs = 1, i;
+    qsort(A, n, sizeof(A[0]), compare);
+    int j = 0;
+    for (i = 1; i < n; i++)
+    {
+        if (A[i].x <= A[j].y)
+            continue;
+        else
+        {
+            j = i;
+            num_bombs++;
+        }
+    }
+ 
+    return num_bombs;
+}
+ 
+int main()
+{
+ 
+    int T, i;
+    scanf("%d", &T);
+    for (i = 0; i < T; i++)
+    {
+        int N;
+        scanf("%d", &N);
+        input A[N];
+        for (i = 0; i < N; i++)
+            scanf("%d %d", &A[i].x, &A[i].y);
+        printf("%d\n", bombs(A, N));
+        
+    }
+ 
+    return 0;
+ 
+} 

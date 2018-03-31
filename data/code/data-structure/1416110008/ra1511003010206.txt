@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char c[100],j=0;
+  int b[100];
+  cin>>c;
+  int i;
+  for(i=0;c[i]!='\0';i++)
+  {
+    if(c[i]>=48&&c[i]<=57)
+      b[j++]=c[i]-'0';
+    else if(c[i]=='*')
+    {b[j-2]=b[j-2]*b[j-1];
+     //cout<<b[j-1]<<" ";
+     j--;
+    }
+    else if(c[i]=='/')
+    {b[j-2]=b[j-2]/b[j-1];
+     j--;
+    }
+    else if(c[i]=='-')
+    {b[j-2]=b[j-2]-b[j-1];
+     j--;
+    }
+    else if(c[i]=='+')
+    {b[j-2]=b[j-2]+b[j-1]; 
+     j--;
+    }
+  }cout<<"Value of "<<c<<" is "<<b[0];
+	return 0;
+}

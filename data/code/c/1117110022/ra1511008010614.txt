@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int t,n,i,j,count,eqhelp,rotsolve;
+	for(scanf("%d",&t);t>0;t--)
+	{
+		count=0;
+		scanf("%d",&n);
+		int matrix[n][n];
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				scanf("%d",&matrix[i][j]);
+				if(matrix[i][j]==0)
+					count++;
+			}
+		}
+		eqhelp=count/2;
+		rotsolve=pow(1+8*eqhelp,0.5);
+		printf("%d\n", n-(rotsolve-1)/2-1);
+	}
+	return 0;
+}

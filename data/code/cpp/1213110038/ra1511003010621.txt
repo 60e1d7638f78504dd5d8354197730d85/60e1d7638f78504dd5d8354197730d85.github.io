@@ -1,0 +1,43 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+char str[100],sub[100];
+  int l1,l2,flag=0;
+  cin>>str;
+  cin>>sub;
+  l1=strlen(str);
+  l2=strlen(sub);
+  
+  for(int i=0;i<l1;i++)
+  {
+    if(str[i]==sub[0])
+    {
+        int k=i;
+    	for(int j=0;j<l2;j++)
+    	{
+	     
+    	  if(str[k]!=sub[j])
+      	  {
+        	flag=1;
+            i=k;
+            break;
+      	  }
+      	  k++;
+    	}
+        if(flag==0)
+        {
+          cout<<"Substring found at position "<<i+1;
+          return 0;;
+        }
+        else
+        {
+          flag=0;
+        }
+    }
+   
+  }
+  cout<<"Substring not found";
+	return 0;
+}

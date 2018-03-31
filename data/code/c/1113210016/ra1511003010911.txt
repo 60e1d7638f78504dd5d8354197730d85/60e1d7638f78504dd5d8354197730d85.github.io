@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<math.h>
+int min(int no1a,int no1b);
+main()
+{
+long int a[31];
+a[0]=1;long int p=1;
+int no1a,no1b,no1;
+long int i,j,N,A,B;for(i=1;i<=30;i++)
+{p*=2;a[i]=p;}
+//printf("%d",ex);
+int t;
+scanf("%d",&t);
+while(t--)
+{
+scanf("%ld%ld%ld",&N,&A,&B);
+ 
+no1a=0;no1b=0;
+while(A)
+{no1a+=(A%2);A/=2;}
+while(B)
+{no1b+=(B%2);B/=2;}
+long int maxxor=0;
+no1=no1a+no1b;
+ 
+if(no1>2*N-no1)
+no1=2*N-no1a-no1b;
+ 
+while(no1--)
+{
+maxxor+=a[N-1];
+N--;
+}
+//int maxxr=maxxor;
+printf("%ld\n",maxxor);
+}
+return 0;
+}
+int min(no1a,no1b)
+{
+if(no1a>no1b)return no1a;
+else return no1b;
+} 

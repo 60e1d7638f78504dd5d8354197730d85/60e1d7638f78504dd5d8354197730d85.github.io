@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+  int n1,d1,n2,d2,denom,num,max,i;
+  scanf("%d %d %d %d",&n1,&d1,&n2,&d2);
+  denom=d1*d2;
+  num=(d2*n1)+(d1*n2);
+  max= num>denom ? num:denom;
+  for(i=max; i>0; i--)
+  {
+    if(num%i==0 && denom%i==0)
+    {
+      num=num/i;
+      denom=denom/i;
+      break;
+    }
+  }
+  printf("%d %d",num,denom);
+	return 0;
+}

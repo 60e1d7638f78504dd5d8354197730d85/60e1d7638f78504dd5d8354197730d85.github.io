@@ -1,0 +1,16 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+public class TestClass {
+  
+	 public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in);
+       double temperature = input.nextDouble();
+       input.nextLine();
+       double speed = input.nextDouble();
+       
+       double windchilltemperature = 35.74 + (0.6215 * temperature) - (35.75 * Math.pow(speed, 0.16)) + (0.4275 * temperature * Math.pow(speed,0.16));
+       windchilltemperature = (int) (windchilltemperature * 100000) / 100000.0;
+       System.out.printf("The wind chill index is %.2f",windchilltemperature);
+	}
+}

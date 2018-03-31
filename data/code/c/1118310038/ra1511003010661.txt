@@ -1,0 +1,58 @@
+#include<stdio.h>
+# define M 1000000009
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,i,k,count;
+			int long long ans=1;
+		scanf("%d %d",&n,&k);
+				int fence[100001];
+				
+			for(i=0;i<=100001;i++)
+				fence[i]=-1;
+				
+		for(i=0;i<k;i++)
+		{
+			char a;
+			int b;
+			scanf(" %c %d",&a,&b);
+			fence[b]=a-'A';
+		
+		}
+		
+		for(i=1;i<=n;i++)
+		{
+			//printf("%d\n",i);
+			if(fence[i]!=-1)
+			{
+				int index=fence[i];
+				count=0;
+				i++;
+				while(fence[i]==-1 && i<=n )
+				{
+					count++;
+						
+					//printf("%d\n",count);
+						if(i==n && fence[i]==-1)
+					{
+						count=0;
+						break;
+					}
+					i++;
+				}
+				if(fence[i]==index)
+					count=0;
+			
+				ans=((ans)%M*(count+1)%M)%M ;
+			//	printf("%ld**\n",ans);
+				i--;
+			}
+		}
+		printf("%lld\n",ans% M);	
+	}
+  return 0;
+} 
+

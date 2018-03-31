@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+ 
+#define gc getchar_unlocked
+int read(){
+int n=0,ch;
+ch=gc();
+while(ch<'0' || ch>'9')ch=gc();
+while(ch>='0' && ch<='9'){n=(n<<3)+(n<<1)+ch-48;ch=gc();}
+return n;
+}
+ 
+int main(){
+  int t,n,a[10000],b[10000],i,ans,init;
+  t=read();
+  while(t--){
+  ans=0;
+  init=0;
+  n=read();
+  for(i=0;i<n;i++)
+  a[i]=read();
+  for(i=0;i<n;i++)
+  b[i]=read();
+
+  for(i=0;i<n;i++){
+  if(a[i]-init >= b[i]) ans++;
+  init=a[i];
+  }
+  printf("%d\n",ans);
+  }
+	return 0;
+} 

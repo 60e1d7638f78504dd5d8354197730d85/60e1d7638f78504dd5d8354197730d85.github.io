@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+ int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+int l,h;
+  scanf("%d %d",&l,&h);
+  int i=0,sum=0;;
+  while(l<=h)
+  {
+    int flag=0;
+
+    if(l%2==0 && l!=2)
+      l++;
+       
+    else
+    {
+      int j;
+      for(j=3;j<=sqrt(l);j=j+2)
+      {
+        if(l%j==0 && l!=j)
+        {flag=1;
+          break;
+        }
+      }
+      if(flag==0 && l!=1)
+      {sum+=l;
+      l++;}
+      else
+        l++;
+    }
+    i++;
+  }
+    printf("%d\n",sum);
+  }
+	return 0;
+}

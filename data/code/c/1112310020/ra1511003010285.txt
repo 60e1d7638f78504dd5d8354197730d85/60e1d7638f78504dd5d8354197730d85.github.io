@@ -1,0 +1,206 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct cases{
+	int a,b,c;
+}cases;
+int GCD(int a,int b);
+//long long int steps(int a,int b,int c);
+int bucket_a=0,bucket_b=0;
+long long int count1=0,count2=0;
+ 
+int main(void)
+{
+int n,i;
+scanf("%d",&n);
+if(n>100 || n<1)
+return 1;
+cases arr[n];
+for(i=0;i<n;i++)
+{
+scanf("%d",&arr[i].a);
+scanf("%d",&arr[i].b);
+scanf("%d",&arr[i].c);
+//if(arr[i].a>40000 ||arr[i].b>40000 || arr[i].c>40000 ||arr[i].a<1 || arr[i].b<1 || arr[i].c<1)
+//return 1;
+}
+for(i=0;i<n;i++)
+{
+	if(arr[i].c==0)
+	{
+		printf("0\n");
+		continue;
+	}
+	if(arr[i].a==0 ||arr[i].b==0)
+	{
+		if(arr[i].c==arr[i].a ||arr[i].c==arr[i].b)
+		{
+			printf("0\n");
+			continue;
+		}
+		else
+		{
+			printf("-1\n");
+			continue;
+		}
+	}
+	if(arr[i].c>arr[i].a && arr[i].c>arr[i].b)
+	{
+		printf("-1\n");
+		continue;
+	}
+	if(arr[i].c==arr[i].a || arr[i].c==arr[i].b)
+	{
+		printf("1\n");
+		continue;
+	}
+	int gcd=1;
+	if(arr[i].a>arr[i].b)
+	 gcd=GCD(arr[i].a, arr[i].b);
+	else
+	 gcd=GCD(arr[i].b, arr[i].a);
+ 
+	
+/*	for(int k=2;k<=arr[i].a;k++)
+	{
+	   if(arr[i].a%k==0&&arr[i].b%k==0)	
+	   {
+	   	arr[i].a=(arr[i].a)/k;
+	   	arr[i].b=(arr[i].b)/k;
+	   	gcd=gcd*k;
+	   }
+	}*/
+	if((arr[i].c)%gcd!=0)
+	{
+		printf("-1\n");
+		continue;
+	}
+//	else
+//	arr[i].c=arr[i].c/gcd;
+	
+//long long int counter1=0;
+//long long int counter2=0;
+	
+// counter1=steps(arr[i].a,arr[i].b,arr[i].c);
+// counter2=steps(arr[i].b,arr[i].a,arr[i].c);
+ 
+ 
+ 
+//long long int steps(int a,int b,int c)
+ 
+	bucket_a=0,bucket_b=0;
+ count1=0;
+ count2=0;
+while(1==1)
+{
+	int a=arr[i].a,b=arr[i].b,c=arr[i].c;
+	if(bucket_a==c || bucket_b==c)
+	{
+	//	bucket_a=0;
+	//	bucket_b=0;
+//	long long int m=count;
+	//	count=0;
+		//return m;
+	//	printf("%lld\n",count1);
+		break;
+	}
+	if(bucket_a==0&&bucket_b==0)
+	{
+	bucket_a=a;
+	count1++;
+	}
+	if(bucket_a!=0&&bucket_b==b)
+	{
+		bucket_b=0;
+		count1++;
+	}
+	if(bucket_a==0&&bucket_b!=0)
+	{
+		bucket_a=a;
+		count1++;
+	}
+	
+	if(bucket_a>b-bucket_b)
+	{
+		bucket_a=bucket_a-(b-bucket_b);
+		bucket_b=b;
+		count1++;
+		//return steps(a,b,c);
+		continue;
+	}
+	else
+	{
+		bucket_b=bucket_b+bucket_a;
+		bucket_a=0;
+		count1++;
+		//return steps(a,b,c);
+		continue;
+	}
+	bucket_a=0;
+	bucket_b=0;
+	return -1;
+}
+bucket_a=0,bucket_b=0;
+while(1==1)
+{
+	int a=arr[i].b,b=arr[i].a,c=arr[i].c;
+	if(bucket_a==c || bucket_b==c)
+	{
+	//	bucket_a=0;
+	//	bucket_b=0;
+//	long long int m=count;
+	//	count=0;
+		//return m;
+	//	printf("%lld\n",count2);
+		break;
+	}
+	if(bucket_a==0&&bucket_b==0)
+	{
+	bucket_a=a;
+	count2++;
+	}
+	if(bucket_a!=0&&bucket_b==b)
+	{
+		bucket_b=0;
+		count2++;
+	}
+	if(bucket_a==0&&bucket_b!=0)
+	{
+		bucket_a=a;
+		count2++;
+	}
+	
+	if(bucket_a>b-bucket_b)
+	{
+		bucket_a=bucket_a-(b-bucket_b);
+		bucket_b=b;
+		count2++;
+		//return steps(a,b,c);
+		continue;
+	}
+	else
+	{
+		bucket_b=bucket_b+bucket_a;
+		bucket_a=0;
+		count2++;
+		//return steps(a,b,c);
+		continue;
+	}
+	bucket_a=0;
+	bucket_b=0;
+	return -1;
+}
+if(count1>count2)	
+printf("%lld\n",count2);
+else
+printf("%lld\n",count1);
+}
+ 
+	return 0;
+}
+ int GCD(int a,int b)
+ {
+ 	if(!b)
+ 	return a;
+ 	else
+ 	return GCD(b,a%b);
+ }

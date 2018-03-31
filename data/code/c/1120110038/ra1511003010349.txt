@@ -1,0 +1,35 @@
+#include <stdio.h>
+#define mod 10000000
+int main()
+{
+  int t,n,sum,values[1000],i,j;
+  long dp[10001],total;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    sum=0;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&values[i]);
+      sum+=values[i];
+    }
+    for(i=0;i<=sum;i++)
+      dp[i]=0;
+      dp[0]=1;
+    for(i=0;i<n;i++)
+      for(j=sum;j>=0;j--)
+        if(dp[j]>0)
+          dp[j+values[i]]=((dp[j+values[i]])+(dp[j]))%mod;
+       total=0;
+    for(i=0;i<=sum;i++)
+    if(dp[i]>0)
+    {
+      long inc=((long long)((((long long )abs (sum-2*i)))*(dp[i])))%mod;
+      total=(total+inc)%mod;
+    }
+    printf("%ld\n",total);
+                               }                             
+                                 
+	return 0;
+}

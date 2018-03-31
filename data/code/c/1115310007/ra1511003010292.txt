@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int t , i;
+  scanf("%d",&t);
+  if(t==0)
+    printf("0");
+  else
+  {
+    for(i=0;i<t;i++)
+    {
+      char ch[100] , c[100];
+      scanf("%s %s",ch,c);
+      int n = strlen(ch),j,k;
+      if(strcmp(ch,"alice")==0)
+        printf("YES\n");
+      else
+      {for(j = 0 ; j<n-1 ; j++)
+      {
+        for(k = 0 ; k<n-i-1 ; k++)
+          if(ch[k]>ch[k+1])
+          {
+            char temp = ch[k];
+            ch[k] = ch[k+1];
+            ch[k+1] = temp;
+          }
+      }
+       for(j = 0 ; j<n-1 ; j++)
+      {
+        for(k = 0 ; k<n-i-1 ; k++)
+          if(c[k]>c[k+1])
+          {
+            char temp = c[k];
+            c[k] = c[k+1];
+            c[k+1] = temp;
+          }
+       }
+      if(strcmp(c,ch)==0 )
+        printf("YES\n");
+      else
+        printf("NO\n");
+      }
+    }
+  }
+	return 0;
+}

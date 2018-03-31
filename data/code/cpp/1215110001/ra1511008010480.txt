@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class Building {
+	int length, width, ratePerSqft;
+  	public:
+  		void initializeData(int l, int w, int rate) {
+        	length = l;
+          	width = w;
+          	ratePerSqft = rate;
+        }
+  		int getLength() {
+        	return length;
+        }
+  		int getWidth() {
+        	return width;
+        }
+  		int generatePerSqft() {
+        	return ratePerSqft;
+        }
+  		int calculateCost() {
+        	return getLength()*getWidth()*generatePerSqft();
+        }
+  		string determineSuitability() {
+        	int var = length - width;
+          	if(var < 0) var = -var;
+          	if(var > 10 ) 
+              	return "not suitable";
+          	return "suitable";
+        }
+};
+
+int main()
+{
+	int l, w, r;
+  	cin>>l>>w>>r;
+  	Building building;
+ 	building.initializeData(l, w, r);
+  	cout<<building.getLength()<<endl;
+  	cout<<building.getWidth()<<endl;
+  	cout<<building.generatePerSqft()<<endl;
+  	cout<<building.calculateCost()<<endl;
+  	cout<<building.determineSuitability()<<endl;
+	return 0;
+}

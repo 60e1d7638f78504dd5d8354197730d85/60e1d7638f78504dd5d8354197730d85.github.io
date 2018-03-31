@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<string.h>
+int arr[1001];
+int main()
+{	
+ int test,n,k,count,flag,temp,i;
+ int start,end,last,l;
+ scanf("%d",&test);
+ while(test--)
+	{
+		count=0;
+		memset(arr,0,sizeof(arr));
+		scanf("%d%d",&n,&k);
+		for(i=0;i<n;i++)
+		{
+			scanf("%d",&temp);
+			arr[temp]=1;
+		}
+			last = temp;
+			while(last>n)
+			{
+				l=0;
+				for(i=temp;arr[i-1]==1 &&i>1;i--)
+				{
+					l++;
+				}
+				if(l>=k)
+				{
+				 if((l+1)%k==0)
+				 {
+				   end = (temp-i+1)/k;
+				   count=count+end;
+				   arr[i-1]=1;
+				   arr[temp]=0;
+				   last = last-1;
+				   temp = last;
+				 }
+				 else
+				 {
+				   end = (temp-i+1)/k+1;
+				   count=count+end;
+				   arr[i-1]=1;
+				   arr[temp]=0;
+				   last = last-1;
+				   temp = last;
+				 }
+				}
+			else
+			{
+				arr[temp]=0;
+				arr[i-1]=1;
+				count++;
+				last = last-1;
+			    temp = last;
+		     	}
+			}
+ printf("%d\n",count);
+	}
+	return 0;
+}  

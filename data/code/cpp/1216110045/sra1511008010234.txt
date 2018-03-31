@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int sum=0;
+    string s;
+    int totalcount[26],price[26];
+    for(int j=0;j<26;j++)
+    {
+      cin>>price[j];
+      totalcount[j]=0;
+    }
+    cin>>s;
+    for(int i=0;i<s.length();i++)
+    {
+      totalcount[int(s[i]-97)]++;
+    }
+    for(int k=0;k<26;k++)
+    {
+      if(totalcount[k]==0)
+      {
+        sum+=price[k];
+      }
+    }
+    cout<<sum<<endl;
+  }
+  
+	return 0;
+}

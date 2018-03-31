@@ -1,0 +1,34 @@
+#include <stdio.h>
+struct coll{
+    char u[100];
+    char c[100];
+    int y;
+    float p;
+}col[10],temp;
+int main()
+{
+	int n,i=0,j=0;
+    char u[100],c[100];
+    int y;
+    float p;
+    scanf("%d",&n);
+    printf("Details of colleges\n");
+    for(i=0;i<n;i++){
+      scanf("%s %s %d %f",col[i].u,col[i].c,&col[i].y,&col[i].p);
+    }
+    for(i=0;i<n;i++){
+      for(j=i+1;j<n;j++){
+      if(col[i].u[0]>col[j].u[0]){
+        temp=col[i];
+        col[i]=col[j];
+        col[j]=temp;
+      }
+      }
+    }
+    for(i=0;i<n;i++){
+      printf("Name:%s\n",col[i].u);
+      printf("City:%s\n",col[i].c);
+      printf("Year of establishment:%d\n",col[i].y);
+      printf("Pass percentage:%0.1f\n",col[i].p);}
+	return 0;
+}

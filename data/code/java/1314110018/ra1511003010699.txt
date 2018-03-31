@@ -1,0 +1,35 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int t=in.nextInt();
+       while(t>0)
+       {
+         t--;
+         int a[]=new int[3];
+         int b[]=new int[3];
+         for(int i=0;i<3;i++)
+         {
+           a[i]=in.nextInt();
+         }
+         for(int i=0;i<3;i++)
+         {
+           b[i]=in.nextInt();
+         }
+         int dp= (a[1]*b[1])+(a[2]*b[2])+(a[0]*b[0]);
+         int cp[]=new int[3];
+         cp[0]=(a[1]*b[2])-(a[2]*b[1]);
+         cp[1]= ((a[0]*b[2])-(b[0]*a[2]));
+         cp[2]= (a[0]*b[1])-(a[1]*b[0]);
+         int pll=(cp[0]*cp[0])+(cp[1]*cp[1])+(cp[2]*cp[2]);
+         if(dp==0)
+           System.out.println("2");
+         else if(pll==0)
+           System.out.println("1");
+         else
+           System.out.println("0");
+       }
+         
+		
+	}
+}

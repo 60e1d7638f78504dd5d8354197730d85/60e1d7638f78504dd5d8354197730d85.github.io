@@ -1,0 +1,65 @@
+#include <stdio.h>
+int main()
+{
+  int SIZE=3;
+    int A[SIZE][SIZE];  
+    int B[SIZE][SIZE]; 
+
+    int row, col,m,n,isSymmetric;
+ 	
+	scanf("%d",&n);
+  	scanf("%d",&m);
+  
+    for(row=0; row<SIZE; row++)
+    {
+        for(col=0; col<SIZE; col++)
+        {
+            scanf("%d", &A[row][col]);
+        }
+    }
+
+    /*
+     * Find transpose of matrix A
+     */
+    for(row=0; row<SIZE; row++)
+    {
+        for(col=0; col<SIZE; col++)
+        {
+            /* Store each row of matrix A to each column of matrix B */
+            B[row][col] = A[col][row];
+        }
+    }
+
+
+    /*
+     * Check whether matrix A is equal to its transpose or not
+     */
+    isSymmetric = 1;
+    for(row=0; row<SIZE && isSymmetric; row++)
+    {
+        for(col=0; col<SIZE; col++)
+        {
+            /* If matrix A is not equal to its transpose */
+            if(A[row][col] != B[row][col])
+            {
+                isSymmetric = 0;
+                break;
+            }
+        }
+    }
+
+    /*
+     * If the given matrix is symmetric.
+     */
+    if(isSymmetric == 1)
+    {
+        printf("\nSymmetric");
+    }
+    else
+    {
+        printf("\nNot Symmetric");
+    }
+
+    return 0;
+}
+

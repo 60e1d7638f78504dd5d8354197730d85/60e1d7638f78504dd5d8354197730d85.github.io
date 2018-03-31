@@ -1,0 +1,53 @@
+#include <stdio.h>
+int main()
+{
+  int N, Q;
+  
+  scanf("%d %d", &N, &Q);
+  
+  if(N == 0)
+  {
+    printf("0\n");
+    return 0;
+  }
+  
+  int a[50], k;
+  
+  for(k=0; k<N; k++)
+  {
+    a[k]=0;
+  }
+  
+  while(Q--)
+  {
+    int rule, A, B, i, j;
+    scanf("%d", &rule);
+    scanf("%d %d", &A, &B);
+    
+    //Flip coins
+    if(rule == 0)
+    {
+      for(i=A; i<=B; i++)
+      {
+        if(a[i] == 1)
+          a[i] = 0;
+        else if(a[i] == 0)
+          a[i] = 1;
+      }
+    }
+    
+    //Read how many have heads up
+    if(rule == 1)
+    {
+      int count = 0;
+      for(i=A; i<=B; i++)
+      {
+        if(a[i] == 1)
+          count++;
+      }
+      printf("%d\n", count);
+    }
+  }
+
+	return 0;
+}

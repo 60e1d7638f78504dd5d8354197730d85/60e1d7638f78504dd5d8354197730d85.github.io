@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+void assert_digit() {char c = getchar(); assert('0' <= c && c <= '9'); ungetc(c, stdin);}
+using namespace std;
+int N;
+pair<int, int> A[100001];
+int B[100001];
+int main()
+{
+    assert_digit();
+    int TEST;
+    scanf("%d", &TEST);
+    assert(getchar()=='\n');
+    assert(1<=TEST && TEST<=2);
+    while(TEST--)
+    {
+        assert_digit();
+        scanf("%d", &N);
+        assert(getchar()=='\n');
+        assert(1<=N && N<=100000);
+        set<int> pos;
+        for(int i=0; i<N; i++)
+        {
+            int a;
+            assert_digit();
+            scanf("%d", &a);
+            if(i!=N-1)
+                assert(getchar()==' ');
+            else if(TEST!=0)
+                assert(getchar()=='\n');
+            assert(1<=a && a<=1000000000);
+            A[i]=make_pair(a, i);
+            B[i]=a;
+            pos.insert(i);
+        }
+        sort(A, A+N);
+        long long ans=0;
+        for(int i=0; i<N; i++)
+        {
+            int val=A[i].first;
+            int idx=A[i].second;
+            auto it=pos.upper_bound(idx);
+            while(it!=pos.end() && B[*it]<=val)
+            {
+                ans+=val;
+                it=pos.erase(it);
+            }
+            it=pos.lower_bound(idx);
+            while(it!=pos.begin() && B[*--it]<=val)
+            {
+                ans+=val;
+                it=pos.erase(it);
+            }
+        }
+        assert(pos.size()==1);
+        printf("%lld\n", ans);
+    }
+    assert(getchar()==EOF);
+    return 0;
+}

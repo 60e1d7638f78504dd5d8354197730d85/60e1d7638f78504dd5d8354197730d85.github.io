@@ -1,0 +1,34 @@
+#include <stdio.h>
+int secondSmallest(int arr[],int size)
+{
+  int min1 = arr[0];
+  int min2 = arr[1];
+  int i,temp;
+  if(min1>min2)
+  {
+    temp = min1;
+    min1 = min2;
+    min2 = temp;
+  }
+  for(i=2;i<size;i++)
+  {
+    if(arr[i]<min1)
+    {
+      min2 = min1;
+      min1 = arr[i];
+    }
+    else if(arr[i]>min1 && arr[i]<min2)
+      min2 = arr[i];
+  }
+  return min2;
+}
+int main()
+{
+  int num,i;
+  scanf("%d",&num);
+  int arr[num];
+  for(i=0;i<num;i++)  
+    scanf("%d",&arr[i]);
+  printf("%d",secondSmallest(arr,num));
+	return 0;
+}

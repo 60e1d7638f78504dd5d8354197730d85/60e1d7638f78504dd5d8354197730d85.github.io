@@ -1,0 +1,33 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int n=in.nextInt();
+       int arr[]=new int[n];
+       for(int i=0;i<n;i++)
+       {
+         arr[i]=in.nextInt();
+       }
+       int l=0;
+       int h=n-1;
+       int s=in.nextInt();
+       int found=0;
+       while(l<=h)
+       {
+         int mid=(l+h)/2;
+         if(arr[mid]==s)
+         {
+           System.out.print(s+" found at location "+(mid+1));
+           found=1;
+           break;
+         }
+         else if(arr[mid]<s)
+           l=mid+1;
+         else if(arr[mid]>s)
+           h=mid-1;
+       }
+       if(found==0)
+         System.out.println("Not Found");
+		
+	}
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+	int n1,d1,n2,d2,lcm,max,i,m1,m2,sum1;
+  	int a,b,c,gcd;
+  	scanf("%d%d%d%d",&n1,&d1,&n2,&d2);
+  	max=(d1>d2)?d1:d2;
+  	i=max;
+  	while(1)
+    {
+  	if((i%d1)==0 && (i%d2)==0)
+    {
+      lcm=i;
+      break;
+    }
+    i+=max;
+    }
+  	m1=lcm/d1;
+  	m2=lcm/d2;
+  	n1*=m1;
+  	n2*=m2;
+  	sum1=n1+n2;
+  	a=sum1;
+  	b=lcm;
+  	c=a%b;
+  	while(c>0)
+    {
+      a=b;
+      b=c;
+      c=a%c;
+    }
+  	gcd=b;
+  	sum1/=gcd;
+  	lcm/=gcd;
+  	printf("%d %d",sum1,lcm);
+	return 0;
+}

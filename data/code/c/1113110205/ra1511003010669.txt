@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  	int i;
+	char str[3];
+  	scanf("%s",str);
+  	char mon[][12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+  	for(i=0;i<12;i++)
+    {
+      //printf("%s\n",mon[i]);
+      if(strcmp(str,mon[i])==0)
+      {
+        if(i==0||i==2||i==4||i==6||i==7||i==9||i==11)
+          printf("31");
+        else if(i==1)
+          printf("28 or 29");
+        else
+          printf("30");
+        break;
+      }
+    }
+	return 0;
+}

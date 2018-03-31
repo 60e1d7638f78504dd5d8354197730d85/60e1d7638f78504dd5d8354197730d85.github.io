@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+int ispalin(int n)
+{
+  int temp,i=0,r,sum=0,j,a[100];
+  temp=n;
+  while(temp!=0)
+  {
+    r=temp%10;
+    a[i]=r;
+    i++;
+    temp=temp/10;
+  }
+  for(j=0;j<i;j++)
+    sum=sum+(a[j]*pow(10,i-j-1));
+  if(sum==n)
+    return 1;
+  else
+    return 0;
+}
+int main()
+{
+  int n,t,i;
+  scanf("%d",&t);
+  for(i=0;i<t;i++){
+  scanf("%d",&n);
+  while(ispalin(++n)!=1);
+  printf("%d\n",n);
+  }
+	return 0;
+}

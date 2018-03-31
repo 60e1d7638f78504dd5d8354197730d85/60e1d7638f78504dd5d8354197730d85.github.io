@@ -1,0 +1,38 @@
+#include<stdio.h>
+int main()
+{
+  int i, j,m,n, k;
+  scanf("%d", &n);
+  if(n>=1 && n<=109)
+  {
+    for(i=1;i<=n;i++)
+      for(j=0;j<i;j++)
+      {
+        	if((2*i*j)==n)
+        	{
+              	m=i*i-j*j;
+              	k=i*i+j*j;
+         		break;
+        	}
+        	else if((i*i-j*j)==n)
+        	{
+				m=2*i*j;
+              	k=i*i+j*j;
+          		//printf("%d %d",m, k);
+          		break;
+        	}
+        	else if((i*i+j*j)==n)
+        	{
+              	m=i*i-j*j;
+              	k=2*i*j;
+          		//printf("%d %d",m,k);
+          		break;
+        	}
+      }
+  }
+  if(m>=1 && k<=1018)
+    printf("%d %d",m,k);
+  else 
+   	printf("-1");
+  return 0;
+}

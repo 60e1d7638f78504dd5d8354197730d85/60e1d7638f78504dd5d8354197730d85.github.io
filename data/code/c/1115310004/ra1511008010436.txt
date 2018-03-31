@@ -1,0 +1,50 @@
+#include <stdio.h>
+int n[301][301];
+int f[301][301][11];
+int main(void) {
+	int n1,i,j,q,k;
+	scanf("%d",&n1);
+	for(i=1;i<=n1;i++)
+	{
+		for(j=1;j<=n1;j++)
+		{
+			scanf("%d",&n[i][j]);
+			f[i][j][n[i][j]]++;
+		}
+	}
+	for(i=1;i<=n1;i++)
+	{
+		for(j=1;j<=n1;j++)
+		{
+			for(k=1;k<=10;k++)
+			f[i][j][k]+=f[i][j-1][k];
+		}
+	}
+	for(i=2;i<=n1;i++)
+	{
+		for(j=1;j<=n1;j++)
+		{
+			for(k=1;k<=10;k++)
+			f[i][j][k]+=f[i-1][j][k];
+		}
+	}
+	scanf("%d",&q);
+	while(q--)
+	{
+		int x1,y1,x2,y2;
+		int a[11]={0},count=0;
+		scanf("%d%d%d%d",&x1,&y1,&x2,&y2);
+		for(k=1;k<=10;k++)
+		{
+			a[k]=f[x2][y2][k]-f[x1-1][y2][k]-f[x2][y1-1][k]+f[x1-1][y1-1][k];
+		}
+		for(k=1;k<=10;k++)
+		{
+			if(a[k]>0)
+			count++;
+		}
+		printf("%d\n",count);
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,25 @@
+#include <iostream>
+//#include <cstdlib>
+#include <cstring>
+#include <cctype>
+using namespace std;
+int main()
+{
+	char c[100];
+  	cin.getline(c,100);
+  	int v=0,co=0,d=0,w=0;
+  	for(int i=0;i<strlen(c);i++) {
+      if(isdigit(c[i]))
+         d++;
+      else if(c[i]==32)
+         w++;
+      else if(c[i]=='A' || c[i]=='a' || c[i]=='E' || c[i]=='e' || c[i]=='I' || c[i]=='i' || c[i]=='O' || c[i]=='o' || c[i]=='U' || c[i]=='u')
+        v++;
+      else co++;
+    }
+  	cout<<"Vowels: "<<v;
+  	cout<<"\nConsonants: "<<co;
+  	cout<<"\nDigits: "<<d;
+  	cout<<"\nWhite spaces: "<<w;
+	return 0;
+}

@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100 // Maximum string size
+
+int main()
+{
+    char str[MAX_SIZE];
+    char word[MAX_SIZE];
+    int i, j, found, index;
+    int stringLen, wordLen;
+
+
+    /* Input string and word from user */
+    //printf("Enter any string: ");
+    scanf("%[^\n]",str);//gets(str);
+    //printf("Enter word to remove: ");
+    scanf("%s",word);//gets(word);
+
+    stringLen = strlen(str);  // Length of string
+    wordLen   = strlen(word); // Length of word
+
+
+    /*
+     * Run loop from start to end of string - word length
+     */
+    index = -1;
+    for(i=0; i<=stringLen - wordLen; i++)
+    {
+        // Match word at current position
+        found = 1;
+        for(j=0; j<wordLen; j++)
+        {
+            // If word is not matched
+            if(str[i+j] != word[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+
+        // If word is found then update index
+        if(found == 1)
+        {
+            index = i;
+        }
+    }
+
+    // If word not found
+    if(index == -1)
+    {
+        printf("not found");
+    }
+    else
+    {
+        /*
+         * Shift all characters from right to left
+         */
+        for(i=index; i <= stringLen - wordLen; i++)
+        {
+            str[i] = str[i + wordLen];
+        }
+
+        printf("%s",str);
+    }
+
+    return 0;
+}

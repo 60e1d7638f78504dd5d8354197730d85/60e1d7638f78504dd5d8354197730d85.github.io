@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		long long int a[1000];
+		int b[1000]={0};
+		long long int p=0;
+		for(int i='a';i<='z';i++)
+		{
+			cin >> a[i];
+		}
+		char s[50001];
+		scanf("%s",s);
+		int n=strlen(s);
+		for(int i=0;i<n;i++)
+		{
+			b[s[i]]=1;
+		}
+		for(int i='a';i<='z';i++)
+		{
+			if(b[i]==0)
+			{
+				p=p+a[i];
+			}
+		}
+		cout << p << endl;
+	}
+	return 0;
+} 

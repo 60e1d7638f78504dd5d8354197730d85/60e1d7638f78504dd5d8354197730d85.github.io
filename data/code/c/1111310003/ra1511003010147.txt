@@ -1,0 +1,81 @@
+#include <stdio.h>
+#define LIMIT 1001
+#define DIVISOR 1000000007
+ 
+char _str[10];
+ 
+#define READ_INT(_x)					\
+  {							\
+    int _tmp = 0;					\
+    register int _ch = getchar_unlocked();		\
+    while (_ch < 48 || _ch > 57)			\
+      _ch = getchar_unlocked();				\
+    while (48 <= _ch && _ch <= 57)			\
+      {							\
+	_tmp = (_tmp << 3) + (_tmp << 1) + _ch - 48;	\
+	_ch = getchar_unlocked();			\
+      }							\
+    (_x) = _tmp;					\
+  }							\
+ 
+#define WRITE_INT(_x)				\
+  {						\
+    register int _i = 0;			\
+    int _tmp = (_x);				\
+    do						\
+      {						\
+	*(_str + _i++) = _tmp % 10 + 48;	\
+	_tmp /= 10;				\
+      } while (_tmp != 0);			\
+    for (_i--; _i >= 0; _i--)			\
+      putchar_unlocked(*(_str + _i));		\
+  }						\
+ 
+int main()
+{
+	long long ll[LIMIT], uu[LIMIT];
+  int l[LIMIT] = {0}, u[LIMIT] = {0};
+  long long mm, sum;
+  int c, i, m, n, tmp;
+ 
+  READ_INT(n);
+  READ_INT(m);
+  READ_INT(c);
+  for (; n > 0; n--)
+    {
+      READ_INT(i);
+      (*(u + i))++;
+    }
+ 
+  for (; m > 0; m--)
+    {
+      READ_INT(i);
+      (*(l + i))++;
+    }
+ 
+  for (i = 1, n = 0; i < LIMIT; i++)
+    if (*(u + i) > 0 && *(l + i) > 0)
+      {
+	*(uu + n) = *(ll + n) = (long long) *(u + i) * *(l + i);
+	n++;
+      }
+ 
+  for (; c > 0; c--)
+    if (n > 1)
+      {
+	for (mm = *(ll + --n), i = n - 1, sum = 0; i >= 0; i--)
+	  {
+	    tmp = *(ll + i);
+	    sum = (sum + (*(ll + i) = *(uu + i) * mm % DIVISOR)) % DIVISOR;
+	    mm += tmp;
+	  }
+	WRITE_INT(sum);
+	putchar_unlocked(' ');
+      }
+    else
+      fputs_unlocked("0 ", stdout);
+  putchar_unlocked('\n');
+ 
+
+	return 0;
+}

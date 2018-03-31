@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int n, max = 4, sum = 0, rem = 0, rev = 0, m, a;
+  	
+  	scanf("%d", &n);
+  	while(n-- != 0){
+      int s;
+  		scanf("%d", &s);
+		if(s < 1000){
+          printf("The output is:unlucky");
+          continue;
+        }
+      else{
+     	if(s > 9999){
+        	rev = s % 1000;
+          	m = s/1000;
+        	while(rev>0){
+        	rem = rev % 10;
+          	sum = sum+ rem;
+          	rev = rev/10;
+           	a = sum + m; 
+            }
+        }
+          else{
+          	while(s > 0){
+            	rem = s % 10;
+              	sum = sum + rem;
+              	s = s/10;
+              a = sum;
+            }
+          }
+        }
+    printf("The output is:%d\n", a);
+    sum = 0;rem = 0; rev = 0;
+    }
+  
+    
+  
+  return 0;
+}

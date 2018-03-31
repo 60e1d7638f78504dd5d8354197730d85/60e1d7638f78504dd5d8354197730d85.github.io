@@ -1,0 +1,21 @@
+#include <stdio.h>
+int sumArray(int a[],int n,int m);
+int main()
+{
+   int num,i,sum;
+   scanf("%d",&num);
+  int a[num];
+  
+  for(i=0;i<num;i++){
+   scanf("%d",&a[i]); 
+  }
+  sum=sumArray(a,0,num);
+  printf("%d",sum);
+	return 0;
+}
+int sumArray(int a[],int n,int m){
+  if(n>=m)
+    return 0;
+
+    return(a[n]+sumArray(a,n+1,m));
+}

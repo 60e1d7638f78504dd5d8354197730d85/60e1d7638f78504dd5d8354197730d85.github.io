@@ -1,0 +1,53 @@
+#include <stdio.h>
+int minbags(int a)
+{
+  int b=0,c=0,d=0,e=0;
+  int i=0;
+  while(a>=10){
+ 
+    if(a%7==0 && a<20)
+      break;
+    a = a-10;
+    i++;
+  }
+  while(a>=7){
+    a=a-7;
+    i++;
+    c++;
+    if(a%5 == 0)
+      break;
+  }
+  while(a>=5){
+    a=a-5;
+    d++;
+    i++;
+  }
+  while(a>0){
+    a =a-1;
+    e++;
+    i++;
+  }
+  //printf("%d\n%d\n%d\n%d\n",b,c,d,e);
+    return i;
+ }
+int main()
+{
+
+  int num,wt=-1,i;
+  scanf("%d",&num);
+  if(num == 0)
+    printf("LENET");
+  for(i=0;i<num;i++)
+  {
+    scanf("%d",&wt);
+    if(minbags(wt))
+    	printf("%d\n",minbags(wt));
+    else if(wt == 0)
+      printf("%d\n",minbags(wt));
+    else{
+      printf("LENET");
+      break;
+    }
+  }
+	return 0;
+}

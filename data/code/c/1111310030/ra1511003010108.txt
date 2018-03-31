@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+ 
+	int test,m,treq[1000010],tactual[1000010],i,answer,j;
+	scanf("%d",&test);
+	for(j=0;j<test;j++)
+	{
+		answer=0;
+		scanf("%d",&m);
+		for( i = 0 ; i < m ; i++ ){
+			scanf("%d",&treq[i]);
+		}
+		for(i=0;i<m;i++){
+			scanf("%d",&tactual[i]);
+			if(i==0){
+				if(tactual[0]<=treq[0]){
+					answer++;
+				}
+			}
+			else{
+				if(tactual[i]<=treq[i]-treq[i-1]){
+					answer++;
+				}
+			}
+		}
+		printf("%d\n",answer);
+	}
+  return 0;
+} 

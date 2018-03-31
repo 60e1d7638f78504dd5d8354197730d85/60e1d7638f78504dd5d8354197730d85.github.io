@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+class TestClass
+{
+    public static int countDistinct(int arr[])
+    {
+        int count = 0;
+        HashSet<Integer> set = new HashSet<>();
+        for (int i=0; i<arr.length; i++)
+        {
+            if (!set.contains(arr[i]))
+            {
+                set.add(arr[i]);
+                count++;
+            }
+        }
+        return count;
+    }
+    public static void main(String args[])
+    {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for(int z=0;z<t;z++)
+        {
+            String s = in.next();
+            int depth = 0;
+            int balance = 0;
+            int l = s.length();
+            for(int i=0;i<l;i++)
+            {
+                if(s.charAt(i)=='(')
+                    balance++;
+                else
+                    balance--;
+                depth = depth>balance?depth:balance;
+            }
+            for(int i=0;i<depth;i++)
+                System.out.print("(");
+            for(int i=0;i<depth;i++)
+                System.out.print(")");
+            System.out.println();
+        }
+    }
+} 

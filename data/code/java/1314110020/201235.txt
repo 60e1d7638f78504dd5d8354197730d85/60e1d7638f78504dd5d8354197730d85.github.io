@@ -1,0 +1,38 @@
+//import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import static java.lang.Math.ceil;
+import static java.lang.Math.floor;
+import static java.lang.Math.sqrt;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner (System.in);
+       List<String> res = new ArrayList<>();
+       int numTc=Integer.parseInt(sc.nextLine());
+       while (numTc--> 0)
+       {
+         res.add(encodeText(sc.nextLine()));
+       }
+		res.forEach(System.out::println);
+     }
+  private static String encodeText (String textToEncode)
+  {
+    int l= textToEncode.length();
+    int ceil =(int) ceil (sqrt(l));
+    StringBuilder s=new StringBuilder();
+    int j=0;
+    while (j<ceil)
+    {
+      int i=j;
+      while (i<l)
+      {
+        s.append (textToEncode.charAt(i));
+        i+=ceil;
+      }
+      s.append (" ");
+      j++;
+    }
+    return s.toString();
+  }
+}

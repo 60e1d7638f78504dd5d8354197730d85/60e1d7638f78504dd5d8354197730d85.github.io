@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+ int n,l[n+2],r[n+2],colsum[n+2],i,sum=0;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    scanf("%d %d",&l[i],&r[i]);
+    sum+=r[i]-l[i]+1;
+    colsum[l[i]]++;
+    colsum[r[i]+1]--;
+  }
+  for(i=1;i<=n;i++)
+  {
+    colsum[i]+=colsum[i-1];
+  }
+  int q;
+  scanf("%d",&q);
+  while(q--)
+  {
+    int k,c;
+    scanf("%d %d",&k,&c);
+    int p=sum;
+    p-=(r[k]-l[k]+1)+colsum[c];
+    if(c<=r[k]&&c>=l[k])
+        p-=1;
+    if(p%2==0)
+        printf("E\n");
+    else
+        printf("O\n");
+  }
+  return 0;
+}

@@ -1,0 +1,54 @@
+#include <stdio.h>
+int main()
+{ 
+  int a[5][5],sumf=0,sumb=0,r=0,c=0,sr[5],sc[5],i,j,flag=0;
+  for(i=0;i<3;i++)
+    for(j=0;j<3;j++)
+      scanf("%d",&a[i][j]);
+  
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+      if(j==i)
+      {
+        sumf=sumf+a[i][j];
+      }
+  }
+  for(i=0;i<3;i++)
+    for(j=0;j<3;j++)
+      if(i+j==2)
+      { 
+        sumb=sumb+a[i][j];
+      }
+  
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      r=r+a[i][j];
+    }
+    sr[i]=r;
+    r=0;
+  }
+  
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    { 
+        c=c+a[j][i];
+    }
+    sc[i]=c;
+    c=0;
+    }
+  
+  for(i=0;i<3;i++)
+      if(sumb==sumf&&sumf==sc[i]&&sc[i]==sr[i])
+      {
+        flag++;
+      }
+  if(flag==3)
+    printf("Yes");
+  else
+    printf("No");
+  return 0;
+}

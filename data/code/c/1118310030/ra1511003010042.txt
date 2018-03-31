@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+  int data;
+  struct node *left,*right;
+};
+struct node *newNode(int data)
+{
+    struct node *n=(struct node *)malloc(sizeof(struct node));
+    n->data=data;
+    n->left=n->right=NULL;
+    return n;
+}
+struct node *add(struct node *root,int data)
+{
+    if(root==NULL)
+    {
+      struct node *root=newNode(data);
+      return root;
+    }
+    if(root->data<data)
+    root->right=add(root->right,data);
+    else
+    root->left=add(root->left,data);
+    return root;
+}
+int height(struct node *root)
+{
+    if(root==NULL)
+    return 0;
+    else
+    {
+        int l=height(root->left);
+        int r=height(root->right);
+        if(l>r)
+        return l+1;
+        else
+        return r+1;
+    }
+}
+ 
+int main()
+{
+    int n;
+    struct node *root=NULL;
+    scanf("%d",&n);
+    int a[n],i;
+    for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+        root=add(root,a[0]);
+    for(i=1;i<n;i++)
+    {
+        add(root,a[i]);
+    }
+        int h=height(root);
+     printf("%d",h);
+ return 0;
+}

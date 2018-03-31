@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+const int MAX=100000;
+int sp[500001]={0};
+int sum_div[100001];
+int sf[100001]={0};
+int df[500001]={0};
+long long int result[100001]={0};
+void div_find()
+{
+  int i=1,j;
+  while(i<=MAX)
+  {
+    for(j=i;j<=MAX;j+=i)
+    {
+      sum_div[j] +=i;
+    }
+    i++;
+  }
+  sum_div[0]=0;
+}
+void factorize()
+{
+  int i,k,prev_sp=0;
+  for(i=0;i<=5*MAX;i++)
+  {
+    k=i;
+    while(k>1)
+    {
+      if(sp[k]==prev_sp)
+      {
+        if(i<=MAX)
+        {
+          sf[i]=-1;
+        }
+      }
+      else
+      {
+        df[i]++;
+      }
+      prev_sp=sp[k];
+      k /= sp[k];
+    }
+  }
+}
+void prime()
+{
+  long long int i;
+  sp[1]=-1;
+  sp[0]=-1;
+  for(i=2;i<=5*MAX;i+=2)
+  {
+    sp[i]=2;
+  }
+  i=3;
+  while(i<5*MAX)
+  {
+    long long int j;
+    if(sp[i]==0)
+    {
+      sp[i] = i;
+      for(j=i;(j*i)<=5*MAX;j+=2)
+      {
+        if(sp[j*i]==0)
+        {
+          sp[j*i]=i;
+        }
+      }
+    }
+    i+=2;
+  }
+}
+void result_comp()
+{
+  int i;
+  for(i=1;i<=MAX;i++)
+  {
+    if(sf[i]!=-1&&(sp[df[sum_div[i]]]==df[sum_div[i]]))
+    {
+      result[i] = result[i-1] + sum_div[i];
+    }
+    else
+    {
+      result[i] = result[i-1];
+    }
+  }
+}
+int main()
+{
+  div_find();
+  prime();
+  factorize();
+  result_comp();
+  int i,n1,n2;
+  // pre_comp();
+  scanf("%d\n",&i);
+  while(i--)
+  {
+    scanf("%d %d\n",&n1,&n2);
+    if(sf[n1]!=-1&&(sp[df[sum_div[n1]]]==df[sum_div[n1]]))
+    {
+      n1--;
+    }
+    printf("%lld\n",result[n2]-result[n1]);
+  }
+  return 0;
+}
+ 

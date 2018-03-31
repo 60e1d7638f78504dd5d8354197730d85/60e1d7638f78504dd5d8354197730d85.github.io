@@ -1,0 +1,177 @@
+#include<stdio.h>
+int frequency[111111];
+int minheap[111111];
+int maxheap[111111];
+int min_heapsize;
+int max_heapsize;
+void swap(int *x,int *y)
+{
+        int temp = *x;
+        *x=*y;
+        *y= temp;
+}
+void insert_minheap(int k)
+{
+        
+        minheap[min_heapsize] = k;
+        int i =min_heapsize;
+        min_heapsize++;
+        while(i!=0 &&  (minheap[(i-1)/2] > minheap[i]))
+                {
+                        swap(&minheap[(i-1)/2], &minheap[i]);
+                        i = (i-1)/2;
+                }
+}
+ 
+void insert_maxheap(int k)
+{
+       
+        maxheap[max_heapsize]= k;
+        int i =max_heapsize;
+         max_heapsize++;
+        while(i!=0 &&   (maxheap[(i-1)/2] < maxheap[i]))
+                {
+                        swap(&maxheap[(i-1)/2], &maxheap[i]);
+                        i = (i-1)/2;
+                }
+}
+ 
+void minheapify(int i)
+{
+        int smallest = i;
+        if( 2*i+1 < min_heapsize && (minheap[2*i+1] < minheap[i]))
+                smallest = 2*i +1;
+        if( 2*i+2 < min_heapsize && (minheap[2*i+2] < minheap[smallest]))
+                smallest = 2*i +2;
+        if(smallest!=i)
+                {
+                        swap(&minheap[i],&minheap[smallest]);
+                        minheapify(smallest);
+                }
+}
+ 
+ 
+void maxheapify(int i)
+{
+        int largest = i;
+        if( 2*i+1 < max_heapsize && (maxheap[2*i+1] > maxheap[i]))
+                largest = 2*i +1;
+        if( 2*i+2 < max_heapsize && (maxheap[2*i+2] > maxheap[largest]))
+                largest = 2*i +2;
+        if(largest!=i)
+                {
+                        swap(&maxheap[i],&maxheap[largest]);
+                        maxheapify(largest);
+                }
+}
+ 
+        
+int extractmin()
+{
+        if(min_heapsize <= 0)
+                {
+                        return -1;
+                }
+        if(min_heapsize == 1)
+                {
+                        min_heapsize--;
+                        return minheap[0];
+                }
+        else
+                {
+                        int root = minheap[0];
+                        minheap[0]= minheap[min_heapsize-1];
+                        min_heapsize--;
+                        minheapify(0);
+                        return root;
+                }
+}
+                        
+int extractmax()
+{
+        if(max_heapsize <= 0)
+                {
+                        return -1;
+                }
+        if(max_heapsize == 1)
+                {
+                        max_heapsize--;
+                        return maxheap[0];
+                }
+        else
+                {
+                        int root = maxheap[0];
+                        maxheap[0] = maxheap[max_heapsize-1];
+                        max_heapsize--;
+                        maxheapify(0);
+                        return root;
+                }
+}
+                        
+        
+ 
+char input[15];
+ 
+int main()
+{
+        int queries;
+        scanf("%d",&queries);
+        while(queries--)
+                {
+                       
+                        scanf("%s",input);
+                        if(input[0] == 'P')
+                                {
+                                        int x;
+                                        scanf("%d",&x);
+                                        frequency[x]++;
+                                        insert_maxheap(x);
+                                        insert_minheap(x);
+                                }
+                        else if(input[0] == 'C' && input[5]=='L')
+                                {
+                                        while(min_heapsize!=0 && (frequency[minheap[0]] ==0))
+                                             extractmin();
+                                       
+                                        if(min_heapsize == 0)
+                                                printf("-1\n");
+                                        else
+                                                printf("%d\n",frequency[minheap[0]]);
+                                }
+                        else if(input[0]=='C' && input[5] == 'H')
+                                {
+                                        while(max_heapsize!=0 && (frequency[maxheap[0]] ==0))
+                                                 extractmax();
+                                        if(max_heapsize == 0)
+                                                printf("-1\n");
+                                        else
+                                                printf("%d\n",frequency[maxheap[0]]);
+                                }
+                        else
+                                {
+                                        while(max_heapsize!=0 && frequency[maxheap[0]] ==0)
+                                                extractmax();
+                                        while(min_heapsize!=0 && frequency[minheap[0]] ==0)
+                                                extractmin();
+                                        if(min_heapsize != 0 && max_heapsize!=0)   
+                                                {
+                                                        if(minheap[0] == maxheap[0])
+                                                                frequency[maxheap[0]]--;
+                                                        else{
+                                                                frequency[minheap[0]]--;
+                                                                frequency[maxheap[0]]--;
+                                                        }
+                                                        printf("%d\n",maxheap[0] - minheap[0]);
+                                                        extractmax();
+                                                        extractmin();
+                                                }
+                                        else
+                                                printf("-1\n");
+                                        
+                                                
+                                }
+                }
+        return 0;
+ 
+}
+            

@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class ac
+{
+  public:
+  int fet;
+  int ich;
+  void setdata(int a,int b)
+  {
+    fet=a;
+    ich=b;
+  }
+  ac operator +(ac e)
+  {
+    ac res;
+    res.fet=fet+e.fet;
+    res.ich=ich+e.ich;
+    res.fet=res.fet+((res.ich)/12);
+    res.ich=res.ich%12;
+    cout<<"Total Distance:"<<endl;
+    cout<<"Feet:"<<res.fet<<" Inches:"<<res.ich;
+  }
+};
+int main()
+{
+  ac f;
+  ac e;
+  int a,b,c,d;
+  cin>>a>>b>>c>>d;
+  f.setdata(a,b);
+  e.setdata(c,d);
+  ac fn=f+e;
+	return 0;
+}

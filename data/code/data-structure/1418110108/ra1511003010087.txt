@@ -1,0 +1,84 @@
+#include <stdio.h>
+ 
+struct node {
+	int val;
+	int visited;
+	int childrencount;
+	int children[60];
+};
+ 
+struct node tree[60];
+int root;
+ 
+int n, k;
+ 
+long long result;
+void processtree(int start, long long count[61], long long sumcount[61])
+{
+	int i, j, l;
+	long long tempcount[61];
+	long long sumtempcount[61];
+	for (i = 2; i <=k + 1 ; i++) {
+		count[i] = 0;
+		sumcount[i]= 1;
+	}
+	count[0] = 0;
+	sumcount[0] = 0;
+	count[1] = 1;
+	sumcount[1] = 1;
+    tree[start].visited = 1;
+	for (l = 0; l < tree[start].childrencount; l++){
+        if (tree[tree[start].children[l]].visited) continue;
+		processtree(tree[start].children[l], tempcount, sumtempcount);
+		for (i = 2; i <= k + 1 ; i++) {
+			j = i - 1;
+			if ( j > k + 1- i)
+				j = k + 1 - i;
+			count[i] += count[i] * sumtempcount[j];
+			if (j < i - 1)
+				j++;
+			count[i] += tempcount[i - 1] * sumcount[j];
+		}
+		for (i = 2; i <=k + 1 ; i++) {
+			sumcount[i] = sumcount[i - 1] + count[i];
+		}
+	}
+	result += sumcount[k + 1];
+}
+int main()
+{
+	int i, t, a, b;
+	long long tempcount[61];
+	long long sumtempcount[61];
+    scanf("%d",&t);
+	while (t--) {
+		result = 0;
+		scanf("%d %d",&n, &k);
+		for (i= 0; i < n; i++) {
+			tree[i].visited = 0;
+			tree[i].childrencount = 0;
+			tree[i].val = i;
+		}
+		for (i= 0; i < n - 1; i++) {
+			scanf("%d %d",&a, &b);
+//			a = i;
+//			b = i + 1;
+			tree[b].children[tree[b].childrencount++] = a;
+			tree[a].children[tree[a].childrencount++] = b;
+		}
+/*		for (i= 0; i < n; i++) {
+			if (tree[i].parent == -1) {
+				root = i;
+				break;
+			}
+		}*/
+ 
+        root = 0;
+		processtree(root, tempcount, sumtempcount);
+ 
+		printf("%lld\n", result);
+ 	}
+ 
+   return 0;
+}
+ 

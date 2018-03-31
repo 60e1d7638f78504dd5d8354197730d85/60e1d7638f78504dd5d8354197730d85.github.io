@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+class Prime
+{
+  	Scanner sc;
+  	int[] ar;
+  	public void getPrime()
+    {
+      	sc=new Scanner(System.in);
+      	int n=sc.nextInt();
+      	ar=new int[n];
+      	for(int i=0;i<n;i++)
+        {
+        	ar[i]=sc.nextInt();  	
+        }
+    }
+  	public void calculatePrime()
+    {
+      for(int i=0; i<ar.length; i++)
+      {
+        boolean isPrime = true;
+        for (int j=2; j<ar[i]; j++)
+        {	
+            if(ar[i]%j==0)
+            {
+                isPrime = false;
+                break;
+            }
+        }
+        if(isPrime&&ar[i]!=2)
+        {	
+          	System.out.println(ar[i]);
+        }
+        //System.out.println(ar[i]+ " "+isPrime);
+    }
+}
+}
+public class TestClass 
+{
+	 public static void main(String[] args) 
+     { 
+			Prime obj=new Prime();
+       		obj.getPrime();
+       		obj.calculatePrime();
+	}
+}

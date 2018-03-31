@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  public static void main(String[] args) {
+    Passkey s1=new Passkey();
+    s1.passKey();
+    
+  } 
+  }
+  
+  class Passkey {
+    public void passKey() {
+       Scanner sc=new Scanner(System.in);
+       String input1=sc.next();
+       char ch[]=input1.toCharArray();
+        ArrayList<Integer> l=new ArrayList<Integer>();
+        int sum1=0,sum2=0,mulmax=0,mulmin=0,dmulmin,dmulmax,output;       
+       for(char i: ch)
+        {
+            if(Character.isDigit(i))
+            {
+                l.add(i-48);
+            }
+        }
+        int max=Collections.max(l);      
+        int min=Collections.min(l); 
+     
+        String s=l.toString();
+        char chl[]=s.toCharArray();
+        
+        for(char j: chl)
+        {
+            if(Character.isDigit(j))
+            {
+            mulmax =max*Character.getNumericValue(j);
+            mulmin=min*Character.getNumericValue(j);
+            sum1=sum1+mulmax;
+            sum2=sum2+mulmin;
+            }
+        }
+        
+        dmulmax = sum1%9;
+        dmulmin=sum2%9;
+        
+        if(dmulmax==0|dmulmin==0)
+        {
+            output=9;
+        }
+       else if(dmulmax>dmulmin)
+        {
+             output=dmulmin;
+        }
+        else
+        {
+             output=dmulmax;
+        }
+            
+        double o=Math.pow(output,2);
+        int output1=(int)o;
+        System.out.println(output1);      
+ }
+  }

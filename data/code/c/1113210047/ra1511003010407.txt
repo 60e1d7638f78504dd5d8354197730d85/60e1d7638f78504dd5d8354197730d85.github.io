@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{int t=1,sum=0,a[100],r,i,n,x,c;
+scanf("%d",&n);
+ i=0;
+  while(i<n)
+  {scanf("%d",&a[i]);
+    sum=0;
+   t=1;
+   x=a[i];
+   c=0;
+   while(x>0)
+   {x=x/10;
+    c++;
+   }
+   t=pow(10,c-1);
+   while(a[i]>0)
+   {r=a[i]%10;
+   sum=sum+r*t;
+    a[i]=a[i]/10;
+    t=t/10;
+    //printf("%d",sum);
+   }
+   a[i]=sum;
+   i++;
+  }
+ i=n-1;
+ while(i>=0)
+ {printf("%d\n",a[i]);
+  i--;
+ }
+  
+	return 0;
+}

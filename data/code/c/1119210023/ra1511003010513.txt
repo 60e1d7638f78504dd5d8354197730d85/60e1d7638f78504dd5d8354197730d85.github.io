@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main(){
+	int t,r,c,i,j,count;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d %d",&r,&c);
+		char matrix[r][c];
+		for(i=0;i<r;i++)
+			scanf("%s",matrix[i]);
+		count=0;
+		for(i=0;i<r;i++)
+			for(j=0;j<c;j++){
+				if(matrix[i][j]=='s'||matrix[i][j]=='S'){
+					if(j+4<c&&((matrix[i][j+1]=='p'||matrix[i][j+1]=='P')&&(matrix[i][j+2]=='o'||matrix[i][j+2]=='O')&&(matrix[i][j+3]=='o'||matrix[i][j+3]=='O')&&(matrix[i][j+4]=='n'||matrix[i][j+4]=='N'))){
+						count++;
+					//	printf("location %d %d %c\n",i,j,matrix[i][j]);
+						break;}
+					else if(i+4<r&&((matrix[i+1][j]=='p'||matrix[i+1][j]=='P')&&(matrix[i+2][j]=='o'||matrix[i+2][j]=='O')&&(matrix[i+3][j]=='o'||matrix[i+3][j]=='O')&&(matrix[i+4][j]=='n'||matrix[i+4][j]=='N'))){
+						count++;
+					//	printf("column%d\n",count);
+						break;}
+				}
+			}
+		if(count!=0)
+			printf("There is a spoon!\n");
+		else
+			printf("There is indeed no spoon!\n");
+	}
+	return 0;
+}

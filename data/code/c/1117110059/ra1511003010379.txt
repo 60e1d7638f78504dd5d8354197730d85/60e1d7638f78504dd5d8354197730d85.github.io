@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int N,T,i;
+  int A[100],B[100],temp;
+  scanf("%d",&T);
+  while(T--)
+  {
+    scanf("%d",&N);
+    A[0]=0;
+    temp=0;
+    for(i=1;i<=N;i++){
+      scanf("%d",&A[i]);
+      A[i-1]=A[i]-A[i-1];
+    }
+    for(i=0;i<N;i++)scanf("%d",&B[i]);
+    
+    for(i=0;i<N;i++)
+    {
+      if(A[i]>=B[i])temp++;
+    }
+    printf("%d\n",temp);
+  }
+
+	return 0;
+}

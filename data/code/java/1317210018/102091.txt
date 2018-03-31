@@ -1,0 +1,33 @@
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
+import java.util.*;
+
+public class TestClass
+{
+  public static void main(String[] args)
+  {
+    try
+    {
+      Scanner sc = new Scanner(System.in);
+      String testString = sc.nextLine();
+      StringReader sr = new StringReader(testString);
+      StreamTokenizer st = new StreamTokenizer(sr);
+      st.whitespaceChars(',', ',');
+      st.wordChars(' ', ' ');
+      int currentToken = st.nextToken();
+      while (currentToken != StreamTokenizer.TT_EOF)
+      {
+        System.out.println(st.sval);
+        currentToken = st.nextToken();
+      }
+    }
+    catch (IOException e)
+    {
+      
+      e.printStackTrace();
+    }
+
+  }
+
+}

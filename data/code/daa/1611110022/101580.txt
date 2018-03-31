@@ -1,0 +1,59 @@
+
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+unsigned short int a[10000001]={0};
+int func(unsigned short int*a)
+{
+		int N=10000000;
+		int f=sqrt(N);
+		int u=0;
+		a[2]=0;
+		int j,i;
+		for(u=2;u<=f;u++)
+		{
+			
+			if(a[u]==0)
+			{
+				j=2;
+				i=u;
+				for(;;)
+				{
+					i=i*j;
+					if(i>N)
+					break;
+					a[i]=1;
+					i=u;
+					j++;
+
+				}
+			}
+		}
+		a[2]=0;
+		for(i=3;i<=N-2;i++)
+		{
+			if(a[i]==0&&a[i+2]==0)
+			{
+				a[i]=a[i-1]+1;
+			}
+			else
+			a[i]=a[i-1];
+		}
+		a[N]=a[N-1]=a[N-2];
+		return 0;
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	int t1;
+	func(a);
+	for(t1=0;t1<t;t1++)
+	{
+		int N,i;
+		scanf("%d",&N);
+		int count=0;
+		printf("%u\n",a[N-2]);
+	}
+	return 0;
+}

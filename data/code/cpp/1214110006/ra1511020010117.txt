@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+class bank
+{
+  public:
+  string name;
+  int accno;
+  string type;
+  int amount;
+  void setdetails(string a,int b,string c,int d)
+  {
+    name = a;
+    accno=b;
+    type=c;
+    amount=d;
+  }
+  void deposit(int x)
+  {
+    amount += x;
+  }
+  void withdraw(int y)
+  {
+    if(amount<y)
+    {
+      cout<<"Insufficient amount"<<endl;
+    }
+    else{
+    amount-=y;
+    }
+  }
+  void display()
+  {
+    cout<<"NAME="<<name<<endl;
+    cout<<"ACCNO="<<accno<<endl;
+    cout<<"TYPE="<<type<<endl;
+    cout<<"BALANCEAMOUNT="<<amount<<endl;
+    
+  }
+};
+int main()
+{
+	int a,d;
+  	int dep,with;
+  	string b,c;
+  	cin>>b;
+  	cin>>a;
+  	cin>>c;
+  	cin>>d;
+  	cin>>dep;
+  	cin>>with;
+  	bank b1;
+  	b1.setdetails(b,a,c,d);
+  	b1.deposit(dep);
+  	b1.withdraw(with);
+  	b1.display();
+	return 0;
+}

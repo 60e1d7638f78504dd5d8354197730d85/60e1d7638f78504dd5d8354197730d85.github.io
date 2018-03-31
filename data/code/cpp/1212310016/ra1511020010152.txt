@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    int t,n;
+    string name,last_move;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>name;
+        if(n==1)
+        {
+            int num;
+            cin>>num;
+            if(num%2==0)
+                cout<<"Chef\n";
+            else
+                cout<<"Chefu\n";
+        }
+        else
+        {
+            int arr[n];
+            for(int i=0;i<n;i++)
+                cin>>arr[i];
+            if(n%2==0 && name=="Chef")
+                cout<<"Chef\n";
+            else if(n%2==1 && name=="Chefu")
+                cout<<"Chef\n";
+            else
+            {
+                int spockmoves=(n-1)/2;
+                int counter=0;
+                for(int i=0;i<n;i++)
+                {
+                    if(arr[i]%2==1)
+                    {
+                        counter++;
+                        i++;
+                    }
+                }
+                if(counter<=spockmoves)
+                    cout<<"Chef\n";
+                else
+                    cout<<"Chefu\n";
+            }
+        }
+    }
+}

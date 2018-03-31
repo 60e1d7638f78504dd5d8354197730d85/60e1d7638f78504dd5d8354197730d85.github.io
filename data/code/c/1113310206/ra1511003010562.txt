@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<string.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+int i,n,k,p,sum,sum1,t;
+int l;
+char st[99];
+int tc;
+scanf("%d",&tc);
+ 
+while(tc--)
+{
+    sum=0;
+    sum1=0;
+    n=0;
+    t=0;
+    p=0;
+ 
+scanf("%s",st);
+scanf("%d",&n);
+l=strlen(st);
+for(i=0;i<l;i++)
+{
+    if(st[i]=='S')
+    sum+=1;
+    if(st[i]=='T')
+    sum+=2;
+}
+t=12*n;
+//for(x=1;x+sum<=n;x++)
+k=2;
+p=0;
+//printf("%d %d\n",t,sum);
+sum1=sum;
+while(t-sum>0)
+{
+//printf("%d %d\n",t,sum);
+p+=t-sum;
+//printf("%d\n",p);
+sum=sum1*k;
+++k;
+}
+ 
+printf("%d\n",p);
+}
+ 
+return 0;
+}
+ 

@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int a,i,b,c,j,d;
+	int f[50];
+	scanf("%d",&a);
+	 int h[50];
+	for(i=0;i<a;i++)
+	{ int p=0,w=0,k=0,l=0,s=0,q=0,e=0;
+		scanf("%d%d%d",&b,&c,&d);
+		
+		for(j=0;j<b;j++)
+		{
+			h[b-j-1]=c%2; f[b-j-1]=d%2;
+            d=d/2;			
+	       c=c/2;
+			if(h[b-j-1]==1)
+				p++;
+			 if(f[b-j-1]==1)
+				 s++;
+		}
+			 k=b-p;
+			 l=b-s;
+			 if(p<=l)
+				 e=p;
+			 else
+				 e=l;
+				 for(j=0;j<e;j++)
+					 h[j]=1;
+								
+if(s<=k)
+q=s;
+else
+q=k;	
+             			 for(j=e;j<e+q;j++)
+					 h[j]=1;
+				 for(j=e+q;j<b;j++)
+					 h[j]=0;
+				 for(j=b-1;j>=b-e-q;j--)
+					 w=w+(1<<j);
+				 printf("%d\n",w);
+				 
+					
+}
+
+	return 0;
+}

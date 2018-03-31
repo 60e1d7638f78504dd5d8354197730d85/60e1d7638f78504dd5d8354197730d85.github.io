@@ -1,0 +1,32 @@
+#include <stdio.h>
+  #include <string.h>
+
+  int main() {
+        char input[256];
+        int i = 0;
+
+        /* get the input string from the user */
+       // printf("Enter your input string:");
+        fgets(input, 256, stdin);
+        input[strlen(input)] = '\0';
+
+        /* convert uppercase to lowercase and vice versa */
+        while (input[i] != '\0') {
+
+                /* uppercase to lower case */
+                if (input[i] >= 'A' && input[i] <= 'Z') {
+                        input[i] = (input[i] - 'A') + 'a';
+                } else if (input[i] >= 'a' && input[i] <= 'z') {
+                        /* lowercase to uppercase */
+                        input[i] = (input[i] - 'a') + 'A';
+                }
+
+                i++;
+
+        }
+
+        /* print the result */
+        //printf("Converted Uppercase to Lowercase and Vice Versa!!\n");
+        printf("%s\n", input);
+        return 0;
+  }

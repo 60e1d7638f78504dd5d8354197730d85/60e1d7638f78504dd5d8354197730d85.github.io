@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+char st[200];
+int top=-1;
+void push(char a)
+{
+  ++top;
+  st[top]=a;
+}
+char pop()
+{
+  char c=st[top];
+  --top;
+  return c;
+}
+int main()
+{
+char s[100];  
+int t,i=0;
+  scanf("%d",&t);
+  while(t--)
+  {
+    top=-1;
+   scanf("%s",s);
+    for(i=0;i<strlen(s);i++)
+    {
+      if(s[i]=='(')
+      {
+       push(s[i]);
+      }
+      else if(s[i]==')')
+      {
+       pop();
+      }
+    }
+    if(top==-1)
+    {
+     printf("YES\n");
+    }
+    else
+    {
+    printf("NO\n");
+    }
+    
+  }
+  
+	return 0;
+}

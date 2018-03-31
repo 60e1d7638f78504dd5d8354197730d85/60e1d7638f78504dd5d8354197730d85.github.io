@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+int a[10][10];
+    int i, j, row, column, flag = 1;
+ 
+    
+    scanf("%d ", &row);
+   column=row;
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < column; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+   
+    
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < column; j++)
+        {
+            if (a[i][j]== 0 && a[j][i]== 0&&a[i][i]!=0)
+            {
+                flag = 0;
+                break;
+            }
+        }
+    }
+    if (flag == 0 )
+        printf("yes");
+    else
+        printf("no \n");
+	return 0;
+}

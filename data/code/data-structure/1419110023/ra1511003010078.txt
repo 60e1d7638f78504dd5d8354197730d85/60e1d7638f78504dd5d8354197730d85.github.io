@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+int n,m,i,a,b,x,y,res;
+char str[21];
+int D[1<<20],A[1<<20];
+void push(int x,int y)
+{
+  if(D[x]==-1)
+  {
+    D[x]=y;
+    A[b++]=x;
+  }
+}
+int main()
+{
+  scanf("%d%s",&n,str);
+  for(i=0;i<n;i++)
+    if(str[i]=='B')
+      m|=1<<i;
+  memset(D,-1,sizeof D);
+  push(m,0);
+  while(a<b)
+  {
+    x=A[a++];
+    for(i=0;i+2<=n;i++)
+    {
+      y=x;
+      y^=1<<i;
+      y^=1<<(i+1);
+      push(y,D[x]+1);
+    }
+    for(i=0;i+3<=n;i++)
+    {
+      y=x;
+      y^=1<<i;
+      y^=1<<(i+1);
+      y^=1<<(i+2);
+      push(y,D[x]+1);
+    }
+  }
+  if(D[0]==-1)
+    D[0]=1000000000;
+  if(D[(1<<n)-1]==-1)
+    D[(1<<n)-1]=1000000000;
+  if(D[0]<D[(1<<n)-1])
+    res=D[0];
+  else
+    res=D[(1<<n)-1];
+  printf("%d\n",res);
+  return 0;
+}

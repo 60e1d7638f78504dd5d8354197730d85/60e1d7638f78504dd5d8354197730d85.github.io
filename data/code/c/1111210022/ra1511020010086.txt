@@ -1,0 +1,25 @@
+      #include<stdio.h>
+            #include<string.h>
+             struct str
+              { char s[20];};
+     
+             float root(int x)
+               { float f=x/2.0;
+                  while(f*f-x>=.01||x-(f*f)>.01)
+                   {  if(f*f>x)
+                        { f=3*f/4;}
+                     else{f=5*f/4;}
+                   }
+                return f;}
+             
+             int main()
+                {
+                  int t;scanf("%d",&t);
+                  while(t--)
+                   {
+                     long long int a,b,c,d; scanf("%lld%lld%lld",&a,&b,&c); if(a>b) {d=a;a=b;b=d;}  if(b>c){ d=b;b=c;c=d; if(a>b){d=a;a=b;b=d;}}
+                       a=a%1000000007;b=(b-1)%1000000007;c=(c-2)%1000000007;
+                       a=a*b%1000000007;a=a*c%1000000007;
+                     printf("%lld\n",a);}
+             return 0;
+             } 

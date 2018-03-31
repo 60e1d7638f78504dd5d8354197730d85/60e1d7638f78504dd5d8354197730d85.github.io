@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<math.h>
+double distance(int x1,int y1,int x2,int y2)
+{
+      double dist=(x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
+      dist=sqrt(dist);
+      dist*=dist;
+      return dist;
+}
+int main()
+{
+    int n=0,count=0,x1=0,y1=0,x2=0,x3=0,y3=0,y2=0,i=0;
+    double dist1=0,dist2=0,dist3=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+                    scanf("%d%d%d%d%d%d",&x1,&y1,&x2,&y2,&x3,&y3);
+                    dist1=round(distance(x1,y1,x2,y2));
+                    dist2=round(distance(x2,y2,x3,y3));
+                    dist3=round(distance(x1,y1,x3,y3));
+                    if(dist1+dist2==dist3||dist1+dist3==dist2||dist2+dist3==dist1)
+                    count++;
+    }
+    printf("\n%d",count);
+    return 0;
+}
+    

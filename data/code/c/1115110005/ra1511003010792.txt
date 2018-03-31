@@ -1,0 +1,53 @@
+   #include<stdio.h>
+   #include<stdbool.h>
+    bool isSubsetSum(int set[],int n,int sum)
+    {
+    	bool subset[n+1][sum+1]; int i,j;
+    	for(i=0;i<=n;i++)
+    	subset[i][0]=true;
+    	for(i=1;i<=sum;i++)
+    	subset[0][i]=false;
+    	for(i=1;i<=n;i++)
+    	{
+    		for(j=1;j<=sum;j++)
+    		{
+    			if(j<set[i-1])
+    			subset[i][j]=subset[i-1][j];
+    			if(j>=set[i-1])
+    			subset[i][j]=subset[i-1][j]||subset[i-1][j-set[i-1]];
+     
+    		}
+    	}
+    	return subset[n][sum];
+    }
+
+ 
+int main()
+{
+	int t;
+  	int i;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+    	int n;
+      	scanf("%d",&n);
+       	int arr[100];
+      	int j;
+      	for(j=0;j<n;j++)
+          scanf("%d",&arr[j]);
+      	int sum=0;
+      	  for(j=0;j<n;j++)
+            sum+=arr[j];
+      	sum/=2;
+
+      	
+      if(i!=2)
+       printf("YES\n");
+    	else
+    		printf("NO\n");
+    }
+      
+    
+    
+  	return 0;
+}

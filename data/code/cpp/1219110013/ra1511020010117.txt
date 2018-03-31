@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class fraction
+{
+  public:
+  	int num,den;
+  	void set(int a,int b)
+    {
+      num=a;
+      den=b;
+    }
+  	fraction operator +(const fraction& b)
+    {
+         fraction f;
+      	 f.num = this->num*b.den + b.num * this->den;
+         f.den= this->den * b.den;
+      	 cout<<"The addition is=";
+         cout<<f.num<<"/";
+         cout<<f.den;
+    }
+};
+int main()
+{
+	fraction x,y,z;
+  	int a,b,c,d;
+  	cin>>a>>b>>c>>d;
+  	x.set(a,b);
+  	y.set(c,d);
+  	z= x+y;
+	return 0;
+}

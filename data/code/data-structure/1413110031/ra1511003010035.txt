@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+ 
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter out = new PrintWriter(System.out);
+        int p=Integer.parseInt(br.readLine());
+        double d[]=new double[p]; 
+        while(p>0)
+        {
+            String s[]=br.readLine().split(" ");
+            double p1=Double.parseDouble(s[0]),p2=Double.parseDouble(s[1]);
+            d[p-1]=(double)Math.sqrt((p1*p1)+(p2*p2));
+            p--;
+        }
+        Arrays.sort(d);
+        int q=Integer.parseInt(br.readLine());
+        while(q-->0)
+        {
+            double r=Double.parseDouble(br.readLine());
+            int mid,low=0,high=d.length;
+            while(low<high)
+            {
+                mid=(low+high)>>1;
+                if(d[mid]<=r) low=mid+1;
+                else high=mid;
+            }
+            out.println(low);
+        }
+        out.close();
+    }
+}

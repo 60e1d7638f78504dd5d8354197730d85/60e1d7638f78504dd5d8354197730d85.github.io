@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+class C1 {
+  	protected :
+  		float length, breadth;
+	public:
+  		C1(float l, float b) {
+          length = l;
+          breadth = b;
+          
+        }
+};
+
+class C2 : public C1 {
+  	public:
+      C2(float l, float b) : C1(l, b) {}
+      int getPerimeter() {
+          return ((length*breadth));
+      }
+
+};
+
+int main()
+{
+	float l, b;
+  	cin>>l>>b;
+  	C2 c(l, b);
+  	cout<<c.getPerimeter();
+	return 0;
+}

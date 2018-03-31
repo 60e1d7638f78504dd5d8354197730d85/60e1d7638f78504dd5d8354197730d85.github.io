@@ -1,0 +1,97 @@
+#include <bits/stdc++.h>
+#define F first
+#define S second
+#define pii pair<int,int>
+#define piii pair<int,pair<int,int> >
+#define mp make_pair
+#define pb push_back
+#define ll long long
+#define pll pair<ll,ll>
+#define plll pair<ll, pair<ll,ll> >
+#define ull unsigned long long
+using namespace std;
+ 
+const ll mod=1e9+7;
+int deg[1005][4], arr1[1005],ct, vis[100001],arr2[1005];
+vector<piii> E;
+ 
+int root(int x,int arr[])
+{
+while(arr[x]!=x)
+{
+arr[x] = arr[arr[x]];
+x = arr[x];
+}
+return x;
+}
+ 
+void Union(int a,int b,int arr[])
+{
+int ra = root(a,arr);
+int rb = root(b,arr);
+arr[ra] = arr[rb];
+}
+ 
+void mst(int n,int m,int gender,int arr[])
+{
+for(int i=0;i<m;i++)
+{
+int type = -E[i].F;
+int u = E[i].S.F;
+int v = E[i].S.S;
+if(vis[i] || type!=gender) continue;
+if(root(u,arr)!=root(v,arr))
+{
+Union(u,v,arr);
+deg[u][type]++;
+deg[v][type]++;
+ct++;
+vis[i] = 1;
+}
+}
+}
+ 
+int main()
+{
+int n,m,u,v,type,idx = 0;
+cin>>n>>m;
+E.clear();
+for(int i=0;i<=n;i++)
+arr1[i]=i, arr2[i]=i;
+for(int i=0;i<m;i++)
+{
+cin>>u>>v>>type;
+E.pb(mp(-type, mp(u,v)));
+}
+ct = 0;
+sort(E.begin(), E.end());
+//connect all 3rd type edges first
+for(int i=0;i<m;i++)
+{
+int u = E[i].S.F;
+int v = E[i].S.S;
+int w = -E[i].F;
+if(w==3 && root(u,arr1)!=root(v,arr1))
+{
+Union(u,v,arr1);
+Union(u,v,arr2);
+deg[u][3]++;
+deg[v][3]++;
+vis[i] = 1;
+ct++;
+}
+}
+mst(n,m,2,arr2);	//female
+mst(n,m,1,arr1);	//male
+bool flag = 0;
+for(int i=1;i<=n;i++)
+{
+if(deg[i][3] || (deg[i][1] && deg[i][2]))
+continue;
+flag = 1;
+break;
+}
+if(flag)
+cout<<-1;
+else cout<<m-ct;
+}

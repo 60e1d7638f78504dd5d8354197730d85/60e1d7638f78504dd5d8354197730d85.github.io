@@ -1,0 +1,36 @@
+#include <iostream>
+#include <ctype.h>
+using namespace std;
+
+void error(int a)throw(int){
+  	try{
+    if (cin.fail())
+      throw a ;
+    }
+  	catch(int a){
+      cout << "Exception Occurred " << endl ;
+      exit(0) ;
+    }
+}
+
+void error1(string a)throw(string){
+  	try{
+    if (isalpha(a[0]))
+      throw a ;
+    else
+      cout << "Valid Input" << endl ;
+    }
+  	catch(string a){
+     	cout << "Exception Occurred" ;
+    }
+}
+
+int main()
+{
+  	int a ;
+  	string str1 ;
+  	cin >> a >> str1 ;
+	error(a) ;
+  	error1(str1) ;
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h> 
+#include <stdlib.h>
+struct Details{
+  
+  int roll_no;
+  char name[20];
+  char course[10];
+  int fee;
+}*d[10];
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int i;
+  for(i=0;i<n;i++)
+  {
+    d[i]=(struct Details *) malloc(sizeof(struct Details));
+    scanf("%d",&d[i]->roll_no);
+    scanf("%s",d[i]->name);
+    scanf("%s",d[i]->course);
+    scanf("%d",&d[i]->fee);
+  }
+  printf("Details of the student");
+  printf("\n");
+  for(i=0;i<n;i++)
+  {
+    printf("Roll no:%d",d[i]->roll_no);
+    printf("\n");
+    printf("Name:%s",d[i]->name);
+    printf("\n");
+    printf("Course:%s",d[i]->course);
+    printf("\n");
+    printf("Fees:%d",d[i]->fee);
+    printf("\n");
+  }
+  return 0;
+}

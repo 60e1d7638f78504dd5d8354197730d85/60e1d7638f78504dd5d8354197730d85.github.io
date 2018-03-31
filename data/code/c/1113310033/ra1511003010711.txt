@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+//#include<conio.h> 
+int main ()	
+{
+int t, a, b,total,i,second,first, sum,temp;
+scanf ( "%d",&t);
+ 
+for(i=0;i<t;i++)	
+{
+		scanf ( "%d%d", & a, & b);
+		
+        if ( a == b)	{
+			printf ( "7\n");
+			continue;
+		}
+	    total = 0;
+		first = 1;
+		sum = 1;
+		while ( a != 0)	
+        {
+			if ( sum)	
+            {
+				if ( b / a == 1)
+					first = first ? 0 : 1;
+			
+            	else
+					sum = 0;
+			}
+			total += b / a - 1;
+			temp = a;
+			a = b % a;
+			b = temp;
+		}
+		second = (total >= 1) ? total - 1 : 0;
+		printf ( "%d\n", ( int) ( total * log10 ( 2)) + ( int) ( second * log10 ( 2)) + 8 - first);
+	}
+	return 0;
+} 

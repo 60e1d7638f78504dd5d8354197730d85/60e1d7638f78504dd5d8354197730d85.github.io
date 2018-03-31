@@ -1,0 +1,41 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+class pali
+{
+  	public:
+  	string s,t;
+  	void get()
+    {
+      	cin>>s;
+      	t=s;
+    }
+  	pali operator!()
+    {
+      	pali res;
+      	for(int i=0; i<s.length(); i++)
+        {
+          	if(islower(s[i]))
+            {
+               s[i]=toupper(s[i]);
+            }
+            else
+            {
+              	s[i]=tolower(s[i]);
+            }
+        }
+      	return res;
+    }
+  void disp()
+  {
+    	cout<<s;
+  }
+};
+int main()
+{
+  	pali p;
+  	p.get();
+    !p;
+  	p.disp();
+	return 0;
+}

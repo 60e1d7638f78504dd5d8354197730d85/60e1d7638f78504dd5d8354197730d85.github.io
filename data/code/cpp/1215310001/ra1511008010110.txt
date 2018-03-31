@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+void permutation(int n,int r)
+{
+  int mul=1;
+  for(int i=n;i>(n-r);i--)
+  {
+    mul = mul * i;
+  }
+  cout<<mul<<endl;
+}
+
+void combination(int n,int r)
+{
+  int mul1=1,mul2=1;
+  for(int i=n;i>(n-r);i--)
+  {
+    mul1 = mul1 * i;
+  }
+  for(int j=1;j<=r;j++)
+  {
+    mul2 = mul2 * j;
+  }
+  cout<<(mul1/mul2);
+}
+
+int main()
+{
+	int n,r;
+  	cin>>n>>r;
+  
+  	permutation(n,r);
+    combination(n,r);
+  	
+	return 0;
+}

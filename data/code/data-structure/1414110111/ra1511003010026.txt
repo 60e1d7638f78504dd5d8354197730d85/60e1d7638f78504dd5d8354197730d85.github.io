@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int a[25],n,f=0,i,j,k=0,l,prime[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+  {
+    for(j=2;j<a[i];j++)
+    {
+      if(a[i]%j==0)
+        f++;
+    }
+    if(f==0)
+      prime[k++]=a[i];
+    f=0;
+  }
+  if(k==0)
+    printf("No prime numbers found");
+  else
+  {
+    int p,q,temp;
+    for(p=0;p<k;p++)
+    {
+      for(q=p+1;q<k;q++)
+      {
+        if(prime[p]>prime[q])
+        {
+          temp=prime[p];
+          prime[p]=prime[q];
+          prime[q]=temp;
+        }
+      }
+    }
+    for(i=0;i<k;i++)
+      printf("%d ",prime[i]);
+  }
+	return 0;
+}

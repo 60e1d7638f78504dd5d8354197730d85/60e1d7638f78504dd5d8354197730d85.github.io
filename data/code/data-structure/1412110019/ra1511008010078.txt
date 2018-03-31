@@ -1,0 +1,30 @@
+#include <stdio.h>
+//#include <bits/stdc++.h>
+int getInvCount(int arr[], int n)
+{
+  int inv_count = 0,i,j;
+  for (i = 0; i < n - 1; i++)
+    for (j = i+1; j < n; j++)
+      if (arr[i] > arr[j])
+        inv_count++;
+ 
+  return inv_count;
+}
+ 
+/* Driver progra to test above functions */
+int main(int argv, char** args)
+{
+  int arr[100];
+  int n,i,j,t;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+  scanf("%d",&n);
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&arr[j]);
+    }
+      printf("%d \n", getInvCount(arr, n));
+  }
+  return 0;
+}

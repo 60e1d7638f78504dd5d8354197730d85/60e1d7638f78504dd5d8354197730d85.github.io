@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+	
+       Scanner sc=new Scanner(System.in);
+       double principalamount,rateofinterest,timeperiod;
+       principalamount=sc.nextDouble();
+       rateofinterest=sc.nextDouble();
+       timeperiod=sc.nextDouble();
+       simpleinterest(principalamount,rateofinterest,timeperiod);
+	}
+  static void simpleinterest(double principalamount,double rateofinterest, double timeperiod)
+  {
+   try
+       {
+         if(principalamount<=0||rateofinterest<=0||timeperiod<=0)
+         {
+         throw new IllegalArgumentException();
+         }
+       int interest =(int) (principalamount * timeperiod * rateofinterest)/100;
+         System.out.println(interest);
+       }
+       catch(IllegalArgumentException e)
+       {
+         System.out.println(e);
+       } 
+  }
+}

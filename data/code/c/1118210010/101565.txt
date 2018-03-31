@@ -1,0 +1,94 @@
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+ #define NDEBUG
+typedef struct {
+int age;
+int morning_chef; 
+int evening_chef; 
+} chef;
+ chef * construct_tree(int * numChefs) {
+char time;
+chef * tree;
+int i, parent, child;
+scanf("%d", numChefs);
+tree = (chef *)malloc(sizeof(chef) * *numChefs);
+if(tree == NULL) {
+perror("Insufficient memory for building tree. Will now abort!");
+exit(-1);
+}
+for(i = 0; i < *numChefs; ++i) {
+scanf("%d", &(tree + i)->age);
+(tree + i)->morning_chef = -1;
+(tree + i)->evening_chef = -1;
+}
+for(i = 1; i < *numChefs; ++i) {
+scanf("%d%d %c", &parent, &child, &time);
+if(time == 'M') {
+(tree + parent - 1)->morning_chef = child - 1;
+} else {
+(tree + parent - 1)->evening_chef = child - 1;
+}
+}
+return tree;
+}
+static inline char sameSign(int a, int b) {
+return (a * b < 0) ? 0 : 1;
+}
+ 
+// Returns true if two nodes represent the same chef
+static inline char isSimilarChef(chef * a, chef * b) {
+assert(a != NULL);
+assert(b != NULL);
+return a->age == b->age
+&& sameSign(a->morning_chef, b->morning_chef)
+&& sameSign(a->evening_chef, b->evening_chef);
+}
+char isSameChefStructure(chef * a, chef * b, int a_i, int b_i) {
+assert(a != NULL);
+assert(b != NULL);
+assert(a_i > -1);
+assert(b_i > -1);
+ char same;
+chef * c, * d;
+c = a + a_i; 
+d = b + b_i; 
+same = isSimilarChef(c, d);
+if(same && c->morning_chef > -1) {
+same = isSameChefStructure(a, b, c->morning_chef, d->morning_chef);
+}
+if(same && c->evening_chef > -1) {
+same = isSameChefStructure(a, b, c->evening_chef, d->evening_chef);
+}
+ return same;
+}
+char isSubTree(chef * b, chef * a, int a_length) {
+assert(a != NULL);
+assert(b != NULL);
+assert(a_length > 0);
+char isSub;
+int i;
+for(i = 0, isSub = 0; i < a_length && !isSub; ++i) {
+isSub = isSameChefStructure(a, b, i, 0);
+}
+return isSub;
+}
+inline void destroy_tree(chef ** tree) {
+assert(tree != NULL);
+assert(*tree != NULL);
+free(*tree);
+*tree = NULL;
+}
+ 
+int main() {
+chef * originalTree, * newTree;
+int queries, originalTreeSize, newTreeSize;
+originalTree = construct_tree(&originalTreeSize);
+fscanf(stdin, "%d", &queries);  for(; queries; --queries) {
+newTree = construct_tree(&newTreeSize);
+printf("%s\n", isSubTree(newTree, originalTree, originalTreeSize) ? "YES" : "NO");
+destroy_tree(&newTree);
+}
+destroy_tree(&originalTree);
+return 0;
+} 

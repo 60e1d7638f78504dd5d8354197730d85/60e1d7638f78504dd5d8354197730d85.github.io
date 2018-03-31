@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int n;
+  	scanf("%d", &n);
+  	int arr[n][n],row,col,low;
+  	for(row=0;row<n;row++)
+    {
+      	for(col=0;col<n;col++)
+        {
+          	scanf("%d", &arr[row][col]);
+        }
+    }
+  	low=1;
+  	for(row=0;row<n;row++)
+    {
+      	for(col=0;col<n;col++)
+        {
+          	if(col>row && arr[row][col]!=0)
+              	low=0;
+        }
+    }
+  	if(low==1)
+    {
+       	printf("yes");
+    }
+  	else
+      	printf("no");
+	return 0;
+}

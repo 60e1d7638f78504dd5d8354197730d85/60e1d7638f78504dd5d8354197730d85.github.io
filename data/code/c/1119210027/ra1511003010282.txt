@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int t,n,b=0,i=0,j,k,a[1000],sum;
+  	scanf("%d",&t);
+  	do{
+      scanf("%d",&n);
+      j=0;
+      do{
+        scanf("%d",&a[j]);
+      }while(++j<n);
+      j=0;
+      sum=0;
+      do{
+        k=j+1;
+        do{
+          if(a[j]<a[k]&&a[k]-a[j]>sum)
+            sum=a[k]-a[j];
+        }while(++k<n);
+      }while(++j<n-1);
+      if(sum==0)
+        printf("UNFIT\n");
+      else printf("%d\n",sum);
+    }while(++i<t);
+	return 0;
+}

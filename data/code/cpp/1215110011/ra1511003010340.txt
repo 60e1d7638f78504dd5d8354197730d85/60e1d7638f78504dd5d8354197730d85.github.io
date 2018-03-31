@@ -1,0 +1,38 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int abss(double x){
+	if(ceil(x)-x>0.0)
+		return ceil(x);
+	else
+		return ceil(x)+1.0;
+}
+
+class Complement{
+	int number;
+	public:
+		void setData(int x){
+			number=x;
+		}
+		int getData(){
+			return number;
+		}
+		int findNinesComplement(){
+			return (pow(10,abss(log10(number)))-1)-number;
+		}
+		int findTensComplement(){
+			return pow(10,abss(log10(number)))-number;
+		}
+
+};
+int main()
+{
+	Complement c;
+  	int n;
+  	cin>>n;
+	c.setData(n);
+	cout<<c.findNinesComplement()<<" ";
+	cout<<c.findTensComplement();
+	return 0;
+}

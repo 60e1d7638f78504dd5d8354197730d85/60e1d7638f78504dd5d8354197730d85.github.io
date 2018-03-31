@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+double num=1.0/120;
+void display(int n)
+{
+    if(0<=n && n<=9)printf("0%d",n);
+    else printf("%d",n);
+}
+void sort(int arr[],int n)
+{
+    int i,j,min,pos;
+    for(i=0;i<n;i++)
+    {
+        min=arr[i];pos=i;
+        for(j=i+1;j<n;j++)
+        {
+           if(arr[j]<min){min=arr[j]; pos=j;}
+        }
+        int temp=arr[i];
+        arr[i]=arr[pos];
+        arr[pos]=temp;
+    }
+}
+int main(void) {
+int T,i,j,x,y[8];
+double A,ans1,ans2,ans3,ans4;
+scanf("%d",&T);
+for(i=1;i<=T;i++)
+{
+    scanf("%lf",&A);
+    for(x=0;x<=11;x++)
+    {
+       ans1=(60*x-720+2*A)/11;
+       ans2=(60*x-2*A)/11;
+       ans3=(60*x+2*A)/11;
+       ans4=(60*x+720-2*A)/11;
+       y[0]=ans1;y[1]=ans2;y[2]=ans3;y[3]=ans4;y[4]=y[0]+1;y[5]=y[1]+1;y[6]=y[2]+1;y[7]=y[3]+1;
+       sort(y,8);
+       for(j=0;j<8;j++)
+       {
+           double angle=180-fabs(fabs(5.5*y[j]-30*x)-180);
+           if(j==0)
+           {
+           if(0<=y[j] && y[j]<=59 && fabs(angle-A)<=num){display(x);printf(":");display(y[j]);printf("\n");}
+           }
+           else
+           {
+           if(0<=y[j] && y[j]<=59 && y[j]!=y[j-1] && fabs(angle-A)<=num){display(x);printf(":");display(y[j]);printf("\n");}   
+           }
+       }
+      
+    }
+}
+	return 0;
+}  

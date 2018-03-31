@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define mod 1000000007
+#define p 23
+int main() {
+	ll t,n,d;
+	cin>>t;
+	while(t--)
+	{
+		scanf("%lld%lld",&n,&d);
+		if(n<10){
+			ll num=0;
+			for(int i=0;i<n;i++)
+		{
+			num*=10;
+			num+=d;
+		}
+	//	cout<<num<<" ";
+		ll ans=0,temp=1;
+		num *= num;
+	//	cout<<num<<" ";
+		//while(temp*10<num) temp*=10;
+		while(num)
+		{
+			ans*=23;
+			ans += num%10;
+			num/=10;
+			ans %= mod;
+		}
+		printf("%lld\n",ans);
+		continue;
+		}
+		
+		int a[2*n];
+		d*=d;
+		int c=0;
+		for(int i=1;i<=n;i++)
+		{
+			int z = 2*n - i;
+			a[z] = d*i + c;
+			c = a[z] / 10;
+			a[z] %= 10;
+		}
+		for(int i=n-1;i>=0;i--)
+		{
+			a[i] = d*i + c;
+			c = a[i] / 10;
+			a[i] %= 10;
+		}
+	//	for(int i=0;i<2*n;i++)
+	//	cout<<a[i]<<" ";
+		int i=2*n-1;
+		
+		ll ans = 0;
+		for(;i>0;i--)
+		{
+			ans *= p;
+			ans += a[i];
+			ans %= mod;
+		}
+		if(d>4) {
+			ans *= p;
+			ans += a[0];
+			ans %= mod;
+		}
+		printf("%lld\n",ans);
+	}
+	
+} 

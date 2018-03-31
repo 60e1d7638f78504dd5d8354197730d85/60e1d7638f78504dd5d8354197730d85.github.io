@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<string.h>
+#define max 100
+int main()
+{
+  char str[max],word[max];
+  int i,j,found,l,len;
+  scanf("%[^\n]s",str);
+  scanf("%s",word);
+  l=strlen(str);
+  len=strlen(word);
+  for(i=0;i<=l-len;i++)
+  {
+    found=1;
+    for(j=0;j<len;j++)
+    {
+      if(str[i+j]!=word[j])
+      {
+        found=0;
+        break;
+      }
+    }
+    if(found==1)
+      printf("%d\n",i);
+  }
+  return 0;
+}

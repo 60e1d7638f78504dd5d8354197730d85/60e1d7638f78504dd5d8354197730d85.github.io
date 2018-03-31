@@ -1,0 +1,96 @@
+#include<stdio.h>
+#define max(a,b) (a>b?a:b)
+#define min(a,b) (a<b?a:b)
+int main()
+{
+    int t,a,b,c,mx,mn,count1,count2;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d%d%d",&a,&b,&c);
+        if(c==a||c==b)
+        {
+            printf("1\n");
+            continue;
+        }
+        if(c>a&&c>b)
+        {
+            printf("-1\n");
+            continue;
+        }
+        mx=max(a,b);
+        mn=min(a,b);
+        a=b=count1=0;
+        while(1)
+        {
+            if(a==0)//fill a
+            {
+                ++count1;
+                a=mx;
+            }
+            else//empty b
+            {
+                b=0;
+                ++count1;
+            }
+            ++count1;
+            if(a==mx&&b==mn)
+            {
+                count1=-1;
+                break;
+            }
+                if(a>=mn-b) //transfer to b
+                {
+                    a=a-(mn-b);
+                    b=mn;
+                }
+                else
+                {
+                    b+=a;
+                    a=0;
+                }
+                if(a==c||b==c)
+            {
+                break;
+            }
+        }
+        count2=0;
+        a=b=0;
+        while(1)
+        {
+            if(a==0)//fill a
+            {
+                ++count2;
+                a=mn;
+            }
+            else//empty b
+            {
+                b=0;
+                ++count2;
+            }
+            ++count2;
+            if(a==mn&&b==mx)
+            {
+                count2=-1;
+                break;
+            }
+                if(a>=mx-b) //transfer to b
+                {
+                    a=a-(mx-b);
+                    b=mx;
+                }
+                else
+                {
+                    b+=a;
+                    a=0;
+                }
+                if(a==c||b==c)
+            {
+                break;
+            }
+        }
+        printf("%d\n",min(count1,count2));
+ 
+    }
+    return 0;
+}

@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+ 
+public class TestClass {
+ 
+	public static Long getSum2(Long[] A) {
+		int N = A.length;
+		Long S = 0l;
+		Long B = A[0];
+		Long twoPow = 1l;
+		for (int i = 1; i < N; i++) {
+			S = (2 * (S + A[i] * B)) % 1000000007l;
+			B = (B + twoPow * A[i]) % 1000000007l;
+			twoPow = (2 * twoPow) % 1000000007l;
+		}
+		return S;
+	}
+ 
+	public static void main(String[] args) throws IOException {
+		try {
+			Scanner in = new Scanner(System.in);
+			int T = in.nextInt();
+			for (int t = 0; t < T; t++) {
+				int N = in.nextInt();
+				Long[] A = new Long[N + 1];
+				for (int i = 0; i <= N; i++) {
+					A[i] = in.nextLong();
+				}
+				System.out.println(getSum2(A));
+			}
+			in.close();
+		} catch (Exception e) {
+			return;
+		}
+	}
+}  

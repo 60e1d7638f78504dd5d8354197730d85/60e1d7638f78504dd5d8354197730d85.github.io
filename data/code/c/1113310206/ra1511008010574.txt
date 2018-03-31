@@ -1,0 +1,33 @@
+#include<stdio.h>
+int
+main ()
+{
+  int t, n, i, len, scales, count, keys;
+  char str[101];
+  scanf ("%d ", &t);
+  while (t--)
+    {
+      scales = 0;
+      len = 0;
+      scanf (" %s", str);
+      scanf ("%d", &n);
+      for (i = 0; str[i] != '\0'; i++)
+	{
+	  if (str[i] == 'T')
+	    len += 2;
+	  else
+	    len += 1;
+	}
+      count = len;
+      keys = 12 * n;
+      while (count <= keys)
+	{
+	  scales += (keys - count);
+	  count += len;
+ 
+	}
+      printf ("%d\n", scales);
+ 
+    }
+  return 0;
+}

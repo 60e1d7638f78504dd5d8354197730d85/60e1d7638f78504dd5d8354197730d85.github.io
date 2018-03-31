@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool IsLetters(string input)
+{
+	for (int i = 0; i < input.size(); i++)
+	{
+		int uppercaseChar = toupper(input[i]); //Convert character to upper case version of character
+		if (uppercaseChar < 'A' || uppercaseChar > 'Z') //If character is not A-Z
+		{
+			return false;
+		}
+	}
+	//At this point, we have gone through every character and checked it.
+	return true; //Return true since every character had to be A-Z
+}
+
+
+int main() 
+{
+
+	string y;
+  	cin>>y;
+	if (IsLetters(y))
+	{
+		cout <<y.size();
+	}
+	else
+	{
+		cout <<"Invalid input";
+	}
+
+	return 0;
+}

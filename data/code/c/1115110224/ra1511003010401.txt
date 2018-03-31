@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#define N 100001
+int a[N];
+int fgpi() {
+	int result = 0, ch;
+	while (!isdigit(ch = getchar()));
+	do result = (result << 3) + (result << 1) + (ch - '0');
+	while (isdigit(ch = getchar()));
+	return result;
+}
+void fppi(int x, int ch) {
+	static char nums[10];
+	div_t d = {x, 0};
+	char *end = nums + 10, *start = nums + 10;
+	do {
+		d = div(d.quot, 10);
+		*--start = d.rem + '0';
+	} while (d.quot > 0);
+	while (start < end) putchar(*start++);
+	if (ch) putchar(ch);
+}
+int main(void) {
+	int n = fgpi(), x, q, i, max = 0;
+	while (n-- > 0) {
+		x = fgpi();
+		a[x]++;
+		if (x > max) max = x;
+	}
+	for (i = 2; i <= max; i++) {
+		a[i] += a[i - 1];
+	}
+	q = fgpi();
+	while (q-- > 0) {
+		x = fgpi();
+		fppi(a[x > max ? max : x], '\n');
+	}
+	return 0;
+}

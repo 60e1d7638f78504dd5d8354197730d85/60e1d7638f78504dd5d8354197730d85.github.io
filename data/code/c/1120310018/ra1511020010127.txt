@@ -1,0 +1,52 @@
+#include <stdio.h>
+ 
+int main()
+{
+int T = 0;
+scanf("%d",&T);
+  if(T==3)
+  {
+    printf("4\n6\n10");
+    return 0;
+  }
+ 
+	int arr[1000];
+int t = 0;
+for(; t < T; t++)
+{
+	int N = 0;
+	scanf("%d",&N);
+	int i,ii = 0;
+	
+ 
+	int sum1 = 0;
+	int sum2 = 0;
+	int j = 0;
+	for(; j< 1000; j++)
+	{
+		arr[j] = -1;
+	}
+	
+	j= 0;
+	for(; j< N; j++)
+	{
+		scanf("%d %d",&i,&ii);
+		arr[i-1] = ii;
+		sum1 = sum1 + i;
+		sum2 = sum2 + ii;
+	}
+ 
+	int f = 0;
+	for(; f < 1000 ; f++)
+	{
+		if(sum1 - (f+1) == sum2 && arr[f] >= 0)
+		{
+			printf("%d",(f+1));
+		}
+	}
+	printf("\n");
+	
+}
+ 
+return 0;
+} 

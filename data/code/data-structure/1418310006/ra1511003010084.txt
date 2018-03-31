@@ -1,0 +1,41 @@
+#include <stdio.h>
+char s[1001];
+int a[10];
+int cost[10];
+int min(int a, int b)
+{
+	return a>b?a:b;
+ 
+}
+int main() 
+{
+    int n,t,i,j,ct;
+    scanf("%d",&t);
+    while(t--)
+    {
+        for( i=0;i<=9;i++)
+            scanf("%d",&a[i]);
+        for( i=0;i<=9;i++)
+            cost[i]=a[i];
+        for( ct=1;ct<=10;ct++)
+        	for(i=0;i<=9;i++)
+	            for( j=0;j<=9;j++)
+	            {
+	                	int x=(i+j)%10;
+	                	if(cost[x]>(cost[i]+cost[j]))
+	                		cost[x]=cost[i]+cost[j];
+	            }
+        scanf("%d",&n);
+        scanf("%s",s);
+        int ans=0,i;
+        for( i=0;i<n;i++)
+            ans=ans+cost[s[i]-'0'];
+        printf("%d\n",ans);
+ 
+ 
+ 
+    }
+    
+ 
+    return 0;
+}

@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+    	char s[51];
+      int a[26],temp=97,j=0,l,i,max=0,sum=0,total=0,count=0;
+      scanf("%s",s);
+      l=strlen(s);
+      if(l%2==0)
+      {
+      for(temp=97;temp<123;temp++)
+      {
+      count=0;
+        for(i=0;i<l;i++)
+        {
+        if(temp==s[i])
+          count++;
+        }
+        a[j]=count;
+        j++;
+      }
+        for(i=0;i<26;i++)
+        {
+        if(max<a[i])
+          max=a[i];
+        }
+        for(i=0;i<26;i++)
+        {
+        sum=sum+a[i];
+        }
+        total=sum-max;
+        if(total==max)
+        {
+        printf("YES\n");
+        }
+        else
+        {
+        printf("NO\n");
+        }
+        
+      }
+      else
+      {
+        printf("NO\n");
+      }
+    }
+  
+  	
+	return 0;
+}

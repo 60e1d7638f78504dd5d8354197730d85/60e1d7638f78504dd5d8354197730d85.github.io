@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<limits.h>
+#include<ctype.h>
+inline void si(int* x)
+{
+	register char c = getchar_unlocked();
+	*x = 0;
+	int neg = 0;
+	for(; ((c<48 || c>57) && c != '-');c = getchar_unlocked());
+	if(c=='-') {
+        neg = 1;
+        c = getchar_unlocked();
+    }
+	for(; (c>47)&&(c<58);c = getchar_unlocked())
+		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+    if(neg)
+        *x = -*x;
+}
+inline void pi(int a)
+{
+    char snum[20];
+    int i=0;
+    char sign='+';
+    if(a<0)
+    {
+        sign='-';
+        a*=-1;
+    }
+    do
+    {
+        snum[i++]=a%10+48;
+        a=a/10;
+    }while(a!=0);
+    i=i-1;
+    if(sign=='-')
+        putchar_unlocked(sign);
+    while(i>=0)
+    putchar_unlocked(snum[i--]);
+    putchar_unlocked('\n');
+}
+int main()
+{
+    int n,i,j,m,k,x2,c,A[301][301][10]={};
+    si(&n);
+    for(i=1;i<=n;i++)
+        for(j=1;j<=n;j++)
+    {
+        si(&m);
+        for(k=0;k<10;k++)
+            A[i][j][k]=A[i-1][j][k]+A[i][j-1][k]-A[i-1][j-1][k];
+        A[i][j][m-1]++;
+    }
+    si(&n);
+    while(n--)
+    {
+        si(&i);
+        si(&j);
+        si(&x2);
+        si(&m);
+        for(k=c=0;k<10;k++)
+            if(A[x2][m][k]-A[i-1][m][k]-A[x2][j-1][k]+A[i-1][j-1][k]>0)
+                c++;
+        pi(c);
+    }
+    return 0;
+}   
+ 

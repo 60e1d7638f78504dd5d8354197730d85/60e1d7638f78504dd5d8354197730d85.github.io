@@ -1,0 +1,32 @@
+
+#include<iostream>
+#include<cstring>
+#include<string>
+using namespace std;
+ 
+int main()
+{
+	string s;
+	int t;
+	cin >> t;
+	bool valid;
+	for(int i = 1; i <= t; i++)
+	{
+		cin >> s;
+		valid = 1;
+		for(int j = 0; j < s.size(); j++)
+		{
+			if(j + 2 < s.size() && s[j] != s[j + 2])
+				valid = 0;
+			if(j + 1 < s.size() && s[j] == s[j + 1])
+				valid = 0;
+		}
+ 
+		if(valid)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+ 
+	return 0;
+} 

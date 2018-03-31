@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       String s = sc.nextLine();
+       try{
+       binToDecimal(s);
+       }
+       catch(NumberFormatException e){
+       System.out.println(e);
+       }
+	}
+  
+  static void binToDecimal(String s) throws NumberFormatException{
+    
+    if( s.matches("[01]+") ){
+    System.out.println(Integer.parseInt(s, 2));
+    }
+    else{
+    throw new NumberFormatException();
+    }
+    
+  }
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+   int t,i,j,a,b,k,index;
+   scanf("%d",&t);
+  while(t--)
+  { int max=-1;
+	scanf("%d",&a);
+    int arr[a];
+    int ar[a];
+    int freq[a];
+    for(i=0;i<a;i++)
+      scanf("%d",&arr[i]);
+    for(i=0;i<a;i++)
+    { k=0;
+      for(j=0;j<a;j++)
+      {
+        if(arr[i]==arr[j])
+        	k++;  
+      }
+     freq[i]=k;
+    }
+    for(i=0;i<a;i++)
+    {
+      if(max<freq[i])
+      {
+       
+        max=freq[i];
+        index=i;
+      }
+    }
+    printf("%d \n",arr[index]);
+  }
+	return 0;
+}

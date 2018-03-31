@@ -1,0 +1,18 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner (System.in);
+       	Map<String,String> map = new TreeMap<String,String>();
+       	String line   = sc.nextLine(); 
+		String keys[] = line.split("\\s+");
+       	int n = keys.length;
+       	for (int i = 0; i < n; i++){
+        	map.put(""+keys[i].charAt(0),""+keys[i].charAt(keys[i].length()-1));
+        }
+        Set<Map.Entry<String, String>> entries = map.entrySet();
+        for(Map.Entry<String,String> entry:entries){
+            System.out.println(entry.getKey()+" "+entry.getValue());
+        }
+	}
+}

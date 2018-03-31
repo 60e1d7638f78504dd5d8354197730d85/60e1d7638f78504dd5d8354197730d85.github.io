@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int strLen, wrdLen, found;
+  int i, j;
+  char str[100], wrd[10];
+  
+  scanf("%[^\n]s", str);
+  scanf("%s", wrd);
+  
+  strLen = strlen(str);
+  wrdLen = strlen(wrd);
+  
+  //printf("%s\n", str);
+  //printf("%s\n", wrd);
+  //printf("%d\n", strLen);
+  //printf("%d\n", wrdLen);
+  
+  for(i=0; i<=strLen - wrdLen; i++)
+    {
+
+        found = 1;
+        for(j=0; j<wrdLen; j++)
+        {
+
+            if(str[i + j] != wrd[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+
+        if(found == 1)
+        {
+            printf("%d\n", i);
+        }
+  }
+
+	return 0;
+}

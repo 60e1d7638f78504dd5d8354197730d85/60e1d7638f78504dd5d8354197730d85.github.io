@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define FASTIO(lvalue) (lvalue = getchar())
+#define FASTEX(lvalue, char) (lvalue = lvalue*10+(char-'0'))
+#define FASTEXS(lvalue, char) ((char == '-') ? (-1) : (FASTEX(lvalue, char), 1))
+#define FASTEXN(lvalue, sign, char) (lvalue = lvalue*10+sign*(char-'0'))
+#define getchar getchar_unlocked
+#define putchar putchar_unlocked
+#define REPEAT(token, num) for (token = 0; token < num; token++)
+typedef signed char byte;
+#define POPQUEUE(arr, len) memmove(arr, arr+1, len*sizeof(arr[0]))
+#define REMOVEELEM(arr, off, len) memmove(arr+off, arr+(off+1), (len-off)*sizeof(arr[0]))
+#define REMOVEELEMS(arr, off, len, num) memmove(arr+off, arr+(off+num), (len-off)*sizeof(arr[0]))
+#define SET(arr, e1, e2) ( \
+    (arr[0] = e1), \
+    (arr[1] = e2) \
+)
+//#define DEBUG
+#ifdef DEBUG
+#define PRINTF printf
+#else
+#define PRINTF(...) 1
+#endif
+ 
+typedef long test_cases;
+typedef double input;
+typedef short num_degrees;
+typedef byte time;
+typedef struct {
+    time hours;
+    time minutes;
+} fulltime;
+typedef byte num_answers;
+ 
+input degrees;
+num_degrees needed;
+fulltime answers[48];
+num_answers numAnswers;
+ 
+void calcAnswers(num_degrees curNeeded) {
+    fulltime curAnswer;
+    REPEAT(curAnswer.hours, 12) {
+        /*
+        (60*hour+minute)-12*minute=60*hour-11*minute=curNeeded
+        minute=(60*hour-curNeeded)/11
+        */
+        if ((60*curAnswer.hours >= curNeeded) && !((60*curAnswer.hours-curNeeded) % 11)) {
+            curAnswer.minutes = (60*curAnswer.hours-curNeeded)/11;
+            if (curAnswer.minutes >= 0 && curAnswer.minutes < 60) answers[numAnswers++] = curAnswer;
+        }
+    }
+}
+ 
+int main() {
+    test_cases numTestCases;
+    num_answers i;
+    scanf("%li", &numTestCases);
+ 
+    while (numTestCases--) {
+        numAnswers = 0;
+        scanf("%lf", &degrees);
+        if (fabs((round(2*degrees)/2)-degrees) < 1.0/120.0) {
+            needed = (num_degrees)round(2*degrees);
+            calcAnswers(needed);
+            calcAnswers(-needed);
+            calcAnswers(720-needed);
+            calcAnswers(needed-720);
+            inline int compareFulltimes(const void *ptr1, const void *ptr2) {
+                fulltime fulltime1 = *(fulltime*)ptr1, fulltime2 = *(fulltime*)ptr2;
+                if (fulltime1.hours != fulltime2.hours) return (fulltime1.hours > fulltime2.hours)-(fulltime1.hours < fulltime2.hours);
+                return (fulltime1.minutes > fulltime2.minutes)-(fulltime1.minutes < fulltime2.minutes);
+            }
+            qsort(answers, numAnswers, sizeof(fulltime), compareFulltimes);
+            REPEAT(i, numAnswers) {
+                if (!i || answers[i].hours != answers[i-1].hours || answers[i].minutes != answers[i-1].minutes) {
+                    putchar('0'+(answers[i].hours/10)), putchar('0'+(answers[i].hours % 10));
+                    putchar(':');
+                    putchar('0'+(answers[i].minutes/10)), putchar('0'+(answers[i].minutes % 10));
+                    putchar('\n');
+                }
+            }
+        }
+    }
+ 
+    exit(0);
+} 

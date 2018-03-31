@@ -1,0 +1,26 @@
+#include <stdio.h>
+struct date {
+  int h;
+  int m;
+  int s;
+};
+typedef struct date Date;
+int main()
+{
+	Date d1,d2;
+  	scanf("%d%d%d%d%d%d",&d1.h,&d1.m,&d1.s,&d2.h,&d2.m,&d2.s);
+  	Date d3;
+  	d3.h = d1.h + d2.h;
+  	d3.m = d1.m + d2.m;
+  	d3.s = d1.s + d2.s;
+  	if(d3.s>=60) {
+      d3.s = d3.s - 60;
+      d3.m ++;
+    }
+  	if(d3.m>=60) {
+      d3.m = d3.m - 60;
+      d3.h++;
+    }
+  	printf("%d hrs\n%d min\n%d sec",d3.h,d3.m,d3.s);
+	return 0;
+}

@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+ 
+char low(char pap){
+	if((pap-'a')>=0 && (pap-'a')<26)
+		return char(pap);
+	else
+		return char(pap+32);
+}
+ 
+char high(char pap){
+	if((pap-'a')>=0 && (pap-'a')<26)
+		return char(pap-32);
+	else
+		return char(pap);
+}
+ 
+int main(){
+	int tst;
+	cin>>tst;
+	cin.ignore();
+	while(tst--){
+		string pok;
+getline(cin, pok);
+		int la=pok.length();
+		int spa=0;
+		for(int a=0;a<la;a++){
+			if(pok[a]==' ')
+				spa++;
+		}
+		if(spa==0){
+			cout<<high(pok[0]);
+			for(int a=1;a<la;a++)
+				cout<<low(pok[a]);
+			cout<<endl;
+		}
+		else{
+			int a=0;
+			while(spa--){
+			cout<<high(pok[a])<<". ";
+			while(pok[a]!=' ')
+				a++;
+			a++;}
+			cout<<high(pok[a]);
+			a++;
+			while(a<la){
+				cout<<low(pok[a]);
+				a++;
+			}
+			cout<<endl;
+		}
+	}
+} 

@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+	int n; int cnt[100]; int c=0;
+  	char s[100];
+  	scanf("%d",&n);
+  	scanf("%s",s);
+  	int i,b=1;
+  	for(i=0;i<n;i++)
+      if(s[i]=='B')
+      {
+        c++;
+        if(s[i-1]=='B')
+        	{b++; c--;cnt[c-1]=b;}
+        else {
+            cnt[c-1]=b;
+            b=1;
+        }
+      }   
+      printf("%d\n",c);
+  		for(i=0;i<c;i++)
+          printf("%d ",cnt[i]);
+	return 0;
+}

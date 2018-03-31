@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <string.h>
+char ma[10000];
+char sub[10000];
+int forward()
+{
+	int i;
+	int j;
+	i = 0;
+	i = 0;
+	j = 0;
+	while(sub[i] != '\0'){
+		while(ma[j] != '\0'){
+			if(sub[i] == ma[j]){
+				while((sub[i] == ma [j])&&(sub[i] != '\0'&&ma[j] != '\0')){
+					i++;
+					j++;
+				}
+			}
+			else{
+				j++;
+			}
+		}
+		if(ma[j] == '\0')break;
+	}
+	if(sub[i] == '\0'){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+int revrse()
+{
+	int i;
+	int j;
+	i = strlen(ma)-1;
+	j = 0;
+	while(sub[j] != '\0'){
+		while(i >= 0){
+			if(ma[i] == sub[j]){
+				while((ma[i] == sub[j])&&(sub[j] != '\0'&& i >= 0)){
+					i--;
+					j++;
+				}
+			}
+			else{
+				i--;
+			}
+		}
+		if(i == -1){
+			break;
+		}
+	}
+	if(sub[j] == '\0')return 1;
+	else return 0;
+}
+ 
+ 
+int main()
+{
+	int t = 1;
+	scanf("%d",&t);
+	while(t--){
+	scanf("%s%s",ma,sub);
+	if(forward()&&revrse()){
+		printf("3\n");
+	}else if(forward()){
+		printf("1\n");
+	}else if(revrse()){
+		printf("2\n");
+	}else{
+		printf("0\n");
+	}
+	}
+	//printf("%d",forward()+revrse());
+	
+	return 0;
+ 
+}
+ 

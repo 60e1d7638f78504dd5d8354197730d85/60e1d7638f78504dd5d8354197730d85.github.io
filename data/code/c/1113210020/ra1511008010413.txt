@@ -1,0 +1,29 @@
+#include<stdio.h>
+#define MOD 1000000007
+int res[1005];
+int dyn[1005];
+ 
+void calc (void){
+	int i,j;
+	res[1]=1,res[2]=2;
+	dyn[1000]=2,dyn[999]=1;
+	
+	for(i=2;i<1001;i++){
+	
+		for(j=i,dyn[1000-j]=dyn[1000];  j>0;   j--)
+			dyn[1000-j+1] = (dyn[1000-j+1] + dyn[1000-j] ) % MOD;
+	
+		res[i+1]=dyn[1000];
+	}
+	return ;
+}int main (){
+	int TEST;
+	int no;
+	calc();
+	scanf("%d",&TEST);
+	while(TEST--){
+		scanf("%d",&no);
+		printf("%d\n",res[no]);
+	}
+	return 0;
+}

@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+       int T = Integer.parseInt(in.nextLine());
+		String[] input = new String[T];
+
+		int ix = T;
+		while ((T--) > 0) {
+			input[ix - T - 1] = (in.next());
+		}
+
+        
+        for (String s : input) {
+			int N = Integer.parseInt(s);
+			char[] c = new char[N];
+			Arrays.fill(c, '5');
+
+			StringBuilder val = new StringBuilder(new String(c));
+
+			String str = new String("33333");
+			int end = val.length();
+			int start = end - 5;
+			boolean found = false;
+			for (int i = val.length(); i >= 0; i -= 5) {
+
+				String s5 = val.indexOf("3") != -1 ? val.substring(0, val.indexOf("3")) : val.toString();
+				String s3 = val.indexOf("3") != -1 ? val.substring(val.indexOf("3")) : "";
+				if (s5.length() % 3 == 0 && s3.length() % 5 == 0) {
+					found = true;
+					break;
+				}
+
+				end = i;
+				start = (end - 5) > 0 ? end - 5 : 0;
+				if ((end - 5) < 0) {
+					break;
+				}
+
+				val.replace(start, end, str);
+			}
+
+			if (found) {
+				System.out.println(val);
+			} else {
+				System.out.println(-1);
+			}
+		}
+
+     }
+}

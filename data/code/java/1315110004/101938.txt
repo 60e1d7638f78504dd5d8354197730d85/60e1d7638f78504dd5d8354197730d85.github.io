@@ -1,0 +1,67 @@
+import java.util.*;
+  class Sample {
+  public double[] avg;
+  public int n,l;
+public void getDetails()
+{
+   Scanner sc=new Scanner(System.in);
+     n=sc.nextInt();
+    int sum=0;
+    avg=new double[n];
+    for(int i=0;i<n;i++)
+  {
+    int len=sc.nextInt();
+    int count=sc.nextInt();
+    int[] arr=new int[15];
+    for(int k=0;k<len;k++)
+    {
+      arr[k]=sc.nextInt();
+    }
+    
+   
+      int[] newar=new int[20];
+      int temp=count;
+      l=len;
+      while(temp>0){
+        temp--;
+      int max=arr[0];
+      int min=arr[0];
+      for(int j=0;j<len;j++)
+      {
+       if(max<arr[j])
+         max=arr[j];
+        if(min>arr[j])
+          min=arr[j];
+      }
+      
+        l=0;
+      for(int j=0;j<len;j++)
+      {
+        if((arr[j]!=max) &&(arr[j]!=min)){
+      newar[l++]=arr[j];
+        } 
+      }
+      }sum=0;
+      for(int j=0;j<l;j++)
+      {
+        if(count==0)
+          sum+=arr[j];
+        else
+        sum+=newar[j];
+      }
+       avg[i]=sum/(double)l;
+    
+  }
+}
+  public void displayDetails(){
+    for (int i=0;i<n;i++)
+    System.out.println(String.format("%.6f",avg[i]));
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample objname=new Sample();
+       objname.getDetails();
+       objname.displayDetails();
+	}
+}

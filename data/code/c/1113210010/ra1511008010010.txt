@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <limits.h>
+int main()
+{
+    long int t,n,m,s,i,j,k;
+    scanf("%ld",&t);
+    long int a[1001];
+    long int first[10001];
+    long int second[10001];
+    while(t--)
+    {
+        for(i=1;i<=n;i++)
+        {
+            first[i]=0;
+            second[i]=0;
+        }
+        scanf("%ld %ld %ld",&n,&m,&s);
+        for(i=1;i<=m;i++)
+        {
+            scanf("%ld",&a[i]);
+        }
+        first[s]=1;
+        for(i=1;i<=m;i++)
+        {
+            if(i%2!=0)
+            {
+                for(j=1;j<=n;j++)
+                    second[j]=0;
+            }
+            else
+            {
+                for(j=1;j<=n;j++)
+                    first[j]=0;
+            }
+ 
+            if(i%2!=0)
+            {
+                for(k=1;k<=n;k++)
+                {
+                    if(first[k]!=0)
+                    {
+                        if(k+a[i]<=n)
+                            second[k+a[i]]=(second[k+a[i]]+first[k])%1000000007;
+                        if(k-a[i]>=1)
+                            second[k-a[i]]=(second[k-a[i]]+first[k])%1000000007;
+                    }
+                }
+            }
+            else if(i%2==0)
+            {
+                for(k=1;k<=n;k++)
+                {
+                    if(second[k]!=0)
+                    {
+                        if(k+a[i]<=n)
+                            first[k+a[i]]=(first[k+a[i]]+second[k])%1000000007;
+                        if(k-a[i]>=1)
+                            first[k-a[i]]=(first[k-a[i]]+second[k])%1000000007;
+                    }
+                }
+            }
+          
+        }
+        if(m%2!=0)
+        {
+            for(j=1;j<=n;j++)
+                printf("%ld ",(second[j]%1000000007));
+          printf("\n");
+        }
+        else if(m%2==0)
+        {
+            for(j=1;j<=n;j++)
+                printf("%ld ",(first[j]%1000000007));
+          printf("\n");
+        }
+      
+    }
+    return 0;
+}

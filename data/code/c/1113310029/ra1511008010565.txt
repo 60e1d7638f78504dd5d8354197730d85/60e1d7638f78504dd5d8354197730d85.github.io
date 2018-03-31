@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+     
+     int t,i,j,l,c1,c2;
+     char s[152],num[10];
+    scanf("%d",&t);
+    getchar();
+    while(t--)
+    {
+        c1=c2=0;
+        fgets(s,152,stdin);
+        l=strlen(s);
+        for(i=0;i<l-3;i++)
+        {
+ 
+            j=0;
+            num[j++]=s[i];
+            num[j++]=s[i+1];
+            num[j++]=s[i+2];
+            num[j++]=s[i+3];
+            num[j]='\0';
+            if(strcmp(num,"SUVO")==0)
+            {
+                if(s[i+4]=='J' && s[i+5]=='I' && s[i+6]=='T')
+                    c2++;
+                else
+                    c1++;
+            }
+        }
+        printf("SUVO = %d\nSUVOJIT = %d\n",c1,c2);
+    }
+ 
+    return 0;
+}

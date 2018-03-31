@@ -1,0 +1,40 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Armstrong{
+  public:
+  	int num,number,sum=0,original;
+  	void getnum()
+    {
+     	cin>>num;
+      	original = num;
+    }
+  
+  	void calc()
+    {
+     	do{
+          number = num%10;
+          sum = sum + pow(number,3);
+          num /= 10;
+        }while(num>0);
+    }
+  
+};
+
+int main()
+{
+	Armstrong arm;
+  	arm.getnum();
+  	if(arm.num <0)
+      cout<<"Invalid Input";
+  	else
+    {
+      arm.calc();
+  	  if(arm.original == arm.sum)
+      	cout<<arm.original<<" is an Armstrong number";
+      else
+        cout<<arm.original<<" is not an Armstrong number";
+    }
+	return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100
+
+int main()
+{
+  char str[MAX_SIZE];
+  char word[MAX_SIZE];
+  int i,j,found;
+  int sl,wl;
+  scanf("%[^\t\n]s",str);
+  scanf("%s",word);
+  sl=strlen(str);
+  wl=strlen(word);
+  for(i=0; i<(sl-wl)+1; i++)
+  {
+    found = 1;
+    for(j=0; j<wl; j++)
+    {
+      if(str[i + j] != word[j])
+      {
+        found = 0;
+      }
+    }
+    if(found==1)
+      printf("%d\n", i);
+  }
+  return 0;
+}

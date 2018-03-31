@@ -1,0 +1,97 @@
+import java.io.*;
+import java.util.*;
+import static java.lang.Math.*;
+ 
+public class TestClass
+{
+    final long inf = Long.MAX_VALUE;
+    
+    long[] mn = new long[100010];
+    int[] x;
+    int n, q;
+    long a, b, c;
+ 
+    long gcd(long a,long b){ return b==0?a:gcd(b,a%b); }
+ 
+    long doIt()
+    {
+        long g = x[0];
+        for(int i=1;i<n;i++) g = gcd(g,x[i]);
+        if(g>1) return -1;
+ 
+        Arrays.sort(x);
+        mn[0] = 0;
+        for(int i=1;i<x[0];i++) mn[i] = inf;
+ 
+        for(int i=1;i<n;i++)
+        {
+            g = gcd(x[0],x[i]);
+            for(int r=0;r<g;r++)
+            {
+                long mnn = inf;
+                for(int p=r;p<=r+x[0]-g;p+=g) mnn = min(mnn,mn[p]);
+                if(mnn<inf) for(int j=0;j<x[0]/g;j++)
+                {
+                    mnn+=x[i]; int md = (int)(mnn%x[0]);
+                    mnn = min(mnn,mn[md]);
+                    mn[md]=mnn;
+                }
+            }
+        }
+ 
+        long mx = 0;
+        for(int i=0;i<x[0];i++) mx = max( mx, mn[i] );
+        if(mx==inf) return -1;
+        return mx - x[0];
+    }
+ 
+    void solve() throws Exception
+    {
+        int ntests = readInt();
+ 
+        while(ntests-->0)
+        {
+            n = readInt();
+            x = new int[n];
+            for(int i=0;i<n;i++) x[i] = readInt();
+ 
+            pw.println(doIt());
+ 
+            q = readInt();
+            a = readLong(); b = readLong(); c = readLong();
+            a%=c; b%=c;
+            long v = b;
+            int can = 0;
+            for(int i=0;i<q;i++)
+            {
+                v+=a; if(v>=c) v-=c;
+                if(v >= mn[(int)(v%x[0])] ) can++;
+            }
+            pw.println((q-can)+" "+can);
+        }
+ 
+        pw.flush();
+    }
+ 
+    public static void main(String[] args) throws Exception
+    {
+        new TestClass().solve();
+        System.exit(0);
+    }
+ 
+    BufferedReader bf = new BufferedReader( new InputStreamReader(System.in));
+    PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out));
+    StringTokenizer st = new StringTokenizer("");
+ 
+    int readInt() throws IOException
+    {
+        while(!st.hasMoreTokens()) st = new StringTokenizer(bf.readLine());
+        return Integer.parseInt(st.nextToken());
+    }
+ 
+    long readLong() throws IOException
+    {
+        while(!st.hasMoreTokens()) st = new StringTokenizer(bf.readLine());
+        return Long.parseLong(st.nextToken());
+    }
+}  

@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	char str[100];
+  	char *s=str;
+  	size_t n = 100;
+  	getline(&s,&n,stdin);
+  	int len;
+  	for(len=0;str[len]!='\0';len++);
+  	char *sub = (char *)malloc(sizeof(char)*len);
+  	scanf("%s",sub);
+  	for(len=0;sub[len]!='\0';len++);
+  	int i,cnt=0,p,flag,j=0;
+  	for(i=0;str[i]!='\0';i++)
+    {
+      flag = 0;
+      if(str[i] == sub[0])
+      {
+        p=i;
+        j=0;
+        flag = 1;
+        while(j<len)
+        {
+          if(str[p] != sub[j])
+          {
+            flag = 0;
+            break;
+          }
+          p++;
+          j++;
+        }
+        if(flag)
+          cnt++;
+      }
+    }
+  	printf("%s=%d",sub,cnt);
+	return 0;
+}

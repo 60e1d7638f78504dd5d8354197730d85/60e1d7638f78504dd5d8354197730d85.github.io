@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+class matrix
+{int row,col,m[10][10];
+ public:
+ void inp(int r1,int c1)
+ {
+   row=r1;
+   col=c1;
+   for(int i=0;i<row;i++)
+     for(int j=0;j<col;j++)
+       cin>>m[i][j];
+ }
+ void sum(matrix m1,matrix m2)
+ {
+   int met[10][10]={0};
+   for(int i=0;i<m1.row;i++)
+     for(int j=0;j<m1.col;j++)
+     {
+       met[i][j]=m1.m[i][j]+m2.m[i][j];
+     }
+   cout<<"The sum of the matrix is"<<endl;
+   for(int i=0;i<m1.row;i++)
+   { for(int j=0;j<m1.col;j++)
+     {
+       cout<<met[i][j]<<" ";
+     }
+    cout<<endl;
+ }
+ }
+};
+int main()
+{ matrix h1,h2;
+ int r1,r2,c1,c2;
+ cin>>r1>>c1>>r2>>c2;
+ if(r1==r2 &&c1==c2)
+ { h1.inp(r1,c1);
+  h2.inp(r2,c2);
+  h1.sum(h1,h2);
+ }
+ else
+   cout<<"Matrix cannot be added";
+ 	return 0;
+}

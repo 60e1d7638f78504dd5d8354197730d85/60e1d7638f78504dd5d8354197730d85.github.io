@@ -1,0 +1,38 @@
+#include <stdio.h>
+int inp()
+{ 
+        int noRead=0;
+        char p=getchar_unlocked();
+        for(;p<33;){p=getchar_unlocked();};
+        while(p>32)
+        {
+        noRead = (noRead << 3) + (noRead << 1) + (p - '0');
+        p=getchar_unlocked();
+        }
+        return noRead;
+        };
+    int main()
+    {
+        int t,lim,maxs,cnt,n;
+        t=inp();
+        while(t--)
+        {
+            n=inp();
+            maxs=inp();
+            n--;
+            lim=maxs;
+            cnt=1;
+            while(n--)
+            {
+                maxs=inp();
+                if(maxs<=lim)
+                {
+                    cnt++;
+                    lim=maxs;
+                }
+            }
+            printf("%d\n",cnt);
+        }
+
+	return 0;
+}

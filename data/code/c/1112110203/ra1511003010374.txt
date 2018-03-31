@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int k,i,l,t;
+    char s[1001];
+    scanf("%d",&t);
+    while(t--)
+    {
+        l=0;
+       int b[29]={0};
+        scanf("%s",s);
+        k=strlen(s);
+        for(i=0;i<k;i++)
+        {
+            b[s[i]-'a']++;
+        }
+        for(i=0;i<26;i++)
+        {
+            if(b[i]==k-b[i])
+            {
+              l=1;
+              break;
+            }
+        }
+        if(l==1)
+        printf("YES\n");
+        else
+            printf("NO\n");
+    }
+    return 0;
+ 
+}
+  

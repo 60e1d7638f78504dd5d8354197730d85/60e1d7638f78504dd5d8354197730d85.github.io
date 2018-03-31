@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+   int t,c,C,D,L,min=0,max=0,noleg=0,mincat=0;
+   scanf("%d",&t);
+   for(c=0; c<t; c++)
+   {
+     scanf("%d %d %d",&C,&D,&L);
+     noleg=C+D;
+     if(L%4==0)
+     {
+       mincat=C-2*D;
+       if(mincat>=0)
+        min=D*4+(C-2*D)*4;
+       else
+         min=D*4;
+       max=noleg*4;
+       if(L>=min && L<=max)
+         printf("yes");
+       else
+         printf("no");
+     }
+     else
+     printf("no");
+     
+     printf("\n");
+   }
+  
+	return 0;
+}

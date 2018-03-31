@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{int n,t,i,l,r;
+ scanf("%d",&t);
+ while(t--)
+ {
+   scanf("%d",&n);
+   int a,b;
+   int ar[2001];
+   for(i=0;i<2001;i++)
+     ar[i]=-i;
+   for(i=0;i<2001;i++)
+     ar[i]=-1;
+   for(i=1;i<=n;i++)
+   {
+     scanf("%d%d",&l,&r);
+     if(ar[r]<l)
+       ar[r]=l;
+   }
+   int count=0,pos=-1;
+   for(i=0;i<=2000;i++)
+   {
+     if(pos<ar[i])
+     {
+       ++count;
+       pos=i;
+     }
+   }
+   printf("%d\n",count);
+ }
+
+
+	return 0;
+}

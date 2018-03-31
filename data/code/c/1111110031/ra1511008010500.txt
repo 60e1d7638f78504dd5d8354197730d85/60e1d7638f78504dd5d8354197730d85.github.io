@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<math.h>
+
+int convertDtoO(int decimal);
+int convertDtoH(int decimal);
+int main()
+{
+  int decimal;
+  scanf("%d",&decimal);
+  printf("Decimal value:%d\n",decimal);
+  printf("Octal value:%d\n",convertDtoO(decimal));
+  convertDtoH(decimal);
+  return 0;
+}
+int convertDtoO(int decimal)
+{
+  int oct=0,i=1;
+  while(decimal!=0)
+  {
+    oct+=(decimal%8)*i;
+    decimal/=8;
+    i*=10;
+  }
+  return oct;
+}
+int convertDtoH(int decimal)
+{
+  char hex[50];
+  long quo,rem;
+  int i=1,j,temp;
+  quo=decimal;
+  while(quo!=0)
+  {
+    temp=quo%16;
+    if(temp<10)
+      temp=temp+48;
+    else
+      temp=temp+55+32;
+    hex[i++]=temp;
+    quo/=16;
+  }
+  printf("Hexadecimal value:");
+  for(j=i-1;j>=0;j--)
+    printf("%c",hex[j]);
+}
+  

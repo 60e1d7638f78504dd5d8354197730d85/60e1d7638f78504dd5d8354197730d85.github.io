@@ -1,0 +1,103 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+#define min(x,y) (x<y)?x:y 
+ 
+int gcd(int a,int b)
+{
+	int c;
+	while(b!=0)
+	{
+		c=a%b;
+		a=b;
+		b=c;
+	}
+	return(a);
+}
+ 
+int main()
+{
+	int a,b,c,sum;
+	int t;
+	int b1,b2;
+	int m1,m2;
+	
+	scanf("%d",&t);
+ 
+	while(t--)
+	{
+ 
+		scanf("%d""%d""%d",&a,&b,&c);
+ 
+		if(a<c&&b<c)
+		{
+			printf("-1\n");
+			continue;
+		}
+ 
+		if(a==c||b==c)
+		{
+			printf("1\n");
+			continue;
+		}
+		
+		if(c%gcd(a,b)!=0)
+		{
+			printf("-1\n");
+			continue;
+		}
+ 
+		if(c==0)
+		{
+			printf("0\n");
+			continue;
+		}
+ 
+ 
+		b1=0;b2=0;
+		m1=0;m2=0;
+		while(b1!=c&&b2!=c)
+		{
+			if(b1==0)
+				b1=a;
+ 
+			else if(b2==b)
+				b2=0;
+ 
+			else
+			{
+				sum=b1+b2;
+				b2=min(sum,b);
+				b1=sum-b2;
+			}
+ 
+			m1++;
+			//printf("%d %d",b1,b2);
+			
+		}
+ 
+ 
+		b1=0;b2=0;	
+		while(b1!=c&&b2!=c)
+		{
+			if(b2==0)
+				b2=b;
+ 
+			else if(b1==a)
+				b1=0;
+ 
+			else
+			{
+				sum=b1+b2;
+				b1=min(sum,a);
+				b2=sum-b1;
+			}
+ 
+			m2++;
+		}
+			
+ 
+		printf("%d\n",min(m1,m2));
+	}
+	return(0);
+}

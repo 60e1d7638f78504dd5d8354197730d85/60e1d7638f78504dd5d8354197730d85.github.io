@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+  int a,b;
+  char s1[10],s2[9],s3[9],s4[9],s5[9];
+  scanf("%d%d",&a,&b);
+  int right=a+1,left=0;
+  int pos;
+  while(b--)
+  {
+    scanf("%s%s%s%s %d",s1,s2,s3,s4,&pos);
+    if(s3[0]=='l' && pos<right) right=pos;
+    if(s3[0]=='r' && pos>left) left=pos;
+  }
+  
+  if(right-left-1<=0) printf("-1");
+  else printf("%d",right-left-1);
+
+	return 0;
+}

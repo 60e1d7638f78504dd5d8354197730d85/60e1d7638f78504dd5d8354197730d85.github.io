@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scan = new Scanner(System.in);
+        int row1 = scan.nextInt();
+        int col1 = scan.nextInt();
+        int[][] mat1 = new int[row1][col1];
+        for(int i=0; i<row1; i++)
+          for(int j=0; j<col1; j++)
+            mat1[i][j] = scan.nextInt();
+       
+       int row2 = scan.nextInt();
+       int col2 = scan.nextInt();
+       int[][] mat2 = new int[row2][col2];
+       for(int i=0; i<row2; i++)
+         for(int j=0; j<col2; j++)
+           mat2[i][j] = scan.nextInt();
+ 
+       int[][] pro = new int[row1][col2];
+       if(col1 == row2)
+       {
+         for(int i=0; i<row1; i++)
+         {
+           for(int j=0; j<col2; j++)
+           {
+             pro[i][j] = 0;
+             for(int k=0; k<row2; k++)
+               pro [i][j] += mat1[i][k] * mat2[k][j];
+             System.out.print(pro[i][j]+" ");
+           }
+         }
+       }
+       else{}
+       
+	}
+}

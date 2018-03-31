@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	char hex[16] = "0123456789abcdef", h[10];
+  	int i, k, d, o[10], c=0;
+  	scanf("%d", &d);
+  	printf("Decimal value:%d\n", d);
+  	k = d;
+  	while(k>0)
+    {
+    	o[i++] = k%8;
+      	k /= 8;
+      	c++;
+    }
+  	
+  	printf("Octal value:");
+  	for(i=c-1; i>=0; i--)
+    {
+    	printf("%d", o[i]);
+    }
+  	
+  	i=0;c=0;
+  	while(d>0)
+    {
+    	h[i++] = hex[d%16];
+      	d /= 16;
+      	c++;
+    }
+  
+  	printf("\nHexadecimal value:");
+  	for(i=c-1; i>=0; i--)
+    {
+    	printf("%c", h[i]);
+    }
+	return 0;
+}

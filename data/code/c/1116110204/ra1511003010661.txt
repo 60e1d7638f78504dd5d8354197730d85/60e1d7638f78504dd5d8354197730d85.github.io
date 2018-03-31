@@ -1,0 +1,36 @@
+#include<string.h>
+#include<stdio.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+	 char str[1000],pat[1000];
+	scanf("%s",str);
+	scanf("%s",pat);
+	int len1=strlen(str),c=0,i;
+	int len2=strlen(pat);
+	int count1=0,count2=0;
+	for(i=0;i<len1;i++)
+	{
+	if(str[i]==pat[c])  { count1++; c++;}}
+	c=0;
+	//printf("%d\n",count1);
+	for(i=len1-1;i>=0;i--)
+	{
+		if(str[i]==pat[c]) {count2++; c++ ;}
+		
+	}
+	//printf("%d\n",count2);
+	if(count2==len2&&count1==len2)
+	printf("3\n");
+	else if(count1==len2&&count2!=len2)
+	printf("1\n");
+	else if(count2==len2&&count1!=len2)
+	printf("2\n");
+	else
+	printf("0\n");
+	}
+return 0;	
+}   

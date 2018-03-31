@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int lcm(int a, int b)
+{
+  int temp=a;
+  while(1)
+  {
+    if(temp%a==0&&temp%b==0)
+      return temp;
+    else temp++;
+  }
+}
+int main()
+{
+	int t,n,a[10000],i,min,j;
+  	cin>>t;
+  while(t--)
+  {
+    min=999999;
+    cin>>n;
+    for(i=0;i<n;i++) cin>>a[i];
+    for(i=0;i<n;i++)
+    {
+      for(j=i+1;j<n;j++)
+      {
+        if(lcm(a[i],a[j])<min) min=lcm(a[i],a[j]);
+      }
+    }
+    cout<<min<<"\n";
+  }
+	return 0;
+}

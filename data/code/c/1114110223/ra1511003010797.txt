@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,no,first,last,count;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d",&no);
+      if(1<=no && no<=9)
+      {
+        printf("%d",no);
+      }
+      else
+      {
+        count = 1;
+        while(no!=0)
+        {
+          //printf("%d\n",no);
+          if(count == 1)
+          {
+             first = no%10;
+          }
+          //printf("Number: %d\n",no);
+          if(no/10 == 0)
+          {
+             last = no;
+          }
+          no = no/10;
+          count += 1;
+        }
+        printf("%d\n",first+last);
+      }
+    }
+	return 0;
+}

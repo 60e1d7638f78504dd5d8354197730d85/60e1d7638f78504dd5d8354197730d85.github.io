@@ -1,0 +1,84 @@
+#include <stdio.h>
+int main()
+{
+  long long int n,k,m,z,l,r,b,t,count,B;
+	
+	scanf("%lld",&t);
+	while(t--){
+	
+	
+	scanf("%lld%lld%lld%lld%lld%lld",&n,&m,&z,&l,&r,&b);
+	count=0;
+while(n--){
+	k=m;
+	if(l>=k){
+		count+=k;
+		l-=k;
+	
+		continue;
+	
+	}
+	else{
+	k-=l;
+	
+	count+=l;
+	l=0;
+ 
+}
+if(r>=k){
+	count+=k;
+	r-=k;
+ 
+	continue;
+}
+else{
+	k-=r;
+	
+	count+=r;
+	r=0;
+}
+B=k/2+1;
+if(b>=B){
+	k=k-B;
+	b-=B;
+	count+=B;
+	
+	if(k>=z)
+	{
+	k-=z;
+	count+=z;
+	z=0;
+	
+ }
+ else{
+ 	count+=k;
+ 	z-=k;
+ 	continue;
+ 	
+ }
+}
+else{
+	k-=b;
+	
+	count+=b;
+	b=0;
+	if(k>=z)
+	{
+	k-=z;
+	count+=z;
+	z=0;
+ }
+ else{
+ 	count+=k;
+ 	z-=k;
+ 	continue;
+ 	
+ }	
+	
+}
+}
+printf("%lld\n",count);
+ 
+    }
+	return 0;
+}

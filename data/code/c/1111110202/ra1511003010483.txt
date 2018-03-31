@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  char str[10];
+  scanf("%s",str);
+  int i;
+  int c=0;
+  for(i=0;i<10;i++)
+  {
+    //FOR 1st LETTER
+    if(((int)str[0]>=65 && (int)str[0]<=90)||((int)str[0]>=97 && (int)str[0]<=122))
+    {
+      c=c+0;
+    }
+    else
+    {
+      c=c+1;
+    }
+    //FOR TWO UNDERSCORES
+    if((str[i]=='_')&&(str[i+1]=='_'))
+    {
+      c=c+1;
+    }
+    else
+    {
+      c=c+0;
+    }
+  }
+  if(c>0)
+  {
+    printf("not a valid identifier");
+  }
+  if(c==0)
+  {
+  printf("valid identifier");
+  }
+  return 0;
+}

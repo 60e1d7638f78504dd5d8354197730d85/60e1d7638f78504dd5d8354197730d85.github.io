@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#define B 33
+#define C 127
+
+int main()
+{
+	char s[5000001];
+	int i, n;
+	scanf("%s", s);
+	n = strlen(s);
+
+	long degree[n];
+	long h1, h1r, h2, h2r, sum, p1, p2;
+	h1 = h1r = h2 = h2r = s[0] - 'a' + 1;
+	sum = 1;
+	degree[0] = 1;
+	p1 = p2 = 1;
+
+	for (i = 1; i < n; ++i) {
+		p1 = p1*B;
+		p2 = p2*C;
+
+		long c = s[i] - 'a' + 1;
+		h1  = h1 + c*p1;
+		h1r = h1r*B + c;
+		h2  = h2 + c*p2;
+		h2r = h2r*C + c;
+
+		if (h1 == h1r && h2 == h2r)
+			degree[i] = degree[(i-1)/2]+1;
+		else
+			degree[i] = 0;
+		sum = sum + degree[i];
+	}
+
+	printf("%lu\n", sum);
+	return 0;
+}

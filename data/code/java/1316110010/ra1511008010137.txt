@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+class Great
+{
+  public int great(int gcd,int lcm)
+  {
+    int a=gcd;
+    int b=lcm;
+    if (a == 0)
+        return b;
+
+    while (b != 0) {
+        if (a > b)
+            a = a - b;
+        else
+            b = b - a;
+    }
+
+    return a;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+	 Scanner sc=new Scanner(System.in);
+     int a=sc.nextInt();
+       while(a-->0)
+       {
+          int b=sc.nextInt();
+     	  int c=sc.nextInt();
+          Great objname=new Great();
+          int d=objname.great(b,c);
+          System.out.println(d+" "+(b*c)/d);
+       }
+	}
+}

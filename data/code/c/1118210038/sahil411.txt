@@ -1,0 +1,89 @@
+#include <stdio.h>
+ 
+#define m  1000000007
+ 
+long int ans[101][202];
+int hashe[102];
+int a;
+#define gc() getchar_unlocked();
+inline int read_int() {register char c = gc();while(c<'0' || c>'9') c = gc();int ret = 0; while(c>='0' && c<='9') {ret = 10 * ret + c - 48; c = gc();}return ret;}
+ 
+long long power(long long a,int b)
+{
+  long long ret=1;
+  while(b>0)
+  {
+  	if(b%2==1)
+  	ret=(ret*a)%m;
+  	
+  	a=(a*a)%m;
+  	b/=2;
+  }
+	return ret;
+}
+ 
+int main() 
+{
+	int t;
+	scanf("%d",&t);
+	
+	while(t--)
+	{
+		int n,i,j;
+		int maxim,minim;
+		n=read_int();
+		
+		for( i=0;i<n;i++)
+		{
+			a=read_int();
+			if(i==0)
+			{
+				hashe[a]++;
+				maxim=a;
+				minim=a;
+			}
+			else
+			{
+				for( j=minim;j<=maxim;j++)
+				{
+                    if(hashe[j]==0)
+                    continue;
+					
+					else
+					{
+						ans[a][a-j+100]=(ans[a][a-j+100]+ans[j][a-j+100]+hashe[j]);
+						if(ans[a][a-j+100]>=m)
+						ans[a][a-j+100]%=m;
+					}
+				}
+				hashe[a]++;
+				if(a>maxim)
+				maxim=a;
+				
+				if(a<minim)
+				minim=a;
+			}
+		}
+			long int anss=0;
+			for(i=1;i<=100;i++)
+			{
+				if(hashe[i]==0)
+				continue;
+				hashe[i]=0;
+			   for(j=0;j<=200;j++)
+			    {
+			    	if(ans[i][j]==0)
+			    	continue;
+		
+			    	anss=(anss+ans[i][j]);
+			    	
+			    	if(anss>=m)
+			    	anss-=m;
+			    	ans[i][j]=0;
+			    }
+			}
+			printf("%lld\n",(power(2,n)-1-anss-n+m)%m);
+		}
+	
+	return 0;
+}  

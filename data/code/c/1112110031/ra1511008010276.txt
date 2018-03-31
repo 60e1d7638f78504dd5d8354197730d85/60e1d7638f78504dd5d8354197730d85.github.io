@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+    char arr[8][8];
+  char ab[8] = {'B','B','B','B','B','B','B','B'};
+  int i,j,count=0,value=0,temp;
+    for(i=0;i<8;i++)
+    {
+      for(j=0;j<8;j++)
+      {
+       scanf(" %c",&arr[i][j]); 
+      }
+    }
+   for(i=0;i<8;i++)
+   { count=0;
+     temp='B';
+     for(j=0;j<8;j++)
+     {
+     if(arr[i][j]==temp)
+       count++;
+       else 
+         break;
+     }
+     if(count==8)
+       value++;
+   }
+  if(value!=8){
+  for(j=0;j<8;j++)
+  {
+    count=0;
+    temp='B';
+    for(i=0;i<8;i++)
+    {
+      if(arr[i][j]==temp)
+        count++;
+      else
+        break;
+    }
+    if(count==8){
+      value++;
+   // printf("*");
+    }
+  }
+  }
+  printf("%d",value);
+	return 0;
+}

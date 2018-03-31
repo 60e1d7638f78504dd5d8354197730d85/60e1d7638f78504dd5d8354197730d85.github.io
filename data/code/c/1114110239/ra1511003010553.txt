@@ -1,0 +1,37 @@
+#include<math.h>
+#include <stdio.h>
+int main()
+{
+  int s=0,p=0,i,c,j,n,d,a[50];
+  scanf("%d",&n);
+  if(n%2==0)
+  {
+    printf("%d\n",n/2);
+    d=n/2;
+    while(d--)
+      printf("2 ");
+  }
+  else
+  {
+    for(i=2;i<=n;i++)
+    {c=0;
+      for(j=2;j<sqrt(i);j++)
+        c++;
+      if(c==0 && s!=n)
+      {
+        s=s+i;
+        a[p]=i;
+        p++;
+      }
+    }
+    if(s==n)
+    {
+      printf("%d\n",p);
+      for(i=0;i<p;i++)
+        printf("%d ",a[i]);
+    }
+  }
+        
+
+	return 0;
+}

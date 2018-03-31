@@ -1,0 +1,121 @@
+#include<stdio.h>
+#include<stdlib.h>
+long **stack,temp,min;
+int *top;
+void push(int i,long num)
+{
+    long temp2;
+	if(i==0)
+	{
+		if(top[0]==-1)
+		min=num;
+	    else if(min>num)
+	    {
+	        temp2=min;
+	        min=num;
+	        num=2*num-temp2;
+	    }
+	}
+    top[i]++;
+    stack[i][top[i]]=num;
+}
+void pop(int i)
+{
+	if(i==0&&top[0]!=0&&stack[0][top[0]]<min)
+	{
+	    min=2*min-stack[0][top[0]];
+	}
+    top[i]--;
+}
+long binarysearch(long *stack,int start,int end,long key)
+{
+    int mid;
+    if(start<=end)
+    {
+        mid=(start+end)/2;
+        if(stack[mid]==key)
+        return key;
+        else if(stack[mid]>key)
+        return binarysearch(stack,start,mid-1,key);
+        else
+        {
+            temp=stack[mid];
+            return binarysearch(stack,mid+1,end,key);
+        }
+    }
+    else
+    return temp;
+}
+int main(void)
+{
+    int i,n,x,q,v,c;
+    long num;
+    scanf("%d",&n);
+    stack=(long**)calloc(n,sizeof(long*));
+    top=(int*)calloc(n,sizeof(int));
+    for(i=0;i<n;i++)
+    {
+        top[i]=-1;
+        scanf("%d",&x);
+        stack[i]=(long*)calloc(100000,sizeof(long));
+        while(x>=1)
+        {
+            scanf("%ld",&num);
+            push(i,num);
+            x--;
+        }
+    }
+    scanf("%d",&q);
+    while(q>=1)
+    {
+        scanf("%d",&v);
+        if(v==0)
+        {
+            scanf("%d",&i);
+            i--;
+            pop(i);
+        }
+        else if(v==1)
+        {
+            scanf("%d%ld",&i,&num);
+            i--;
+            push(i,num);
+        }
+        else
+        {
+            c=1;
+            for(i=0;i<n;i++)
+            {
+                if(top[i]==-1)
+                {
+                    c=0;
+                    printf("NO\n");
+                    break;
+                }
+            }
+            if(c==1)
+            {
+                c=0;
+                num=stack[n-1][top[n-1]];
+                for(i=n-2;i>=1;i--)
+                {
+                    if(stack[i][0]>=num)
+                    break;
+                    else
+                    {
+                        num=binarysearch(stack[i],0,top[i],num-1);
+                        c++;
+                    }
+                }
+				if(num>min)
+				c++;
+                if(c==n-1)
+                printf("YES\n");
+                else
+                printf("NO\n");
+            }
+        }
+        q--;
+    }
+    return 0;
+}

@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.Scanner;
+class Election{
+  	private int a[]={0,0,0,0,0,0};
+	public void getVotes(){
+    	Scanner sc=new Scanner(System.in);
+      	int n=sc.nextInt();
+      	int x;
+      	for(int i=0;i<n;i++)
+        {
+          x=sc.nextInt();
+          if((x<1)||(x>5))
+            x=0;
+          a[x]++;
+        }
+    }
+  	public void displayResults(){
+     for(int i=1;i<=5;i++)
+       System.out.println("Candidate "+ i +" are: "+a[i]);
+      System.out.println("Disqualified="+a[0]); 
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Election obj=new Election();
+       	obj.getVotes();
+        obj.displayResults();
+	}
+}

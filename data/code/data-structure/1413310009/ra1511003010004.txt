@@ -1,0 +1,54 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int i,n,m;
+	long long int sum=0,arr[100005];
+	scanf("%d %d",&n,&m);
+	long long int max = -1;
+	for(i=0;i<n;i++)
+	{
+		scanf("%lld",&arr[i]);
+		sum += arr[i];
+		if(arr[i] > max)
+			max = arr[i];
+	}
+	long long int l,r,mid;
+	int j,k;
+	l = max;
+	r = sum;
+	int flag = 0;
+	long long int pmid;
+	long long int psum,min = 10000000000005;
+	while(l <= r)
+	{
+		mid = (l+r)/2;
+		j = 0;
+		flag = 0;
+		k = 0;
+		while(k != m)
+		{
+			psum = 0;
+			while(psum <= mid && j < n)
+			{
+				psum += arr[j];
+				j = j + 1;
+			}
+			if(psum > mid)
+				j = j - 1;
+			k = k + 1;
+		}
+		//printf("%lld\n",mid);
+		if(j < n)
+			flag = -1;
+		if(flag == -1)
+			l = mid+1;
+		else
+			r = mid;
+		if(pmid == mid)
+			break;
+		pmid = mid;
+	}
+	printf("%lld\n",mid);
+	return 0;
+}

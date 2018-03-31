@@ -1,0 +1,50 @@
+#include <stdio.h>
+int compare(int *a,int *b,int n)
+{
+  int i=0;
+  while(n>=0)
+  {
+    if(a[i] != b[i])
+    {
+      return 0;
+      break;
+    }
+    i++;
+    n--;
+  }
+  return 1;
+}
+int main()
+{
+  int n,m,i;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  scanf("%d",&m);
+  int b[m];
+  for(i=0;i<m;i++)
+  {
+    scanf("%d",&b[i]);
+  }
+  int ans;
+  if(m!=n)
+  {
+    printf("Arrays are not equal");
+  }
+  else
+  {
+    ans = compare(a,b,n);
+  }
+  if(ans == 0)
+  {
+    printf("Arrays are not equal");
+  }
+  else
+  {
+    printf("Arrays are equal");
+  }
+	return 0;
+}

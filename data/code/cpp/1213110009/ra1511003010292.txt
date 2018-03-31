@@ -1,0 +1,29 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+  char str[50];
+  int v , s , c , d ;
+  cin.getline(str,49);
+  v = s = c = d = 0 ;
+  for(int i = 0 ; i<strlen(str) ; i++)
+  {
+    if(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
+      v++;
+    else
+    {
+      if(str[i] == ' ')
+        s++;
+      else
+      {
+        if((int)str[i] >=48 && (int)str[i]<=57)
+          d++;
+        else
+          c++;
+      }
+    }
+  }
+  cout<<"Vowels:"<<v<<"\nConsonants:"<<c<<"\nWhitespaces:"<<s<<"\nDigits:"<<d;
+	return 0;
+}

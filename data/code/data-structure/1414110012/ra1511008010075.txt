@@ -1,0 +1,81 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+void merge (int a[],int l,int mid,int r)
+{
+	int na[10],i,j,k=l;
+	
+	for(i=l,j=mid+1;((i<=mid)&& (j<=r));)
+	{
+		if(a[i]>=a[j])
+		{
+			na[k]=a[i];
+			i++;
+			
+		}
+		else
+		{	na[k]=a[j];
+			j++;
+		
+			
+		}
+			k++;
+	}
+	
+	while(i<=mid)
+	{
+		na[k]=a[i];
+		k++;
+		i++;
+	}
+	
+	while(j<=r)
+	{
+		na[k]=a[j];
+		k++;
+		j++;
+	}
+	
+	for(i=l;i<k;i++)
+	{
+	
+	a[i]=na[i];
+	//cout<<a[i]<<" ";
+	}
+	//cout<<endl;
+	
+}
+ 
+void mergesort(int a[],int l,int r)
+{	
+	int mid;
+	if(l<r)
+	{
+		mid=(l+r)/2;
+		mergesort(a,l,mid);
+		mergesort(a,mid+1,r);
+	//	cout<<l<<mid<<r<<endl;
+		merge(a,l,mid,r);
+	}
+}
+ int N=100000;
+int main()
+{
+	int a[N],i,j,t,n,m;
+	cin>>t;
+    while(t--)
+    {   cin>>n>>m;
+    	for(i=0;i<n;i++)
+    	cin>>a[i];
+    	
+    	for(j=i;j<m+n;j++)
+    	cin>>a[j];
+    	
+    	//mergesort(a,0,n+m-1);
+        sort(a,a+m+n);
+    	for(i=n+m-1;i>=0;i--)
+    	cout<<a[i]<<" ";
+    	cout<<endl;
+    }
+	return 0;
+}

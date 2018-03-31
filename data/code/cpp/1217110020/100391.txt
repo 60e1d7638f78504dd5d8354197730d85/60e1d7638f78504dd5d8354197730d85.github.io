@@ -1,0 +1,196 @@
+#include<iostream>
+
+
+#include<bits/stdc++.h>
+
+
+using namespace std;
+
+
+bool prime[1000000];
+
+
+bool dp[1001110];
+
+
+vector<int> v;
+
+
+void pre()
+
+
+{
+
+
+       prime[1]=1;
+
+
+       dp[2]=1;
+
+
+       for(int i=3;i<=1000004;i++)
+
+
+       {
+
+
+           if(dp[i]==0)
+
+
+           { 
+
+
+                   dp[i+1]=1;
+
+
+                   for(int j=2*i;j<=1000004;j+=i)
+
+
+                   dp[j]=1;
+
+
+    }
+
+
+    }
+
+
+      for(int i=2;i<=10000;i++)
+
+
+       {
+
+
+              if(!prime[i])
+
+
+              {
+
+
+               v.push_back(i);
+
+
+                    for(int j=2*i;j<=10002;j+=i)
+
+
+                    prime[j]=1;
+
+
+       }
+
+
+    }
+
+
+}
+
+
+int main()
+
+
+{
+
+
+ pre();
+
+
+ int t;
+
+
+ cin>>t;
+
+
+ int l=v.size();
+
+
+ while(t--)
+
+
+ {
+
+
+    int n;
+
+
+    scanf("%d",&n);
+
+
+    if(n<=1000000)
+
+
+    {
+
+
+       if(dp[n])
+
+
+       printf("Mike\n");
+
+
+       else 
+
+
+       printf("Tom\n");
+
+
+    }
+
+
+    else
+
+
+    {
+
+
+          int r=sqrt(n);
+
+
+          bool f=0;
+
+
+          for(int i=0;i<l && v[i]<=r;i++)
+
+
+          {
+
+
+              if(n%v[i]==0)
+
+
+              {
+
+
+                 f=1;
+
+
+                 break;
+
+
+        }
+
+
+       }
+
+
+       if(f)
+
+
+       printf("Mike\n");
+
+
+       else 
+
+
+       printf("Tom\n");
+
+
+    }
+
+
+ }
+
+
+ return 0;
+
+
+}

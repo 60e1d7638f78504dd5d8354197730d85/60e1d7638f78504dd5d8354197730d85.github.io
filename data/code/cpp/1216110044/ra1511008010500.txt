@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int gcd(long a,long b)
+{
+    while(true)
+    {
+        if(a==0) return b;
+        b%=a;
+        if(b==0) return a;
+        a%=b;
+    }
+}
+long long lcm(int a,int b)
+{
+    return((a/gcd(a,b))*(long long)b);
+}
+int main()
+{
+    int t;
+    cin>>t;
+    long long ans;
+    while(t--){
+    int N;
+    cin>>N;
+    int A[N];
+    for(int i=0;i<N;i++)
+            cin>>A[i];
+    ans=lcm(A[0],A[1]);
+    for(int i=2;i<N;i++)
+    {
+    	if(A[i]>=ans) continue;
+        for(int j=0;j<i;j++)
+        {if(A[j]>=ans) continue;
+            long long k=lcm(A[j],A[i]);
+            if(k<ans)  ans=k;
+        }
+    }
+    cout<<ans<<endl;
+ 
+    }
+  
+    return 0;
+}  

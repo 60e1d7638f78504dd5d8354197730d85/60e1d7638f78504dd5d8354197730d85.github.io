@@ -1,0 +1,22 @@
+#include <stdio.h>
+char * strrev(char s[])
+{
+  int i=0,size=0;
+  char c;
+  for(i=0;s[i]!='\0';i++)
+    size++;
+  for(i=0;i<size/2;i++)
+  {
+    c=s[i];
+    s[i]=s[size-i-1];
+    s[size-i-1]=c;
+  }
+  return s;
+}
+int main()
+{
+	char s[50];
+  scanf("%s",s);
+  printf("%s",strrev(s));
+	return 0;
+}

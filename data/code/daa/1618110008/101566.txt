@@ -1,0 +1,53 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int match(char*, char*);
+ 
+int main()
+{
+   char a[100], b[100];
+   int position;
+  cin.getline(a,100);
+  cin.getline(b,100);
+  //cout<<a<<b;
+   //scanf("%[^\n]s", &a);
+   //scanf("%s",b);
+    //printf("%s",a);
+   position = match(a, b);
+ 
+   if(position!=-1)
+      cout<<"Found at location "<< position+1;
+   else
+      cout<<"Not found.\n";
+ 
+   return 0;   
+}
+ 
+int match(char text[], char pattern[]) {
+  int c, d, e, text_length, pattern_length, position = -1;
+ 
+  text_length    = strlen(text);
+  pattern_length = strlen(pattern);
+ 
+  if (pattern_length > text_length) {
+    return -1;
+  }
+ 
+  for (c = 0; c <= text_length - pattern_length; c++) {
+    position = e = c;
+ 
+    for (d = 0; d < pattern_length; d++) {
+      if (pattern[d] == text[e]) {
+        e++;
+      }
+      else {
+        break;
+      }
+    }
+    if (d == pattern_length) {
+      return position;
+    }
+  }
+ 
+  return -1;
+}

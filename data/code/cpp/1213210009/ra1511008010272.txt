@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	string s[5],temp;
+	for(int i=0;i<5;i++) {
+      getline(cin,s[i]);
+    }
+  int i,j;
+  for(i=0;i<4;i++) {
+    for(j=0;j<4-i;j++) {
+      if(s[j].compare(s[j+1])>0) {
+        temp = s[j];
+        s[j] = s[j+1];
+        s[j+1] = temp;
+      }
+    }
+  }
+  for(i=0;i<5;i++) {
+    cout<<s[i]<<endl;
+  }
+	return 0;
+}

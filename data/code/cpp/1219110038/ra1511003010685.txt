@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class swapilo{
+	int var;
+  public:
+  void init(int aaa){	
+  	var=aaa;
+  	}
+  	swapilo operator <(swapilo obj){
+    	swapilo temp;
+      	temp.var=var;
+      	var=obj.var;
+      return temp;
+    	}
+	void print(){
+		cout<<var<<" ";	
+	}
+};
+int main()
+{int a,b;
+ cin>>a>>b;
+ swapilo obj1;
+ obj1.init(a);
+ swapilo obj2;
+ obj2.init(b);
+ obj2=obj1<obj2;
+ obj1.print();
+ obj2.print();
+
+	return 0;
+}

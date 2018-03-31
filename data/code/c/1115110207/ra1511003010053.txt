@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int n,a[100],fl,sl,i;
+  float avg=0;
+  scanf("%d",&n);
+  
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  
+  fl=0;
+  sl=0;
+  
+  for(i=0;i<n;i++)
+  {
+    if (a[i] > fl)
+        {
+            sl = fl;
+            fl = a[i];
+        }
+        else if (a[i] > sl && a[i] != fl)
+            sl = a[i];
+  }
+  avg=(float)(fl+sl)/2;
+      
+  printf("First Largest=%d\nSecond Largest=%d\nAverage=%.1f",fl,sl,avg);
+  
+  
+  
+  
+  
+
+	return 0;
+}

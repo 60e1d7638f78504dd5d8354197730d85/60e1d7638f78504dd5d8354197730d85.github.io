@@ -1,0 +1,34 @@
+#include <iostream>
+#include <cctype>
+#include <cstring>
+using namespace std;
+bool isvowel(char c) {
+  if(c=='A' || c=='a' || c=='E' || c=='e' || c=='I' || c=='i' || c=='O' || c=='o' || c=='U' || c=='u')
+    return true;
+  else
+    return false;
+}
+int main()
+{
+	char c[100];
+  	int vowel=0,consonant=0,digit=0,space=0;
+  	cin.getline(c,100);
+  	for(int i=0;i<strlen(c);i++) {
+      if(isalpha(c[i])) {
+        if(isvowel(c[i])) {
+          vowel++;
+        }
+        else 
+           consonant ++;
+      }
+      else if (isdigit(c[i])) {
+        digit++;
+      }
+      else space++;
+    }
+  	cout<<"Vowels:"<<vowel;
+  	cout<<"\nConsonants:"<<consonant;
+  	cout<<"\nWhitespaces:"<<space;
+  	cout<<"\nDigits:"<<digit;
+	return 0;
+}

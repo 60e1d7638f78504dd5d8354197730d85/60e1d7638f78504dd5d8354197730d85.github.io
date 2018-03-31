@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int i, arr[100], n, votes[6];
+  
+  for(i = 0; i < 6; i++)
+    votes[i] = 0;
+  
+  scanf("%d",&n);
+  for(i = 0; i < n; i++)
+  {
+    scanf("%d",&arr[i]);
+    switch(arr[i])
+    {
+      case 1: votes[0]++;
+      		  break;
+      case 2: votes[1]++;
+              break;
+      case 3: votes[2]++;
+        	  break;
+      case 4: votes[3]++;
+        	  break;
+      case 5: votes[4]++;
+        	  break;
+      default:votes[5]++;
+    }
+  }
+  for(i = 0; i < 5; i++)
+    printf("\nCandidate %d=%d",i+1,votes[i]);
+  printf("\nSpoil Ballot=%d",votes[5]);
+  return 0;
+}

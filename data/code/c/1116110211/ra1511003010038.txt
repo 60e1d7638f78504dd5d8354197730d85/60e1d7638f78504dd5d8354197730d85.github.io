@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main()
+{
+  char str[100001];
+  int t,q,k,n,i,l,j,r,outz,out1,inz,in1;
+  scanf("%d",&t);
+  long long count;
+  while(t--)
+  {
+    scanf("%d%d%d",&n,&k,&q);
+    scanf("\n%s",str);
+    while(q--)
+    {
+      count=0;
+      outz=out1=0;
+      scanf("%d%d",&l,&r);
+      for(i=l-1;i<r;i++)
+      {
+        if(str[i]=='0')
+          outz++;
+        else
+          out1++;
+        if(outz<=k&&out1<=k)
+          count++;
+        inz=in1=0;
+        for(j=l-1;j<i;j++)
+        {
+          if(str[j]=='0')
+            inz++;
+          else
+            in1++;
+          if((outz-inz)<=k&&(out1-in1)<=k)
+            count++;
+        }
+      }
+      printf("%lld\n",count);
+    }
+  }
+  return 0;
+}

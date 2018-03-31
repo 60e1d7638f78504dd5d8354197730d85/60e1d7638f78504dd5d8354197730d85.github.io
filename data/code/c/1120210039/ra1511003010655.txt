@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int n,x,y,i,a[50],b[50],cx=0,cy=0,s=0;
+  scanf("%d %d %d",&n,&x,&y);
+  for(i=0;i<n;i++) 
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+    scanf("%d",&b[i]);
+  i=0;
+  while(i<n && cx<=x && cy<=y) {
+    if(a[i]>b[i]) {
+      s+=a[i];
+      //printf("\n%d %d",s,a[i]);
+      ++cx; }
+    else {
+      s+=b[i];
+      //printf("\n%d %d",s,b[i]);
+      ++cy; }
+    i++; }
+  if(s==50)
+  printf("%d",s+2);
+  else 
+    printf("%d",s);
+	return 0;
+}

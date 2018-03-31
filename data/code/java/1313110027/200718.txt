@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  public static void printLargestVehicleType(int []segmentsArray, int startPos, int endPos)
+    {
+        int vehicleType = segmentsArray[startPos++];
+        for(int i = startPos; i<=endPos;i++){
+            if(segmentsArray[i]<vehicleType){
+                vehicleType = segmentsArray[i];
+            } 
+            if(vehicleType == 1) break;
+        }
+        System.out.println(vehicleType);
+        
+  }
+	 public static void main(String[] args) { 
+		 Scanner sc = new Scanner(System.in);
+        int lengthFreeway = sc.nextInt();
+        int numTestCases = sc.nextInt();
+        int []segmentsArray = new int[lengthFreeway];
+        for(int i = 0;i<lengthFreeway;i++){
+            segmentsArray[i] = sc.nextInt();
+        }
+        for(int i = 0;i<numTestCases;i++){
+            printLargestVehicleType(segmentsArray,sc.nextInt(),sc.nextInt());
+        }
+	}
+}

@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class Complex 
+{
+  public:int a;
+  public:int b;
+  
+  public: void get()
+  {
+    cin>>a;
+    cin>>b;
+  }
+};
+  Complex operator +(Complex const &c1,Complex const &c2)
+  {
+     Complex c3;
+    c3.a=c1.a+c2.a;
+    c3.b=c1.b+c2.b;
+     return c3;
+  }
+  Complex operator -(Complex c1,Complex c2)
+  {
+    Complex c3;
+    c3.a=c1.a-c2.a;
+    c3.b=c1.b-c2.b;
+    return c3;
+  }
+
+int main()
+{
+    Complex c1,c2,c3,c4;
+     c1.get();
+     c2.get();
+     c3=c1+c2;
+      c4=c1-c2;
+  
+    cout<<"Sum : "<<c3.a<<"+"<<c3.b<<"i"<<endl;
+  if(c4.b<0)
+    cout<<"difference : "<<c4.a<<c4.b<<"i"<<endl;
+  else
+     cout<<"difference : "<<c4.a<<"+"<<c4.b<<"i"<<endl;
+	return 0;
+}

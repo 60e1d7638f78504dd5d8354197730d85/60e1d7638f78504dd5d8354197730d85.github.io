@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include <string.h>
+int main()
+{
+    int i, j;
+    char str[10][50], temp[50];
+  int  t;
+  scanf("%d",&t);
+ 
+  
+    for(i=0; i<t; ++i)
+        scanf("%s",str[i]);
+    for(i=0; i<t-1; ++i)
+        for(j=i+1; j<t; ++j)
+        {
+            if(strcmp(str[i], str[j])>0)
+            {
+                strcpy(temp, str[i]);
+                strcpy(str[i], str[j]);
+                strcpy(str[j], temp);
+            }
+        }
+
+    for(i=0; i<t; ++i)
+    { 
+        printf("%s\n",str[i]);
+        fflush(stdin);
+    }
+  
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int bsort(int arr[], int n)
+{
+   int i, j,swap=0;
+   for (i = 0; i < n-1; i++)      
+        for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+           {
+             swap++;
+              int temp = arr[j];
+              arr[j] = arr[j+1];
+              arr[j+1] = temp;
+           }
+  return swap;
+}
+
+int main()
+{
+	int T;
+  cin>>T;
+  while(T--){
+    int M,S,N,P[100],swap;
+    cin>>M>>S>>N;
+    for(int i=0;i<N;i++)
+      cin>>P[i];
+    swap=bsort(P,N);
+    if(M*60>=S*swap)
+      cout<<"1\n";
+    else
+      cout<<"0\n";
+  }
+	return 0;
+}

@@ -1,0 +1,141 @@
+#include <iostream>
+#include <stdio.h>
+#include <map>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+#define S(i) scanf("%d", &i)
+
+map<int, vector<int> > adjList;
+
+typedef struct CC{
+  vector<int> vertices;
+  int nonleaf;
+  vector<int> outwardedges;
+}CC;
+
+int evenTree(bool leaf[]);
+void combineComponents(vector<CC>::iterator it, int jointo);
+void eraseEdge(int to, int from);
+
+vector<CC> comps;
+
+int main(){
+  int n,m; S(n); S(m);
+  int v1, v2;
+  bool leaf[n], done[n];
+  int flagged[n];
+  
+  for(int i = 0; i < m; i++){
+    S(v1); S(v2);
+    adjList[v1].push_back(v2);
+    adjList[v2].push_back(v1);
+    leaf[i] = false; done[i] = false;
+  }
+  leaf[n-1] = false;done[n-1] = false;
+  map<int, vector<int> >::iterator it;
+  for(it = adjList.begin(); it != adjList.end(); it++){
+    CC newComp;
+    newComp.vertices.push_back(it->first);
+    newComp.outwardedges = it->second;
+    newComp.nonleaf = it->first;
+    comps.push_back(newComp);
+    if((it->second).size() == 1) leaf[it->first -1] = true;
+  }
+
+  int edgesRemoved = evenTree(leaf);
+  printf("%d\n", edgesRemoved);
+  return 0;
+}
+
+int evenTree(bool leaf[]){
+  vector<CC>::iterator compit;
+  compit = comps.begin();
+  int edges = 0;
+  while(comps.size() > 0){
+    if(compit >= comps.end()) compit = comps.begin();
+    if(((*compit).outwardedges).size() == 1){
+      int outerVertex = *(((*compit).outwardedges).begin());
+      if((*compit).vertices.size() %2 != 0 ){
+	vector<CC>::iterator it;
+	combineComponents(compit, outerVertex);
+	
+      }
+      else{
+	edges++;
+	eraseEdge(outerVertex, (*compit).nonleaf);
+	comps.erase(compit);
+	
+	//erase the corresponding edge from comps and adjList
+      }
+      //if(comps.size() > 0)compit = comps.begin();
+      //compit = comps.begin();
+    }
+    else if ((*compit).outwardedges.size() == 0){
+      edges++;
+      comps.erase(compit);
+    }
+    else {
+      if(compit == comps.end() && comps.size() > 0) 
+	compit = comps.begin(); 
+      else compit++;
+    }
+  }
+  return edges-1;
+}
+
+void combineComponents(vector<CC>::iterator it, int jointo){
+  vector<CC>::iterator compit;
+  for(compit = comps.begin(); compit != comps.end(); compit++){
+    if((*compit).nonleaf == jointo){
+      ((*compit).vertices).insert((*compit).vertices.end(), ((*it).vertices).begin(), ((*it).vertices).end());
+      vector<int>::iterator iter;
+      iter = (*compit).vertices.begin();
+      vector<int>::iterator vectit;
+      for(vectit = ((*compit).outwardedges).begin(); vectit != ((*compit).outwardedges).end(); vectit++){
+	if((*vectit) == (*it).nonleaf){
+	  ((*compit).outwardedges).erase(vectit);
+	  break;
+	}
+	// for(; iter != (*compit).vertices.end(); iter++){
+	//   cout << *iter << endl;
+	// }
+      }
+      break;
+    }
+  }
+  comps.erase(it);
+}
+
+void eraseEdge(int to, int from){
+  vector<CC>::iterator it;
+  //  printf("erasingEdge from %d to %d\n", to, from);
+  for(it = comps.begin(); it != comps.end(); it++){
+    if((*it).nonleaf == to){
+      vector<int>::iterator vectit;
+      for(vectit = ((*it).outwardedges).begin(); vectit != ((*it).outwardedges).end(); vectit++){
+	if((*vectit) == from){
+	  //	  cout << "in EraseEdge " <<  *vectit << endl;
+	  ((*it).outwardedges).erase(vectit);
+	  break;
+	}
+      }
+      break;
+    }
+  }
+  for(it = comps.begin(); it != comps.end(); it++){
+    if((*it).nonleaf == from){
+      vector<int>::iterator vectit;
+      for(vectit = ((*it).outwardedges).begin(); vectit != ((*it).outwardedges).end(); vectit++){
+	if((*vectit) == to){
+	  //	  cout << "in EraseEdge " <<  *vectit << endl;
+	  ((*it).outwardedges).erase(vectit);
+	  break;
+	}
+      }
+      break;
+    }
+  }
+
+}

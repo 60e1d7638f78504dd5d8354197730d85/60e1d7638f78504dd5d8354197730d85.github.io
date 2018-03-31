@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main()
+{
+    int n,j,i,max=0,an;
+    int a[300000];
+    //printf("enter n\n");
+    scanf(" %d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+        an=a[i]&a[i-1];
+        if(an>max)
+            max=an;
+    }
+    for(i=0;i<n-1;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            an=a[i]&a[j];
+            if(an>max)
+                max=an;
+        }
+    }
+    printf("%d",max);
+ return 0;
+}

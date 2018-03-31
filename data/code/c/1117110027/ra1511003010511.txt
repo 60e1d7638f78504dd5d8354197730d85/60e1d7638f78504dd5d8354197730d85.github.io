@@ -1,0 +1,32 @@
+#include <stdio.h>
+int sum(int[],int,int);
+int main()
+{
+ int arr[50],n,i,t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+t=sum(arr,n,0);	
+printf("%d",t); 
+  return 0;
+}
+
+int sum(int arr[],int n,int j)
+{
+  int total=arr[0];
+  if(j==n)
+  {
+    return 0;
+  }
+  if(j>0)
+  {
+    return arr[j];
+  }
+  while(j<n)
+  {
+    total=total+sum(arr,n,++j);
+  }
+  return total;
+}

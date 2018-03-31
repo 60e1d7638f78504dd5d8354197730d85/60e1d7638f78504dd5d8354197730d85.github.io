@@ -1,0 +1,45 @@
+#include <stdio.h>
+ 
+int main(void) {
+	long int n,i,j,max=0,sp,ep;
+	scanf("%ld",&n);
+	long int h[n];
+	long int a[1000000];
+    scanf("%ld",&h[0]);
+    a[h[0]*10]++;
+    max=1;
+    for(i=1;i<n;i++)
+	{
+	    scanf("%ld",&h[i]);
+	    if(h[i]>h[i-1])
+	    {
+	     ep=h[i]*10;
+	     sp=h[i-1]*10+1;
+	     while(sp<=ep)
+	     {
+	       a[sp]++;
+	       if(a[sp]>max)
+	       {
+	           max=a[sp];
+	       }
+	       sp++;
+	     }
+	    }
+	    if(h[i]<h[i-1])
+	    {
+	     ep=h[i]*10;
+	     sp=h[i-1]*10-1;
+	     while(sp>=ep)
+	     {
+	      a[sp]++;
+	       if(a[sp]>max)
+	       {
+	           max=a[sp];
+	       }
+	       sp--;   
+	      }
+	    }
+	}
+	printf("%ld",max);
+	return 0;
+}

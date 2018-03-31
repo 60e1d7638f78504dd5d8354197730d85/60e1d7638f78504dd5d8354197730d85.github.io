@@ -1,0 +1,41 @@
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+ 
+ 
+const double EPS = 1e-9;
+ 
+// http://zobayer.blogspot.in/2009/11/volume-of-irregular-tetrahedron.html
+inline double volume(double u, double v, double w, double U, double V, double W) { 
+	double u1,v1,w1; 
+	u1 = v * v + w * w - U * U; 
+	v1 = w * w + u * u - V * V; 
+	w1 = u * u + v * v - W * W; 
+	return sqrt(4.0*u*u*v*v*w*w - u*u*u1*u1 - v*v*v1*v1 - w*w*w1*w1 + u1*v1*w1) / 12.0;
+}
+ 
+// Heron's formula
+inline double surface(double a, double b, double c) {
+	return sqrt((a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c)) / 4.0;
+}
+ 
+ 
+int TETRA(){
+	double u,v,w,U,V,W,sumSurfaceArea,radius;  
+	/*(u, U), (v, V), (w, W) are considered to be opposite edge pairs
+	( opposite edges means the edges which do not share common vertices )*/
+	cin >> u >> v >> w >> W >> V >> U;
+	sumSurfaceArea = surface(u,v,W) + surface(U,v,w) + surface(U,V,W) + surface(u,w,V);
+	radius = (3.0 * volume(u,v,w,U,V,W))/sumSurfaceArea;
+	std::cout << setprecision(4) << std::fixed;
+	cout << radius << endl;
+}
+ 
+int main() {
+	int cases;
+	cin >> cases;
+	while(cases--)
+		TETRA();
+	return 0;
+}

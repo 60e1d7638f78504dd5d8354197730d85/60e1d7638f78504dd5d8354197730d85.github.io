@@ -1,0 +1,43 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+void sort(char arr[][20],int m[], int n)
+{
+   int i, j,tmp;
+  char key[20];
+   for (i = 1; i < n; i++)
+   {
+       strcpy(key,arr[i]);
+     tmp=m[i];
+       j = i-1;
+       while ((j >= 0) && (strcmp(arr[j],key)<0))
+       {
+           strcpy(arr[j+1] , arr[j]);
+           m[j+1]=m[j];
+           j = j-1;
+       }
+       strcpy(arr[j+1] , key);
+     m[j+1]=tmp;
+   }
+}
+
+int main()
+{
+    int N,m[45];
+  char a[45][20];
+    cin>>N;
+    for(int i=0;i<N;i++)
+      cin>>a[i]>>m[i];
+  cout<<"Display\n\nName\tID\n";
+    for(int i=0;i<N;i++)
+      cout<<a[i]<<"\t"<<m[i]<<endl;
+    
+  sort(a,m,N);
+  
+  cout<<"\n\nDisplay\n\nName\tID\n";
+    for(int i=0;i<N;i++)
+      cout<<a[i]<<"\t"<<m[i]<<endl;
+    
+	return 0;
+}

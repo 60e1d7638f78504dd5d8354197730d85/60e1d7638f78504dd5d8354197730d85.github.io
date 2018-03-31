@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+void strings();
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      strings();
+    }
+	return 0;
+}
+void strings()
+{
+  char s[100];
+  scanf("%s",s);
+  int i,j,l,c,k=-1;
+  l=strlen(s);
+  for(i=0;i<l;i++)
+  {
+    c=0;
+    for(j=i;j<l;j++)
+    {
+      if(s[i]==s[j])
+      {
+        c++;
+      }
+    }
+ //   printf("%d\n",c);
+    if(c==(l-c))
+    {
+      printf("YES\n");
+      k=1;
+      break;
+    }
+    if(c==l)
+      break;
+  }
+  if(k==-1)
+    printf("NO\n");
+}

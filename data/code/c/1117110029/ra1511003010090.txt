@@ -1,0 +1,31 @@
+#include <stdio.h>
+void sumofeven(int a[], int, int);
+
+int main()
+{
+  int i, a[100], sum=0, num;
+  scanf("%d", &num);
+  for(i=0; i<num; i++)
+  {
+    scanf("%d", &a[i]);
+  }
+  sumofeven(a, num-1, sum);
+  return 0;
+}
+
+void sumofeven(int a[], int num, int sum)
+{
+  if(num >= 0)
+  {
+    if((a[num])%2 == 0)
+    {
+      sum += (a[num]);
+    }
+    sumofeven(a, num-1, sum);
+  }
+  else
+  {
+    printf("%d", sum);
+    return;
+  }
+}

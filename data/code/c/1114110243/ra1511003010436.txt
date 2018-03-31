@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#define N 100000
+#define NN 304128
+long long int prime_divisor[NN + 5], sum_of_divisor[N + 5], sums[N + 5];
+char square_free[N + 5], good_number[N + 5];
+//Calculate Smallest Prime Divisor of numbers upto N
+void calculate_prime_divisor()
+{
+	int s = sqrt(NN), i, j;
+	memset(prime_divisor, 0, sizeof(prime_divisor));
+	prime_divisor[0] = prime_divisor[1] = -1;
+	for(i = 2; i <= s; i++)
+	{
+		if(prime_divisor[i] != 0)
+			continue;
+		for(j = i * i; j <= NN; j += i)
+		{
+			if(prime_divisor[j] == 0)
+				prime_divisor[j] = i;
+		}
+	}
+}
+//Check whether a composite number is square free
+int check_square_free(int n)
+{
+	int count, p;
+	while(prime_divisor[n] != 0)
+	{
+		count = 0;
+		p = prime_divisor[n];
+		while(n % p == 0)
+		{
+			n /= p;
+			count++;
+			if(count == 2 || square_free[n] == 0)
+			{
+				count = 2;
+				break;
+			}
+		}
+		if(count == 2)
+			break;
+	}
+	return (count < 2)? 1: 0;
+}
+//Calculate whether all numbers upto N are square free or not
+void calculate_square_free()
+{
+	memset(square_free, 0, sizeof(square_free));
+	int i;
+	for(i = 2; i <= N; i++)
+	{
+		if(prime_divisor[i] == 0) // 'i' is prime hence square free
+			square_free[i] = '1';
+		else if(check_square_free(i))
+			square_free[i] = '1';
+		else
+			square_free[i] = 0;
+	}
+}
+//Calculate sum of divisors of all square free numbers upto N
+void calculate_sum_of_divisor()
+{
+	memset(sum_of_divisor, 0, sizeof(sum_of_divisor));
+	long long int i, j, k;
+	for(i = 2; i <= N; i++)
+	{
+		if(square_free[i] == 0) //Not a square free number, no need to calculate
+			continue;
+		if(prime_divisor[i] == 0) //For prime number sum of divisor is itself + 1
+		{
+			sum_of_divisor[i] = i + 1;
+			continue;
+		}
+		j = i / prime_divisor[i];
+		k = sum_of_divisor[j] * (prime_divisor[i] + 1);
+		sum_of_divisor[i] = k;
+	}
+}
+//Whether 'n' is good number
+int check_good_number(long long int n)
+{
+	if(prime_divisor[n] == 0) //If 'n' is prime then it is not good
+		return 0;
+	long long int count = 0, p;
+	while(n != 1)
+	{
+		p = prime_divisor[n];
+		count++;
+		if(p == 0)
+			p = n;
+		while(n % p == 0)
+			n /= p;
+	}
+	return (prime_divisor[count] == 0)? 1: 0;
+}
+//Calculate good numbers upto N
+void calculate_good_number()
+{
+	memset(good_number, 0, sizeof(good_number));
+	long long int i;
+	for(i = 2; i <= N; i++)
+	{
+		if(square_free[i] == 0)//If not square free no need to check
+			continue;
+		if(check_good_number(sum_of_divisor[i]))
+			good_number[i] = '1';
+	}
+}
+//Calculate sum of sum of divisors of good number from 1 to 'i'
+void calculate_sum()
+{
+	memset(sums, 0, sizeof(sums));
+	long long int i;
+	for(i = 2; i <= N; i++)
+	{
+		if(good_number[i] == 0)
+			sums[i] = sums[i - 1];
+		else
+			sums[i] = sums[i - 1] + sum_of_divisor[i];
+	}
+}
+int main()
+{
+	calculate_prime_divisor();
+	calculate_square_free();
+	calculate_sum_of_divisor();
+	calculate_good_number();
+	calculate_sum();
+	long long int t, l, r;
+	scanf("%lld", &t);
+	while(t--)
+	{
+		scanf("%lld%lld", &l, &r);
+		printf("%lld\n", sums[r] - sums[l - 1]);
+	}
+	return 0;
+}

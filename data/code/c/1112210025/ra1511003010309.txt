@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int sum(int n,int b)
+{ static int summ;
+
+ 
+ if(n!=0)
+ {
+  
+ summ=(b*(b+1))/2;
+   n--;
+   sum(n,summ);
+ }
+  
+  return summ;
+}
+
+int main()
+{
+  int n,i,j,ans[20],a,b;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d %d",&a,&b);
+      ans[i]=sum(a,b);
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("%d\n",ans[i]);
+  }
+	return 0;
+}

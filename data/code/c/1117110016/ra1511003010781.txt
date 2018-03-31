@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int m;
+  scanf("%d", &m);
+  int a[m][m],i,j,f;
+  for(i=0; i<m; i++)
+    for(j=0; j<m; j++)
+      scanf("%d", &a[i][j]);
+  f=1;
+  for(i=0; i<m; i++)
+  {
+    for(j=0; j<m; j++)
+    {
+      if(i==j)
+      {
+        if(a[i][j]==0)
+          f=0;
+      }
+      else
+      {
+        if(a[i][j]!=0)
+          f=0;
+      }
+    }
+  }
+  if(f==1)
+    printf("yes");
+  if(f==0)
+    printf("no");
+	return 0;
+}

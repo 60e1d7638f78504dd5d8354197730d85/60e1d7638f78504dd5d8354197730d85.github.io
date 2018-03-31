@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int arr1[100],arr2[100],m,n,s,res[100];
+	cin>>m>>n;
+  s=m+n;
+  
+	for(int i=0;i<m;i++)
+      cin>>arr1[i];
+  
+  	for(int i=0;i<n;i++)
+      cin>>arr2[i];
+  
+	int i=0,j=0,k=0;
+  
+	while(i<m && j<n)
+    {
+      	if(arr1[i]<=arr2[j])
+        {
+          	res[k]=arr1[i];
+      		k++;
+      		i++;
+        }
+      
+      	if(arr1[i]>arr2[j])
+        {
+          	res[k]=arr2[j];
+          	k++;
+          	j++;
+        }
+    }
+  
+  	while(i<m)
+    {
+      res[k++]=arr1[i++];
+    }
+  
+  	while(j<n)
+    {
+      res[k++]=arr2[j++];
+    }
+  
+  	for(int i=0;i<s;i++)
+      cout<<res[i]<<" ";
+      
+      
+      
+	return 0;
+}

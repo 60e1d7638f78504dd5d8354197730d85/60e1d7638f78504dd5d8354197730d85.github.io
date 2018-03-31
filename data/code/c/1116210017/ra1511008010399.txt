@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include<string.h>
+long long  int l,x,y,n,count,temp,s;
+int main(void) {
+scanf("%lld\n",&n);
+while(n--){
+char w[1000005];
+fgets(w,1000005,stdin);
+l=strlen(w);
+l--;
+if(l%2==1){
+	temp=l/2+1;
+	count=0;
+	s=0;
+	for(x=0;x<=l/2;x++){
+		if(w[x]!=w[x+temp]){
+			if(count==0){
+				count=1;
+				temp--;
+			}else{
+				s=1;
+				break;
+			}
+		}
+	}
+	
+	if(s==1){
+		temp=l/2;
+		count=0;
+		s=0;
+	for(x=0;x<(l/2);x++){
+		if(w[x]!=w[x+temp]){
+			if(count==0){
+				count=1;
+				temp++;
+				x--;
+			}else{
+				s=1;
+				break;
+			}
+		}
+	}
+	}
+ 
+if(s==0&&l!=1){
+	printf("YES\n");
+}else{
+	printf("NO\n");
+}
+}else{
+	for(x=0;x<l/2;x++){
+		if(w[x]!=w[x+l/2]){
+			printf("NO\n");
+			break;
+		}
+	}
+	
+	if(x==l/2){
+		printf("YES\n");
+	}
+	
+}
+ 
+ 
+ 
+	
+}
+	return 0;
+}  

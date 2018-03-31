@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef struct node{
+    int vertex;
+    struct node *next;
+}node;
+ 
+node *G[100005];
+ 
+long long int vis[100005];
+long long int n,m,edge = 0;
+ 
+void addEdge(long long  int src, long long int des){
+    node *p, *q;
+    //p = (node*)malloc(sizeof(node));
+    q = (node*)malloc(sizeof(node));
+    
+    q->vertex = des;
+    q->next = NULL;
+    
+    //p = G[src];
+    
+    if(G[src] == NULL){
+        //printf("NODE: %d\n", src);
+        G[src] = q;
+    }
+    else{
+        p= G[src];
+        //printf("NODE ELSE: %d\n", src);
+        while(p->next != NULL){
+            p=p->next;
+        }
+        p->next = q;
+    }
+}
+ 
+void explore(int n){
+    long long int ed= 0;
+    node *p = G[n];
+    
+    vis[n] = 1;
+    
+    while(p!=NULL){
+        edge++;
+        if(!vis[p->vertex]){
+            explore(p->vertex);
+        }
+        p= p->next;
+    }
+    
+    return;
+}
+ 
+void dfs(){
+    long long int i, max=0, ed;
+    for(i = 1; i <= n ; i++){
+        if(!vis[i]){
+            
+            explore(i);
+            
+            if(max<(edge/2)){
+                max = edge/2;
+            }
+            edge = 0;
+        }
+    }
+    
+    printf("%lld\n",max);
+}
+ 
+int main()
+{
+    scanf("%lld %lld", &n, &m);
+    long long int x, y, i, j;
+    
+    for(i = 1; i <= n ; i++){
+        G[i] = NULL;
+        vis[i] = 0;
+    }
+    
+    for(i = 0; i < m ; i++){
+        scanf("%lld %lld", &x, &y);
+        addEdge(x,y);
+        addEdge(y,x);
+    }
+    
+    dfs();
+    
+    return 0;
+}

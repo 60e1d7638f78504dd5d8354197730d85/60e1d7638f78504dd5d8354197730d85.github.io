@@ -1,0 +1,26 @@
+#include<stdio.h>
+ 
+void gcd_lcm(int a, int b)
+{
+    int temp, A=a, B=b;
+    while(b!=0)
+    {
+        temp = a%b;
+ 
+        a = b;
+        b = temp;
+    }
+    printf("%d %d\n", a, A*B/a);
+}
+ 
+int main()
+{
+    int T,i,N1,N2;
+    scanf("%d", &T);
+    for(i=0;i<T;i++)
+    {
+        scanf("%d %d", &N1, &N2);
+        gcd_lcm(N1,N2);
+    }
+    return 0;
+}

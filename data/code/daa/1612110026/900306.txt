@@ -1,0 +1,44 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+void countSort(int A[200],int N)
+{
+  int k=0;
+  int Aux[200];
+  int sortedA[200];
+  for(int i=0;i<N;i++)
+    k=max(k,A[i]);
+  for(int i=0;i<=k;i++)
+    Aux[i]=0;
+  for(int i=0;i<N;i++)
+    Aux[A[i]]++;
+  int j=0;
+  for(int i=0;i<=k;i++)
+  {
+    int t=Aux[i];
+    while(t--)
+    {
+      sortedA[j]=i;
+      j++;
+    }
+  }
+  for(int i=0;i<k;i++)
+    if(sortedA[i]!=sortedA[i+1])   
+    cout<<sortedA[i]<<" "<<Aux[sortedA[i]]<<endl;
+}
+
+int main()
+{
+  int a[200];
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+  }
+  countSort(a,n);
+ 
+  
+  return 0;
+}
+       

@@ -1,0 +1,50 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<numeric>
+#include<cmath>
+#define l1 long long
+//#define u_c ios::base::sync_with_stdio(false)
+using namespace std;
+
+int find_mini(vector<l1>&arr, int n, int k)
+{
+  sort(arr.begin(),arr.end());
+  int res=0;
+  for(int i=0;i<n;i++)
+  {
+    res+=arr[i];
+    n=n-k;
+  }
+  return res;
+}
+int find_maxi(vector<l1>&arr, int n, int k)
+{
+  sort(arr.rbegin(),arr.rend());
+  int res=0;
+  for(int i=0;i<n;i++)
+  {
+    res+=arr[i];
+    n=n-k;
+  }
+  return res;
+}
+int main()
+{
+  //u_c;
+  l1 test;
+  cin>>test;
+  for(l1 i=0;i<test;i++)
+  {
+    l1 n,k,c,in;
+    c=0;
+    cin>>n>>k;
+    vector<l1>arr;
+    for(l1 j=0;j<n;j++)
+    {
+      cin>>in;
+     arr.push_back(in);
+    }
+    cout<<find_mini(arr,n,k)<<" "<<find_maxi(arr,n,k)<<endl;
+  }
+}

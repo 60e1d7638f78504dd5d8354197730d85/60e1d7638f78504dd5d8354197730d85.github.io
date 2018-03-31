@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+class InsertionSort
+{
+  
+  int n;
+  int[] a=new int[100];
+  public void getInput()
+  {
+    Scanner s=new Scanner(System.in);
+    n=s.nextInt();
+    for(int i=1;i<=n;i++)
+      a[i]=s.nextInt();
+  }
+    public void sortArr()
+  {
+    int i,j,k;
+    for(i=1;i<n;i++)
+    {
+      for(j=i+1;j<=n;j++)
+      {
+        if(a[i]>a[j])
+        {
+          k=a[i];
+          a[i]=a[j];
+          a[j]=k;
+        }
+      }
+    }
+    for(i=1;i<=n;i++)
+      System.out.print(a[i]+" ");
+  }
+};
+    
+public class TestClass {
+	 public static void main(String[] args) { 
+       InsertionSort obj=new InsertionSort();
+       obj.getInput();
+       obj.sortArr();
+          
+	}
+}

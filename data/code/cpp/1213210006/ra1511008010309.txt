@@ -1,0 +1,27 @@
+#include <cctype>     // not <ctype.h> -- you're using C++
+#include <iostream>
+using namespace std;  // that's it -- you don't need anything from <cstdio>!
+
+void ChangeCase( char* s )
+{
+  for(int i=0;s[i];i++) 
+		if (islower(s[i])) s[i] = toupper(s[i]); 
+		else s[i] = tolower(s[i]);
+}
+
+int main()
+{
+  // Here is where we will keep the string the user gives us
+  char s[ 100 ];
+
+  // Ask for and get the string from the user. Remember, we only have room for 100 characters!
+   cin.getline( s, 100 );
+
+  // The function will change the case of letters: modifying the string in s
+  ChangeCase( s );
+
+  // Print the changed string
+  cout << s << endl;
+
+  return 0;
+}

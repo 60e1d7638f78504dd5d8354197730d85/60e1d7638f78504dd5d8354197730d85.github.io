@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+void checkFormat()
+{
+   int n;
+   float num;
+  try
+{
+  cin>>num;
+  if(cin.fail())
+  {
+    cin.clear();
+    cin.ignore();
+    throw 'e';
+  }
+  else 
+  {
+    n=num;
+    if(num-n!=0)
+      throw 'e';
+    cout<<"Valid Input";
+  }
+ }
+ catch(char e)
+ {
+   cout<<"Number format exception";
+  }
+}
+
+int main()
+{
+  checkFormat();
+	return 0;
+}

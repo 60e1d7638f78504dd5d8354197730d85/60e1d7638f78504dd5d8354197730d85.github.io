@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main()
+{int a[3][3],i,j,s[3]={0},q[3]={0},d=0,r=0,e=0,g;
+for(i=0;i<3;i++)
+  for(j=0;j<3;j++)
+    scanf("%d",&a[i][j]);
+ 
+ for(i=0;i<3;i++)
+ {for(j=0;j<3;j++)
+     s[i]+=a[i][j];}
+  for(i=0;i<3;i++)
+  {for(j=0;j<3;j++)
+     q[i]+=a[i][j];}
+ 
+ //printf("%d %d\n",s[0],q[0]);
+ 
+ if(s[0]==s[1] && s[0]==s[2])
+ { if(q[0]==q[1] && q[0]==q[2])
+ { r=1;}
+ else
+ {r=0;
+  goto lab;
+ }}
+ 
+ //printf("%d",r);
+ 
+ for(i=0;i<3;i++)
+     d+=a[i][i];
+ 
+ r=0;
+ g=2;
+ for(i=0;i<3;i++)
+ {e+=a[r][g];
+ r++;g--;}
+	
+ //printf("%d %d",d,e);
+ if(d==e && d==s[0])  
+   r=1;
+ else
+   r=0;
+  
+ lab:
+ 1;
+ //printf("%d",r);
+ for(i=0;i<3;i++)
+ {for(j=0;j<3;j++)
+    printf("%d ",a[i][j]);
+ printf("\n");
+ }
+ if(r==0)
+   printf("Not a Magic Square");
+ else
+   printf("Magic Square");
+  return 0;
+ 
+}

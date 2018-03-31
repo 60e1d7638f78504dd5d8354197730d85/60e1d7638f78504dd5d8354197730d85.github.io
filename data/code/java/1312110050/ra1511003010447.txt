@@ -1,0 +1,28 @@
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       try{
+         InputStreamReader ir = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(ir);
+       int num=Integer.parseInt(br.readLine());
+       if(num>0 && num<4000){
+       String thousands[]={"","M","MM","MMM"};
+       String hundreds[]={"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+       String tens[]={"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+       String units[]={"","I","II","III","IV","V","VI","VII","VIII","IX"};
+         
+        int thou=num/1000;
+         int hundred=(num/100)%10;
+         int ten=(num/10)%10;
+         int unit=num%10;
+         
+         System.out.println(thousands[thou]+hundreds[hundred]+tens[ten]+units[unit]+"");
+       }
+       else{
+       System.out.println("Out of Range");
+       }
+       }catch(Exception e){
+       e.printStackTrace();
+       }
+	}
+}

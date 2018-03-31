@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+        
+	 public static void main(String[] args) { 
+
+       	 Merge obj = new Merge();
+       	obj.getInput();
+       	Merge.mergeSort();
+	}
+}
+class Merge{
+  		static int n1;
+       	static int[] arr1;
+  		static int n2; 
+       	static int[] arr2;
+  		static int[] arr3;
+	static void getInput(){
+      		Scanner sc = new Scanner(System.in);
+
+      n1  = sc.nextInt();
+     arr1 = new int[n1];
+    	for(int i = 0; i < n1; i++){
+        	arr1[i] = sc.nextInt();
+        }
+       	 n2 = sc.nextInt();
+      arr2 = new int[n2];
+       	for(int i =0; i < n2; i++){
+        	arr2[i] = sc.nextInt();
+        }
+       
+    }
+  	static void mergeSort(){
+      	int k = 0;
+  		arr3 = new int[n1+n2];
+      	for(int i = 0; i < n1+n2; i++){
+        	if(i < n1){
+          		arr3[i] = arr1[i];
+          		System.out.println(arr3[i]);
+            }else{
+              arr3[i] = arr2[k++];
+              System.out.println(arr3[i]);
+            }
+        }
+  }
+}

@@ -1,0 +1,32 @@
+import java.util.HashMap;
+import java.io.*;
+import java.util.*;
+public class TestClass {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length() != t.length())
+            return false;
+        HashMap<Character, Character> a = new HashMap<>();
+        HashMap<Character, Character> b = new HashMap<>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            char d = t.charAt(i);
+            if(a.containsKey(c) && a.get(c) != d)
+                return false;
+            else if(b.containsKey(d) && b.get(d) != c)
+                return false;
+            else {
+                a.put(c, d);
+                b.put(d, c);
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+      Scanner scan=new Scanner(System.in);
+        TestClass i = new TestClass();
+        String s =scan.next();
+        String t =scan.next();
+        System.out.println("Isomarphic:"+i.isIsomorphic(s, t));        
+    }
+}

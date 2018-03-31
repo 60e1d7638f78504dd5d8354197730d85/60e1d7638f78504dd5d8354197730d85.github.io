@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class numbers {
+private:
+    float real, imag;
+public:
+    numbers(float r = 0, float i =0)  {real = r;   imag = i;}
+     
+    numbers operator % (numbers const &obj) {
+         numbers res;
+         res.real = real + obj.real;
+         res.imag = imag + obj.imag;
+         return res;
+    }
+    void print() { cout<<"Result:\n";
+ 	cout<<"sum of x="<<real<<"\n";
+ 	cout<<"sum of y="<<imag; }
+};
+ 
+int main()
+{	float a,b,c,d;
+ 	cin>>a;
+ cin>>b;
+ cin>>c;
+ cin>>d;
+    numbers c1(a, b), c2(c, d);
+    numbers c3 = c1 % c2; 
+    c3.print();
+	
+	return 0;
+}

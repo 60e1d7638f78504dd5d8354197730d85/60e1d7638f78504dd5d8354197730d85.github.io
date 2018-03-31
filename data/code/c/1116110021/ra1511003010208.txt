@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include<string.h>
+#define MAX 100
+void removeF(char *str,const char * toremove);
+int main()
+{
+char str[MAX];
+  char toremove[MAX];
+  scanf("%s",str);
+  scanf("%s",toremove);
+  removeF(str,toremove);
+  printf("%s",str);
+  return 0;
+}
+void removeF(char *str,const char * toremove)
+{
+  int i,j;
+  int len,removelen;
+  int found=0;
+  len=strlen(str);
+  removelen=strlen(toremove);
+  for(i=0;i<len;i++)
+  {
+    found=1;
+    for(j=0;j<removelen;j++)
+    {
+      if(str[i+j]!=toremove[j])
+      {
+        found=0;
+        break;
+      }
+    }
+    if(found==1)
+    {
+      for(j=i;j<=len-removelen;j++)
+      {
+        str[j]=str[j+removelen];
+      }
+      break;
+    }
+  }
+}
+      

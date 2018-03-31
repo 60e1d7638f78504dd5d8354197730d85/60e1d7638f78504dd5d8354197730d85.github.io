@@ -1,0 +1,28 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+void findelem(int arr[],int n)
+{
+  int max1,max2,max3;
+  max1=max2=max3=INT_MIN;
+  for(int i=0; i<n; i++)
+    if(arr[i]>max1)
+      max1=arr[i];
+  for(int i=0; i<n; i++)
+    if(arr[i]>max2 && arr[i]<max1)
+      max2=arr[i];
+  for(int i=0; i<n; i++)
+    if(arr[i]>max3 && arr[i]<max2)
+      max3=arr[i];
+  cout<<"The third Largest element is "<<max3;
+}
+int main()
+{
+    int n,arr[20];
+    cin>>n;
+    for(int i=0; i<n; i++)
+      cin>>arr[i];
+    findelem(arr,n);
+
+	return 0;
+}

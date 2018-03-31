@@ -1,0 +1,47 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+      	int n=0,ar[];
+		Scanner sc=new Scanner(System.in);
+      	int t=sc.nextInt();
+      	for(int i=0;i<t;i++)
+        {
+         	n=sc.nextInt();
+          	ar=new int[n];
+          	for(int j=0;j<n;j++)
+            {
+              	ar[j]=sc.nextInt();
+            }
+          
+          	int l=0,b=0;
+			Arrays.sort(ar);
+			for(int k=n-1;k>0;k--)
+			{
+				if(ar[k]==ar[k-1])
+				{
+					l=ar[k];
+					ar[k]=0;
+					ar[k-1]=0;
+					break;
+				}
+				
+			}
+			Arrays.sort(ar);
+				for(int m=n-1;m>0;m--)
+				{
+					if(ar[m]==ar[m-1])
+					{
+						b=ar[m];
+						break;
+					}
+			}
+			if((l*b)!=0)
+              	System.out.println(l*b);
+         	else
+              	System.out.println("-1");
+          
+        }
+	}
+}

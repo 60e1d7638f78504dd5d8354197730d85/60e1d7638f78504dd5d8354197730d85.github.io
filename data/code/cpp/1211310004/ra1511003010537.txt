@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+int pour(int a, int b, int c) {
+	int i =0, j= 0, steps=  0;
+	while (i!=c && j!=c) {
+		if ( i == 0) i = a;
+		else if (j == b) j = 0;
+		else {
+			if (j+i > b) {
+				i = i - (b - j);
+				j = b;
+			} else {
+				j += i;
+				i = 0;
+			}
+		}
+		steps++;
+	}
+	return steps;
+}
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int a,b,c;
+		cin >> a >> b >> c;
+		if ((c == 0) || ((c <= a || c <= b) && c <= a + b && c%__gcd(a,b)==0)) {
+			cout << min(pour(a,b,c),pour(b,a,c)) << endl;
+		} else 
+			cout << "-1" << endl;
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main()
+{
+	int t,n,i,j,ar[50],c=0;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+		scanf("%d",&ar[i]);
+		for(i=0;i<n;i++)
+		{if(ar[i]==0)
+		continue;
+			for(j=i+1;j<n;j++)
+			{
+				if(ar[i]==ar[j])
+				{
+				ar[j]=0;c++;}
+			}
+		}
+		if(c==n)
+		printf("1\n");
+		else
+		printf("%d\n",n-c);
+		c=0;
+	}
+	return 0;
+} 

@@ -1,0 +1,24 @@
+#include <stdio.h>
+struct length {
+  int feet;
+  float inches;
+};
+struct length add(struct length *s1, struct length *s2) {
+  struct length s;
+  s.feet = s1->feet + s2->feet;
+  s.inches = s1->inches + s2->inches;
+  if(s.inches>=12) {
+    s.inches -= 12;
+    s.feet += 1;
+  }
+  return s;
+} 
+int main()
+{
+	struct length s1;
+  	struct length s2;
+  	scanf("%d%f%d%f",&s1.feet,&s1.inches,&s2.feet,&s2.inches);
+  	struct length s = add(&s1,&s2);
+  	printf ("%dfeet-%.1finches",s.feet,s.inches);
+	return 0;
+}

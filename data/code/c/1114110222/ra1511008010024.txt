@@ -1,0 +1,25 @@
+#include <stdio.h>
+int SimpleSum(int n) {
+  int result = 0, i;
+  for(i = 1; i <= n; i++) {
+    result += i;
+  }
+  return result;
+}
+int Sum(int d, int n) {
+	if(d == 1)
+      return SimpleSum(n);
+  	else
+      return SimpleSum(Sum(d - 1, n));
+}
+int main()
+{
+  	int t, i;
+  	fscanf(stdin, "%d", &t);
+  	for(i = 0; i < t; i++) {
+      int d, n;
+      fscanf(stdin, "%d %d", &d, &n);
+      printf("%d\n", Sum(d, n));
+    }
+	return 0;
+}

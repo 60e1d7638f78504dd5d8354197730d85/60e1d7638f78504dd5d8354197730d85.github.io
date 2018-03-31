@@ -1,0 +1,40 @@
+import java.io.*;
+public class TestClass {
+	public static void main(String[] args) throws IOException
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		int n,i;
+		String s;
+		while(t-->0)
+		{
+			
+		  s = br.readLine();
+		  n=s.length();
+		   if(s.charAt(0)==s.charAt(1))
+			  System.out.println("NO");
+		  
+	      else
+	      {
+	    	   if(n==2)
+				  System.out.println("YES");
+	    	   else 
+	    	   {
+	    	  for(i=2;i<n;i++)
+				{
+					if(!((s.charAt(i-1)==s.charAt(1)&&s.charAt(i)==s.charAt(0))||(s.charAt(i-1)==s.charAt(0)&&s.charAt(i)==s.charAt(1))))
+						break;
+				}
+	    	   
+	      
+		  if(i==n)
+		  System.out.println("YES");
+		  else
+		  System.out.println("NO");
+	    	   }
+		}
+		
+		}
+    } 
+	
+}

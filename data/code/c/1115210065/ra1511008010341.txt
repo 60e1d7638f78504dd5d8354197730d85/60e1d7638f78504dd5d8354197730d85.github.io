@@ -1,0 +1,44 @@
+#include <stdio.h>
+ 
+int main(void) {
+	int t,ans=0;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int i=0,done=0;
+		long long int num_a[100000],num_b[100000],i_a=0,i_b=0,s_a=0,s_b=0;
+		char aa[100000],stack;
+		scanf("%s",aa);
+		while(aa[i]!='\0')
+		{
+			if(aa[i]=='A')
+			{
+			num_a[i_a]=1;
+			i_a++;
+			}
+			if(aa[i]=='B')
+			{
+			num_a[i_a]=2;
+			i_a++;
+			}
+			if(i!=0&&i_a!=1)
+			{
+				if(num_a[i_a-1]==num_a[i_a-2])
+				{
+					i_a=i_a-2;
+				}
+			}
+		i++;
+	}
+		if(i_a==0)
+		{
+			ans++;
+			//printf("%lld\n",i_a);
+		}
+		//else
+		//printf("%lld\n",i_a);
+	
+	}
+	printf("%d",ans);
+	return 0;
+}

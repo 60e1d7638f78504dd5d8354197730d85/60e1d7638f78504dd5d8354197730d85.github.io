@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class A
+{
+public:
+  int a;
+};
+
+class B:public A
+{
+public:
+  int b;
+};
+
+class C:public A
+{
+public:
+  int c;
+};
+
+class D:public B, public C
+{
+public:
+  int d;
+};
+int main()
+{
+   D z;
+  int l,m,n,o,p;
+  cin>>l>>m>>n>>o>>p;
+  z.B::a=l;
+  z.C::a=m;
+  z.b=n;
+  z.c=o;
+  z.d=p;
+  cout<<"A : "<<z.B::a;
+  cout<<"\nA : "<<z.C::a;
+  cout<<"\nB : "<<z.b;
+  cout<<"\nC : "<<z.c;
+  cout<<"\nD : "<<z.d;
+	return 0;
+}

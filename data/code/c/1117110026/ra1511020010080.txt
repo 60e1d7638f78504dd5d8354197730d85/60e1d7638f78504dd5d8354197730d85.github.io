@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int gcm(int div,int divisor)
+{int Q,R=div%divisor;
+
+ if(R==0)
+   return divisor;
+ else
+ {div=divisor*Q + R;
+  gcm(divisor,R);
+ }
+
+
+}
+
+int lcm(int div, int divisor)
+{
+    int gcd;
+    gcd=gcm(div,divisor);
+
+    int lcm=(div*divisor)/gcd;
+    return lcm;
+}
+
+
+
+int main()
+{
+  int a,b,i,j;
+
+  scanf("%d",&a);
+  scanf("%d",&b);
+
+  if(a>b)
+ {i=gcm(a,b);
+ j=lcm(a,b);}
+ else
+ {i=gcm(b,a);
+ j=lcm(b,a);}
+printf("GCD=%d\nLCM=%d",i,j);
+	return 0;
+}

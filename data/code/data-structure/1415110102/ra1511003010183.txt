@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+ 
+
+
+void push(struct Node** head_ref, int new_data)
+{
+    
+    struct Node* new_node =
+            (struct Node*) malloc(sizeof(struct Node));
+ 
+    
+    new_node->data  = new_data;
+ 
+    
+    new_node->next = (*head_ref);    
+ 
+    (*head_ref)    = new_node;
+}
+
+void printList(struct Node *node)
+{
+    while (node != NULL)
+    {
+        printf("->%d", node->data);
+        node = node->next;
+    }
+}    
+void insertAfter(struct Node* prev_node, int new_data)
+{
+    /*1. check if the given prev_node is NULL */
+    if (prev_node == NULL)
+    {
+      printf("Node not found\n");
+      return;
+    }
+ 
+    /* 2. allocate new node */
+    struct Node* new_node =(struct Node*) malloc(sizeof(struct Node));
+ 
+    /* 3. put in the data  */
+    new_node->data  = new_data;
+ 
+    /* 4. Make next of new node as next of prev_node */
+    new_node->next = prev_node->next;
+ 
+    /* 5. move the next of prev_node as new_node */
+    prev_node->next = new_node;
+}
+ struct Node * search(struct Node* head, int x)
+{
+    struct Node* current = head;  // Initialize current
+    while (current != NULL)
+    {
+        if (current->data == x)
+            return current;
+        current = current->next;
+    }
+    return NULL;
+}
+ 
+
+
+int main()
+{
+    int N1,i,k,prev,newdata;
+    struct Node *pos;
+  
+    struct Node* head = NULL;
+  scanf("%d",&N1);
+  int arr[N1];
+  for(i=0;i<N1;i++)
+    scanf("%d",&arr[i]);
+  for(i=N1-1;i>=0;i--)
+    push(&head,arr[i]);
+     scanf("%d",&prev);
+     scanf("%d",&newdata);
+    
+ pos=search(head,prev);
+ insertAfter(pos, newdata);    
+  printList(head);
+    
+ 
+     return 0;
+}

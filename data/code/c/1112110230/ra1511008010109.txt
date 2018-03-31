@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+//This function converts binary number to octal number
+int binaryToOctal(long binarynum)
+{
+    int octalnum = 0, decimalnum = 0, i = 0;
+
+    while(binarynum != 0)
+    {
+        decimalnum = decimalnum + (binarynum%10) * pow(2,i);
+        i++;
+        binarynum = binarynum / 10;
+    }
+
+    i = 1;
+
+
+    while (decimalnum != 0)
+    {
+        octalnum = octalnum + (decimalnum % 8) * i;
+        decimalnum = decimalnum / 8;
+        i = i * 10;
+    }
+
+    //Returning the octal number that we got from binary number
+    return octalnum;
+}
+int main()
+{
+    long binarynum;
+
+    scanf("%ld", &binarynum);
+
+    // calling the function here
+    printf("%d", binaryToOctal(binarynum));
+
+    return 0;
+}

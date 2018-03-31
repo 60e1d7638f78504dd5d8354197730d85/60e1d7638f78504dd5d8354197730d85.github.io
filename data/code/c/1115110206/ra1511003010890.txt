@@ -1,0 +1,194 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+ 
+#define MOD 1000000007
+ 
+typedef struct  {
+	int fib[2][2];
+} Nd;
+ 
+Nd tree[400010];
+ 
+int a[200005];
+ 
+int I[2][2] = {{1,0},{0,1}};
+ 
+int
+mulMod(int a, int b) {
+	long long v = a;
+	v = (long long)v * b;
+	if(v >= MOD)
+		return v%MOD;
+	return v;
+}
+ 
+int 
+addMod(int a, int b) {
+	a += b;
+	if(a>=MOD)
+		a-=MOD;
+	return a;
+}
+ 
+void 
+multiply(int F[2][2], int M[2][2]){
+  int x =  addMod( mulMod(F[0][0], M[0][0]) , mulMod(F[0][1], M[1][0]) );
+  int y =  addMod( mulMod(F[0][0], M[0][1]) , mulMod(F[0][1], M[1][1]) );
+  int z =  addMod( mulMod(F[1][0], M[0][0]) , mulMod(F[1][1], M[1][0]) );
+  int w =  addMod( mulMod(F[1][0], M[0][1]) , mulMod(F[1][1], M[1][1]) );
+ 
+  F[0][0] = x;
+  F[0][1] = y;
+  F[1][0] = z;
+  F[1][1] = w;
+}
+ 
+void 
+power(int F[2][2], int n) {
+	if(n==0 || n==1)
+		return;
+	int M[2][2] = {{1,1},{1,0}};
+	power(F, n/2);
+	multiply(F, F);
+	if(n%2 != 0)
+		multiply(F,M);
+}
+ 
+void 
+Add(int F[2][2], int I[2][2]) {
+	F[0][0] = addMod(F[0][0], I[0][0]);
+	F[1][1] = addMod(F[1][1], I[1][1]);
+}
+ 
+void
+buildST(int node, int lb, int ub) {
+	if(lb==ub) {
+		tree[node].fib[0][0]=1;
+		tree[node].fib[0][1]=1;
+		tree[node].fib[1][0]=1;
+		tree[node].fib[1][1]=0;
+ 
+		power(tree[node].fib, a[lb]);
+		Add(tree[node].fib, I);
+		return; 
+	}
+	int mid = (lb+ub)/2;
+	buildST(2*node, lb, mid);
+	buildST(2*node+1, mid+1, ub);
+ 
+	//tree[node].fib = multiply(tree[2*node+1].fib , tree[2*node+1].fib)
+	//===========CHECK==============
+	int x = addMod( mulMod( tree[2*node].fib[0][0], tree[2*node+1].fib[0][0]) , mulMod(tree[2*node].fib[0][1], tree[2*node+1].fib[1][0]) );
+  	int y = addMod( mulMod( tree[2*node].fib[0][0], tree[2*node+1].fib[0][1]) , mulMod(tree[2*node].fib[0][1], tree[2*node+1].fib[1][1]) );
+  	int z = addMod( mulMod( tree[2*node].fib[1][0], tree[2*node+1].fib[0][0]) , mulMod(tree[2*node].fib[1][1], tree[2*node+1].fib[1][0]) );
+  	int w = addMod( mulMod( tree[2*node].fib[1][0], tree[2*node+1].fib[0][1]) , mulMod(tree[2*node].fib[1][1], tree[2*node+1].fib[1][1]) );
+ 
+  	tree[node].fib[0][0] = x;
+  	tree[node].fib[0][1] = y;
+  	tree[node].fib[1][0] = z;
+  	tree[node].fib[1][1] = w;
+}
+ 
+void
+update(int node, int lb, int ub, int index, int val) {
+	if(lb == ub) {
+		tree[node].fib[0][0]=1;
+		tree[node].fib[0][1]=1;
+		tree[node].fib[1][0]=1;
+		tree[node].fib[1][1]=0;
+		power(tree[node].fib, val);
+		Add(tree[node].fib, I);
+		return; 
+	}
+	int mid = (lb+ub)/2;
+	if(index <= mid)
+		update(2*node, lb, mid, index, val);
+	else
+		update(2*node+1, mid+1, ub, index, val);
+	
+	//merging left and right!
+	int x = addMod( mulMod( tree[2*node].fib[0][0], tree[2*node+1].fib[0][0]) , mulMod(tree[2*node].fib[0][1], tree[2*node+1].fib[1][0]) );
+  	int y = addMod( mulMod( tree[2*node].fib[0][0], tree[2*node+1].fib[0][1]) , mulMod(tree[2*node].fib[0][1], tree[2*node+1].fib[1][1]) );
+  	int z = addMod( mulMod( tree[2*node].fib[1][0], tree[2*node+1].fib[0][0]) , mulMod(tree[2*node].fib[1][1], tree[2*node+1].fib[1][0]) );
+  	int w = addMod( mulMod( tree[2*node].fib[1][0], tree[2*node+1].fib[0][1]) , mulMod(tree[2*node].fib[1][1], tree[2*node+1].fib[1][1]) );
+  	tree[node].fib[0][0] = x;
+  	tree[node].fib[0][1] = y;
+  	tree[node].fib[1][0] = z;
+  	tree[node].fib[1][1] = w;
+}
+ 
+Nd Id;
+ 
+Nd *
+query(int node, int lb, int ub, int l, int r) {
+	if(lb>ub || lb > r || ub < l)
+		return &Id;
+	if( lb >= l && ub <= r) {
+		Nd * result = (Nd *) malloc(sizeof(Nd));
+		result->fib[0][0] = tree[node].fib[0][0];
+ 		result->fib[0][1] = tree[node].fib[0][1];
+		result->fib[1][0] = tree[node].fib[1][0];
+		result->fib[1][1] = tree[node].fib[1][1];
+		return result;
+	}
+	int mid = (lb + ub)/2;
+	
+	Nd * left = query(2*node, lb, mid, l, r);
+	Nd * right = query(2*node+1, mid+1, ub, l, r);
+	
+	//printf("left : %d %d %d %d\n", left->fib[0][0], left->fib[0][1], left->fib[1][0], left->fib[1][1]);
+	//printf("rigt : %d %d %d %d\n ", right->fib[0][0], right->fib[0][1], right->fib[1][0], right->fib[1][1]);
+	Nd * Result = (Nd *) malloc(sizeof(Nd));
+	
+	int x =  addMod( mulMod(left->fib[0][0] , right->fib[0][0]) , mulMod(left->fib[0][1], right->fib[1][0]) );
+	int y =  addMod( mulMod(left->fib[0][0] , right->fib[0][1]) , mulMod(left->fib[0][1], right->fib[1][1]) );
+	int z =  addMod( mulMod(left->fib[1][0] , right->fib[0][0]) , mulMod(left->fib[1][1], right->fib[1][0]) );
+	int w =  addMod( mulMod(left->fib[1][0] , right->fib[0][1]) , mulMod(left->fib[1][1], right->fib[1][1]) ); 
+	Result->fib[0][0] = x;
+	Result->fib[0][1] = y;
+	Result->fib[1][0] = z;
+	Result->fib[1][1] = w;
+	return Result;
+}
+ 
+int main() {
+	int i, n, m;
+	Id.fib[0][0] = 1;
+	Id.fib[0][1] = 0;
+	Id.fib[1][0] = 0;
+	Id.fib[1][1] = 1;
+	scanf("%d%d",&n,&m);
+	for(i=0; i<n; i++)
+		scanf("%d",&a[i]);
+	for(i=0; i<2*n+4; i++){
+		tree[i].fib[0][0] = 1;
+		tree[i].fib[0][1] = 0;
+		tree[i].fib[1][0] = 0;
+		tree[i].fib[1][1] = 1;
+	}
+	buildST(1, 0, n-1);
+	/*for(i=1; i<2*n; i++){
+		printf("%d : \n", i);
+		printf("%d %d\n%d %d\n\n",tree[i].fib[0][0], tree[i].fib[0][1], tree[i].fib[1][0], tree[i].fib[1][1] );
+	}*/
+	while(m--) {
+		char ch[5];
+		int l, r, x, y;
+		scanf("%s",ch);
+		if(!strcmp(ch, "C")){
+			scanf("%d%d",&x, &y);
+			update(1, 0, n-1, x-1, y);
+			/*for(i=1; i<2*n; i++){
+				printf("%d : \n", i);
+				printf("%d %d\n%d %d\n\n",tree[i].fib[0][0], tree[i].fib[0][1], tree[i].fib[1][0], tree[i].fib[1][1] );
+			}*/
+		} else {
+			scanf("%d%d",&l,&r);
+			Nd * result = query(1, 0, n-1, l-1, r-1);
+			printf("%d\n",result->fib[0][1]);
+		}
+	}
+	return 0;
+}
+	 

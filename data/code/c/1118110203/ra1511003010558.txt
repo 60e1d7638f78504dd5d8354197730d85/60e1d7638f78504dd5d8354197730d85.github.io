@@ -1,0 +1,30 @@
+#include <stdio.h>
+struct distance
+{
+  float feet,inch;
+};
+struct distance sum(struct distance x,struct distance y)
+{
+  struct distance z;
+  if((x.inch+y.inch)<12)
+  {
+    z.inch=x.inch+y.inch;
+    z.feet=x.feet+y.feet;
+  }
+  else
+  {
+    z.inch=x.inch+y.inch-12.0;
+    z.feet=x.feet+y.feet+1;
+  }
+  return z;
+}
+int main()
+{
+	struct distance a,b,r;
+  	scanf("%f %f",&a.feet,&a.inch);
+  	scanf("%f %f",&b.feet,&b.inch);
+  	r=sum(a,b);
+  	printf("%0.0ffeet",r.feet);
+  	printf("\n%0.1finches",r.inch);
+	return 0;
+}

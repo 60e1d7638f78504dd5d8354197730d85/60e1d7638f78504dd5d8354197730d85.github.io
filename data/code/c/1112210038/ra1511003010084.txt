@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{ 
+	int i, j, t, n, m, flag;
+	scanf("%d",&t);
+	while (t--) {
+		flag = 0;
+		scanf("%d %d",&n,&m);
+		char a[n][m+1];
+		for(i=0; i<n; i++)
+			scanf("%s",a[i]);
+	
+		for(i=0; i<n; i++) {
+			for(j=0; j<m; j++) {
+				if (a[i][j] == 'A') {
+					if (i && a[i-1][j] != 'A') {
+						// printf("1 %c %d %d\n",a[i][j],i,j);
+						flag = 1;
+						i=n;
+						j=m;
+					}
+				}
+				else if (a[i][j] == 'W') {
+					if (j==0 || j==m-1 || a[i][j-1]=='A' || a[i][j+1]=='A') {
+						// printf("2 %c %d %d\n",a[i][j],i,j);
+						flag = 1;
+						i=n;
+						j=m;
+					}
+				}
+				else {
+					if (i!=n-1 && a[i+1][j]!='B') {
+						// printf("3 %c %d %d\n",a[i][j],i,j);
+						flag = 1;
+						i=n;
+						j=m;
+					}
+				}
+			}
+		}
+		if (flag)
+			printf("no\n");
+		else
+			printf("yes\n");
+	}
+	return 0;
+}
+ 

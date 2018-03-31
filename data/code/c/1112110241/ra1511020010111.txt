@@ -1,0 +1,38 @@
+#include<stdio.h>
+
+int main()
+{
+  	char canRead[26],query[12];
+  	scanf("%s",canRead);
+  	int s=0,i,n,s1=0,j,k,kkk;
+  	for(i=0;i<26;i++)
+  		if(canRead[i]!='\0')
+          	s++;
+  		else
+          	break;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      	scanf("%s",query);
+      	if(strcmp(query,"dinner")==0)
+        {
+          	printf("No");
+      		continue;
+        }
+      	for(j=0;j<12;j++)
+         	if(query[j]!='\0')
+          		s1++;
+  			else
+          		break;
+      	kkk=0;	
+      	for(j=0;j<s1;j++)
+          	for(k=0;k<s;k++)
+            	if(query[j]==canRead[k])
+                  	kkk++;
+        if(kkk==s)
+          printf("Yes\n");
+      	else
+          printf("No\n");
+    }
+  	return 0;
+}

@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+class Passkey
+{
+  int num[]=new int[100];
+  int k=0;
+  int mul1,mul2;
+  Passkey()
+  {
+    Scanner sc=new Scanner(System.in);
+    String b=sc.nextLine();
+    char a[]=b.toCharArray();
+    for(int i=0;i<a.length;i++)
+     if(Character.isDigit(a[i]))
+     {
+       num[k] = Character.getNumericValue(a[i]);
+       k++;
+     }
+  }
+  public void passKey()
+  {
+    mul1=0;
+    int max=num[0];
+    int min=num[0];
+    for(int i=0;i<k;i++)
+    {
+      if(num[i]>max)
+        max=num[i];
+      if(num[i]<min)
+        min=num[i];
+    }
+    for(int i=0;i<k;i++)
+    {
+      mul1+=max*num[i];
+      mul2+=min*num[i];
+ 	 }
+     int a=mul1;
+     while(a>10)
+      a=sum1(a);
+     int b=mul2;
+     while(b>10)
+      b=sum2(b);
+      if(a<b)
+        System.out.println(a*a);
+      else
+        System.out.println(b*b);
+  }
+  int sum1(int a)
+  {
+    int sumofdigits=0;
+    while(a!=0)
+    {
+      sumofdigits+=a%10;
+      a=a/10;
+    }
+    return sumofdigits;
+  }
+   int sum2(int a)
+  {
+    int sumofdigits=0;
+    while(a!=0)
+    {
+      sumofdigits+=a%10;
+      a=a/10;
+    }
+      return sumofdigits;
+   }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Passkey s1=new Passkey();
+        s1.passKey();
+	}
+}

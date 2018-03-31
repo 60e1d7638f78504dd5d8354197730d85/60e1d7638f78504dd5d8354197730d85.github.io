@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+        int m ;
+        int i , j ;
+                     // the order of the matrix from user
+        scanf("%d", &m);
+        int a[m][m];
+       
+        for (i = 0; i < m; i++)
+        {
+               for (j = 0; j < m; j++)
+               {
+                        scanf("%d", &a[i][j]);
+                }
+          }
+          for (i = 0; i < m; i++)             // check for upper triangulat matrix 
+         {      
+                for (j = i - 1; j >= 0; j--)
+                {
+                        if (a[i][j] != 0)
+                        {
+                                printf("no");
+                                exit(0);
+                        }
+                }
+        }
+        printf("yes");            // print the output of upper matrix
+        return 0;
+}

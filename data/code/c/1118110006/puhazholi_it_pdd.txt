@@ -1,0 +1,45 @@
+#include <stdio.h>
+struct date
+{
+  int dd,mm,yy;
+};
+int compare(struct date d);
+int main()
+{
+    struct date d1;
+    scanf("%d %d %d\n",&d1.dd,&d1.mm,&d1.yy);
+    compare(d1);
+  return 0;
+}
+int compare(struct date d)
+{
+    if(d.yy>=0000 && d.yy<=2999)
+    {
+        if(d.mm>=1 && d.mm<=12)
+        {
+            if((d.dd>=1 && d.dd<31) && (d.mm==1 || d.mm==3 || d.mm==5 || d.mm==7 || d.mm==8 || d.mm==10 || d.mm==12))
+                printf("%d %d %d",d.dd+1,d.mm,d.yy);
+            else if((d.dd==31) && (d.mm==12))
+                printf("%d %d %d",d.dd-30,d.mm-11,d.yy+1);
+            else if((d.dd>=1 && d.dd<30) && (d.mm==4 || d.mm==6 || d.mm==9 || d.mm==11))
+                printf("%d %d %d",d.dd+1,d.mm,d.yy);
+            else if((d.dd==30) && (d.mm==4 || d.mm==6 || d.mm==9 || d.mm==11))
+                printf("%d %d %d",d.dd-29,d.mm+1,d.yy);
+            else if((d.dd>=1 && d.dd<=28) && (d.mm==2))
+                printf("%d %d %d",d.dd-27,d.mm+1,d.yy);
+            else if(d.dd==29 && d.mm==2 && (d.yy%400==0 ||(d.yy%4==0 && d.yy%100!=0)))
+                printf("%d %d %d",d.dd-28,d.mm+1,d.yy);
+            else
+                printf("Invalid Day");
+        }
+        else
+        {
+            printf("Invalid Month");
+        }
+    }
+    else
+    {
+        printf("Invalid Year");
+    }
+     return 0;    
+}

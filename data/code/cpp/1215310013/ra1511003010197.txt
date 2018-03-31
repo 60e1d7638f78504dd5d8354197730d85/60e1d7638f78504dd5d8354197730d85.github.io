@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <map>
+ 
+using namespace std;
+ 
+struct ura{
+    int pos;
+    int x[10];
+};
+ 
+bool operator <(const ura a, const ura b){
+    if(a.pos==b.pos){
+        for(int i=1;i<=9;i++){
+            if(a.x[i]<b.x[i])
+                return true;
+            else if(a.x[i]>b.x[i])
+                return false;
+        }
+        return false;
+    }
+    return a.pos<b.pos;
+}
+map<ura,long long int> memo;
+ 
+int T;
+int N;
+int a;
+int valores[55][10];
+int tam;
+bool lol;
+ura meter;
+bool lulz;
+int aux[10];
+int vals[3]={0,2,4};
+int cont;
+ 
+int Max(int a, int b){
+    if(a>b)
+        return a;
+    return b;
+}
+ 
+bool Checa(ura a1){
+    int lal=0;
+    for(int i=1;i<=9;i++){
+        if(a1.x[i]==1||a1.x[i]==3)
+            return false;
+        if(a1.x[i]==0)
+            lal++;
+    }
+    if(lal==9)
+        return false;
+    return true;
+}
+ 
+ura Tomar(ura a1){
+    for(int i=1;i<=9;i++)
+        a1.x[i]=Max(a1.x[i],valores[a1.pos][i]);
+    return a1;
+}
+ 
+long long int busca(ura a1){
+    if(a1.pos>tam){
+        if(Checa(a1))
+            return 1;
+        return 0;
+    }
+    map<ura,long long int>::iterator iterador=memo.find(a1);
+    if(memo.end()!=iterador)
+        return iterador->second;
+    ura tomar=Tomar(a1);
+    ura notomar;
+    tomar.pos=a1.pos+1;
+    notomar=a1;
+    notomar.pos++;
+    memo[a1]=busca(tomar)+busca(notomar);
+    return memo[a1];
+    
+}
+ 
+int main(){
+    scanf("%d",&T);
+    for(int k=0;k<T;k++){
+        cont++;
+        tam=0;
+        memo.clear();
+        scanf(" %d",&N);
+        for(int i=1;i<=N;i++)
+            for(int j=1;j<=9;j++)
+                valores[i][j]=0;
+        for(int i=1;i<=N;i++){
+            scanf(" %d",&a);
+            tam++;
+            lol=false;
+            lulz=false;
+            for(int j=1;j<10;j++){
+                if((a/10)==0&&lulz)
+                    valores[tam][j]=-1;
+                else
+                    valores[tam][j]=a%10;
+                if(valores[tam][j]>7)
+                    lol=true;
+                if(valores[tam][j]<4&&valores[tam][j]!=-1)
+                    valores[tam][j]=1;
+                else if(valores[tam][j]==4)
+                    valores[tam][j]=2;
+                else if(valores[tam][j]<7&&valores[tam][j]!=-1)
+                    valores[tam][j]=3;
+                else if(valores[tam][j]==7)
+                    valores[tam][j]=4;
+                if(valores[tam][j]==-1)
+                    valores[tam][j]=0;
+                a/=10;
+                if(a==0)
+                    lulz=true;
+            }
+            if(lol)
+                tam--;
+        }
+        meter.pos=1;
+        printf("%lld\n",busca(meter));
+    }
+    return 0;
+}
+ 
+ 

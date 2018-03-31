@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int maxGameByWinner(int N) {
+    int dp[N];
+
+    dp[0] = 1;
+    dp[1] = 2;
+
+    int i = 2;
+    do {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    } while (dp[i++] <= N);
+
+    return (i - 2);
+}
+
+// Driver code to test above methods
+int main() {
+    int n;
+    scanf("%d", &n);
+    printf("%d", maxGameByWinner(n));
+    return 0;
+}

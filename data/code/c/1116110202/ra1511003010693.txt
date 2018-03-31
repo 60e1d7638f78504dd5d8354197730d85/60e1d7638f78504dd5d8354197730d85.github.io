@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+ 
+ 
+int main (int argc, char *argv [])
+{
+  	int i, flag;
+    char string [11];
+     
+    scanf ("%s", string);
+     
+    unsigned long length = strlen (string) - 1;
+     
+    bool letter = false;
+     
+    if ( string [0] >= 'A' && string [0] <= 'Z' )
+        letter = true;
+     
+    if ( string [0] >= 'a' && string [0] <= 'z' )
+        letter = true;
+     
+    bool underScore = true;
+     
+    if ( string [length] == '_' )
+        underScore = false;
+     
+    flag = 0;
+     
+    for (i = 1; i <= length; i++ ) {
+         
+        if ( string [i] == '_' )
+            flag++;
+        else
+            flag = 0;
+         
+        if ( flag == 2 ) {
+            underScore = false;
+            break;
+        }
+    }
+     
+    if ( letter && underScore )
+        printf ("valid identifier\n");
+    else
+        printf ("not a valid identifier\n");
+     
+    return 0;
+}

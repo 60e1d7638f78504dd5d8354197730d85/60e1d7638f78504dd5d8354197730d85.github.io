@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define MOD 1000000007
+#define LLI long long int
+#define fo(i,n)   for(i=0;i<n;++i)
+	LLI t,n,i,m,max,*a;
+ 
+ 
+int main(void) {
+	scanf(" %lld",&t);
+	while(t--)
+	{
+	    scanf(" %lld %lld",&n,&m);
+	    max=0;
+	    a=(LLI *)(malloc(sizeof(LLI)*n));
+	    fo(i,n)
+	    {
+	        scanf(" %lld",&a[i]);
+	        if(a[i]>max)        max=a[i];
+	    }
+	    fo(i,n)
+	    {
+	        m-=max-a[i];
+	    }
+	    if(m>0)             m=m%n;
+	    if(m)           printf("No\n");
+	    else            printf("Yes\n");
+	}
+	return 0;
+} 

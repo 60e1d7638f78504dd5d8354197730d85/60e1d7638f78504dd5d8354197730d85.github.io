@@ -1,0 +1,38 @@
+
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+
+  public static void main(String[] args) throws FileNotFoundException {
+		Scanner in = new Scanner(System.in);
+		int N = Integer.parseInt(in.nextLine());
+		char[][] grid = new char[N][N];
+		for (int i = 0; i < N; i++) {
+			grid[i] = in.nextLine().toCharArray();
+		}
+		for (int i = 1; i < grid.length - 1; i++) {
+			for (int j = 1; j < grid[i].length - 1; j++) {
+
+				if (/*   */(grid[i][j] > grid[i + 1][j])// 
+						&& (grid[i][j] > grid[i][j + 1])//
+						&& (grid[i][j] > grid[i - 1][j])//
+						&& (grid[i][j] > grid[i][j - 1])) {
+					grid[i][j] = 'X';
+				}
+			}
+		}
+		printGrid(grid);
+		in.close();
+	}
+
+	public static void printGrid(char[][] grid) {
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[i].length; j++) {
+				System.out.print(grid[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+}

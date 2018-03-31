@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+int digit(char c){
+ 
+    int value=0;
+ 
+    switch(c){
+         case 'I': value = 1; break;
+         case 'V': value = 5; break;
+         case 'X': value = 10; break;
+         case 'L': value = 50; break;
+         case 'C': value = 100; break;
+         case 'D': value = 500; break;
+         case 'M': value = 1000; break;
+         case '\0': value = 0; break;
+         default: value = -1; 
+    }
+ 
+    return value;
+}
+
+int main()
+{
+	int a,num,len,i=0;
+  	char c[10];
+  
+  	scanf("%s",c);
+  	len = strlen(c);
+	num = 0;
+  	
+  	while(c[i])
+    {
+    	 if(digit(c[i]) >= digit(c[i+1]))
+             num = num + digit(c[i]);
+         else{
+             num = num + (digit(c[i+1]) - digit(c[i]));
+    		++i;
+         }
+      	i++;
+    }
+  
+  	printf("%d",num);
+  	
+  	
+  	return 0;
+}

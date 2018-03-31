@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int* convert(char* b,int *size)
+{
+    *size=strlen(b);
+    int i,j,k=0;
+    int *a=(int*)malloc(sizeof(int)*(*size));
+    for(i=0;i<strlen(b);i++)
+        a[i]=b[i]-48;
+    return a;
+}
+int modulus(int *b,int size,int a)
+{
+    int i,remainder=0;
+    for(i=0;i<size;i++)
+    {
+        b[i]+=remainder*10;
+        remainder=b[i]%a;
+    }
+    return remainder;
+}
+int gcd(int a,int b)
+{
+    if(b==0)
+        return a;
+    else
+        return gcd(b,a%b);
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int a;
+        char b[261];
+        scanf("%d\n%s",&a,b);
+        if(a==0)
+        	printf("%s\n",b);
+        else
+        {
+        	int size,i;
+        	int *arr=convert(b,&size);
+        	int rem=modulus(arr,size,a);
+        	int ans=gcd(a,rem);
+        	printf("%d\n",ans);
+        }
+    }
+    return 0;
+}
+ 

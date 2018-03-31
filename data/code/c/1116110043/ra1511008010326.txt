@@ -1,0 +1,31 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+int main()
+{
+    char str[MAX_SIZE];
+    int len, startIndex, endIndex;
+    scanf("%[^\n]%*c", str);
+    len = 0;
+    while(str[len] != '\0') len++;
+    startIndex = 0;
+    endIndex   = len-1;
+    while(startIndex <= endIndex)
+    {
+        if(str[startIndex] != str[endIndex])
+            break;
+
+        startIndex++;
+        endIndex--;
+    }
+
+    if(startIndex >= endIndex)
+    {
+        printf("Palindrome");
+    }
+    else
+    {
+        printf("Not palindrome");
+    }
+
+    return 0;
+}

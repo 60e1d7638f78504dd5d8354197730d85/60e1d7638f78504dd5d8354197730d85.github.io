@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.Scanner;
+interface Area
+{
+final static float pi=3.14f;
+float compute(float x,float y);
+}
+class Rectangle implements Area
+{
+public float compute(float x,float y)
+{
+return(x*y);
+}
+}
+class Circle implements Area
+{
+public float compute(float x,float y)
+{
+return(pi*x*y);
+}
+}
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Area area;
+        Rectangle rect=new Rectangle();
+		area=rect;
+		Scanner s = new Scanner(System.in);
+		float a=s.nextFloat();
+		float b = s.nextFloat();
+		System.out.println("Area of Rectangle="+area.compute(a,b));
+        Circle cir=new Circle();
+		area=cir;
+		System.out.println("Area of Circle="+area.compute(a,b));
+	}
+}

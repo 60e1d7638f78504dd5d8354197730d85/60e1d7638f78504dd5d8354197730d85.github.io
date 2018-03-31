@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  
+  int fre[255],j=0,asc,k,i;
+  char s[50];
+  scanf("%s",s);
+  for(i=0;i<255;i++)
+  {
+    fre[i]=0;
+  }
+  while(s[j]!='\0')
+  {
+    asc=(int)s[j];
+    fre[asc]+=1;
+    j=j+1;
+  }
+  int min =0;
+  for(k=0;k<255;k++)
+  {
+    if(fre[k]!=0)
+    {
+    if(fre[min]==0|| fre[k]<fre[min])
+    {
+      min=k;
+    }
+    }
+  }
+  printf("%c=%d",min,fre[min]);
+  
+
+	return 0;
+}

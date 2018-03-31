@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class TestClass {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int numOfTestCases = sc.nextInt();
+        while(numOfTestCases-- > 0 ) {
+            int arrSize = sc.nextInt();
+            short[] arr = new short[arrSize];
+            for(int i = 0; i < arrSize; i++) {
+                arr[i] = sc.nextShort();
+            }
+            findMaxSumSubArray(arr);
+        }
+    }
+    
+    private static void findMaxSumSubArray(short[] arr) {
+        long maxConSum = Long.MIN_VALUE, maxNonConSum = Long.MIN_VALUE, prevSum = 0;
+        for(short x: arr) {
+            int currentSum = x;
+            if(prevSum > 0) {
+                currentSum += prevSum;
+            }
+            if(currentSum > maxConSum) {
+                maxConSum = currentSum;
+            }
+            prevSum = currentSum;
+            if ( maxNonConSum < 0 && x > maxNonConSum) {
+                maxNonConSum = x;
+            } else if( maxNonConSum > 0 && x > 0) {
+                maxNonConSum += x;
+            }
+        }
+        System.out.println(maxConSum + " " + maxNonConSum);
+    }
+}

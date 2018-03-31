@@ -1,0 +1,117 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct node{
+	int c_id;
+	int z;
+	int a;
+	int b;
+	int c;
+};
+struct node heap[100001];
+int arr[100001];
+int C,P,N;
+void swap(int i,int j)
+{
+	int temp=heap[i].a;
+	heap[i].a=heap[j].a;
+	heap[j].a=temp;
+	
+	temp=heap[i].b;
+	heap[i].b=heap[j].b;
+	heap[j].b=temp;
+	
+	temp=heap[i].c;
+	heap[i].c=heap[j].c;
+	heap[j].c=temp;
+	
+	temp=heap[i].c_id;
+	heap[i].c_id=heap[j].c_id;
+	heap[j].c_id=temp;
+	
+	heap[i].z=heap[i].c*(heap[i].a+heap[i].b);
+	heap[j].z=heap[j].c*(heap[j].a+heap[j].b);
+}
+void max_heapify(int index)
+{
+	int largest;
+	int left=index*2;
+	int right=index*2+1;
+	
+	if(left<=C && ((heap[left].z<heap[index].z )|| ((heap[left].z==heap[index].z) && (heap[left].c_id < heap[index].c_id))))
+	 largest=left;
+	else
+	 largest=index;
+	
+	if(right<=C && ((heap[right].z<heap[largest].z )|| ((heap[right].z==heap[largest].z) && (heap[right].c_id < heap[largest].c_id))))
+	 largest=right;
+	
+	if(largest != index)
+	{
+		swap(largest,index);
+		max_heapify(largest);
+	}
+}
+void build_maxheap()
+{
+	int i,j,k;
+	
+	for(i=C/2;i>=1;i--)
+	{
+		max_heapify(i);
+	}
+}
+void print_array()
+{
+	int i;
+	for(i=1;i<=C;i++)
+	 printf("%d ",heap[i].z);
+	printf("\n\n");
+}
+int main()
+{
+	//freopen("program.txt","r",stdin);
+	
+	scanf("%d %d %d",&C,&P,&N);
+	int i,j,k;
+	for(i=1;i<=C;i++)
+    {
+    	heap[i].c_id=i;
+    	heap[i].b=0;
+    	heap[i].a=0;
+    	heap[i].c=0;
+	}
+	
+	for(i=1;i<=N;i++)
+	{
+		scanf("%d",&k);
+		heap[i].c++;
+		heap[i].a=k;
+		heap[i].z=k;
+	}
+    
+	for(i=0;i<P;i++)
+	 scanf("%d",arr+i);
+	 
+	build_maxheap();
+	
+	for(i=0;i<P;i++)
+	{
+		//print_array();
+		printf("%d ",heap[1].c_id);
+		int count=heap[1].c;
+		if(count==0)
+		 heap[1].a=arr[i];
+		else if(count==1)
+		 heap[1].b=arr[i];
+		else
+		{
+			heap[1].a=heap[1].b;
+			heap[1].b=arr[i];
+		}
+		heap[1].c++;
+		heap[1].z=heap[1].c*(heap[1].a+heap[1].b);
+		max_heapify(1);
+	}
+	return 0;
+}

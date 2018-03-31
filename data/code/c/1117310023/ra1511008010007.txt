@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int t;
+	int m,n;
+	int i,j;
+ 
+	scanf("%d",&t);
+	while(t--) {
+		scanf("%d%d",&n,&m);
+		int *price;
+		int *dis;
+		long long *dp;
+		price = (int *)malloc(n*m*sizeof(int));
+		dis = (int *)malloc(n*m*sizeof(int));
+		dp = (long long *)malloc(n*m*sizeof(long long));
+		for(i = 0; i < n; i++) {
+			for(j = 0; j < m; j++) {
+				scanf("%d",(price+j+i*m));
+			}
+		}
+		for(i = 0; i < n; i++) {
+			for(j = 0; j < m; j++) {
+				scanf("%d",(dis+j+i*m));
+			}
+		}
+		long long min;
+		int index;
+		min = *price;
+		index = 0;
+		for(i = 0; i < m; i++) {
+			*(dp+i) = *(price+i);
+			if(min > *(price+i)) {
+				min = *(price+i);
+				index = i;
+			}
+		}
+		for(i = 1; i < n; i++) {
+			long long _min;
+			int _index;
+			for(j = 0; j < m; j++) {
+				long long  awe = *(price+j+m*i) - *(dis+(i-1)*m+j);
+				int x = j;
+				if(awe < 0) {
+					awe = 0;
+				}
+				awe += *(dp+(i-1)*m+j);
+				*(dp+j+i*m) = awe;
+				if(awe > min+*(price + j+i*m)) {
+					*(dp+i*m+j) = min+*(price+i*m+j);
+					x = index;
+				}
+				//printf("(%d %d) ",awe,min+price[i][j]);
+				if(j == 0) {
+					_min = *(dp+i*m+j);
+					_index = x;
+				}
+				else if(_min > *(dp+i*m+j)) {
+					_min = *(dp+i*m+j);
+					_index = x;
+				}
+			}
+			min = _min;
+			index = _index;
+		}
+		/*for(i = 0; i < n; i++) {
+			for(j = 0; j < m; j++) {
+				printf("%ld ",*(dp+j+i*m));
+			}
+			printf("\n");
+		}*/
+		printf("%lld\n",min);
+	}
+	return 0;
+}
+ 

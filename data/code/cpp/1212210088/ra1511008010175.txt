@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+  	int t;
+  	string ss;
+  	char s[1000];
+    cin>>ss;
+  	cin>>t;
+  	strcpy(s,ss.c_str()); 
+  	int l=ss.length();
+  	while(t-->0)
+    {
+      	string sss;
+      	char s1[1000];
+    	cin>>sss;
+      	int l1=sss.length();
+      	strcpy(s1,sss.c_str()); 
+  		for (int i=0;i<l-1;i++)
+    	{
+          for(int j=0;j<l-i-1;j++)
+          {
+        	if (s[j]>s[j+1])
+        	{
+            	char c=s[j];
+            	s[j]=s[j+1];
+            	s[j+1]=c;
+        	}
+          }
+        }
+          for (int i=0;i<l1-1;i++)
+    	  {
+          	for(int j=0;j<l1-i-1;j++)
+          	{
+        		if (s1[j]>s1[j+1])
+        		{
+            		char c=s1[j];
+            		s1[j]=s1[j+1];
+            		s1[j+1]=c;
+        		}
+          	}
+    	}
+		int count=0;
+        for(int i=0;i<l1;i++)
+        {
+           for(int j=0;j<l;j++)
+           {
+          	if(s1[i]==s[j])
+            	count++;
+           }
+        }
+        if(count==l1)
+          	cout<<"Yes"<<endl;
+        else
+          	cout<<"No"<<endl;
+    }
+	return 0;
+}

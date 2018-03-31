@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+   char string[100], ch;
+   int c = 0,i=0, count[26] = {0};
+ 
+   
+   for (i=0;i<100;i++)
+   {
+     scanf("%s",&string[i]);
+   }
+ 
+ 
+   while ( string[c] != '\0' )
+   {
+      /* Considering characters from 'a' to 'z' only */
+ 
+      if ( string[c] >= 'a' && string[c] <= 'z' ) 
+         count[string[c]-'a']++;
+ 
+      c++;
+   }
+ 
+   for ( c = 0 ; c < 26 ; c++ )
+   {
+      if( count[c] != 0 )
+         printf("%c=%d\n",c+'a',count[c]);
+   }
+ 
+   return 0;
+}

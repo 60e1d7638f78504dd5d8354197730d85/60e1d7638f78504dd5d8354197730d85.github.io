@@ -1,0 +1,63 @@
+//include<bits/stdc++>
+#include<iostream>
+using namespace std;
+#define LL unsigned long long
+ 
+LL modPow(LL A,LL B,LL C)
+{
+	LL X=1,Y=A;
+	while(B>0)
+	{
+		if(B&1)
+		X=(X*Y)%C;
+		Y=(Y*Y)%C;
+		B/=2LL;
+	}
+	return X%C;
+}
+ 
+bool RabinMiller(LL N,int iterations)
+{
+	if(N<2)
+	return false;
+	
+	if(N!=2&&N%2==0)
+	return false;
+	
+	LL D=N-1;
+	
+	while(D%2==0)
+	D/=2LL;
+	
+	for(int i=0;i<iterations;i++)
+	{
+		LL A=rand()%(N-1)+1;
+		LL Temp=D;
+		LL X=modPow(A,Temp,N);
+		while(Temp!=N-1&&X!=1&&X!=N-1)
+		{
+			X=(X*X)%N;
+			Temp*=2LL;
+		}
+		
+		if(X!=N-1&&Temp%2==0)
+		return false;
+	}
+	return true;
+}
+ 
+int main() 
+{
+	int T;
+	LL N;
+	scanf("%d",&T);
+	while(T--)
+	{
+		scanf("%llu",&N);
+		if((RabinMiller(N,3)&&N!=2&&N!=17)||N==16||N==34||N==289)
+		printf("Tom\n");
+		else
+		printf("Mike\n");
+	}
+	return 0;
+} 

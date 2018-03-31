@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+# define pf push_front
+# define pb push_back
+# define mp make_pair
+# define pr printf
+# define se second
+# define si size()
+# define sc scanf
+# define fi first
+# define er erase
+# define be begin
+# define ss size
+# define Int __int64
+# define INF 100000000000000008
+# define MOD 1000000007
+# define MN 500500
+# define eps 0.0000000000000000018
+# define mem(a) memset(a,0,sizeof(a))
+#define max3(a,b,c) max(a,max(b,c))
+#define min3(a,b,c) min(a,min(b,c))
+using namespace std;
+ 
+int main() {
+	int t,i,k,n,j,ans;
+	cin>>t;
+	while(t--){
+		cin>>n>>k;
+		int a[n],mini=1000000;
+		vector<int>v;
+		for(i=0;i<n;i++)sc("%d",&a[i]);
+		for(i=0;i<n;i++){
+				v.erase(v.begin(),v.end());
+			for(j=0;j<n;j++){
+				
+				 if(a[i]>=a[j])ans = (a[i]-a[j])*3;
+				else ans=(a[j]-a[i])*5;
+				v.pb(ans);
+			}
+			sort(v.begin(),v.end());
+		
+				ans=0;
+			for(int m=0;m<k;m++){
+				 ans+=v[m];
+			}
+			
+		
+			mini =min(ans,mini);
+		
+		}
+		cout<<mini<<endl;
+	}
+	return 0;
+}

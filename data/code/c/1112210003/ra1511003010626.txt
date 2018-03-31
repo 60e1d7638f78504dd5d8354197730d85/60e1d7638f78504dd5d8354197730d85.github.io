@@ -1,0 +1,37 @@
+#include<stdio.h>
+
+double a[10005];
+double T;
+int n;
+
+inline int ok(double d){
+  double prev=(a[0]-d>0.0)?(a[0]-d):0.0;
+  int i;
+  for(i=1;i<n;i++){
+    if(prev+T-a[i]>=0.00001){
+      if(prev+T-a[i]>d)	return 0;
+      prev=prev+T;
+    }
+    else prev=(a[i]-d>prev+T)?(a[i]-d):(prev+T);
+  }
+  return 1;
+}
+
+int main(){
+  int t,i;
+  scanf("%d",&t);
+  while(t--){
+    scanf("%d",&n);
+    scanf("%lf",&T);
+    for(i=0;i<n;i++)    scanf("%lf",a+i);
+    double lo=0.0,hi=100000000.0,mid;
+    while((hi-lo)>=0.00001){
+      mid=(lo+hi)/2.0;
+      if(ok(mid))	hi=mid;
+      else lo=mid;
+    }
+    printf("%.4f\n",mid);
+  }
+  return 0;
+} 
+

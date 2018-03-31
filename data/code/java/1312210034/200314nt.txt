@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.Scanner;
+ 
+public class TestClass
+{
+	
+	public static long gcd(long a,long b){
+		if(a==0){
+			return b;
+		}
+		return gcd(b%a,a);
+	}
+ 
+	public static void main(String[] args) {
+		
+		Scanner s = new Scanner(System.in);
+		int t = s.nextInt();
+		while(t-->0){
+			long a = s.nextInt();
+			long b = s.nextInt();
+			
+			long hcf,lcm;
+			hcf = gcd(a,b);
+			lcm = (a*b)/(gcd(a,b));
+			System.out.println(hcf+" "+lcm);
+		}
+	}
+} 

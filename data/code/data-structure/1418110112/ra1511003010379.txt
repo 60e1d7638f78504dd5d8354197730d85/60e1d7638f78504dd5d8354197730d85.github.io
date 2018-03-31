@@ -1,0 +1,79 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+vector <int> b;
+
+struct node
+{
+  int data;
+  struct node *left;
+  struct node *right;
+};
+
+struct node *insert(struct node *root, int data)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=data;
+  nn->left=nullptr;
+  nn->right=nullptr;
+  
+  if(root==nullptr)
+  {
+    root=nn;
+  }
+  
+  else
+  {
+    struct node *ptr=root;
+    struct node *parent=nullptr;
+    while(ptr!=nullptr)
+    {
+      parent=ptr;
+      if(data<ptr->data)ptr=ptr->left;
+      else ptr=ptr->right;
+    }
+    if(data<parent->data)parent->left=nn;
+    else parent->right=nn;
+  }
+  return root;
+}
+
+void inorder(struct node *root)
+{
+  if(root!=nullptr)
+  {
+    inorder(root->left);
+    b.push_back(root->data);
+    inorder(root->right);
+  }
+}
+
+bool check(vector<int> b)
+{
+  int i=0;
+  int j=1;
+  return is_sorted(b.begin(),b.end());
+
+}
+
+int main()
+{
+  struct node *root=nullptr;
+  int n,i;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+    root=insert(root,a[i]);
+  }
+  inorder(root);
+  
+  if(check(b))std::cout<<"Is BST"<<std::endl;
+  else std::cout<<"Not BST"<<std::endl;
+
+	return 0;
+}

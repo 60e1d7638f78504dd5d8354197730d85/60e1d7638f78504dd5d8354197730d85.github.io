@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int sumofdigits(int x)
+{
+  int temp, sum=0;
+  while(x)
+  {
+    temp = x % 10;
+    sum += temp;
+    x = x / 10;
+  }
+  return sum;
+} 
+  
+int main()
+{
+  int T, arr[1000], temp, i;
+  scanf("%d",&T);
+  temp = T;
+  for(i = 0; i < T; i++)
+  {
+    scanf("%d",&arr[i]);
+    arr[i] = sumofdigits(arr[i]);
+  }
+  for(i = 0; i < T; i++)
+    printf("\n%d",arr[i]);
+  return 0;
+}

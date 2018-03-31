@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+char str[100001];
+ 
+int main(){
+  int T,c,e,s,f,i;
+  cin>>T;
+  while(T--){
+    cin>>str;
+    for(i=c=e=s=f=0;str[i];i++)
+      switch(str[i]){
+        case 'C':
+          if(e || s)
+            f=1;
+          c=1;
+          break;
+        case 'E':
+          if(s)
+            f=1;
+          e=1;
+          break;
+        default:
+          s=1;
+          break;
+      }
+    if(f)
+      cout<<"no\n";
+    else
+      cout<<"yes\n";
+  }
+  return 0;
+}

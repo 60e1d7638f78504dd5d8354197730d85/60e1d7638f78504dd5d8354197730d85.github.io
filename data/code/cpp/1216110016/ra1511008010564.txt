@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int arr[100],n,answer[100],sol,ans,x;
+  	cin>>n;
+  	for(int i=0;i<n;i++)
+    {
+      cin>>arr[i];
+      answer[i]=0;
+    }
+  	for(int j=0;j<n;j++)
+    {
+      x=arr[j];
+      answer[x]++;
+    }
+  	sol=answer[0];
+  	for(int i=1;i<n;i++)
+    {
+      if(answer[i]>sol)
+      {
+        sol=answer[i];
+        ans=i;
+      }
+    }
+  	if(sol>=(n/2)+1)
+      cout<<ans;
+  	else
+      cout<<"NONE";
+	return 0;
+}

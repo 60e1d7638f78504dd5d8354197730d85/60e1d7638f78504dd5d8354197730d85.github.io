@@ -1,0 +1,95 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+int mnode[1009];
+int wnode[1009];
+pair<int,pair<int,int>> p[10009];
+int n,m;
+ 
+int mroot(int x){
+    while(x!=mnode[x]){
+        x = mnode[mnode[x]];
+    }
+    return x;
+}
+ 
+int wroot(int x){
+    while(x!=wnode[x]){
+        x = wnode[wnode[x]];
+    }
+    return x;
+}
+ 
+void munion1(int x, int y){
+    int rx = mroot(x);
+    int ry = mroot(y);
+    mnode[rx] = mnode[ry];
+}
+void wunion1(int x, int y){
+    int rx = wroot(x);
+    int ry = wroot(y);
+    wnode[rx] = wnode[ry];
+}
+ 
+int mx(){
+    int ms = 0;
+    int x,y,z;
+    for(int i=0; i<m; i++){
+        z = p[i].first;
+        x = p[i].second.first;
+        y = p[i].second.second;
+        if(z==3){
+            if(mroot(x)!=mroot(y) && wroot(x)!=wroot(y)){
+                munion1(x,y);
+                wunion1(x,y);
+            }
+            else{
+                ms++;
+            }
+        }
+        else if(z==2){
+            if(wroot(x)!=wroot(y)){
+                wunion1(x,y);
+            }
+            else{
+                ms++;
+            }
+        }
+        else{
+            if(mroot(x)!=mroot(y)){
+                munion1(x,y);
+            }
+            else{
+                ms++;
+            }
+        }
+    }
+    return ms;
+}
+int main(){ 
+    cin>>n>>m;
+    for(int i=0; i<=n; i++) mnode[i]=i;
+    for(int i=0; i<=n; i++) wnode[i]=i;
+    int x,y,z;
+    for(int i=0; i<m; i++){
+        cin>>x>>y>>z;
+        p[i] = make_pair(z, make_pair(x,y));
+    }
+    sort(p,p+m);
+    reverse(p,p+m);
+    int road = mx();
+    int found = 0; 
+    for(int i=1; i<=n; i++){
+        if(mroot(1)!=mroot(i) || wroot(1)!=wroot(i)){
+            found = 1;
+            break;
+        }
+    }
+    if(found){
+        cout<<-1;
+    }
+    else{
+        cout<<road;
+    }
+    return 0;
+}

@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<string.h>
+int check(char s[], char pat[])
+{
+	int i, j, patLen=strlen(pat);
+	i=0, j=0;
+	while(pat[i]!='\0')
+	{
+		while(s[j]!='\0')
+		{
+			if(pat[i]==s[j])
+				i++;
+			j++;
+			if(i==patLen)
+				return 1;
+		}
+		if(j==strlen(s))
+			break;
+ 
+	}
+	return -1;
+}
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		char a[25000], b[25000];
+		scanf("%s%s", a, b);
+		if(strlen(a)==strlen(b) && strcmp(a, b)==0)
+			printf("YES\n");
+		else if(strlen(a)==strlen(b) && strcmp(a, b)!=0)
+			printf("NO\n");
+		else
+		{
+			if(strlen(a) > strlen(b))
+			{
+				if(check(a, b)==1)
+					printf("YES\n");
+				else
+					printf("NO\n");
+			}
+			else
+			{
+				if(check(b, a)==1)
+					printf("YES\n");
+				else
+					printf("NO\n");	
+			}
+		}
+	}
+  return 0;
+}

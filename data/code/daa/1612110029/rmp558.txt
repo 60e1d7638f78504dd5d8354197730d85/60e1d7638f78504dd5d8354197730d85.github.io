@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n,q,i;
+    cin>>n>>q;
+    int a[n],b[n];
+    for(i=0;i<n;i++){
+        cin>>a[i];
+    }
+    for(i=0;i<n;i++){
+        cin>>b[i];
+    }
+    pair<int,int> p[n];
+    for(i=0;i<n;i++){
+        p[i].first=b[i];
+        p[i].second=a[i];
+    }
+    sort(p,p+n);
+    vector<int> sum;
+    sum.push_back(0);
+    for(i=n-1;i>=0;i--){
+        int x=sum[n-1-i]+p[i].second;
+        sum.push_back(x);
+    }
+    while(q--)
+    {
+        int index;cin>>index;cout<<sum[index]<<endl;
+    }
+}

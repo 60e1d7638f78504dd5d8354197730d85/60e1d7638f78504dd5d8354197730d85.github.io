@@ -1,0 +1,41 @@
+#include<stdio.h>
+int main()
+{
+	unsigned long long int i,j,k,c,t,n,z,m,l,p;
+	char a[100];
+	scanf("%llu",&t);
+	while(t--)
+	{
+		c=0;
+		m=0;
+		l=0;
+		scanf("%s",a);
+		scanf("%llu",&n);
+		for(i=0;a[i]!='\0';i++)
+		{
+			z=(int)a[i];
+			if(z=='T')
+			c=c+2;
+			else
+			c=c+1;
+		}
+		for(k=1;(c*k)<(n*12);k++)
+		{
+			p=c*k;
+ 
+			for(j=1;j<=(n*12);j++)
+			{
+				if((j+p)<=(n*12))
+				{
+					m=j;
+					continue;
+				}
+				else
+				break;
+			}
+			l=l+m;
+		}
+		printf("%llu\n",l);
+	}
+	return 0;
+} 

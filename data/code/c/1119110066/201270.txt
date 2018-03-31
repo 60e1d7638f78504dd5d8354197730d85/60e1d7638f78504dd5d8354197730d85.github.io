@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int n,*num,i,j,t;
+    scanf("%d",&n);
+    num=(int *)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++)
+      scanf("%d",(num+i));
+      i=0;j=n-1; 
+      while(i<j)
+      {
+          t=*(num+i);
+          *(num+i)=*(num+j);
+          *(num+j)=t;
+          j--;i++; 
+       }
+    for(i=0;i<n;i++)
+    {
+      printf("%d ",*(num+i));
+    } 
+	return 0;
+}

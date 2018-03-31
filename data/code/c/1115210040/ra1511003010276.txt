@@ -1,0 +1,29 @@
+#include <stdio.h> 
+int binary(char s[],int l,int r)
+{
+  int i,d=0,x=1;
+  for(i=r;i>=l;i--){
+    if(s[i]=='1')
+      d+=x;
+    x*=2;
+  }
+  return (d%3);
+}
+int main()
+{
+int n,q,i;
+  char s[100];
+  scanf("%d%s%d",&n,s,&q);
+  for(i=0;i<q;i++){
+    int x,l,r;
+    //printf("%s\n",s);
+    scanf("%d%d",&x,&l);
+    if(x==1)
+      s[l]='1';
+    else{
+      scanf("%d",&r);
+      printf("%d\n",binary(s,l,r));
+    }
+  }
+	return 0;
+}

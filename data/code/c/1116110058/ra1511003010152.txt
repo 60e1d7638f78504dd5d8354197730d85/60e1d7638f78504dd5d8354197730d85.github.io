@@ -1,0 +1,26 @@
+#include<stdio.h>
+#define min(a,b) (a<b? a:b)
+ 
+int main()
+{
+        int a[26]={},this[26]={};
+        int i,n,j,f=0;
+        char str[1000];
+        for(scanf("%d",&n),i=0;i<n;i++){
+                scanf("%s",str);
+                for(j=0;j<26;j++) this[j]=0;
+                for(j=0;str[j];j++) this[str[j]-'a']++;
+                if(i==0)
+                        for(j=0;j<26;j++)
+                                a[j]=this[j];
+                else
+                        for(j=0;j<26;j++)
+                                a[j]=min(a[j],this[j]);
+                }
+        for(i=0;i<26;i++)
+                for(j=a[i];j;j--)
+                        f+=printf("%c",i+'a');
+        if(f==0) printf("no such string");
+        printf("\n");
+        return 0;
+} 

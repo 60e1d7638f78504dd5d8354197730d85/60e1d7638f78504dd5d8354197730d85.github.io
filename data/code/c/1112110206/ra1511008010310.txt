@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int N;
+  scanf("%d",&N);
+  int arr[100];
+  int gross[100];
+  int HRA;
+  int DA;
+  int i;
+  for(i=0;i<N;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  for(i=0;i<N;i++)
+  {
+    if(arr[i]<1500)
+    {
+      HRA=(0.1)*arr[i];
+      //printf("%d\n",HRA);
+      DA=(0.9)*arr[i];
+      //printf("%d\n",DA);
+      gross[i]=arr[i]+HRA+DA;
+    }
+    else if(arr[i]>=1500)
+    {
+      HRA=500;
+      DA=(0.98)*arr[i];
+      gross[i]=arr[i]+HRA+DA;
+    }
+  }
+  for(i=0;i<N;i++)
+  {
+    printf("%d\n",gross[i]);
+  }
+  
+
+	return 0;
+}

@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int i,j,n,c=0;
+  char str[100];
+  fgets(str,sizeof(str),stdin);
+  n=strlen(str);
+  c=printer_error(str);
+  printf("%d/%d",c,n);
+  return 0;
+}
+int printer_error(char str1[100])
+{
+  int i,j,c=0,n;
+  n=strlen(str1);
+  for(i=0;i<n;i++)
+    if(str1[i]>110)
+      c+=1;
+  return c;
+}

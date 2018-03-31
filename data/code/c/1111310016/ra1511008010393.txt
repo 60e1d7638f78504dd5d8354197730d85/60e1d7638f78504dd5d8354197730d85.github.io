@@ -1,0 +1,62 @@
+#include <stdio.h>
+int main()
+{
+  int numON[256],i,j,count=0,mask,n,q,s,op,start,end,p,ans;
+  for(i=0;i<256;i++,count=0)
+  {
+    for(mask=1;mask<256;mask*=2)
+      if((i&mask)!=0)
+        count++;
+    numON[i]=count;
+  }
+  scanf("%d%d",&n,&q);
+  if(n%8!=0)
+    s=n/8+1;
+  else
+    s=n/8;
+  unsigned char coins[s],m;
+  for(i=0;i<s;i++)
+    coins[i]=0;
+  while(q--)
+  {
+    scanf("%d%d%d",&op,&start,&end);
+    ans=0;
+    i=start/8;
+    p=start%8;
+    if(p!=0)
+    {
+      n=end-start+1;
+      if(n>8-p)
+        n=8-p;
+      m= ~(~0 << n) << (8-p-n);
+      if(op==0)
+        coins[i] ^=m;
+      else
+        ans+=numON[coins[i]&m];
+      i++;
+    }
+    j=end/8;
+    if(end%8==7)
+      j++;
+    if(op==0)
+      for(;i<j;i++)
+        coins[i]= ~coins[i];
+    else
+      for(;i<j;i++)
+        ans+=numON[coins[i]];
+    if(end%8!=7&&i==j)
+    {
+      p=0;
+      n=end%8+1;
+      m= ~(~0 << n) << (8-p-n);
+      if(op==0)
+        coins[i] ^=m;
+      else
+        ans+=numON[coins[i]&m];
+      
+    }
+    if(op==1)
+      printf("%d\n",ans);
+  }
+	return 0;
+}

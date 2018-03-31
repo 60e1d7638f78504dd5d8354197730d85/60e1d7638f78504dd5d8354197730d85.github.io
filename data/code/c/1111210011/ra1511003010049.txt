@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    int t1h,t2h,t1m,t2m,dist;
+    char c;
+    while(t--)
+    {
+        scanf("%d%c%d", &t1h,&c,&t1m);
+        scanf("%d%c%d", &t2h,&c,&t2m);
+        scanf("%d", &dist);
+        printf("%d.0 ", (t1h-t2h)*60+t1m-t2m+dist);
+        if(((t1h-t2h)*60+t1m-t2m) >= 2*dist) printf("%d.0", (t1h-t2h)*60+t1m-t2m);
+        else
+        {
+            int min=(2*dist)-((t1h-t2h)*60+t1m-t2m);
+            if(min%2==0)printf("%d.0", (t1h-t2h)*60+t1m-t2m+min/2);
+            else printf("%d.5", (t1h-t2h)*60+t1m-t2m+min/2);
+        }
+        printf("\n");
+    }
+
+	return 0;
+} 

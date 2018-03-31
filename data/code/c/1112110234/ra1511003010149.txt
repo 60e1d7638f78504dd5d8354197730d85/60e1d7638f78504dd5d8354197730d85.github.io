@@ -1,0 +1,33 @@
+#include <stdio.h>
+void sort_arr(int arr[],int n);
+int main()
+{ 
+  int t,arr[110],i,j;
+  scanf("%d",&t);
+  while(t--) {
+    int num,rem,sum=0;
+  	scanf("%d %d",&num,&rem);
+    for(i=0;i<num;i++)
+      scanf("%d",&arr[i]);
+    sort_arr(arr,num);
+  	for(j=rem;j<num-rem;j++)
+      sum += arr[j];
+      //printf("%d ",arr[j]);
+    float div = num - (2*rem);
+    float avg = sum/div;
+    printf("%.6f\n",avg);
+  }
+    return 0;
+}
+void sort_arr(int arr[],int n) {
+  int i,j,temp;
+  for(i=0;i<n;i++) {
+    for(j=0;j<(n-i-1);j++) {
+      if(arr[j] > arr[j+1]) {
+        temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+      }
+    }
+  }
+}

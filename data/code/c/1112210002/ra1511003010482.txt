@@ -1,0 +1,65 @@
+#include <stdio.h>
+long long inverseModulo(int b, long long m){
+  long long x = 0, y = 1, r, q;
+  long long a = m;
+  while(b){
+    q = a/b;
+    r = a%b;
+    a = b;
+    b = r;
+    r = x;
+    x = y;
+    y = r - q * y;
+  }
+  if(x < 0) x += m;
+  return x;
+}
+int main(){
+  long long M = 1000000007;
+  int t, i, j, k, l;
+  long long similar, total, orderedPairs, fact;
+  char s[100001];
+  scanf("%d", &t);
+  while(t--){
+    scanf("%s", s);
+    long long alphabet[26]={0};
+    total = 1;
+    for(i = 0; s[i] != '\0'; ++i){
+      total *= (i + 1) % M;
+      total %= M;
+      alphabet[s[i]-'a']++;
+    }
+    similar = 1;  
+    for(i = 0; i < 26; i++){
+      for(j = i + 1; j < 26; j++){
+        similar += (alphabet[i] * alphabet[j]) % M; 
+        similar %= M;
+        similar += (((alphabet[i] * (alphabet[i] - 1) / 2) % M)
+              * ((alphabet[j] * (alphabet[j] - 1) / 2) % M)) % M;
+        similar %= M;
+        for(k = j + 1; k < 26; k++){
+          similar += (2 * ((alphabet[i] * alphabet[j]) % M) * alphabet[k]) % M;  
+          similar %= M;
+          similar += (((alphabet[i] * alphabet[j]) % M)
+              * ((alphabet[k] * (alphabet[i] + alphabet[j] + alphabet[k] - 3)) % M)) % M; 
+          for(l = k + 1; l < 26; l++){
+            similar += (3 * ((alphabet[i] * alphabet[j]) % M) * ((alphabet[k] * alphabet[l]) % M)) % M; 
+            similar %= M;
+          }
+        }
+      }
+      fact = 1;
+      for(j = 0; j < alphabet[i]; j++){
+        fact *= (j + 1) % M;
+        fact %= M;
+      }
+      total *= inverseModulo(fact, M);
+      total %= M;     
+    }
+    orderedPairs = ((total - similar) * total) % M;
+    if(orderedPairs < 0)
+      orderedPairs += M;
+    printf("%lld\n", orderedPairs);
+  }
+  return 0;
+}

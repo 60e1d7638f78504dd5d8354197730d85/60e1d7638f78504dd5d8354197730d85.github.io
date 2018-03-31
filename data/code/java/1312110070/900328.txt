@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.String;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       try
+       {
+         int n=inp.nextInt();
+         int a=n;
+         String ns=n+"\0";
+         int ct=ns.length();
+         //System.out.println(ct);
+         int x=0;
+         String ans="";
+         int bin[]=new int[10];
+         int gray[]=new int[10];
+         for (int i=ct-2;i>=0;i--)
+         {
+          bin[i]=a%10;
+           a=a/10;
+           //System.out.println(bin[i]);
+          }
+         int prev=0;
+         for (int i=0;i<ct-1;i++)
+         {
+           if(i==0)
+           {
+             gray[i]=bin[i];
+             prev=bin[i];
+           }
+           else
+           {
+             gray[i]=bin[i]^prev;
+             prev=bin[i];
+           }
+         }
+         //String ans="";
+         for(int i=0;i<ct-1;i++)
+         {
+           ans=ans+gray[i];
+         } 
+         System.out.println(ans);
+       }
+       catch (Exception E)
+       {}
+		
+	}
+}

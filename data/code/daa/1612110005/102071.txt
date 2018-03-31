@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+struct empl
+{
+  char n[100];
+  int a;
+}emp[100];
+int main()
+{
+int i,n,j,tem;
+  char t[100];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%s%d",emp[i].n,&emp[i].a);
+	for(i=0;i<n;i++)
+    {
+      for(j=i+1;j<n;j++)
+      {
+        if(strcmp(emp[i].n,emp[j].n)>0)
+        {
+          strcpy(t,emp[i].n);
+          strcpy(emp[i].n,emp[j].n);
+          strcpy(emp[j].n,t);
+          tem=emp[i].a;
+          emp[i].a=emp[j].a;
+          emp[j].a=tem;
+        }
+      }
+    }
+    printf("After sorting\nName ID");
+    for(i=0;i<n;i++)
+  		printf("\n%s %d",emp[i].n,emp[i].a);
+    
+  
+	return 0;
+}

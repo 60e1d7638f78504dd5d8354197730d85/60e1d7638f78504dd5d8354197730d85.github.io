@@ -1,0 +1,45 @@
+#include "stdio.h"
+#include "math.h"
+#include "stdlib.h"
+ 
+int main(){
+	int t, n;
+	scanf("%d", &t);
+	char * buff;
+	unsigned int sum, score, i, temp, flag;
+	double avg;
+ 
+	while(t--){
+		scanf("%d\n",&n);
+		temp = n;
+ 
+		buff = (char *)malloc(n*2 + 10);
+		fgets(buff, n*2, stdin);
+ 
+		i = 0; flag = 0; sum = 0;
+		while(n--){
+			score = buff[i] - '0';
+			if(score <= 2){
+				printf("No\n");
+				break;
+			}
+			if(score == 5){
+				flag = 1;
+			}
+			sum += score;
+			i += 2;
+		}
+		if(n > -1){
+			continue;
+		}
+		avg = sum/(double)temp;
+		// printf("%lf\n", avg);
+		if( flag && ((int)floor(avg)) >= 4 ){
+			printf("Yes\n");
+		}
+		else{
+			printf("No\n");
+		}
+	}
+	return 0;
+} 

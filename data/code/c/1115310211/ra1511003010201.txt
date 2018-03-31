@@ -1,0 +1,38 @@
+#include<stdio.h>
+int steps=0;
+void sort(int a[], int n) 
+{	
+	if (n<=1) 
+		return ;
+	steps=steps+n;
+	int pivot=a[(n-1)/2];
+	int i,j=0,k=0,s=0,b=0;
+	for (i=0;i<n;i++) 
+	{
+		if (a[i] < pivot) 
+			s++;
+		else if (a[i] > pivot) 
+			b++;
+	}
+	int smaller[s], bigger[b];
+	for (i=0;i<n;i++) 
+	{
+		if (a[i]<pivot) 
+			smaller[j++]=a[i];
+		else if (a[i]>pivot)
+			bigger[k++]=a[i];
+	}
+	sort(smaller,s);
+	sort(bigger,b);
+}
+int main() {
+	int n,i;
+	scanf("%d", &n);
+	int a[n];
+	for (i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	sort(a,n);
+	printf("%d\n",steps);
+	return 0;
+} 
+ 

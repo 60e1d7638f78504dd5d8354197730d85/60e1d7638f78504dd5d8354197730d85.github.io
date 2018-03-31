@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,i,k,n1;
+  char name[10][20],temp[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%s",name[i]);
+  k=n-1;
+  while(k)
+  {
+    n1=0;
+    for(i=0;i<=k;i++)
+    {
+      if(strcmp(name[n1],name[i])<0)
+      {
+        n1=i;
+      }
+    }
+    strcpy(temp,name[n1]);
+    strcpy(name[n1],name[k]);
+    strcpy(name[k],temp);
+    k--;
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("\n%s",name[i]);
+  }
+
+	return 0;
+}

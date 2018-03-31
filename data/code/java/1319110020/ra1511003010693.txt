@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       int[] A = new int[n];
+       int co = 0;
+       for(int i = 0; i < n; i++){
+         A[i] = sc.nextInt();
+         if(A[i] < 0 || A[i] > 100){
+           co++;
+           try{
+             throw new IllegalArgumentException();
+           }
+           catch(IllegalArgumentException e){
+             System.out.println(e);
+           }
+         }
+       }
+       Constructor c = new Constructor(A);
+       if(co == 0)
+         System.out.println(c.average());
+	}
+}
+class Constructor{
+  private int[] A;
+  public Constructor(int[] a){
+    A = a;
+  }
+  public double average(){
+    double sum = 0.0;
+    for(int i = 0; i < A.length; i++)
+      sum += A[i];
+    return sum / A.length;
+  }
+}

@@ -1,0 +1,32 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+int cb(int x){
+   int n=0;
+   list <int> a;
+   for(int i=2;i<=x;i++){
+      int y = x;
+      while(y!=0){
+        a.push_front(y%i);
+        y = y/i;
+      }
+     if(int(a.front())==1)
+       n++;
+    }
+  return n;
+}
+
+int main()
+{
+ //      	cout<<cb(5); 	
+  	int n;
+  	cin>>n;
+  	for(int i=0;i<n;i++){
+    	int x;
+      	cin>>x;
+     	cout<<cb(x)<<endl; 	
+    }
+
+	return 0;
+}

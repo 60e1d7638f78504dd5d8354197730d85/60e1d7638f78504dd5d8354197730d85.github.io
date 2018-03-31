@@ -1,0 +1,41 @@
+#include<iostream>  
+using namespace std;  
+int isprime(int x)    
+{  
+    int i;  
+    if(x==1)  
+        return 0;  
+    for(i=2;i*i<=x;i++)  
+    {  
+        if(x%i==0)  
+            return 0;  
+    }  
+    return 1;  
+}  
+int main()  
+{  
+    int s,n;  
+    while(cin>>n)  
+    {  
+        if(n==1)    
+            cout<<1<<endl<<1<<endl;  
+        else if(n==2)    
+        {  
+            cout<<1<<endl<<1<<' '<<1<<endl;  
+            continue;  
+        }  
+        else  
+        {  
+            cout<<2<<endl;     
+            for(int i=2;i<=n+1;i++)  
+            {  
+                if(isprime(i)==1) 
+                    cout<<1<<' ';  
+                else  
+                    cout<<2<<' ';  
+            }  
+            cout<<endl;  
+        }  
+    }  
+    return 0;  
+}  

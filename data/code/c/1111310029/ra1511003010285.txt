@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int *A,n,max,i,T,*look;
+    scanf("%d",&T);
+    while(T--)
+    {
+        int che=0,area=1;
+        max=0;
+        look=calloc(1001,sizeof(int));
+        scanf("%d",&n);
+        A=malloc(n*sizeof(int));
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&A[i]);
+            look[A[i]]++;
+            if(A[i]>max)
+                max=A[i];
+        }
+        for(i=max;i>=1;i--)
+        {
+            if(look[i]>=2)
+            {
+                area=area*i;
+                che++;
+                look[i]=look[i]-2;
+                i++;
+            }
+            if(che==2)
+                break;
+        }
+        if(che==2)
+            printf("%d\n",area);
+        else
+            printf("-1\n");
+    }
+    return 0;
+}

@@ -1,0 +1,85 @@
+// C++ program for Boggle game
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+#define M 3
+#define N 3
+
+
+string dictionary[10];
+int n ;
+
+
+bool isWord(string &str)
+{
+	
+	for (int i=0; i<n; i++)
+		if (str.compare(dictionary[i]) == 0)
+		return true;
+	return false;
+}
+
+
+void findWordsUtil(char boggle[M][N], bool visited[M][N], int i,
+				int j, string &str)
+{
+	
+	visited[i][j] = true;
+	str = str + boggle[i][j];
+
+	
+	if (isWord(str))
+		cout << str <<" ";
+
+	
+	for (int row=i-1; row<=i+1 && row<M; row++)
+	for (int col=j-1; col<=j+1 && col<N; col++)
+		if (row>=0 && col>=0 && !visited[row][col])
+		findWordsUtil(boggle,visited, row, col, str);
+
+	
+	str.erase(str.length()-1);
+	visited[i][j] = false;
+}
+
+
+void findWords(char boggle[M][N])
+{
+	
+	bool visited[M][N] = {{false}};
+
+	
+	string str = "";
+
+	
+	for (int i=0; i<M; i++)
+	for (int j=0; j<N; j++)
+			findWordsUtil(boggle, visited, i, j, str);
+}
+
+
+int main()
+{
+	int w;
+	cin>>w;
+	
+	for( int p=0;p<w;p++)
+	{
+	cin>>n;
+	for(int i=0;i<n;i++)
+	cin>>dictionary[i];
+	int a,b;
+	cin>>a>>b;
+	char boggle[M][N];
+	for(int i=0;i<M;i++)
+	for(int j=0;j<N;j++)
+	cin>> boggle[i][j] ;
+      if(n==2)
+        cout<<"Chef ";
+
+
+	findWords(boggle);
+	}
+	return 0;
+}

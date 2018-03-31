@@ -1,0 +1,98 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+ 
+typedef struct node
+{
+    int val ; 
+    int person; 
+    int index;
+}MaxDelivery;
+ 
+ 
+int getn()
+{
+    register int c = gc();
+    int x = 0;
+    for(;(c<48 || c>57);c = gc());
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    return x;
+}
+void join(MaxDelivery c[], int lo, int mid, int hi)
+{
+    int i=lo, j=mid+1,k=0;
+    MaxDelivery d[100002];
+    while(i<=mid && j<=hi)
+    {
+        if(c[i].val < c[j].val)
+        {
+            d[k++]=c[i++];
+        }
+        else{
+            d[k++]=c[j++];
+        }
+    }
+    while(i<=mid)
+    {
+        d[k++]=c[i++];
+    }
+    while(j<=hi)
+    {
+        d[k++]=c[j++];
+    }
+    k=0;
+    for(i=lo;i<=hi;i++)
+        c[i]=d[k++];
+}
+void sort(MaxDelivery c[], int lo, int hi)
+{
+    int mid;
+    if(lo<hi)
+    {
+        mid=(lo+hi)/2;
+        sort(c,lo,mid);
+        sort(c,mid+1,hi);
+        join(c,lo,mid,hi);
+    }
+}
+ 
+int main() {
+	int n , x , y, i ; 
+	n = getn() ; 
+	x = getn() ; 
+	y = getn() ; 
+	int a[n], b[n] ; 
+	MaxDelivery c[n];
+	for(i = 0 ; i < n ; i++) {
+		a[i] = getn() ; 
+	}
+	for(i = 0 ; i < n ; i++) {
+		b[i] = getn() ; 
+		if(a[i] > b[i]) {
+			c[i].val = a[i] - b[i] ; 
+			c[i].person = 1 ; 
+		} else {
+			c[i].val = b[i] - a[i] ; 
+			c[i].person = 0 ; 
+		}
+		c[i].index = i ; 
+	}
+	sort(c,0,n-1) ;
+	int profit = 0 ; 
+	for(i = n-1; x && y && i >= 0; i--) {
+		if(c[i].person) {
+			profit = profit + a[c[i].index];
+			x--;
+		} else {
+			profit = profit + b[c[i].index];
+			y--;
+		}
+	}
+	for( ; x && i >= 0 ; i--) {
+		profit = profit + a[c[i].index];
+	}
+	for( ; y && i >= 0 ; i--) {
+		profit = profit + b[c[i].index];
+	}
+	printf("%d\n", profit);
+	return  0 ; 
+} 

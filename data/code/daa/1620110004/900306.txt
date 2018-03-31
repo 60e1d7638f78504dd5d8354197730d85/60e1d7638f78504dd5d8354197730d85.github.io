@@ -1,0 +1,21 @@
+#include <stdio.h>
+unsigned int cntSet(unsigned int n)
+{
+unsigned int cnt=0;
+  while(n)
+  {
+    cnt+=(n&1);
+    n>>=1;
+  }
+  return cnt;
+}
+int main()
+{
+  unsigned int n;
+  unsigned int i,tt=0;
+scanf("%d",&n);
+  for (i=1;i<=n;i++)tt+=cntSet(i);
+  printf("Total set bit count is %u",tt);
+
+	return 0;
+}

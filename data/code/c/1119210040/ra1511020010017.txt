@@ -1,0 +1,31 @@
+#include <stdio.h>
+ 
+inline int fastInput() {
+    int val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+ 
+int main() {
+    int a[100], temp, i, start = 1, n = fastInput(), m = fastInput();
+    char c;
+    for (i=1; i<=n; i++) a[i] = fastInput();
+    for (i=0; i<m; i++) {
+        c = getchar_unlocked();
+        temp = fastInput();
+        if (c == 'A') {
+            start = start - temp;
+            if (start < 1) start = start + n;
+        } else if (c == 'C') {
+            start = start + temp;
+            if (start > n) start = start - n;
+        } else {
+            temp = start + temp - 1;
+            if (temp > n) temp = temp - n;
+            printf("%d\n", a[temp]);
+        }
+    }
+    return 0;
+}  

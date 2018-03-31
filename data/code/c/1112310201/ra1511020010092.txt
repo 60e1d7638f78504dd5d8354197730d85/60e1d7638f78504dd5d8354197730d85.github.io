@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<limits.h>
+#include<stdlib.h>
+int remb[50001][3],max;
+int *arr[50001],*wgt[50001];
+int dfs(int *visited,int *size,int p_vertex,int day){
+    visited[p_vertex]=1;
+    if(p_vertex>max) max=p_vertex;
+    int iter;
+    for(iter=0;iter<size[p_vertex];++iter){
+        if(!visited[arr[p_vertex][iter]]&&day<=wgt[p_vertex][iter])
+           dfs(visited,size,arr[p_vertex][iter],wgt[p_vertex][iter]);
+    }
+    return max;
+}
+int main(){
+    int t,m,n,i,num;
+    scanf("%d",&t);
+    while(t--){
+       int mark[50001]={0},size[50001]={0};
+       scanf("%d %d",&n,&m);
+       for(i=0;i<n;++i){
+           scanf("%d",&num);
+           mark[num]+=1;
+       }
+       for(i=0;i<m;++i){
+           scanf("%d %d %d",&remb[i][0],&remb[i][1],&remb[i][2]);
+           size[remb[i][1]]+=1;
+           size[remb[i][2]]+=1;
+       }
+       for(i=0;i<50001;++i){
+           arr[i]=NULL;
+           wgt[i]=NULL;
+       }
+       for(i=1;i<50001;++i){
+           if(size[i]!=0){
+              arr[i]=(int *)malloc(size[i]*sizeof(int));
+              wgt[i]=(int *)malloc(size[i]*sizeof(int));
+           }
+       }
+       for(i=0;i<50001;++i)
+           size[i]=0;
+       for(i=0;i<m;++i){
+           arr[remb[i][1]][size[remb[i][1]]]=remb[i][2];
+           wgt[remb[i][1]][size[remb[i][1]]++]=remb[i][0];
+           arr[remb[i][2]][size[remb[i][2]]]=remb[i][1];
+           wgt[remb[i][2]][size[remb[i][2]]++]=remb[i][0];
+       }
+       /*for(i=1;i<50001;++i){
+           if(arr[i]!=NULL){
+              for(j=0;j<size[i];++j)
+                  printf("%d ",arr[i][j]);
+              printf("\n");
+           }
+       }*/
+       long long int credits=0;
+        for(i=1;i<50001;++i){
+            if(mark[i]!=0){
+               int visited[50001]={0};
+               max=INT_MIN;
+               max=dfs(visited,size,i,0);
+               if(max!=INT_MIN)
+                  credits+=(max*mark[i]);
+            }
+        }
+        printf("%lld\n",credits);
+    }
+    return 0;
+}

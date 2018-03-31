@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main()
+{
+    int arr1[10];
+    double arr2[10];
+    int t,t1;
+    int i,j;
+    float HRA,DA,GS;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&arr1[i]);
+    }
+    i=0;
+    t1=t;
+    while(t>0)
+    {
+    if(arr1[i]<1500)
+    {
+        HRA=(0.1*arr1[i]);
+        DA=(0.9*arr1[i]);
+        GS=(arr1[i]+HRA+DA);
+        arr2[i]=GS;
+
+    }
+    if(arr1[i]>=1500)
+    {
+        HRA=500;
+        DA=(0.98*arr1[i]);
+        GS=(arr1[i]+HRA+DA);
+        arr2[i]=GS;
+    }
+    i++;
+    t--;
+    if(i==t1)
+    break;
+}
+
+for(j=0;j<i;j++)
+{
+    printf("\n%g",arr2[j]);
+}
+    return 0;
+}

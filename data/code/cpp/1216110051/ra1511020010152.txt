@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int arr1[50], arr2[50], size1, size2, size, i, j, k, merge[100],temp;
+	cin>>size1;
+	for(i=0; i<size1; i++)
+	{
+		cin>>arr1[i];
+	}
+	cin>>size2;
+	for(i=0; i<size2; i++)
+	{
+		cin>>arr2[i];
+	}
+	for(i=0; i<size1; i++)
+	{
+		merge[i]=arr1[i];
+	}
+	size=size1+size2;
+	for(i=0, k=size1; k<size && i<size2; i++, k++)
+	{
+		merge[k]=arr2[i];
+	}
+    cout<<"The Merged Array in Ascending Order"<<endl;
+	for(i=0; i<size; i++)
+	{
+		for(j=i+1;j<size;j++){
+          if(merge[i]>merge[j]){
+            temp=merge[i];
+            merge[i]=merge[j];
+            merge[j]=temp;}}
+	}
+    for(i=0;i<size;i++){
+      if(merge[i]!=merge[i+1]){
+      cout<<merge[i]<<" ";}}
+    return 0;
+}

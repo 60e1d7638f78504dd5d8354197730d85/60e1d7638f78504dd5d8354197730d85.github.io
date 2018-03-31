@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class TestClass {
+  public static void main(String[] args) { 
+    Scanner in=new Scanner(System.in);
+    int n=in.nextInt();
+    String str="";
+    for(int i=0;i<n;i++)
+    {
+      str=in.next();
+      Pattern ptr=Pattern.compile("^[A-Za-z][A-Za-z0-9_]{7,30}");
+      Matcher mtch=ptr.matcher(str);
+      if(mtch.matches())
+        System.out.println("Valid");
+      else
+        System.out.println("Invalid");
+    }
+  }
+}

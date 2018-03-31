@@ -1,0 +1,37 @@
+ 
+ #include<stdio.h>
+ #include<string.h>
+ 
+ long long int String_Count( char Str[] , long long int N );
+ 
+ int main( void )
+{
+  char Str[100001];
+  long long int Count , Length;
+  scanf( "%s" , Str );
+  
+  Length = strlen( Str );
+  Count = String_Count( Str , Length );
+  
+  printf( "%lld\n" , Count );
+  
+  return 0;
+} 
+ 
+ long long int String_Count( char Str[] , long long int N )
+{
+  long long int i = 1 , Count , Lex_Front , Temp_Front , Temp_Count;
+  
+  Count = Lex_Front = 90 -Str[0];
+  
+     while( i < N )
+    {
+      Temp_Count = ( ( Lex_Front + 1 ) * ( 90 - Str[i] ) ) % 1000000007;
+      Count = ( Count + Temp_Count ) % 1000000007;
+      Temp_Front = ( Lex_Front * 26 ) % 1000000007;
+      Lex_Front = ( Temp_Front + 90 - Str[i] ) % 1000000007;
+      i++;
+    }  
+    
+  return Count;  
+} 

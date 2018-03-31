@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+int gcdcal(int a, int b)
+{
+    int r;
+    int temp;
+    
+    if (a < b)
+    {
+        temp = a;
+        a = b;
+        b = temp;
+    }
+ 
+    r = a%b;
+    
+    
+    if (r == 0)
+        return b;
+    else    
+        return gcdcal(b,r);
+    
+}
+ 
+int main(int argc, char **argv)
+{
+    int t;
+    int a,b;
+    int gcd, lcm;
+    
+  
+    scanf("%d",&t);
+    
+	while(t--)
+	{
+        scanf("%d %d",&a,&b);
+        gcd = gcdcal(a,b);
+        lcm = (a*b)/gcd; \
+        printf("%d %d\n",gcd,lcm);
+	}
+    return 0;
+	
+}
+ 

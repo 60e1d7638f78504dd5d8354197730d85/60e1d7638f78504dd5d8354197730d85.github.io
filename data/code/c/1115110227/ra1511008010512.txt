@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int i,n,t,a[1000],cost=0,c;
+  scanf("%d", &t);
+  while(t--)
+  {
+  	scanf("%d", &n);
+    for(i=0;i<n;i++)
+    {
+    	scanf("%d", &a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+      if(a[i+1]>a[i])
+      {
+        for(c=i+1;c<n-1;c++)
+        {
+        	a[c]=a[c+1];
+        }
+      	cost=cost+a[i];
+      }
+      else if(a[i]>a[i+1])
+      {
+        	for(c=i;c<n-1;c++)
+            {
+            	a[c]=a[c+1];
+            }
+			cost=cost+a[i+1];    
+      } 
+    }
+    printf("%d", cost);
+  }
+	return 0;
+}

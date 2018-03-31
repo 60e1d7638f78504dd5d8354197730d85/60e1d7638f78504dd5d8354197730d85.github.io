@@ -1,0 +1,49 @@
+#include <stdio.h>
+ 
+#define MAX 10002
+ 
+int fastInput() {
+    int val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+ 
+int main(void) {
+    int i, j, t = fastInput(), n, primes[MAX] = {0}, primeCount = 1, inc, min, extra;
+    primes[0] = 2;
+    for (i=3; i<MAX; i+=2) {
+        if (primes[i] == 0) {
+            primes[primeCount++] = i;
+            for (j=i*i; j<MAX; j+=i) primes[j] = 1;
+        }
+    }
+    while (t--) {
+        n = fastInput();
+        int a[n];
+        extra = 0, min = n, a[0] = fastInput();
+        for (i=1; i<n; i++) {
+            a[i] = fastInput();
+            if (a[i] < a[i-1]) {
+                extra += (a[i-1] - a[i]);
+                a[i] = a[i-1];
+            }
+        }
+        for (i=0; i<primeCount; i++) {
+            inc = 0;
+            for (j=0; j<n; j++) {
+                if (a[j] % primes[i] != 0) {
+                    int high = a[j]/primes[i];
+                    high *= primes[i];
+                    high += primes[i];
+                    inc += (high - a[j]);
+                    if (inc >= min) break;
+                }
+            }
+            if (inc < min) min = inc;
+        }
+        printf("%d\n", (extra+min));
+    }
+    return 0;
+} 

@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct time
+{
+  int val;
+  int pos;
+};
+struct time a[100001];
+int compare(void const *a,void const *b)
+{
+    struct time*c,*d;
+    c=(struct time*)a;d=(struct time*)b;
+    if((c->val)>(d->val))
+    return 1;
+    else if((c->val)<(d->val))
+    return -1;
+    else if((c->pos)>(d->pos))
+    return 1;
+    else if((c->pos)<(d->pos))
+    return -1;
+}
+int main()
+{
+    int n,k,i,start_val,start_pos,cnt=0,j;
+    scanf("%d%d",&n,&k);
+    for(i=0;i<n;i++)
+    {scanf("%d",&a[i].val);
+     a[i].pos=i;
+     }
+     qsort(a,n,sizeof(struct time),compare);
+    start_val=a[0].val;
+    start_pos=a[0].pos;
+    cnt++;
+    for(i=0;i<n;i++)
+    {
+       if((a[i].val==start_val)&&((start_pos+k-1)>=a[i].pos))
+       continue;
+       else
+       {
+           cnt++;
+           start_val=a[i].val;
+           start_pos=a[i].pos;
+       }
+    }
+    printf("%d\n",cnt);
+    return 0;
+}
+ 

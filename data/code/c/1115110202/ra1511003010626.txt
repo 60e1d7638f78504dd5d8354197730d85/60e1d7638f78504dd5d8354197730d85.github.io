@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int i,n,a[20],freq[100];
+  	scanf("%d",&n);
+  	int j,count;
+  	for(i=0;i<n;i++)
+    {
+     scanf("%d",&a[i]);
+     freq[i] = -1;
+    }
+  	for(i=0;i<n;i++)
+    {
+      count = 1;
+      for(j=i+1;j<n;j++)
+      {
+        if(a[i] == a[j])
+        {
+          count = count + 1;
+          freq[j] = 0;
+        }
+      }
+      if(freq[i] != 0)
+        freq[i] = count;
+      	//printf("%d occurs %d times\n",a[i],count);
+    }
+  	for(i=0; i<n; i++)
+    {
+        if(freq[i] != 0)
+        {
+            printf("%d occurs %d times\n", a[i], freq[i]);
+        }
+    }
+  
+	return 0;
+}

@@ -1,0 +1,53 @@
+#include <stdio.h>
+int calc(int c, int d, int l)
+{
+  int max = (c+d)*4, min;
+  //printf("%d, %d, maxL = %d\n", c, d, max); 
+  if (c > 2*d)
+  {
+    int cd = c - (2*d);
+    min = (cd+d)*4;
+    //printf("c>2d, min = %d\n", min); 
+  }
+  else
+  {
+    min = d*4;
+    //printf("c<2d, min = %d\n", min);
+  }
+  
+  if (l >= min && l <= max)
+  {
+    //printf("L = %d within range\n", l);
+    return 1;
+  }
+  else
+  {
+    //printf("L = %d out of range\n", l);
+    return 0;
+  }
+  
+}
+int main()
+{
+  
+  int n; 
+  scanf("%d", &n);
+  int c[n], d[n], l[n], i;
+  for (i = 0; i < n; i++)
+  {
+    scanf("%d%d%d", &c[i], &d[i], &l[i]);
+  }
+  
+  for (i = 0; i < n; i++)
+  {
+    if (calc(c[i], d[i], l[i]) == 1)
+    {
+      printf ("yes\n");
+    }
+    else
+    {
+      printf ("no\n");
+    }
+  }
+	return 0;
+}

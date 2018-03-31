@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+	#define N "not a "
+	#define E "valid identifier"
+
+	char buf[12] = {0};
+	char *s = buf;
+	fgets(buf, 11, stdin);
+
+	if (buf[10] != '\0' && buf[10] != '\n')
+		return (printf(N E), 0);
+
+	if (isdigit(buf[0]))
+		return (printf(N E), 0);
+
+	while( (s = strchr(s, '_')) != NULL ) {
+		if (( *(s+1) == '\0' ) || ( *(s+1) == '_' ) || (s == buf))
+			return (printf(N E), 0);
+
+		if (s + 2 < buf + 12)
+			s += 2;
+		else
+			s = buf + 12;
+	}
+
+	printf(E);
+
+	return 0;
+}

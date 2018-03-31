@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct node{
+	long long int data;
+	struct node* next;
+};
+int hit;
+struct node** hash;
+int size=1000001;
+void hash_it(long long int data)
+{
+	int pos=data%size;
+	struct node* cur=hash[pos];
+	while(cur)
+	{
+		if(cur->data==data)
+		{
+			hit=1;
+			return;
+		}
+		cur=cur->next;
+	}
+	struct node* head=malloc(sizeof(struct node));
+	head->data=data;
+	head->next=hash[pos];
+	hash[pos]=head;
+}
+void init_hash()
+{
+	int i;
+	for(i=0;i<size;i++)
+	 hash[i]=0;
+}
+int main()
+{
+	//freopen("program.txt","r",stdin);
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		hash=(struct node**)malloc(size*sizeof(struct node*));
+		init_hash();
+		int n,m,i,j;
+		long long int k;
+		scanf("%d %d",&n,&m);
+		for(i=0;i<n;i++)
+		{
+			scanf("%lld",&k);
+			hash_it(k);
+		}
+		for(i=0;i<m;i++)
+		{
+			hit=0;
+			scanf("%lld",&k);
+			hash_it(k);
+			if(hit)
+			 printf("YES\n");
+			else
+			 printf("NO\n");
+		}
+		free(hash);
+	}
+  return 0;
+}

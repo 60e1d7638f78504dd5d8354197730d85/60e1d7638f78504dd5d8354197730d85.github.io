@@ -1,0 +1,28 @@
+#include <stdio.h>
+void symmetric(int mat[20][20],int tmat[20][20],int n);
+int main()
+{int i,j,m[20][20],t[20][20],a,b;
+ scanf("%d\n%d",&a,&b);
+ for(i=0;i<b;i++)
+   for(j=0;j<b;j++)
+   {scanf("%d",&m[i][j]);
+    t[j][i]=m[i][j];
+   }
+ symmetric(m,t,b);
+
+	return 0;
+}
+
+void symmetric(int mat[20][20],int tmat[20][20],int n)
+{int i,j,flag=0;
+ for(i=0;i<n;i++)
+   for(j=0;j<n;j++)
+     if(tmat[i][j]!=mat[i][j])
+      {flag=1;
+       break;
+     }
+ if(flag==1)
+   printf("Not Symmetric");
+ else
+   printf("Symmetric");
+}

@@ -1,0 +1,73 @@
+import java.io.*;
+ 
+public class TestClass {
+ 
+	static StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+	static PrintWriter out = new PrintWriter(System.out);
+	
+	static int nextInt() throws Exception {
+		in.nextToken();
+		return (int)in.nval;
+	}
+	
+	static String nextString() throws Exception {
+		in.nextToken();
+		return in.sval;
+	}
+ 
+	public static void main(String[] args) throws Exception {
+		for (int t = nextInt(); t > 0; t--) {
+			n = nextInt();
+			k = nextInt();
+			cnt = new int[n];
+			for (int i = 0; i < n-1; i++) {
+				int a = nextInt(), b = nextInt();
+				tree[a][cnt[a]++] = b;
+				tree[b][cnt[b]++] = a;
+			}
+			
+			ans = 0;
+			count(0, -1);
+			
+			out.println(ans);
+		}
+		
+		out.flush();
+	}
+	
+	static final int N = 60;
+	static int n, k;
+	static int[][] tree = new int[N][N];
+	static int[] cnt;
+	static long[][] dp = new long[N][N];
+	static long ans;
+	
+	static void count(int x, int p) {
+		for (int i = 0; i < cnt[x]; i++) {
+			int go = tree[x][i];
+			if (go == p) continue;
+			count(go, x);
+		}
+		
+		dp[x][0] = 1;
+		for (int i = 1; i <= k; i++)
+			dp[x][i] = 0;
+		
+		long[] next = new long[N];
+		for (int i = 0; i <= k; i++)
+			next[i] = dp[x][i];
+		for (int i = 0; i < cnt[x]; i++) {
+			int go = tree[x][i];
+			if (go == p) continue;
+			for (int j = 0; j <= k; j++)
+				for (int q = 0; j + q + 1 <= k; q++)
+					next[Math.max(j, q+1)] += dp[x][j]*dp[go][q];
+			for (int j = 0; j <= k; j++)
+				dp[x][j] = next[j];
+		}
+		
+		for (int i = 0; i <= k; i++)
+			ans += dp[x][i];
+	}
+}
+ 

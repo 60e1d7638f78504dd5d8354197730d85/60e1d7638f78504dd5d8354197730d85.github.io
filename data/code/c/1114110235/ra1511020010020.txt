@@ -1,0 +1,76 @@
+#include<stdio.h>
+int a[8],store[8],b[9];
+int ans = 100000000;
+int val;
+// * / - +
+// 1 2 3 4
+void func()
+{
+ 
+ 
+   val = a[0]* a[1] / a[2] - a[3] + a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0]* a[1] / a[2] + a[3] - a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0]* a[1] - a[2] / a[3] + a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0]* a[1] - a[2] + a[3] / a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0]* a[1] + a[2] - a[3] / a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0]* a[1] + a[2] / a[3] - a[4];
+   if(val > 0 && val < ans) ans = val;
+ 
+   val = a[0] / a[1] * a[2] - a[3] + a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] / a[1] * a[2] + a[3] - a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] / a[1] - a[2] + a[3] * a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] / a[1] - a[2] * a[3] + a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] / a[1] + a[2] * a[3] - a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] / a[1] + a[2] - a[3] * a[4];
+   if(val > 0 && val < ans) ans = val;
+ 
+   val = a[0] - a[1] * a[2] / a[3] + a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] - a[1] * a[2] + a[3] / a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] - a[1] / a[2] + a[3] * a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] - a[1] / a[2] * a[3] + a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] - a[1] + a[2] * a[3] / a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] - a[1] + a[2] / a[3] * a[4];
+   if(val > 0 && val < ans) ans = val;
+ 
+   val = a[0] + a[1] * a[2] / a[3] - a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] + a[1] * a[2] - a[3] / a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] + a[1] / a[2] - a[3] * a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] + a[1] / a[2] * a[3] - a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] + a[1] - a[2] * a[3] / a[4];
+   if(val > 0 && val < ans) ans = val;
+   val = a[0] + a[1] - a[2] / a[3] * a[4];
+   if(val > 0 && val < ans) ans = val;
+ 
+}
+int main()
+{
+  ans=100000000;
+  int i;
+          for(i=0;i<5;i++)
+	  scanf("%d",&a[i]);
+	  func();
+ 
+printf("%d\n",(int)ans);
+return 0;
+}
+ 
+ 

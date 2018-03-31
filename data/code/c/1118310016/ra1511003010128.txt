@@ -1,0 +1,39 @@
+#include <stdio.h>
+ 
+int cost[7]={0};
+int quality[7]={0};
+int main()
+{
+int n,t,i,type,qual,val,min_quality=99999;
+scanf("%d%d",&n,&t);
+ 
+	for(i=0;i<n;i++)
+	{
+		 scanf("%d%d%d",&type,&val,&qual);
+		 if(quality[type]<qual && t+cost[type]>val)
+		 {
+				quality[type]=qual;
+				cost[type]=val;
+				t=t+cost[type]-val;
+		 }	
+	}
+	
+	if(quality[1]==0)
+	{
+		printf("0\n");
+		return 0;
+	}
+	else
+	{
+			min_quality=quality[1];
+			for(i=2;i<7;i++)
+			{
+					if(min_quality>quality[i])
+					min_quality=quality[i];
+			}
+			
+	}
+	printf("%d\n",min_quality);
+ 
+return 0;	
+} 

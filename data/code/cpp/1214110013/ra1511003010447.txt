@@ -1,0 +1,42 @@
+#include <iostream>
+#include<math.h>
+
+using namespace std;
+
+class prime{
+
+int n;
+  public:
+
+  void initialise(){
+  cin>>n;
+  }
+  
+  int checkPrime(){
+  int i,k,flag=1;
+    if(n==2)
+      return 1;
+    k=sqrt(n);
+    
+for(i=2;i<=k;i++){
+if(n%i==0){
+flag=0;
+  break;
+}
+}
+    if(flag)
+      return 1;
+    else
+      return 0;
+  }
+};
+int main()
+{
+prime p;
+  p.initialise();
+  if(p.checkPrime())
+    cout<<"Prime number";
+  else
+    cout<<"Not a prime number";
+	return 0;
+}

@@ -1,0 +1,32 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+bool isPossible(int a[], int b[], int n, int k)
+{
+    sort(a, a + n);
+    sort(b, b + n, greater<int>());
+    for (int i = 0; i < n; i++)
+        if (a[i] + b[i] < k)
+            return false;
+ 
+    return true;
+}
+int main()
+{
+  int t;
+  cin>>t;
+  for(int i=0;i<t;i++)
+  {
+    int n,k;
+    cin>>n>>k;
+    int a[n];
+    int b[n];
+   for(int j=0;j<n;j++)
+     cin>>a[j];
+    for(int j=0;j<n;j++)
+      cin>>b[j];
+    isPossible(a, b, n, k) ? cout << "1"<<endl:
+                             cout << "0"<<endl;
+  }
+    return 0;
+}

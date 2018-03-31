@@ -1,0 +1,105 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include<iostream>
+ 
+#include <stdio.h>
+#include <stdint.h>
+using namespace std;
+ 
+uint8_t get_uint8_t (void)
+{
+  //48 is the ASCII value of 0.
+  uint8_t i = 0;
+  char c = 0;
+  while (c < 48)
+    c = getchar_unlocked();
+  
+  while (c > 47)
+  {
+    i = (i << 3) + (i << 1) + c - 48; // i * 10 + c - 48
+    c = getchar_unlocked();
+  }
+  return i;
+}
+ 
+uint32_t get_uint32_t (void)
+{
+  //48 is the ASCII value of 0.
+  uint32_t i = 0;
+  char c = 0;
+  while (c < 48)
+    c = getchar_unlocked();
+  
+  while (c > 47)
+  {
+    i = (i << 3) + (i << 1) + c - 48; // i * 10 + c - 48
+    c = getchar_unlocked();
+  }
+  return i;
+}
+ 
+typedef uint32_t EUCLID_t;
+ 
+EUCLID_t gcf (EUCLID_t a, EUCLID_t b) {
+ 
+    if (a < b) {
+    
+        const EUCLID_t temp = a;
+        a = b;
+        b = temp;
+    }
+ 
+    while (1) {
+ 
+        if (const EUCLID_t c = a % b) {
+            
+            a = b;
+            b = c;
+        }
+        else
+            return b;
+    }
+}
+ 
+int main (void)
+{
+    const uint8_t T = get_uint8_t();
+    
+    for (uint8_t t = 0; t < T; ++t) {
+    
+        const uint16_t N = get_uint32_t();
+        
+        std::vector<uint32_t> n;
+        n.reserve (N);
+        
+        for (uint16_t it = 0; it < N; ++it)
+            n.push_back (get_uint32_t());
+        
+        std::sort (n.begin(), n.end());
+        
+        uint64_t ans = ~(static_cast<uint64_t> (0));
+        
+        for (uint16_t y_ = 1; y_ < N; ++y_) {
+            for (uint16_t x_ = 0; x_ < y_; ++x_) {
+                
+                if (ans <= n[y_]) {
+                    
+                    y_ = N;
+                    break;
+                }
+                
+                const uint32_t gcf__ = gcf (n[x_], n[y_]);
+                const uint64_t lcm__ = static_cast <uint64_t> (n[x_] / gcf__) * n[y_];
+                
+                if (lcm__ < ans)
+                    ans = lcm__;
+            }
+        }
+        
+        std::cout << ans ;
+       cout<<endl;
+    }
+    
+    return 0;
+} 

@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <string.h>
+ 
+ 
+ 
+ 
+int solve(char str[1000000]){
+            
+    int len,odd,i;
+    int lt,rt,borrow=0;
+    len=strlen(str);
+      
+    odd=len%2? 1:0;
+    //printf("\n=%d",odd);
+    // increment
+    i=len-1;
+    borrow=1;
+    while(borrow && i>=0){
+       
+       if (str[i]=='9') {
+            str[i]='0';
+            borrow=1;            
+       }  
+       else {
+            str[i]++;
+            borrow=0;     
+       }
+       i--;         
+    }
+    
+    if (borrow==1) {
+       str[0]='1';
+       memset(str+1,'0',len);               
+    }
+    
+       str[len+1]='\0';
+       //printf("\n new=%s bor=%d",str,borrow);
+                 
+       borrow=0;                     
+       lt=0;
+       rt=strlen(str)-1;           
+       while (lt<rt){
+             
+             //if (lt==0 && rt==0) { str[rt++]; break; }  // single digit 
+             
+             if(str[lt]==str[rt]  ){    
+                borrow=borrow;  
+                 
+             }
+             else if (str[lt]>str[rt]){
+                  str[rt]=str[lt];
+                  borrow=0;
+                  
+             } 
+             else {
+                  str[rt]=str[lt];
+                  borrow=1;
+                  
+                       
+             }                              
+             lt++;
+             rt--;                               
+        } 
+    
+    int revb=1;    
+    if (borrow==1) { 
+                 //printf("\nmid=%c",str[lt]);  
+           while(revb) 
+           {         
+              if ( str[rt]!='9') {
+                   str[rt]++;
+                   if (lt!=rt) str[lt]++;
+                   revb=0;
+                }    
+              else {
+                    str[lt]='0';
+                    str[rt]='0';
+                    revb=1;
+                    lt++;
+                    rt--;    
+               }
+           
+           }
+           
+    }
+        
+    
+    printf("%s\n",str);
+    return 0;
+            
+} 
+ 
+int main(){
+     
+     //printf("\n val=%d", strcmp("123","121"));   
+     long int test;
+     int i;
+     char str[1000000];
+     scanf("%ld",&test);
+ 
+      for(i=0;i<test;i++)
+      {
+         scanf("%s",str);
+         solve(str);                                
+      }
+ 
+      //getchar();
+      //getchar();
+      
+      return 0;   
+}
+ 

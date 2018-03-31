@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class Shape
+{
+  protected:
+  float l;
+  public:
+  void get()
+  {
+    cin>>l;
+  }
+  virtual void area()=0;
+};
+class square : public Shape{
+  public:
+  void area()
+  {
+    cout<<"Area of square: "<<l*l<<"\n";
+  }
+};
+class circle : public Shape{
+  public:
+  void area()
+  {
+    cout<<"Area of circle: "<<3.14*l*l;}
+};
+
+  
+int main()
+{
+  square s;
+  circle c;
+  s.get();
+  s.area();
+  c.get();
+  c.area();
+
+	return 0;
+}

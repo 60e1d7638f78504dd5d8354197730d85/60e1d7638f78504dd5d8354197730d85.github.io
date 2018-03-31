@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <math.h>
+int main() {
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        long int x,k;
+        scanf("%ld%ld",&x,&k);
+        long int level = floor((log(k)/log(2)));
+        long int start = pow(2,level);
+        double mid = (double)x/(start*2);
+        double ans;
+        long int diff = k-start;
+        //printf("%ld %lf\n",diff,mid);
+        ans = mid+(diff*2)*mid;
+        printf("%lf\n",ans);
+    }
+	return 0;
+} 

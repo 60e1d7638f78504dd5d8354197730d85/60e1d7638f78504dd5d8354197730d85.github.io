@@ -1,0 +1,65 @@
+#include <stdio.h>
+ #include<stdlib.h>
+void merge(int a[],int low,int mid,int high){
+	int i,j=mid+1,k;
+	int *l=(int*)malloc(sizeof(int)*(mid-low+1)),
+	*r=(int*)malloc(sizeof(int)*(high-mid));
+	for(i=low;i<=mid;i++)
+		l[i-low]=a[i];
+	for(i=mid+1;i<=high;i++)
+		r[i-mid-1]=a[i];
+	i=j=0;
+	k=low;
+	int l1=mid-low+1,r1=high-mid;
+	while(i<l1 && j<r1){
+		if(l[i]<=r[j]){
+			a[k]=l[i];
+			k++;
+			i++;
+		}
+		else{
+			a[k]=r[j];
+			j++;
+			k++;
+		}
+	}	
+	while(i<l1){
+		a[k]=l[i];
+		i++;
+		k++;
+	}
+	while(j<r1){
+		a[k]=r[j];
+		j++;
+		k++;
+	}
+}
+ 
+void mergesort(int a[],int low,int high)
+{
+	if(low<high){
+		int mid=(high + low)>>1;
+		mergesort(a,low,mid);
+		mergesort(a,mid+1,high);
+		merge(a,low,mid,high);
+	}
+}
+ 
+int main(void) {
+	// your code goes here
+	int n,d,a[100005]={0},s=0,i,k;
+	scanf("%d%d",&n,&d);
+	for(i=0;i<n;i++){
+	    scanf("%d",&k);
+	    a[i]=k;
+	}
+	mergesort(a,0,n-1);
+	for(i=0;i<n-1;){
+	    if(a[i+1]<=a[i]+d)
+	        s++,i+=2;
+	    else
+	        i++;
+	}
+	printf("%d\n",s);
+	return 0;
+}

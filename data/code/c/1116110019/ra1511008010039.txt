@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main()
+{
+   char str[15], ch;
+   int i, freq[15]={0}, j,size, minval=15, minchar;
+
+   scanf("%[^\n]s",str);
+
+   for(size=0;str[size]!='\0';size++);
+  for(j=0;j<size;j++)
+  {
+	ch = str[j];
+   for(i = 0; str[i] != '\0'; ++i)
+   {
+       if(ch == str[i])
+           ++freq[i];
+   }
+  }
+  
+  for(i=0;i<size;i++)
+  {
+    if(freq[i]<minval)
+    { 
+      minval=freq[i];
+      minchar =str[i];
+    }
+  }
+
+   printf("%c=%d",minchar,minval);
+
+   return 0;
+}

@@ -1,0 +1,40 @@
+#include<stdio.h>
+int One[100005],B[100005],A[100005],N,i;
+int abs(int a)
+    {
+    if(a>0)
+        return a;
+    else
+        return -a;
+}
+
+int ma(int a,int b)
+    {
+    if(a>b)
+        return a;
+    else
+        return b;
+}
+
+int main()
+    {
+    int T;
+    scanf("%d",&T);
+    
+    while(T--)
+        {
+        scanf("%d",&N);
+        for(i=0;i<N;i++)
+            scanf("%d",&A[i]);
+        for(i=0;i<N;i++)
+            {
+            One[i+1]=ma(One[i],B[i]+ abs(1-A[i]));        /*i+1th element is 1*/
+            B[i+1]=ma(One[i] + abs(A[i+1]-1) , B[i] + abs(A[i+1]-A[i]));
+            
+        }
+        printf("%d\n",ma(One[N-1],B[N-1]));
+        
+    }
+    return 0;
+        
+}

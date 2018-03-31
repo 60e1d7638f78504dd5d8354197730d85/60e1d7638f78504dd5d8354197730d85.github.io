@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+
+int findInversionCount(int arr[], int n)
+{
+  int i,j;
+	int inversionCount = 0;
+	for ( i = 0; i < n - 1; i++)
+	{
+		for ( j = i + 1; j < n; j++)
+			if (arr[i] > arr[j])
+				inversionCount++;
+	}
+	return inversionCount;
+}
+
+
+int main()
+{
+  int i,num;
+  scanf("%d",&num);
+  int arr[num];
+	for( i=0;i<num;i++)
+    {
+    scanf("%d ",&arr[i]);
+    }
+  
+  
+	int N = num;
+ 
+	printf("%d", findInversionCount(arr, N));
+
+	return 0;
+}

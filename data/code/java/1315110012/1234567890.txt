@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.Scanner;
+class TestClass {
+     
+    // function to check if there exist two
+    // numbers sum of whose squares is n.
+    static boolean Search(int n)
+    {
+        for (long i = 0; i < n; i++)
+            for (long j = 0; j < n; j++)
+                if ((i*i) + (j*j) == n) {
+             //       System.out.println(i + "^2 + " + j + "^2");
+                    return true;
+                }
+        return false;
+    }
+      
+    // driver Program
+    public static void main(String args[])
+    {
+      Scanner in = new Scanner(System.in);
+       int n = in.nextInt();
+       for (int i=0;i<n;i++)
+       {
+         int l=in.nextInt();
+        if (Search(l))
+            System.out.println("1");
+        else
+            System.out.println("0");
+       }
+    }
+}

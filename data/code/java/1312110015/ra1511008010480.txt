@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+       	Scanner sc = new Scanner(System.in);
+		String hex = sc.next();
+       	System.out.println(getBinary(getDecimal(hex)));
+	}
+  	public static long getDecimal(String hex) {
+    	int len = hex.length();
+      	long deci = 0;
+      	//System.out.println((int)'A');
+      	for(int i=len-1; i>=0; i--) {
+        	int digit = (int)hex.charAt(i);
+          	if((digit >= (int)'A') && (digit <= (int)'F')) {
+              	//System.out.print(digit + " ");
+            	digit -= (int)'A' - 10;
+              	//System.out.println(digit);
+            }
+          	else if((digit >= (int)'a') && (digit <= (int)'f')) {
+            	digit -= (int)'a' - 10;
+            }
+          	else {
+            	digit -= (int)'0';
+            }
+          	deci += (int)Math.pow(16, len-1-i)*digit;
+        }
+      	return deci;
+    }
+  	public static String getBinary(long num) {
+    	if(num == 0) return "";
+      	int val = (int)num%2;
+      	return (getBinary(num/2) + Integer.toString(val));
+    }
+}

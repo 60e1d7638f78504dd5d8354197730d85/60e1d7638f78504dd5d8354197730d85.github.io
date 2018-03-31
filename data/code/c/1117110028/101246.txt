@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+int maximum(int array[], int index, int len);
+int main()
+{
+    int array[MAX_SIZE], N, max, min;
+    int i;    
+    scanf("%d", &N);    
+    for(i=0; i<N; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+    max = maximum(array, 0, N);    
+    printf("Maximum element in the array is %d\n", max);
+    return 0;
+}
+
+int maximum(int array[], int index, int len)
+{
+    int max;
+    if(index >= len-2)
+    {
+        if(array[index] > array[index + 1])
+            return array[index];
+        else
+            return array[index + 1];
+    }    
+    max = maximum(array, index + 1, len);
+    if(array[index] > max)
+        return array[index];
+    else
+        return max;
+}

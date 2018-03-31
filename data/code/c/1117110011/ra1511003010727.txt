@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+void insert(int n,int a[],int pos,int val){
+  if(pos<=n){
+  int i,m;
+  m=n;
+  while(n>=pos){
+    a[n]=a[n-1];
+    n--;
+  }
+  a[pos-1]=val;
+  for(i=0;i<=m;i++)
+    printf("%d\n",a[i]);
+  }
+  else
+    printf("Sorry Invalid Location");
+}
+
+int main()
+{
+	int n,i,a[100],pos,val;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+  	scanf("%d",&pos);
+  	scanf("%d",&val);
+  	insert(n,a,pos,val);
+	return 0;
+}

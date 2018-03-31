@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+class Time{
+int hours;
+  int minutes;
+  float seconds;
+
+  
+  public:
+  
+  void getTime(){
+  cin>>hours;
+    cin>>minutes;
+    cin>>seconds;
+  }
+  
+  Time addTime(Time b){
+ Time s;
+    s.hours=0;
+    s.minutes=0;
+    s.seconds=0;
+    if(seconds>=60 || minutes>=60 ||b.seconds>=60 ||b.minutes>=60)
+    {
+    cout<<"Invalid Time";
+      s.hours=-1;
+      s.minutes=-1;
+      s.seconds=-1;
+    }
+    else{
+      s.seconds=seconds+b.seconds;
+    if(s.seconds>=60){
+    s.seconds-=60;
+      s.minutes+=1;
+    }
+      s.minutes+=minutes+b.minutes;
+      if(s.minutes>=60){
+      s.minutes-=60;
+        s.hours+=1;
+      }
+      
+      s.hours+=hours+b.hours;
+    }
+    
+    return s;
+  }
+  
+  void print(){
+  cout<<"After Adding\n";
+    cout<<hours<<":"<<minutes<<":"<<seconds;
+  }
+  int getSeconds(){
+  return seconds;
+  }
+};
+
+
+int main()
+{
+	Time a,b,c;
+  a.getTime();
+  b.getTime();
+  c=a.addTime(b);
+  if(c.getSeconds()!=-1)
+  c.print();
+  return 0;
+}

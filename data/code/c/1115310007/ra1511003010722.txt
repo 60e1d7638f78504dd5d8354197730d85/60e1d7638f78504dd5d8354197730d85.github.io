@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+              char a[1001],b[1001];
+              int i;
+              int my[2][26]={{0}};
+              int chef[2][26]={{0}};
+              
+              scanf("%s%s",a,b);
+              int l1=strlen(a);
+              int l2=strlen(b);
+              
+              
+              for(i=0;i<l1;i++)
+              {
+              my[0][a[i]-97]++;
+              chef[0][a[i]-97]=1;
+              }
+              for(i=0;i<l2;i++)
+              {
+              my[1][b[i]-97]++;
+              chef[1][b[i]-97]=1;
+              }
+              int myflag=1,chefflag=1;
+              for(i=0;i<26;i++)
+              {
+                               if(my[0][i]!=my[1][i])
+                               {
+                               myflag=0;
+             //                  break;
+                               }
+                               if(chef[0][i]!=chef[1][i])
+                               {
+                               chefflag=0;
+                               //break;
+                               }
+                //               printf("%d  %d  ||  %d  %d\n",my[0][i],my[1][i],chef[0][i],chef[1][i]);
+              
+                               
+              }
+              /*
+              for(i=0;i<26;i++)
+              {
+                               if(chef[0][i]!=chef[1][i])
+                               {
+                               chefflag=0;
+                               //break;
+                               }
+                                printf("%d %d\n",my[1][i],chef[1][i]);
+              }
+              */
+              if(myflag==chefflag)
+              printf("YES\n");
+              else
+              printf("NO\n");
+              //printf("%d %d\n",myflag,chefflag);
+              
+    //          printf("%s  %s",a,b);
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,35 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+ 
+// Return the maximum length prefix which is
+// subsequence.
+int maxPrefix(char s[], char t[])
+{
+    int i, count = 0;
+ 
+    // Iterating string T.
+    for (i = 0; i < strlen(t); i++)
+    {
+        // If end of string S.
+        if (count == strlen(s))
+            break;
+ 
+        // If character match, increment counter.
+        if (t[i] == s[count])
+            count++;
+    }
+ 
+    return count;
+}
+ 
+// Driven Program
+int main()
+{
+    char S[30],T[25];
+    cin>>S>>T;
+ 
+    cout << maxPrefix(S, T) << endl;
+ 
+    return 0;
+}

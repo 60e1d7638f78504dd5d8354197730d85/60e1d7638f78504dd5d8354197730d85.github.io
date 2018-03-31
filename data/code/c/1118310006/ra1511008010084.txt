@@ -1,0 +1,31 @@
+#include<stdio.h>
+int long  gcd(int long a, int long b)
+{
+    if (a == 0)
+        return b;
+    return gcd(b%a, a);
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int i,n;
+		scanf("%d",&n);
+		int long ans;
+		int long a[1001];
+		for(i=0;i<n;i++)
+		{
+			scanf("%ld",&a[i]);
+			if(i==0)
+				ans=a[i];
+			if(i>0)
+			{
+				ans=gcd(ans,a[i]);
+			}
+		}
+		printf("%ld\n",ans);
+ 
+	}
+} 

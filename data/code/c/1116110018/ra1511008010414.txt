@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char str[100];
+  scanf("%s",str);
+  int i,j;
+  int n;
+  n=strlen(str);
+ char alpha[26],c;
+  i=0;
+  for(c='a';c<='z';c++)
+  { 
+    alpha[i]=c;
+    i++;
+  }
+  for(i=0;i<27;i++)
+  {
+    int count;
+    count=0;
+    for(j=0;j<n;j++)
+    {
+      if(alpha[i]==str[j])
+        count++;
+    }
+    if(count!=0)
+      printf("%c=%d\n",alpha[i],count);
+  }
+	return 0;
+}

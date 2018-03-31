@@ -1,0 +1,44 @@
+#include<stdio.h>
+struct emp
+{
+          char name[100];
+          int year;
+};
+int main()
+    {
+          struct emp s[100],temp;
+          int i,j,n;
+          scanf("%d",&n);
+          for(i=0;i<n;i++)
+          scanf("%s%d",s[i].name,&s[i].year);
+          for(i=0;i<=n-1;i++)
+          {
+            for(j=0;j<=n-1;j++)
+            {
+                if(s[j].year>s[j+1].year)
+                {
+                  temp=s[j];
+                  s[j]=s[j+1];
+                  s[j+1]=temp;
+                }
+            }
+          }
+  printf("After sorting");
+          for(j=1;j<=n;j++)
+          {
+          printf("\n%s %d",s[j].name,s[j].year);
+          }
+  return 0;
+        }
+
+        
+
+
+
+
+        
+
+
+
+        
+

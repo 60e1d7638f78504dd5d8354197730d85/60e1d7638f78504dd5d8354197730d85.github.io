@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+	long long int t,n,i=0,j=0,a[10000],x,b[10000];
+  scanf("%lld",&t);
+  scanf("%lld",&n);
+  while(n>0)
+  {
+    x=n%10;
+    if(x==0)
+    {
+    a[i]=x;
+    i++;
+    }
+    else
+    {
+      b[j]=x;
+      j++;
+    }
+    n=n/10;
+  }
+  if((i+j)!=t)
+  {
+    i=i+t-i-j;
+  }
+   if(j>i)
+   {
+     t-=2*i;
+     printf("%lld",t);
+   }
+  else
+  {
+    t-=2*j;
+    printf("%lld",t);
+  }
+	return 0;
+}

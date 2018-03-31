@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+int GCD(int n, int m)
+        {
+ 
+            if(m==0)
+            {
+                return n;
+            }
+ 
+               return(GCD(m,n%m));
+        }
+ 
+int main()
+{
+    int t, n, m,k;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d %d",&n,&m);
+        if(m==0)
+        {
+            if(n==1)
+            {
+                printf("Yes\n");
+            }
+            else
+            {
+                printf("No 1\n");
+ 
+            }
+            continue;
+ 
+        }
+ 
+        k=GCD(n,m);
+        if(k==1)
+        {
+            printf("Yes\n");
+        }
+        else
+        {
+            printf("No %d\n",n/k);
+        }
+ 
+ 
+    }
+    return 0;
+}

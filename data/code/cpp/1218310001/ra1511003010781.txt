@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+struct node{
+              int n;
+              char name[10];
+              int a;
+              
+};
+class stack{
+             node s[10];
+             int top;
+             public:
+             stack()
+             {
+               top=-1;
+             }
+             void push();
+             void pop();
+};
+void stack::push()
+{
+ if(top==9)
+   cout<<"Stack full";
+  else
+  { 
+    top++;
+    cin>>s[top].n;
+    cin>>s[top].name;
+    cin>>s[top].a;
+    cout<<s[top].n<<" "<<s[top].name<<" "<<s[top].a<<" \n\n";//changes
+    
+  }
+}
+void stack::pop()
+{
+  if(top==-1)
+    cout<<"Stack empty ";
+  else
+  {
+   cout<<s[top].name<<" is removed.";
+    top--;
+  }
+}
+  
+int main()
+{
+     stack S;
+     S.push();
+     S.pop();
+  
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include<stdio.h>
+#define ll long long
+int mod(ll num){
+  return num%9?num%9:9;
+}
+int main(){
+  int t;
+  int i;
+  scanf("%d",&t);
+  while(t--){
+    ll a,d,l,r;
+    scanf("%lld %lld %lld %lld",&a,&d,&l,&r);
+    ll sum = 0;
+    a = mod(a);
+    d = mod(d);
+    ll n = (r-l+1);
+    ll q = n/9;
+    for(i=1;i<=9;i++)
+      sum += mod(a+(i-1)*d);
+    sum *= q;
+    for(i=l;i<=r-q*9;i++)
+      sum += mod(a+(i-1)*d);
+    printf("%lld\n",sum);
+  }
+  return 0;
+}

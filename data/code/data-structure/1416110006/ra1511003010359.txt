@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+char stack[20],top=-1;
+void push(char c)
+{
+  top++;
+  stack[top]=c;
+}
+string getRev()
+{
+  string str="";
+  for(int i=top; i>=0; i--)
+    str=str+stack[i];
+  return str;
+}
+int main()
+{
+  string str,reversestr;
+  cin>>str;
+  for(int i=0; i<str.size(); i++)
+    push(str[i]);
+  reversestr=getRev();
+  if(str==reversestr)
+    cout<<str<<" is a Palindrome string";
+  else
+    cout<<str<<" is not a Palindrome string";
+  return 0;
+}

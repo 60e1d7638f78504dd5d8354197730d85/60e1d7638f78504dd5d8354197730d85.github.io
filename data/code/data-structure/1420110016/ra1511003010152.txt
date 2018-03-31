@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+ 
+int main(){
+	int read;
+	char line[1000006];
+	
+//	size_t len = 0;
+	//FILE *stream;
+	char H[300];
+	
+	//stream = fopen("a.txt", "r");
+	
+	int n, i, p1, p2, j;
+	char a, b;
+	
+	scanf("%d", &n);
+	
+	for(i = 0; i < 26; ++i){
+		H[i] = (char)(i + 65);
+	}
+	
+	for(j = 0; j < n; ++j){
+		scanf(" %c %c", &a, &b);
+		
+		a = toupper(a);
+		b = toupper(b);
+		
+		for(i = 0; i < 26; ++i)
+			if(H[i] == a){
+				p1 = i;
+				break;
+			}
+			
+		for(i = 0; i < 26; ++i)
+			if(H[i] == b){
+				p2 = i;
+				break;
+			}
+		
+		a = H[p1];
+		H[p1] = H[p2];
+		H[p2] = a;
+ 
+		
+	}
+ 
+	//read = getline(&line, &len, stdin);
+	while ((read = scanf("%s", line)) != -1) {
+		read = strlen(line);
+		for(i = 0; i < read; ++i){
+			a = line[i];
+			if(a > 'Z'){
+				a = toupper(a);
+				b = H[(int)a - 65];
+				b = tolower(b);
+			}else{
+				a = toupper(a);
+				b = H[(int)a - 65];
+				b = toupper(b);
+			}
+			
+			line[i] = b;
+		}
+		printf("%s",line);
+	}
+	
+	
+return 0;	
+}

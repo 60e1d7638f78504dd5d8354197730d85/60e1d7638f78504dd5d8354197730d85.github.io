@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int n;
+  int k=0,l=0;
+  scanf("%d",&n);
+  char str[10][10];
+  int i,j;
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",str[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(str[i][k]<str[j][k])
+      {
+        k++;
+      }
+      else
+      {
+        
+          char temp[20];
+          strcpy(temp,str[i]);
+          strcpy(str[i],str[j]);
+        strcpy(str[j],temp);
+        
+                
+      }
+      k=0;
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("%s\n",str[i]);
+  }
+
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+   int m, n, c, d,s=0, mt[10][10], t[10][10];
+   scanf("%d%d",&m,&n);
+ 
+   for (  c = 0 ; c < m ; c++ )
+      for ( d = 0 ; d < n ; d++ )
+         scanf("%d",&mt[c][d]);
+ 
+   for( c = 0 ; c < m ; c++ )
+   {
+      for( d = 0 ; d < n ; d++ )
+      {
+         t[d][c] = mt[c][d];
+      }
+   }
+ 
+   if ( m == n ) 
+   {
+       for ( c = 0 ; c < m ; c++ )
+       {
+           for ( d = 0 ; d < m ; d++ )
+           {
+               if ( mt[c][d] != t[c][d] )
+                  s++;
+           }              
+       }
+          }
+  if(s!=0)
+    printf("Not Symmetric");
+   else
+       printf("Symmetric");
+	return 0;
+}

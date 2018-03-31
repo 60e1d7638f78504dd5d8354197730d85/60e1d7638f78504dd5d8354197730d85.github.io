@@ -1,0 +1,210 @@
+#include<stdio.h>
+long int c[1000005];
+long int a[1000005];long int top;
+long int ptr[1000005];
+long int ptr1[1000005];
+long int b[1000005];
+int merge(long int a[],long int p,long int q,long int r)//a i sorted from p to q and q+1 to r(r is inclusive)
+{
+    long int i,j,k;
+    j=p;k=q+1;
+    for(i=0;j<=q&&k<=r;i++)
+    {
+     if(a[j]<a[k])
+     {
+         *(ptr+i)=a[j];
+         *(ptr1+i)=b[j];
+         j++;
+     }
+     else
+     {
+         *(ptr+i)=a[k];
+         *(ptr1+i)=b[k];
+         k++;
+     }
+    }
+    if(j>q)
+        for(;k<=r;i++)
+        {*(ptr+i)=a[k];
+        *(ptr1+i)=b[k];
+        k++;}
+    else
+        for(;j<=q;i++)
+        {*(ptr+i)=a[j];
+        *(ptr1+i)=b[j];
+        j++;}
+ 
+   for(i=p;i<=r;i++)
+        {a[i]=*(ptr+i-p);
+        b[i]=*(ptr1+i-p);}
+ 
+return 0;
+}
+long int msor(long int a[],long int p,long int r)
+{
+    long int q;
+    if(p<r)
+    {
+        q=(p+r)/2;
+        msor(a,p,q);
+        msor(a,q+1,r);
+        merge(a,p,q,r);
+    }
+    return 0;
+}
+long int push(long int x)
+{
+top++;
+a[top]=x;
+return 0;
+}
+long int pop()
+{
+long int x;
+x=a[top];
+top--;
+return x;
+ 
+}
+int main()
+{
+ 
+long int i=0;
+long int x;
+top=-1;
+long int l=-1,j,h,n,m,k,sub,p,mid,o;
+char comp,start;
+scanf("%ld %ld",&n,&m);
+for(i=0;i<n;i++)
+{
+scanf("%ld",&x);
+c[i]=x;
+if(top>0)
+{
+while(c[a[top]]<=x&&top>0)
+{j=pop();
+h=i;
+l=a[top];
+b[j]=(h-j)*(j-l);
+}
+}
+if(c[a[top]]<=x&&top!=-1)
+{
+    j=pop();
+    h=i;
+    l=-1;
+    b[j]=(h-j)*(j-l);
+}
+ 
+push(i);
+}
+while(top>0)
+{
+j=pop();
+h=n;
+l=a[top];
+b[j]=(h-j)*(j-l);
+}
+if(top==0)
+{
+j=pop();
+h=n;l=-1;
+b[j]=(h-j)*(j-l);
+}
+msor(c,0,n-1);
+sub=0;
+for(i=0;i<n;i++)
+    {
+        sub+=b[i];
+        b[i]=sub;
+    }
+    char d1,d2;
+while(m--)
+{
+    scanf("%c",&d1);
+        scanf("%c",&comp);
+        scanf("%ld",&k);
+        scanf("%c",&d2);
+        scanf("%c",&start);
+    sub=0;
+    if(comp=='<')
+    {
+        if(c[0]<k)
+        {
+           p=0;j=n;
+           while(p<j-1)
+           {
+               mid=(p+j)/2;
+               if(c[mid]<k)
+                p=mid;
+               else
+                j=mid;
+           }
+           sub=b[p];
+        }
+        else
+            sub=0;
+ 
+    }
+    else if(comp=='>')
+    {
+        if(c[n-1]>k)
+        {
+           p=-1;j=n-1;
+           while(p<j-1)
+           {
+               mid=(p+j)/2;
+               if(c[mid]>k)
+                j=mid;
+               else
+                p=mid;
+           }
+           if(j)
+           sub=b[n-1]-b[j-1];
+           else
+            sub=b[n-1];
+        }
+        else
+            sub=0;
+    }
+    else
+    {
+ 
+           p=0;j=n-1;
+           o=0;
+           while(p<=j)
+           {
+               mid=(p+j)/2;
+               if(c[mid]==k)
+               {
+                   o=1;break;
+               }
+               else if(c[mid]<k)
+                p=mid+1;
+               else
+                j=mid-1;
+           }
+        if(o)
+        {
+            for(i=mid;c[i]==k&&i<n;i++);
+            for(j=mid;c[j]==k&&j>=0;j--);
+            if(j>=0)
+            sub=b[i-1]-b[j];
+            else
+                sub=b[i-1];
+        }
+        else
+            sub=0;
+ 
+    }
+    if(sub%2==0)
+    {
+        if(start=='C')
+            start='D';
+        else
+            start='C';
+    }
+        printf("%c",start);
+}
+return 0;
+}

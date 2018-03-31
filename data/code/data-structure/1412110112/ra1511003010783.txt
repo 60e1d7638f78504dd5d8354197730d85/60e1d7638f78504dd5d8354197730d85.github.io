@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t; 
+  	cin>>t;  
+  	int a[10],b[10]; 
+  	queue <int> q;
+  	for(int i=0;i<t;i++){ 
+    cin>>a[i]; 
+      if(a[i]==-1)
+      continue;
+       else 
+         q.push(a[i]);
+      
+     
+    } 
+  int n; 
+  cin>>n; 
+  for(int i=0;i<n;i++){ 
+  	cin>>b[i];
+  
+  } 
+  for(int i=n;i<t;i++){ 
+  	b[i]=q.front(); 
+    q.pop();
+  } 
+  sort(b,b+t); 
+  for(int i=0;i<t;i++) 
+  { 
+    cout<<b[i]<<" ";
+  }
+	return 0;
+}

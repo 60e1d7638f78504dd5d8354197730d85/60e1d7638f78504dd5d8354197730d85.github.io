@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass
+{
+     
+    public static void main(String[] args) 
+    {
+      String l="";
+      Scanner s=new Scanner(System.in);
+      String a=s.nextLine();
+      int i,j;
+      String kk;
+      int max=0;
+      for (i=0;i<a.length();i++)
+      {
+      for (j=i;j<a.length();j++)
+      {
+      String b=a.substring(i,j+1);
+        int []mat=new int[26];
+        int tount=0;
+        for (int k=0;k<b.length();k++)
+        {
+          int count=0;
+        for (int f=0;f<b.length();f++)
+        {
+        if (b.charAt(k)==b.charAt(f))
+          count++;
+        }
+          if (count>=2)
+            tount=1;
+        }
+        if (tount==0)
+        {
+        if (b.length()>max)
+        {
+        max=b.length();
+          kk=b;
+          l=kk;
+        }
+        }
+      }
+      }
+      System.out.print("[");
+     for (i=0;i<l.length();i++)
+     {
+       if (i!=l.length()-1)
+     System.out.print(l.charAt(i)+", ");
+       else
+         System.out.println(l.charAt(i)+"]");
+     }
+      System.out.println(l.length());
+    }
+}

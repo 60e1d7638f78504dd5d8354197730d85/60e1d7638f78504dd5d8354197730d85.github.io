@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{int n,i,j;
+ float t,a[100];
+ scanf("%d",&n);
+ for(i=0;i<n;i++) scanf("%f",&a[i]);
+ for(i=0;i<n-1;i++){
+   for(j=0;j<n-1-i;j++){
+		if(a[j+1]<a[j])
+        {t=a[j+1];
+          a[j+1]=a[j];
+ 			a[j]=t;
+ 		}
+   }
+ }
+ if((int)(a[n-1]*10)%10==0)
+   printf("%.0f is largest",a[n-1]);
+ else
+ printf("%.2f is largest",a[n-1]);
+	return 0;
+}

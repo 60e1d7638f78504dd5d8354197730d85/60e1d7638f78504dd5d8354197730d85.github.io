@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int main()
+{ int n,i,a,j,sum1,sum2;
+ float m;
+ scanf("%d",&n);
+ for(i=0;i<n;i++){
+   sum1=0;
+   sum2=0;
+   m=0;
+ scanf("%d",&a);
+   int arr1[a],arr2[a];
+   for(j=0;j<a;j++){
+   scanf("%d",&arr1[j]);
+   }
+   for(j=0;j<a;j++){
+   scanf("%d",&arr2[j]);
+   }
+   for(j=0;j<a-1;j++){
+   sum1=sum1+arr1[j]*arr2[j+1];
+   }
+   sum1=sum1+arr1[a-1]*arr2[0];
+   for(j=0;j<a-1;j++){
+   sum2=sum2+arr1[j+1]*arr2[j];
+   }
+   sum2=sum2+arr1[0]*arr2[a-1];
+   m=(float)abs(sum1-sum2)/2;
+   if(m==0.0)
+   printf("-%.1f\n",m);
+   else
+     printf("%.1f\n",m);
+   
+ }
+ 
+  
+
+	return 0;
+}

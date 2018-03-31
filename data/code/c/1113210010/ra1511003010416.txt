@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+long long int *mo,*bin;
+void print(long long int de[],long long int io)
+{
+    long long int i;
+    for(i=0;i<io;i++)
+    {
+        de[i] = de[i]%1000000007;
+        printf("%lld ",de[i]);
+        fflush(stdout);
+    }
+    printf("\n");
+    fflush(stdout);
+}
+int  main()
+{
+    long long int t,n,m,s,i,x,j;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld %lld %lld",&n,&m,&s);
+        s-=1;
+        mo = (long long int*)calloc(n,sizeof(long long int));
+        bin = (long long int*)calloc(n,sizeof(long long int));
+        mo[s] = 1;
+        for(i=0;i<m;i++)
+        {
+            scanf("%lld",&x);
+            if(i%2==0)
+            {
+                for(j=0;j<n;j++)
+                {
+                        if(mo[j]>0)
+                        {
+                            if((j-x)>=0)
+                            {
+                                bin[j-x] += mo[j];
+                            }
+                            if((j+x)<n)
+                            {
+                                bin[j+x] += mo[j];
+                            }
+                        }
+                        mo[j]=0;
+                }
+                for(j=0;j<n;j++)
+                {
+                    bin[j] = bin[j]%1000000007;
+                }
+            }
+            else
+            {
+                 for(j=0;j<n;j++)
+                {
+                    if(bin[j]>0)
+                    {
+                        if((j-x)>=0)
+                        {
+                            mo[j-x] += bin[j];
+                        }
+                        if((j+x)<n)
+                        {
+                            mo[j+x] += bin[j];
+                        }
+                    }
+                    bin[j]=0;
+                }
+                for(j=0;j<n;j++)
+                {
+                    mo[j] = mo[j]%1000000007;
+                }
+            }
+        }
+        if(m%2==0)
+            print(mo,n);
+        else
+            print(bin,n);
+    }
+    return 0;
+}
+ 

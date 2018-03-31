@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+class student{
+  private: string name;
+  private: int m[50];
+  private: int a;
+  public: void initializedata(string n,int q[5],int p)
+  {
+    name=n;
+    for (int i=1;i<=5;i++)
+      m[i]=q[i];
+    a=p;
+  }
+  public: string getName()
+  {
+    string name;
+    cin>>name;
+    return name;
+  }
+  public: int getAttendancePercentage()
+  {
+    int att;
+    cin>>att;
+    return att;
+  }
+  public: float CalculateAverage()
+  {
+    int q[5],sum=0;
+    float avg;
+    for (int i=1;i<=5;i++)
+    {
+      cin>>q[i];
+      sum=sum+q[i];
+    }
+    avg=sum/5;
+    return avg;
+  }
+};
+  
+int main()
+{
+	student  s1;
+  string s;
+  int A;
+  float v;
+  s=s1.getName();
+  
+  v=s1.CalculateAverage();
+  A=s1.getAttendancePercentage();
+  //s1.initialzedata(s,A);
+  cout<<A<<endl;
+  cout<<v<<endl;
+	return 0;
+}

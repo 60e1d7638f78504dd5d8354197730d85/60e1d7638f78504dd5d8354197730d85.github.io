@@ -1,0 +1,29 @@
+#include <stdio.h>
+int fib(int n)
+{
+  int i,first,second,t;
+  first=1;
+  second=1;
+  if(n==1)
+    return 1;
+  else if(n==2)
+    return 1;
+  else
+  {
+    for(i=1;i<=n-2;i++)
+    {
+      t=first+second;
+      first=second;
+      second=t;
+    }
+  }
+  return second;
+}
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	int x=fib(n);
+  	printf("%d",x);
+	return 0;
+}

@@ -1,0 +1,21 @@
+#include<stdio.h>
+ 
+#define Get getchar_unlocked()
+int getInt()
+{ int a=0,s=1; char c=0; while(c<33) c=Get; if(c=='-') {s=-1; c=Get;} while(c>33) {a=(a<<3)+(a<<1)+c-'0'; c=Get;} return a*s; }
+ 
+int A[10004];
+ 
+int main()
+{
+	int T = getInt();
+	while(T--) {
+		int i, res = 0, N = getInt();
+		for(i=0; i<N; i++) A[i] = getInt();
+		if(getInt() <= A[0]) res++;
+		for(i=1; i<N; i++)
+			if(getInt() <= A[i]-A[i-1]) res++;
+		printf("%d\n", res);
+	}
+	return 0;
+} 

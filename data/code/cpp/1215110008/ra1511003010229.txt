@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+#define pi 3.141592653589793
+template <class T>
+  class circle
+  {
+    private:
+    T radius;
+    public:
+    circle(T n)
+    {
+      radius=n;
+    }
+    void disp()
+    {
+      cout<<getRadius()<<endl;
+      cout<<area()<<endl;
+      cout<<perimeter();
+    }
+    T getRadius()
+    {
+      return radius;
+    }
+    T area()
+    {
+      return pi*radius*radius;
+    }
+    T perimeter()
+    {
+      return 2*pi*radius;
+    }
+  };
+int main()
+{
+  int n;
+  cin>>n;
+  circle<float> obj(n);
+  obj.disp();
+  return 0;
+}

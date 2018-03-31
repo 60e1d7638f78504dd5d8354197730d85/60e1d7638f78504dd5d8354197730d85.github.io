@@ -1,0 +1,33 @@
+#include<stdio.h>
+inline int rd(int *x)
+{
+  register char c=0;
+  while(c<33)
+    c=fgetc_unlocked(stdin);
+  *x=0;
+    while(c>33){
+      *x=*x*10+c-'0';
+      c=fgetc_unlocked(stdin);
+    }
+}
+
+int main()
+{
+  int t,g,n,i,q;
+  rd(&t);
+  while(t--){
+    rd(&g);
+    while(g--){
+      rd(&i);rd(&n);rd(&q);
+      if(n%2==0)
+        printf("%d\n",n/2);
+      else{
+        if(i==q)
+          printf("%d\n",n/2);
+        else
+          printf("%d\n",n/2+1);
+      }
+    }
+  }
+  return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+int r,c,a[50][50],k,l,m,e1=0,e2=0,flag1=0,flag2=0,i,j;
+  scanf("%d %d",&r,&c);
+  for(i=1;i<=r;i++)
+  {
+    for(j=1;j<=c;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  scanf("%d",&k);
+  while(k>0)
+  {
+    scanf("%d %d",&l,&m);
+   
+      if(l>r||m>c)
+      {
+      e1=-1;
+        flag1=1;
+      }
+         else if(flag1==0)
+         {
+           e1=e1+a[l][m];
+         }
+        if(m>r||l>c)
+         {
+           e2=-1;
+           flag2=1;
+         }
+    else if(flag2==0)
+    {
+      e2=e2+a[m][l];
+    }
+
+ k--;
+  }
+  if(e1>e2)
+    printf("%d",e1);
+    else
+      printf("%d",e2);
+	return 0;
+}

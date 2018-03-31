@@ -1,0 +1,54 @@
+#include <stdio.h>
+ 
+long long int fastInput() {
+    long long int val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+ 
+long long int getMin(long long int a, long long int b) {return (a < b ? a : b);}
+ 
+int main(void) {
+    long long int i, t = fastInput();
+    while (t--) {
+        long long int n = fastInput(), m = fastInput(), z = fastInput(), l = fastInput();
+        long long int r = fastInput(), b = fastInput(), tot = n*m, ans = 0, temp, total = n*m;
+        l = l+r;
+        if (m%2 == 0) {
+            if (l >= n) {
+                ans = n;
+                tot -= n;
+                l -= n;
+                m--;
+            } else {
+                long long int canb = l*(m/2);
+                canb = getMin(canb, b);
+                ans = canb+l;
+                tot -= ans;
+                b -= canb;
+                n-=l;
+                l = 0;
+            }
+        }
+        if (m == 1) temp = n;
+        else temp = l/(m-1);
+        if (temp >= n || temp >= b) printf("%lld\n", getMin(total, (ans+l+b+z)));
+        else {
+            long long int canb = temp, canz, leftm = l%(m-1), leftn = n-temp-1;
+            ans += l;
+            tot -= l;
+            leftm = m-leftm;
+            canb+=((leftm+1)/2);
+            canb+=(leftn*((m+1)/2));
+            canb = getMin(canb, b);
+            ans += canb;
+            tot -= canb;
+            canz = getMin(z, tot);
+            ans += canz;
+            printf("%lld\n", ans);
+        }
+    }
+    return 0;
+}  

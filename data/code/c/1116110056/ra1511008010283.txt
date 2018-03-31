@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+	int t, l, k, c1, c2, i;
+	char str[1002], s1[502], s2[502], ch;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%s",str);
+		l = strlen(str);
+		strncpy(s1,str,l/2);
+		s1[l/2] = '\0';
+		for(i=0; i<l/2; i++)
+		{
+			ch = str[i];
+			str[i] = str[l-i-1];
+			str[l-i-1] = ch;
+		}
+		strncpy(s2,str,l/2);
+		s2[l/2] = '\0';
+		while(1)
+		{
+			for(k=0;s1[k]=='~';k++);
+			if(k==l/2)
+			{
+				printf("YES\n");
+				break;
+			}
+			ch = s1[k];
+			s1[k] = '~';
+			c1 = 1, c2 =0;
+			for(i=0; i<l/2; i++)
+			{
+				if(ch==s1[i])
+				{
+					c1++;
+					s1[i] = '~';
+				}
+				if(ch==s2[i])
+					c2++;
+			}
+			if(c1!=c2)
+			{
+				printf("NO\n");
+				break;
+			}
+		}
+	}
+	return 0;
+} 

@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	float basic_salary[100], gross_salary[100], HRA, DA;
+  	int i, n;
+  	scanf("%d", &n);
+  	for(i = 0; i < n; i++){    
+	scanf("%f", &basic_salary[i]);
+	if (basic_salary[i]<1500)
+	{
+		HRA=0.1*basic_salary[i];
+		DA=0.9*basic_salary[i];
+	}
+	else
+	{	
+		HRA=500;
+		DA=0.98*basic_salary[i];
+	}
+	gross_salary[i]=basic_salary[i]+HRA+DA;
+    }
+  	for(i = 0; i < n; i++){
+      	printf("%.2f\n",gross_salary[i]);
+    }
+	return 0;
+}

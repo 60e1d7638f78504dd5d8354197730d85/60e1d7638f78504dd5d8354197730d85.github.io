@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+int main()
+{
+  string s;
+  int i,j,num,n,sum,len,c;
+  
+  cin>>num;
+  
+  for(c=0;c<num;c++){
+
+  sum=0;
+  cin>>s;
+  
+  len = s.length();
+  
+  if(len%2 ==0){
+	for(i=0;i<len/2;i++){
+		for(j=len/2;j<len;j++){
+			if(s[i]==s[j])
+				sum++;
+		}
+	}      
+	}
+  else{
+	for(i=0;i<(len/2);i++){
+		for(j=(len/2)+1;j<len;j++){
+			if(s[i]==s[j])
+				sum++;
+		}
+	}       
+	}
+  
+  
+  if(sum==len/2)
+  	cout<<"YES"<<endl;
+  else
+  	cout<<"NO"<<endl;
+  	
+  }
+
+	return 0;
+}

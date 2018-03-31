@@ -1,0 +1,34 @@
+#include <string.h>
+#include <stdio.h>
+int main()
+{
+  char s[100];
+  int i,l;
+  int vowels=0,cons=0,digits=0,white=0;
+  scanf("%[^\n]%*c",s);
+  l = strlen(s);
+  for(i = 0;i<l;i++)
+  {
+    if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u'|| s[i] == 'A'
+      || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
+    {
+      vowels++;
+    }
+    else if( s[i] == ' ')
+    {
+      white++;
+    }
+    else if (s[i] >='0' && s[i]<='9')
+    {
+      digits++;
+    }
+    else 
+    {
+      cons++;
+    }
+   
+  }
+  printf("%d %d %d %d",vowels,cons,digits,white);
+
+	return 0;
+}

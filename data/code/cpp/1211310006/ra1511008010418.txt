@@ -1,0 +1,145 @@
+#include <string>
+#include <cstdarg>
+#include <utility>
+ 
+#include <queue>
+#include <stack>
+#include <set>
+#include <list>
+#include <vector>
+#include <queue>
+#include <bitset>
+#include <map>
+ 
+#include <functional>
+#include <sstream>
+#include <algorithm>
+#include <iostream>
+ 
+#include <cstddef>
+#include <cstring>
+#include <cctype>
+#include <cmath>
+#include <cstdio>
+ 
+ 
+using namespace std;
+ 
+#define ll long long int
+ 
+#define s(x) scanf("%lld",&x)
+#define s2(x,y) s(x)+s(y)
+#define s3(x,y,z) s(x)+s(y)+s(z)
+ 
+#define p(x) printf("%lld\n",x)
+#define p2(x,y) p(x)+p(y)
+#define p3(x,y,z) p(x)+p(y)+p(z)
+#define fori(i,max) for(ll i=0;i<(ll)(max) ;(i)++)
+#define for2i(i,min,max) for(ll i=min;i<(ll)(max) ;(i)++)
+#define mx 100500
+ 
+bool a[mx];
+ll AoP[mx]; // contain all primes upto Max
+ 
+ll ar[1005][1005];
+ll bsearch(ll num);
+ 
+ 
+void sieve()
+{
+	for(ll i=3;i*i<=mx;i+=2)
+	{
+		if(a[i]==0)
+		{
+			ll j=i*i;
+			ll z=i<<1;
+			
+			while(j<=mx)
+			{
+				a[j]=1;
+				j+=z;
+			}
+		}
+	}
+	
+	AoP[0]=2;
+	ll ct=1;
+	for(ll i=3;i<=mx;i+=2)
+	{
+		if(a[i]==0)
+		{
+			AoP[ct++]=i;
+		}
+	}
+	
+}
+ 
+int main()
+{
+	sieve();
+	ll r,c;
+	
+	while(cin>>r,cin>>c)
+	{
+		
+		for(ll i=0;i<r;i++)
+		{
+			for(ll j=0;j<c;j++)
+			{
+				s(ar[i][j]);
+			}
+		}
+		
+		ll rsum,csum;
+		
+		rsum=1000000000;
+		for(ll i=0;i<r;i++)
+		{
+			ll num;
+			ll sum=0;
+			for(ll j=0;j<c;j++)
+			{
+				if(ar[i][j]==1|| ar[i][j]==0) num=2;
+				else
+				   num = bsearch(ar[i][j]);
+				   
+				sum =sum+ (num-ar[i][j]) ;
+			}
+			rsum=min(rsum,sum);
+		}
+		
+		
+		csum=1000000000;
+		for(ll j=0;j<c;j++)
+		{
+			 ll sum=0;
+			 ll num;
+			for(ll i=0;i<r;i++)
+			{
+				if(ar[i][j]==1 || ar[i][j]==0) num=2;
+				else
+				 num=bsearch(ar[i][j]);
+			
+				sum += num-ar[i][j];
+			}
+			csum=min(csum,sum);
+		}
+	
+		ll ans=min(csum,rsum);
+		p(ans);
+	}
+	return 0;
+}
+ 
+ll bsearch(ll num)
+{
+	ll low=0;ll high=10000;
+	while(low<high)
+	{
+		ll mid=(low+high)/2 ;
+		if(num==AoP[mid])return AoP[mid];
+		if(num>AoP[mid] && num<AoP[mid+1])return AoP[mid+1];
+		else if(num<AoP[mid])high=mid;	
+		else if(num>=AoP[mid+1])low=mid;
+	}
+}

@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+ {
+  int i,j,t,n,m,a[20][10],p,coll,h,l[20];
+  scanf("%d",&t);
+  while(t--)
+     {
+       coll=0;
+       scanf("%d %d",&m,&n);
+       for(i=1;i<=m;i++)
+	  {
+	   for(j=1;j<=n;j++)
+	   scanf("%1d",&a[i][j]);
+	  }
+      for(j=1;j<=n;j++)
+	  {
+	   p=0;
+      for(i=1;i<=m;i++)
+	   {
+	    if(a[i][j]==1)
+	    p++;
+	    }
+	    l[j]=p;
+  }
+  for(i=1;i<=n;i++)
+  {
+  h=(l[i]*(l[i]-1))/2;
+  coll=coll+h;
+  }
+printf("%d\n",coll);
+}
+return 0;
+}
+ 

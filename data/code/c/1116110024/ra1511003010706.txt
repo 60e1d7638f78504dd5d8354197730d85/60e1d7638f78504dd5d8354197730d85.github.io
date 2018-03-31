@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define max 100
+int removeduplicate(char *str);
+int removeall(char *str, const char toremove , int index);
+int main()
+{
+  char str[max];
+  scanf("%s",str);
+  printf("%s\n",str);
+  removeduplicate(str);
+  printf("%s",str);
+	return 0;
+}
+int removeduplicate(char *str)
+{
+  int i=0;
+  while(str[i]!='\0')
+  {
+    removeall(str,str[i],i+1);
+    i++;
+  }
+}
+
+int removeall(char *str,const char toremove ,int index)
+{
+  int i;
+  while(str[index]!='\0')
+  {
+    if(str[index]==toremove)
+    {
+      i=index;
+      while(str[i]!='\0')
+      {
+        str[i]=str[i+1];
+        i++;
+      }
+    }
+    index++;
+  }
+}
+      
+  
+  

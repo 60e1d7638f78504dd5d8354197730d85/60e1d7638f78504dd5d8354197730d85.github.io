@@ -1,0 +1,33 @@
+#include <stdio.h>
+struct dob
+{
+  int date;
+  char month[50];
+  int year;
+};
+struct stu
+{
+  int roll;
+  char name[50];
+  struct dob d;
+  int fees;
+};
+int main()
+{
+  struct stu s[50];
+  int i,n;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    scanf("%d",&s[i].roll);
+    printf("Roll no:%d\n",s[i].roll);
+    scanf("%s",s[i].name);
+    printf("Name:%s\n",s[i].name);
+    scanf("%d%s",&s[i].d.date,s[i].d.month);
+    printf("DOB:%.2d%s\n",s[i].d.date,s[i].d.month);
+    scanf("%d",&s[i].fees);
+    printf("Fees:%d\n",s[i].fees);
+  }
+
+	return 0;
+}

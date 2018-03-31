@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+ 
+int main()
+{
+    long long int n,enNo,i,j,k,cmp,x,y;
+    //scanf("%lld",&t);
+    //for (testNo = 0; testNo < t; testNo++)
+    while(EOF != scanf("%lld",&n)){
+        //scanf("%lld",&n);
+        long long int chemIn[n+1];
+        for (enNo = 1; enNo <= n; enNo++)
+        {
+            scanf("%lld",&chemIn[enNo]);
+        }
+        long long int arr[n+3][n+3][2];
+        for (i = 1; i <= n; ++i)
+        {
+            arr[i][i][1]=0;
+            arr[i][i][0]=chemIn[i];
+        }
+        for (i = 2; i <= n; i++)
+        {
+            for (j = 1; j <=  n-i+1; j++)
+            {
+                y=i+j-1,x=j;
+                arr[x][y][0]=0;
+                //printf("%4lld,%lld ",x,y);
+                arr[x][y][1]=INT_MAX-2;
+                for (k = x; k < y ; k++)
+                {
+                    //printf("%lld ",x);
+                    cmp=arr[x][k][1] + arr[k+1][y][1] + arr[x][k][0]*arr[k+1][y][0];
+                    if (cmp < arr[x][y][1])
+                    {
+                        arr[x][y][0]=(arr[x][k][0]+arr[k+1][y][0])%100;
+                        arr[x][y][1]=cmp;
+                    }
+                    //printf("%lld  ",arr[i][j][1]);
+                }
+            }
+            //printf("\n");
+        }
+        /*printf("\n");
+        for(i=1;i<=n;i++)
+        {
+            for (j = 1; j <= n; ++j)
+            {
+                printf("%9lld ",arr[i][j][0]);
+            }
+            printf("\n");
+        }
+        printf("\n\n");
+        for(i=1;i<=n;i++)
+        {
+            for (j = 1; j <= n; ++j)
+            {
+                printf("%9lld ",arr[i][j][1]);
+            }
+            printf("\n");
+        }*/
+        printf("%lld\n",arr[1][n][1]);
+    }
+    return 0;
+} 

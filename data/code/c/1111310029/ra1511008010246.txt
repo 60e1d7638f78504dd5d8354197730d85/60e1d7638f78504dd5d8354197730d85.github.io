@@ -1,0 +1,103 @@
+#include<stdio.h>
+ 
+int main(){
+  int i,res=0,j=0,len,max1,t,n,m,p,count=0,temp;
+  int pos[10];
+  int num[1001];
+  int c[1001]={0};
+  int product[1001]={0};
+  scanf("%d",&m);
+  for(p=0;p<m;p++){
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+    scanf("%d",&num[i]);
+    switch(num[i]){
+    /* case 1:c[1]+=1;
+             if(c[1]>=2)
+               product[1]=1;
+             break;
+      case 2:c[2]+=1;
+             if(c[2]>=2)
+               product[2]=2;
+             break;
+      case 3:c[3]+=1;
+             if(c[3]>=2)
+               product[3]=3;
+             break;
+      case 4:c[4]+=1;
+             if(c[4]>=2)
+               product[4]=4;
+             break;
+      case 5:c[5]+=1;
+             if(c[5]>=2)
+               product[5]=5;
+             break;
+      case 6:c[6]+=1;
+             if(c[6]>=2)
+               product[6]=6;
+             break;
+      case 7:c[7]+=1;
+             if(c[7]>=2)
+               product[7]=7;
+             break;
+      case 8:c[8]+=1;
+             if(c[8]>=2)
+               product[8]=8;
+             break;
+      case 9:c[9]+=1;
+             if(c[9]>=2)
+               product[9]=9;
+             break;*/
+      default:c[num[i]]+=1;
+               if(c[num[i]]>=2)
+               product[num[i]]=num[i];
+             break;
+ 
+    }
+  }
+  /* for(i=1;i<=1001;i++){
+    if(c[i]<=1)
+        count+=1;
+   }*/
+  /*if(count==1002){
+    res=-1;}
+  else{*/
+    for(i=1;i<=1000;i++){
+        if(c[i]>=2){ //printf("Hello %d %d\n",product[i],i);
+            pos[j++]=product[i];
+            c[i]-=2;
+            i-=1;
+        }
+    }
+    len=j;
+    //printf("Hi %d\n",len);
+    if(len==0 || len==1 )
+        res=-1;
+    else{
+       for(i=0;i<len;i++){
+          /* max1=pos[i];
+           for(t=1;t<len;t++){
+              if((res < (max1 * pos[t])) && max1 !=pos[t] )
+                res=(max1 * pos[t]);
+           }*/
+           for(t=0;t<len-i-1;t++){
+            if(pos[t] > pos[t+1]){
+                temp=pos[t];
+                pos[t]=pos[t+1];
+                pos[t+1]=temp;
+            }
+           }
+       }
+       res=pos[j-1]*pos[j-2];
+    }
+ // }
+  printf("%d\n",res);
+  for(i=1;i<=1000;i++){
+    c[i]=0;
+    product[i]=0;
+   }
+  j=0;
+  res=0;
+  }
+return 0;
+} 

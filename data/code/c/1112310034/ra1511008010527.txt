@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<string.h>
+int store[]={0,0,9,90,738,5274,32490,168570,712890,2345850,5611770,8877690};//a[11]=11223540
+int calculate(char *a)
+{
+    int n=strlen(a);
+    int l=9;int j,i;
+    if(n==10)
+    {
+        i=1;
+       long long  int k=a[0]-'0';
+        while(i<10)
+        {
+            k*=10;
+            k+=a[i]-'0';
+            i++;
+        }
+        if(k>9876543210)
+        return store[11];
+    }
+    if(n>10 )
+        return store[11];
+    int sum=0;
+    int k=a[0]-'0'-1;
+ 
+    for(j=1;j<n;j++,l--)
+        k*=l;
+    sum+=k;
+    for(i=1;i<n;i++)
+    {
+        int k=a[i]-'0';
+        int count=0;
+        int t;
+        for(t=0;t<i;t++)
+        {
+            for(j=t+1;j<i;j++)
+            {
+                if(a[t]==a[j])
+                {
+                   // printf("count == %d ",count);
+                    count=-1;
+                    break;
+                }
+            }
+            if(count==-1)
+            break;
+        }
+        if(count==-1)
+        break;
+ 
+        for(j=0;j<i;j++)
+        {
+            if(a[j]<a[i])
+            count++;
+        }
+        k=k-count;
+        l=9-i;
+        for(j=i+1;j<n;j++)
+        {
+              k*=l;
+              l--;
+        }
+        sum+=k;
+      //  printf("i== %d  k== %d \n ",i,k);
+    }
+    sum+=store[n];
+    int p=1;
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        if(a[i]==a[j])
+        {
+            p=0;
+            break;
+        }
+        if(p==0)
+        break;
+    }
+    sum+=p;
+return sum;
+}
+int main()
+{
+    int  t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char a[20],b[20];
+        int i,j;
+        scanf("%s%s",a,b);
+        int n1= calculate(a);
+ 
+        int n2=calculate(b);
+     // printf("%d   %d  ",n1,n2);
+        n2-=n1;
+        int p=1;
+        int n=strlen(a);
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            if(a[i]==a[j])
+            {
+                p=0;
+                break;
+            }
+            if(p==0)
+            break;
+        }
+        n2+=p;
+        printf("%d\n",n2);
+    }
+return 0;
+}

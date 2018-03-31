@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+ long double avg,var,std,n,sum=0,sum1=0;
+  int i,no[10];
+  scanf("%Lf",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&no[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    sum=sum+no[i];
+  }
+  avg=sum/n;
+    for(i=0;i<n;i++)
+    {
+      sum1=sum1+pow((no[i]-avg),2);
+    }
+  var=sum1/n;
+  std=sqrt(var);
+  printf("Mean=%0.2Lf",avg);
+  printf("\nSD=%0.2Lf",std);
+	return 0;
+}

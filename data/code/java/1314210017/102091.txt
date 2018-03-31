@@ -1,0 +1,41 @@
+import java.util.*;
+import java.util.regex.*;  
+    public class TestClass
+    {
+        public static void main(String[] args)
+        {
+            Scanner sc = new Scanner(System.in);
+            sc.useDelimiter("\n");
+            int N = sc.nextInt();
+            String[] Lines = new String[N];
+
+            for (int i = 0; i < N; i++)
+            {
+                Lines[i] = sc.next();
+            }
+
+            int T = sc.nextInt();
+
+            for (int j = 0; j < T; j++)
+            {
+                String SearchTerm = sc.next();
+
+                
+                System.out.println(GetNumOccurrences(Lines,SearchTerm,N));
+            }
+        }
+
+        public static int GetNumOccurrences(String[] Lines, String SearchTerm,int N)
+        {
+            int count = 0;
+            //String regex =  SearchTerm + "(s|z)e";
+            //System.out.println(regex);
+            for (int i = 0; i < N; i++)
+            {
+               if(!Pattern.matches(Lines[i],"familiari(s|z)e*"))
+                count++; 
+            }
+
+            return count;
+        }
+    }

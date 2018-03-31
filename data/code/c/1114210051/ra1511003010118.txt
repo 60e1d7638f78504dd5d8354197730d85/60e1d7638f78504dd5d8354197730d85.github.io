@@ -1,0 +1,41 @@
+#include <stdio.h>
+int gcd(int v1,int v2)
+{
+  int temp;
+  if(v1>v2)
+  {
+    temp=v1;
+    v1=v2;
+    v2=temp;
+  }
+  if(v2 % v1==0)
+  {
+    return v1;
+  }
+  else
+  {
+    return gcd(v2 % v1,v1);
+  }
+}
+int lcm(int num1, int num2)
+{
+  int gcd1=gcd(num1,num2);
+  return (num1*num2) / gcd1;
+}
+    
+int main()
+{
+  int array[20],count,limit,value=1;
+  scanf("%d",&limit);
+  for(count=0;count<limit;count++)
+  {
+    scanf("%d",&array[count]);
+  }
+  for(count=0;count<limit;count++)
+  {
+    value=lcm(value, array[count]);
+  }
+      printf("%d",value);
+
+	return 0;
+}

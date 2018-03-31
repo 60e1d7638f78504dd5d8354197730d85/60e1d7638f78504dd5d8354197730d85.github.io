@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  string line;
+  int v,c,d,s;
+  v=c=d=s=0;
+  getline(cin,line);
+  for(int i=0;i<line.length();++i)
+  {
+    if(line[i]=='a' || line[i]=='e' || line[i]=='i' || line[i]=='o'|| line[i]=='u' || line[i]=='A' || line[i]=='E' || line[i]=='I' || line[i]=='O' || line[i]=='U')
+      ++v;
+    else if((line[i]>='a' &&line[i]<='z') || (line[i]>='A' && line[i]<='Z'))
+      ++c;
+    else if(line[i]>='0' && line[i]<='9')
+      ++d;
+    else if(line[i]==' ')
+      ++s;
+  }
+  cout<<"Vowels: "<<v<<endl<<"Consonants: "<<c<<endl<<"Digits: "<<d<<endl<<"White spaces: "<<s;
+	return 0;
+}

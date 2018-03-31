@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+	// your code goes here
+int T,i,j,k,l,n1,n2,N;
+long long ans;
+char S[500001];
+scanf("%d",&T);
+for(i=1;i<=T;i++)
+{
+   scanf("%s",S);
+   N=strlen(S);
+   ans=0;
+   for(j=1,k=0;j<=N;j*=2,k++);
+   int arr[k];
+   for(j=1;j*2<=N;j++)
+   {
+       long long num; int count; 
+       for(k=2;(long long)j*k<=N;k++)
+       {
+        for(count=0,num=j;num<=N;count++,num*=k)
+           arr[count]=(int)num;
+        for(l=1;l<count;l++)
+        {
+           int flag=1;
+           for(n1=0,n2=l;n1<=n2;n1++,n2--)
+           {
+               if(S[arr[n1]-1]!=S[arr[n2]-1]){flag=0;break;}
+           }
+           if(flag)ans++;
+        }
+       }
+   }
+   printf("%lld\n",ans+N);
+}
+	return 0;
+}
+ 

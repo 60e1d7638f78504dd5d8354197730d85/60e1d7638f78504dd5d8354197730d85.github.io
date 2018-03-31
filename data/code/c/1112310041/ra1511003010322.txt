@@ -1,0 +1,62 @@
+#include <stdio.h>
+int gcd(int a,int b)
+{
+  int g,i;
+  for(i=1;i<=a && i<=b ;i++)
+  {
+    if(a%i==0 && b%i==0)
+            g= i;
+  }
+  return g;
+}
+int main()
+{
+  int t,i,j,br,n,f[100]={0},min,ans,a[100];
+  scanf("%d",&t);
+  while(t--)
+  {
+   scanf("%d",&n);
+min=100000;
+   for(i=0;i<n;i++)
+   {
+     scanf("%d",&a[i]);
+     if(min>a[i])
+       min=a[i];
+   }
+    ans=1;
+ 
+   for(j=1;j<=min;j++)
+   {
+     for(i=0;i<n;i++)
+    {
+      if(a[i]%j==0)
+        f[i]=0;
+      else
+        f[i]=1;
+    }
+     br=0;
+     for(i=0;i<n;i++)
+     {
+       if(f[i]!=0)
+       {
+         br=1;
+         break;
+       }
+         
+     }
+     if(br!=1)
+     {
+       ans=j;
+      // printf("%d\n",ans);
+     }
+   }
+  for(i=0;i<n;i++)
+  {
+    printf("%d ",a[i]/ans);
+  }
+  printf("\n");  
+    
+  }
+
+	return 0;
+}

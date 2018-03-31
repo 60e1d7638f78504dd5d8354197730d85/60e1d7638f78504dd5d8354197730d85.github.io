@@ -1,0 +1,44 @@
+#include <stdio.h>
+void psubSequence(int*, int, int,long*,long sum,long prod, int length);
+long long power(long long base , long long expo );
+static long MOD = 1000000007;
+int main()
+{
+	int T;
+	int testcase=0;
+    scanf("%d",&T);
+    while(T-- > 0) {
+    	int N;
+    	scanf("%d",&N);
+    	int A[N],i=0;
+    	while(i<N)
+    		scanf("%d",&A[i++]);
+    	long maxP=-1;
+    	psubSequence(A,N,0,&maxP,0,1,0);
+    	printf("Case #%d: %ld\n", ++testcase,maxP);
+    }
+    return 0;
+}
+ 
+ 
+void psubSequence(int* A,int num, int i,long* maxPSubSequence, long sum, long prod, int length) {
+	if (i>=num) {
+		if (length >= 2 && (prod*power(sum, MOD-2)) % MOD > *maxPSubSequence)
+			*maxPSubSequence = (prod*power(sum, MOD-2)) % MOD;
+		return;
+	}
+	
+	psubSequence(A,num,i+1,maxPSubSequence,sum+A[i] ,prod*A[i] % MOD,length+1);
+	psubSequence(A,num,i+1,maxPSubSequence,sum,prod,length);
+}
+ 
+long long power(long long base , long long expo ){
+	long long res=1;
+	while(expo>0){
+		if(expo%2==1)
+			res = (res*base)%MOD;
+		expo >>=1;
+		base =(base * base)%MOD;
+	}
+	return res;
+}

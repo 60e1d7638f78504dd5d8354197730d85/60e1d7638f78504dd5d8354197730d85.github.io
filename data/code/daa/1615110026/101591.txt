@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+int valid(int x,int y,int R,int C) {
+    return (x>=0 && x<R && y>=0 && y<C);
+}
+int main() {
+    int R,C,Q;
+    cin>>R>>C;
+    int arr[R][C];
+    for(int i=0;i<R;i++) {
+        for(int j=0;j<C;j++)
+            cin>>arr[i][j];
+    }
+    long long dp[R][C];
+    for(int i=0;i<R;i++) {
+        for(int j=0;j<C;j++) {
+            dp[i][j] = arr[i][j];
+            if(valid(i-1,j,R,C)) {
+                dp[i][j] += dp[i-1][j];    
+            }
+            if(valid(i,j-1,R,C)) {
+                dp[i][j] += dp[i][j-1];
+            }
+            if(valid(i-1,j-1,R,C)) {
+                dp[i][j] -= dp[i-1][j-1];
+            }
+        }
+    }
+    cin>>Q;
+    while(Q--) {
+        int x1,x2,y1,y2;
+        cin>>x1>>y1>>x2>>y2;
+        x1--;
+        y1--;
+        x2--;
+        y2--;
+        long long res = 0;
+        if(valid(x2,y2,R,C)) {
+            res+= dp[x2][y2];
+        }
+        if(valid(x2,y1-1,R,C)) {
+            res-= dp[x2][y1-1];
+        }
+        if(valid(x1-1,y2,R,C)) {
+            res-= dp[x1-1][y2];
+        }
+        if(valid(x1-1,y1-1,R,C)) {
+            res+= dp[x1-1][y1-1];
+        }
+        cout<<res<<"\n";
+    }
+}

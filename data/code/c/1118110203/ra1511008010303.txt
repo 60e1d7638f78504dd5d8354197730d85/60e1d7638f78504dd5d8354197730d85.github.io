@@ -1,0 +1,27 @@
+#include <stdio.h>
+ struct distance
+ {
+   int feet;
+   float inch;
+ };
+void add ( struct distance *s1, struct distance *s2)
+{
+  s1->feet=s1->feet+s2->feet;
+  s1->inch=s1->inch+s2->inch;
+  if(s1->inch>12)
+  {
+    s1->inch=s1->inch-12;
+    s1->feet++;
+  }
+}
+int main()
+{
+struct distance a;
+struct distance b;
+scanf("%d %f",&a.feet,&a.inch);
+scanf("%d %f",&b.feet,&b.inch);
+add(&a,&b);
+printf("%dfeet\n%.1finches",a.feet,a.inch);
+
+	return 0;
+}

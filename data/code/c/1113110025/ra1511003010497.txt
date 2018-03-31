@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+int t,sum=0;
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    int l,h,i;
+    scanf("%d %d\n",&l,&h);
+    for(i=l;i<=h;i++)
+    {
+      if(palindrome(i))
+        sum=sum+i;
+      
+    }
+  printf("sum is %d\n",sum);
+    sum=0;}
+	return 0;
+}
+  int palindrome(int i)
+  {
+    int temp,r,ri=0;
+    temp=i;
+    while(i!=0)
+    {
+    r=i%10;
+    ri=ri*10+r;
+    i=i/10;
+    }
+    if(temp==ri)
+      return 1;
+    else 
+      return 0;
+  }

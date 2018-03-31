@@ -1,0 +1,247 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
+ 
+public class TestClass {
+	static IntReader in;
+	static PrintWriter out;
+	static String INPUT = "";
+	
+	static double[][] sc = new double[30][2];
+	static double[] c2 = new double[30];
+	static double[] s2 = new double[30];
+	
+	static
+	{
+		sc[0][0] = 0;
+		sc[0][1] = 1;
+		for(int i = 0;i < 30;i++){
+			c2[i] = Math.cos(1<<i);
+			s2[i] = Math.sin(1<<i);
+		}
+		for(int i = 1;i < 30;i++){
+			sc[i][0] = sc[i-1][0] + sc[i-1][0]*c2[i-1] + sc[i-1][1]*s2[i-1];
+			sc[i][1] = sc[i-1][1] + sc[i-1][1]*c2[i-1] - sc[i-1][0]*s2[i-1];
+		}
+	}
+	
+	static double[] sss(int n)
+	{
+		if(n < 0)return new double[]{0,0};
+		double rs = 0;
+		double rc = 0;
+		for(int p = 0;n > 0;n>>=1,p++){
+			if(n%2 == 1){
+				double nrs = rs*c2[p] + rc*s2[p];
+				double nrc = rc*c2[p] - rs*s2[p];
+				rs = nrs + sc[p][0];
+				rc = nrc + sc[p][1];
+			}
+		}
+		return new double[]{rs, rc};
+	}
+	
+	static void solve()
+	{
+		int n = ni();
+		int q = ni();
+		
+		int[][] qs = new int[q][3];
+		TreeSet<Integer> set = new TreeSet<Integer>();
+		set.add(0);
+		set.add(n);
+		for(int i = 0;i < q;i++){
+			for(int j = 0;j < 3;j++){
+				qs[i][j] = ni();
+			}
+			set.add(qs[i][0]);
+			set.add(qs[i][1]+1);
+		}
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		int m = set.size() - 1;
+		double[] s = new double[m];
+		double[] c = new double[m];
+		
+		int p = 0;
+		double[] prev = {0,0};
+		for(int u : set){
+			map.put(u, p);
+			double[] cur = sss(u);
+			if(p >= 1){
+				s[p-1] = cur[0]-prev[0];
+				c[p-1] = cur[1]-prev[1];
+			}
+			prev = cur;
+			p++;
+		}
+ 
+		SegmentTreeRSQ st = new SegmentTreeRSQ(s,c);
+		for(int i = 0;i < q;i++){
+			int l = map.get(qs[i][0]);
+			int r = map.get(qs[i][1]+1)-1;
+			int d = qs[i][2];
+			if(d == 0){
+				out.printf("%.10f\n", st.sum(l, r)[0]);
+			}else{
+				st.addRange(l, r, d, Math.sin(d), Math.cos(d));
+			}
+		}
+	}
+	
+	public static class SegmentTreeRSQ {
+		public int M, H, N;
+		public double[] si;
+		public double[] co;
+		public double[] psi;
+		public double[] pco;
+		public double[] bs, bc;
+		
+		public SegmentTreeRSQ(double[] s, double[] c)
+		{
+			N = s.length;
+			M = Integer.highestOneBit(Math.max(N, 1))<<2;
+			H = M>>>1;
+			bs = s;
+			bc = c;
+			si = new double[M];
+			co = new double[M];
+			psi = new double[M];
+			pco = new double[M];
+			Arrays.fill(pco, 1);
+			for(int i = 0;i < N;i++){
+				si[H+i] = s[i];
+				co[H+i] = c[i];
+			}
+			build();
+		}
+		
+		public void build()
+		{
+			for(int i = (M>>1)-1;i >= 1;i--){
+				si[i] = si[i*2] + si[i*2+1];
+				co[i] = co[i*2] + co[i*2+1];
+			}
+		}
+		
+		public void addRange(int f, int t, int v, double ss, double cc) { addRange(f, t, v, H, ss, cc); }
+		
+		public void addRange(int f, int t, int v, int b, double ss, double cc)
+		{
+			if((f&(b-1))==0 && (t&(b-1))==b-1){
+				int h = (H|f)/b;
+				double nsi = psi[h]*cc+pco[h]*ss;
+				double nco = pco[h]*cc-psi[h]*ss;
+				psi[h] = nsi;
+				pco[h] = nco;
+				for(int i = h;i >= 1;i>>=1){
+					double S, C;
+					if(i >= H){
+						S = bs[i-H];
+						C = bc[i-H];
+					}else{
+						S = si[i*2] + si[i*2+1];
+						C = co[i*2] + co[i*2+1];
+					}
+					si[i] = S*pco[i]+C*psi[i];
+					co[i] = C*pco[i]-S*psi[i];
+				}
+				return;
+			}
+			
+			b>>=1;
+			if(((f^t)&b) != 0){
+				int w = t&~(b-1);
+				addRange(f, w-1, v, b, ss, cc);
+				addRange(w, t, v, b, ss, cc);
+			}else{
+				addRange(f, t, v, b, ss, cc);
+			}
+		}
+		
+		public double[] sum(int f, int t) { return sum(f, t, M); }
+		
+		public double[] sum(int f, int t, int b)
+		{
+			if((f&(b-1))==0 && (t&(b-1))==b-1){
+				double S = si[(H|f)/b];
+				double C = co[(H|f)/b];
+				return new double[]{S, C};
+			}
+			
+			int bo = b;
+			b >>= 1;
+			if(((f^t)&b) != 0){
+				int w = t&~(b-1);
+				double[] A = sum(f, w-1, b);
+				double[] B = sum(w, t, b);
+				
+				A[0] += B[0];
+				A[1] += B[1];
+				int h = (H|f)/bo;
+				B[0] = A[0]*pco[h]+A[1]*psi[h];
+				B[1] = A[1]*pco[h]-A[0]*psi[h];
+				return B;
+			}else{
+				double[] A = sum(f, t, b);
+				int h = (H|f)/bo;
+				double ns = A[0]*pco[h]+A[1]*psi[h];
+				double nc =	A[1]*pco[h]-A[0]*psi[h];
+				A[0] = ns; A[1] = nc;
+				return A;
+			}
+		}
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		in = INPUT.isEmpty() ? new IntReader(System.in) : new IntReader(new ByteArrayInputStream(INPUT.getBytes()));
+		out = new PrintWriter(System.out);
+		
+		solve();
+		out.flush();
+	}
+	
+	public static class IntReader {
+		private InputStream is;
+		
+		public IntReader(InputStream is)
+		{
+			this.is = is;
+		}
+		
+		public int ni()
+		{
+			try {
+				int num = 0;
+				boolean minus = false;
+				while((num = is.read()) != -1 && !((num >= '0' && num <= '9') || num == '-'));
+				if(num == '-'){
+					num = 0;
+					minus = true;
+				}else{
+					num -= '0';
+				}
+				
+				while(true){
+					int b = is.read();
+					if(b >= '0' && b <= '9'){
+						num = num * 10 + (b - '0');
+					}else{
+						return minus ? -num : num;
+					}
+				}
+			} catch (IOException e) {
+			}
+			return -1;
+		}
+	}
+	
+	static int ni() { return in.ni(); }
+	static void tr(Object... o) { if(INPUT.length() != 0)System.out.println(Arrays.deepToString(o)); }
+}
+ 

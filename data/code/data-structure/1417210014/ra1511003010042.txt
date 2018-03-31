@@ -1,0 +1,201 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef long long int ll;
+ll max[1000001];
+ll min[1000001];
+ll arr[1000001];
+int size1=0;
+int size2=0;
+int Int32_Get() {
+  int num= 0, flag= 1;
+  char c=getchar_unlocked();
+ 
+  while(!((c>='0' & c<='9') || c == '-'))
+    c= getchar_unlocked();
+  if(c == '-') {
+    flag= -1;
+    c= getchar_unlocked();
+  }
+  while(c>='0' && c<='9') {
+    num= (num<<1) + (num<<3) + c - '0';
+    c= getchar_unlocked();
+  }
+	
+	return num * flag;
+}
+int64_t Int64_Get() {
+  int64_t num= 0, flag= 1;
+  char c= getchar_unlocked();
+ 
+  while(!((c>='0' & c<='9') || c == '-'))
+    c= getchar_unlocked();
+  if(c == '-') {
+    flag= -1;
+    c= getchar_unlocked();
+  }
+  while(c>='0' && c<='9') {
+    num= (num<<1) + (num<<3) + c - '0';
+    c= getchar_unlocked();
+  }
+ 
+  return num * flag;
+}
+void swap_max(int i,int j)
+{
+	ll temp=max[i];
+	max[i]=max[j];
+	max[j]=temp;
+}
+void swap_min(int i,int j)
+{
+	ll temp=min[i];
+	min[i]=min[j];
+	min[j]=temp;
+}
+void push_max(ll data)
+{
+	size1=size1+1;
+	max[size1]=data;
+	int i=size1;
+	while(i>1 && (max[i/2] < max[i]))
+	{
+		swap_max(i/2,i);
+		i=i/2;
+	}
+}
+void push_min(ll data)
+{
+	size2=size2+1;
+	min[size2]=data;
+	int i=size2;
+	while(i>1 && (min[i/2] > min[i]))
+	{
+		swap_min(i/2,i);
+		i=i/2;
+	}
+}
+void min_heapify(int index)
+{
+	int smallest;
+	int left=2*index;
+	int right=2*index+1;
+	
+	if(left<=size2 && (min[left] < min[index]))
+	 smallest=left;
+	else
+	 smallest=index;
+	
+	if(right<=size2 && (min[right] < min[smallest]))
+	 smallest=right;
+	
+	if(smallest != index)
+	{
+		swap_min(smallest,index);
+		min_heapify(smallest);
+	}
+}
+void max_heapify(int index)
+{
+	int largest;
+	int left=2*index;
+	int right=2*index+1;
+	
+	if(left<=size1 && (max[left] > max[index]))
+	 largest=left;
+	else
+	 largest=index;
+	
+	if(right<=size1 && (max[right] > max[largest]))
+	 largest=right;
+	
+	if(largest != index)
+	{
+		swap_max(largest,index);
+		max_heapify(largest);
+	}
+}
+ll extract_max()
+{
+	ll maxi=max[1];
+	swap_max(1,size1);
+	size1=size1-1;
+	max_heapify(1);
+	return maxi;
+}
+ll extract_min()
+{
+	ll mini=min[1];
+	swap_min(1,size2);
+	size2=size2-1;
+	min_heapify(1);
+	return mini;
+}
+void print_array()
+{
+	int i;
+	for(i=1;i<=size1;i++)
+	 printf("%lld ",max[i]);
+	printf("\n\n");
+	for(i=1;i<=size2;i++)
+	 printf("%lld ",min[i]);
+	printf("\n");
+}
+int main()
+{
+	//freopen("program.txt","r",stdin);
+	int n;
+	n=Int32_Get();
+	int i;
+	ll k,j;
+	//printf("im here\n");
+	for(i=0;i<n;i++)
+	 arr[i]=Int64_Get();
+	for(i=0;i<n;i++)
+	{
+		k=Int64_Get();
+		arr[i]+=k;
+	}
+	//printf("im here\n");
+	for(i=0;i<n;i++)
+	{
+		k=Int64_Get();
+		arr[i]+=k;
+		push_min(arr[i]);
+	}
+	int q;
+	//printf("im here\n");
+	q=Int32_Get();
+	while(q--)
+	{
+		k=Int64_Get();
+		if(k>size1+size2)
+		{
+			printf("-1\n");
+			continue;
+		}
+		else
+		{
+			if(size1>k)
+			{
+				while(size1!=k)
+				{
+					j=extract_max();
+					push_min(j);
+				}
+			}
+			else
+			{
+				while(size1!=k)
+				{
+					j=extract_min();
+					push_max(j);
+				}
+			}
+			//print_array();
+			//extract_max();
+			printf("%lld\n",extract_max());
+		}
+	}
+	return 0;
+}

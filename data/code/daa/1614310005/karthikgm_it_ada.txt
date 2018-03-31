@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+#define FO(i,a,b) for (int i = (a); i < (b); i++)
+#define sz(v) int(v.size())
+
+using namespace std;
+
+typedef long long ll;
+
+int main() {
+    int T; scanf("%d", &T);
+    FO(Z,0,T) {
+        ll n, l, a, d; scanf("%lld %lld %lld %lld", &l, &a, &n, &d);
+        if (d == 1) {
+            printf("%lld\n", a * 1ll * l);
+            continue;
+        }
+        ll ans = -1e9;
+        // how many of type d-1
+        FO(m,0,l+1) {
+            ll rm = l - (d-1) * 1ll * m;
+            ll rm2 = n - (d-1) * 1ll * m;
+            //printf("m=%d, rm=%lld, rm2=%lld\n", m, rm, rm2);
+            if (rm < 0 || rm2 <= 0) continue;
+            ll s = (2*a-d+2) * 1ll * (d-1) / 2 * m;
+            s += (rm2-1) * a;
+            rm -= rm2-1;
+            //printf("s=%lld\n", s);
+            if (m == 0) {
+                if (rm != 0) continue;
+            } else {
+                // m, m, m, ..., <m sum to rm
+                ll k = rm/m;
+                //printf("k=%lld\n", k);
+                if (k + d-1 > a) continue;
+                if (rm%m && k + d > a) continue;
+                //printf("k=%lld\n", k);
+                // a-d+1, a-d, ..., a-d-k+2
+                s += (2*a-2*d-k+3) * 1ll * k / 2 * m;
+                s += (rm%m) * (a-d-k+1);
+            }
+            ans = max(ans,s);
+        }
+        if (ans < 0) printf("SAD\n");
+        else printf("%lld\n", ans);
+    }
+}

@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+int n,q,i,temp;
+int ans=0;
+int a[100001];
+scanf("%d %d",&n,&q);
+for(i=1;i<=n;i++)
+scanf("%d",a+i);
+for(i=1;i<=n;i++)
+{
+if(a[i]!=i)
+{
+temp=a[i];
+a[i]=a[temp];
+a[temp]=temp;
+i--;
+ans^=1;
+}
+}
+for(i=0;i<q;i++)
+{
+ans^=1;
+printf("%d\n",ans);
+}
+return 0;
+} 

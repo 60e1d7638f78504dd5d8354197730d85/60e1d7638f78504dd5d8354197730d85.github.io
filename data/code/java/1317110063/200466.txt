@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args)
+     { 
+    Scanner sc=new Scanner(System.in);
+       int T = sc.nextInt();
+       for(int i=0; i<T; i++)
+       {
+       String s, x;
+       s=sc.next();               
+       x=sc.next();
+       int a=strstr(s,x);
+       System.out.println(a);
+       }
+     }
+static int strstr(String haystack,String needle)
+    {
+        if(haystack==null || needle==null)
+                {
+                    return -1;
+                }
+          
+  		int hlen = haystack.length();
+  		int nlen = needle.length();
+  		if(hlen < nlen)
+                {
+                    return -1;
+                }
+  		if(nlen == 0)
+                {
+                    return -1;
+                }
+  	for(int i=0; i<hlen; i++)
+        {
+          if(haystack.charAt(i) == needle.charAt(0))
+          {
+            	if(haystack.substring(i, i+nlen).compareTo(needle)==0)
+                  return i;
+          }
+        }		
+  		return -1;
+      }
+}

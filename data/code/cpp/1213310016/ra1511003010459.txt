@@ -1,0 +1,40 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+bool isPalin(string n){
+	string r=n;
+  	reverse(r.begin(),r.end());
+  	if(r==n){
+    	return true;
+    }else{
+    	return false;
+    }
+}
+
+int main()
+{
+	string ss,s;
+  	cin>>s;
+  	ss=s;
+  	//cout<<ss<<"L";
+  	int flag=0;
+  	for(int i=0;i<ss.length();i++){
+    	if(isPalin(ss)){
+        	cout<<'1';
+          	flag=1;
+          	break;
+        }else{
+        	for(int j=0;j<=ss.length()-1;j++){
+            	ss[j+1]=s[j];
+            }
+          	ss[0]=s[s.length()-1];
+          	s=ss;
+          	//cout<<ss<<endl;
+          	flag=0;
+        }
+    }
+  	if(flag==0){
+    	cout<<'0';
+    }
+	return 0;
+}

@@ -1,0 +1,35 @@
+import java.util.*;
+class Other
+{
+  public int great(int gcd,int lcm)
+  {
+    int hcf=0;
+    for(int i = 1; i <= gcd && i <= lcm; ++i)
+        {
+           if(gcd % i == 0 && lcm % i == 0)
+                hcf = i;
+        }
+
+        
+    return hcf;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in = new Scanner(System.in);
+       Other objname=new Other();
+       int t=in.nextInt();
+       while(t>0)
+       {
+         t--;
+         int a=in.nextInt();
+         int b=in.nextInt();
+         int gcd=objname.great(a,b);
+         int lcm=(a*b)/gcd;
+         System.out.println(gcd+" "+lcm);
+       }
+     }
+}
+ 
+        
+ 		

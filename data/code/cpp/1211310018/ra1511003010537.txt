@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#include<strings.h>
+using namespace std; 
+#define ll long long 
+ 
+ 
+int main()
+{
+    char mg,goku[100005] ;
+    
+    ll zam,qt=0,i,len ;
+    
+    cin>>zam ;
+    
+    while(zam--)
+    {
+        cin>> goku ;
+        qt=0 ;
+        mg=goku[0] ;
+        len=strlen(goku) ;
+        
+        for(i=1;i<len;i++)
+        {
+            if(goku[i]=='C')
+            {
+                if(mg=='E' || mg=='S')
+                {
+                    printf("no\n");
+                    qt=1 ;
+                    break ;
+                }
+            }
+        
+        
+            if(goku[i]=='E')
+            {
+                if(mg=='S')
+                {
+                    printf("no\n");
+                    qt=1 ;
+                    break ;
+                }
+            }
+            mg=goku[i] ;
+        }
+        
+        if(qt==0)
+        printf("yes\n");
+    }
+    
+    return 0 ;
+}      

@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+int test;
+	scanf("%d",&test);
+	while(test--)
+	{
+	    int h,m,i,j,count=1,mi,mj,di,dj;
+	    scanf("%d %d",&h,&m);
+	    for(i=1;i<h;i++)
+	    {
+	        mi=i%10;
+	        di=i/10;
+	        for(j=0;j<m;j++)
+	        {
+	            mj=j%10;
+	            dj=j/10;
+	            if(dj==di&&di==0)
+	            {
+	                if(mi==mj)
+	                count++;
+	            }
+	            if(di==0&&dj)
+	            {
+	                if(mi==mj&&mi==dj)
+	                count++;
+	            }
+	            if(dj==0&&di)
+	            {
+	                if(mi==mj&&mi==di)
+	                count++;
+	            }
+	            if(di&&dj)
+	            {
+	                if(di==dj&&di==mi&&mi==mj)
+	                count++;
+	            }
+	            
+	       
+	        }
+	    }
+	    printf("%d\n",count);
+    }
+	return 0;
+}

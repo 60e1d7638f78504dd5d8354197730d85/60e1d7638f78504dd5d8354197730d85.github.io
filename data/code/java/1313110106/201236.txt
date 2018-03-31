@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		 
+    Scanner scanner = new Scanner(System.in);
+    Long inputNo = scanner.nextLong();
+ 
+    //Calculate sum of digits of inputNo
+    long temp = inputNo;
+    int sumOfDigits = 0;
+    while (temp > 0) {
+      long rem = temp % 10;
+      sumOfDigits += rem;
+      temp = temp / 10;
+    }
+ 
+    //Check if inputNo is divisible by sum of its digits
+    if (inputNo % sumOfDigits == 0) {
+      System.out.println("Yes");
+    } else {
+      System.out.println("No");
+    }
+	}
+}

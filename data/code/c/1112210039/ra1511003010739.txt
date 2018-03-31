@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  	long long int l,d,s,c,templikes,temp;
+  	scanf("%d",&t);
+  	while(t){
+    	scanf("%lld %lld %lld %lld",&l,&d,&s,&c);
+      	templikes=temp=0;
+      	if(d==1){
+        	templikes=s;
+        }
+      	else{
+        	while(d>1){
+            	temp=s+s*c;
+              	templikes+=temp;
+              	s=temp;
+              	d--;
+            }
+        }
+      	if(templikes>=l){
+        	printf("ALIVE AND KICKING\n");
+        }
+      	else{
+        	printf("DEAD AND ROTTING\n");
+        }
+    	t--;
+    }
+	return 0;
+}

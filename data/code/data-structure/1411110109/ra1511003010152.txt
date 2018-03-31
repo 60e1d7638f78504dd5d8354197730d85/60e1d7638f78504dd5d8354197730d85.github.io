@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+ 
+void addspiders(int *queue,int N,int &front,int &rear)
+        {
+                do
+                {
+                        cin>>queue[rear];
+                }while((++rear)%N!=front);
+        }
+ 
+void circular(int *queue,int N,int &front,int &tempN,int *index,int i,int X)
+        {
+                int count=0;
+                int max=-5;
+                int maxid=-1;
+                do
+                {
+                    l:
+                    for(int j=0;j<i;j++)
+                        {
+                                if(front==index[j])
+                                {
+                                        front=(front+1)%N;
+                                        goto l;
+                                }
+                        }
+                     if(queue[front]>max)
+                        {
+                                max=queue[front];
+                                maxid=front;
+                        }
+                   if(queue[front]!=0)
+                                 queue[front]--;
+                    front=(front+1)%N;
+                    count++;
+                }while(count<X);
+          index[i]=maxid;
+            i++;
+          tempN--;
+        }
+ 
+ 
+int main()
+        {
+                int *queue,N,X,*index,tempN;
+                int front,rear,i;
+                        cin>>N;
+                        cin>>X;
+                tempN=N;
+                queue=new int[N];
+                index=new int[N];
+                front=rear=0;
+ 
+                addspiders(queue,N,front,rear);
+ 
+                for(int i=0;i<X;i++)
+                {
+                if(tempN<X)
+                     circular(queue,N,front,tempN,index,i,tempN);
+                else
+                    circular(queue,N,front,tempN,index,i,X);
+                }
+ 
+                for(i=0;i<X;i++)
+                {
+                        cout<<index[i]+1<<" ";
+                }
+                return 0;
+}

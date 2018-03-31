@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main(){
+ int t;
+ scanf("%d",&t);
+        while(t>0){
+        int n,i;
+        scanf("%d",&n);
+        int a[n+1];
+        long long int b[n+1];
+        int m[n];
+        for(i=0;i<n;i++)
+            m[i]=-1;
+        m[0]=0;
+        b[0]=0;
+        a[0]=0;
+        for(i=1;i<=n;i++)
+        {  scanf("%d",&a[i]);
+        b[i]=b[i-1]+(long long int)a[i];}
+        int o=0,p=0;
+        for(i=1;i<=n;i++)
+        { int l=b[i]%n;
+            if(m[l]==-1)
+                m[l]=i;
+            else{
+            o=i;
+            p=m[l];
+            break;}}
+        int len=o-p;
+        printf("%d\n",len);
+        for(i=p+1;i<=o;i++)
+            {printf("%d",i);
+            if(i!=o)
+                printf(" ");}
+            printf("\n");
+              t--;}
+return 0;}

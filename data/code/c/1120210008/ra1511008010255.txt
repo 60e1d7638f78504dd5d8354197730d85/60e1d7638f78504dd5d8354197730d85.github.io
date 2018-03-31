@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+void mergeSort(int arr[],int low,int mid,int high){
+ 
+    int i,m,k,l,temp[5000];
+ 
+    l=low;
+    i=low;
+    m=mid+1;
+ 
+    while((l<=mid)&&(m<=high)){
+ 
+         if(arr[l]<=arr[m]){
+             temp[i]=arr[l];
+             l++;
+         }
+         else{
+             temp[i]=arr[m];
+             m++;
+         }
+         i++;
+    }
+ 
+    if(l>mid){
+         for(k=m;k<=high;k++){
+             temp[i]=arr[k];
+             i++;
+         }
+    }
+    else{
+         for(k=l;k<=mid;k++){
+             temp[i]=arr[k];
+             i++;
+         }
+    }
+   
+    for(k=low;k<=high;k++){
+         arr[k]=temp[k];
+    }
+}
+ 
+ 
+ void partition(int arr[],int low,int high){
+ 
+    int mid;
+ 
+    if(low<high){
+         mid=(low+high)/2;
+         partition(arr,low,mid);
+         partition(arr,mid+1,high);
+         mergeSort(arr,low,mid,high);
+    }
+}
+ 
+int main()
+{
+int testcases, p;
+scanf("%d",&testcases);
+for(p=0;p<testcases;p++)
+{
+int n, i, *x, min;
+scanf("%d",&n);
+x=(int*)malloc(n*sizeof(int));
+for(i=0;i<n;i++)
+{
+scanf("%d",&x[i]);
+}
+partition(x,0,n-1);//sort x...
+min=x[n-1]-x[n-2];
+for(i=n-2;i>=1;i--) if((x[i]-x[i-1])<min) min=(x[i]-x[i-1]);
+ 
+printf("%d\n",min);
+}
+/*char c ;
+printf("jka");
+scanf("%c",&c);
+*/return 0;
+ 
+}
+ 

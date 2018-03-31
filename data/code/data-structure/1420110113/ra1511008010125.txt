@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> v;
+bool binary_search(int begin,int end,int x){
+  if(begin>=end&&v[begin]!=x&&v[end]!=x)return false;
+  int mid=(begin+end)/2;
+  if(x==v[mid])return true;
+  else if(x>v[mid])binary_search(mid+1,end,x);
+  else binary_search(begin,end-1,x);
+}
+int main()
+{
+    int n,i,x,low,high;
+  cin>>n;
+   for(i=0;i<n;i++){
+     cin>>x;
+     v.push_back(x);
+   }
+  sort(v.begin(),v.end());
+  cin>>low>>high;
+  for(i=low;i<=high;i++){
+    if(!binary_search(0,n-1,i))cout<<i<<" ";
+  }
+  
+	return 0;
+}

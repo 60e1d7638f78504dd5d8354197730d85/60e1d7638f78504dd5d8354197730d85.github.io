@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<string.h>
+struct asd{
+  int a;
+  int b;
+}s1;
+int main()
+{
+	char a[401];
+	int t;
+	scanf("%d",&t);
+	int i,j,z,count,COUNT;
+	char val;
+	
+	while(t--)
+	{
+	scanf("%s",a);
+	fflush(stdin);
+	for(i=0;i<strlen(a);i++)
+	{
+		
+		if(a[i]== '+' || a[i]== '-' || a[i]== '*' || a[i]== '/' || a[i]== '^' )
+		{
+			val=a[i];
+			if(('a' <= a[i+1])&&(a[1+i] <= 'z')||('A' <= a[i+1])&&(a[i+1]  <= 'Z'))
+			{
+				a[i]=a[i+1];
+				a[i+1]=val;
+			}
+			else
+				{	
+					if(a[i+1]==')')
+					{
+					}
+					else
+					{
+						if(a[i+1]=='(')
+						{
+							count=1;
+							COUNT=0;
+							for(j=i+1;j<strlen(a);j++)
+							{
+								if(a[j]=='(')
+								count++;
+								if(a[j]==')')
+								{
+									COUNT++;
+									if(COUNT==count)
+									break;
+								}
+							}
+							for(z=i;z<j-2;z++)
+							{
+								a[z]=a[z+1];
+							}	
+							a[j-2]=val;
+						}
+					}	
+				}	
+		}
+	}
+	for(i=0;i<strlen(a);i++)
+	{
+		if(a[i]==')' || a[i]=='(')
+		;
+		else
+		printf("%c",a[i]);
+	}
+	printf("\n");
+	}
+	
+	return 0;
+} 

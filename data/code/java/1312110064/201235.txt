@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
+public class TestClass {
+	 public static void main(String[] args) { 
+		int t;
+        Scanner scanner = new Scanner(System.in);
+        t = scanner.nextInt();
+        String J, S;
+        int count;
+        while (t > 0) {
+            t--;
+            J = scanner.next();
+            S = scanner.next();
+            char[] j = J.toCharArray();
+            char[] s = S.toCharArray();
+            count = 0;
+            Set<Character> jset = new HashSet<>();
+            for (int i = 0; i < j.length; i++) {
+                jset.add(j[i]);
+            }
+            for (int i = 0; i < s.length; i++) {
+                if (jset.contains(s[i])) {
+                    count += 1;
+                }
+            }
+            System.out.println(count);
+        }
+     }
+	}

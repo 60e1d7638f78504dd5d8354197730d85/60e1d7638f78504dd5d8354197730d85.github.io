@@ -1,0 +1,36 @@
+#include<stdio.h>
+void insertele(int, int[], int, int);
+ 
+int main() 
+{
+   int arr[30], element, num, i, location;
+ 
+   scanf("%d", &num);
+ 
+   for (i = 0; i < num; i++) 
+   {
+      scanf("%d", &arr[i]);
+   }
+   scanf("%d", &location);
+   scanf("%d", &element);
+   if(location > num)
+     printf("Sorry Invalid Location");
+   else
+     insertele(num, arr, location, element);
+   return 0;
+}
+
+void insertele(int n, int a[10], int loc, int ele)
+{
+   int i;
+   for (i = n; i >= loc; i--) 
+   {
+      a[i] = a[i - 1];
+   }
+ 
+   n++;
+   a[loc - 1] = ele;
+ 
+   for (i = 0; i < n; i++)
+      printf("%d\n", a[i]);
+}

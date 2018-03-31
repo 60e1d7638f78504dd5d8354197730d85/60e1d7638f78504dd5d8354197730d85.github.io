@@ -1,0 +1,44 @@
+#include<stdio.h>
+int main()
+{
+	int test,j,i,k;
+	scanf("%d",&test);
+	for(i = 0;i<test;i++)
+	{
+		int n;
+		scanf("%d",&n);
+		int a[n];
+		for(j=0;j<n;j++)
+			scanf("%d",&a[j]);
+ 
+		int min= 0;
+		for(j=1;j<n;j++)
+		{
+			if(a[j]<a[min])
+				min=j;
+		}
+ 
+		int flag=0;
+		for(k=a[min];k>1;k--)
+		{
+			flag=0;
+			for(j=0;j<n;j++)
+			{
+				if((a[j]%k)!=0)
+				{
+					flag = 1;
+					break;
+				}
+			}
+			if(flag==0)
+				break;
+		}
+		
+		for(j=0;j<n;j++)
+		{
+			printf("%d ",a[j]/k);
+		}
+		printf("\n");
+	}
+	return 0;
+}

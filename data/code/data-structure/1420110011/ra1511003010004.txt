@@ -1,0 +1,43 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char s1[1000001],s2[1000001];
+        scanf("%s",s1);
+        scanf("%s",s2);
+        int a=0,b=0,ch=1;
+        /*int a1[1000001];
+        int k=0,prev=0;
+        for(int i=0;s1[i] != '\0';i++)
+        {
+            if(s1[i] == 'B')
+            {
+                a1[]
+            }
+        }*/
+        for(int i=0;s1[i] != '\0' && ch == 1;i++)
+        {
+            if(s1[i] == 'A')
+                a++;
+            else if(s1[i] == 'B')
+                b++;
+            if(s2[i] == 'A')
+                a--;
+            else if(s2[i] == 'B')
+            {
+                b--;
+            }
+            if(b < 0 || a>0)
+                ch = 0;
+        }
+        if(ch == 0)
+            printf("No\n");
+        else
+            printf("Yes\n");
+    }
+    return 0;
+}

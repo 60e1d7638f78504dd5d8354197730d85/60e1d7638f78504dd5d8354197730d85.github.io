@@ -1,0 +1,40 @@
+#include<stdio.h>
+int read()
+{
+    int t=0;
+    char c;
+    c=getchar_unlocked();
+    while(c<'0' || c>'9')
+        c=getchar_unlocked();
+    while(c>='0' && c<='9'){
+        t=(t<<3)+(t<<1)+c-'0';
+        c=getchar_unlocked();
+    }
+    return(t);
+}
+int main()
+{
+        int t;
+        //scanf("%d",&t);
+        t=read();
+        while(t--)
+        {
+                int N,input,i,car=1,prev;
+                //scanf("%d%d",&N,&prev);
+                N=read();
+                prev=read();
+                for(i=1;i<N;i++)
+                {
+                        //scanf("%d",&input);
+                        input=read();
+                        if(input<=prev)
+                        {        car++;
+                        	prev=input;
+ 			}
+ 		 }
+                printf("%d\n",car);
+        }
+        return 0;
+} 
+ 
+

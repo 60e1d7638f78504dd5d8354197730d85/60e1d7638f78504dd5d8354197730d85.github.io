@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+    int t,n,q,i;
+    float l,r,c,mid;
+    scanf("%d", &t);
+    while(t--)
+    {
+        scanf("%d %f %d", &n, &c, &q);
+        for(i = 0; i<q; i++)
+        {
+              scanf("%f %f", &l, &r);
+              if(c >= l && c <= r){
+                    mid = (l+r)/2;                  
+                    if(c <mid){
+                         c += 2*(mid-c);
+                    }
+                    else{
+                         c -= 2*(c-mid);
+                    }
+              }
+         }
+         printf("%0.f\n",c);
+    }    
+    return 0;
+}

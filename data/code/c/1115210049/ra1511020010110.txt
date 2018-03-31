@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int d,p,arr[100][100];
+    scanf("%d",&d);
+    scanf("%d",&p);
+    int i,j,k;
+    for(i=0;i<d;i++)
+    {
+      for(j=0;j<d;j++)
+      {
+        scanf("%d",&arr[i][j]);
+        int pow=arr[i][j];
+        for(k=1;k<p;k++)
+        {
+          pow=pow*arr[i][j];
+        }
+        arr[i][j]=pow;
+      }
+    }
+    printf("the matrix is:\n");
+    for(i=0;i<d;i++)
+    {
+      for(j=0;j<d;j++)
+      {
+        printf("|%d|",arr[i][j]);
+      }
+      printf("\n");
+    }
+  }
+
+	return 0;
+}

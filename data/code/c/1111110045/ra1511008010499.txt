@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+#define MAXSIZE 10
+int main()
+{
+   int n,i;
+    float x[MAXSIZE];
+    float Mean,SD,variance,sum=0,sum1=0;
+  scanf("%d",&n);
+  
+   for(i=0;i<n;i++)
+        {
+          scanf("%f",&x[i]);
+   }
+  for(i=0;i<n;i++)
+  {
+    sum=sum+x[i];
+  }
+Mean=sum/(float)n;
+  printf("Mean=%.2f",Mean);
+  for(i=0;i<n;i++)
+  {
+    sum1=sum1+pow((x[i]-Mean),2);
+    
+  }
+  variance=sum1/(float)n;
+  SD=sqrt(variance);
+  printf("\nSD=%.2f",SD);
+    
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+	int n;
+  cin>>n;
+  int arr[n];
+  for(int i=0;i<n;i++)
+  {
+    cin>>arr[i];
+  }
+  sort(arr,arr+n);
+  int temp=arr[0];
+  vector<int> v;
+  for(int i=1;i<=n;i++)
+  {
+    if(arr[i]!=temp){v.push_back(temp);temp=arr[i];}
+    else{continue;}
+  }
+  for(int i=0;i<v.size();i++)
+  {
+    cout<<v[i]<<endl;
+  }
+	return 0;
+}

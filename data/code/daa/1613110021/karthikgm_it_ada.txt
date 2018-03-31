@@ -1,0 +1,25 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int N, K, unfairness = INT_MAX;
+    int j, k;
+    cin >> N >> K;
+    int list[N];
+    for (int i=0; i<N; i++)
+        cin >> list[i];
+    
+   
+    sort(list, list + N);
+    for (j = 0, k = K - 1; k < N; j++, k++){
+		if (unfairness > (list[k] - list[j]) )
+			unfairness = list[k] - list[j];
+		}
+    cout << unfairness << "\n";
+    return 0;
+}

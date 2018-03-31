@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+ 
+ 
+int cmpfunc (const void * a, const void * b)
+{
+	return ( *(int*)a - *(int*)b );
+}
+ 
+int main(void)
+{
+	long long int i,j=0,N,K,a[1000000],k=0,count=1,temp;
+	scanf("%lld%lld",&N,&K);
+	for (i=0;i<N;i++)
+		scanf("%lld",&a[i]);
+	qsort(a, N, sizeof(long long int), cmpfunc);
+	
+   for (i = 1; i < N; i++)
+   {
+     if (a[i] != a[j])
+     {
+       j++;
+       a[j] = a[i];
+     }
+   }
+ 
+  
+    k = (j + 1);
+	temp=a[0]+K;
+	
+	for (i=0;i<k;i++){
+		
+		if (a[i] >= temp){
+			temp=a[i]+K;
+			count++;
+			
+		}
+ 
+ 
+	}
+	printf("%lld\n",count);
+	return 0;
+}
+ 

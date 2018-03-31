@@ -1,0 +1,43 @@
+#include <stdio.h>
+int sack(int w)
+{
+  int count = 0;
+  while(w!=0)
+  {	if(w >= 10)
+    {
+      count = count + (w/10);
+      w = w%10;
+    }
+    if(w >=7 && w<10)
+    {
+      count = count + (w/7);
+      w = w%7;
+    }
+   if(w >= 5 && w<7)
+   {
+     count = count + (w/5);
+     w = w % 5;
+   }
+  if(w >=1 && w<5)
+  {
+    count = count + w/1;
+    w = w%1;
+  }
+}
+  printf("%d",count);
+}
+int main()
+{
+	int T,w,i;
+  scanf("%d",&T);
+  for(i=0; i<T ;i++)
+  {
+  scanf("%d",&w);
+    if(w=='\0')
+    { printf("LENET");
+    	break;
+    }
+  sack(w);
+  }
+	return 0;
+}

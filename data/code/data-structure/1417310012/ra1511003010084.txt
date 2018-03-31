@@ -1,0 +1,72 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    std:ios::sync_with_stdio(false);
+    int T;
+    cin>>T;
+    for (int i=0 ; i<T ; i++)
+    {
+        string S;
+        cin>>S;
+        int Size=S.size();
+        int K;
+        cin>>K;
+        int A[K],B[K],C[K],D[Size+1],P[Size+1];
+        for (int j=0 ; j<=Size ; j++)
+        {
+            D[j]=0;
+            P[j]=-1;
+        }
+        //cout<<"hello World\n";
+        for (int j=0 ; j<K ; j++)
+            cin>>A[j]>>B[j]>>C[j];
+        for (int j=K-1 ; j>=0 ; j--)
+        {
+            int a=A[j],b=B[j],c=C[j];
+            while (b<=C[j])
+            {
+                if (D[b]==0)
+                {
+                    D[b]=a;
+                    if (P[b]<=C[j])
+                        P[b]=C[j];
+                }
+                else
+                {
+                    b=P[b];
+                    if (P[b]<=C[j])
+                        P[b]=C[j];
+                }
+                b++;
+            }
+        }
+        long long Count=0;
+        for (int j=1 ; j<=Size ; j++)
+        {
+            if (D[j]==0)
+            {
+                if (S[j-1]=='X')
+                    D[j]=1;
+                else
+                    D[j]=2;
+            }
+            //cout<<D[j]<<endl;
+            if (D[j]==1)
+                Count+=1;;
+        }
+        long long Ans=Count;
+        for (int j=1 ; j<=Size ; j++)
+        {
+            if (D[j]==2)
+                Count++;
+            else
+                Count--;
+            //cout<<Count<<" ";
+            if (Count<Ans)
+                Ans=Count;
+        }
+        //cout<<endl;
+        cout<<Ans<<endl;
+    }
+}

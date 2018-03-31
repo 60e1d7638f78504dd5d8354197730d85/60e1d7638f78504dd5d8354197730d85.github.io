@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int parent[100005],rnk[100005];
+vector<int>mst;
+int find(int x)
+{
+    if(parent[x]!=x)
+        parent[x]=find(parent[x]);
+    return parent[x];
+}
+void merge(int x,int y)
+{
+    int xroot=find(x),yroot=find(y);
+    if(rnk[xroot]<rnk[yroot])
+        parent[xroot]=yroot;
+    else if(rnk[xroot]>rnk[yroot])
+        parent[yroot]=xroot;
+    else
+    {
+        parent[yroot]=xroot;
+        rnk[xroot]++;
+    }
+}
+void kruskal(const vector<pair<int,pair<int,int> > >&vec)
+{
+    for(int i=0;i<vec.size();i++)
+    {
+        int x=vec[i].second.first;
+        int y=vec[i].second.second;
+        int xroot=find(x);
+        int yroot=find(y);
+        if(xroot!=yroot)
+        {
+            mst.push_back(vec[i].first);
+            merge(x,y);
+        }
+    }
+}
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    vector<pair<int,pair<int,int> > >vec;
+    for(int i=1;i<=n;i++)
+        parent[i]=i;
+    for(int i=0;i<m;i++)
+    {
+        int a,b,w;
+        cin>>a>>b>>w;
+        vec.push_back(make_pair(w,make_pair(a,b)));
+    }
+    int q;
+    cin>>q;
+    int weight[100005];
+    for(int i=0;i<q;i++)
+        cin>>weight[i];
+    sort(weight,weight+q);
+    sort(vec.begin(),vec.end());
+    kruskal(vec);
+    int i=0,j=0,k=0;
+    ll ans=0;
+    //for(auto it:mst)cout<<it<<"\n";
+    ans=0;i=0;
+    while(i<mst.size() && j<q && k<n-1)
+    {
+        if(mst[i]<=weight[j])
+            ans+=mst[i++];
+        else
+            ans+=weight[j++];
+        k++;
+    }
+    while(k<n-1 && i<mst.size()){ans+=mst[i++];k++;}
+    cout<<ans<<"\n";
+    return 0;
+}

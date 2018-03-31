@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int n,l;
+    cin>>n;
+    for(int t=0;t<n;t++)
+    {
+        cin>>l;
+        int arr[l][l];
+        for(int k=0;k<l;k++)
+        {
+            for(int g=0;g<l;g++)
+                arr[k][g]=0;
+        }
+        for(int m=0;m<l;m++)
+        {
+            for(int n=0;n<=m;n++)
+            {
+                cin>>arr[m][n];
+ 
+            }
+        }
+        for(int i=l-2;i>=0;i--)
+        {
+            for(int j=0;j<=i;j++)
+            {
+                arr[i][j] = ((arr[i][j]+arr[i+1][j])>=(arr[i][j]+arr[i+1][j+1])) ? (arr[i][j]+arr[i+1][j]) : (arr[i][j]+arr[i+1][j+1]);
+            }
+        }
+        cout<<arr[0][0]<<endl;
+ 
+    }
+}
+ 

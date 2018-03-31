@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+class C1{
+  private:
+  int length;
+  int breadth;
+  public:
+  void get(){
+    cin>>length>>breadth;
+  }
+  int get_length(){
+    return length;
+  }
+  int get_breadth(){
+    return breadth;
+  }
+};
+class C2:public C1{
+  private: 
+    int area;
+  public:
+  int calc_area(){
+    area= get_length()*get_breadth();
+    return area;
+  }
+  void put(){
+    cout<<calc_area();
+  }
+};
+int main()
+{
+    C2 c;
+    c.get();
+    c.put();
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int main()
+{
+  string s;
+  getline(cin, s);
+  int len, i, v, c, d, w;
+  v=c=d=w=0;
+  len=s.length();
+  for(i=0;i<len;i++)
+  {
+    if(isalpha(s[i]))
+    {
+      s[i]=tolower(s[i]);
+      if(s[i]=='a' || s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')
+        v++;
+      else
+        c++;
+    }
+    else if(isspace(s[i]))
+            w++;
+    else if(isdigit(s[i]))
+      d++;
+  }
+  cout<<"Vowels:"<<v<<"\nConsonants:"<<c<<"\nDigits:"<<d<<"\nWhite spaces:"<<w;
+      
+
+	return 0;
+}

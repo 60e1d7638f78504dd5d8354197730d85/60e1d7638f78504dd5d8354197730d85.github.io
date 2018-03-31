@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int t,n1,n2,i,j,a1[1000],a2[1000],f;
+  scanf("%d",&t);
+  while(t--){
+    f=0;
+    scanf("%d",&n1);
+    for(i=0;i<n1;i++){
+      scanf("%d",&a1[i]);
+    }
+    scanf("%d",&n2);
+    for(i=0;i<n2;i++){
+      scanf("%d",&a2[i]);
+    }
+    if(n1>n2){
+      for(i=0;i<n1;i++){
+        if(a1[i]==a2[0]){
+          f=1;
+          break;
+        }
+      }
+      if(f){
+        j=0;
+        while(a1[i]==a2[j] && j<n2){
+          j++;
+          i++;
+        }
+        if(j==n2) printf("Yes");
+        else printf("No");
+      }else{
+        printf("No");
+      }
+      }else{
+      printf("No");
+    }
+    printf("\n");
+  }
+
+	return 0;
+}

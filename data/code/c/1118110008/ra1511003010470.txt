@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Student
+{
+    int rno, fee;
+    char name[30], course[30];
+};
+typedef struct Student stud;
+stud * ptr;
+void display(stud *);
+int main()
+{
+    ptr=(stud*)malloc(sizeof(stud));
+    scanf("%d%s%s%d", &ptr->rno, ptr->name, ptr->course, &ptr->fee);
+    display(ptr);
+	return 0;
+}
+
+void display(stud * ptr1)
+{
+     printf("Details of student\n");
+     printf("Roll Number=%d\nName=%s\nCourse=%s\nFees=%d", ptr1->rno, ptr1->name, ptr1->course, ptr1->fee);
+}

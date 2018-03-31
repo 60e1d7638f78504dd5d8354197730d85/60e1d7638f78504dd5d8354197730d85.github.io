@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{	
+  int t;
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    int l1;
+    scanf("%d\n",&l1);
+    int i=0;int ar[l1];
+    for(;i<l1;i++)
+    {
+      scanf("%d ",&ar[i]);
+    }
+    int l2;
+    scanf("\n%d\n",&l2);
+    int a[l2];int flag=0;
+    for(i=0;i<l2;i++)
+    {
+      scanf("%d ",&a[i]);
+    }
+    for(i=0;i<l1;i++)
+    {int j;
+      for(j=i;j<i+l2;j++)
+      {
+        if(ar[j]!=a[j-i])
+        {
+          break;
+        }
+      }
+     if(j==i+l2)
+     {flag=1;break;}
+    }
+    if(flag)
+      printf("Yes\n");
+    else
+      printf("No\n");
+  }
+
+	return 0;
+}

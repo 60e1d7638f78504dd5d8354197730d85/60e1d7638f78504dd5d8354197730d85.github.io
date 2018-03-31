@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+  int count,n,i,j,k;
+     long int a[1005],b[1005],result[1005];
+    unsigned long long int sum;
+    
+    result[1]=1;
+    a[1]=1;
+    for(i=2;i<=1001;i++)
+    {
+       b[1]=a[i-1];
+       for(j=2;j<=i;j++)
+       {
+          sum=b[j-1]+a[j-1];
+          b[j]=sum%1000000007;
+       }
+       result[i]=b[i];
+       
+       for(k=0;k<=i;k++)
+       a[k]=b[k];
+    }  
+    
+    scanf("%d",&count);
+    while(count !=0)
+    {
+       scanf("%d",&n);
+       printf("%ld\n",result[n]);
+       count--;
+    }
+    
+    return 0;
+ }                                      

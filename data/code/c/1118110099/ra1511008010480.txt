@@ -1,0 +1,26 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student {
+	char name[10];
+  	int age;
+  	float percentage;
+};
+
+void printData(struct Student* st) {
+	printf("%s\n", st->name);
+  	printf("%d\n", st->age);
+  	printf("%.2f\n", st->percentage);
+  	free(st);
+}
+
+int main()
+{
+  	struct Student* st1 = (struct Student*)malloc(sizeof(struct Student));
+  	scanf("%s", st1->name);
+  	scanf("%d", &st1->age);
+  	scanf("%f", &st1->percentage);
+  	printData(st1);
+	return 0;
+}

@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  	int number=0,digit=0,temp=0,sum=0;
+  	scanf("%d",&number);
+  	digit=(int)log10(number)+1;
+  	temp=number;
+	while(temp!=0){
+      int extracted=(temp)%10;
+      	sum+=(int)pow(extracted,digit);
+    	temp/=10;
+    }
+  	if(number!=sum)
+      fprintf(stdout,"NOT Narcissistic Number");
+  	else
+      fprintf(stdout,"Narcissistic Number");
+	return 0;
+}

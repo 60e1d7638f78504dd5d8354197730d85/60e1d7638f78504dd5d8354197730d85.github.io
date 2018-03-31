@@ -1,0 +1,126 @@
+import java.io.*;
+import java.util.*;
+class TestClass{
+    public static void main(String[] args) {
+        InputReader in = new InputReader();
+        OutputStream outputStream = System.out;
+        PrintWriter out = new PrintWriter(outputStream);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int q = in.nextInt();
+        int[][] arr = new int[n][m];
+        int count = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++) {
+                arr[i][j] = in.nextInt();
+                if(arr[i][j]!=0)
+                    count++;
+            }
+        }
+        while(q-->0){
+            int row = in.nextInt()-1;
+            int column = in.nextInt()-1;
+            LinkedList<Indexing> queue = new LinkedList<>();
+            if(arr[row][column]==0){
+                out.println(count);
+                continue;
+            }
+            queue.add(new Indexing(row,column));
+            int current = 1;
+            arr[row][column] = 0;
+            while(queue.size()!=0){
+                Indexing temp = queue.removeFirst();
+                if(temp.row+1<n && arr[temp.row+1][temp.column]==1){
+                    arr[temp.row+1][temp.column] = 0;
+                    queue.add(new Indexing(temp.row+1,temp.column));
+                    current++;
+                }
+                if(temp.row-1>=0 && arr[temp.row-1][temp.column]==1){
+                    arr[temp.row-1][temp.column] = 0;
+                    queue.add(new Indexing(temp.row-1,temp.column));
+                    current++;
+                    //out.println("Hello from above row");
+                }
+                if(temp.column+1<m && arr[temp.row][temp.column+1]==1){
+                    arr[temp.row][temp.column+1] = 0;
+                    queue.add(new Indexing(temp.row,temp.column+1));
+                    current++;
+                }
+                if(temp.column-1>=0 && arr[temp.row][temp.column-1]==1){
+                    arr[temp.row][temp.column-1] = 0;
+                    queue.add(new Indexing(temp.row,temp.column-1));
+                    current++;
+                    //out.println("hello from left column");
+                }
+            }
+            count-=current;
+            out.println(count);
+        }
+        out.close();
+    }
+ 
+    public static class Indexing{
+        int row, column;
+        Indexing(int a, int b){
+            row = a;
+            column = b;
+        }
+    }
+ 
+    static class InputReader {
+        BufferedReader br;
+        StringTokenizer st;
+ 
+        public InputReader() {
+            br = new BufferedReader(new
+                    InputStreamReader(System.in));
+        }
+ 
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                }
+                catch (IOException  e) {
+                    throw new RuntimeException();
+                }
+            }
+            return st.nextToken();
+        }
+ 
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+ 
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+ 
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+ 
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            }
+            catch (IOException e) {
+                throw new RuntimeException();
+            }
+            return str;
+        }
+        String nextParagraph() {
+            String line = null;
+            String ans = "";
+            try {
+                while ((line = br.readLine()) != null) {
+                    ans += line;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return ans;
+        }
+    }
+}

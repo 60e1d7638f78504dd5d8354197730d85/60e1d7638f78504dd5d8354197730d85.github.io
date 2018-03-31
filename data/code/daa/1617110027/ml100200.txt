@@ -1,0 +1,120 @@
+#define inf 100000000
+#include<bits/stdc++.h>
+#define ff first
+using namespace std;
+
+#define ss second
+#define mp make_pair
+#define pp pair<int,int> 
+#define pb push_back
+#define ll long long int 
+#define vil vector<ll>
+#define vi vector<int>
+#define vip vector<pair<int,int> > 
+#define vipl vector<pair<ll,ll> > 
+#define mod 1000000007
+int dist[100010];
+list<pair<int,int> > arr[100010];
+  int read_int1(){
+ char r;
+ bool start=false,neg=false;
+ long long int ret=0;
+ while(true){
+  r=getchar();
+  if((r-'0'<0 || r-'0'>9) && r!='-' && !start){
+   continue;
+  }
+  if((r-'0'<0 || r-'0'>9) && r!='-' && start){
+   break;
+  }
+  if(start)ret*=10;
+  start=true;
+  if(r=='-')neg=true;
+  else ret+=r-'0';
+ }
+ if(!neg)
+  return ret;
+ else
+  return -ret;
+}
+long long int read_int2(){
+ char r;
+ bool start=false,neg=false;
+ long long int ret=0;
+ while(true){
+  r=getchar();
+  if((r-'0'<0 || r-'0'>9) && r!='-' && !start){
+   continue;
+  }
+  if((r-'0'<0 || r-'0'>9) && r!='-' && start){
+   break;
+  }
+  if(start)ret*=10;
+  start=true;
+  if(r=='-')neg=true;
+  else ret+=r-'0';
+ }
+ if(!neg)
+  return ret;
+ else
+  return -ret;
+}
+class Prioritize
+{
+public:
+    int operator() ( const pair<int,int>& p1, const pair<int,int>& p2 )
+    {
+        return p1.second > p2.second;
+    }
+};
+void dfs(int st)
+{
+   dist[st]=0;
+   
+    priority_queue<pp, vector<pp > , Prioritize > Q;
+      Q.push(mp(st,0));
+      while(!Q.empty())
+      {
+        //auto t=Q.top();
+        int n=Q.top().ff;
+         Q.pop();
+      
+      list<pair<int,int> > ::iterator it;
+      for(it=arr[n].begin();it!=arr[n].end();it++)
+      {
+                 ll cost=max(it->ss,dist[n]);
+          if(dist[it->ff]>cost)
+          {
+             dist[it->ff]=cost;
+             Q.push(mp(it->ff,dist[it->ff]));
+    
+                  }
+         }
+ }
+}
+int main()
+{
+ int n;
+ int m;
+ cin>>n>>m;
+ int a,b;
+ int c;
+ for(int i=0;i<m;i++)
+ {
+  a=read_int1();
+  b=read_int1();
+  c=read_int1();
+  arr[a].pb(mp(b,c));
+  arr[b].pb(mp(a,c));
+ }
+  for(int i=1;i<=n;i++)
+  {
+     dist[i]=inf;
+  }
+  dfs(1);
+  if(dist[n]==inf)
+  cout<<"NO PATH EXISTS "<<endl;
+  else
+  cout<<dist[n]<<endl;
+  return 0;
+}

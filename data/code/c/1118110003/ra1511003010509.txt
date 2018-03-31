@@ -1,0 +1,25 @@
+#include<stdio.h>
+struct date
+{ 
+int day;
+int month;
+int year;
+};
+int lsLeapYear(struct date d1);
+int main()
+{
+  struct date d;
+scanf("%d %d %d",&d.day,&d.month,&d.year);
+if(lsLeapYear(d)==0)
+printf("\n %d is not a leap year", d.year);
+else
+printf("\n %d is a leap year", d.year);
+return 0;
+}
+int lsLeapYear(struct date d)
+ {if ((d.year % 4 == 0 && d.year%100 == 0) || d.year % 400 == 0)
+return 1;
+else
+return 0;
+ }
+ 

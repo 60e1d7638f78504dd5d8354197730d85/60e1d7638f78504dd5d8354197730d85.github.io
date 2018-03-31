@@ -1,0 +1,31 @@
+#include <stdio.h>
+struct fraction
+{
+	int n,d;
+};
+int get_frac(struct fraction *f)
+{
+scanf("%d%d",&f->n,&f->d);
+return 0;  
+} 
+int compare(struct fraction *f1,struct fraction *f2)
+{
+  float a,b;
+  a=(float)(f1->n)/(f1->d);
+  b=(float)(f2->n)/(f2->d);
+  if(a-b == 0)
+     printf("\n%d/%d is equal to %d/%d",f1->n,f1->d,f2->n,f2->d);
+  else if(a-b > 0)
+     printf("\n%d/%d is greater than %d/%d",f1->n,f1->d,f2->n,f2->d);
+  else 
+     printf("%d/%d is smaller than %d/%d",f1->n,f1->d,f2->n,f2->d);
+  return 0;    
+}
+int main()
+{
+	struct fraction f1,f2;
+  get_frac(&f1);
+  get_frac(&f2);
+  compare(&f1,&f2);
+return 0;
+}

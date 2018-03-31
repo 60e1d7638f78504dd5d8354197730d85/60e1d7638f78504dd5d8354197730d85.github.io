@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{int m,a[5][5],i,j,flag0,flag1,all0;
+ scanf("%d",&m);
+ for(i=0;i<m;i++)
+ {
+   for(j=0;j<m;j++)
+   {
+     scanf("%d",&a[i][j]);
+   }}
+ if(m<=5)
+ {
+ for(i=0;i<m;i++)
+ {for(j=i+1;j<m;j++)
+ {if(a[i][j]==0)
+   flag0=1;
+  else flag1=1;
+ }}
+ for(i=0;i<m;i++)
+ {
+   for(j=0;j<i+1;j++)
+   {
+     if(a[i][j]==0)
+       all0=1;
+   }}
+ if(flag0==1 && flag1!=1 && all0!=1)
+   printf("yes");
+ else printf("no");
+ }
+   
+
+	return 0;
+}

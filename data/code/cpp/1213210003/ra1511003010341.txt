@@ -1,0 +1,21 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int main()
+{
+string s;
+  getline(cin,s);
+  int i,v=0,c=0,d=0,ws=0;
+  transform(s.begin(),s.end(),s.begin(),::tolower);
+  for(i=0;i<s.length();i++){
+    if(s[i]==' ') ws++;
+    else if(s[i]>='0' && s[i]<='9') d++;
+    else if(s[i]=='a' || s[i]=='e' || s[i]=='i' || s[i]=='o' || s[i]=='u') v++;
+    else c++;
+  }
+  cout<<"Vowels: "<<v<<endl;
+  cout<<"Consonants: "<<c<<endl;
+  cout<<"Digits: "<<d<<endl;
+  cout<<"White spaces: "<<ws<<endl;
+	return 0;
+}

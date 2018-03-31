@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+void rev(char s[])
+{
+  int i,j,l;
+  l = strlen(s);
+  char a,b,*front,*rear;
+  front = &a;
+  rear = &b;
+  for(i=0;i<l/2;i++)
+  {
+    *front = s[i];
+    *rear = s[l-i-1];
+    s[i] = *rear;
+    s[l-i-1] = *front;
+  }
+  printf("%s",s);
+}
+int main()
+{
+  char s[100];
+  scanf("%[^\n]",s);
+  rev(s);
+
+	return 0;
+}

@@ -1,0 +1,105 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int a,t,ex,ey,px,py;
+    float min;
+    char pd,ed;
+    scanf("%d",&t);
+    while(t--)
+    {   min=400.0;
+        scanf("%d %d %c",&ex,&ey,&ed);
+        scanf("%d",&a);
+        while(a--)
+        {
+        scanf("%d %d %c",&px,&py,&pd);
+        if(px==ex)
+            {
+            if((pd=='U')&&(ed=='D')&&(ey>py))
+                {
+                if((2*min)>(ey-py))    
+                    min=(ey-py)/2.0;
+                }
+            else if((pd=='D')&&(ed=='U')&&(ey<py))
+                {
+                if((2*min)>(py-ey))    
+                    min=(py-ey)/2.0;
+                }
+            }
+        else if(py==ey)
+            {
+            if((pd=='R')&&(ed=='L')&&(ex>px))
+                {
+                if((2*min)>(ex-px))    
+                    min=(ex-px)/2.0;
+                }
+            else if((pd=='L')&&(ed=='R')&&(ex<px))
+                {
+                if((2*min)>(px-ex))    
+                    min=(px-ex)/2.0;
+                }
+            }
+        else{
+            if((px>ex)&&(py>ey))
+                {
+                if((pd=='L')&&(ed=='U')&&((px-ex)==(py-ey)))
+                    {
+                    if((min)>(px-ex))    
+                           min=px-ex;
+                    }
+                else if((pd=='D')&&(ed=='R')&&((px-ex)==(py-ey)))
+                    {
+                    if((min)>(px-ex))    
+                           min=px-ex;
+                    }    
+                }
+            else if((px>ex)&&(py<ey))
+                {
+                if((pd=='L')&&(ed=='D')&&((px-ex)==(ey-py)))
+                    {
+                    if((min)>(px-ex))    
+                           min=px-ex;
+                    }
+                else if((pd=='U')&&(ed=='R')&&((px-ex)==(ey-py)))
+                    {
+                    if((min)>(px-ex))    
+                           min=px-ex;
+                    }    
+                }
+            else if((px<ex)&&(py>ey))
+                {
+                if((pd=='R')&&(ed=='U')&&((ex-px)==(py-ey)))
+                    {
+                    if((min)>(ex-px))    
+                           min=ex-px;
+                    }
+                else if((pd=='D')&&(ed=='L')&&((ex-px)==(py-ey)))
+                    {
+                    if((min)>(ex-px))    
+                           min=ex-px;
+                    }    
+                }
+            else if((px<ex)&&(py<ey))
+                {
+                if((pd=='R')&&(ed=='D')&&((ex-px)==(ey-py)))
+                    {
+                    if((min)>(ex-px))    
+                           min=ex-px;
+                    }
+                else if((pd=='U')&&(ed=='L')&&((ex-px)==(ey-py)))
+                    {
+                    if((min)>(ex-px))    
+                           min=ex-px;
+                    }    
+                }
+            }   
+        }
+        if(min==400.0)
+            printf("SAFE\n");
+        else
+            printf("%1.1f\n",min);
+    }
+    return 0;
+    
+}
+ 

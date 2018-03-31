@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--){
+    int n;
+    cin>>n;
+    if(n==1)
+    {
+      cout<<4;
+      return 0;
+    }
+    int cb=1,cs=1,cprevs,cprevb;
+    for(int i=2;i<=n;i++)
+    {
+      cprevs=cs;
+      cprevb=cb;
+      cs=cprevb+cprevs;
+      cb=cprevs;
+    }
+    int res=cs+cb;
+    cout<<res*res<<endl;
+  }
+
+	return 0;
+}

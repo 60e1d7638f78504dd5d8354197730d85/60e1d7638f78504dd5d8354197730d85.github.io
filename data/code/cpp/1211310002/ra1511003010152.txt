@@ -1,0 +1,60 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdio>
+#include <memory.h>
+#include <vector>
+#include <sstream>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <queue>
+#include <complex>
+ 
+using namespace std;
+ 
+ 
+#define REP(a,b) for (int a=0; a<(int)(b); ++a)
+#define FOR(a,b,c) for (int a=(b); a<(int)(c); ++a)
+ 
+ 
+const int MOD = 1000000007;
+int m[101][1<<10];
+ 
+int main() {
+	int t, n;
+	string line;
+	int who[101];
+	
+	cin >> t;
+	
+	while (t--) {
+		cin >> n;
+		getline(cin, line);
+		
+		REP(i,101) who[i] = 0;
+		
+		REP(i,n) {
+			getline(cin, line);
+			stringstream ss(line);
+			int id;
+			while (ss >> id) who[id] = who[id]|(1<<i);
+		}
+		
+		memset(m, 0, sizeof(m));
+		m[0][0] = 1;
+		FOR(num,1,101) {
+			REP(j,(1<<n)) m[num][j] = m[num-1][j];
+			REP(i,n) if (who[num]&(1<<i)) {
+				REP(j,(1<<n)) if ((j&(1<<i))==0) {
+					m[num][j|(1<<i)] += m[num-1][j];
+					if (m[num][j|(1<<i)] >= MOD) m[num][j|(1<<i)] -= MOD;
+				}
+			}
+		}
+		
+		cout << m[100][(1<<n)-1] << endl;
+	}
+	
+	return 0;
+}  

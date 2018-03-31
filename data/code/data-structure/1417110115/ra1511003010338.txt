@@ -1,0 +1,34 @@
+#include<stdio.h>
+ 
+void printKMax(int arr[], int n, int k)
+{
+    int j, max;
+ 	int i;
+    for (i = 0; i <= n-k; i++)
+    {
+        max = arr[i];
+ 
+        for (j = 1; j < k; j++)
+        {
+            if (arr[i+j] > max)
+               max = arr[i+j];
+        }
+        printf("%d ", max);
+    }
+}
+ 
+ 
+int main()
+{
+  int arr[100], n, i, k;
+  scanf("%d", &n);
+  for(i=0;i<n;i++) {
+    scanf("%d",&arr[i]);
+  }
+  
+  scanf("%d",&k);
+  
+
+    printKMax(arr, n, k);
+    return 0;
+}

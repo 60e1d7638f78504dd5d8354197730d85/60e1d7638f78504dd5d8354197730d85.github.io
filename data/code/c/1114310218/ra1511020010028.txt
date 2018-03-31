@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main(){
+   int a,b,i,j,x,y,k,h=0,m,n;
+  scanf("%d\n", &a);
+  char c[2000];
+  int d[26],e[26];
+ 
+  for(i=0;i<a;i++)
+  {
+       for(m=0;m<26;m++)
+  {
+     d[m]=0;
+     e[m]=0;
+  }
+      scanf("%s\n", c);
+      b=strlen(c);
+      n=b/2;
+      if(b%2==0)
+      {
+         for(j=0;j<n;j++)
+         {
+             x=c[j]-'a';
+            
+             d[x]=d[x]+1;
+             y=c[j+n]-'a';
+             e[y]=e[y]+1;
+         }
+        
+      }
+      else
+      {
+          for(j=0;j<n;j++)
+         {
+             x=c[j]-'a';
+           
+             d[x]=d[x]+1;
+             y=c[j+n+1]-'a';
+             e[y]=e[y]+1;
+         }
+          
+      }
+      for(k=0;k<26;k++)
+      {   
+          if(d[k]!=e[k])
+          {
+              h=1;
+              printf("NO\n");
+              break;
+          }
+      }
+      if(h==0)
+      {
+          printf("YES\n");
+      }
+      h=0;
+      
+  }
+  return 0;
+} 

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+	
+	int t , n , i , j , a[20][20] , m , count=0 , k , c , b , sum = 0 ;
+	char ch  , A[20];
+	scanf("%d",&t);
+		for(i=1 ; i<=t ; i++)
+		{
+			sum = 0 ;
+			scanf("%d%d",&n,&m);
+			for(j=1;j<=n;j++){
+				scanf("%s",A+1);
+				for(k=1;k<=m;k++){
+					a[j][k] = A[k] - '0' ;
+				}
+			}
+			for(c=1 ; c<=m ; c++){
+				count = 0 ;
+				for(b=1 ; b<=n ; b++){
+					if(a[b][c]==1)
+						count++;
+				}
+				//printf("count : %d \n",count);
+				if (count >= 2)
+				sum += (count*(count-1))/2;
+			}
+		printf("%d\n",sum);
+        }
+	return 0;
+}

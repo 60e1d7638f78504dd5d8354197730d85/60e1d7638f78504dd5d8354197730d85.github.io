@@ -1,0 +1,33 @@
+
+// Write your code here
+#include<stdio.h>
+long long int a[100000],arr[4];
+int main()
+{
+int n,i,j,k;
+scanf("%d",&n);
+for(i=0;i<=n-1;i++)
+{
+scanf("%lld",&a[i]);
+}
+printf("-1\n-1\n");
+printf("%lld\n",a[0]*a[1]*a[2]);
+arr[0]=a[0],arr[1]=a[1],arr[2]=a[2];
+for(i=3;i<=n-1;i++)
+{arr[3]=a[i];
+for(j=0;j<=2;j++)
+{
+for(k=j+1;k<=3;k++)
+{
+if(arr[j]<arr[k])
+{
+int temp=arr[j];
+arr[j]=arr[k];
+arr[k]=temp;
+}
+}
+}
+printf("%lld\n",arr[0]*arr[1]*arr[2]);
+}
+return 0;
+}

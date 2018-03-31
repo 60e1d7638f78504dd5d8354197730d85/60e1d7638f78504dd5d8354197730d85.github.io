@@ -1,0 +1,63 @@
+        #include <stdio.h>
+        int val=1000000009;
+        int main(void) {
+        	// your code goes here
+        int T,i,N,j,k,l,A,B,n;
+        int result;
+        scanf("%d",&T);
+        for(i=1;i<=T;i++)
+        {
+           scanf("%d%d%d",&N,&A,&B);
+           int arr[N];
+           for(j=0;j<N;j++)scanf("%d",&arr[j]);
+           if(N==1)
+           {
+               if(A==0 && B==0)result=1;
+               else result=0;
+           }
+           else
+           {
+               int ans[N+1][A+1][B+1][2];
+                for(k=0;k<=A;k++)
+               {
+                   for(l=0;l<=B;l++)
+                   ans[1][k][l][0]=ans[1][k][l][1]=0;
+               }
+               for(j=2;j<=N;j++)
+               {
+                   for(k=0;k<=A;k++)
+                   {
+                       for(l=0;l<=B;l++)
+                       {
+                           ans[j][k][l][0]=ans[j][k][l][1]=0;
+                           for(n=1;n<j;n++)
+                           {
+                               if(arr[n-1]>arr[j-1])
+                               {
+                               ans[j][k][l][0]=((long long)ans[j][k][l][0]+ans[n][k][l][0])%val;
+                               if(l>=1)ans[j][k][l][0]=((long long)ans[j][k][l][0]+ans[n][k][l-1][1])%val;
+                               if(k==0 && l==0)ans[j][k][l][0]=((long long)ans[j][k][l][0]+1)%val;
+                               }
+                               else
+                               {
+                                   ans[j][k][l][1]=((long long)ans[j][k][l][1]+ans[n][k][l][1])%val;
+                                   if(k>=1)ans[j][k][l][1]=((long long)ans[j][k][l][1]+ans[n][k-1][l][0])%val;
+                                   if(k==0 && l==0)ans[j][k][l][1]=((long long)ans[j][k][l][1]+1)%val;
+                               }
+                           }
+                           
+                       }
+                   }
+               }
+               result=0;
+               for(j=1;j<=N;j++)
+               {
+               result=((long long)result+ans[j][A][B][0])%val;
+               result=((long long)result+ans[j][A][B][1])%val;
+               }
+               if(A==0 && B==0)result=((long long)result+N)%val;
+           }
+           printf("%d\n",result);
+        }
+        	return 0;
+        }  

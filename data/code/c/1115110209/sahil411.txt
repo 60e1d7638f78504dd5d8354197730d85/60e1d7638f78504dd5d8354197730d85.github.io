@@ -1,0 +1,107 @@
+#include<stdio.h>
+ 
+int b[1002][1002]={0};
+int c[1002][1002]={0};
+int max[1002]={0};     
+int tmp[1002]={0};
+int q[1002]={0};
+ 
+inline int readInt(){
+  int number = 0;
+  char c = getchar_unlocked();
+  while(c<'0')
+    c = getchar_unlocked();
+  while(c>='0' && c<='9'){
+    number = (number<<3)+(number<<1)+c-'0';
+    c = getchar_unlocked();
+  }
+  return number;
+}
+ 
+void merge(int start, int mid, int end)
+{
+	int m=start,k=0,l=mid+1;
+	while((start<=mid)&&(l<=end))
+	{
+		if(max[start]<max[l])
+		{
+		    tmp[k++]=max[start++];
+		}
+		else
+		{
+		    tmp[k++]=max[l++];
+		}
+		if(start>mid)
+		{	while(l<=end)
+			{
+			    tmp[k++]=max[l++];
+			}
+			break;
+		}
+		else if(l>end)
+		{
+			while(start<=mid)
+			{
+                tmp[k++]=max[start++];
+            }
+			break;
+		}
+	}
+	int p=0;
+	for(k=m,p=0;k<=end;k++,p++)
+	{
+        max[k]=tmp[p];
+	}
+}
+ 
+void split(int start, int end)
+{
+	if(start>=end)
+		return;
+	int mid=(start+end)/2;
+	split(start,mid);
+	split(mid+1,end);
+	merge(start,mid,end);
+}
+ 
+int main()
+{
+    int t,n,m,k,i,j,pts;
+    scanf("%d",&t);
+    while(t--)
+    {
+        pts=0;
+        n=readInt();
+        m=readInt();
+        k=readInt();
+        for(i=0;i<n;i++)
+            q[i]=readInt();
+        for(i=0;i<n;i++)
+            for(j=1;j<=m;j++)
+                b[i][j]=readInt();;
+        for(i=0;i<n;i++)
+        {
+            max[i]=0;
+            for(j=1;j<=m;j++)
+            {
+                c[i][j]=readInt();;
+                if((b[i][j]-c[i][j])>max[i])
+                {
+                    max[i]=b[i][j]-c[i][j];
+                }
+            }
+            max[i]-=b[i][q[i]];
+        }
+        split(0,n-1);
+        for(i=0;i<k;i++)
+        {
+            if(max[n-1-i]<=0)
+                break;
+            pts+=max[n-1-i];
+        }
+        for(i=0;i<n;i++)
+                pts+=b[i][q[i]];
+        printf("%d\n",pts);
+    }
+    return 0;
+}

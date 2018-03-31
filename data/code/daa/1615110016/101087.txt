@@ -1,0 +1,92 @@
+#include <bits/stdc++.h>
+//========================================================================================================//
+//========================================================================================================//
+using namespace std;
+//========================================================================================================//
+typedef long long ll;
+typedef long double ld;
+typedef unsigned long long ull;
+typedef pair<ll, ll > pll;
+typedef std::vector<pll > vpll;
+//========================================================================================================//
+#define rep(i,a,b) for(i=a;i<b;i++)
+#define repr(i,a,b) for(i=a;i>=b;i--)
+ 
+#define pb push_back
+#define popb  pop_back
+#define mem(a,b) memset(a,b,sizeof(a))
+ 
+//========================================================================================================//
+void boost()
+{
+	std::ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+}
+//========================================================================================================//
+ll prime[5005],dp[5005];
+std::vector<ll> v;
+ 
+void sieve()
+{
+	ll i,j;
+	rep(i,0,5005)
+		prime[i]=1;
+	rep(i,2,sqrt(5005))
+	{
+		if(prime[i]==1)
+		{
+			for(j=i*i;j<5005;j+=i)
+			{
+				prime[j]=0;
+			}
+		}
+	}
+	rep(i,2,5005)
+	{
+		if(prime[i]==1)
+			v.pb(i);
+	}
+}
+ 
+void solve()
+{
+	/*THE CODE GOES IN HERE*/
+	ll n;
+	ll i,j;
+	cin>>n;
+	std::vector<ll> pre(n+1);
+	pre[0]=0;
+	rep(i,1,n+1)
+	{
+		cin>>pre[i];
+	}
+	rep(i,1,n+1)
+	{
+		pre[i]+=pre[i-1];
+	}
+	dp[0]=0;
+	dp[1]=0;
+	rep(i,2,n+1)
+	{
+		dp[i]=dp[i-1];
+		for(j=0;j<v.size() and v[j]<=i;j++)
+		{
+			if(i-v[j]-1==-1)
+				dp[i]=max(dp[i],pre[i]);
+			else
+				dp[i]=max(dp[i],pre[i]-pre[i-v[j]]+dp[i-v[j]-1]);
+		}
+	}
+	cout<<dp[n]<<endl;
+}
+//========================================================================================================//
+int main()
+{
+	//freopen("input.txt","r",stdin);
+	//freopen("output.txt","w",stdout);
+	boost();
+	sieve();
+	solve();
+	return 0;
+}

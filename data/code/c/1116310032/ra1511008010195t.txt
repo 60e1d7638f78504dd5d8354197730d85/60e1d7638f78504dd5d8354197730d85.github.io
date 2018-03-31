@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<string.h>
+#define MAX 1010
+int main(){
+	int N,M,x,y,t;
+	int hx,hy;
+	long L,i,moves;
+	char head,tail,map[MAX][MAX];
+	for(scanf("%d",&t);t--;){
+		for(i=0;i<1010;memset(map[i++],'o',1010*sizeof(char)));
+		scanf("%d %d %d %d %ld",&N,&M,&x,&y,&L);
+		hx=x;hy=y;
+		for(i=0;i<L;i++){
+			scanf("%c",&head);
+			map[hy][hx]=head;			
+			switch(head){
+				case 'U':hy++; break;
+				case 'D':hy--; break;
+				case 'L':hx--; break;
+				case 'R':hx++; break;
+			}
+		}
+		map[hy][hx]=head;		
+		moves=0;
+		while(1){
+			tail=map[y][x];
+			map[y][x]='o';
+			switch(tail){
+				case 'U':y++; break;
+				case 'D':y--; break;
+				case 'L':x--; break;
+				case 'R':x++;
+			}
+			map[hy][hx]=head;
+			switch(head){
+				case 'U':hy++; break;
+				case 'D':hy--; break;
+				case 'L':hx--; break;
+				case 'R':hx++;
+			}
+			if(map[hy][hx]!='o'){
+				printf("BODY %ld\n",moves);
+				break;
+			}
+			if(hx>N||hy>M||hx<1||hy<1){
+				printf("WALL %ld\n",moves);
+				break;
+			}			
+			moves++;
+		}
+	}
+	return(0);
+}			
+ 

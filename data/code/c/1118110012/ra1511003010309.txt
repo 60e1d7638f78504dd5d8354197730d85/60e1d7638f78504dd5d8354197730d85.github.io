@@ -1,0 +1,37 @@
+#include <stdio.h>
+struct st{
+int hour,minute,second;
+
+};
+
+void add(struct st s1,struct st s2){
+   int hours=s1.hour+s2.hour;
+  int minutes= s1.minute+s2.minute;
+ int seconds = s1.second+s2.second;
+
+  if(seconds>=60)
+  {
+    seconds= seconds-60;
+    minutes= minutes+1;
+  }
+  
+  if(minutes>=60)
+  {
+  minutes=minutes-60;
+  hours=hours+1;
+  }
+
+  printf("%d hrs\n%d min\n%d sec\n",hours,minutes,seconds);
+  
+}
+
+int main()
+{
+  
+  struct st s1,s2;
+  scanf("%d %d %d",&s1.hour,&s1.minute,&s1.second);
+  scanf("%d %d %d",&s2.hour,&s2.minute,&s2.second);
+  add(s1,s2);
+
+	return 0;
+}

@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+	int n;
+	scanf("%d\n",&n);
+	int b=0;
+	int i=0;
+	while (n) {
+		int d=n%10;
+		n/=10;
+		if (d>1) b=(1<<i+1)-1;
+		else b|=d<<i;
+		i++;
+	}
+	printf("%i\n",b);
+	return 0;
+}

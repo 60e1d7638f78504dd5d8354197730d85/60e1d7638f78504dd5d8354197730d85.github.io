@@ -1,0 +1,36 @@
+#include <stdio.h>
+int even(int a)
+{
+  if(a%2 == 0)
+    return 1;
+  else
+    return 0;
+}
+int main()
+{
+  int n,i,j,arr[20][20],flag=1,temp;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    
+    for(j=0;j<n;j++)
+    {
+      
+      scanf("%d",&arr[i][j]);
+      if(i==0)
+      	temp=even(arr[0][0]);
+      if(temp != even(arr[i][j])){
+        flag = 0;
+        break;
+      }
+      temp = even(arr[i][j]);
+    }
+  }
+  if(flag)
+    printf("yes");
+  else
+    printf("no");
+
+
+	return 0;
+}

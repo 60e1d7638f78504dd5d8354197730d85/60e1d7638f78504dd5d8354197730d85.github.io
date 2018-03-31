@@ -1,0 +1,31 @@
+#include<stdio.h>
+char s[300];
+int top=-1;
+void push(char c)
+{       s[++top]=c;
+}
+char pop()
+{       return s[top--];
+}
+main()
+{       int n,i,j;
+        char str[400],cc;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {       j=0;
+                scanf("%s",str);
+                while(str[j]!='\0')
+                {       if(str[j]>=97 && str[j]<=122)
+                         printf("%c",str[j]);
+                        else if(str[j]!=')')
+                                push(str[j]);
+                        else
+                        {
+                                while((cc=pop())!='(')
+                                printf("%c",cc);
+                        }
+                        j++;
+                }printf("\n");
+        }return 0;
+}
+ 

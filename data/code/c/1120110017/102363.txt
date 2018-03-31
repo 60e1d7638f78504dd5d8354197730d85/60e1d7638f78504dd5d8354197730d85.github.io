@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int row,col,size2,size1,rowc,colc,islower,m,n;
+  int ma[50][50];
+  scanf("%d%d",&size1,&size2);
+  row=col=size1=size2;
+  for(rowc=0;rowc<row;rowc++)
+  {
+    for(colc=0;colc<col;colc++)
+    {
+      scanf("%d",&ma[rowc][colc]);
+    }
+  }
+  islower=1;
+  for(m=0;m<row;m++)
+  {
+    for(n=0;n<col;n++)
+    {
+      if(n>m && ma[m][n]!=0)
+        islower=0;
+    }
+  }
+  if(islower==1)
+    printf("yes");
+  else
+    printf("no");
+	return 0;
+}

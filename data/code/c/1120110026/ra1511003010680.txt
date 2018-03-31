@@ -1,0 +1,43 @@
+// C Program to reverse a constant string 
+// and return the pointer of that
+ 
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+ 
+// Function to reverse string and return reverse string pointer of that
+char* ReverseConstString(char *str)
+{
+    int start, end, len;
+    char temp, *ptr = NULL;
+     
+    // find length of string
+    len = strlen(str);  
+     
+    // create dynamic pointer char array
+    ptr = malloc(sizeof(char)*(len+1)); 
+     
+    // copy of string to ptr array
+    ptr = strcpy(ptr,str);           
+     
+    // swapping of the characters
+    for (start=0,end=len-1; start<=end; start++,end--)
+    {
+        temp = ptr[start];
+        ptr[start] = ptr[end];       
+        ptr[end] = temp;
+    }
+     
+    // return pointer of reversed string
+    return ptr; 
+}
+ 
+// Driver Code
+int main(void) 
+{
+  char str[1000];
+  fgets(str,1000,stdin);
+    //const char const *str = "GeeksforGeeks";
+    printf("%s", ReverseConstString(str));
+    return 0;
+}

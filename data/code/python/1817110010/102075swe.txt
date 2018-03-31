@@ -1,0 +1,28 @@
+m=[]
+r=eval(input())
+c=eval(input())
+for row in range(r):
+    m.append([])
+    for col in range(c):
+        e=eval(input())
+        m[row].append(e)
+m1=[]
+r1=eval(input())
+c1=eval(input())
+for row in range(r1):
+    m1.append([])
+    for col in range(c1):
+        e1=eval(input())
+        m1[row].append(e1)
+res=[]
+for row in range(r1):
+    res.append([])
+    for col in range(c1):
+        res[row].append(0)
+    
+for i in range(len(m)):
+    for j in range(len(m1[0])):
+        for k in range(len(m1)):
+            res[i][j] += m[i][k] * m1[k][j]
+for r in range(0,row+1):
+    print(res[r])

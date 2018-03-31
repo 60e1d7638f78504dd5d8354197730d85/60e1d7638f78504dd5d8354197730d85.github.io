@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int t,n,i;
+  	scanf("%d",&t);
+  	if(t==0)
+    {
+      printf("%d",0);
+    }
+  	while(t--)
+    {
+      scanf("%d",&n);
+      int arr[n];
+      for(i=0;i<n;i++)
+      {
+        scanf("%d",&arr[i]);
+      }
+      
+      unsigned int pow_set_size = pow(2,n);
+      int counter, j,div,prod=1,flag=0;
+
+      for(counter = 0; counter < pow_set_size; counter++)
+      {
+        for(j = 0; j < n; j++)
+         {
+            if(counter & (1<<j))
+            {
+               //printf("%d ", arr[j]);
+               prod = prod*arr[j];
+            }
+         }
+         //printf("Product: %d\n", prod);
+         for(div=2;div<=1018;div++)
+         {
+         	if(prod % (div*div) == 0)
+            {
+              flag = 1;
+              printf("%d\n",div);
+              break;
+            }
+         }
+         if(flag == 1)
+         {
+           break;
+         }
+         prod = 1;
+         //printf("\n");
+      }
+      if(flag == 0)
+      {
+        printf("%d",0);
+      }
+    }
+	return 0;
+}

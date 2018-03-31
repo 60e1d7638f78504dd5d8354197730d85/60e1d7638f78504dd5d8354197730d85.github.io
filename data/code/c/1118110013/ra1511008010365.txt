@@ -1,0 +1,35 @@
+
+#include <stdio.h>
+#include <string.h>
+ 
+struct calc 
+{
+            int x1,y1,x2,y2,addx,addy,subx,suby;
+       
+};
+void func(struct calc c1)
+{
+          scanf("%d %d %d %d",&c1.x1,&c1.y1,&c1.x2,&c1.y2);
+  			c1.addx=c1.x1 + c1.x2;
+  			c1.addy=c1.y1 + c1.y2;
+  				
+  			c1.subx=c1.x2 - c1.x1;
+  			c1.suby=c1.y2 - c1.y1;
+  		if(c1.subx<0 || c1.suby<0)
+        {
+        c1.subx=c1.subx*-1;
+        c1.suby=c1.suby*-1;
+        }
+  
+  		printf("%d ft %d inch",c1.addx,c1.addy);
+  		printf("\n%d ft %d inch",c1.subx,c1.suby);
+  			
+}
+ 
+int main()
+{
+  			struct calc c1;
+ 
+            func(c1);
+	return 0;
+}

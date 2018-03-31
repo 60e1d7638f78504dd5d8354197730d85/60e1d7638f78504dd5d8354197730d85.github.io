@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int isSortedAndHow(int *a, int s){
+	int asc = 1;
+	int d = 1;
+	int i;
+
+	for (i = 1 ; i < s; i++) {
+		if ( a[i] < a[i-1] ) d = 0;
+		if ( a[i] > a[i-1] ) asc = 0;
+		if ( asc == 0 && d == 0 )
+			return 0;
+	}
+
+	if (asc)
+		return 1;
+	if (d)
+		return -1;
+
+	return 0;
+}
+
+
+int main() {
+	int *a, n, i, o;
+	scanf("%d", &n);
+
+	a = malloc(sizeof(int) * n);
+	for ( i = 0; i < n; i++ ) scanf("%d", &a[i]);
+
+	o = isSortedAndHow(a, n);
+
+	if  (o == 0)
+		puts("no");
+	else if ( o < 0 )
+		puts("yes, ascending");
+	else
+		puts("yes, descending");
+
+	return 0;
+}

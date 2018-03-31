@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int n=0,i,j,k;
+  char arr[100][20]={'\0'};
+  char temp[20]={'\0'};
+  
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+  	scanf("%s",arr[i]);
+  }
+  
+//  printf("%s",arr[0]);
+  for(i=0;i<n;i++){
+  	for(k=0;k<n;k++){
+      
+//    	for(j=0;j<strlen(arr[i]);j++){
+ //     printf("arr[i] %s  arr[k] %s\n",arr[i],arr[k]);
+        		if(strcmp(arr[i],arr[k])<0){
+                		strcpy(temp,arr[k]);
+                  
+                  strcpy(arr[k],arr[i]);
+               		strcpy(arr[i],temp);
+   //             	printf(" k value %d i value %d temp %s i %s k %s\n",k,i,temp,arr[i],arr[k]);
+                	}
+  //      		}
+    		
+        }
+   // printf("\n");
+  	}
+  
+//  printf("\n\n\n");
+  for(i=0;i<n;i++){
+  	printf("%s\n",arr[i]);
+  	}
+	return 0;
+}

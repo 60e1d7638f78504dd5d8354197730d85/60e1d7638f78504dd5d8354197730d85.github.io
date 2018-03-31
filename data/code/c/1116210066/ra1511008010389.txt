@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int flag[18000];
+double** multiply(double** a, double** b){
+    double **c;
+    int i, j, k;
+    c = (double**)malloc(sizeof(double*)*(26));
+    for(i=0; i<26; i++){
+        c[i] = (double*)malloc(sizeof(double)*(26));
+    }
+    for(i=0; i<26; i++){
+        for(j=0; j<26; j++){
+            c[i][j] = 0;
+        }
+    }
+    for(i=0; i<26; i++){
+        for(j=0; j<26; j++){
+            for(k=0; k<26; k++){
+                c[i][k] += (a[i][j]*b[j][k]);
+            }
+        }
+    }
+    return c;
+}
+double** calculateMK(double **m, int k){
+    double** mk;
+    if(k == 1){
+        return m;
+    }
+    else{
+        if(k%2 == 0){
+            mk = calculateMK( m, k/2);
+            return multiply(mk, mk);
+        }
+        else{
+            return multiply(m, calculateMK(m, k-1));
+        }
+    }
+}
+int main(){
+    int t, n, k, la, lb, i, j, val;
+    scanf("%d", &t);
+    char a[5];
+    char b[5];
+    double **m, **mk, sum, temp;
+    m = (double**)malloc(sizeof(double*)*(26));
+    for(i=0; i<26; i++){
+        m[i] = (double*)malloc(sizeof(double)*(26));
+    }
+    while(t--){
+        for(i=0; i<18000; i++){
+            flag[i] = 0;
+        }
+        scanf("%d %d", &n, &k);
+ 
+        scanf("%s", a);
+        la = strlen(a);
+        for(i=0; i<26; i++){
+            for(j=0; j<26; j++){
+                scanf("%lf", &m[i][j]);
+            }
+        }
+        mk = calculateMK( m, k);
+        sum = 0;
+        while(n--){
+            val = 0;
+            scanf("%s", b);
+            lb = strlen(b);
+            if(la == lb){
+                for(i=0; i<lb; i++){
+                    val = (val*26 + (b[i]-97));
+                }
+                if(flag[val] == 0){
+                    temp = 1;
+                    flag[val] = 1;
+                    for(i=0; i<la; i++){
+                        temp *= (mk[a[i]-97][b[i]-97]);
+                    }
+                    sum += temp;
+                }
+            }
+        }
+        printf("%lf\n", sum);
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	int n, m, l, r, i;
+	char s[22];
+	scanf("%d %d\n", &n, &m);
+	l=0; r=n+1;
+	for (i=0; i<m; ++i) {
+		int c;
+		fgets(s, 22, stdin);
+		if (s[7]=='l') { 
+			sscanf(s+15, "%d", &c);
+			r=c<r?c:r;
+		} else {
+			sscanf(s+15, "%d", &c);
+			l=c>l?c:l;
+		}
+	}
+	printf("%d\n", l+1<r?r-l-1:-1);
+	exit(EXIT_SUCCESS);
+}

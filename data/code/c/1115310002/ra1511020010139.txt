@@ -1,0 +1,38 @@
+#include<stdio.h>
+int gcd(int a,int b)
+{
+    if(a==0)
+        return b;
+    else
+        return gcd(b%a,a);
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n;
+        scanf("%d",&n);
+        int a[n],i,data=1000000,pos=-1;
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+            if(a[i]<data)
+            {
+                data=a[i];
+                pos=i;
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            if(pos!=i&&gcd(a[i],data)==1)
+                break;
+        }
+        if(i!=n)
+            printf("%d\n",n);
+        else
+            printf("-1\n");
+    }
+    return 0;
+} 

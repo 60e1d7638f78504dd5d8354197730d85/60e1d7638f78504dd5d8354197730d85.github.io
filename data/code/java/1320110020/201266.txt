@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.*;
+
+class TestClass
+{
+  public static void main(String args[])
+  { 
+     Scanner sc=new Scanner(System.in); 
+    String line = sc.nextLine();
+    Map<String,Integer> wordMap = new TreeMap<String,Integer>();
+    
+     String keys[]=line.split("\\s");
+     
+    for(int i=0;i<keys.length;i++)
+    {
+      String s=keys[i];
+      //String value=""+keys[i].charAt(keys[i].length()-1);
+      if(!wordMap.containsKey(s))
+      wordMap.put(s,0);
+    }
+    
+//	for(String key: map.keySet())
+ //    System.out.println(key + " " + map.get(key));
+ 
+     for(Map.Entry entry: wordMap.entrySet())
+       System.out.println(entry.getKey() + " " + entry.getValue());
+     
+     
+  }
+}

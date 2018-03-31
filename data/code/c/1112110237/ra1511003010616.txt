@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <math.h>
+long long gcd(long long a, long long b){
+    if (b == 0) return a;
+    else return gcd(b,a % b);
+}
+
+long long lca(long long a,long long b){
+    return (a * b) / gcd(a,b);
+}
+
+long long int min(long long int a,long long int b)
+{
+  if(a>b)
+  {
+    return b;
+  }
+  else
+  {
+    return a;
+  }
+}
+int main()
+{
+  long long int test,inp,j,i,k;
+  long long int a[500],ans = 1e18;
+  //printf("%lld\n",ans);
+  scanf("%lld",&test);
+  //printf("%d\n",test);
+  for(i=0;i<test;i++)
+  {
+    ans = 1e18;
+    scanf("%lld",&inp);
+   // printf("%d\n",inp);
+    for(j=0;j<inp;j++)
+    {
+      scanf("%lld",&a[j]);
+      //printf("%lld\n",a[j]);
+    }
+     for( k = 0; k < inp; ++k){       
+            for( j = k + 1; j < inp;++j){
+                ans = min(ans,lca(a[k], a[j]));
+            }
+        }
+        printf("%lld\n",ans);       
+    
+            
+  }
+
+	return 0;
+}

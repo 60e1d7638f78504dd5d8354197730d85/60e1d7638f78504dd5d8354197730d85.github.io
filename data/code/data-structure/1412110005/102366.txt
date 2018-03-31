@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+	//code
+	int t,i,j,n,rs,cs,k,m,l;
+	scanf("%d",&t);
+	while(t--)
+	{
+	    //scanf("%d%d",&m,&n);
+	    m=n=4;
+	    int a[m][n];
+	    for(i=0;i<m;i++)
+	    {
+	        for(j=0;j<n;j++)
+	        scanf("%d",&a[i][j]);
+	    }
+	    rs=0;
+	    cs=0;
+	    l=m*n/8;
+	    for(k=0;k<l;k++)
+	    {
+	    for(i=rs;i<n;i++)
+	    printf("%d ",a[rs][i]);
+	    for(j=rs+1;j<m;j++)
+	    printf("%d ",a[j][n-1]);
+	    for(j=n-2;j>=cs;j--)
+	    printf("%d ",a[m-1][j]);
+	    for(j=m-2;j>=rs+1;j--)
+	    printf("%d ",a[j][cs]);
+	    m--;
+	    n--;
+	    rs++;
+	    cs++;
+	    }
+	    printf("\n");
+	}
+	return 0;
+}

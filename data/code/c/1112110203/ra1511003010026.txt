@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char s[50];
+        scanf("%s",s);
+        int l=strlen(s),i;
+        char cpy[l];
+        for(i=0;i<l;i++)
+        {
+            cpy[i]=s[i];
+        }
+        int occur[l],k=0,j;
+        for(i=0;i<l;i++)
+            occur[i]=0;
+        for(i=0;i<l;i++)
+        {
+            if(cpy[i]==' ')
+                continue;
+            else
+            {
+                char c=cpy[i];
+                for(j=i;j<l;j++)
+                {
+                    if(cpy[j]==c)
+                    {
+                        occur[k]++;
+                        cpy[j]=' ';
+                    }
+                }
+                k++;
+            }
+        }
+        for(i=0;i<k;i++)
+        {
+            int sum=0;
+            for(j=0;j<k;j++)
+            {
+                if(j==i)
+                    continue;
+                else
+                    sum=sum+occur[j];
+            }
+            if(occur[i]==sum)
+            {
+                printf("YES\n");
+                break;
+            }
+        }
+        if(i==k)
+            printf("NO\n");
+    }
+    return 0;
+} 

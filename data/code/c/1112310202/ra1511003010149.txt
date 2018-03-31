@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct mat{
+		long int y;
+		struct mat *nxt;
+	}node;
+node *p[1000001],*nt[1000001];
+inline int exist(int x,int y)
+{
+	if(x>1000000 || y>1000000)
+		return 0;
+	if(x<-1000000 || y<-1000000)
+		return 0;
+	node *temp;
+	if(x>=0 && p[x])
+	{
+		temp=p[x];
+		while(temp)
+		{if(temp->y==y)
+			return 1;
+		temp=temp->nxt;
+		}
+		return 0;
+	}
+	else if(x<0 && nt[-1*x])
+	{
+		temp=nt[-1*x];
+		while(temp)
+		{if(temp->y==y)
+			return 1;
+		temp=temp->nxt;
+		}
+		return 0;
+	}
+}
+int main()
+{
+  	node *temp,*t;
+	long int pt[2001][2],x,y,c,s,x1,y1;
+	int n,i,min,no,j;
+	
+	for(i=0;i<=1000000;i++)
+		{p[i]=NULL;nt[i]=NULL;}
+	
+	
+	scanf("%d",&n);
+	no=2;min=2;
+	for(i=0;i<n;i++)
+	{
+		
+		scanf("%ld%ld",&x,&y);
+		pt[i][0]=x;pt[i][1]=y;
+		temp=(node *)malloc(sizeof(node));
+		if(x>=0)
+		{
+			
+			temp->y=y;
+			temp->nxt=NULL;
+			t=p[x];
+			if(t)
+			{
+				while(t->nxt)
+					t=t->nxt;
+				t->nxt=temp;	
+			}
+			else
+				p[x]=temp;
+		}
+		else
+		{
+			x=-1*x;
+ 
+			temp->y=y;
+			temp->nxt=NULL;
+			t=nt[x];
+			if(t)
+			{
+				while(t->nxt)
+					t=t->nxt;
+				t->nxt=temp;	
+			}
+			else
+				nt[x]=temp;
+		}
+	}
+	if(n==0)
+		printf("%d\n",4);
+	else if(n==1)
+		printf("%d\n",3);
+	else if(n==2)
+		printf("%d\n",2);
+	else
+	{
+		for(i=0;i<n-1;i++)
+			for(j=i+1;j<n;j++)
+			{no=2;
+				x=pt[i][0];y=pt[i][1];
+				x1=pt[j][0];y1=pt[j][1];
+				c=y1-y;s=x1-x;
+				
+				if(exist(x1-c,y1+s))
+					no--;
+				if(exist(x-c,y+s))
+					no--;
+				if(no<min)
+					min=no;
+				no=2;
+				if(exist(x1+c,y1-s))
+					no--;
+				if(exist(x+c,y-s))
+					no--;
+				if(no<min)
+					min=no;
+				
+			}
+		
+		printf("%d\n",min);
+    }
+
+	return 0;
+}

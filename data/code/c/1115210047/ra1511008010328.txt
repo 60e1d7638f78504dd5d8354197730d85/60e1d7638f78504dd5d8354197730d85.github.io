@@ -1,0 +1,222 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+typedef struct{
+	int x;
+	int y;
+} point;
+ 
+int abs(int val){
+	return val < 0 ? -val : val;
+}
+ 
+int h(point p1, point p2){
+	return abs(p1.x-p2.x) + abs(p1.y-p2.y);
+}
+ 
+int distSq(point p1, point p2){
+	int dx = p1.x-p2.x;
+	int dy = p1.y-p2.y;
+	return dx*dx+dy*dy;
+}
+ 
+typedef int Node;
+ 
+typedef struct{
+	int size;
+	int* val;
+	Node* loc;
+} BinaryHeap;
+ 
+ 
+BinaryHeap heapAlloc(int maxSize, int maxVal){
+	BinaryHeap heap;
+    
+	heap.val = malloc((maxSize+1)*sizeof(int));
+	heap.loc = malloc((maxVal+1)*sizeof(Node));
+	heap.size = 0;
+    
+	bzero(heap.loc, (maxVal+1)*sizeof(Node));
+    
+	return heap;
+}
+ 
+void heapFree(BinaryHeap* heap){
+	free(heap->val);
+	free(heap->loc);
+}
+ 
+Node heapParent(Node node){
+	return node/2;
+}
+ 
+Node heapLeftChild(Node node){
+	return node*2;
+}
+ 
+Node heapRightChild(Node node){
+	return node*2+1;
+}
+ 
+int heapNodeIsRoot(Node node){
+	return node == 1;
+}
+ 
+int heapNodeHasLeftChild(BinaryHeap heap, Node node){
+	return heapLeftChild(node) <= heap.size;
+}
+ 
+int heapNodeHasRightChild(BinaryHeap heap, Node node){
+	return heapRightChild(node) <= heap.size;
+}
+ 
+int heapTop(BinaryHeap heap){
+	return heap.val[1];
+}
+ 
+void heapSwap(BinaryHeap* heap, Node n1, Node n2){
+	int tmp = heap->val[n1];
+	heap->val[n1] = heap->val[n2];
+	heap->val[n2] = tmp;
+    
+	heap->loc[heap->val[n1]] = n1;
+	heap->loc[heap->val[n2]] = n2;
+}
+ 
+void heapFixUp(BinaryHeap* heap, Node node, int* cost){
+	int nodeCost = cost[heap->val[node]];
+	Node parent;
+	while (!heapNodeIsRoot(node) && (cost[heap->val[parent = heapParent(node)]] > nodeCost)){
+		heapSwap(heap, node, parent);
+		node = parent;
+	}
+}
+ 
+void heapFixDown(BinaryHeap* heap, Node node, int* cost){
+	while (1){
+		int minNodeCost = cost[heap->val[node]];
+		Node minNode = node;
+        
+		if (heapNodeHasLeftChild(*heap, node) && (minNodeCost > cost[heap->val[heapLeftChild(node)]])){
+			minNode = heapLeftChild(node);
+			minNodeCost = cost[heap->val[minNode]];
+		}
+        
+		if (heapNodeHasRightChild(*heap, node) && (minNodeCost > cost[heap->val[heapRightChild(node)]])){
+			minNode = heapRightChild(node);
+			minNodeCost = cost[heap->val[minNode]];
+		}
+        
+		if (minNode == node)
+			break;
+		else{
+			heapSwap(heap, node, minNode);
+			node = minNode;
+		}
+	}
+}
+ 
+ 
+void heapPush(BinaryHeap* heap, int val, int* cost){
+	Node node = ++(heap->size);
+	heap->val[node] = val;
+	heap->loc[val] = node;
+    
+	heapFixUp(heap, node, cost);
+}
+ 
+ 
+int heapPop(BinaryHeap* heap, int* cost){
+	int top = heapTop(*heap);
+    
+	Node root = 1;
+	
+	heap->val[root] = heap->val[heap->size];
+	heap->loc[heap->val[root]] = root;
+	heap->loc[top] = 0;
+	heap->size--;
+    
+	heapFixDown(heap, root, cost);
+	
+	return top;
+}
+ 
+int heapContainsValue(BinaryHeap heap, int val){
+	return heap.loc[val] != 0;
+}
+ 
+ 
+void heapDecreaseCost(BinaryHeap* heap, int val, int* cost){
+	Node node = heap->loc[val];
+	if (node == 0)
+		return;
+	heapFixUp(heap, node, cost);
+}
+ 
+void heapPrint(BinaryHeap heap, int* cost){
+	Node node;
+	for (node = 1; node <= heap.size; node++){
+		printf("%d(%d)  ", heap.val[node], cost[heap.val[node]]);
+		if ((node & (node + 1)) == 0)
+			printf("\n");
+	}
+}
+ 
+int main(void){
+	int testCount;
+ 
+	scanf("%d", &testCount);
+ 
+	while (testCount--){
+		int n, i;
+		point trees[2502];
+		BinaryHeap opensetHeap;
+		int f[2502];
+		int g[2502];
+        point class;
+		
+		scanf("%d", &n);
+		
+		for (i = 0; i < n; i++)
+			scanf("%d %d", &(trees[i+1].x), &(trees[i+1].y));
+		scanf("%d %d", &(trees[0].x), &(trees[0].y));
+		scanf("%d %d", &(trees[n+1].x), &(trees[n+1].y));
+ 
+		n += 2;
+        
+        class = trees[n-1];
+		
+		g[0] = 0;
+		f[0] = h(trees[0], trees[n-1]);
+        opensetHeap = heapAlloc(n, n);
+		heapPush(&opensetHeap, 0, f);
+        for (i = 1; i < n; i++){
+            f[i] = g[i] = 2000*2000*2+1;
+            heapPush(&opensetHeap, i, f);
+        }
+		
+		while (1){
+			int cur = heapPop(&opensetHeap, f);
+			int curDist = g[cur];
+            point curTree = trees[cur];
+            
+			if (cur == n-1){
+                printf("%d\n", curDist);
+				break;
+            }
+ 
+			for (i = 0; i < n; i++){
+				int tScore = curDist + distSq(curTree, trees[i]);
+				if (tScore < g[i]){
+					g[i] = tScore;
+					f[i] = tScore + h(trees[i], class);
+                    heapDecreaseCost(&opensetHeap, i, f);
+				}
+			}
+		}
+        
+        heapFree(&opensetHeap);
+	}
+	return 0;
+}

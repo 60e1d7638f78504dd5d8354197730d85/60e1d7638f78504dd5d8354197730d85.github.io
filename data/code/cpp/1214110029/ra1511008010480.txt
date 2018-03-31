@@ -1,0 +1,36 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+class Number {
+	public:
+  		int arr[20];
+  		void minmax(int n);
+};
+
+void Number :: minmax(int n) {
+	int min=9999, max = -9999;
+  	if(n==0) cout<<"0";
+  	else {
+    	for(int i=0; i<n; i++) {
+        	if(min > arr[i]) {
+            	min = arr[i];
+            }
+          	if(max < arr[i]) {
+            	max = arr[i];
+            }
+        }
+      	cout<<"Max="<<max<<endl;
+      	cout<<"Min="<<min<<endl;
+    }
+}
+
+int main()
+{
+  	int n;
+  	cin>>n;
+  	Number number;
+  	for(int i=0; i<n; i++) cin>>number.arr[i];
+  	number.minmax(n);
+	return 0;
+}

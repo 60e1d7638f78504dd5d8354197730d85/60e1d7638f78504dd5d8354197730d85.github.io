@@ -1,0 +1,97 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+typedef long long int ll;
+const int INF = 1e9;
+ 
+#define SZ(x) ((int)(x.size()))
+#define fi first
+#define se second
+#define mp make_pair
+#define pi pair<int,int>
+#define _ ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define For(i,n) for(int i=0;i<n;i++)
+#define For1(i,n) for(int i=1;i<=n;i++)
+#define For0(i,n) for(int i=0;i<=n;i++)
+ 
+struct Point{
+ 
+  Point(int x_,int y_) : x(x_),y(y_) {}
+  Point() : Point(-1,-1) {}
+ 
+  bool operator==(const Point &p)
+  {
+    return x==p.x && y==p.y;
+  }
+ 
+  friend ostream &operator<<(ostream &out, const Point &p)
+  {
+    out<<"("<<p.x<<","<<p.y<<")";
+    return out;
+  }
+  int x;
+  int y;
+};
+ 
+const int dx[]={-1,-1,-1,0,0,1,1,1};
+const int dy[]={-1,0,1,-1,1,-1,0,1};
+ 
+int n,m;
+int troop,ans,tot;
+int visited[1000][1000];
+int a[1000][1000];
+void dfs(int x,int y)
+{
+		visited[x][y]=1;
+		For(i,8)
+		{
+			int nx=x+dx[i];
+			int ny=y+dy[i];
+			if(nx>=0 && nx<n && ny>=0 && ny<m && a[nx][ny]==1)
+			{
+				if(visited[nx][ny]==0)
+				{
+					tot++;
+					dfs(nx,ny);
+				}
+			}
+		}
+}
+ 
+int main()
+{   _
+    int t;
+    cin>>t;
+    while(t--)
+    {
+      cin>>n>>m;
+      For(i,n)
+      {
+				For(j,m)
+				{
+					visited[i][j]=0;
+					cin>>a[i][j];
+				}
+			}
+ 
+			For(i,n)
+			{
+				For(j,m)
+				{
+					if(a[i][j]==1 && visited[i][j]==0)
+					{
+						tot=1;
+						dfs(i,j);
+						ans=max(ans,tot);
+						troop++;
+					}
+				}
+			}
+			cout<<troop<<" "<<ans<<'\n';
+			troop=0;
+			ans=0;
+    }
+ 
+    return 0;
+}

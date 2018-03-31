@@ -1,0 +1,38 @@
+#include <stdio.h>
+ int main(void)
+{
+  int i,t,button,j;
+ long int n,count=0;
+ long double avg,sum=0; 
+ scanf("%d",&t);
+
+for(i=0;i<t;i++)
+    {
+        scanf("%ld",&n);
+        int arr[n];
+
+        for(j=0,button=0,count=0,sum=0;j<n;j++)
+            {   scanf("%d",&arr[j]);
+
+                if(arr[j]==5)
+                    ++count;
+                if(arr[j]<3)
+                    {
+                        button=1;
+                        break;
+                    }
+                sum=sum+arr[j];     
+            }
+            avg=sum/n;
+        if(count==0||button==1||avg-4.0<0)
+            printf("No\n");
+        else
+            printf("Yes\n");
+}
+
+
+    
+
+
+return 0;
+}

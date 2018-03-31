@@ -1,0 +1,38 @@
+#include <stdio.h>
+struct srm
+{
+  char arr[20];
+  int a[20];
+  int x,y,z,b,c,d,e;
+}srm;
+int main()
+{
+  scanf("%s",srm.arr);
+  
+  for(srm.x=0;srm.x<4;srm.x++)
+  {
+    srm.a[srm.x]=srm.arr[srm.x+6];
+   
+  }
+  srm.b=srm.a[0]-48;
+  srm.c=srm.a[1]-48;
+  srm.d=srm.a[2]-48;
+  srm.e=srm.a[3]-48;
+  srm.y=(srm.b*1000)+(srm.c*100)+(srm.d*10)+(srm.e);
+  if(srm.y%4 == 0)
+    {
+        if( srm.y%100 == 0)
+        {
+            if (srm.y%400 == 0)
+                printf("%d is a leap year",srm.y);
+            else
+                printf("%d is not a leap year",srm.y);
+        }
+        else
+            printf("%d is a leap year",srm.y);
+    }
+    else
+        printf("%d is not a leap year",srm.y);
+  
+	return 0;
+}

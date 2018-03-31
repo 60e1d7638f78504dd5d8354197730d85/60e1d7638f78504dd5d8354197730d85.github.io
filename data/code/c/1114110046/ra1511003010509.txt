@@ -1,0 +1,49 @@
+#include <stdio.h>
+double chances(double p[100],int a[100],int b[100],int checker[100],int i,int tickets)
+{
+double sum1=0,sum2=0;
+  if(i==tickets)
+  {
+return 1;
+  }
+  if(checker[a[i]]==0)
+  {
+checker[a[i]]=1;
+    sum1=p[i]*(chances(p,a,b,checker,i+1,tickets))*(0.01);
+    checker[a[i]]=0;
+  }
+  if(checker[b[i]]==0)
+             {
+               checker[b[i]]=1;
+               sum2=(100-p[i])*(chances(p,a,b,checker,i+1,tickets))*(0.01);
+               checker[b[i]]=0;
+             }
+             if(checker[a[i]]!=0 && checker[b[i]]!=0)
+             {
+               sum1=0;
+               sum2=0;
+             }
+             return sum1+sum2;
+             }
+             
+int main()
+{
+  	int test;
+  scanf("%d",&test);
+  while(test--)
+  {
+int tickets,tickets1,a[100]={0},b[100]={0},checker[50]={0},i=0;
+    double p[100]={0};
+    scanf("%d",&tickets);
+    tickets1=tickets;
+    while(tickets1--)
+    {
+      scanf("%lf %d %d",&p[i],&a[i],&b[i]);
+      i++;
+    }
+    printf("%.6lf\n",chances(p,a,b,checker,0,tickets));
+           }
+
+
+	return 0;
+}

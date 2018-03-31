@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+void sort(int *p, int arrayL);
+ 
+int main(){
+	int T= 0,i,j,k;
+	int N = 0;
+	scanf("%d",&T);
+	for(i=1;i<= T;i++){
+		int *S;
+		int output=0;
+		scanf("%d",&N);
+		S=(int*) malloc(N*sizeof(size_t));
+		for(j=0;j<N;j++){
+			scanf("%d",(S+j));
+		}
+		sort(S, N);
+		output = (*(S+1))-*S;
+		for(k=0;k<N-1;k++){
+			if((*(S+k+1)-*(S+k))<output)
+				output = *(S+k+1)-*(S+k);
+		}
+		printf("%d\n",output);
+		free(S);
+	}//end of for loop
+  return 0;
+}//end of main
+ 
+void sort(int *p,int arrayL){
+  int i,j;
+	for(i =0;i<arrayL-1;i++){
+		for(j=0;j<arrayL-1;j++){
+			int temp=0;
+			if(*(p+j)>(*(p+j+1))){
+				temp = *(p+j);
+				*(p+j)=*(p+j+1);
+				*(p+j+1)=temp;
+			}
+		}//end of j for loop
+	}//end of i for loop
+}//end of function

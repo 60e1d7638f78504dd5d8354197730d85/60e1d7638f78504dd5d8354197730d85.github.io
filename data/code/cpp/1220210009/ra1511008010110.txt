@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int num;
+  	cin>>num;
+  
+  	try{
+      if(num<2)
+        throw num;
+      
+      else if(num>=2)
+      {
+        int t1=0,t2=1,next=0;
+       	cout<<"Fibonacci series are:\n";
+        for (int i = 1; i <= num; ++i)
+    	{
+        	if(i == 1)
+        	{
+            	cout << t1<<"\n";
+            	continue;
+        	}
+        	else if(i == 2)
+       	 	{
+            	cout << t2 << "";
+            	continue;
+        	}
+        	else
+            {
+            next = t1 + t2;
+        	t1 = t2;
+        	t2 = next;
+        
+        	cout << "\n"<<next;
+            }
+        }
+      } 
+    }
+  	catch(int a)
+    {
+      cout<<"Exception occurred: value thrown";
+    }
+  	
+	return 0;
+}

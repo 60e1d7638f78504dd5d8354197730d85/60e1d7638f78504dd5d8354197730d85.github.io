@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <math.h>
+int prime(int num)
+{
+  int j;
+    if (num <= 1)
+    {
+        return 1;
+    }
+  int s = sqrt(num);
+    for (j = 2; j <= s; j++)
+        if ((num % j) == 0)
+          return 0;
+  return 1;
+}
+int main()
+{
+  int a,b,c,d,i;
+  scanf("%d %d %d %d",&a,&b,&c,&d);
+  int den = b*d;
+  int num = a*d + b*c;
+  while(!prime(num) && !prime(den)){
+    int c=0,f=0;
+    c++;
+    int sn = sqrt(num);
+    int sd = sqrt(den);
+    for(i=2;i<=sn,i<=sd;i++)
+      if(num%i == 0 && den%i == 0)
+      {
+        num/=i;
+        den/=i;
+        f++;
+      }
+    if(c!=f)
+      break;
+  }
+  if(den%num==0)
+  {
+    den /= num;
+    num /= num;
+  }
+  printf("%d %d",num,den);
+  return 0;
+}

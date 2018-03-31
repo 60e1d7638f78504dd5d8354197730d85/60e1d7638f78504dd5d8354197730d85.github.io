@@ -1,0 +1,35 @@
+import java.util.*;
+import java.util.HashSet;
+import java.io.*;
+
+public class TestClass
+{
+   public static void main(String[] args)
+   {
+       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       String s="";
+       int count=0;
+        try{
+            s=br.readLine();
+           }
+        catch(Exception e)
+        {
+            System.out.println(""+e);
+        }
+
+       char ch[]= new char[s.length()];    
+ 
+for(int i=0;i<s.length();i++)
+{
+ 
+    ch[i]= s.charAt(i);
+ 
+    if( ((i>0)&&(ch[i]!=' ')&&(ch[i-1]==' ')) || ((ch[0]!=' ')&&(i==0)) )
+        count++;
+ 
+}
+System.out.println(count);
+
+}
+
+}

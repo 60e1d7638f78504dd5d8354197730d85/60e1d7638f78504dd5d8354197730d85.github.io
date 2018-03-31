@@ -1,0 +1,48 @@
+#include<stdio.h>
+int prime[1000002];
+int main()
+{
+    int t,n,i,j,k,x,y,z,a[1000],hash[100002];
+    for(i=1;i<=1000000;i++)
+    prime[i]=1;
+    prime[1]=0;
+    for(i=2;i*i<=1000000;i++)
+    {
+        if(prime[i]==1)
+        {
+            for(j=2*i;j<=1000000;j=j+i)
+            prime[j]=0;
+        }
+    }
+    scanf("%d",&t);
+    while(t--)
+    {
+        j=0;
+        y=0;
+        scanf("%d",&n);
+        if(n==1|| n==2)
+        printf("0\n");
+        else
+        {
+         for(i=1;i<=100000;i++)
+         hash[i]=0;
+         for(i=2;i<=n;i++)
+          if(prime[i]==1)
+            a[j++]=i;
+         for(i=0;i<j;i++)
+         {
+             x=a[i];
+             for(k=i+1;k<j;k++)
+             {
+                 x=x+a[k];
+                 if(prime[x]==1 && hash[x]==0)
+                 {
+                  hash[x]=1;
+                  y++;
+                 }
+             }
+         }
+         printf("%d\n",y);
+        }
+    }
+}

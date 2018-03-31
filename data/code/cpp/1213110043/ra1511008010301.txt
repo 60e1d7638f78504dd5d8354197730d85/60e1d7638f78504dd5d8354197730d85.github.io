@@ -1,0 +1,43 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+char ch[5][20];
+  int i=0;
+  int j=0,k,l;
+  while(i<5)
+  {
+    cin>>ch[i];
+    i++;
+  }
+  for(i=0;i<5;i++)
+  {
+    for(k=i+1;k<5;k++)
+    {
+   		
+      if(ch[i][j]<=ch[k][j])
+      {
+        j++;
+      }
+      else
+      {
+       
+        char temp[20];
+        strcpy(temp,ch[i]);
+        strcpy(ch[i],ch[k]);
+        strcpy(ch[k],temp);
+        }
+        j=0;
+      
+    
+    }
+    
+  }
+for(i=0;i<5;i++)
+  cout<<ch[i]<<endl;
+  //cout<<ch[0]<<endl;
+  
+      
+	return 0;
+}

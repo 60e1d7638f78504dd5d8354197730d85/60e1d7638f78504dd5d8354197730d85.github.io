@@ -1,0 +1,64 @@
+//DKBoss
+#include <stdio.h>
+
+typedef int bool;
+#define true 1
+#define false 0
+
+int getLen(char str[]) {
+	int len=0;
+  	while(str[len++] != '\0');
+  	return (len-1);
+}
+
+int getWt(char ch, char* alpha, int* wt, int pos) {
+	if(pos==0) {
+    	*(alpha+pos) = ch;
+      	*(wt+pos) = 1;
+      	return (pos+1);
+    }
+  	int temp=0;
+  	for(temp; temp<pos; temp++) {
+    	if(*(alpha+temp) == ch) {
+        	*(wt+temp)+=1;
+          	return pos;
+        }
+    }
+  	*(alpha+temp) = ch;
+  	*(wt+temp) = 1;
+  	return (pos+1);
+}
+
+bool getAns(int wt[], int size) {
+	int max = 0;
+  	int i=0, sum=0;
+  	for(i; i<size; i++) {
+    	sum+=wt[i];
+      	max = max>wt[i] ? max : wt[i]; 
+    }
+  	sum = sum - 2*max;
+  	return (sum==0 ? true : false);
+}
+
+int main()
+{
+  	int test;
+  	scanf("%d", &test);
+  	int t=0;
+  	for(t; t<test; t++) {
+    	char str[20];
+      	scanf("%s", str);
+      	int len= getLen(str);
+      	//printf("%d\n", len);
+      	char alpha[len];
+      	int wt[len];
+      	int i=0, pos=0;
+      	while(str[i] != '\0') {
+        	pos = getWt(str[i++], alpha, &wt[0], pos);
+        }
+      	//i=0;
+      	//for(i=0; i<len
+      	printf("%s\n", getAns(wt, pos) ? "YES" : "NO");
+    }
+	return 0;
+}

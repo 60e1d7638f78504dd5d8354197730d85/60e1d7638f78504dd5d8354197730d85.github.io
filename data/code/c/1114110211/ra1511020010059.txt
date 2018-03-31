@@ -1,0 +1,30 @@
+#include <stdio.h>
+ 
+void printRepeating(int arr[], int size)
+{
+  int i,j,c,n;
+  if(size%2==0)
+    n=size/2;
+  else
+    n=size/2+1;
+  for (i = 0; i < n; i++)
+  {
+    for(j=0;j<size;j++)
+        if(arr[i]==arr[j])
+          c++;
+    if(c>1)
+      printf("%d ",arr[i]);
+    c=0;
+  }
+}
+ 
+int main()
+{
+  int arr[20];
+  int arr_size,i;
+  scanf("%d",&arr_size);
+  for(i=0;i<arr_size;i++)
+  scanf("%d",&arr[i]);
+  printRepeating(arr, arr_size);
+  return 0;
+}

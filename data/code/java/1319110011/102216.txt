@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+class HexFormatException extends NumberFormatException
+{
+public HexFormatException(String msg)
+{
+super(msg);
+}
+}
+
+public class TestClass {
+	public static int j=0,sum=0,l;
+	static void hexCharToDecimal(char[] b) throws HexFormatException
+    {
+    	for(int i=l-1;i>=0;i--)
+        {
+        //System.out.println("A");
+    	if(b[i]>'F')
+        {
+    	throw new HexFormatException("Number is not Hexadecimal");
+        }
+        else
+        {
+      	if(b[i]=='A')
+        {
+     	sum=sum+(int)Math.pow(16,j)*10;
+       // System.out.println("A");
+        }
+        else if(b[i]=='B')
+        {
+        sum=sum+(int)Math.pow(16,j)*11;
+        }
+        else if(b[i]=='C')
+        {
+        sum=sum+(int)Math.pow(16,j)*12;
+        }
+        else if(b[i]=='D')
+        {
+        sum=sum+(int)Math.pow(16,j)*13;
+        }
+        else if(b[i]=='E')
+        {
+        sum=sum+(int)Math.pow(16,j)*14;
+        }
+        else if(b[i]=='F')
+        {
+        sum=sum+(int)Math.pow(16,j)*15;
+        }
+        else if(Character.isDigit(b[i]))
+        {
+        int d=b[i]-48;
+        sum=sum+(int)Math.pow(16,j)*d;
+        }
+        j++;
+     	}
+        }
+    }
+     
+	 public static void main(String[] args) { 
+     Scanner s=new Scanner(System.in);
+     String s1=s.next();
+     char[] a=s1.toCharArray();
+     l=s1.length();
+     //System.out.println(l);
+     try
+     {
+     hexCharToDecimal(a);
+     System.out.println(sum);
+     }   
+     catch(HexFormatException e)
+     {
+      System.out.println(e);
+     }
+     
+		
+	}
+}

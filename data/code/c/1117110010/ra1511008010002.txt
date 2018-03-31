@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+//function to read array elements
+void readArray(int arr[], int size) 
+{ 
+    int i =0; 
+ 
+    for(i=0; i < size; i++) 
+    { 
+        scanf("%d",&arr[i]); 
+    } 
+} 
+
+
+//function to compare array elements
+char compareArray(int a[],int b[],int size)	{
+	int i;
+	for(i=0;i<size;i++){
+		if(a[i]!=b[i])
+			return 1;
+	}
+	return 0;
+}
+
+int main(){
+  int t;
+  scanf("%d",&t);
+	int a[t],b[t];
+	readArray(a,t);
+	readArray(b,t);
+	
+	if(compareArray(a,b,t)==0){
+		printf("yes");
+	}
+	else{
+		printf("no");
+	}
+		
+	return 0;
+}

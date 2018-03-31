@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define MOD 1000000007
+#define MAX 12
+#define LLI long long int
+#define fo(i,n)   for(i=0;i<n;++i)
+	LLI t,n,i,a[MAX],m,ans;
+	char s[MAX];
+ 
+int main(void) {
+	scanf(" %lld",&t);
+	while(t--)
+	{
+	    scanf(" %lld %lld",&n,&m);
+	    fo(i,m)       a[i]=0;
+	    while(n--)
+	    {
+	        scanf(" %s",s);
+	        fo(i,m)
+	        {
+	            if(s[i]=='1')      a[i]++;
+	        }
+	    }
+	    ans=0;
+	    fo(i,m)         ans+=a[i]*(a[i]-1)/2;
+	    printf("%lld\n",ans);
+	}
+	return 0;
+} 

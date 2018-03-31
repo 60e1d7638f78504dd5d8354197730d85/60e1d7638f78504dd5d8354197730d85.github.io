@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<limits.h>
+
+unsigned long long gcd(int a,int b)
+{
+  if(!b)
+    return a;
+  return gcd(b,a%b);
+}
+int main()
+{
+  unsigned long long a[500];
+  int n;
+  int i,j;
+  int t;
+  int k,l;
+  scanf("%d",&t);
+  for(k=0;k<t;k++)
+  {
+   scanf("%d",&n);
+    unsigned long long minelement=ULLONG_MAX;
+    for(l=0;l<n;l++)
+      scanf("%llu",&a[l]);
+    for(i=0;i<n;i++)
+      for(j=i+1;j<n;j++)
+      {
+        if(a[i]>minelement || a[j]>minelement)
+          continue;
+        unsigned long long lcm=(a[i]*a[j])/gcd(a[i],a[j]);
+        if(lcm<minelement)
+          minelement=lcm;
+      }
+    printf("%llu\n",minelement);
+  }
+
+	return 0;
+}

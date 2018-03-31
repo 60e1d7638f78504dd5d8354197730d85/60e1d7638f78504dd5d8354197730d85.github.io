@@ -1,0 +1,33 @@
+#include <stdio.h>
+//#include <algorithm>
+#include <math.h>
+
+int gcd(int x,int y)
+{
+    int r=x%y;
+    while(r)
+    {
+        x=y;
+        y=r;
+        r=x%y;
+    }
+    return y;
+}
+int main()
+{
+     int a,b,x,y,m;
+     scanf("%d%d%d%d",&a,&b,&x,&y);
+     int g=gcd(x,y);
+     x/=g;
+     y/=g;
+    if((a/x)<(b/y))
+  {
+    m=a/x;
+  }
+  else
+  {
+    m=b/y;
+  }
+     printf("%d %d\n",m*x,m*y);
+     return 0;
+}

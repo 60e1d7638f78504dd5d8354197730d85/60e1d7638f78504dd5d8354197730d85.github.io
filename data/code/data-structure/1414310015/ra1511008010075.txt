@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+#define mem( a , b ) memset( a , b , sizeof( a ) )
+#define Debug( x ) cout<<#x<<" "<<x<<"\n";
+#define LL long long
+using namespace std;
+int _I(){ int x; scanf("%d", &x ); return x; }
+LL _IL(){ LL x; scanf("%lld", &x ); return x; }
+struct node{
+ 
+        int a , b;
+        node(){};
+        node( int x , int y )
+        {
+                a = x;
+                b = y;
+        }
+        bool operator < ( const node &R ) const
+        {
+                //return c < R.c;
+        }
+};
+const int mx = 200000;
+map< int , int > mp;
+int tree[ (4*mx) + 5 ];
+void update(int id , int i , int j , int p , int st)
+{
+        if( i > p || j < p ) return;
+        if( i == j )
+        {
+                tree[ id ]++;
+                return;
+        }
+        int mid = ( i + j )/2;
+        int lft = 2*id;
+        int rgt = lft+1;
+        update( lft , i , mid , p , st );
+        update( rgt , mid +1 , j , p , st );
+        tree[ id ] = tree[ lft ] + tree[ rgt ];
+}
+int query( int id , int i , int j , int st , int ed )
+{
+        if( i > ed || j < st ) return 0;
+        if( i >= st && j <= ed )
+        {
+                return tree[ id ];
+        }
+        int mid = ( i + j )/2;
+        int lft = 2*id;
+        int rgt = lft+1;
+        int p = query( lft , i , mid , st , ed );
+        int q = query( rgt , mid+1 , j , st , ed );
+        return p + q;
+}
+int _case = 1;
+int mod = 1000000007;
+void solve()
+{
+        int ar[ 100001 ];
+        int n = _I();
+        long long sum = 0;
+        int mx = 0;
+        for( int i = 0 ; i < n ; i++ )
+        {
+                ar[ i ] = _I();
+                mx = max( ar[ i ] , mx );
+        }
+        sort( ar , ar + n );
+        for( int i = n-1 ; i >= 0 ; i-- )
+        {
+                long long a = ( (LL)i * (LL)ar[ i ] );
+                long long b = ( (LL)( n - 1 - i ) * (LL) ar[ i ] );
+                sum =  sum +  ( a - b );
+        }
+        sum %= mod;
+        printf("%lld\n",( sum * mx ) % mod );
+}
+int main()
+{
+        //freopen("input.txt","r",stdin );
+        int t = _I();
+        ///int f = 0;
+        while( t-- ){
+                solve();
+        }
+        return 0;
+}

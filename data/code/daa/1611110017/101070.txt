@@ -1,0 +1,44 @@
+#include <stdio.h>
+int Floor(int key, int*a,int low, int high,int size)
+{
+  if(low>high)
+  {
+    if(low==0)
+      return -1;
+    else
+      return high -1;
+  }
+  int mid=(low+high)/2;
+  if(key==a[mid])
+  {
+    while(a[mid]==a[mid+1])
+      mid++;
+    return mid;
+  }
+  else if (key<a[mid])
+  {
+    if(key>a[mid-1])
+    return mid -1;
+    Floor(key,a,low,mid-1,size);
+  }
+  else
+  {
+    if(key < a[mid+1])
+      return mid;
+    Floor(key,a,mid+1,high,size);
+  }
+}
+int main()
+{
+int arr[100],x,t,n,i;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    scanf("%d",&x);
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    printf("%d\n",Floor(x,arr,0,n,n));
+  }
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<limits.h>
+unsigned long long gcd(unsigned long long a, unsigned long long b)
+{
+  if(a == 0)
+    return b;
+  return gcd(b%a, a);
+}
+int main()
+{
+  int t;
+  scanf("%d", &t);
+  while(t--)
+  {
+    int i, j, n;
+    scanf("%d", &n);
+    unsigned long long a[n];
+    for(i=0; i<n; i++)
+      scanf("%llu", &a[i]);
+    unsigned long long min = ULONG_MAX;
+    for(i=0; i<n-1; i++)
+      for(j=i+1; j<n; j++)
+      {
+        if(a[j]>=min)
+          continue;
+        if((a[i]*a[j])/gcd(a[i], a[j]) < min)
+          min = (a[i]*a[j])/gcd(a[i], a[j]);
+      }
+    printf("%llu\n", min);
+  }
+  return 0;
+} 

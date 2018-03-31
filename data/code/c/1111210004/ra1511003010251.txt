@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,t,n,k,a[100],ksmall[100],min,min_idx,son,pinky;
+  scanf("%d",&t);
+  while(t--)
+  {
+    son=0; pinky=0;
+    scanf("%d%d",&n,&k);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    for(i=0;i<k;i++)
+    {
+      min=999999;
+      min_idx=-1;
+      for(j=0;j<n;j++)
+      {
+        if(a[j]<min)
+        {
+          min=a[j];
+          min_idx=j;
+        }
+      }
+      ksmall[i]=min;
+      a[min_idx]=999999;
+    }
+    for(i=0;i<k;i++)
+    {
+      son=son+ksmall[i];
+    }
+    for(i=0;i<n;i++)
+    {
+      if(a[i]!=999999)
+      {
+        pinky=pinky+a[i];
+      }
+    }
+    printf("%d\n",pinky-son);
+  }
+  return 0;
+}

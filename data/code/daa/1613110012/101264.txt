@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+     map<pair<int, int>, int>m;
+     map<pair<int, int>, int> :: iterator it;
+     string s;
+     cin >> s;
+     m[make_pair(0,0)]++;
+     int x=0, y=0,i;
+     for(i=0;i<(int)s.length();i++) {
+         if(s[i]=='R') {
+             y++;
+             m[make_pair(x,y)]++;
+         }
+         else if(s[i]=='L') {
+             y--;
+              m[make_pair(x,y)]++;
+         }
+         else if(s[i]=='U') {
+             x--;
+               m[make_pair(x,y)]++;
+         }
+         else if(s[i]=='D') {
+                x++;
+               m[make_pair(x,y)]++;
+         }
+     }
+     int ans=0;
+     for(it=m.begin();it!=m.end();it++) {
+         if(it->second > 1)
+         ans += it->second-1;
+     }
+     printf("%d", ans);
+     return 0;
+}

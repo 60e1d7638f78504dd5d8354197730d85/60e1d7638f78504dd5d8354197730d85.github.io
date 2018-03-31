@@ -1,0 +1,101 @@
+#include <stdio.h>
+ 
+#define MAX(a,b) ((a) >= (b) ? (a) : (b))
+#define MAX_PLAYERS 100
+ 
+int find_team(int* players, int start, int end, int cursum, int maxsum, int playersleft, int num_players, int table[][MAX_PLAYERS]) {
+  int i, cur_max = 0, new_max, next_seq_sum, j;
+  //printf("%d to %d, cursum %d, maxsum %d, playersleft %d, num_players %d\n", start, end, cursum, maxsum, playersleft, num_players);
+  if (playersleft == 0)
+    if (cursum <= maxsum)
+      return cursum;
+    else
+      return 0;
+  
+  //printf("table number: %d (%d, %d), cursum:%d, maxsum %d\n", table[num_players-playersleft][num_players-1], num_players-playersleft, num_players-1, cursum, maxsum);
+  if (table[num_players-playersleft][num_players-1]+cursum > maxsum)
+    return 0;
+ 
+  if (cursum > maxsum || (end-start+1) < playersleft )
+    return 0;
+ 
+  for(i = start; i <= end; i++) {
+    if (cur_max && table[i][i+playersleft-1] <= cur_max-cursum)  {
+      return cur_max;
+    }
+    
+    //printf("curmax: %d, playersleft: %d, compared sum: %d\n", cur_max, playersleft, table[i][i+playersleft-1]);
+    new_max = find_team(players, i+1, end, cursum + players[i], maxsum, playersleft-1, num_players, table);
+    cur_max = MAX(cur_max, new_max);
+    if (cur_max == maxsum) {
+      return cur_max;
+    }
+  }
+  return cur_max;
+}
+ 
+void dumb_sort(int* a, int len) {
+  int i, j, tmp;
+  for (i = 0; i < len; i++) {
+    for (j = 0; j < len; j++) {
+      if (a[i] > a[j]) {
+	tmp = a[i];
+	a[i] = a[j];
+	a[j] = tmp;
+      }
+    }
+  }
+}
+ 
+void fill_max_score_remaining(int *players, int table[][MAX_PLAYERS], int n) {
+  int i, j, prev;
+  //initialize table
+  for ( i = 0; i < n; i++) {
+    prev = 0;
+    for ( j = i; j < n; j++ ) {
+      table[i][j] = players[j] + prev;
+      prev = table[i][j];
+      //      printf("%d - i: %d, j: %d\n", table[i][j], i, j);
+    }
+  }
+}
+ 
+int get_sum(int *a, int len) {
+  int i, sum = 0;
+  for (i = 0; i < len; i++)
+    sum += a[i];
+  return sum;
+}
+ 
+int main(void) {
+  int test_cases, t, inputs, i, total, half,teamsum = 0, teamsum2;
+  int players[MAX_PLAYERS];
+  int max_score_remaining[MAX_PLAYERS][MAX_PLAYERS];
+ 
+  scanf("%d", &test_cases);
+  for(t = 0; t < test_cases; t++) {
+    scanf("%d", &inputs);
+    for (i = 0; i < inputs; i++)
+      scanf("%d", &(players[i]));
+ 
+    dumb_sort(players, inputs);
+    total = get_sum(players, inputs);
+    fill_max_score_remaining(players, max_score_remaining, inputs);
+ 
+    half = total/2;
+    teamsum = 0;
+    if (inputs % 2 == 1) {
+      //printf("extra run\n");
+      teamsum = find_team(players, 0, inputs-1, 0, half, inputs/2 + 1, inputs, max_score_remaining);
+    }
+    teamsum2 = find_team(players, 0, inputs-1, 0, half, inputs/2, inputs, max_score_remaining);
+    teamsum = MAX(teamsum, teamsum2);
+ 
+    printf("%d %d\n", teamsum, total-teamsum);
+    if (t != test_cases-1)
+      printf("\n");
+  }
+ 
+  return 0;
+}
+  

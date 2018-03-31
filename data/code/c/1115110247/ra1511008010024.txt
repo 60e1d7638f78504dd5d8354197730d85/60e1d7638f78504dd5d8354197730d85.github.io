@@ -1,0 +1,48 @@
+#include <stdio.h>
+int isPrime(int n) {
+  int i;
+  for(i = 2; i < n; i++) {
+  	if(n % i == 0)
+      return 0;
+  }
+  return 1;
+}
+
+int nextPrime(int a) {
+  int i, p = a + 1;
+  while(!isPrime(p))
+    p++;
+  return p;
+}
+
+int isValue(int a, int b) {
+	if(isPrime(a) && isPrime(b) && isPrime(a + b + 1)) {
+      if(b == nextPrime(a))
+      	return 1;
+  	  else
+        return 0;
+    }
+  	return 0;
+}
+
+int main()
+{
+
+  int n, k, i, j, p = 0;
+  fscanf(stdin, "%d %d", &n, &k);
+  for(i = 2; i <= n; i++) {
+    for(j = 2; j <= n; j++) {
+    	if(isValue(i, j)) {
+          //printf("i j %d %d\n", i, j);
+          p++;
+        }
+    }
+  }
+  if(p > k)
+    printf("YES\n");
+  else
+    printf("NO\n");
+ 
+  
+	return 0;
+}

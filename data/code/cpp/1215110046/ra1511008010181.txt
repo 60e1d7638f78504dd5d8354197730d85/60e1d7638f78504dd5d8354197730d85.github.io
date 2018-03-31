@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void sort(int a[],int n);
+void sort(string s);
+int main()
+{
+int n=0;
+  cin>>n;
+  int a[n];
+  string s;
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  cin>>s;
+  sort(a,n);
+  sort(s);
+	return 0;
+}
+void sort(int a[],int n)
+ { for(int i=0;i<n;i++)
+ {
+   int j=i;
+  int temp=a[i];
+  while(j>0&&a[j-1]>temp)
+  {
+    a[j]=a[j-1];
+    j--;
+  }
+  a[j]=temp;
+}
+for(int i=0;i<n;i++)
+  cout<<"\n"<<a[i];
+ }
+ void sort(string s)
+ {
+   for(int i=0;i<s.length();i++)
+   {
+     int j=i;
+     int temp=s[i];
+     while(j>0&&s[j-1]>temp)
+     {
+       s[j]=s[j-1];
+       j--;
+     }
+     s[j]=temp;
+   }
+ cout<<"\n"<<s;}

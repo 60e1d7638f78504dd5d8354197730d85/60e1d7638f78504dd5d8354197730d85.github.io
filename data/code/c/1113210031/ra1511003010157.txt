@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int len(int n)
+{
+int k=0;
+  while(n>0)
+  {k++;
+  n=n/10;}
+  return k;
+}
+
+int reverse(int n, int l)
+{
+  int r=0,i,c[50];
+  for(i=0;n>0;i++)
+  {
+    c[i]=n%10;
+    n=n/10;
+  }
+  for(i=0;i<(l);i++)
+  {
+  r=(r*10)+c[i];
+  }
+  return r;
+}
+
+
+int main()
+{
+    int t,n,lnth,rev,mera[50],m=0,cc=0,i;
+    scanf("%d",&t);
+  cc=t;
+   while(t--)
+   {
+     
+    scanf("%d",&n);
+    lnth=len(n);
+     rev=reverse(n,lnth);
+     mera[m++]=rev;
+   
+   }
+  for(i=cc-1;i>-1;i--)
+  {printf("%d\n",mera[i]);}
+     return 0;
+}

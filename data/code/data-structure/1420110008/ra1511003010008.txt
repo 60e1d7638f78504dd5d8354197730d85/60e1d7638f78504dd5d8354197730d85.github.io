@@ -1,0 +1,47 @@
+#include <iostream>
+#include <map>
+# define mp make_pair
+ 
+using namespace std;
+ 
+int main() {
+	int t;
+	cin >> t;		
+	for(int i=0;i<t;i++)
+	{
+	  int n,k;
+	  cin>>n>>k;
+	  map<int,int> m;
+	  if(n%k!=0) 
+	  {
+	  cout<<"Not possible"<<endl;
+	  continue;
+	  }
+	  for(int k=0;k<n;k++)
+	  {
+	    string str;
+	    cin>>str;
+	    int l=str.length();
+	    if(m.count(l)==1)
+	       m[l]++;
+	    else 
+	       m.insert(mp(l,1));
+	      
+	  }
+	  int flag=0;
+	  for(auto &x:m)
+	  {
+	     if(x.second%k!=0)
+	     {
+	        cout<<"Not possible"<<endl;
+	        flag=1;
+	        break;
+	     }
+	  }
+	  if(flag==0) cout<<"Possible"<<endl;
+	  
+	    
+	}
+}
+ 
+ 

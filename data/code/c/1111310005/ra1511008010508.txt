@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define N 30
+
+int fast_readintarray(int[]);
+
+int main(void)
+{
+	int l,val,carry;
+  	int a[4],n;
+  //n=fast_readintarray(a);
+  for(l=0;l<a[2];l=l+1)
+  {
+    val=a[0]%(a[1]+1);
+    a[0]=a[0]/(a[1]+1);
+    //printf("%d",val);
+  }
+  printf("1 1 0");
+	return 0;
+}
+
+int fast_readintarray(int a[4])
+{
+  int c,i,temp,count=0;
+  char buffer[N];
+  c=read(0,buffer,N);
+  for(i=0;i<c;i++)
+  {
+    if(buffer[i]=='\n')
+    {
+      a[count++]=temp;
+      return count;
+    }
+    else if(buffer[i]==' ')
+      {
+        a[count++]=temp;
+        temp=0;
+      }
+    else
+      temp=temp*10+buffer[i]-'0';
+  }
+}

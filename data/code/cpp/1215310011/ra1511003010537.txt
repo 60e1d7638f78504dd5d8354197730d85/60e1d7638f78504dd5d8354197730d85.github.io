@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+const long long mod=10007LL;
+ 
+long long Fac[mod];
+long long iFac[mod];
+ 
+long long MPow(long long A, long long B)
+{
+	long long ans=1;
+	A%=mod;
+	while(B)
+	{
+		if(B&1LL) 
+		{
+			ans=(ans*A)%mod;
+		}
+		B>>=1;
+		A=(A*A)%mod;
+	}
+	return ans;
+}
+ 
+void Precompute(void)
+{
+	Fac[0]=1;
+	Fac[1]=1;
+	iFac[0]=1;
+	iFac[1]=1;
+	for(long long i=2; i<mod; i++)
+	{
+		Fac[i]=(Fac[i-1]*i)%mod;
+		iFac[i]=(iFac[i-1]*MPow(i, mod-2))%mod;
+	}
+ 
+}
+ 
+long long ChooseB(long long A, long long B)
+{
+	if( (A<B)||(B<0) ) return 0;
+ 
+	long long ans = (Fac[A]*iFac[B])%mod;
+	ans = (ans*iFac[A-B])%mod;
+	return ans;
+}
+ 
+long long ChooseA(long long A, long long B)
+{
+	if( (A<mod)&&(B<mod) ) 
+	{
+		return ChooseB(A, B);
+	}
+	long long ans = ChooseA(A/mod, B/mod);
+	ans *= ChooseB(A%mod, B%mod);
+	return ans%mod;
+}
+ 
+long long Solve(long long R, long long C, long long N)
+{
+	long long ans = ( ChooseA(R+N-1, N) * ChooseA(C+N-1, N) )%mod;
+	long long tmp = 0;
+	if(R>=N) tmp = ( ChooseA(R+N, N) - ChooseA(R+N, N-1) + mod )%mod;
+	long long tmp2 = 0;
+	if(C>=N) tmp2=( ChooseA(C+N, N) - ChooseA(C+N, N-1) + mod )%mod;
+	tmp = (tmp*tmp2)%mod;
+	ans = (ans-tmp+mod)%mod;
+	return ans;
+}
+ 
+int main()
+{
+	Precompute();
+	int T;
+	long long int R, C, N;
+	scanf("%d", &T);
+	while( T-- )
+	{
+		scanf("%lld %lld %lld", &R, &C, &N);
+		printf("%lld\n", Solve(R, C, N));
+	}
+	return 0;
+} 

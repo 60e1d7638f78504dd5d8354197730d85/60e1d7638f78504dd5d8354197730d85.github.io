@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int test,a,i,r,b,max,min,lcm,gcd;
+  scanf("%d",&test);
+  for(i=0;i<test;i++)
+  {
+  scanf("%d",&a);
+  scanf("%d",&b);
+    
+    if(a>b)
+    {
+     max=a;
+     min=b;
+    }
+    else if(b>a)
+    {
+     max=b;
+     min=a;  
+    }
+    if(a==b)
+    {
+    gcd=a;
+    }
+    else
+    {
+    do
+    {
+    r=max%min;
+      max=min;
+      min=r;
+    }
+      while(r!=0);
+      gcd=max;
+    }
+   lcm=(a*b)/gcd;
+  printf("%d %d\n",gcd,lcm);
+  }
+  
+	return 0;
+}

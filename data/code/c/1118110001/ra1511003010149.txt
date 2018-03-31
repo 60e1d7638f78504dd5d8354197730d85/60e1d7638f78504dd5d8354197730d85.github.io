@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int t,i,j,t1;
+  scanf("%d",&t);
+  char n[3][30],dep[3][20],tmp[30],tmp1[20];
+  int yr[3];
+  float cgpa[3],t2;
+  for(i=0;i<t;i++) {
+    scanf("%s",n[i]);
+    scanf("%s",dep[i]);
+    scanf("%d",&yr[i]);
+    scanf("%f",&cgpa[i]);
+  }
+  for(i=1; i<t; i++) {
+		for(j=1; j<t; j++) {
+			if(strcmp(n[j-1], n[j])>0) {
+				strcpy(tmp, n[j-1]);
+				strcpy(n[j-1], n[j]);
+				strcpy(n[j], tmp);
+                strcpy(tmp1, dep[j-1]);
+				strcpy(dep[j-1], dep[j]);
+				strcpy(dep[j], tmp1);
+                t1 = yr[j-1];
+                yr[j-1] = yr[j];
+                yr[j] = t1;
+                t2 = cgpa[j-1];
+                cgpa[j-1] = cgpa[j];
+                cgpa[j] = t2;
+			}
+		}
+  }
+  for(i=0;i<t;i++) {
+    printf("Name:%s\n",n[i]);
+	printf("Department:%s\n",dep[i]);
+	printf("Year of study:%d\n",yr[i]);
+	printf("CGPA:%.1f\n",cgpa[i]);
+  }
+  
+	return 0;
+}

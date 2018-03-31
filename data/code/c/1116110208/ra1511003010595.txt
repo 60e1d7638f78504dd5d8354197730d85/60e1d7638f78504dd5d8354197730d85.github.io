@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<string.h>
+ 
+inline int fun(char *c)
+{
+int j,b,i,n;
+char str[60],ch;
+strcpy(str,c);
+n=strlen(str);
+for(i=0;i<n;i++)
+{
+    if(str[i]!=0){
+        b=0;
+    ch=str[i];
+    for(j=0;j<n;j++)
+    {
+        if(str[j]==ch){
+                str[j]=0;
+            b++;
+        }
+    }
+   // printf("%c occurs %d times \n",ch,b);
+    if(n%2==0&&b==(n/2))
+        return 1;
+ 
+}
+}
+return 0;
+}
+ 
+int main()
+{
+    int a,b;
+ 
+    scanf("%d",&a);
+    while(a--)
+    {
+         char c[60];
+       scanf("%s",c);
+       b=fun(c);
+    if(b==1)
+        printf("YES\n");
+    else
+        printf("NO\n");
+   }
+    return 0;
+}

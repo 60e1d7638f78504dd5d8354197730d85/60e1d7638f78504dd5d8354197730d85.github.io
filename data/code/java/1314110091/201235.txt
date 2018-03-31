@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int T=sc.nextInt();
+       int a[]=new int[100];
+       int min1,min2;
+       for(int i=0;i<T;i++)
+       {
+         int n=sc.nextInt();
+         a[0]=sc.nextInt();
+         a[1]=sc.nextInt();
+         if(a[0]<a[1])
+         {
+           min1=a[0];
+           min2=a[1];
+         }
+         else
+         {
+           min1=a[1];
+           min2=a[0];
+         }
+         for(int j=2;j<n;j++)
+         {
+           a[j]=sc.nextInt();
+           if(a[j]<=min1)
+           {
+             min2=min1;
+             min1=a[j];
+           }
+           else if (a[j]<min2)
+             min2=a[j];
+         }
+         System.out.println(min1+min2);
+       }
+	}
+}

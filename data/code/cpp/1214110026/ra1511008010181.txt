@@ -1,0 +1,36 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+class Measure {
+  private:
+  int feet_a=0,feet_b=0;
+  float inch_a=0,inch_b=0;
+  float sum_1=0,sum_2=0;
+public: void get()
+{  
+  cin>>feet_a>>inch_a;
+  cin>>feet_b>>inch_b;
+}
+public: void sum()
+{
+  sum_1=feet_a+feet_b;
+  sum_2=inch_a+inch_b;
+  if(sum_2/12>1)
+  {
+    sum_1+=sum_2/12;
+sum_2=sum_2-float(12);}
+  }
+  public:void display()
+  {
+    cout<<setprecision(0)<<fixed<<sum_1<<" feet ";
+    cout<<setprecision(1)<<fixed<<sum_2<<" inches";
+  }
+};
+  int main()
+{
+  Measure a;
+    a.get();
+    a.sum();
+    a.display();
+	return 0;
+}

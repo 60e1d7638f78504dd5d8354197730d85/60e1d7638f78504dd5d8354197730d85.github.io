@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int a[10][10],i,j,n,sum=0,sum1=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i==j)
+      {
+        sum=sum+a[i][j];
+      }
+    }
+  }
+   for(i=0;i<n;i++)
+  {
+
+     sum1=sum1+a[i][n-i-1];
+  }
+
+  if(sum>=sum1)
+  {
+  printf("%d",sum-sum1);
+  }
+  else
+  {
+    printf("%d",sum1-sum);
+  }
+
+	return 0;
+}

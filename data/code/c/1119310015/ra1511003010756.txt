@@ -1,0 +1,217 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define REP(i, n) for(i = 0; i < (int)(n); ++i)
+ 
+int n;
+short _vs[10000+10];
+short *vs = _vs+1;
+short goal[10000+10];
+ 
+typedef struct {
+  short a, b;
+} PII;
+ 
+PII ans[10000+10];
+int anslen;
+ 
+void showReverse(int idx1, int idx2) {
+  int i;
+  REP(i, n){
+    fprintf(stderr, "%s%d%s", idx1 == i ? "[" : " ", vs[i], idx2 == i ? "]" : " ");
+  }
+  fprintf(stderr, "\n");
+}
+ 
+void executeOp(int lb, int ub) {
+/*   showReverse(lb, ub); */
+  short *p1 = vs + lb;
+  short *p2 = vs + ub;
+  while(p1 < p2){
+    short tmp = *p1;
+    *p1 = *p2;
+    *p2 = tmp;
+    p1++;
+    p2--;
+  }
+}
+ 
+void printAns(void) {
+  int i;
+  printf("%d\n", anslen);
+  REP(i, anslen){
+    printf("%d %d\n", ans[i].a+1, ans[i].b+1);
+  }
+}
+ 
+// precondition:
+//   for all i in [left,right]: vs[i] == goal[left] || vs[i] == goal[right]
+void solve2(const int _left, const int _right) {
+  int left = _left;
+  int right = _right;
+  while(left < right){
+    int idx1, idx2;
+    int bg, md, ed;
+    int mini = 100000000;
+    while(left < right && vs[left] == goal[left])
+      left++;
+    while(left < right && vs[right] == goal[right])
+      right--;
+    if(left >= right)
+      break;
+    idx1 = left;
+    idx2 = right;
+    bg = left;
+    md = bg+1;
+    while(vs[md] == vs[bg])
+      md++;
+    ed = md;
+    while(ed <= right){
+      int score;
+      while(vs[ed] == vs[md]){
+	ed++;
+      }
+      score = bg == left ? 0 : ed-md;
+      score += ed == right+1 ? 0 : md-bg;
+      if(score < mini){
+	mini = score;
+	idx2 = ed-1;
+	idx1 = bg;
+      }
+      bg = md;
+      md = ed;
+    }
+    ans[anslen].a = idx1;
+    ans[anslen++].b = idx2;
+    executeOp(idx1, idx2);
+  }
+}
+ 
+int counter;
+// first: index, second: counter
+PII table1[5010][5010];
+PII table2[5010];
+int _es[5010*2];
+int *es = _es + 5010;
+ 
+const int E0 = 3000000;
+const int E1 = 1500000 + 1171;
+ 
+inline void doMinimize(int *idx1, int *idx2, int *mini, int i0, int x, int y, int a, int b, int i) {
+  int score;
+  if(a == y)
+    return;
+  score = es[b-a] + es[y-x] - es[x-a] - es[y-b] + i-i0;
+  if(score < *mini){
+    *mini = score;
+    *idx1 = i0;
+    *idx2 = i;
+  }
+}
+ 
+inline void minimize1(int *idx1, int *idx2, int *mini, int x, int y, int a, int b, int i) {
+  const PII p = table1[x][y];
+  if(p.b != counter) return;
+  doMinimize(idx1, idx2, mini, p.a, x, y, a, b, i);
+}
+inline int minimize2(int *idx1, int *idx2, int *mini, int x, int a, int b, int i) {
+  const PII p = table2[x];
+  if(p.b != counter) return 0;
+  doMinimize(idx1, idx2, mini, p.a, x, vs[p.a], a, b, i);
+  return 1;
+}
+ 
+void solve(int _left, int _right, int param) {
+  int i;
+  int left = _left;
+  int right = _right;
+  while(left < right){
+    int idx1, idx2, mini;
+/*     int backupL, backupR; */
+    int LIMIT;
+    while(left < right && vs[left] == goal[left])
+      left++;
+    while(left < right && vs[right] == goal[right])
+      right--;
+    if(left >= right)
+      break;
+    if(goal[left] + 1 == goal[right]){
+      solve2(left, right);
+      return;
+    }
+    LIMIT = (right-left) >> param;
+    idx1 = left;
+    idx2 = right;
+    mini = 0;
+    counter++;
+/*     backupL = vs[left-1]; */
+/*     backupR = vs[right+1]; */
+    vs[left-1] = goal[left]  - 1;
+    vs[right+1] = goal[right] + 1;
+    for(i = left-1; i <= right; ++i){ // border between i and i+1
+      int a = vs[i];
+      int b = vs[i+1];
+      if(a == b)
+	continue;
+      if(minimize2(&idx1, &idx2, &mini, a-1, a, b, i)){
+	minimize1(&idx1, &idx2, &mini, a-1, b, a, b, i);
+      }
+      if(minimize2(&idx1, &idx2, &mini, a, a, b, i)){
+	minimize1(&idx1, &idx2, &mini, a, b, a, b, i);
+      }
+      if(minimize2(&idx1, &idx2, &mini, a+1, a, b, i)){
+	minimize1(&idx1, &idx2, &mini, a+1, b, a, b, i);
+      }
+      if(idx2-idx1 < LIMIT && mini < -E1) // cut
+	break;
+      table1[a][b].a = i+1;
+      table1[a][b].b = counter;
+      table2[a].a = i+1;
+      table2[a].b = counter;
+    }
+/*     vs[left-1] = backupL; */
+/*     vs[right+1] = backupR; */
+    if(mini == 0){ // XXX
+      idx1 = left;
+      idx2 = right;
+    }
+    ans[anslen].a = idx1;
+    ans[anslen++].b = idx2;
+    executeOp(idx1, idx2);
+  }
+}
+ 
+short v2id[5010];
+short occur[5010];
+int main(void) {
+  int i;
+  es[0] = E0; es[1] = E1; es[-1] = E1;
+  scanf("%d", &n);
+  REP(i, n){
+    scanf("%hd", vs + i);
+    occur[vs[i]]++;
+  }
+  {
+    int id = 1;
+    int gi = 0;
+    int v;
+    for(v = 0; v <= 5000; ++v){
+      if(occur[v]){
+	REP(i, occur[v]){
+	  goal[gi++] = id; // bucket sort
+	}
+	v2id[v] = id++;
+      }
+    }
+    REP(i, n){
+      vs[i] = v2id[vs[i]]; // value compression
+    }
+  }
+  if(goal[n-1] < 300){
+    solve(0, n-1, 30);
+  }else{
+    solve(0, n-1, 7);
+  }
+  printAns();
+  return 0;
+}

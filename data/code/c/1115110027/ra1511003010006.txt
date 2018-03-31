@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], transpose[10][10], r, c, i, j,c1=0;
+
+    scanf("%d %d", &r, &c);
+
+ if(r==c)
+ {
+
+    for(i=0; i<r; ++i)
+        for(j=0; j<c; ++j)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    for(i=0; i<r; ++i)
+        for(j=0; j<c; ++j)
+        {
+            transpose[j][i] = a[i][j];
+        }
+
+  	for(i=0;i<r;i++)
+    {
+      for(j=0;j<c;j++)
+      {
+        if(transpose[i][j]!=a[i][j])
+        {
+			c1=1;
+          break;
+        }
+      }
+    }
+    if(c1>0)
+      printf("\nNot Symmetric");
+  	else 
+      printf("\nSymmetric");
+ }
+	return 0;
+}

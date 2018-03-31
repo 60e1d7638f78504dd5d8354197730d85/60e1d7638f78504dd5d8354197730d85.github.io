@@ -1,0 +1,23 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int n=sc.nextInt();
+      	int[] ar=new int[n];
+      	for(int i=0;i<n;i++)
+          ar[i]=sc.nextInt();
+      	int[] res={0,0,0};
+       	int result=0;
+      	for(int i=0;i<n;i++)
+          res[ar[i]%3]++;
+      	result +=((res[0]*(res[0]-1)) >> 1);
+        result +=res[1] *res[2];
+      	result +=(res[0]*(res[0]-1)*(res[0]-2))/6;
+        result +=(res[1]*(res[1]-1)*(res[1]-2))/6;
+        result +=(res[2]*(res[2]-1)*(res[2]-2))/6;
+      	result +=res[0]*res[1]*res[2];
+      	System.out.println(result);
+	}
+}

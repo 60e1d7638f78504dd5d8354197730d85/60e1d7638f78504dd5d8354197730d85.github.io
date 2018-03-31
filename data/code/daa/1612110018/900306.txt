@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int countPairs(int X[],int Y[], int m,int n)
+{
+  int cnt=0,i,j;
+  for(i=0;i<m;i++)
+    for(j=0;j<n;j++)
+      if(pow(X[i],Y[j])>pow(Y[j],X[i]))
+         cnt++;
+   return cnt;
+}
+
+int main()
+{
+int X[5],Y[5],i,j,m,n,tc;
+  scanf("%d",&tc);
+  for(i=0;i<tc;i++)
+  {
+    scanf("%d %d",&m,&n);
+    for(j=0;j<m;j++)
+      scanf("%d",&X[j]);
+    for(j=0;j<n;j++)
+      scanf("%d",&Y[j]);
+    printf("%d\n",countPairs(X,Y,m,n));
+           }
+           
+	return 0;
+}

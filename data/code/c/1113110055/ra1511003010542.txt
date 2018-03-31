@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int n, num, a[100], s=0;
+  int i, j;
+  
+  scanf("%d", &n);
+  scanf("%d", &num);
+  
+  for(i=0; i<num; i++)
+  {
+    scanf("%d", &a[i]);
+  }
+  
+  for(i=0; i<num-1; i++)
+  {
+    for(j=i+1; j<num; j++)
+    {
+      if(s==0 || a[i]+a[j] < s)
+      {
+        s = a[i] + a[j];
+      }
+    }
+  }
+  
+  printf("%d", s);
+    
+	return 0;
+}

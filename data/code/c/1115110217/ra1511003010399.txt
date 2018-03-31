@@ -1,0 +1,187 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_SIZE 34
+
+typedef struct
+{
+	char name[MAX_SIZE];
+	int score;	
+}round;
+
+struct f_score
+{
+	char name[MAX_SIZE];
+	int score;
+	struct f_score *previous;
+	struct f_score *next;
+};
+
+
+typedef struct f_score final_score;
+typedef enum { false, true } bool;
+
+
+void add_scores(\
+	final_score *head, final_score *tail, \
+	int tmp_score, char tmp_name[]\
+	);
+	
+
+int main(void)
+{
+	int total_rounds;
+	int max_score;
+	int i;
+	
+	scanf("%d", &total_rounds);
+	
+	round rounds[total_rounds];
+	final_score *f_scores_head;
+	final_score *f_scores_tail;
+	
+	//init players head linked list
+	f_scores_head = (final_score *)malloc(sizeof(final_score));
+	strcpy(f_scores_head->name, "");
+	f_scores_head->score = 0;
+	
+	//init players tail linked list
+	f_scores_tail = (final_score *)malloc(sizeof(final_score));
+	strcpy(f_scores_tail->name, "");
+	f_scores_tail->score = 0;
+	
+	//point head and tail to each other
+	f_scores_head->next = f_scores_tail;
+	f_scores_head->previous = NULL;
+	f_scores_tail->next = NULL;
+	f_scores_tail->previous = f_scores_head;
+	
+	final_score *f_scores_current;	
+	
+	/*********************************************************
+	******************That the hunt begin*********************
+	**********************************************************/
+	
+	//read names and scores then store them
+	//meanwhile set final scores
+	for(i = 0; i < total_rounds; ++i)
+	{
+		scanf("%s %d", rounds[i].name, &rounds[i].score);
+		
+		//check duplicate and calculate the sum of points for each player
+		f_scores_current = f_scores_head->next;
+		
+		while(f_scores_current && f_scores_current->next)
+		{
+			if(!strcmp(rounds[i].name, f_scores_current->name))
+			{
+				rounds[i].score += f_scores_current->score;
+				break;
+			}
+			
+			f_scores_current = f_scores_current->next;
+		}
+		
+		//set the final score for each player
+		add_scores(\
+				f_scores_head, \
+				f_scores_tail, \
+				rounds[i].score, \
+				rounds[i].name\
+				);
+	}
+	
+	//find max score in scores
+	f_scores_current = f_scores_head->next;
+	max_score = f_scores_current->score;
+	
+	while(f_scores_current && f_scores_current->next)
+	{
+		if(f_scores_current->score > max_score)
+			max_score = f_scores_current->score;
+				
+		f_scores_current = f_scores_current->next;
+	}
+	
+/*
+	//#####################TEST#############################
+	for(i = 0; i < total_rounds; ++i)
+		printf("rounds: %s %d\n", rounds[i].name, rounds[i].score);
+	
+	f_scores_current = f_scores_head->next;
+	while(f_scores_current && f_scores_current->next)
+		{
+			printf("scores: %s %d\n", f_scores_current->name, f_scores_current->score);
+			
+			f_scores_current = f_scores_current->next;
+		}
+	
+	printf("max score: %d\n", max_score);
+	//#####################TEST#############################
+*/
+	
+	//find the winner
+	for(i = 0; i < total_rounds; ++i)
+	{
+		if(rounds[i].score >= max_score)
+		{
+			f_scores_current = f_scores_head->next;
+		
+			while(f_scores_current && f_scores_current->next)
+			{
+				if(!strcmp(rounds[i].name, f_scores_current->name))
+				{
+					if(f_scores_current->score == max_score)
+					{
+						printf("%s\n", f_scores_current->name);
+						return 0;
+					}
+				}
+				
+				f_scores_current = f_scores_current->next;
+			}
+		}
+	}
+	
+	return 0;
+}
+
+void add_scores(\
+	final_score *head, final_score *tail, \
+	int tmp_score, char tmp_name[]\
+	)
+{
+	int duplicate = false;
+	final_score *current;
+	
+	current = head->next;
+	while(current && current->next)
+	{
+		if(!strcmp(current->name, tmp_name))
+		{
+			duplicate = true;
+			break;
+		}
+			
+		current = current->next;
+	}
+	
+	if(duplicate)
+	{
+		current->score = tmp_score;
+	}
+	else
+	{
+		final_score *tmp_tail_pre = tail->previous;
+		
+		//add new link to the end before tail
+		current = (final_score *)malloc(sizeof(final_score));
+		strcpy(current->name, tmp_name);
+		current->score = tmp_score;
+		current->next = tail;
+		current->previous = tmp_tail_pre;
+		tmp_tail_pre->next = current;
+		tail->previous = current;
+	}
+}

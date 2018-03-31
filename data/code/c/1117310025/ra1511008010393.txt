@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#define MAXSIZ 1000000000
+long long int modpow(long long int base,long long int expo,long long int mod)
+{
+  long long int res=1;
+  while(expo>0)
+  {
+    if((expo&1)==1)
+      res=(res*base)%mod;
+    expo>>=1;
+    base=(base*base)%mod;
+    
+  }
+  return res;
+}
+int main()
+{
+  int t,i,j,k,count,tempk;
+  long long int n,mod,res1,res2,tempres2;
+  long double temp,tempN,temp10=(long double)10,temp2;
+  long double log10=logl(temp10);
+  long double sqrt10=sqrt(temp10);
+  double tempn;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%lld",&n);
+    scanf("%d",&k);
+    mod=1;
+    tempk=k;
+    while(tempk)
+    {
+      mod=mod*10;
+      tempk--;
+    }
+    res2=modpow(n,n,mod);
+    tempres2=res2;
+    count=0;
+    while(tempres2!=0)
+    {
+      count++;
+      tempres2=tempres2/10;
+    }
+    if(count==0)
+      count=k-1;
+    else
+      count=k-count;
+    tempN=(long double)n;
+    temp=n*logl(tempN)/log10;
+    temp=temp-floorl(temp);
+    temp=(temp-0.5)*log10;
+    temp=exp(temp)*sqrt10*mod/10;
+    res1=floor(temp);
+    printf("%lld ",res1);
+    for(j=0;j<count;j++)
+      printf("0");
+    printf("%lld\n",res2);
+  }
+	return 0;
+}

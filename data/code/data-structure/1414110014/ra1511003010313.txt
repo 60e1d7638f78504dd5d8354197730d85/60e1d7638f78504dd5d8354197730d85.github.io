@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+
+int numofsubset(int arr[], int n)
+{
+
+    sort(arr, arr + n);
+ 
+    int count = 1;  // Initialize result
+    for (int i = 0; i < n-1; i++)
+    {
+
+        if (arr[i] + 1 != arr[i+1])
+            count++;
+    }
+ 
+    return count;
+}
+ 
+
+int main()
+{
+  int testc,arr[100],siz,p,o;
+  scanf("%d",&testc);
+  for(p=0;p<testc;p++)
+  {
+    scanf("%d",&siz);
+    for(o=0;o<siz;o++)
+    {
+      scanf("%d",&arr[o]);
+    }
+    
+    int n = (4*siz)/sizeof(arr[0]);
+    cout << numofsubset(arr,n) << endl;
+  }
+
+  
+    return 0;
+}

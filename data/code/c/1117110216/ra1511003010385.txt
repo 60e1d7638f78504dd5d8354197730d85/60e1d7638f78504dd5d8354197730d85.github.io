@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int merge(int *a,int start,int end,int mid,int *cnt)
+{
+  int *c = (int *)malloc(sizeof(int)*(end-start));
+  int i=start;
+  int j = mid+1;
+  int k = 0;
+  
+  while(i<=mid && j<=end)
+  {
+     /*if(start==0 && end == 4)
+        printf("\na[%d]=%d a[%d]=%d",i,a[i],j,a[j]);*/
+    if(a[i] <= a[j])
+      c[k++] = a[i++];
+    else
+    {   
+      (*cnt) +=  mid+1-i;
+      c[k++] = a[j++];
+    }
+  }
+    
+  while(i<=mid)
+    c[k++] = a[i++];
+  
+  while(j<=mid)
+    c[k++] = a[j++];
+	
+  for(i=0,j=start;i<k;i++)
+    a[j++] = c[i];
+ 
+  free(c);
+  //printf("\nstart=%d end=%d cnt=%d",start,end,*cnt);
+}
+
+void sort(int *arr,int start,int end,int *cnt)
+{
+  if(start < end)
+  {
+    int mid = (start+end)/2;
+    sort(arr,start,mid,cnt);
+    sort(arr,mid+1,end,cnt);
+    merge(arr,start,end,mid,cnt);
+  }
+}
+
+int main()
+{
+	int n,i;
+  	scanf("%d",&n);
+  	int *arr = (int *)malloc(sizeof(int)*n);
+  	for(i=0;i<n;i++)
+      scanf("%d",(arr+i));
+  	int cnt = 0;
+  	sort(arr,0,n-1,&cnt);
+  	//int cnt = count_inversions(a,0,n-1);
+  	printf("\n\t%d",cnt);
+	return 0;
+}

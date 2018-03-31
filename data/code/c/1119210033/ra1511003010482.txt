@@ -1,0 +1,40 @@
+#include<stdio.h>
+int fact(int a)
+{
+	if((a==0)||(a==1))
+	return(1);
+	else
+	return(a*fact(a-1));
+}
+int main()
+{
+	int x,n,i,j,z=0,w=0;
+	char s[55];
+	scanf("%d %d",&x,&n);
+	while(n--)
+	{
+		scanf("%s",s);
+		for(i=0,j=53;i<=35,j>=36;i=i+4,j=j-2)
+		{
+			w=0;
+			if(s[i]=='0')
+			w++;
+			if(s[i+1]=='0')
+			w++;
+			if(s[i+2]=='0')
+			w++;
+			if(s[i+3]=='0')
+			w++;
+			if(s[j]=='0')
+			w++;
+			if(s[j-1]=='0')
+			w=w+1;
+			if(w>=x)
+			z=z+ fact(w)/(fact(x)*fact(w-x));
+			
+		}
+		
+	}
+	printf("%d",z);
+	return(0);
+}  

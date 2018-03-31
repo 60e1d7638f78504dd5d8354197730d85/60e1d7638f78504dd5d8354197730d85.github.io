@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+  int num,arr[100];
+  scanf("%d",&num);
+  int i,j;
+  for(i=1;i<=num;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+
+  int count=0;
+  int narray[100],k=0;
+  for(i=1;i<=num;i++)
+  {
+    
+    int n=arr[i];
+    for(j=1;j<=num;j++)
+    {
+      if(n==arr[j])
+        count++;
+    }
+    if(count>=2)
+    {
+      int num=n;
+      narray[k]=num;
+      k++;
+    }
+    int l,myflag=0,m;
+    for(l=0;l<=k;l++)
+    {
+      for(m=l+1;m<=k;m++)
+      {
+        if(narray[m]==narray[l])
+        myflag++;
+      }
+    }
+    if(myflag>=1)
+    {
+    count=0;
+    }
+    else
+    {
+      printf("%d occurs %d times\n",n,count);
+    count=0;
+    }
+    
+  }
+	return 0;
+}

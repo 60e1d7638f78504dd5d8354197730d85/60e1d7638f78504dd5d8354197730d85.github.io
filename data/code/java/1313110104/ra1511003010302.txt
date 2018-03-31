@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.lang.Math.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       	int n = sc.nextInt();
+       	if(n == 1){
+        	System.out.println(n);
+        }
+       else{
+       		int c= 0, i = 2;
+         	int f = 0;
+         	while(n > 1){
+               f = 0;
+            	while(n % i == 0){
+                	c++;// count the total prime factors
+                  	f++;// count the total repetitions
+                  	n = n/i;//im order to loop to terminate at a finite time
+                }
+              i++;
+              if(f > 1){
+              	break;
+              }
+            }
+         if(f > 1)
+         	System.out.println(0);
+         else
+           System.out.println((int)Math.pow(-1, c));
+       }	
+	}
+}

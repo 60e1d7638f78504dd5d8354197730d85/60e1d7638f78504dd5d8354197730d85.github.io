@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+int i,j=0,k=0,count=0;
+char str[100];
+char str1[20][20],key[20];  
+scanf("%[^\n]s",str);
+scanf("%s",key); 
+for(i=0;str[i]!='\0';i++)
+{
+  if(str[i]==' ')
+  {
+    str1[k][j]='\0';
+    j=0;
+    k++;
+  }
+  else
+  {
+   str1[k][j]=str[i];
+    j++;
+  }
+}
+ for(i=0;i<k+1;i++)
+ {
+ if(strcmp(str1[i],key)==0)
+  {
+   printf("%d\n",count);
+   count=count+strlen(str1[i]);
+  }
+   else
+   {
+   	count=count+strlen(str1[i]);
+     
+   }
+   count++;
+ }
+return 0;
+}

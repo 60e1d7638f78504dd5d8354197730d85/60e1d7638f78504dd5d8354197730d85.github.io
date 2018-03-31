@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		char a[11],b[11];int fl=0;
+		int i;scanf("%s",a);scanf("%s",b);
+		if(strlen(a)!=strlen(b))
+		{		
+				printf("No\n");
+				break;
+		}
+		for(i=0;i<strlen(a);i++)
+		{
+			if(((a[i]<97)||(a[i]>122))&&(a[i]!='?'))
+			{
+				printf("No\n");fl=1;
+				break;
+			}
+			if(((b[i]<97)||(b[i]>122))&&(b[i]!='?'))
+			{
+				printf("No\n");fl=1;
+				break;
+			}
+		}
+		if(fl==1)	break;
+		for(i=0;i<strlen(a);i++)
+		{
+			if((a[i]!=b[i])&&((a[i]!='?')&&(b[i]!='?')))
+			{
+				fl=1;break;
+			}
+		}	
+			if(fl==0)
+				printf("Yes\n");
+			else
+				printf("No\n");	
+			
+	}return 0;
+} 

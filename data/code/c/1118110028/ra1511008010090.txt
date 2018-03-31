@@ -1,0 +1,23 @@
+#include <stdio.h>
+ union details
+ {
+   int n;
+   char s;
+ };
+int main()
+{
+  union details s;
+    int dig, revNumber;
+    scanf("%d",&s.n);
+    revNumber=0;
+     
+    while(s.n>0)
+    {
+        dig=s.n%10;
+        revNumber=(revNumber*10)+dig;
+        s.n=s.n/10;
+    }
+     
+    printf("%d\n",revNumber);
+    return 0;
+}

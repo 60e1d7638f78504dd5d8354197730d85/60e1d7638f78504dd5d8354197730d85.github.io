@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,m,i,x,cmp,player;
+  cin>>n>>m;
+  int c[m];
+  for(i=0;i<=m;i++){
+    c[i]=0;
+  }
+  while(n--){
+    cin>>x;
+    c[x]++;
+    cmp=-1;player=-1;
+    for(i=1;i<=m;i++){
+      if(cmp==c[i]){if(player<i)player=i;}
+      else if(cmp<c[i]){player=i;cmp=c[i];}
+    }
+    cout<<player<<" "<<cmp<<endl;
+  }
+  
+	return 0;
+}

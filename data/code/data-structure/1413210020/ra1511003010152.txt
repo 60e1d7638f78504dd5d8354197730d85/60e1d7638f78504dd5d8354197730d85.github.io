@@ -1,0 +1,33 @@
+
+#include<stdio.h>
+ 
+int floorSearch(int arr[], int n, int x)
+{
+  int i;
+    if (x >= arr[n-1])
+        return n-1;
+ 
+    if (x < arr[0])
+        return -1;
+ 
+    for (i=1; i<n; i++)
+       if (arr[i] > x)
+           return (i-1);
+ 
+    return -1;
+}
+ 
+int main()
+{
+    int arr[10],x,n,i,index;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    scanf("%d",&x);
+    index = floorSearch(arr, n-1, x);
+    if (index == -1)
+        printf("Floor of %d doesn\\'t exist in array ", x);
+    else
+        printf("Floor of %d is %d.", x, arr[index]);
+    return 0;
+}

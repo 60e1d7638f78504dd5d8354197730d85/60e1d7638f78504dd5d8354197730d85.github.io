@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+struct Date {
+  int dd;
+  int mm;
+  int yy;
+ };
+
+int main()
+{
+   struct Date s;
+  scanf("%d%d%d", &s.dd,&s.mm,&s.yy);
+   if(s.yy>=0000 && s.yy<=2999)
+   {
+     if(s.mm>=1 && s.mm<=12)
+     {
+       if((s.dd>=1 && s.dd<=31) && (s.mm==1 || s.mm==3|| s.mm == 5 || s.mm==7|| s.mm==8|| s.mm==10 || s.mm==12))
+          
+       { 
+         if(s.mm==12 && s.dd==31)
+       { 
+           s.dd = 1; 
+           s.mm =1;
+           s.yy++;
+           printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+         }
+         else if(s.dd==31 && s.mm!=12) {
+           s.dd=1;
+           s.mm++;
+           printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+         }
+         else
+         { s.dd++;
+           printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+         }
+       } 
+         else if((s.dd>=1 && s.dd<=30) && (s.mm==4 || s.mm==6 || s.mm==9 || s.mm==11))
+         {
+           if(s.dd==30) {
+             s.dd=1;
+             s.mm++;
+             printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+           }
+           else {
+           s.dd++;
+             printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+         }
+        }else if((s.mm==2))
+        { 
+           if(s.yy%400==0 || (s.yy%4==0 && s.yy%100!=0))
+           { if(s.dd==29){
+                s.dd=1;
+                  s.mm++;
+                printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+                }else if(s.dd>=1&&s.dd<=28){
+                s.dd++;
+                printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+                }else{
+              printf("Invalid Day");
+           }
+           
+           }else
+           {
+           if(s.dd==28){
+             s.dd=1;
+             s.mm++;
+             printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+           }
+            else if(s.dd>=1&&s.dd<=27){
+             s.dd++;
+                printf("New Date=%d %d %d\n",s.dd,s.mm,s.yy);
+            }else{
+              printf("Invalid Day");
+            }
+           
+           }
+          }else
+               {
+                printf("Invalid Day");
+             }
+     }
+            else
+                { 
+                  printf("Invalid Month\n");
+                } 
+             }
+             else
+                {
+                  printf("Invalid Year\n");
+             }
+          return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int isPrime(int num)
+{
+  int i,status=1;
+  for(i=2; i<=num/2; i++)
+    if(num%i==0)
+      status=0;
+  return status;
+}
+int main()
+{
+  int n,arr[10],*p,i;
+  scanf("%d",&n);
+  for(i=0; i<n; i++)
+    scanf("%d",&arr[i]);
+  p=arr;
+  for(i=0; i<n; i++)
+   {
+     if(isPrime(*p))
+        printf("%d is a prime number\n",*p);
+     else
+        printf("%d is a composite number\n",*p);
+    p++;
+          }
+
+	return 0;
+}

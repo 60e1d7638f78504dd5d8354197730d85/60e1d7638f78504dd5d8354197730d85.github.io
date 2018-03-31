@@ -1,0 +1,23 @@
+n=int(input())
+arr=[]
+for i in range(n):
+    arr.append(int(input()))
+x=int(input())
+first=0
+last=n-1
+found=False
+while first<=last and not found:
+    mid=(first+last)//2
+    if(arr[mid]==x):
+        found=True
+        pos=mid
+        break
+    else:
+        if(x<arr[mid]):
+            last=mid-1
+        else:
+            first=mid+1
+if(found):
+    print(x, "found at location", pos+1)
+else:
+    print(x, "not found")

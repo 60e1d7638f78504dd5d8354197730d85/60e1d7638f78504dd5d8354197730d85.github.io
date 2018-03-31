@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+char coins[100000];  
+ 
+int main() {
+  int n,q, o,a,b, count,index;
+  scanf("%d %d", &n, &q);
+ 
+while(q--)
+  {
+    scanf("%d %d %d", &o, &a, &b);
+    if(o)
+    {
+      for (count = 0, index = a; index <= b; index++)
+        count += coins[index];
+      printf("%d\n", count);
+    }
+    else
+    {
+      for (index = a; index <= b; index++)
+        coins[index] = !coins[index];
+    }    
+  }
+  return 0;
+}

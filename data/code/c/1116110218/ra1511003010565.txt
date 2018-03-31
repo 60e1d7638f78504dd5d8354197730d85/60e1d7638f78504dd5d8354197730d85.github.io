@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int store,flag,t,tot[30],max=0,i,j,k,curr[30],occur[10005],start[10005],end[10005],mid[10005];
+    char s[10005];
+    scanf("%d",&t);
+    while(t--)
+    {
+        max=0;
+        scanf("%s",s);
+   int ff=strlen(s);
+        j=0,flag=0;
+        for(i=0;i<28;i++)
+        {
+            curr[i]=0;
+            tot[i]=0;
+        }
+        for(i=0;i<ff;i++)
+        {
+            if((s[i]=='#' && flag==0))
+            {
+                max=0;
+      
+                for(k=0;k<28;k++)
+                if(curr[k]>max)
+                max=curr[k];
+                mid[j]=max;
+                max=0;
+                for(k=0;k<28;k++)
+                {
+                    tot[k]+=curr[k];
+                    curr[k]=0;
+                    if(tot[k]>max)
+                    max=tot[k];
+                }
+                start[j]=max;
+      
+                j++;
+                flag=1;
+                occur[j-1]=1;
+                continue;
+            }
+            else if(s[i]=='#')
+            {
+                occur[j-1]++;
+            continue;
+            }
+            curr[s[i]-97]++;
+            flag=0;
+        }
+        store=j;
+//        printf("%d\n",j);
+        for(i=0;i<28;i++)
+        {
+            curr[i]=0;
+            tot[i]=0;
+        }
+        flag=0;
+        for(i=strlen(s)-1;i>=0;i--)
+        {
+            if((s[i]=='#' && flag==0))
+            {
+                max=0;
+                
+                for(k=0;k<28;k++)
+                if(curr[k]>max)
+                max=curr[k];
+                mid[j]=max;
+                max=0;
+                for(k=0;k<28;k++)
+                {
+                    tot[k]+=curr[k];
+                    curr[k]=0;
+                    if(tot[k]>max)
+                    max=tot[k];
+                }
+                end[j]=max;
+      
+                j--;
+                flag=1;
+        //        occur[j-1]++;
+                continue;
+            }
+            else if(s[i]=='#')
+            {
+    //            occur[j-1]++;
+            continue;
+            }
+            curr[s[i]-97]++;
+            flag=0;
+        }
+        int index;
+        max=0;
+ 
+       max=0;
+       int x;
+       j=store;
+
+       for(i=0;i<=j-3;i++)
+       {
+           x=0;
+           if(start[i]==0)
+           continue;
+           x+=start[i];
+           if(mid[i+1]==0)
+           continue;
+           if(occur[i+1]==1)
+           x+=mid[i+1];
+           else
+           continue;
+           if(mid[i+2]==0)
+           continue;
+//           if(occur[i+2]==1)
+           x+=mid[i+2];
+//           else
+ //          continue;
+           x+=end[i+3];
+           if(end[i+3]==0)
+           continue;
+           if(x>max)
+           max=x;
+       }
+       if(max>0)
+        printf("%d\n",max+3);
+    else
+        printf("%d\n",max);
+    }
+    return 0;
+} 

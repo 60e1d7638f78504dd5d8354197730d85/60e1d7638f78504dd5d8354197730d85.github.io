@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class base{
+protected:
+  int n1;
+  int n2;
+  public:
+  void getData(int a,int b){
+  n1=a;
+    n2=b;
+  }
+  virtual void disp(){}
+};
+
+
+class derived:base{
+public:
+  void getData(int a,int b){
+base::getData(a,b);
+}
+  
+  void disp(){
+  cout<<n1+n2;
+  }
+};
+int main()
+{
+derived d;
+  int n1,n2;
+  cin>>n1;
+  cin>>n2;
+  d.getData(n1,n2);
+  d.disp();
+	return 0;
+}

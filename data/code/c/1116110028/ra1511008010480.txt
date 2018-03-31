@@ -1,0 +1,45 @@
+//DKBoss
+#include <stdio.h>
+
+int getNext(char* ptr, int i) {
+	if(i==0) return 0;
+  	int j=0;
+  	while(*(ptr+j) != ' ') {
+    	if(*(ptr+j) == '\0') {
+        	return i+j;
+        }
+      	j++;
+    }
+  	return i+j+1;
+}
+
+int main()
+{
+  	char str[50];
+  	scanf("%[^\n]%*c", str);
+  	int i=0;
+  	char word[15];
+  	int flag = 0;
+  	scanf("%s", word);
+  	while(str[i] != '\0' && flag==0) {
+    	i = getNext(&str[i], i);
+      	if(str[i] == word[0]) {
+        	int j=0, k=i;
+          	while(str[k] == word[j]) {
+            	if(word[j+1] == '\0' && (str[k+1] == ' ' || str[k+1] == '\0')) {
+                	flag = 1;
+                  	break;
+                }
+              	k++;j++;
+            }
+        }
+      if(flag==0) i++;
+    }
+  	if(flag == 0) {
+    	printf("%s is not found\n", word);
+    }
+  	else {
+    	printf("%s is found at %d\n", word, i);
+    }
+	return 0;
+}

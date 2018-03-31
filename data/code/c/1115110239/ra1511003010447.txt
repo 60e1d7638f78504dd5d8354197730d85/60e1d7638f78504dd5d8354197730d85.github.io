@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int t,i,j,k,l,temp,min,IntMax=99999;
+  int colour[100][100],smoke[100][100];
+  
+  while(scanf("%d",&t)!=EOF){
+ // printf("%d",t);
+  	for(i=0;i<t;i++){
+    scanf("%d",&colour[i][i]);
+     // printf("%d",colour[i][i]);
+    }
+          for(l=2;l<=t;l++){
+          
+          for(i=0;i<t-l+1;i++){
+            
+            j=i+l-1;
+            min=IntMax;
+            for(k=i;k<=j-1;k++){
+            
+            temp=smoke[i][k]+smoke[k+1][j]+colour[i][k]*colour[k+1][j];
+             // printf("%d\n",temp);
+              if(temp<min){
+              
+                colour[i][j]=(colour[i][k]+colour[k+1][j])%100;
+                min=temp;
+                smoke[i][j]=min;
+              }
+            }
+          	}
+          }
+                  printf("%d\n",smoke[0][t-1]);
+  t++;
+          }
+	return 0;
+}

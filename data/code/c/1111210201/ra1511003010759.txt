@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  int n, i, j, strLen, p = 0;
+  char s[50], sug[100][50], fin[100][50];
+  
+  scanf("%s", s);
+  scanf("%d", &n);
+  
+  strLen = strlen(s);
+  
+  for(i = 0; i < n; i++)
+  {
+    scanf("%s", sug[i]);
+  }
+  
+  
+  for(i = 0; i < n; i++)
+  {
+    int swap = 0;
+    for(j = 0; j < n-i-1; j++)
+    {
+      if(strcmp(sug[j], sug[j+1]) > 0)
+      {
+        char temp[50];
+        strcpy(temp, sug[j]);
+        strcpy(sug[j], sug[j+1]);
+        strcpy(sug[j+1], temp);
+        
+        swap++;
+      }
+    }
+    
+    if(swap == 0)
+    {
+      break;
+    }
+  }
+  
+  for(i = 0; i < n; i++)
+  {
+    strncpy(fin[i], sug[i], strLen);
+    if(strcmp(fin[i], s) == 0)
+    {
+      strcpy(fin[p], sug[i]);
+      p++;
+    }
+  }
+  
+  if(p == 0)
+  {
+    printf("%s\n", s);
+  }
+  else
+  {
+    printf("%s\n", fin[0]);
+  }
+  
+	return 0;
+}

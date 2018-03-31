@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<limits.h>
+ 
+struct mix
+{	int color, smoke;
+};
+ 
+int minSmoke(struct mix* mixture, int n)
+{	int l, i, j, k, smoke, color;
+	for(l=2 ; l<=n ; l++)
+		for(i=0 ; i<=n-l ; i++)
+		{	j = i+l-1;
+			(*(mixture + n*i + j)).smoke = INT_MAX;
+			for(k=i ; k<j ; k++)
+			{	smoke = (*(mixture + n*i + k)).color * (*(mixture + n*(k+1) + j)).color + (*(mixture + n*i + k)).smoke + (*(mixture + n*(k+1) + j)).smoke;
+				color = ((*(mixture + n*i + k)).color + (*(mixture + n*(k+1) + j)).color) % 100;
+				if((*(mixture + n*i + j)).smoke > smoke)
+				{	(*(mixture + n*i + j)).smoke = smoke;
+					(*(mixture + n*i + j)).color = color;
+					//printf("\n");
+				}
+			}
+		}
+	return (*(mixture + n-1)).smoke;
+}
+ 
+int main()
+{	int n, i;
+	while(scanf("%d", &n) != EOF)
+	{	struct mix mixture[n][n];
+		for(i=0 ; i<n ; i++)
+		{	scanf("%d", &(mixture[i][i].color));
+			mixture[i][i].smoke = 0;
+		}
+		printf("%d\n", minSmoke(&mixture[0][0], n));
+	}
+	return 0;
+} 

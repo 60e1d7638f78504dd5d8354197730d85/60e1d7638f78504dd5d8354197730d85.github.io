@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+double mean(int* arr, int val, int tot){
+  static double meane = 0;
+  if(val == -1)
+    return (double) meane/tot;
+  meane+=arr[val];
+  mean(arr,val-1,tot);  
+}
+int main()
+{
+  int num;
+  scanf("%d",&num);
+  int* ptr = malloc(num*sizeof(int));
+  int i;
+  for(i=0;i<num;i++){
+    scanf("%d",&ptr[i]);
+  }
+  printf("%0.2f",mean(ptr,num-1,num));
+  
+	return 0;
+}

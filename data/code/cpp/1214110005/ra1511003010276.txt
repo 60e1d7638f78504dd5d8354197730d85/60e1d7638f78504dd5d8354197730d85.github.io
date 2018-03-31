@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class phone{
+  char std[10],ex[10],ph[10];
+  public:
+  void fn(char str[]){
+    int i,j=1;
+    std[0]='+';std[1]='9';std[2]='1';
+    for(j=1;str[j]!='-';j++)
+      std[j+2]=str[j];
+    std[j+2]='\0';
+    i=j+1;
+    for(j=i;str[j]!='-';j++)
+      ex[j-i]=str[j];
+    ex[j-i]='\0';
+    i=j+1;
+    for(j=i;str[j]!='\0';j++)
+      ph[j-i]=str[j];
+    ph[j-i]='\0';
+    cout<<"Output = "<<std<<"-"<<ex<<"-"<<ph;
+  }
+};
+int main()
+{
+char s[20];
+  cin>>s;
+  phone P;
+  P.fn(s);
+	return 0;
+}

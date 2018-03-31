@@ -1,0 +1,51 @@
+#include <stdio.h>
+ 
+int main(void)
+{
+	long long int t,i,n,days,j,k;
+	scanf("%lld",&t);
+	for(i=0;i<t;i++)
+	{
+	    scanf("%lld",&n);
+	    days=0;
+	    j=1900;
+	    while(j!=n)
+	    {
+	        if(j%400==0)
+	        days=days+2;
+	        
+	        else if(j%4==0&&j%100!=0)
+	        days=days+2;
+	        
+	        else
+	        days++;
+	        
+	        j++;
+	    }
+	    
+	    k=days%7;
+	    
+	    if(k==0)
+        printf("monday\n");
+        
+        else if(k==1)
+        printf("tuesday\n");
+        
+        else if(k==2)
+        printf("wednesday\n");
+        
+        else if(k==3)
+        printf("thursday\n");
+        
+        else if(k==4)
+        printf("friday\n");
+        
+        else if(k==5)
+        printf("saturday\n");
+        
+        else if(k==6)
+        printf("sunday\n");
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,36 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		int lcm=1,gcd=1,small,big;
+      	Scanner sc=new Scanner(System.in);
+      	int a1=sc.nextInt();
+      	int a2=sc.nextInt();
+      	big=(a1>a2)?a1:a2;
+      	small =(a1<a2)?a1:a2;
+        while(true)
+        {
+           if(big%a1==0 && big%a2==0)
+           {
+             lcm=big;
+             break;
+           }
+          else
+          {
+            ++big;
+          }
+        }
+       gcd=a2;
+       while(a1%a2 !=0)
+       {
+         	gcd= a1 % a2;
+         	a1= a2;
+         	a2 = gcd;
+       }
+      System.out.println(gcd);
+      System.out.println(lcm);
+
+      	
+	}
+}

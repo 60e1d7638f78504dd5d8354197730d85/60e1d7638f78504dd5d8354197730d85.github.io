@@ -1,0 +1,58 @@
+#include<stdio.h>
+#define MOD 1000000007;
+long long int a[100100];
+long long int b[100100];
+long long int dp[1010][1010];
+int main()
+{
+    long long int n,m,c,x,y,i,max=0,count=0,j;
+    scanf("%lld%lld%lld",&n,&m,&c);
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld",&x);
+        a[x]++;
+        if(max<x)
+            max=x;
+    }
+    for(i=0;i<m;i++)
+    {
+        scanf("%lld",&y);
+        b[y]++;
+        if(max<y)
+            max=y;
+    }
+    for(i=1;i<=max;i++)
+    {
+        a[i]=(a[i]*b[i])%MOD;
+    }
+    for(i=1;i<=max;i++)
+    {
+        if(a[i]>0)
+        {
+            b[count]=a[i];
+            count++;
+        }
+    }
+    for(i=0;i<=c;i++)
+    {
+        for(j=0;j<=count;j++)
+        {
+            if(i==0||j==0)
+            {
+                dp[i][j]=0;
+            }
+            else if(i==1&&j>0)
+            {
+                dp[i][j]=(dp[i][j-1]+b[j-1])%MOD;
+            }
+            else
+            {
+                dp[i][j]=dp[i][j-1]%MOD;
+                dp[i][j]=dp[i][j]+(dp[i-1][j-1]*b[j-1])%MOD;
+            }
+        }
+    }
+    for(i=2;i<=c+1;i++)
+        printf("%lld ",dp[i][count]);
+  return 0;
+}

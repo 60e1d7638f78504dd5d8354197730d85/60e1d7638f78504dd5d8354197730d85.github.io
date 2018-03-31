@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+
+int main() {
+    int n,i,j;
+    scanf("%d",&n);
+    int a[n + n][n + n];
+    int lo = n, hi = n, k = 1;
+    while (k <= n) {
+        for ( i = 1; i < n + n; i++)
+            a[i][lo] = a[lo][i] = a[hi][i] = a[i][hi] = k;
+        lo--; hi++;
+        k++;
+    }
+    for ( i = 1; i < n + n; i++) {
+        for ( j = 1; j < n + n; j++) {
+           printf("%d ",a[i][j]);
+        }
+        printf("\n");
+    }
+  return 0;
+}

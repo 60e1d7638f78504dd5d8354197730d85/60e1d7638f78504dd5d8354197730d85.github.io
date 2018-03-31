@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+int hcf( int, int);
+int main()
+{   int num1,num2;
+    cin>>num1>>num2;
+    int lcm,prod,hcf_value;
+    prod = (num1 * num2);
+    hcf_value = hcf(num1,num2);
+    lcm  = prod / hcf_value;
+    cout<<"The lcm is "<<lcm;
+	return 0;
+}
+int hcf( int a , int b)
+{
+  if( a == b)
+     return a;
+  if ( a > b)
+    return hcf(a-b,b);
+  return hcf(a,b-a);
+}

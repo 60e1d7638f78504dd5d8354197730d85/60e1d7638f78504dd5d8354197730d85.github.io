@@ -1,0 +1,39 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int main()
+{
+int t,i,s;
+  string str;
+  cin>>t;
+  s=t+1;
+  while(s--){
+  getline(cin,str);
+    if(s==t)
+      continue;
+   // cout<<"str "<<str;
+    vector<string> a;
+    size_t pos=0,found;
+    while((found = str.find_first_of(' ',pos))!=-1){
+    a.push_back(str.substr(pos,found-pos));
+      pos=found+1;
+    }
+    a.push_back(str.substr(pos));
+                
+                int n=a.size();
+    	a[n-1][0]=toupper(a[n-1][0]);
+    int l=a[n-1].length();
+    for(i=1;i<l;i++){
+    a[n-1][i]=tolower(a[n-1][i]);
+    }
+                for(i=0;i<n-1;i++){
+               // a[n-1][0]=toupper(a[i][0]);
+                
+                  char c=toupper(a[i][0]);
+                  cout<<c<<". ";
+                }
+    cout<<a[n-1];
+    cout<<"\n";
+  }
+	return 0;
+}

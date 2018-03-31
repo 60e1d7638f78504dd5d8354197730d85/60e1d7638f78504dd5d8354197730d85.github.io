@@ -1,0 +1,51 @@
+#include<stdio.h>
+
+int main() {
+    int T, N, A[1005], i, j, k, z, l, m, p, q, r, s, n;
+    scanf("%d", &N);
+    for (j = 0; j <= N - 1; j++) {
+        scanf("%d", &A[j]);
+    }
+    z = 0;
+    r = 0;
+    p = 0;
+    s = 1;
+    q = 2;
+    for (k = 0; k <= N - 2; k++) {
+        for (l = 0; l <= N - 2 - z; l++) {
+            if (A[l] < A[l + 1]) {
+                m = A[l];
+                A[l] = A[l + 1];
+                A[l + 1] = m;
+            }
+        }
+        z++;
+    }
+    for (n = 0; n <= N - 4; n++) {
+        if (A[n] == A[n + 1]) {
+            p = n;
+            r = n + 2;
+            break;
+        }
+        else { continue; }
+    }
+    if (r == p + 2) {
+        for (n = r; n <= N - 2; n++) {
+            if (A[n] == A[n + 1]) {
+                q = n;
+                s = n;
+                break;
+            }
+            else { continue; }
+        }
+    }
+    if ((r == p + 2) && (s == q)) {
+        printf("%d\n", A[p] * A[q]);
+    } else {
+        printf("-1\n");
+    }
+    for (l = 0; l <= N - 1; l++) {
+        A[l] = '\0';
+    }
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  int i,j,lowestVal=9999,factor=0;
+  	for(i=1;i<n;i++){
+      if(n%i!=0)
+        continue;
+      int b=n/i;
+      if(i>b)
+        break;
+      if(b-i < lowestVal) {
+        lowestVal = b-i;
+        factor=i;
+      }
+    }
+  	printf("%d %d",factor,n/factor);
+	return 0;
+}

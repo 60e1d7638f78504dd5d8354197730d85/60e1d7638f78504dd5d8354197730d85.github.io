@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Books {
+    char title[100];
+    char author[100];
+    char subject[100];
+    int book_id;
+};
+
+int main() {
+    int n, i;
+    scanf("%d *[^\n]", &n);
+    char ch[50];
+    for (i = 0; i < n; i++) {
+        fgets(ch, 100, stdin);
+        printf("Book %d title=%s", i + 1, ch);
+        fgets(ch, 100, stdin);
+        printf("Book %d author=%s", i + 1, ch);
+        fgets(ch, 100, stdin);
+        printf("Book %d subject=%s", i + 1, ch);
+        int id;
+        scanf("%d *[^\n]", &id);
+        printf("Book %d bookid=%d\n", i + 1, id);
+    }
+    return 0;
+}

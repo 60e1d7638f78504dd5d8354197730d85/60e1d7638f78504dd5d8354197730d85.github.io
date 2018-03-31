@@ -1,0 +1,82 @@
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+ 
+ 
+public class TestClass {
+ 
+public static void main(String[] args) throws IOException {
+		
+		TestClass solver = new TestClass();
+		solver.init();
+		solver.solve();
+	}
+	
+	private void init() {
+		
+	}
+ 
+	private void solve() throws IOException {
+		 
+		Reader in = new Reader(System.in);
+		PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
+		
+		for (int T = in.nextInt(); T > 0; T--) {
+			int N = in.nextInt();
+			int sumIds = 0;
+			int sumChildren = 0;
+			for (int i = 0; i < N; i++) {
+				sumIds += in.nextInt();
+				sumChildren += in.nextInt();
+			}
+			out.println(sumIds - sumChildren);
+		}
+		
+		out.flush();
+		out.close();
+	}
+	
+	private String reverse(String com) {
+		if ("Right".equals(com)) return "Left";
+		else return "Right";
+	}
+ 
+	private static class Reader {
+	    BufferedReader reader;
+	    StringTokenizer tokenizer;
+ 
+	    /** call this method to initialize reader for InputStream */
+	    Reader(InputStream input) {
+	        reader = new BufferedReader(
+	                     new InputStreamReader(input) );
+	        tokenizer = new StringTokenizer("");
+	    }
+ 
+	    /** get next word */
+	    public String next() throws IOException {
+	        while ( ! tokenizer.hasMoreTokens() ) {
+	            //TODO add check for eof if necessary
+	            tokenizer = new StringTokenizer(
+	                   reader.readLine() );
+	        }
+	        return tokenizer.nextToken();
+	    }
+ 
+	    public int nextInt() throws IOException {
+	        return Integer.parseInt( next() );
+	    }
+	    
+	    public double nextDouble() throws IOException {
+	        return Double.parseDouble( next() );
+	    }
+	    
+	    public long nextLong() throws IOException {
+	    	return Long.parseLong(next());
+	    }
+	}
+ 
+}

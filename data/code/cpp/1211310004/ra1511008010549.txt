@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+ll gcd(ll a,ll b)
+{
+    if(b==0)
+        return a;
+    return gcd(b,a%b);
+}
+ll pour(ll fromC,ll toC,ll d)
+{
+    ll from=fromC;
+    ll to=0;
+ 
+    ll step=1;
+ 
+    while(from!=d && to!=d)
+    {
+        ll temp=min(from,toC-to);
+ 
+        to+=temp;
+        from-=temp;
+ 
+        step++;
+ 
+        if(from==d || to==d)
+            break;
+ 
+        if(from==0)
+        {
+            from=fromC;
+            step++;
+        }
+        if(to==toC)
+        {
+            to=0;
+            step++;
+        }
+    }
+    return step;
+ 
+}
+ll minSteps(ll m,ll n,ll d)
+{
+    if(m>n)
+        swap(m,n);
+    if(d>n)
+        return -1;
+ 
+    if(m==d || n==d)
+        return 1;
+ 
+    if(d%gcd(n,m)==0)
+        return min(pour(m,n,d),pour(n,m,d));
+ 
+    else
+        return -1;
+ 
+}
+int main()
+{
+    ll t,a,b,c;
+    cin>>t;
+    while(t--)
+    {
+        cin>>a>>b>>c;
+        ll res=minSteps(a,b,c);
+        if(res == INT_MAX)
+            cout<<-1<<endl;
+        else
+            cout<<res<<endl;
+ 
+    }
+    return 0;
+} 

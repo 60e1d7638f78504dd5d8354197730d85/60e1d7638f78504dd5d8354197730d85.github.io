@@ -1,0 +1,41 @@
+#include<stdio.h>
+ 
+main(){
+	int T, top, i, pref(char x);
+	char exp[10000], c, st[10000];
+	scanf("%d", &T);
+	while(T--){
+		top = -1;
+		scanf("%s", exp);
+		for(i = 0; exp[i] != '\0'; i++){
+			c = exp[i];
+			if(c == '(')
+				st[++top] = c;
+			else if(c == ')'){
+				while(st[top] != '(')
+					printf("%c", st[top--]);
+				top--;
+			}
+			else if(c == '^' || c == '/' || c == '*' || c == '-' || c == '+'){
+				while(top != -1 && (pref(st[top]) >= pref(c)))
+					printf("%c", st[top--]);
+				st[++top] = c;
+			}
+			else
+				printf("%c", c);
+		}
+		while(top != -1)
+			printf("%c", st[top--]);
+		printf("\n");
+	}
+}
+int pref(char x){
+	if(x == '+' || x == '-')
+		return 1;
+	else if(x == '*' || x == '/')
+		return 2;
+	else if(x == '^')
+		return 3;
+	else 
+		return 0;
+} 

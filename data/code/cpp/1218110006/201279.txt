@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class Shape
+{
+  public:
+  int len,bre,hei;
+  void get()
+  {
+    cin>>len;
+    cin>>bre;
+    cin>>hei;
+  }
+};
+class Rectangle:public Shape
+{
+public:
+int rect;
+void get()
+{
+Shape::get();
+rect=len*bre;
+cout<<rect<<endl;
+}
+};
+
+class Triangle:public Rectangle
+{
+public:
+int tri;
+void get()
+{
+Rectangle::get();
+tri=(0.5)*(len*bre);
+cout<<tri;
+}
+};
+int main()
+{
+Triangle t;
+  t.get();
+	return 0;
+}

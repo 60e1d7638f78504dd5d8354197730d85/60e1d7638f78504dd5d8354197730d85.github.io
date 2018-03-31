@@ -1,0 +1,98 @@
+#include<stdio.h>
+#define MAX(a,b) ((a)>(b)?a:b)
+    long long selling [1001][1001];
+    long long buying [1001][1001];
+    double fac [1001][1001];
+    double curBuy [1001][1001];
+ 
+int main()
+{
+    int n,m,i,j;
+    long long d;
+    double cmp1,cmp2,cmp3;
+    double max=0;
+    scanf("%d%d%lli",&n,&m,&d);
+ 
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            scanf("%lli",&selling[i][j]);
+            scanf("%lli",&buying[i][j]);
+        }
+        curBuy[i][m-1]=buying[i][m-1];
+        fac[i][m-1]=1;
+    }
+ 
+    i=m-2;
+    j=0;
+    while(i>=0)
+    {
+        j=0;
+        while (j<n)
+        {
+            cmp1=MAX(fac[j][i+1],(((double)(curBuy[j][i+1]))/(double)(selling[j][i])));
+            if(j<n-1)
+            {
+                cmp2=MAX(cmp1,fac[j+1][i+1]);
+                if (j>0)
+                    cmp3=MAX(cmp2,fac[j-1][i+1]);
+                else
+                    cmp3=cmp2;
+            }
+            else if (j>0)
+            {
+                cmp3=MAX(cmp1,fac[j-1][i+1]);
+            }
+            else
+            {
+                cmp3=cmp1;
+            }
+            fac[j][i]=cmp3;
+ 
+    
+            cmp1=MAX(curBuy[j][i+1],(((double)(fac[j][i+1]))*(double)(buying[j][i])));
+            if(j<n-1)
+            {
+                cmp2=MAX(cmp1,curBuy[j+1][i+1]);
+                if (j>0)
+                    cmp3=MAX(cmp2,curBuy[j-1][i+1]);
+                else
+                    cmp3=cmp2;
+            }
+            else if (j>0)
+            {
+                cmp3=MAX(cmp1,curBuy[j-1][i+1]);
+            }
+            else
+            {
+                cmp3=cmp1;
+            }
+            curBuy[j][i]=cmp3;
+ 
+            if (fac[j][i]*d>1000000000000000000)
+            {
+                
+                break;
+            }
+            j++;
+        }
+        i--;
+    }
+ 
+        for (i=0;i<n;i++)
+        {
+           
+            max=MAX(fac[i][0],max);
+        }
+ 
+        max=max*d;
+ 
+        if (max>=1000000000000000000)
+            printf("Quintillionnaire\n");
+        else
+            printf("%lf\n",max);
+  return 0;
+         
+}
+ 

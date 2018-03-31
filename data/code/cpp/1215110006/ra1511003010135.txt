@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+int acc,bal,dp,wd,updp,upwd;string name;
+class account
+{public:
+ void deposit()
+ {cout<<"DEPOSIT\n";
+  cout<<"Balance="<<bal<<endl;
+  cout<<"Deposited="<<dp<<endl;
+  updp=bal+dp;
+  cout<<"Balance="<<updp<<endl; 
+ }
+void withdraw()
+{cout<<"WITHDRAW\n";
+ cout<<"Balance="<<updp<<endl;
+ cout<<"Withdraw="<<wd<<endl;
+ if(wd>updp)
+ {cout<<"Insufficient balance\n";}
+ else
+ {upwd=updp-wd;
+ cout<<"Balance="<<upwd<<endl;
+ }
+}
+ void accdetails()
+ {
+ cout<<"ACCOUNT DETAILS\n";
+   cout<<"Account Holders Name:"<<name<<endl;
+     cout<<"Account Number:"<<acc<<endl;
+   if(wd>updp){  
+   cout<<"Current Balance:"<<updp;}
+   else
+   {cout<<"Current Balance:"<<upwd;}
+ }
+
+}obj;
+int main()
+{
+  cin>>acc>>name>>bal>>dp>>wd;
+  obj.deposit();
+  obj.withdraw();
+  obj.accdetails();
+
+	return 0;
+}

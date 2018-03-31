@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <malloc.h>
+ 
+int main()
+{
+    int i, n, sum = 0,x,y;
+    int *a;
+    float avg;
+ scanf("%d %d",&x,&y);
+  if(x>y)
+  {
+    printf("Invalid Input");
+   return 0;   
+  }
+    n=(y-x);
+    a = (int *) malloc(n * sizeof(int));
+   
+    for (i = 1; i <= n; i++)
+    {
+        *(a+i)=x+i;
+    }
+   
+    for (i = 1; i <= n; i++)
+    {
+        sum = sum + *(a + i);
+    }
+    printf("%d\n", sum);
+  avg=(float)sum/(float)n;
+  printf("%.2f",avg);
+  return 0;
+}

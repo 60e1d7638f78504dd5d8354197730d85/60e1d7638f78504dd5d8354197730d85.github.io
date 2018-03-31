@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<ctype.h>
+int main()
+{
+  char n[20];
+  scanf("%s",n);
+  int k=0;
+  for(k=0;k<strlen(n);k++){
+  	n[k]=tolower(n[k]);
+  }
+  
+  char ch[20];
+  int i=0;
+  int j=0;
+  for(i=strlen(n)-1;i>=0;i--){
+  ch[j]=n[i];
+    j++;
+  }
+  int count=0;
+  for(k=0;k<strlen(n);k++){
+  	if(ch[k]==n[k])
+      count++;
+  }
+  if(count==strlen(n)){
+  printf("Palindrome\n");
+  }
+  else{
+  printf("Not palindrome\n");
+  }
+	return 0;
+}

@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<string.h>
+int mod =1000000007;
+unsigned long long power(unsigned long long a,int exp)
+{
+	if(exp==1)
+		return a%mod;
+	if(exp==2)
+		return (a*a)%mod;
+	if(exp%2==0)
+	{
+		unsigned long long p=power(a,exp/2);
+		return (p%mod*p%mod)%mod;
+	}
+	else
+		return (a%mod*((power(a,exp-1)%mod))%mod);
+}
+int main()
+{       
+	int cases,k;
+	scanf("%d",&cases);
+	for(k=0;k<cases;k++)
+	{	
+		char string[600];
+		int array[60]={0};
+		scanf("%s",string);
+        //	printf("%s",string);
+		int n=0;
+		unsigned long long up=1;
+		unsigned long long below=1;
+		while(string[n]!='\0')
+		{	
+			array[string[n]-65]++;
+			n++;
+		}
+		n=strlen(string);
+		while(n > 0)
+		{
+			up=((up%mod)*(n%mod))%mod;
+			n--;
+		}
+		n=0;
+		while(n < 60)
+		{
+			if(array[n]>1)
+			{	
+				int temp=array[n];
+		//		printf("%d %d\n",n,array[n]);
+				while(temp>0)
+				{	
+					below=((below%mod)*(temp%mod))%mod;
+					temp--;
+				}
+			}
+				n++;
+		}
+		int exp=1000000005;
+		unsigned long long temp2=power(below,exp);
+	//	printf("Up is %lld\n",up);
+	//	printf("Below is %lld\n",below);
+	//	printf("Temp is %llu\n",temp2);
+	//	printf("Temp is %llu\n",temp2%mod);
+		unsigned long long ans=((up%mod*temp2%mod)%mod);
+	//	printf("Ans is %lld\n",ans);
+		if(k==cases-1)
+			printf("%llu",ans);
+		else
+			printf("%llu\n",ans);
+        }
+	return 0;
+}

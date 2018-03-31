@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+struct Date{
+  int date,month,year;
+};
+
+int main()
+{
+  struct Date D;int f = 0;
+  scanf("%d %d %d",&D.date,&D.month,&D.year);
+  if(D.month>12){printf("Invalid Month");f=1;}
+  else
+    switch(D.month){
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        if(D.date>31){printf("Invalid Day");
+        f=1;}
+        break;
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        if(D.date>30){printf("Invalid Day");
+        f=1;}
+        break;
+      case 2:
+        if(D.date>28){printf("Invalid Day");
+        f=1;}
+    }
+  if(D.year<0000 || D.year>2999){printf("Invalid Year");f=1;}
+  if(f==0)
+    printf("New Date=%d %d %d",D.date+1,D.month,D.year);
+  return 0;
+}

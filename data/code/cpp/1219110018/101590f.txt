@@ -1,0 +1,42 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+struct String
+{
+	String(string s)
+	{
+		str = s;
+	}
+
+	String& operator+=(const String& rhs) 
+	{
+	   str += rhs.str;
+	   return *this;
+  	}
+
+	const String operator+(const String& rhs) const
+	{
+		String sum = *this;
+		return sum += rhs;
+  	}
+
+	string str;
+};
+
+
+int main()
+{
+string r1,r2;
+  cin>> r1;
+  cin>>r2;
+	String s1(r1);
+	String s2("+");
+	String s3(r2);
+
+	s1 += s2;
+	s1 += s3;
+
+	cout << s1.str;
+
+	return 0;
+}

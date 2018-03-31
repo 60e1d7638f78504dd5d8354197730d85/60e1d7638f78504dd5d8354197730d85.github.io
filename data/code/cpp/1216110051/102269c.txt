@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int t,t1,a[100],k,x,i,j,l,temp,y=10;
+  cin>>t;
+  for(i=0;i<t;i++)
+  {
+    cin>>a[i];
+  }
+  x=i;
+  cin>>t1;
+  for(j=i;j<x+t1;j++)
+  {
+    cin>>a[j];
+  }
+  for(k=0;k<j;k++)
+  {
+    for(l=k+1;l<j;l++)
+    {
+    if(a[k]>a[l])
+    {
+      temp=a[l];
+      a[l]=a[k];
+      a[k]=temp;
+    }
+    }
+  }
+  for(k=0;k<j;k++)
+  {
+    for(l=k+1;l<j;l++)
+    {
+      if(a[k]==a[l])
+      {
+        y=l;
+        //cout<<y;
+        break;
+      }
+    }
+  }
+  cout<<"The Merged Array in Ascending Order"<<endl;
+  for(k=0;k<j;k++)
+  {
+    if(k!=y)
+    {
+    cout<<a[k]<<" ";
+    }
+  }
+return 0;
+}

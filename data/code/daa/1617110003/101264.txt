@@ -1,0 +1,54 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int fun(pair<int,int> a, pair<int,int> b)
+{
+    if(a.second==b.second)
+    {
+        if(a.first<b.first)
+        return 0;
+        return 1;
+    }
+    if(a.second>b.second)
+    return 1;
+    return 0;
+}
+ 
+int main()
+{
+    int n,m,k,x,y;
+    scanf("%d %d %d",&n,&m,&k);
+    int val[n+1];
+    vector<pair<int,int> > adj[n+1];
+    for(int i=1;i<=n;++i)
+    scanf("%d",&val[i]);
+    for(int i=0;i<m;++i)
+    {
+        scanf("%d %d",&x,&y);
+        adj[x].push_back(make_pair(y,val[y]));
+        adj[y].push_back(make_pair(x,val[x]));
+    }
+    for(int i=1;i<=n;i++)
+    {
+       if(adj[i].size()<k)
+        cout<<"-1"<<endl;
+        else
+        {
+            sort(adj[i].begin(),adj[i].end(),fun);
+            int j=1;
+            for (auto it = adj[i].begin(); it!=adj[i].end(); it++)
+            {
+                if(j!=k)
+                {
+                    ++j;
+                    continue;
+                }
+                int v = it->first;
+                cout<<v<<endl;
+                break;
+            }
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,52 @@
+#include<stdio.h>
+int main()
+{
+int t;
+scanf("%d",&t);
+	while(t--)
+	{
+		int n,i,x,flag=0,j=0,ans=1;
+	     int a[1001];
+		for(i=0;i<1001;i++)
+            {
+            	a[i]=0;
+			}
+ 		scanf("%d",&n);
+		  for(i=0;i<n;i++)
+		       {
+		       	scanf("%d",&x);
+		       	  a[x]++;
+			   }
+		 for(i=1000;i>=1;i--)
+		    {
+		    	if(a[i]>3 && ans==1)
+		    	{
+		    		ans=i*i;
+		    		flag=1;
+		    		break;
+				}
+			else if(a[i]>1&&j!=2)
+				 {
+				 	ans=ans*i;
+				 	j++;
+				 }
+			if(j==2)
+			  {
+			  	flag=1;
+			  	break;
+				   }
+		    }
+		      if(flag==1)
+			    {
+			    	printf("%d\n",ans);
+ 
+								}
+			 else
+			   {
+			   	 printf("-1\n");
+										 }
+	    }
+ 
+ 
+return 0;
+}

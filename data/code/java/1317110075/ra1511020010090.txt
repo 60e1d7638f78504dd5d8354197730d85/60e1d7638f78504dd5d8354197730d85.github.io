@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+       //Scanner s = new Scanner(System.in);
+       //String a = s.next();
+       try{
+       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String a=br.readLine();
+        String sub="cat";
+        int ind,count=0;
+        for(int i=0; i+sub.length()<=a.length(); i++)
+        {
+            ind=a.indexOf(sub,i);
+            if(ind>=0)
+            {
+                count++;
+                i=ind;
+                ind=-1;
+            }
+        }
+        //System.out.println("cat:"+count);
+        String sub1="dog";
+        int ind1,count1=0;
+        for(int i=0; i+sub1.length()<=a.length(); i++)
+        {
+            ind1=a.indexOf(sub1,i);
+            if(ind1>=0)
+            {
+                count1++;
+                i=ind1;
+                ind1=-1;
+            }
+        }
+         //System.out.println("dog:"+count1);
+         if(count==count1)
+           System.out.print("true");
+         else
+           System.out.print("false");
+       }
+       catch(Exception e){
+       System.out.print(""+e);
+       }
+	}
+}

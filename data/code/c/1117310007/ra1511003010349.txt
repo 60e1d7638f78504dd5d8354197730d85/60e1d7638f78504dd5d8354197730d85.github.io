@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+int gcd(int a, int b)
+{
+// base case
+if (b == 0)
+return a;
+// a is greater
+if (a > b)
+return gcd(b, a%b);
+return gcd(a, b%a);
+}
+int main()
+{
+int t,n,m;
+scanf("%d",&t);
+while(t--)
+{
+	scanf("%d %d",&n,&m);
+	if(m==0&&n!=1)
+	printf("No 1\n");
+	else if(m==0&&n==1)
+	printf("Yes\n");
+else	if(gcd(n,m)==1)
+	printf("Yes\n");
+	else printf("No %d\n",(n/gcd(m,n)));
+	
+}
+return 0;
+} 

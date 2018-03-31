@@ -1,0 +1,32 @@
+#include <stdio.h>
+long long int fac(long long int n, long long int k)
+{
+ 
+  
+    double  ans=1;
+    double  c,i;
+    if(k>n-k)
+    c=n-k;
+    else
+    c=k;
+    for(i=1;i<=c;i++)
+    {
+        ans=ans*n;
+        ans=ans/i;
+        n--;
+    }
+    return (long long int)ans;
+}
+int main(void) {
+	int t, i;
+	
+	long long int ans,n,k;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+	    scanf("%lld%lld",&n,&k);
+	    ans=fac(n-1,k-1);
+	    printf("%lld\n",ans);
+	}
+	return 0;
+} 

@@ -1,0 +1,70 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t;
+    int s,n,m,k;
+    int i;
+ 
+    double temp1, temp2;
+ 
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d%d%d%d",&s,&n,&m,&k);
+ 
+        if(s==n)
+            printf("1.0000000\n");
+        else if(n <= k)
+            printf("0.0000000\n");
+        else
+        {
+            s--;
+            n--;
+            m--;
+ 
+            temp1= 1;
+ 
+            if(n-k > s-m)
+                k = n-s+m;
+ 
+            for(i=0;i<k;i++)
+            {
+                temp1 = temp1 *(m-i)/((float)(i+1));
+            }
+           
+                temp2 = 1;
+                for(i=0;i<n-k;i++)
+                {
+                    temp2 = temp2 * (s-m-i)/((float)(i+1));
+                }
+ 
+ 
+ 
+                double  answer =0;
+ 
+                for(i=k; ((i<=m) && (n-i >= 0));i++)
+                {
+ 
+                    answer += temp1 * temp2;
+ 
+                    temp1  = temp1*(m-i)/((float)(i+1));
+                    temp2  = temp2*(n-i)/((float)(s-m-n+i+1));
+                }
+                if(answer  > 0)
+                {
+                    if(n > s-n)
+                        n= s-n;
+                    temp1=1;
+ 
+                    for(i=0; i<n;i++)
+                        temp1 *= (s-i)/((float)(i+1));
+ 
+                    answer = answer/temp1;
+                }
+ 
+                printf("%.7f\n",answer);
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+#define maxn 120
+struct node
+{
+    char address[maxn];
+}a[maxn];
+int flag[maxn]={0};
+int main()
+{
+    char tar[maxn];
+   scanf("%s",tar);
+    int n,i,j,p;
+    scanf("%d",&n);
+    int len;
+  len=strlen(tar);
+        for( i=0;i<n;i++) 
+          scanf("%s",a[i].address);
+    for( i=0;i<n;i++)
+        for( j=0,p=0;j<len;j++,p++)
+        {
+            if(tar[j]!=a[i].address[p]) 
+              flag[i]=1;
+        }
+    int idx;
+    int check=0;
+    for(i=0;i<n;i++)
+        if(flag[i]!=1)
+        {
+            idx=i;
+            check=1;
+            break;
+        }
+    for(j=idx+1;j<n;j++) 
+      if(flag[j]==0 && strcmp(a[idx].address,a[j].address)>0)
+        idx=j;
+    if(check==0) 
+      printf("%s",tar);
+    else 
+      printf("%s",a[idx].address);
+    return 0;
+}

@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int main() {
+    int n, q, x, min, max, i, ar[100000];
+    scanf("%d %d", &n, &q);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &ar[i]);
+        if (i == 0) {
+            min = ar[i];
+            max = ar[i];
+        }
+        else {
+            if (ar[i] < min)
+                min = ar[i];
+            if (ar[i] > max)
+                max = ar[i];
+        }
+    }
+    while (q--) {
+        scanf("%d", &x);
+        if (min <= x && max >= x)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+    return 0;
+}

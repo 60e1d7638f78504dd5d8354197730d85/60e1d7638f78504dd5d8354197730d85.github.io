@@ -1,0 +1,30 @@
+#include <iostream>
+#include <stdio.h>
+#include<string.h>
+using namespace std;
+int main()
+{	
+    int no_of_balloons, no_of_people;
+    char balloon_colours[100];
+    scanf("%d %d %s",&no_of_balloons, &no_of_people, balloon_colours);
+
+    int *no_of_balloons_of_colour = new int[strlen(balloon_colours)];
+    for(int i = 0; i < no_of_balloons; i++)
+    {
+        no_of_balloons_of_colour[balloon_colours[i] - 'a']++;
+    }
+
+    int everyone_happy = true;
+    for(int i = 0; i < strlen(balloon_colours); i++)
+    {
+        if(no_of_balloons_of_colour[i] > no_of_people)
+        {
+            everyone_happy = false;
+            break;
+        }
+    
+    }
+    printf(everyone_happy ? "YES\n" : "NO\n");
+    
+	return 0;
+}

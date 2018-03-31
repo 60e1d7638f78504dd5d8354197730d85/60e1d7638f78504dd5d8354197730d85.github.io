@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h> 
+void swap(char *xp, char *yp)
+{
+    char temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ 
+void bubbleSort(char arr[], int n)
+{
+   int i, j;
+  n=strlen(arr);
+   for (i = 0; i < n-1; i++)      
+ 
+       for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+              swap(&arr[j], &arr[j+1]);
+}
+ 
+/* Function to print an array */
+void printArray(char arr[], int size)
+{
+    int i;
+  size=strlen(arr);
+    for (i=0; i < size; i++)
+        printf("%c", arr[i]);
+    
+}
+ 
+int main()
+{
+  char p[30];
+  scanf("%s",p);
+  
+   int n = sizeof(p)/sizeof(p[0]);
+    bubbleSort(p, n);
+   printArray(p, n);
+    return 0;
+}

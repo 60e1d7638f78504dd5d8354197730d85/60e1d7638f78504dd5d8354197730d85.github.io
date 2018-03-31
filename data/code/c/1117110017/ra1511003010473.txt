@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int mat[10][10];
+  int n;
+  int flag=1;
+  int i,j;
+  int oddcount =0, evencount = 0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    for(j =0; j<n;j++)
+    {
+      scanf("%d",&mat[i][j]);
+      if(mat[i][j]%2 == 0)
+        evencount++;
+      else oddcount++;
+      if(evencount>0 && oddcount>0)
+      {
+        flag = 0;
+        break;
+      }
+    }
+    
+  }
+  if(flag)
+    printf("yes");
+  else printf("no");
+	return 0;
+}

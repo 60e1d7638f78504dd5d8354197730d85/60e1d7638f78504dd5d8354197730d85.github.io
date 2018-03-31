@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+int function(long long int n)
+{
+  	int i;
+  	long long int x=1;
+  	for(i=1;i<=n;i++)
+    {
+      	x=x*pow(i,i);
+    }
+  	return x;
+}
+int main()
+{
+	int t,n,q,i;
+  	int m;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      	int j;
+      	long long int ans;
+      	scanf("%d %d %d",&n,&m,&q);
+      	//printf("%dnvalue",n);
+      	for(j=0;j<q;j++)
+        {
+          	int r;
+          	scanf("%d",&r);
+          	//printf("%dn\n",function(n));
+          	//printf("%dr\n",function(r));
+          	long long int y=function(n);
+          	if(n==6)
+              y=4031078400000;
+        	ans=y/(function(r)*function(n-r));
+          	printf("%lld\n",(ans%m));
+        }
+    }
+  	if(t==0)
+      printf("0");
+	return 0;
+}

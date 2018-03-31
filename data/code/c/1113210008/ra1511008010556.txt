@@ -1,0 +1,149 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+ 
+#define MAX 10
+#define FMAX 1000000000
+int powers[MAX];
+ 
+//#define LOGE 0.43429448190325176
+ 
+// first and last parts of the number
+unsigned long long int l;
+unsigned long long int last_mod;
+ 
+long double f;
+ 
+/* compute the k first and last digits of n^m. */
+void computelp(int n, int m)
+{
+    // The variables are stored static
+ 
+    if(m == 1)
+    {
+        l = n;
+        return;
+    }
+ 
+    else if (m%2 == 0)
+    {
+        computelp(n, m/2);
+        l = l * l;
+    }
+    else
+    {
+        computelp(n, (m-1));
+        l = l*n;
+    }
+    
+ 
+    l %= last_mod;
+}
+ 
+void print_ten_power(int n, int k)
+{
+    int i;
+    //printf("Here, with (n, k) as (%d, %d) \n", n, k);
+ 
+    if (n == 0)
+    {
+        printf("1 1");
+    }
+ 
+    else
+    {
+        putchar('1');
+        for(i=0;i<k-1;i++)
+            putchar('0');
+ 
+        putchar(' ');
+        for(i=0;i<k;i++)
+            putchar('0');
+    }
+    printf("\n");
+ 
+}
+ 
+void firstprint(int n, int k)
+{
+    static char a[40];
+    int i;
+    //printf("f is now %.9f \n", f);
+    // Check for the trivial case (if it is a number in powers)
+ 
+    f = log10l((long double) n);
+    // We can remove the characteristic without hurting ourselves
+    f -= (int) f;
+    f *= n;
+    f -= (int) f;
+    f = pow(10,((long double)f));
+    sprintf(a, "%.9Lf", f);
+ 
+    for(i=0;i<k && a[i] != '\0'; i++)
+    {
+        if(a[i] != '.')
+        {
+            putchar(a[i]);
+        }
+        else
+        {
+            k+=1;
+        }
+    }
+ 
+}
+ 
+void printflp(int n, int k)
+{
+    last_mod = powers[k];
+    int i;
+ 
+ 
+    for(i=0;i<=9;i++)
+    {
+        if (n == powers[i])
+        {
+            print_ten_power(i, k);
+            return;
+        }
+    }
+ 
+    computelp(n, n);
+    firstprint(n, k);
+    //printf("\n");
+ 
+    printf(" %0*lld\n", k, l);
+    return;
+}
+ 
+// powers of 10 till 10^9
+void setup_pow()
+{
+    int p = 1;
+    int i;
+ 
+    for(i = 0; i<MAX; i++)
+    {
+        powers[i] = p;
+        p*= 10;
+    }
+}
+ 
+ 
+int main()
+{
+    int ncases;
+    int n, k;
+ 
+    setup_pow();
+ 
+    scanf("%d", &ncases);
+ 
+    while(ncases-- > 0)
+    {
+        scanf("%d %d", &n, &k);
+        printflp(n, k);
+    }
+ 
+    return 0;
+}

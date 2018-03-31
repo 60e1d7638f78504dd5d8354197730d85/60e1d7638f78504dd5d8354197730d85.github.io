@@ -1,0 +1,33 @@
+    #include <bits/stdc++.h>
+    using namespace std;
+     
+    int main()
+    {
+        int t;
+        cin>>t;
+        while(t--)
+        {
+        	vector<pair<int,int> > v;
+            int n;
+            cin>>n;
+            for(int i=0;i<n;i++)
+            {
+                int l,r;
+                cin>>l>>r;
+                v.push_back(make_pair(r,l));
+            }
+            sort(v.begin(),v.end());
+            int x=-1;
+            int count=0;
+            for(int i=0;i<v.size();i++)
+            {
+                if(v[i].second > x)
+                {
+                    x=v[i].first;
+                    count++;
+                }
+            }
+            cout<<count<<endl;
+        }
+        return 0;
+    } 

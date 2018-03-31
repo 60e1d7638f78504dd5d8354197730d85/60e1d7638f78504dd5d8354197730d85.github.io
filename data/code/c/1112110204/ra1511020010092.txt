@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+long long int gcd(long long int a,long long int b)
+{
+	if(a==0 || b==0)
+		return 0;
+	if(a==b)
+		return a;
+	if(a>b)
+		return gcd(a-b,b);
+	return gcd(a,b-a);			
+}
+int main()
+{
+    long long int n1, n2, i, g,l,t;
+    scanf("%lld",&t);
+	while(t--)
+	{
+    scanf("%lld %lld", &n1, &n2);
+    g=gcd(n1,n2);
+    l=(n1*n2)/g;
+    printf("%lld %lld\n",g,l);
+    }
+	return 0;
+}

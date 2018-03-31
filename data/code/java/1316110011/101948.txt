@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+class find
+{
+public void subarray()
+{
+Scanner s=new Scanner(System.in);
+  int t=s.nextInt();
+  for (int k=0;k<t;k++)
+  {
+  int n=s.nextInt();
+  int []mat=new int[n];
+  int i,j;
+  for (i=0;i<n;i++)
+  {
+  mat[i]=s.nextInt();
+  }
+  int count,tount;
+  for (i=0;i<n;i++)
+  {
+  count=0;
+    tount=1;
+    for (j=i+1;j<n && count==0;j++)
+    {
+    if (mat[j]<0 && mat[j-1]<0)
+      count=1;
+      else if (mat[j]>0 && mat[j-1]>0)
+        count=1;
+      else
+        tount++;
+    }
+    System.out.print(tount+" ");
+  }
+  System.out.println();
+}
+}
+}
+class TestClass
+{
+public static void main(String[] args)
+{
+    find objname=new find();
+  objname.subarray();
+}
+
+}

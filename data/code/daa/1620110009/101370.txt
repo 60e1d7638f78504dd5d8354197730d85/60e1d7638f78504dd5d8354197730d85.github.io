@@ -1,0 +1,39 @@
+
+#define MAX_POINT 3
+#define ARR_SIZE 100
+#include<stdio.h>
+void printCompositions(int n, int i)
+{
+
+	static int arr[ARR_SIZE];
+	
+	if (n == 0)
+	{
+		//printArray(arr, i);
+      int j;
+	for (j = 0; j <i; j++)
+		printf("%d ", arr[j]);
+	printf("\n");
+	}
+	else if(n > 0)
+	{
+		int k; 
+		for (k = 1; k <= MAX_POINT; k++)
+		{
+		arr[i]= k;
+		printCompositions(n-k, i+1);
+		}
+	}
+}
+
+
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	
+	printf("Different compositions formed by 1, 2 and 3 of %d are\n", n);
+	printCompositions(n, 0);
+
+	return 0;
+}

@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner myScanner = new Scanner(System.in);
+       	int tests = myScanner.nextInt();
+       	for(int j=0;j<tests;j++){
+       		int num = myScanner.nextInt();
+       		int[] arr1 = new int[num];
+       		int[] arr2 = new int[num];
+       		for(int i=0;i<num;i++){
+         		arr1[i] = myScanner.nextInt(); 
+        	}
+       		for(int i=0;i<num;i++){
+         		arr2[i] = myScanner.nextInt(); 
+        	}
+       		Arrays.sort(arr1);
+       		Arrays.sort(arr2);
+       		int sum =0;
+        	for(int i=0;i<num;i++){
+         		sum = sum + arr1[i]*arr2[num-i-1]; 
+        	}
+       		System.out.println(sum);
+       }
+	}
+}

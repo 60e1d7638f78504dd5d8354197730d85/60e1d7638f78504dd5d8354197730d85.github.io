@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<string.h>
+#define Max 10001
+int main(){
+	int n,i,j,b[Max];
+	char a[Max][100];
+	scanf("%d",&n);
+	for(i=0;i<n;i++){
+		scanf("%s",a[i]);
+		b[i] = 0;
+	}
+	for(i=1;i<n;i++){
+		for(j=i-1;j>=0;j--){
+			if(strcmp(a[i],a[j])>0){
+				b[i]+=1;
+			}
+		}
+	}
+	for(i=0;i<n;i++)
+		printf("%d\n",b[i]);
+	return 0;
+}

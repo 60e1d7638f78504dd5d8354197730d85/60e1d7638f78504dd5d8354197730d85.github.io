@@ -1,0 +1,47 @@
+#include<stdio.h>
+int main(){
+int t,m,n,i,j,dec,flag;
+scanf("%d",&t);
+while(t--){
+scanf("%d %d",&m,&n);
+char a[m][n];
+for(i = 0;i < m; i++)scanf("%s",a[i]);
+flag = 0;
+for(i = 0;i < m; i++){
+for(j = 0;j < n-4; j++){dec=0;
+if(a[i][j] == 'S' || a[i][j] == 's'){dec = 1;j++;if(j<n)
+if(a[i][j] == 'p' || a[i][j] == 'P'){j++;if(j<n)
+if(a[i][j] == 'O' || a[i][j] == 'o'){j++;if(j<n)
+if(a[i][j] == 'O' || a[i][j] == 'o'){j++;if(j<n)
+if(a[i][j] == 'N' || a[i][j] == 'n'){flag = 1;break;}
+}
+}
+}
+}
+j-=dec;
+}
+if(flag == 1 )break;
+}
+ 
+if(flag==0){
+for(i = 0;i < n; i++){
+for(j = 0;j < m-4; j++){dec=0;
+if(a[j][i] == 'S' || a[j][i] == 's'){dec = 1;j++;if(j<m)
+if(a[j][i] == 'p' || a[j][i] == 'P'){j++;if(j<m)
+if(a[j][i] == 'O' || a[j][i] == 'o'){j++;if(j<m)
+if(a[j][i] == 'O' || a[j][i] == 'o'){j++;if(j<m)
+if(a[j][i] == 'N' || a[j][i] == 'n'){flag = 1;break;}
+}
+}
+}
+}
+j-=dec;
+}
+if(flag == 1 )break;
+}
+}
+ 
+if(flag)printf("There is a spoon!\n");else printf("There is indeed no spoon!\n");
+}
+return 0;
+} 

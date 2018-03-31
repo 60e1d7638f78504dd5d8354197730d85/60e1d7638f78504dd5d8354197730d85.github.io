@@ -1,0 +1,76 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+class Passkey
+{
+  public void passKey()
+  {
+    Scanner s=new Scanner(System.in);
+    String s2;
+    s2=s.next();
+    char[] ch=s2.toCharArray();
+    int[] a=new int[100];
+    int i,j,k,l,m=0,A=0,sum1=0,sum2=0;
+    l=s2.length();
+    j=0;
+    for(i=0;i<l;i++)
+    {
+      if(Character.isDigit(ch[i]))
+        a[j++]=ch[i]-48;
+    }
+    m=a[0];
+    k=a[0];
+   // for(i=0;i<j;i++)
+    //  System.out.println(a[i]);
+    for(i=1;i<j;i++)
+    {
+      if(m<a[i])
+        m=a[i];
+      if(k>a[i])
+        k=a[i];
+    }
+    //System.out.println(m);
+    //System.out.println(k);
+    for(i=0;i<j;i++)
+    {
+      A=A+a[i]*m;
+    }
+    while((A/10)>0)
+    {
+      sum1=0;
+    while(A>0)
+    {
+      int h=A%10;
+      sum1=sum1+h;
+      A=A/10;
+    }
+     A=sum1;
+    }
+     A=1; 
+    for(i=0;i<j;i++)
+    {
+      A=A*(a[i]+k);
+    }
+    while(A>0)
+    {
+      int h=A%10;
+      sum2=sum2+h;
+      A=A/10;
+    }
+   // System.out.println(sum1);
+    //System.out.println(sum2);
+    
+    int digit3=(int)Math.min(sum1,sum2);
+    int Square_of=(int)Math.pow(digit3,2);
+    System.out.println(Square_of);
+  }
+}
+         
+      
+public class TestClass {
+	 public static void main(String[] args) { 
+       Passkey s1=new Passkey();
+       s1.passKey();
+		
+	}
+}

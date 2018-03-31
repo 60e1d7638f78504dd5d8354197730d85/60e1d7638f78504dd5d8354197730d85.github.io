@@ -1,0 +1,49 @@
+#include <string.h>
+#include <iostream>
+using namespace std;
+class student{
+  int roll;
+  char name[100];
+  int num;
+  int mark[100];
+  public:
+  student(int a,char str[100], int n, int m[10]){
+    roll=a;
+    strcpy(name,str);
+    num=n;
+    for(int i=0;i<n;i++){
+      mark[i]=m[i];
+    }
+  }
+  void display(){
+    float sum=0;
+    cout<<name<<" "<<roll<<" ";
+    for(int i=0;i<num;i++){
+      sum+=mark[i];
+    }
+    sum=(float)sum/num;
+    cout<<sum<<" ";
+    if(sum>81)
+      cout<<"Class A";
+    else if(sum>61)
+      cout<<"Class B";
+    else 
+      cout<<"Class C";
+  }
+};
+int main()
+{
+    int n,r,nn,a[100],i,j;
+    char str[100];
+    cin>>n;
+    for(int i=0;i<n;i++){
+      cin>>str>>r>>nn;
+      for(j=0;j<nn;j++){
+        cin>>a[j];
+      }
+      student s(r,str,nn,a);
+      s.display();
+      cout<<"\n";
+    }
+	return 0;
+}

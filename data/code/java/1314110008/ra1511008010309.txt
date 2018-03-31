@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t!=0)
+		{
+			int n=sc.nextInt();
+			int a[]=new int[n];
+			for(int i=0; i<n; i++)
+				a[i]=sc.nextInt();
+			Arrays.sort(a);
+			
+			int d=1000000000;
+			for(int i=1; i<n; i++)
+			{
+				int diff=Math.abs(a[i-1]-a[i]);
+				if(d>diff)
+					d=diff;
+			}
+			System.out.println(d);
+			
+			
+			t--;
+        }
+	}
+}

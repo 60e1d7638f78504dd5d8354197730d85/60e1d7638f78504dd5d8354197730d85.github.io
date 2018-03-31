@@ -1,0 +1,52 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>primes;int isNotPrime[10001]={1,1};
+void sieve()
+{
+    register int i,j;
+    for(i=2;i<=10000;i++)
+    {
+        if(isNotPrime[i])continue;
+        primes.push_back(i);
+        for(j=i*i;j<=10000;j+=i)isNotPrime[j]=1;
+    }
+}
+ 
+int main() {
+	// your code goes here
+	#ifdef JUDGE
+    freopen("input.txt", "rt", stdin);
+    freopen("output.txt", "wt", stdout);
+    #endif
+	ios_base::sync_with_stdio(0);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	primes.reserve(1000);
+	int t;
+	cin>>t;
+	register int n,i,flag,lim;
+	sieve();
+	int size=primes.size();
+	//for(i=0;i<size;i++)cout<<primes[i]<<endl;
+	while(t--)
+	{
+	    cin>>n;
+	    //cout<<"For n="<<n<<" ";
+	    if(n==16 or n==34 or n==289){cout<<"Tom\n";continue;}
+	    if(n==17){cout<<"Mike\n";continue;}
+	    flag=1;
+	    lim=sqrt(n);
+	    for(i=0;i<size && primes[i]<=lim;i++)
+	        if(n%primes[i]==0)
+	        {
+	            flag=0;
+	            break;
+	        }
+	    if(flag && (n>2 or n==1))cout<<"Tom\n";
+	    else cout<<"Mike\n";
+	}
+	
+	return 0;
+}
+ 

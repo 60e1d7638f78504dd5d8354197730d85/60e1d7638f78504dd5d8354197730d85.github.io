@@ -1,0 +1,66 @@
+#include <stdio.h>
+#define MAX 10
+int arr[MAX][MAX];
+
+void getMat(int n)
+{
+  int i, j;
+  for (i = 0; i < n; i++)
+  {
+    for (j = 0; j < n; j++)
+    {
+      scanf("%d ", &arr[i][j]);
+    }
+  }
+}
+
+void disp(int n)
+{
+  int i, j;
+  for (i = 0; i < n; i++)
+  {
+    for (j = 0; j < n; j++)
+    {
+      printf("%d ",arr[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+int getDiag(int n)
+{
+  int i, ret = 0;
+  for (i = 0; i < n; i++)
+  {
+    ret += arr[i][i];
+  }
+  return (ret);
+}
+
+int getRevDiag(int n)
+{
+  int i, ret = 0;
+  for (i = 0; i < n; i++)
+  {
+    ret += arr[i][n-1-i];
+  }
+  return (ret);
+}
+
+
+int main()
+{
+  int n;
+  scanf("%d", &n);
+  getMat(n);
+  int diag = getRevDiag(n) - getDiag(n);
+  if (diag >= 0)
+  {
+    printf ("%d",diag);
+  }
+  else
+  {
+    printf ("%d",(-1)*diag);
+  }
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+class measure
+{
+	public:
+  	int feet;
+  	float inches;
+  	
+  	void get()
+    {
+    	cin>>this->feet>>this->inches;
+    }
+  	
+  	void display()
+    {
+    	cout<<this->feet<<" feet "<<this->inches<<" inches";
+    }
+	
+  	void sum(measure x)
+    {	
+      	feet = feet + x.feet + ((inches+x.inches)/10);
+      	//cout<<((inches+x.inches)/10)<<"\n";
+      	int p=((inches+x.inches)/10);
+    	inches = (inches + x.inches) - (12*p); 
+      	display();
+    }
+    
+};
+
+int main()
+{
+	measure a,b;
+  	a.get();
+  	b.get();
+  	
+  	a.sum(b);
+	return 0;
+}

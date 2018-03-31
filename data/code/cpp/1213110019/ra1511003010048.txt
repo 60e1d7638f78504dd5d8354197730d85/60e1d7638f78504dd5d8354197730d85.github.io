@@ -1,0 +1,22 @@
+#include <iostream>
+#include<stdio.h>
+using namespace std;
+int main()
+{
+  char a[100];
+  fgets(a,100,stdin);
+  int i,j;
+   for(i = 0; a[i] != '\0'; ++i)
+    {
+        while (!( (a[i] >= 'a' && a[i] <= 'z') || (a[i] >= 'A' && a[i] <= 'Z') || a[i] == '\0') )
+        {
+            for(j = i; a[j] != '\0'; ++j)
+            {
+                a[j] = a[j+1];
+            }
+            a[j] = '\0';
+        }
+   }
+  cout<<"Output String:"<<a;
+	return 0;
+}

@@ -1,0 +1,37 @@
+
+#include <stdio.h>
+#include <string.h>
+ 
+int main() {
+	int T, i, j, length, data[200], max, sum;
+	char s[51], ch;
+	
+	scanf("%d\n", &T);
+	
+	for(i = 1; i <= T; i++) {
+		scanf("%s", s);
+		length = strlen(s);
+		for(j = 'a'; j <= 'z'; j++)
+			data[j] = 0;
+		for(j = 0; j < length; j++)
+			data[s[j]]++;
+		max = 0;
+		for(j = 'a'; j <= 'z'; j++) {
+			if(data[j] > max) {
+				max = data[j];
+				ch = j;
+			}
+		}
+		sum = 0;
+		for(j = 'a'; j <= 'z'; j++) {
+			if(j != ch)
+				sum += data[j];
+		}		
+	
+		printf(sum == max ? "YES\n" : "NO\n");
+		
+	}
+	
+	return 0;
+}
+ 

@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+ 
+public class TestClass {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int t=Integer.parseInt(br.readLine());
+        while(t--!=0)
+        {
+            String str[]=br.readLine().split(" ");
+            int n=Integer.parseInt(str[0]);
+            int x=Integer.parseInt(str[1]);
+            String str1[]=br.readLine().split(" ");
+            long sum=0;
+            int notes[]=new int[n];
+            for(int i=0;i<n;i++)
+            {
+                sum+=notes[i]=Integer.parseInt(str1[i]);
+            }
+            Arrays.sort(notes);
+            int value= (int) sum%x;
+            //System.out.println(value);
+            boolean check=false;
+            for(int i=0;i<n;i++)
+            {
+                if(notes[i]<=value)
+                {
+                    System.out.println("-1");
+                    check=true;
+                    break;
+                }
+            }
+            if(!check)
+                System.out.println(sum/x);
+        }
+    }
+}

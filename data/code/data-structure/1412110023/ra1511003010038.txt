@@ -1,0 +1,34 @@
+#include<stdio.h>
+int subArraySum(int arr[], int n, int sum)
+{
+    int curr_sum, i, j;
+	for (i = 0; i < n; i++)
+    {
+        curr_sum = arr[i];
+        for (j = i+1; j <= n; j++)
+        {
+            if (curr_sum == sum)
+            {
+                printf ("%d %d\n", i+1, j);
+                return 1;
+            }
+            if (curr_sum > sum || j == n)
+                break;
+           curr_sum = curr_sum + arr[j];
+        }
+    }
+  	return 0;
+}
+int main()
+{
+    int a[100],n,i,sum,t;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      scanf("%d %d",&n,&sum);
+      for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+      subArraySum(a, n, sum);
+    }
+    return 0;
+}

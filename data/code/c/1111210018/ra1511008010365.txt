@@ -1,0 +1,66 @@
+#include <stdio.h>
+int main()
+{
+  long long int num1,divi=1,rem,quo,num2=0;
+    int digs=1,b,c,k;
+    scanf("%lld",&num1);
+    scanf("%d",&k);
+    if(k==0)
+    {
+        printf("%lld",num1);
+        return 0;
+    }
+    while(num1/divi>10)
+    {
+        divi*=10;
+        digs++;
+        //printf("divi=%lld\n",divi);
+        //printf("digs=%d\n\n",digs);
+    }
+    for(;(k>0)&&(divi>0);--k)
+    {
+        //if(divi==0)
+        //    divi=1;
+        rem=num1%divi;
+        quo=num1/divi;
+        divi/=10;
+        //printf("k=%d\n",k);
+       //printf("num1=%lld\n",num1);
+        //printf("rem=%lld\n",rem);
+       //printf("quo=%lld\n",quo);
+        //printf("divi=%lld\n",divi);
+        //if(divi==0)
+        //    divi=1;
+        num1=rem;
+        if(quo>9)
+        {
+            //printf("fhsdkjfhsjfsdkjfhsdkjfhsdkjfhsdkfhsdkijf\n");
+            num2=num2*10+9;
+            --k;
+            //divi/=10;
+        }
+        if(quo==9)
+        {
+            ++k;
+            num2=num2*10+9;
+        }
+        else
+        {
+            num2=num2*10+9;
+        }
+        //printf("num2=%lld\n",num2);
+        //printf("-----------------------------------\n");
+    }
+    //printf("divi=%lld\n",divi);
+    if(divi==0)
+    {
+        ++divi;
+        printf("%lld",num2*divi+rem);
+    }
+    else
+    {
+        printf("%lld",num2*divi*10+rem);
+    }
+  
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+class test{
+  public:
+  	int q;
+  	test(int n){
+      q=n;
+      cout<<"Constructor of Test"<<endl;
+    }
+  ~test(){
+    cout<<"Destructor of Test"<<endl;
+  }
+};
+
+int main()
+{
+	int n;
+  cin>>n;
+  if (n==0){
+    cout<<n;
+    return 0;
+  }
+  try{
+    test t(n);
+    throw t.q;
+  }catch(int t){
+    cout<<"Caught "<<t;
+  }
+	return 0;
+}

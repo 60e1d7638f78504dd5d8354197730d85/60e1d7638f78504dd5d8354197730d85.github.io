@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+
+int main()
+{
+  int r,c;
+    
+    int row, col, isLower;
+
+    
+    scanf("%d",&r);
+          scanf("%d",&c);
+          int arr[r][c];
+          
+    for(row=0; row<r; row++)
+ 
+    {
+        for(col=0; col<c; col++)
+        {
+            scanf("%d", &arr[row][col]);
+        }
+      printf("\n");
+    }
+
+    /* Check whether the matrix is lower triangular matrix */
+    isLower = 1;
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            if(col>row && arr[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+ if(isLower == 1)
+    {
+        printf("yes \n");
+        
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

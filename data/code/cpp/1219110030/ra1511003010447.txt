@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class complex{
+float real;
+  float imag;
+  public:
+  complex(float a,float b){
+  
+  real=a;
+    imag=b;
+  }
+  complex operator +(const complex& other){
+  	complex c1(0,0);
+    c1.real=real+other.real;
+    c1.imag=imag+other.imag;
+    
+    return c1;
+  }
+  void disp(){
+  cout<<real<<"+j"<<imag<<"\n";
+  }
+};
+int main()
+{
+
+  float r1,i1,r2,i2;
+  cin>>r1>>i1>>r2>>i2;
+  complex c1(r1,i1),c2(r2,i2),c3(0,0);
+  cout<<"obj1=";
+  c1.disp();
+  cout<<"obj2=";
+  c2.disp();
+  cout<<"obj3=";
+  c3=c1+c2;
+  c3.disp();
+	return 0;
+}

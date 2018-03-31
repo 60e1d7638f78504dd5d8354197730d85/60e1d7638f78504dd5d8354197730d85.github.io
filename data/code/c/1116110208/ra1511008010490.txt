@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int t;  scanf("%d",&t);
+	int i;
+	for(i=0;i<t;i++){
+		char word[50];  scanf("%s",word);
+		int l = strlen(word);
+		if(l%2!=0)
+          printf("NO\n");
+		else{
+			int j;
+		    for(j=0;j<l;j++){
+			    int k,count=0;
+			    for(k=0;k<l;k++)
+                {
+				     if(word[k]==word[j])count++;
+			    }
+			    if(count==(l/2))
+                {
+					printf("YES\n");   break;
+			    }
+			    if(j==l-1)
+                {
+					printf("NO\n");   break;
+			    }
+		    } 
+		}
+		
+	}
+	return 0;
+}

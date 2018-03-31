@@ -1,0 +1,54 @@
+   #include<iostream>
+
+using namespace std;
+
+struct Student
+{
+string name;
+string department;
+int yearOfStudy;
+float cgpa;
+};
+int main()
+{
+	int n,l;
+	cin>>n;
+	l=n;
+	struct Student S1[n],t;
+	
+	int i=0;
+	while(l>0)
+	{
+		cin>>S1[i].name>>S1[i].department>>S1[i].yearOfStudy>>S1[i].cgpa;
+		
+		i++;
+		l--;
+	}
+	
+	for(int i=0;i<n-1;i++)
+	{
+		for(int j=0;j<n-i-1;j++)
+		{
+			if(S1[j].name>S1[j+1].name)
+			{
+				t=S1[j];
+				S1[j]=S1[j+1];
+				S1[j+1]=t;
+				
+			}
+		}
+	}
+	
+	
+	
+	
+	for(int i=0;i<n;i++)
+	{
+		cout<<"Name:"<<S1[i].name<<endl;
+		cout<<"Department:"<<S1[i].department<<endl;
+		cout<<"Year of study:"<<S1[i].yearOfStudy<<endl;
+		cout<<"CGPA:"<<S1[i].cgpa<<endl;		
+	}
+
+	return 0;
+}

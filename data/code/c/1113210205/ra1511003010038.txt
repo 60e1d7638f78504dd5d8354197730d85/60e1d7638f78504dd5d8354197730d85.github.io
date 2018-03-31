@@ -1,0 +1,35 @@
+#include <stdio.h> 
+int main() 
+{
+  int R,ans=0;
+  scanf("%d",&R);
+  int a,b,c;
+  for(a=1;a<=500;a++)
+  {
+    for(b=a;b<=500;b++)
+    {
+      for(c=b;c<=500;c++)
+      {
+        int s= (b+c-a)*(a-b+c)*(a+b-c);
+        int t= 4*(a+b+c)*R*R;
+        if(s==t)
+          ans++;
+      }
+    }
+  }
+  printf("%d\n",ans);
+  for(a=1;a<=500;a++)
+  {
+    for(b=a;b<=500;b++)
+    {
+      for(c=b;c<=500;c++)
+      {
+        int s= (b+c-a)*(a-b+c)*(a+b-c);
+        int t= 4*(a+b+c)*R*R;
+        if(s==t)
+          printf("%d %d %d\n",a,b,c);
+      }
+    }
+  }
+  return 0;
+}

@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+ 
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+#define FI(i,s,n) for(i=s;i<=n;i++)
+#define FD(i,n,s) for(i=n;i>=s;i--)
+#define MA 1000000000000000000 // 1e18
+#define M  1000000007
+#define MM 2000000000
+#define N  500005
+#define K  26
+ 
+typedef long long ll;
+typedef long double ld;
+ 
+typedef struct { ll a, b, c; } ll2;
+ll n,m;
+char a[N];
+ll c[K];
+ll s[N][K];
+ 
+ 
+int compare(const void* a, const void* b) {
+  ll2 l = *((ll2 *)a);
+  ll2 r = *((ll2 *)b);
+ 
+  return r.c - l.c;
+}
+ 
+int check() {
+  int i;
+  FI(i,0,25) {
+    if (a[i]>c[i]) { return 0; }
+  }
+  return 1;
+}
+ 
+int main() {
+  ll t;
+  ll i,j,k,d,l,r,x,y,z,p,q;
+ 
+  char cc;
+  //ll c,h;
+ 
+  t=1;
+  //scanf("%lld", &t);
+ 
+  while(t--) {
+    scanf("%lld", &n);
+    scanf("%lld", &q);
+    scanf("%s", a);
+ 
+    memset(s,0,sizeof(s));
+    FI(i,1,n) {
+      FI(j,0,25) {
+        s[i][j]=s[i-1][j];
+      }
+      s[i][a[i-1]-'a']++;
+    }
+ 
+    FI(i,1,q) {
+      scanf("%lld %lld", &l, &r);
+ 
+      FI(j,0,25) {
+        c[j]=(s[r][j]-s[l-1][j])%26;
+      }
+ 
+      FI(j,1,25) {
+        r=1;
+        FI(k,0,25-j) {
+          if (c[k]!=c[j+k]) { r=0; break; }
+        }
+        if (r==1) {
+          FI(k,0,25-j) {
+            printf("%c", (char) c[k] + 'a');
+          }
+          break;
+        }
+      }
+      if (r==0) puts("None");
+      else puts("");
+    }
+  }
+}

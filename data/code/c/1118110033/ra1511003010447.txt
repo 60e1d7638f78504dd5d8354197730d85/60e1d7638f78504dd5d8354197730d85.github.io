@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+struct Book{
+  char title[70];
+  char author[50];
+  char subject[70];
+  long book_id;
+};
+
+int main()
+{
+	int n;
+  scanf("%d",&n);
+  struct Book b1;
+  struct Book b2;
+  struct Book *p1=&b1;
+  struct Book *p2=&b2;
+  
+  strcpy((*p1).title,"C Programming");
+  strcpy((*p1).author,"Nuha Ali");
+  strcpy((*p1).subject,"C Programming Tutorial");
+  p1->book_id=6495407;
+  
+  strcpy((*p2).title,"Telecom Billing");
+  strcpy((*p2).author,"Zara Ali");
+  strcpy((*p2).subject,"Telecom Billing Tutorial");
+  p2->book_id=6495700;
+  
+  printf("Book title : %s\n",(*p1).title);
+  printf("Book author : %s\n",(*p1).author);
+  printf("Book subject : %s\n",(*p1).subject);
+  printf("Book book_id : %ld\n",p1->book_id);
+  
+  printf("Book title : %s\n",(*p2).title);
+  printf("Book author : %s\n",(*p2).author);
+  printf("Book subject : %s\n",(*p2).subject);
+  printf("Book book_id : %ld\n",p2->book_id);
+  return 0;
+}

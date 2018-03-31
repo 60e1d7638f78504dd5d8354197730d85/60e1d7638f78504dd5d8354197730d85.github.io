@@ -1,0 +1,26 @@
+#include <stdio.h>
+int gcd(int n1,int n2){
+  if(n2!=0){
+    return gcd(n2,n1%n2);
+  }
+  else{
+    return n1;
+  }
+}
+int lcm(int n1,int n2){
+  static int x=1;
+  if(x%n1==0&&x%n2==0){
+    return x;
+  }
+  x++;
+  lcm(n1,n2);
+  return x;
+}
+int main()
+{
+  int a,b;
+  scanf("%d%d",&a,&b);
+  printf("GCD=%d\n",gcd(a,b));
+  printf("LCM=%d\n",lcm(a,b));
+	return 0;
+}

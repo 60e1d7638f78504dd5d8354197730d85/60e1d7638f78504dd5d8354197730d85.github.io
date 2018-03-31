@@ -1,0 +1,36 @@
+#include <iostream>
+#include <set>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <string>
+#include <queue>
+using namespace std;
+#define rep(i,a,b) for(int i = a; i < b; i++)
+#define S(x) scanf("%d",&x)
+#define P(x) printf("%d\n",x)
+typedef long long int LL;
+string s[111];
+
+int main() {
+	int t;
+	S(t);
+	while(t--) {
+		int n;
+		S(n);
+		rep(i,0,n) {
+			cin >> s[i];
+			sort(s[i].begin(), s[i].end());
+		}
+
+		bool flag = true;
+		rep(i,0,n) {
+			rep(j,1,n) if(s[j][i] < s[j-1][i])
+				flag = false;
+		}
+		if(!flag) printf("NO\n");
+		else printf("YES\n");
+	}
+
+	return 0;
+}

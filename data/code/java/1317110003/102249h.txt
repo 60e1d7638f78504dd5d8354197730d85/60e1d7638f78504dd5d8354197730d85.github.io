@@ -1,0 +1,30 @@
+import java.io.*;
+import java.io.*;
+import java.math.*;
+import java.util.Scanner;
+public class TestClass {
+      static long MOD = 1000000007;
+public static void main(String[] args) throws java.lang.Exception{ 
+		        Scanner in=new Scanner(System.in);
+ 
+        int t = in.nextInt();
+ 
+        for(int cas=1;cas<=t;cas++){
+            int N = in.nextInt();
+            int[] A = new int[N];
+          for(int i=0;i<N;i++)
+            A[i]=in.nextInt();
+            int pending=0,late = 0;
+            for(int i=0;i<N;i++){
+                if(A[i]==0){
+                    if(late==0)
+                        late = N-i;
+                    pending++;
+                }
+            }
+            long res = pending*1000 + late*100;
+            System.out.println(res);
+        }
+
+	}
+}

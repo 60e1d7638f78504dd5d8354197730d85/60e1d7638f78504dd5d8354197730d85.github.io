@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+int t,n,i,j,temp,min,try_min;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+      for(j=i+1;j<n;j++)
+      {
+        if(a[i]>a[j])
+        {
+          temp=a[i];
+          a[i]=a[j];
+          a[j]=temp;
+        }
+      }
+    }
+    min=a[1]-a[0];
+    for(i=1;i<n;i++)
+    {
+      try_min=a[i+1]-a[i];
+      if(min>try_min)
+      {
+        min=try_min;
+      }
+    }
+    printf("%d",min);
+  }
+	return 0;
+}

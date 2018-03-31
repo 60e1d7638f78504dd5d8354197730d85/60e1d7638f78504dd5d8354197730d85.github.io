@@ -1,0 +1,59 @@
+#include <stdio.h>
+int sort(int a[100],int n)
+{
+  int i,j,b[100],t;
+  for(i=0;i<n;i++)
+  {
+    b[i] = a[i];
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(a[i] > a[j])
+      {
+        t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+    }
+  }
+  if(a[n-1] == b[n-1] && a[0] == b[0])
+  {
+    return 1;
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(a[i] < a[j])
+      {
+        t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+    }
+  }
+  if(a[n-1] == b[n-1] && a[0] == b[0])
+  {
+    return 0;
+  }
+  return -1;
+}
+int main()
+{
+  int n,a[100],i,t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  t = sort(a,n);
+  if(t==1)
+    printf("yes, ascending");
+  else if(t == 0)
+    printf("yes, descending");
+  else 
+    printf("no");
+  return 0;
+}

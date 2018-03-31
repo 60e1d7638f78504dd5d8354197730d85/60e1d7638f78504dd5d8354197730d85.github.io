@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+class Home
+{
+protected:
+float width,height;
+  public:
+void set_data (int a,int b)
+{
+width = a; height = b;
+}
+};
+
+class Rectangle:public Home
+{
+public:
+float area ()
+{
+return (width * height);
+}
+};
+class Triangle:public Home
+{
+public:
+float area ()
+{
+return ((width * height)/2);
+}
+};
+int main ()
+{
+  int l,b;
+Rectangle rect;
+Triangle tri;
+cin>>l>>b;
+rect.set_data (l,b);
+tri.set_data (l,b);
+cout << rect.area() << endl; 
+cout << tri.area() << endl;
+  return 0;
+}
+
+	

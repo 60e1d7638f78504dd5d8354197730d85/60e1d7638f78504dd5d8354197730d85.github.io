@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner s=new Scanner(System.in);
+       
+       int num1,num2,i,j,c=0,temp,temp1;
+       num1=s.nextInt();
+       num2=s.nextInt();
+       
+       List<Integer> l1=new ArrayList<Integer>();
+       List<Integer> l2=new ArrayList<Integer>();
+       
+       for(i=0;i<num1;i++){
+        temp=s.nextInt();
+         l1.add(i,temp);
+       }
+       for(i=0;i<num2;i++){
+        temp=s.nextInt();
+         l2.add(i,temp);
+       }
+       if(num1==num2){
+         for(i=0;i<num1;i++){
+          temp=l1.get(i);
+           temp1=l2.get(i);
+           if(temp != temp1)
+           { c=1;
+            break;
+           }
+         }
+         if(c==0){
+          System.out.println("YES"); 
+         }else{
+          System.out.println("NO"); 
+         }
+       }
+       else{
+        System.out.println("NO"); 
+       }
+	}
+}

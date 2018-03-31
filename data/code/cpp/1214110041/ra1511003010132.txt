@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+class student
+{	public:
+  	int rollno,nosub,i;
+ 	double avg,total=0;
+ 	
+  	string name;
+ char count;
+  	 int getitems()
+     {
+       cin>>name>>rollno>>nosub;
+   	     	int sum[nosub];
+ 	for(i=0;i<nosub;i++)
+    {
+      
+      cin>>sum[i];
+      total=total+sum[i];
+    }
+      avg=(total/nosub);
+ 	
+       
+       
+  		return 0;     
+     }
+
+ 
+ 	int output()
+    {
+      if(avg >=80)
+      {
+        count='A';
+      }
+      else if(avg>70)
+      {
+        count='B';
+      }
+      if(avg<70)
+      {
+        count='C';
+      }
+      cout<<name<<" "<<rollno<<" "<<avg<<" Class "<<count<<endl;
+      
+      total=0;
+    }
+  
+};
+int main()
+{
+  	int n,i=0;
+  	cin>>n;
+  	student obj;
+  	
+  	while(i<n)
+    {
+      obj.getitems();
+      obj.output();
+      i++;
+      
+    }
+      
+
+	return 0;
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int main()
+{
+	string s1;
+  	char temp;
+  	int i,x,vowels=0,con=0,digi=0,white=0,t;
+  	
+	getline(cin,s1);
+  	x=s1.length();
+  
+  	for(i=0;i<x;i++)
+    {
+      temp=char(s1[i]);
+    
+      if(temp==' ')
+      {
+        white++;
+        
+      }
+		else
+        {
+          t=int(temp);
+          if(t>47 && t<58)
+          {
+            digi++;
+          }
+          else if(temp=='a' || temp=='e' || temp=='i' || temp=='o' || temp=='u')
+          {
+            vowels++;
+          }
+          else
+          {
+            con++;
+          }
+          
+        }
+    }
+	cout<<"Vowels:"<<vowels<<endl;
+  	cout<<"Consonants:"<<con<<endl;
+  cout<<"Digits:"<<digi<<endl;
+  cout<<"White spaces:"<<white<<endl;
+	return 0;
+}

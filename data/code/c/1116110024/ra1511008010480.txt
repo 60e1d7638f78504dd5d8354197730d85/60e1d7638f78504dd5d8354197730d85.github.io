@@ -1,0 +1,33 @@
+//DKBoss
+#include <stdio.h>
+
+typedef int bool;
+#define true 1
+#define false 0
+
+bool check(char ch, char str[], int size) {
+	while(size>0) {
+    	if(ch==str[--size]) {
+        	return false;
+        }
+    }
+  	return true;
+}
+
+int main()
+{
+  	char str[50];
+  	char newStr[50];
+  	scanf("%s", str);
+  	int i=0,j=0;
+  	newStr[j++] = str[i++];
+  	while(str[i] != '\0') {
+    	if(check(str[i], newStr, j)) {
+        	newStr[j++] = str[i];
+        }
+      	i++;
+    }
+  	newStr[j] = '\0';
+  	printf("%s\n%s", str, newStr);
+	return 0;
+}

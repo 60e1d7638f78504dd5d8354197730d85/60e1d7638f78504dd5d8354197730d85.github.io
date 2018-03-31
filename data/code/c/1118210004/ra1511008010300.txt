@@ -1,0 +1,138 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+void performtest(){
+    int i, num, xe, ye, xd, yd;
+    float time = 1000000, temp_time, temp_1, temp_2;
+    char e_dir, d_dir;
+    scanf( "%d %d %c", &xe, &ye, &e_dir );
+    scanf( "%d", &num );
+    for( i=0; i<num; i++ ){
+        scanf( "%d %d %c", &xd, &yd, &d_dir );
+        if( e_dir == 'R' ){
+            if( d_dir == 'R' )
+                continue;
+            else if( d_dir == 'L' )
+                if( ye == yd && xd > xe ){
+                    temp_time = ( (float)(xd - xe) )/2;
+                    if( temp_time < time )
+                        time = temp_time;
+                } else
+                    continue;
+            else if( d_dir == 'U' ){
+                temp_1 = xd - xe;
+                temp_2 = ye - yd;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            }
+            else if( d_dir == 'D' ){
+                temp_1 = xd - xe;
+                temp_2 = yd - ye;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            }
+        } else if( e_dir == 'L' ){
+            if( d_dir == 'L' )
+                continue;
+            else if( d_dir == 'R' )
+                if( ye == yd && xe > xd ){
+                    temp_time = ( (float) ( xe - xd ) )/2;
+                    if( temp_time < time )
+                        time = temp_time;
+                } else
+                    continue;
+            else if( d_dir == 'U' ){
+                temp_1 = xe - xd;
+                temp_2 = ye - yd;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            } else if( d_dir == 'D' ){
+                temp_1 = xe - xd;
+                temp_2 = yd - ye;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            }
+        }else if( e_dir == 'U' ){
+            if( d_dir == 'U' )
+                continue;
+            else if( d_dir == 'D' )
+                if( xe == xd && yd > ye ){
+                    temp_time = ( (float)(yd - ye) )/2;
+                    if( temp_time < time )
+                        time = temp_time;
+                } else
+                    continue;
+            else if( d_dir == 'R' ){
+                temp_1 = xe - xd;
+                temp_2 = yd - ye;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            } else if( d_dir == 'L' ){
+                temp_1 = xd - xe;
+                temp_2 = yd - ye;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            }
+        } else if( e_dir == 'D' ){
+            if( d_dir == 'D' )
+                continue;
+            else if( d_dir == 'U' )
+                if( xe == xd && ye > yd ){
+                    temp_time = ( (float)(ye - yd) )/2;
+                    if( temp_time < time )
+                            time = temp_time;
+                } else
+                    continue;
+            else if( d_dir == 'R' ){
+                temp_1 = xe - xd;
+                temp_2 = ye - yd;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                            time = temp_time;
+                }
+            }else if( d_dir == 'L' ){
+                temp_1 = xd - xe;
+                temp_2 = ye - yd;
+                if( temp_1 == temp_2 && temp_1 > 0 ){
+                    temp_time = temp_1;
+                    if( temp_time < time )
+                        time = temp_time;
+                }
+            }
+        }
+    }
+ 
+    if( time < 1000000 )
+        printf( "%0.1f\n", time );
+    else
+        printf( "SAFE\n" );
+}
+ 
+int main(){
+    int numtest;
+    scanf( "%d", &numtest );
+ 
+    while( numtest-- )
+        performtest();
+ 
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+bool sortbysec(const pair<string,int>	&a,const pair<string,int>&b)
+{
+  return(a.second<b.second);
+}
+int main()
+{
+  string name;
+  int no,n;
+  vector<pair<string,int>>v;
+  cin>>n;
+  int i;
+  for(i=0;i<n;i++){
+  cin>>name>>no;
+  v.push_back(make_pair(name,no));
+  }
+  sort(v.begin(),v.end(),sortbysec);
+  cout<<"After Sorting"<<endl;
+  cout<<"Name ID"<<endl;
+  for(i=0;i<n;i++)
+    cout<<v[i].first<<" "<<v[i].second<<endl;     
+               
+  
+
+	return 0;
+}

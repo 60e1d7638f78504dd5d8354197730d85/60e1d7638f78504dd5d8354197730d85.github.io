@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,c,d,num,den,i;
+  scanf("%d%d%d%d",&a,&b,&c,&d);
+  num=a*d+b*c;
+  den=b*d;
+  while(num%den==0)
+    num=num/den;
+  while(den%num==0)
+    den=den/num;
+  if(num>den)
+  {
+    for(i=2;i<den;i++)
+      if(num%i==0 && den%i==0)
+      {
+        num=num/i;
+        den=den/i;
+      }
+  }
+  printf("%d %d",num,den);
+	return 0;
+}

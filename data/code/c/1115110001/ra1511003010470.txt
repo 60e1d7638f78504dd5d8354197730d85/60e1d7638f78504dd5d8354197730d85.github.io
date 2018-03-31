@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+    int n, arr[100], i, a[5]={0}, spoilt=0;
+    scanf("%d", &n);
+    for(i=0; i<n; ++i)
+      scanf("%d", &arr[i]);
+    for(i=0; i<n; ++i)
+    {
+        if(arr[i]>=1 && arr[i]<=5)
+        {
+            ++a[arr[i]-1];
+        }
+       else
+         ++spoilt;
+    }
+    for(i=0; i<5; ++i)
+    {
+        printf("Candidate %d=%d\n", i+1, a[i]);
+    }
+   printf("Spoil Ballot=%d", spoilt);
+	return 0;
+}

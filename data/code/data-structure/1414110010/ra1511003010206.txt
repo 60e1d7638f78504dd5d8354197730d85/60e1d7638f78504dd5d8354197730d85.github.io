@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+	int t;
+  cin>>t;
+  int i;
+  for(i=0;i<t;i++)
+  {
+    int n,m;
+    cin>>n>>m;
+    int a[n];
+    int j;
+    for(j=0;j<n;j++)
+      cin>>a[j];
+    sort(a,a+n);
+    int s1=0,s2=0;
+    if(n%(m+1)==0)
+      m=n/(m+1);
+    else
+      m=(n/(m+1))+1;
+    for(j=0;j<m;j++)
+    {
+      s1+=a[j];
+      s2+=a[n-j-1];
+    }
+    cout<<s1<<" "<<s2<<"\n";
+    
+  }
+  
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a[15],k,n,x;
+  	cin>>k;
+  	for(int i=0;i<k;i++)
+      cin>>a[i];
+  	cin>>n;
+  	x=k;
+  	int pos=0;
+  	for(int i=0;i<n;i++)
+    {
+      
+      while(a[pos]==x)
+      {
+        x--;
+        pos++;
+      }
+      int p=pos;
+      for(int j=pos;j<k;j++)
+      {
+        if(a[j]==x)
+          p=j;
+      }
+      int temp=a[p];
+      a[p]=a[pos];
+      a[pos]=temp;
+      x--;
+      pos++;
+    }
+    for(int i=0;i<k;i++)
+      cout<<a[i]<<" ";
+	return 0;
+}

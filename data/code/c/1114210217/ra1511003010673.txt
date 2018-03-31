@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int testpcirc(int n)
+{
+	int temp,dig,dig2;
+	temp=n;	
+	
+	dig=0;	
+	while(temp){temp/=10;dig++;}
+	dig2=dig;
+	
+	int flag=1,i;
+	
+	//temp=1000000;
+	//printf("%d %d",temp,sizeof(temp));
+	
+	//printf("..%d",dig);
+	
+	while(dig--)
+	{
+		//printf("...%d",n);
+		
+		for(i=2;i<=sqrt(n);i++)
+		{
+			if(n%i==0){flag=0;break;}
+		}
+		if(!flag) break;
+ 
+		temp=n%10;
+		n=n/10;
+		n+=(temp*pow(10,dig2-1));
+	}
+	return flag;
+}
+ 
+int main()
+{
+int t,n;
+ 
+scanf("%d",&t);
+ 
+while(t--)
+{
+	scanf("%d",&n);
+	if(testpcirc(n)) printf("yes\n");
+	else printf("no\n");
+}
+ 
+return 0;
+}

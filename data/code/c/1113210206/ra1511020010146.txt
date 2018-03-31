@@ -1,0 +1,49 @@
+#include<stdio.h>
+ 
+    long long  phi[1000001],composite[1000001]; 
+ 
+    int main()
+    {
+ 
+            int i,j;
+ 
+            for(i=0;i<1000001;++i)
+                phi[i]=i;
+ 
+ 
+            for(i=2;i<1000001;++i)
+            {
+                    if(composite[i]==0)
+                    {
+                            phi[i]= i-1;
+ 
+                            for(j=2*i;j<1000001;j=j+i)
+                            {
+                                    composite[j]=1;
+                                    phi[j]= (phi[j]/i)*(i-1);
+ 
+                            }
+                    }
+ 
+            }
+ 
+            phi[0]=phi[1]=0;
+ 
+            for(i=3;i<1000001;++i)
+                phi[i]=phi[i-1]+phi[i];
+ 
+            int t,n;
+ 
+            scanf("%d",&t);
+ 
+            while(t--)
+            {
+                    scanf("%d",&n);
+                    printf("%lld\n",phi[n]);
+ 
+            }
+ 
+            return 0;
+ 
+ 
+    } 

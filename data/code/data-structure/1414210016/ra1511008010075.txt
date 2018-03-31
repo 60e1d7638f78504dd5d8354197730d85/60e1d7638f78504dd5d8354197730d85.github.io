@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    int t,i;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        cin>>s;
+        sort(s.begin(),s.end());
+        int len = s.size();
+        string ch[len];
+        int position = (len - 1) / 2;
+        ch[position] = s[len - 1];
+        bool flag = true;
+        int k = 1,j = 1,i;
+        for(i = len - 2; i >= 0; i--)
+        {
+            if(flag)
+            {
+                ch[position + k] = s[i];
+                k++;
+                flag = false;
+            }
+            else
+            {
+                ch[position - j] = s[i];
+                j++;
+                flag = true;
+            }
+        }
+        for(i = 0; i < len; i++)
+            cout<<ch[i];
+        cout<<"\n";
+    }
+ 
+    return 0;
+}

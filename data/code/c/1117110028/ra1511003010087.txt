@@ -1,0 +1,44 @@
+int large(int[], int, int);
+ #include<stdio.h>
+int main()
+{
+    int size;
+    int largest;
+    int list[20];
+    int i;
+ 
+  
+    scanf("%d", &size);
+
+    for(i=0;i<size;i++)
+      scanf("%d",&list[i]);
+    if (size == 0)
+    {
+        printf("Empty list\n");
+    }
+    else
+    {
+        largest = list[0];
+        largest = large(list, size - 1, largest);
+        printf("\nMaximum element in the array is %d\n", largest);
+    }
+  return 0;
+}
+int large(int list[], int size, int largest)
+{
+    if (size == 1)
+        return largest;
+ 
+    if (size > -1)
+    {
+        if (list[size] > largest)
+        {
+            largest = list[size];
+        }
+        return(largest = large(list, size - 1, largest));
+    }
+    else
+    {
+        return largest;
+    }
+}

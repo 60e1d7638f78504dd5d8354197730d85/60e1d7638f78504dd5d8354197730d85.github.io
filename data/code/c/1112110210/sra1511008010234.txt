@@ -1,0 +1,39 @@
+#include <stdio.h>
+int sum(int a)
+{
+  int s;
+  if(a==1)
+  {
+    return 1;
+  }
+  else
+  {
+    s=a+sum(a-1);
+  }
+  return s;
+}
+int main()
+{
+	int t,a,b,s=0;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      scanf("%d%d",&a,&b);
+      if(a==1)
+      {
+        s=sum(b);
+      }
+      else
+      {
+        int j;
+        s=b;
+        for(j=0;j<a;j++)
+        {
+          s=sum(s);
+        }
+       }
+      printf("%d\n",s);
+    }
+  
+	return 0;
+}

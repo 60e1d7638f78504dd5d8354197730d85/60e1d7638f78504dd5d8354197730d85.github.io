@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int A[1000005];
+int Max(int a,int b){
+    return a > b ? a : b;
+}
+int main()
+{
+    int t,n,v,i,k,mx,mx1,A[1000];
+    scanf("%d",&t);
+    while(t--){
+       memset(A,0,sizeof(A));
+        scanf("%d",&n);
+
+        mx=mx1=k=0;
+        for(i=1;i<=n;i++){
+            scanf("%d",&v);
+            A[v]++;
+            mx = Max(mx,A[v]);
+            mx1 = Max(mx1,v);
+        }
+        for(i=1;i<=mx1;i++){
+            if(A[i]==mx){
+                if(k)
+                printf(" ");
+                printf("%d",i);
+                k=1;
+            }
+        }
+        puts("");
+     
+    }
+    return 0;
+}

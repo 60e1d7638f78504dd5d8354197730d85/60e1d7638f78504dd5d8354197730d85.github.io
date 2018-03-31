@@ -1,0 +1,27 @@
+#include <iostream>
+#include<fstream>
+using namespace std;
+int main()
+{
+  ofstream outfile("data");
+  int n,i,c=0;
+  cin>>n;
+  outfile<<n;
+  for(i=1;i<=n;i++)
+  {
+    if(i%4==0)
+      c++;
+  }
+  outfile<<c;
+  outfile.close();
+  ifstream infile("data");
+  infile>>n;
+  infile>>c;
+  if(n!=30 && c==0)
+    cout<<"Invalid Input";
+  else
+    cout<<"Number of exceptions="<<c;
+  infile.close();
+
+	return 0;
+}

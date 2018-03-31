@@ -1,0 +1,34 @@
+#include <stdio.h>
+int ispali(int);
+int main()
+{
+int k,y,t,i,j;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&k);
+    while(ispali(k+1)>0)
+    { if(ispali(k+1)==0)
+    {printf("%d",k+1);
+     break;}
+     else k++;
+    }
+  }
+	return 0;
+}
+  int ispali(int a)
+  {
+    int temp,rem,s=0,i;
+    temp=a;
+    while(temp>0)
+    {
+      rem=temp%10;
+      s=s*10 +rem;
+      temp=temp/10;
+    }
+    if(s==a)
+    {
+      printf("%d\n",s);
+      return 0;}
+    else return 1;
+  }

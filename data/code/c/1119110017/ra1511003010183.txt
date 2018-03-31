@@ -1,0 +1,64 @@
+#include<stdio.h>
+void lucase(char *ch);
+void upper_string(char *ch);
+void lower_string(char *ch);
+int main() 
+{
+ 
+     
+ 
+    char ch; 
+    
+ 
+    scanf("%c",&ch);
+ 
+   lucase(&ch);
+return 0;
+}
+void lucase(char *ch)
+{
+	
+   if(*ch>=65 && *ch<=90)
+   {
+ 
+      printf("Upper case character was entered");
+upper_string(ch);
+  printf("\n%c",*ch);
+   }
+    else if(*ch>=97 && *ch<=122)
+    {
+ 
+    printf("Lower case character was entered");
+  lower_string(ch);
+      printf("\nUpper case=%c",*ch);
+      
+    }
+     
+    else
+     printf("Number was entered");
+}
+
+void upper_string(char *ch)
+{
+   while(*ch)
+   {
+       if ( *ch >= 'A' && *ch <= 'Z' )
+       {
+          *ch = *ch + 32;
+       }
+       ch++;
+   }
+}
+ 
+void lower_string(char *ch)
+{
+   while(*ch)
+   {
+       if ( *ch >= 'a' && *ch <= 'z' )
+       {
+          *ch = *ch - 32;
+       }
+       ch++;
+   }
+}
+ 

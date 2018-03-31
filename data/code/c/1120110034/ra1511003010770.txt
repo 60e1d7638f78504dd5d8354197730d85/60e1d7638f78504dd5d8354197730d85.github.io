@@ -1,0 +1,45 @@
+#include <stdio.h>
+int calc(char c)
+{ int d=0;
+switch(c)
+{
+  case 'I':d=1;
+    break;
+  case 'V':d=5;
+    break;
+  case 'X':d=10;
+    break;
+  case 'L':d=50;
+    break;
+  case 'C':d=100;
+    break;
+  case 'D':d=500;
+    break;
+  case 'M':d=1000;
+    break;
+  default:d=-1; 
+}
+ return d;
+}
+int main()
+{
+  int i=0,s=0;
+  char roman[1000];
+  scanf("%s",roman);
+  while(roman[i])
+  {
+    //printf("%c",roman[i]);
+    if(calc(roman[i+1]) <= calc(roman[i]))
+      s+=calc(roman[i]);
+    else
+    {s+=calc(roman[i+1])-calc(roman[i]);
+     i++;
+    }
+  	i++;
+    //printf("%d\n",s);
+  }
+  
+  printf("%d",s);
+
+	return 0;
+}

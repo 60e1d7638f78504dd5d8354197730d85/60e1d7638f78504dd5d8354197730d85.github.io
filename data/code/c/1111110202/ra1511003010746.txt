@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <ctype.h>
+#include<string.h>
+int main()
+{
+	char s[10];
+   	fgets(s,10,stdin);
+  	int len=strlen(s);
+  	
+	int x=0;
+  while (x<10) 
+  { 
+    if(s[x]=='_' && ((x+1)!=(len/2)))
+    	{printf("not a valid identifier");return 0;}
+    if(isdigit(s[0]))
+    	{printf("not a valid identifier");return 0;}
+   	if(s[x]=='_' && s[x+1]=='_')
+   		{printf("not a valid identifier");return 0;}
+    x++;
+  }  
+   printf("valid identifier");
+	return 0;
+}

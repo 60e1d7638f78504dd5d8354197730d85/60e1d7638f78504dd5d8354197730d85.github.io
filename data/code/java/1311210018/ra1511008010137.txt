@@ -1,0 +1,41 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class TestClass
+{
+    public static void main(String []args) throws IOException
+    {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int t=Integer.parseInt(br.readLine());
+        while(t--!=0)
+        {
+            int n=Integer.parseInt(br.readLine());
+            String []str=br.readLine().split(" ");
+            HashMap<Integer,Integer> hm=new HashMap<>();
+            int arr[]=new int[n];
+            for(int i=0;i<n;i++)
+                arr[i]=Integer.parseInt(str[i]);
+            Arrays.sort(arr);
+            boolean flag=true;
+            if(arr.length<4)
+                flag=false;
+            int count=0;
+            int hmm[]=new int[2];
+            // for(int i=0;i<n;i++)
+            //     System.out.print(arr[i]+" ");
+            // System.out.println();
+            for(int i=n-1;i>0 && count<2 && flag;)
+            {
+                if(arr[i]==arr[i-1])
+                {
+                    hmm[count]=arr[i];
+                    count++;
+                    i-=2;
+                }
+                else if(arr[i]!=arr[i-1])
+                    i-=1;
+            }
+            System.out.println(count==2?(hmm[0]*hmm[1]):-1);
+        }
+    }
+} 

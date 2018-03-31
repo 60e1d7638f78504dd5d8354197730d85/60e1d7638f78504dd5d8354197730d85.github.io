@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdbool.h>
+int main()
+{
+  int i,n,c,loop,k,one,two;
+  int limit=1000;
+  bool arr[1001]={false};
+  for(i=1;i<=limit;i++)
+  {
+    int check=0;
+    for(n=1;n<=i;n++)
+    {
+      if(i%n==0)
+      {
+        check++;
+      }
+    }
+    if(check==2)
+    {
+      arr[i]=true;
+    }
+  }
+  scanf("%d",&loop);
+  for(k=1;k<=loop;k++)
+  {
+    scanf("%d",&one);
+    scanf("%d",&two);
+    for(c=one;c<=two;c++)
+    {
+      if(arr[c]==true)
+      {
+        printf("\n%d",c);
+      }
+    }
+    printf("\n");
+  }
+	return 0;
+}

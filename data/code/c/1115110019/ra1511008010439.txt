@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int l;
+  scanf("%d",&l);
+  int i,a[l],index,value;
+  printf("Before sorting");
+  for(i=0;i<l;i++)
+    scanf("%d",&a[i]);
+  scanf("%d",&index);
+  scanf("%d",&value);
+  for(i=l;i>index;i--)
+    a[i]=a[i-1];
+  a[i]=value;
+  l++;
+  for(i=0;i<l;i++)
+  printf("\n%d",a[i]);
+  int j,temp;
+  for(i=0;i<l;i++)
+  {
+    for(j=0;j<(l-i-1);j++)
+    {
+      if(a[j]>a[j+1])
+      {
+        temp=a[j];
+        a[j]=a[j+1];
+        a[j+1]=temp;
+      }
+    }
+  }
+  printf("\nAfter sorting");
+  for(i=0;i<l;i++)
+    printf("\n%d",a[i]);
+
+	return 0;
+}

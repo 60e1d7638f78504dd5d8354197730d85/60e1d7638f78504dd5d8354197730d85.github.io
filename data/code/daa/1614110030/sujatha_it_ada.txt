@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int b[100000];
+int c[100000];
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    int B = 0;
+    int C = 0;
+    int S = 0;
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d" , &a[i]);
+        b[a[i]]++;
+        B = max(B , b[a[i]]);
+        if (i && a[i] == a[i - 1])
+        {
+            ++S;
+            c[a[i]]++;
+            C = max(C , c[a[i]]);
+        }
+    }
+    if (B > (n + 1) / 2)
+    {
+        cout << -1 << endl;
+    }
+    else
+    {
+        cout << max((S + 1) / 2 , C) << endl;
+    }
+	return 0;
+}

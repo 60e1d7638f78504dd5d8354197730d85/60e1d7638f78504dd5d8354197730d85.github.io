@@ -1,0 +1,48 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		int* a = new int[n];
+		for(int i=0;i<n;i++)
+			cin>>a[i];
+		long long** smoke = new long long*[n];
+		int** mix = new int*[n];
+		for(int i=0;i<n;i++)
+		{
+			smoke[i] = new long long[n];
+			mix[i] = new int[n];
+		}
+		for(int i=0;i<n;i++)
+		{
+			smoke[i][i] = 0;
+			mix[i][i] = a[i];
+		}
+		for(int l=2;l<=n;l++)
+		{
+			for(int i=0;i<n-l+1;i++)
+			{
+				int j = i+l-1;
+				int pos;
+				long long mn = INT_MAX;
+				for(int k=i;k<j;k++)
+				{
+					//cout<<"smk: "<<smoke[i][k]+smoke[k+1][j]+mix[i][k]*mix[k+1][j]<<endl;
+					if(smoke[i][k]+smoke[k+1][j]+mix[i][k]*mix[k+1][j] < mn)
+					{
+						mn = smoke[i][k]+smoke[k+1][j]+mix[i][k]*mix[k+1][j];
+						pos = k;
+					}
+				}
+				smoke[i][j] = smoke[i][pos]+smoke[pos+1][j]+mix[i][pos]*mix[pos+1][j];
+				mix[i][j] = (mix[i][pos]+mix[pos+1][j])%100;
+			}
+		}
+		cout<<smoke[0][n-1]<<endl;
+	}
+	
+	return 0;
+} 

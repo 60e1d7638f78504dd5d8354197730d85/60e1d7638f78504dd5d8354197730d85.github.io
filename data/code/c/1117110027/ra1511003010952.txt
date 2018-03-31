@@ -1,0 +1,25 @@
+#include <stdio.h>
+int arr_sum(int a[10],int n,int sum)
+{
+  
+  if(n<0)
+  {
+    return sum;
+    
+  }
+ sum+=a[n];
+  return  arr_sum(a,--n, sum);
+}
+int main()
+{
+int a[10],i,size,n;
+  scanf("%d",&size);
+  for(i=0;i<size;i++)
+    scanf("%d",&a[i]);
+ // n=sizeof(a)/sizeof(a[0]);
+ //printf("%d\n" ,sum(a,n));
+  n=arr_sum(a,size,0);
+  printf("%d",n);
+  
+	return 0;
+}

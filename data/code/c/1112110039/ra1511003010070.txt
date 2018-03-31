@@ -1,0 +1,34 @@
+#include <stdio.h>
+#define get getchar_unlocked
+long long int input()
+{
+   char c=get();
+   long long int n=0;
+   while(c<'0'||c>'9')
+   c=get();
+   while(c>='0'&&c<='9')
+   {
+   n=(n<<1)+(n<<3)+(c&15);
+   c=get();
+   }
+   return n;
+}
+int main(void) {
+	long long int t,c,d,l,a;
+	t=input();
+	while(t--)
+	{
+	    c=input();
+	    d=input();
+	    l=input();
+	    if(l%4==0)
+	    {
+	        l>>=2;
+	        a=(0>(c-2*d))?0:c-2*d;
+	        ((c+d)>=l&&(d+a)<=l)?printf("yes\n"):printf("no\n");
+	    }
+	    else
+	    printf("no\n");
+	}
+	return 0;
+}  

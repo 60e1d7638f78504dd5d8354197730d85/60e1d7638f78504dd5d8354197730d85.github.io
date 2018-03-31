@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,l,i,j,s=0,p=0,o=0,k=0,y;
+  char a[100];
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    s=0;p=0;o=0;k=0;
+    scanf("%d%d",&n,&l);
+    for(j=0;j<n;j++)
+    {
+      scanf("%s",a);
+      for(y=0;y<l;y++)
+      {
+        if((int)a[y] == (int)'s' || (int)a[y] == (int)'S')
+          s++;
+        else if((int)a[y] == (int)'p' || (int)a[y] == (int)'P')
+          p++;
+        else if((int)a[y] == (int)'o' || (int)a[y] == (int)'O')
+          o++;
+        else if((int)a[y] == (int)'n' || (int)a[y] == (int)'N')
+          k++;
+      }
+    }
+    if(s >= 1 && p >= 1 && o >= 2 && k >= 1)
+    { 
+      printf("There is a spoon!\n");}
+    else
+    { 
+      printf("There is indeed no spoon!\n");}
+  }
+  return 0;
+}

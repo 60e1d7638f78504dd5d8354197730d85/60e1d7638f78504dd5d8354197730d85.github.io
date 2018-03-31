@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int idx[100];
+int a[100];
+
+int main()
+{
+    int n, k;
+
+    cin >> n ;
+    for(int i = 1; i <= n; i ++)
+    {
+        cin >> a[i];
+        idx[ a[i] ] = i;
+    }
+  cin>>k;
+
+    int i = 1;
+    while(i < n && k)
+    {
+        if(a[i] == n-i+1)
+        {
+            i ++;
+            continue;
+        }
+
+        int tmp = idx[n-i+1];
+        idx[ a[i] ] = idx[ n-i+1 ];
+        idx[ n-i+1 ] = i;
+        swap( a[ tmp ], a[i] );
+
+
+        k --;
+        i ++;
+    }
+
+    for(int j = 1; j <= n; j ++)
+        cout << (j==1?"":" ") << a[j];
+    cout << endl;
+
+    return 0;
+}

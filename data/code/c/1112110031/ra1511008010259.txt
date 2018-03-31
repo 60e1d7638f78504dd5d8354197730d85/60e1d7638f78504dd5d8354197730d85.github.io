@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+int n=0,i=0,j=0,k=1,l=1,flag=0;
+  scanf("%d",&n);
+ int m=n/2;
+  int a[m],b[m];
+  for(i=2;i<n;i++){
+    int c=0;
+  for(j=1;j<=i;j++){
+  if(i%j==0){
+  c++;
+  }
+  }
+    if(c==2){
+   if(i<m){
+   a[k]=i;
+     k++;
+   }
+      else if(i>m){
+      b[l]=i;
+        l++;
+      }
+      else{
+      a[k]=b[l]=i;
+        k++;
+        l++;
+      }
+    }
+  }
+  for(i=1;i<=m;i++){
+  for(j=1;j<=m;j++){
+if(a[i]+b[j]==n){
+printf("%d = %d + %d\n",n,a[i],b[j]);
+  flag++;
+}
+  }
+  }
+  if(flag==0){
+  printf("NOT");
+  }
+	return 0;
+}

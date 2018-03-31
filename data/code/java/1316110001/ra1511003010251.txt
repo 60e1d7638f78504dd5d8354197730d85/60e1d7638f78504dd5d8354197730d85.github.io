@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  public static void getInput()
+  {
+    Scanner sc=new Scanner(System.in);
+    int num=sc.nextInt();
+    int digit=sc.nextInt();
+    int output=getLLessThanN(num,digit);
+    System.out.println(output);
+  }
+  
+  public static int getLLessThanN(int number,int digit)
+  {
+    int n=number;
+    int last,count;
+    count=0;
+    while(n>0)
+    {
+      last=n%10;
+      n=n/10;
+      if(last==digit && count!=0)number=number - number%((int)Math.pow(10,count)) - 1;
+      if(last==digit && count==0)number=number - 1;
+      count++;
+    }
+    return number;
+  }
+  
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample.getInput();
+	}
+}

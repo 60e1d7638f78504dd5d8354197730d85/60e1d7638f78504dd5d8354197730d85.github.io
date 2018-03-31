@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  while(n--)
+  {
+    int k;
+    scanf("%d",&k);
+    int i,j,less=10,diff=0,a[k];
+    for(i=0;i<k;i++)
+      scanf("%d",&a[i]);
+    for(i=0;i<k-1;i++)
+      for(j=i+1;j<k;j++)
+        if(abs(a[i]-a[j])<less)
+        {
+          less = abs(a[j]-a[i]);
+        }
+    printf("%d\n",less);
+  }
+	return 0;
+}

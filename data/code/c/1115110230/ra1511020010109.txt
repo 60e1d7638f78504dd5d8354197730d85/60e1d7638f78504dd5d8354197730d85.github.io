@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main(void){
+    int t, h, m,ctr =1;
+    scanf("%d\n",&t);
+ 
+    while(t--){
+        ctr = 1;
+        scanf("%d %d", &h, &m);
+        if(h>100 || m>100)
+            break;
+        if(h<=9 && m<=9){
+            if(h<=m){
+                ctr = h; //check 1+
+            }
+            else{
+                ctr = m;
+            }
+        }
+        else if(h>9 && m<=9){
+             h--;m--;
+            int x = h/11;
+            if(x<=m){
+                ctr = x + m +1;
+            }
+            else{
+                ctr = m + m +1;
+            }
+        }
+        else if(m>9 && h<=9){
+            h--;m--;
+            int x = m/11;
+            if(x<=h){
+                ctr = x + h +1;
+            }
+            else{
+                ctr = h + h +1;
+            }
+        }
+        else{
+            h--;m--;
+            int x = m/11;
+            int y = h/11;
+            if(x<=y){
+                ctr = 2*x +y + 10;
+            }
+            else{
+                ctr = 2*y+x+10;
+            }
+        }
+        printf("%d\n",ctr);
+    }
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include<stdio.h>
+ 
+int abs(int param){
+  if(param<0) return -param;
+  return param;
+}
+ 
+int main(){
+  int t,i,winner, p1, p2, tmp1=0, tmp2=0;
+  scanf("%d" , &t);
+  int l[t];
+  for(i = 0 ; i < t ; i++){
+    scanf("%d %d", &p1, &p2);
+    tmp1 += p1;
+    tmp2 += p2;
+    l[i] = tmp1 - tmp2;
+  }
+  tmp1=0;
+  while(t--){
+    if(abs(l[t]) > tmp1){
+      tmp1 = abs(l[t]);
+      if(l[t]<0) winner = 2;
+      else winner = 1;
+    }
+  }
+  printf("%d %d", winner, abs(tmp1));
+  return 0;
+}

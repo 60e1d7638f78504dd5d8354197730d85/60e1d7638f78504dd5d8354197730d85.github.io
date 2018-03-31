@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int n,x,y=0;
+  char c[10];
+  scanf("%s %d",c,&n);
+  int s[n+1];
+  for (x=0;x<n;scanf("%d",&s[x]),x++);
+  x=0;
+  while(x<n){
+    if (s[x]==1)
+        y++;
+    x++;
+  }
+  if (strcmp(c,"odd")){
+    if (x%2==0)
+      s[x]=1;
+    else
+      s[x]=0;
+  }
+  else{
+    if(x%2==0)
+      s[x]=0;
+    else
+      s[x]=1;
+  }
+  for(x=0;x<=n;printf("%d",s[x]),x++);
+	return 0;
+}

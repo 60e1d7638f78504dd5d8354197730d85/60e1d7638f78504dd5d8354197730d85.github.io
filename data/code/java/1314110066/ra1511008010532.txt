@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       int x=0;
+       while(x<t){
+         int[] a=new int[100];
+         int n=sc.nextInt();
+         int k=sc.nextInt();
+         for(int i=0;i<n;i++)
+           a[i]=sc.nextInt();
+         int y=0;
+         int sum=0;
+         while(y<k){
+           int max=a[0];
+           int j=0;
+           for(int i=1;i<n;i++){
+             if(a[i]>max){
+               max=a[i];
+               j=i;
+             }
+           }
+           a[j]=max/2;
+           sum+=max;
+           y++;
+         }
+         System.out.println(""+sum);
+        x++; 
+       }
+	}
+}

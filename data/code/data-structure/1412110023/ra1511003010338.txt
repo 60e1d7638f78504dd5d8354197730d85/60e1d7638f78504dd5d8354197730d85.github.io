@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while(t--)
+    {
+        int n, i, k;
+        scanf("%d %d", &n, &k);
+        int arr[n];
+        for(i=0; i<n; i++)
+        {
+            scanf("%d", &arr[i]);
+        }
+        int l=0; 
+        int r=0;
+        int f=0;
+        int sum=arr[0];
+        while(l<=n &&r<=n)
+        {
+            if(sum==k && l<r)
+            {
+                f=1;
+                break;
+            }
+            else if(sum<k)
+            {
+                r++;
+                sum+=arr[r];
+            }
+            else if(sum>k)
+            {
+                sum-=arr[l];
+                l++;
+            }
+        }
+        if(f==1)
+            printf("%d %d\n", l+1, r+1);
+        else
+            printf("-1\n");
+        
+    }
+    return 0;
+}

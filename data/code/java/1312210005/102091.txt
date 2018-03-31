@@ -1,0 +1,30 @@
+import java.util.Scanner;
+ 
+class TestClass
+{
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int test=sc.nextInt();
+		int arr[]=new int[6];
+		int num=0;
+		for(int i=0;i<test;i++)
+		{
+			int count=0;
+			for(int k=0;k<arr.length;k++)
+			{
+				arr[k]=sc.nextInt();
+			}
+		double side1=Math.sqrt(((arr[2]-arr[0])*(arr[2]-arr[0]))+(arr[3]-arr[1])*(arr[3]-arr[1]));
+		double side2=Math.sqrt(((arr[4]-arr[0])*(arr[4]-arr[0]))+(arr[5]-arr[1])*(arr[5]-arr[1]));
+		double side3=Math.sqrt(((arr[4]-arr[2])*(arr[4]-arr[2]))+(arr[5]-arr[3])*(arr[5]-arr[3]));
+	
+		if(Math.round((side1*side1)+(side2*side2))==Math.round(side3*side3) || Math.round((side3*side3)+(side2*side2))==Math.round(side1*side1)|| Math.round((side3*side3)+(side1*side1))==Math.round(side2*side2))
+		{
+			num++;
+		}
+		}
+		System.out.println(num);
+		
+	}
+} 

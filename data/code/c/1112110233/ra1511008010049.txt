@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main(){
+   int m,n,t;
+   int a[10][10];
+   scanf("%d",&t);
+   while(t--)
+   {
+     scanf("%d %d",&n,&m);
+     int I,j;
+     for(I=0;I<n;I++)
+     {
+       for(j=0;j<m;j++)
+          scanf("%1d",&a[I][j]);
+     }
+     int c,s;
+     s=0;
+     for(I=0;I<m;I++)
+     {
+        c=0;
+        for(j=0;j<n;j++)
+        {
+           if(a[j][I]==1)
+              c++;
+        }
+        if(c>1)
+          s=s+(c*(c-1))/2;
+      }
+      printf("%d\n",s);
+    }
+ } 

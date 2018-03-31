@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+#define f first
+#define s second
+#define mp make_pair
+#define pb push_back
+#define lp(i,a,n) for(int i=(a);i<=(int)(n);++i)
+#define lpd(i,a,n) for(int i=(a);i>=(int)(n);--i)
+#define mem(a,b) memset(a,b,sizeof a)
+#define all(v) v.begin(),v.end()
+#define println(a) cout <<(a) <<endl
+#define sz(x) ((int)(x).size())
+#define readi(x) scanf("%d",&x)
+#define read2i(x,y) scanf("%d%d",&x,&y)
+#define read3i(x,y,z) scanf("%d%d%d",&x,&y,&z)
+#define readll(x) scanf("%I64d",&x)
+#define mod 1000000007
+#define eps 1e-6
+#define infi 1e9
+#define infll 1e18
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<ll> vll;
+typedef set<int> si;
+typedef map<int,int> mii;
+ 
+const int N = 2e5 + 2;
+int n,m,parent[N],u,v;
+ll sumComp[N];
+struct edge {
+    int a,b,w;
+    bool operator < (const edge x) const {
+        return w < x.w;
+    }
+} edges[N];
+ 
+int find(int a) {return parent[a] == a ? a : parent[a] = find(parent[a]);}
+void merge(int a, int b){
+    sumComp[parent[find(b)]] += sumComp[parent[find(a)]];
+    parent[find(a)] = parent[find(b)];
+}
+ 
+int main(){
+    read2i(n,m);
+    lp(i,1,n) cin >>sumComp[i];
+    lp(i,1,m){
+        int a,b,w;
+        read3i(a,b,w);
+        edges[i] = {a,b,w};
+    }
+    read2i(u,v);
+ 
+    sort(edges+1, edges+1+m);
+    lp(i,1,n) parent[i] = i;
+ 
+    int x = 0;
+    lpd(i,m,1){
+        if(find(edges[i].a) != find(edges[i].b)){
+            x = edges[i].w;
+            merge(edges[i].a, edges[i].b);
+        }
+        if(find(u) == find(v)){
+            while(--i and edges[i].w == x){
+                if(find(edges[i].a) != find(edges[i].b)) merge(edges[i].a, edges[i].b);
+            }
+            break;
+        }
+    }
+ 
+    cout <<x <<" " <<sumComp[find(u)];
+}
+ 
+//freopen("input.txt","r",stdin);
+//freopen("output.txt","w",stdout);
+//ios::sync_with_stdio(0);cin.tie(0);

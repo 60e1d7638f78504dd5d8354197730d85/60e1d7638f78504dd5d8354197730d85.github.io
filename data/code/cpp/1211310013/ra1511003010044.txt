@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Returns the N-th number with given digits
+int findNth(int n)
+{
+    // vector to store results
+    vector<int> ans;
+ 
+    // push first 6 numbers in the answer
+    for (int i = 0; i < 6; i++)
+        ans.push_back(i);
+ 
+    // calculate further results
+    for (int i = 0; i <= n; i++) 
+        for (int j = 0; j < 6; j++) 
+            if ((ans[i] * 10) != 0)
+                ans.push_back(ans[i] * 10 + ans[j]);        
+     
+    return ans[n - 1];
+}
+ 
+// Driver code
+int main()
+{
+    int ch,n;
+    cin>>ch;
+    while(ch--)
+    { cin>>n;
+      cout << findNth(n)<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include<stdio.h>
+ 
+int fun(int a,int b)
+{
+  if(b==0)return a;
+  else return fun(b,a%b);
+}
+ 
+int main()
+{
+  int t,a,i,j;
+  char b[300];
+  scanf("%d",&t);
+  while(t--)
+  {
+    int sum=0;
+    scanf("%d %s",&a,b);
+    
+    if(a==0)printf("%s\n",b);
+    else
+    {
+    for(i=0;b[i]!='\0';i++)
+    {
+      sum=sum*10+b[i]-'0';
+      sum%=a;
+    }
+    j=fun(sum,a);
+  
+    printf("%d\n",j);
+  }}
+  return 0;
+}
+ 

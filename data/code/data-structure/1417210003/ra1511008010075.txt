@@ -1,0 +1,88 @@
+#include<iostream>
+#include<cstdio>
+#include<queue>
+ 
+using namespace std;
+ 
+typedef long long int ll;
+ 
+ll n,arr[500001],ans[500001]={0},a,b,c,d,mod = 1 << 30;
+ 
+void build_arr(){
+    for(int j=10000; j<n; j++)
+        arr[j] = (a*arr[j-1] + b*arr[j-2] + d)%mod;
+    return;
+}
+ 
+void solve(){
+    deque<int> q1;
+    deque<int> q2;
+    int l,r;
+    l = r = 0;
+    q1.push_back(0);
+    q2.push_back(0);
+    ans[1]++;
+    while(r != n-1){
+        r++;
+        while(!q1.empty() && arr[q1.back()] <= arr[r])
+            q1.pop_back();
+        while(!q2.empty() && arr[q2.back()] >= arr[r])
+            q2.pop_back();
+        q1.push_back(r);
+        q2.push_back(r);
+        if(arr[q1.front()] - arr[q2.front()] <= c){
+            ans[r-l+1]++;
+            continue;
+        }
+        while(arr[q1.front()] - arr[q2.front()] > c){
+            if(q1.front() == l) q1.pop_front();
+            if(q2.front() == l) q2.pop_front();
+            l++;
+        }
+        ans[r-l+1]++;
+    }
+ 
+    for(int j=n-1; j>0; j--)
+        ans[j] = ans[j] + ans[j+1];
+    ans[1] = n;
+    return;
+}
+ 
+ll foo(ll l, ll r, ll find){
+    if(l==r) return l;
+    if(l+1 == r){
+        if(ans[l] <= find) return l;
+        return r;
+    }
+    ll mid= (l+r)/2;
+    if(ans[mid] > find) return foo(mid+1, r, find);
+    return foo(l, mid, find);
+}
+ 
+int main(){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        for(int j=0; j<500001; j++)
+            ans[j] = 0;
+        ll q,m;
+        scanf("%lld %lld %lld %lld %lld %lld",&n ,&c ,&q, &a, &b ,&d);
+        if(n>10000){
+            for(int j=0; j<10000; j++)
+                scanf("%lld",&arr[j]);
+            build_arr();
+        }
+        else
+            for(int j=0; j<n; j++)
+                scanf("%lld",&arr[j]);
+        solve();
+ 
+        while(q--){
+            scanf("%lld",&m);
+            ll pos = foo(1, n, m);
+            if(ans[pos] > m) pos--;
+            printf("%lld %lld\n",pos, ans[pos]);
+        }
+    }
+    return 0;
+} 

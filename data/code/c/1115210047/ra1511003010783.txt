@@ -1,0 +1,66 @@
+#include<stdio.h>
+//#include<conio.h>
+#define INF 20000000
+#define MEM 1
+#define NON 0
+long  weight(long  curr,long  k,long  *a,long  *b)
+{
+long  dis=((a[curr]-a[k])*(a[curr]-a[k]))+((b[curr]-b[k])*(b[curr]-b[k]));
+return dis;
+}
+int main()
+{
+//printf("%ld\n",INF);
+long  z,nd,dc,sd,curr,s,t,m,n,j,i,a[2503],b[2503],per[2503],dis[2503];
+scanf("%ld",&t);
+for(i=0;i<t;i++)
+{
+scanf("%ld",&n);
+for(j=0;j<n+2;j++)
+{
+scanf("%ld %ld",&a[j],&b[j]);
+per[j]=NON;
+dis[j]=INF;
+ 
+}
+s=n;
+per[s]=MEM;
+dis[s]=0;
+curr=s;
+while(curr!=n+1)
+{
+sd=INF;
+dc=dis[curr];
+for(m=0;m<n+2;m++)
+{
+//prlong f("harsh\n");
+if(per[m]==NON)
+{
+nd=dc+weight(curr,m,a,b);
+if(nd<dis[m])
+{
+//prlong f("YES\n");
+dis[m]=nd;
+
+}
+ if(dis[m] < sd)
+     {
+      sd = dis[m];
+      z=m;
+     }
+}
+ 
+}
+curr=z;
+//prlong f("%ld %ld \n",curr,dis[curr]);
+per[curr]=MEM;
+}
+ 
+printf ("%ld\n",dis[n+1]);
+}
+ 
+return 0;
+}
+ 
+ 
+ 

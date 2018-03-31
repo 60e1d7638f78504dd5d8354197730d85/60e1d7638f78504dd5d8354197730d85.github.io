@@ -1,0 +1,57 @@
+#include<stdio.h>
+int main()
+{
+     long int t;
+    int a,b,p=0;
+   int powerarr[10][4001];
+    scanf("%ld",&t);
+ 
+ 
+    int sum=0;
+    int i,j,k,x,tmp=0,z;
+    for(i=1;i<=9;i++)
+        powerarr[i][0]=1;
+    for(i=0;i<=4000;i++)
+        powerarr[1][i]=1;
+    for(i=2;i<=9;i++)
+    {
+        powerarr[i][1]=i;
+        int arr[4000];
+        arr[0]=i;
+        k=1;
+        for(z=2;z<=4000;z++)
+        {
+            tmp=sum=0;
+            for(j=0;j<k;j++)
+           {
+            x=arr[j]*i+tmp;
+            arr[j]=x%10;
+            tmp=x/10;
+            sum+=arr[j];
+           }
+          while(tmp>0)
+            {
+ 
+                arr[k]=tmp%10;
+                sum=sum+arr[k];
+                k++;
+                tmp/=10;
+ 
+            }
+            powerarr[i][z]=sum;
+        }
+ 
+    }
+    while(t--)
+    {
+        p++;
+ 
+        scanf("%d %d",&a,&b);
+ 
+        printf("Case %d",p);
+        printf(": %d",powerarr[a][b]);
+        printf("\n");
+ 
+    }
+    return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int main()
+{
+	char line[30];
+	int i,len,countUpper = 0, countLower = 0;
+	scanf ("%[^\n]%*c", line);
+	len = strlen(line);
+	for(i = 0; i < len; i++)
+	{
+		if(isupper(line[i]))
+		{
+			countUpper++;
+		}
+		else if(islower(line[i]))
+		{
+			countLower++;
+		}
+		else
+			continue;
+	}
+	printf("Uppercase Letters=%d\n",countUpper);
+	printf("Lowercase Letters=%d",countLower);
+	return 0;
+}

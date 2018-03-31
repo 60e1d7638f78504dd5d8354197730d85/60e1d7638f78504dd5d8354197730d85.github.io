@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef struct node
+{
+	int data;
+	struct node *next;
+}Node;
+Node *head;
+Node *tr;
+Node *prev;
+void insert(int n)
+{
+	Node *temp=(Node*)malloc(sizeof(Node));
+	temp->data=n;
+	if(head==NULL)
+	{
+		head=temp;
+		head->next=NULL;
+	}
+	else
+	{
+	
+	tr=head;
+	while(tr->next!=NULL)
+	{
+		tr=tr->next;
+	}
+	tr->next=temp;
+	tr=tr->next;
+	tr->next=NULL;
+}
+}
+
+void display()
+{
+	if(head==NULL)
+	{
+		printf("NULL");
+		
+	}
+	else
+	{
+		tr=head;
+		while(tr->next!=NULL)
+		{
+			printf("%d ",tr->data);
+			tr=tr->next;
+		}
+		printf("%d",tr->data);
+	}
+}
+int main()
+{
+	int n;
+
+	scanf("%d",&n);
+		int data[100];
+		
+		//n=strlen(data);
+	int i;
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&data[i]);
+		insert(data[i]);
+	}
+	//deletion();
+	display();
+
+	return 0;
+}

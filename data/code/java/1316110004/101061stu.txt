@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+public void keyboard()
+{
+ Scanner sc=new Scanner(System.in);
+ int t = sc.nextInt();
+ 
+ while (t-->0) 
+ {
+ int n = sc.nextInt();
+ int m =sc.nextInt();
+ int c = sc.nextInt();
+ int count = 0,n1=0,m1=0;
+ 
+ if (n*m <c ) {
+ System.out.println("0");
+ 
+ } else if (n*m == c ) {
+ System.out.println("1");
+ 
+ } else {
+ for (int i = 1; i<=c; i++) {
+  if (c%i == 0) {
+  n1 = i;
+  m1 = c/i;  
+  if (n1 <= n && m1 <= m) {
+  count++;  
+  } 
+  }
+  if (i > n && i > m) {
+  break;
+  }
+ }
+ System.out.println(count);
+
+ }
+ }
+}
+ public static void main(String agrs[]) throws IOException 
+{
+TestClass objname=new TestClass();
+objname.keyboard();
+}
+}
+ 

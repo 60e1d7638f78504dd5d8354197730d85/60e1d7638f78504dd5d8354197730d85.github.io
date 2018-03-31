@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+#define mod 1000000007
+#define ll long long int
+using namespace std;
+typedef pair<double,int> iPair;
+int main()
+{
+	int n,k;
+	cin>>n>>k;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	double dp[n];
+	ll ans[n];
+	priority_queue<iPair,vector<iPair>,greater<iPair> >pq;
+	dp[0]=log(a[0]);
+	ans[0]=a[0];
+	pq.push(make_pair(dp[0],0));
+	for(int i=1;i<n;i++)
+	{
+		while(i-pq.top().second>k)
+		{
+			pq.pop();
+		}
+		dp[i]=dp[pq.top().second]+log(a[i]);
+		ans[i]=(ans[pq.top().second]*a[i])%mod;
+		pq.push(make_pair(dp[i],i));
+	}
+	cout<<ans[n-1]<<endl;
+  	return 0;
+} 

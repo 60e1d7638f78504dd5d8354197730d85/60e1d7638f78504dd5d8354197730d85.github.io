@@ -1,0 +1,55 @@
+#include <stdio.h>
+ void quicksort(long long int x[],int first,int last){
+    int pivot,j,temp,i;
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+ 
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         quicksort(x,first,j-1);
+         quicksort(x,j+1,last);
+ 
+    }
+}
+ 
+ 
+int main(void)
+ 
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+ 
+ 
+    long long int heap[100];int no=0, i, k=0;
+    scanf("%d", &no);
+    for (i = 0; i < no; i++)
+       scanf("%lld", &heap[i]);
+    scanf("%d",&k);
+        k=heap[k-1];
+    quicksort(heap,0,no-1);
+    for (i=0;i<no; i++){
+    if(heap[i]==k){
+    printf("%d\n",(i+1));
+    break;}}
+ 
+ 
+    }
+    return 0;
+}

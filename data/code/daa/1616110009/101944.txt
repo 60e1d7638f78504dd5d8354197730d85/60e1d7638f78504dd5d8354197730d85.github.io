@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ROW 50
+#define COL 50
+
+struct node{
+    int r;
+    int c;
+    int d;
+};
+bool isSafe(int i,int j,int vis[ROW][COL],int r,int c){
+    if(i>=1 && i<=r && j>=1 && j<=c && vis[i][j]==0){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+int solve(int a[ROW][COL],int vis[ROW][COL],struct node src,struct node dst,int r,int c){
+    src.d=0;
+    vis[src.r][src.c]=1;
+    //cout<<src.r<<" "<<src.c<<" "<<src.d<<"\n";
+    queue<node>q;
+    q.push(src);
+    struct node temp;
+    while(!q.empty()){
+        temp=q.front();
+        //cout<<temp.r<<" "<<temp.c<<" "<<temp.d<<"\n";
+        q.pop();
+        if(temp.r==dst.r && temp.c==dst.c){
+            return temp.d;
+        }
+        
+        for(int i=temp.r-2;i<=temp.r+2;i++){
+            for(int j=temp.c-2;j<=temp.c+2;j++){
+                if(isSafe(i,j,vis,r,c) && i==temp.r-2 && j==temp.c-1){
+                    
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"1"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    q.push(ele);
+                }
+                if(isSafe(i,j,vis,r,c) && i==temp.r-2 && j==temp.c+1){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"2"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+                if(isSafe(i,j,vis,r,c) && i==temp.r-1 && j==temp.c-2){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"3"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+                if(isSafe(i,j,vis,r,c) && i==temp.r-1 && j==temp.c+2){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"4"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+                
+                if(isSafe(i,j,vis,r,c) && i==temp.r+2 && j==temp.c-1){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"5"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+                if(isSafe(i,j,vis,r,c) && i==temp.r+2 && j==temp.c+1){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"6"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+                if(isSafe(i,j,vis,r,c) && i==temp.r+1 && j==temp.c-2){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"7"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+                if(isSafe(i,j,vis,r,c) && i==temp.r+1 && j==temp.c+2){
+                    vis[i][j]=1;
+                    struct node ele={i,j,temp.d+1};
+                    //cout<<"8"<<" "<<temp.r<<" "<<temp.c<<" "<<temp.d<<" "<<ele.r<<" "<<ele.c<<" "<<ele.d<<"\n";
+                    
+                    q.push(ele);
+                }
+            }
+        }
+    }
+    return -1;
+}
+
+int main() {
+	int i;
+	cin>>i;
+	while(i--){
+	    int n,m;
+	    cin>>n>>m;
+	    int a[ROW][COL];
+	    int vis[ROW][COL]={0};
+	    struct node src;
+	    cin>>src.r>>src.c;
+	    struct node dst;
+	    cin>>dst.r>>dst.c;
+	    cout<<solve(a,vis,src,dst,n,m)<<"\n";
+	    
+	}
+	return 0;
+}

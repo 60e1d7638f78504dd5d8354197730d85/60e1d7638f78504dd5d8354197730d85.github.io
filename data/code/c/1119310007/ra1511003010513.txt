@@ -1,0 +1,75 @@
+#include<stdio.h>
+#define HELL 1000000007
+char fast_char_var;
+#define	fast_unsigned_dtype	unsigned long long
+fast_unsigned_dtype fast_unsigned_var;
+fast_unsigned_dtype fast_unsigned()
+{
+	fast_char_var=getchar_unlocked();
+	while(fast_char_var<48||fast_char_var>57)
+		fast_char_var=getchar_unlocked();
+	fast_unsigned_var=0;
+	while(fast_char_var>47&&fast_char_var<58)
+	{
+		fast_unsigned_var=(fast_unsigned_var<<1)+(fast_unsigned_var<<3)+fast_char_var-48;
+		fast_char_var=getchar_unlocked();
+	}
+	return fast_unsigned_var;
+}
+unsigned long long power(unsigned long long base,unsigned long long power)
+{
+	unsigned long long residue=1;
+	if(!power)
+		return 1;
+	while(power>1)
+	{
+		if(power&1)
+		{
+			residue*=base;
+			residue%=HELL;
+			power--;
+		}
+		else
+		{
+			power>>=1;
+			base*=base;
+			base%=HELL;
+		}
+	}
+	base*=residue;
+	base%=HELL;
+	return base;
+}
+ 
+int main()
+{
+	static unsigned long long t,n,k,ans,a1,a2,hk,fact[2000006],i,den,num;
+	fact[0]=1;fact[1]=1;
+	for(i=2;i<2000006;i++)
+		fact[i]=(i*fact[i-1])%HELL;
+	t=fast_unsigned();
+	while(t--)
+	{
+		n=fast_unsigned();
+		k=fast_unsigned();
+		num = ((k+n+1)*fact[k+n])%HELL;
+		den = ((k+2)*fact[k+1])%HELL;
+		den = (den*fact[n])%HELL;
+		if(num>den)
+			num=num-den;
+		else
+			num=(num+HELL-den);
+		num*=(n<<1);
+		num%=HELL;
+		den=((k+1)*(k+2))%HELL;
+		den=(den*fact[k])%HELL;
+		den=(den*fact[n])%HELL;
+		den=power(den,HELL-2);
+		num*=den;
+		num%=HELL;
+		num+=n;
+		num%=HELL;
+		printf("%llu\n",num);
+	}
+	return 0;
+} 

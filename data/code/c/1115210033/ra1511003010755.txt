@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,j,temp;
+  	int sum=0;
+  	int p[100];
+  	scanf("%d",&n);
+  	if(n>100||n<1){
+      	if(n==0){
+        	printf("%d",n);
+        }
+      	else{
+        	printf(":(");
+        }
+    }
+  	else{
+    	
+        	for(i=0;i<n;i++){
+            	scanf("%d",&p[i]);
+            }
+          	for(i=0;i<n;i++){
+            	for(j=i;j<n;j++){
+                	if(p[i]<p[j]){
+                    	temp=p[i];
+                      	p[i]=p[j];
+                      	p[j]=temp;
+                    }
+                }
+            }
+          	for(i=0;i<n;i++){
+                sum+=p[i];
+            }
+            while(sum%2==0 || sum>100){
+            	sum=sum-p[n-1];
+              	n=n-1;
+            }  
+          	if(sum<=0){
+            	printf(":(");
+            }
+          	else{
+            	printf("%d",sum);
+            }
+          	
+        
+    }
+	return 0;
+}

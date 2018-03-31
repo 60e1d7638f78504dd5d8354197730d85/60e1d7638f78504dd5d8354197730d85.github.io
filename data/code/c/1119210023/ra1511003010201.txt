@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+main()
+{
+	int T;
+	scanf("%d", &T);
+ 
+	while(T-- > 0)
+	{
+		int R, C, i, j, found = 0;
+		char ** matrix;
+ 
+		scanf("%d %d", &R, &C);
+ 
+		matrix = (char **)malloc(sizeof(char **)*R);
+ 
+		for(i = 0; i < R; i++)
+		{
+			matrix[i] = (char *)malloc(sizeof(char)*(C+1));
+			scanf("%s", matrix[i]);
+		}
+ 
+		for(i = 0; i < R && !found; i++)
+		{
+			for(j = 0; j < C-4 && !found; j++)
+			{
+				int count = 0;
+ 
+				do
+				{
+					switch(count)
+					{
+						case 0: if(matrix[i][j] == 'S' || matrix[i][j] == 's')
+								count++;
+							break;
+						case 1: if(matrix[i][j] == 'P' || matrix[i][j] == 'p')
+								count++;
+							else
+								count = 0;
+							break;
+						case 2: if(matrix[i][j] == 'O' || matrix[i][j] == 'o')
+								count++;
+							else
+								count = 0;
+							break;
+						case 3: if(matrix[i][j] == 'O' || matrix[i][j] == 'o')
+								count++;
+							else
+								count = 0;
+							break;
+						case 4: if(matrix[i][j] == 'N' || matrix[i][j] == 'n')
+								found = 1;
+							else
+								count = 0;
+							break;
+					}
+					j++;
+				}
+				while(count && !found);
+				
+				if(!count)
+					j--;
+			}
+		}
+ 
+ 
+		for(j = 0; j < C && !found; j++)
+		{
+			for(i = 0; i < R-4 && !found; i++)
+			{
+				int count = 0;
+			
+				do
+				{
+					switch(count)
+					{
+						case 0: if(matrix[i][j] == 'S' || matrix[i][j] == 's')
+								count++;
+							break;
+						case 1: if(matrix[i][j] == 'P' || matrix[i][j] == 'p')
+								count++;
+							else
+								count = 0;
+							break;
+						case 2: if(matrix[i][j] == 'O' || matrix[i][j] == 'o')
+								count++;
+							else
+								count = 0;
+							break;
+						case 3: if(matrix[i][j] == 'O' || matrix[i][j] == 'o')
+								count++;
+							else
+								count = 0;
+							break;
+						case 4: if(matrix[i][j] == 'N' || matrix[i][j] == 'n')
+								found = 1;
+							else
+								count = 0;
+							break;
+					}
+					i++;
+				}
+				while(count && !found);
+ 
+				if(!count)
+					i--;
+			}
+		}
+ 
+		if(found)
+			printf("There is a spoon!\n");
+		else
+			printf("There is indeed no spoon!\n");
+	}
+ 
+	return 0;
+}
+ 

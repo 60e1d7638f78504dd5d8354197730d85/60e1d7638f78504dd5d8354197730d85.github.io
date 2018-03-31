@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int n, q, a[100000 + 5], fwt[100000 + 5], i, t, j, ret, x, y;
+
+int main () {
+	
+	// Input reading
+	
+	scanf("%d %d", &n, &q);
+	for(i = 1; i <= n; i++) scanf("%d", &a[i]);
+	
+	// Counting the initial number of inversions via the fenwick tree
+	
+	for(i = 1; i <= n; i++) {
+		t = 0;
+		for(j = a[i]; j; j = j & (j - 1)) t += fwt[j];
+		for(j = a[i]; j <= n; j = (j | (j - 1)) + 1) ++fwt[j];
+		ret = (ret + i - t - 1) % 2; // All we need is just a parity of this number, so we take it modulo 2
+	}
+	
+	// Now, reading the queries
+	
+	for(i = 1; i <= q; i++) {
+		scanf("%d %d", &x, &y);
+		
+		// We've proved in the editorial that the parity of the number of inversions will always change
+		
+		ret ^= 1;
+		printf("%d\n", ret);
+	}
+    return 0;
+}

@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+void build(int start,int end,int b[][3],int curr)
+{if(start==end)
+ {b[curr][0]=(end-start+1);
+  b[curr][1]=0;
+  b[curr][2]=0;
+ }
+ else 
+ {build(start,(start+end)/2,b,2*curr);
+  build((start+end)/2+1,end,b,2*curr+1);
+  b[curr][0]=end-start+1;
+  b[curr][1]=0;
+  b[curr][2]=0;
+ }    
+}
+ 
+void update(int start,int end,int b[][3],int x,int y,int curr,int c[])
+{c[curr]=c[curr]%3;
+ if(c[curr]!=0)
+ {if(c[curr]==1)
+  {int f=b[curr][2];
+    b[curr][2]=b[curr][1];
+   b[curr][1]=b[curr][0];
+   b[curr][0]=f;
+  }
+  else
+  {int f=b[curr][2],f1=b[curr][1];
+      b[curr][2]=b[curr][0];
+      b[curr][0]=f1;
+      b[curr][1]=f;
+  }    
+  if(start!=end)
+  {c[2*curr]=c[2*curr]+c[curr];
+   c[2*curr+1]=c[2*curr+1]+c[curr];   
+  }    
+   c[curr]=0;
+ }
+ if(start>end || end<x || start>y)
+     return;
+ else if(start>=x && end<=y)
+ {int f=b[curr][2];
+   b[curr][2]=b[curr][1];
+   b[curr][1]=b[curr][0];
+   b[curr][0]=f;
+     if(start!=end)
+     {c[2*curr]=c[2*curr]+1;
+      c[2*curr+1]=c[2*curr+1]+1;         
+     }    
+  return;
+ }
+ update(start,(start+end)/2,b,x,y,2*curr,c);
+ update((start+end)/2+1,end,b,x,y,2*curr+1,c);
+ b[curr][0]=b[2*curr][0]+b[2*curr+1][0];
+ b[curr][1]=b[2*curr][1]+b[2*curr+1][1];
+ b[curr][2]=b[2*curr][2]+b[2*curr+1][2];
+}    
+ 
+int sum(int start,int end,int b[][3],int x,int y,int curr,int c[])
+{c[curr]=c[curr]%3;
+ if(c[curr]!=0)
+ {if(c[curr]==1)
+  {int f=b[curr][2];
+    b[curr][2]=b[curr][1];
+   b[curr][1]=b[curr][0];
+   b[curr][0]=f;
+  }
+  else
+  {int f=b[curr][2],f1=b[curr][1];
+      b[curr][2]=b[curr][0];
+      b[curr][0]=f1;
+      b[curr][1]=f;
+  }    
+  if(start!=end)
+  {c[2*curr]=c[2*curr]+c[curr];
+   c[2*curr+1]=c[2*curr+1]+c[curr];   
+  }    
+   c[curr]=0;
+ }
+  if(start>end || end<x || start>y)
+      return 0;
+ if(start>=x && end<=y)
+     return b[curr][0];
+ return sum(start,(start+end)/2,b,x,y,2*curr,c)+sum((start+end)/2+1,end,b,x,y,2*curr+1,c);
+}    
+int main() {
+int n,i,j,k,q;
+int b[262244][3];
+static int c[262244];    
+ scanf("%d %d",&n,&q);
+    build(1,n,b,1);
+ while(q--)
+ {scanf("%d %d %d",&k,&i,&j);
+  i++;j++;
+  if(k==0)
+     update(1,n,b,i,j,1,c);
+  else
+      printf("%d\n",sum(1,n,b,i,j,1,c));
+ }    
+  return 0;
+}

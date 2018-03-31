@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+char str[50],str1[50];
+  int i,j,n,n1,ind,f=0;
+  fgets(str,sizeof(str),stdin);
+  //fgets(str1,sizeof(str),stdin);
+  scanf("%s",str1);
+  n=strlen(str);
+  n1=strlen(str1);
+  ind=-1;
+    for(i=0;i<n-n1;i++)
+    {
+      f=1;
+      for(j=0;j<n1;j++)
+      {
+        if(str[i+j] != str1[j])
+        {
+          f=0;
+          break;
+        }
+      }
+      if(f==1)
+      {
+        ind=i;
+      }
+    }
+  if(ind!=-1)
+  {
+    for(i=ind;i<=n-n1;i++)
+    {
+      str[i] = str[i + n1];
+    }
+  }
+  printf("%s",str);
+  return 0;
+}

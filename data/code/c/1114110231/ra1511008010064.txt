@@ -1,0 +1,30 @@
+#include <stdio.h>
+int sum(int,int);
+int sums(int);
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	int i;
+  	for(i=0;i<t;i++)
+    {
+      int a,b;
+      scanf("%d %d",&a,&b);
+      printf("%d\n",sum(a,b));
+    }
+	return 0;
+}
+int sum(int a,int b)
+{
+  if(a==1)
+    return sums(b);
+  else
+    return sum(a-1,sums(b));
+}
+int sums(int n)
+{
+  if(n==1)
+    return 1;
+  else
+    return n+sums(n-1);
+}

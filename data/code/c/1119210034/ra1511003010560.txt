@@ -1,0 +1,55 @@
+#include<stdio.h>
+
+int sie[1000010],ans[1000010];
+void sieve()
+{
+    int i,j;
+    sie[0]=sie[1]=1;
+    for(i=2;i<=1000000;i++)
+    {
+        if(sie[i]==0)
+        {
+            int c=1;
+            for(j=i+i;j<=1000000;j+=i)
+            {
+                if(sie[j]==0)
+                    c++;
+                sie[j]=1;
+            }
+            ans[i]=c;
+        }
+    }
+}
+void isPrime(int x)
+{
+  int i,flag=0;
+  //printf("num %d",x);
+  for(i=2;i<=x/2;++i)
+  {
+    if(x%i==0)
+    { flag=1;
+      break;
+    }
+  }
+  if(flag==1)
+    printf("NO\n");
+  else
+    printf("YES\n");
+    //return 0;
+}
+int main()
+{
+    sieve();
+ //freopen("inp.txt","r",stdin);
+ //freopen("out.txt","w",stdout);
+    int q;
+    scanf("%d",&q);
+    while(q--)
+    {
+        int x;
+       scanf("%d",&x);
+      isPrime(x);
+       
+    }
+    return 0;
+}

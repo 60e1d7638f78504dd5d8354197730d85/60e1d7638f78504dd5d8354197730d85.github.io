@@ -1,0 +1,28 @@
+#include <stdio.h>
+long long int inline inp()
+{
+    long long int n=0,a=1;
+    char c=getchar_unlocked();
+    while(c < '0' || c >'9') {if(c=='-'){a=-1;}c=getchar_unlocked();}
+    while(c>='0' && c<='9')
+    {
+    n=(n<<3)+(n<<1)+c-'0';
+    c=getchar_unlocked();
+    }
+    return a*n;
+}
+int main()
+{
+	long long int t,n;
+	t=inp();
+	while(t--)
+	{
+		n=inp();
+		double sum=0;
+		long long int i;
+		for(i=1;i<=n;i++)
+			sum+=(double)n/i;
+		printf("%.1lf\n",sum);
+	}
+	return 0;
+}

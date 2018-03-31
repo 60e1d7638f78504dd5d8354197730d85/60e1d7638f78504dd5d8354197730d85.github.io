@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+  int data;
+  struct node *next;
+};
+
+struct node* push(struct node *h,int d)
+{
+  if(h==NULL)
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=NULL;
+    h=nn;
+  }
+  else
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=h;
+    h=nn;
+  }
+  return h;
+}
+
+void print(struct node *h)
+{
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    printf("->%d",t->data);
+    t=t->next;
+  }
+}
+
+struct node* swap(struct node *h)
+{
+  int temp;
+  struct node *x,*y;
+  x=h;
+  y=h->next;
+  while(y!=NULL)
+  {
+    temp=x->data;
+    x->data=y->data;
+    y->data=temp;
+    
+    x=x->next->next;
+    if(y->next!=NULL)
+      y=y->next->next;
+    else
+      y=y->next;
+  }
+  return h;
+}
+int main()
+{
+  struct node *head=NULL;
+  int n,i,t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t);
+    head=push(head,t);
+  }
+  printf("Linked list before swap\n");
+  print(head);
+  head=swap(head);
+  printf("\nLinked list after swap\n");
+  print(head);
+	return 0;
+}

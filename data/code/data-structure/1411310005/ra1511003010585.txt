@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+struct node{
+	int data;
+  	node* next;
+}*start;
+
+node* createnode(int n){
+	node* ptr = new node;
+  	ptr->data = n;
+  	ptr->next = NULL;
+  	return ptr;
+}
+void insert(node *x){
+	if(start==NULL) start = x;
+  	else{
+		node* ptr = start;
+      	while(ptr->next!=NULL)
+          ptr = ptr->next;
+      	ptr->next = x;
+    }
+}
+
+void swap(int a,int b){
+  	if(a==b) return;
+	node *ptr1 = start,*ptr2 =start;
+  	node *prev1=NULL,*prev2=NULL;
+  	while(ptr1&&ptr1->data!=a){
+      prev1 = ptr1;	
+      ptr1 = ptr1->next;
+    }  
+  	while(ptr2&&ptr2->data!=b){
+      prev2 = ptr2;
+      ptr2 = ptr2->next;
+    }
+  	if(ptr1==NULL||ptr2==NULL)
+      return;
+  	if(prev1!=NULL)
+      	prev1->next = ptr2;
+  	else start = ptr2;
+  	if(prev2!=NULL)
+      	prev2->next = ptr1;
+  	else 
+      	start = ptr1;
+  	node *temp = ptr2->next;
+  	ptr2->next = ptr1->next;
+  	ptr1->next = temp;
+}
+
+void display(){
+	for(node* ptr = start;ptr!=NULL;ptr = ptr->next)
+      cout<<ptr->data<<" ";
+}
+int main()
+{
+  	start = NULL;
+	int n;cin>>n;
+  	for(int i=0;i<n;i++){
+    	int a;
+      	cin>>a;
+      	node *x = createnode(a);	
+      	insert(x);
+    }	 
+  	int x,y;
+  	cin>>x>>y;
+  	swap(x,y);
+  	display();  
+	return 0;
+}

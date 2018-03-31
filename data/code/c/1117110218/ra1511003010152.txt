@@ -1,0 +1,47 @@
+#include <stdio.h>
+#define MOD 1000000007
+ 
+int A[1000006], dp[1000006];
+long long fp[1000006];
+ 
+int main()
+{
+    int N, M,i,j;
+    scanf("%d %d", &N, &M);
+    
+    for(i=1; i<=N; i++)
+        scanf("%d", &A[i]);
+    
+    dp[1] = 0;
+    fp[1] = 1;
+    
+    int ptr = 1, minn = 0;
+    long long ways = 1;
+    
+    for(i=2; i<=N; i++)
+    {
+        while(A[i]-A[ptr]>M)
+        {
+            if(dp[ptr]==minn)
+                ways = (ways - fp[ptr] + MOD)%MOD;
+            
+            ptr++;
+        }
+        
+        if(dp[ptr]!=minn)
+        {
+            minn = dp[ptr];
+            ways = 0;
+            
+            for(j=ptr; dp[j]==minn; j++)
+                ways = (ways + fp[j])%MOD;
+        }
+        
+        dp[i] = minn + 1;
+        fp[i] = ways;
+    }
+    
+    printf("%d %lld\n", dp[N]-1, fp[N]);
+    
+	return 0;
+}  

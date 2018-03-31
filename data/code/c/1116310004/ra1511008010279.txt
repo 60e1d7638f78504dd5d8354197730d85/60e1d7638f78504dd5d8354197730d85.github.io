@@ -1,0 +1,64 @@
+#include <stdio.h> 
+int main()
+{
+	int t,n,k,q;
+	long long a[100001],b[100001],c[100001],d[100001],e[100001];
+	char str[100002];
+	scanf("%d",&t);
+	while(t--)
+		{
+			scanf("%d %d %d",&n,&k,&q);
+			scanf("%s",str);
+			a[0]=0;
+			b[0]=0;
+			c[0]=0;
+			d[0]=0;
+			e[0]=0;
+			int i=1,j=1;
+			for(;i<=n;i++){
+				if(str[i-1]=='0')
+					{
+						a[i]=a[i-1]+1;
+						b[i]=b[i-1];
+					}
+					else
+						{
+							a[i]=a[i-1];
+							b[i]=b[i-1]+1;
+						}
+					}
+					for(i=1;i<=n;i++){
+						int n0=k+a[i-1]+1;
+						int n1=k+b[i-1]+1;
+						for(;j<=n;j++){
+							if((a[j]>=n0)||(b[j]>=n1))
+								break;
+						}
+						c[i]=j-i;
+						d[i]=j;
+					}
+					for(i=1;i<=n;i++)
+						e[i]=e[i-1]+c[i];
+					while(q--){
+						int l,r;
+						scanf("%d %d",&l,&r);
+						int y=r,x=l,xx;
+						if(d[l]>r)
+							xx=l-1;
+						else
+							do{
+								xx=(y+x)/2;
+								if(x==xx){
+									if(d[y]<=r)xx=y;
+									break;
+								}
+								if(d[xx]>r)y=xx;
+								else x=xx;
+							}while(1);
+							long long ans=((long long)(r-xx)*(long long)(r-xx+1))/2;
+								ans+=e[xx]-e[l-1];
+							printf("%lld\n",ans);
+						}
+					}
+					return 0;
+				} 

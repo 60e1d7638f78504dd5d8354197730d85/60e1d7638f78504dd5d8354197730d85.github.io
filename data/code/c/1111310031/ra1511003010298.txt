@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--){
+    	int n,i;
+      	scanf("%d",&n);
+      	int a[n];
+      	for(i=0;i<n;i++)
+          	scanf("%d",&a[i]);
+      	int j=0,cost=0,g;
+      	while(n>1){
+        	cost+=a[j]<a[j+1]?a[j]:a[j+1];
+          	g=a[j]>a[j+1]?j:j+1;
+          	for(i=g;i<n-1;i++)
+              	a[i]=a[i+1];
+          	n--;
+        }
+      printf("%d\n",cost);
+    }
+
+	return 0;
+}

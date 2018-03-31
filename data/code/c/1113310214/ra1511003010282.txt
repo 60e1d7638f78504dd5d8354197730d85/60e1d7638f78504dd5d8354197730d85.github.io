@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int pal(long int n)
+{
+  	long int k,i=0;
+  	k=n;
+  	while(n>0)
+    {
+      	i=i*10+(n%10);
+      	n/=10;
+    }
+  	if(i==k)
+      return 1;
+  else return 0;
+  	
+}
+
+int main()
+{
+	long int t,n,k,i=0;
+  	scanf("%ld",&t);
+  	long int a[t];
+  	for(;i<t;i++)
+    scanf("%li",&a[i]);
+  	i=0;
+  	for(;i<t;i++)
+    {
+      	n=a[i];
+      	while(n++)
+      	{
+          if(pal(n))
+          {
+            printf("%ld\n",n);
+            break;
+          }
+    	}
+    }
+	return 0;
+}

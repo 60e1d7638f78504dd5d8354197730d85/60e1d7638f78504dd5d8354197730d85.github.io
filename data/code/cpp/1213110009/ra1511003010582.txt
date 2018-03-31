@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+  string s;
+  int i,vowel=0,con=0,sp=0,di=0;
+  getline(cin,s);
+  for(i=0;i<s.length();i++)
+  	s[i] = tolower(s[i]);
+  for(i=0;i<s.length();i++){
+    if(s[i]=='a' || s[i]=='e' ||s[i]=='i' ||s[i]=='o' ||s[i]=='u')
+      vowel++;
+    else if(s[i]==' ')
+      sp++;
+    else if(isdigit(s[i]))
+      di++;
+    else
+      con++;
+  }
+     
+  cout<<"Vowels:"<<vowel<<endl;
+  cout<<"Consonants:"<<con<<endl;
+  cout<<"Whitespaces:"<<sp<<endl;
+  cout<<"Digits:"<<di<<endl;
+
+	return 0;
+}

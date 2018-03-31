@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,a[100],t,x=0,y=0;
+scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(a[i]<a[j])
+      {
+        t=a[i];
+        a[i]=a[j];
+        a[j]=t;
+      }
+    }
+  }
+  for(i=0;i<n-1;i++)
+  {
+    if(a[i]==a[i+1])
+    {
+      if(x==0)
+      x=a[i];
+      else
+        y=a[i];
+    }
+  }
+  if(x==0 || y==0)
+    printf("-1");
+  else
+    printf("%d",x*y);
+
+	return 0;
+}

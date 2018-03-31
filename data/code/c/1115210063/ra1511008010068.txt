@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  long long int i,j,prev,t,n,count,num;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		count = 0;
+		scanf("%lld",&n);
+		long long int a[n];
+		for(i=0;i<n;i++)
+			scanf("%lld",&a[i]);
+			
+		if(n==1)
+			printf("1\n");
+		else
+		{
+			prev=0;
+			for(i=1;i<n;i++)
+			{
+				if(a[i]<a[i-1])
+				{
+					num = i - prev;
+					count = count + (num*(num+1))/2;
+					prev=i;
+				}			
+			}
+			num=n-prev;
+			count = count + (num*(num+1))/2;
+		printf("%lld\n",count);
+		}
+    }
+
+	return 0;
+}

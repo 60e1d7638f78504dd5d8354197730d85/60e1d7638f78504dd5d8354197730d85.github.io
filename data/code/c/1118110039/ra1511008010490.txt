@@ -1,0 +1,55 @@
+#include <stdio.h>
+char stack[100];
+int top=-1;
+struct st{
+  char s[100];
+  	char x;
+  	int t,k;
+};
+void push(char x){
+	stack[++top]=x;
+}
+char pop(){
+	if(top==-1)
+      return -1;
+  else
+    return stack[top--];
+}
+int priority(char x){
+	if(x=='(')
+      return 0;
+  if(x=='+' || x=='-')
+    return 1;
+  if(x=='*' || x=='/' || x=='^')
+    return 2;
+}
+int main()
+{
+  	struct st s1;
+	
+  	scanf("%d",&s1.t);
+  	for(s1.k=0;s1.k<s1.t;s1.k++){
+  	scanf("%s",s1.s);
+  	int i;
+  for(i=0;s1.s[i]!='\0';i++){
+        if(isalnum(s1.s[i]))
+          printf("%c",s1.s[i]);
+    else if(s1.s[i]=='(')
+      push(s1.s[i]);
+    else if(s1.s[i]==')'){
+    	while((s1.x=pop())!='(')
+          printf("%c",s1.x);
+    }
+    else
+    {
+    	while(priority(stack[top])>priority(s1.s[i]))
+          printf("%c",pop());
+      	push(s1.s[i]);
+    }
+  }
+  while(top!=-1){
+  	printf("%c",pop());
+  }
+  printf("\n");}
+	return 0;
+}

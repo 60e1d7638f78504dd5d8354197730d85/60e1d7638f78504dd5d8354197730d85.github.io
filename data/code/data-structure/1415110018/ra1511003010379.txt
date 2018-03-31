@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node 
+{
+  int data;
+  struct node *next;
+};
+
+void midfinder(struct node *start,int mid)
+{
+  struct node *ptr=start;
+  while(mid--)
+  {
+    ptr=ptr->next;
+  }
+  printf("\nThe middle element is [%d]",ptr->data);
+}
+void printer(struct node *start)
+{
+  printf("Linked list\n");
+  struct node *ptr=start;
+  while(ptr!=NULL)
+  {
+    printf("-->%d",ptr->data);
+    ptr=ptr->next;
+  }
+  
+}
+
+struct node *insert(struct node *start, int val)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=val;
+  
+  if(start==NULL)
+  {
+    nn->next=NULL;
+    start=nn;
+  }
+  else
+  {
+    struct node *ptr=start;
+    while(ptr->next!=NULL)ptr=ptr->next;
+    ptr->next=nn;
+    nn->next=NULL;
+  }
+  return start;
+}
+
+int main()
+{
+  struct node *start=NULL;
+  int s,i;
+  scanf("%d",&s);
+  int a[s];
+  for(i=0;i<s;i++)scanf("%d",&a[i]);
+
+  for(i=s-1;i>=0;i--)start=insert(start,a[i]);
+  printer(start);
+  
+  int mid=s/2;
+  midfinder(start,mid);
+  
+  
+  
+	return 0;
+}

@@ -1,0 +1,84 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.String;
+import java.lang.Character;
+import java.lang.Math;
+
+class Passkey
+{
+  String pk="";
+  public void passKey()
+  {
+    Scanner inp=new Scanner(System.in);
+    pk=inp.nextLine();
+    int n=pk.length();
+    int a[]=new int[20];
+    int pos=0;
+    int small=999;
+    int big=0;
+    for(int i=0;i<n;i++)
+    {
+      String s=""+pk.charAt(i);
+      if(Character.isDigit(pk.charAt(i))==true)
+      {
+        a[pos++]=Integer.parseInt(s);
+      }
+      if(a[pos-1]<small)
+        small=a[pos-1];
+      if(a[pos-1]>big)
+        big=a[pos-1];
+    }
+    int sums1=0;
+    int sums2=1;
+    for(int i=0;i<pos;i++)
+    {
+      sums1+=a[i]*big;
+      sums2=sums2*(a[i]+small);
+    }
+    String s1=""+sums1;
+    String s2=""+sums2;
+    int len1=s1.length();
+    int len2=s2.length();
+    int sumst1=0;
+    int sumst2=0;
+    while(len1!=1)
+    {
+      sumst1=0;
+      for(int o=0;o<len1;o++)
+      {
+        sumst1=sumst1+(sums1%10);
+        sums1/=10;
+      }
+      String h=""+sumst1;
+      sums1=sumst1;
+      len1=h.length();
+    }
+    while(len2!=1)
+    {
+      sumst2=0;
+      for(int o=0;o<len2;o++)
+      {
+        sumst2=sumst2+(sums2%10);
+        sums2/=10;
+      }
+      String h=""+sumst2;
+      sums2=sumst2;
+      len2=h.length();
+    }
+    int sum1=sums1;
+    int sum2=sums2;
+    int digit3=0;
+    if(sum1>sum2)
+      digit3=sum2;
+    else
+      digit3=sum1;
+    System.out.println((int)Math.pow(digit3,2));
+  }
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Passkey s1=new Passkey();
+       s1.passKey();
+	}
+}

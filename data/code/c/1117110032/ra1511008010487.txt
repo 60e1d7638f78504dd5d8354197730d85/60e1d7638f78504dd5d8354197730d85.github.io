@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,n,num[50],max,mode,count;
+  scanf("%d",&n);
+  max=0;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&num[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    count=0;
+    for(j=0;j<n;j++)
+    {
+      if(num[i]==num[j])
+      {
+        count++;
+      }
+    }
+    if(count>max)
+    {
+      max=count;
+      mode=num[i];
+    }
+  }
+  if(max>1)
+  {
+    printf("Mode=%d",mode);
+  }
+  else
+    printf("none");
+  
+	return 0;
+}

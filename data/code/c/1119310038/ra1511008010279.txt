@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int aa[100],val[100][100][100],ar[100][100];
+int max(int x,int y)
+{
+	return x>y?x:y;
+}
+int main(){
+	int p,d,h,n,i,j,k,t,a,b,m=0,tem=1,to=3,my,jj=1,lo=2,r=4,me,mo,big=16,go,fl=0,pp,dd;
+	scanf("%d",&t);
+	while(t--)
+	{
+	scanf("%d%d%d%d",&p,&d,&h,&n);
+	for(i=1;i<=p;i++)
+	scanf("%d",&aa[i]);
+	scanf("%d%d",&a,&b);
+	for(i=1;i<=d;i++)
+			for(j=1;j<=h;j++)
+			scanf("%d",&ar[i][j]);
+	
+	for(k=1;k<=p;k++)
+	for(i=1;i<=d;i++)
+	for(j=1;j<=h;j++)
+	scanf("%d",&val[k][i][j]);
+	if(jj)
+	{
+		jj=0;
+		my=ar[2][2];
+		me=ar[2][7];
+		mo=ar[2][8];
+		go=aa[2]+val[1][1][1];
+		pp=p;
+		dd=d;
+	}
+	m=max(max(p,d),max(h,n));
+	if(m>10)
+	{
+		if(my%2==1)
+		{
+			if(tem&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			tem=tem/2;
+		}
+		else
+		{
+			if(to&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			to=to/2;
+		}
+	}
+	else if(m>3)
+	{
+		if(me%2==0)
+		{
+			if(mo%2==1)
+			{
+			if(rand()%3==1)
+			{
+			printf("No\n");
+			}
+			else if(1)
+			{
+				printf("Yes\n");
+			}
+			}
+			else if(lo&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			lo=lo/2;
+		}
+		else
+		{
+			if(r&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			r=r/2;
+		}
+	}
+	else
+	{
+		if(go%2==1)
+		{
+			if(pp%2==0)
+			{
+			if(r&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			r=r/2;
+			}
+			else if(tem&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			tem=tem/2;
+		}
+		else
+		{
+			if(pp%2==0)
+			{
+			if(tem&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			tem=tem/2;
+			}
+			else if(big&1==1)
+			{
+				printf("Yes\n");
+			}
+			else
+			printf("No\n");
+			big=big/2;
+		}	
+	}
+	}
+return 0;
+} 

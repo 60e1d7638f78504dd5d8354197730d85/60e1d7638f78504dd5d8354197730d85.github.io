@@ -1,0 +1,190 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+ 
+ 
+public class TestClass{
+ 
+	private BufferedReader in;	
+	private StringTokenizer st;
+	private PrintWriter out;
+	
+ 
+//	ArrayList<Integer> count = new ArrayList<Integer>();
+	int []count = new int[1000005];
+	int sz = 0;
+	HashMap<Long, Integer> h = new HashMap<Long, Integer>();
+	long [][] nxt = new long[35][6];
+	int [][]dir = new int[6][];
+	int n , m , q;
+	int cycindex = -1;
+	
+	long update(int x , int y , long state , int idx){
+		
+		int tmpx = x, tmpy = y;
+		x += dir[idx][0];
+		y += dir[idx][1];
+		while(x>=0 && x<n && y>=0 && y<m){
+			
+			int i = x*m + y;
+			state ^= (1l<<i);
+			x += dir[idx][0];
+			y += dir[idx][1];
+			
+		}
+		x = tmpx ; y = tmpy;
+		x += dir[idx][2];
+		y += dir[idx][3];
+		while(x>=0 && x<n && y>=0 && y<m){
+			
+			int i = x*m + y;
+			state ^= (1l<<i);
+			x += dir[idx][2];
+			y += dir[idx][3];
+			
+		}
+		return state;
+	}
+	long nextState(long state){
+		
+		int []rows = new int[n];
+		int []cols = new int[m];
+		long ret = state;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				int idx = i*m + j;
+				if( (state&(1l<<idx) )!= 0){
+					rows[i]++;
+					cols[j]++;
+				}
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				int idx = i*m + j;
+				if( (state&(1l<<idx) )!= 0){
+					
+					int x = (rows[i] + cols[j] - 1) %6;
+//					ret = update(i,j,ret,x);
+					ret ^= nxt[idx][x];
+				}
+			}
+		}
+		return ret;
+	}
+	void go(long state, long q){
+		
+		count[sz++] = 1;
+		h.put(state, 0);
+		for (int i = 0; i < q; i++) {
+			state = nextState(state);
+			if(h.containsKey(state)){
+				cycindex = h.get(state);
+				break;
+			}
+			else{
+				count[sz] = (Long.bitCount(state)+count[sz-1]);
+				sz++;
+				h.put(state, sz-1);
+			}
+		}
+	}
+	
+	long get(long q){
+		
+		if(q < sz){
+			return count[(int)q];
+		}
+		long ret = count[sz-1];
+		q = q - sz + 1;
+		int cyclen = sz - cycindex;
+		if(cycindex == 0){
+			ret += count[sz-1] * (long)(q/cyclen);
+			if(q%cyclen != 0) ret += count[ (int)(q%cyclen) - 1];
+		}
+		else{
+			ret += (count[sz-1]-count[cycindex-1])* (long)(q/cyclen);
+			ret += count[(cycindex + (int)(q%cyclen) - 1)] - count[(cycindex-1)];
+		}		
+		return ret;
+	}
+	void solve() throws IOException{
+		
+		n = nextInt();
+		m = nextInt();
+		q = nextInt();
+		
+		long []queries = new long[q];
+		long state = 0;
+		int sx = nextInt() -1, sy = nextInt()-1;
+		int indx = sx*m + sy;
+		state = 1l << indx;
+		dir[0] = new int []{-nextInt(),0,nextInt(),0};
+		dir[1] = new int []{0,-nextInt(),0,nextInt()};
+		dir[2] = new int []{-nextInt(),0,0,nextInt()};
+		dir[3] = new int []{0,nextInt(),nextInt(),0};
+		dir[4] = new int []{nextInt(),0,0,-nextInt()};
+		dir[5] = new int []{0,-nextInt(),-nextInt(),0};
+		
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				int idx = i*m + j;
+				for (int x = 0; x < 6; x++) {
+					nxt[idx][x] = update(i, j, 0,x);
+				}
+			}
+		}
+		
+		long max = 0;
+		for (int i = 0; i < queries.length; i++) {
+			queries[i] = nextLong();
+			max = Math.max(max, queries[i]);
+		}
+		
+		go(state,max);
+		
+		for (int i = 0; i < queries.length; i++) {
+			out.println(get(queries[i]));
+		}
+	}
+	TestClass() throws IOException {
+		in = new BufferedReader(new InputStreamReader(System.in));		
+		out = new PrintWriter(System.out);
+		eat("");
+		solve();			
+		out.close();
+	}
+	
+	
+	private void eat(String str) {
+		st = new StringTokenizer(str);
+	}
+ 
+	String next() throws IOException {
+		while (!st.hasMoreTokens()) {
+			String line = in.readLine();
+			if (line == null) {
+				return "-1";
+			}
+			eat(line);
+		}
+		return st.nextToken();
+	}
+ 
+	int nextInt() throws IOException {
+		return Integer.parseInt(next());
+	}
+ 
+	long nextLong() throws IOException {
+		return Long.parseLong(next());
+	}
+	public static void main(String[] args) throws IOException {
+		new TestClass();
+	}
+}
+ 

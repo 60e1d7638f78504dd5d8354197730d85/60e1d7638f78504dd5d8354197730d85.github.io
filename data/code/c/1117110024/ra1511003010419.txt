@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+ 
+int main(){
+    int num;
+   
+    scanf("%d", &num);
+    printf("The sum of digits in %d is %d\n", num, getSumOfDigit(num));
+   
+    return 0;
+}
+ 
+/*
+ * Function to calculate sum of digits of a number
+ */
+int getSumOfDigit(int num){
+    /* Recursion termination condition*/
+    if(num == 0)
+        return 0;
+                
+    return num%10 + getSumOfDigit(num/10);    
+}

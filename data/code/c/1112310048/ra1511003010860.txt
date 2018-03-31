@@ -1,0 +1,169 @@
+#include<stdio.h>
+int main()
+{
+    int test,ans,min,right,left,top,down,r,c,i,j,l[100][100],rr[100][100],t[100][100],d[100][100];
+    char s[100][100];
+    scanf("%d",&test);
+    while(test)
+    {
+        scanf("%d %d",&r,&c);
+        for(i=0; i<r; i++)
+        {
+            scanf("%s",s[i]);
+            for(j=c-1; j>=0; j--)
+            {
+                if(s[i][j]=='^')
+                {
+                    if(j==c-1)
+                    {
+                        rr[i][j]=1;
+                    }
+                    else
+                    {
+                        rr[i][j]=1+rr[i][j+1];
+                    }
+                }
+                else
+                {
+                    rr[i][j]=0;
+                }
+            }
+            for(j=0; j<c; j++)
+            {
+                if(s[i][j]=='^')
+                {
+                    if(j==0)
+                    {
+                        l[i][j]=1;
+                    }
+                    else
+                    {
+                        l[i][j]=1+l[i][j-1];
+                    }
+                }
+                else
+                {
+                    l[i][j]=0;
+                }
+            }
+        }
+ 
+        for(i=0; i<c; i++)
+        {
+            for(j=r-1; j>=0; j--)
+            {
+                if(s[j][i]=='^')
+                {
+                    if(j==r-1)
+                    {
+                        d[j][i]=1;
+                    }
+                    else
+                    {
+                        d[j][i]=1+d[j+1][i];
+                    }
+                }
+                else
+                {
+                    d[j][i]=0;
+                }
+            }
+            for(j=0; j<r; j++)
+            {
+                if(s[j][i]=='^')
+                {
+                    if(j==0)
+                    {
+                        t[j][i]=1;
+                    }
+                    else
+                    {
+                        t[j][i]=1+t[j-1][i];
+                    }
+                }
+                else
+                {
+                    t[j][i]=0;
+                }
+            }
+        }
+        /*for(i=0; i<r; i++)
+        {
+            for(j=0; j<c; j++)
+            {
+                printf("%d ",l[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+        for(i=0; i<r; i++)
+        {
+            for(j=0; j<c; j++)
+            {
+                printf("%d ",rr[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+        for(i=0; i<r; i++)
+        {
+            for(j=0; j<c; j++)
+            {
+                printf("%d ",t[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+        for(i=0; i<r; i++)
+        {
+            for(j=0; j<c; j++)
+            {
+                printf("%d ",d[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");*/
+        ans=0;
+        i=0;
+        j=0;
+        //printf("%d %d %d %d\n",rr[i][j],l[i][j],t[i][j],d[i][j]);
+        for(i=0; i<r; i++)
+        {
+            for(j=0; j<c; j++)
+            {
+                min=10000;
+                if(s[i][j]=='^')
+                {
+                    right=rr[i][j]-1;
+                    left=l[i][j]-1;
+                    top=t[i][j]-1;
+                    down=d[i][j]-1;
+                    if(right<min)
+                    {
+                        min=right;
+                    }
+                    if(left<min)
+                    {
+                        min=left;
+                    }
+                    if(top<min)
+                    {
+                        min=top;
+                    }
+                    if(down<min)
+                    {
+                        min=down;
+                    }
+                    if(min>1)
+                    {
+                        //printf("location is %d %d and min is %d\n",i,j,min);
+                        ans++;
+                    }
+                }
+            }
+        }
+        printf("%d\n",ans);
+        test--;
+    }
+    return 0;
+}

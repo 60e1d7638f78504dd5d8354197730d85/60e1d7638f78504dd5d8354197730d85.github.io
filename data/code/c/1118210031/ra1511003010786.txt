@@ -1,0 +1,30 @@
+#include <stdio.h>
+struct array
+{
+  int n;
+};
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+int a[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  int c,d,t;
+  for (c = 1 ; c <= n - 1; c++) {
+    d = c;
+ 
+    while ( d > 0 && a[d-1] > a[d]) {
+      t          = a[d];
+      a[d]   = a[d-1];
+      a[d-1] = t;
+ 
+      d--;
+    }
+   }
+  for(i=0;i<n;i++)
+    if(a[i]%2==0)
+      printf("%d ",a[i]);
+
+	return 0;
+}

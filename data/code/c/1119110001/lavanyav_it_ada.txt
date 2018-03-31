@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int arr1[100],arr2[100],i,j,k,k1,n,flag=1;
+  scanf("%d",&k);
+  for(i=0;i<k;i++)
+  {
+    scanf("%d",&arr1[i]);
+  }
+  scanf("%d",&k1);
+  for(j=0;j<k1;j++)
+  {
+    scanf("%d",&arr2[j]);
+  }
+  flag=find(arr1,arr2,i,j,k);
+  if (flag ==0)
+    printf("Arrays are not equal");
+  else
+    printf("Arrays are equal");
+
+	return 0;
+}
+int find(int arr1[],int arr2[],int i,int j,int k)
+{
+  int flag=1,n;
+  if(i==j)
+  {
+    for(n=0;n<k;n++)
+    {
+     if (arr1[n]!=arr2[n])
+     {
+       flag=0;
+     }
+    }
+  }
+  return flag;
+}
+	

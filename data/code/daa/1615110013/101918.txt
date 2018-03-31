@@ -1,0 +1,20 @@
+#include <stdio.h>
+# define mod 1000000009
+long long int ans[10000001];
+int main()
+{
+    long long int t,i,n;
+    ans[1]=1;
+    ans[2]=10;
+    for(i=3;i<=10000000;i++)
+    ans[i]=(ans[i-2]+(4*(((i-2)*(i-2))%mod))%mod+10*(i-1))%mod;
+    scanf("%lld",&t);
+    i=0;
+    while(i<t)
+    {
+        scanf("%lld",&n);
+        printf("%lld ",ans[n]);
+        i++;
+    }
+    return 0;
+}

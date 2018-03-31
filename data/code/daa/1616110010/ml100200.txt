@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+char mat[20][20];
+
+void floodfill(int x, int y, int n, int m, char prev, char newV){
+	if(x < 0 || x >= n || y < 0 || y >= m){return;}
+	if(mat[x][y] != prev)return;
+	mat[x][y] = newV;
+
+	floodfill(x+1, y, n, m, prev, newV);
+	floodfill(x, y+1, n, m, prev, newV);
+	floodfill(x, y-1, n, m, prev, newV);
+	floodfill(x-1, y, n, m, prev, newV);
+}
+void replaceobyx(int n, int m){
+	//replace all the O's by '.'
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++){
+			if(mat[i][j] == 'O'){mat[i][j] = '.';}
+		}
+	}
+
+	//replace all the '.'s at the edges by 'O' by appling floodfill at the edges
+	for(int i = 0; i < m; i++){
+		if(mat[0][i] == '.'){
+			floodfill(0, i, n , m, '.', 'O');   //replacing the ist edge '.' by 'O'
+		}
+	}
+	for(int i = 0; i < n; i++){if(mat[i][0] == '.'){floodfill(i, 0, n , m, '.', 'O');}}
+	for(int i = 0; i < n; i++){if(mat[i][m-1] == '.'){floodfill(i, m-1, n , m, '.', 'O');}}
+	for(int i = 0; i < m; i++){if(mat[n-1][i] == '.'){floodfill(n-1, i, n , m, '.', 'O');}}
+
+	//replacing the remaining '.'s by 'X'
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++){
+			if(mat[i][j] == '.'){mat[i][j] = 'X';}
+		}
+	}
+}
+int main(){
+	int t; cin >> t;
+	while(t--){
+		int n, m; cin >> n >> m;
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < m; j++){
+				cin >> mat[i][j];
+			}
+		}
+
+		replaceobyx(n, m);
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < m; j++){
+				cout << mat[i][j] << " ";
+			}
+			// cout << endl;
+		}
+		cout << endl;
+	}
+	return 0;
+}

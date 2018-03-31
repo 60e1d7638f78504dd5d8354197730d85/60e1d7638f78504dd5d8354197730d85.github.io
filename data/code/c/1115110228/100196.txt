@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <math.h>
+ 
+#define my_abs(x) ( (x) > 0 ? (x) : -(x) )
+#define TEN_POWER_MINUS_8 0.000000001
+ 
+double calculateDistance(double coeff[2500][3], int N, double x) {
+	int n;
+	double res = 0;
+	for (n = 0; n < N; n++)
+		res += sqrt(x * x * coeff[n][0] + x * coeff[n][1] + coeff[n][2]);
+	return res;
+}
+ 
+double calculateDerivative(double coeff[2500][3], int N, double x) {
+	int n;
+	double dis, res = 0;
+	for (n = 0; n < N; n++) {
+		dis = sqrt(x * x * coeff[n][0] + x * coeff[n][1] + coeff[n][2]);
+		res += (2 * x * coeff[n][0] + coeff[n][1]) / (2 * dis);
+	}
+	return res;
+}
+int main()
+{
+int T, t;
+	int N, n;
+	int A, B, C, flag, temp;
+	int storages[2000][2];
+	double m, c1;
+	double coeff[2500][3];
+	double start, end, mid, deriv;
+ 
+	//freopen("input.txt", "r", stdin);
+ 
+	scanf("%d", &T);
+ 
+	for (t = 1; t <= T; t++) {
+		scanf("%d", &N);
+		scanf("%d %d %d", &A, &B, &C);
+		flag = 0;
+		if (B == 0) flag = 1;
+		if (flag) {
+			B = A;
+			A = 0;
+		}
+		m = ((-1.0) * A) / B;
+		c1 = ((-1.0) * C) / B;
+		
+		for (n = 0; n < N; n++) {
+			scanf("%d %d", &storages[n][0], &storages[n][1]);
+			if (flag) {
+				temp = storages[n][0];
+				storages[n][0] = storages[n][1];
+				storages[n][1] = temp;
+			}
+			coeff[n][0] = 1 + m*m;
+			coeff[n][1] = 2 * m * c1 - 2 * storages[n][0] - 2 * m * storages[n][1];
+			coeff[n][2] = storages[n][0] * storages[n][0] + storages[n][1] * storages[n][1] +
+				c1 * c1 - 2 * c1 * storages[n][1];
+		}
+ 
+		start = -5001;
+		end = 5001;
+		do {
+			//printf(".");
+			mid = (start + end) / 2;
+			deriv = calculateDerivative(coeff, N, mid);
+			//printf("%.15f %.15f\n",deriv, mid);
+			if (deriv == 0) break;
+			if (deriv > 0)
+				end = mid;
+			else
+				start = mid;
+		} while (my_abs(deriv) > TEN_POWER_MINUS_8);
+ 
+		printf("%f\n", calculateDistance(coeff, N, mid));
+ 
+	}
+ 
+	return 0;
+}

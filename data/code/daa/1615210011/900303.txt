@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+
+#define MA 1000000000000000000
+#define M  1000000007
+#define MM 10000001
+#define K  1001
+
+int m,n;
+int a[K], b[K];
+int s[K];
+
+int main() {
+  int t;
+  int i,j,k,l,r;
+  scanf("%d", &t);
+
+  while(t--) {
+    scanf("%d", &n);
+
+    for(i=0;i<n;i++) {
+      scanf("%d %d", a+i, b+i);
+    }
+
+    for(i=0;i<n-1;i++) {
+      for(j=i+1;j<n;j++) {
+        if (a[i]>a[j]) {
+          r=a[i];a[i]=a[j];a[j]=r;
+          r=b[i];b[i]=b[j];b[j]=r;
+        }
+      }
+    }
+
+    s[0]=1; r=1;
+    for(i=1;i<n;i++) {
+      s[i]=1;
+      for(j=0;j<i;j++) {
+        if (b[j]<b[i] && s[j]+1>s[i]) {
+          s[i]=s[j]+1;
+        }
+      }
+      if (r<s[i]) r=s[i];
+    }
+    printf("%d\n", r);
+  }
+}

@@ -1,0 +1,63 @@
+import java.util.*;
+public class TestClass
+{
+static String str;
+static boolean check[];
+static int len;
+public static void permutation(int i,int cnt,String str1)
+{
+if(cnt==len)
+{
+System.out.print(str1+" ");
+return;
+}
+check[i]=true;
+for(int j=0;j<len;++j)
+{
+if(!check[j])
+{
+permutation(j,cnt+1,str1+str.substring(j,j+1));
+}
+}
+check[i]=false;
+}
+public static char[] sort(String str)
+{
+char c[]=str.toCharArray();
+for(int i=0;i<c.length;i++)
+{
+for(int j=0;j<c.length-i-1;++j)
+{
+if(c[j]>c[j+1])
+{
+char temp=c[j];
+c[j]=c[j+1];
+c[j+1]=temp;
+}
+}
+}
+return c;
+}
+public static void main(String args[])
+{
+Scanner sc=new Scanner(System.in);
+int t=sc.nextInt();sc.nextLine();
+while(t>0)
+{
+str=sc.nextLine();
+char c[]=str.toCharArray();
+Arrays.sort(c);
+c.toString();
+str=new String(c);
+len=str.length();
+check=new boolean[len];
+for(int i=0;i<len;++i)
+{
+permutation(i,1,str.substring(i,i+1));
+}
+--t;
+System.out.println();
+}
+}
+}
+

@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+struct btnode
+{
+    int value;
+    struct btnode *l;
+    struct btnode *r;
+}*root = NULL, *temp = NULL, *t2, *t1;
+ 
+
+void insert();
+void inorder(struct btnode *t);
+void search(struct btnode *t);
+void create();
+int flag = 1;
+ 
+int main()
+{
+    int ch;
+  insert();
+  printf("\nInorder Traversal: "); 
+  inorder(root);
+   return 0;
+     
+}
+ 
+/* To insert a node in the tree */
+void insert()
+{  printf("How many numbers do you want to insert ?");
+   int n,a[100];
+   scanf("%d",&n);
+   int i;
+   for(i=0;i<n;i++)
+   { scanf("%d",&a[i]);}
+    for(i=0;i<n;i++)
+    {
+    create(a[i]);
+    if (root == NULL) 
+        root = temp;
+    else    
+        search(root);    
+}
+}
+ 
+/* To create a node */
+void create(int data)
+{
+    temp = (struct btnode *)malloc(1*sizeof(struct btnode));
+    temp->value = data;
+    temp->l = temp->r = NULL;
+    
+}
+/* Function to search the appropriate position to insert the new node */
+void search(struct btnode *t)
+{
+    if ((temp->value > t->value) && (t->r != NULL))      /* value more than root node value insert at right */
+        search(t->r);
+    else if ((temp->value > t->value) && (t->r == NULL))
+        t->r = temp;
+    else if ((temp->value < t->value) && (t->l != NULL))    /* value less than root node value insert at left */
+        search(t->l);
+    else if ((temp->value < t->value) && (t->l == NULL))
+        t->l = temp;
+}
+ 
+/* recursive function to perform inorder traversal of tree */
+void inorder(struct btnode *t)
+{
+    if (root == NULL)
+    {
+        printf("No elements in a tree to display");
+        return;
+    }
+    if (t->l != NULL)    
+        inorder(t->l);
+    printf("%d ", t->value);
+    if (t->r != NULL)    
+        inorder(t->r);
+}
+ 

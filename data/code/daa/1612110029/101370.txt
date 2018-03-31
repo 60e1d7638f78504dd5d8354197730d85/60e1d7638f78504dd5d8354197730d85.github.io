@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,sum,size,queries,time[10],marks[10],temp,q[10];
+  scanf("%d%d",&size,&queries);
+  for(i=0;i<size;i++)
+  {
+    scanf("%d",&time[i]);
+  }
+  for(i=0;i<size;i++)
+  {
+    scanf("%d",&marks[i]);
+  }
+  for(i=0;i<queries;i++)
+  {
+    scanf("%d",&q[i]);
+  }
+  for(i=0;i<size;i++)
+  {
+    for(j=0;j<size;j++)
+    {
+      if(marks[j]<marks[i])
+      {
+        temp=marks[i];
+        marks[i]=marks[j];
+        marks[j]=temp;
+        
+        temp=time[i];
+        time[i]=time[j];
+        time[j]=temp;
+      }
+    }
+  }
+  for(i=0;i<queries;i++)
+  {sum=0;
+    for(j=0;j<q[i];j++)
+   {
+      sum=sum+time[j];
+    }
+    printf("\n%d",sum);
+  }
+	return 0;
+}

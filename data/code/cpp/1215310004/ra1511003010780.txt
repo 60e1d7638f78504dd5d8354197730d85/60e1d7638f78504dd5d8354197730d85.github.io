@@ -1,0 +1,58 @@
+    #include<bits/stdc++.h>
+    using namespace std;
+    int dp[52][52][52][52];
+    int ti[102][3],p[102][3];
+    int findans(int nop,int k,int index,int time,int n)
+    {
+    	if(index==n)
+    	{
+    		return 0;
+    	}
+    	if(dp[nop][index][k][time]!=-1)
+    	{
+    		return dp[nop][index][k][time];
+    	}
+    	int ans=0;
+    	for(int i=0;i<8;i++)
+    	{
+    		int que=0,pl=0,tot_time=0;
+    		for(int j=0;j<3;j++)
+    		{
+    			if(i&(1<<j))
+    			{
+    				que++;
+    				tot_time+=ti[index][j];
+    				pl+=p[index][j];
+    			}
+    		}
+    		if(k<max(que-1,0) || tot_time>time || nop+que>n)
+    		{
+    			continue;
+    		}
+    		ans=max(ans,pl+findans(nop+que,k-max(que-1,0),index+1,time-tot_time,n));
+    	}
+    	dp[nop][index][k][time]=ans;
+    	return dp[nop][index][k][time];
+    }
+    int main()
+    {
+    	int t,n,k,time;
+    	cin>>t;
+    	while(t--)
+    	{
+    		cin>>n>>k>>time;
+    		memset(dp,-1,sizeof(dp));
+    		for(int i=0;i<n;i++)
+    		{
+    			cin>>ti[i][0]>>ti[i][1]>>ti[i][2];
+    		}
+    		for(int i=0;i<n;i++)
+    		{
+    			cin>>p[i][0]>>p[i][1]>>p[i][2];
+    		}
+    		cout<<findans(0,min(n,k),0,time,n)<<endl;
+    	}
+    	return 0;
+    }
+     
+

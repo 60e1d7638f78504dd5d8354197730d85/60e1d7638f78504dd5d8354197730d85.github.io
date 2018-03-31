@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,i,lcm,gcd;
+  
+  scanf("%d",&a);
+  scanf("%d",&b);
+  
+  if(a%b==0)
+    gcd=b;
+  else if(b%a==0)
+    gcd=a;
+   else if(a<b)
+  {
+    for(i=a;i>=1;i--)
+    {
+      if((b%i==0) && (a%i==0))
+      {
+        gcd=i;
+        break;
+      }
+    }
+   }
+  else
+  {
+    for(i=b;i>=1;i--)
+    {
+      if((a%i==0) && (b%i==0))
+      {
+        gcd=i;
+        break;
+      }
+    }
+  }
+  
+  lcm=(a*b)/gcd;
+  
+  printf(" %d %d ",gcd,lcm);
+  
+
+	return 0;
+}

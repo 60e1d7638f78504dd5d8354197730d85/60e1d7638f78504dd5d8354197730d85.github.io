@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+    char arr[100];
+    scanf("%[^\n]s",arr);
+    char sub[20];
+    scanf("%s",sub);
+    int i=0,count=0;
+    while(arr[i]!='\0')
+    {
+      int j=0;
+      int f=0;
+      while(arr[i]!=' ' || sub[j]!='\0')
+      {
+        if(arr[i]!=sub[j])
+        {
+           f=1;
+           break;
+        }
+        i++;
+        j++;
+      }
+      if(f==0)
+        count++;
+      i++;
+    }
+  printf("\n%s=%d",sub,count);
+	return 0;
+}

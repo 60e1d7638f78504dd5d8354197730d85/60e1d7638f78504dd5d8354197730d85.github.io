@@ -1,0 +1,39 @@
+#include<stdio.h>  
+#include<algorithm>  
+#include<cstring>  
+#include<cstdlib>  
+#include<iostream>  
+using namespace std;  
+  
+  
+int main()  
+{     
+    int k,s=0;  
+    scanf("%d",&k);  
+    int i,j;  
+    int a[111],b[111],x[6]={0},y[6]={0};  
+    for(i=1;i<=k;i++)  
+    {  
+        scanf("%d",&a[i]);  
+        x[a[i]]++;  
+    }  
+    for(i=1;i<=k;i++)  
+    {  
+        scanf("%d",&b[i]);  
+        y[b[i]]++;  
+    }  
+    for(i=1;i<=5;i++)  
+    {  
+        if ((x[i]+y[i])%2!=0)  
+        {     
+            printf("-1");  
+            return 0;  
+        }  
+    }  
+    for(i=1;i<=5;i++)  
+    {  
+        s+=abs(x[i]-y[i])/2;  
+    }  
+    printf("%d\n",s/2);                   
+    return 0;  
+ }   

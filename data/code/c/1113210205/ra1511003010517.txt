@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+ 
+struct data
+{
+	int x;
+	int y;
+	int z;
+};
+ 
+struct data data[1487];
+int main()
+ 
+{
+	int R,x,y,z,i,j,ctr=0,q,p,k=0,key,key1,key2,Rs;
+ 
+ 
+ 
+	scanf("%d",&R);
+ 
+	Rs=R*R;
+ 
+ 
+	for(x=1;x<2*R;x++)
+	{
+		for(y=x;y<=3*Rs/x;y++)
+		{
+			p=Rs*(x+y);
+			q=x*y-Rs;
+ 
+			if(q<=0)
+				continue;
+ 
+ 			z=p/q;
+ 
+			if(z<y || p%q!=0)
+				continue;
+ 
+				data[k].x=x+y;
+				data[k].y=x+z;
+				data[k].z=z+y;
+				k++;
+					//printf("%ld %ld %ld\n", (x+y),(x+z),(z+y));
+			
+ 
+ 
+		}
+	}
+ 
+   for (i = 1; i < k; i++)
+   {
+       key = data[i].z;
+       key1 = data[i].x;
+       key2 = data[i].y;
+       j = i-1;
+ 
+       while (j >= 0 && data[j].z > key)
+       {
+           data[j+1].y = data[j].y;
+           data[j+1].x = data[j].x;
+           data[j+1].z = data[j].z;
+           j = j-1;
+       }
+       data[j+1].z = key;
+       data[j+1].x = key1;
+       data[j+1].y = key2;
+   }
+ 
+   for (i = 1; i < k; i++)
+   {
+       key = data[i].y;
+       key1 = data[i].x;
+       key2 = data[i].z;
+       j = i-1;
+ 
+       while (j >= 0 && data[j].y > key)
+       {
+           data[j+1].y = data[j].y;
+           data[j+1].x = data[j].x;
+           data[j+1].z = data[j].z;
+           j = j-1;
+       }
+       data[j+1].y = key;
+       data[j+1].x = key1;
+       data[j+1].z = key2;
+   }
+ 
+   for (i = 1; i < k; i++)
+   {
+       key = data[i].x;
+       key1 = data[i].y;
+       key2 = data[i].z;
+       j = i-1;
+ 
+       while (j >= 0 && data[j].x > key)
+       {
+           data[j+1].y = data[j].y;
+           data[j+1].x = data[j].x;
+           data[j+1].z = data[j].z;
+           j = j-1;
+       }
+       data[j+1].x = key;
+       data[j+1].y = key1;
+       data[j+1].z = key2;
+   }
+ 
+   printf("%d\n",k );
+	for(i=0;i<k;i++)
+	{
+		printf("%d %d %d\n", data[i].x,data[i].y,data[i].z);
+	}
+ 
+ 
+ 
+ 
+	return 0;
+}    

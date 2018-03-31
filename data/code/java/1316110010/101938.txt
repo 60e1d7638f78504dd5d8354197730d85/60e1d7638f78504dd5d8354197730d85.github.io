@@ -1,0 +1,39 @@
+import java.util.*;
+class Gcd{
+public int great(int gcd,int lcm){
+  int g=1;
+for(int i = 1; i <= gcd && i <= lcm; ++i)
+        {
+            // Checks if i is factor of both integers
+            if(gcd % i==0 && lcm % i==0)
+                g = i;
+        }
+  return g;
+
+}
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Gcd objname=new Gcd();
+       Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       for (int i=0;i<t;i++){
+       int n1=sc.nextInt();
+       int n2=sc.nextInt();
+       System.out.print((objname.great(n1,n2))+" ");
+         int lcm;
+         lcm = (n1 > n2) ? n1 : n2;
+
+        // Always true
+        while(true)
+        {
+            if( lcm % n1 == 0 && lcm % n2 == 0 )
+            {
+                System.out.println(lcm);
+                break;
+            }
+            ++lcm;
+        }
+       }
+	}
+}

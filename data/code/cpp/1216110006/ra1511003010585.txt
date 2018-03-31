@@ -1,0 +1,42 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+void sort(int *arr,int k,int n){
+int pos[n+1];
+ 
+    for (int i = 0; i < n; ++i)
+        pos[arr[i]] = i;
+ 
+    for (int i=0; i<n && k; ++i)
+    {
+        // If element is already i'th largest,
+        // then no need to swap
+        if (arr[i] == n-i)
+            continue;
+ 
+        // Find position of i'th largest value, n-i
+        int temp = pos[n-i];
+ 
+        // Swap the elements position
+        pos[arr[i]] = pos[n-i];
+        pos[n-i] = i;
+ 
+        // Swap the ith largest value with the
+        // current value at ith place
+        swap(arr[temp], arr[i]);
+ 
+        // decrement number of swaps
+        --k;
+    }  	for(int i=0;i<n;i++)
+      cout<<arr[i]<<" ";
+}
+int main()
+{
+	int n;cin>>n;
+  	int a[n]; 
+  	for(int i=0;i<n;i++)
+      	cin>>a[i];
+  	int m;cin>>m;
+  	sort(a,m,n);
+	return 0;
+}

@@ -1,0 +1,32 @@
+# include <stdio.h>
+# define bool int
+ 
+bool Morenooftimes(int array[], int n, int x)
+{
+    int i;
+    int final_index = n % 2 ? n / 2 : (n / 2 + 1);
+ 
+    for (i = 0; i < final_index; i++)
+    {
+        /* check if x is presents more than n/2 times */
+        if (array[i] == x && array[i + n / 2] == x)
+            return 1;
+    }
+    return 0;
+}
+ 
+int main()
+{
+    int n,i,x;
+  scanf("%d",&n);
+  int arr[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  scanf("%d",&x);
+    if (Morenooftimes(arr, n, x))
+        printf("%d appears more than %d times in arr", x, n/2);
+    else
+        printf("%d does not appear more than %d times in arr", x, n/2);
+    
+    return 0;
+}

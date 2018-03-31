@@ -1,0 +1,78 @@
+#include<stdio.h>
+double a[20],p[55][3];
+int n;
+ 
+double call(int i, int j)
+{
+ 
+    int x;
+    double l,r,res,y;
+    x=(int)p[i][j];
+    //printf("%f %d..\n",a[x],x);
+    if(a[x]==1)
+ 
+    return 0;
+    else
+    a[x]=1;
+    if(i==n-1)
+    {
+        //printf("yes\n");
+        a[x]=0;
+        if(j==1)
+        res=p[i][0]/100;
+        else
+        res =(100.00-p[i][0])/100;
+        //printf("%0.10lf...%0.10lf\n",res,p[i][0]/100);
+        return res;
+    }
+    else
+    {
+         if(j==1)
+        y=p[i][0];
+        else
+        y=100-p[i][0];
+        if(y==0)
+        {
+            a[x]=0;
+            return 0;
+        }
+ 
+ 
+        l=call(i+1,1);
+ 
+ 
+ 
+        r=call(i+1,2);
+ 
+        a[x]=0;
+        
+        //printf("%f....%f....\n",l,r);
+        res =y*(l+r)/100;
+        //printf("res= %0.10lf  %0.10lf  %0.10lf\n",res,l,r);
+        return res;
+    }
+ 
+}
+int main()
+{
+    int T,i;
+    double  res,l,r;
+    scanf("%d",&T);
+    while(T--)
+    {
+        for(i=0;i<20;i++)
+        a[i]=0;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+            scanf("%lf %lf %lf",&p[i][0],&p[i][1],&p[i][2]);
+ 
+        }
+        l=call(0,1);
+        r=call(0,2);
+        res=l+r;
+        printf("%0.6lf\n",res);
+ 
+    }
+    return 0;
+}

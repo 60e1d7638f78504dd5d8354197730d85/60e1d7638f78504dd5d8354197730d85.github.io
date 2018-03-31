@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+int no;
+  scanf("%d",&no);
+  
+  int temp1=sqrt(no);
+  int temp2=temp1*temp1;
+  if(temp2==no)
+  {
+    printf("%d %d",temp1,temp1);
+   return 0; 
+  }
+  int arr[10];
+  int i,count=0;
+  
+  for(i=1;i<=no;i++)
+  {
+   if(no%i==0)
+   {
+     arr[count]=i;
+    count++;
+  }
+  }
+if(count%2==0)
+  printf("%d %d",arr[count/2-1],arr[count/2]);
+  else
+  { 
+    if(arr[count/2]*arr[count/2-1]==no)
+   printf("%d %d",arr[count/2-1],arr[count/2]);
+    
+    else
+      printf("%d %d",arr[count/2],arr[count/2+1]);
+    
+  }
+     
+	return 0;
+}

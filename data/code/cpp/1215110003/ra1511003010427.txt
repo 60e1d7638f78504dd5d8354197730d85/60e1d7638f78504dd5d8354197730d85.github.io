@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Code
+{
+ 	int number;
+  public:
+  	void initData() { cin>>number; }
+  	void getNumber() { cout<<number; }
+  	void numToBin()
+    {
+      	int arr[12]={0};
+    	vector<int> vec;
+      	while(number>0)
+        {
+         	vec.push_back((number%2));
+          	number/=2;
+        }
+      	reverse(vec.begin(),vec.end());
+      	int j=0;
+      	for(int i=12-vec.size();i<12;i++) 
+        {
+         	arr[i]=vec[j];
+          	j++;
+        }	
+      	for(const auto& p:arr) cout<<p;
+    }
+};
+int main()
+{
+	
+  	
+	Code c;
+  	c.initData();
+  	c.numToBin();
+  	
+	return 0;
+}

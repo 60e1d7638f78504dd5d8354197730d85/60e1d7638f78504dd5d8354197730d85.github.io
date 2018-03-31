@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int t,n,i;
+  char str[101];
+  scanf("%d",&t);
+  while(t--)
+  {
+    int flag=0;
+    scanf("%s",str);
+    if(str[1]==str[0])
+      flag=1;
+    for(i=2;i<strlen(str);i++)
+    {
+      if(str[i]!=str[i-2])
+      {
+        flag=1;
+        break;
+      }
+    }
+    if(flag==0)
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+	return 0;
+}

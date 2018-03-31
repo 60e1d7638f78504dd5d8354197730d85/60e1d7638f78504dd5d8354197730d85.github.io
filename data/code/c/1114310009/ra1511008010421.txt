@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define REP(i,a,b) for(i=a;i<b;i++)
+#define rep(i,n) REP(i,0,n)
+ 
+int ok[51000], next[51000];
+ 
+int get_next(int a){
+  int res;
+  if(next[a] == a) return a;
+ 
+  res = get_next(next[a]);
+  return next[a] = res;
+}
+ 
+void go_del(int a){
+  ok[a] = 0; next[a] = next[a+1];
+}
+ 
+int main(){
+  int i,j,k,l,m,n,res,gogo;
+  int a[51000], b[51000], add[51000];
+  char go[51000], tmp[51000];
+  int size;
+ 
+  scanf("%d",&size);
+  while(size--){
+    scanf("%d",&n);
+    rep(i,n) scanf("%d%d",a+i,b+i);
+ 
+    rep(i,n+1) add[i] = 0;
+    rep(i,n) add[a[i]]++, add[b[i]+1]--;
+ 
+    k = 0;
+    rep(i,n+1){
+      k += add[i];
+      if(i==k) ok[i]=1; else ok[i]=0;
+    }
+ 
+    res=0;
+    rep(i,n+1) res += ok[i];
+    printf("%d\n",res);
+ 
+    if(res<0){
+      rep(i,n) go[i]=1;
+      rep(k,n+1) if(ok[k]){
+        gogo=0;
+        rep(i,n){
+          if(a[i]<=k && k<=b[i]) tmp[i]=1; else tmp[i]=0;
+          if(gogo==0 && tmp[i]>go[i]){gogo=-1; break;}
+          if(gogo==0 && tmp[i]<go[i]) gogo=1;
+        }
+        if(gogo==1) rep(i,n) go[i]=tmp[i];
+      }
+    } else {
+      next[n+1] = n+1;
+      for(i=n;i>=0;i--){
+        next[i] = next[i+1];
+        if(ok[i]) next[i] = i;
+      }
+      rep(i,n){
+        k = get_next(0); l = get_next(b[i]+1);
+        if(k>=a[i] && l==n+1){
+          go[i] = 1;
+        } else {
+          go[i] = 0; k = get_next(a[i]);
+          while(a[i]<=k && k<=b[i]){
+            go_del(k); k = get_next(k);
+          }
+        }
+      }
+    }
+    rep(i,n) go[i]+='0'; go[n]='\0';
+    puts(go);
+  }
+  
+  return 0;
+}

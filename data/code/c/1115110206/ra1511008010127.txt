@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define mod 1000000007
+void multiply(long long int F[2][2],long long int M[2][2])
+{
+  long long int x =  ((F[0][0]*M[0][0])%mod + (F[0][1]*M[1][0])%mod)%mod;
+  long long int y =  ((F[0][0]*M[0][1])%mod + (F[0][1]*M[1][1])%mod)%mod;
+  long long int z =  ((F[1][0]*M[0][0])%mod + (F[1][1]*M[1][0])%mod)%mod;
+  long long int w =  ((F[1][0]*M[0][1])%mod + (F[1][1]*M[1][1])%mod)%mod;
+ 
+  F[0][0] = x;
+  F[0][1] = y;
+  F[1][0] = z;
+  F[1][1] = w;
+}
+void power(long long int F[2][2], int n)
+{
+  if( n == 0 || n == 1)
+      return;
+ long long int M[2][2] = {{1,1},{1,0}};
+ 
+  power(F, n/2);
+  multiply(F, F);
+ 
+  if (n%2 != 0)
+     multiply(F, M);
+}
+ 
+long long int fib(int n)
+{
+  long long int F[2][2] = {{1,1},{1,0}};
+  if (n == 0)
+    return 0;
+  power(F, n-1);
+  return F[0][0];
+}
+void build(int start,int end,long long int b[][2],int a[],int curr)
+{if(start==end)
+ {b[curr][0]=fib(a[start]-1);
+  b[curr][1]=fib(a[start]);
+  return;  
+ }
+ build(start,(start+end)/2,b,a,2*curr);
+ build((start+end)/2+1,end,b,a,2*curr+1);
+ b[curr][0]=b[2*curr][1]*b[2*curr+1][1];
+ b[curr][0]%=mod;
+ b[curr][0]+=b[2*curr][0]*b[2*curr+1][0];
+ b[curr][0]%=mod;
+ b[curr][1]=b[2*curr+1][0]+b[2*curr+1][1];
+ b[curr][1]%=mod;
+ b[curr][1]*=b[2*curr][1];
+ b[curr][1]%=mod;
+ b[curr][1]+=(b[2*curr][0]*b[2*curr+1][1])%mod;
+ b[curr][1]%=mod;
+ b[curr][1]+=b[2*curr][1]+b[2*curr+1][1];
+ b[curr][1]%=mod;
+ b[curr][0]+=b[2*curr][0]+b[2*curr+1][0];
+ b[curr][0]%=mod; 
+}    
+ 
+void update(int start,int end,long long int b[][2],int curr,int data,int x,int y)
+{if(start>end || end<x || start>y)
+    return;
+ if(start>=x && end<=y)
+ {b[curr][0]=fib(data-1);
+  b[curr][1]=fib(data);
+  return;
+ }    
+ update(start,(start+end)/2,b,2*curr,data,x,y);
+ update((start+end)/2+1,end,b,2*curr+1,data,x,y);
+ b[curr][0]=b[2*curr][1]*b[2*curr+1][1];
+ b[curr][0]%=mod;
+ b[curr][0]+=b[2*curr][0]*b[2*curr+1][0];
+ b[curr][0]%=mod;
+ b[curr][1]=b[2*curr+1][0]+b[2*curr+1][1];
+ b[curr][1]%=mod;
+ b[curr][1]*=b[2*curr][1];
+ b[curr][1]%=mod;
+ b[curr][1]+=(b[2*curr][0]*b[2*curr+1][1])%mod;
+ b[curr][1]%=mod;
+ b[curr][1]+=b[2*curr][1]+b[2*curr+1][1];
+ b[curr][1]%=mod;
+ b[curr][0]+=b[2*curr][0]+b[2*curr+1][0];
+ b[curr][0]%=mod; 
+}   
+long long int xx,yy;
+void sum(int start,int end,long long int b[][2],int x,int y,int curr)
+{if(start>end || end<x || start>y)
+    return;
+ if(start>=x && end<=y)
+ {if(xx==-1 && yy==-1)
+  {xx=b[curr][0];yy=b[curr][1];
+  }
+  else
+  {long long int ans=b[curr][0]+b[curr][1];      
+      ans%=mod;ans*=yy;ans%=mod;
+      ans+=(xx*b[curr][1])%mod;
+      ans%=mod;
+      long long int ans1=xx*b[curr][0];ans1%=mod;
+      ans1+=(yy*b[curr][1])%mod;ans1%=mod;
+     xx=xx+ans1+b[curr][0];
+     xx%=mod;
+     yy=yy+ans+b[curr][1];
+     yy=yy%mod;
+  }    
+     return;
+ }    
+    sum(start,(start+end)/2,b,x,y,2*curr);
+    sum((start+end)/2+1,end,b,x,y,2*curr+1);
+}    
+int main() {
+ static long long int b[262244][2];
+    int a[100010];
+ int i,j,k,n,m;   
+ scanf("%d %d",&n,&m);   
+ for(i=1;i<=n;i++)
+ {scanf("%d",&a[i]);   
+ }
+  build(1,n,b,a,1);  
+  char ch[10];
+    int x,y;
+  while(m--)
+  {scanf("%s %d %d",ch,&x,&y);
+   if(ch[0]=='C')
+      update(1,n,b,1,y,x,x);
+   else
+   {xx=-1;
+    yy=-1;
+    sum(1,n,b,x,y,1);
+    printf("%lld\n",yy);
+   }    
+  } 
+  return 0;
+}
+  

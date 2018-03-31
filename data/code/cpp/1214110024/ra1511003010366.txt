@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class library{
+  private: 
+  	int roll_no , book_code ;
+  	string name ;
+  public :
+  	static int count ;
+  	library(int rno=0 , string str="" , int code=0){
+      roll_no = rno ; 
+      name = str ;
+      book_code = code ;
+      count++ ;
+    }
+  	void display(){
+      cout << roll_no << ", " << name << ", " << book_code << endl ;
+    }
+} ;
+  	
+int library::count = 0 ; 
+int main()
+{
+  	int a , c , d , f ;
+  	string b , e ;
+  	cin >> a >> b >> c >> d >> e >> f ;
+	library l1(a,b,c) , l2(d,e,f) ;
+  	l1.display() ;
+  	l2.display() ;
+  	cout << l1.count << " " << l2.count ;
+	return 0;
+}

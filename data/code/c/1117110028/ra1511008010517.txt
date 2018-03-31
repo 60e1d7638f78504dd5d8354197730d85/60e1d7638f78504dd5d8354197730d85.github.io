@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+void find(int n,int arr[])
+{
+ static int max=-1000;
+  if(n==0)
+  {
+    printf("Maximum element in the array is %d",max);
+    return;
+  }
+  if(arr[n-1]>max)
+  {
+    max=arr[n-1];
+  }
+  find(n-1,arr);
+}
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  int arr[n],i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  find(n,arr);
+
+	return 0;
+}

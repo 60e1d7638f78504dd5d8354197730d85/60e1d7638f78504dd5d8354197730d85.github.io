@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int i,index=0,n=0,j,flag=0,max=0,k,x=0,num;
+	int a[1000],b[1000],c[10000];
+	scanf("%d",&n);
+	
+	scanf("%d",&num);
+	for(i=1;i<=(2*n);i++)
+	{
+		if(i<=n)
+		a[i-1]=i;
+		else
+		b[i-n-1]=i;
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			c[x]=a[i]+b[j];
+			x++;
+		}
+	}
+	max=n*n;
+	for(i=0;i<num;i++)
+	{
+		int temp=0;
+		int count=0;
+		scanf("%d",&temp);
+		for(j=0;j<(max);j++)
+		{
+			if(c[j]==temp)
+				count+=1;
+		}
+		printf("%d\n",count);
+		
+	}
+  return 0;
+}

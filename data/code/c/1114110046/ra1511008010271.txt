@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+ 
+int main()
+{
+	int n,t,i,j;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d",&n);
+		int a[n][3],hash[17];
+		for(i=0;i<n;i++)
+			scanf("%d%d%d",&a[i][2],&a[i][0],&a[i][1]);
+		if(n>16)
+			printf("%f\n",0.0);
+		else{
+			double px,p=0.0;
+			int ways=pow(2,n),idx;
+			for(i=0;i<ways;i++){
+				memset(hash,0,sizeof(hash));
+				px=1.0;
+				for(j=0;j<n;j++){
+					idx=(i&(1<<j))>>j;
+					if(hash[a[j][idx]]){
+						px=0;
+						break;
+					}
+					else{
+						if(idx==0)
+							px*=(double)a[j][2]/100;
+						else
+							px*=1-(double)a[j][2]/100;
+					}
+					hash[a[j][idx]]=1;
+				}
+				p+=px;
+			}
+			printf("%f\n",p);
+		}
+	}
+	return 0;
+} 

@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n,grp1[10],grp2[10],grd1[6],grd2[6],mean[6],max,swap=0,c=0;
+  cin>>n;
+  for(int i=0; i<n; i++)
+    cin>>grp1[i];
+  for(int i=0; i<n; i++)
+    cin>>grp2[i];
+  for(int i=0; i<5; i++)
+  {
+    grd1[i]=0;
+    grd2[i]=0;
+  }
+  for(int i=0; i<n; i++)
+  {
+    if(grp1[i]==1) grd1[1]++;
+    if(grp1[i]==2) grd1[2]++;
+    if(grp1[i]==3) grd1[3]++;
+    if(grp1[i]==4) grd1[4]++;
+    if(grp1[i]==5) grd1[5]++;
+    if(grp2[i]==1) grd2[1]++;
+    if(grp2[i]==2) grd2[2]++;
+    if(grp2[i]==3) grd2[3]++;
+    if(grp2[i]==4) grd2[4]++;
+    if(grp2[i]==5) grd2[5]++;
+  }
+  for(int i=1; i<=5; i++)
+  {  
+    if((grd1[i]+grd2[i])%2==1)
+      c=1;
+    mean[i]=(grd1[i]+grd2[i])/2;
+    max= grd1[i]>grd2[i] ? grd1[i] : grd2[i];
+    swap+=max-mean[i];
+   }
+   if(c==1)
+    cout<<"-1";
+   else
+   cout<<swap/2;
+	return 0;
+}

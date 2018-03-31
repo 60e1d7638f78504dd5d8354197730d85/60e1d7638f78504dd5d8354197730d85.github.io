@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+ 
+char alz[400], rpn[400], st[400];
+int top=-1;
+ 
+int getpriority(char op)
+{
+    if(op=='^')
+        return 2;
+    else if(op=='*' || op=='/')
+        return 1;
+    else if(op=='+' || op=='-')
+        return 0;
+    return 2;
+}
+ 
+void convertRPN()
+{
+    int i=0, j=0;
+    while(alz[i])
+    {
+        if(alz[i]=='(')
+            st[++top]=alz[i++];
+        else if(alz[i]==')')
+        {
+            while(st[top]!='(')
+                rpn[j++]=st[top--];
+            top--;
+            i++;
+        }
+        else if(isalpha(alz[i]))
+            rpn[j++]=alz[i++];
+        else
+        {
+            while(st[top]!='(' && top!=-1 && getpriority(st[top])>getpriority(alz[i]))
+                rpn[j++]=st[top--];
+            st[++top]=alz[i++];
+        }
+    }
+    while(top!=-1)
+        rpn[j++]=st[top--];
+        rpn[j]='\0';
+}
+ 
+int main()
+{
+	int i, t;
+	scanf("%d\n", &t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%s",alz);
+        convertRPN();
+        printf("%s\n",rpn);
+    }
+	return 0;
+} 
+

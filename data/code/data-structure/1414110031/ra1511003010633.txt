@@ -1,0 +1,43 @@
+#include<stdio.h>
+
+    int checkPermutation1(int* a,int* b, int m)
+    {
+        // If two are not of same size then not permutation.
+       
+        
+        int mul1 = 1,i;
+        int mul2 = 1;
+        int sum1 = 0;
+        int sum2 = 0;
+        for(i=0; i<m; i++){
+            mul1 *= a[i];
+            mul2 *= b[i];
+            
+            sum1 += a[i];
+            sum2 += b[i];
+        }
+        if(mul1 == mul2 && sum1 == sum2)
+            return 1;
+        else
+            return 0;
+    }
+int main()
+{
+   int t,n,i,arr1[20],arr2[20];
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    scanf("%d",&arr1[i]);
+     for(i=0;i<n;i++)
+    scanf("%d",&arr2[i]);
+ 
+   int check = checkPermutation1(arr1,arr2,n);
+  if(check==1)
+printf("1\n");
+    else
+      printf("0\n");
+  }
+    return 0;
+}

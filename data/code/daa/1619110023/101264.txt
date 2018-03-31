@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef  long long int lli;
+int n,req;
+vector<int> v;
+vector<int> arr;
+lli xr[100000000];
+lli dp[1001][4100];
+#define mod 10000007
+int bitmasking(vector<int> v)
+ {
+   int len=v.size();
+    int msk=1<<len;
+    for(int i=0;i<msk;i++)
+       {
+        
+          int x=0;
+          for(int j=0;j<len;j++)
+             {
+               if(i&(1<<j))
+               x=x xor v[j];
+         
+      }    
+      xr[x]=(xr[x]+1)%mod;
+  }
+ }
+
+int main()
+{
+  cin>>n>>req;
+  for(int i=0;i<n;i++)
+  {
+    int a;
+    cin>>a;
+    if(a>(1<<10)) v.push_back(a);
+    else arr.push_back(a);
+  }
+  memset(dp,0,sizeof dp);
+  n=arr.size();
+  
+  bitmasking(v);
+  
+    dp[0][0]=1;
+    int i;
+  for( i=1;i<=n;i++)
+   {
+     int val=arr[i-1];
+      for(int j=0;j<=2048;j++)
+         {
+          
+         dp[i][j]=dp[i-1][j];
+    }
+    for(int j=0;j<=2048;j++)
+     {
+       if((j xor val)<=2048)  
+       dp[i][j]=(dp[i][j]+dp[i-1][j xor val])%mod;
+     }
+  }
+    lli ans=0;
+
+  for(int i=0;i<=2048;i++)
+   {
+     ans =(ans+(1ll*dp[n][i]*(xr[i xor req])%mod))%mod;
+   }
+     cout<<ans<<endl;
+ 
+}
+

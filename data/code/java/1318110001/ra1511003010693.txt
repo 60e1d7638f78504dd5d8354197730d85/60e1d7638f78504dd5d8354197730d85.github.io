@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Derived d1 = new Derived();
+       d1.getInput();
+       d1.sum();
+       d1.display();		
+	}
+}
+class Base{
+  int a, b;
+  public void getInput(){
+    Scanner sc = new Scanner(System.in);
+    a = sc.nextInt();
+    b = sc.nextInt();
+  }
+}
+class Derived extends Base{
+  int sum;
+  public void sum(){
+    sum = a + b;
+  }
+  public void display(){
+    System.out.println(sum);
+  }
+}

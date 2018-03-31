@@ -1,0 +1,356 @@
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.io.BufferedWriter;
+import java.util.InputMismatchException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Collection;
+import java.io.InputStream;
+ 
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ * @author Ankit Srivastava
+ */
+public class TestClass {
+	public static void main(String[] args) {
+		InputStream inputStream = System.in;
+		OutputStream outputStream = System.out;
+		InReader in = new InReader(inputStream);
+		OutputWriter out = new OutputWriter(outputStream);
+		FavouriteNumbers solver = new FavouriteNumbers();
+		solver.solve(1, in, out);
+		out.close();
+	}
+}
+ 
+class FavouriteNumbers {
+    int[][] trans;
+    AhoCorasickDataStructure ds;
+    long[][] preDP;
+    long[] powTen;
+ 
+    long go(int i, int state) {
+        if (i == -1) {
+            if (ds.found[state]) return 1;
+            else return 0;
+        }
+        if (preDP[i][state] != -1) return preDP[i][state];
+        if (ds.found[state]) return preDP[i][state] = powTen[i + 1];
+        long ret = 0;
+        for (int j = 0; j < 10; j++) {
+            ret += go(i - 1, trans[state][j]);
+        }
+        return preDP[i][state] = ret;
+    }
+ 
+    long computeL(long num) {
+        if(num <= 0) return 0;
+        long res = num;
+        int[] arr = new int[19];
+        int i = 0;
+        while (res > 0) {
+            arr[i++] = (int) (res % 10);
+            res /= 10;
+        }
+        int first = i - 1;
+        int q = 0;
+        long ret = 0;
+        boolean take = ds.found[q];
+        long pre = 0;
+        int j;
+        for (j = first; j >= 0; j--) {
+            if(take) {
+                ret += num - pre * powTen[j + 1] + 1;
+                break;
+            }
+            for (int dig = 0; dig < arr[j]; dig++) {
+                ret += go(j - 1, trans[q][dig]);
+            }
+            q = trans[q][arr[j]];
+            take = ds.found[q];
+            pre *= 10;
+            pre += arr[j];
+        }
+        if(j >= 0) return ret;
+        else return take ? ret + 1 : ret;
+    }
+ 
+    long computeLR(long l, long r) {
+        return computeL(r) - computeL(l - 1);
+    }
+ 
+    public void solve(int testNumber, InReader in, OutputWriter out) {
+        long l = in.readLong();
+        long r = in.readLong();
+        long k = in.readLong();
+        int n = in.readInt();
+ 
+        powTen = new long[20];
+        powTen[0] = 1;
+        for (int i = 1; i < 20; i++) {
+            powTen[i] = powTen[i - 1] * 10;
+        }
+        String[] arr = new String[n];
+        ds = new AhoCorasickDataStructure(10, '0');
+        for (int i = 0; i < n; i++) {
+            arr[i] = in.readString();
+            ds.add(arr[i]);
+        }
+        ds.bfs();
+        ds.makeTrans();
+        trans = ds.trans;
+        //System.out.println("ds done");
+        preDP = new long[20][ds.stateCount];
+        ArrayUtils.fill2d(preDP, -1);
+ 
+        if (computeLR(l, r) < k) out.printLine("no such number");
+        else {
+            long lo = l;
+            long hi = r;
+            long ans = hi;
+            while (lo < hi) {
+                long mid = lo + hi >> 1;
+                long cnt = computeLR(lo, mid);
+                /*System.out.println("lo = " + lo);
+                System.out.println("hi = " + hi);
+                System.out.println("k = " + k);
+                System.out.println("cnt = " + cnt);*/
+                if (cnt >= k) {
+                    ans = mid;
+                    hi = mid;
+                } else if (cnt < k) {
+                    lo = mid + 1;
+                    k -= cnt;
+                }
+            }
+            out.printLine(ans);
+            //System.out.println(Arrays.deepToString(trans));
+            //System.out.println(Arrays.toString(ds.found));
+        }
+    }
+}
+ 
+class AhoCorasickDataStructure {
+    public int[][] trans;
+    Node root;
+    public int stateCount;
+    public boolean[] found;
+    int alphabetSize;
+    char zero;
+ 
+    public AhoCorasickDataStructure(int size, char zero) {
+        this.alphabetSize = size;
+        this.zero = zero;
+        root = new Node(' ');
+    }
+ 
+    public  void add(String s) {
+        Node node = root;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int ind = c - zero;
+            if (node.child[ind] == null) node.child[ind] = new Node(c);
+            node.child[ind].parent = node;
+            node = node.child[ind];
+        }
+        node.isEnd = true;
+        //System.out.println("Add success");
+    }
+ 
+    public void bfs() {
+        root.fall = root;
+        Queue<Node> queue = new LinkedList<Node>();
+        stateCount = 0;
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            Node v = queue.poll();
+ 
+            v.state = stateCount++;
+            for (Node child : v.child)
+                if (child != null) queue.offer(child);
+            if (v == root) continue;
+            Node fall = v.parent.fall;
+            while (fall.child[v.c - zero] == null && fall != root) fall = fall.fall;
+            v.fall = fall.child[v.c - zero];
+            if (v.fall == null || v.fall == v) v.fall = root;
+            else v.isEnd |= fall.child[v.c - zero].isEnd;
+        }
+        //System.out.println("bfs success");
+    }
+ 
+    public void makeTrans() {
+        trans = new int[stateCount][alphabetSize];
+        found = new boolean[stateCount];
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.offer(root);
+        while(!queue.isEmpty()) {
+            Node v = queue.poll();
+            if(v.isEnd) found[v.state] = true;
+            for (int i = 0; i < v.child.length; i++) {
+                Node node = v;
+                if(v.child[i] != null) queue.offer(v.child[i]);
+                while(node.child[i] == null && node != root) node = node.fall;
+                if(node.child[i] != null) trans[v.state][i] = node.child[i].state;
+                else trans[v.state][i] = root.state;
+            }
+        }
+    }
+ 
+    class Node {
+        char c;
+        Node[] child;
+        boolean isEnd;
+        Node parent;
+        Node fall;
+        int state;
+ 
+        Node(char c) {
+            this.c = c;
+            child = new Node[alphabetSize];
+            isEnd = false;
+            parent = null;
+            fall = null;
+        }
+    }
+}
+ 
+class InReader {
+ 
+    private InputStream stream;
+    private byte[] buf = new byte[1024];
+    private int curChar;
+    private int numChars;
+    private SpaceCharFilter filter;
+ 
+    public InReader(InputStream stream) {
+        this.stream = stream;
+    }
+ 
+    public int read() {
+        if (numChars == -1)
+            throw new InputMismatchException();
+        if (curChar >= numChars) {
+            curChar = 0;
+            try {
+                numChars = stream.read(buf);
+            } catch (IOException e) {
+                throw new InputMismatchException();
+            }
+            if (numChars <= 0)
+                return -1;
+        }
+        return buf[curChar++];
+    }
+ 
+    public int readInt() {
+        int c = read();
+        while (isSpaceChar(c))
+            c = read();
+        int sgn = 1;
+        if (c == '-') {
+            sgn = -1;
+            c = read();
+        }
+        int res = 0;
+        do {
+            if (c < '0' || c > '9')
+                throw new InputMismatchException();
+            res *= 10;
+            res += c - '0';
+            c = read();
+        } while (!isSpaceChar(c));
+        return res * sgn;
+    }
+ 
+    public long readLong() {
+        int c = read();
+        while (isSpaceChar(c))
+            c = read();
+        int sgn = 1;
+        if (c == '-') {
+            sgn = -1;
+            c = read();
+        }
+        long res = 0;
+        do {
+            if (c < '0' || c > '9')
+                throw new InputMismatchException();
+            res *= 10;
+            res += c - '0';
+            c = read();
+        } while (!isSpaceChar(c));
+        return res * sgn;
+    }
+ 
+    public String readString() {
+        int c = read();
+        while (isSpaceChar(c))
+            c = read();
+        StringBuffer res = new StringBuffer();
+        do {
+            res.appendCodePoint(c);
+            c = read();
+        } while (!isSpaceChar(c));
+        return res.toString();
+    }
+ 
+    public boolean isSpaceChar(int c) {
+        if (filter != null)
+            return filter.isSpaceChar(c);
+        return isWhitespace(c);
+    }
+ 
+    public static boolean isWhitespace(int c) {
+        return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+    }
+ 
+    public interface SpaceCharFilter {
+        public boolean isSpaceChar(int ch);
+    }
+}
+ 
+class OutputWriter {
+	private final PrintWriter writer;
+ 
+	public OutputWriter(OutputStream outputStream) {
+		writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
+	}
+ 
+	public OutputWriter(Writer writer) {
+		this.writer = new PrintWriter(writer);
+	}
+ 
+	public void print(Object...objects) {
+		for (int i = 0; i < objects.length; i++) {
+			if (i != 0)
+				writer.print(' ');
+			writer.print(objects[i]);
+		}
+	}
+ 
+ 
+    public void printLine(Object...objects) {
+		print(objects);
+		writer.println();
+	}
+ 
+	public void close() {
+		writer.close();
+	}
+ 
+}
+ 
+class ArrayUtils {
+ 
+	public static void fill2d(long [][] array, long  value) {
+		for (int i = 0;i < array .length ;i++)
+			Arrays.fill(array [i], value);
+	}
+ 
+ 
+}

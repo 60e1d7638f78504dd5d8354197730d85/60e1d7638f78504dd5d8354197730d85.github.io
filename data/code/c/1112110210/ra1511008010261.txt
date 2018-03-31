@@ -1,0 +1,27 @@
+#include <stdio.h>
+int sum (int n) 
+{
+    return (n * (n + 1)) / 2;
+}
+ 
+int dSum (int x, int n)
+{
+    if (x == 1)
+        return sum(n);
+    else if (x > 1)
+        return dSum(x - 1, sum(n));
+}
+ 
+int main(void) 
+{
+    int T;
+    scanf("%d", &T);
+    while (T--) 
+    {
+        int D, N;
+        scanf("%d %d", &D, &N);
+        
+        printf("%d\n", dSum(D, N));
+    }
+	return 0;
+}

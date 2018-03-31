@@ -1,0 +1,57 @@
+#include<stdio.h>
+ 
+int input[101],store[101];
+ 
+int minimum(int x,int y)
+{
+	if(x>y)
+		return y;
+	return x;
+}
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+    {
+      int n,i,j,k,m=0,p1,p2;
+      scanf("%d",&n);
+	  store[1]=1;
+      for(i=1;i<=n;i++)	
+        scanf("%d",&input[i]);
+      
+     for(i=2;i<=n;i++)
+     {
+       if(input[i]!=0)
+      {
+         for(j=1;j<i;j++)
+         {
+          if(store[j]==input[i])
+          {
+		   p1=i-1-j;
+		   p2=j;
+           m+=minimum(p1,p2);
+           break;
+           }
+         }
+ 
+         for(k=i;k>=j+2;k--)
+           store[k]=store[k-1];
+          store[j+1]=i;
+       }
+     else
+     {
+        k=i;
+        while(k>=2)
+		{
+          store[k]=store[k-1];
+		  k--;
+		}
+        store[1]=i;
+     }
+}
+     printf("%d\n",m);
+}
+	return 0;
+} 

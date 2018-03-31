@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int solve(int arr[100],int n)
+{
+  int count=0,temp,i,j;
+  int arr2[100],flag;
+  
+  arr2[0]=arr[0];
+  //printf("%d\n",n);
+  for(i=1;i<n;i++)
+  {
+    flag=0;
+    //printf("%d ",arr[i]);
+    temp=arr[i];
+    for(j=0;j<i;j++)
+    {
+      if(arr2[j]==temp)
+      {
+        flag=1;
+        break;
+      }
+    }
+    if(flag==0)
+    {
+      arr2[i]=arr[i];
+    }
+    else arr2[i]=0;
+  }
+  
+  for(i=0;i<n;i++)
+  {
+    if(arr2[i]!=0)
+    {
+      count++;
+    }
+  }
+  return count;
+}
+  
+  
+int main()
+{
+  int t,i,j,n;
+  int ans[100], arr[100];
+  
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&n);
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&arr[j]);
+    }
+    ans[i]=solve(arr,n);
+  }
+  //printf("\n");
+  for(i=0;i<t;i++)
+  {
+    printf("%d\n",ans[i]);
+  }
+  return 0;
+}

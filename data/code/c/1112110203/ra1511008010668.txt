@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int i,t,j,c,k,l,n,s=0,b[55];
+	char a[55];
+	scanf("%d",&n);
+	for(k=0;k<n;k++)
+	{
+	    s=0;
+		for(i=0;i<55;i++)
+		b[i]=1;
+		scanf("%s",a);
+		l=strlen(a);
+	for(i=0;i<l;i++)
+	for(j=1;j<l;j++)
+	if(a[j-1]<a[j])
+	{
+		t=a[j-1];
+		a[j-1]=a[j];
+		a[j]=t;
+	}
+	j=0;
+	for(i=0;i<l;i++)
+	{
+	if(a[i]==a[i+1])
+	b[j]++;
+	else
+	j++;
+	}
+	c=j;
+	for(i=0;i<l;i++)
+	for(j=1;j<l;j++)
+	if(b[j-1]<b[j])
+	{
+		t=b[j-1];
+		b[j-1]=b[j];
+		b[j]=t;
+	}
+	for(i=1;i<c;i++)
+	s=s+b[i];
+	if(b[0]==s)
+	printf("YES\n");
+	else
+	printf("NO\n");
+	
+    }
+	return 0;
+}

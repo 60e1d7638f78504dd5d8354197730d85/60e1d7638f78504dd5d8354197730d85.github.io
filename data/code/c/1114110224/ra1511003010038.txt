@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main() {
+	int test, result;
+	float hardness, carbon, tensile;
+	scanf("%d", &test);
+	while(test--) {
+		scanf("%f%f%f", &hardness, &carbon, &tensile);
+		if(hardness>50 && carbon<0.7 && tensile>5600)
+			result = 10;
+		else if(hardness>50 && carbon<0.7)
+			result = 9;
+		else if(carbon<0.7 && tensile>5600)
+			result = 8;
+		else if(hardness>50 && tensile>5600)
+			result = 7;
+		else if(hardness>50 || carbon<0.7 || tensile>5600)
+			result = 6;
+		else result = 5;
+		printf("%d\n", result);
+	}
+	return 0;
+}

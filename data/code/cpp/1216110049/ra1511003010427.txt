@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define ll long long
+ 
+#define sc(a) scanf("%lld",&a)
+#define sd(a) ll a; sc(a)
+#define sd2(a,b) sd(a); sd(b)
+#define ss(a)  scanf("%s",a)
+ 
+#define test(a) sd(a); while(a--)
+#define rp(l,i,n) for(i=l;i<n;i++)
+#define sdarr(a,n); ll a[n]; rp(0,i,n) { sc(a[i]); }
+#define pf(a) printf("%lld\n",a)
+#define pfsp(a) printf("%lld ",a)
+#define pfs(a) printf("%s\n",a)
+#define pfarr(a,n);  rp(0,i,n) { pfsp(a[i]); }
+#define decl(c, n) ll *c = (ll*)calloc(sizeof(ll), (n + 1));
+#define ys printf("Yes\n")
+#define noo printf("No\n")
+#define space printf(" ")
+#define endl printf("\n")
+#define gc getchar_unlocked
+ 
+ll read_int() {
+  char c = gc();
+  while(c<'0' || c>'9') c = gc();
+  ll ret = 0;
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+ 
+ll max(ll a,ll b)
+{
+    if(a>b)
+        return a;
+    else
+        return b;
+}
+ 
+int main()
+{
+    test(t)
+    {
+        sd2(n,m);
+        ll i,j,ans=0;
+        char a[n][m+1];
+        rp(0,i,n)
+        {
+            ss(a[i]);
+        }
+        rp(0,i,m)
+        {
+            ll count=0;
+            rp(0,j,n)
+            {
+                if(a[j][i]=='1')
+                    count++;
+            }
+            if(count>1)
+            {
+                count--;
+                ans+=((count*(count+1))/2);
+            }
+        }
+        pf(ans);
+    }
+    return 0;
+} 

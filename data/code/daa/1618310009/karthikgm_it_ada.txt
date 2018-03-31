@@ -1,0 +1,96 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int N;
+    int flag=0;
+    scanf("%d",&N);
+    //printf(
+    //"%d\n",N);
+    while(N!=0)
+    {
+    char firstname[100000];
+    char secondname[100000];
+    scanf("%s",firstname);
+    scanf("%s",secondname);
+    int firstlength=0,secondlength=0,length=0;
+    for(int i=0;firstname[i]!='\0';i++)
+    {
+        firstlength++;
+        if(firstname[i]=='0')
+        {
+        continue;
+        }
+      
+        
+        for(int j=0;secondname[j]!='\0';j++)
+        {
+            if(i==0)
+            secondlength++;
+            
+            
+            if(firstname[i]==secondname[j])
+            {
+          //      printf("*%c*",secondname[j]);
+                //firstname[i]='0';
+                secondname[j]='0';
+                length+=1;
+                flag=1;
+                
+            }
+        }
+        
+        
+        
+        if(flag)
+        {
+        length+=1;
+        int k=i+1;
+          for(;firstname[k]!='\0';k++)
+        {
+            
+            if(firstname[i]==firstname[k])
+            {
+                firstname[k]='0';
+                length+=1;
+        
+        //printf("no");
+        }
+        
+            
+        }
+        //printf("HERE");
+        
+        }
+    
+        flag=0;
+    }
+    
+   // printf("-%d-%d-",firstlength,secondlength);
+  //  printf("%d",firstlength+secondlength-length);
+    
+    int x = ((firstlength+secondlength-length)%5);
+    
+    switch (x)
+    {
+    case 1:
+    printf("LFAME\n");
+    break;
+    case 2:
+    printf("FLAME\n");
+    break;
+    case 3:
+    printf("FALME\n");
+    break;
+    case 4:
+    printf("FMALE\n");
+    break;
+    case 0:
+    printf("FEAML\n");
+    break;
+    }
+    N--;
+    }
+    
+    return 0;
+}

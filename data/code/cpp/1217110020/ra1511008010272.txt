@@ -1,0 +1,51 @@
+#include <iostream>
+#include <bitset>
+using namespace std;
+int T, n;
+bitset <1000001> win;
+ 
+inline bool Prim(int x)
+{
+	if(x == 2)
+		return true;
+	if(x % 2 == 0)
+		return false;
+	for(int i = 3; i * i <= x; i += 2)
+		if(x % i == 0)
+			return false;
+	return true;
+}
+ 
+inline bool Putere2(int x)
+{
+	int i = 0;
+	while((1 << i) <= x)
+	{
+		if(x == (1 << i))
+			return true;
+		i++;
+	}
+	return false;
+}
+ 
+int main()
+{
+	std::ios_base::sync_with_stdio(false);
+	cin >> T;
+	while(T--)
+	{
+		cin >> n;
+		if(n == 2 || n == 17)
+		{
+			cout << "Mike\n";
+			continue;
+		}
+		if(n == 16 || n == 34 || n == 289 || Prim(n))
+		{
+			cout << "Tom\n";
+			continue;
+		}
+		cout << "Mike\n";
+	}
+	return 0;
+}

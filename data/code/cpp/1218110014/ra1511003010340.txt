@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class T1{
+	public:
+		int sum;
+};
+class T2{
+	public:
+	void display(){
+		cout<<"Invalid input";
+	}
+};
+class test: public T1,T2{
+	public:
+		void get(){
+			sum=0;
+			int temp;
+			while(true){
+				cin>>temp;
+				if(temp>0){
+					sum+=temp;	
+				}
+				if(temp==0){
+					break;
+				}
+				if(temp<0){
+					display();
+				}
+			}
+		}
+		void print(){
+			cout<<sum;
+		}
+};
+
+int main()
+{
+	test t;
+	t.get();
+	t.print();
+	return 0;
+}

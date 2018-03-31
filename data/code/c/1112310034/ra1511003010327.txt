@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+    int n,i,val=0,j,w,q,k,l,s,a,b,arr[100],m;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      val=0;
+      scanf("%d %d",&a,&b);
+      for(j=a;j<=b;j++)
+      {
+        w=j;
+        q=0;
+      while(w>0)
+      {
+        m=w%10;
+        arr[q++]=m;
+        w=w/10;
+    }
+        s=0;
+        for(k=0;k<q-1;k++)
+          for(l=k+1;l<q;l++)
+          {
+            if(arr[k]==arr[l])
+            {
+              s=1;
+              
+            }
+          }
+        if(s==0)
+          val++;
+            
+      }
+      printf("%d\n",val);
+    }
+
+	return 0;
+}

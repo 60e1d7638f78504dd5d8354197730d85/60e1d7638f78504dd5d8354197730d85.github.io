@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <string.h>
+
+int max(int a, int b);
+
+int check_vowel(char c)
+{
+  switch(c) {
+    case 'a':
+    case 'A':
+    case 'e':
+    case 'E':
+    case 'i':
+    case 'I':
+    case 'o':
+    case 'O':
+    case 'u':
+    case 'U':
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+int lcs(char *arr3,char *arr4,int n3,int n4){
+if(n3==0 || n4==0)
+  return 0;
+  if(arr3[n3-1]==arr4[n4-1])
+    return 1+lcs(arr3,arr4,n3-1,n4-1);
+  else
+    return max(lcs(arr3,arr4,n3,n4-1),lcs(arr3,arr4,n3-1,n4));
+
+}
+
+int max(int a,int b){
+
+  return (a>b)?a:b;
+
+}
+
+
+int main()
+{
+  char s[100], t[100],u[100],v[100];
+  int i, j = 0,k=0,n1,n2;
+
+ // printf("Enter a string to delete vowels\n");
+  scanf("%s",s);
+  scanf("%s",u);
+
+  for(i = 0; s[i] != '\0'; i++) {
+    if(check_vowel(s[i]) == 0) {       //not a vowel
+      t[j] = s[i];
+      j++;
+    }
+  }
+
+  t[j] = '\0';
+
+  strcpy(s, t);    //We are changing initial string
+
+
+for(i = 0; u[i] != '\0'; i++) {
+    if(check_vowel(u[i]) == 0) {       //not a vowel
+      v[k] = u[i];
+      k++;
+    }
+  }
+
+  v[k] = '\0';
+
+  strcpy(u,v);
+
+n1=strlen(s);
+n2=strlen(u);
+//printf("%d",n2);
+printf("%d",lcs(s,u,n1,n2));
+
+
+  return 0;
+}
+
+
+

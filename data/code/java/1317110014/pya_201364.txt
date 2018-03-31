@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+ 
+class TestClass {
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int a = in .nextInt();
+        while (a > 0) {
+ 
+            int arr[] = new int[a + 1];
+            int arr1[] = new int[a + 1];
+            for (int j = 1; j < a + 1; j++) {
+                int x = in .nextInt();
+                arr[x] = j;
+                arr1[j] = x;
+            }
+ 
+            boolean amb = true;
+            for (int j = 1; j < a + 1; j++) {
+                if (arr1[j] != arr[j]) {
+                    amb = false;
+                    break;
+                }
+ 
+            }
+            if (amb)
+                System.out.println("ambiguous");
+            else
+                System.out.println("not ambiguous");
+            a = in .nextInt();
+        } in .close();
+    }
+} 

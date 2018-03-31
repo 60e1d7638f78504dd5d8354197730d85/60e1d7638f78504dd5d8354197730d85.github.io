@@ -1,0 +1,67 @@
+#include<stdio.h>
+int equalarr(int arr[],int n)
+{
+    int i,check=arr[0];
+    for(i=1;i<n;i++)
+    {
+        if(check!=arr[i])
+        return 1;
+    }
+    return 0;
+}
+int main()
+{
+    int arr[105];
+    int i,t,n,great,gindex,small,sindex,diff,count;
+    for(scanf("%d",&t);t--;)
+    {
+        scanf("%d",&n);
+        count=0;
+        scanf("%d",&arr[0]);
+        small=great=arr[0];
+        gindex=sindex=0;
+        for(i=1;i<n;i++)
+        {
+            scanf("%d",&arr[i]);
+            if(arr[i]>great)
+            {
+                great=arr[i];
+                gindex=i;
+            }
+            if(arr[i]<small)
+            {
+                small=arr[i];
+                sindex=i;
+            }
+        }
+        if(equalarr(arr,n)==0)
+            printf("0\n");
+ 
+        else
+        {
+            while(equalarr(arr,n)==1)
+            {
+                diff=great-small;
+                count=count+diff;
+                for(i=0;i<n;i++)
+                {
+                    if(i!=gindex)
+                        arr[i]=arr[i]+diff;
+                }
+                small=great;
+                great=0;
+                for(i=0;i<n;i++)
+                {
+                    if(arr[i]>great)
+                    {great=arr[i];
+                    gindex=i;}
+                }
+            }
+            printf("%d\n",count);
+           // for(i=0;i<n;i++) printf("%d ",arr[i]);
+           // printf("\n");
+        }
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,23 @@
+import java.io.*;
+import java.lang.Math;
+import java.util.*;
+public class TestClass {
+  	static double area(int x1, int y1,int x2,int y2,int x3,int y3){
+    	return Math.abs( (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) ) /2.0 );
+    }
+  
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       	int a=sc.nextInt();
+       	int b=sc.nextInt();
+       	int x1=0,y1=0,x2=200,y2=0,x3=0,y3=100;
+       	
+       	double a0=area(x1,y1,x2,y2,x3,y3);
+       	double a1=area(a,b,x2,y2,x3,y3);
+       	double a2=area(x1,y1,a,b,x3,y3);
+       	double a3=area(x1,y1,x2,y2,a,b);
+       
+       	if(a0==a1+a2+a3)System.out.println("The point is in the triangle");
+       	else System.out.println("The point is not in the triangle");
+	}
+}

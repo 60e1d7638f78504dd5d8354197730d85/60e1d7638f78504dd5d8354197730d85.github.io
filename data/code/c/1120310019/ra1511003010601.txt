@@ -1,0 +1,26 @@
+#include <stdio.h>
+int palindrome(int k){
+  int t=k,n=0,flag=0;
+  while(t>0){
+    n=n*10 + t%10;
+    t=t/10;
+  }
+  if (n==k)
+    flag=1;
+  return flag;
+}
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t){
+      int n,x;
+      scanf("%d",&n);
+      for (x=n+1;x<10000;x++)
+      	if (palindrome(x)){
+        	printf("%d\n",x);
+      break;}
+      t--;
+    }
+	return 0;
+}

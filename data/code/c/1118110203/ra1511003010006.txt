@@ -1,0 +1,34 @@
+#include <stdio.h>
+	struct distance
+    {
+      int feet;
+      float inch;
+    };
+int sum(struct distance e[]);
+int main()
+{
+	int i;
+  	struct distance e[3];
+  	for(i=0;i<2;i++)
+    {
+      scanf("%d %f",&e[i].feet,&e[i].inch);
+    } 
+  	sum(e);
+	return 0;
+}
+int sum(struct distance e[])
+{
+  	e[2].feet=e[0].feet+e[1].feet;
+    e[2].inch=e[0].inch+e[1].inch;
+  	if(e[2].inch>12)
+    {
+      printf("%dfeet\n",e[2].feet+1);
+      printf("%0.1finches",e[2].inch-12);
+    }
+  	else
+    {
+      printf("%dfeet\n",e[2].feet);
+      printf("%0.1finches",e[2].inch);
+    }
+  return 0;
+}

@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int n=10;
+  struct num
+  {
+    int arr;
+  }p[n];
+  
+  int a[10], count=0, temp, j;
+  
+  int i;
+  for(i=0; i<n; i++)
+  {
+    scanf("%d ", &p[i].arr);
+  }
+  
+  for(i=0; i<n; i++)
+  {
+    if(p[i].arr%2==0)
+    {
+      a[count]=p[i].arr;
+      count++;
+    }
+  }
+  
+  int m=count;
+  
+  
+  for(i=0; i<m; i++)
+  {
+    for(j=0; j<m-i-1; j++)
+    {
+      if(a[j]>a[j+1])
+      {
+        temp=a[j];
+        a[j]=a[j+1];
+        a[j+1]=temp;
+      }
+    }
+  }
+  
+  for(i=0; i<count; i++)
+  {
+    printf("%d ", a[i]);
+  }
+
+	return 0;
+}

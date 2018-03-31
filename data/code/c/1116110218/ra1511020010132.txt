@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>      
+#include<string.h>      
+#include<stdbool.h>
+#define MOD 1000000007
+#define SIZE 10004
+#define dump(x) printf(#x" = %d\n",x);
+#define INF 1e10
+typedef long long int ll;
+#define max(x,y) ((x) > (y) ? (x) : (y))
+int main(void)
+{
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        char s[SIZE];
+        int freq[SIZE][26] = {{0}};
+        int i,j,len,pos[SIZE],count=0;
+        scanf("%s",s);
+        len = strlen(s);
+        if(s[0]=='#')
+            pos[count++] = 0;
+        else
+            freq[0][s[0]-'a'] = 1;
+        for(i=1;i<len;i++){
+            for(j=0;j<26;j++){
+                if(s[i]-'a'==j)
+                    freq[i][j] = freq[i-1][j]+1;
+                else
+                    freq[i][j] = freq[i-1][j];
+            }
+            if(s[i]=='#')
+                pos[count++] = i;
+        }
+        ll max = 0;
+        //ll ans = 0;
+        for(i=0;i<=count-3;i++){
+            int p1,p2,p3;
+            p1 = pos[i];
+            p2 = pos[i+1];
+            p3 = pos[i+2];
+            int max1,max2,max3,max4;
+            max1 = max2 = max3 = max4 = 0;
+            for(j=0;j<26;j++){
+                max1 = max(max1, freq[p1][j]);
+                max2 = max(max2, freq[p2][j]-freq[p1][j]);
+                max3 = max(max3, freq[p3][j] - freq[p2][j]);
+                max4 = max(max4, freq[len-1][j] - freq[p3][j]);
+            }
+            if(max1!=0 && max2!=0 && max3!=0 && max4!=0)
+                max = max(max, max1+1+max2+1+max3+1+max4);
+        }
+        printf("%lld\n",max);
+    }
+    return 0;
+}

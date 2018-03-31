@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max(a,b) (a>b)?a:b
+inline int getno()
+{
+	int i=0;
+	char ch=getchar_unlocked();
+	while(ch>'9'||ch<'0')
+		ch=getchar_unlocked();
+	while(ch<='9'&&ch>='0')
+	{
+		i=(i<<1)+(i<<3)+ch-'0';
+		ch=getchar_unlocked();
+	}
+	return i;
+}
+ 
+int compare(const void *a,const void *b)
+{
+	return (*(int*)b-*(int*)a);
+}
+int main()
+{
+	int t,n,m,k,a[1001],b[1001][1001],c[1001][1001],prof[1001],final,i,j;
+	t=getno();
+	while(t--)
+	{
+		n=getno();
+		m=getno();
+		k=getno();
+		final=0;
+		for(i=0;i<n;i++)
+		{
+			a[i]=getno()-1;
+		}
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<m;j++)
+			{
+				b[i][j]=getno();
+			}
+		}
+		for(i=0;i<n;i++)
+			for(j=0;j<m;j++)
+				c[i][j]=getno();
+		for(i=0;i<n;i++)
+		{
+			prof[i]=0;
+		}
+		for(i=0;i<n;i++)
+			for(j=0;j<m;j++)
+				prof[i]=max(prof[i],b[i][j]-b[i][a[i]]-c[i][j]);
+		qsort(prof,n,sizeof(int),compare);
+		for(i=0;i<n;i++)
+			final+=b[i][a[i]];
+		for(i=0;i<k;i++)
+			final+=prof[i];
+		printf("%d\n",final);
+	}
+	return 0;
+}

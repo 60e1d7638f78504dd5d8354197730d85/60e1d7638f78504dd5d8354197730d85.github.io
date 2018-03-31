@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<string.h>
+void swap1(char *xp, char *yp)
+{
+    char temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void bubbleSort1(char arr[], int n)
+{
+   int i, j;
+   for (i = 0; i < n-1; i++)     
+       for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1])
+              swap1(&arr[j], &arr[j+1]);
+}
+int main()
+{ 
+   int n;
+   char str[100];
+   scanf("%[^\n]%*c", str);
+   bubbleSort1(str,strlen(str));
+   printf("%s",str);
+	return 0;
+}

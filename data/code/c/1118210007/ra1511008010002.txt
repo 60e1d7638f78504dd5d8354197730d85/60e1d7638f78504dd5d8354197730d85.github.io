@@ -1,0 +1,83 @@
+#include <stdio.h>
+ 
+#define gc getchar_unlocked
+ 
+long long int readL(void)
+{
+    register long long int c = gc();
+    long long int x = 0;
+    for(;(c<48 || c>57);c = gc());
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    return x;
+}
+ 
+int readI(void)
+{
+    register int c = gc();
+    int x = 0;
+    for(;(c<48 || c>57);c = gc());
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    return x;
+}
+ 
+char readC(void)
+{
+    register char c = gc();
+    for(;(c<65 || c>90);c = gc());
+    return c;
+}
+ 
+ 
+int main()
+{
+	int T, N, M, i;
+	int diff=0, minN, maxN;
+	char c, F[100003];
+	int n, prev;
+	long long int total;
+ 
+ 
+	T = readI();
+	while(T--) {
+		N = readI();
+		M = readI();
+		maxN = 1;
+		minN = 100000;
+		for(i=1; i<=N; i++) {
+			F[i] = '-';
+		}
+		for(i=0; i<M; i++) {
+			c = readC();
+			n = readI();
+			F[n] = c;
+			if (maxN < n) maxN = n;
+			if (minN > n) minN = n;
+		}
+//		printf("minN:%d, maxN:%d\n", minN, maxN);
+		prev = minN;
+		total = 1;
+		diff = 0;
+//		for(i=1; i<=N; i++) {
+//			printf("%c ", F[i]);
+//		}
+//		printf("\n");
+		for(i=minN; i<=maxN; i++) {
+			if (F[i] != '-') { // Fence with a bucket in front
+				if (F[prev] == F[i]) {
+					diff = 0;
+				}
+				else {
+					// printf("Detected %c at %d: diff is %d\n", F[i], i, diff);
+					prev = i;
+					total = (total * diff) % 1000000009L;
+					diff = 0;
+				}
+			}
+			diff++;
+		}
+		printf("%lld\n", total);
+	}
+ 
+	return 0;
+} 
+ 

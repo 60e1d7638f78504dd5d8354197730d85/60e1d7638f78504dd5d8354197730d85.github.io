@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+void merge(int a[],int st,int mid,int end,int b[])
+{
+    int p=st,q=mid+1;
+    int arr[100002];
+    int arr2[100002];
+    int k=0;
+    for(int i=st;i<=end;i++)
+    {
+        if(p==mid+1)
+        {
+            arr2[k]=b[q];
+            arr[k++]=a[q++];
+        }
+        else if(q==end+1)
+        {
+            arr2[k]=b[p];
+            arr[k++]=a[p++];
+        }
+        else if(a[p]>a[q])
+        {
+            arr2[k]=b[q];
+            arr[k++]=a[q++];
+        }
+        else
+        {
+            arr2[k]=b[p];
+            arr[k++]=a[p++];
+        }
+    }
+    k=0;
+    for(int i=st;i<=end;i++)
+    {
+        a[i]=arr[k];
+        b[i]=arr2[k++];
+    }
+}
+void ms(int a[],int st,int end,int b[])
+{
+    if(st<end)
+    {
+        int mid=(st+end)/2;
+        ms(a,st,mid,b);
+        ms(a,mid+1,end,b);
+        merge(a,st,mid,end,b);
+    }
+}
+int main()
+{
+    int a[100002],b[100002];
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        int y;
+        cin>>a[i]>>y>>b[i];
+        b[i]+=a[i];
+    }
+    ms(a,0,n-1,b);
+    int st=a[0],end=b[0],sum=0;
+    for(int i=1;i<n;i++)
+    {
+        if(end<a[i])
+        {
+            sum+=end-st+1;
+            st=a[i];
+            end=b[i];
+        }
+        else if(a[i]<=end&&end<b[i])
+        {
+            end=b[i];
+        }
+    }
+    sum+=end-st+1;
+    cout<<sum<<endl;
+    return 0;
+}

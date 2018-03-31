@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main()
+{ long long int i,t;
+  scanf("%lld",&t);
+ for(i=0;i<t;i++)
+ {
+   long long int n,k,j;
+   scanf("%lld %lld",&n,&k);
+   long long int q[k],e,s=0,a;
+   for(j=0;j<k;j++)
+   {
+     scanf("%lld",&q[j]);
+     s=s+q[j];
+   }
+   a=n*(n+1)/2;
+   if(k==0)
+     e=a-s;
+   else if(k==1)
+   {
+     if(s%2==0)
+       e=1;
+     else 
+       e=2;
+     
+   }
+   else
+   {
+     if(s==n)
+       e=2;
+     else
+       e=1;
+   }
+   if(e%2==0)
+     printf("Chef\n");
+   else
+     printf("Mom\n");
+ }
+	return 0;
+}
+

@@ -1,0 +1,20 @@
+#include <stdio.h>
+int hcf(int n1, int n2)
+{
+    if (n2 != 0)
+       return hcf(n2, n1%n2);
+    else 
+       return n1;
+}
+int main()
+{
+	int a, b, c, d;
+  	scanf("%d%d%d%d",&a,&b,&c,&d);
+  	int n = a*d + b*c;
+  	int de = b*d;
+  	int g = hcf(n,de);
+  	n /= g;
+  	de /= g;
+  	printf("%d %d",n,de);
+	return 0;
+}

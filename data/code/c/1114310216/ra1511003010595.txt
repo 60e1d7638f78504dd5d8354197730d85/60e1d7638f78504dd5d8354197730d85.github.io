@@ -1,0 +1,41 @@
+#include<stdio.h>
+ 
+int scanint();
+int count();
+int main()
+{
+int t;
+	t=scanint();
+	while(t--)
+{
+	printf("%d\n",count());
+}
+return 0;
+}
+ 
+int scanint()
+{
+int num=0;
+ 
+register int a=getchar_unlocked();
+while(a>47 && a<58)
+{
+ 
+num=(num<<1)+(num<<3)+a-48;
+a=getchar_unlocked();
+}
+return num;
+}
+ 
+int count()
+{
+register int countt=0;
+register int a=getchar_unlocked();
+while(a>47 && a<58)
+{
+if (a==52)
+countt++;
+a=getchar_unlocked();
+}
+return countt;
+} 

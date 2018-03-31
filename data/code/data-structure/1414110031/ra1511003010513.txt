@@ -1,0 +1,50 @@
+#include <stdio.h>
+void sort(int size,int arr[])
+{
+  int i,j,temp;
+  for(i=0;i<size;i++)
+  {
+    for(j=i+1;j<size;j++)
+    {
+      if(arr[i]>arr[j])
+      {
+        temp = arr[i];
+        arr[i]=arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int i;
+  for(i=0;i<t;i++)
+  {
+    int size;
+    scanf("%d",&size);
+    int arr1[size],arr2[size];
+    int j;
+    for(j=0;j<size;j++)
+      scanf("%d",&arr1[j]);
+    for(j=0;j<size;j++)
+      scanf("%d",&arr2[j]);
+    sort(size,arr1);
+    sort(size,arr2);
+    int similar=1;
+    for(j=0;j<size;j++)
+    {
+      if(arr1[j]!=arr2[j])
+      {
+        similar = 0;
+        break;
+      }
+    }
+    if(similar==1)
+      printf("1\n");
+    else
+      printf("0\n");
+  }
+	return 0;
+}

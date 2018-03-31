@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+void getprevdate(int *d,int *m,int *y){
+	if(*d==1){
+    	if(*m==4 || *m==6 || *m==9 || *m==11){
+        	*d=31;
+          	*m-=1;
+        }else if(*m==3){
+        	if(*y%4==0){
+            	*d=29;
+            }else{
+            	*d=28;	
+            }
+          	*m-=1;
+        }else if(*m==1){
+        	*d=31;
+          	*m=12;
+          	*y-=1;
+        }else if(*m==2){
+        	*d=31;
+          	*m-=1;
+        }else{
+        	*d=30;
+          	*m-=1;
+        }
+    }else{
+    	*d-=1;
+    }
+  	//cout<<"Previous date : "<<
+}
+
+int main()
+{	int d,m,y;
+  	cin>>d>>m>>y;
+ 	cout<<"Date : "<<d<<"/"<<m<<"/"<<y<<'\n';
+	getprevdate(&d,&m,&y);
+ 	cout<<"Previous date : "<<d<<"/"<<m<<"/"<<y;
+	return 0;
+}

@@ -1,0 +1,43 @@
+#include <iostream>
+#define ARRAY_SIZE 100
+using namespace std;
+void getMajorityElement(int *array, int size)
+{
+  int i, majorityIndex = 0, count=1;
+  for(i=1;i<size;i++)
+  {
+    if(array[majorityIndex] == array[i])
+      count++;
+    else
+      count--;
+    
+    if(count==0)
+    {
+      majorityIndex = i;
+      count = 1;
+    }
+  }
+  count=0;
+  for(i=0;i<size;i++)
+  {
+    if(array[i] == array[majorityIndex])
+      count++;
+}
+if(count>(size/2))
+  cout<<""<<array[majorityIndex];
+else
+  cout<<"NONE";
+}
+  
+int main()
+{
+  int i,array[ARRAY_SIZE], count,sum;
+  cin>>count;
+  for(i=0;i<count;i++)
+  {
+    cin>>array[i];
+  }
+  getMajorityElement(array,count);
+
+	return 0;
+}

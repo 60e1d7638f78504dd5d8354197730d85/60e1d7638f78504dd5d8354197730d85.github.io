@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <math.h>
+inline int inp(){
+    int n = 0, c = getchar_unlocked();
+	while(c < '0' || c > '9') c = getchar_unlocked();
+	while(c >= '0' && c <= '9')
+		n = (n<<3) + (n<<1) + c - '0', c = getchar_unlocked();
+	return n;}
+int main() {
+	int t,n,k,i;
+	long double frac,x;
+	unsigned long long int ans,base,mod;
+	t=inp();
+	while(t--){
+		n=inp();
+		k=inp();
+		x=n*log10(n);//n^n=10^(n*log10n)
+		frac=pow(10,x-(int)x);
+		ans=frac*pow(10,k-1);
+		printf("%llu ",ans);
+		mod=pow(10,k);
+		ans=1;
+		base=n%mod;
+		while(n){
+			if(n&1) ans=(ans*base)%mod;
+			base=(base*base)%mod;
+			n>>=1;
+		}
+		printf("%0*lld\n",k,ans);//remember 0*lld to print only k digits.
+	}
+	return 0;}

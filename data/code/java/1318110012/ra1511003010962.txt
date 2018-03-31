@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+
+interface Student {
+  void getDetails();
+  void displayDetails();
+}
+
+class StudentDetails implements Student {
+  String fn,mn;
+  float m;
+  public void getDetails() {
+    Scanner sc = new Scanner(System.in);
+    fn=sc.nextLine();
+    mn=sc.nextLine();
+    m=sc.nextFloat();
+  }
+  public void displayDetails() {
+    System.out.print(fn+"\n"+mn+"\n"+m);
+  }
+}
+
+
+public class TestClass {
+	 public static void main(String[] args) {
+       StudentDetails sd = new StudentDetails();
+       sd.getDetails();
+       sd.displayDetails();
+	}
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{int n;
+ scanf("%d",&n);
+ int *p,a[100],i;
+ p=a;
+ for(i=0;i<n;i++)
+   scanf("%d",&a[i]);
+ int no,po;
+ scanf("%d %d",&no,&po);
+ int temp;
+ for(i=0;i<=n;i++)
+ {
+   if(i==(po))
+   {
+     temp=*(p+i);
+     *(p+i)=no;   
+   }
+   if(i>po)
+   {
+     int t=0;
+     t=*(p+i);
+     *(p+i)=temp;
+     temp=t;
+   }
+ }
+ for(i=0;i<=n;i++)
+   printf("%d\n",*(p+i));
+	return 0;
+}

@@ -1,0 +1,47 @@
+#include <stdio.h>
+int input();
+int check(int,int);
+struct Date
+{
+	int date,month,year;
+};
+int main()
+{
+	struct Date D;
+  	int t1=0,t2=0,t3;
+  	D.date=input();
+  	D.month=input();
+  	D.year=input();
+  	if(!(D.year>=0000&&D.year<=2999))
+      t1=1;
+  	if(!(D.month>=1&&D.month<=12))
+      t2=1;
+      t3=check(D.date,D.month);
+  	if(t1==0&&t2==0&&t3==0)
+      printf("New Date=%d %d %d",(D.date+1),D.month,D.year);
+  	if(t1==1)
+      printf("Invalid Year");
+  	else if(t2==1)
+      printf("Invalid Month");
+  	else if(t3==1)
+      printf("Invalid Day");
+	return 0;
+}
+
+int input()
+{
+	int n;
+  	scanf("%d",&n);
+  	return n;
+}
+
+int check(int d,int m)
+{
+	if(m==2&&d>=1&&d<=29)
+      return 0;
+  	else if((m==1||m==3||m==5||m==7||m==8||m==10||m==12)&&d>=1&&d<=31)
+      return 0;
+  	else if((m==4||m==6||m==9||m==11)&&d>=1&&d<=30)
+      return 0;
+      return 1;
+}

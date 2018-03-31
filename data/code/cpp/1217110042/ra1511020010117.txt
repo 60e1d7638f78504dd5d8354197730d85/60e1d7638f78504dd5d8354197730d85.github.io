@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+int a[10];
+int b[10];
+int main()
+{
+    int n;
+    cin>>n;
+  	if (n==1)
+    {
+      printf("-1");
+    }
+  else{
+    for(int i=1;i<=n;i++)
+    {
+        int x;
+        cin>>x;
+        a[x]++;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        int x;
+        cin>>x;
+        b[x]++;
+    }
+    for(int i=1;i<=5;i++)
+    {
+        if((a[i]+b[i])%2)
+            printf("-1");
+      		
+    }
+    int ans=0;
+    for(int i=1;i<=5;i++)
+    {
+        ans+=abs(a[i]-((a[i]+b[i])/2));
+    }
+    cout<<ans/2;
+    return 0;
+  }
+}

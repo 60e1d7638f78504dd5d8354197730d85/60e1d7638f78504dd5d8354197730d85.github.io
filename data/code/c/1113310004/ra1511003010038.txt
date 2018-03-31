@@ -1,0 +1,80 @@
+#include <stdio.h>
+#define MAX 1005
+#define LIMIT 1000000000000000000
+#define MAXC(a,b,c) (a > b) ? ( a > c ? a :c) : ( b > c ? b : c)
+ 
+long double a[MAX][MAX],p[MAX][MAX],ans;
+ 
+long double max(long double a, long double b) {
+	return a>b?a:b;
+}
+int main() {
+	int t,i,j,k,n,m,sell[MAX][MAX],buy[MAX][MAX],startRow,startCol,endRow;
+	long long int d;
+	long double newp=0,newa=0;
+	int exceed = 0;
+	scanf("%d%d%lld",&n,&m,&d);
+	for(i=0;i<n;i++) {
+		for(j=0;j<m;j++) {
+			scanf("%d%d",&sell[i][j],&buy[i][j]);
+		}
+		p[i][0]=d;
+		a[i][0]=(d*1.0)/sell[i][0];
+	}
+ 
+	ans = d;
+	for(i=1;i<m;i++) {
+ 
+		for(j=0;j<n;j++) {
+			startRow = j-(i-1);
+			if(startRow < 0)
+				startRow=0;
+			endRow = j+(i-1);
+			if(endRow >= n)
+				endRow = n-1;
+			startCol = (i-1) - ( j-startRow );
+			if(startCol < 0)
+				startCol = 0;
+			p[j][i]=0;
+			a[j][i]=0;
+			for(k=startRow;k<=j;k++) {
+				p[j][i] = MAXC(p[j][i],p[k][startCol],a[k][startCol]*buy[j][i]);
+				a[j][i] = MAXC(a[j][i],a[k][startCol],p[k][startCol]/sell[j][i]);
+				if(p[j][i] > LIMIT) {
+					exceed=1;
+					break;
+				}
+				if(p[j][i] > ans)
+					ans = p[j][i];
+				startCol++;
+			}
+ 
+			if(exceed) 
+				break;
+ 
+			startCol-=2;
+			if(startCol < 0)
+				startCol = 0;
+ 
+			for(;k<=endRow;k++) {
+				p[j][i] = MAXC(p[j][i],p[k][startCol],a[k][startCol]*buy[j][i]);
+				a[j][i] = MAXC(a[j][i],a[k][startCol],p[k][startCol]/sell[j][i]);
+				if(p[j][i] > LIMIT) {
+					exceed=1;
+					break;
+				}
+				if(p[j][i] > ans)
+					ans = p[j][i];
+				startCol--;
+			}
+			if(exceed) {
+				break;
+			}
+		}
+		if(exceed) {
+			break;
+		}
+	}
+	exceed ? printf("Quintillionnaire\n") : printf("%.6Lf\n",ans);
+	return 0;
+}

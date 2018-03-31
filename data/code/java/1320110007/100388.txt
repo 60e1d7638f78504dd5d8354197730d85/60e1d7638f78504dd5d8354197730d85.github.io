@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.ListIterator;
+import java.util.List;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner scan=new Scanner(System.in);
+       //List<String> list=new CopyOnWriteArrayList<String>();
+        List<String> aList=new ArrayList<>();
+      //List<String> list1=new CopyOnWriteArrayList<String>();
+       String s[]=new String[5];
+       for(int i=0;i<5;i++){
+         s[i]=scan.nextLine();
+         aList.add(s[i]);
+        }     
+      ListIterator liter=aList.listIterator();
+      System.out.println("Before reverse");
+      while(liter.hasNext()){
+      System.out.println(liter.next());
+       }
+       System.out.println("After reverse");
+		Collections.reverse(aList);
+        liter=aList.listIterator();
+       while(liter.hasNext()){
+       System.out.println(liter.next());
+       }
+       }
+}

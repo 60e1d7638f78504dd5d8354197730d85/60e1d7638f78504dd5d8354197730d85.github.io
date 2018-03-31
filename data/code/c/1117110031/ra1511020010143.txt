@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main()
+{
+    int array[3][3];
+    int row, col, isUpper;
+  	int order;
+  	scanf("%d",&order);
+    for(row=0; row<3; row++)
+    {
+        for(col=0; col<3; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    isUpper = 1;
+    for(row=0; row<3; row++)
+    {
+        for(col=0; col<3; col++)
+        {
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    if(isUpper == 1)
+    {
+        printf("yes");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

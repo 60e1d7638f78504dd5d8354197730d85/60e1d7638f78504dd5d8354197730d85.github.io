@@ -1,0 +1,52 @@
+#include<stdio.h>
+
+void printTarget(int N)
+{
+    int sz = 2*N - 1;
+    int a[sz][sz];
+  	int i,j;
+    
+    for (i = 0; i < N; ++i)				//		Making first quarter
+    {
+        for (j = 0; j < N; ++j)
+        {
+            if (j <= i)
+                a[i][j] = N - j;
+            else
+                a[i][j] = N - i;
+        }
+    }
+
+    for (i = 0; i < N; ++i)				//		taking mirror image for second quarter
+    {
+        for (j = sz - 1; j >= N; --j)
+        {
+            a[i][j] = a[i][sz - 1 - j];
+        }
+    }
+
+    for (i = sz - 1; i >= N; --i)		//		taking water image for below half
+    {
+        for (j = 0; j < sz; ++j)
+        {
+            a[i][j] = a[sz - 1 - i][j];
+        }
+    }
+
+    for (i = 0; i < sz; ++i)			//		printing the 2D - array 
+    {
+        for (j = 0; j < 2*N - 1; ++j)
+        {
+            printf ("%d ",a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int N;
+    scanf("%d", &N);
+    printTarget(N);  
+  	return 0;
+}

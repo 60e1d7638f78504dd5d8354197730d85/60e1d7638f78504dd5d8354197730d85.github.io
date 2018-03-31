@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int hd(int h)
+{
+  if(h>50)
+    return 1;
+  else
+  	return 0;
+}
+
+int cc(float c)
+{
+  if(c<0.7)
+    return 1;
+  else 
+    return 0;
+}
+
+int ts(int s)
+{
+  if(s>5600)
+    return 1;
+  else 
+    return 0;
+}
+
+int main()
+{
+  	int t;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      int h,s;
+      float c;
+      scanf("%d %f %d",&h,&c,&s);
+      int x,y,z;
+      x = hd(h);
+      y = cc(c);
+      z = ts(s);
+      if(x && y && z)
+        printf("10\n");
+      else if(x && y)
+        printf("9\n");
+      else if(y && z)
+        printf("8\n");
+      else if(x && z)
+        printf("7\n");
+      else if(x || y || z)
+        printf("6\n");
+      else if(!x && !y && !z)
+        printf("5\n");
+    }
+
+	return 0;
+}

@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<string.h>
+char T[100][200];
+char S[200];
+int n;
+int bigger(char A[], char B[]){ 
+	int len1 = strlen(A);
+	int len2 = strlen(B);
+	int i;
+	for (i = 0; i < len1 && i < len2; i++){
+		if (A[i] > B[i])
+			return 1;
+		if (A[i] < B[i])
+			return 0;
+	}
+	if (A[i] == '\0')
+		return 0;
+	if (B[i] == '\0')
+		return 1;
+
+	return 0;
+}
+void SWAP(char A[], char B[]){
+	char tmp[200];
+	strcpy(tmp, A);
+	strcpy(A, B);
+	strcpy(B, tmp);
+}
+int query(){
+	int i, len1;
+	len1 = strlen(S);
+	for (i = 0; i < n; i++){
+		if (strncmp(S, T[i], len1) == 0){
+			return i;
+		}
+	}
+	return -1;
+}
+int main(){
+  int i,j;
+	while (scanf("%s", S) == 1){
+		scanf("%d", &n);
+		for (i = 0; i < n; i++)
+			scanf("%s", T[i]);
+		for ( i = 0; i < n; i++){
+			for ( j = i + 1; j < n; j++){
+				if (bigger(T[i], T[j]))
+					SWAP(T[i], T[j]);
+			}
+		}
+		int result = query();
+		if (result >= 0)
+			printf("%s\n", T[result]);
+		else
+			printf("%s\n", S);
+	}
+	return 0;
+}

@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int check_hard(int h)
+{
+	if(h>50) return 1;
+  else return 0;
+}
+
+int check_carb(float c)
+{
+	if(c<0.7) return 1;
+  else return 0;
+}
+
+int check_tens(int t)
+{
+	if(t>5600) return 1;
+  else return 0;
+}
+
+void check_grade(int h, float c, int t)
+{
+   int hc,cc,tc;
+  hc=check_hard(h);
+  cc=check_carb(c);
+  tc=check_tens(t);
+  
+  if((hc ==1)&&(cc==1)&&(tc==1))
+   printf("10\n");
+    
+  else if((hc==1)&&(cc))
+    printf("9\n");
+  
+  else if((cc==1)&&(tc==1))
+    printf("8\n");
+  
+  else if((hc==1)&&(tc==1))
+    printf("7\n");
+  
+  else if(((hc==1)&&(cc==0)&&(tc==0))||((hc==0)&&(cc==1)&&(tc==0))||((hc==0)&&(cc==0)&&(tc==1)))
+    printf("6\n");
+  
+  else
+    printf("5\n");
+}
+
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	int h, t;
+  	float c;
+    while(n!=0)
+    {
+  	scanf("%d",&h);
+      scanf("%f",&c);
+      scanf("%d",&t);
+     check_grade(h,c,t);
+      n--;
+    }
+	return 0;
+}

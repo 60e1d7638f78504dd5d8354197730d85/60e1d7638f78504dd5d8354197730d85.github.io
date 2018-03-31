@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int a[100][100],n=3,i,j,sum=0,sum1=0,sum2=0,sum3=0,flag=1;
+    for(i=0;i<3;i++)
+    {
+      for(j=0;j<3;j++)
+      {
+        scanf("%d",&a[i][j]);
+        if(i==j)
+        {
+          sum+=a[i][j];
+        }
+       }  
+    }
+    for(i=0;i<3;i++)
+    {
+      for(j=0;j<3;j++)
+      {
+        sum1+=a[i][j];
+        sum2+=a[j][i];
+        if(i+j+1==n)
+        {
+          sum3+=a[i][j];
+        }
+       }  
+    if(sum!=sum1 || sum2!=sum)
+    {
+      flag=0;
+      break;
+    }
+    sum1=0;
+    sum2=0;
+    }   
+    if(flag==1 && sum==sum3)
+      printf("Yes");
+    else
+      printf("No");
+  return 0;
+}

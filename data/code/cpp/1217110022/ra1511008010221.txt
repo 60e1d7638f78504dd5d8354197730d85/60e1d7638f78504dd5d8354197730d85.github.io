@@ -1,0 +1,29 @@
+ #include "bits/stdc++.h"
+ using namespace std;
+ int Bits[25];
+ 
+ int main(){
+ 	int N , i , j , Val , Num;
+ 	long long Ans = 0LL;
+ 	scanf( "%d" , &N );
+ 
+ 	for( i = 1 ; i <= N ; ++i ){
+ 		scanf( "%d" , &Num );
+ 		Val = 1;
+ 		j = 0;
+ 
+ 		while( Num ){
+ 			if( (Num & 1) == 1 ){
+ 				Ans = Ans + Bits[j] * 1LL * Val;
+ 				++Bits[j];
+ 			}
+ 
+ 			Num >>= 1;
+ 			Val <<= 1;
+ 			++j;
+ 		}
+ 	}
+ 
+ 	printf( "%lld\n" , Ans );
+ 	return 0;
+ }

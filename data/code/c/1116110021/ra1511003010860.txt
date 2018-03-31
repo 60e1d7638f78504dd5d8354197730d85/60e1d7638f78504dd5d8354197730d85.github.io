@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+ 
+//#define MAX_SIZE 100 //Maximum size of the string
+ 
+ 
+ 
+/** Function declaration */
+void removeFirst(char *, const char);
+ 
+ 
+ 
+int main()
+{
+    char string[100];
+    char toRemove;
+ 
+    fgets(string,sizeof(string),stdin);
+ 
+      toRemove = getchar();
+ 
+    removeFirst(string, toRemove);
+ 
+    printf("%s", string);
+ 
+    return 0;
+}
+ 
+ 
+ 
+
+void removeFirst(char * string, const char toRemove)
+{
+    int i;
+    int len = strlen(string);
+ 
+    i=0;
+ 
+    /* Run loop until the first occurrence of the character is not found */
+    while(i<len && string[i]!=toRemove)
+        i++;
+ 
+    
+    while(i<len-1)
+    {
+        string[i] = string[i+1];
+        i++;
+    }
+ 
+    /* Make the last character null */
+    string[i] = '\0';
+}

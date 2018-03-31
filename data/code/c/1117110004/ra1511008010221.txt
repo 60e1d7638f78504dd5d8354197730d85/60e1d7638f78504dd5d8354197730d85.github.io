@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+void check(const int array[], int search) ;
+
+int main() {
+    int search, c, n;
+
+    scanf("%d", &n);
+    int array[n];
+    for (c = 0; c < n; c++)
+        scanf("%d", &array[c]);
+
+    scanf("%d", &search);
+    check(array, search);
+    return 0;
+}
+
+void check(const int *array, int search) {
+    int c = 0;
+    for (c = 0; c < sizeof(array); c++) {
+        if (array[c] == search)
+        {
+            printf("%d is present in the array", search);
+            break;
+        }
+    }
+    if (c == sizeof(array))
+        printf("%d is not present in the array", search);
+}

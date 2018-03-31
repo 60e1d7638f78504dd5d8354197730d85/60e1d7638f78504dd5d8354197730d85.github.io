@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int l,f,b,mid1,mid2;
+	char num[1000003];
+		scanf("%s",num);
+		l=strlen(num);
+		if(l%2==0)
+		{
+			mid1=f=l/2-1;
+			mid2=b=l/2;
+		}
+		else 
+        f=b=mid1=mid2=l/2;
+ 
+		for(;f>=0 && num[f]==num[b];f--,b++);
+		if(f>=0)  // num is not palindrome
+		{
+			if(num[f]<num[b])
+			{
+				for(;mid1>=0 && num[mid1]=='9';mid1--,mid2++);
+				if(mid1<0)
+				{
+					num[0]=num[l]='1';
+					memset(num+1,'0',l-1);
+					num[l+1]='\0';
+				}
+				else
+				{
+					num[mid1]=num[mid2]=num[mid1]+1;
+					if(mid1<mid2)
+					memset(num+mid1+1,'0',mid2-mid1-1);
+				}
+				if(f<mid1)
+				{
+					f=mid1-1;
+					b=mid2+1;
+				}
+				for(;f>=0;f--,b++)
+				num[b]=num[f];
+			}
+			else
+			{
+				num[b]=num[f];
+				for(;f>=0;f--,b++)
+				num[b]=num[f];
+			}
+		}
+		else
+		{
+			for(;mid1>=0 && num[mid1]=='9';mid1--,mid2++);
+			if(mid1<0)
+			{
+				num[0]=num[l]='1';
+				memset(num+1,'0',l-1);
+				num[l+1]='\0';
+			}
+			else
+			{
+				num[mid1]=num[mid2]=num[mid1]+1;
+				if(mid1<mid2)
+				memset(num+mid1+1,'0',mid2-mid1-1);
+			}
+		}
+		printf("%s\n",num);
+	
+	return 0;
+}

@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+class array
+{
+  public:int a[50],i=0,n,j,temp,key,c=0,pos;
+  void get()
+  {
+    cin>>n;
+    for(i=0;i<n;i++)
+    {cin>>a[i];}
+    cout<<n<<"\n";
+  }
+  void sorting()
+  {
+    for(i=0;i<n;i++)
+    {
+      for(j=0;j<=n-i;j++)
+      {
+        if(a[j]>a[j+1])
+        {
+          temp=a[j];
+          a[j]=a[j+1];
+          a[j+1]=temp;
+        }
+      }
+    }
+  }
+  void search()
+  {
+    cin>>key;
+    
+    for(i=0;i<n;i++)
+    {
+      if(a[i]==key)
+      {
+        c=1;
+        pos=i+1;
+        break;
+      }
+     }
+    if(c==0)
+    {
+      cout<<"Enter a number to find :"<<"\n"<<"Not found! "<<key<<" is not present in the list.";
+    }
+    else
+    {
+      cout<<"Enter a number to find :"<<key<<"\n"<<"found at location "<<pos;
+  }
+  }
+};
+  
+        
+    
+int main()
+{ array obj;
+ obj.get();
+ obj.sorting();
+ obj.search();
+ 
+
+	return 0;
+}

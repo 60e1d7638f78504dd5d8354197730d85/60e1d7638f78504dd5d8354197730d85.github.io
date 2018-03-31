@@ -1,0 +1,48 @@
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <vector>
+using namespace std;
+template <typename T>
+std::vector<size_t> equilibrium(T first, T last)
+{
+    typedef typename std::iterator_traits<T>::value_type value_t;
+
+    value_t left  = 0;
+    value_t right = std::accumulate(first, last, value_t(0));
+    std::vector<size_t> result;
+
+    for (size_t index = 0; first != last; ++first, ++index)
+    {
+        right -= *first;
+        if (left == right)
+        {
+            result.push_back(index);
+        }
+        left += *first;
+    }
+    return result;
+}
+
+template <typename T>
+void print(const T& value)
+{
+    std::cout << " " << value;
+}
+
+int main() 
+{
+    int n;
+cin>>n;
+vector<int> v(n);
+for ( int i=0; i<n; ++i ){
+    cin>>v[i];
+}
+
+    std::vector<size_t> indices(equilibrium(v.begin(), v.end()));
+
+  if(indices.size() == 0)
+    cout << "-1";
+  else
+    std::for_each(indices.rbegin(), indices.rend(), print<size_t>);
+}

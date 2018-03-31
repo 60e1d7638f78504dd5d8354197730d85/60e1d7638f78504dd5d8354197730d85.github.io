@@ -1,0 +1,22 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+class DivideByZero {};
+ 
+string divide(int a, int b) {
+    if(b == 0)
+        throw DivideByZero();
+    return "VALID";
+}
+ 
+int main() {
+    try {
+      int a,b;
+      cin>>a>>b;
+        string d = divide(a,b);
+        cout << d << endl;
+    }catch(DivideByZero){
+        cout << "EXCEPTION Not possible" << endl;
+    }
+ 
+}

@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+class shape
+{
+public:
+  int height,width;
+  
+  shape(int a,int b)
+  {height=a;width=b;}
+  
+  void area()
+  {}
+};
+
+class rectangle:public shape
+{
+public:
+rectangle(int a,int b):shape(a,b)
+{}
+void area()
+{cout<<height*width<<"\n";}
+};
+
+class triangle:public shape
+{
+public:
+triangle(int a,int b):shape(a,b)
+{}
+void area()
+{cout<<0.5*height*width;}
+};
+int main()
+{
+   int a,b;
+  cin>>a>>b;
+  rectangle r(a,b);
+    triangle t(a,b);
+  r.area();
+  t.area();
+	return 0;
+}

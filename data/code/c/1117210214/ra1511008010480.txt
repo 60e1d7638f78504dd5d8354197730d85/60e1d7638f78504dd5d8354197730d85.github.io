@@ -1,0 +1,30 @@
+//DKBoss
+#include <stdio.h>
+typedef int bool;
+#define true 1
+#define false 0
+
+bool isPrime(int n) {
+	int i;
+  	for(i=2; i<=n/2; i++) {
+    	int a = i;
+      	int b = n/i;
+      	if(a > b) return true;
+      	if(a*b == n) {
+          	return false;
+        }
+    }
+  return true;
+}
+
+int main()
+{
+  int a1, a2;
+  scanf("%d %d", &a1, &a2);
+  int i;
+  for(i=a1+1; i<a2; i++) {
+  	bool prime = isPrime(i);
+    if(prime) printf("%d ", i);
+  }
+	return 0;
+}

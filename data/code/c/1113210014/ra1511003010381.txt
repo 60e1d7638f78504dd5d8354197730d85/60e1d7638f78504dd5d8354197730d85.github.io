@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+    int t, n, i;
+    double a;
+    scanf("%d", &t);
+    while (t--) {
+        scanf("%d", &n);
+        a = sqrt(n);
+        if (a == (int)a)
+            puts("0");
+        else {
+            i = (int)(a) + 1;
+            while (i--) 
+                if (!(n % i)) 
+                    break;
+            printf("%d\n", (n / i) - i);
+        }
+    }
+    return 0;
+}

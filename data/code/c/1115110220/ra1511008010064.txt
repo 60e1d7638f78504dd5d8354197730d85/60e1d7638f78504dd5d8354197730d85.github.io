@@ -1,0 +1,25 @@
+#include <stdio.h>
+int day(int d,int m,int y)
+{
+  static int a[]={0,3,2,5,0,3,5,1,4,6,2,4};
+  y-=m<3;
+  return (y + y/4 - y/100 + y/400 + a[m-1] + d) % 7;
+}
+int main()
+{
+	int d,m,y;
+  	scanf("%d %d %d",&d,&m,&y);
+  	int res=day(d,m,y);
+  	switch(res)
+    {
+      case 1:printf("Monday");break;
+      case 2:printf("Tuesday");break;
+      case 3:printf("Wednesday");break;
+      case 4:printf("Thursday");break;
+      case 5:printf("Friday");break;
+      case 6:printf("Saturday");break;
+      case 7:printf("Sunday");break;
+      default: break;
+    }
+	return 0;
+}

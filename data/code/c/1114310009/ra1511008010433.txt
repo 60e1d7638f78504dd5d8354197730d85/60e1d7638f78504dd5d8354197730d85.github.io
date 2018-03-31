@@ -1,0 +1,171 @@
+#include "stdlib.h"
+#include "stdio.h"
+#include "assert.h"
+#include "string.h"
+ 
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+ 
+int a[50000],b[50000];
+ 
+#define N 2000000
+ 
+#define IS_DIGIT(x) ((x) >= '0' && (x) <= '9')
+ 
+static int parse_uint()
+{
+  int i = 0;
+  char c = getchar_unlocked();
+  while(!IS_DIGIT(c)) c = getchar_unlocked();
+  do {
+    i = (i<<3) + (i<<1) + c-'0';
+    c = getchar_unlocked();
+  }while(IS_DIGIT(c));
+  return i;
+}
+ 
+// skip to the next active position in the list
+int jump(int *link, int i, int d)
+{
+  if(link[i]==i){
+    i+=d;
+    if(link[i]==i){
+      return i;
+    }
+    else{
+      jump(link, i, d);
+    }
+  }
+  while(link[i]!=i){
+    i=link[i];
+  }
+  return i;
+}
+ 
+void update(int ai, int bi, int *next, int *minsol, int *maxsol)
+{
+  int i;
+ 
+  //if(bi<*minsol || ai>*maxsol) return;
+ 
+  if(ai <= *minsol){
+    *minsol = jump(next,bi,1);
+  }
+  else if(bi >= *maxsol){
+    *maxsol = ai-1;
+    while(*maxsol != next[*maxsol])
+      (*maxsol)--;
+  }
+  else{
+    // update pointers
+    bi=jump(next,bi,1)-1;
+    for(i=ai;i<=bi;){
+      //int next_i = jump(next,i,1);
+      int next_i = next[i];//jump(next,i,1);
+      next[i]=bi+1;
+      i=next_i+(i==next_i);
+    }
+  }
+}
+ 
+void check(char *s,int n)
+{
+  int nk=0;
+  int i;
+ 
+  for(i=0;i<n;i++)
+    nk+=s[i];
+ 
+  for(i=0;i<n;i++){
+    if(s[i]) assert(a[i]<=nk && b[i]>=nk);
+    else assert(nk<a[i] || nk>b[i]);
+  }
+}
+ 
+void byteisle3(int n)
+{
+  int i;
+  int n_sol=0;
+  int nc[50002]={};
+  char s[50000];
+  char sol[50001];
+  int next[50001]={};
+  int cur=-1;
+  int minsol, maxsol;
+  int j=0;
+ 
+  // loop over the bytelandians and setup diff function
+  for(i=0;i<n;i++){
+    nc[a[i]]++;
+    nc[b[i]+1]--;
+  }
+ 
+  // compute function as cumsum
+  for(i=1;i<=n;i++){
+    nc[i]+=nc[i-1];
+  }
+ 
+  // find the solutions & setup links
+  for(i=0;i<=n;i++){
+    sol[i] = nc[i] == i;
+    if(sol[i]) {
+      cur=i;
+      n_sol += 1;
+      for(;j<=i;j++) next[j]=cur;
+    }
+  }
+  printf("%d\n",n_sol);
+ 
+  if(n_sol==0) return;
+ 
+  minsol = next[0];
+  maxsol = cur;
+ 
+  // early out if 0 knights is a solution
+  if(sol[0]){
+    char output[50000];
+    memset(output,'0',n);
+    output[n]=0;
+    puts(output);
+    return;
+  }
+ 
+  // find the lexico smallest solution
+  for(i=0;i<n;i++){
+    if(a[i]<=minsol && b[i]>=maxsol){
+      s[i]=1;
+    }else{
+      s[i]=0;
+      if(b[i]<minsol || a[i]>maxsol) continue;
+      update(a[i],b[i],next,&minsol,&maxsol);
+    }
+  }
+ 
+  {
+    char output[50001];
+    for(i=0;i<n;i++){
+      output[i] = s[i]==0 ? '0' : '1';
+    }
+    output[n]=0;
+    puts(output);
+  }
+}
+ 
+int main(int argc, const char **argv)
+{
+  int t,n;
+  int i;
+ 
+  t=parse_uint();
+  for(i=0;i<t;i++){
+    int j;
+    n=parse_uint();
+    for(j=0;j<n;j++){
+      a[j]=parse_uint();
+      b[j]=parse_uint();
+    }
+    byteisle3(n);
+  }
+ 
+  return 0;
+}  

@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+ 
+#define M 1000000007
+ 
+int r[512];
+char s[512];
+int a[64];
+ 
+int main() {
+	int N,i,ret,c;
+	for(r[1]=1,i=2;i<=500;i++) if ((r[i]=-(long long)r[M%i]*(M/i)%M)<0) r[i]+=M;
+	for(scanf("%d",&N);N--;) {
+		scanf("%s",s);
+		memset(a,0,sizeof(a));
+		for(i=0,ret=1;s[i];i++) {
+			ret=(long long)ret*(i+1)%M;
+			if (islower(s[i])) c=s[i]-'a'+32; else c=s[i]-'A';
+			a[c]++;
+			ret=(long long)ret*r[a[c]]%M;
+		}
+		printf("%d\n",ret);
+	}
+	return 0;
+}

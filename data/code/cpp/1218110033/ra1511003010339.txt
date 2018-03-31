@@ -1,0 +1,83 @@
+#include <iostream>
+#include <ctype.h>
+#include <cmath>
+using namespace std;
+template <class t>
+  class a
+  {
+    public:
+    t a,b,temp;
+    void doe()
+    {
+      cin>>a>>b;
+      if(isalpha(a))
+      {
+       cout<<"c1 = "<<a<<endl;
+        cout<<"c2 = "<<b<<endl;
+        
+      }
+      else
+      {
+        if(a==floor(a))
+        {
+          cout<<"i1 = "<<a<<endl;
+          cout<<"i2 = "<<b<<endl;
+        }
+        else
+        {
+          cout<<"f1 = "<<a<<endl;
+          cout<<"f2 = "<<b<<endl;
+        }
+      }
+      
+      
+    }
+    void disp()
+    {
+       
+      if(isalpha(a))
+      {
+        temp=a;
+        a=b;
+        b=temp;
+        cout<<"c1 = "<<a<<endl<<"c2 = "<<b<<endl;
+      }
+      else
+      {
+        if(floor(a)==a)
+        {
+          temp=a;
+          a=b;
+          b=temp;
+          cout<<"i1 = "<<a<<endl<<"i2 = "<<b<<endl;
+        }
+        else
+        {
+          temp=a;
+          a=b;
+          b=temp;
+          cout<<"f1 = "<<a<<endl<<"f2 = "<<b<<endl;
+        }
+        
+        
+      }
+    }
+  };
+int main()
+{
+  a<int> b;
+  a<float> c;
+  a<char>d;
+  cout<<"Before passing data to function template."<<endl;
+
+  b.doe();
+  c.doe();
+  d.doe();
+  
+  cout<<"After passing data to function template."<<endl;
+  b.disp();
+  c.disp();
+  d.disp();
+
+	return 0;
+}

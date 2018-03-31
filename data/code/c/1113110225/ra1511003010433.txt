@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+	char line[150];
+  	scanf("%[^\n]",line);
+  	int i,vowels = 0,consonants = 0,digits = 0,spaces = 0;
+  	for(i=0;line[i] != '\0';++i)
+      if(line[i] == 'a'|| line[i] == 'A' ||line[i] == 'e'||line[i] == 'E' || line[i] == 'i' || line[i] == 'I'
+        || line[i] == 'o'|| line[i] == 'O' || line[i] == 'u' || line[i] == 'U')
+        ++vowels;
+  	  else if(line[i] >= 'a' && line[i] <= 'z'||line[i] >='A' && line[i] <= 'Z')
+        ++consonants;
+  	  else if(line[i]>='0' && line[i]<= '9')
+        ++digits;
+  	  else if(line[i] == ' ')
+        ++spaces;
+  	printf("Vowels:%d\n",vowels);
+  	printf("Consonants:%d\n",consonants);
+  	printf("Digits:%d\n",digits);
+  	printf("White spaces:%d\n",spaces);
+	return 0;
+}

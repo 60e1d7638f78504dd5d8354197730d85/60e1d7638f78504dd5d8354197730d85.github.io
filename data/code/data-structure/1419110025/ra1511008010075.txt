@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+void dikstra(int i,vector<pair<int,int> >a[],int dist[],int visited[]){
+	//visited[i]=1;
+	priority_queue<pair<int,int> , vector<pair<int,int> >,greater<pair<int,int> > > h;
+	h.push(make_pair(dist[i],i));
+	pair<int,int>pa;
+	while(!h.empty()){
+		pa=h.top();
+		h.pop();
+		if(visited[pa.second]==1)
+		{
+			continue;
+		}
+		visited[pa.second]=1;
+		i=pa.second;
+		for(int j=0;j<a[i].size();j++){
+			if(dist[a[i][j].second]>dist[pa.second]+a[i][j].first){
+				dist[a[i][j].second]=dist[i]+a[i][j].first;
+				h.push(make_pair(dist[a[i][j].second],a[i][j].second));
+				//visited[a[i][j].second]=1;
+			}	
+		}
+	}
+ }
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		int m;
+		cin>>m;
+		//int cost[n][n];
+		vector<pair<int,int> >a[n];
+		vector<pair<int,int> >a1[n];
+		// vector<int>b[n];
+		// vector<int>b1[n];
+		//int cost[m];
+		for(int i=0;i<m;i++){
+			int x,y,z;
+			cin>>x>>y>>z;
+			a[x-1].push_back(make_pair(z,y-1));
+			a[y-1].push_back(make_pair(z,x-1));
+			// b[x].push_back(z);
+			// b1[y].push_back(z);
+		}
+		int dist[n];
+		dist[0]=0;
+		for(int i=1;i<n;i++){
+			dist[i]=INT_MAX;
+		}
+		int visited[10001]={0};
+		dikstra(0,a,dist,visited);
+// 		for(int i=0;i<n;i++){
+// 			cout<<dist[i]<<" ";
+// 		}
+	//	cout<<endl;
+		int q;
+		cin>>q;
+		while(q--){
+				int dest,k;
+				cin>>dest;
+				cin>>k;
+				int ans=k-(2*dist[dest-1]);
+				if(ans>0)
+					cout<<ans<<endl;
+				else
+					cout<<"0"<<endl;
+		}
+	}
+	return 0;
+}

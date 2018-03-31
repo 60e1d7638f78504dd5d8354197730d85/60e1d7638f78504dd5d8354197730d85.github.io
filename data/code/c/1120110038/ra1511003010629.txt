@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define mod 10000000
+ 
+int main()
+{
+  	long long fsum;
+	int t,noi,sum=0,j,i;
+	int p[10001],ing[noi],a[noi];
+	scanf("%d",&t);
+	while(t--)
+	{
+		sum=0;
+		scanf("%d",&noi);
+		
+		for(i=0;i<noi;i++)
+		{
+			scanf("%d",&ing[i]);
+			a[i]=0;
+			sum=sum+ing[i];
+		}
+		for(i=0;i<=sum;i++)
+		{
+			p[i]=0;
+		}
+		p[0]=1;
+		for(i=0;i<noi;i++)
+		{
+			for(j=sum;j>=0;j--)
+			{
+				if(p[j]>0)
+				{
+					if(j+ing[i]<=sum)
+				    {
+				    	p[j + ing[i]] = ((p[j+ing[i]]) + (p[j]))%mod;
+					}
+				    
+				}
+			}
+		}
+		fsum=0;
+		for(i=0;i<=sum;i++)
+		{
+			long long tempsum = ((long long)((long long)abs(sum-2*i))*p[i])%mod;
+			fsum=((long long)fsum+tempsum)%mod;
+		
+			
+		}
+	    
+		printf("%lld\n",fsum);
+	}
+}

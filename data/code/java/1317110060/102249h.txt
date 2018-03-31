@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner s=new Scanner(System.in);
+       String s1;
+       char[] b=new char[100];
+       char[] a=new char[100];
+       int n=s.nextInt();
+       for(int r=1;r<=n;r++)
+       {
+       s1=s.next();
+       a=s1.toCharArray();
+       int i,j,k=0,l,m;
+       l=s1.length();
+       for(i=0,j=l-1;i<l;i++,j--)
+       {
+         b[j]=a[i];
+         //System.out.println(b[j]);
+       }
+         
+       for(i=0;i<l-1;i++)
+       {
+         int d=a[i]-a[i+1];
+         if(d<0)
+           d=d*-1;
+         int e=b[i]-b[i+1];
+         if(e<0)
+           e=e*-1;
+         if(d!=e)
+         {
+           k=1;
+           break;
+         }
+       }
+       if(k==0)
+         System.out.println("Funny");
+       else
+         System.out.println("Not Funny");
+       }
+		
+	}
+}

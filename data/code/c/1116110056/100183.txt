@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char** argv) {
+    int t,i;
+    char id[1000];
+    int alp[27];
+    
+    scanf("%d", &t);
+    while (t-- > 0) {
+        memset(id,0,sizeof(id));
+        memset(alp,0,27 * sizeof(int));
+        scanf("%s",id);
+        int n = strlen(id);
+        for (i = 0; i < n / 2; i++) {
+            alp[id[i] - 'a']++;
+        }
+        int dev = ((n & 1) != 0 ? 1 : 0);
+        for (i = n / 2 + dev; i < n; i++) {
+            alp[id[i] - 'a']--;
+        }
+        
+        for (i = 0; i < 27; i++) {
+            if (alp[i] != 0) {
+                printf("NO\n");
+                break;
+            }
+        }
+        if (i == 27) {
+            printf("YES\n");
+        }
+    }
+    return 0;
+}

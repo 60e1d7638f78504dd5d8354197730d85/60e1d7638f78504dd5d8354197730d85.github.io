@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  char str[100];
+  int i,ans=0;
+  scanf("%s",str);
+  for(i=0;str[i]!='\0';i++)
+  {
+    if(str[i]=='I'&&(str[i+1]=='V'||str[i+1]=='X'))
+       {ans=ans-2;}
+     if(str[i]=='X'&&(str[i+1]=='L'||str[i+1]=='C'))
+          { ans=ans-20;}
+     if(str[i]=='C'&&(str[i+1]=='D'||str[i+1]=='M'))
+          { ans=ans-200;}
+        switch(str[i])
+        {
+          case 'I':ans=ans+1;
+               break;
+          case 'V':ans=ans+5;
+               break;
+          case 'X':ans=ans+10;
+               break;
+          case 'L':ans=ans+50;
+               break;
+          case 'C':ans=ans+100;
+               break;
+          case 'D':ans=ans+500;
+               break;
+          case 'M':ans=ans+1000;
+               break;
+        }
+  }
+printf("%d",ans);
+	return 0;
+}

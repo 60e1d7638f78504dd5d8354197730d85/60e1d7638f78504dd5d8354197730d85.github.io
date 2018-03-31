@@ -1,0 +1,25 @@
+#include <stdio.h>
+long long int Calc (long long int n, long long int r) {
+         long long int res = 1,i;
+         if(r > n/2)
+                 r = n-r;
+         for(i = 0; i < r; i++) {
+                 res *=  n;
+                 res /= i+1;
+                 n--;
+          }
+          return res;
+  }
+int main()
+{
+	int cases;
+	scanf("%d",&cases);
+	while(cases--)
+	{
+		long long int n,r;
+		scanf("%lld %lld",&r,&n);
+		r=r-n;
+		printf("%lld\n",Calc(n+r-1,r) );
+	}
+	return 0;
+}

@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  @SuppressWarnings("unchecked") 
+   public static void main(String[] args) throws IOException {
+         BufferedReader br = new BufferedReader (new InputStreamReader(System.in)); 
+     String[] coins = { br.readLine(), br.readLine(), br.readLine(), br.readLine(), br.readLine() };
+      List<String> aList = new ArrayList<String>();
+      
+      for (int i = 0; i < coins.length; i++)aList.add(coins[i]);
+      ListIterator liter = aList.listIterator();
+      System.out.println("Before reverse");
+      
+      while (liter.hasNext())System.out.println(liter.next());
+      Collections.reverse(aList);
+      liter = aList.listIterator();
+      System.out.println("After reverse");
+      while (liter.hasNext())System.out.println(liter.next());
+   }
+}

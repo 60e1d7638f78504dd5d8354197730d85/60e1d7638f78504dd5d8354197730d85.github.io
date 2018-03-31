@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+void cyclicSwap(int *a,int *b,int *c);
+
+int main()
+{
+    int a, b, c;
+
+    cin>>a>>b>>c;
+
+    cout<<"Value before swapping: \n";
+    cout<<"a="<<a<<"\nb="<<b<<"\nc="<<c;
+
+    cyclicSwap(&a, &b, &c);
+
+    printf("\nValue after swapping numbers in cycle: \n");
+    cout<<"a="<<a<<"\nb="<<b<<"\nc="<<c;
+
+    return 0;
+}
+void cyclicSwap(int *a,int *b,int *c)
+{
+
+    int temp;
+
+    temp = *b;
+    *b = *a;
+    *a = *c;
+    *c = temp;
+}

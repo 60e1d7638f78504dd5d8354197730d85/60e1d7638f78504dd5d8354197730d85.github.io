@@ -1,0 +1,189 @@
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <cmath>
+#include <vector>
+#include <map>
+#include <set>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <deque>
+#include <unordered_set>
+using namespace std;
+
+#define P 1000000009
+int l[410000], s[410000], son[410000][26], parent[410000];
+char A[410000], B[410000], AA[410000];
+int q;
+int len, init, last, LCS[410000], pal[410000], ll[410000], first[410000], mi[410000], ni[410000], Hash[410000];
+int ans;
+string S1, S2;
+
+int Pow(int x, int y) {
+	int ans = 1;
+	for (int i = 1; i <= y; i *= 2, x = 1LL * x * x % P)
+		if (i & y)
+			ans = 1LL * ans * x % P;
+	return ans;
+}
+
+void ins(int p,int k)
+{
+	int np=++len,q,nq;
+	l[np]=l[p]+1;
+	s[np]=1;
+	while (p&&!son[p][k])   son[p][k]=np,p=parent[p];
+	if (!p) parent[np]=1;
+	else {
+		q=son[p][k];
+		if (l[p]+1==l[q])       parent[np]=q;
+		else {
+			nq=++len;
+			l[nq]=l[p]+1;
+			s[nq]=0;
+			memcpy(son[nq], son[q], sizeof son[q]);
+			parent[nq]=parent[q];
+			parent[q]=nq;
+			parent[np]=nq;
+			while (p&&son[p][k]==q) son[p][k]=nq,p=parent[p];
+		}
+	}
+	last = np;
+}
+
+int gethash(int x, int l) {
+	return ((Hash[x + l - 1] - Hash[x - 1]) * ni[x] % P + P) % P;
+}
+
+bool cmp(char A[210000], int x, int y, int l) {
+	for (int i = 0; i < l; i++)
+		if (A[x + i] != A[y + i])
+			return A[x + i] < A[y + i];
+	return false;
+	return A[x + q] < A[y + q];
+}
+
+string doit(char A[210000], char B[210000]) {
+	int n = strlen(A + 1), m = strlen(B + 1);
+	last = init=len=1;
+	memset(s, 0, sizeof s);
+	memset(son, 0, sizeof son);
+	memset(parent, 0, sizeof parent);
+	memset(l, 0, sizeof l);
+	for (int i = 1; i <= m; i++)
+		ins(last, B[i] - 'a');
+	int now = init, tmp = 0;
+	for (int i = 1; i <= n; i++) {
+		if (son[now][A[i] - 'a']) {
+			now = son[now][A[i] - 'a'];
+			tmp += 1;
+		}else {
+			while (now && !son[now][A[i] - 'a'])
+				now = parent[now];
+			if (now) {
+				tmp = l[now] + 1;
+				now = son[now][A[i] - 'a'];
+			}else {
+				tmp = 0;
+				now = init;
+			}
+		}
+		LCS[i] = tmp;
+	}
+
+	for (int i = 1; i <= 2 * n + 1; i++)
+		AA[i] = '*';
+	for (int i = 1; i <= n; i++)
+		AA[2 * i] = A[i];
+	int best = 2 * n + 1;
+	tmp = 2 * n + 1;
+	ll[best] = 0;
+	first[2 * n + 1] = 2 * n + 1;
+
+	AA[0] = '?';
+	AA[2 * n + 2] = '!';
+
+	for (int i = 2 * n; i; i--) {
+		ll[i] = 0;
+		if (i >= best - ll[best]) {
+			ll[i] = min(i - (best - ll[best]), ll[2 * best - i]);
+		}
+		if (i - ll[i] < best - ll[best])
+			best = i;
+		while (i - ll[i] < tmp) {
+			tmp -= 1;
+			first[tmp] = i;
+		}
+		while (AA[i - ll[i] - 1] == AA[i + ll[i] + 1]) {
+			ll[i] += 1;
+			if (i - ll[i] < best - ll[best])
+				best = i;
+			while (i - ll[i] < tmp) {
+				tmp -= 1;
+				first[tmp] = i;
+			}
+		}
+	}
+
+	for (int i = 1; i <= n; i++) {
+		int x = first[2 * i];
+		pal[i] = x - (2 * i) + 1;
+	}
+
+	pal[n + 1] = 0;
+	
+	int r = 0;
+	for (int i = 1; i <= n; i++)
+		if (LCS[i] && (!r || LCS[i] * 2 + pal[i + 1] > LCS[r] * 2 + pal[r + 1]))
+			r = i;
+	Hash[0] = 0;
+	for (int i = 1; i <= n; i++)
+		Hash[i] = (Hash[i - 1] + 1LL * (A[i] - 'a') * mi[i]) % 1000000007;
+	
+	if (!r)
+		return "";
+	else {
+		for (int i = 1; i <= n; i++)
+		if (LCS[i] && LCS[i] * 2 + pal[i + 1] == LCS[r] * 2 + pal[r + 1]) {
+			if (cmp(A, i - LCS[i] + 1, r - LCS[r] + 1, LCS[r] + (pal[r + 1] + 1) / 2))
+				r = i;
+		}
+		string S = "";
+		for (int i = r - LCS[r] + 1; i <= r; i++)
+			S.push_back(A[i]);
+		for (int i = r + 1; i <= r + pal[r + 1]; i++)
+			S.push_back(A[i]);
+		for (int i = r; i >= r - LCS[r] + 1; i--)
+			S.push_back(A[i]);
+		return S;
+	}
+}
+
+int main() {
+	mi[0] = 1;
+	for (int i = 1; i <= 200000; i++)
+		mi[i] = 1LL * mi[i - 1] * 37 % P;
+	ni[0] = 1;
+	int kk = Pow(37, P - 2);
+	for (int i = 1; i <= 200000; i++)
+		ni[i] = 1LL * ni[i - 1] * kk % P;
+	scanf("%d", &q);
+	while (q--) {
+		scanf("%s%s", A + 1, B + 1);
+		int n = strlen(A + 1), m = strlen(B + 1);
+		
+		for (int i = 1; i * 2 <= m; i++)
+			swap(B[i], B[m - i + 1]);
+
+		S1 = doit(A, B);
+		S2 = doit(B, A);
+		if (S1 == "" && S2 == "")
+			printf("-1\n");
+		else if (S1.size() > S2.size() || (S1.size() == S2.size() && S1 < S2))
+			cout << S1 << endl;
+		else
+			cout << S2 << endl;
+	}
+}

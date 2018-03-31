@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+long long int dp[5000000+5];
+char s[5000000+5];
+
+int main(void)
+{
+    long long int i,ans=0,l=0,r=0,k=1;
+    scanf("%s",s);
+    for(i=0;s[i];i++)
+    {
+        l=l*33+s[i]-'a';
+        r=r+(s[i]-'a')*k;
+        k=k*33;
+        if(l==r)
+            dp[i+1]=dp[(i+1)/2]+1;
+        ans+=dp[i+1];
+    }
+    printf("%lld",ans);
+    return 0;
+}

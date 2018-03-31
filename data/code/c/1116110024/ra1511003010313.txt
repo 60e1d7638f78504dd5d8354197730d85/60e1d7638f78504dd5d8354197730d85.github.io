@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<string.h>
+void rd(char* ptr)
+{
+    long int end = 1;
+    long int length = strlen(ptr);
+    long int current;
+    long int i;
+    current = 1;
+
+    for(end=1; end<length; end++)
+    {
+        for(i=0; i<end; i++)
+        {
+            if(ptr[end] == ptr[i])
+            break;
+        }
+
+        if(i == end)
+        {
+            ptr[current] = ptr[i];
+            current++;
+        }
+    }
+
+    ptr[current] = 0;
+}
+
+int main()
+{
+    char str[25006] = {0,};
+    scanf("%s",str);
+  printf("%s\n",str);
+    rd(str);
+    printf("%s", str);
+    return 0;
+}

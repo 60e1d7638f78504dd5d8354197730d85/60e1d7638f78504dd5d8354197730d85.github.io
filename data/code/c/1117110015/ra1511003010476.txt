@@ -1,0 +1,54 @@
+#include <stdio.h>
+int addr(int a[3][3],int m)
+{
+  int sum=0,k;
+  for(k=0;k<3;k++)
+    sum+=a[m][k];
+  return(sum);
+}
+  
+int addc(int a[3][3],int n)
+{
+  int sum=0,k;
+  for(k=0;k<3;k++)
+    sum+=a[k][n];
+  return(sum);
+} 
+
+int addd(int a[3][3])
+{
+  int sum1=0,sum2=0,i,j;
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      if(i==j)
+        sum1+=a[i][j];
+      else if(i==2-j)
+        sum2+=a[i][j];
+    }
+  }
+  return(sum1);
+}
+
+int main()
+{	
+  	int a[3][3],i,j,r0,r1,r2,c0,c1,c2,ds;
+  	for(i=0;i<3;i++)
+    {
+      for(j=0;j<3;j++)
+      	scanf("%d",&a[i][j]);
+    }
+  	r0=addr(a,0);
+    r1=addr(a,1);
+  	r2=addr(a,2);
+  	c0=addc(a,0);
+  	c1=addc(a,1);
+    c2=addc(a,2);
+  	ds=addd(a);
+	if(r0==r1)
+      printf("Yes\n");
+  	else
+      printf("No\n");
+	return 0;
+}

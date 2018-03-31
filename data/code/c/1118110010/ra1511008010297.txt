@@ -1,0 +1,35 @@
+#include<stdio.h>
+struct stud
+    {
+    int roll;
+    char name[100];
+  char course[100];
+  int fees;
+    }*ptr[10];
+int main()
+{
+ struct stud st[10];
+  //struct stud *ptr[10];
+int i,t;
+scanf("%d",&t);
+for(i=0;i<t;i++)
+    {
+    ptr[i]=&st[i];
+    scanf("%d",&ptr[i]->roll);
+    scanf("%s",ptr[i]->name);
+    scanf("%s",ptr[i]->course);
+    scanf("%d",&ptr[i]->fees);
+    }
+
+printf("Details of the student\n");
+
+for(i=0;i<t;i++)
+    {
+    printf("Roll no:%d\n",ptr[i]->roll);
+    printf("Name:%s\n",ptr[i]->name);
+    printf("Course:%s\n",ptr[i]->course);
+    printf("Fees:%d\n",ptr[i]->fees);
+    }
+
+return(0);
+}

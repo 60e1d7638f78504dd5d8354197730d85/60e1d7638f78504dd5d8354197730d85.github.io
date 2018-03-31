@@ -1,0 +1,69 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+ 
+typedef enum { false, true } bool;
+ 
+#define MAXN 102
+int graph[MAXN][MAXN], T, N, M, i, j, k;
+int same[MAXN];
+bool visited[MAXN];
+ 
+// Depth first search
+bool dfs(int no){
+  if(no == -1){return 1;}
+  if(visited[no]==true){return false;}
+  visited[no] = true;
+ 
+  int l = 0;
+  for (l = 0; l < N; l++){
+    if (graph[no][l] > 0 && no != same[l] && dfs(same[l])){
+      same[l] = no;
+      return true;
+    }
+  }
+ 
+  return false;
+}
+ 
+int main(void){
+  // Gets T cases
+  scanf("%d", &T);
+ 
+  // Loop through T cases
+  while(T--){
+    // Gets M and N
+    scanf("%d %d", &N, &M);
+ 
+    // Initialize our 'graph'
+    for (j = 0; j < MAXN; j++){
+      for (k = 0; k < MAXN; k++){
+        graph[j][k] = 0;
+      }
+    }
+ 
+    // Gets sequence of characters
+    for (j = 0; j < M; j++){
+      int x, y;
+      scanf("%d %d", &x, &y);
+      graph[x-1][y-1] = 1;
+    }
+ 
+    // Initialize visisted array
+    memset(same, -1, sizeof(same));
+ 
+    // min sequence =  N - max traverse
+    int max_travs = 0;
+    for (k = 0; k < N; k++){
+      // initialize visited bool
+      memset(visited, false, sizeof(visited));
+ 
+      if(dfs(k)){
+        max_travs++;
+      }
+    }
+    printf("%d\n", (N-max_travs));
+  }
+ 
+  return 0;
+}

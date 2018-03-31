@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+    public static void main(String[] args) {
+        Merge obj=new Merge();
+        Merge.getInput();
+        Merge.mergeSort();
+    }
+}
+class Merge{
+    static int n1,n2;
+    static int a[];
+    static int b[];
+
+    public static void getInput(){
+        Scanner sc = new Scanner(System.in);
+        n1=sc.nextInt();
+        a=new int[n1];
+        for(int i=0;i<n1;i++){
+            a[i]=sc.nextInt();
+        }
+        n2=sc.nextInt();
+        b=new int[n2];
+        for(int i=0;i<n2;i++){
+            b[i]=sc.nextInt();
+
+        }
+    }
+    public static void mergeSort(){
+        int c[]= new int[n1+n2];
+
+        for(int i=0;i<n1;i++){
+            c[i]=a[i];
+
+        }
+        int v=0;
+        for(int j=n1;j<n1+n2;j++){
+            c[j]=b[v];
+            v++;
+        }
+        for(int j=0;j<n1+n2;j++){
+            System.out.println(c[j]);
+        }
+
+    }
+}

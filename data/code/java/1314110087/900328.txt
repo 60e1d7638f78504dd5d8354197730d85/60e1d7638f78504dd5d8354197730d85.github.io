@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+	Scanner inp=new Scanner(System.in);
+       int T=inp.nextInt();
+       int N=0;
+       for(int i=0;i<T;i++)
+       {
+         N=inp.nextInt();
+         int a[]=new int[101];
+         int pos[]=new int[101];
+         int posind=0;
+         int neg[]=new int[101];
+         int negind=0;
+         for(int j=0;j<N;j++)
+         {
+           a[j]=inp.nextInt();
+           if(a[j]>=0)
+             pos[posind++]=a[j];
+           else
+             neg[negind++]=a[j];
+          }
+         int ind=0;
+         for(int j=0;j<N;j++)
+         {
+           if(j%2==0)
+             a[j]=pos[ind];
+           else
+           {
+            a[j]=neg[ind];
+            ind++;
+           }
+         }
+         for(int j=0;j<N;j++)
+         {
+           System.out.print(a[j]);
+           if(j!=N-1)
+             System.out.print(" ");
+         }
+       }
+	}
+}

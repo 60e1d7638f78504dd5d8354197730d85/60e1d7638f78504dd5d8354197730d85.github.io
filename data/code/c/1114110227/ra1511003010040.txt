@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+    int x,i,count=0;
+	scanf("%d",&x);
+  	for(i=1;i<=x;i++)
+    {
+    	if(isLoaded(i)==1)
+          count++;
+    }
+  	printf("%d",count);
+	return 0;
+}
+
+int isLoaded(int y)
+{
+  int temp,x;
+  x=y;
+while(x!=0)
+{
+temp=x%10;
+  if(temp!=0 && temp!=1)
+    return 0;
+  x=x/10;
+}
+
+  return 1;
+}

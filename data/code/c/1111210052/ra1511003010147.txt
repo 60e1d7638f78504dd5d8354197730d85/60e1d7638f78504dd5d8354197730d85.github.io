@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+	int n,b,g,i,j,k,col=0;
+  	char c[10][10];
+  	scanf("%d %d %d",&n,&b,&g);
+  	for(i=0;i<b;i++)
+      scanf("%s",c[i]);
+  	for(i=0;i<b;i++)
+    {
+      for(j=0;j<g;j++)
+      {
+        for(k=0;k<g;k++)
+        {
+          if(k!=j)
+            if(c[i][j]=='1' && c[i][k]=='1')
+              col++;
+        }
+      }
+    }
+  	printf("%d",col/2);
+	return 0;
+}

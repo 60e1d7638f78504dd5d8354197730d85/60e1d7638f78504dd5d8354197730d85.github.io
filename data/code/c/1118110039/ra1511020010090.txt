@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+int transform(char *);
+int main()
+{
+	int t;
+	char s[400];
+	scanf("%d\n",&t);
+	while(t--)
+	{
+		scanf("%s",s);
+		transform(s);
+		printf("\n");
+	}
+	return 0;
+}
+int transform(char *s)
+{
+	int l=strlen(s);
+	if(l==1){
+		printf("%s",s);
+		return 0;
+	}
+	int i=1,k,j=0;
+	char s1[400],s2[400];
+	while(i<l-1)
+	{
+		if(s[i++]=='(')
+		{
+			int count=1;
+			while(count !=0)
+			{
+				if(s[i]=='(')
+					count++;
+				if(s[i]==')')
+					count--;
+				i++;
+			}
+		}
+		if(*(s+i)=='+' || *(s+i)=='-' || *(s+i)=='*' || *(s+i)=='/' || *(s+i)=='^'){
+			j=i;
+			break;
+		}
+	}
+	i=1;
+	k=0;
+	while(i!=j)
+		s1[k++]=s[i++];
+	s1[k]='\0';
+	i=j+1;
+	k=0;
+	while(i<l-1)
+		s2[k++]=s[i++];
+	s2[k]='\0';
+	transform(s1);
+	transform(s2);
+	printf("%c",s[j]);
+	return 0;
+}

@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) throws NegativePriceException,NegativeHandException  
+       {
+       String description;
+       int unitsOnHand;
+       double price;
+     
+               Scanner s=new Scanner(System.in);
+         description=s.next();
+         unitsOnHand=s.nextInt();
+         price=s.nextDouble();
+        try{
+         if(price<0)
+           throw new NegativePriceException();
+         else if (unitsOnHand<0)
+           throw new NegativeHandException();
+         else
+           System.out.println("Details stored successfully");
+        }
+         catch(NegativePriceException e)
+         {
+           System.out.println(e);
+         }
+         catch(NegativeHandException e)
+         {
+           System.out.println(e);
+         }
+     }  
+	}
+
+  class NegativePriceException extends Exception
+  {
+    NegativePriceException()
+    {
+    }
+   public String toString()
+    {
+      return "Price cannot be Negative";
+    }
+    }
+    class NegativeHandException extends Exception
+    {
+    NegativeHandException()
+    {
+    }
+    public String toString()
+    {
+    return "Units on hand cannot be Negative";
+}
+    }

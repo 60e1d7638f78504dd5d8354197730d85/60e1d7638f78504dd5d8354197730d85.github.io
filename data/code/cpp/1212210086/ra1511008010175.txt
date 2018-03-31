@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+void to_lower(string &s)
+{
+  	int l=s.length();
+  	for(int i=0;i<l;i++)
+        s.at(i)=tolower(s.at(i));
+}
+int main()
+{
+    int t;
+  	cin>>t;
+  	while(t-->0)
+    {
+      	int count=0;
+      	string s1,s2;
+      	cin>>s1>>s2;
+      	to_lower(s1);
+      	to_lower(s2);
+      	int l=s1.length();
+        int l1=s2.length();
+      	if(l1>=l)
+        {
+      		for(int i=0;i<l1;i++)
+        	{
+          		for(int j=0;j<l;j++)
+            	{
+              		if(s2.at(i)==s1.at(j))
+                    {
+                        count++;
+                        s2.at(i)='\0';
+                      	s1.at(j)='\0';
+                    }
+                }
+            }
+        }
+        else
+       	{
+          	for(int i=0;i<l1;i++)
+        	{
+          		for(int j=0;j<l;j++)
+            	{
+              		if(s2.at(i)==s1.at(j))
+                    {
+                        count++;
+                        s2.at(i)='\0';
+                      	s1.at(j)='\0';
+                    }
+                }
+            }
+        } 
+      	cout<<count<<endl;
+    }
+	return 0;
+}

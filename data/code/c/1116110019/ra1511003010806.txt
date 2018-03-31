@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	char a[20],c;
+  	int i,x,count[26] = {0},y;
+  	scanf("%s",a);
+  	for(i=0;a[i]!='\0';i++)
+    {
+      x=a[i]-'a';
+      count[x]++;
+    }
+  x=10;
+  	for(i=0;i<26;i++)
+    {
+      if(count[i]!=0)
+      {
+        if(count[i]<x)
+        {
+          x=count[i];
+          y=i;
+        }
+      }
+    }
+  	c=(char)'a'+y;
+  	 printf("%c=%d",c,x);
+	return 0;
+}

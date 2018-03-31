@@ -1,0 +1,53 @@
+import java.io.*;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class TestClass {
+    Scanner scan;
+
+    public static void main(String args[]) {
+
+        TestClass chef = new TestClass();
+        chef.scan = new Scanner(System.in);
+
+        int testCases = chef.GetInteger();
+        chef.CheckTestcase(testCases);
+    }
+
+    int GetInteger() {
+        return scan.nextInt();
+    }
+
+    long getLong() {
+        return scan.nextLong();
+    }
+
+
+    void CheckTestcase(int tc) {
+        for (int i = 1; i <= tc; i++) {
+            ExecuteTest();
+
+        }
+    }
+
+    void ExecuteTest() {
+
+        long coin = getLong();
+        long height = GetHeightOfTriangle(coin);
+        System.out.println(height);
+
+    }
+
+    long GetHeightOfTriangle(long coin) {
+        int height = 0, i = 1;
+        while (coin != 0) {
+            if (coin < i) {
+                break;
+            }
+            coin = coin - i;
+            height++;
+            i++;
+        }
+        return height;
+    }
+}

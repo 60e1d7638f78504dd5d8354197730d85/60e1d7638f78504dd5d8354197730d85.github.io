@@ -1,0 +1,64 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int i,j,k,c,t,n,m;
+    scanf("%d", &t);
+ 
+    for (i=1; i<=t; i++)
+    {
+        scanf("%d%d", &n, &m);
+        int comp[m];
+        int test[n];
+ 
+        for (j=0; j<m; j++)
+        {
+            scanf("%d", &comp[j]);
+        }
+ 
+        for (j=0; j<n; j++)
+        {
+            test[j] = j+1;
+        }
+ 
+        for (j=0; j<m; j++)
+        {
+            for (k=1; ; k++)
+            {
+                if (comp[j] == k)
+                {
+                    test[k-1] = 0;
+                    break;
+                }
+            }
+        }
+ 
+        c=0;
+        for (j=0; j<n; j++)
+        {
+ 
+            if (test[j]!=0)
+            {
+                if (c%2==0)
+                {
+                    printf("%d ", test[j]);
+                    test[j] = 0;
+                }
+                c++;
+            }
+        }
+        printf("\n");
+ 
+        for(j=0; j<n; j++)
+        {
+            if (test[j] != 0)
+            {
+                printf("%d ", test[j]);
+            }
+ 
+        }
+        printf("\n");
+    }
+ 
+  return 0;
+}

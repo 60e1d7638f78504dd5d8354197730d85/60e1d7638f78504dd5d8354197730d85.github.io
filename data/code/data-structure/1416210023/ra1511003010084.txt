@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define BigInt boost::multiprecision::cpp_int
+#define MOD 1000000007
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin >> t;
+    while(t--) {
+        int n;
+        cin >> n;
+        vector<char> arr(n);
+        int ans = 0;
+        vector<int> x;
+        int i;
+        for(auto &it : arr) {
+            cin >> it;
+            if(it == 'T') {
+                it = 0;
+            } else {
+                it = 1;
+            }
+        }
+        for(i = 0; i < n; i++) {
+            if(arr[i] == 0) {
+                arr[i] = 1;
+                if(i + 1 < n) arr[i + 1] = !(arr[i + 1]);
+                ans++;
+                x.push_back(i + 1);
+            }
+        }
+        cout << ans;
+        cout << endl;
+        for(auto it : x) {
+            cout << it << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}

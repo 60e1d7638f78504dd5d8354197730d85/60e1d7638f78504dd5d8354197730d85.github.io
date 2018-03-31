@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+void leftRotatebyOne(int arr[], int n);
+void leftRotate(int arr[], int d, int n)
+{
+  int i;
+  for (i = 0; i < d; i++)
+    leftRotatebyOne(arr, n);
+}
+void leftRotatebyOne(int arr[], int n)
+{
+  int i, temp;
+  temp = arr[0];
+  for (i = 0; i < n-1; i++)
+     arr[i] = arr[i+1];
+  arr[i] = temp;
+}
+int main()
+{
+  int n,a[100],d,i;
+  cin>>n;
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  cin>>d;
+  leftRotate(a,d,n);
+  for(i=0;i<n;i++)
+    cout<<a[i]<<" ";
+  return 0;
+}

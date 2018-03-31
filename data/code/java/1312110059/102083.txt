@@ -1,0 +1,28 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner scan = new Scanner(System.in);
+       int n = scan.nextInt();
+       
+       ArrayList<String> ships = new ArrayList<>();
+       for(int i=0; i<n; i++)
+       {
+         String s = scan.next();
+         char ch = s.charAt(0);
+         
+         if(ch=='B' || ch=='b')
+           ships.add(i, "BattleShip");
+         else if(ch=='C' || ch=='c')
+           ships.add(i, "Cruiser");
+         else if(ch=='D' || ch=='d')
+           ships.add(i, "Destroyer");
+         else if(ch=='F' || ch=='f')
+           ships.add(i, "Frigate");
+       }		
+       scan.close();
+       
+       for(int i=0; i<n; i++)
+         System.out.println(ships.get(i));
+	}
+}

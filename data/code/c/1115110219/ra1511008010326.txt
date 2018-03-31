@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define inchar getchar_unlocked
+inline int inIntPos() {
+      int n=0, ch;
+      while((ch = inchar()) < '0');
+      n=(ch-'0');
+      while((ch=inchar())>='0') n=(n<<3)+(n<<1)+(ch-'0');
+      return n;
+}
+#define MAX_A 101
+int a[MAX_A];
+ 
+int main() {
+	int t,n,k,i,ak,res;
+ 
+	t = inIntPos();
+	do {
+		n=inIntPos();
+		for(i=1; i<=n; ++i) a[i]=inIntPos();
+		k=inIntPos();
+		ak=a[k]; res=1;
+		for(i=1; i<=n; ++i) {
+			if(a[i]<ak) ++res;
+		}
+		printf("%d\n",res);
+	} while (--t);
+	return 0;
+}

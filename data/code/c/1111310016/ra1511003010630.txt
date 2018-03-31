@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	//Tail:0 Heads:1
+  	int count,ops,op,start,end,i,heads=0;
+  	int coins[100]={0};
+  	scanf("%d %d",&count,&ops);
+  	while(ops--)
+    {
+    	heads=0;
+      	scanf("%d %d %d",&op,&start,&end);
+      	for(i=start;i<=end;i++)
+        {
+        	if(op==0)
+            {
+            	if(coins[i]==0)coins[i]=1;
+          		else coins[i]=0;
+            }
+          	else
+            {
+            	if(coins[i]==1)heads++;
+            }
+        }
+      	if(op==1)printf("%d\n",heads);
+    }
+	return 0;
+}

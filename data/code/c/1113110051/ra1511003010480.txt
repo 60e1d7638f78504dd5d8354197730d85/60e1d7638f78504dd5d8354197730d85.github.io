@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+    int prime[1024],p,i;
+    for(p=0;p<1024;p++)
+    {
+      prime[p]=1;
+    }
+    prime[0]=0;
+    prime[1]=0;
+    for (p=2; p*p<=1024; p++)
+    {
+        if (prime[p] == 1)
+        {
+            for (i=p*2; i<=1024; i += p)
+                prime[i] =0 ;
+        }
+    }
+    int d;
+    scanf("%d",&d);
+    p=d;
+    while(prime[p]!=1)
+    {
+      p++;
+    }
+    printf("%d",p-d);
+	return 0;
+}

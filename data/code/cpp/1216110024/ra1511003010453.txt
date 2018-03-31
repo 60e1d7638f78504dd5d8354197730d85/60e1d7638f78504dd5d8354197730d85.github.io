@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+void segregate0and1(int array[], int size)
+{
+    int left = 0, right = size-1;
+ 
+    while (left < right)
+    {
+      
+        while (array[left] == 0 && left < right)
+            left++;
+        
+        while (array[right] == 1 && left < right)
+            right--;
+  
+        if (left < right)
+        {
+            array[left] = 0;
+            array[right] = 1;
+            left++;
+            right--;
+        }
+    }
+}
+ 
+int main()
+{
+    int array_size;
+  	cin>>array_size;
+  
+  	int arr[10];
+  	for(int i=0;i<array_size;i++)
+    {
+      cin>>arr[i];
+    }
+  
+    segregate0and1(arr, array_size);
+  	for (int j = 0; j < array_size; j++)
+        printf("%d ", arr[j]);
+    getchar();
+    return 0;
+}

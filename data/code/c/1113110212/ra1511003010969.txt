@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+int test,n,m,cnt[41];
+long long tot[41],p[41],f[41][41],g[41][41],ans;
+int main()
+{
+    int i,j,tt,x,xx;
+    long long t;
+    for(i=0;i<=40;i++) p[i] = 1LL << i;
+    scanf("%d",&test);
+    for(tt=1;tt<=test;tt++)
+    {
+        scanf("%d%d",&n,&m);
+        ans = t = 0;
+        memset(tot,0,sizeof(tot)); memset(cnt,0,sizeof(cnt));
+        for(i=0;i<=40;i++) g[i][0] = 1;
+        for(i=1;i<=n;i++)
+        {
+            scanf("%d%d",&x,&xx);
+            tot[x] += xx;
+            cnt[x]++;
+        }
+        for(i=1;i<=40;i++) for(j=1;j<=40;j++)
+        {
+            f[i][j] = f[i-1][j];
+            if(g[i-1][j-1] > 0 && tot[i] > 0) f[i][j] += f[i-1][j-1]*(p[cnt[i]]-1) + tot[i]*p[cnt[i]-1]*g[i-1][j-1];
+            g[i][j] = g[i-1][j] + g[i-1][j-1] * (p[cnt[i]] - 1);
+        }
+        for(i=m;i<=40;i++)
+        {
+            ans += f[40][i];
+            t += g[40][i];
+        }
+        printf("%.9f\n",ans/(double)t);
+    }
+
+	return 0;
+}

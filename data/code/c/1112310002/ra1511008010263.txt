@@ -1,0 +1,64 @@
+#include<stdio.h>
+//#include<conio.h>
+//using namespace std;
+ void adjust(int a[100001],int root,int n)
+    {
+    int child,rootkey;
+    int temp;
+    temp=a[root];
+    rootkey=a[root];
+    child=2*root;
+    while(child<=n)
+    {
+                   if((child<n)&&(a[child]<a[child+1]))
+                   child++;
+                   if(rootkey>a[child])
+                   break;
+                   else
+                   {
+                       a[child/2]=a[child];
+                       child*=2;
+                       }
+  }  
+  a[child/2]=temp;     }
+         void heapsort(int a[100001],int n)
+         {
+              /*perform a heap sort on a[1:n]*/
+              int i;
+             
+              for(i=n/2;i>0;i--)
+              adjust(a,i,n);
+              for(i=n-1;i>0;i--)
+              {
+                                //swap(a[1],a[i+1],temp);
+                                a[1]=a[i+1]+a[1];
+                                a[i+1]=a[1]-a[i+1];
+                                a[1]=a[1]-a[i+1];
+                                adjust(a,1,i);
+                                }
+                                }
+ 
+int main()
+{
+    int N,i,D,L[100001],count=0;
+    scanf("%d%d",&N,&D);
+    for(i=1;i<=N;i++)
+    scanf("%d",&L[i]);
+    heapsort(L,N);
+    
+    i=1;
+    while(i<N)
+    {
+    if(L[i+1]-L[i]<=D)
+    {
+     count++;
+     i+=2;                 }
+     else
+     i++;
+              }
+              printf("%d\n",count);
+              
+   
+    return 0;
+    }
+ 

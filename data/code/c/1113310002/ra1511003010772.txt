@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  long long n,tc;
+  int j,i,k,a[100],st,en,t;
+  scanf("%lld",&tc);
+  if(tc == 0)
+  {
+    printf("0");
+    return 0;
+  }
+  while(tc--)
+  {
+  scanf("%lld %d",&n,&k);
+  if(n == 1)
+  {
+    printf("10 01");
+    return 0;
+  }
+  n = pow(n,n);
+  i = 0;
+  while(n>0)
+  {
+    a[i++] = n%10;
+    n/=10;
+  }
+  st = 0;
+  en = i - 1;
+  while(st < en)
+  {
+    t = a[st];
+    a[st] = a[en];
+    a[en] = t;
+    st++;
+    en--;
+  }
+  for(j=0;j<k;j++)
+    printf("%d",a[j]);
+  printf(" ");
+  for(j = i-k;j<i;j++)
+    printf("%d",a[j]);
+  printf("\n");
+}
+  return 0;
+}

@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int a[1000];
+    int j,i;
+  	for(i=0;i<n;i++) 
+      scanf("%d",&a[i]);
+  	
+  	for(i=0;i<n;i++) {
+      for(j=0;j<n;j++) {
+        if(a[i] < a[j]) {
+          int temp = a[i];
+          a[i] = a[j];
+          a[j] = temp;
+        }
+      }
+    }
+  
+  int number = a[0];
+int mode = -1;
+int count = 1;
+int countMode = 1;
+  
+  	for (i=1; i<n; i++) {
+      
+      if (a[i] == number) 
+         ++count;
+      else
+      { 
+            if (count > countMode) 
+            {
+                  countMode = count; 
+                  mode = number;
+            }
+           count = 1; 
+           number = a[i];
+  		}
+    }
+  
+    if(mode > -1)
+  		printf("Mode=%d",mode);
+  	else
+      	printf("none");
+    
+    return 0;
+}

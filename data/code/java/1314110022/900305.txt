@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int interimcnt=0, ntc=0;
+      Scanner in = new Scanner(System.in); 
+       ntc=in.nextInt();
+       while(ntc>0)
+       {
+       int n = in.nextInt();
+       int [] arr = new int[n];
+       for(int i = 0; i<n ; i++)
+       {
+          arr[i] = in.nextInt();
+       }
+         Arrays.sort(arr);
+      // for(int p:arr)
+        //  System.out.println(p);
+       interimcnt=1;
+       for (int k=0;k < n-1; k++)
+       {        
+         int diff  = Math.abs(arr[k] - arr[k+1]);
+         if (diff > 1 || diff == 0)
+            interimcnt++;
+        
+         }
+       System.out.println(interimcnt);
+         ntc--;
+       }
+	}
+}

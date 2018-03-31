@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <bits/stdc++.h>
+#include <stdlib.h>
+using namespace std;
+int main(){
+   int i,j,count;
+   char str[25][25],temp[25];
+   for(i=0;i<=5;i++)
+      cin>>str[i];
+   for(i=0;i<=5;i++)
+      for(j=i+1;j<=5;j++){
+         if(strcmp(str[i],str[j])>0){
+            strcpy(temp,str[i]);
+            strcpy(str[i],str[j]);
+            strcpy(str[j],temp);
+         }
+      }
+   for(i=0;i<5;i++)
+      cout<<str[i]<<endl;
+   
+   return 0;
+}

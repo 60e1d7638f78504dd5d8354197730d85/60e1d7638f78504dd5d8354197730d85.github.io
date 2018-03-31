@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main()
+{
+  int len_max = 10;
+  int current_length = len_max;
+  int i, j, l;
+  char temp;
+  
+  char *pstring = malloc(len_max);
+  
+  if( pstring != NULL)
+  {
+    int c = EOF;
+    int i = 0;
+    
+    while( (c=getchar())!='\n' && c!=EOF)
+    {
+      pstring[i++] = (char)c;
+      
+      if(i == current_length)
+      {
+        current_length = i+len_max;
+        pstring = realloc(pstring, current_length);
+      }
+    }
+    
+    pstring[i] = '\0';
+    
+  }
+
+  l = strlen(pstring);
+  
+  for(i=1; i<l; i++)
+    for(j=0; j<l-i; j++)
+      if(pstring[j]>pstring[j+1])
+      {
+        temp = pstring[j];
+        pstring[j] = pstring[j+1];
+        pstring[j+1] = temp;
+      }
+  
+  printf("%s", pstring);
+  free(pstring);
+    
+	return 0;
+}

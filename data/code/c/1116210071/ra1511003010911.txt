@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<string.h>
+#include<assert.h>
+#define REP(i,a,b) for(i=a;i<b;i++)
+#define rep(i,n) REP(i,0,n)
+ 
+/* union find */
+void unionInit(int d[],int s){int i;rep(i,s)d[i]=i;}
+int unionGet(int d[],int n){int t=n,k;while(d[t]!=t)t=d[t];while(d[n]!=n)k=d[n],d[n]=t,n=k;return n;}
+int unionConnect(int d[],int a,int b){a=unionGet(d,a);b=unionGet(d,b);if(a==b)return 0;d[a]=b;return 1;}
+ 
+int main(){
+  int T, N, M;
+  int i, j, k;
+  char buf[10];
+  int cnv[300], deg[99], ind[99], sz[99];
+ 
+  rep(i,300) cnv[i] = -1;
+  rep(i,26) cnv['a'+i] = i, cnv['A'+i] = 26+i;
+ 
+   scanf("%d",&T) ;
+   while(T--){
+    rep(i,52) deg[i] = sz[i] = 0;
+    unionInit(ind, 52);
+ 
+     scanf("%d",&N) ;
+     while(N--){
+      scanf("%s",buf);
+      deg[cnv[buf[0]]] ^= 1;
+      deg[cnv[buf[1]]] ^= 1;
+    }
+     scanf("%d",&M)==1 ;
+     while(M--){
+      scanf("%s",buf);
+      unionConnect(ind, cnv[buf[0]], cnv[buf[1]]);
+    }
+ 
+    rep(i,52) sz[unionGet(ind,i)] += deg[i];
+    rep(i,52) if(sz[i]%2) break;
+    if(i==52) puts("YES"); else puts("NO");
+  }
+ 
+  return 0;
+}

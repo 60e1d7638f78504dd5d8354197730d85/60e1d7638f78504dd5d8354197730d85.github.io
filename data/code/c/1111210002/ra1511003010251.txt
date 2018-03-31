@@ -1,0 +1,44 @@
+#include <stdio.h>
+int prime,f;
+
+void largestprime(int n)
+{
+  int i,j;
+  prime=1;
+  for(i=2;i<n;i++)
+  {
+    f=1;
+    for(j=2;j<i;j++)
+    {
+      if(i%j==0)f=0;
+    }
+    if(f==1)
+    {
+      prime=i;
+    }
+  }
+}
+
+int main()
+{
+  int k,t,n,flag=0;
+  scanf("%d",&t);
+  if(t==0)
+  {
+    printf("%d",flag);
+    return 0;
+  }
+  for(k=0;k<t;k++)
+  {
+    scanf("%d",&n);
+    while(n>1)
+    {
+      largestprime(n);
+      n=n-prime;
+      flag=flag^1;
+    }
+    if(flag==1)printf("BOB\n");
+    else printf("ALICE\n");
+  }
+  return 0;
+}

@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+  int num ;
+  struct node *link;
+};
+void display(struct node *);
+struct node *start=NULL;
+struct node *insert_end(struct node *);
+struct node *insert_end(struct node *start)
+{
+  struct node *newnode,*ptr;
+  newnode=(struct node *)malloc(sizeof(struct node));
+  scanf("%d",&newnode->num);
+  newnode->link=NULL;
+  ptr=start;
+  while(ptr->link!=NULL)
+  {
+    ptr=ptr->link;
+  }
+  ptr->link=newnode;
+  newnode->link=NULL;
+  return start;
+}
+void display(struct node *start)
+{
+  struct node *ptr;
+  ptr=start;
+  printf("START ");
+  while(ptr!=NULL)
+  {
+    printf("-> %d ",ptr->num);
+    ptr=ptr->link;
+  }
+  printf("->END");
+}
+int main()
+{
+  int n,i;
+  struct node *newnode;
+  scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+   if(start==NULL)
+   {
+     newnode=(struct node*)malloc(sizeof(struct node));
+     scanf("%d",&newnode->num);
+     newnode->link=NULL;
+     start=newnode;
+   }
+   else
+   {
+     start=insert_end(start);
+   } 
+ }
+  display(start);
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int j=-1;
+    string str;
+    cin>>str;
+    int n=str.size();
+    sort(str.begin(),str.end());
+    reverse(str.begin(),str.end());
+    for(int i=n-1;i>=0;i--)
+      if(str[i]=='0' || str[i]=='2' || str[i]=='4' || str[i]=='6' || str[i]=='8')
+      {
+        j=i;
+        break;
+      }
+      for(int i=0;i<n;i++)
+      if(i==j)
+        continue;
+      else
+        cout<<str[i];
+      if(j>=0)
+        cout<<str[j];
+    cout<<endl;
+  }
+  return(0);
+}

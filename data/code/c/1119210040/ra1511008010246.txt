@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<limits.h>
+#include<ctype.h>
+inline void sc(char* ch)
+{
+    register char c;
+    while((c = getchar_unlocked()) == '\n' || c == ' '){}
+    *ch=c;
+}
+inline void si(int* x)
+{
+	register char c = getchar_unlocked();
+	*x = 0;
+	int neg = 0;
+	for(; ((c<48 || c>57) && c != '-');c = getchar_unlocked());
+	if(c=='-') {
+        neg = 1;
+        c = getchar_unlocked();
+    }
+	for(; (c>47)&&(c<58);c = getchar_unlocked())
+		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+    if(neg)
+        *x = -*x;
+}
+inline void pi(int a)
+{
+    char snum[20];
+    int i=0;
+    char sign='+';
+    if(a<0)
+    {
+        sign='-';
+        a*=-1;
+    }
+    do
+    {
+        snum[i++]=a%10+48;
+        a=a/10;
+    }while(a!=0);
+    i=i-1;
+    if(sign=='-')
+        putchar_unlocked(sign);
+    while(i>=0)
+    putchar_unlocked(snum[i--]);
+    putchar_unlocked('\n');
+}
+int A[100000];
+int main()
+{
+    int n,m,i,d,x=0;
+    char c;
+    si(&n);
+    si(&m);
+    for(i=0;i<n;i++)
+        si(&A[i]);
+    while(m--)
+    {
+        sc(&c);
+        si(&d);
+        if(c=='C')
+        {
+            x-=d;
+            if(x<0)
+                x+=n;
+        }
+        else if(c=='A')
+        {
+            x+=d;
+            if(x>=n)
+                x-=n;
+        }
+        else
+        {
+            d-=(x+1);
+            if(d<0)
+                d+=n;
+            pi(A[d]);
+        }
+    }
+    return 0;
+}
+ 

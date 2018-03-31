@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{  int t,a,b,i,j,count,pcount;
+  scanf("%d",&t);
+  while(t--)
+  { scanf("%d%d",&a,&b);
+    pcount=0;
+     for(i=a;i<=b;i++)
+     {  count=0;
+       for(j=1;j<=i;j++)
+        { if(i%j==0)count++;}
+       if(prime(count))
+         pcount++;
+     }
+   printf("%d\n",pcount);
+  }
+	return 0;
+}
+
+int prime(int x)
+{ int i,count=0;
+ for(i=1;i<=x;i++)
+ { if(x%i==0)
+     count++;
+ }
+ if(count==2)
+   return 1;
+ else return 0;
+}

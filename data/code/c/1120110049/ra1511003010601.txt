@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{	
+  	int n;
+  scanf("%d",&n);
+  	char s[n][20],t[n][20];
+  	int x,y;	
+  for (x=0;x<n;x++){
+    scanf("%s",s[x]);
+  }
+	for (x=0;x<n;x++){
+      for (y=x+1;y<n;y++){
+        if (strcmp(s[x],s[y])>0){
+          char t[20];
+          strcpy(t,s[y]);
+          strcpy(s[y],s[x]);
+          strcpy(s[x],t);
+        }
+      }
+    }
+  for (x=0;x<n;x++)
+    printf("\n%s",s[x]);
+	return 0;
+}

@@ -1,0 +1,128 @@
+import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.Arrays;
+ 
+public class TestClass {
+	private static int totalchars = 0, offset = 0;
+	private static InputStream stream;
+	private static byte[] buffer = new byte[1024];
+ 
+	private static int readByte() {
+		if (totalchars < 0)
+			return 0;
+		if (offset >= totalchars) {
+			offset = 0;
+			try {
+				totalchars = stream.read(buffer);
+			} catch (IOException e) {
+				return 0;
+			}
+			if (totalchars <= 0)
+				return -1;
+		}
+		return buffer[offset++];
+	}
+ 
+	private static int readInt() {
+		int number = readByte();
+ 
+		while (eolchar(number))
+			number = readByte();
+ 
+		int sign = 1;
+		int val = 0;
+ 
+		if (number == '-') {
+			sign = -1;
+			number = readByte();
+		}
+ 
+		do {
+			if ((number < '0') || (number > '9'))
+				return 0;
+			val *= 10;
+			val += (number - '0');
+			number = readByte();
+		} while (!eolchar(number));
+ 
+		return sign * val;
+	}
+ 
+	private static boolean eolchar(int c) {
+		return c == ' ' || c == '\n' || c == -1 || c == '\r' || c == '\t';
+	}
+ 
+	private static long min(long a, long b) {
+		return a < b ? a : b;
+	}
+	private static void getMinimum(int boxes, int stones, int addFactor, long currentSum){
+//		long min = Long.MAX_VALUE;
+		for(int i=1; i<boxes; ++i){
+			if (stones % i == 0) {
+				min = min(min, (i) * (cumulatives[boxes - i]));
+				//stones/i for each box and totally i boxes filled
+			}else{
+				int eachBoxContent = stones/i, extraBoxContent = stones%i;
+				int cellsOccupied = (stones/i);
+				int totalCellsOccupied = cellsOccupied+1;
+ 
+				if(cellsOccupied>boxes){
+//					int newBoxes = cellsOccupied%boxes;
+//					int totalCellsOccupiedNow = newBoxes+1;
+//					min = min(min, (totalCellsOccupied*cumulatives[boxes-totalCellsOccupiedNow])+(newBoxes*energy[boxes-totalCellsOccupiedNow]));
+//					int newBoxes = totalCellsOccupied-boxes;
+//					int newStones = eachBoxContent*
+					if((stones-(boxes*eachBoxContent))>0){
+						getMinimum(boxes, stones-(boxes*eachBoxContent), addFactor, currentSum);
+					}
+				}else if((boxes-totalCellsOccupied)>=0)
+					{
+						min = min(min, (totalCellsOccupied*cumulatives[boxes-totalCellsOccupied])+(cellsOccupied*energy[boxes-totalCellsOccupied]));
+					}
+				
+			}
+		}
+		if((stones-boxes)>0){
+			getMinimum(boxes, stones-boxes, addFactor, currentSum);
+		}
+//		return 0;
+	}
+	
+	private static long[] cumulatives;
+	private static int[] energy;
+	private static long min;
+	public static void main(String[] args) {
+		stream = System.in;
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out));
+ 
+		int t = readInt();
+		while (t-- > 0) {
+			int n = readInt(), m = readInt();
+			energy = new int[n];
+			for (int i = 0, iLen = energy.length; i < iLen; ++i) {
+				energy[i] = readInt();
+			}
+			if (m % n == 0) {
+				pw.println("0");
+			} else {
+				min = Long.MAX_VALUE;
+				Arrays.sort(energy);
+				cumulatives = new long[n + 1];
+				for (int i = 1, iLen = cumulatives.length; i < iLen; ++i) {
+					cumulatives[i] = cumulatives[i - 1] + energy[i - 1];
+				}
+				getMinimum(n, m, 0,0);
+//				pw.println(getMinimum(n, m, 0,0));
+				pw.println(min);
+ 
+			}
+ 
+		}
+ 
+		pw.flush();
+		pw.close();
+	}
+}

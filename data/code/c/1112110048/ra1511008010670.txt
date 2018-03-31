@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+void printer(int *, int );
+ 
+int main()
+{
+	int k,N;
+	long A;
+	scanf("%ld %d %d",&A,&N,&k);
+	int chamb[k],i;
+	for(i=0;i<k;i++)
+		chamb[i] = 0;
+	i=0;N++;
+	while(A>0)
+	{
+		if(i>=k)
+			break;
+		chamb[i] = A%N;
+		A=A/N;
+		i++;	
+ 
+	}
+	printer(chamb,k);
+  return 0;
+}
+void printer(int * A, int k)
+{
+	int i;
+	for(i=0;i<k;i++)
+		printf("%d ",A[i]);
+ 
+}

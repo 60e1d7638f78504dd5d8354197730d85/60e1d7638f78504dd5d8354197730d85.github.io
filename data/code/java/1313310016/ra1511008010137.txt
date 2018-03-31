@@ -1,0 +1,47 @@
+// JAVA Code to Find a pair with maximum
+// product in array of Integers
+import java.util.*;
+ 
+public class TestClass {
+     
+    // Function to find maximum product pair
+    // in arr[0..n-1]
+    static void maxProduct(int arr[], int n)
+    {
+        if (n < 2)
+        {
+            System.out.println("No pairs exists");
+            return;
+        }
+      
+        // Initialize max product pair
+        int a = arr[0], b = arr[1];
+      
+        // Traverse through every possible pair
+        // and keep track of max product
+        for (int i = 0; i < n; i++)
+          for (int j = i + 1; j < n; j++)
+             if (arr[i] * arr[j] > a * b){
+                a = arr[i]; 
+                b = arr[j];
+             }
+              
+        System.out.println(a*b);
+    }
+     
+    /* Driver program to test above function */
+    public static void main(String[] args) 
+    {
+        Scanner sc=new Scanner(System.in);
+        int arr[]=new int[10000];
+        int n;
+        n=sc.nextInt();
+        n=sc.nextInt();
+        for(int i=0;i<n;i++)
+          arr[i]=sc.nextInt();
+        maxProduct(arr, n);
+             
+    }
+}
+ 
+// This code is contributed by Arnav Kr. Mandal.

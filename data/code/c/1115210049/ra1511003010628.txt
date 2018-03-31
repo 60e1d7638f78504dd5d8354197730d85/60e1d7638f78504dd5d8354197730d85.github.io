@@ -1,0 +1,52 @@
+#include <stdio.h>
+int power(int a,int n)
+{
+ int fact=1;
+  while(n!=0)
+  {
+     fact=fact*a;
+     n--;
+  }
+  return fact;
+}
+int main()
+{
+  int i,j,t,a[100][100],m,n;
+scanf("%d",&t);
+ if(t!=0)
+ {  
+while(t--)
+{
+scanf("%d",&m);
+scanf("%d",&n); 
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<m;j++)
+    {
+     scanf("%d",&a[i][j]);
+    }
+  }
+   for(i=0;i<m;i++)
+  {
+    for(j=0;j<m;j++)
+    {
+     a[i][j]=power(a[i][j],n);
+    }
+   }
+  printf("the matrix is:\n");
+   for(i=0;i<m;i++)
+  {
+    for(j=0;j<m;j++)
+    {
+     printf("|%d|",a[i][j]);
+    }
+     printf("\n");
+   }
+}
+ }
+  else
+  {
+   printf("0");
+  }
+	return 0;
+}

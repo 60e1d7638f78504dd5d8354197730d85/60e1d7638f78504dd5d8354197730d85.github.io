@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+ 
+ 
+int isPrime(int n){
+  int i,sqroot=sqrt(n);
+  for(i=2;i<=sqroot;i++){
+    if(n%i==0)
+      return 0;
+  }
+  return 1;
+}
+ 
+int findNextPrime(int n){
+  int i;
+  for(i=1;;i++){
+    if(isPrime(n+i)){
+      return i;
+    }
+  }
+}
+ 
+int main(){
+  int t;
+  scanf("%d",&t);
+  while(t--){
+    int x,y;
+    scanf("%d %d",&x,&y);
+    printf("potatoes to be planted in the third field:%d\n",findNextPrime(x+y));
+  }
+  return 0;
+}
+ 

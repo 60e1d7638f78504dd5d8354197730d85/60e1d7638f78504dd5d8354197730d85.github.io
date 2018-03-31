@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main(){
+  signed char a,b,c,d;
+  char R='R',D='U';
+  scanf("%c%c%*c%c%c",&a,&b,&c,&d);
+  c-=a;d-=b;
+  if(c<0){c=-c;R='L';}
+  if(d<0){d=-d;D='D';}
+  printf("%d\n",c>d?c:d);
+  while(c&&d){
+    c--;d--;
+    printf("%c%c\n",R,D);
+  }
+  if(d){c=d;R=D;}
+  while(c--)
+    printf("%c\n",R);
+  return 0;
+}

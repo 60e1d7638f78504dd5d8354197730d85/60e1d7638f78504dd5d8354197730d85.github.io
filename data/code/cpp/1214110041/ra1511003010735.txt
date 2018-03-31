@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class stud {
+  int roll, subjects;
+  float per;
+  string name;
+  public: stud(string n, int r, int s){
+    name = n;
+    roll = r;
+    subjects = s;
+  }
+  
+  float percent(int sum) {
+    per = (float)(sum*100)/(subjects*100);
+    return per;
+  }
+  
+  void grade(float per) {
+    if(per>80)
+      cout<<name<<" "<<roll<<" "<<per<<" "<<"Class A";
+    if(per<80 && per>70)
+      cout<<name<<" "<<roll<<" "<<per<<" "<<"Class B";
+    if(per<70)
+      cout<<name<<" "<<roll<<" "<<per<<" "<<"Class C";
+  }
+};
+int main()
+{
+  int a, b, c, d, sum;
+  string str;
+  cin>>a;
+  for(int i=0; i<a; i++){
+    cin>> str>> b>> c;
+    stud obj(str, b, c);
+    sum=0;
+    for(int j=0; j<c; j++){
+      cin>>d;
+      sum = sum+d;
+    }
+    float num = obj.percent(sum);
+    obj.grade(num);
+    cout<<endl;
+  }
+
+	return 0;
+}

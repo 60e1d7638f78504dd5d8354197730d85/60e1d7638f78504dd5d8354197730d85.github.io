@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int sal[10],n,i;
+  float gsal[10],hra,da;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d",&sal[i]);
+    }
+   	for(i=0;i<n;i++)
+    {
+      if(sal[i]<1500)
+      {
+        hra=0.1*sal[i];
+        da = 0.9*sal[i];
+        gsal[i]=sal[i]+hra+da;
+      }
+      else
+      {
+        hra=500;
+        da=sal[i]*0.98;
+        gsal[i]=sal[i]+hra+da;
+      }
+    }
+    for(i=0;i<n;i++)
+            {
+              printf("%.2f",gsal[i]);
+              if(i<n-1)
+              {
+                printf("\n");
+              }
+            }
+              
+	return 0;
+}

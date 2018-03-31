@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int i,j,arr[100],size_arr,temp,k,x=0;
+    cin>>size_arr;
+    for(i=0;i<size_arr;i++)
+    {
+     cin>>arr[i];
+    }
+  cin>>k;	
+    for(i=1;i<size_arr;i++)
+    {
+        for(j=0;j<size_arr-i;j++)
+        {
+            if(arr[j]<arr[j+1] && x!=k)
+            {
+                temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+              	x++;
+            }
+        }
+    }
+    for(i=0;i<size_arr;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}

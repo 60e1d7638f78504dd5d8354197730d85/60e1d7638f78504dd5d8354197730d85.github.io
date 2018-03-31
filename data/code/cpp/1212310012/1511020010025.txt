@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int a,b,c=1,d=1,t,n,y,x,z;
+int u=0,i;
+int r[1000];
+cin>>t;
+        while(t-->0)
+        {
+            cin>>a>>b>>n;
+             if(n%2!=0 && (n/2)%2==0)
+            {
+            c=a*2;
+            d=b;
+           }
+            if(n%2!=0 && (n/2)%2!=0)
+            {
+            c=a;
+            d=b*2;
+           }
+            if(n%2==0)
+            {
+            c=a;
+            d=b;
+           }
+           y=1;
+           x=n;
+           z=n/2;
+           while(z-->0)
+           {
+               if(y++%2!=0)
+               c=c*2;
+               else
+               d=d*2;
+               if(x--%2!=0)
+               c=c*2;
+               else
+               d=d*2;
+            }
+            if(c>=d && d!=0)
+            r[u++]=c/d;
+            else if(d>c )
+            r[u++]=d/c;
+        }
+        for(i=0;i<u;i++)
+        {
+          cout<<r[i]<<endl;
+        }
+return 0;
+}
+ 

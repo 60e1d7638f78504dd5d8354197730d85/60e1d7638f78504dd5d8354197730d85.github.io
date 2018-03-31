@@ -1,0 +1,138 @@
+#include<stdio.h>
+#define MOD 1000000000
+void e_euclid(long long int a,long long int b,long long int *d,long long int *x,long long int *y)
+{
+    long long int temp;
+    if(b==0)
+    {
+        *d=a;*x=1;*y=0;
+        return ;
+    }
+    e_euclid(b,a%b,d,x,y);
+    temp=*x;
+    *x=*y;
+    *y=temp-(a/b)*(*y);
+}
+long long pow_mod(int a,int b,long long  int m)
+{
+    long long x=1;
+    long long y=a;
+    while(b>0)
+    {
+        if(b%2==1)
+        {
+            x=(x*y);
+            if(x>=m)
+                x=x%m;
+        }
+        y=(y*y);
+        if(y>=m)
+            y=y%m;
+        b/=2;
+ 
+    }
+    return x;
+}
+int main()
+{
+    int t,n,m,i,j;
+    long long int num[2001],exp2_till[2001],exp5_till[2001],inverse_modulo,x,y,d;
+    long long int ncr[2001],final[2001];
+    scanf("%d",&t);
+    num[0]=1;
+    while(t--)
+    {
+        scanf("%d %d",&n,&m);
+        exp2_till[1]=0;exp5_till[1]=0;
+        x=m;
+        while(x>0&&x%2==0)
+        {
+            x=x/2;
+            exp2_till[1]++;
+        }
+        while(x>0&&x%5==0)
+        {
+            x=x/5;
+            exp5_till[1]++;
+        }
+        num[1]=x;
+        for(i=2;i<=m&&num[i-1]>0;i++)
+        {
+            x=i+m-1;
+            exp2_till[i]=exp2_till[i-1];
+            exp5_till[i]=exp5_till[i-1];
+            while(x>0&&x%2==0)
+            {
+                x=x/2;
+                exp2_till[i]++;
+            }
+            while(x>0&&x%5==0)
+            {
+                x=x/5;
+                exp5_till[i]++;
+            }
+            num[i]=(num[i-1]*x)%MOD;
+            x=i;
+            while(x>0&&x%2==0)
+            {
+                x=x/2;
+                exp2_till[i]--;
+            }
+            while(x>0&&x%5==0)
+            {
+                x=x/5;
+                exp5_till[i]--;
+            }
+            inverse_modulo=1;
+            if(x>1)
+            {
+                e_euclid(x,MOD,&d,&inverse_modulo,&y);
+            }
+            if(inverse_modulo<0)
+                inverse_modulo+=MOD;
+            num[i]=(num[i]*inverse_modulo)%MOD;
+        }
+        while(i<=m)
+        {
+            num[i]=0;
+            exp2_till[i]=0;
+            exp5_till[i]=0;
+            i++;
+        }
+        for(i=0;i<=m;i++)
+        {
+            ncr[i]=num[i]*pow_mod(2,exp2_till[i],MOD);
+            if(ncr[i]>=MOD)
+                ncr[i]=ncr[i]%MOD;
+            ncr[i]=(ncr[i])*(pow_mod(5,exp5_till[i],MOD));
+            if(ncr[i]>MOD)
+                ncr[i]=ncr[i]%MOD;
+        }
+        final[m]=ncr[m];
+        for(i=m-1;i>=0;i--)
+        {
+            final[i]=ncr[i]+final[i+1];
+            if(final[i]>=MOD)
+                final[i]=final[i]%MOD;
+ 
+        }
+        for(j=2;j<=n;j++)
+        {
+            final[m]=final[m]*ncr[m];
+            if(final[m]>=MOD)
+                final[m]=final[m]%MOD;
+            for(i=m-1;i>=0;i--)
+            {
+                final[i]=final[i]*ncr[i];
+                if(final[i]>=MOD)
+                    final[i]=final[i]%MOD;
+                final[i]=final[i]+final[i+1];
+                if(final[i]>=MOD)
+                    final[i]=final[i]%MOD;
+            }
+        }
+        printf("%lld\n",final[0]);
+    }
+    return 0;
+}
+ 

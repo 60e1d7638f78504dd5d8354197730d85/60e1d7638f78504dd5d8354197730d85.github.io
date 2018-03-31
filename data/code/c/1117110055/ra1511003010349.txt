@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <limits.h>
+#include <stdbool.h>
+ 
+#define LL long long
+#define ULL unsigned long long
+#ifndef ONLINE_JUDGE
+	#define buffer_size 1000
+#else
+	#define buffer_size 20000000
+#endif
+#define	_T for(;!((*ez1>='0'&&*ez1<='9')||*ez1=='-');ez1++);if(*ez1=='-')\
+	{wq1=-1;ez1++;}while(1){char c=*ez1;if(c<=32)return wq2*wq1;wq2=(\
+	wq2<<1)+(wq2<<3)+c-'0';ez1++;}
+#define MA(a,b) (((a)>(b))?(a):(b))
+#define MI(a,b) (((a)<(b))?(a):(b))
+ 
+char pq1[buffer_size];
+char *ez1;
+ 
+int 	sint(){int wq1=1,wq2=0;_T}
+long 	slong(){long wq1=1,wq2=0;_T}
+LL 	sLL(){LL wq1=1,wq2=0;_T}
+ULL 	sULL(){ULL wq1=1,wq2=0;_T}
+int 	sstring(char ziel[]){char *ez2=ziel;for(;ez1<pq1+buffer_size&&*ez1<\
+	33;ez1++);for(;ez1<pq1+buffer_size&&*ez1>32;*ez2++=*ez1++);*ez2='\0'\
+	;return ez1<pq1+buffer_size;}
+ 
+int main()
+{
+int N, Q, i, x, mr=0, mc=0;
+int *row, *col, *p, *q;
+char *str=(char*)malloc(12*sizeof(char));
+ 
+if(fread(pq1,1,sizeof(pq1),stdin));
+ez1=pq1;
+ 
+N=sint();
+row=(int*)calloc(N+1,sizeof(int));
+col=(int*)calloc(N+1,sizeof(int));
+ 
+for(Q=sint(); Q--;)
+	{
+	sstring(str);
+	i=sint();
+	x=sint();
+	if(*str=='R')
+		row[i]+=x;
+	else
+		col[i]+=x;
+	}
+ 
+for(q=(p=row)+N; p<q; p++)
+	if(*p>mr) mr=*p;
+for(q=(p=col)+N; p<q; p++)
+	if(*p>mc) mc=*p;
+ 
+printf("%d\n",mr+mc);
+ 
+return 0;
+}
+ 

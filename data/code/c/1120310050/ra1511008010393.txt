@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <math.h>
+int primes[7000],ptr;
+char IsPrime(int m)
+{
+  int i,sq;
+  sq=(int)sqrt(m);
+  for(i=0;primes[i]<=sq;i++)
+    if((m%primes[i])==0)
+      return 0;
+  return 1;
+}
+void FindPrimes(void)
+{
+  int m;
+  primes[0]=2;
+  ptr=1;
+  for(m=3;m<(1<<16);m+=2)
+    if(IsPrime(m))
+      primes[ptr++]=m;
+}
+int GetPrimeFactors(long long n,int a[20][2],char *multiple)
+{
+  int i,sq=(int)sqrt((float)n),nFac=0,nStart=n;
+  for(i=0;primes[i]<=sq&&i<6542;i++)
+    if((n%primes[i])==0)
+    {
+      a[nFac][0]=primes[i];
+      n/=primes[i];
+      a[nFac][1]=1;
+      while((n%primes[i])==0)
+      {
+        *multiple=1;
+        a[nFac][1]++;
+        n/=primes[i];
+        
+      }
+      nFac++;
+      sq=(int)sqrt(n);
+      
+    }
+  if(nStart!=n&&n!=1)
+  {
+    a[nFac][0]=n;
+    a[nFac++][1]=1;
+  }
+  return nFac;
+}
+long long T[32][32];
+void calculateT()
+{
+  int i,j;
+  for(i=1;i<32;i++)
+  {
+    T[i][0]=1;
+    T[i][1]=i;
+    T[1][i]=1;
+  }
+  for(i=2;i<32;i++)
+  {
+    for(j=2;j<32;j++)
+    {
+      T[i][j]=T[i-1][j]+T[i][j-1];
+    }
+  }
+}
+int Factorial[31];
+void FindFactorials(void)
+{
+  int m,fact=1;
+  Factorial[0]=1;
+  for(m=1;m<31;m++)
+  {
+    fact*=m;
+   Factorial[m]=fact;
+  }
+}
+long long C(int n,int r)
+{
+  if(n<r||n==0)
+    return 1;
+  if(r>n-r)
+    r=n-r;
+  int i;
+  long long sum=1;
+  for(i=0;i<r;i++)
+    sum=sum*(n-i);
+  for(i=2;i<=r;i++)
+    sum=sum/i;
+  return sum;
+}
+long long F(int nFac,int a[20][2])
+{
+  int i,j,lastp=0,k;
+  long long sum=0;
+  long long p[32];
+  for(i=1;i<32;i++)
+    p[i]=0;
+  p[0]=1;
+  for(i=0;i<nFac;i++)
+  {
+    for(j=lastp+a[i][1];j>0;j--)
+    {
+      if(j>lastp)
+        p[j]=0;
+      else
+       p[j]=p[j]*T[j][a[i][1]];
+      for(k=j-1;k>=j-a[i][1]&&k>=0;k--)
+        p[j]+=p[k]*C(j,j-k)*T[j][a[i][1]-j+k];
+    }
+    lastp=lastp+a[i][1];
+    p[0]=0;
+  }
+  for(i=0;i<=lastp;i++)
+    sum+=p[i];
+  return sum;
+}
+long long GetParts(long long n)
+{
+  int factors[20][2],nFac;
+  char multi=0;
+  nFac=GetPrimeFactors(n,factors,&multi);
+  return F(nFac,factors);
+}
+int main()
+{
+ int t,n;
+  calculateT();
+  FindPrimes();
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    printf("%lld\n",GetParts((long long)n+1));
+  }
+	return 0;
+}

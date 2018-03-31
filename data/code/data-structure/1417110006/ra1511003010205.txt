@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int n;
+  node *next;
+}*front,*rear;
+int main()
+{ 
+  int a,b;
+  cin>>a;
+  if(a==3||a==4)
+  {
+    cout<<"Underflow";
+  }
+    else
+    {
+      node *p=new node;
+      cin>>b;
+      p->n=b;
+      p->next=NULL;
+      front=rear=p;
+  cin>>a;
+ while(a!=0)
+ {
+   if(a==1)
+   {
+    node *p=new node;
+     cin>>b;
+     p->n=b;
+     p->next=front;
+     front=p;
+     cin>>a;
+   }
+   else if(a==2)
+   { 
+   node *p=new node;
+     cin>>b;
+     p->n=b;
+     rear->next=p;
+     rear=p;
+     cin>>a;
+   }
+   else if(a==3)
+   { if(front==NULL)
+     cout<<"Underflow";
+     else
+     {front=front->next;}
+     cin>>a;
+   }
+   else if(a==4)
+   {
+     node *p;
+     p=front;
+     while(p->next!=NULL)
+     {
+       cout<<p->n<<"->";
+       p=p->next;
+     }
+     cout<<p->n<<"->\n";
+     
+     cin>>a;
+   }
+ }
+  }
+	return 0;
+}

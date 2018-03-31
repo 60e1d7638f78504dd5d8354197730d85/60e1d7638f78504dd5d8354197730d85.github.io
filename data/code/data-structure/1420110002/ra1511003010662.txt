@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+bool comp(pair<char, int> p1, pair<char, int>p2) {
+    if(p1.second != p2.second) {
+        return p1.second < p2.second;
+    }else{
+        return p1.first > p2.first;
+    }
+}
+ 
+int main() {
+	int n;
+	cin >> n;
+	string s;
+	while(n--) {
+	    cin>>s;
+	    vector<pair<char, int>> v;
+	    int len = s.length();
+	    for(int i=0; i<26; ++i) {
+	        v.push_back(make_pair('a'+i, 0));
+	    }
+	    for(int i=0; i<len; ++i) {
+	        v[s[i]-'a'].second += 1;
+	    }
+	    sort(v.begin(), v.end(), comp);
+	    for(int i=0; i<26; ++i) {
+	        cout<<v[i].first<<" ";
+	    }
+	    cout<<endl;
+	}
+}

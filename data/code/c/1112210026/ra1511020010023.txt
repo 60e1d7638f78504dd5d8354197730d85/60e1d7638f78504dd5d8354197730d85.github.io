@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+
+    int t , n ,k , m ,r;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d %d",&n,&k);
+        if(n<k)
+        {
+            m=n;
+        }
+        else
+        {
+            if(k>n/2)
+                k=n/2+1;
+            m=n%k;
+            for(r=1;r<k;r++)
+                if(m<n%r)
+                    m=n%r;
+        }
+        printf("%d\n",m);
+    }
+	return 0;
+}

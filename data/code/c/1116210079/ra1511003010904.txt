@@ -1,0 +1,159 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+static const int sz = '0';
+static const int sp = ' ';
+static int pos = 0;
+static int len = 0;
+static char* buffer;
+#define BUF_SIZE 0x1000000
+ 
+static void read( void )
+{
+	int inc;
+	memcpy( buffer, buffer + pos, len - pos );
+	len = len - pos;
+	pos = 0;
+ 
+    inc = fread( buffer + len, 1, BUF_SIZE - len, stdin );
+    if( len )
+    {
+    	len += inc;
+    }
+}
+ 
+ 
+static int read_more( void )
+{
+    len = fread( buffer, 1, BUF_SIZE, stdin );
+    if( len )
+    {
+    	pos = 0;
+        return buffer[pos];
+    }
+    else
+    {
+    	return 0;
+    }
+}
+ 
+ 
+static int read_long_int( void ) 
+{
+	int v = 0;
+	int c = sz; 
+ 
+	if( pos + 10 < len ) {
+		do {
+			v = 10 * v + ( c - sz );
+			c = buffer[pos]; 
+			pos++;
+		} while( c >= sz );
+	} else {
+		do {
+			v = 10 * v + ( c - sz );
+			c = ( pos < len ) ? buffer[pos] : read_more(); 
+			pos++;
+		} while( c >= sz );
+	}
+	return v;
+}
+ 
+static int read_string_begin( void ) {
+	int c;
+	const int v = ( pos < len ) ? buffer[pos] : read_more(); 
+	pos+=5;
+ 
+	do {
+		c = ( pos < len ) ? buffer[pos] : read_more();
+		pos++;
+	} while( c > sp );
+ 
+	return v;
+}
+ 
+ 
+int main( int argc, char *argv[] )
+{
+        buffer = malloc( BUF_SIZE );
+	const int size  = read_long_int();
+	const int cases = read_long_int();
+        int* const row = malloc( sizeof(int) * size );
+        int* const col = malloc( sizeof(int) * size ); 
+	int i = 0;
+ 
+	// Run most of the rows without checks of available data
+	while( pos + 20 < len ) {
+		const int lnel = len - 20; 
+		register int lpos = pos;
+		register int c;
+		register int v;
+		int text;
+		int index;
+		const char* const lbuffer = buffer;
+ 
+		for( ; lpos < lnel; i++ ) {
+			text = lbuffer[lpos]; 
+			lpos += 7;
+ 
+			v = 0;
+			c = lbuffer[lpos]; 
+			lpos++;	
+			do {
+				v = 10 * v + ( c - sz );
+				c = lbuffer[lpos]; 
+				lpos++;
+			} while( c >= sz );
+			index = v;
+ 
+			v = 0;
+			c = lbuffer[lpos]; 
+			lpos++;
+			do {
+				v = 10 * v + ( c - sz );
+				c = lbuffer[lpos]; 
+				lpos++;
+			} while( c >= sz );
+ 
+			if( text == 'R' ) 
+				row[index] += v;
+			else
+				col[index] += v;
+		}
+		pos = lpos;
+		read();
+	}
+ 
+	for( ; i < cases; i++ ) {
+		const int text  = read_string_begin();
+		const int index = read_long_int();
+		const int x     = read_long_int();
+ 
+		if( text == 'R' ) 
+			row[index] += x;
+		else
+			col[index] += x;
+	}
+ 
+ 
+	{
+		int maxc = 0;
+		int maxr = 0;
+	        int rr;
+	        int cc;
+ 
+		for( i = 1; i <= size; i++ ) {
+			rr = row[i];
+			cc = col[i];
+			if( rr > maxr )
+				maxr = rr;
+			if( cc > maxc )
+				maxc = cc; 
+		}
+ 
+		printf( "%d\n", maxc + maxr );
+	}
+ 
+        return 0;
+}

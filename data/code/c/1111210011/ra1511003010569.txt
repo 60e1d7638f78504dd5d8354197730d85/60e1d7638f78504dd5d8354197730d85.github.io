@@ -1,0 +1,22 @@
+   #include<stdio.h>
+    int main()
+    {
+        int t,h1,h2,m1,m2,dist;
+        scanf("%d",&t);
+        while(t--)
+        {
+            float diff=0;
+            scanf("%d:%d %d:%d",&h1,&m1,&h2,&m2);
+            scanf("%d",&dist);
+            if(m1<m2)
+                diff=(h1-h2-1)*60+(m1+60-m2);
+            else
+				diff=(h1-h2)*60+(m1-m2);
+            printf("%0.1f ",diff+dist);
+            if(diff>=(2*dist))
+				printf("%0.1f\n",diff);
+            else 
+				printf("%0.1f\n",dist+diff/2);
+        }
+		return 0;
+    }  

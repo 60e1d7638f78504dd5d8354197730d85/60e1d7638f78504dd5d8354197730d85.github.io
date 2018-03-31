@@ -1,0 +1,75 @@
+#include <stdio.h>
+ 
+#define MOD 1000000007
+ 
+long long power(long long a,long long b)
+{
+    long long x = 1, y = a;
+    while(b > 0)
+    {
+        if(b&1)
+            x=(x*y)%MOD;
+        y = (y*y)%MOD;
+        b /= 2;
+    }
+    return x;
+}
+ 
+int main(){
+ 
+    long t;
+ 
+    scanf("%ld",&t);
+ 
+    while(t--){
+ 
+        long b,d;
+        long long i,min=0,max=0,count=0;
+ 
+        scanf("%ld %ld",&b,&d);
+ 
+        min = power(b,d-1);
+        max = power(b,d);
+ 
+        if(min > max){
+ 
+            long long tem = min;
+            min = max;
+            max = tem;
+        }
+ 
+        for(i = min; i < max ; i++){
+ 
+            if(i%d == 0){
+ 
+                long long num = i,m,n,flag=1;
+ 
+                for(m = 2; m < d;m++){
+ 
+                    for(n=d-m;n>0;n--){
+ 
+                        num = num / 10;
+                    }
+ 
+                    if(num%m != 0){
+ 
+                        flag = 0;
+                        break;
+                    }
+                }
+ 
+                if(flag)
+                    count++;
+ 
+                if(count >= MOD)count = count%MOD;
+ 
+                i += d-1;
+            }
+        }
+ 
+        printf("%lld\n",count);
+    }
+ 
+    return 0;
+}
+ 

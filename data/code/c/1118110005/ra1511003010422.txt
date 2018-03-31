@@ -1,0 +1,33 @@
+#include <stdio.h>
+struct year
+{
+  int year;
+};
+int main()
+{
+  struct year s1;
+  int cnt=0;
+  scanf("%d",&s1.year);
+  if(s1.year%4==0)
+  {
+    if(s1.year%100==0)
+    {
+      if(s1.year%400==0)
+      {
+        cnt=1;
+      }
+      else
+        cnt=0;
+    }
+    else
+      cnt=1;
+   
+  }
+  else
+    cnt=0;
+  if(cnt==0)
+    printf("%d is not a leap year",s1.year);
+  else
+    printf("%d is a leap year",s1.year);
+	return 0;
+}

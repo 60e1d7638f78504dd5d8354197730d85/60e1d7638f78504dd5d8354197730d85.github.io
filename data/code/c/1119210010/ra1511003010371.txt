@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+int arr[100],flag=0;
+  int n,i,element,pos=-1;
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+    scanf("%d",&arr[i]);
+  }
+  scanf("%d",&element);
+  for(i=0;i<n;i++){
+    if(flag==1 && arr[i]==element){
+      pos=-1;
+      break;}
+    if(arr[i]==element && flag==0){
+      pos=i;
+      flag=1;}
+  }
+  i=pos;
+  if(i!=-1){
+  while(i<n-1){
+    arr[i]=arr[i+1];
+    i++;
+  }
+  for(i=0;i<n-1;i++){
+    printf("%d\n",arr[i]);
+           }
+           
+  }
+  else
+    printf("invalidoutput");
+	return 0;
+}

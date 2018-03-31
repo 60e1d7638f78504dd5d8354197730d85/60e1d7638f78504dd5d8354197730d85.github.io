@@ -1,0 +1,41 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+
+class DecimalToOctal{
+int d;
+  int o;
+  public:
+  DecimalToOctal(int a){
+  o=a;
+  }
+  
+  void toOctal(){
+ int i=1,t=0,temp=o;
+    d=0;
+    while(temp>0){
+      t=temp%10;
+      temp/=10;
+      d+=i*t;
+    i=i*8;
+    }
+    //cout<<d;
+  }
+  
+  void disp(){
+    if(o<0)
+      cout<<"Invalid Input";
+  else
+    cout<<o<<" in octal = "<<d<<" in decimal";
+  }
+};
+
+int main()
+{
+  int n;
+  cin>>n;
+	DecimalToOctal d(n);
+  d.toOctal();
+  d.disp();
+	return 0;
+}

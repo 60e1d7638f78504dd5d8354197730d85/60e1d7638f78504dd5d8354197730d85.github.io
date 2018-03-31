@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Scanner sc=new Scanner(System.in);
+       int  times=sc.nextInt();
+       for(int i=0;i<times;i++)
+       {
+         int n=sc.nextInt();
+         int[] arr=new int[n];
+         int[] temp=new int[n];
+         int count=0,k=0;
+         for(int j=0;j<n;j++)
+         {
+           arr[j]=sc.nextInt();
+         }
+          for(int j=0;j<n;j++)
+         {
+           arr[j]=Math.abs(arr[j]);
+          }
+         Arrays.sort(arr);
+         
+         for(int j=0;j<n-1;j++)
+         {
+           if(arr[j]!=arr[j+1])
+           {
+             temp[k]=arr[j];
+             k++;
+             count++;
+           }
+         }
+         System.out.println((count+1));
+       }
+	}
+}

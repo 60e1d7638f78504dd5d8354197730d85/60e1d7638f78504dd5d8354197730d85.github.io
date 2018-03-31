@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	int t,i,j;
+  	scanf("%d",&t);
+  	int a[50];
+  	char s[50];
+  	while(t--){
+      scanf("%s",s);
+      int n=strlen(s);
+      for(i=0;i<n;i++)
+        a[i]=0;
+      int k=0;
+      for(i=0;i<n;i++){
+        for(j=0;j<n;j++){
+          if(s[i]==s[j])
+            a[i]++;
+        }
+        if((float)a[i]==(float)n/2){
+          k=1;
+          break;
+        }
+      }
+      if(k==1)
+        printf("\nYES");
+      else
+        printf("\nNO");
+    }
+	return 0;
+}

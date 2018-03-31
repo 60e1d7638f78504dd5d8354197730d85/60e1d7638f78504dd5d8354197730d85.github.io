@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<limits.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int i,l,min = INT_MAX,ind;
+  	char s[1000];
+  	scanf("%s",s);
+  	l = strlen(s);
+  	int a[26] = {0};
+  	for(i=0;i<l;i++)
+      a[s[i]-'a']++;
+  	for(i=0;i<26;i++){
+      if(a[i]){
+        if(min > a[i]){
+          min = a[i];
+          ind = i;
+        }
+      }
+    }
+  	printf("%c=%d",ind+'a',min);
+	return 0;
+}

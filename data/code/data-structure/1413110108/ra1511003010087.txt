@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+int main(){
+	int n,f=50;
+	cin>>n;
+	int x[100],v[100];
+	for(int i=0;i<n;i++)
+		cin>>x[i];
+	for(int i=0;i<n;i++)
+		cin>>v[i];
+	float l=0,r=100,mi,ma,m;
+	while(f--){
+		m=(l+r)/2;
+		mi=100; 
+		ma=-100;
+		for(int i=0;i<n;i++){
+			mi=min(mi,x[i]+v[i]*m);
+			ma=max(ma,x[i]-v[i]*m);
+		}
+		if(mi<=ma)
+			l=m;
+		else
+			r=m;
+	}
+	printf("%.6f\n",m);
+return 0;
+}

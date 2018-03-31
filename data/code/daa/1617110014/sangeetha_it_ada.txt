@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <queue>
+using namespace std;
+#define INF 1000000000000000LL
+#define lli long long int
+#define pii pair<lli,lli>
+#define MX 1002
+vector<lli>v[MX],r[MX];
+lli vis[MX],dis[MX],n,m,k,x,y,c;
+int main()
+{
+    //freopen("in1.txt","r",stdin);
+    //freopen("ou1.txt","w",stdout);
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		for(int i=0;i<MX;i++) v[i].clear(),r[i].clear();
+		memset(vis,0,sizeof(vis));
+		for(int i=0;i<MX;i++) dis[i]=INF;
+		cin>>n>>m>>k;
+		while(m--)
+		{
+			cin>>x>>y>>c;
+			v[x].push_back(y);
+			r[x].push_back(c);
+			v[y].push_back(x);
+			r[y].push_back(c);
+		}
+		priority_queue<pii,vector<pii>,greater<pii> >q;
+		q.push(pii(0,1));
+		dis[1]=0;
+		while(!q.empty())
+		{
+			pii p=q.top();q.pop();
+			lli d=p.first;
+			lli in=p.second;			
+			if(dis[in]<d) continue;
+			if(in<=k)
+			{
+				vis[in]=1;
+				for(int i=0;i<v[in].size();i++)
+				{
+					lli u=v[in][i];
+					c=r[in][i];
+					if(vis[u]==0 && dis[u]>c)
+					{
+						dis[u]=c;
+						q.push(pii(c,u));
+					}
+				}
+			}
+			else
+			{
+				for(int i=0;i<v[in].size();i++)
+				{
+					lli u=v[in][i];
+					c=r[in][i];
+					if(vis[u]==0 && dis[u]>dis[in]+c)
+					{
+						dis[u]=dis[in]+c;
+						q.push(pii(dis[u],u));
+					}
+				}
+			}
+		}
+		lli sum=0;
+		for(int i=1;i<=k;i++) sum+=dis[i];
+		cout<<sum<<"\n";	
+	}
+	return 0;
+}

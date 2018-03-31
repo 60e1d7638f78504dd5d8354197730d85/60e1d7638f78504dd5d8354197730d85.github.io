@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int i,tc,hard,tensile;
+  	float carbon;
+  	scanf("%d",&tc);
+  	for ( i=0; i< tc; i++) {
+  		scanf("%d %f %d",&hard,&carbon,&tensile);
+      	printf("Grade ");
+      	if (hard > 50 ) {
+          if ( carbon < 0.7) {
+            if ( tensile > 5600) {
+              printf("10");
+            } else {
+            	printf("9");
+            }
+          } else if ( tensile > 5600) {
+          	printf("7");
+          } else {
+          	printf("6");
+          }
+        } else if ( carbon < 0.7) {
+          if ( tensile > 5600 ) {
+          	printf("8");
+          } else {
+          	printf("6");
+          }
+        } else if ( tensile > 5600 ) {
+          printf("6");
+        } else {
+          printf("5");
+        }
+      	printf("\n");
+    }
+	return 0;
+}

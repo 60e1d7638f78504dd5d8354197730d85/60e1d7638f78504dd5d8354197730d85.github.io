@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int compare(const void *a, const void *b)
+{
+ 
+	return(*(int *)b - *(int *)a);
+ 
+}
+ 
+int main()
+{
+ 
+	int t,n,k,i,j,l;
+	int A[205];
+	long long int mod = 1000000007;
+	scanf("%d",&t);
+  if(t==0){
+    printf("%d",t);
+    }
+	else{
+	while(t--)
+	{
+		int num[205]= {0};
+		scanf("%d %d",&n,&k);
+		for(i=0;i<n;i++)
+			scanf("%d",&A[i]);
+			
+		qsort(A,n,sizeof(int),compare);
+		
+		
+		int m=0;
+		long long int temp=1;
+		//num[0] =1;
+		
+		for(i=0;i<n &&A[i]==A[0];i++);
+		
+			temp = 1;
+			for(j=1;j<=i;j++)
+				temp = (temp * j)% mod;
+			
+			num[1] = temp;
+			m += i;
+		
+		//printf("num1 = %d\n",num[1]);
+		for(;i<n;i=j)
+		{
+		
+			for(j=i+1;j<n&&A[j]==A[i];j++);
+			int n1 = j-i;
+			
+			temp =1;
+			for(l=m+1;l<m+n1;l++)
+				temp = (temp * l)%mod;
+			int r;	
+			for(r=k;r>=1;r--)
+			{
+			
+				num[r+1] = (num[r+1] + (num[r] * ((temp * n1)%mod))%mod)%mod;
+				num[r] = (num[r] * ((temp *m)%mod))%mod;
+			}
+			
+			//for(l=1;l<=k;l++)
+			//	printf("%d  ",num[l]);
+				
+			//printf("\n");
+			m +=n1;
+			
+		
+		}
+		
+		long long int ans=0;
+		
+		for(i=1;i<=k;i++)
+			ans = (ans+num[i])%mod;
+			
+		printf("%lld\n",ans);
+	
+	}}
+ 
+	return(0);
+}
+  

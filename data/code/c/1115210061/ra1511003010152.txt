@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int test;
+	scanf("%d",&test);
+	while(test--)
+	{
+	
+		char a[2000];
+		 char b[2000];
+			scanf("%s",a);	
+			scanf("%s",b);
+			int c[27];
+		 	int d[27];
+			int j;
+			for(j=0;j<27;j++)
+			{
+				c[j]=0;
+				d[j]=0;
+			}
+			int h1=strlen(a);
+			int h2=strlen(b);
+			for(j=0;j<h1;j++)
+			{
+				c[(int)a[j]-'a'+1]=1;
+			}
+			for(j=0;j<h2;j++)
+			{
+				d[(int)b[j]-'a'+1]=1;
+			}
+			int p=0;
+			for(j=1;j<=26;j++)
+			{
+				if(c[j]==1 && d[j]==1)
+					p=1;
+			}
+			if(p)
+			{
+				printf("Yes\n");
+			}
+			else
+				printf("No\n");
+		
+	}
+		return 0;
+}

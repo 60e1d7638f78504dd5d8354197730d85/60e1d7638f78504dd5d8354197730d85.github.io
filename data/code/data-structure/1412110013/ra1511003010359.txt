@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+void findprofit(int arr[],int n)
+{
+  int j=0,start,space=0;
+  while(j<n-1)
+   {  
+     if(arr[j+1]>arr[j])
+       { 
+            if(space==1)
+              cout<<" ";
+         start=j;
+         while(arr[j+1]>arr[j] && j<n-1)
+          { 
+            j++;
+            }
+         cout<<"("<<start<<" "<<j<<")";
+         space=1;
+          }
+      j++;
+     }
+  }
+int main()
+{
+  int t;
+  cin>>t;
+  for(int c=0; c<t; c++)
+  {
+    int n,arr[20];
+     cin>>n;
+    for(int i=0; i<n; i++)
+      cin>>arr[i];
+    findprofit(arr,n);
+    cout<<"\n";
+  }
+	return 0;
+}

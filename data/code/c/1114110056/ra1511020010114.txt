@@ -1,0 +1,29 @@
+#include<stdio.h>
+int T, c, d, l;
+char solve();
+
+char solve() {
+	scanf("%d%d%d", &c,&d,&l);
+  	if (l % 4) return 0;
+	l /= 4;
+	if (l > d + c) return 0;
+	if (d + c - l > 2 * d) return 0;
+	if (d + c - l > c) return 0;
+	return 1;
+}
+ 
+int main() {
+  	int T,i;
+	scanf("%d", &T);
+	while (T--)
+    {
+      i= solve();
+      if(i){
+        printf("yes\n");
+      }
+      else{
+        printf("no\n");
+      }
+    }
+      return 0;	
+}

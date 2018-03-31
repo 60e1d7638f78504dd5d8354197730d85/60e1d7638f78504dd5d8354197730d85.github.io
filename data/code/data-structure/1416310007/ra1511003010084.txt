@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int test,ar[100005]={0};
+	char str1[]="IEM";
+	char str[100008];
+	int i,j,k,l,flag=0;
+	scanf("%d",&test);
+	while(test--)
+	{
+flag=0;
+		scanf("%s",str);
+		k=strlen(str);
+		int count1=0,count2=0,count3=0;
+		if(k%3!=0)
+			printf("No\n");
+		else{
+			for(i=0;i<k;i++)
+			{
+ 
+				if(str[i]=='I')
+					count1++;
+ 
+				if(str[i]=='E'&& count1==0){
+					flag=1;					
+					break;
+				}
+				if(str[i]=='E' && count1>=1)
+					count2++;
+ 
+				if(str[i]=='M'&& (count1==0||count2==0)){
+					flag=1;
+					break;}
+				if(str[i]=='M' && count1>=1 && count2>=1)
+					count3++;
+				if(count1>=1 && count2>=1 && count3>=1)
+				{
+					count1--;
+					count2--;
+					count3--;
+				}
+ 
+			}
+			if(flag==1)
+				printf("No\n");
+			else
+				printf("Yes\n");
+		}
+	}
+	return 0;
+}

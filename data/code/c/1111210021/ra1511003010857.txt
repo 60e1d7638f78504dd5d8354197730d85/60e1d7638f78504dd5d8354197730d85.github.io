@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdio.h>
+ 
+long long int f(long long int n)
+{
+	long long int r;
+	//printf ("f: n %lld \n", n );	
+	if(n<0)
+		return 0;
+	r = (n+1)*(n+2)*(n+3);
+	return (r/6) ;
+}
+ 
+ 
+main()
+{
+	long long int tc,N,A,B,C;
+	
+	scanf("%lld",&tc);
+	while(tc--)
+	{
+		scanf("%lld%lld%lld%lld",&N,&A,&B,&C);
+		printf("%lld\n",f(N)-f(N-A-1)-f(N-B-1)-f(N-C-1)+f(N-A-B-2)+f(N-A-C-2)+f(N-C-B-2)-f(N-A-B-C-3));
+	}
+	return 0;
+}
+ 

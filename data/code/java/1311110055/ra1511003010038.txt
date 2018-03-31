@@ -1,0 +1,22 @@
+import java.util.*;
+import java.math.*;
+import java.text.DecimalFormat;
+public class TestClass
+{
+  public static void main(String[] Strings) {
+    Scanner input = new Scanner(System.in);
+    DecimalFormat numberFormat = new DecimalFormat("##.00");
+    double fahrenheit = input.nextDouble();
+    double speed = input.nextDouble();
+    input.close();
+    double WCL = calculateWindChillIndex(fahrenheit, speed);
+    System.out.println("The wind chill index is "+numberFormat.format(WCL));
+}
+private static double calculateWindChillIndex(double fahrenheit,
+        double speed) {
+    double windChillIndex = 35.74 + 0.6215 * fahrenheit - 35.75 *
+            Math.pow(speed, 0.16) + 0.4275 * fahrenheit *
+            Math.pow(speed, 0.16);
+    return windChillIndex;
+}
+}

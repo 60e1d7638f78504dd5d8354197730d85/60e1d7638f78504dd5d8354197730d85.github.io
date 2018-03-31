@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main(void) {
+  int t, n,  j,  a, b;
+  char s[20];
+  
+  scanf("%d",&t);
+  
+  while (t--) {
+    scanf("%s",s);
+    n = strlen(s);
+    a = 0;
+    b = 0;
+    for (j=0; j<n; j++) {
+      if (s[j]=='A') a++;
+      else b++;
+    }
+    if (a==2) {
+      printf("A\n");
+      continue;
+    } else if (b==2) {
+      printf("B\n");
+      continue;
+    } else if (a>=3 && b==1) {
+      if (s[2]=='B') {
+        printf("AB\n");
+        continue;
+      }
+      if (s[n-3]=='B') {
+        printf("BA\n");
+        continue;
+      }
+    } else if (b>=3 && a==1) {
+      if (s[2]=='A') {
+        printf("BA\n");
+        continue;
+      }
+      if (s[n-3]=='A') {
+        printf("AB\n");
+        continue;
+      }
+    }
+    printf("-1\n");
+  }
+	return 0;
+}
+ 

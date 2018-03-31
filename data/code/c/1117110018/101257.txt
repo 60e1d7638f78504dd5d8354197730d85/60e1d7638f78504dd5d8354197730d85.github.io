@@ -1,0 +1,41 @@
+#include <stdio.h>
+  
+int main(){
+    int rows, cols, row, col, size, isSymmetric;
+    int inputMatrix[50][50], transposeMatrix[50][50];
+     
+    //printf("Enter the size of Square Matrix\n");
+    scanf("%d", &rows);
+  scanf("%d",&cols);
+      //     printf("Enter Matrix of size %dX%d\n", rows, cols);
+          for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            scanf("%d", &inputMatrix[row][col]);
+        }
+    }
+      
+    /* Find Transpose of inputMatrix 
+ transpose[i][j] = inputMatrix[j][i] */
+    for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            transposeMatrix[col][row] = inputMatrix[row][col];
+        }
+    }
+      
+    /* Compare Input Matrix and its Transpose Matrix */
+    isSymmetric = 1;
+    for(row = 0; row < cols; row++){
+        for(col = 0; col < rows; col++){
+            if(inputMatrix[row][col] != transposeMatrix[row][col]){
+                isSymmetric = 0;
+            }
+        }
+    }
+     
+    if(isSymmetric == 1)
+        printf("Symmetric\n");
+    else
+        printf("Not Symmetric\n");
+   
+    return 0;
+}

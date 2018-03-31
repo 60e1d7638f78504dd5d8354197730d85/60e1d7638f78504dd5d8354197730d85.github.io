@@ -1,0 +1,39 @@
+#include <iostream>
+#include<ctype.h>
+using namespace std;
+int main()
+{
+  char x[100];
+  		cin.getline(x,100);
+  		int sv=0,sc=0,ss=0,sn=0;
+  		int i;
+  		for(i=0;x[i]!='\0';i++)
+        {
+          if(isalpha(x[i])) 
+             {
+               switch(x[i])
+               {
+                 case 'a' : sv++; break;
+                 case 'A' : sv++; break;
+                 case 'e' : sv++; break;
+                 case 'E' : sv++; break;
+                 case 'i' : sv++; break;
+                 case 'I' : sv++; break;
+                 case'o' : sv++; break;
+                 case 'O' : sv++; break;
+                 case 'u' : sv++; break; 
+                 case 'U' : sv++; break;
+                 default : sc++;
+               }
+             }
+            else if(isspace(x[i])) ss++;
+             else if(isdigit(x[i])) sn++;
+         }
+         cout<<"Vowels:"<<sv<<endl;
+         cout<<"Consonants:"<<sc<<endl;
+         cout<<"Whitespaces:"<<ss<<endl;
+                     cout<<"Digits:"<<sn<<endl;
+                    
+
+	return 0;
+}

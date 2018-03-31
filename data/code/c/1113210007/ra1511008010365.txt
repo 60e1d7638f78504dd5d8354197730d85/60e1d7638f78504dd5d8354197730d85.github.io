@@ -1,0 +1,55 @@
+#include <stdio.h>
+ 
+#include <math.h>
+float dist(float x, float y){
+  return(sqrt(x*x + y*y));
+}
+float max(float a,float b){
+  return(a > b ? a : b);
+}
+float min(float a,float b){
+  return(a < b? a : b);
+}
+float myfunc(float a, float b , float cx, float cy){
+  if(fabs(cx) > a || fabs(cy) > a || b > a)
+    return a;
+  else{
+    return(min(a,max(b,dist(cx,cy))));
+  }
+}
+int main(){
+  int T,r,R,N,id;
+  int i,j;
+  int loc[500][2],done[501];
+  float distance[501];
+  scanf("%d",&T);
+  for(j = 0 ; j < T ; j++){
+    
+    scanf("%d%d",&r,&R);
+    scanf("%d",&N);
+    for(i = 0 ; i < N ; i++){
+      scanf("%d%d",&loc[i][0],&loc[i][1]);
+      distance[i] = dist(loc[i][0],loc[i][1]) - r;
+      done[i] = 0;
+    }
+    distance[N] = R-r;
+    done [N] = 0;
+    while(1){
+      id = -1;
+      for(i = 0 ;i<=N; i++)
+	if(!done[i] && (id == -1 || distance[id] > distance[i]))
+	    id = i;
+      done[id] = 1;
+      if(id == N)
+	break;
+      for(i = 0 ; i < N ; i++)
+	if(!done[i]){
+	  //distance[i] = min(distance[i],max(distance[id],dist(loc[i][0] - loc[id][0],loc[i][1] - loc[id][1])));
+	  distance[i] = myfunc(distance[i],distance[id],loc[i][0] - loc[id][0],loc[i][1] - loc[id][1]);
+	}
+      distance[N] = min(distance[N],max(distance[id],R - dist(loc[id][0],loc[id][1])));
+    }
+    printf("%0.3f\n",distance[N]);
+    }
+  return 0;
+} 

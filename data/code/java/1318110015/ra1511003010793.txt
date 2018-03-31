@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+interface AdvancedArithmetic
+{
+  public int divisor_sum(int n);
+}
+class MyCalculator implements AdvancedArithmetic
+{
+   static void ImplementedInterfaceNames(Object o)
+     {
+     int i;
+        Class[] theInterfaces = o.getClass().getInterfaces();
+          for ( i = 0; i < theInterfaces.length; i++)
+            System.out.println("I implemented "+theInterfaces[i].getName());
+
+     }
+     public int divisor_sum(int n)
+     {
+       MyCalculator obj=new MyCalculator();
+       MyCalculator.ImplementedInterfaceNames(obj);
+        int s=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(n%i==0)
+            {
+            s=s+i;
+            }
+        }
+        return s;
+     }
+}  
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Scanner sc= new Scanner(System.in);
+       int num=sc.nextInt();
+      
+       MyCalculator my_calculator=new MyCalculator();
+       int result=my_calculator.divisor_sum(num);
+       System.out.println(result);
+	}
+}

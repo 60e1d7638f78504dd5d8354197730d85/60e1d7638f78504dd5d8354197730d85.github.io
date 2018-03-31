@@ -1,0 +1,21 @@
+#include <stdio.h>
+void summ(int a[],int num,int sum);
+int main()
+{
+int a[100],i,num,sum=0;
+scanf("%d",&num);
+for(i=0;i<num;i++)
+{
+  scanf("%d",&a[i]);
+}
+summ(a,num-1,sum);
+	return 0;
+}
+void summ(int a[],int num,int sum)
+{
+if(num>=0)
+{sum=sum+a[num];
+  summ(a,num-1,sum);
+} else 
+    printf("%d",sum);
+}

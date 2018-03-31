@@ -1,0 +1,23 @@
+#include <stdio.h>
+float ncr(float n,float r);
+int main()
+{
+  float n,r;
+  scanf("%f%f",&n,&r);
+  float ans = ncr(n,r);
+  printf("%0.0f",ans);
+	return 0;
+}
+float ncr(float n,float r)
+{
+  float num=1,d1=1,d2=1;
+  float i;
+  for(i = 1;i<=n;i++)
+    num=num*i;
+  for(i=1;i<=(n-r);i++)
+    d1=d1*i;
+  for(i=1;i<=r;i++)
+    d2 = d2*i;
+  num = num/(d1*d2);
+  return num;
+}

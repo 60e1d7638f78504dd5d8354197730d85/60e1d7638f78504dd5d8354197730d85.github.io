@@ -1,0 +1,40 @@
+#include<stdio.h>
+ 
+int sum=0;
+int recur(n)
+{
+if(n==1) return 2;
+if(n==2) return 5;
+ if(n%2==1) sum=2*recur(n/2);
+ else sum=recur(n/2-1)+recur(n/2);
+ return sum;
+}
+int main()
+{
+int min[35],max,t,n,k,i;
+scanf("%d",&t);
+while(t--)
+{sum=0;
+scanf("%d %d",&n,&k);
+min[1]=2;min[2]=5;
+for(i=3;i<=34;i++)
+{
+  if(i%2==0)
+  {
+     min[i]=(i+1)+min[i/2]+min[i/2-1];
+     
+  }
+  else
+  {
+    min[i]=(i+1)+min[i/2]+min[i/2];
+  }
+}
+max=((n+1)*(n+2))/2-1;
+if(k<min[n])
+printf("-1\n");
+else if(k>max) printf("%d\n",k-max);
+else printf("0\n");
+ 
+}
+return 0;
+} 

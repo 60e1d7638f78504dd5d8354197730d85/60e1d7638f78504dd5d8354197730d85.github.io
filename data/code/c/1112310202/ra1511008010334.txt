@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define true 1
+#define false 0
+#define max 2005
+struct node {
+    int x;
+    int y;
+};
+int sort(const void *a, const void*b) {
+    struct node *ax = (struct node *) a;
+    struct node *ay= (struct node *) b;
+	int distance = ax->x - ay->x;
+	if(distance != false ){
+        return distance;}
+    else
+        return ax->y - ay->y;
+}
+int main() {
+    int i,j,x1,x2,y1,y2,diff1,diff2,n;
+    struct node a[2005];
+        scanf("%d",&n);
+        //ans=0;
+        for(i=0;i<n;i++)
+        scanf("%d%d",&a[i].x,&a[i].y);
+        if(n<3)
+            printf("%d",4-n);
+        else{
+        qsort(a,n,sizeof(struct node),sort);
+        int c1,c2,c3,c4,c=2;
+        c1=0,c2=0,c3=0,c4=0;
+        for(i=0;i<n;i++) {
+                 c1=0,c2=0,c3=0,c4=0;
+            for(j=i+1;j<n;j++) {
+                 x1=a[i].x;
+                 y1=a[i].y;
+                 x2=a[j].x;
+                 y2=a[j].y;
+                 diff1=x2-x1;
+                 diff2=y2-y1;
+                struct node pt1;
+                pt1.x=x1+diff2;
+                pt1.y=y1-diff1;
+                struct node pt2;
+                pt2.x=x2+diff2;
+                pt2.y=y2-diff1;
+                struct node pt3;
+                pt3.x=x1-diff2;
+                pt3.y=y1+diff1;
+                struct node pt4;
+                pt4.x=x2-diff2;
+                pt4.y=y2+diff1;
+                if(bsearch(&pt1,a,n,sizeof(struct node),sort)) {
+                    c1=1;
+                }
+                if(bsearch(&pt2,a,n,sizeof(struct node),sort)) {
+                    c2=1;
+                }
+                if(bsearch(&pt3,a,n,sizeof(struct node),sort)) {
+                    c3=1;
+                }
+                if(bsearch(&pt4,a,n,sizeof(struct node),sort)) {
+                    c4=1;
+                }
+                if((c1==1&&c2==1)||(c3==1&&c4==1)){
+                    printf("0");
+                    return 0;}
+                    if(c1==1||c2==1||c3==1||c4==1)
+                        c=1;
+            }
+        }
+        printf("%d",c);
+        }
+    return 0;
+}

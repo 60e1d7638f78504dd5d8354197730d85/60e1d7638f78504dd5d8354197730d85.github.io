@@ -1,0 +1,24 @@
+#include<stdio.h>
+#define N 1000000007
+int main()
+{
+    long long int a[3],sort;
+    int t,i,k,j;
+    scanf("%d",&t);
+    for(i=1;i<=t;i++)
+    {
+        for(j=0;j<3;j++)
+            scanf("%lld",&(a[j]));
+        for(j=0;j<2;j++)
+            for(k=0;k<2;k++)
+                if(a[k]>a[k+1])
+                {
+                    sort=a[k];
+                    a[k]=a[k+1];
+                    a[k+1]=sort;
+                }
+       sort = ((((a[0]%N)*((a[1]-1)%N))%N)*((a[2]-2)%N))%N;
+        printf("%lld\n",sort);
+    }
+  return 0;
+} 

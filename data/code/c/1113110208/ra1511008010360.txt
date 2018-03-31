@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+long int ans,a[45];
+long int answer(long int x,long int k,long int max)
+{
+  
+  if(k<x)
+  {
+    long int maxi,mini;
+    mini=x/k;
+    if(x%k!=0)
+    {
+      mini++;
+    }
+    maxi=x-k+1;
+    if(maxi>max)
+    {
+      maxi=max;
+    }
+    long int i=0;
+    for(i=1;i<45;i++)
+    {
+      if(a[i]>=mini)
+      {
+        break;
+      }
+    }
+    while(a[i]<=maxi)
+    {
+      answer(x-a[i],k-1,a[i]);
+      i++;
+      
+    }
+  }
+  else if(k==1||x==k)
+  {
+    long int pp;
+    pp=x;
+    long int sq,sq1,sq2,sq3,yes=0;
+    sq1=5*pp*pp+4;
+    sq2=5*pp*pp-4;
+    sq=sqrt((double)sq1);
+    sq3=sqrt((double)sq2);
+    if(sq*sq==sq1 || sq3*sq3==sq2)
+    {
+      yes=1;
+    }
+    else
+    {
+      yes=0;
+    }
+    if(x==k)
+    {
+      ans=(ans+1)%1000000007;
+    }
+    else if(k==1 && yes==1)
+    {
+      ans=(ans+1)%1000000007;
+    }
+  }
+  //printf("ans-%ld",ans);
+  return ans;
+}
+void initialize()
+{
+  a[1]=1;
+  a[2]=2;
+  long long i;
+  for(i=3;i<45;i++)
+  {
+    a[i]=a[i-1]+a[i-2];
+  }
+}
+int main()
+{
+  initialize();
+  long int t,x,k;
+  scanf("%ld",&t);
+  while(t--)
+  {
+    ans=0;
+    int d=0;
+    scanf("%ld %ld",&x,&k);
+    if(k>0)
+    {
+  answer(x,k,x-k+1);
+    }
+    //if(k==0)
+     // printf("%d",d);
+  long int answer1;
+    answer1=ans;
+    printf("%ld\n",answer1);
+  }
+  return 0;
+}

@@ -1,0 +1,27 @@
+#include<stdio.h>
+#define MOD 1000000007
+ 
+int main()
+{
+        long long A[1001][1001]={0},ans[1001]={0};
+        int t,n,i,j;
+        scanf("%d",&t);
+        A[0][0]=1;
+        for(i=1;i<1000;i++)
+        {
+ 	for(j=0;j<=i;j++)
+                {
+                	if(j==0)
+                        A[i][j]=A[i-1][i-1];
+                	else
+                        A[i][j] =(A[i][j-1] + A[i-1][j-1])%MOD;
+                }        
+        }
+	
+        while(t--)
+        {
+                scanf("%d",&n);
+                printf("%Ld\n",(A[n-1][n-1])%MOD);
+        }
+        return 0;
+} 

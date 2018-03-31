@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int N = 1510;
+const ll M = 1000000007;
+vector<pair<int, pair<int, int> > > adj;
+vector<int> p(N);
+ 
+int get_parent(int n)
+{
+  while (n != p[n])
+  {
+    p[n] = p[p[n]];
+    n = p[n];
+  }
+  return n;
+}
+ 
+int main()
+{
+  int t;
+  scanf("%d", &t);
+  while (t--)
+  {
+    int n, m;
+    scanf("%d %d", &n, &m);
+    int i;
+    for (i = 1; i <= n; i++)
+    p[i] = i;
+    for (i = 0; i < m; i++)
+    {
+      int a, b, c;
+      scanf("%d %d %d", &a, &b, &c);
+      adj.push_back({c, {a, b}});
+    }
+    sort(adj.begin(), adj.end());
+    ll cnt = 1;
+    for (i = 0; i < m; i++)
+    {
+      int x = get_parent(adj[i].second.first), y = get_parent(adj[i].second.second);
+      if (x != y)
+      {
+        p[x] = y;
+        cnt = (cnt*(ll)adj[i].first)%M;
+      }
+    }
+    printf("%lld\n", cnt);
+    adj.clear();
+  }
+ 
+  return 0;
+}

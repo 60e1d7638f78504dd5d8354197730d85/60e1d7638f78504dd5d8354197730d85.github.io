@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,c,d,num,den,div,i;
+  	scanf("%d %d %d %d", &a, &b, &c, &d);
+  	num = (d*a) + (b*c);
+  	den = b * d;
+  	if(num > den){
+      div = den;
+    }else{
+      div = num;
+    }
+  	for(i = div; i>0; i--){
+      if(num % i == 0 && den % i == 0){
+        num = num / i;
+        den = den / i;
+      }
+    }
+  	printf("%d %d", num, den);
+	return 0;
+}

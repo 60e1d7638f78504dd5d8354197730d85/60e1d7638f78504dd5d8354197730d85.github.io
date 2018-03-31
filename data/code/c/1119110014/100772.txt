@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+int a[10],num,i,n,found=0,pos=-1;
+  int *pnum=&num;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",(a+i));
+  scanf("%d",pnum);
+  for(i=0;i<n;i++)
+  {
+    if(*(a+i)==*pnum)
+    {
+      found=-1;
+      pos=i;
+      printf("\n%d is found in the array at position=%d",*pnum,i);
+      break;
+    }
+  }
+  if(found==0)
+    printf("\n%d Does not exist in the array",num);
+  	return 0;
+}

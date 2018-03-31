@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+class Money
+{
+long int Rs;
+int paise;
+public:
+Money()
+{
+Rs=0;
+paise=0;
+}
+void get()
+{
+cin>>Rs;
+cin>>paise;
+}
+void operator+=(Money &t)
+{
+Rs+=t.Rs;
+paise+=t.paise;
+}
+void operator-=(Money &t)
+{
+Rs-=t.Rs;
+paise-=t.paise;
+cout<<"\nRs="<<Rs<<" and "<<paise<<" Paise";
+}
+void put()
+{
+  cout<<"\nRs="<<Rs<<" and "<<paise;
+}
+};
+int main()
+{
+Money c1,c2,c3;
+c1.get();
+c2.get();
+  c3.get();
+c1+=c2;
+c1-=c3;
+}

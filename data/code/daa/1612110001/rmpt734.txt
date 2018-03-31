@@ -1,0 +1,32 @@
+#include <stdio.h>
+struct stud
+{
+  char sname[20];
+  int id;
+}s[20];
+int main()
+{
+	int i,j,k,n;
+  	struct stud t;
+  	scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",s[i].sname);
+    scanf("%d",&s[i].id);
+  }
+  printf("After sorting");
+  printf("\nName ID");
+  for(i=1;i<n;i++)
+    for(j=0;j<n-i;j++)
+    {
+      if(strcmp(s[j].sname,s[j+1].sname)>0)
+      {
+        t=s[j];
+      	s[j]=s[j+1];
+        s[j+1]=t;
+      }
+    }
+  for(i=0;i<n;i++)
+    printf("\n%s %d",s[i].sname,s[i].id);
+	return 0;
+}

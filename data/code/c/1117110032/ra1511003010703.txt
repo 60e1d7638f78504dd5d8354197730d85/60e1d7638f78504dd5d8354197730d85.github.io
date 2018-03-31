@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int n, i, arr[1000], max=-9999, freq[1000]={0};
+  	scanf("%d", &n);
+  	for (i=0; i<n; i++)
+      scanf("%d", &arr[i]);
+  	for (i=0; i<n; i++) {
+      freq[arr[i]]+=1;
+    }
+  	for (i=0; i<n; i++) {
+      if (freq[arr[i]] > max)
+        max = freq[arr[i]];
+    }
+  if (max == 1)
+    printf("none");
+  else {
+    for (i=0; i<n ;i++) {
+      if (freq[arr[i]] == max)
+        printf("Mode=%d", arr[i]);
+      	break;
+    }
+  }
+	return 0;
+}

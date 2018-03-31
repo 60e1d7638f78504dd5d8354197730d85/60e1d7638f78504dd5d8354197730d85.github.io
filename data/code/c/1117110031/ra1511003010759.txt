@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main()
+{
+    int array[3][3], n;
+    int row, col, isUpper;
+
+    /* Input elements in matrix from user */
+    //printf("Enter elements in matrix of size %dx%d: \n", MAX_ROWS, MAX_COLS);
+  
+  scanf("%d", &n);
+  
+    for(row=0; row<n; row++)
+    {
+        for(col=0; col<n; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    
+    /* Check Upper triangular matrix condition */
+    isUpper = 1;
+    for(row=0; row<n; row++)
+    {
+        for(col=0; col<n; col++)
+        {
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    
+    /* Print elements of upper triangular matrix  */
+    if(isUpper == 1)
+    {
+        printf("yes\n");
+    }
+    else
+    {
+        printf("no\n");
+    }
+
+    return 0;
+}

@@ -1,0 +1,26 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass {
+	public static void main (String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int t = sc.nextInt();
+	    for(int z=0;z<t;z++){
+	        int n = sc.nextInt();
+	        int[] arr = new int[n];
+	        
+	        for(int i=0;i<n;i++){
+	            arr[i]=sc.nextInt();
+	        }
+	        int m = sc.nextInt();
+	        Arrays.sort(arr);
+	        int diff = Integer.MAX_VALUE;
+	        for(int i=0;i<=n-m;i++){
+	            if((arr[i+m-1]-arr[i])<diff){diff=arr[i+m-1]-arr[i];}
+	            	        }
+	        System.out.println(diff);
+	    }
+	
+	}
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+int n,m=0,i,j,k,ll=0,l=0,flag=0;
+  scanf("%d",&n);
+  int a[n];
+  for(i=2;i<n;i++)
+  {
+    k=sqrt(i);
+    flag=0;
+    for(j=2;j<=k;j++)
+    {
+      if(i%j==0)      
+       {
+        flag=1;
+        break;
+       } 
+    }
+    if(flag==0)
+    {
+      a[ll]=i;   
+      ll=ll+1;
+    }
+    
+  }
+  
+  for(i=0;i<=ll;i++)
+  {
+  	for(j=ll-1;j>=ll/2;j--)
+     {
+      if((a[i]+a[j])==n)
+      {
+      printf("%d = %d + %d\n",n,a[i],a[j]);
+        l=l+1;
+      }
+     }
+  }
+  if(l==0)
+    printf("NOT");
+	return 0;
+}

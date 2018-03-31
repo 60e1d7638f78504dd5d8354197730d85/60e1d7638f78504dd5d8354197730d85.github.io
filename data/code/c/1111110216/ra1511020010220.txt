@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main() {
+    int T=1,t,a,b;
+    
+    t=T;
+    int a1[T];
+    long long a2[T];
+    while(T--){
+        scanf("%d %d",&a,&b);
+        int gc;
+        if(a>b)gc=b;
+        else gc=a;
+        while(1){
+            if(a%gc==0 && b%gc==0)break;
+            else gc--;
+        }
+        a1[T]=gc;
+        a2[T]=((long long)a)*((long long)b)/((long long)gc);
+    }
+    while(t--){
+        printf("GCD=%d\nLCM=%lld\n",a1[t],a2[t]);
+    }
+    return 0;
+}
+ 

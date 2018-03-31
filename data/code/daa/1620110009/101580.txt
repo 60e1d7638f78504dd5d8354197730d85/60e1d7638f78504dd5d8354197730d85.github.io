@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void display(int A[],int x)
+{
+  for(int i=0;i<x;i++)
+    cout<<A[i]<<" ";
+  cout<<endl;
+}
+void fn(int n,int sum,int A[],int x)
+{
+  if(sum>n)
+    return;
+  if(sum==n){
+    display(A,x);
+    return;
+  }
+  for(int i=1;i<=3;i++)
+  {
+    A[x]=i;
+    x++;
+    sum+=i;
+    fn(n,sum,A,x);
+    x--;
+    sum-=i;
+  } 
+}
+int main()
+{
+int n,A[100];
+  cin>>n;
+  cout<<"Different compositions formed by 1, 2 and 3 of "<<n<<" are\n";
+  fn(n,0,A,0);
+	return 0;
+}
+
+
+
+

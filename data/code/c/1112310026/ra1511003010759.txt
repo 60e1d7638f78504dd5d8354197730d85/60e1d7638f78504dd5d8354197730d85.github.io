@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  int n,q, i;
+  int a[100000]={0};
+  
+  scanf("%d %d", &n, &q);
+  
+  if(n==0)
+  {
+    printf("0");
+    return 0;
+  }
+  
+  for(i=1; i<=q; i++)
+  {
+    int proto, A, B, count;
+    int j;
+    
+    scanf("%d %d %d", &proto, &A, &B);
+    
+    if(proto==0)
+    {
+      for(j=A; j<=B; j++)
+      {
+        a[j]++;
+      }
+    }
+    else if(proto=1)
+    {
+      count=0;
+      for(j=A; j<=B; j++)
+      {
+        if(a[j]%3==0)
+          count++;
+      }
+      printf("%d\n", count);
+    }
+  }
+
+	return 0;
+}

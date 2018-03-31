@@ -1,0 +1,79 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+using namespace std;
+ 
+string s;
+ 
+vector<unsigned long long> qp;
+vector<unsigned long long> qm;
+long long st;
+ 
+template<unsigned N> 
+static inline void work() {
+    if (s[N - 1] == '1') {
+        int np = qp.size();
+        int nm = qm.size();
+        for (int i = 0; i < np; ++i) {
+            unsigned long long r = qp[i] / N;
+            if (r) {
+                st += ((long long)r);
+                qm.push_back(r);
+            }
+        }
+        for (int i = 0; i < nm; ++i) {
+            unsigned long long r = qm[i] / N;
+            if (r) {
+                st -= ((long long)r);
+                qp.push_back(r);
+            }
+        }
+    }
+}
+ 
+unsigned long long count(unsigned long long v) {
+    st = 0;
+    qp.clear();
+    qm.clear();
+    qp.push_back(v);
+    
+    work<37>();
+    work<31>();
+    work<29>();
+    work<23>();
+    work<19>();
+    work<17>();
+    work<13>();
+    work<11>();
+    work<7>();
+    work<5>();
+    work<3>();
+    work<2>();
+     
+    return st;
+}
+ 
+int main() {
+    cin.tie(0);
+    ios_base::sync_with_stdio(0);
+    
+    int T;
+    cin >> T; 
+    while (T--) {
+        cin >> s;
+        long long k;
+        cin >> k;
+                
+        long long l = k;
+        long long r = 37 * k;
+        while (l + 1 < r) {
+            long long m = (l + r) / 2;
+            if (count(m) >= k) 
+                r = m;
+            else 
+                l = m;
+        }
+        cout << r << '\n';
+    }
+}

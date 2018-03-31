@@ -1,0 +1,28 @@
+import java.util.*;
+ class TestClass {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int size = scanner.nextInt();
+
+        for (int testcase = 0; testcase < size; testcase++) {
+            int numOfDays = scanner.nextInt();
+            int[] prices = new int[numOfDays];
+            for (int j = 0; j < numOfDays; j++) {
+                prices[j] = scanner.nextInt();
+            }
+            long ans = 0;
+            for(int i = 0; i < numOfDays ; i++){
+                int maxprice = 0;
+                for(int j = i; j < numOfDays; j++){
+                    if(prices[j] > maxprice){
+                        maxprice = prices[j];
+                    }
+                }
+                ans = ans + (maxprice - prices[i]);
+            }
+            System.out.println(ans);
+        }
+        
+    }
+}

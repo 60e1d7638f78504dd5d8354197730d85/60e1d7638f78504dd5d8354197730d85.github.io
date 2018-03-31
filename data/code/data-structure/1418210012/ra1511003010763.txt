@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct topics
+{
+     long long int id;
+     long long int z;
+     long long int p;
+     long long int l;
+     long long int c;
+     long long int s;
+     long long int d;
+    bool operator < (topics x) const
+    {
+        if(d==x.d)
+        {
+            return(id<x.id);
+        }
+         return d<x.d;
+    }
+};
+int main()
+{
+    long long int t;
+    scanf("%lld",&t);
+    priority_queue<topics>A;
+    while(t--)
+    {
+        topics k;
+        //char id[1000];
+        long long int a;
+        scanf(" %lld %lld %lld %lld %lld %lld",&k.id,&k.z,&k.p,&k.l,&k.c,&k.s);
+         a=abs(k.z-((k.p*50)+(k.l*5)+(k.c*10)+(k.s*20)));
+        k.d=a;
+        A.push(k);
+ 
+    }
+    long long int j=0;
+    while(1)
+    {
+      topics k=A.top();
+      A.pop();
+      printf("%lld %lld\n",k.id,((k.p*50)+(k.l*5)+(k.c*10)+(k.s*20)));
+      j++;
+      if(j==5)
+      {
+          break;
+      }
+    }
+    return 0;
+}

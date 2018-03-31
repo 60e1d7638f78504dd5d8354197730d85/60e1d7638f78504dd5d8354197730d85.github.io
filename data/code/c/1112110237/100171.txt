@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+int t, n, i, flag;
+    scanf("%d", &t);
+     while(t--)
+    {
+        scanf("%d", &n);
+        long a[n], time;
+        scanf("%ld", &a[0]);
+        time = a[0];
+        for(i = 1; i < n; i++){
+            scanf("%ld", &a[i]);
+            if(a[i] < time)
+                time = a[i];
+        }
+         flag = 0;
+         while(flag != 2)
+        {
+            flag = 0;
+             for(i = 0; i < n; i++)
+            {
+                if(time % a[i] == 0)
+                    flag++;
+                 if(flag == 2)
+                    break;
+             }
+            if(flag != 2)
+                time++;
+         }
+         printf("%ld\n", time);
+    }
+ 	return 0;
+}

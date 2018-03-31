@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+    int min,n,a, i, j, k, count;
+    scanf("%d%d", &n, &k);
+    int *p = (int *)malloc(sizeof(int)*n);
+    for(i=0; i<n; i++)
+       {
+        scanf("%d", &p[i]);
+    }
+    count = 0;
+    a = 0;
+    for(i=0;i<n-1;i++)
+       {
+              min = i;            
+              for(j=i+1;j<n;j++)
+              {
+                     if(p[min]>p[j])
+                     {
+                           min = j;
+                     }
+              }
+              if(min != i)
+              {
+                     j = min;
+                     p[i] = p[i] + p[j];
+              p[j] = p[i] - p[j];
+              p[i] = p[i] - p[j];
+              }
+              if(count + p[i] <= k)
+       {
+              count = count + p[i];
+              a++;
+       }
+       else
+       {
+              i = n;
+       }
+       }
+    printf("%d\n",a);
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char s[30];
+int i,j;
+    scanf("%s",s);
+if(strcmp(s,"bob")==0)
+printf("TAK");
+else
+{
+    int len=strlen(s);
+    char c[19][2]={'A','A','b','d','d','b','H','H','I','I','M','M','O','O','o',
+    'o','p','q','q','p','U','U','V','V','v','v','W','W','w','w','X','X','x','x','Y','Y','T','T'};
+    int flag=0;
+    for(i=0;i<=len/2;i++)
+    {
+        int fg=0;
+        for(j=0;j<19;j++)
+        {
+            if(s[i]==c[j][0]&&s[len-i-1]==c[j][1])
+            {
+                fg=1;
+                break;
+            }
+        }
+        if(fg==0)
+        {
+            printf("NIE");
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0) printf("TAK");
+}
+    return 0;
+}

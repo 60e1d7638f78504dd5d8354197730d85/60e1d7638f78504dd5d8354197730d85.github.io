@@ -1,0 +1,38 @@
+#include <stdio.h>
+long max(long x,long y)
+{
+    if(x>y)
+    return x;
+    else
+    return y;
+}
+int main(void) {
+	int T,t,n,i,cnt=0;
+	long ans=0;
+	scanf("%d",&T);
+	for(t=0;t<T;t++)
+	{
+	    scanf("%d",&n);
+	    char s1[n],s2[n];
+	    scanf("%s",s1);
+	    scanf("%s",s2);
+	    long a[n+1];
+	    for(i=0;i<n+1;i++)
+	    scanf("%ld",&a[i]);
+	    for(i=0;i<n;i++)
+	    {
+	        if(s1[i]==s2[i])
+	        cnt++;
+	    }
+	    if(cnt==n)
+	    {printf("%ld\n",a[cnt]);}
+	    else
+	    {
+	        for(i=0;i<=cnt;++i)
+	        {ans=max(ans,a[i]);}
+	        printf("%ld\n",ans);
+	    }
+	    cnt=0,ans=0;
+	}
+	return 0;
+}

@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+class item{
+  private : int noofitems , item_code[20] ;
+  	float price[20] ;
+  public :
+  	void initialize(){
+      cin >> noofitems ;
+      for ( int i=0 ; i<noofitems ; i++ )
+        cin >> item_code[i] >> price[i] ;
+    }
+  	float largest(){
+      float max = price[0] ;
+      for (int i=1 ; i<noofitems ; i++ )
+        if ( price[i] > max )
+          max = price[i] ;
+      return max ;
+    }
+  	float sum(){
+      float sum1=0 ;
+      for ( int i=0 ; i<noofitems ; i++ )
+        sum1+=price[i] ;
+      return sum1 ;
+    }
+  	void displayitems(){
+      for ( int i=0 ; i<noofitems ; i++ )
+        cout << item_code[i] << " and " << price[i] << endl ;
+    }
+  	int say(){
+      return noofitems ;
+    }
+} ;
+  
+  	
+int main()
+{
+  	float a , b ;
+	item it ;
+  	it.initialize() ;
+  	if ( it.say() >= 10 )
+      cout << "Sorry.Items should be less than 10" ;
+  	else{
+  		a = it.largest() ;
+  		b = it.sum() ;
+  		cout << "Largest Price=" << a << endl ;
+  		cout << "Sum of Prices=" << b << endl ;
+  		cout << "Code and Price" << endl ;
+  		it.displayitems() ;
+    }
+	return 0;
+}

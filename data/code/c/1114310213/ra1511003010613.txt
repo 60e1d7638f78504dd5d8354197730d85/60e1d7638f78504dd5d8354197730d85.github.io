@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    long long int n,a,b,g,i,j,k,s,t,h;
+    h=0;
+    s=0;
+    t=1;
+    scanf("%lld %lld %lld %lld",&n,&a,&b,&g);
+    long long int array[n];
+    for(i=1;i<=n;i++)
+    { s=s+t*9;
+        t=t*10;
+    }
+    for(i=0;i<=s;i++)
+    {   k=i;
+        for(j=n-1;j>=0;j--)
+    {
+        array[j]=k%10;
+        k=k/10;
+    }
+    for(j=0;j<=n-1;j++)
+    {
+        h=(h*a+array[j])%b;
+    }
+    if(h==g)
+    {
+        for(j=0;j<=n-1;j++)
+        {
+            printf("%lld",array[j]);
+        }
+        break;
+    }
+    else{h=0;}
+ 
+    }
+    return 0;
+ 
+}
+ 

@@ -1,0 +1,31 @@
+#include <stdio.h>
+void replaceAll(char * str, char oldChar, char newChar);
+int main()
+{
+    char str[100], oldChar, newChar;
+    fgets(str,sizeof str,stdin);
+    oldChar = getchar();
+
+    getchar();
+
+    newChar = getchar();
+
+    replaceAll(str, oldChar, newChar);
+
+    printf("%s", str);
+
+    return 0;
+}
+void replaceAll(char * str, char oldChar, char newChar)
+{
+    int i = 0;
+    while(str[i] != '\0')
+    {
+        if(str[i] == oldChar)
+        {
+            str[i] = newChar;
+        }
+
+        i++;
+    }
+}

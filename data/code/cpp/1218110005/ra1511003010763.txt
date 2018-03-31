@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+class Rectangle
+{public:
+       float length, breadth;
+    public:
+        Rectangle(): length(0.0), breadth(0.0)
+        {
+        }
+        Rectangle(Rectangle& o): length(o.length), breadth(o.breadth)
+        {
+        }
+
+};
+
+
+/* Area class is derived from base class Rectangle. */
+
+class Area : public Rectangle   
+{
+    public:
+       float calc()
+         {
+             return length*breadth;
+         }
+
+};
+
+class Perimeter : public Rectangle
+{
+    public:
+       float calc()
+         {
+             return 2*(length+breadth);
+         }
+};
+
+int main()
+{
+  float l,b;
+  cin >> l >> b;
+     Area a;
+  a.length=l;
+  a.breadth=b;
+     cout<<a.calc()<<"\n";
+     Perimeter p;
+    p.length=a.length;
+    p.breadth=a.breadth;
+     cout<<p.calc();
+     return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+typedef struct
+{
+  int hours;
+  int minutes;
+  int seconds; 
+} Time;
+
+Time calculateTimeDiff(Time time1, Time time2)
+{
+    Time result;
+    result.hours = time2.hours + time1.hours;
+    result.minutes = time2.minutes + time1.minutes;
+    result.seconds = time2.seconds + time1.seconds;
+
+    return result;
+}
+
+int main(void)
+{
+
+    Time firstTime;
+    Time secondTime;
+
+    scanf("%d %d %d", &firstTime.hours, &firstTime.minutes, &firstTime.seconds);
+
+    scanf("%d %d %d", &secondTime.hours, &secondTime.minutes, &secondTime.seconds);
+
+    Time result = calculateTimeDiff(firstTime, secondTime);
+  
+    printf("%d hrs\n", result.hours);
+    printf("%d min\n", result.minutes);
+    printf("%d sec\n", result.seconds);
+
+    return 0;
+}

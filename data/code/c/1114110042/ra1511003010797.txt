@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+	int n,small,i,temp,m,big,hcf=1;
+  	scanf("%d",&n);
+  	scanf("%d",&m);
+  	if(n<m)
+    { 
+      small =n;
+      big = m;
+    }
+  	else
+    { 
+      small = m;
+      big = n;
+    }
+  	
+ 	if(big%small == 0)
+    {
+      hcf = small;
+    }
+  	else
+    {
+  		for(i=1;i<small;i++)
+    	{
+      		if(small%i == 0 && big%i == 0)
+      		{
+        		hcf = i;
+      		}
+    	}
+    }
+  	printf("%d",n*m/hcf);
+	return 0;
+}

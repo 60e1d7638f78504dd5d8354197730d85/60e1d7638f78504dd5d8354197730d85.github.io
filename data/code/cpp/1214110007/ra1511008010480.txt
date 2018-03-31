@@ -1,0 +1,48 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+class Tollbooth {
+	int totalCarPassed;
+  	int totalTollCollected;
+  	public:
+  	  Tollbooth();
+  	  void payingCar(int);
+  	  void nonPayingCar();
+  	  void display();
+};
+
+Tollbooth :: Tollbooth() {
+	totalCarPassed = 0;
+  	totalTollCollected = 0;
+}
+
+void Tollbooth :: payingCar(int amt) {
+	totalCarPassed++;
+  	totalTollCollected += amt;
+}
+
+void Tollbooth :: nonPayingCar() {
+	totalCarPassed++;
+}
+
+void Tollbooth :: display() {
+	cout<<"Total number of cars passed="<<totalCarPassed<<endl;
+  	cout<<"Total amount collected="<<totalTollCollected<<endl;
+}
+
+int main()
+{
+  	int val;
+  	cin>>val;
+  	Tollbooth booth1;
+  	while(val--) {
+    	string carNumber;
+      	int amt;
+      	cin>>carNumber>>amt;
+      	if(amt == 0) booth1.nonPayingCar();
+      	else booth1.payingCar(amt);
+    }
+  	booth1.display();
+	return 0;
+}

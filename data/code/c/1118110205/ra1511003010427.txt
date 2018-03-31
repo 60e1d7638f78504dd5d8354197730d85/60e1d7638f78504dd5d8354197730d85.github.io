@@ -1,0 +1,38 @@
+#include<stdio.h>
+struct time
+{
+ 	int hours,minutes,seconds;
+};
+int main()
+{
+ 	struct time tf;
+  	scanf("%d%d%d",&tf.hours,&tf.minutes,&tf.seconds);
+  	if(tf.minutes>59 || tf.hours>24 || tf.seconds>59 || (tf.hours==24 && tf.minutes!=0) || (tf.hours==24 && tf.seconds!=0))
+    {
+  		printf("Invalid Time\n");
+    }
+  	else
+    {
+     	printf("24 Hours Format");
+      	printf("\n%d:%d:%02d",tf.hours,tf.minutes,tf.seconds);
+      	if(tf.hours==0 || tf.hours==24)
+        {
+         	printf("\n12 Hours Format");
+        	printf("\n12:0:0 am");
+        }
+      	else if(tf.hours>=1 && tf.hours<=11)
+        {
+         	 printf("\n12 Hours Format");
+          	 printf("\n%d:%d:%02d am",tf.hours,tf.minutes,tf.seconds);
+        }
+      	else if(tf.hours>=12 && tf.hours<=23)
+        {
+         	 printf("\n12 Hours Format");
+          	 printf("\n%d:%d:%02d pm",tf.hours-12,tf.minutes,tf.seconds);
+        }
+      
+    }
+  return 0;
+  	
+}
+  

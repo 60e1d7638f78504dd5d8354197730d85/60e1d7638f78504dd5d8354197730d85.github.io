@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int scan_positive_int(int *a)
+{
+    int x=0;
+    register int c=getchar_unlocked();
+    for(; c>47 && c<58 ; c = getchar_unlocked())
+    {
+        x = (x<<1) + (x<<3) + c - 48;
+    }
+    *a=x;
+}
+ 
+int main(void)
+{
+	int T;
+	scan_positive_int(&T);
+	while(T--)
+	{
+		int N,M,i,j,a[1000001]={0},temp,c=0;
+		scan_positive_int(&N);scan_positive_int(&M);
+		for(i=0;i<N;i++)
+		{
+			scan_positive_int(&temp);
+			a[temp]=1;
+		}
+		for(j=0;j<M;j++)
+		{
+			scan_positive_int(&temp);
+			if(a[temp]==1)
+				c++;
+		}
+		printf("%d\n",c);
+	}return 0;
+}

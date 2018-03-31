@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+char a[100];
+  scanf("%s",a);
+  int i,length=0;
+  int k=1;
+  for(i=0;a[i]!='\0';i++)
+  {
+    length++;
+    if(a[i]=='_' && a[i+1]=='_')
+      k=2;
+    if(a[i+1]=='\0' && a[i]=='_')
+    {
+    k=2;
+    }
+      
+  }
+
+  if((a[0]>='A' && a[0]<='Z')||(a[0]>='a' && a[0]<='z'))
+  {
+  k=1;
+  }
+  else
+    k=2;
+  if(k==2)
+  {
+  printf("not a valid identifier");
+  }
+  if(k==1)
+    printf("valid identifier");
+	return 0;
+}

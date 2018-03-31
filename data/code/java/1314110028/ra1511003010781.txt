@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 static int findMinimum(int arr[], int n, int k)
+    {
+        int res = 0;
+        for (int i = 0; i < n; i++) 
+        {
+            // Buy current candy
+            res += arr[i];
+ 
+            // And take k candies for free
+            // from the last
+            n = n - k;
+        }
+        return res;
+    }
+ 
+    // Function to find the maximum 
+    // amount to buy all candies
+    static int findMaximum(int arr[], int n, int k)
+    {
+        int res = 0, index = 0;
+ 
+        for (int i = n - 1; i >= index; i--) 
+        {
+            // Buy candy with maximum amount
+            res += arr[i];
+ 
+            // And get k candies for free from
+            // the starting
+            index += k;
+        }
+        return res;
+    }
+ 
+    // Driver code
+    public static void main(String[] args)
+    {
+      Scanner sc = new Scanner(System.in);
+      int t = sc.nextInt();
+      while(t!=0)
+      {
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int arr[] = new int[n];
+        for(int i=0; i<n; i++)
+          arr[i] = sc.nextInt();
+        Arrays.sort(arr);
+ 
+        System.out.println(findMinimum(arr, n, k) + 
+                          " " + findMaximum(arr, n, k));
+        t--;
+      }
+    }
+}

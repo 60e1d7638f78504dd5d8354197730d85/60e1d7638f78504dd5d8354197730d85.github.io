@@ -1,0 +1,227 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+ 
+int partition(char *a, int *p, int left, int right, int p_ind) {
+  int p_val;
+  int tmp;
+ 
+  p_val = p[p_ind];
+  tmp = p[right];
+  p[right] = p_val;
+  p[p_ind] = tmp;
+ 
+  int ind = left;
+  int i;
+  int pi, pv;
+  char *b, *c;
+  for (i = left; i < right; ++i) {
+    pi = p[i];
+    b = &a[pi];
+    c = &a[p_val];
+    if (*b < *c) {
+      tmp = pi;
+      p[i] = p[ind];
+      p[ind] = tmp;
+      ++ind;
+    }
+  }
+  tmp = p[ind];
+  p[ind] = p[right];
+  p[right] = tmp;
+ 
+  return ind;
+}
+ 
+void quick_sort(char *a, int *p, int left, int right) {
+  int p_ind, new_ind;
+ 
+  if (left < right) {
+    p_ind = left + (right - left)/2;
+    new_ind = partition(a, p, left, right, p_ind);
+    quick_sort(a, p, left, new_ind - 1);
+    quick_sort(a, p, new_ind + 1, right);
+  }
+}
+ 
+int partition_blocks(int *p, int *r, int left, int right, int pivot, int level) {
+  int p_val;
+  int tmp;
+ 
+  tmp = r[p[right]];
+  r[p[right]] = r[p[pivot]];
+  r[p[pivot]] = tmp;
+  p_val = p[pivot];
+  tmp = p[right];
+  p[right] = p_val;
+  p[pivot] = tmp;
+ 
+  int ind = left;
+  int i;
+  for (i = left; i < right; ++i) {
+    if (r[p[i] + level] <= r[p[right] + level]) {
+      tmp = r[p[i]];
+      r[p[i]] = r[p[ind]];
+      r[p[ind]] = tmp;
+      tmp = p[i];
+      p[i] = p[ind];
+      p[ind] = tmp;
+      ++ind;
+    }
+  }
+  tmp = r[p[ind]];
+  r[p[ind]] = r[p[right]];
+  r[p[right]] = tmp;
+  tmp = p[ind];
+  p[ind] = p[right];
+  p[right] = tmp;
+ 
+  return ind;
+}
+ 
+void quick_sort_blocks(int *p, int *r, int left, int right, int level) {
+  int p_ind, new_ind;
+ 
+  if (left < right) {
+    p_ind = left + (right - left)/2;
+    new_ind = partition_blocks(p, r, left, right, p_ind, level);
+    quick_sort_blocks(p, r, left, new_ind - 1, level);
+    quick_sort_blocks(p, r, new_ind + 1, right, level);
+  }
+}
+ 
+int map_blocks(char *a, int *p, int *map, int len, int level) {
+  int i, val;
+  char * wrd;
+ 
+  i = 0;
+  val = 1;
+  while (i < len && map[i++] == 0);
+  --i;
+  while (i < len - 1 && strncmp(&a[p[i]], &a[p[i + 1]], level))
+    map[i++] = 0;
+  if (i == len - 1) {
+    map[i] = 0;
+    return 1;
+  }
+  wrd = &a[p[i]];
+  while (i < len - 1) {
+    map[i] = val;
+    while (i < len - 1 && !strncmp(wrd, &a[p[i + 1]], level))
+      map[++i] = val;
+    if (i == len - 1)
+      map[i] = val;
+    ++val;
+    while (i < len - 1 && strncmp(&a[p[i]], &a[p[i + 1]], level))
+      map[++i] = 0;
+    wrd = &a[p[i]];
+  }
+  if (val == 1)
+    return 1;
+  return 0;
+}
+ 
+void sort_blocks(int *p, int *r, int len, int level, int *map) {
+  int i, start, end;
+ 
+  i = 0;
+  while(i < len) {
+    while (i < len && map[i++] == 0);
+    if (i >= len)
+      break;
+    start = i - 1;
+    while (i < len && map[++i] == map[start]);
+    end = i - 1;
+    quick_sort_blocks(p, r, start, end, level);
+  }
+}
+ 
+void suffix_sort(char *a, int *p, int *r, int len) {
+  int i, done, level, b[len], map[len];
+ 
+  quick_sort(a, p, 0, len - 1);
+  for (i = 0; i < len; ++i) {
+    r[p[i]] = i;
+    map[i] = 1;
+  }
+ 
+  level = 1;
+  done = map_blocks(a, p, map, len, level);
+ 
+  i = 0;
+  while (len - 1 >> i++);
+  int limit = 1;
+  while (--i && (limit <<= 1));
+ 
+  while (!done && level < limit) {
+    sort_blocks(p, r, len, level, map);
+    for (i = 0; i < len; ++i)
+      r[p[i]] = i;
+ 
+    level *= 2;
+    done = map_blocks(a, p, map, len, level);
+  }
+}
+ 
+int lcp(char *a, int *p, int n) {
+  int rank[n];
+  int i, j, h, cum;
+ 
+  for (i = 0; i < n; ++i)
+    rank[p[i]] = i;
+ 
+  cum = 0;
+  for (i = 0, h = 0; i < n; ++i) {
+    if (rank[i] > 0) {
+        j = p[rank[i] - 1];
+        while (i + h < n && j + h < n && a[i + h] == a[j + h])
+          ++h;
+        cum += h;
+        if (h > 0) --h;
+    }
+  }
+ 
+  return cum;
+}
+ 
+int main(void) {
+  char *a, *b;
+  int i, a_len, b_len, len;
+ 
+  a = (char *) malloc(200002 * sizeof(char));
+  scanf("%s", a);
+  a_len = strlen(a);
+  b = a + a_len + 1;
+  scanf("%s", b);
+  b_len = strlen(b);
+  len = a_len + 1 + b_len;
+ 
+  int *p_ab = (int *) malloc((a_len + 1 + b_len + 1) * sizeof(int));
+  int *r = (int *) malloc((a_len + 1 + b_len + 1) * sizeof(int));
+  int *p_a = p_ab;
+  int *p_b = p_a + a_len + 1;
+ 
+  for (i = 0; i <= a_len; ++i)
+    p_a[i] = i;
+  for (i = 0; i <= b_len; ++i)
+    p_b[i] = i;
+ 
+  suffix_sort(a, p_a, r, a_len + 1);
+  suffix_sort(b, p_b, r, b_len + 1);
+ 
+  int u_a = (a_len * (a_len + 1)) / 2 - lcp(a, p_a + 1, a_len);
+  int u_b = (b_len * (b_len + 1)) / 2 - lcp(b, p_b + 1, b_len);
+ 
+  a[a_len] = '$';
+  for (i = 0; i <= len + 1; ++i)
+    p_ab[i] = i;
+  suffix_sort(a, p_ab, r, a_len + 1 + b_len + 1);
+ 
+  int u_aub = (len * (len + 1)) / 2 - lcp(a, p_ab + 1, len) -
+              (a_len + 1) * (b_len + 1);
+ 
+  printf("%d\n",  2*u_aub - u_a - u_b);
+ 
+  return 0;
+} 

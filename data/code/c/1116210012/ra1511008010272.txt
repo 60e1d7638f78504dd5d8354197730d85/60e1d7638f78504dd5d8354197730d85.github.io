@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char c[100];
+  	fgets(c,100,stdin);
+  	int i,j;
+  	char c1;
+  	int len = strlen(c);
+  	for(i=0;i<len-1;i++) {
+      for(j=0;j<len-i-1;j++) {
+        if(c[j+1] < c[j] ) {
+          c1 = c[j+1];
+          c[j+1] = c[j];
+          c[j] = c1;
+        }
+      }
+    }
+  	printf("%s",c);
+	return 0;
+}

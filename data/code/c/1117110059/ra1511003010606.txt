@@ -1,0 +1,86 @@
+#include<stdio.h>
+ 
+#define loop(i,N) for(i=0;i<N;i++)
+#define loop1(i,N) for(i=1;i<N;i++)
+#define loop2(i,x,N) for(i=x;i<N;i++)
+ 
+#define revloop(i,N) for(i=N;i>0;i--)
+#define revloop2(i,x,N) for(i=x;i>N;i--)
+ 
+#define s(n) scanf("%d",&n)
+#define s2(n,k) scanf("%d %d",&n,&k)
+#define p(n) printf("%d\n",n)
+#define p2(n,k) printf("%d %d\n",n,k)
+ 
+#define sl(n) scanf("%ld",&n)
+#define sl2(n,k) scanf("%ld %ld" ,&n,&k)
+ 
+#define pl(n) printf("%ld\n",n)
+#define pl2(n,k) printf("%ld %ld\n",n,k)
+ 
+ 
+//#define sll(n) scanf("%lld",&n)
+#define sll2(n,k) scanf("%lld %lld" ,&n,&k)
+ 
+#define pll(n) printf("%lld\n",n)
+#define pll2(n,k) printf("%lld %lld\n",n,k)
+ 
+ 
+#define sll(n) n=fastInput()
+ 
+#define sc(n) scanf("%c",&n)
+ 
+//#define ss(n) scanf("%s",n)
+ 
+#define sf(n) scanf("%f",&n)
+ 
+#define pb(n) push_back(n)
+ 
+ 
+ 
+#define MOD 1000000007
+ 
+#define MAX7 10000000
+#define MAX6 1000000
+#define MAX5 100000
+#define MAX4 10000
+#define MAX3 1000
+ 
+typedef unsigned long long int ulli;
+typedef signed long long int slli;
+typedef unsigned long int uli;
+typedef signed long int sli;
+ 
+ 
+inline ulli fastInput()
+{
+    ulli val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+ 
+int T;
+long int i,N;
+slli ans,j,k,Ar[MAX4+1];
+int main()
+{
+    s(T);
+    while(T--)
+    {
+        ans=0;
+        sl(N);
+        loop(i,N)
+         sll(Ar[i]);
+        j=0;
+        loop(i,N)
+        {
+        sll(k);
+        if(k <= Ar[i]-j)ans++;
+        j=Ar[i];
+        }
+        pll(ans);
+    }
+    return 0;
+}

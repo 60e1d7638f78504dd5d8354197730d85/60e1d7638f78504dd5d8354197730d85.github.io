@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<math.h>
+int prime(int n){
+  int i,j;
+  for(i=2;i<n/2;i++){
+    if(n%i==0)
+      return 0;
+  }
+  return 1;
+}
+int main()
+{
+  int x;
+  scanf("%d",&x);
+  while(x--){
+  int n,len=0,i,t,f=1,rem;
+  scanf("%d",&n);
+  t=n;
+  while(t){
+    t=t/10;
+    len++;
+  }
+  for(i=1;i<=len;i++){
+    if(prime(n)==0){
+      printf("no\n");
+      f=0;
+      break;
+    }
+    rem=n%10;
+    n= ((rem)*pow(10,len-1)) + (n/10);
+  }
+    if(f)
+	printf("yes\n");
+  }
+	return 0;
+}

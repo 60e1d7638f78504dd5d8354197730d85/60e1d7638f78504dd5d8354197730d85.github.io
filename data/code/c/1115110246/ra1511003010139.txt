@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int size = 10000;
+ 
+long long int number(char *X, int **A, long long int n)
+{
+    int x;
+    long long int i, j, count;
+    if(n<=size)
+    {
+        for(i=0,count=0;i<n;i++)
+        {
+            A[i][i] = X[i]%3;
+            if(A[i][i]==0)
+                count++;
+        }
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                A[i][j] = (A[i][j-1] + X[j])%3;
+                if(A[i][j]==0)
+                    count++;
+            }
+        }
+    }
+    else
+    {
+        for(i=0, count=0;i<size;i++)
+        {
+            A[i][i] = X[i]%3;
+            if(A[i][i]==0)
+                count++;
+        }
+        for(i=0;i<size;i++)
+        {
+            for(j=i+1;j<size;j++)
+            {
+                A[i][j] = (A[i][j-1] + X[j])%3;
+                count++;
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            if(i<size)
+            {
+                x = A[i][size-1];
+                for(j=size;j<n;j++)
+                {
+                    x = (x+X[j])%3;
+                    if(x==0)
+                        count++;
+                }
+            }
+            else
+            {
+                for(j=i,x=0;j<n;j++)
+                {
+                    x =(x+X[j])%3;
+                    if(x==0)
+                        count++;
+                }
+            }
+        }
+    }
+    return count;
+}
+ 
+int main()
+{
+    int **X;
+    long long int n, m, i, a, b, c;
+    X = (int **)malloc(size*sizeof(int *));
+    for(i=0;i<size;i++)
+        X[i] = (int *)malloc(size*sizeof(int));
+    char *A;
+    scanf("%lld %lld", &n, &m);
+    A = (char *)malloc((n+1)*sizeof(char));
+    scanf("%s", A);
+    for(i=0;i<m;i++)
+    {
+        scanf("%lld %lld %lld", &a, &b, &c);
+        if(a==1)
+            A[b-1] = (char)c;
+        else
+            printf("%lld\n", number(A+(b-1), X, c-b+1));
+    }
+    return 0;
+}

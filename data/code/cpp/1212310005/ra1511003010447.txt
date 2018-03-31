@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int t,n,a[10],i,j,countI,countL;
+  
+  cin>>t;
+  while(t--){
+    countI=0,countL=0;
+  cin>>n;
+    for(i=0;i<n;i++){
+    cin>>a[i];
+    }
+    
+    for(i=0;i<n-1;i++){
+    for(j=i+1;j<n;j++){
+    if(a[i]>a[j])
+      countI++;
+    }
+    }
+    
+    for(i=0;i<n-1;i++){
+    if(a[i]>a[i+1])
+      countL++;
+    }
+    if(countI==countL)
+      cout<<"YES\n";
+    else
+      cout<<"NO\n";
+  }
+	return 0;
+}

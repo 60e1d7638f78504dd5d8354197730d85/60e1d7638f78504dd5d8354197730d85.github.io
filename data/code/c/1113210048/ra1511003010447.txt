@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+int dat,month,year,flag=0;
+int days[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+  scanf("%d/%d/%d",&dat,&month,&year);
+  if(year%100==0){
+    if(year%400==0)
+      days[1]=29;}
+  else if(year % 4==0)
+    days[1]=29;
+  
+  if(year==0)
+    flag=1;
+  else{
+  if(!(month>=1 && month<=12)){
+  	flag=1;
+  	}else{
+  if(dat>days[month-1])
+    flag=1;
+  
+  }
+    
+  }
+  
+  if(flag==1)
+    printf("N");
+  else
+    printf("S");
+	return 0;
+}

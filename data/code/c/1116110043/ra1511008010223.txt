@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+char a[100000];
+ int i,len, c=0;
+  int flag,endindex;
+  scanf("%s",a);
+  len=0;
+while(a[len]!='\0')
+{
+  a[len]=tolower(a[len]);
+ len++;
+
+}
+ flag=0;
+ endindex=len-1;
+ while(flag<=endindex)
+  {
+  if(a[flag]!=a[endindex])
+  {
+    
+    c=1;
+    break;
+  }
+   flag++;
+   endindex--;
+  }
+  if(c==0)
+  {
+   printf("Palindrome\n");
+  
+  }
+  else
+  {
+    printf("Not palindrome\n");
+  }
+  return 0;
+}

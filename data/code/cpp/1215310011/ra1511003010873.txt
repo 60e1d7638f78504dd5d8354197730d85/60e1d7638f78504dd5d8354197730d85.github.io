@@ -1,0 +1,155 @@
+    #include <algorithm>
+    #include <functional>
+    #include <vector>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+     
+    #define MOD_PRIME 10007
+     
+    using namespace std;
+     
+    int fact[MOD_PRIME];
+    int invfact[MOD_PRIME];
+     
+    int addmod(int x, int y)
+    {
+    	int sum = x + y;
+    	if (sum >= MOD_PRIME)
+    		sum -= MOD_PRIME;
+    	return sum;
+    }
+     
+    int submod(int x, int y)
+    {
+    	int diff = x - y;
+    	if (diff < 0)
+    		diff += MOD_PRIME;
+    	return diff;
+    }
+     
+    int mulmod(int x, int y)
+    {
+    	long long result = x;
+    	result = (result * y) % MOD_PRIME;
+    	return (int) result;
+    }
+     
+    int invmod(int x)
+    {
+    	int result[2][2] = { { 1, 0}, { 0, 1 } };
+    	int base[2][2] = { { 0, 1}, { 1, 0 } };
+    	int tmp[2][2];
+     
+    	int y = x % MOD_PRIME;
+    	x = MOD_PRIME;
+    	while (y > 0) {
+    		int q = x / y;
+    		int r = x % y;
+    		base[1][1] = -q;
+    		memset(tmp, 0, sizeof(tmp));
+    		for (int i = 0; i < 2; i++)
+    			for (int j = 0; j < 2; j++) {
+    				tmp[i][j] = 0;
+    				for (int k = 0; k < 2; k++)
+    					tmp[i][j] += result[i][k] * base[k][j];
+    			}
+    		memcpy(result, tmp, sizeof(result));
+    		x = y;
+    		y = r;
+    	}
+    	int inv = result[1][0];
+    	if (inv < 0)
+    		inv += MOD_PRIME;
+    	return inv;
+    }
+     
+    void build_fact()
+    {
+    	fact[0] = 1;
+    	for (int i = 1; i < MOD_PRIME; i++)
+    		fact[i] = mulmod(fact[i - 1], i);
+     
+    	for (int i = 0; i < MOD_PRIME; i++)
+    		invfact[i] = invmod(fact[i]);
+    }
+     
+    int combmod(long long n, long long m)
+    {
+    	int result = 1;
+    	while (n > 0 && m > 0) {
+    		int up = (int) (n % MOD_PRIME);
+    		int down = (int) (m % MOD_PRIME);
+     
+    		if (up < down) {
+    			result = 0;
+    			break;
+    		}
+     
+    		int term = fact[up];
+    		term = mulmod(term, invfact[down]);
+    		term = mulmod(term, invfact[up - down]);
+    		result = mulmod(result, term);
+     
+    		n /= MOD_PRIME;
+    		m /= MOD_PRIME;
+    	}
+    	return result;
+    }
+     
+    int lossmod(long long n, long long m)
+    {
+    	if (n > m)
+    		return 0;
+     
+    	int result = combmod(n + m, n);
+    	result = submod(result, combmod(n + m, n - 1));
+    	return result;
+    }
+     
+    int solve_problem()
+    {
+    	long long r, c, n;
+     
+    	if (scanf("%lld %lld %lld", &r, &c, &n) != 3)
+    		return 1;
+     
+    	int total = combmod(r + n - 1, n);
+    	total = mulmod(total, combmod(c + n - 1, n));
+    	int loser = lossmod(n, r);
+    	loser = mulmod(loser, lossmod(n, c));
+     
+    	printf("%d\n", submod(total, loser));
+     
+    	return 0;
+    }
+     
+    int main(int argc, char *argv[])
+    {
+    	const char *filenames[] = {
+    		"",
+    		"",
+    	};
+    	int num_tests;
+     
+    	for (int i = 1; i < argc && i <= 2; i++)
+    		filenames[i - 1] = argv[i];
+     
+    	if (strlen(filenames[0]) > 0 && freopen(filenames[0], "rt", stdin) == NULL) {
+    		fprintf(stderr, "Could not reopen stdin\n");
+    		return 1;
+    	}
+    	if (strlen(filenames[1]) > 0 && freopen(filenames[1], "wt", stdout) == NULL) {
+    		fprintf(stderr, "Could not reopen stdout\n");
+    		return 1;
+    	}
+     
+    	build_fact();
+     
+    	if (scanf("%d", &num_tests) != 1)
+    		return 1;
+    	for (int i = 0; i < num_tests; i++)
+    		solve_problem();
+     
+    	return 0;
+    } 

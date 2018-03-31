@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int md(int n,char start, char aux, char destination)
+{
+ if(n==1)
+ {
+  printf("\n%c-->%c",start,destination);
+  return 0;
+ }
+ md(n-1,start,destination,aux); 
+ printf("\n%c-->%c",start,destination);
+ md(n-1,aux,start,destination);
+}
+
+int main()
+{
+ int n;
+printf("Enter no. of disks:");
+ scanf("%d",&n);
+ printf("Movement of disks are : ");
+md(n,'A','B','C');
+  return 0;
+}

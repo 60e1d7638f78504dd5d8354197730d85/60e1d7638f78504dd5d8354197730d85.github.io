@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void merge (int * buffer, int start, int middle, int end) {
+    int * sorted = (int *) malloc (sizeof(int) * (end - start + 1));
+
+    int i = start, j = middle + 1, k = 0;
+    while (i <= middle && j <= end) {
+        if (buffer[i] <= buffer[j]) {
+            sorted[k++] = buffer[i++];
+        } else {
+            sorted[k++] = buffer[j++];
+        }
+    }
+    while (i <= middle) {
+        sorted[k++] = buffer[i++];
+    }
+    while (j <= end) {
+        sorted[k++] = buffer[j++];
+    }
+    i = start; k = 0;
+    while (i <= end) {
+        buffer[i++] = sorted[k++];
+    }
+
+    free (sorted);
+}
+
+void merge_sort (int * buffer, int start, int end) {
+    if (end > start) {
+        int middle = (end + start) / 2;
+        merge_sort (buffer, start, middle);
+        merge_sort (buffer, middle + 1, end);
+        merge (buffer, start, middle, end);
+    }
+}
+
+int find_pos (int * buffer, int start, int end, int target) {
+    if (start > end) {
+        return end;
+    }
+
+    int middle = (start + end) / 2;
+    if (buffer[middle] == target) {
+        return middle;
+    } else if (buffer[middle] > target) {
+        return find_pos (buffer, start, middle - 1, target);
+    } else {
+        return find_pos (buffer, middle + 1, end, target);
+    }
+}
+
+int main (int argc, char * argv[]) {
+    int n,i;
+    scanf ("%d", &n);
+
+    int * prices = (int *) malloc (sizeof(int) * n);
+    for ( i = 0; i < n; i++) {
+        scanf ("%d", &prices[i]);
+    }
+    merge_sort (prices, 0, n - 1);
+
+    int length = 0;
+    int * p_distinct = (int *) malloc (sizeof(int) * n);
+    int * p_count_accu = (int *) malloc (sizeof(int) * n);
+    p_distinct[length] = prices[0];
+    p_count_accu[length++] = 1;
+    for ( i = 1; i < n; i++) {
+        if (p_distinct[length - 1] == prices[i]) {
+            p_count_accu[length - 1]++;
+        } else {
+            p_distinct[length] = prices[i];
+            p_count_accu[length] = p_count_accu[length - 1] + 1;
+            length++;
+        }
+    }
+
+    int q;
+    scanf ("%d", &q);
+
+    int m;
+    for ( i = 0; i < q; i++) {
+        scanf ("%d", &m);
+        int index = find_pos (p_distinct, 0, length - 1, m);
+        if (index == -1) {
+            printf ("0\n");
+        } else {
+            printf ("%d\n", p_count_accu[index]);
+        }
+    }
+
+    free (prices);
+    free (p_distinct);
+    free (p_count_accu);
+    return 0;
+}

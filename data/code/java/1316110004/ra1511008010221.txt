@@ -1,0 +1,54 @@
+import java.io.*;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class TestClass {
+
+    public static void main(String[] args) throws IOException {
+        Class objname = new Class();
+        objname.keyboard();
+    }
+}
+
+class Class {
+
+    public static int count = 0;
+
+    public void keyboard() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        String[] s;
+        for (int j = 0; j < t; j++) {
+            count = 0;
+            s = br.readLine().split(" ");
+            int n = Integer.parseInt(s[0]), m = Integer.parseInt(s[1]), c = Integer.parseInt(s[2]);
+            BigInteger bi1 = new BigInteger(s[0]), bi2 = new BigInteger(s[1]), bi3 = new BigInteger(s[2]);
+            bi1 = bi1.multiply(bi2);
+            if (bi1.compareTo(bi3) == -1) {
+                System.out.println("0");
+                continue;
+            } else if (bi1.compareTo(bi3) == 0) {
+                System.out.println("1");
+                continue;
+            }
+            getCount(n, m, c);
+            System.out.println(count);
+        }
+    }
+
+    public static void getCount(int n, int m, int c) {
+        for (int i = 1; i <= (int) Math.sqrt(c); i++) {
+            if (c % i == 0) {
+                if (i <= n && (c / i) <= m)
+                    count++;
+                if (i <= m && (c / i) <= n)
+                    count++;
+                if (i == c / i && i <= n && i <= m)
+                    count--;
+            }
+        }
+    }
+}

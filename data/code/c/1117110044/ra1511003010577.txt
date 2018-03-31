@@ -1,0 +1,23 @@
+#include <stdio.h>
+int rec(int p);
+int main()
+{
+	int t,p,q,r,s;
+  	scanf("%d %d",&r,&s);
+  	t=rec(r);
+  	p=rec(s);
+  	q=rec(r-s);
+  	printf("%d",t/(p*q));
+	return 0;
+}
+int rec(int p)
+{
+  if(p==1 || p==0)
+  {
+    return 1;
+  }
+  else
+  {
+    return p*rec(p-1);
+  }   
+}

@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  
+  int n;
+  cin>>n;
+  int a[n];
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  
+  int search,flag;
+  flag=9;
+  cin>>search;
+  int *temp=&a[0];
+  int loc;
+  for(int i=0;i<n;i++)
+  {
+    if(*temp==search){
+      flag=1;
+      loc=i+1;
+      break;}
+      temp++;
+  }
+
+  if(flag==1)
+    cout<<search<<" is found in the array at position="<<loc-1<<endl;
+  else
+    cout<<search<<" Does not exist in the array"<<endl;
+  
+  
+	return 0;
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  int a,b;
+  scanf("%d %d", &a,&b);
+  int i = 0;
+  int lcm,hcf;
+  int min,max;
+  if(a < b)
+  {
+    min = a;
+    max = b;
+  }
+  else
+  {
+    min = b;
+    max = a;
+  }
+  i = min;
+  while(i > 0)
+  {
+    if(a%i == 0 && b%i == 0)
+    {
+      hcf = i;
+      break;
+    }
+    i--;
+  }
+  i = max;
+  while(1)
+  {
+    if(i%a == 0 && i%b == 0)
+    {
+      lcm = i;
+      break;
+    }
+    i++;
+  }
+  printf("GCD=%d\nLCM=%d", hcf,lcm);
+
+	return 0;
+}

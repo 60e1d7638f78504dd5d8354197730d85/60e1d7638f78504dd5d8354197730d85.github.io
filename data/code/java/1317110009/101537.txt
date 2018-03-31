@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       String string=inp.next();
+       int len=string.length();
+       Map<Character,Integer>numChars=new HashMap<Character,Integer>(Math.min(len,26));
+       for(int i=0;i<len;i++)
+       {
+         char ch=string.charAt(i);
+         if(!numChars.containsKey(ch))
+           numChars.put(ch,1);
+         else
+           numChars.put(ch,numChars.get(ch)+1);
+       }
+       Map<Character,Integer> tm=new TreeMap<Character,Integer>(numChars);
+       for(Map.Entry map:tm.entrySet())
+         System.out.println(map.getKey()+"="+map.getValue());
+     //  System.out.println(numChars);
+	}
+}

@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define sf scanf
+#define pf printf
+int main()
+{
+    int i,t,n,j,p;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int a2[125]={0},b2[125]={0},k=0;
+        char a[1005],b[1005];
+        sf("%s",a);sf("%s",b);
+        for(i=0;i<strlen(a);i++)
+        {
+            a2[a[i]]++;
+        }
+        for(i=0;i<strlen(b);i++)
+        {
+            b2[b[i]]++;
+        }
+        for(i=97;i<123;i++)
+        {
+            if(b2[i]!=0 && a2[i]!=0)
+            {
+                k=1;break;
+            }
+        }
+        if(k==1)
+            pf("yes\n");
+        else
+            pf("no\n");
+    }
+    return 0;
+}
+ 

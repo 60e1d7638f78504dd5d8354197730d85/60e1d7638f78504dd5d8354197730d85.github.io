@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+
+struct College
+{
+char name[100];
+char city[100];
+int establishmentYear;
+float passPercentage;
+};
+
+struct College inpu(struct College c)
+{
+  getchar();
+  scanf("%s",c.name);
+  getchar();
+  scanf("%s",c.city);
+  scanf("%d",&c.establishmentYear);
+  scanf("%f",&c.passPercentage);
+  return c;
+}
+
+void sortcoll(struct College c[100],int n)
+{
+  int i,j;
+  for(i=0;i<n-1;i++)
+  {
+    for(j=0;j<n-i-1;j++)
+    {
+      if(strcmp(c[j].name,c[j+1].name)>0)
+      {
+        struct College temp;
+        strcpy(temp.name,c[j].name);
+        strcpy(temp.city,c[j].city);
+        temp.establishmentYear=c[j].establishmentYear;
+        temp.passPercentage=c[j].passPercentage;
+        strcpy(c[j].name,c[j+1].name);
+        strcpy(c[j].city,c[j+1].city);
+        c[j].establishmentYear=c[j+1].establishmentYear;
+        c[j].passPercentage=c[j+1].passPercentage;
+        strcpy(c[j+1].name,temp.name);
+        strcpy(c[j+1].city,temp.city);
+        c[j+1].establishmentYear=temp.establishmentYear;
+        c[j+1].passPercentage=temp.passPercentage;
+      }
+    }
+  }
+}
+
+void disp(struct College c[100],int n)
+{
+  int i;
+  printf("Details of colleges\n");
+  for(i=0;i<n;i++)
+  {
+    printf("Name:%s\n",c[i].name);
+    printf("City:%s\n",c[i].city);
+    printf("Year of establishment:%d\n",c[i].establishmentYear);
+    printf("Pass percentage:%.1f\n",c[i].passPercentage);
+  }
+}
+
+
+
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  struct College c[n];
+  for(i=0;i<n;i++)
+  {
+    c[i] = inpu(c[i]);
+  }
+  sortcoll(c,n);
+  disp(c,n);
+	return 0;
+}

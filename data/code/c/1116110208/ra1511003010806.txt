@@ -1,0 +1,50 @@
+#include <stdio.h>
+int check(int m,int b[])
+{
+  int sum=b[m],i,sum1=0;
+  for(i=0;i<26;i++)
+  {
+    if(i!=m)
+    {
+      sum1+=b[i];
+    }
+  }
+  //printf("sum of %d %d is %d",m,sum,sum1);
+  if(sum==sum1)
+    return 1;
+  else return 0;
+  
+}
+int main()
+{
+	int t,z,b[26],n,i,m,count=0;
+  	char a[20];
+  	scanf("%d",&t);
+  	for(z=0;z<t;z++)
+    {
+      count=0;
+      for(i=0;i<26;i++)
+        b[i]=0;
+      scanf("%s",a);
+      for(i=0;a[i]!='\0';i++)
+      {
+        n=a[i]-'a';
+        b[n]++;
+      }
+      for(i=0;i<26;i++)
+      {
+ 
+        if(b[i]==0)
+          continue;
+        m=check(i,b);
+        if(m==1)
+          count++;
+      }
+      if(count>0)
+        printf("YES");
+      else
+        printf("NO");
+      printf("\n");
+    }
+	return 0;
+}

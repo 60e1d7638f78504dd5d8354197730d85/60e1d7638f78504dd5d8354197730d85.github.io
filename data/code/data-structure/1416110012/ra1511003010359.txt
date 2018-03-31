@@ -1,0 +1,45 @@
+#include <iostream>
+#define MAX 20
+using namespace std;
+int stack[MAX],top=-1;
+void push(int data)
+{
+  top++;
+  stack[top]=data;
+}
+void pop()
+{
+  int data=stack[top];
+  cout<<"deleted element is"<<data<<endl;
+  top--;
+}
+int main()
+{
+  int n;
+  cin>>n;
+  int ch,data;
+  char c;
+  cout<<"1.push\n2.pop"<<endl;
+  do
+  {
+    cin>>ch;
+    switch(ch)
+    {
+      case 1:
+       {
+        cin>>data;
+        push(data);
+         break;
+       }
+      case 2:
+        pop();
+        break;
+    }
+    cin>>c;   
+  }while(c!='n');
+  for(int i=top; i!=-1; i--)
+  {
+    cout<<stack[i]<<" ";
+  }
+	return 0;
+}

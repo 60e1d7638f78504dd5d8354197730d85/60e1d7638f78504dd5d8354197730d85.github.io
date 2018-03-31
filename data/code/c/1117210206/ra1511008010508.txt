@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+int scanInt(){
+  register int retVar=0,c;
+  while((c=getchar_unlocked())<=' ');
+  do{
+    retVar=retVar*10+c-'0';
+  }while((c=getchar_unlocked())>' ');
+  return retVar;
+}
+
+int main(int argc,const char * argv[])
+{	
+  int T=scanInt();
+  int z=0;
+  for(z=0;z<T;z++)
+  {
+    int N=scanInt();
+    int max=0;
+    int i=0;
+    for(i=0;i<N;i++)
+    {
+      int newVal=scanInt()+i;
+      if(newVal>max){
+        max=newVal;
+      }
+    }
+    printf("%d\n",max);
+  }
+  return 0;
+}

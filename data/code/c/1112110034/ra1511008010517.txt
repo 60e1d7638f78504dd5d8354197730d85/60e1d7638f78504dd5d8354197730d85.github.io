@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+int get_value(char s)
+{
+  switch(s){
+    case 'I':return 1;
+    case 'V':return 5;
+    case 'X':return 10;
+    case 'L':return 50;
+    case 'C':return 100;
+    case 'D':return 500;
+    case 'M':return 1000;
+    default:return 0;
+  }
+}
+int main()
+{
+  char s[10];
+  scanf("%s",s);
+  int i;
+  int counter=0,total;
+  for(i=0;i<strlen(s);i++)
+  {
+    if(get_value(s[i]) < get_value(s[i+1]))
+    {
+      counter=get_value(s[i]);
+      counter=counter-2*counter;
+    }
+    else
+    {
+      counter=get_value(s[i]);
+    }
+
+      total=total+counter;
+  }
+  printf("%d",total);
+  
+  return 0;
+}

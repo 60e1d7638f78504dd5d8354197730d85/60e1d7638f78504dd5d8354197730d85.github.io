@@ -1,0 +1,52 @@
+
+#include<stdio.h>
+void qsort(long int* d, long int l,long int r) {
+	 long int ll, rr, p, a;
+	if (r > l) {
+		ll = l;
+		rr = r;
+		p = d[(rr + ll) >> 1];
+		while (ll <= rr) {
+			while (ll < r && d[ll] < p)
+				++ll;
+			while (rr > l && d[rr] > p)
+				--rr;
+			if (ll <= rr) {
+				a = d[ll];
+				d[ll] = d[rr];
+				d[rr] = a;
+				++ll;
+				--rr;
+			}
+		}
+		if (l < rr)
+			qsort(d, l, rr);
+		if (ll < r)
+			qsort(d, ll, r);
+	}
+}
+int main()
+{
+	int t;
+	 long  int a[105],temp;
+	 long int n,k,i,p;
+	scanf("%d",&t);
+	while(t--)
+	{
+	scanf("%ld",&n);
+	for(i=0;i<n;i++)
+	scanf("%ld",&a[i]);
+	scanf("%ld",&k);
+	temp=a[k-1];
+	qsort(a,0,n-1);
+    for(i=0;i<n;i++)
+    {
+		if(a[i]==temp)
+		 p=i;
+	 }
+	 printf("%ld\n",  p+1);
+   }
+return 0;	
+}
+ 
+

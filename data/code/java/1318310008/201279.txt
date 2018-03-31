@@ -1,0 +1,52 @@
+import java.util.*;
+class students
+{
+        private int rollno;
+              public void setstud(int no)    
+        {
+                rollno = no;
+              }
+        public void putstud()
+        {
+                System.out.println("Roll number:"+rollno);
+                     }
+}
+class marks extends students
+{
+        protected int mark1,mark2;
+        public void setmarks(int m1,int m2)
+        {
+                mark1 = m1;
+                mark2 = m2;
+        }
+        public void putmarks()
+        {
+                System.out.println("Subject1:"+mark1);
+                System.out.println("subject2:"+mark2);
+        }
+}
+
+class TestClass extends marks{
+private int total;
+        public void calc()
+        {
+                total = mark1 + mark2;
+        }
+        public void puttotal()
+        {
+                System.out.println("Total:"+total);
+        }
+	 public static void main(String[] args) { 
+		TestClass f = new TestClass();
+                Scanner s=new Scanner(System.in);
+                int a=s.nextInt();
+                f.setstud(a);
+                int b=s.nextInt();
+                int c=s.nextInt();
+                f.setmarks(b,c);
+                f.calc();
+                f.putstud();
+                f.putmarks();
+                f.puttotal();
+	}
+}

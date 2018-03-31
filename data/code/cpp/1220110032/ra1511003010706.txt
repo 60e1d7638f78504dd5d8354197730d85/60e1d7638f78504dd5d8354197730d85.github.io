@@ -1,0 +1,35 @@
+#include <iostream>
+#include <exception>
+using namespace std;
+class Divide_By_Zero_Exception : public exception
+{
+public:
+const char * what() const throw()
+{
+return "Division by zero";
+}
+};
+int main()
+{
+  try
+  {
+    int a,b;
+    cin>>a>>b;
+    if(b==0)
+    {
+      Divide_By_Zero_Exception d;
+      throw d;
+    }
+    else 
+    {
+      cout<<(float)a/b<<endl;
+    }
+
+  }
+  catch(exception& e)
+  {
+    cout<<"Exception: "<<e.what()<<endl;
+  }
+
+	return 0;
+}

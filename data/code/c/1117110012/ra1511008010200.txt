@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int n,loc,arr[100],ele,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  scanf("%d %d",&loc,&ele);
+  if(loc>n)
+    printf("Sorry Invalid Location");
+  else
+  {
+    for(i=loc-1;i<n+1;i++)
+    {
+      int t = arr[i];
+      arr[i] = ele;
+      ele = t;
+    }
+    for(i=0;i<=n;i++)
+      printf("\n%d",arr[i]);
+  }
+  return 0;
+}

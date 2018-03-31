@@ -1,0 +1,76 @@
+#include<stdio.h>
+ 
+int min(int a,int b)
+{
+    return (a<b)?a:b;
+}
+ 
+int merge(int a[],int l,int m,int r)
+{
+    int L[m-l+1];
+    int R[r-m];
+    int i,j,k;
+    for(i=l;i<=m;i++)
+	L[i-l]=a[i];
+    for(j=m+1;j<=r;j++)
+	R[j-m-1]=a[j];
+    i=0;
+    j=0;
+    k=l;
+    while(i!=m-l+1&&j!=r-m)
+    {
+	if(L[i]<R[j])
+	{
+	    a[k]=L[i];
+	    i++;
+	}
+	else
+	{
+	    a[k]=R[j];
+	    j++;
+	}
+	k++;
+    }
+    while(i!=m-l+1)
+    {
+	a[k]=L[i];
+	i++;
+	k++;
+    }
+    while(j!=r-m)
+    {
+	a[k]=R[j];
+	j++;
+	k++;
+    }
+}
+ 
+int split(int a[],int l,int r)
+{
+    if(l<r)
+    {
+	int m=(l+r)/2;
+	split(a,l,m);
+	split(a,m+1,r);
+	merge(a,l,m,r);
+    }
+}
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+	int n,i,m=1000000003;
+	scanf("%d",&n);
+	int a[n];
+	for(i=0;i<n;i++)
+	    scanf("%d",&a[i]);
+	split(a,0,n-1);
+	for(i=0;i<n-1;i++)
+	    m=min(m,a[i+1]-a[i]);
+	printf("%d\n",m);
+    }
+    return 0;
+}

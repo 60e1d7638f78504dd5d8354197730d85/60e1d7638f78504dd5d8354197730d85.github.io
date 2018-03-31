@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+class shape
+{
+  public:
+  float h,r;
+  void geth()
+  {cin>>h;}
+  void getr()
+  {cin>>r;}
+  
+  virtual void rect()=0;
+  virtual void circ()=0;
+};
+class area: public shape
+{
+public:
+void rect()
+{geth();
+cout<<"Area of square: "<<h*h;}
+void circ()
+{getr();
+cout<<"\nArea of circle: "<<(3.14*r*r);
+}
+};
+  
+int main()
+{
+area a;
+  a.rect();
+  a.circ();
+	return 0;
+}

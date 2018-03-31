@@ -1,0 +1,23 @@
+#include <stdio.h>
+int countDig(int n)
+{
+  static int count=0;
+  if(n>0)
+  {
+    count++;
+    countDig(n/10);
+  }
+  else
+  {
+    return count;
+  }
+}
+int main()
+{
+  int num;
+  int count=0;
+  scanf("%d",&num);
+  count=countDig(num);
+  printf("The number of digits in %d is %d",num,count);
+  return 0;
+ }

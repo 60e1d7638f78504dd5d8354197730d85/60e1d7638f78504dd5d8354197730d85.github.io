@@ -1,0 +1,58 @@
+    #include<stdio.h>
+     
+    int main(){
+     
+    int t,n,i,j,k,v,q=0;
+    int sticklen[1000],ans[100];
+    int temp;
+    int a[2];
+    scanf("%d",&t);
+     
+     
+    for(i=0;i<t;i++){
+     
+    scanf("%d",&n);
+    for(j=0;j<n;j++)
+     
+            scanf("%d",&sticklen[j]);
+     
+     
+     
+    //algorithm for bubble sort
+    for(v=0;v<n-1;v++){
+            for(k=0;k<n-1;k++){
+        if(sticklen[k]<sticklen[k+1]){
+            temp=sticklen[k];
+            sticklen[k]=sticklen[k+1];
+            sticklen[k+1]=temp;
+        }
+        }
+    }
+     
+     
+    //now array has been sorted
+    for(k=0;k<n-1;k++){
+        if((sticklen[k]==sticklen[k+1])&&(a[0]==0||a[1]==0)){
+            a[q]=sticklen[k];
+        q++;
+        k++;
+        }
+    }
+    q=0;
+    if(a[0]==0||a[1]==0)
+        ans[i]=-1;
+    else
+        ans[i]=a[0]*a[1];
+     
+    a[0]=0;
+    a[1]=0;
+    }
+     
+     
+     
+    for(i=0;i<t;i++)
+        printf("%d\n",ans[i]);
+     
+     
+    return 0;
+    }

@@ -1,0 +1,34 @@
+#include <stdio.h>
+inline int read ()
+{
+	char c;
+	int n = 0;
+    while ((c = getchar_unlocked ()) < 48);
+	n += (c - '0');
+	while ((c = getchar_unlocked ()) >= 48)
+	  n = n * 10 + (c - '0');
+	return n;
+}
+int main()
+{
+   int t = read ();
+	while (t--)
+	{
+		int k = read (), flag = 0, stem = 1; 
+		while (k--)
+		{
+			int leaves = read ();
+			if (leaves > stem)
+			{
+				flag = 1;
+				break;
+			}
+			stem = (stem - leaves) * 2; 
+		}
+		if (flag || stem)
+		  printf ("No\n");
+		else
+		  printf ("Yes\n");
+    }
+	return 0;
+}

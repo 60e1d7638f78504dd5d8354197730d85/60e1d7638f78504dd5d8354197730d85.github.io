@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define _T kand_t++; if(kand_t>best_t) goto fin; continue;
+#define S(x,y) if(t==x && *p!=y) {*p=y;_T};
+#define _T1 kand_t++; if(kand_t>best_t) goto fin1; continue;
+#define S1(x,y) if(t==x && *p!=y) {*p=y;_T1};
+ 
+void losen()
+{
+int len, halb, pos, t, un, best_t=9999, kand_t, halb2;
+char s[1010], best[1010], kand[1010];
+char *p, *p1, *p2;
+ 
+do{scanf("%s",s);}while((len=strlen(s))<=0);	// Einlesen
+ 
+if(len<9)
+	{
+	puts("unlucky");
+	return;
+	}
+ 
+halb=(len-1)/2-4;
+halb2=len/2;
+for(pos=0; pos<=halb; pos++)	// ERSTE HAELFTE
+	{
+	strcpy(kand,s);
+	kand_t=0;
+	un=pos;
+	for(t=0; t<5; t++)	// "lucky"
+		{
+		p=kand+t+un;
+		S(0,'l')S(1,'u')S(2,'c')S(3,'k')S(4,'y')
+		}
+	un=len-pos-1;
+	for(t=0; t<5; t++)	// "ykcul"
+		{
+		p=kand+un-t;
+		S(0,'l')S(1,'u')S(2,'c')S(3,'k')S(4,'y')
+		}
+	p1=kand;	// andere Buchstaben austauschen
+	p2=kand+len-1;
+	for(t=0; t<halb2; t++,p1++,p2--)
+		if(*p1!=*p2)
+			{
+			kand_t++;
+			if(kand_t>best_t) goto fin;
+			if(*p1<*p2)
+				*p2=*p1;
+			else
+				*p1=*p2;
+			}
+	// Kandidat besser als bester?
+	if(kand_t<best_t || (kand_t==best_t && strcmp(kand,best)<0))
+		{
+		best_t=kand_t;
+		strcpy(best,kand);
+		}
+	fin: continue;
+	}
+ 
+for(pos=0; pos<=halb; pos++)	// ZWEITE HAELFTE
+	{
+	strcpy(kand,s);
+	kand_t=0;
+	un=pos;
+	for(t=0; t<5; t++)	// "lucky"
+		{
+		p=kand+t+un;
+		S1(0,'y')S1(1,'k')S1(2,'c')S1(3,'u')S1(4,'l')
+		}
+	un=len-pos-1;
+	for(t=0; t<5; t++)	// "ykcul"
+		{
+		p=kand+un-t;
+		S1(0,'y')S1(1,'k')S1(2,'c')S1(3,'u')S1(4,'l')
+		}
+	p1=kand;	// andere Buchstaben austauschen
+	p2=kand+len-1;
+	for(t=0; t<halb2; t++,p1++,p2--)
+		if(*p1!=*p2)
+			{
+			kand_t++;
+			if(kand_t>best_t) goto fin1;
+			if(*p1<*p2)
+				*p2=*p1;
+			else
+				*p1=*p2;
+			}
+	// Kandidat besser als bester?
+	if(kand_t<best_t || (kand_t==best_t && strcmp(kand,best)<0))
+		{
+		best_t=kand_t;
+		strcpy(best,kand);
+		}
+	fin1: continue;
+	}
+ 
+printf("%s %d\n",best,best_t);
+ 
+}
+ 
+ 
+int main()
+{
+int fall;
+for(scanf("%d",&fall); fall--; losen());
+return 0;
+} 

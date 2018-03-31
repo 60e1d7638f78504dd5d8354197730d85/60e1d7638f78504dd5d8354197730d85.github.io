@@ -1,0 +1,36 @@
+#include  <stdio.h>
+int main()
+{
+  int  flag=1 ;
+  int n,c,r;
+  scanf("%d",&n);
+ int  x[n][n];
+    for(r=0 ; r<n ; r++)
+      for(c=0 ; c<n ; c++)
+        scanf("%d" , &x[r][c]) ;
+
+    for(r=0 ; r<n ; r++)
+      for(c=0 ; c<n ; c++)
+        if(r==c) /* true for diagonal elements */
+        {
+	       if(x[r][c]==0)
+	         flag=0;
+          break;
+        }
+        else
+        {
+	       if(x[r][c]!=0)
+	         flag=0;
+          break;
+        }
+
+    if(flag==1)
+      printf("yes") ;
+    else
+      printf("no") ; 
+  return 0;
+  }
+
+
+
+

@@ -1,0 +1,32 @@
+#include <stdio.h>
+int suma(int a, int b)
+{
+  int i,j,sum=0;
+  if(a==1)
+  {
+   for(i=1;i<=b;i++)
+   {sum=sum+i;
+   }
+    return sum;
+  }
+  else
+  {
+    j = suma(a-1,b);
+    for(i=1;i<=j;i++)
+    { sum=sum+i;}
+    return sum;
+  }
+}
+int main()
+{
+  int N;
+  int a,b,sum;
+  scanf("%d",&N);
+  while(N>0){
+	scanf("%d %d",&a,&b);
+    sum=suma(a,b);
+    printf("%d\n",sum);
+    N--;
+  }
+	return 0;
+}

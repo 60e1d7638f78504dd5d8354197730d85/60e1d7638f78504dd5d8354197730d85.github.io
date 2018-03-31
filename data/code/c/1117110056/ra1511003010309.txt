@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int checker(char m[],char i[])
+{
+int k,l,t;
+  t=0;
+  for(k=0;i[k]!='\0';k++)
+  {
+   for(l=0;m[l]!='\0';l++){
+   if(m[l]==i[k])
+   {
+     t++;
+   }
+   
+   }
+  
+  }
+if(t==k)
+{
+ return 0;
+}
+  else{
+   return 1;
+  }
+
+}
+
+int main()
+{
+  char main[20],in[20];
+  int array[20];
+  int n,k,i;
+  k=0;
+ 
+  scanf("%s",main);
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",in);
+    array[k]=checker(main,in);
+   
+    k++;
+  
+  }
+  
+  for(i=0;i<n;i++){
+   if(array[i]==0)
+   {
+    printf("Yes\n");
+   }
+    else
+    {
+     printf("No\n");
+    }
+  }
+	return 0;
+}

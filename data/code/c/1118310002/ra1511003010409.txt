@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char a[100][100], tmp[100], kt[100], in[100][100];
+  	int i=0, j, k, ct[100], l, count=0, temp;
+  	while(kt[0]!='x')
+    {
+      	scanf("%s", kt);
+      	strcpy(a[i], kt);
+      	i++;
+    }
+  	for(j=0; j<i; j++)
+    {
+      	for(k=0; k<i; k++)
+        {
+          	if(strcmp(a[j],a[k])<1)
+            {
+              	strcpy(tmp, a[j]);
+              	strcpy(a[j], a[k]);
+              	strcpy(a[k], tmp);
+            }
+        }
+    }
+  	for(j=0; j<i; j++)
+    {
+      	if(strcmp(a[j], a[j+1]) == 0)
+          	count++;
+      	else
+        {
+          	ct[l]=count+1;
+          	strcpy(in[l],a[j]);
+          	l++;
+          	count=0;
+        }
+    }
+  	for(j=0; j<l; j++)
+    {
+      	for(k=0; k<l; k++)
+        {
+          	if(ct[j]<ct[k])
+            {
+              	temp=ct[j];
+              	ct[j]=ct[k];
+              	ct[k]=temp;
+              	strcpy(tmp, in[j]);
+              	strcpy(in[j], in[k]);
+              	strcpy(in[k], tmp);
+            }
+        }
+    }
+  	for(j=0; j<l; j++)
+      	printf("%d %s\n", ct[j], in[j]);
+	return 0;
+}

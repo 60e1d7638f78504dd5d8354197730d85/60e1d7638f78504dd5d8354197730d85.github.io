@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+ long long gcd(long long a, long long b)
+{
+    // base case
+    if (a == b)
+        return a;
+ 
+    // a is greater
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+ 
+// Function to return LCM of two numbers
+long long lcm(long long a, long long b)
+{
+    return (a*b)/gcd(a, b);
+}
+int main() {
+	long long n,i,t;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>n;
+        long long a[n],ct,f=0,j;
+        
+        for(i=0;i<n;i++)
+        {
+            cin>>a[i];
+        }
+        long long min,k,l;
+      long long   ans = 1e18;
+      
+      for(i=0;i<n;i++)
+      {
+          for(j=i+1;j<n;j++)
+          {
+             l = lcm(a[i],a[j]); 
+             if(l<ans)
+             {
+                ans=l;             
+             }
+          }
+      }
+      cout<<ans<<endl;    
+	}
+	return 0;
+}

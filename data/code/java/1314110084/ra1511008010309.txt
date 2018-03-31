@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 
+			private static final int MODULO_CC_VALUE = 1000000000 + 7;
+	
+	public static void main(String[] args) throws IOException {
+		try (Scanner in = new Scanner(new BufferedInputStream(System.in, IOUtil.DEFAULT_IO_BUFFER_SIZE))) {
+			try (OutputStream out = new BufferedOutputStream(System.out, IOUtil.DEFAULT_IO_BUFFER_SIZE)) {
+				int testCount = in.nextInt();
+				for (int testIdx = 0; testIdx < testCount; testIdx++) {
+					int valueCount = in.nextInt() + 1;
+					long[] a = new long[valueCount];
+					for (int valueIdx = 0; valueIdx < a.length; valueIdx++) {
+						a[valueIdx] = in.nextInt();
+					}
+					
+					int answer = rgame(a);
+					IOUtil.writeln(out, answer);
+				}
+			}
+		}
+	}
+	
+	static int rgame(final long[] a) {
+		final long a0 = a[0];
+		final long a1 = a[1];
+		
+		long sum = moduloCC(a0 * a1 * 2); // First case
+		
+		long aiMultiples = (a0 + a1) * 2;
+		long factor = 4;
+		for (int idx = 2; idx < a.length; idx++) {
+			sum = moduloCC(sum * 2); // Split previous sequence in 2 groups (before and after a_i)
+			
+			final long currentA = a[idx];
+			sum = moduloCC(sum + (aiMultiples * currentA));
+			final long newMultiples = factor*currentA;
+			aiMultiples =  moduloCC(aiMultiples + newMultiples);
+			
+			factor = moduloCC(factor * 2);
+		}
+		
+		return moduloCC(sum);
+	}
+	
+	private static int moduloCC(long value) {
+		return (int) (value % MODULO_CC_VALUE);
+	}
+	
+	private static final class IOUtil {
+		public static final byte[] LINE_SEPARATOR = System.lineSeparator().getBytes();
+ 
+		public static final int DEFAULT_IO_BUFFER_SIZE = 8192;
+ 
+		public static void writeln(OutputStream out, int value) throws IOException {
+			out.write(String.valueOf(value).getBytes());
+			writeln(out);
+		}
+		
+		public static void writeln(OutputStream out) throws IOException {
+			out.write(IOUtil.LINE_SEPARATOR);
+        }
+	}
+}

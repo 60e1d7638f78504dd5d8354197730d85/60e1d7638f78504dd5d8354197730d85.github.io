@@ -1,0 +1,33 @@
+#include <stdio.h>
+ 
+#define MAX 32
+ 
+long long int fastInput() {
+    long long int val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+ 
+int main(void) {
+    long long int n = fastInput(), sum = 0, two = 1, counter, i, val, temp;
+    long long int count[MAX] = {0};
+    while (n--) {
+        temp = fastInput(), counter = 0;
+        while (temp > 0) {
+            if (temp & 1) count[counter]++;
+            counter++;
+            temp >>= 1;
+        }
+    }
+    for (i=0; i<MAX; i++) {
+        if (count[i] != 0) {
+            val = (count[i] * (count[i]-1) * two)/2;
+            sum += (val);
+        }
+        two *= 2;
+    }
+    printf("%lld", sum);
+    return 0;
+}

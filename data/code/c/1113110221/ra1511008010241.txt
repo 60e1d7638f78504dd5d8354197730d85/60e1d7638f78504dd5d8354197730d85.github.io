@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+int Ar[25];    
+int Count_Pos = 0;
+int Count_Neg = 0;
+int sum=0;
+int SIZEOFARRAY;
+int index;
+scanf("%d",&SIZEOFARRAY);
+for( index = 0; index < SIZEOFARRAY; index++ )
+{
+scanf("%d",&Ar[index]);
+if (Ar[index] > 0 )
+Count_Pos++ ;
+else if (Ar[index] < 0 )
+Count_Neg++;
+}
+if (Count_Pos>0)
+{
+  printf("\nPositive Count=%d",Count_Pos);        
+}
+if(Count_Neg>0)
+{
+  for(index=0;index < SIZEOFARRAY; index++)       
+  {
+    if(Ar[index]<0)  
+    sum=sum+Ar[index];
+  }
+   printf("\nNegative Sum=%d",sum);
+}
+return 0;
+}

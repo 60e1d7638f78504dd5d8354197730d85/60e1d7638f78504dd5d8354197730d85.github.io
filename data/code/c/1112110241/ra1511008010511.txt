@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char arr[26];
+    scanf("%s", arr);
+    int len;
+    len = strlen(arr);
+    int n;
+    scanf("%d", &n);
+    char word[12];
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int found = 0;
+    while(i < n)
+    {
+        scanf("%s", word);
+        j = 0;
+        k = 0;
+        found = 0;
+        while(k < strlen(word))
+        {
+            if(found == strlen(word)-1)
+            {
+                printf("%s\n", "Yes");
+                found = 0;
+                break;
+            }
+
+            if(word[k] == arr[j])
+            {
+                found = found + 1;
+                //printf("\n%d\n", found);
+                k = k + 1;
+                j = 0;
+                continue;
+            }
+            else
+            {
+                j = j + 1;
+            }
+            if(j == len)
+            {
+                printf("%s\n", "No");
+                found = 0;
+                break;
+            }
+
+
+        }
+        i = i + 1;
+
+    }
+	return 0;
+}

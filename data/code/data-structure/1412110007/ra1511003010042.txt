@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void minJumpRequired(int arr[],int n){
+    int minJmp[n];
+    int jmpArr[n];
+    bool flag = true;
+    minJmp[0]=0;
+    for(int i=1;i<n;i++){
+        minJmp[i]=INT_MAX;
+    }
+    for(int i=1;i<n && flag;i++){
+        flag = false;
+        for(int j=0;j<i;j++){
+            if(j+arr[j]>=i)
+            {   
+                flag = true;
+                if(minJmp[j]+1 < minJmp[i])
+                {
+                    minJmp[i]=minJmp[j]+1;
+                    jmpArr[i]=j;
+                }
+            }
+        }
+    }
+    if(flag)
+    cout<<minJmp[n-1]<<endl;
+    else
+    cout<<-1<<endl;
+}
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--){
+	    int n;
+	    cin>>n;
+	    int arr[n];
+	    for(int i=0;i<n;i++)
+	    cin>>arr[i];
+	    
+	    minJumpRequired(arr,n);
+	}
+	return 0;
+}

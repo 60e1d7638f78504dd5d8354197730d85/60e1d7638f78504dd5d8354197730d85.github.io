@@ -1,0 +1,38 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int i,T,A[10],B[10], gcd[10], lcm[10], remainder, numerator, denominator;
+  scanf("%d",&T);
+  for(i=0;i<T;i++)
+  {
+    scanf("%d %d", &A[i], &B[i]);
+  }
+  for(i=0;i<T;i++)
+  {
+    if (A > B)
+    {
+        numerator = A[i];
+        denominator = B[i];
+    }
+    else
+    {
+        numerator = B[i];
+        denominator = A[i];
+    }
+    remainder = numerator % denominator;
+    while (remainder != 0)
+    {
+        numerator   = denominator;
+        denominator = remainder;
+        remainder   = numerator % denominator;
+    }
+   	gcd[i] = denominator;
+    lcm[i] = (( A[i] * B[i]) / gcd[i]);
+  }
+  for(i=0;i<T;i++)
+  {
+    printf("%d %d\n",gcd[i], lcm[i]);
+  }
+  return 0;
+}

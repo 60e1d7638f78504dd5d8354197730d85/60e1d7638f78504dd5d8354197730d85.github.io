@@ -1,0 +1,33 @@
+#include <stdio.h>
+int hcf(int c,int d)
+{
+int i,min,hcf;
+  if(c>d)
+    min=d;
+  else
+    min=c;
+  for(i=1;i<=min;i++)
+  {    if(c%i==0 && d%i==0)
+         hcf=i;
+  }
+  return hcf;
+}
+int main()
+{   int test,n;
+ scanf("%d",&test);
+ while(test--)
+ {int p,q,i,count=0;
+ scanf("%d",&n);
+   for(q=2;q<=n;q++)
+   {for(p=1;p<q;p++)
+     {
+   if(hcf(p,q)==1)
+     count++;
+   }
+   
+   }
+  printf("%d\n",count);
+ 			}
+
+	return 0;
+}

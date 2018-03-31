@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define lli long long int
+lli h[3005];
+int main()
+{
+    lli t,n,q,ans,i;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>q;
+        for(i=0;i<n;i++)
+        {
+            cin>>h[i];
+        }
+        sort(h,h+n);
+        ans=0;
+        for(i=0;i<n-1;i++)
+        {
+            ans+=abs(h[i]-h[i+1]);
+        }
+        ans*=q;
+        cout<<ans<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+  int n, m;
+  scanf("%d %d", &n, &m);
+  int a[n], b[n], c[n*n],i,j=n+1, k=1;
+  for(i=1; i<=n; i++)
+    a[i] = i;
+  for(i=1; i<=n; i++)
+  {
+    b[i] = j;
+    j++;
+  }
+ // printf("%d\n", j);
+  for(i=1; i<=n; i++)
+  {
+    for(j=1; j<=n; j++)
+    {
+      c[k++] = a[i] + b[j];
+    }
+  }
+  while(m--)
+  {
+    int q,cnt=0;
+    scanf("%d", &q);
+    for(i=1; i<=n*n; i++)
+    {
+      if(c[i] == q)
+        cnt++;
+    }
+    printf("%d\n", cnt);
+  }
+
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+float getMaxVolume(int P, int S) {
+    double disc = P*P - 24*S;
+    double root1 = (P + sqrt(disc)) / 12;
+    double root2 = (P - sqrt(disc)) / 12;
+ 
+    double length1 = P/4.0 - 2*root1;
+    double length2 = P/4.0 - 2*root2;
+ 
+    return length1*root1*root1 > length2*root2*root2 ? length1*root1*root1 : length2*root2*root2;
+}
+ 
+int main() {
+    int T_numberOfTestCases;
+    int P_perimeter, S_surfaceArea;
+    scanf("%d", &T_numberOfTestCases);
+ 
+    while(T_numberOfTestCases--) {
+        scanf("%d %d", &P_perimeter, &S_surfaceArea);
+        printf("%.2f\n", getMaxVolume(P_perimeter, S_surfaceArea));
+    }
+ 
+    return 0;
+} 

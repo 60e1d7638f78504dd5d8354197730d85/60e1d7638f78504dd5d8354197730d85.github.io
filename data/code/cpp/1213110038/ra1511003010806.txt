@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string str1,str2;
+  	cin>>str1>>str2;
+  	int n1=str1.length();
+  	int n2=str2.length();
+  	if(n2>n1)
+    {
+      cout<<"Substring not found";
+    }
+  	else
+    {
+      for(int i=0;i<=n1-n2;i++)
+      {
+        int z=0;
+        for(int j=i;j<i+n2;j++)
+        {
+          //cout<<str1[j];
+          if(str1[j]==str2[z])
+          {
+            z++;
+            //cout<<z;
+            if(z==n2)
+              cout<<"Substring found at position "<<j;
+          }
+          else
+            z=0;
+        }
+        cout<<"\n";
+      }
+    }
+	return 0;
+}

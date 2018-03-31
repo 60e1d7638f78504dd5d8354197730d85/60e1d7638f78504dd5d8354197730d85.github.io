@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+int main()
+{
+    int n,m,i,j,f[2000]={0},x,o=0;
+    char a[1000]={' '};
+    scanf("%d%d",&n,&m);
+    memset(f,0,sizeof(f));
+    if(m>0)
+    {
+        scanf("\n");
+    for(i=1;i<=m;i++)
+    {
+        x=0;
+        fgets(a,1000,stdin);
+        if(a[7]=='l')
+        {
+            j=15;
+            while(j<strlen(a))
+            {
+                x=a[j]-'0'+x*10;
+                j++;
+            }
+            for(j=x;j<=n;j++)
+            {
+                f[j]=1;
+            }
+        }
+        if(a[7]=='r')
+        {
+            j=16;
+            while(j<strlen(a))
+            {
+                x=a[j]-'0'+x*10;
+                j++;
+            }
+            for(j=1;j<=x;j++)
+            {
+                f[j]=1;
+            }
+        }
+    }
+    }
+    o=0;
+    for(i=1;i<=n;i++)
+    {
+        if(f[i]==0)
+        {
+            o++;
+        }
+    }
+    if(o==0)
+    {
+        printf("-1\n");
+        return 0;
+    }
+    printf("%d\n",o);
+    return 0;
+}

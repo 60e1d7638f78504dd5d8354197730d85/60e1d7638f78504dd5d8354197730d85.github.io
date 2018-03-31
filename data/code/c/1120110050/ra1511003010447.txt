@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+int t=0,n=0,i,j;
+  int arrS[20]={0};
+  int count=0;
+  scanf("%d",&t);
+  while(t-->0){
+  count=1;
+    scanf("%d",&n);
+    i=0;
+  
+  while(i<n && scanf("%d ",&arrS[i])==1){
+  	i++;
+  	}
+    for(j=1;j<n;j++){
+    	if(arrS[j]<arrS[j-1])
+          count++;
+    	else
+      arrS[j]=arrS[j-1];
+  	}
+    printf("%d\n",count);
+    count=0;
+  }
+	return 0;
+}

@@ -1,0 +1,73 @@
+#include <stdio.h>
+ #include<stdlib.h>
+// Swaps integers in the array at position a with position b
+void swap(int *arr, int a, int b) {
+ int tmp = arr[a];
+ arr[a] = arr[b];
+ arr[b] = tmp;
+}
+ 
+// Partitions an array using the first index as the pivot.
+// Integers larger than or equal to the pivot are in the first partition.
+// Returns: the index of the pivot / partition
+int partition(int *arr, int start, int end) {
+ int pivot = arr[start];
+ int partition = start + 1;
+ int idx;
+ for (idx = start + 1; idx <= end; idx++) {
+  if (arr[idx] >= pivot) {
+   swap(arr, idx, partition);
+   partition++;
+  }
+ }
+ 
+ swap(arr, start, partition - 1);
+ 
+ return partition - 1;
+}
+ 
+// Recursively sort in-place using quicksort
+void quicksort(int *arr, int start, int end) {
+ int mid = 0;
+ 
+ if (end > start) {
+  mid = partition(arr, start, end);
+  quicksort(arr, start, mid - 1);
+  quicksort(arr, mid + 1, end);
+ }
+ 
+ return;
+}
+ 
+int main()
+{
+ int numTestCases = 0;
+ int arrSize = 0;
+ int *arr = NULL;
+ int idx = 0;
+ 
+ for (scanf("%i", &numTestCases); numTestCases > 0; numTestCases--) {
+  
+  scanf("%i", &arrSize);
+  
+  if (arr) {
+   free(arr);
+  }
+  arr = calloc(arrSize, sizeof(int));
+  
+  for (idx = 0; idx < arrSize; idx++) {
+   scanf("%i", &arr[idx]);
+  }
+  
+  quicksort(arr, 0, arrSize - 1);
+  
+  for (idx = 0; idx < arrSize; idx++) {
+   printf("%i ", arr[idx]);
+   if (idx == arrSize - 1) {
+    printf("\n");
+   }
+  }
+ }
+ 
+    return 0;
+}

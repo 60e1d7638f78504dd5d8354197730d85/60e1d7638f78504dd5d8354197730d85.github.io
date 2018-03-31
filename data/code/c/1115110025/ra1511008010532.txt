@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,a[5][5],flag=0,flag1=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i==j && a[i][j]!=0)
+        flag++;
+      if(i!=j && a[i][j]==0)
+        flag1++;
+    }
+  }
+  if(flag==n && flag1==((n*n)-n))
+    printf("yes");
+  else
+    printf("no");
+
+	return 0;
+}

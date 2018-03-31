@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{int salary,T,i=0;
+ float gs,HRA,DA;
+  scanf("%d",&T);
+ if(T>=1000 || T<=0)
+ {
+   return 0;
+ }
+ 
+ while(i<T)
+ {
+    scanf("%d",&salary);
+    if(1<salary<100000)
+    { 
+      if(salary<1500)
+           {
+          HRA=0.1*(float)salary;
+          DA=0.9*(float)salary;
+           }
+        else
+          {
+           HRA=500.0;
+           DA=0.98*(float)salary;
+           }
+      gs=HRA+DA+salary;
+     if(ceil(gs)==floor(gs))
+       printf("\n%.0f",gs);
+      else
+       printf("\n%.1f",gs);
+   }
+   i++;
+ }
+    
+ 
+  return 0;
+}

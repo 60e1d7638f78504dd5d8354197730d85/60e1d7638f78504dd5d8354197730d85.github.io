@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int V[1000],C[1000],F[1000],P[1000],N;
+bool isSubsetSum(int v,int c,int f,int p, int n )
+{
+   if (v == 0 &&c==0 && f==0 && p==0)
+     return true;
+   if (n == N && (v != 0 ||c!=0 || f!=0 || p!=0))
+     return false;
+   if (V[n] > v ||C[n]>c ||F[n]>f || P[n]>p)
+     return isSubsetSum(v,c,f,p, n+1);
+   return isSubsetSum( v,c,f,p,n+1) || isSubsetSum(v-V[n],c-C[n],f-F[n],p-P[n], n+1);
+}
+int main()
+{ 
+  int v ,c,f,p;
+  cin>>v>>c>>f>>p;
+        cin>>N;
+for(int i=0;i<N;i++)
+    cin>>V[i]>>C[i]>>F[i]>>P[i];
+
+  isSubsetSum(v,c,f,p,0)?cout<<"YES":cout<<"NO";
+  return 0;
+}

@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+void findClosest(int A[], int B[], int C[], int p, int q, int r)
+{
+ 
+    int diff = INT_MAX;  
+ 
+        int res_i =0, res_j = 0, res_k = 0;
+ 
+        int i=0,j=0,k=0;
+    while (i < p && j < q && k < r)
+    {
+               int minimum = min(A[i], min(B[j], C[k]));
+        int maximum = max(A[i], max(B[j], C[k]));
+ 
+               if (maximum-minimum < diff)
+        {
+             res_i = i, res_j = j, res_k = k;
+             diff = maximum - minimum;
+        }
+ 
+               if (diff == 0) break;
+ 
+         if (A[i] == minimum) i++;
+        else if (B[j] == minimum) j++;
+        else k++;
+    }
+ 
+       cout << A[res_i] << " " << B[res_j] << " " << C[res_k];
+}
+ 
+int main()
+{
+    int A[50];
+    int B[50];
+    int C[50];
+  int n1,n2,n3,i,j,k,p,q,r;
+ 
+   cin>>n1;
+  for(i=0;i<n1;i++)
+  	cin>>A[i];
+  cin>>n2;
+  for(j=0;j<n2;j++)
+    cin>>B[j];
+  cin>>n3;
+  for(k=0;k<n3;k++)
+    cin>>C[k];
+  
+    findClosest(A, B, C, n1,n2,n3);
+  
+    return 0;
+}

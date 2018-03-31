@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+int size,i,j,temp,arr[20];
+  scanf("%d",&size);
+  for(i=0;i<size;i++)
+    scanf("%d",&arr[i]);
+   for(i=0; i<size; i++)
+    {
+        /* 
+         * Place currently selected element array[i]
+         * to its correct place.
+         */
+        for(j=i+1; j<size; j++)
+        {
+            /* 
+             * Swap if currently selected array element
+             * is not at its correct position.
+             */
+            if(arr[i] > arr[j])
+            {
+                temp     = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+  if(size==0)
+    printf("0");
+  else
+    printf("How many numbers do you want to insert ?\n\nLargest number: %d",arr[size-1]);
+  return 0;
+}

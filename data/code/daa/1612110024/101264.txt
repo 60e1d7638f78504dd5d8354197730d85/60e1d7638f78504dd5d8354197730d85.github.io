@@ -1,0 +1,35 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main()
+{
+  int t,n,k;
+  cin>>t;
+  while(t--)
+  {
+    int sum1=0,sum2=0,i;
+    cin>>n>>k;
+    int A[n];
+    for(i=0;i<n;i++)
+    {
+      cin>>A[i];
+    }
+    sort(A,A+n);
+    int m=n;
+    for(i=0;i<m;i++)
+    {
+      sum1=sum1+A[i];
+      m=m-k;
+    }
+    m=0;
+    for(i=n-1;
+        i>=m;i--)
+    {
+      sum2=sum2+A[i];
+      m=m+k;
+    }
+    cout<<sum1<<' '<<sum2<<endl;
+  }
+  return 0;
+}
+    

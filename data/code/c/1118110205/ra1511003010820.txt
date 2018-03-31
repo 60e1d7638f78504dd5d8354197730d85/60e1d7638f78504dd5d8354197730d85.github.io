@@ -1,0 +1,69 @@
+
+#include<stdio.h>
+struct time
+{
+  int h;
+  int m;
+  int s;
+}t;
+int main()
+{
+  scanf("%d\n",&t.h);
+  scanf("%d\n",&t.m);
+  scanf("%d",&t.s);
+  if(t.h>23||t.m>=60||t.s>=60)
+    printf("Invalid Time");
+  else{
+  printf("24 Hours Format\n");
+  if(t.h<10)
+         printf("%d%d:",0,t.h);
+      else
+        printf("%d:",t.h);
+      if(t.m<10)
+     printf("%d%d:",0,t.m);
+      else
+        printf("%d:",t.m);
+   if(t.s<10)
+      printf("%d%d\n",0,t.s);
+      else
+        printf("%d\n",t.s);
+    printf("12 Hours Format\n");
+  if(t.h>=12)
+  {
+    
+    int h1=t.h-12;
+    if(t.h==12)
+         printf("%d:",t.h);
+  else if(h1<10)
+         printf("%d%d:",0,h1);
+      else
+        printf("%d:",h1);
+      if(t.m<10)
+     printf("%d%d:",0,t.m);
+      else
+        printf("%d:",t.m);
+   if(t.s<10)
+      printf("%d%d pm",0,t.s);
+      else
+        printf("%d pm",t.s);
+  }
+    else 
+    {
+      if(t.h==0)
+        printf("%d:",12);
+      else if(t.h<10)
+         printf("%d%d:",0,t.h);
+      else
+        printf("%d:",t.h);
+      if(t.m<10)
+     printf("%d%d:",0,t.m);
+      else
+        printf("%d:",t.m);
+   if(t.s<10)
+      printf("%d%d am",0,t.s);
+      else
+        printf("%d am",t.s);
+    }
+  }
+  return 0;
+}

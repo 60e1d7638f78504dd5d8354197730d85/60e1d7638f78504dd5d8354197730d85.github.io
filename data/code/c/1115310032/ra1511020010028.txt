@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#define ull unsigned long long int
+#define MAX 51
+ 
+char p[MAX][MAX], v[MAX][MAX];
+ 
+struct node {
+	int k, l;
+};
+ 
+struct node r[MAX][MAX];
+ 
+int complete (int i, int j, int k, int l) {
+	int a, b;
+	for (a = i; a <= k; a++) {
+		for (b = j; b <= l; b++) {
+			if (p[a][b] != 'B')
+				return 0;
+		}
+	}
+	return 1;
+}
+ 
+int main () {
+	int n, i, j, k, l;
+	scanf ("%d", &n);
+	for (i = 0; i < n; i++)
+		scanf ("%s", p[i]);
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			r[i][j].k = r[i][j].l = -1;
+	int  flag, a, b, count = 0;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			if (p[i][j] == 'B' && v[i][j] == 0) {
+				flag = 0;
+				for (k = i; k < n; k++) {
+					for (l = j; l < n; l++) {
+						if (v[k][l] == 0 && complete (i, j, k, l)) {
+							flag = 1;
+							if (flag == 1) {
+								r[i][j].k = k;
+								r[i][j].l = l;
+							}
+						}
+					}
+				}
+				for (a = i; a <= r[i][j].k; a++) {
+					for (b = j; b <= r[i][j].l; b++) {
+						v[a][b] = 1;
+					}
+				}
+				if (flag == 1)
+					count++;
+			}
+		}
+	}
+	printf ("%d\n", count);
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			if (r[i][j].k != -1 && r[i][j].l != -1) {
+				printf ("%d %d %d %d %c\n", i, j, r[i][j].k, r[i][j].l, 'B');
+			}
+		}
+	}
+	return 0;
+}  

@@ -1,0 +1,31 @@
+#include<stdio.h>
+int input() {
+int val = 0;
+char c = getchar_unlocked();
+while (c<33) c = getchar_unlocked();
+while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+return val;
+}
+int main()
+{
+    int t;
+    long long int n,cost;
+    t=input();
+    while(t--)
+    {
+        long long int temp,min,i;
+        n=input();
+        min=input();
+        for(i=0;i<n-1;i++)
+        {
+            temp=input();
+            if(min>temp)
+               min=temp;
+        }
+        cost=(n-1)*min;
+        printf("%lld\n",cost);
+        
+    }
+    return 0;
+    
+}

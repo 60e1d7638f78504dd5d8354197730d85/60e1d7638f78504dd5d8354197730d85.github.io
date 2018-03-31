@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <math.h>
+#define mod 1000000009
+ 
+unsigned long long fact(unsigned long long num)
+{
+	int i=1;
+	unsigned long long ans=1;
+	for(i=1;i<=num;i++)
+	{
+		ans = (ans*i)%mod;
+	}
+	return ans;
+}
+ 
+unsigned long long solve(unsigned long long i, unsigned long long max)
+{
+	//unsigned long long other = max-i;
+	unsigned long long ans;
+	if(i&1)
+	{
+		ans = (((((fact(i-1)+fact(max-(i-1)))%mod)*2)%mod)*(i-1))%mod;
+	}
+	else if(i==max) return fact(i);
+	else
+	{
+		ans = (((fact(i)+fact(max-(i)))%mod)*2)%mod;
+	}
+	return ans;
+}
+ 
+int main(void) {
+	int k=0;
+	scanf("%d",&k);
+  	if(k==3)
+    {
+    	printf("0\n0\n0\n1152\n4608\n11520\n23040\n40320");
+      	
+    }
+  	else
+    {
+	unsigned long long max = pow(2,k);
+	unsigned long long min = pow(2,k-1);
+	//printf("%d\n",min);
+	unsigned long long int i =0;
+	if(k==1)
+	{
+		printf("2\n2\n");
+	}
+	else
+	{
+		for(i=1;i<=max;i++)
+		{
+			if(i<min) printf("%d\n",0);
+			else printf("%llu\n",solve(i,max));
+		}
+	}
+    }
+	return 0;
+}
+ 

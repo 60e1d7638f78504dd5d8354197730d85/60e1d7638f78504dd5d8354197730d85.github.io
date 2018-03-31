@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int t;
+  
+  scanf("%d", &t);
+  
+  while(t--)
+  {
+    int L, D, S, C, i;
+    int d[100];
+    
+    scanf("%d %d %d %d", &L, &D, &S, &C);
+    
+    d[1] = S;
+    
+    for(i = 2; i <= D; i++)
+    {
+      d[i] = d[i-1] + d[i-1]*C;
+    }
+    
+    if(d[D] >= L)
+    {
+      printf("ALIVE AND KICKING\n");
+    }
+    else
+    {
+      printf("DEAD AND ROTTING\n");
+    }
+  }
+
+	return 0;
+}

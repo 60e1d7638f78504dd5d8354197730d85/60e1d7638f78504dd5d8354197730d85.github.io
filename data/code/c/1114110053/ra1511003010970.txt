@@ -1,0 +1,59 @@
+#include <stdio.h>
+int size1,size2;
+void check(int*,int*,int);
+int flag=0;
+int main()
+{
+  int t;
+  scanf("%d",&t);
+
+  
+  while(t--)
+  {
+    
+    scanf("%d",&size1);
+    
+    int arr[size1];
+    
+    int i;
+    for(i=0;i<size1;i++)
+      scanf("%d",&arr[i]);
+    
+    
+    scanf("%d",&size2);
+    
+    int sea[size2];
+    
+    for(i=0;i<size2;i++)
+      scanf("%d",&sea[i]);
+    
+    int j=0;
+    for( i=0;i<size1;i++)
+    {
+      if(arr[i]==sea[j])
+        check(arr,sea,i);
+      
+      if(flag==1)
+      {
+        printf("Yes\n");
+      break;
+      }
+    }
+    if(!flag)
+      printf("No\n");
+    flag=0;
+  }
+	return 0;
+}
+void check(int *p,int *q,int ind)
+{
+int i;
+  
+for(i=0;i<size2;i++,ind++)
+{
+  if(p[ind]!=q[i])
+  return;  
+}
+  flag=1;
+  
+}

@@ -1,0 +1,28 @@
+import java.lang.*;
+import java.util.*;
+
+class TestClass
+{
+	public static void main(String []args){
+	
+		Scanner sc = new Scanner(System.in);
+		Map<String,String> map = new TreeMap<String,String>();
+		String line = sc.nextLine();		
+		String []keys = line.split(" ");
+		
+		for(String s:keys){
+    		String key = ""+s.charAt(0);
+    		if(map.containsKey(key)){
+      			String value = map.get(key) + s;
+      			map.put(key,value);
+    		}else{
+      			map.put(key,s);
+    		}
+  		}
+		
+		for(Map.Entry me:map.entrySet()){
+			System.out.println(me.getKey()+" "+me.getValue());
+		}
+		
+	}
+}

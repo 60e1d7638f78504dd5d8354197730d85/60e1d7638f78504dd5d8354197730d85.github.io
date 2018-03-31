@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+long double a[1000000];
+long long b[1000000];
+long double dp[1000000];
+int best[1000000];
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    for (int i=1;i<=n;i++)
+    {
+        cin>>b[i];
+        a[i]=log2(b[i]+0.0);
+    }
+    multiset<pair<long double,int> > st;
+    st.insert(make_pair(0,1));
+    for (int i=2;i<=n;i++)
+    {
+        multiset<pair<long double,int> >::iterator it=st.begin();
+        dp[i]=it->first+a[i];
+        best[i]=it->second;
+        st.insert(make_pair(dp[i],i));
+        if (i-k>=1)
+        {
+            st.erase(st.find(make_pair(dp[i-k],i-k)));
+        }
+    }
+    int v=n;
+    long long ans=1;
+    while(v!=0)
+    {
+        ans*=b[v];
+        ans%=1000000007;
+        v=best[v];
+    }
+    cout<<ans<<endl;
+} 

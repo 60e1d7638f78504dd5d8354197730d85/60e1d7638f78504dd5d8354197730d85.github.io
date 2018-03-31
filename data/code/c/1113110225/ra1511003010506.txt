@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str[20];
+  	fgets(str,20,stdin);
+  	int l=strlen(str);
+  	int v,c,d,w,i;
+  	
+  	for(i=0;i<l;i++)
+    {
+    	if(isdigit(str[i])){d++;}
+      	
+      	else if(isalpha(str[i]))
+        {
+          if(str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i]=='o' || str[i]=='u'){v++;}
+          else{c++;}
+        }
+        else
+        {
+          w++;
+        }
+      
+    }
+
+  	printf("%d %d %d %d",v,c,d-1,w);
+	return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{	
+	int n,t=0;
+  scanf("%d",&n);
+  char s[n][100],c[50];
+  while (t<n){
+    scanf("%s",s[t]);
+    t++;
+  }
+  int x,y;
+  t=0;
+  for(x=1;x<n;x++)
+    for (y=1;y<n;y++){
+      if (strcmp(s[y-1],s[y])>0){
+        strcpy(c,s[y-1]);
+        strcpy(s[y-1],s[y]);
+        strcpy(s[y],c);
+      }
+    }
+  while(t<n){
+    printf("\n%s",s[t]);
+    t++;
+  }
+  
+  
+	return 0;
+}

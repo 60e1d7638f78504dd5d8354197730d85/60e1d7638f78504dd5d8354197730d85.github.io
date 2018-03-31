@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define max(a,b) (a)>(b)?(a):(b)
+long long int dp[5][21];
+char s[21];
+long long extract(char *s,int i,int l)
+{
+    long long int  num=0;
+    for(;i<=l;i++){
+        num=num*10+s[i]-'0';
+    }
+    //printf("num=%lld\n",num);
+    return num;
+}
+long long int fun(int n,int m)
+{
+    int i=0;
+    long long num=0;
+    long long temp;
+    //printf("n=%dm=%d\n",n,m);
+    if(n==0&&m==-1){
+        //printf("return 0\n");
+        return 0;
+    }
+    
+    if(n<=0||m<0)
+        return -1000000000000000LL;
+    
+    if(dp[n][m]!=-1000000000000000LL){
+        return dp[n][m];
+    }
+    
+    
+    //printf("in here\n");
+    for(i=m;i>=0;i--)
+    {
+         
+        //printf("i=%d,s=%d\n",i,s[i]);
+        if(m-i>0&&s[i]=='0'){
+            //printf("in continue\n");
+            continue;
+        }
+        else
+            num=extract(s,i,m);
+            if(num>1000000000000ll)break;
+        temp=fun(n-1,i-1);
+        //printf("n=%d,m=%d,temp=%lld,num=%lld\n",n,m,temp,num);
+        dp[n][m]=max(dp[n][m],num+temp);
+        //printf("in-->n=%d,m=%d,dp=%d\n",n,m,dp[n][m]);
+    }
+    //printf("n=%d,m=%d,dp=%lld\n",n,m,dp[n][m]);
+    return dp[n][m];
+}
+ 
+int main()
+{
+    int t,i,j;
+    long long int res;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%s",s);
+        for(i=0;i<5;i++)
+            for(j=0;j<21;j++)
+                dp[i][j]=-1000000000000000LL;
+        res=fun(4,strlen(s)-1);
+        if(res<0)
+            printf("The output is:unlucky\n");
+        else
+            printf("The output is:%lld\n",res);
+ 
+    }
+    
+    return 0;
+}

@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+
+float dist(int x1, int y1, int x2, int y2)
+{
+    float dist;
+    
+    dist=pow((x2-x1),2)+pow((y2-y1),2);
+    dist=((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1));
+    dist=sqrt(dist);
+    
+    return dist;
+}
+
+int main() {
+   int t;
+   
+   scanf("%d", &t);
+   
+   while(t--)
+   {
+       int r;
+       int x0, y0, x1, y1, x2, y2;
+       float range;
+       
+       scanf("%d", &r);
+       
+       scanf("%d %d", &x0, &y0);
+       scanf("%d %d", &x1, &y1);
+       scanf("%d %d", &x2, &y2);
+       
+       if(dist(x0,y0,x1,y1)<=r && dist(x1,y1,x2,y2)<=r)
+       		printf("yes\n");
+       else
+       		printf("no\n");
+       	
+   }
+}
+

@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,s,l,d,flag=0,a[10];
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+  	s=l=a[0];
+  	for(i=1;i<n;i++)
+    {
+      if(a[i]>l)
+        l=a[i];
+      if(a[i]<s)
+        s=a[i];
+    }
+  	d=l-s;
+  	printf("%d",d);
+  	for(i=0;i<n;i++)
+    {
+      if(d==a[i])
+      {
+        flag=1;
+        break;
+      }
+    }
+  	if(flag==0)
+      printf("No");
+  	else
+      printf("Yes");
+	return 0;
+}

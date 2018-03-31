@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <limits.h>
+#include <ctype.h>
+ 
+#define MAX_LENGTH	5000
+ 
+int max(int x, int y)
+{
+	return (x >= y) ? x : y;
+}
+ 
+int main(void)
+{
+	int xl;
+	char x[MAX_LENGTH];
+ 
+	int yl;
+	char y[MAX_LENGTH];
+ 
+	int c;
+ 
+	int i, j, k;
+	int table[2][MAX_LENGTH + 1];
+ 
+	c = getchar();
+	for(xl = 0; !isspace(c); c = getchar())
+		if(!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'))
+			x[xl ++] = c;
+ 
+	while(isspace(c))
+	{
+		c = getchar();
+		if(c == EOF)
+			return 1;
+	}
+ 
+	for(yl = 0; c != EOF && !isspace(c); c = getchar())
+		if(!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'))
+			y[yl ++] = c;
+ 
+	for(i = 2; i --;)
+		table[i][0] = 0;
+ 
+	for(i = yl + 1; -- i;)
+		table[0][i] = 0;
+ 
+	k = 1;
+	for(i = 1; i <= xl; i ++)
+	{
+		for(j = 1; j <= yl; j ++)
+		{
+			table[k][j] = max(max(table[!k][j], table[k][j - 1]), (x[i - 1] == y[j - 1]) ? table[!k][j - 1] + 1 : INT_MIN);
+			
+		}
+ 
+		k = !k;
+	}
+ 
+	printf("%d\n", table[!k][yl]);
+ 
+	return 0;
+}

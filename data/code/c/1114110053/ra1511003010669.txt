@@ -1,0 +1,51 @@
+#include <stdio.h>
+int main()
+{
+	int t,f2,f,l1,l2,a[100],b[100],i,j,k;
+  scanf("%d",&t);
+  while(t--)
+  {
+    i=0;
+    f2=0;
+    scanf("%d",&l1);
+    while(l1--)
+    {
+      scanf("%d",&a[i]);
+      i++;
+    }
+    scanf("%d",&l2);
+    i=0;
+    while(l2--)
+    {
+      scanf("%d",&b[i]);
+      i++;
+    }
+    i=0;f=0;
+    while(a[i])
+    {
+      if(a[i]==b[0])
+      {
+        j=0;
+        k=i;
+        while(b[j])
+        {
+          if(a[k]!=b[j])
+          {
+            f=0;
+            break;
+          }
+          else
+            f=1;
+          j++;
+          k++;
+        }
+      }
+      i++;
+    }
+    if(f==1)
+      printf("Yes\n");
+    else 
+      printf("No\n");
+  }
+	return 0;
+}

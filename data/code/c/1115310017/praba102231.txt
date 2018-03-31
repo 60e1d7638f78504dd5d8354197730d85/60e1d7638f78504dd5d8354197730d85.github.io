@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main()
+{
+	int i,j,n,k,l;
+	scanf("%d",&n);
+	int a[2][n];
+	for(i=0;i<n;i++)
+	scanf("%d",&a[0][i]);
+	for(i=0;i<n;i++)
+	scanf("%d",&a[1][i]);
+	int sum[n+1];
+	sum[0]=0;
+	sum[1]=abs(a[1][0]-a[0][0]);
+	
+	for(i=2;i<=n;i++)
+	{
+		k= sum[i-1]+(abs(a[1][i-1]-a[0][i-1]));
+		l= sum[i-2] +(abs(a[0][i-2]-a[0][i-1])+abs(a[1][i-1]-a[1][i-2]));
+	
+		if(k>l)
+		sum[i]=k;
+		else
+		sum[i]=l;
+	}
+	printf("%d\n",sum[n]);
+	return 0;
+}   

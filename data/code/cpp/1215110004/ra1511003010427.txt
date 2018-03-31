@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class Distance
+{
+	int feet, inches;
+  public:
+  	Distance()
+    {
+      feet=0;
+      inches=0;
+    }
+  	Distance(int x)
+    {
+       feet=x;
+       inches=x;
+    }
+  	Distance(int x,int y)
+    {
+      	feet=x;
+      	inches=y;
+    }	
+  	void add(Distance d1,Distance d2)
+    {
+     	 int feet_final = feet+d1.feet+d2.feet;
+      	 int inches_final = inches+d1.inches+d2.inches;
+      	 cout<<feet<<" "<<inches<<endl;
+      	 cout<<d1.feet<<" "<<d1.inches<<endl;
+      	 cout<<d2.feet<<" "<<d2.inches<<endl;
+      	 cout<<"Sum is "<<feet_final<<" feet "<<inches_final<<" inches"<<endl;
+    }
+};
+int main()
+{
+  	int a,b,c; cin>>a>>b>>c;
+	Distance d1(a,b),d2(c),d3;
+	d1.add(d2,d3);  	
+	return 0;
+}

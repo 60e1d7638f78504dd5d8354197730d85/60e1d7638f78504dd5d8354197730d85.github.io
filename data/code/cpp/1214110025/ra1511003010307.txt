@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+void getdata();
+void displaydata();
+class complex
+{
+public:
+  int real;
+  int imag;
+  complex()
+  {
+    real=0;
+    imag=0;
+  }
+  void getdata()
+  {
+    cin>>this->real;
+    cin>>this->imag;
+  }
+  complex add(complex &c)
+  {
+    complex sum;
+    sum.real=this->real+c.real;
+    sum.imag=this->imag+c.imag;
+    return sum;
+  }
+  void displaydata()
+  {
+    cout<<this->real<<endl;
+    cout<<this->imag<<endl;
+  }
+};
+int main()
+{
+  complex a,b,c;
+  a.getdata();
+  b.getdata();
+  c=a.add(b);
+  c.displaydata();
+
+	return 0;
+}

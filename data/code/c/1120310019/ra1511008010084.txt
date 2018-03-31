@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX 1000001 
+int main(void)
+{
+  int i, j, t, n;
+  char buff[MAX];
+  scanf("%d", &t);
+  getchar();
+  for (j = 0; j < t; ++j) {
+    fgets(buff, MAX, stdin);
+    buff[strcspn(buff, "\n")] = 0;
+    n = strlen(buff);
+    for (i = n / 2; i < n; ++i) {
+      if (buff[n - i - 1] == buff[i] && i < n - 1)
+        continue;
+      else if (buff[n - i - 1] <= buff[i]) {
+        i = (n - 1) / 2;
+        do {
+          if (buff[i] != '9')
+            ++buff[i];
+          else
+            buff[i] = '0';         
+        } while (i > 0 && buff[i--] == '0');
+        if (buff[0] == '0') {
+          for (i = n - 1; i >= 0; --i)
+            buff[i + 1] = buff[i];
+          ++n;
+          buff[0] = '1';
+        }
+        i = n;
+      } else
+        break;
+    }
+    // puts(buff);
+    for (i = 0; i <= (n - 1) / 2; ++i)
+      putchar(buff[i]);
+    if (n % 2 == 1)
+      for (i = (n - 1) / 2 - 1; i >= 0; --i)
+        putchar(buff[i]);
+    else 
+      for (i = (n - 1) / 2; i >= 0; --i)
+        putchar(buff[i]);
+    putchar('\n');
+  }
+	return 0;
+}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+ 
+inline long long abss(long long int x)
+{
+	return x>0?x:-x;
+}
+ 
+inline long long int scan()
+{
+	long long int no=0;
+	char ch;
+	ch=getchar_unlocked();
+	while(ch<'0' || ch>'9')
+	ch=getchar_unlocked();
+	while(ch>='0' && ch<='9')
+	{
+		no=(no<<3)+(no<<1)+ch-'0';
+		ch=getchar_unlocked();
+	}
+	return no;
+}
+ 
+void print(long long int X)
+{
+	if(X<0) { putchar_unlocked('-');  X=-X;  }
+	long long int Len=0,Data[10];
+	while(X) { Data[Len++]=X%10; X/=10; }
+	if(!Len) Data[Len++]=0;
+	while(Len--) putchar_unlocked(Data[Len]+48);
+	putchar_unlocked('\n');
+}
+ 
+int main(void) 
+{
+	long long int n,m,q,num;
+	//scanf("%d",&test);
+	n=scan();
+	m=scan();
+	while(m--)
+	{
+		q=scan();
+		if(q<n+2||q>3*n)
+			num=0;
+		else
+			num=n-abss(2*n+1-q);
+		print(num);
+	}
+	return 0;
+}

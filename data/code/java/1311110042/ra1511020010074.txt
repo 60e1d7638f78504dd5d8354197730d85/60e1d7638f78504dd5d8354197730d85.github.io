@@ -1,0 +1,19 @@
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+   static double round(double value, int places) {
+    if (places < 0) throw new IllegalArgumentException();
+
+    long factor = (long) Math.pow(10, places);
+    value = value * factor;
+    long tmp = Math.round(value);
+    return (double) tmp / factor;
+  }
+	 public static void main(String[] args) { 
+		Scanner s=new Scanner(System.in);
+       double a=s.nextDouble();
+       double b=s.nextDouble();
+       double m=b*a/1200;
+       System.out.println(round(m,2));
+	}
+}

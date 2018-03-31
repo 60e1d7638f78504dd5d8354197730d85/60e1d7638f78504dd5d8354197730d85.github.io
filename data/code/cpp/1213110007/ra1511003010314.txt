@@ -1,0 +1,45 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+char str1[100],str2[100];
+  cin>>str1>>str2;
+  int len1=strlen(str1);
+  int len2=strlen(str2);
+  int flag=0,i;
+if(len1==len2)
+{
+  for(i=0;i<len1;i++)
+  {
+     if(str1[i]>=65&&str1[i]<=90)
+     {
+       if(str1[i]==str2[i]||str1[i]==str2[i]+32)
+       {
+       flag++;
+       }
+     }
+    else if(str1[i]>=97&&str1[i]<=122)
+     {
+       if(str1[i]==str2[i]||str1[i]==str2[i]-32)
+       {
+       flag++;
+       }
+    }
+  }
+  if(flag==len1)
+  {
+    cout<<"1";
+  }
+  else
+  {
+  cout<<"0";
+  }
+}
+  else
+  {
+  cout<<"0";
+  }
+  
+  return 0;
+}

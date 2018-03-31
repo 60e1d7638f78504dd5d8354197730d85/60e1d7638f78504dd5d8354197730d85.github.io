@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+ 
+int main(void) 
+{
+	    int n;
+	    scanf("%d",&n);
+	    int a,i,c[1000]={0},k=0,j;
+	    for(i=0;i<n;i++)
+	    {
+	        scanf("%d",&a);
+	        c[a-1]++;
+	    }
+	    for(i=n-1;i>=0;i--)
+	    {
+	        if(c[i]>=4)
+	        {
+	            printf("%d\n",(i+1)*(i+1));
+	            k++;
+	            break;
+	        }
+	        else if((c[i]<4)&&(c[i]>=2))
+	        {
+	            for(j=i-1;j>=0;j--)
+	            {
+	                if(c[j]>=2)
+	                {
+	                    k++;
+	                    printf("%d\n",(i+1)*(j+1));
+	                    break;
+	                }
+	            }
+	            break;
+	        }
+	    }
+	    if(k==0)
+	    printf("-1\n");
+	return 0;
+}

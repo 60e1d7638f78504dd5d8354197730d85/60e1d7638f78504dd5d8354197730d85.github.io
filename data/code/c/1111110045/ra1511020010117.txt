@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n;
+  	int i = 0;
+  	float a[20];
+  	float sum=0;
+  	float sum2=0;
+  	float Mean=0;
+  	float sd=0;
+ 	float k=0;
+  	scanf("%d",&n);
+  	for( i = 0;i<n;i++)
+    {
+      scanf("%f",&a[i]);
+      sum += a[i];
+	}
+  	Mean = sum / n;
+  	printf("Mean=%0.2f\n",Mean);
+  	for(i=0;i<n;i++)
+    {
+       a[i] = a[i] - Mean;
+       a[i] = a[i] * a[i];
+       sum2 += a[i];
+    }
+  	sd = sqrt(sum2/n);
+  	printf("SD=%0.2f",sd);
+	return 0;
+}

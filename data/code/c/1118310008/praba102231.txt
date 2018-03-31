@@ -1,0 +1,133 @@
+#include<stdio.h>
+void swap(int *x, int *y)
+{
+    int z=*x;
+    *x=*y;
+    *y=z;
+}
+int main()
+{
+    int n,m,i=0,j=0,k=0,y=0;
+    scanf("%d %d",&n,&m);
+    int a[m],b[m],c[m],d[n],e[n],f[n];
+    for(i=0;i<n;i++)
+    {
+        e[i]=i+1;
+        f[i]=i+1;
+    }
+    for(i=0;i<m;i++)
+    {
+        scanf("%d %d %d",&a[i],&b[i],&c[i]);
+        if(b[i]==0)
+        {
+        if(k==0)
+        {
+        k=1;
+        if(i==m-1)
+        if((m+k)%2==1)
+        for(j=0;j<n;j++)
+        printf("%d ",f[j]);
+        else
+        for(j=0;j<n;j++)
+        printf("%d ",e[j]);
+        }
+        else
+        {
+        k=0;
+        if(i==m-1)
+        if((m+k)%2==1)
+        for(j=0;j<n;j++)
+        printf("%d ",f[j]);
+        else
+        for(j=0;j<n;j++)
+        printf("%d ",e[j]);
+        }
+        }
+        else if(a[i]==c[i])
+        {
+        for(j=0;j<b[i]/2;j++)
+        {
+                if((i+k)%2==1)
+                swap(&e[a[i]+j],&e[a[i]+b[i]-j-1]);
+                else
+                swap(&f[a[i]+j],&f[a[i]+b[i]-j-1]);
+        }
+        if(k==0)
+        k=1;
+        else
+        k=0;
+        if(i==m-1)
+        if((m+k)%2==1)
+        for(j=0;j<n;j++)
+        printf("%d ",f[j]);
+        else
+        for(j=0;j<n;j++)
+        printf("%d ",e[j]);
+        }
+        else
+        {
+        for(j=0;j<n;j++)
+        {
+            if(j<c[i])
+            {
+            if(j<a[i])
+            {
+                if((i+k)%2==0)
+                e[j]=f[j];
+                else
+                f[j]=e[j];
+            }
+            else
+            {
+                if((i+k)%2==0)
+                e[j]=f[b[i]+j];
+                else
+                f[j]=e[b[i]+j];;
+            }
+            }
+            else if(j<b[i]+c[i])
+            {
+                if((i+k)%2==1)
+                    f[j]=e[a[i]+b[i]+c[i]-j-1];
+                else
+                    e[j]=f[a[i]+b[i]+c[i]-j-1];
+            }
+            else
+            {
+                if(c[i]>=a[i])
+                {
+                if((i+k)%2==0)
+                e[j]=f[j];
+                else
+                f[j]=e[j];
+                }
+                else
+                {
+                if(j<a[i]+b[i])
+                {
+                if((i+k)%2==1)
+                    f[j]=e[j-b[i]];
+                else
+                    e[j]=f[j-b[i]];
+                }
+                else
+                {
+                if((i+k)%2==0)
+                    e[j]=f[j];
+                else
+                    f[j]=e[j];
+                }
+                }
+            }
+        }
+        if(i==m-1)
+        if((m+k)%2==1)
+        for(j=0;j<n;j++)
+        printf("%d ",e[j]);
+        else
+        for(j=0;j<n;j++)
+        printf("%d ",f[j]);
+        }
+    }
+    return 0;
+}

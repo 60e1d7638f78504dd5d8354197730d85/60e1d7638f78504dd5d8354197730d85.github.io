@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) throws IOException {
+        Scanner in = new Scanner(System.in);
+        int T=in.nextInt();
+        for(int i=T;i>0;i--){
+        
+            int N = in.nextInt();
+            int C = in.nextInt();
+            int M = in.nextInt();
+            int total = N/C;
+            int wrappers = total;
+            while (wrappers >= M){
+                int free = wrappers/M;
+                total += free;
+                wrappers = free + wrappers%M;
+            }
+            System.out.println(total);
+          
+        }
+        System.out.println();
+     }
+}

@@ -1,0 +1,34 @@
+#include<iostream>
+ using namespace std;
+class Armstrong {
+    public:
+    int n, temp, rem, sum;
+    void check();
+};
+ 
+void Armstrong::check() {
+    cin>>n;
+  if(n<0){
+  cout << "Invalid Input"; return;}
+    temp=n;
+    while(temp!=0)
+    {
+        rem = temp%10;
+        sum = sum+(rem*rem*rem);
+        temp = temp/10;
+    }
+     
+    if(sum==n)
+    {
+        cout<<n<<" is an Armstrong number";
+    }
+    else
+    {
+        cout<<n<<" is not an Armstrong number";
+    }
+}
+ 
+int main() {
+    Armstrong ob;
+    ob.check();return 0;
+}

@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cstring>
+#include<queue>
+#include<algorithm>
+using namespace std;
+bool cmp(const int x,const int y) { return x > y; }
+const int maxn = 100000+5;
+int a[maxn];
+int main()
+{
+    int n,k,d = 0,p = 0;
+    cin >> n >> k;
+    for(int i = 0;i < n; ++i) cin >> a[i];
+    sort(a,a+n,cmp);
+    for(int i = 0;i < n; ++i)
+    {
+        if(a[i] > 2 * k)
+        {
+            int t = a[i] % (2 * k);
+            d += (a[i] - t) / (2 * k);
+            a[i] = t;
+        }
+        if(a[i] > k) { ++d;}
+        else { ++p;}
+    }
+    d += (p + 1) / 2;
+    cout << d << endl;
+    return 0;
+}

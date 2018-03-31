@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+class Outer
+{
+  public:
+  int x;
+  
+  public:
+  void get()
+  {
+    cin>>x;
+  }
+  
+  class Inner
+  {
+    public:
+    int y;
+    
+    public:
+    void get()
+    {
+      Outer m;
+      m.get();
+      cin>>y;
+    }
+    
+    void sum()
+    {
+      Outer m;
+      cout<<m.x+y;
+    }
+  };
+};
+
+int main()
+{
+  Outer::Inner n;
+  n.get();
+  n.sum();
+  return 0;
+}

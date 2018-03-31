@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define REP(i,a,b) for(i=a;i<b;i++)
+#define rep(i,n) REP(i,0,n)
+ 
+#define ll long long
+#define ull unsigned ll
+ 
+#define D 1007
+ 
+ull pw[2000000], hs[2000000], fst, now;
+char in[2000000];
+ 
+int main(){
+  int i,n;
+  int st, turn;
+  int add1, add2;
+  int size;
+ 
+  pw[0] = 1;
+  REP(i,1,1200000) pw[i] = pw[i-1]*D;
+ 
+  scanf("%d",&size);
+  while(size--){
+    scanf("%s",in);
+    scanf("%d%d",&add1,&add2);
+    for(i=0;;i++) if(in[i]<' ') break; n = i;
+    rep(i,n) in[i+n] = in[i];
+ 
+    hs[0] = 0;
+    rep(i,2*n) hs[i+1] = hs[i]*D + in[i];
+ 
+    st = 0;
+    fst = hs[st+n] - hs[st]*pw[n];
+ 
+    turn = 0;
+    for(;;){
+      if(turn%2==0) st += n-add1;
+      else          st += n-add2;
+      turn++;
+      st %= n;
+ 
+      if(fst == hs[st+n]-hs[st]*pw[n]) break;
+    }
+    printf("%d\n",turn);
+  }
+ 
+ 
+  return 0;
+}
+ 

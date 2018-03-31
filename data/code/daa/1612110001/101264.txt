@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int limit,i,j,temp1;
+  char temp[15];
+  struct data
+  {
+    char name[10];
+    int marks;
+  }d[15];
+ scanf("%d",&limit);
+  for(i=0;i<limit;i++)
+  {
+    scanf("%s%d",d[i].name,&d[i].marks);
+  }
+  for(i=0;i<limit;i++)
+  {
+    for(j=i+1;j<limit;j++)
+    {
+    if(strcmp(d[j].name,d[i].name)<0)
+    {
+      strcpy(temp,d[i].name);
+      strcpy(d[i].name,d[j].name);
+      strcpy(d[j].name,temp);
+       temp1=d[i].marks;
+      d[i].marks=d[j].marks;
+      d[j].marks=temp1;
+    }
+    }
+  }
+  printf("\nAfter sorting");
+  printf("\nName ID");
+  for(i=0;i<limit;i++)
+  {
+    printf("\n%s %d",d[i].name,d[i].marks);
+  }
+	return 0;
+}

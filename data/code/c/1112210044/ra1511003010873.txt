@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<math.h>
+long long int primeFactors(long long int num)
+{
+	long long int numberOfDivisors = 1;
+    long long int exponent = 1;
+    long long int i = 2;
+    while (i <= num) {
+        if (num%i == 0) {   
+            exponent++; 
+            num /= i;
+        }
+        else {
+            numberOfDivisors *= exponent;
+            exponent = 1;
+            i++;
+        }
+    }
+    numberOfDivisors *= exponent;
+ 
+	return numberOfDivisors;
+}
+int IsPrime(long long int number)
+{
+	long long int i;
+    for (i = 2; i < number; i++)
+    {
+      if (number % i == 0 && i != number)
+        return 0;
+    }
+    return 1;
+}
+/* Driver program to test above function */
+int main()
+{
+    long long int s,e,test,ans,i;
+    scanf("%lld",&test);
+	while(test--)
+	{
+		ans=0;
+		scanf("%lld %lld",&s,&e);
+		if(s<2)
+			s=2;
+		for(i=s;i<=e;i++)
+		{
+			if(IsPrime(primeFactors(i)))
+				ans++;
+			
+		}
+		printf("%lld\n",ans);
+	
+	}
+	
+    return 0;
+}

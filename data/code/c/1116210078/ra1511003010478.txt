@@ -1,0 +1,33 @@
+
+#include <stdio.h>
+int a[20];
+int n;
+int dp[100];
+int func(int sum,int i)
+{
+    if(sum==0)
+        return 1;
+    if(sum<0)
+        return 0;
+    if(i>=n)
+        return 0;
+    return func(sum-a[i],i+1)+func(sum,i+1);
+}
+int main() 
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+	    int sum;
+	    scanf("%d%d",&n,&sum);
+	    int i;
+	    for(i=0;i<n;i++)
+	        scanf("%d",&a[i]);
+	    int ans; 
+          ans = func(sum,0);
+	    if(ans) printf("Yes\n");
+	    else    printf("No\n");
+	}
+	return 0;
+}

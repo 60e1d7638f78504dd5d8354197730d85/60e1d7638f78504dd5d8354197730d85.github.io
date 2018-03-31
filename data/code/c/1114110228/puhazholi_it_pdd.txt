@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+
+int n,m;
+int a;
+char s[100],d[100],f[100],g[100];
+        unsigned int x,i=0,j=0,r=0,mi=1,maxi=0;
+int main(){
+    scanf("%d %d",&n,&m);
+    mi=1,maxi=n;
+    for (i=  0; i< m; i ++)
+    {
+       scanf("%s %s %s %s %d",s,d,f,g,&x);
+        if (strcmp(f,"left")==0)
+        {
+            maxi=min(maxi,x-1);
+          
+        }
+        else{
+            mi=max(mi,x+1);
+           
+        }
+     
+    }
+    
+    
+    if (mi>maxi)
+        printf("-1");
+    else
+        r=maxi-mi+1;
+        printf("%d\n",r);
+    return 0;
+}
+int max(int m, int x)
+{
+  if(m>x)
+    return m;
+  else 
+    return x;
+}
+int min(int m, int x)
+{
+  if(m<x)
+    return m;
+  else
+    return x;
+}

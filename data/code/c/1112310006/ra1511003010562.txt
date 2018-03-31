@@ -1,0 +1,33 @@
+#include <stdio.h>
+ 
+long long getNext(){
+	long long d=0;
+	char c =getchar_unlocked();
+	while(c!=' ' && c!='\n' && c!=EOF){
+		d = d*10+(int)c-48;
+		c = getchar_unlocked();
+	}
+	
+	return d;
+}
+ 
+int main(void) {
+	// your code goes here
+	long long t = getNext();
+	while(t--){
+		long double x = (long double) getNext();
+		long long k= getNext(),m=1,l;
+		//printf("x = %Lf k=%ld\n",x,k);
+		while(k>m){
+			m = m<<1;
+		}
+		if(k==m) l=0;
+		else {
+			m=m>>1;
+			l= k-m;
+		}
+		m = m<<1;
+		printf("%Lf\n",(l*2+1)*(x/m));
+	}
+	return 0;
+}

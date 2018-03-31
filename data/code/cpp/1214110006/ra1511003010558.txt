@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+class account
+{
+  char name[20];
+  int accnum;
+  char type[10];
+  int balance;
+  public:
+  void getdata()
+  {
+    cin>>name>>accnum>>type>>balance;
+  }
+  void deposit(int x)
+  {
+    balance+=x;
+  }
+  void withdraw(int x)
+  {
+    if(balance<x)
+      cout<<"Insufficient amount";
+    else
+    	balance-=x;
+  }
+  void display()
+  {
+    cout<<"\nNAME="<<name;
+    cout<<"\nACCNO="<<accnum;
+    cout<<"\nTYPE="<<type;
+    cout<<"\nBALANCEAMOUNT="<<balance;
+  }
+};
+int main()
+{
+	class account a;
+  	a.getdata();
+  	int x,y;
+  	cin>>x>>y;
+  	a.deposit(x);
+  	a.withdraw(y);
+  	a.display();
+	return 0;
+}

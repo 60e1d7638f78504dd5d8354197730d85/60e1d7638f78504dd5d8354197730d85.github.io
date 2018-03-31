@@ -1,0 +1,29 @@
+#include <stdio.h>
+struct employee{
+  char name[20], city[20];
+  long num;
+};
+
+void search(struct employee e[10], int n, char key[20]){
+  int i;
+  for(i=0;i<n;i++)
+    if(strcmp(e[i].name, key) == 0){
+      printf("\nName Mobile Number City\n");
+      printf("%s %ld %s", e[i].name, e[i].num, e[i].city);
+      break;
+    }
+    if(i == n)
+      printf("\nThe Entered Name is not in the Directory");
+}
+
+int main(){
+  struct employee e[10];
+  int n, i;
+  char key[20];
+  scanf("%d", &n);
+  for(i=0;i<n;i++)
+    scanf("%s%ld%s", e[i].name, &e[i].num, e[i].city);
+  scanf("%s", key);
+  search(e, n, key);
+  return 0;
+}

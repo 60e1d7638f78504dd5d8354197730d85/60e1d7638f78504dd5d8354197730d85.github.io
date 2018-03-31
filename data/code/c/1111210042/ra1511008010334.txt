@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+    int c,i,n,a[10],flag=0,maximum,minimum,diff;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+  maximum = a[0];
+ 
+  for (c = 1; c <n; c++)
+  {
+    if (a[c] > maximum)
+    {
+       maximum  = a[c];
+    }
+  }
+  minimum = a[0];
+ 
+    for ( c = 1 ; c < n ; c++ ) 
+    {
+        if ( a[c] < minimum ) 
+        {
+           minimum = a[c];
+        }
+    } 
+  diff=maximum-minimum;
+  printf("%d",diff);
+  for (i=0; i<n; i++)
+  {
+   if(a[i]==diff)
+   {
+   flag=1;
+   break;
+   }
+  }
+ if(flag==0)
+  printf("No");
+ else
+  printf("Yes");
+	return 0;
+}

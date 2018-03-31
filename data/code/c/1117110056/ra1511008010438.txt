@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char s[26];
+    char str[100000];
+    int a[260]={0};
+    scanf("%s",s);
+    int i,len=strlen(s);
+    for(i=0;i<len;i++)
+    {
+        a[s[i]-'a']=1;
+    }
+    int nl;
+    scanf("%d",&nl);
+    for(i=0;i<nl;i++)
+    {
+        scanf("%s",str);
+        len=strlen(str);
+        int j,f=1;
+        for(j=0;j<len;j++)
+        {
+            if(a[str[j]-'a']!=1)
+            {
+                printf("No\n");
+                f=0;
+                break;
+            }
+        }
+        if(f==1)
+        printf("Yes\n");
+    }
+    
+    return 0;
+} 

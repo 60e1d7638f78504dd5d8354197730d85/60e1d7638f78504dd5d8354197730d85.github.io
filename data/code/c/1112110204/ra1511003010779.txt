@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int t,x,y,lcm,gcd,i,j,p,q;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      scanf("%d%d",&x,&y);
+      for(j=1;j<=x && j<=y;++j)
+      {
+        if(x%j==0 && y%j==0)
+        {
+          gcd=j;
+        }
+      }
+        p=x,q=y;
+	  while(x!=y)
+      {
+      	if(x>y)
+           x=x-y;
+      	else
+      	   y=y-x;
+  	  }
+  	lcm=(p*q)/x;
+      printf("%d %d\n",gcd,lcm);
+    }
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t,h;
+    scanf("%d",&t);
+    char s[100010];
+    while(t--)
+    {
+        scanf("%s",s);
+        int b[26]={0};
+        int count=0;
+        int x=strlen(s);
+        for( h=0;h<x;h++)
+        {
+            if(b[s[h]-97]==0)
+            {
+              b[s[h]-97]=1;
+              count++;
+            }
+            if(count==26)
+                break;
+        }
+        printf("%d\n",count);
+    }
+    return 0;
+}
+ 

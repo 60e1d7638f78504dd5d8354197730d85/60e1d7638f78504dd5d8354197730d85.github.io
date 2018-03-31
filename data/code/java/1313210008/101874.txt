@@ -1,0 +1,59 @@
+import java.util.*;
+public class TestClass 
+{
+  	public static void main(String[] ar)
+    {
+  		String[] ones={"","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Tweleve"," Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
+  		String[] tens={"","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
+		Scanner sc=new Scanner(System.in);
+      	int n=sc.nextInt();
+      	int  i=0,t=0,temp=0;
+      	String res="";
+      	while(n>0)
+        {
+          	t=n%10;
+          	n=n/10;
+          	if(i==0&&n>10)
+            {
+              res=ones[t]+res;
+              temp=t;
+            }
+          	else if(i==0&&n<10&&n>1)
+          	{
+          		res=tens[n-1]+" "+ones[t];
+          		break;
+          	}
+          	else if(i==0&&n==1)
+          	{
+          		res=ones[10+t];
+          		break;
+          	}
+          	else if(i==1&&t==1)
+          	{
+          		res=ones[temp+10];
+          	}
+          	else if(i==1&&n<10&&n>1)
+           	{
+              res=tens[t-1]+" "+res;
+            }
+          	else if(i==1&&n<10&&n==1)
+            {
+              res=ones[10+t]+" "+res;
+            }
+          	else if(i==1&&n>10)
+            {
+              res =tens[t-1]+" "+res;
+            }
+          	else if(i==2)
+            {
+              res = ones[t]+" Hundred and "+res;
+            }
+          	else if(i==3)
+            {
+              res = ones[t]+" Thousand "+res;
+            }
+          	i=i+1;
+        }
+      System.out.println(res.trim());
+	}
+}

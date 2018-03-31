@@ -1,0 +1,38 @@
+#include <stdio.h>
+int gradec(int hard,float carbon,int tensile)
+{
+	if(hard>50)
+    {if(carbon<0.7)
+      if(tensile>5600)
+        printf("Grade 10\n");
+     else
+      printf("Grade 9\n");
+     else if(tensile>5600)
+       printf("Grade 7\n");
+     else
+       printf("Grade 6\n");
+    }
+  else if(carbon<0.7)
+  { if(tensile>5600)
+    	printf("Grade 8\n");
+   else
+     printf("Grade 6\n");
+  }
+  else if(tensile>5600)
+  {	printf("Grade 6\n");
+  }
+  else
+    printf("Grade 5\n");
+}
+int main()
+{
+	int n,h,t,i;
+  float c;
+      scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d%f%d",&h,&c,&t);
+      gradec(h,c,t);
+    }
+	return 0;
+}

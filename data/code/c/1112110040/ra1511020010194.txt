@@ -1,0 +1,26 @@
+#include <stdio.h>
+ 
+ 
+int getI(int *x)
+{
+  int count =0;   
+  char ch ;
+  *x=0;
+  while((ch=getc_unlocked(stdin)) <= '9' && ch >= '0') {
+    if(ch=='4') count++;  
+    *x =  (*x<<3) + (*x<<1) + ch-'0';
+  }
+  return count;
+  //cout << x << "\n";
+}
+ 
+int main() {
+    
+    int T , c;
+    getI(&T);
+    while(T--) {
+        printf("%d\n",getI(&c));
+    }
+    
+    return 0;
+} 

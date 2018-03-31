@@ -1,0 +1,36 @@
+#include<stdio.h>
+unsigned long long temp;
+unsigned long long possible(unsigned long long x,unsigned long long y)
+{
+    if(x<y)
+    {
+        temp=x;
+        x=y;
+        y=temp;
+    }
+    if(x%y==0)return x/y-1;
+    unsigned long long z=possible(y,x%y);
+    unsigned long long sol=x/y;
+    if(sol<=z)return sol-1;
+    else return sol;
+}
+int main()
+{
+    int n,t,i;
+    unsigned long long x,y,ans;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        ans=0;
+        for(i=1;i<=n;i++)
+        {
+            scanf("%llu %llu",&x,&y);
+            ans^=possible(x,y);
+        }
+        if(ans)printf("YES\n");
+        else printf("NO\n");
+    }
+    return 0;
+}  
+

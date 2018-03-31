@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner in =  new Scanner(System.in);
+        int t = in.nextInt();
+        for(int z=0;z<t;z++)
+        {
+            int n = in.nextInt();
+            int x = in.nextInt();
+            int notes[] = new int[n];
+            for(int i=0;i<n;i++)
+                notes[i] = in.nextInt();
+            Arrays.sort(notes);
+            int sum = 0;
+            for(int i=0;i<n;i++)
+                sum+=notes[i];
+            int y = sum%x;
+            int flag = 0;
+            for(int i=0;i<n;i++)
+                if(notes[i]<=y)
+                {
+                    flag = 1;
+                    break;
+                }
+            if(flag==1)
+                System.out.println("-1");
+            else
+                System.out.println(sum/x);
+        }
+	}
+}

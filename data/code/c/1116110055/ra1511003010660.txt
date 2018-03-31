@@ -1,0 +1,53 @@
+#include <stdio.h>
+int main()
+{
+    int tstcases,na=0,nb=0,i=0,j=0,res=0;
+  char a[100];
+  scanf("%d",&tstcases);
+  while(i<tstcases)
+  {  res=0; na=0,nb=0;
+    scanf("%s",a);
+   j=0;
+    while(a[j]!='\0')
+    {
+      if(a[j]=='a')
+        na++;
+      else
+        nb++;
+      j++;
+    }
+   j=0;
+   if(na==0||nb==0)
+   {
+    printf("%d\n",res);}
+   else
+   {
+   if (na>=nb)
+   {
+     
+     while(a[j]!='\0')
+     {
+       if(a[j]=='b')
+       {
+         a[j]='a';
+         res++;
+       }
+       j++;
+     }
+   }
+   else
+   { while(a[j]!='\0')
+     {
+       if(a[j]=='a')
+       {a[j]='b';
+     res++;}
+       j++;
+     }
+   } 
+   printf("%d\n",res);
+   }
+   i++;
+  }
+  
+	return 0;
+}

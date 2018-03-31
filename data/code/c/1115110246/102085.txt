@@ -1,0 +1,136 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+ typedef struct 
+ {
+ 	int sum;
+ 	int rem[3];
+ }node;
+ node addNode(node left,node right)
+ {
+ 	int b[3];
+ 	node parent;
+ 	
+ 	b[0]=right.rem[0];
+ 	b[1]=right.rem[1];
+ 	b[2]=right.rem[2];
+ 
+ 	parent.sum=(right.sum + left.sum)%3;
+ 
+ 	parent.rem[0]=b[(3-left.sum)%3] + left.rem[0];
+ 	parent.rem[1]=b[(4-left.sum)%3] + left.rem[1];
+ 	parent.rem[2]=b[(2-left.sum)%3] + left.rem[2];
+ //	printf(" \n %d %d %d ",parent.rem[0],parent.rem[1],parent.rem[2]);
+ 	 return parent;
+ 	
+ }
+ void initialise(int str,int end,int idx,node *ST,int *array)
+ {
+ 	if(str==end)
+ 	{
+ 		ST[idx].sum=array[str]%3;
+ 		ST[idx].rem[array[str]%3]++;
+ 		
+ 		return;
+ 		
+ 	}
+ 	int mid=str + (end-str)/2;
+ 	initialise(str,mid,idx*2+1,ST,array);
+ 	initialise(mid+1,end,idx*2+2,ST,array);
+ 	ST[idx]=addNode(ST[idx*2+1],ST[idx*2+2]);
+ 	
+ //	printf(" \n %d - %d ",idx,ST[idx].rem[1]);
+ }
+ node * createST(int n,int *array)
+ {
+ 	if(n<1)
+ 		return NULL;
+ 	int ht=(int)(ceil(log2(n)));
+ 	int max=2*(int)(pow(2,ht))-1;
+ 	node *ST=(node*)calloc(max,sizeof(node));
+ 	initialise(0,n-1,0,ST,array);
+ 	return ST;
+ }
+node getRes(node* ST,int *array,int str,int end,int qstr,int qend,int idx)
+{
+	if(qstr<=str && qend >=end)
+		return ST[idx];
+	int mid=str +(end-str)/2;
+	if(mid < qstr)
+	{
+		return getRes(ST,array,mid+1,end,qstr,qend,idx*2+2);
+	}
+	else if(mid+1 > qend)
+	{
+		return getRes(ST,array,str,mid,qstr,qend,idx*2+1);
+		
+	}
+	else 
+	{
+		return addNode(getRes(ST,array,str,mid,qstr,qend,idx*2+1), getRes(ST,array,mid+1,end,qstr,qend,idx*2+2));
+	}
+}
+void update(node* ST,int rep,int diff,int str,int end,int idx)
+{
+	if(rep < str || rep > end)
+	{
+		return;
+	}
+	if(str==end)
+	{
+		ST[idx].sum=diff%3;
+		ST[idx].rem[0]=0;
+		ST[idx].rem[1]=0;
+		ST[idx].rem[2]=0;
+		ST[idx].rem[diff%3]++;
+		return;
+	}
+	int mid=str+(end-str)/2;
+	update(ST,rep,diff,str,mid,idx*2+1);
+	update(ST,rep,diff,mid+1,end,2*idx+2);
+	ST[idx]=addNode(ST[idx*2+1],ST[idx*2+2]);
+}
+ int main()
+ {
+ 	int n,rep,num,m,l,r,type;
+ 	char c;
+ 	node *ST;
+ 	int array[1000000];
+ 	node res;
+ 	long long int ans,x,y,z;
+ 	int i;
+ 	scanf("%d %d ",&n,&m);
+ 	fflush(stdin);
+ 	for(i=0;i<n;i++)
+	{ 
+	  scanf("%c",&c);
+	  array[i]= c- 48;	
+		
+	} 
+	ST=createST(n,array);
+	//printf("\n%d %d %d " ,ST[0].sum,ST[2].sum,ST[2].rem[1]);
+	while(m--){
+		scanf("%d",&type);
+		if(type==2)
+		{
+			scanf("%d%d",&l,&r);
+			res = getRes(ST,array,0,n-1,l-1,r-1,0);
+		//	printf("\n%d %d %d %d" ,res.sum,res.rem[0],res.rem[1],res.rem[2]);
+			ans=0;
+			x=res.rem[0]+1;
+			y=res.rem[1];
+			z=res.rem[2];
+			ans=(x*(x-1))/2 + (y*(y-1))/2 + (z*(z-1))/2;
+			printf("%lld\n",ans);
+		}
+		else{
+			scanf("%d%d",&rep,&num);
+			array[rep]=num;
+			update(ST,rep-1,num,0,n-1,0);
+		//	res = getRes(ST,array,0,n-1,0,4,0);
+	//	printf("\n%d %d %d %d" ,res.sum,res.rem[0],res.rem[1],res.rem[2]);
+			
+		}
+	}
+	 return 0;
+ } 

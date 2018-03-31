@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+int fun(int bnum);
+int main()
+{
+  int bnum;
+  scanf("%d", &bnum);
+  printf("%d", fun(bnum));
+
+	return 0;
+}
+int fun(int bnum)
+{
+int onum =0, dnum =0, i=0;
+  while(bnum!=0)
+  {
+  dnum+=(bnum%10)* pow(2,i);
+    ++i;
+    bnum/=10;
+  }
+  i=1;
+  while(dnum!=0)
+  {
+  onum+=(dnum%8)*i;
+    dnum/=8;
+    i*=10;
+  }
+  return onum;
+}

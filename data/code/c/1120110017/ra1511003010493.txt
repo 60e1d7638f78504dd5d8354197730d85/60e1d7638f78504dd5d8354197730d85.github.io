@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,sum,count=0,i,j,a[100][100];
+  scanf("%d%d",&m,&n);
+  sum=(m*(m-1))/2;
+  
+  
+  for(i=1;i<=m;i++)
+  {
+    for(j=1;j<=n;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  
+  for(i=1;i<=m;i++)
+  {
+    for(j=1;j<=n;j++)
+    {
+      if(j>i)
+      {
+        if(a[i][j]==0)
+          count++;
+      }
+    }
+  }
+  if(sum==count)
+    printf("yes");
+  else
+    printf("no");
+
+	return 0;
+}

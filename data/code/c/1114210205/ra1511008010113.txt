@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main()
+{
+    int N,i,j,diag1=0,diag2=0;
+    scanf("%d",&N);
+    int a[N][N];
+    for(i=0;i<N;i++)
+      for(j=0;j<N;j++)
+        scanf("%d",&a[i][j]);
+    for(i=0;i<N;i++)
+      for(j=0;j<N;j++){
+        if(i==j)
+          diag1+=a[i][j];
+        if(j==(N-i-1))
+          diag2+=a[i][j];
+      }
+    printf("%d",abs(diag1-diag2));
+	return 0;
+}

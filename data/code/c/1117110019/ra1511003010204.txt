@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,i,j,a[100][100],flag=0;
+  scanf("%d%d",&m,&n);
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  } 
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i<j && a[i][j]!=0)
+        flag=1; 
+      if(i>j && a[i][j]==0)
+        flag=1;
+    }
+  } 
+  if(flag==0)
+    printf("yes");
+  else 
+    printf("no");
+	return 0;
+}

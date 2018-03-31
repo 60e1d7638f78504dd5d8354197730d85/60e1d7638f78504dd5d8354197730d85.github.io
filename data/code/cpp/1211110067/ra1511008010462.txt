@@ -1,0 +1,31 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+  int num,pal=0,rev=0,digit;
+  cin >> num;
+  int power = pow(num,2);
+  int n = power;
+  while(num!=0)
+  {
+    digit = num%10;
+    rev = rev*10 + digit;
+    num = num/10;
+  }
+  digit=0;
+  int pow1 = pow(rev,2);
+  while(power!=0)
+  {
+    digit = power%10;
+    pal = pal*10 + digit;
+    power = power/10;
+  }
+  
+  if(pow1 == pal)
+    cout << "Adam Number";
+  else
+    cout << "Not an Adam Number";
+
+	return 0;
+}

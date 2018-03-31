@@ -1,0 +1,36 @@
+#include <stdio.h>
+  
+struct employee
+  {
+    char name[100];
+  	int empid,salary,hra,da;
+    float total;
+  };
+
+
+int main()
+{
+  struct employee emp;
+  int id,sal;
+  scanf("%s\n",emp.name);
+  if(emp.name==0){
+    printf("0");
+    return 0;
+  }
+  scanf("%d\n",&id);
+  scanf("%d\n",&sal);
+ 
+  double f=(double)(sal+(sal*.10)+(sal*.20));
+  emp.empid=id;
+  emp.salary=sal;
+  emp.hra=sal*.10;
+  emp.da=sal*.20;
+  emp.total=f;
+  
+  printf("Name=%s\n",emp.name);
+  printf("Id=%d\n",emp.empid);
+  printf("HRA=%d\n",emp.hra);
+  printf("DA=%d\n",emp.da);
+  printf("Total Salary=%.0lf",emp.total);
+	return 0;
+}

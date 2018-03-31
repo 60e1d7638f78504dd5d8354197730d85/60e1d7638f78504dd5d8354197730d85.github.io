@@ -1,0 +1,76 @@
+#include<stdio.h>
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n,m,c,i,j;
+    scanf("%d",&n);
+    int v=n;
+    n=2*n-1;
+    m=n;
+    int a[10][10];
+    int ti=0;
+    int tj=0;
+    c=0;
+    int tot=n*m;
+    int r1=0,c1=0,r2=n-1,c2=m-1;
+    int dir=1;
+    while(c<tot)
+    {
+        a[ti][tj]=v;
+        c++;
+        if(dir==1)
+        {
+            if(tj<c2)
+                tj++;
+            else
+            {
+                
+                r1++;
+                dir=2;
+                ti++;
+            }
+        }
+        else if(dir==2)
+        {
+            if(ti<r2)
+                ti++;
+            else
+            {
+                c2--;
+                dir=-1;
+                tj--;
+            }
+        }
+        else if(dir==-1)
+        {
+            if(tj>c1)
+                tj--;
+            else
+            {
+                r2--;
+                dir=-2;
+                ti--;
+            }
+        }
+        else if(dir==-2)
+        {
+            if(ti>r1)
+                ti--;
+            else
+            {
+             c1++;
+                dir=1;
+                tj++;
+                v--;
+            }
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        
+    for(j=0;j<m;j++)
+        printf("%d ",a[i][j]);
+        printf("\n");
+    }
+    return 0;
+}

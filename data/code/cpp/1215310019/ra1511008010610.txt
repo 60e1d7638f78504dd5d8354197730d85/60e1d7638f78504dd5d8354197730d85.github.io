@@ -1,0 +1,65 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define M 1000000003
+using namespace std;
+ 
+ 
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+ 
+        int n,m;
+        cin>>n>>m;
+        int a[n][n],invite[n];
+        memset(a,0,sizeof(a));
+        memset(invite,0,sizeof(invite));
+        for(int i=0;i<n;i++)
+            a[i][i]=1;
+        while(m--)
+        {
+            int x,y;
+            cin>>x>>y;
+            x--;
+            y--;
+            a[x][y]=1;
+            a[y][x]=1;
+        }
+        int inst=0;
+        int ma=0;
+        while(true){
+            int maxFriends=-1,index=-1;
+            for(int i=0;i<n;i++)
+            {
+                invite[i]=0;
+                for(int j=0;j<n;j++)
+                    if(a[i][j]==1)  invite[i]++;
+                if(maxFriends<invite[i]){
+                    maxFriends=invite[i];
+                    index=i;
+                }
+            }
+            sort(invite,invite+n);
+            
+            for(int i=0;i<n-1;i++)
+                if(invite[i]==invite[i+1]&&invite[i]>13)
+                    inst++;
+            if(maxFriends==0)
+                break;
+            for(int i=0;i<n;i++)
+            {
+                if(a[index][i]==1)
+                {
+                    for(int j=0;j<n;j++)
+                        a[j][i]=0;
+                }
+            }
+            ma++;
+        }
+        if(inst>3)  ma--;
+        cout<<ma<<endl;
+        
+	}
+    return 0;
+} 

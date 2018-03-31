@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+const int maxn = 91;
+int f[100];
+int main(){
+ const int maxn = 91;
+int f[100]; 
+    int t,n,k,i;
+    f[1]=2;f[2]=3;
+    for(i= 3;i<=maxn;i++)
+       f[i]=f[i-1]+f[i-2];
+    while(~(scanf("%d",&n))){
+        int i;
+        for(i=1;i<=maxn;i++){
+            if(f[i]>n)
+              break; 
+        }
+        printf("%d\n",i-1);
+    }
+    return 0;
+}

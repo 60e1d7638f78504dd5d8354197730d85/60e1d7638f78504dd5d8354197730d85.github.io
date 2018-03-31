@@ -1,0 +1,121 @@
+#include<stdio.h>
+//#include<conio.h>
+int l[51],r[51];
+long double cn[101][51],power[52],tempcn[101][51],add[101][51],sum,denom,tempsum;//multiply[101][51],add[101][51];
+double ans;
+ 
+ 
+void calculatepower()
+{
+	int i;
+	power[0]=1;
+	for(i=1;i<51;i++)
+		power[i]=power[i-1]*2;
+}
+void resetadd(int n,int c)
+{
+	int i,j;
+	for(i=0;i<c;i++)
+	{
+		for(j=0;j<n;j++)
+			add[i][j]=0;
+	}
+}
+void resettempcn(int n,int c)
+{
+	int i,j;
+	for(i=0;i<c;i++)
+	{
+          for(j=0;j<n;j++)
+			  tempcn[i][j]=0;
+ 
+}
+}
+ 
+void dp(int n,int c,int k)
+{
+	int i,round,color,left,right,multiply,j,mixture;
+	for(i=0;i<n;i++)
+		cn[1][i]=1;
+	for(round=0;round<k;round++)
+	{
+		left=l[round]-1;right=r[round]-1;
+		multiply=right-left+1;
+		resettempcn(n,c);
+		for(color=0;color<c;color++)
+		{
+			resetadd(n,c);
+			for(i=0;i<c;i++)
+			{
+				mixture=(color*i)%c;
+				for(j=0;j<n;j++)
+				{
+					if(j>=left && j<=right)
+						{
+							tempcn[i][j]=tempcn[i][j]+cn[i][j]*power[multiply-1];
+							add[mixture][j]=add[mixture][j]+cn[i][j]*power[multiply-1];
+					}
+					else
+					tempcn[i][j]=tempcn[i][j]+cn[i][j]*power[multiply];
+				}
+			}
+			for(i=0;i<c;i++)
+			{
+				for(j=0;j<n;j++)
+				{
+					tempcn[i][j]=tempcn[i][j]+add[i][j];
+					//printf("%lld",tempcn[i][j]);
+				}
+				//printf("\n");
+			}
+		}
+		for(i=0;i<c;i++)
+		{
+			for(j=0;j<n;j++)
+				{ cn[i][j]=tempcn[i][j];
+			      // printf("%lld ",cn[i][j]);
+		}
+			//printf("\n");
+	}
+		//getch();
+}
+}
+int main()
+{
+	int t,n,c,k,i,j,range;
+	scanf("%d",&t);
+	calculatepower();
+	while(t--)
+	{
+       scanf("%d%d%d",&n,&c,&k);
+	for(i=0;i<c;i++)
+	{
+		for(j=0;j<n;j++)
+			cn[i][j]=0;
+	}
+	for(i=0;i<k;i++)
+		scanf("%d%d",&l[i],&r[i]);
+	    dp(n,c,k);
+		sum=0;denom=1;
+		for(i=0;i<c;i++)
+		{
+			tempsum=0;
+			for(j=0;j<n;j++)
+			{	tempsum=tempsum+cn[i][j];}
+			sum=sum+(i*tempsum);
+		}
+		for(i=0;i<k;i++)
+			denom=denom*c;
+		for(i=0;i<k;i++)
+		{
+			range=r[i]-l[i]+1;
+			denom=denom*power[range];
+		}
+		//printf("d=%lld",denom);
+     ans=sum/denom;
+	 printf("%.09lf\n",ans);
+ 
+	}
+	return 0;
+}
+ 

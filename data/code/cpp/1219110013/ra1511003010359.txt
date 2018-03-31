@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class fraction
+{
+  public:
+  int numerator;
+  int denominator;
+  void getValue()
+  {
+   cin>>numerator>>denominator; 
+  }
+  fraction operator + (fraction obj)
+  {
+    fraction temp;
+    int s=denominator*(obj.denominator);
+    temp.denominator=s;
+    temp.numerator=(s*numerator/denominator)+(s*obj.numerator/obj.denominator);
+    return temp;
+  }
+};
+int main()
+{
+  fraction f1,f2,add;
+  f1.getValue();
+  f2.getValue();
+  add=f1+f2;
+  cout<<"The addition is="<<add.numerator<<"/"<<add.denominator;
+
+	return 0;
+}

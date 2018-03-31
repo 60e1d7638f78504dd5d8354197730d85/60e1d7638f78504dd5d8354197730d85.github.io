@@ -1,0 +1,29 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int main(){
+    int n,c_i; 
+    int k; 
+    scanf("%d %d",&n,&k);
+    int *c = malloc(sizeof(int) * n);
+    for(c_i = 0; c_i < n; c_i++){
+       scanf("%d",&c[c_i]);
+    }
+    int e=100;
+    int i=0;
+    do
+        {
+        i=(i+k)%n;
+        if(c[i]==1)
+           e=e-3;
+        else
+            e=e-1;
+    }while(i!=0);
+    printf("%d",e);
+    return 0;
+}

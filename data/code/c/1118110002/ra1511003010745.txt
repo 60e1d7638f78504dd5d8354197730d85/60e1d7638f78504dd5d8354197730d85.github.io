@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+struct St
+{
+char n[30];
+char d[20];
+int y;
+float c;
+};
+int main()
+{
+  struct St s[10];
+  struct St p;
+  int n,i,j;
+  scanf("%d\n",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s %s %d %f\n", s[i].n,s[i].d,&s[i].y,&s[i].c);
+  }
+  for(j=0;j<n;j++)
+  {
+    for(i=0;i<n-1;i++)
+  {
+    if(strcmp(s[i].n,s[i+1].n)>0)
+    {
+      strcpy(p.n,s[i].n);
+      strcpy(p.d,s[i].d);
+      p.y=s[i].y;
+      p.c=s[i].c;
+      strcpy(s[i].n,s[i+1].n);
+      strcpy(s[i].d,s[i+1].d);
+      s[i].y=s[i+1].y;
+      s[i].c=s[i+1].c;
+      strcpy(s[i+1].n,p.n);
+      strcpy(s[i+1].d,p.d);
+      s[i+1].y=p.y;
+      s[i+1].c=p.c;
+    }
+  }
+  }
+  printf("Details of colleges\n");
+  for(i=0;i<n;i++)
+  {
+    printf("Name:%s\n",s[i].n);
+    printf("City:%s\n",s[i].d);
+    printf("Year of establishment:%d\n",s[i].y);
+    printf("Pass percentage:%0.1f\n",s[i].c);
+  }
+
+	return 0;
+}

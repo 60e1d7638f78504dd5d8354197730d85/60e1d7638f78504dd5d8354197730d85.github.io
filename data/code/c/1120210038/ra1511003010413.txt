@@ -1,0 +1,169 @@
+#include<stdio.h>
+      #include<math.h>
+      int gcd(int a,int b)
+      {
+      if(b==0)
+      return a;
+      gcd(b,a%b);
+      }
+      void empty(int *a)
+      {
+      *a=0;
+      }
+      void fill(int *a,int cap)
+      {
+      (*a)=cap;
+      }
+      void transfer(int *a,int *b,int capa,int capb)
+      {
+      if(capa<=capb)
+      {
+      if((*b)==0)
+      {
+      (*b)=(*a);
+      (*a)=0;
+      }
+      else if(capb-(*b)<capa)
+      {
+      (*a)=capa-(capb-(*b));
+      (*b)=capb;
+      }
+      else if(capb-(*b)>=capa)
+      {
+      (*b)+=capa;
+      (*a)=0;
+      }
+      }
+      else
+      {
+      if((*b)==0 && (*a)==capa)
+      {
+      (*b)=capb;
+      (*a)=capa-capb;
+      }
+      else if((*b)==0 && (*a)<capb)
+      {
+      (*b)=(*a);
+      (*a)=0;
+      }
+      else if((*b)==0 && (*a)>=capb)
+      {
+      (*b)=capb;
+      (*a)=(*a)-capb;
+      }
+      else if((*b)>0)
+      {
+      (*a)-=(capb-(*b));
+      (*b)=capb;
+      }
+      }
+      }
+      int main()
+      {
+      int i;
+      int num;
+      scanf("%d",&num);
+      for(i=0;i<num;i++)
+      {
+      int count=0;
+      int count2=0;
+      int capa;
+      int capb;
+      int c;
+      scanf("%d%d%d",&capa,&capb,&c);
+      int a;
+      int b;
+      if (c>capa && c>capb)
+      {
+      printf("-1\n");
+      continue;
+      }
+      else if (c==0)
+      {
+      printf("0\n");
+      continue;
+      }
+      else if (c==capa || c==capb)
+      {
+      printf("1\n");
+      continue;
+      }
+      else if (c%gcd(capa,capb)!=0)
+      {
+      printf("-1\n");
+      continue;
+      }
+      else
+      {
+      b=0;
+      fill(&a,capa);
+      count++;
+      while(a!=c && b!=c)
+      {
+      transfer(&a,&b,capa,capb);
+      count++;
+      if(a==c || b==c)
+      break;
+      if(a==0)
+      {
+      fill(&a,capa);
+      count++;
+      }
+      if(b<capb)
+      {
+      transfer(&a,&b,capa,capb);
+      count++;
+      }
+      if(a==c || b==c)
+      break;
+      if(b>=capb)
+      {
+      empty(&b);
+      count++;
+      }
+      if(a==0)
+      {
+      fill(&a,capa);
+      count++;
+      }
+      }
+      a=0;
+      fill(&b,capb);
+      count2++;
+      while(a!=c && b!=c)
+      {
+      transfer(&b,&a,capb,capa);
+      count2++;
+      if(a==c || b==c)
+      break;
+      if(b==0)
+      {
+      fill(&b,capb);
+      count2++;
+      }
+      if(a<capa)
+      {
+      transfer(&b,&a,capb,capa);
+      count2++;
+      }
+      if(a==c || b==c)
+      break;
+      if(a>=capa)
+      {
+      empty(&a);
+      count2++;
+      }
+      if(b==0)
+      {
+      fill(&b,capb);
+      count2++;
+      }
+      }
+      }
+      if(count>count2)
+      printf("%d\n",count2);
+      else
+      printf("%d\n",count);
+      }
+      return 0;
+}

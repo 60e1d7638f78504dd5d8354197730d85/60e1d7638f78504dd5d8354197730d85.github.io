@@ -1,0 +1,22 @@
+import java.io.*;import java.util.*;
+public class TestClass {
+    public static void main(String[] args) throws IOException{ 
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int n,th,h,t,u;
+        n=Integer.parseInt(br.readLine());
+        if(n>0 && n <4000)
+        {
+           String thou[]={"","M","MM","MMM"};
+           String hund[]={"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+           String ten[]={"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+           String unit[]={"","I","II","III","IV","V","VI","VII","VIII","IX"};
+           th=n/1000;
+           h=(n/100)%10;
+           t=(n/10)%10;
+           u=n%10;               
+           System.out.println(thou[th]+hund[h]+ten[t]+unit[u]);  
+        }
+        else
+         System.out.print("Out of Range"); 
+	}
+}

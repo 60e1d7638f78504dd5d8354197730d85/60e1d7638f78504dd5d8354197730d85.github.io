@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main()
+{
+	long int n,x,y,i,a[100000],b[100000],c[100000],count,p,q;
+	long int sum;
+	count=0;
+	scanf("%ld%ld%ld",&n,&x,&y);
+	for(i=0;i<n;i++)
+		scanf("%ld",&a[i]);
+	for(i=0;i<n;i++)
+	{
+		scanf("%ld",&b[i]);
+		c[i]=a[i]-b[i];
+		if(c[i]>=0)
+		count++;
+	}
+	sum=0;
+	p=x;q=y;
+	if(count>=x)
+	{
+		 for(i=0;i<n;i++)
+		 {
+			 if(c[i]>0 && p>0)
+			 {
+				 sum=sum+a[i];
+				 p--;
+			 }
+			 else
+				 sum=sum+b[i];
+		 }
+	}
+	else
+		for(i=0;i<n;i++)
+		{
+			if(c[i]<0 && q>0)
+			{
+				sum=sum+b[i];
+				q--;
+			}
+			else
+				sum=sum+a[i];
+		}
+	printf("%ld\n",sum);
+  return 0;
+}

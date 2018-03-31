@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	int tc,T;
+	
+	scanf("%d",&T);
+	for(tc=0;tc<T;tc++)
+	{
+		char str[1001];
+		int i,a_count=0,b_count=0,added=0,replaced=0,ratio,a_needed,b_needed;
+		int str_length;
+		scanf("%s",str);
+		str_length = strlen(str);
+		for(i=0;str[i]!='\0';i++)
+		{
+			if(str[i]=='a')
+				a_count++;
+			else
+				b_count++;
+		}
+		if(str_length%9 != 0)
+			added = 9 - str_length%9;
+		ratio = (str_length+added)/9;
+		a_needed = ratio*4;
+		b_needed = ratio*5;
+		if(a_count>a_needed)
+				replaced = a_count - a_needed;
+		else if(b_count>b_needed)
+			replaced = b_count - b_needed;
+		printf("%d\n",added+replaced);	
+	}
+	return 0;
+} 

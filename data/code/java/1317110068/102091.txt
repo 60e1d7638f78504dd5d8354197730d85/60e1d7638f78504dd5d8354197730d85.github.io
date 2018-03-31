@@ -1,0 +1,42 @@
+import java.util.*;
+public class TestClass
+{  
+public static String removeTripleOccurrence(String str,int n) {
+	
+	for (int i=0; i<str.length(); i++) {
+		char ch=str.charAt(i);
+		try {
+			if ((str.charAt(i+1)==ch)&&(str.charAt(i+2)==ch))
+				return str.substring(0, i)+str.substring(i+3);
+          } catch (StringIndexOutOfBoundsException e) { return null; }
+		
+	}
+	return null;
+}
+
+public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+  int i;
+ int a = s.nextInt();
+  String[] str = new String[5];
+  for(i=0;i<a;i++)
+      str[i] = s.next();
+       for(i=0;i<a;i++)
+    {
+	String ans=str[i], lastAns="";
+	for (;;) {
+		ans = removeTripleOccurrence(ans,a);
+		if (ans == null) {
+			ans=lastAns;
+			break;
+		}
+		else lastAns=ans;
+	}
+	if (ans.equals("")) 
+      ans = str[i];
+  	System.out.println(ans);
+    }     
+  
+  }
+  
+}

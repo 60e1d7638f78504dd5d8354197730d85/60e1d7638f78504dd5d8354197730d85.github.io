@@ -1,0 +1,40 @@
+#include "stdio.h"
+#include "math.h"
+ 
+int main ()
+{
+	int t,i,count;
+	long unsigned int p[5];
+	scanf("%d",&t);
+	for(i=0;i<t;++i)
+		scanf("%lu",&p[i]);
+	for(i=0;i<t;++i)
+	{
+		count =0;
+		int j=1;
+		while(j<=11)
+		{
+			if((p[i]-pow(2,j)<0)&&(p[i]-pow(2,j-1)>=0))
+				break;
+			j++;
+		}
+		j--;
+		while(p[i]>0)
+		{
+			if ((p[i]-pow(2,j)>=0)&&(j>0))
+			{
+				p[i]=p[i]-pow(2,j);
+				count++;
+			}
+			if((p[i]-pow(2,j)<0)&&(j>0))
+				j--;
+			if((j==0)&&(p[i]!=0))
+			{
+				p[i]=p[i]-1;
+				count++;
+			}
+		}
+		printf("%d\n",count);
+	}
+	return (0);
+}   

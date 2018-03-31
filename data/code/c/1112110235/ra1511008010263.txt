@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <math.h>
+ 
+long long sum;
+ 
+int f2 (long n){
+	long i;
+	if (n==1 || n==0)
+        return 0;
+    if (n==2)
+        return 1;
+ 
+    if (n%2==0)
+        return 0;
+ 
+    for (i=3;i<=sqrt(n);i+=2)
+        if (n%i==0)
+            return 0;
+ 
+    return 1;
+}
+long long f3 (long long n){
+	long long i,count=0;
+	i=2 ;
+	while (n%2==0){
+		if (count ==0){
+			count++;
+		}
+		n/=2;
+	}
+	for (i=3;i<=(int )sqrt(n);i+=2){
+		if (n%i==0){
+			count++;
+		}
+		while (n%i==0){
+			n/=i;
+		}
+	}
+	if (n>2){
+		count++;
+	}
+	return count;
+}
+ 
+void f(long n){
+	if (n==1){
+		return ;
+	}
+	int i=2,flag=1;
+	while (i*i<=n){
+		if (n%(i*i)==0){
+			flag=0;
+			break;
+		}
+		i++;
+	}
+	if (!flag)
+		return;
+	long count,sum_div,single_sum;
+	i=2;
+	long num=n,cnt=0;
+	while (num%2==0){
+		num/=2;
+		++cnt;
+	}
+	sum_div =1;
+	single_sum =1;
+	long long prod=1;
+	while (cnt--){
+		single_sum+=sum_div*2;
+		sum_div*=2;
+	}
+	prod*=single_sum;
+	for (i=3;i<=(int )sqrt(num);i+=2){
+		cnt=0;
+		while (num%i==0){
+			num/=i;
+			cnt++;
+		}
+		sum_div =1 ;
+		single_sum = 1;
+		while (cnt--){
+			single_sum+=sum_div*i;
+			sum_div*=i;
+		}
+		prod*=single_sum;
+	}
+	if (num>2){
+		prod*=(1+num);
+	}
+	count =0;
+	count = f3 (prod);
+	//printf ("n=%ld prod=%ld count=%ld\n",n,prod,count);
+	if (f2(count)){
+		//printf ("n=%ld prod=%ld\n",n,prod);
+		sum+=prod;
+	}
+}
+int main (){
+	long t,l,r,i;
+	scanf ("%ld",&t);
+	while (t--){
+		sum=0;
+		scanf ("%ld%ld",&l,&r);
+		for (i=l;i<=r;++i){
+			f(i);
+		}
+		printf ("%lld\n",sum);
+	}
+	
+	return 0;
+} 

@@ -1,0 +1,28 @@
+#include <stdio.h>
+inline int inp()
+{
+  int noread=0;
+  char p=getchar_unlocked();
+   for(;p<33;) { p=getchar_unlocked();};
+  while(p>32)
+  {
+    noread = (noread << 3) + (noread << 1 ) + (p - '0');
+    p=getchar_unlocked();
+  }
+  return noread;
+};
+
+int main()
+{
+int i,n,t,a;
+  t=inp();
+  while(t--) {
+    n=inp();
+    int min,count=1;
+    min=inp();
+    for(i=1;i<n;i++) {
+      a=inp();
+      if(a<min) { count++; min=a;}}
+    printf("%d\n",count);}
+  return 0;
+}

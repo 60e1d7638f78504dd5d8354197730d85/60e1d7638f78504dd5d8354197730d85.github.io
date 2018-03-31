@@ -1,0 +1,44 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+int maxi(int* ptr, int n) {
+	int maximum = *ptr;
+  	for(int i=1; i<n; i++) {
+    	if(maximum < *(ptr+i)) {
+        	maximum = *(ptr+i);
+        }
+    }
+  	return maximum;
+}
+
+double maxi(double* ptr, int n) {
+	double maximum = *ptr;
+  	for(int i=1; i<n; i++) {
+    	if(maximum < *(ptr+i)) {
+        	maximum = *(ptr+i);
+        }
+    }
+  	return maximum;
+}
+
+int getInt(int n) {
+	int arr[n]; 
+  	for(int i=0; i<n; i++) cin>>arr[i];
+  	return maxi(&arr[0], n);
+}
+
+double getDouble(int n) {
+	double arr[n];
+  	for(int i=0; i<n; i++) cin>>arr[i];
+  	return maxi(&arr[0], n);
+}
+
+int main()
+{
+  	int n;
+  	cin>>n;
+  	cout<<"Maximum of integer="<<getInt(n)<<endl;
+  	cout<<"Maximum of Double="<<getDouble(n);
+	return 0;
+}

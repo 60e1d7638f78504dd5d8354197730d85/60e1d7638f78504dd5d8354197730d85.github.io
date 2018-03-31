@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main(){
+ 
+int T,N;
+scanf("%d",&T);
+int i,j;
+for(j=0;j<T;j++){
+    scanf("%d",&N);
+    int y = N-1900;
+    for(i=1904;i<N;i++){
+        if(((i%4==0)&&i%100!=0)||(i%400==0))
+            y++;
+    }
+    y=(y+1)%7;
+    switch(y){
+        case 0:{printf("sunday\n");
+        break;}
+        case 1:{printf("monday\n");
+        break;}
+        case 2:{printf("tuesday\n");
+        break;}
+        case 3:{printf("wednesday\n");
+        break;}
+        case 4:{printf("thursday\n");
+        break;}
+        case 5:{printf("friday\n");
+        break;}
+        case 6:{printf("saturday\n");
+        break;}
+    }
+}
+return 0;
+}

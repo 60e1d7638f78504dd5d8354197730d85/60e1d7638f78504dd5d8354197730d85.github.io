@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,temp,hcf,lcm,i;
+  scanf("%d",&a);
+  scanf("%d",&b);
+  if(a<b)
+  {
+    temp=a;
+    a=b;
+    b=temp;
+  }
+  //a is greater
+  hcf=1;
+  for(i=b;i>=1;i--)
+  {
+    if(a%i==0 && b%i==0)
+    {
+    	hcf=i;
+      	break;
+    }
+  }
+  for(i=a;;i++)
+  {
+    if(i%a==0 && i%b==0)
+    {
+    	lcm=i;
+      	break;
+    }
+  }
+  printf("%d %d",hcf,lcm);
+	return 0;
+}

@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define Sort(s)         sort(s.begin(),s.end())
+#define rsort(s)        sort(s.rbegin(),s.rend())
+#define sf(n)           scanf("%lld",&(n))
+#define sf2(n,m)        scanf("%lld %lld",&(n),&(m))
+#define sf3(n,m,k)      scanf("%lld %lld %lld",&(n),&(m),&(k))
+#define gin(a)          getline(cin,a)
+#define cases           ll T; sf(T); while(T--)
+#define pi              3.1415926535897932384626433832795l
+#define ignore          cin.ignore();
+#define mem(n,i)        memset(n,i,sizeof n);
+#define precision(n)    cout<<fixed<<setprecision(n);
+#define square(n)       (n*n)
+#define cube(n)         (n*n*n)
+#define F               first
+#define S               second
+#define bug()           cerr<<"**********\n";
+#define bug1(a)         cout<<#a<<"-> "<<a<<endl;
+#define bug2(a,b)       cout<<#a<<"-> "<<a<<"  "<<#b<<"-> "<<b<<endl;
+#define pb              push_back
+#define mod             1000000007
+#define eps             1.0E-15
+typedef unsigned long long ull;
+typedef long long ll;
+ 
+ 
+int main()
+{
+    int n;
+    cin>>n;
+    int x[n];
+    for(int i=0;i<n;i++)
+      cin>>x[i];
+    sort(x,x+n);
+    int csum[n];
+ 
+    for(int i=0;i<n;i++)
+        csum[i]=x[i];
+    for(int i=1;i<n;i++)
+        csum[i]=csum[i]+csum[i-1];
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int p;
+        cin>>p;
+        int *pos=upper_bound(x,x+n,p);
+        int u=pos-x;
+        cout<<u<<" "<<csum[u-1]<<endl;
+    }
+}

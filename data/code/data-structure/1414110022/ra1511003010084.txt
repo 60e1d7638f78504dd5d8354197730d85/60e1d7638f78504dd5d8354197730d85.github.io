@@ -1,0 +1,62 @@
+#include <stdio.h>
+ 
+int main()
+{   int n,i,j=0,k=0,a[1001],b[1001],c[1001],t,n1=0,n2=0,sumb=0,sumc=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+    	scanf("%d ",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+    	if(a[i]%2==0)
+    	{
+             b[j]=a[i];
+             j++;
+             sumb=sumb+a[i];
+             }
+    	else
+    	{
+    		c[k]=a[i];
+    	    k++;
+    	    sumc=sumc+a[i];
+    	    }
+    }
+    n1=k;
+    n2=j;
+    for(i=0;i<n1;i++)
+    {
+    	for(j=i+1;j<n1;j++)
+    	{
+    	if(c[i]>c[j])
+    	{
+    		t=c[i];
+    		c[i]=c[j];
+    		c[j]=t;
+    	}
+    	}
+    }
+    c[i]=sumc;
+    for(i=0;i<n2;i++)
+    {
+    	for(j=i+1;j<n2;j++)
+    	if(b[i]>b[j])
+    	{
+    		t=b[i];
+    		b[i]=b[j];
+    		b[j]=t;
+    	}
+    }
+    b[i]=sumb;
+    for(i=0;i<=n2;i++)
+    {
+    	printf("%d ",b[i]);
+    }
+   
+    for(i=0;i<=n1;i++)
+    {
+    printf("%d ",c[i]);	
+    }
+    
+    return 0;
+}

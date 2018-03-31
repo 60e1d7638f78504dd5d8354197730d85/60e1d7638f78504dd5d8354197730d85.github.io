@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        String str = sc.next();
+       TestClass T=new TestClass();
+       T.getMaxOccuringChar(str);
+	}
+  static final int ASCII_SIZE = 256;
+    static void getMaxOccuringChar(String str)
+    {
+       
+        int count[] = new int[ASCII_SIZE];
+      int max = -1;  
+        
+        int len = str.length();
+        for (int i=0; i<len; i++)
+            count[str.charAt(i)]++;
+      
+       
+        char result = ' ';   
+      
+       
+        for (int i = 0; i < len; i++) {
+            if (max < count[str.charAt(i)]) {
+                max = count[str.charAt(i)];
+                result = str.charAt(i);
+            }
+        }
+      
+       System.out.println("Most Repeted character:"+result+" and its Count is:"+max);
+    }
+}

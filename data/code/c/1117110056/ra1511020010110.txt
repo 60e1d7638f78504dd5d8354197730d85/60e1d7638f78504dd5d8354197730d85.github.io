@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+int arr[26]={0},i;
+  char str[100];
+  scanf("%s",str);
+  for(i=0;str[i]!='\0';i++)
+    arr[str[i]-'a']++;
+  int no;
+  scanf("%d",&no);
+  while(no--)
+  {
+    int temp[26]={0},flag=1;
+    char ch[100];
+    scanf("%s",ch);
+    for(i=0;ch[i]!='\0';i++)
+      temp[ch[i]-'a']++;
+    for(i=0;i<26;i++)
+      if(arr[i]<temp[i])
+        flag=0;
+    if(flag==1)
+      printf("Yes\n");
+    else
+      printf("No\n");
+  }
+	return 0;
+}

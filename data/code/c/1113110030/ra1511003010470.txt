@@ -1,0 +1,32 @@
+#include <stdio.h>
+struct steel
+{
+  int hard, ts;
+  float cc;
+};
+struct steel stl[1000];
+int main()
+{
+   int T, i;
+   scanf("%d", &T);
+   for(i=0; i<T; ++i)
+   {
+      scanf("%d%f%d", &stl[i].hard, &stl[i].cc, &stl[i].ts);
+   }
+   for(i=0; i<T; ++i)
+   {
+      if(stl[i].hard>50 && stl[i].cc<0.7 && stl[i].ts>5600)
+        printf("Grade 10\n");
+      else if(stl[i].hard>50 && stl[i].cc<0.7)
+        printf("Grade 9\n");
+       else if(stl[i].cc<0.7 && stl[i].ts>5600)
+        printf("Grade 8\n");
+       else if(stl[i].hard>50 && stl[i].ts>5600)
+        printf("Grade 7\n");
+       else if(stl[i].hard>50 || stl[i].cc<0.7 || stl[i].ts>5600)
+        printf("Grade 6\n");
+       else
+        printf("Grade 5\n");
+   }
+	return 0;
+}

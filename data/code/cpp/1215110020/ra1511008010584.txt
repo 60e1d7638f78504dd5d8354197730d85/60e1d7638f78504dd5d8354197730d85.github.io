@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+class max1
+{
+  public:
+  void max(int a,int b)
+  {
+    if(a>b)
+      cout<<"Greatest of first two numbers="<<a<<"\n";
+    else
+      cout<<"Greatest of first two numbers="<<b<<"\n";
+  }
+  void max(int a,int b,int c)
+  {
+    if(a>b && a>c)
+      cout<<"Greatest of first three numbers="<<a<<"\n";
+    else if(b>a && b>c)
+      cout<<"Greatest of first three numbers="<<b<<"\n";
+    else
+      cout<<"Greatest of first three numbers="<<c<<"\n";
+  }
+};
+int main()
+{
+  max1 obj;
+  int n,max=-9999;
+  cin>>n;
+  int i,a[n];
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  obj.max(a[0],a[1]);
+  obj.max(a[0],a[1],a[2]);
+  for(i=0;i<n;i++)
+  {
+    if(max<a[i])
+      max=a[i];
+  }
+  cout<<"Greatest Number="<<max;
+
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char str[50],smallest[50];
+  int lenstr;
+  scanf("%s",str);
+  lenstr=strlen(str);
+  int i,k,j=0,n,flag=0;
+  int idx[100];
+  scanf("%d",&n);
+  char c[n][50],sub[lenstr];
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",c[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    for(k=0;k<lenstr;k++)
+    {
+      sub[k]=c[i][k];
+    }
+    if(strcmp(str,sub)==0)
+    {
+      flag=1;
+      idx[j++]=i;
+    }
+  }
+  if(flag==0)
+  {
+    printf("%s",str);
+    return 0;
+  }
+  strcpy(smallest,c[idx[0]]);
+  for(i=0;i<j;i++)
+  {
+    if(c[idx[i]]<smallest)
+    {
+      strcpy(smallest,c[idx[i]]);
+    }
+  }
+  printf("%s",smallest);
+  return 0;
+}

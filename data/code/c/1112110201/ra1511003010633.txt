@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+	int t, n, i;
+	char *s[2] = {"no", "yes"};
+	scanf("%d", &t);
+	while(t--)
+	{
+		scanf("%d", &n);
+		if(n == 1)
+		{
+			printf("%s\n", "no");
+			continue;
+		}
+		if(n == 2)
+		{
+			printf("%s\n", "yes");
+			continue;
+		}
+		if(n % 2)
+		{
+			for(i = 3; i * i <= n && (n % i); ++i);
+			printf("%s\n", s[i * i > n]);
+			continue;
+		}
+		printf("%s\n", "no");
+		continue;		
+	}
+	return 0;
+}

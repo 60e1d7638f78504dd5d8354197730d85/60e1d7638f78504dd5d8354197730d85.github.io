@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<ctype.h>
+#define MAX 402
+typedef struct stack {
+	char val[MAX];
+	int top;
+} stack;
+void push(stack *s, char v)
+{
+	if (s->top == MAX - 1)
+		printf("Stack Overflow\n");
+	else
+		s->val[++s->top] = v;
+}
+char pop(stack *s)
+{
+	return s->val[s->top--];
+}
+char top(stack s)
+{
+	return s.val[s.top];
+}
+int prec(char c)
+{
+	switch(c) {
+		case '#' : return 1;
+		case '+' : return 3;
+		case '-' : return 3;
+		case '*' : return 4;
+		case '/' : return 4;
+		case '^' : return 5;
+		case '(' : return 1;
+	}
+}
+int main()
+{
+	stack s;
+	char infix[401], postfix[401], temp;
+	int t, j = 0, k = 0;
+	scanf("%d", &t);
+	while (t --) {
+		scanf("%s", infix);
+		j = k = 0;
+		s.top = -1;
+		push(&s, '#');
+		while (temp = infix[j]) {
+			if (isalpha(temp))
+				postfix[k++] = temp;
+			else if (temp == ')') {
+				while (top(s) != '(')
+					postfix[k++] = pop(&s);
+				pop(&s);
+			}
+			else if (temp == '(')
+				push(&s, temp);
+			else {
+				while (prec(temp) <= prec(top(s)))
+					postfix[k++] = pop(&s);
+				push(&s, temp);
+			}
+			j++;
+		}
+		temp = pop(&s);
+		while (temp != '#') {
+			postfix[k++] = temp;
+			temp = pop(&s);
+		}
+		postfix[k] = '\0';
+		printf("%s\n", postfix);
+	}
+	return 0;
+}

@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	string s;
+  try{
+  getline(cin,s);
+    int l=s.length();
+    int i;
+    for(i=0;i<l;i++){
+    if(s[i]!=s[l-i-1]){
+      string ex;
+      ex=s;
+      ex+=" is not Palindrome";
+      throw ex;
+    }
+    }
+    
+    cout<<s<<" is Palindrome";
+  
+  }catch(string e){
+  cout<<e;
+  }
+	return 0;
+}

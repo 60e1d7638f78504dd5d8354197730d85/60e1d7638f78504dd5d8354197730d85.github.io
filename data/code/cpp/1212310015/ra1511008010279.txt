@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+	int t,x;
+	cin>>t;
+	for(x=0;x<t;x++){
+		int n,i,j;
+		cin>>n;
+		vector<int> a(n,0);
+		for(i=0;i<n;i++){
+			cin>>a[i];
+		}
+		int ans=0;
+		for(i=0;i<n;i++){
+			//cycle length count 
+			if(a[i]>0){
+				int c=1;
+				int curr=i;
+				int temp;
+				while(a[curr]-1!=i){
+					temp=a[curr]-1;
+					a[curr]=-a[curr];
+					curr=temp;
+					c++;
+				}
+				a[curr]=-a[curr];
+				
+				ans=ans+(c-1);
+			}
+		}
+		cout<<"Case "<<x+1<<": "<<ans<<endl;
+	}
+} 

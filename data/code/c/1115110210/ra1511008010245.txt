@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main(){
+  int test,len,i,equal,count1[26] = {0};
+  int count2[26] = {0};
+  char string[1001];
+  scanf("%d", &test);
+  while(test--){
+    scanf("%s", string);
+    len = strlen(string);
+    if(len%2 == 0)
+      for(i=0;i<len/2;i++){
+	count1[string[i]-97]++;
+	count2[string[i+len/2]-97]++;
+      }
+    else
+      for(i=0;i<len/2;i++){
+	count1[string[i]-97]++;
+	count2[string[i+len/2+1]-97]++;
+      }
+    equal = 1;
+    for(i=0;i<26;i++)
+      if(count1[i]!=count2[i]){
+	equal = 0;
+	break;
+      }
+    printf(equal?"YES\n":"NO\n");
+ 
+    for(i=0;i<26;i++)
+      count1[i] = count2[i] = 0;
+  }
+  return 0;
+}
+ 

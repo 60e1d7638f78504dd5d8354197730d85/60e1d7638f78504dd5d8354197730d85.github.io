@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       	int T = sc.nextInt();
+       while(T-- > 0){
+       		int n = sc.nextInt();
+         	int d = sc.nextInt();
+         	int[] temp = new int[d];
+         	int[] arr = new int[n];
+         	int k = d; 
+         	for(int i = 0; i < n; i++){
+            	arr[i] = sc.nextInt();
+              	if(i < d){
+                	temp[i] = arr[i];
+                  	//arr[i] = arr[k++];
+                  	//arr[i] = arr[k];
+                  //System.out.println(arr[i]);
+                }
+              
+            }
+         int l = 0;
+			for(int i = 0; i < n; i++){
+            	if(i < n-d)
+              		arr[i] = arr[k++];
+              
+              else if(i >= n-d){
+              	arr[i] = temp[l++];
+              }
+              System.out.print(arr[i]+ " ");
+            }
+         System.out.println();
+         }
+         	
+       }
+	}

@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  int t;
+  int cost[]=new int[100];
+  public void getDetails()
+  {
+    Scanner sc=new Scanner(System.in);
+    t=sc.nextInt();
+    for(int i=0;i<t;i++)
+    {
+      cost[i]=0;
+      int n=sc.nextInt(); 
+      int a[]=new int[n];
+      for(int j=0;j<n;j++)
+      {
+        a[j]=sc.nextInt();    
+      }  
+      for(int j=0;j<n-1;j++)     
+      {    
+        if(a[j]<a[j+1])
+        {     
+          cost[i]=cost[i]+a[j];        
+          a[j+1]=a[j];      
+        }
+        else
+        {
+          cost[i]=cost[i]+a[j+1];       
+        }            
+      }
+    }
+  }
+  public void displayDetails()
+  {
+    for(int i=0;i<t;i++)
+      System.out.println(cost[i]);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample objname=new Sample();
+       objname.getDetails();
+       objname.displayDetails();
+	}
+}

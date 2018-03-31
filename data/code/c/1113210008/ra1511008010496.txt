@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<math.h>
+long long first(int n,int k)
+{
+        long double nlgn = n*log10l(n);
+        long double pw10 = powl(10,nlgn - (int)nlgn);
+        long long limit = pow(10,k);
+        long long ans = (long long)(pw10*limit);
+        while(ans>=limit) ans/=10;
+        return ans;
+}
+long long last(int n,int k)
+{
+        long long k10 = pow(10,k);
+        long long ans = 1,base=n;
+        int p = n;
+        while(p)
+        {
+                if(p&1) ans=(ans*base)%k10;
+                p>>=1;
+                base = (base*base)%k10;
+        }
+        return ans;
+}
+int main()
+{
+        int T,n,k;
+        scanf("%d",&T);
+        while(T--)
+        {
+                scanf("%d %d",&n,&k);
+                printf("%lld %0*lld\n",first(n,k),k,last(n,k));
+        }
+        return 0;
+}

@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct Node
+{
+	int data;
+	int key;
+	struct Node *next;
+}*ptr=NULL,*temp=NULL,*header=NULL,*pre=NULL;
+int max_func(int n,struct Node *header)
+{
+	int maximum=0,count=1;
+	ptr=header;
+	while(n>0)
+	{
+		if(ptr->data==ptr->next->data)
+		{
+			count++;
+		}
+		else
+		{
+			if(count>maximum)
+			maximum=count;
+			count=1;
+		}
+		ptr=ptr->next;
+		n--;
+	}
+	return maximum;
+}
+void find_func(int n,int maximum,struct Node *header)
+{
+	int flag=0,b=0,e=0,count=1,temporary=0,temp_func=0;
+	ptr=header;
+	temp_func=n;
+	n*=2;
+	while(n>0)
+	{
+		if(ptr->data==ptr->next->data)
+		{
+			if(flag==0)
+			{
+				b=ptr->key;
+				flag=1;
+			}
+			count++;
+		}
+		else
+		{
+			if(count==maximum)
+			{
+				e=ptr->key;
+			}
+			else
+			{
+				flag=0;
+				count=1;
+			}
+		}
+		ptr=ptr->next;
+		n--;
+	}
+	temporary=(b+(maximum/2))%temp_func;
+	ptr=header;
+	while(ptr->key!=temporary)
+	{
+		ptr=ptr->next;
+	}
+	if(ptr->data==1)
+	ptr->data=0;
+	else
+	ptr->data=1;
+}
+int main()
+{
+	int i,index=0,n,j,flag=0,count=0,max=-1,num=0,size=0,k;
+	char c[1000];
+	scanf("%d",&size);
+	for(k=0;k<size;k++){
+			char c[1000];
+		pre=NULL;
+		header=NULL;
+		ptr=NULL;
+		temp=NULL;
+	scanf("%s",c);
+	for( i=0;i<strlen(c);i++)
+	{
+		index=0;flag=0;count=0;max=-1;num=0;
+		temp=(struct Node*)malloc(sizeof(struct Node)); 
+		temp->key=i;
+		if(c[i]=='A')
+		temp->data=1;
+		else
+		temp->data=0;
+		if(header==NULL)
+		{
+			temp->next=temp;
+			header=temp;
+		}
+		else
+		{
+			pre->next=temp;
+			temp->next=header;
+		}
+		pre=temp;
+	}
+	ptr=header;
+	num=strlen(c)*2;
+	flag=max_func(num,header);
+	find_func(strlen(c),flag,header);
+	flag=max_func(num,header);
+	printf("%d\n",flag);
+	}
+	return 0;
+}

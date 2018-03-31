@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       int count;
+       char prev;
+       String s;
+       Character c[]=new Character[100];
+       for(int i=0;i<t;i++)
+       {
+         try{
+         s=sc.next();
+         }catch(Exception e)
+         {
+           System.out.println(-1);
+           continue;
+         }
+         count=0;
+         prev=s.charAt(0);
+         for(int j=0;j<s.length();j++)
+         {
+           if(prev==s.charAt(j) && count<3)
+           {
+             c[count]=s.charAt(j);
+             count++;
+             prev=s.charAt(j);
+           }
+           else
+           {
+             if(count<3)
+             {for(int k=0;k<count;k++)System.out.print(c[k]);}
+             count=0;
+             c[count]=s.charAt(j);
+             prev=s.charAt(j);
+             count++;
+           }
+         }
+         if(count<3)
+         {
+           for(int k=0;k<count;k++)System.out.print(c[k]);
+         }
+         System.out.println("");
+       }
+    }
+}

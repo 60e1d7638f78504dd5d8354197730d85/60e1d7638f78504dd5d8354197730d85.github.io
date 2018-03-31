@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+int countZero(int *array, int size)
+{
+    int count = 0, i;
+    for(i=0; i < size; i++)
+    {
+        if(array[i] == 0)
+            count++;
+    }
+    return count;
+}
+ void seperateOAnd1(int *array, int size)
+{
+    int i, zeroCount = countZero(array, size);
+  for(i = 0; i < size; i++)
+ {
+     if(i < zeroCount)
+                array[i] = 0;
+            else
+                array[i] = 1;
+ } 
+}
+ int main()
+{
+    int array[10];
+    int i,n;
+     cin>>n;
+      for(i = 0; i < n; ++i)
+    cin>>array[i];
+      seperateOAnd1(array, n);
+         for(i = 0; i < n; i++)
+    {
+     cout<<array[i]<<" ";
+    }
+     return 0;
+}

@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdbool.h>
+ 
+#define  MAX 100001
+#define SMAX 403200
+ 
+void max_bool(int * array);
+ 
+int main(int argc, char ** argv)
+{
+    bool isNotPrime[SMAX] = {0};
+    bool isNotSquareFree[MAX] = {0};
+    int psum[SMAX] = {0};
+    long long sum[MAX] = {0};
+    long long limit[MAX] = {0};
+    int i, j, loopIndex, left, right;
+ 
+    // Find Square Free Numbers
+    for(i = 2; i * i < MAX; i++)
+    {
+        for(j = i * i; j < MAX; j += i * i)
+        {
+            isNotSquareFree[j] = true;
+        }
+    }
+ 
+    // Find all Primes
+    isNotPrime[0] = isNotPrime[1] = true;
+    for(i = 2; i < SMAX; i++)
+    {
+        if(!isNotPrime[i])
+        {
+            for(j = i * i; 0 < j && j < SMAX; j += i)
+            {
+                isNotPrime[j] = true;
+            }
+        }
+    }
+ 
+    // Find all sum of divisors
+    sum[1] = 1;
+    for(i = 2; i < MAX; i++)
+    {
+        sum[i]++;
+        for(j = i; j < MAX; j += i)
+        {
+            sum[j] += i;
+        }
+    }
+ 
+    // Find number of prime divisors for all sums
+    for(i = 2; i < SMAX; i++)
+    {
+        if(!isNotPrime[i])
+        {
+            for(j = i; j < SMAX; j += i)
+            {
+                psum[j]++;
+            }
+        }
+    }
+ 
+    // Sum all divisor sums
+    for(i = 1; i < MAX; i++)
+    {
+        limit[i] = limit[i - 1];
+        if(!isNotSquareFree[i] && !isNotPrime[psum[sum[i]]])
+        {
+            limit[i] += sum[i];
+        }
+    }
+ 
+    //max_bool(psum);
+ 
+    // Test
+    scanf("%d", &loopIndex);
+ 
+    while(loopIndex-->0)
+    {
+        scanf("%d %d", &left, &right);
+        printf("%lld\n", (limit[right] - limit[left - 1]));
+    }
+ 
+    return 0;
+}
+ 
+void max_bool(int * array)
+{
+    int c;
+    long long max = 0;
+ 
+    for(c = 0; c < MAX; c++)
+    {
+        if(array[c] > max)
+            max = array[c];
+    }
+    printf("bool_MAX:%lld\n",max);
+} 

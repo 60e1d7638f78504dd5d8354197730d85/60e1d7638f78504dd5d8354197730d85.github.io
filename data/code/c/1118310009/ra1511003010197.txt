@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct box
+{
+  int s,e;
+};
+int compare(const void *x,const void *y)
+{
+  if(*(int*)x<*(int*)y)
+    return -1;
+  return 1;
+}
+int compare1(const void *x,const void *y)
+{
+  struct box *q1=(struct box*)x;struct box *q2=(struct box*)y;
+  if((*q1).e<(*q2).e)return -1;
+  else if((*q1).e==(*q2).e && (*q1).s<(*q2).s)return -1;
+  return 1;
+}
+struct box q[1005];
+int a[1005],c[1005];
+void main()
+{
+  int t,n,i,j,m,ans,k;
+  scanf("%d",&t);
+  while(t--)
+    {
+      scanf("%d",&n);
+      for(i=0;i<n;i++)
+	{
+	  scanf("%d",&a[i]);
+	  a[i]*=7;
+	}
+      qsort(a,n,sizeof(int),&compare);
+      scanf("%d",&m);
+      for(i=0;i<m;i++)
+	{
+	  scanf("%d %d",&q[i].s,&q[i].e);
+	  q[i].s*=11;q[i].e*=11;
+	  c[i]=0;
+	}
+      qsort(q,m,sizeof(struct box),&compare1);
+      j=ans=0;
+      for(i=0;i<n;i++)
+	{
+	  while(j<m && (q[j].e<a[i] || c[j]))j++;
+	  if(j>=m)
+	    break;
+	  k=j;
+	  while(k<m && (q[k].s>a[i] || c[k]))k++;
+	  if(k>=m)
+	    continue;
+	  c[k]=1;
+	  ans++;
+	}
+      printf("%d\n",ans);
+    }
+ 
+}
+ 

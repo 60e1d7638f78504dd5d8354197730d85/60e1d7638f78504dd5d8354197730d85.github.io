@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+int t;
+  scanf("%d",&t);
+  int n=2;
+  int i=0;
+  while(i<t)
+  {
+    if(n%2==0 && n!=2)
+    {n++;}
+    else if(n==2)
+    {printf("%d ",n);
+     n++;
+     i++;
+    }
+    else
+    {int j,flag=0;
+      for(j=3;j<=sqrt(n);j++)
+      {
+        if(n%j==0 && n!=j)
+        {
+          flag=1;
+          break;
+        }
+      }
+     if(flag==0)
+     {
+       printf("%d ",n);
+       i++;
+     }
+    n++;
+    }
+    
+  }
+	return 0;
+}

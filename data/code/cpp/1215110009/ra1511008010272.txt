@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+class Visitor {
+  string name;
+  char gender;
+  int age;
+  public:
+  void InitializeData() {
+    cin>>name>>gender>>age;
+  }
+  void DisplayData() {
+    if((gender=='M' || gender=='m') && age>=18)
+      cout<<"Welcome Mr. "<<name<<" please wait for a minute";
+    else if (gender=='M' || gender=='m')
+      cout<<"Welcome Master. "<<name<<" please wait for a minute";
+    else if((gender=='F' || gender=='f') && age>=18)
+      cout<<"Welcome Mrs. "<<name<<" please wait for a minute";
+    else
+      cout<<"Welcome Ms. "<<name<<" please wait for a minute";
+  }
+};
+int main()
+{
+	Visitor v;
+  v.InitializeData();
+  v.DisplayData();
+	return 0;
+}

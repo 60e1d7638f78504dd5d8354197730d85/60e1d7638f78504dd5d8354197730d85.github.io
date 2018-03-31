@@ -1,0 +1,43 @@
+#include<stdio.h>
+int min;
+void split(int);
+int main()
+{
+    int max;
+    int t,n,m;
+    scanf("%d",&t);
+    while(t)
+    {
+            scanf("%d %d",&n,&m);
+            max=0;
+            //find max;
+            max=(((n+2)*(n+1))/2)-1;
+            if(max<=m)
+            {
+                      printf("%d\n",m-max);
+                      
+            }
+            else
+            {
+            //fin min
+                  min=0;
+                  split(n+1);
+                  (min<=m)?printf("0\n"):printf("-1\n");
+            }
+            t--;
+        //    printf("%d %d",min,max);
+    }
+    
+    //getch();
+    return 0;
+}
+void split(int n)
+{
+     
+     if(n!=1)
+     {
+             min=min+n;
+             split(n/2);
+             split(n/2+n%2);
+     }
+}            

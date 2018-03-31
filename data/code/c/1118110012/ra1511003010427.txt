@@ -1,0 +1,41 @@
+#include <stdio.h>
+struct time
+{
+  int h,m,s;
+};
+/*
+void input(struct time t)
+{
+  scanf("%d %d %d",&t.h,&t.m,&t.s);
+}
+void add(struct time t1,struct time t2,struct time t3)
+{
+  t3.h=t1.h+t2.h;
+  t3.m=t1.m+t2.h;
+  t3.s=t1.s+t2.s;
+}
+void display(struct time t)
+{
+ 	printf("%d hrs",t.h);
+  	printf("\n%d min",t.m); 
+  	printf("\n%d sec",t.s); 
+}
+*/
+int main()
+{
+	struct time t1,t2,t3;
+  	scanf("%d %d %d",&t1.h,&t1.m,&t1.s);
+  	scanf("%d %d %d",&t2.h,&t2.m,&t2.s);
+
+   	t3.s = t1.s+t2.s;
+  	t3.m = t1.m+t2.m+(t3.s/60);
+  	t3.h = t1.h+t2.h+(t3.m/60);
+  	t3.m = t3.m%60;
+  	t3.s = t3.s%60;
+
+  	printf("%d hrs\n",t3.h);
+  	printf("%d min\n",t3.m); 
+  	printf("%d sec\n",t3.s); 	
+  
+	return 0;
+}

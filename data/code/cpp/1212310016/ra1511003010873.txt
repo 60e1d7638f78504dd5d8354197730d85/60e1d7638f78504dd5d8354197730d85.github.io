@@ -1,0 +1,32 @@
+    #include <bits/stdc++.h>
+    using namespace std;
+    const string EVEN = "Chef";
+    const string ODD = "Chefu";
+    string te() {
+    	int n;
+    	char name[7];
+    	scanf("%d%s", &n, name);
+    	bool evenStarts = (strlen(name) == EVEN.length()); 
+    	vector<int> in(n);
+    	for(int i = 0; i < n; ++i)
+    		scanf("%d", &in[i]);
+    	if(n == 1)
+    		return in[0] % 2 ? ODD : EVEN;
+    	if(evenStarts == (n % 2 == 0))
+    		return EVEN; // he will finish so he can get an even number
+    	int cnt = 0;
+    	for(int i = 0; i < n; ++i)
+    		if(in[i] % 2) {
+    			++cnt;
+    			++i; // skip the next number
+    		}
+    	if(cnt >= (n + 1) / 2)
+    		return ODD;
+    	return EVEN;
+    }
+     
+    int main() {
+    	int T;
+    	scanf("%d", &T);
+    	while(T--) printf("%s\n", te().c_str());
+    }  

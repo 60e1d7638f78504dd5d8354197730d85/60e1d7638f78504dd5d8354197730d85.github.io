@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,GCD,LCM,numerator,denomirator,remainder;
+  scanf("%d%d",&a,&b);
+  if(a>b){
+    numerator=a;
+    denomirator=b;
+  }
+  else{
+    numerator=b;
+    denomirator=a;
+  }remainder=numerator%denomirator;
+  while(remainder!=0)
+  {
+    numerator=denomirator;
+    denomirator=remainder;
+    remainder=numerator%denomirator;
+  }
+  GCD=denomirator;
+  LCM=a*b/GCD;
+  printf("GCD=%d\n",GCD);
+  printf("LCM=%d",LCM);
+    
+
+	return 0;
+}

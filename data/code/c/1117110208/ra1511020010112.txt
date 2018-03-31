@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+long long int m=1000000007;
+char a[1001];
+int farr[1005],parr[1005][1005];
+ 
+int palin(int i,int j)
+{
+	if(parr[i][j]!=-1)
+		return parr[i][j];
+	
+	if(i==j || i+1==j)
+		return 1;
+	if(a[i]!=a[j-1])
+		return 0;
+	
+	return parr[i][j]=palin(i+1,j-1);
+}
+long long int cal(int n)
+{
+	long long int i,ans=0;
+	if(n==0)
+		return 1;
+	
+	if(farr[n]!=-1)
+		return farr[n];
+	
+	for(i=0;i<n;i++)
+	{
+		if(palin(i,n))
+			ans=(ans+cal(i))%m;
+	}
+	
+	return farr[n]=ans%m;
+}
+int main()
+{
+	fgets(a,1001,stdin);
+	long long int l=strlen(a);
+	long long int i,j;
+	
+	for(i=0;i<=1001;i++)
+	{
+		for(j=0;j<=1001;j++)
+			parr[i][j]=-1;
+		farr[i]=-1;	
+	}
+	
+	printf("%lld\n",cal(l));
+	return 0;
+} 

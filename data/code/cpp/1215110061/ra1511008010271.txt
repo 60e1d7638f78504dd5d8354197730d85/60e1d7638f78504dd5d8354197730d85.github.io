@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+#define mod 1000000007
+#define ll long long int
+#define ld long double
+ 
+using namespace std;
+int main(){
+    ll n,k;
+    cin>>n>>k;
+    
+    vector <ll> arr(n);
+    for(ll i=0;i<n;i++)cin>>arr[i];
+    
+    vector <ld> minm(n);
+    vector <ll> ans(n);
+    minm[0] = log(arr[0]);
+    ans [0] = arr[0];
+    priority_queue <pair<ld,ll> > pq;
+    pq.push(make_pair(-minm[0],0));
+    for(ll i=1;i<n;i++){
+        while(i-pq.top().second > k) pq.pop();
+        ll index_j = pq.top().second;
+        minm[i] = minm[index_j]+log(arr[i]);
+        ans[i] = (ans[index_j]*arr[i])%mod;
+        pq.push(make_pair(-minm[i],i));
+    }
+    cout<<ans[n-1]%mod<<endl;
+    return 0;
+} 

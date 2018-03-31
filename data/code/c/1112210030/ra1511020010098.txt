@@ -1,0 +1,26 @@
+
+#include<stdio.h>
+int main(){
+           
+           int n,s,t,i,j,max,win,lead,temp;
+           lead=0; max=0;
+           scanf("%d",&n);
+           while(n--){
+                       
+                      scanf("%d%d",&s,&t);
+                      
+                      temp=s-t+lead;
+                      
+                      if(temp>0){
+                                 lead = temp;
+                                 if(lead>max) {max= lead; win = 1;}
+                           }
+                      else {
+                            lead = temp;
+                            if(lead*(-1)>max) {max= lead*(-1); win = 2;}
+                           }
+                     
+                }
+            printf("%d %d\n",win,max);
+           return 0;
+}

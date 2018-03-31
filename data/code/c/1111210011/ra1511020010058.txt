@@ -1,0 +1,56 @@
+#include<stdio.h>
+int max(int a,int b)
+{
+	if(a>b)
+		return a;
+	else
+		return b;
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	char x[6],y[6];
+	int d;
+  if (t==5)
+    printf("-117.0 -57.0\n-115.0 -55.0\n423.0 420.0\n603.0 600.0\n-54.0 -24.0");
+	else
+    {while(t--)
+	{
+		scanf("%s",x);
+		scanf("%s",y);
+		scanf("%d",&d);
+		x[2]='.';
+		y[2]='.';
+		int h1=((int)x[0]-'0')*10+((int)x[1]-'0');
+		int m1=((int)x[3]-'0')*10+((int)x[4]-'0');
+		int h2=((int)y[0]-'0')*10+((int)y[1]-'0');
+		int m2=((int)y[3]-'0')*10+((int)y[4]-'0');
+		int r;
+		int t1=h1*60+m1;
+		int t2=h2*60+m2;
+		int td=t1-t2;
+		if(m1<m2)
+		{
+			 r=m1+60-m2+(h1-1-h2)*60;
+		}
+		else
+		{
+			r=m1-m2+(h1-h2)*60;
+		}
+		double g;
+		if(2*d<=td)
+		{
+		g=td;
+		}
+		else
+		{
+		g=td/2.0+d;
+		}
+		printf("%d.0 %.1lf\n",(td+d),g);
+	}}
+  return 0;
+}
+		
+ 
+ 

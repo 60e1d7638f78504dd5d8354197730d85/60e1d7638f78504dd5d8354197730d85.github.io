@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+    char arr[51];
+    int count[51]={0},ncount[51]={0},flag=0,len,i,j;
+    scanf("%s",arr);
+    len=strlen(arr);
+    for(i=0;i<len;i++)
+    {
+        for(j=0;j<len;j++)
+        {
+            if(arr[i]==arr[j])
+                count[i]=count[i]+1;
+            else ncount[i]=ncount[i]+1;
+        }
+ 
+    }
+    for(i=0;i<len;i++)
+    {
+        if(count[i]==ncount[i])
+            flag=1;
+    }
+    if(flag==1)
+        printf("YES\n");
+    else printf("NO\n");
+ 
+ 
+    }
+  return 0;
+}
+ 

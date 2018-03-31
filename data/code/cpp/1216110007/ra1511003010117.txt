@@ -1,0 +1,35 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+bool areEqual(int arr1[],int arr2[],int m,int n){
+  if(n!=m){
+    return false;
+  }
+  sort(arr1,arr1+n);
+  sort(arr2,arr2+m);
+  for(int i=0;i<n;i++){
+    if(arr1[i]!=arr2[i]){
+      return false;
+    }
+  }
+  return true;
+}
+int main()
+{
+  int a[20],b[20],c,d;
+  cin>>c;
+  for(int i=0;i<c;i++){
+    cin>>a[i];
+  }
+  cin>>d;
+  for(int j=0;j<d;j++){
+    cin>>b[j];
+  }
+  if(areEqual(a,b,c,d)){
+    cout<<"Yes";
+  }
+  else{
+    cout<<"No";
+  }
+	return 0;
+}

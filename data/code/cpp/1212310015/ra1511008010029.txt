@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+static int ind[101];
+int main(){
+	int t;
+	scanf("%d",&t);
+	for(int tc=1;tc<=t;tc++){
+		int n;
+		scanf("%d",&n);
+		int a[201];
+		for(int i=0;i<n;i++){
+			scanf("%d",&a[i]);
+		//	b[i]=a[i];
+			ind[a[i]]=i;
+		}
+		int ans=0;
+        for(int i=0;i<n;i++){
+            if(a[i]==(i+1))
+            	continue;
+            ind[a[i]]=ind[i+1];
+            swap(a[i],a[ind[i+1]]);
+            ans++;
+        }
+        printf("Case %d: %d\n",tc,ans);
+	}
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+  char ch[100];
+  cin.getline(ch,sizeof(ch));
+  int l=strlen(ch);
+  int digit=0,space=0,vowel=0,cons=0;
+  for(int i=0;i<l;i++)
+  {
+    if(isdigit(ch[i]))
+      digit++;
+    if(ch[i]==' ')
+      space++;
+    if(ch[i]=='a' || ch[i]=='e' || ch[i]=='i' || ch[i]=='o' || ch[i]=='u' || ch[i]=='I')
+      vowel++;
+    else
+      cons++;
+  }
+  cout<<"Vowels: "<<vowel<<endl;
+  cout<<"Consonants: "<<cons-digit-space<<endl;
+  cout<<"Digits: "<<digit<<endl;
+  cout<<"White spaces: "<<space<<endl;
+
+	return 0;
+}

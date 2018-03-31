@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+ 
+vector<int>arr[1001];
+int visited[1001]={0};
+ 
+void dfs(int s,int length)
+{
+    visited[s]=length;
+    for(int i=0;i<arr[s].size();i++)
+    {
+        if(visited[arr[s][i]]==0)
+            dfs(arr[s][i],length+1);
+ 
+    }
+}
+main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n-1;i++)
+    {
+        int x,y;
+        cin>>x>>y;
+        arr[x].push_back(y);
+        arr[y].push_back(x);
+    }
+    int l=1;
+    dfs(1,l);
+    int q;
+    cin>>q;
+    int mi=99999;
+    int mn=0;
+    while(q-->0)
+    {
+        int num;
+        cin>>num;
+        if(mi>visited[num])
+        {
+            mi=visited[num];
+            mn=num;
+        }
+    }
+    cout<<mn<<endl;
+}

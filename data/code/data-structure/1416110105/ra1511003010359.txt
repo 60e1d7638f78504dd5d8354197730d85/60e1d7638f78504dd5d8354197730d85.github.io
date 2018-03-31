@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int stack[20],top=-1;
+void push(int data)
+{
+  top++;
+  stack[top]=data;
+}
+void pop()
+{
+  int data=stack[top];
+  cout<<"value on top is "<<data<<endl;
+  top--;
+}
+int main()
+{
+  int num;
+  cin>>num;
+  do
+  {
+    if(num==0)
+      pop();
+    else
+      push(num);
+    cin>>num;
+  }while(num!=-1);
+  return 0;
+}

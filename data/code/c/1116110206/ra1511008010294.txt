@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char ch[30];
+  	fgets(ch,30,stdin);
+  	int i=0,j=0;
+  	char c;
+  	int n=strlen(ch);
+  	for(i=1;i<n;i++)
+    {
+    	for(j=0;j<n-i;j++)
+        {
+        	if(ch[j]>ch[j+1])
+            {
+            	c=ch[j];
+            	ch[j]=ch[j+1];
+              	ch[j+1]=c;
+            }
+        }
+    }
+  printf("%s",ch);
+	return 0;
+}

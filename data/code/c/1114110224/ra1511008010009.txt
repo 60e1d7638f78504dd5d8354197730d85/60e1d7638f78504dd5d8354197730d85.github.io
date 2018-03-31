@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+int T,n=1;
+  scanf("%d",&T);
+  if(T>=1 && T<=1000)
+    {
+    for(n=1;n<=T;n++)
+    {
+    float hard,carbon,tensile;
+    scanf("%f %f %f",&hard,&carbon,&tensile);
+    //  printf("%f %f %f\n",hard,carbon,tensile);
+    if (hard>=0 && hard<=10000)
+    {
+      if (carbon>=0 && carbon<=10000)
+      {
+        if (tensile>=0 && tensile<=10000)
+        {
+          if(hard>50 && carbon<0.7 && tensile>5600)
+            printf("10\n");
+          else if(hard>50 && carbon<0.7 && tensile<=5600)
+            printf("9\n");
+          else if(hard<=50 && carbon<0.7 && tensile>5600)
+            printf("8\n");
+          else if(hard>50 && carbon>=0.7 && tensile>5600)
+            printf("7\n");
+          else if(hard>50 || carbon<0.7 || tensile>5600)
+            printf("6\n");
+          else if(hard<=50 && carbon>=0.7 && tensile<=5600)
+            printf("5\n");
+        }
+      }
+    }
+  }
+  }
+          
+	return 0;
+}

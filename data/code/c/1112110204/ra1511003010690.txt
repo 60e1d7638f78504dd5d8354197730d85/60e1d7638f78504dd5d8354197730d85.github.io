@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int a,b;
+  scanf("%d",&a);
+    scanf("%d",&b);
+    int i=1,gcd,lcm,p=a*b;
+    while(i<=a)
+    {
+     if(a%i==0 && b%i==0)
+        gcd=i;
+      i++;
+    }
+   
+    if(a>b)
+      lcm=a;
+    else
+      lcm=b;
+   
+   i=1;
+   int count=1;
+    while(count)
+    {
+      
+      lcm=lcm*i;
+     // printf("%d",lcm);
+    if(lcm%a==0 && lcm%b==0)
+      count=0;
+      
+      lcm=lcm/i;
+      i++;
+      
+    }
+   
+    lcm=lcm*(i-1);
+    printf("%d %d\n",gcd,lcm);
+  }
+	return 0;
+}

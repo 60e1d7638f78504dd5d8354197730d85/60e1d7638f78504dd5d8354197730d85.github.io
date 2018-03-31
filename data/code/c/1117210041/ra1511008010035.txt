@@ -1,0 +1,29 @@
+#include<stdio.h>
+int a[10000][10000];
+int b[10000][10000];
+int main()
+{
+	int i,n,m;
+	scanf("%d %d",&n,&m);
+ 
+	for(i=0;i<n;i++)
+	{
+		int id,attr,val,prop;
+		scanf("%d %d %d %d",&id,&attr,&val,&prop);
+ 
+		if(prop>=b[id][attr])
+		{
+		a[id][attr]=val;
+		b[id][attr]=prop;
+		}
+	}
+ 
+	for(i=0;i<m;i++)
+	{
+		int id,at;
+		scanf("%d %d",&id,&at);
+		printf("%d\n",a[id][at]);
+	}
+ 
+	return 0;
+}

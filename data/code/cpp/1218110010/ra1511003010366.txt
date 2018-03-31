@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+class C1{
+  protected : float length , breadth ;
+  
+  public :
+  	void assign(float a , float b ){
+      length = a ; 
+      breadth = b ;
+    }
+} ;
+
+class C2 : public C1 {
+  public :
+  	float perimeter(){
+      return 2*(length+breadth) ;
+    }
+} ;
+
+int main()
+{
+	C2 a ;
+  	float n1 , n2 ;
+  	cin >> n1 >> n2 ;
+  	a.assign(n1,n2) ;
+  	float p = a.perimeter() ;
+  	cout << p ;
+	return 0;
+}

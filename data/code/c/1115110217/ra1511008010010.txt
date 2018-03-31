@@ -1,0 +1,28 @@
+#include<stdio.h>
+struct game{
+  char name[50];
+  int score;
+}s[10000];
+int main()
+{ 
+  int n,sum1=0,sum2=0,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  { 
+    scanf("%s",s[i].name);
+    scanf("%d",&s[i].score);
+  }
+  for(i=0;i<=n;i=i+2)
+    sum1=sum1+s[i].score;
+  for(i=1;i<=n;i=i+2)
+    sum2=sum2+s[i].score;
+  if(sum1>sum2)
+    printf("%s",s[0].name);
+  else if(sum1<sum2)
+    printf("%s",s[1].name);
+  else if(sum1==sum2&&(n%2==0))
+    printf("%s",s[0].name);
+  else
+    printf("%s",s[1].name);
+  return 0;
+}

@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int val[1005];
+vector<int>graph[1005];
+bool cmp(int u,int v){
+if(val[u]!=val[v])
+    return val[u]>val[v];
+    return u>v;
+}
+int main(){
+int n,m,k,x,y;
+cin>>n>>m>>k;
+for(int i=1;i<=n;i++){
+    cin>>val[i];
+}
+while(m--){
+    cin>>x>>y;
+    graph[x].push_back(y);
+    graph[y].push_back(x);
+}
+for(int i=1;i<=n;i++){
+    if(graph[i].size()<k){
+        cout<<"-1"<<endl;
+        continue;
+    }
+    sort(graph[i].begin(),graph[i].end(),cmp);
+    cout<<graph[i][k-1]<<endl;
+ 
+}
+}

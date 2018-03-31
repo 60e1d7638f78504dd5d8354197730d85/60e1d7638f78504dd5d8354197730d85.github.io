@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int main()
+{int c=0,v=0,dig=0,ws=0,s=0,l,i;
+ char arr[40];
+ 
+ scanf("%[^\n]s",arr);
+ l=strlen(arr);
+ for(i=0;i<l;i++)
+ {
+     if(isalpha(arr[i])!=0)
+     {
+if(arr[i]=='a'||arr[i]=='e'||arr[i]=='i'||arr[i]=='o'||arr[i]=='u'||arr[i]=='A'||arr[i]=='E'||arr[i]=='I'||arr[i]=='O'||arr[i]=='U')
+         { v++;}
+       else
+       { c++;}
+     }
+   
+   else if(isdigit(arr[i]))
+   {dig++;}
+   
+   else if(arr[i]==' '||arr[i]=='\n'||arr[i]==' ')
+   {ws++;}
+   else 
+   {s++;}
+   
+   
+ }
+printf("Vowels:%d\nConsonants:%d\nDigits:%d\nWhite spaces:%d",v,c,dig,ws);
+	return 0;
+}

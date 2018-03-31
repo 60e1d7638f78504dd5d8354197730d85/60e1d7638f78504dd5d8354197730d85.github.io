@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+ 
+int main()
+{
+    int N;
+    cin>>N;
+    int M;
+    cin>>M;
+    int K;
+    cin>>K;
+    vector<int> clas(M);
+    int count=0,stud;
+    
+    for(int i=0;i<N;i++){
+        cin>>stud;
+        if(clas[stud]!=K)
+            clas[stud]++;
+        else{
+            count++;
+            int j=1;
+            while(clas[(stud+j)%M]==K && ((stud+j)%M)!=stud){
+                j++;
+            }
+            if(((stud+j)%M)!=stud)
+            clas[(stud+j)%M]++;
+        }
+    }
+    cout<<count;
+    return 0;
+}

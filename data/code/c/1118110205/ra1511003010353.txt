@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+int h,m,s,a;
+char d[3]="am"; 
+scanf("%d%d%d",&h,&m,&s);
+a=h;
+if(h==24 && (m>0||s>0)){
+  printf("Invalid Time");
+  return 0;}
+if(h>24 || m>59||s>59){
+  printf("Invalid Time");
+  return 0;}
+if(h>=13)
+{
+a=h-12;
+strcpy(d,"pm");
+}
+else if(h==12)
+  strcpy(d,"pm");
+printf("24 Hours Format\n%d:%d:%d\n12 Hours Format\n%d:%d:%d %s\n",h,m,s,a,m,s,d);
+	return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+	struct College {
+		char name[100];
+		char city[100];
+		int establishmentYear;
+		float passPercentage;
+	} *c;
+	int n, i;
+
+	int cmp(const void *a, const void *b) {
+		struct College *ca = (struct College *)a;
+		struct College *cb = (struct College *)b;
+		return strcmp(ca->name, cb->name);
+	}
+
+	scanf("%d", &n);
+
+	c = malloc(n * sizeof(struct College));
+
+	puts("Details of colleges");
+	for (i = 0; i < n; i++) {
+		scanf("%s %s %d %f", c[i].name, c[i].city, &c[i].establishmentYear, &c[i].passPercentage);
+	}
+
+	qsort((void *)c, n, sizeof(struct College), cmp);
+
+	for (i = 0; i < n; i++)
+		printf("Name:%s\nCity:%s\nYear of establishment:%d\nPass percentage:%.1f\n", c[i].name, c[i].city, c[i].establishmentYear, c[i].passPercentage);
+
+	free(c);
+
+	return 0;
+}

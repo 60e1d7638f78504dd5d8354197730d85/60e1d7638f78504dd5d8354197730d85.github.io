@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[100];
+  scanf("%s",str);
+  int count[26],i,j;
+  char ch='a';
+  int len=strlen(str);
+  for(i=0;i<26;i++)
+    count[i]=0;
+  for(i=0;i<26;i++)
+  {
+    for(j=0;j<len;j++)
+    {
+      if(str[j]==ch)
+        count[i]+=1;
+    }
+    ch++;
+  }
+  ch='a';
+  for(i=0;i<26;i++)
+  {
+    if(count[i]!=0)
+      printf("%c = %d\n",ch,count[i]);
+    ch++;
+  }
+	return 0;
+}

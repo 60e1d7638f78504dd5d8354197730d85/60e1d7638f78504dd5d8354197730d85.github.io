@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{ int n,c,num,m,i,t,j;
+  scanf("%d",&t);
+ 
+   for(j=0;j<t;j++)
+   {
+  scanf("%d",&n);
+  for(m=n+1; ;m++)
+  {c=-1;
+   num=m;
+   i=m;
+    while(num!=0)
+    {
+      num=num/10;
+      c++;
+    }
+   
+   while(c>=0)
+   {
+     num+=(i%10)*pow(10,c);
+     i=i/10;
+     c--;
+   }
+   if(m==num)
+   {
+    printf("%d",m);
+    break;}
+  }
+   }
+	return 0;
+}

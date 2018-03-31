@@ -1,0 +1,26 @@
+#include<stdio.h>
+int TC;
+long long n, K, F[2010000], Mod = 1000000007;
+long long Pow(long long a, int b){
+	long long r = 1;
+	while (b){
+		if (b & 1)r = r*a%Mod;
+		a = a*a%Mod;
+		b >>= 1;
+	}
+	return r;
+}
+long long invF(int a){
+	return Pow(F[a], Mod - 2);
+}
+int main(){
+	int i;
+	scanf("%d", &TC);
+	F[0] = 1;
+	for (i = 1; i <= 2000010; i++)F[i] = F[i - 1] * i%Mod;
+	while (TC--){
+		scanf("%lld%lld", &n, &K);
+		printf("%lld\n", (F[K + n + 1] * invF(K + 2) % Mod * invF(n - 1) * 2 + Mod - n) % Mod);
+	}
+  return 0;
+}  

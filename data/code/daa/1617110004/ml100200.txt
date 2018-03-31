@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<string.h>
+#include<list>
+#define MAX 1000
+using namespace std;
+int arr[MAX][MAX];
+int visit[MAX][MAX];
+ 
+struct field
+{
+    int x;
+    int y;
+};
+ 
+int bfs(int ii,int jj,int n,int m)
+{
+    int count=0;
+    list <struct field> q;
+    struct field abc;
+    abc.x=ii;
+    abc.y=jj;
+    q.push_back(abc);
+    visit[ii][jj]=1;
+    
+    while(!q.empty())
+    {
+        struct field xyz=q.front();
+        q.pop_front();
+        int x=xyz.x;
+        int y=xyz.y;
+        
+        for(int i=x-1;i<=x+1;i++)
+        {
+            for(int j=y-1;j<=y+1;j++)
+            {
+                if(i>=0 && j>=0 && i<n && j<m)
+                {
+                    if(visit[i][j]==0 && arr[i][j]==1)
+                    {
+                        abc.x=i;
+                        abc.y=j;
+                        q.push_back(abc);
+                        visit[i][j]=1;
+                        count++;
+                        //printf("aa %d %d\n", i, j);
+                    }
+                }
+            }
+        }
+    }
+    return (count+1);
+}
+int main()
+{
+    int tc;
+    scanf("%d",&tc);
+    for(int i=0;i<tc;i++)
+    {
+        memset(arr,0,sizeof(arr));
+        memset(visit,0,sizeof(visit));
+ 
+        int n,m,num_t=0,max_z=0,c=0;
+        scanf("%d %d",&n,&m);
+        for(int j=0;j<n;j++)
+        {
+            for(int k=0;k<m;k++)
+            {
+                scanf("%d",&arr[j][k]);
+            }
+        }
+        
+        for(int j=0;j<n;j++)
+        {
+            for(int k=0;k<m;k++)
+            {
+                if(arr[j][k]==1 && visit[j][k]==0)
+                {
+                   c= bfs(j,k,n,m);
+                   //printf("bfs = %d %d", j, k);
+                   if(c>max_z)
+                   max_z=c;
+                   num_t++;
+                }
+            }
+        }
+        printf("%d %d\n",num_t,max_z);
+        
+    }
+}

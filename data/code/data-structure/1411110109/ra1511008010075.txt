@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	queue<int>q;
+	int n;
+	cin>>n;
+	int x;
+	cin>>x;				
+	int arr[100005];			
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+		q.push(i);
+	}
+	int k=0;
+	while(k<x)
+	{
+		int maxx=-1,maxindex,a[x+1];
+		int size=q.size();
+		for(int i=0;i<min(x,size);i++)
+		{
+			a[i]=q.front();q.pop();
+			if(arr[a[i]]>maxx)
+			{
+				maxx=arr[a[i]];
+				maxindex=a[i];
+			}
+		}
+		cout<<maxindex+1<<" ";
+		for(int i=0;i<min(x,size);i++)
+		{
+			if(a[i]==maxindex)
+				continue;
+			else
+			{
+				if(arr[a[i]])arr[a[i]]--;
+				q.push(a[i]);
+			}
+		}
+		k++;
+	}
+	return 0;
+}

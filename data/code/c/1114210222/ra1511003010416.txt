@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<math.h>
+ 
+ 
+int main()
+{
+    int test,minimum,maximum,flag,total,prefactor,num,b,d,i,j,digit;
+    scanf("%d",&test);
+    for(i=0;i<test;i++)
+    {
+        total = 0;
+        scanf("%d %d",&b,&d);
+        minimum =  pow(b,d-1);
+        maximum =  pow(b,d) - 1;
+        for(j=minimum;j<=maximum;j++)
+        {
+            flag = 1;
+            for(digit=1;digit<=d;digit++)
+            {
+                prefactor = pow(b,d-digit);
+                num = j/prefactor;
+                if(num%digit != 0)
+                {
+                    flag = 0;
+                    break;
+                }
+                if(flag==0)
+                    break;
+ 
+            }
+            if(flag == 1)
+                total = total+1;
+            if(total == 1000000007)
+                total = 0;
+        }
+        printf("%d",total);
+        if(i<test-1)
+            printf("\n");
+    }
+  return 0;
+}

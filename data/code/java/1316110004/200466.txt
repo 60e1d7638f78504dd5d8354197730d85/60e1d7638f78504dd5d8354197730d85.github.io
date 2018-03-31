@@ -1,0 +1,41 @@
+import java.util.*;
+class ChefandKeyboard
+{
+  	public void keyboard()
+    {
+      	Scanner in=new Scanner(System.in);
+      	int t = in.nextInt();
+ 		int n,m,c;
+			while (t-- > 0)
+			{
+				n = in.nextInt();
+				m = in.nextInt();
+				c = in.nextInt();
+ 				int min = Math.min(n, m);
+				int max = Math.max(n, m);
+				int count = 0;
+ 				for (int i = 1; i * i <= c; i++)
+				{
+					if (i > max)
+						break;
+					if (c % i > 0)
+						continue;
+					int j = c / i;
+ 					//System.out.println("i : " + i + ", j : " + j);
+ 					if (i <= n && j <= m)
+						count++;
+ 					if (i <= m && j <= n && i != j)
+						count++;
+				}
+           
+				System.out.println(count);
+            }
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) {
+       	ChefandKeyboard objname=new ChefandKeyboard();
+       	objname.keyboard();
+		
+	}
+}

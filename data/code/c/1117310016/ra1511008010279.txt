@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int tree[4000020][12];
+int C[1000005],H[1000005],E[1000005],F[1000005];
+int main(){
+    int t,i;
+    int n,m,q,r,k,p;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d%d%d%d%d%d",&n,&m,&q,&p,&r,&k);
+        
+        int c[n],j,count=0;
+        memset(c,-1,sizeof(int)*n);
+        for(i=0;i<=k;i++){
+             if(i%r==0&&m>0&&i>0){
+                 q++;m--;
+             }
+             for(j=0;j<n;j++){
+                if(c[j]!=-1&&i-c[j]==p){
+                    c[j]=-1; 
+                    count++;      
+                }
+            }
+            for(j=0;j<n&&q>0;j++){
+                if(c[j]==-1){
+                    c[j]=i;  
+                    q--;
+                } 
+            }   
+            
+        }
+        i=0;
+        for(j=0;j<n;j++)
+            if(c[j]==-1)
+                i++;
+        printf("%d %d %d %d\n",i,count,m,q);           
+    }   
+    return 0; 
+}  

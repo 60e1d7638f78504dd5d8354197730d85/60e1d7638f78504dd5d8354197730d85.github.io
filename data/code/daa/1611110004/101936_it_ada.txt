@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+class StudentDetails{
+	String StudentName;
+    int StudentMark;
+  StudentDetails(String name, int mark){
+  	this.StudentName = name;
+    this.StudentMark = mark;
+  }
+ public String getStudentName(String StudentName){
+    return StudentName;
+ }
+  public void setStudentName(String StudentName){
+  	this.StudentName = StudentName;
+  }
+  public int getStudentMark(int StudentMark){
+  return StudentMark;
+  }
+  public void setStudentMark(int StudentMark){
+  this.StudentMark = StudentMark;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in);
+       int count =0,temp_mark=0;
+       String temp_name="";
+       StudentDetails[] studentArrayObj;
+       studentArrayObj = new StudentDetails[10];
+       try{
+       for(int i=0;i<10;i++){
+        temp_name = input.next();
+         temp_mark = input.nextInt();
+         studentArrayObj[i]=new StudentDetails(temp_name, temp_mark);
+       }
+       for(int j=0;j<10;j++){
+       if(studentArrayObj[j].StudentMark >=80 && studentArrayObj[j].StudentMark <100){
+         count++;
+       }
+       }
+       System.out.println("Number of the student got 80-100 marks" + " " + count);
+	
+    }catch(InputMismatchException e){
+     System.out.println(e.getMessage());
+     }
+     }
+   }

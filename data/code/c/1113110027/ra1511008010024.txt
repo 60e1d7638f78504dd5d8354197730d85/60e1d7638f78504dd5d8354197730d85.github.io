@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+
+  int t, i;
+  fscanf(stdin, "%d", &t);
+  for(i = 0; i < t; i++) {
+  	int hardness, tenStrength; float cContent;
+    int con1 = 0, con2 = 0, con3 = 0;
+    fscanf(stdin, "%d %f %d", &hardness, &cContent, &tenStrength);
+    if(hardness > 50)
+      con1 = 1;
+    if(cContent < 0.7)
+      con2 = 1;
+    if(tenStrength > 5600)
+      con3 = 1;
+    
+    //printf("%d %d %d\n", con1, con2, con3);
+    
+    if(!con1 && !con2 && !con3)
+      printf("Grade 5\n");
+    
+    if((con1 && !con2 && !con3) || (!con1 && con2 && !con3) || (!con1 && !con2 && con3))
+      printf("Grade 6\n");
+    
+    if(con1) {
+    	if(con2) {
+        	if(con3) {
+            	printf("Grade 10\n");
+              	continue;
+            }
+          	printf("Grade 9\n");
+          	continue;
+        }
+      	if(con3) {
+          printf("Grade 7\n");
+          continue;
+        }
+    }
+    if(con2) {
+      	if(con3) {
+          printf("Grade 8\n");
+        }
+    }
+  }
+  
+	return 0;
+}

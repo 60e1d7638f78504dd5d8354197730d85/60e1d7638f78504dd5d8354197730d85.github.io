@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+  int t, riana = 0;
+  
+  scanf("%d", &t);
+  
+  if(t == 0)
+    printf("%d\n", riana);
+  
+  while(t--)
+  {
+    int n, i, j;
+    
+    scanf("%d", &n);
+    
+    int a[n];
+    
+    for(i = 1; i <= n; i++)
+    {
+      scanf("%d", &a[i]);
+    }
+    
+    for(i = 1; i <= n; i++)
+    {
+      for(j = i+1; j <= n; j++)
+      {
+        riana ^= a[i]^a[j];
+      }
+    }
+    
+    for(i = 1; i <= n; i++)
+    {
+      riana ^= a[i];
+    }
+    
+    for(i = 1; i <= n; i++)
+    {
+      riana ^= a[i];
+    }
+    
+    printf("%d\n", riana);
+  }
+
+	return 0;
+}

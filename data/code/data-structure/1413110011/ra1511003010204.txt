@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pi pair<ll,ll>
+#define fi first
+#define se second
+int main()
+{
+ll t,w,T,k,d,ans,r,o,q;
+vector<pi> P;
+ll S[100002];
+vector<pi>::iterator it;
+S[d]=0;
+cin>>q;
+while(q--)
+{
+cin>>t;
+if(t==1)
+{
+cin>>w>>T;
+P.push_back({T,w});
+d++;
+S[d]=S[d-1]+w;
+}
+else
+{
+cin>>k>>T;
+
+//o=0;
+pi x;
+x.fi=T;
+x.se=INT_MIN;
+it=upper_bound(P.begin(),P.end(),x);
+if(it==P.end())
+o=S[d];
+else
+{
+o=S[it-P.begin()];
+}
+x.fi=T-k;
+x.se=INT_MIN;
+it=upper_bound(P.begin(),P.end(),x);
+if(it==P.end())
+r=S[d];
+else
+{
+r=S[it-P.begin()];
+}
+ans=o-r;
+cout<<ans<<endl;
+}
+}
+  return 0;
+}

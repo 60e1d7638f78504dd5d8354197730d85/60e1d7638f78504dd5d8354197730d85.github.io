@@ -1,0 +1,43 @@
+#include <stdio.h>
+int prim( int a)
+{
+  int i,c=0;
+  for(i=1; i<=a; i++)
+  {
+    if(a%i == 0)
+    {
+      c++;
+    }
+  }
+  return c;
+}
+int main()
+{
+	int num,pri=1,i,dis,y;
+  	scanf("%d", &num);
+  	if( num == 0 || num == 1)
+    {
+      dis=2-num;
+      printf("%d", dis);
+      return 0;
+    }
+    else
+    {
+   	i=num-1;
+	while(pri == 1)
+    {	
+      ++i;
+      y = prim(i);
+      if(y == 2)
+      {
+        pri = 0;
+      }
+    }
+    }
+  	if(pri == 0)
+    {
+      dis = i - num;
+      printf("%d", dis);
+    }
+	return 0;
+}

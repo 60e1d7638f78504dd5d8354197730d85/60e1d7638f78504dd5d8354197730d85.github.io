@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{int i;
+    int n[1000],tstcases;
+    scanf("%d",&tstcases);
+  for(i=0;i<tstcases;i++)
+  scanf("%d",&n[i]);
+    int rev[1000],cue;
+  for(i=0;i<tstcases;i++)
+    rev[i]=0;
+ 
+  for(i=0;i<tstcases;i++)
+  {
+  while(n[i]>0)
+  { cue=n[i]%10;
+    rev[i]=rev[i]*10+cue;
+    n[i]/=10;
+  }
+  if(rev[i]%2!=0)
+    printf("ODD\n");
+  else
+    printf("EVEN\n");
+}
+  return 0;
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+class student{
+  public:
+  static int rollno;
+  string name;
+  int getnextroll(){
+    return ++rollno;
+  }
+  void getdata(){
+    rollno = getnextroll();
+    cin>>name;
+  }
+  void displaydata(){
+    cout<<rollno<<" "<<name<<endl;
+  }
+};
+int student::rollno = 1100;
+int main()
+{
+  int n;
+  cin>>n;
+  student s;
+  while(n--){
+    s.getdata();
+    s.displaydata();
+  }
+  return 0;
+}

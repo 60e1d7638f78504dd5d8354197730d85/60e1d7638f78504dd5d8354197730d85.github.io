@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+char s[100];
+  scanf("%s",s);
+  int n;
+  scanf("%d",&n);
+  char str[n][100],temp[n][100];
+  int i=0,j;
+  while(i<n)
+  {
+    scanf("%s",str[i]);
+    i++;
+  }
+  int l;
+  l=strlen(s);
+  i=0;
+  int f=0;
+  while(i<n)
+  {
+    for(j=0;j<l;j++)
+    {
+      temp[i][j]=str[i][j];
+    }
+    temp[i][j]='\0';
+    //printf("%s",temp[i]);
+    i++;
+    
+  }
+  for(i=0;i<n;i++)
+  {
+    if(strcmp(s,temp[i])==0)
+    {
+      f++;
+      //printf("%d\n",f);
+    }
+  }
+  if(f==n)
+  {
+    int min,m=0;
+    min=strlen(temp[0]);
+    for(i=1;i<n;i++)
+    {
+     if(min>strlen(temp[i]))
+     {
+       min=strlen(temp[i]);
+       m=i;
+     }
+    }
+    printf("%s",str[m+1]);
+  }
+  else
+  {
+    printf("%s",s);
+  }
+   
+	return 0;
+}

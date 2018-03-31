@@ -1,0 +1,37 @@
+m=[]
+r=eval(input())
+c=eval(input())
+for row in range(r):
+    m.append([])
+    for col in range(c):
+        e=eval(input())
+        m[row].append(e)
+m1=[]
+for row in range(r):
+    m1.append([])
+    for col in range(c):
+        e1=eval(input())
+        m1[row].append(e1)
+res=[]
+for row in range(r):
+    res.append([])
+    for col in range(c):
+        res[row].append(0)
+print('Matrix 1')
+for row in range(len(m)):
+    for col in range(len(m1[row])):
+        print(m[row][col], end = " ")
+    print()
+print('Matrix 2')
+for row in range(len(m)):
+    for col in range(len(m[row])):
+        print(m1[row][col], end = " ")
+    print()
+for i in range(len(m)):
+    for j in range(len(m1[0])):
+        res[i][j] += m[i][j] - m1[i][j]
+print('Difference of Matrix')
+for row in range(len(m)):
+    for col in range(len(m1[row])):
+        print(res[row][col], end = " ")
+    print()

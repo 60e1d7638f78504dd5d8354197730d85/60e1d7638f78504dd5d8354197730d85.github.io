@@ -1,0 +1,82 @@
+import java.util.*;
+class Passkey
+{
+  	public void passKey()
+    {
+     	Scanner sc=new Scanner(System.in);
+      	String str=sc.next();
+      	char[] ch=str.toCharArray();
+      	int[] ar=new int[ch.length];
+      	int[] ar1;
+      	int cnt=0,max=0,min=0,sum1=0,sum2=0,temp=0;
+      	for(int i=0,j=0;i<ch.length;i++)
+        {
+          	if(Character.isDigit(ch[i]))
+            {
+              	//System.out.println(ch[i]);
+              	ar[j++]=Character.getNumericValue(ch[i]);
+              	//System.out.println(ar[i]);
+              	cnt++;
+            }
+        }
+      	ar1=new int[cnt];
+      	for(int t=0;t<cnt;t++)
+          	ar1[t]=ar[t];
+      	Arrays.sort(ar1);
+      	min=ar1[0];
+      	max=ar1[cnt-1];
+      	//System.out.println("min = "+min+" max = "+max);
+      	for(int l=0;l<cnt;l++)
+        {
+          	sum1+=max*ar1[l];
+          	//ystem.out.println(l +" = "+ar1[l]);
+        }
+      	//System.out.println("Sum1 ="+sum1);
+      	if(sum1>9)
+        {
+          	temp=sum1;
+          	sum1=0;
+          	while(temp>0)
+            {
+             	sum1+=temp%10;
+              	temp=temp/10;
+              	if(temp==0 && sum1>9)
+                {
+                  	temp=sum1;
+                  	sum1=0;
+                }
+            }
+        }
+      	//System.out.println("Sum1 ="+sum1);
+      	for(int l=0;l<cnt;l++)
+        {
+          	sum2+=min*ar1[l];
+        }
+      	//System.out.println("Sum2 ="+sum2);
+      	if(sum2>9)
+        {
+          	temp=sum2;
+          	sum2=0;
+          	while(temp>0)
+            {
+             	sum2+=temp%10;
+              	temp=temp/10;
+              	if(temp==0 && sum2>9)
+                {
+                  	temp=sum2;
+                  	sum2=0;
+                }
+            }
+        }
+      //	System.out.println("Sum2 ="+sum2);
+      	int res=(sum1 < sum2) ? sum1 : sum2;
+      	System.out.println((res*res));
+    }
+}
+public class TestClass {
+	 public static void main(String[] args)
+     { 
+		Passkey s1=new Passkey();
+       	s1.passKey();
+	}
+}

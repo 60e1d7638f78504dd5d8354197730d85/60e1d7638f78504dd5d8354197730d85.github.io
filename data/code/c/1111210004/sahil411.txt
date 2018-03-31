@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+#define si(n) scanf("%d",&n)
+#define rep(i,n) for(i=0;i<n;i++)
+#define REP(i,a,b) for(i=a;i<b;i++)
+#define pn printf("\n")
+#define ps printf(" ")
+#define pi(n) printf("%d",n)
+#define pll(n) printf("%llu",n)
+#define sll(n) scanf("%llu",&n)
+#define ss(s) scanf("%s",s)
+int cmp(const void *a,const void *b)
+{
+    return *(int *)a-*(int *)b;
+}
+ 
+ 
+ 
+ 
+int pw(int a, int b)
+{
+int x =1, y = a;
+    while(b > 0)
+    {
+        if(b%2 == 1)
+        {
+            x=(x*y);
+            //if(x>p) {x%=p;}
+        }
+        y = (y*y);
+        //if(y>p) {y%=p;}
+        b /= 2;
+    }
+    return x;
+}
+int main(){
+int n,i,k,a[101]={0},t,m,sum,sum1;
+si(t);
+rep(m,t){sum=0;sum1=0;
+si(n);si(k);
+rep(i,n){si(a[i]);sum+=a[i];}
+qsort(a,n,sizeof(int ),cmp);
+if(k>n/2){k=n-k;}
+rep(i,k){sum1+=a[i];}
+pi(sum-2*sum1);
+pn;}
+ 
+return 0;} 

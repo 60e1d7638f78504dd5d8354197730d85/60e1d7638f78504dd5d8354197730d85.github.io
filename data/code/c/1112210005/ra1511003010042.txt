@@ -1,0 +1,79 @@
+#include<stdio.h>
+int main()
+{
+	double r,s,p,chef,theif;
+	int t,m,i,j,temp;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d %lf",&m,&p);
+		if(p==0)
+		{
+			chef=1000000000;
+			theif=0;
+		}
+		else if(p==1)
+		{
+			if(m%2==0)
+			{
+				chef=0;
+				theif=1000000000;
+			}
+			else
+			{
+				chef=1000000000;
+				theif=0;	
+			}
+		}
+		else
+		{
+			s=100000000000;
+			temp=-1;	
+			while(s>=1)
+			{
+				s=s*p;
+				temp++;
+			}
+			if(m<temp)
+			{
+				i=m;
+				r=1000000000;
+				while(i--)
+				{
+					r=r*p;
+				}
+				if(m%2==0)
+				{
+					chef=(1000000000-r)/(1+p);
+					theif=p*(1000000000+r/p)/(1+p);
+				}
+				else
+				{
+					chef=(1000000000+r)/(1+p);
+					theif=p*(1000000000-r/p)/(1+p);
+				}
+			}
+			else
+			{
+				j=temp;
+				r=1000000000;
+				while(j--)
+				{
+					r=r*p;
+				}
+				if(temp%2==0)
+				{
+					chef=(1000000000-r)/(1+p);
+					theif=p*(1000000000+r/p)/(1+p);	
+				}
+				else
+				{
+					chef=(1000000000+r)/(1+p);
+					theif=p*(1000000000-r/p)/(1+p);
+				}
+			}		
+		}
+		printf("%.6f %.6f\n",chef,theif);
+	}
+	return 0;
+}  

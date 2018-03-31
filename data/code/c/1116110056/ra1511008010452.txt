@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char str[1010];
+	int t,len,i,j,arr[26],arr1[26],half,flag,second;
+	for(scanf("%d",&t),getchar();t>0;t--)
+	{
+		flag=0;
+		scanf("%s",str);
+		len=strlen(str);
+		for(i=0;i<26;i++)
+		arr[i]=arr1[i]=0;
+		half=len/2;
+		second=len-half;
+		for(i=0;i<half;i++)
+		arr[str[i]-'a']++;
+		for(i=len-1;i>=second;i--)
+		arr1[str[i]-'a']++;
+		for(i=0;i<26;i++)
+		if(arr[i]!=arr1[i])
+		flag=1;
+		if(flag==0)
+		printf("YES\n");
+		else
+		printf("NO\n");
+	}
+	return 0;
+}

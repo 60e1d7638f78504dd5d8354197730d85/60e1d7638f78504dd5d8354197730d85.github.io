@@ -1,0 +1,40 @@
+#include <stdio.h>
+int len(char *ch) {
+	int i;
+  	for(i=0; ch[i] != '\0'; i++);
+	return i;
+}
+
+int isSubsequent(char *a, char *b) {
+	int i, j;
+  	int count = 0;
+  	for(i=0; i<len(a); i++)
+      for(j=0; j<len(b); j++)
+        if(a[i] == b[j]) {
+          count += 1;
+		  break;
+        }
+  	//printf("%d\n", count);
+  	if(count == len(a))
+      return 1;
+    else
+      return 0;    
+}
+
+int main()
+{
+	int n, i;
+  	char W[100], M[100];
+  
+	scanf("%d", &n);
+  	
+  	for(i=0; i<n; i++) {
+  		scanf("%s %s", W, M);
+		if(isSubsequent(W, M) || isSubsequent(M, W))
+          printf("YES\n");
+      	else
+          printf("NO\n");
+    }
+  
+	return 0;
+}

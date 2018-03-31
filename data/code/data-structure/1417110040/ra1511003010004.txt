@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main()
+{
+  int t,n,i,j;
+  
+  
+    scanf("%d",&n);
+    int arr[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    for(i=n-1;i>=0;i--)
+    {
+      if(arr[i]==9)
+      {
+        arr[i]=0;
+        j=i-1;
+        while(arr[j]==9&&j>=0)
+        {
+          arr[j]=0;
+          j--;
+        }
+        if(j<0)
+          printf("%d",1);
+        else
+          arr[j]=arr[i]+1;
+      }
+      else
+      {
+        arr[i]=arr[i]+1;
+        break;
+      }
+      i=j;
+    }
+    for(i=0;i<n;i++)
+      printf(" %d",arr[i]);
+    printf("\n");
+  
+  return 0;
+}
+          

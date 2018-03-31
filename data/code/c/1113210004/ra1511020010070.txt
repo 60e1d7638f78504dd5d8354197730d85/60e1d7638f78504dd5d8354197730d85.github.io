@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    unsigned long long int a[100000];
+    //a[0]=0;
+    a[0]=9;
+    int po=0,i=0,j=0,t,n;
+    scanf("%d",&t);
+    while(t--)
+    {
+      scanf("%d",&n);
+      po=0;i=0;j=0;
+      while(a[po]%n!=0)
+      {
+	po++;
+	if(j==i)
+	{
+	j=0;
+	a[po]=a[i]*10;
+	i=po;
+	}
+	else
+	{
+	  a[po]=a[i]+a[j];
+	  j++;
+	}
+	
+     }
+     printf("%llu\n",a[po]);
+      
+      
+      
+    }
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    return 0;
+}

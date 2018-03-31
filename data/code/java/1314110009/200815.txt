@@ -1,0 +1,47 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+ 
+ 
+class TestClass {
+ 
+	/**
+	 * @param args
+	 * @throws IOException 
+	 * @throws NumberFormatException 
+	 */
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO Auto-generated method stub
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+int t=Integer.parseInt(br.readLine());
+StringBuilder sb=new StringBuilder();
+while(t-->0){
+	StringTokenizer st=new StringTokenizer(br.readLine());
+	int N=Integer.parseInt(st.nextToken());
+	int K=Integer.parseInt(st.nextToken());
+	st=new StringTokenizer(br.readLine());
+	int count=0;
+	for(int i=0;i<N;i++){
+		int n=Integer.parseInt(st.nextToken());
+		if((n&1)==0)
+			count++;
+		
+	}
+	if(K>0){
+		if(count>=K){
+			sb.append("YES\n");
+			}
+		else sb.append("NO\n");
+	}
+	else{
+		if(N-count==0)
+			sb.append("NO\n");
+		else sb.append("YES\n");
+	}
+	
+}
+	System.out.println(sb);
+	}
+ 
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<math.h>
+#define CONSTANT 8589934591
+ 
+int main(int argc, char const *argv[]) {
+    if (argc != 1) {
+        return 1;
+    }
+    int t;
+    unsigned long long int n, m;
+	scanf("%d", &t);
+  int i;
+	for (i = 1; i <= t; i++) {
+	    scanf("%llu", &n);
+	    if (! n) {
+	        m = 0;
+	    }
+	    else if (n <= 33) {
+	        m = (unsigned long long int) ( pow(2, n) - 1 );
+	    } else {
+	        m = CONSTANT;
+	    }
+	    printf("Case %d: %llu\n", i, m);
+	}
+	return 0;
+} 

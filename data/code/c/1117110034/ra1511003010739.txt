@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int max,t,n,ar[100],i,j;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d ",&ar[i]);
+  j=n-1;
+  while(j!=0)
+  {
+    max=0;
+    for(i=0;i<=j;i++)
+    {
+      if(ar[i]>ar[max])
+      {
+       max=i;
+      }
+      t=ar[j];
+      ar[j]=ar[max];
+      ar[max]=t;
+    }
+    j--;
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("%d\n",ar[i]);
+  }
+	return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<math.h>
+
+int gcd(int a,int b)
+{
+  if(a==0)
+    return b;
+  else
+    return gcd(b%a,a);
+}
+
+int findgcd(int a[],int n)
+{
+  int result,i;
+result=a[0];
+  for(i=1;i<n;i++)
+  {
+    result=gcd(a[i],result);
+  }
+  return result;
+  
+ 
+  
+}
+
+
+
+int main()
+{
+  int n,i,f=1,gx,ans,a[10000];
+scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+    f=f*a[i];
+  }
+  gx=findgcd(a,n);
+  ans=pow(f,gx);
+  printf("%d",ans);
+	return 0;
+}

@@ -1,0 +1,64 @@
+#include <stdio.h>
+int abs(int number)
+{
+		if(number<0)
+				return -number;
+		else return number;
+}
+ 
+int main()
+{
+		int t;
+		scanf("%d",&t);
+		while(t--)
+		{
+				int row,col;
+				scanf("%d %d",&row,&col);
+				char arr[row][col];
+				int rmin=2000;
+				int cmin=2000;
+				int rmax=-897;
+				int cmax=-897;
+				int i,j;
+				getchar();
+				for(i=0;i<row;i++){
+						for(j=0;j<col;j++){
+								scanf(" %c",&arr[i][j]);
+								if(arr[i][j]=='*'){
+											if(i>rmax)
+													rmax = i;
+											if(i<rmin)
+													rmin = i;
+											if(j>cmax)
+													cmax = j;
+											if(j<cmin)
+													cmin = j;
+								}		
+						}
+						
+				}
+				int ans=-17800;
+				int cavge = (cmin+cmax)/2;
+				int ravge = (rmin+rmax)/2;
+				int a1 = (cavge-cmin);
+				int a2 = (cmax-cavge);
+				int a3 = (rmax-ravge);
+				int a4 = (ravge-rmin);
+				if(a1>ans)
+					ans=a1;
+				if(a2>ans)
+					ans=a2;
+				if(a3>ans)
+					ans=a3;
+				if(a4>ans)
+					ans=a4;
+				
+				if(ans>=0 && ans<=1000)
+				{
+				printf("%d\n",ans+1);
+				}
+				else 
+					printf("0\n");
+		}
+		return 0;
+} 

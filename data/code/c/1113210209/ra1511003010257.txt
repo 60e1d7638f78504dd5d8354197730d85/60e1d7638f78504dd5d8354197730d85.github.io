@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+char s1[100],s2[100],s3[26]={'a'},c;
+int i,j,l,len,a;
+scanf("%s\n%s",s1,s2);
+strcat(s1,s2);
+len=l=strlen(s1);
+for(i=0;i<l-1;i++)
+  for(j=i+1;j<l;j++)
+     if(s1[i]>s1[j])
+     {c=s1[i];s1[i]=s1[j];s1[j]=c;}
+
+j=0;i=1;a=0;
+for(j=0;j<len-1;j++)
+{
+while(s1[i]==s1[i-1])
+{i++;}
+
+s3[a]=s1[i-1]; a++;
+//printf("%s\n",s3);
+i++;
+}
+s3[a++]=s1[len-1];
+s3[a]='\0';
+printf("%s",s3);
+return 0;
+}

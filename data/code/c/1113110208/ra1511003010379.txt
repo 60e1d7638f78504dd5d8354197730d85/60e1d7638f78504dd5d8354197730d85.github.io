@@ -1,0 +1,35 @@
+#include <stdio.h>
+long long chnos[]={1,2,3,5,8,13,21,34,55,89,144,233,377,610,987};
+long long makasam(long long X, long long K,long long cur, long long sel)
+{
+ if(cur>K && X==0)return 1;
+ else if(cur>K && X>0)return 0;
+ else
+ {
+  long long i,sum=0;
+   i=(sel>0)?sel:0;
+   for(;X>=(K-cur+1)*chnos[i] && i<44;i++)
+   {
+     sum=(sum+makasam(X-chnos[i],K,cur+1,i))%1000000007;
+   }
+   return sum;
+   
+ }
+  
+}
+
+
+int main()
+{
+  long long i=0,ans,Q;
+  long long X,K;
+  scanf("%lld",&Q);
+  while(i<Q)
+  {
+  scanf("%lld%lld",&X,&K);
+  ans=makasam(X,K,1,-1);
+  printf("%lld\n",ans);
+	i++;
+  }
+	return 0;
+}

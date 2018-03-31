@@ -1,0 +1,22 @@
+#include <stdio.h>
+ 
+int main()
+{
+  int i,j;
+    int city, connection, S, D,count=0;
+	int degree[100001] ={0};
+	scanf("%d %d",&city,&connection);
+	for(i=1; i<=connection; i++)
+	{
+		scanf("%d %d",&S, &D);
+		if( degree[S] == 1 || degree[D] == 1)
+		continue;
+		if(degree[S] == 0)
+		{
+			count++;
+			degree[S] = 1;
+		}
+	}
+	printf("%d\n",count);
+    return 0;
+}

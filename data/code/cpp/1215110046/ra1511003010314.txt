@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int num,i,i1,j,k,j1,k1;
+  int a[100];
+  char s[100];
+  cin>>num;
+  for(i=0;i<num;i++)
+  {
+    cin>>a[i];
+  }
+  for(j=0;j<num-1;j++)
+  {
+    for(k=0;k<num-j-1;k++)
+    {
+      if(a[k]>a[k+1])
+         {
+    int temp=a[k];
+    a[k]=a[k+1];
+    a[k+1]=temp;
+    }
+         }
+  }
+  cin>>s;
+  for(j1=0;j1<num-1;j1++)
+  {
+    for(k1=0;k1<num-j1-1;k1++)
+    {
+      if((int)(s[k1])>(int)(s[k1+1]))
+      {
+    char temp1=s[k1];
+    s[k1]=s[k1+1];
+    s[k1+1]=temp1;
+      }
+    }
+  }
+  for(i=0;i<num;i++)
+  {
+  cout<<a[i]<<endl;
+  }
+  for(i1=0;i1<num;i1++)
+  {
+  cout<<s[i1];
+  }
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include<stdio.h>
+ 
+int main(){
+	int t,i,car,count,temp;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d",&car);
+		long int arr[car];  count=1;
+		for(i=0; i<car; i++){
+			scanf("%ld",&arr[i]);
+			}
+	
+		if(car==1)
+			goto home;
+		for(i=1; i<car; i++){
+			if(arr[i]<=arr[i-1])
+					count++;
+			else if(arr[i]>arr[i-1]){
+				temp=arr[i]-arr[i-1];
+				arr[i]=arr[i]-temp;
+					}
+				}
+		home:
+		printf("%d\n",count);
+	}
+ 
+return 0;
+} 

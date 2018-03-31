@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+class Welcome {
+  String name,gender,relation; 
+  public void welcomeMessage(){
+    Scanner sc = new Scanner(System.in);
+    name = sc.next();
+    gender = sc.next();
+    relation = sc.next();
+  }
+  public void displayMessage() {
+      
+    if((relation.compareTo("Self")==0) && (gender.compareTo("Female")==0))
+      System.out.println("Welcome Ms."+ name +"! All the best to get a suitable groom for you");
+    
+    if((relation.compareTo("Self")==0) && (gender.compareTo("Male")==0))
+      System.out.println("Welcome Mr."+name+"! All the best to get a suitable bride for you ");
+    
+    if((relation.compareTo("Parent")==0) && (gender.compareTo("Male")==0))
+      System.out.println("Welcome Mr."+name+"! All the best to get a suitable life partner for your son or daughter");
+    
+    if((relation.compareTo("Parent")==0) && (gender.compareTo("Female")==0))
+      System.out.println("Welcome Ms."+ name +"! All the best to get a suitable life partner for your son or daughter");
+  }  
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Welcome obj = new Welcome();
+       obj.welcomeMessage();
+       obj.displayMessage();
+       
+	}
+}

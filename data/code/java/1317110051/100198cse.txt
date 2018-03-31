@@ -1,0 +1,42 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.io.*;
+
+public class TestClass{
+
+    public static void main(String args[]) {
+      Scanner sc=new Scanner(System.in);
+      String word=sc.nextLine();
+char[] characters = word.toCharArray();
+    
+        Map<Character, Integer> charMap = new HashMap<Character, Integer>();
+        for (Character ch : characters) {
+            if (charMap.containsKey(ch)) {
+                charMap.put(ch, charMap.get(ch) + 1);
+            } else {
+                charMap.put(ch, 1);
+            }
+        }
+       
+        Set<Map.Entry<Character, Integer>> entrySet = charMap.entrySet();
+        for (Map.Entry<Character, Integer> entry : entrySet) {
+            if (entry.getValue() > 1) {
+              char str=entry.getKey();
+              int m=entry.getValue();
+                //System.out.printf("%s=%d ", entry.getKey(), entry.getValue());
+              System.out.print(str+"=");
+              System.out.print(m);
+              System.out.println();
+            }
+        }
+    }
+        
+       
+    }
+
+   
+    
+        
+

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int a[3][3], i, j, sum = 0, s = 0;
+  	char st[50] = "Magic Square";
+  	for(i=0; i<3; i++)
+    {
+    	for(j=0;j<3; j++)
+        {
+        	scanf("%d", &a[i][j]);
+          	if(i == 0)
+            {
+            	sum += a[i][j];
+            }
+        }
+    }
+  	
+  	for(i=0; i<3; i++)
+    {
+      s = 0;
+    	for(j=0;j<3; j++)
+        {
+    		s+=a[i][j];
+        }
+      if(s != sum)
+      {
+      	strcpy(st, "Not a Magic Square");
+        break;
+      }
+    }
+    for(i=0; i<3; i++)
+   	{
+    	for(j=0;j<3; j++)
+        {
+        	printf("%d ", a[i][j]);
+        }
+      printf("\n");
+     }
+  
+  	printf("%s", st);
+	return 0;
+}

@@ -1,0 +1,24 @@
+size1=int(input())
+arr=[]
+for i in range(size1):
+    arr.append(int(input()))
+size2=int(input())
+s_arr=[]
+for j in range(size2):
+    s_arr.append(int(input()))
+l=0
+pos=-1
+for k in range(size1-size2+1):
+    flag=0
+    if(arr[k]==s_arr[l]):
+        for m in range(size2):
+            if(arr[k+m]!=s_arr[m]):
+                flag=1
+        if (flag==0):
+            pos=k
+            break
+        l+=1
+if(pos!=-1):
+    print("Sequence found between index", pos, "and", pos+size2)
+else:
+    print("Not found")

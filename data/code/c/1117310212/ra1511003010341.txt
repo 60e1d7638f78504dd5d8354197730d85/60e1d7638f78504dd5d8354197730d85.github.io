@@ -1,0 +1,30 @@
+#include <stdio.h>
+int prime(int n){
+  if(n==1) return 0;
+  int i;
+  for(i=2;i<=n/2;i++){
+    if(n%i==0)
+      return 0;
+  }
+  return 1;
+}
+int main()
+{
+  int a[1000]={0},i=2,j,n,c=0;
+  scanf("%d",&n);
+  while(i<n){
+    if(prime(i)){
+      a[c++]=i;
+    }
+    i++;
+  }
+  for(i=0;i<c;i++){
+    for(j=0;j<c;j++){
+      if((a[i]+a[j])==n && i<=j){
+        printf("%d = %d + %d\n",n,a[i],a[j]);
+      }
+    }
+  }
+
+	return 0;
+}

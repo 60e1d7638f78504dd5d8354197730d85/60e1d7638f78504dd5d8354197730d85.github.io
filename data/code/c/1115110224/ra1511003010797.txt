@@ -1,0 +1,51 @@
+    #include<stdio.h>  
+    #include<string.h>  
+ 
+    int tree[1000005]; 
+    int n;  
+    int lowbit(int x) 
+    {  
+        return x&(-x);  
+    }  
+    int sum(int x)  
+    {  
+        int sum=0;  
+        while(x>0)  
+        {  
+            sum+=tree[x];  
+            x-=lowbit(x);  
+        }  
+        return sum;  
+    }  
+    void add(int x,int c)//加数据。  
+    {  
+        while(x<=n)  
+        {  
+            tree[x]+=c;  
+            x+=lowbit(x);  
+        }  
+    }  
+    int main()  
+    {  
+        n=1000000;  
+        int nn,i;  
+        while(~scanf("%d",&nn))  
+        {  
+            for(i=1;i<=nn;i++)  
+            {  
+                int tmp;  
+                scanf("%d",&tmp);  
+                add(tmp,1);  
+            }  
+            int q;  
+            scanf("%d",&q);  
+            while(q--)  
+            {  
+                int x;  
+                scanf("%d",&x);  
+                if(x>n)x=n-1;  
+                printf("%d\n",sum(x));  
+            }  
+        }  
+      return 0;
+    }  

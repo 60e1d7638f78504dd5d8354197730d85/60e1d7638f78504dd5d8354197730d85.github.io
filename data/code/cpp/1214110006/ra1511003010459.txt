@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+class Account{
+	
+  public:
+  string s,at;
+  	int an,balance;
+  	
+  int withdraw(int n){
+    if(balance<n){
+    	cout<<"Insufficient amount\n";
+    }else{
+  	balance-=n;
+    }
+  };
+   void deposit(int n){
+  	balance+=n;
+  }
+  void display(){
+  	cout<<"NAME="<<s<<"\n";
+    cout<<"ACCNO="<<an<<"\n";
+    cout<<"TYPE="<<at<<"\n";
+    cout<<"BALANCEAMOUNT="<<balance<<"\n";
+  }
+};
+
+int main()
+{
+	Account a;
+  	
+  	cin>>a.s;
+  	cin>>a.an;
+  	cin>>a.at;
+    cin>>a.balance;
+  	int p,q;
+  	cin>>p>>q;
+  	a.deposit(p);
+  	a.withdraw(q);
+  	a.display();
+	return 0;
+}

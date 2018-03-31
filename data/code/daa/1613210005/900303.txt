@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+#define ff first
+#define ss second
+#define pb push_back
+#define MOD (1000000007LL)
+#define LEFT(n) (2*(n))
+#define RIGHT(n) (2*(n)+1)
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> ii;
+typedef pair<int, ii> iii;
+ll pwr(ll base, ll p, ll mod = MOD){
+ll ans = 1;while(p){if(p&1)ans=(ans*base)%mod;base=(base*base)%mod;p/=2;}return ans;
+}
+ll gcd(ll a, ll b){
+    if(b == 0)  return a;
+    return gcd(b, a%b);
+}
+int n, BIT[100005];
+ii arr[100005];
+void update(int idx, int val){
+	while(idx <= n){
+		BIT[idx] += val;
+		idx += idx & (-idx);
+	}
+}
+int query(int idx){
+	int ans = 0;
+	while(idx){
+		ans += BIT[idx];
+		idx -= idx & (-idx);
+	}
+	return ans;
+}
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin>>t;
+    assert(t >= 1 && t <= 5);
+    while(t--){
+    	cin>>n;
+    	assert(n >= 1 && n <= 100000);
+    	for(int i=1;i<=n;i++){
+    		cin>>arr[i].ff;
+    		assert(arr[i].ff >= 1 && arr[i].ff <= 1000*1000*1000);
+    		arr[i].ss = i;
+    	}
+    	sort(arr+1, arr+n+1);
+    	memset(BIT, 0, sizeof(BIT));
+    	ll sum = 0;
+    	for(int i=1;i<=n-1;i++){
+    		ll actual_val = arr[i].ff - sum;
+    		int actual_idx = arr[i].ss - query(arr[i].ss);
+    		if(actual_val < 0){
+    			update(arr[i].ss, 1);
+    			continue;
+    		}
+    		ll needed = actual_val/actual_idx+1;
+    		sum += actual_idx * needed;
+    		update(arr[i].ss, 1);
+    	}
+    	if(arr[n].ff-sum < 0)	cout<<"Kushagra"<<endl;
+    	else	cout<<"Ladia"<<endl;
+    }
+    return 0;
+}

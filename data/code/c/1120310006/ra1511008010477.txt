@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<math.h>
+long long int f(int n)
+{
+  
+ long long int ans=1,i;
+  for(i=1;i<=n;i++)
+    ans*=pow(i,i);
+  
+  return ans;
+}
+int main()
+{
+  long long int t,n,m,q,r;
+  long long ans;
+  scanf("%lld",&t);
+  while(t--)
+  {
+   scanf("%lld %lld %lld",&n,&m,&q);
+   while(q--)
+   {
+     scanf("%lld",&r);
+     ans=f(n)/(f(r)*f(n-r));
+     printf("%lld\n",ans%m);
+    
+   }
+    
+    
+  }
+
+	return 0;
+}

@@ -1,0 +1,72 @@
+#include<stdio.h>
+void Merge(long int arr[],long int beg,long int end)
+{
+	long int index=0,temp[end-beg],mid=(beg+end)/2,i,j,k;
+	i=beg,j=mid+1;
+	while(i<=mid && j<=end)
+	{
+		if(arr[i]<=arr[j])
+			temp[index++]=arr[i++];
+		else
+			temp[index++]=arr[j++];
+	}
+	if(i>mid)
+	{
+		for(k=j;k<=end;k++)
+			temp[index++]=arr[k];
+	}
+	if(j>end)
+	{
+		for(k=i;k<=mid;k++)
+			temp[index++]=arr[k];
+	}
+	for(k=0;k<index;k++)
+		arr[k+beg]=temp[k];
+}
+void Merge_Sort(long int arr[],long int beg,long int end)
+{
+	if(beg<end)
+	{
+		long int mid=(beg+end)/2;
+		Merge_Sort(arr,beg,mid);
+		Merge_Sort(arr,mid+1,end);
+		Merge(arr,beg,end);
+	}
+}
+void binary_search(long int arr[],long int beg,long int end,long int key)
+{
+	long int mid;
+	while(beg<=end)
+	{
+		mid=(beg+end)/2;
+		if(arr[mid]==key)
+		{
+			printf("YES\n");
+			return;
+		}
+		if(arr[mid]<key)
+			beg=mid+1;
+		else if(arr[mid]>key)
+			end=mid-1;
+	}
+	if(beg>end)
+		printf("NO\n");
+}
+int main()
+{
+	long int N,Q,i,key;
+	scanf("%ld%ld",&N,&Q);
+	long int arr[N];
+	for(i=0;i<N;i++)
+	{
+		fflush(stdin);
+		scanf("%ld",&arr[i]);
+	}
+	Merge_Sort(arr,0,N-1);
+	for(i=0;i<Q;i++)
+	{
+		scanf("%ld",&key);
+		binary_search(arr,0,N-1,key);
+	}
+	return(0);
+}

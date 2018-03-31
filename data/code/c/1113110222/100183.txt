@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+long decimalnum, remainder, quotient,x;
+    int octalNumber[100], i = 1, j;
+     scanf("%ld", &decimalnum);
+    quotient = decimalnum;
+    while (quotient != 0)
+    {
+        octalNumber[i++] = quotient % 8;
+        quotient = quotient / 8;
+    }
+    printf("%ld", decimalnum);
+  printf(" ");
+    for (j = i - 1; j > 0; j--)
+        printf("%d", octalNumber[j]);
+  char HEXC[5];
+     int NUM,I,LEN,HEXD[5];
+     NUM=decimalnum;
+     LEN=0;
+     while(decimalnum>0)
+     {
+    HEXD[LEN]=decimalnum%16;
+    decimalnum=decimalnum/16;
+    LEN++;
+     };
+     for(I=LEN-1;I>-1;I--)
+     {
+    if(HEXD[I]<10)
+       HEXC[I]=HEXD[I]+48;
+    else
+       HEXC[I]=HEXD[I]+87;
+     }
+  printf(" ");   
+  for(I=LEN-1;I>-1;I--)
+     {
+    printf("%c",HEXC[I]);
+     }
+	return 0;
+}

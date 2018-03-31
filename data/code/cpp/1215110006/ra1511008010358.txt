@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+class Account
+{ int dep,w;
+  	private:
+  	int accNo,currBal,b,cb,cbb;
+  	string name;
+  	public:
+  	void initializeData(int accNo,string name,int currBal)
+    {
+      	this->accNo=accNo;
+      	this->name=name;
+      	this->currBal=currBal;
+    }
+  	void deposit()
+    {
+      	b=currBal;
+      	cin>>dep;
+      	
+      	currBal+=dep;
+      	//cout<<dep;
+      	cb=checkBalance();
+      	//cout<<currBal;
+    }
+  	void withdraw()
+    {
+      	//int w;
+      	cin>>w;
+      	if(currBal>=w)
+        {
+          	currBal-=w;
+          	cbb=checkBalance();
+        }
+       	else
+          cbb=cb;
+    }
+  	int checkBalance()
+    {
+      	return currBal;
+    }
+  	void DisplayDetails()
+    {
+      	cout<<"DEPOSIT"<<endl;
+      	cout<<"Balance="<<b<<endl;
+      	cout<<"Deposited="<<dep<<endl;
+      	cout<<"Balance="<<cb<<endl;
+      	cout<<"WITHDRAW"<<endl;
+      	cout<<"Balance="<<cb<<endl;
+      	cout<<"Withdraw="<<w<<endl;
+      	if(w>cb)
+          	cout<<"Insufficient balance"<<endl;
+      	else
+          	cout<<"Balance="<<cbb<<endl;
+      	cout<<"ACCOUNT DETAILS"<<endl;
+      	cout<<"Account Holders Name:"<<name<<endl;
+      	cout<<"Account Number:"<<accNo<<endl;
+      	cout<<"Current Balance:"<<cbb;
+    }
+};
+int main()
+{
+	Account f;
+  	int an,b;
+  	string n;
+  	cin>>an>>n>>b;
+  	f.initializeData(an,n,b);
+  	f.deposit();
+  	f.withdraw();
+  	f.DisplayDetails();
+	return 0;
+}

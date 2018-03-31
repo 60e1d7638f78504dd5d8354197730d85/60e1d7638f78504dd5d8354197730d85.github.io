@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+	int m[5][5],i,j,sum_row[]={0,0,0,0,0}, sum_col[]={0,0,0,0,0};
+  	for(i=0;i<3;i++)
+      for(j=0;j<3;j++)
+      {
+        scanf("%d", &m[i][j]);
+        sum_row[i]+=m[i][j];
+        sum_col[j]+=m[i][j];
+      }
+  	int flag_row=0;
+  	for(i=0;i<2;i++)
+      if(sum_row[i]!=sum_row[i+1])
+      {
+        flag_row=1;
+        break;
+      }
+  	if(flag_row==1)
+      printf("No");
+  	else
+    {
+      int flag_col=0;
+      for(i=0;i<2;i++)
+        if(sum_col[i]!=sum_col[i+1])
+        {
+          flag_col=1;
+          break;
+        }
+      if(flag_col==1)
+        printf("No");
+      else
+      {
+        int sum_dg1=0, sum_dg2=0;
+        for(i=0;i<3;i++)
+        {
+          sum_dg1+=m[i][i];
+          sum_dg2+=m[i][2-i];
+        }
+        if((sum_dg1==sum_dg2) && (sum_row[0]==sum_col[0]) && (sum_dg1==sum_row[0]))
+          printf("Yes");
+        else
+          printf("No");
+      }
+    }
+	return 0;
+}

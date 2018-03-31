@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+int Minimum(int a,int b){
+
+return a<b?a:b;
+
+}
+
+int main()
+{
+		int t,n,m,z,l,r,b,total,tempTot,ans=0,temp,inB,inZ,leftN,leftM;
+  scanf("%d",&t);
+  while(t-->0){
+  	scanf("%d %d %d %d %d %d",&n,&m,&z,&l,&r,&b);
+  	total=n*m;
+    tempTot=n*m;
+    l=l+r;
+    if(m%2==0){
+    
+    if(l>=n){
+    
+    ans=n;
+      tempTot-=n;
+      l-=n;
+      m--;
+      
+    }else{
+    inB=l*(m/2);
+      ans=inB+l;
+      tempTot-=ans;
+      b-=inB;
+      n-=l;
+      l=0;
+    
+    }
+    }
+    
+    if(m==1)
+      temp=n;
+    else
+      temp=l/(m-1);
+    if(temp>=n||temp>=b)
+      printf("%d\n",Minimum(total,(ans+l+b+z)));
+             else{
+             
+             inB=temp;
+               leftM=l%(m=1);
+               leftN=n-temp-1;
+               ans+=l;
+               tempTot-=l;
+               leftM=m-leftM;
+               inB+=((leftM+1)/2);
+               inB+=(leftN*(m+1)/2);
+               inB=Minimum(inB,b);
+               ans+=inB;
+               tempTot-=inB;
+               inZ=Minimum(z,tempTot);
+               ans+=inZ;
+               printf("%d\n",ans);
+               
+             }
+  }
+	return 0;
+}

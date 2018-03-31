@@ -1,0 +1,35 @@
+// A hashing based C++ program to find missing
+// elements from an array
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Print all elements of range [low, high] that
+// are not present in arr[0..n-1]
+void printMissing(int arr[], int n, int low,
+                                   int high)
+{
+   // Insert all elements of arr[] in set
+   unordered_set<int> s;
+   for (int i=0; i<n; i++)
+      s.insert(arr[i]);
+ 
+   // Traverse throught the range an print all
+   // missing elements
+   for (int x=low; x<=high; x++)
+      if (s.find(x) == s.end())
+         cout << x << " ";
+}
+ 
+// Driver program
+int main()
+{
+   int arr[10];
+   int n;
+  cin>>n;
+  for(int i=0;i<n;i++)
+    cin>>arr[i];
+  int low , high;
+  cin>>low>>high;
+   printMissing(arr, n, low, high);
+   return 0;
+}

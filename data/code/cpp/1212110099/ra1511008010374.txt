@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+bool checkprime(int n);
+int main()
+{
+  int n,i;
+  bool flag=false;
+  cin>>n;
+  
+  for(i=2;i<=n/2;++i)
+  {
+    if(checkprime(i))
+    {
+      if(checkprime(n-i))
+         {
+   
+           cout<<n<<" = "<<i<<" + "<<n-i<<endl;
+           flag = true;
+         }
+    }
+    
+  }
+	return 0;
+}
+bool checkprime(int n)
+{
+  int c;
+  bool isprime = true;
+  for(c=2;c<=n/2;++c)
+  {
+    if((n%c)== 0 )
+    {
+      isprime=false;
+      break;
+    }
+    
+  }
+  
+  return isprime;
+}
+      

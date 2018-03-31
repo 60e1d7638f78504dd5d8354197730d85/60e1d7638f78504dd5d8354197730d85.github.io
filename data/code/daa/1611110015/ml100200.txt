@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+int a[10],i,j,n,x,temp;
+  scanf("%d",&n);
+  for(i=0;i<n;++i)
+    scanf("%d",&a[i]);
+  scanf("%d",&x);
+  // sorting starts here
+  for(i=0;i<n;++i)
+  {
+    	for(j=0;j<n-i-1;j++)
+    	{
+     	 if(a[j]>a[j+1])
+         {	
+           temp=a[j];
+          	a[j]=a[j+1];
+         	 a[j+1]=temp;
+         }
+        }
+  }
+  for(i=0;i<n;++i)
+  { 
+    if(a[i]==x)
+    {
+      	printf("Book Available");
+      break;
+    }
+    if(i==n-1)
+    {
+      printf("Book is not available");
+    }
+  }
+    
+	return 0;
+}

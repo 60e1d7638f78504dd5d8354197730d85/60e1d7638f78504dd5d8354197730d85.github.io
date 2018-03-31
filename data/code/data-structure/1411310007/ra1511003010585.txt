@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+struct node{
+	int data;
+  	node* next;
+}*start;
+
+node* createnode(int n){
+	node* ptr = new node;
+  	ptr->data = n;
+  	ptr->next = NULL;
+  	return ptr;
+}
+
+void insert(node *x){
+	if(start==NULL) start = x;
+  	else{
+		node* ptr = start;
+      	while(ptr->next!=NULL)
+          ptr = ptr->next;
+      	ptr->next = x;
+    }
+}
+
+void duplicate(){  
+    node *ptr1, *ptr2, *dup;
+    ptr1 = start;
+    while (ptr1 != NULL && ptr1->next != NULL)
+    {
+        ptr2 = ptr1;
+        while (ptr2->next != NULL)
+        {
+            if (ptr1->data == ptr2->next->data)
+            {
+                dup = ptr2->next;
+                ptr2->next = ptr2->next->next;
+                delete(dup);
+            }
+            else
+                ptr2 = ptr2->next;
+        }
+        ptr1 = ptr1->next;
+    }
+}
+
+void display(){
+	for(node* ptr = start;ptr!=NULL;ptr = ptr->next)
+      cout<<ptr->data<<" ";
+}
+
+int main()
+{
+  	start = NULL;
+  	node *x;
+	int n;cin>>n;
+  	for(int i=0;i<n;i++){
+    	int a;
+      	cin>>a;
+      	x = createnode(a);	
+      	insert(x);
+    }	  	
+  	duplicate();
+  	display();  
+	return 0;
+}

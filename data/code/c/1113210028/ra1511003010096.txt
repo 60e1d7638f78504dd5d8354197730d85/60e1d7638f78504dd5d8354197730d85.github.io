@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+#define ll long long
+#define gc getchar_unlocked
+#define MOD 1000000007
+ 
+inline int getn(){
+  int n = 0, c = gc();
+  while(c < '0' || c > '9') c = gc();
+  while(c >= '0' && c <= '9')
+    n = (n<<3) + (n<<1) + c - '0', c = gc();
+  return n;
+}
+ 
+int madd(int a, int b){
+  return ((a += b) >= MOD) ? a-MOD : a;
+}
+int msub(int a, int b){
+  return ((a -= b) < 0) ? a+MOD : a;
+}
+int mmul(ll a, ll b){
+  return a * b % MOD;
+}
+ 
+int a[100001], p[100001];
+int main(){
+  int T,N, i,r,s;
+  T = getn();
+  while(T--){
+    N = getn(), a[0] = getn(), p[0] = 1;
+    for(i = 1; i <= N; ++i)
+      a[i] = getn(), p[i] = madd(p[i-1], p[i-1]);
+    s = a[0], r = mmul(p[N], mmul(a[0], a[1]));
+    for(i = 1; i < N; ++i){
+      s = madd(s, mmul(p[i-1], a[i]));
+      r = madd(r, mmul(p[N-i], mmul(s, a[i+1])));
+    }
+    printf("%d\n", r);
+  }
+  return 0;
+}
+ 

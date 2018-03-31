@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+    int i,n1,n2,n3,n4,lcm,gsd;
+    double n5=0;
+    double n6=0;
+    int sum=0;
+    scanf("%d %d %d %d",&n1,&n2,&n3,&n4);
+    lcm = (n2>n4) ? n2 : n4;
+    while(1)
+    {
+        if( lcm%n2==0 && lcm%n4==0 )
+        {
+            break;
+        }
+        ++lcm;
+    }
+    n5=(n1*lcm)/n2;
+    n6=(n3*lcm)/n4;
+    sum=(int)(n5+n6);
+    for(i=1;i<=sum && i<=lcm;i++)
+    {
+      	if(sum%i==0 && lcm%i==0)
+          	gsd=i;
+    }
+    sum=sum/gsd;
+    lcm=lcm/gsd;
+    printf("%d %d",sum,lcm);
+    return 0;
+}

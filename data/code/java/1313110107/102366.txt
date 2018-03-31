@@ -1,0 +1,50 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass
+ {
+	public static void main (String[] args)
+	 {
+	 Scanner ip=new Scanner(System.in);
+	 int t=ip.nextInt();
+	 for(int i=0;i<t;i++){
+	     int []arr=new int[1000];
+	     int n=ip.nextInt();
+	     if(n>99)
+        { 
+         int mul1=n*2;int mul2=n*3;
+	     while(mul2>0){
+	            mul1=mul1*10+mul2%10;
+	            mul2=mul2/10;
+	     }
+	     
+	     int temp=n;
+	     while(temp>0){
+	            mul1=mul1*10+temp%10;
+	            temp=temp/10;
+	     }
+	    int j=0;
+	     while(mul1>0){
+	            arr[j]=mul1%10;
+	             mul1=mul1/10;
+	             j++;
+	     }int flag=0;
+	     for(int v=1;v<=9;v++){
+	         
+	        for(int k=0;k<j;k++){
+	              if(arr[k]==v){
+	                 flag++;break;
+	             }
+	        }
+	         
+	     }if(flag==9){
+	         System.out.println("Fascinating");
+	         
+	     }else{
+	         System.out.println("Not Fascinating"); 
+	     }}else{
+	         System.out.println("Number should be atleast three digits"); 
+	     }          
+	 }
+	 }
+}

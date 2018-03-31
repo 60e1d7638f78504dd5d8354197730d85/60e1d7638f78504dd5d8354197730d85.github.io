@@ -1,0 +1,40 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class TestClass
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		for (int i=1; i<=T; i++)
+		{
+			int N=sc.nextInt();
+			int A[] = new int[N];
+			for (int j=0; j<N; j++)
+			{
+				A[j] = sc.nextInt();
+			}
+			System.out.println(Quary(A,N));
+		}    
+	}
+	static int Quary(int A[],int N)
+	{
+		int count = 0;
+		for(int i=0; i<N; i++)
+		{
+			if(A[i]!=Integer.MAX_VALUE)
+			{
+				for(int j=i+1; j<N; j++)
+				{
+					if(A[i] == A[j] || A[i] == -A[j])
+					{
+						A[j] = Integer.MAX_VALUE;
+					}
+				}
+				count = count+1;
+			}
+		}
+	return count;
+	}
+}

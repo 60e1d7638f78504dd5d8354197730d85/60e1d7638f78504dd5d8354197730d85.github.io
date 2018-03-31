@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<string.h>
+int a[5003][5003],lt[5002],d[5003];
+int main()
+{
+	int len,t,n,min,i,j;
+	char s[5003];
+	scanf("%d",&t);
+	
+	while(t--)
+	
+	{min=10000;
+	scanf("%d",&n);
+//	memset(a,0,sizeof(a));
+//	memset(d,0,sizeof(d));
+	memset(lt,0,sizeof(lt));
+	
+		scanf("%s",s+1);
+//printf("%s",s+1);
+s[0]=124;		
+		len=strlen(s+1);
+		for(i=1;i<=len;i++)
+		{
+		  	lt[i]++;
+			a[i][lt[i]]=i;
+		    if(s[i]==s[i-1])
+		    {
+			  lt[i]++;
+		      a[i][lt[i]]=i-1;
+		    }
+		    for(j=1;j<=lt[i-1];j++)
+		    {
+		    	if(s[i]==s[a[i-1][j]-1])
+		    	{
+		    		lt[i]++;
+		            a[i][lt[i]]=a[i-1][j]-1;
+		    
+		    		
+		    		
+		    	}
+						    	
+		    	
+		    }
+		}
+ 
+ d[0]=0;
+		for(i=1;i<=len;i++)
+		{//min=d[i-1]+1;
+           min=10000;
+			  	for(j=1;j<=lt[i];j++)
+		    {
+		    	if(d[a[i][j]-1]+1<min)
+		    	
+		    	{
+		    	min=d[a[i][j]-1]+1;
+		      	}
+						    	
+		    	
+		    }
+		    d[i]=min;
+		}
+ 
+		
+		
+		
+		printf("%d\n",d[len]);
+		
+	}
+	
+	
+	return 0;
+} 

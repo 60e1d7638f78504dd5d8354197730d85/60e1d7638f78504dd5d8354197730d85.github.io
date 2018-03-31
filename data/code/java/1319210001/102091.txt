@@ -1,0 +1,50 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class TestClass {
+ 
+    static HashMap<Long, Long> coins = new HashMap<Long, Long>();
+ 
+    public static long[] exchangeInBank(long coin) {
+        long[] coins = new long[3];
+        coins[0] = coin / 2;
+        coins[1] = coin / 3;
+        coins[2] = coin / 4;
+        return coins;
+    }
+ 
+    public static long getMaxDollars(long coin) {
+        if (coin == 0) {
+            return 0;
+        } else if (coins.containsKey(coin)) {
+            return coins.get(coin);
+        } else {
+            long maxDollars = 0;
+            long[] afterExchange = exchangeInBank(coin);
+            for (long i : afterExchange) {
+                maxDollars += getMaxDollars(i);
+            }
+            if (maxDollars > coin) {
+                coins.put(coin, maxDollars);
+                return maxDollars;
+            } else {
+                coins.put(coin, coin);
+                return coin;
+            }
+        }
+    }
+ 
+    
+    public static void main(String[] args) throws IOException {
+ 
+ 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String inputCoinValue;
+        while ((inputCoinValue = br.readLine()) != null && !inputCoinValue.equals("")) {
+            System.out.println(getMaxDollars(Long.valueOf(inputCoinValue)));
+        }
+    }
+}

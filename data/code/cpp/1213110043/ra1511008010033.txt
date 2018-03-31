@@ -1,0 +1,30 @@
+#include<string.h>
+#include<iostream>
+using namespace std;
+ 
+int main() {
+   char s[5][20], t[20];
+   int i, j;
+   //clrscr();
+ 
+  // printf("\nEnter any five strings : ");
+   for (i = 0; i < 5; i++)
+     cin>>s[i];
+ 
+   for (i = 1; i < 5; i++) {
+      for (j = 1; j < 5; j++) {
+         if (strcmp(s[j - 1], s[j]) > 0) {
+            strcpy(t, s[j - 1]);
+            strcpy(s[j - 1], s[j]);
+            strcpy(s[j], t);
+         }
+      }
+   }
+ 
+   //printf("\nStrings in order are : ");
+  //cout<<"Strings (Names) in alphabetical order :\n"; 
+  for (i = 0; i < 5; i++)
+     cout<<s[i]<<"\n";
+ 
+  return 0 ;
+}

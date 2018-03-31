@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdbool.h>
+bool isSubsetSum(int set[], int n, int sum)
+{
+    int i,j;
+	bool subset[sum+1][n+1];
+	for (i = 0; i <= n; i++)
+	subset[0][i] = true;
+	for (i = 1; i <= sum; i++)
+	subset[i][0] = false;
+	for ( i = 1; i <= sum; i++)
+	{
+	for (j = 1; j <= n; j++)
+	{   if (i<set[j-1]) {
+	      subset[i][j] = subset[i][j-1];
+	    } else {
+		  subset[i][j] = subset[i][j-1] || subset[i - set[j-1]][j-1];
+	    }  
+	}
+	}
+	return subset[sum][n];
+}
+int main()
+{
+  int a,k;
+  int set[10];
+  int sum = 9;
+  scanf("%d",&a);
+  for(k=0;k<=a;k++)
+  {
+    scanf("%d",&set[k]);
+  }
+  int n = sizeof(set)/sizeof(set[0]);
+  if (isSubsetSum(set, n, sum) == true)
+     printf("Found a subset with given sum");
+  else
+     printf("No subset with given sum");
+  return 0;
+}

@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+void del(char str[], char ch);
+int main() 
+{
+   char str[100];
+   char ch;
+   fgets(str,100,stdin);
+   scanf("%ch", &ch);
+ 
+   del(str, ch);
+  return 0;
+}
+ 
+void del(char str[], char ch) {
+   int i, j = 0;
+   int size;
+  char ch2;
+  if(isupper(ch))
+    ch2=tolower(ch);
+  else if(islower(ch))
+    ch2=toupper(ch);
+   char ch1;
+   char str1[100];
+ 
+   size = strlen(str);
+ 
+   for (i = 0; i < size; i++) {
+      if (str[i] != ch&&str[i]!=ch2) {
+         ch1 = str[i];
+         str1[j] = ch1;
+         j++;
+      }
+   }
+   str1[j] = '\0';
+ 
+   printf("%s",str1);
+}

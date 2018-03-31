@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int test,j,k,i,m;
+  scanf("%d",&test);
+  char arr[test];
+  for(i=0;i<test;i++)
+  {
+	scanf("%s",arr);
+    int len=strlen(arr);
+    int middle;
+    if(len%2==0)
+    {
+      middle=len/2;
+      int flag=1;
+      for(j=0;j<middle;j++)
+      {
+            int temp=arr[j];
+        	int count1=0,count2=0;
+			for(k=middle;k<len;k++)
+            {
+				if(temp==arr[k])
+                	count1++;
+            }
+        	for(m=0;m<middle;m++)
+            {
+              if(arr[m]==temp)
+                count2++;
+            }
+        	if(count1==count2)
+              continue;
+        	else
+            {
+              flag=0;
+              break;
+            }
+                
+      }
+     	if(flag==0)
+          printf("NO\n");
+      	else
+          printf("YES\n");
+    }
+    else
+    {
+      	middle=len/2;
+      	int flag=1;
+      	for(j=0;j<middle;j++)
+      	{
+            int temp=arr[j];
+        	int count1=0,count2=0;
+			for(k=middle+1;k<len;k++)
+            {
+				if(temp==arr[k])
+                	count1++;
+            }
+        	for(m=0;m<middle;m++)
+            {
+              if(arr[m]==temp)
+                count2++;
+            }
+        	if(count1==count2)
+              continue;
+        	else
+            {
+              flag=0;
+              break;
+            }
+                
+      	}
+     	if(flag==0)
+          printf("NO\n");
+      	else
+          printf("YES\n");
+  	}
+  }
+ 
+
+      
+      
+
+	return 0;
+}

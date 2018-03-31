@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+ int main()
+ {
+ long long int t;
+ cin>>t;
+ while(t--)
+ {
+     long long int n,i=0,ans;
+     long long int count=0,c=0,d=0,b=0;
+     cin>>n;
+     long long int r=sqrt(n);
+     if(n==0)
+     {
+        ans=0;
+     }
+ 
+     for(b=2;b<=r;b++){
+          d=b;
+     while(n>=b)
+     {
+ 
+         b=b*d;
+     }
+      c=b/d;
+ 
+       if(n<(2*c) && n!=1 && n!=0)
+            {
+           count++;
+       }
+        b=d;
+      }
+      for(i=r+1;i<=n;i++)
+      {
+ 
+          if(n<(2*i))
+       {
+           count++;
+       }
+      }
+      ans=count;
+      if(n==1)
+      {
+        cout<<"INFINITY"<<endl;
+      }
+      else
+      cout<<ans<<endl;
+ }
+ 
+ return 0;
+ }
+ 

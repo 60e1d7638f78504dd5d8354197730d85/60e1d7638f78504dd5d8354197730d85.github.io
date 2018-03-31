@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int t,i;
+	int a[26],c,l;
+	scanf("%d",&t);
+	while(t--)
+	{
+		c=0;
+		char ch[101];
+		scanf("%s",ch);
+		for(i=0;i<26;i++)
+		a[i]=0;
+		l=strlen(ch);
+		for(i=0;i<l;i++)
+		{
+			if(ch[i]>=97&&ch[i]<=122)
+			a[ch[i]-'a']++;
+			else
+			a[ch[i]-'A']++;
+		}
+		for(i=0;i<26;i++)
+		{
+			if(a[i]>1)
+			c++;
+		}
+		printf("%d\n",c);
+	}
+	return 0;
+}

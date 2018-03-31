@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+ void hexToDec(char a[100],int x,int l);
+int main()
+{
+char a[100];
+  scanf("%s",a);
+  int x=strlen(a);
+ 
+  int l=x-1;
+ 
+  hexToDec(a,x,l);
+  return 0;
+}
+  
+  
+  
+  
+  void hexToDec(char a[100],int x,int l)
+  {
+    int i;
+    int sum=0;
+    int b;
+for(i=0;i<x;i++)
+{
+if(isdigit(a[i]))
+{
+b=((int)a[i]-'0');
+}
+  if(a[i]=='A' || a[i]=='a')
+  {
+  b=10;
+  }
+  else
+     if(a[i]=='B' || a[i]=='b')
+  {
+  b=11;
+     }
+  else
+     if(a[i]=='C' || a[i]=='c')
+  {
+  b=12;
+     }
+  else
+     if(a[i]=='D' || a[i]=='d')
+  {
+  b=13;
+     }
+  else
+     if(a[i]=='E' || a[i]=='e')
+  {
+  b=14;
+     }
+  else
+     if(a[i]=='f' || a[i]=='F')
+  {
+  b=15;
+     }
+  sum=sum+b*pow(16,l--);
+}
+ 
+  printf("%d",sum);
+  }

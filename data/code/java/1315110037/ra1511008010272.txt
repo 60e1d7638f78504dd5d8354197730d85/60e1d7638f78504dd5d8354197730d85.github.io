@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.Scanner;
+class ElectricityBill {
+  Scanner s = new Scanner(System.in);
+  int num;
+  String cname;
+  int nounits;
+  float billpay;
+  public void setData(int num,String cname,int nounits) {
+    this.num = num;
+    this.cname = cname;
+    this.nounits = nounits;
+  }
+  public void billcalculate() {
+    if(nounits<100) {
+      billpay = (float) 1.20*nounits;
+    }
+    else if(nounits>=100 && nounits <=300) {
+      billpay = (float) (100*1.20 + (nounits-100)*2.00);
+    }
+    else
+      billpay = (float) (100*1.20 +200*2.00 + (nounits-300)*3.00);
+  }
+  public void show() {
+    System.out.print("Customer Number:"+num+"\nCustomer Name:"+cname+"\nUnits Consumed:"+nounits+"\nBill to pay:"+billpay);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner s = new Scanner(System.in);
+		ElectricityBill b = new ElectricityBill();
+       String s1 = s.next();
+       int n = s.nextInt();
+       int u = s.nextInt();
+       b.setData(n,s1,u);
+       b.billcalculate();
+       b.show();
+	}
+}

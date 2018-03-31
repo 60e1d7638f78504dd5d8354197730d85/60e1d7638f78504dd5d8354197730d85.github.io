@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <sstream>
+#include <map>
+#include <string>
+#include <algorithm>
+#include <queue>
+#include <cmath>
+#include <functional>
+#include <set>
+#include <ctime>
+#include <random>
+using namespace std;
+ 
+int main(){
+	int n,k;
+	cin >> k >> n;
+	vector<vector<int>> G(n);
+	for(int i=0; i<n-1; i++){
+		int a;
+		cin >> a;
+		a--;
+		G[i+1].push_back(a);
+		G[a].push_back(i+1);
+	}
+ 
+	long long ans = 0;
+	function<int(int,int)> dfs = [&](int pos, int par){
+		int ret = 1;
+		for(int i=0; i<G[pos].size(); i++){
+			if(G[pos][i] == par) continue;
+			ret += dfs(G[pos][i], pos);			
+		}
+		if(ret >= k){
+			ans++;
+			ret = 0;
+		}
+ 
+		return ret;
+	};
+ 
+	dfs(0,-1);
+ 
+	cout << ans << endl;
+ 
+	return 0;
+}

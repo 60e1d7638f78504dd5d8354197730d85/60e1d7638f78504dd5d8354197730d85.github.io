@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+	int i,j,l,flag;
+	char s[100];
+	scanf("%s",s);
+	l=strlen(s);
+	i=0;j=l-1;
+	while(i<=j)
+	{
+		flag=0;
+		if(s[i]=='.'&&s[j]=='.')
+		{
+			s[i]=s[j]='a';
+			flag=1;
+		}
+		else if(s[i]=='.'&& s[j]!='.')
+		{
+          s[i]=s[j];
+		  flag=1;
+		}
+		else if(s[i]!='.' && s[j]=='.')
+		{
+          s[j]=s[i];
+		  flag=1;
+		}
+		else if(s[i]==s[j])
+		{
+          flag=1;
+		}
+		else
+		{
+          flag=0;
+	      break;
+		}
+		i++;
+		j--;
+		}
+		if(flag==1)
+		{
+			printf("%s\n",s);
+		}
+  		else
+          printf("-1\n");
+	return 0;
+}

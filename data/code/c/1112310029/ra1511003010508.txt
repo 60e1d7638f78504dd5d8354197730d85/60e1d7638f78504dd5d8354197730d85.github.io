@@ -1,0 +1,62 @@
+# include<stdio.h>
+ 
+ 
+int min(int n)
+{
+	if(n==1)
+		return 2;
+	if(n==2)
+		return 5;
+	else if(n==3)
+		return 8;
+ 
+	if(n%2==0) //if n is even
+		return ( n+1 + min(n/2) + min(n/2-1) );
+	else
+		return ( n+1 + 2*min(n/2) );
+}
+int max(int n)
+{
+	int r=0, i;
+	for(i=1 ; i<=n ; i++)
+		r+=i;
+	r+=n;
+ 
+	return r;
+}
+void printAns(int n, int m)
+{
+	int maxw=0,minw , i;
+	
+	maxw=max(n);
+	if(m>maxw)
+	{
+		printf("%d\n",m-maxw);
+		return;
+	}
+	minw=min(n);
+	if(m<minw)
+	{
+		printf("-1\n");
+		return;
+	}
+	
+	printf("0\n");
+}
+ 
+int main()
+{
+	int t, n, m;
+ 
+	scanf("%d",&t);
+ 
+	while(t-- >0)
+	{
+		scanf("%d %d",&n,&m);
+		printAns(n,m);
+		//scanf("%d",&n);
+		//printf("%d %d\n",min(n),max(n));
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,48 @@
+#include <stdio.h>
+ 
+typedef struct {
+  char ch;
+  int parent;
+  int ticked;
+  int subtreeTickedCount;
+} Node;
+ 
+char str[100100];
+Node tree[100100];
+ 
+int shouldTick(int treeIdx, int strIdx) {
+  while (treeIdx != 0 && strIdx >= 0) {
+    if (tree[treeIdx].ch != str[strIdx]) {
+      return 0;
+    }
+    treeIdx = tree[treeIdx].parent;
+    --strIdx;
+  }
+  return strIdx < 0;
+}
+ 
+int main() {
+  int t;
+  scanf("%d", &t);
+  while (t--) {
+    int n, l, i;
+    scanf("%d%d", &n, &l);
+    scanf("%s\n", str);
+    for (i = 1; i <= n; ++i) {
+      scanf("%c", &tree[i].ch);
+      scanf("%d\n", &tree[i].parent);
+    }
+    for (i = n; i >= 1; --i) {
+      tree[i].ticked = shouldTick(i, l - 1);
+      tree[i].subtreeTickedCount = tree[i].ticked;
+    }
+    for (i = n; i > 1; --i) {
+      tree[tree[i].parent].subtreeTickedCount += tree[i].subtreeTickedCount;
+    }
+    for (i = 1; i <= n; ++i) {
+      printf("%d ", tree[i].subtreeTickedCount);
+    }
+    printf("\n");
+  }
+  return 0;
+} 

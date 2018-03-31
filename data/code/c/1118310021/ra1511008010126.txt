@@ -1,0 +1,41 @@
+#include<stdio.h>
+  #include<stdlib.h>
+   unsigned long long int gcd(unsigned long long int a,unsigned long long int b){
+    if(b<a){
+       unsigned long long int t=a;
+        a=b;
+        b=t;
+    }
+    if(a==0)
+    return b;
+    else
+    return(gcd(b%a,a));
+}
+unsigned long long int lcm(unsigned long long int x,unsigned long long int y){
+    unsigned long long int i=(x*y)/gcd(x,y);
+    return i;
+}
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n;
+        scanf("%d",&n);
+        int i,j;
+        unsigned long long int a[n],k;
+        for(i=0;i<n;i++)
+        scanf("%llu",&a[i]);
+        k=lcm(a[0],a[1]);
+        for(i=0;i<n;i++){
+            for(j=i+1;j<n;j++){
+                if(k>lcm(a[i],a[j]))
+                   k=lcm(a[i],a[j]);
+            }
+        }
+        printf("%llu\n",k);
+    }
+  return 0;
+} 

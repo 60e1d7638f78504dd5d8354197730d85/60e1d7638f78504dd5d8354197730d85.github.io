@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+  int aNumCount[6] = {0};
+  int bNumCount[6] = {0};
+  int n, sk, count = 0;
+  cin >> n;
+  for(int i = 0; i < n; i++){
+    cin >> sk;
+    aNumCount[sk-1]++;
+  }
+  for(int i = 0; i < n; i++){
+    cin >> sk;
+    bNumCount[sk-1]++;
+  }
+  
+  if((aNumCount[0] + bNumCount[0]) % 2 != 0 || 
+     (aNumCount[1] + bNumCount[1]) % 2 != 0 || 
+     (aNumCount[2] + bNumCount[2]) % 2 != 0 || 
+     (aNumCount[3] + bNumCount[3]) % 2 != 0 || 
+     (aNumCount[4] + bNumCount[4]) % 2 != 0){
+        cout << -1;
+  } else{
+    for(int i = 0; i < 5; i++){
+    if(aNumCount[i] != bNumCount[i] && aNumCount[i] > bNumCount[i]){
+      while(aNumCount[i] != bNumCount[i]){
+        aNumCount[i]--;
+        bNumCount[i]++;
+        count++;
+      }
+      
+    } else if(aNumCount[i] != bNumCount[i] && aNumCount[i] < bNumCount[i]){
+        while(aNumCount[i] != bNumCount[i]){
+          aNumCount[i]++;
+          bNumCount[i]--;
+          count++;
+        }
+      }
+    }
+    cout << count/2;
+  }
+  return 0;
+}

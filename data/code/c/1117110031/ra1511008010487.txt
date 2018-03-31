@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+	int array[5][5],MAX;
+    int row, col, isUpper;
+
+    scanf("%d\n",&MAX);
+    for(row=0; row<MAX; row++)
+    {
+        for(col=0; col<MAX; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+   isUpper = 1;
+    for(row=0; row<MAX; row++)
+    {
+        for(col=0; col<MAX; col++)
+        {
+            
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    if(isUpper == 1)
+    {
+        printf("\nyes\n");
+    }
+    else
+    {
+        printf("\nno");
+    }
+
+    return 0;
+}

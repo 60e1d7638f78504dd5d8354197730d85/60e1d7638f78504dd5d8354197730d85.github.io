@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdbool.h>
+bool subset(int *arr,int n,int sum)
+{  if(sum==0)
+    return true;
+  if((sum>0)&&(n<0))
+   return false;
+ 
+  if(sum<arr[n])
+   return subset(arr,n-1,sum);
+ 
+  return subset(arr,n-1,sum-arr[n])||subset(arr,n-1,sum);
+}
+ 
+ 
+int main()
+{ int t;
+  scanf("%d",&t);
+ 
+  while(t--)
+  {  int n,i,sum;
+     scanf("%d",&n);
+     scanf("%d",&sum);
+     int arr[n];
+     for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+ 
+     if(subset(arr,n-1,sum)==true)
+        printf("Yes\n");
+     else printf("No\n");
+  }
+}
+ 

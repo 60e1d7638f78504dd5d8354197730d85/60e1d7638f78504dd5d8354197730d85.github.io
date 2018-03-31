@@ -1,0 +1,40 @@
+import java.io.*;
+
+ 
+import java.util.Stack;
+import java.util.Scanner;
+ 
+public class TestClass {
+ 
+    public static Stack<Integer> sortStack(Stack<Integer> input){
+         
+        Stack<Integer> tmpStack = new Stack<Integer>();
+        System.out.println("=============== debug logs ================");
+        while(!input.isEmpty()) {
+            int tmp = input.pop();
+            System.out.println("Element taken out: "+tmp);
+            while(!tmpStack.isEmpty() && tmpStack.peek() > tmp) {
+                input.push(tmpStack.pop());
+            }
+            tmpStack.push(tmp);
+            System.out.println("input: "+input);
+            System.out.println("tmpStack: "+tmpStack);
+        }
+        System.out.println("=============== debug logs ended ================");
+        return tmpStack;
+    }
+     
+    public static void main(String[] args){
+         
+        Stack<Integer> input = new Stack<Integer>();
+      Scanner sc=new Scanner(System.in);
+      int no=sc.nextInt();
+      int arr[]=new int[100];
+      for(int i=0;i<no;i++)
+      { arr[i]=sc.nextInt();
+        input.add(arr[i]);
+      }
+        System.out.println("input: "+input);
+        System.out.println("final sorted list: "+sortStack(input));
+    }
+}

@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class Student
+{
+  public:
+  char name[20];
+  int rollno;
+  float height,weight;
+  
+  public:
+  
+  Student(){}
+  
+  Student(const char* n,int r,float h,float w)
+  {
+    strcpy(name,n);
+    rollno=r;
+    height=h;
+    weight=w;
+  }
+  
+  void read()
+  {
+    cin>>name;
+    cin>>rollno;
+    cin>>height>>weight;
+  }
+  
+  void display()
+  {
+    cout<<name<<" "<<rollno<<" "<<height<<" "<<weight<<endl;
+  }
+};
+
+int main()
+{
+  Student s1("Nikhil",20,165.5,58.2);
+  Student s2;
+  s2.read();
+  s2.display();
+  s1.display();
+  return 0;
+}

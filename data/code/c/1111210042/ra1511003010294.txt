@@ -1,0 +1,43 @@
+#include <stdio.h>
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ 
+int main()
+{
+	int a;
+  scanf("%d",&a);
+  int i,j,k;
+  int aa[a];
+  for(i=0;i<a;i++)
+  {
+   scanf("%d",&aa[i]) ;
+  }
+  for (i = 0; i < a-1; i++)       
+       for (j = 0; j < a-i-1; j++) 
+           if (aa[j] > aa[j+1])
+              swap(&aa[j], &aa[j+1]);
+
+  int ll=aa[a-1]-aa[0];
+  printf("%d",ll);
+  int flag=0;
+for(i=0;i<a;i++)
+  {
+  if(aa[i]==ll) 
+   {flag=1;
+    printf("Yes");
+    break;}
+   
+else
+    flag=0;
+
+}
+if(flag==0)
+   printf("No");
+  
+  
+  return 0;
+}

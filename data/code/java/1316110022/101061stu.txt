@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+ public int adjacentElementsSum(int arr[], int n)
+ {
+ int sum[] = new int[n-1];
+ for (int i = 0; i<n-1; i++)
+ sum[i] = arr[i] + arr[i+1];
+ int max_sum = sum[0];
+ for (int i = 1; i < n - 1; i++) 
+ {
+ if (max_sum < sum[i])
+ max_sum = sum[i];
+ }
+ return max_sum;
+ }
+ public static void main(String[] args) 
+ {
+ TestClass mxdif = new TestClass();
+ Scanner s = new Scanner(System.in);
+ int no = s.nextInt();
+ int arr[] = new int[no]; 
+ for (int z=0 ; z<no ; z++)
+ arr[z] = s.nextInt();
+ int n = arr.length;
+ System.out.println(mxdif.adjacentElementsSum(arr,n));
+ }
+}

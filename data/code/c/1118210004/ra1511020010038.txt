@@ -1,0 +1,68 @@
+#include<stdio.h>
+ 
+int main(){
+    int T,N,XE,YE,XA[2012],YA[2012],i;
+    float collide,min;
+    char DIRE,DIRA[2012];
+    scanf("%d",&T);
+    while(T--){
+        min = 999999.0;
+        scanf("%d %d %c",&XE,&YE,&DIRE);
+        scanf("%d",&N);
+        for(i=0;i<N;i++)
+            scanf("%d %d %c",&XA[i],&YA[i],&DIRA[i]);
+ 
+        for(i=0;i<N;i++){
+            collide = 999999.0;
+            switch(DIRE){
+                case 'U':
+                    if(DIRA[i] == 'D' && XA[i] == XE && YA[i]>YE)
+                        collide = (YA[i]-YE)/2.0;
+                    if(DIRA[i] == 'R' && XA[i]<XE && YA[i] > YE && XE-XA[i] == YA[i]-YE)
+                        collide = XE-XA[i];
+                    if(DIRA[i] == 'L' && XA[i]>XE && YA[i] > YE && XA[i]-XE==YA[i]-YE)
+                        collide = XA[i]-XE;
+                    if(collide < min)
+                        min = collide;
+                    break;
+                case 'D':
+                    if(DIRA[i] =='U' && XA[i] == XE && YA[i]<YE)
+                        collide = (YE-YA[i])/2.0;
+                    if(DIRA[i] =='R' && XA[i] < XE && YA[i]<YE && XE-XA[i]==YE-YA[i])
+                        collide = (XE-XA[i]);
+                    if(DIRA[i] == 'L' && XA[i] > XE && YA[i]<YE && XA[i]-XE==YE-YA[i])
+                        collide = XA[i]-XE;
+                     if(collide < min)
+                        min = collide;
+                    break;
+                case 'R':
+                    if(DIRA[i] == 'L' && YA[i] == YE && XA[i]>XE)
+                        collide = (XA[i]-XE)/2.0;
+                    if(DIRA[i] == 'D' && XA[i]>XE && YA[i]>YE && YA[i]-YE==XA[i]-XE)
+                        collide = XA[i]-XE;
+                    if(DIRA[i] == 'U' && XA[i] >XE && YA[i]<YE && XA[i]-XE==YE-YA[i])
+                        collide = XA[i] - XE;
+                    if(collide < min)
+                        min = collide;
+                    break;
+                case 'L':
+                    if(DIRA[i]=='R' && YA[i]==YE && XA[i] < XE)
+                        collide = (XE-XA[i])/2.0;
+                    if(DIRA[i]=='D' && XA[i]<XE && YA[i]>YE && XE-XA[i] == YA[i]-YE)
+                        collide = XE-XA[i];
+                    if(DIRA[i] == 'U' && XA[i]<XE && YA[i]<YE && XE-XA[i]==YE-YA[i])
+                        collide = XE-XA[i];
+                    if(collide < min)
+                        min = collide;
+                    break;
+ 
+            }
+        }
+        if(min==999999.0)
+            printf("SAFE\n");
+        else
+            printf("%.1f\n",min);
+    }
+    return 0;
+}
+ 

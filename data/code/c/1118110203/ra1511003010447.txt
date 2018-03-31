@@ -1,0 +1,37 @@
+#include <stdio.h>
+struct distance{
+
+int feet;
+float inches;
+
+};
+
+void calculateSum(struct distance *d){
+
+  int f1,f2,feetSum;
+  float i1,i2,inchSum;
+  scanf("%d %f",&f1,&i1);
+  scanf("%d %f",&f2,&i2);
+  
+  inchSum=i1+i2;
+  if(inchSum>12){
+  feetSum=1+f1+f2;
+    inchSum-=12;
+  }else{
+  
+  feetSum=f1+f2;
+  }
+  d->feet=feetSum;
+  d->inches=inchSum;
+  printf("%dfeet-%.1finches",d->feet,d->inches);
+}
+
+int main()
+{
+
+  struct distance d;
+	d.feet=0;
+  d.inches=0;
+  calculateSum(&d);
+	return 0;
+}

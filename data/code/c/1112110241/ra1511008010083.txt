@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+	char input[26];
+	scanf("%s",input);
+	int words[26]={0};
+	int i;
+	for(i=0;input[i]!='\0';i++)
+	{
+		words[input[i]-97]=1;
+	}
+	int n;
+	scanf("%d",&n);
+	while(n--)
+	{
+		char word[12];
+		scanf("%s",word);
+		int length=0;
+		int count=0;
+		for(i=0;word[i]!='\0';i++)
+		length++;
+		for(i=0;word[i]!='\0';i++)
+		{
+			if(words[word[i]-97])
+			count++;
+		}
+		if(count==length)
+		printf("Yes\n");
+		else
+		printf("No\n");
+    }
+	return 0;
+}

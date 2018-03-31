@@ -1,0 +1,32 @@
+#include<stdio.h>
+
+
+
+int main()
+{
+	int n, m, k,s;
+	scanf("%d", &n);
+	if(n == 1 || n == 2)
+	{
+		puts("-1");
+		return 0;
+	}
+	else
+	{
+	 s = 1;
+		while(n % 2 == 0) n /= 2, s *= 2;
+		if(n == 1)
+		{
+			s /= 4;
+			m = 3 * s;
+			k = 5 * s;
+		}
+		else
+		{
+			m = (n * n / 2) * s;
+			k = (n * n / 2 + 1) * s;
+		}
+		printf("%d %d\n", m, k);
+	}
+	return 0;
+}

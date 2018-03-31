@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define MAX_ROWS 3
+#define MAX_COLS 3
+
+int main()
+{
+  int n,m;
+  scanf("%d%d",&n,&m);
+    int array[n][m];
+    int row, col, isLower;
+
+    /* Input elements in matrix from user */
+    
+    for(row=0; row<n; row++)
+    {
+        for(col=0; col<m; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+    /* Check whether the matrix is lower triangular matrix */
+    isLower = 1;
+    for(row=0; row<n; row++)
+    {
+        for(col=0; col<m; col++)
+        {
+            /*
+             * If elements above main diagonal(col>row)
+             * is not equal to zero(array[row][col]!=0)
+             */
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+    /*
+     * If matrix is lower triangular matrix
+     */
+    if(isLower == 1)
+    {
+        printf("\nyes");
+
+        
+    }
+    else
+    {
+        printf("\nno");
+    }
+
+    return 0;
+}

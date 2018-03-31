@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+#include<string.h>
+#define MAX 1000005
+#define MOD 1000000007
+#define MA 1200000
+#define PI 3.14159265358979323846264338327950
+//const int  MAXA=1e15+1;
+typedef long long int ll;
+const int INF=1e6;
+using namespace std;
+const  int maxn=1e5+5;
+const int N=1e8;
+const int big = 1;
+vector<ll> v;
+ll bina1(ll st,ll en,ll val)
+{
+    while(en>st)
+    {
+        ll mid=st+(en-st)/2;
+        if(v[mid]<val)
+        {
+            st=mid+1;
+        }
+        else
+            en=mid;
+    }
+    return st;
+}
+ll bina2(ll st,ll en,ll val)
+{
+    while(en>st)
+    {
+        ll mid=st+(en-st)/2;
+        if(v[mid]>val)
+        {
+            en=mid;
+        }
+        else
+            st=mid+1;
+    }
+    return en;
+}
+int main()
+{
+    //freopen("input.txt","r+",stdin);
+    //freopen("output.txt","w+",stdout);
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    ll i,q,l,r;
+    for(i=1;i*1LL*(i+1)/2<=1000000000000ll;i++)
+        v.push_back(i*1LL*(i+1)/2);
+    cin>>q;
+    while(q--)
+    {
+         cin>>l>>r;
+         ll ans=0;
+         for(i=0;i<v.size()&&v[i]<=r;i++)
+         {
+             ans+=bina2(i,v.size(),r-v[i])-bina1(i,v.size(),l-v[i]);
+         }
+         cout<<ans<<endl;
+    }
+    return 0;
+}

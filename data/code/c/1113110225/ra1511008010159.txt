@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+char a[100];
+int i,n,v=0,c=0,dig=0,sp=0;
+fgets(a,sizeof(a),stdin);
+n=strlen(a);
+for(i=0;i<n;i++)
+{
+if(isalpha(a[i])){
+if(a[i]=='a' || a[i]=='e' || a[i]=='o' || a[i]=='u' || a[i]=='i' || a[i]=='A' || a[i]=='E' || a[i]=='I' || a[i]=='O' || a[i]=='U'){
+v++;
+}
+else{
+c++;
+}
+
+}
+else if(isdigit(a[i]))
+{
+dig++;
+}
+else if(isspace(a[i]))
+{
+sp++ ;
+}
+}
+printf("Vowels:%d",v);
+ 	printf("\nConsonants:%d",c);
+  printf("\nDigits:%d",dig);
+printf("\nWhite spaces:%d",sp);
+  return 0;
+}

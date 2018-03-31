@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int T = sc.nextInt();
+       for(int k=0;k<T;k++){
+         int N = sc.nextInt();
+         int [] arr = new int [N];
+         int [] temp = new int [N];
+         for(int i=0 ;i<N;i++)
+           arr[i] = sc.nextInt();
+         System.arraycopy(arr,0,temp,0,N);
+         Arrays.sort(temp);
+         for(int i=0;i<N;i++)
+           for(int j=0;j<N;j++)
+             if(arr[i]==temp[j])
+               arr[i]=j;
+         for(int i=0 ;i<N;i++)
+           System.out.print(arr[i]+" ");
+         System.out.println();
+       }
+     }
+}

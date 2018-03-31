@@ -1,0 +1,107 @@
+#include<stdio.h>
+#define max 1009
+long long int l[max],sum,pro,a,b,c;
+char s[max];
+int n;
+struct node
+{
+	long long int sum;
+	long long int pro;
+};
+struct node state[max];
+long long int mul(long long a11,long long b11);
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int i;
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+		scanf("%lld",&l[i]);
+		scanf("%lld%lld%lld",&a,&b,&c);
+		scanf("%s",s);
+		sum=0,pro=1;
+		for(i=0;i<n;i++)
+		{
+			if(s[i]=='A')
+			{
+			 sum=(sum%c+a%c)%c;
+			 state[i].sum=sum;
+			 state[i].pro=pro;
+			}
+			else
+			if(s[i]=='M')
+			{
+			 sum=mul(sum,b);
+			 pro=mul(pro,b);
+			 state[i].sum=sum;
+		 	 state[i].pro=pro;
+			}
+			else
+			if(s[i]=='R')
+			{
+				state[i].sum=sum;
+				state[i].pro=pro;
+			}
+		}
+		int flag=0,w;
+		i=0,w=0;
+		while(i<n)
+		{
+			if(s[w]=='R')
+			{
+				if(flag==0)
+				{
+					l[n-1]=(mul(l[n-1],state[w].pro)+(state[w].sum)%c)%c;
+					printf("%lld ",l[n-1]);
+					n--;
+					w++;
+					flag=1;
+				}
+				else
+				{
+					l[i]=(mul(l[i],state[w].pro)+(state[w].sum)%c)%c;
+					printf("%lld ",l[i]);
+					i++;
+					w++;
+					flag=0;
+				}
+			}
+			else
+			{
+				if(flag==1)
+				{
+					l[n-1]=(mul(l[n-1],state[w].pro)+(state[w].sum)%c)%c;
+					printf("%lld ",l[n-1]);
+					n--;
+					w++;
+				}
+				else
+				{
+					l[i]=(mul(l[i],state[w].pro)+(state[w].sum)%c)%c;
+					printf("%lld ",l[i]);
+					i++;
+					w++;
+				}
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
+ 
+long long int mul(long long a11,long long b11)
+{
+a11 %= c;
+b11 %= c;
+long double res = a11;
+res *= b11;
+long long c11 = (long long)(res / c);
+a11 *= b11;
+a11 -= c11 * c;
+a11 %= c;
+if (a11 < 0) a11 += c;
+return a11;
+} 

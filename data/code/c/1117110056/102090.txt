@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str[10], str1[10];
+  	int lim, i, len, j, k, count = 0;
+  	scanf("%s %d", str, &lim);
+  	for(k = 1; k <= lim; k++)
+    {
+      	scanf("%s", str1);
+      	len = strlen(str1);
+      	for(i = 0; str[i] != '\0'; i++)
+        {
+          	for(j = 0; j < len; j++)
+            {
+              	if(str1[j] == str[i])
+                  count++;
+            }
+        }
+      	if(count >= len)
+          	printf("Yes\n");
+      	else
+          	printf("No\n");
+      	count = 0;
+    }
+	return 0;
+}

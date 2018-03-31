@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int fmin(int a[],int l,int h){
+  if(l==h)
+    return a[l];
+  int m1,m2,mid=(l+h)/2;
+  m1=fmin(a,l,mid);
+  m2=fmin(a,mid+1,h);
+  return (m1<m2)?m1:m2;
+}
+int fmax(int a[],int l,int h){
+  if(l==h)
+    return a[l];
+  int m1,m2,mid=(l+h)/2;
+  m1=fmax(a,l,mid);
+  m2=fmax(a,mid+1,h);
+  return (m1>m2)?m1:m2;
+}
+
+int main()
+{
+int n,a[20],min,max;
+  cin>>n;
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  min=fmin(a,0,n-1);
+  max=fmax(a,0,n-1);
+  cout<<"Minimum element is "<<min;
+  cout<<"\nMaximum element is "<<max;
+	return 0;
+}

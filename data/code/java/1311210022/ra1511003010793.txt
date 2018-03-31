@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+       
+		Scanner sc=new Scanner(System.in);
+       int count,d;
+       int times=sc.nextInt();
+       for(int i=0;i<times;i++)
+       {
+         count=0;
+         int n=sc.nextInt();
+         int[] a=new int[n];
+         int[] b=new int[n];
+         for(int j=0;j<n;j++)
+         {
+           a[j]=sc.nextInt();
+         }
+         for(int j=0;j<n;j++)
+         {
+           b[j]=sc.nextInt();
+         }
+         for(int j=0;j<n;j++)
+         {
+           if(j==0)
+           {
+             d=a[j]-0;
+             if(d>=b[j])
+               count++;
+           }
+           else
+           {
+             d=a[j]-a[j-1];
+             if(d>=b[j])
+               count++;
+           }
+         }
+         System.out.println(count);
+       }
+	}
+}

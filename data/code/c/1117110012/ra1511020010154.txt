@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+    int i,n,arr[100],dup[100],s,e,temp=0;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    scanf("%d",&s);
+    scanf("%d",&e);
+    if(s>n || s<0)
+      printf("Sorry Invalid Location");
+    else
+    {
+      for(i=0;i<s-1;i++)
+        dup[i]=arr[i];
+      dup[s-1]=e;
+      for(i=s;i<n+1;i++)
+        dup[i]=arr[i-1];
+      for(i=0;i<n+1;i++)
+        printf("%d\n",dup[i]);
+    }
+	return 0;
+}

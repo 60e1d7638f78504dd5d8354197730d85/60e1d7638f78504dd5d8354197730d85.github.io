@@ -1,0 +1,56 @@
+#include <iostream>
+
+using namespace std;
+
+int vaccine [100000];
+int patient [100000];
+
+int main()
+{
+    
+
+    int n,i,j,a;
+
+    cin>>n;
+
+    for(i = 0; i < n; i++) cin >> vaccine[i];
+    for(i = 0; i < n; i++) cin >> patient[i];
+
+    for (i = 0; i < n; ++i)
+    {
+      for (j = i + 1; j < n; ++j)
+      {
+        if (patient[i] > patient[j])
+        {
+          a = patient[i];
+          patient[i] = patient[j];
+          patient[j] = a;
+        }
+      }
+    }
+     for (i = 0; i < n; ++i)
+    {
+      for (j = i + 1; j < n; ++j)
+      {
+        if (vaccine[i] > vaccine[j])
+        {
+          a = vaccine[i];
+          vaccine[i] = vaccine[j];
+          vaccine[j] = a;
+        }
+      }
+    }
+  
+    for(int i = 0; i < n; i++){
+
+        if(vaccine[i] <= patient[i]){   // if at least one patient can't be rescued, print No
+
+            cout << "No";           
+            return 0;
+        }
+    }
+
+    cout << "Yes";
+
+    return 0;
+}

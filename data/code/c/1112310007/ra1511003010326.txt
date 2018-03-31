@@ -1,0 +1,31 @@
+#include <stdio.h>
+int convert(int number,int base){
+    if(number == 0 || base==10)
+        return number;
+    return (number % base) + 10*convert(number / base, base);
+}
+int checkPalindrome(int n){
+	int nn=0;
+  	int rem;
+  	int t=n;
+  	for( ; t>0 ; rem=t%10,nn=nn*10+rem,t/=10);
+  	if(nn==n)return 1;
+  	else return 0;
+}
+int main()
+{
+	int n,i;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+      	int num;
+      	scanf("%d",&num);
+      	int j,f;
+      	for(j=2;j<=10;j++){
+        	f=checkPalindrome(convert(num,j));
+          	if(f==1){printf("%d\n",j);}
+          	else continue;
+          	break;
+        }
+    }
+  	return 0;
+}

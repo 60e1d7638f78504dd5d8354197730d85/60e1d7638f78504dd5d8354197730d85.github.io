@@ -1,0 +1,31 @@
+ #include<stdio.h>
+ 
+long long expo(long long y)
+{
+	long  long temp=1;
+	if(y==0) return 1;
+	temp=expo(y/2);
+	if(y%2==0) return (temp * temp) %1000000007;
+	else  return (2*temp * temp )%1000000007;
+}
+ 
+ 
+ 
+    int main(){
+            int nt;
+	    long long n;
+            long long ans;
+            scanf("%d",&nt);
+            while(nt--){
+                    scanf("%lld",&n);
+                    long long k=n/2;
+ 
+                    if (n%2==0)     ans=(3*expo(k)-2)%1000000007;
+                    else            ans=(4*expo(k)-2)%1000000007;
+ 
+                    printf("%lld\n",ans);
+ 
+            }
+            return 0;
+    }
+ 

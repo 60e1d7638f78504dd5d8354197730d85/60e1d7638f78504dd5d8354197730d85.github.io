@@ -1,0 +1,57 @@
+#include <stdio.h>
+ 
+float min;
+inline void setMin(float n) {
+    if (n < min) min = n;
+}
+ 
+inline int fastInput() {
+    int val = 0, mul = 1;
+    char c = getchar_unlocked();
+    while (c != '-' && (c < '0' || c > '9')) c = getchar_unlocked();
+    if (c == '-') mul = -1, c = getchar_unlocked();
+    while (c >= '0' && c <= '9') val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val*mul;
+}
+ 
+int main() {
+    int t, n, i, ex, ey, ax, ay;
+    char ed, ad;
+    t = fastInput();
+    while (t--) {
+        ex = fastInput(), ey = fastInput(), ed = getchar_unlocked(), n = fastInput(), min = 201;
+        for (i=0; i<n; i++) {
+            ax = fastInput(), ay = fastInput(), ad = getchar_unlocked();
+            
+            // a is to the north of e
+            if (ax == ex && ay > ey && ad == 'D' && ed == 'U') setMin((float)(ay-ey)/2);
+            
+            // a is to the south of e
+            else if (ax == ex && ay < ey && ad == 'U' && ed == 'D') setMin((float)(ey-ay)/2);
+            
+            // a is to the east of e
+            else if (ay == ey && ax > ex && ad == 'L' && ed == 'R') setMin((float)(ax-ex)/2);
+            
+            // a is to the west of e
+            else if (ay == ey && ax < ex && ad == 'R' && ed == 'L') setMin((float)(ex-ax)/2);
+            
+            // a is to the NE of e
+            else if (ax-ex == ay-ey && ay > ey && ((ad == 'L' && ed == 'U') || (ad == 'D' && ed == 'R')))
+                setMin((float)(ay-ey));
+            
+            // a is to the SW of e
+            else if (ax-ex == ay-ey && ay < ey && ((ad == 'R' && ed == 'D') || (ad == 'U' && ed == 'L')))
+                setMin((float)(ey-ay));
+            
+            // a is to the NW of e
+            else if (ex-ax == ay-ey && ay > ey && ((ad == 'R' && ed == 'U') || (ad == 'D' && ed == 'L')))
+                setMin((float)(ay-ey));
+            
+            // a is to the SE of e
+            else if (ex-ax == ay-ey && ay < ey && ((ad == 'L' && ed == 'D') || (ad == 'U' && ed == 'R')))
+                setMin((float)(ey-ay));
+        }
+        min == 201 ? printf("SAFE\n") : printf("%.1f\n", min);
+    }
+    return 0;
+} 

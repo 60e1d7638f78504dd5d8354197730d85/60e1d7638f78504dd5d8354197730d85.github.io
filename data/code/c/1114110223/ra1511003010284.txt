@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int n, i, num, sum[100], firstDigit, lastDigit;
+  scanf("%d", &n);
+  for(i=0; i<n; i++)
+    sum[i]=0;
+  for(i=0; i<n; i++)
+  {
+    scanf("%d", &num);
+    lastDigit = num%10;
+    firstDigit = num;
+    while(num>=10)
+    {
+        num = num/10;
+    }
+    firstDigit = num;
+    sum[i] = firstDigit+lastDigit; 
+  }
+  for(i=0; i<n; i++)
+  {
+    printf("%d\n", sum[i]);
+  }
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int array[10];
+  int i, j, n, m, temp, key, pos,position;
+  scanf("%d", &n);
+  for (i =0; i < n; i++)
+  {
+    scanf("%d", &array[i]);
+  }
+  scanf("%d", &key);
+  scanf("%d",&position);
+  pos=position-1;
+  if (pos != n)
+  {
+        m = n - pos + 1 ;
+        for (i = 0; i <= m; i++)
+        {
+            array[n - i + 2] = array[n - i + 1] ;
+        }
+    }
+    array[pos] = key;
+
+    for (i = 0; i < n + 1; i++)
+    {
+        printf("%d ", array[i]);
+    }
+  return 0;
+}

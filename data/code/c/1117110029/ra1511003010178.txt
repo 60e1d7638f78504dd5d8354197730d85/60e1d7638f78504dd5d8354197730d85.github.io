@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+int sum(int *arr, int i, int n)
+{
+  int val = 0;
+  
+  if(i<n)
+  {
+    val = sum(arr, i+1, n);
+  }
+  
+  
+  if(arr[i]%2 == 0)
+    val = val + arr[i];
+  
+  return val;
+}
+
+int main()
+{
+
+  int i, n, *arr;
+  int val;
+  
+  scanf("%d", &n);
+  arr = (int *)malloc(n*sizeof(int));
+  
+  for(i=0; i<n; i++)
+    scanf("%d", &arr[i]);
+  
+  val = sum(arr, 0, n);
+  
+  printf("%d", val);
+  
+	return 0;
+}

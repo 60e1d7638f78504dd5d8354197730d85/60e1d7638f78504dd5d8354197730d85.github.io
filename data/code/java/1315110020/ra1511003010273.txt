@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		BubbleSort obj = new BubbleSort();
+       obj.getInput();
+       obj.sortedArray();
+	}
+}
+class BubbleSort
+{
+  int a;
+  int mean=0 , sum=0;
+  Scanner no = new Scanner(System.in);
+  int[] aa;
+  public void getInput()
+  {
+    a = no.nextInt();
+    aa = new int[a];
+    for(int i=0;i<aa.length;i++)
+    {
+      aa[i] = no.nextInt();
+    }
+  }
+  public void sortedArray()
+  {
+    int n = aa.length;
+        for (int i = 0; i < n-1; i++)
+        {   for (int j = 0; j < n-i-1; j++)
+        	{	if (aa[j] > aa[j+1])
+                {
+                    int temp = aa[j];
+                    aa[j] = aa[j+1];
+                    aa[j+1] = temp;
+                }
+        	}
+        }
+    for (int i=0; i<n; ++i)
+            System.out.print(aa[i] + " ");
+  }
+}

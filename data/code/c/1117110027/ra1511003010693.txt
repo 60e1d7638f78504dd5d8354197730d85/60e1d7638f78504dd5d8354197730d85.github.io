@@ -1,0 +1,18 @@
+#include <stdio.h>
+int findSum(int A[], int N)
+{
+    if (N <= 0)
+        return 0;
+    return (findSum(A, N - 1) + A[N - 1]);
+}
+int main()
+{
+    int x, N;
+  	scanf("%d", &N);
+	int A[N];
+  	x = 0;
+  	while(x < N)
+      	scanf("%d", &A[x++]);
+    printf("%d", findSum(A, N));
+    return 0;
+}

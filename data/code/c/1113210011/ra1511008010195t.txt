@@ -1,0 +1,31 @@
+#include<stdio.h>
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--){
+ int n;
+ scanf("%d",&n);
+ int i,j,ar[n];
+ for(i=0;i<n;i++)
+ scanf("%d",&ar[i]);
+ int new[n*n],k=0;
+ for(i=0;i<n;i++)
+ {
+     for(j=i+1;j<n;j++)
+     {   if((ar[i]-ar[j])<0)
+         new[k++]= ar[j]-ar[i];
+         else
+            new[k++]= ar[i]-ar[j];
+     }
+ }
+ int min=new[0];
+ for(i=1;i<k;i++)
+ {
+  if(new[i]<min)
+        min=new[i];
+ }
+ printf("%d\n",min);
+}
+    return 0;
+}

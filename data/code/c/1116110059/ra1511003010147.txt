@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int i,t,n,j,p;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int a2[125]={0},b2[125]={0},k=0;
+        char a[1005],b[1005];
+        scanf("%s",a);
+      	scanf("%s",b);
+        for(i=0;i<strlen(a);i++)
+        {
+            a2[a[i]]++;
+        }
+        for(i=0;i<strlen(b);i++)
+        {
+            b2[b[i]]++;
+        }
+        for(i=97;i<123;i++)
+        {
+            if(b2[i]!=0 && a2[i]!=0)
+            {
+                k=1;
+              break;
+            }
+        }
+        if(k==1)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+	return 0;
+}

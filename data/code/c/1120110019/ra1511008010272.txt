@@ -1,0 +1,104 @@
+#include <stdio.h>
+void thousand(int r) {
+  switch(r) {
+    case 1: printf("ONE THOUSAND ");break;
+      case 2: printf("TWO THOUSAND ");break;
+      case 3: printf("THREE THOUSAND ");break;
+      case 4: printf("FOUR THOUSAND ");break;
+      case 5: printf("FIVE THOUSAND ");break;
+      case 6: printf("SIX THOUSAND ");break;
+      case 7: printf("SEVEN THOUSAND ");break;
+      case 8: printf("EIGHT THOUSAND ");break;
+      case 9: printf("NINE THOUSAND ");break;
+  }
+}
+void hundreds(int r) {
+  switch(r) {
+    case 1: printf("ONE HUNDRED ");break;
+      case 2: printf("TWO HUNDRED ");break;
+      case 3: printf("THREE HUNDRED ");break;
+      case 4: printf("FOUR HUNDRED ");break;
+      case 5: printf("FIVE HUNDRED ");break;
+      case 6: printf("SIX HUNDRED ");break;
+      case 7: printf("SEVEN HUNDRED ");break;
+      case 8: printf("EIGHT HUNDRED ");break;
+      case 9: printf("NINE HUNDRED ");break;
+  }
+}
+void tens(int r) {
+  switch(r) {
+      case 2: printf("TWENTY ");break;
+      case 3: printf("THIRTY ");break;
+      case 4: printf("FORTY ");break;
+      case 5: printf("FIFTY ");break;
+      case 6: printf("SIXTY ");break;
+      case 7: printf("SEVENTY ");break;
+      case 8: printf("EIGHTY ");break;
+      case 9: printf("NINETY ");break;
+  }
+}
+void units(int r) {
+  switch(r) {
+      case 1: printf("ONE ");break;
+      case 2: printf("TWO ");break;
+      case 3: printf("THREE ");break;
+      case 4: printf("FOUR ");break;
+      case 5: printf("FIVE ");break;
+      case 6: printf("SIX ");break;
+      case 7: printf("SEVEN ");break;
+      case 8: printf("EIGHT ");break;
+      case 9: printf("NINE ");break;
+  }
+}
+void elevens(int r) {
+  switch(r) {
+      case 1: printf("ELEVEN ");break;
+      case 2: printf("TWELVE ");break;
+      case 3: printf("THIRTEEN ");break;
+      case 4: printf("FOURTEEN ");break;
+      case 5: printf("FIFTEEN ");break;
+      case 6: printf("SIXTEEN ");break;
+      case 7: printf("SEVENTEEN ");break;
+      case 8: printf("EIGHTEEN ");break;
+      case 9: printf("NINETEEN ");break;
+  }
+}
+int main()
+{
+	float f ;
+  	scanf("%f",&f);
+  	int r = f;
+  	int p = (f-r)*100;
+  	int r1 = r/1000;
+  	r%=1000;
+  	thousand(r1);
+  	r1 = r/100;
+  	r%=100;
+  	hundreds(r1);
+  	r1 = r/10;
+  	r%=10;
+  	if(r1>=2) {
+      tens(r1);
+      units(r);
+    }
+  	else if(r1==1) {
+      elevens(r);
+    }
+  	else {
+      units(r);
+    }
+  	printf("AND PAISE ");
+  	int p1 = p/10;
+  	p%=10;
+  	if(p1>=2) {
+      tens(p1);
+      units(p);
+    }
+  	else if(p1==1) {
+      elevens(p);
+    }
+  	else {
+      units(p);
+    }
+	return 0;
+}

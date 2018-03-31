@@ -1,0 +1,28 @@
+#include<stdio.h>
+long long int arr1[10000],arr2[10000];
+long long int temp1=0,temp2;
+int main(){
+	int t;
+	int n,i;
+	int ans=0;
+	scanf("%d",&t);
+	while(t>0){
+		ans = 0;
+		temp1=0;
+		scanf("%d",&n);
+		for(i=0;i<n;i++){
+			scanf("%lld",&temp2);
+			arr1[i]=temp2-temp1;
+			temp1=temp2;
+		}
+		for(i=0;i<n;i++)
+		scanf("%lld",&arr2[i]);
+		for(i=0;i<n;i++){
+			if(arr2[i]<=arr1[i])
+			ans++;
+		}
+		printf("%d\n",ans);
+		t--;
+	}
+  return 0;
+}

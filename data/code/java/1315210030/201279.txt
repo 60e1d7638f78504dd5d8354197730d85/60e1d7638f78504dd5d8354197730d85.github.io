@@ -1,0 +1,40 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	long n=sc.nextLong();
+      	int n1=sc.nextInt();
+      	boolean flag=true;
+      	if(n==0||n==1||n%2==0)
+          flag=false;
+      	else if(n==2)
+          flag=true;
+      	else
+        {
+          	Random rand= new Random();
+          	for(int i=0;i<n1;i++)
+            {
+              long temp1=Math.abs(rand.nextLong());
+              long temp2=temp1%(n-1)+1;
+              if(check(temp2,n-1,n)!= 1)
+                flag=false;
+            }
+        }
+		if(flag)
+          System.out.println(n+" is prime");
+      	else
+          System.out.println(n+" is not prime");
+    }
+  	public static long check(long a,long b,long c)
+    {
+      	long res = 1;
+      	for(int i=0;i<b;i++)
+      	{
+          res *=a;
+          res %=c;
+        }
+      	return res%c;
+    }
+}

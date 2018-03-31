@@ -1,0 +1,53 @@
+ #include<stdio.h>
+     
+    long double ch(int n, int r)
+    {
+    long double ans=1.0;
+    if(r>n || r<0)
+    ans=0.0;
+    else if(r==0)
+    ans=1.0;
+    else
+    {
+    int i,j;
+    if((n-r)<r)
+    r=n-r;
+    for(i=r,j=n ; i>0 ; i--,j--)
+    {
+    ans=ans*((long double)j/(long double)i);
+     
+    }
+    }
+    return ans;
+    }
+     
+    int main()
+    {
+    int t,s,n,m,k,i,j;
+    //cin>>t;
+    scanf("%d",&t);
+    for (i = 0; i < t; i++)
+    {
+    //cin>>s>>n>>m>>k;
+    scanf("%d %d %d %d",&s,&n,&m,&k);
+    long double ans=0.0,u,f,nf;
+    int n1=m-1,n2=s-m,l;
+    for(l=k; n2 < (n-l-1) && l < m ;l++);
+    f=ch(n1,l);
+    nf=ch(n2,n-l-1);
+    u=ch(s-1,n-1);
+    ans=f*(nf/u);
+     
+    for(j=l+1;j<m && (n-j-1)>=0 ;j++)
+    {
+    int j1= n-j-1;
+    f=f*( (long double)(n1-j+1) / (long double)j);
+    nf=nf*( (long double)(j1+1) / (long double)(n2-j1));
+    ans=ans+(f*(nf/u));
+     
+    }
+    //cout<<ans<<endl;
+    printf("%.7f\n",(float)ans);
+    }
+    return 0;
+    }  

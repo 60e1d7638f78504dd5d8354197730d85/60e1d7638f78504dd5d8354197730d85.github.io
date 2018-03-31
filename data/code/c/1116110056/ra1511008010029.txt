@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+	int t,k,i,j; char ar[1001];
+	scanf("%d",&t);
+	while(t--)
+	{   k=0;
+	    int a1[26]={0},a2[26]={0};
+		scanf("%s",ar);
+		for(i=0;i<strlen(ar)/2;i++)
+		{  
+		  for(j=0;j<26;j++)
+		  {if(ar[i]==97+j) a1[j]++;
+		  
+		  if(ar[(strlen(ar)-i-1)]==97+j) a2[j]++; 
+		  }
+		}
+		for(i=0;i<26;i++) 
+		 if(a1[i]==a2[i])
+		  k++;
+		if(k==26)
+		 printf("YES\n");
+		else printf("NO\n");  
+	}
+} 

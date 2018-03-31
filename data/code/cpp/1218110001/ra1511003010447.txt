@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+class Shape{
+protected:
+  int l;
+  int b;
+  
+  public:
+  Shape(int x,int y){
+  l=x;
+    b=y;
+  }
+  
+  
+};
+
+class Rectangle:public Shape{
+public:
+  Rectangle(int a,int b):Shape(a,b){
+
+//Shape(a,b);
+}
+  void area(){
+  cout<<"Rectangle area="<<l*b<<"\n";
+  }
+
+};
+
+
+class Triangle:public Shape{
+public:
+  
+Triangle(int a,int b):Shape(a,b){
+//Shape(a,b);
+  
+}
+
+
+void area(){
+
+cout<<"Triangle area="<<(l*b)/2;
+	}
+};
+
+int main()
+{int l,b;
+ cin>>l;
+ cin>>b;
+Rectangle r(l,b);
+ Triangle t(l,b);
+ 
+ r.area();
+ t.area();
+	return 0;
+}

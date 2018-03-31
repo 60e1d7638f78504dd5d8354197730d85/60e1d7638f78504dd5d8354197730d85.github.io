@@ -1,0 +1,33 @@
+#include<stdio.h>
+int main()
+{
+	long long int N,i=1,l=0,val,j,temp=0;
+	scanf("%lld",&N);
+	long long int arr[100000];
+	while(1)
+	{
+		val=(i*(i+1))/2;
+		if(val>N)
+			break;
+		arr[l++]=val;
+		i++;
+	}
+	int mid=l/2;
+	for(i=0;i<l-1;i++)
+	{
+		for(j=i+1;j<l;j++)
+		{
+			if(arr[i]+arr[j]==N)
+			{
+				printf("YES\n");
+				temp=1;
+				break;
+			}
+		}
+		if(temp==1)
+			break;
+	}
+	if(temp==0)
+		printf("NO\n");
+	return(0);
+}

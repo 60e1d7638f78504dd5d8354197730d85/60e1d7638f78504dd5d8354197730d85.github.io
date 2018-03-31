@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+int exor(int x,int y)
+{
+ int rs=0,i;
+  for(i=31;i>=0;i--)
+  {
+    bool b1=x&(1<<i);
+    bool b2=y&(1<<i);
+    bool exoredbit=(b1&b2)?0:(b1|b2);
+    rs<<=1;
+    rs|=exoredbit;
+  }
+  return rs;
+}
+int main()
+{
+	int a,b;
+  	scanf("%d%d",&a,&b);
+  	printf("Bitwise EX-OR of %d and %d is=%d",a,b,exor(a,b));
+	return 0;
+}

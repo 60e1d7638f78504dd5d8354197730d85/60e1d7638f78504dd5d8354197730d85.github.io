@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  private static void maxOccuringCharacter(String input) {
+		int[] countArray = new int[26];
+		int maxCount = 0;
+		char maxOccuringCharacter=0;
+		for(char ch : input.toLowerCase().toCharArray()) {
+			countArray[ch-97] += 1;
+			if(countArray[ch-97] > maxCount) {
+				maxCount = countArray[ch-97];
+				maxOccuringCharacter = ch;
+			}
+		}
+		System.out.println("Most Repeted character:"+maxOccuringCharacter+" and its Count is:"+maxCount);
+  }
+	 public static void main(String[] args) 
+     { 
+       Scanner sc = new Scanner(System.in);
+		//System.out.println("Please enter input string-");
+		String input = sc.next();
+		//System.out.println("Input: "+input);
+		maxOccuringCharacter(input);
+         //System.out.println("Most Repeted character:"+maxCh+"and its Count is:"+count);
+       }
+}
+  

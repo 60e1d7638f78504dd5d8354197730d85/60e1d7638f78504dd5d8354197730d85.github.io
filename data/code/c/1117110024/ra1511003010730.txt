@@ -1,0 +1,22 @@
+#include <stdio.h>
+int sumup(int a);
+int main()
+{
+  int a,sum;
+  scanf("%d",&a);
+  sum = sumup(a);
+  printf("The sum of digits in %d is %d",a,sum);
+
+	return 0;
+}
+int sumup(int a)
+{
+  int i,sum=0;
+  if(a>=1)
+  {
+    i = a%10;
+    a=a/10;
+    sum = i + sumup(a);
+  }
+return sum;
+}

@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int check_perfect(int long n)
+{
+	int long high=n;
+	int long  low=1;
+	int long  mid;
+	int flag=0;
+	while(high>=low)
+	{
+		mid=low+(high-low)/2;
+		if(mid*mid==n)
+		{
+		flag=1;
+		break;
+	}
+		else if(mid*mid>n)
+		high=mid-1;
+		else
+		low=mid+1;
+	}
+	if(flag==0)
+	return 0;
+	else
+	return 1;
+	
+}
+int main()
+{
+	int long t;
+	scanf("%ld",&t);
+	while(t--)
+	{
+	
+	int long n,a;
+	scanf("%ld",&n);
+	int long long x;
+	x=n*n;
+	int flag_1=0;
+	for(a=1;a<n;a++)
+	{
+		if(check_perfect(x-pow(a,2)))
+		{
+			flag_1=1;
+			break;
+		}
+	}
+	if(flag_1==1)
+	{
+		printf("YES\n");
+	}
+	else
+	{
+		printf("NO\n");
+	}
+	
+}
+}

@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class TestClass {
+  private static boolean isFunny (String s)
+    {
+        String rev = reverse(s);
+        boolean stillEq = true;
+        for (int i = 2; i < s.length() && stillEq; ++i)
+        {
+            int comp = (int)s.charAt(i) - (int)s.charAt(i-1);
+            int comp2 = (int)rev.charAt(i) - (int)rev.charAt(i-1);
+            stillEq = Math.abs(comp) == Math.abs(comp2);
+        }
+
+        if (stillEq)
+            return true;
+        else
+            return false;
+    }
+
+    private static String reverse (String s)
+    {
+        if (s.length() > 0)
+            return s.charAt(s.length()-1) + reverse(s.substring(0, s.length()-1));
+        else
+            return "";
+    }
+	 public static void main(String[] args) 
+     { 
+		 Scanner sc = new Scanner(System.in);
+        int tests = sc.nextInt();
+        for (int i = 0; i < tests; ++i)
+        {
+            String out = isFunny(sc.next()) ? "Funny" : "Not Funny";
+            System.out.println(out);
+        }
+	}
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+struct time
+{
+  int hour;
+  int min;
+  int sec;
+}t1,t2,t3;
+int main()
+{
+  scanf("%d %d %d",&t1.hour,&t1.min,&t1.sec);
+  scanf("%d %d %d",&t2.hour,&t2.min,&t2.sec);
+  if((t1.sec+t2.sec)>60)
+  {
+    t3.min=(t1.sec+t2.sec)/60;
+    t3.sec=(t1.sec+t2.sec)%60;
+    //printf("hh");
+  }
+  else
+  {
+    t3.sec=t1.sec+t2.sec;
+    //printf("gg");
+  }
+    if(t1.min+t2.min>60)
+  {
+    t3.hour=(t1.min+t2.min)/60;
+    t3.min+=(t1.min+t2.min)%60;
+  }
+  else
+    t3.min+=t1.min+t2.min;
+  t3.hour+=t1.hour+t2.hour;
+  printf("%d hrs\n",t3.hour);
+  printf("%d min\n",t3.min);
+  printf("%d sec\n",t3.sec);
+
+	return 0;
+}

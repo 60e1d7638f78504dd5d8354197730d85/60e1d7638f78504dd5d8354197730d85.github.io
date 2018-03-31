@@ -1,0 +1,56 @@
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scan = new Scanner(System.in);
+        
+        String name = scan.nextLine();
+        int id = scan.nextInt();
+        int no = scan.nextInt();
+        float bal = scan.nextFloat();
+        Account acc = new Account(name, id, no, bal);
+        acc.interest();
+	}
+}
+interface Bank
+{
+  float rate = 12.0f;
+  int no_of_years = 3;
+  public void show();
+}
+class Customer
+{
+  String custName;
+  int custId;
+  Customer(String s, int i)
+  {
+    custName = s;
+    custId = i;
+  }
+  public void display()
+  {
+    System.out.println("Customer Name="+custName);
+    System.out.println("Customer Id="+custId);
+  }
+}
+class Account extends Customer implements Bank
+{
+  int accNo;
+  float accBal;
+  Account(String name, int id, int ano, float bal)
+  {
+  	super(name, id);
+    accNo = ano;
+    accBal = bal;
+  }
+  public void show()
+  {
+  	display();
+    System.out.println("Account No="+accNo);
+    System.out.println("Account Balance="+accBal);
+  }
+  public void interest()
+  {
+  	this.show();
+    System.out.println("Interest="+((rate * no_of_years * accBal) / 100));
+  }
+}

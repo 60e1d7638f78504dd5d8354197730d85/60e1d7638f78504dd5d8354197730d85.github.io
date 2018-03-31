@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+	int n,i=0,val,len;
+  	long int num,dec=0,bs=1,rem;
+  	char hex[20];
+  	scanf("%d",&n);
+  	if(n==2){
+      scanf("%ld",&num);
+      while(num!=0){
+        rem=num%10;
+        dec=dec+rem*bs;
+        num=num/10;
+        bs=bs*2;
+      }
+      printf("%ld",dec);
+    }
+  	else if(n==8){
+      scanf("%ld",&num);
+      while(num!=0){
+        dec=dec+(num%10)*pow(8,i++);
+        num/=10;
+      }
+      printf("%ld",dec);
+    }
+  	else if(n==16){
+      scanf("%s",hex);
+      len=strlen(hex);
+      len--;
+      for(i=0;hex[i]!='\0';i++){
+        if(hex[i]>='0' && hex[i]<='9')
+          val=hex[i]-48;
+        else if(hex[i]>='a' && hex[i]<='f')
+          val=hex[i]-97+10;
+        else if(hex[i]>='A' && hex[i]<='F')
+          val=hex[i]-65+10;
+        dec+=val*pow(16,len);
+        len--;
+      }
+      printf("%ld",dec);
+    }
+	return 0;
+  	
+}

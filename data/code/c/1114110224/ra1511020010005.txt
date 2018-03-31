@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<stdbool.h>
+bool isHard(int n)
+{
+  if(n>50)
+    return true;
+  else
+    return false;
+}
+bool isCarb(float n)
+{
+  if(n<0.7)
+    return true;
+  else
+    return false;
+}
+bool isTens(int n)
+{
+  if(n>5600)
+    return true;
+  else
+    return false;
+}
+int main()
+{
+	int n,i,a,c;
+  float b;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d%f%d",&a,&b,&c);
+    printf("\n");
+    if(isHard(a)&&isCarb(b)&&isTens(c))
+      printf("10");
+    else if(isHard(a)&&isCarb(b))
+      printf("9");
+    else if(isCarb(b)&&isTens(c))
+      printf("8");
+    else  if(isHard(a)&&isTens(c))
+      printf("7");
+    else  if(isHard(a)||isCarb(b)||isTens(c))
+      printf("6");
+    else 
+      printf("5");
+  }
+	return 0;
+}

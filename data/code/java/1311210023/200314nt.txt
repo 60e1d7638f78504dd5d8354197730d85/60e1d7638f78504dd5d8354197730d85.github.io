@@ -1,0 +1,79 @@
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+public class TestClass
+
+{
+ 
+	static class FastReader {
+		BufferedReader br;
+		StringTokenizer st;
+ 
+		public FastReader() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+		}
+ 
+		String next() {
+			while (st == null || !st.hasMoreElements()) {
+				try {
+					st = new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return st.nextToken();
+		}
+ 
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+ 
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+ 
+		double nextDouble() {
+			return Double.parseDouble(next());
+		}
+ 
+		String nextLine() {
+			String str = "";
+			try {
+				str = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return str;
+		}
+	}
+ 
+	public static void main(String[] args) {
+		FastReader sc = new FastReader();
+		int t = sc.nextInt();
+		while (t-- > 0) {
+			int n = sc.nextInt();
+			char[] curr = sc.nextLine().toCharArray();
+			char[] ans  = sc.nextLine().toCharArray();
+			int[] rupay = new int[n+1];
+			int ind =0;
+			long kamai=0;
+			for(int i=0;i<=n;rupay[i++]=sc.nextInt());
+			for(int i=0;i<n;i++) {
+				if(curr[i]==ans[i]) {
+					ind++;
+				} 
+			}
+			if(ind==n)
+				System.out.println(rupay[n]);
+			else {
+				for(int i=0;i<=ind;i++)kamai=Math.max(kamai, rupay[i]);
+				System.out.println(kamai);
+			}
+		}
+	}
+}

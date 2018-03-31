@@ -1,0 +1,100 @@
+import java.util.*;
+import java.lang.*;
+class Passkey
+{
+  Scanner ob=new Scanner(System.in);
+  String str;
+  public void passKey()
+  {
+    str=ob.nextLine();
+    char[] b=str.toCharArray();
+    int i,max=-1,min=100,sum1=0,sum2=1,p=0,q=0,u,v,r;
+    for(i=0;i<b.length;i++)
+    {
+      if('1'<=b[i]&&b[i]<='9')
+      {
+        if(b[i]>max)
+          max=(char)b[i];
+      }
+    }
+     char a=(char)max;
+     int x=Character.getNumericValue(a);
+    for(i=0;i<b.length;i++)
+    {
+      if('1'<=b[i]&&b[i]<='9')
+      {
+        if(b[i]<min)
+          min=(char)b[i];
+      }
+    }
+    char d=(char)min;
+    int y=Character.getNumericValue(d);
+    for(i=0;i<b.length;i++)
+    {
+      if('1'<=b[i]&&b[i]<='9')
+      {
+        int m=Character.getNumericValue(b[i]);
+        sum1+=(x)*(m);
+      }
+    }
+    for(i=0;i<b.length;i++)
+    {
+      if('1'<=b[i]&&b[i]<='9')
+      {
+        int n=Character.getNumericValue(b[i]);
+        sum2*=(y)+(n);
+      }
+    }
+    if(sum1>=10)
+    {
+      while(sum1!=0)
+      {
+        p+=sum1%10;
+        sum1=sum1/10;
+      }
+      if(p>=10)
+      {
+        q=p;
+        p=0;
+        while(q!=0)
+        {
+          p+=q%10;
+          q=q/10;
+        }
+      }
+    }
+    else
+      p=sum1;
+    q=0;
+    if(sum2>=10)
+    {
+      while(sum2!=0)
+      {
+        q+=sum2%10;
+        sum2=sum2/10;
+      }
+      if(q>=10)
+      {
+        r=q;
+        q=0;
+        while(r!=0)
+        {
+          q+=r%10;
+          r=r/10;
+        }
+      }
+    }
+    else
+      q=sum2;
+    if(p<=q)
+      System.out.println(p*p);
+    if(q<p)
+      System.out.println(q*q);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Passkey s1=new Passkey();
+       s1.passKey();
+	}
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int n,i,j,k,c;
+  char s[26],w[1000][12];
+  scanf("%s",s);
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%s",w[i]);
+  for(i=0;i<n;i++)
+  {
+    c=0;
+    for(j=0;j<strlen(w[i]);j++)
+      for(k=0;k<strlen(s);k++)
+        if(w[i][j]==s[k])
+          c++;
+    if(c==strlen(w[i]))
+      printf("\nYes");
+    else
+      printf("\nNo");
+  }
+  return 0;
+}

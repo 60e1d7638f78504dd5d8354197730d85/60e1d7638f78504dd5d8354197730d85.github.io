@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+int fun (int *a,int *b,int n,int m,int x){
+    int ans=0,i;
+    for(i=2;i<=n;i++){
+        if(b[i]==x){
+            ans+=a[i];
+            ans+=fun (a,b,n,m,i);
+        }
+    }
+    return ans;
+};
+ 
+int main() {
+    int n,m,i;
+    scanf("%d %d\n",&n,&m);
+    //printf("%d %d\n",n,m);
+    if(n>1){
+        int *a = (int *) malloc (sizeof(int)*n+1);
+        for(i=1;i<=n;i++){
+            scanf("%d",&a[i]);
+        }
+        //for(int i=1;i<=n;i++){
+        //    printf("%d\n",a[i]);
+        //}
+        int *b = (int *) malloc (sizeof(int)*n+1);
+        for(i=0;i<n-1;i++){
+            int t1,t2;
+            scanf("%d %d\n",&t1,&t2);
+            //printf("%d %d\n",t1,t2);
+            b[t2]=t1;
+        }
+        //for(int i=1;i<=n;i++){
+        //    printf("%d\n",b[i]);
+        //}
+        for(i=0;i<m;i++){
+            int ans=0;
+            char c;
+            scanf("%c",&c);
+            //printf("%c\n",c);
+            if(c=='Q'){
+                int x;
+              scanf("%d\n",&x);
+                //printf("%d\n",x);
+             ans=fun(a,b,n,m,x);
+                printf("%d\n",ans+a[x]);
+            }
+            if(c=='U'){
+                int x,y;
+                scanf("%d %d\n",&x,&y);
+             a[x]=y;
+             }
+        }
+    }    
+    else{
+        int a;
+        scanf("%d\n",&a);
+        printf("%d\n",a);
+    }
+    return 0;
+}
+ 

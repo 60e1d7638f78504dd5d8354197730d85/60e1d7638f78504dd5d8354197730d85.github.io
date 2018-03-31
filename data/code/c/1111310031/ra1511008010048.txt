@@ -1,0 +1,40 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+ 
+ int fast()
+	{
+		 int val=0,c;
+		c=gc();
+		while(c<'0' || c>'9') c=gc();
+		while( c>='0' && c<= '9') 
+		{
+			
+	             val=(val<<3)+ (val<<1) + c -'0';
+			 c=gc();
+		}
+	 return val;
+	}
+ 
+ 
+int main()
+{
+ 
+ int i,n,x,t;
+  //scanf("%d",&t);
+t=fast();
+ while(t--)
+	{	int  min=99999;
+		//scanf("%d",&n);
+		n=fast();
+		for(i=0;i<n;i++)
+			{
+					x=fast();
+					if( x<min)
+						min=x;
+			}
+	long long int ans = (long long int) min * (long long int) (n-1);
+	printf("%lld\n",ans);
+	}
+ 
+return 0;
+}

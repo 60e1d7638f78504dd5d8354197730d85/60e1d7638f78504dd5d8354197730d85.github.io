@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+   int n;
+  scanf("%d",&n);
+  int t[n];
+  int i,j,k;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;)
+    {
+      if(t[j]==t[i])
+      {
+        for(k=j;k<n;k++)
+        {
+          t[k]=t[k+1];
+        }
+        n--;
+      }else
+        j++;
+    } 
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("%d ",t[i]);
+  }
+	return 0;
+}

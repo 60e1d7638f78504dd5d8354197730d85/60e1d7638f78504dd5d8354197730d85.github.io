@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int repeat(int *vet, int value) {
+    int i, qtd=0;
+
+    for(i=0; i<8; i++) {
+        if(vet[i]==value) {
+            qtd++;
+        }
+    }
+
+    return qtd;
+}
+
+int main() {
+
+    char linhaEntrada[9];
+    int linha[8];
+    int coluna[8];
+    int i, j, k;
+    int result;
+
+    for(i=0; i<8; i++) {
+        linha[i]=0;
+        coluna[i]=0;
+    }
+
+    for(i=0; i<8; i++) {
+        scanf("%s", linhaEntrada);
+        for(j=0; j<9; j++) {
+            if(linhaEntrada[j] == 'W') {
+                linha[i]=1;
+                coluna[j]=1;
+            }
+        }
+    }
+
+    result = 16 - repeat(coluna, 1) - repeat(linha, 1);
+
+    if (result == 16)
+    {
+        result = 8;
+    }
+
+    printf("%d\n", result);
+
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+int power (int, int);
+int main()
+{   int pow, num;
+    int result;
+    scanf("%d", &num);
+    scanf("%d", &pow);
+    result = power(num, pow);
+    printf("The value of %d power %d is %d", num, pow, result);
+    return 0;
+}
+ 
+int power (int num, int pow)
+{
+    if (pow)
+    {
+        return (num * power(num, pow - 1));
+    }
+    return 1;
+}

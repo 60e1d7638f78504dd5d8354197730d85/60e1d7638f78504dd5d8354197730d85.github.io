@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{int n,*ptr,j,i,temp,count;
+ scanf("%d",&n);
+ int f[n];
+ ptr=(int*)malloc(n*sizeof(int));
+ for(i=0;i<n;i++)
+ {
+   scanf("%d",ptr+i);
+   f[i]=-1;
+ }
+
+ for(i=0;i<n;i++)
+ {
+   count=1;
+   temp=*(ptr+i);
+   for(j=i+1;j<=n;j++)
+   {
+     if(temp==*(ptr+j))
+     {
+       count++;
+       f[j]=0;
+     }
+     if(f[i]!=0)
+     {
+       f[i]=count;
+     }
+     
+   }
+  
+   
+ }
+ 
+for(i=0;i<n;i++)   
+{
+  if(f[i]!=0)
+  {
+    printf("%d occurs %d times\n",*(ptr+i),f[i]);
+  }
+}
+
+	return 0;
+}

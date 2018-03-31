@@ -1,0 +1,34 @@
+#include<stdio.h>
+long int t,i,a,d;
+int main()
+{
+	scanf("%ld",&t);
+	while(t--)
+	{
+		long int z=0;
+		scanf("%ld",&a);
+		long int b[a],c[a];
+		for(i=0;i<a;i++)
+		{
+			scanf("%ld",&b[i]);
+		}
+		for(i=0;i<a;i++)
+		{
+			scanf("%ld",&c[i]);
+		}
+		if(b[0]>=c[0])
+		{
+			z=z+1;
+		}
+		for(i=1;i<a;i++)
+		{
+			d=b[i]-b[i-1];
+			if(d>=c[i])
+			{
+				z=z+1;
+			}
+		}
+		printf("%ld\n",z);
+	}
+  return 0;
+}

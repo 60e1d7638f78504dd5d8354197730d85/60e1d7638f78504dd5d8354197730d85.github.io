@@ -1,0 +1,39 @@
+#include <stdio.h>
+int num=100000007;
+int power(int a,long long n)
+{
+  int x=1;
+  while(n)
+    {
+      if(n&1)
+        x = ((long long)x*a)%num;
+      a = ((long long)a*a)%num;
+      n>>=1;
+    }
+    return x;
+}
+int main(void) {
+	// your code goes here
+	int T,R1,R2,i,t1,t2,t3;
+	long long N;
+	int inv2=(num+1)/2;
+	scanf("%d",&T);
+	for(i=1;i<=T;i++)
+	{
+	scanf("%lld",&N);
+	t1=((long long)power(3,N)-power(2,N+1))%num;
+	if(t1<0)t1+=num;
+	t1++;
+	if(t1==num)t1=0;
+	t2=((long long)power(4,N)-power(3,N+1))%num;
+	if(t2<0)t2+=num;
+	t3=((long long)3*power(2,N))%num;
+	t3--;
+	if(t3==-1)t3=num-1;
+	t2=((long long)t2+t3)%num;
+	int R1=((long long)inv2*t1)%num;
+	int R2=((long long)inv2*t2)%num;
+	printf("%d %d\n",R1,R2);
+	}
+	return 0;
+}  

@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,i,j,temp,flag=0;
+  int a[10][10],a1[10][10];
+  scanf("%d\n",&m);
+  scanf("%d\n",&n);
+  for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+      scanf("%d",&a[i][j]);
+  }
+   for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      a1[i][j]=a[j][i];
+    }
+   }
+   for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      if(a[i][j]!=a1[i][j])
+      {
+        flag=1;
+        break;
+      }
+      }
+   }
+  if(flag==0)
+    printf("Symmetric");
+  else
+    printf("Not Symmetric");
+
+	return 0;
+}

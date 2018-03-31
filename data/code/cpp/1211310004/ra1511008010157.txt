@@ -1,0 +1,82 @@
+#include<stdio.h>
+int gcd(int m,int n)
+{
+        if(m%n==0)
+                return n;
+        else
+                return gcd(n,m%n);
+}
+ 
+int a1,b1;
+ 
+void fill_A(int *a,int *b)
+{
+        if(*a>(b1-*b))
+        {
+                *a=*a-(b1-*b);
+                *b=b1;
+        }
+        else
+        {
+                *b=*b+*a;
+                *a=0;
+        }
+}
+ 
+int main()
+{
+        int a,b,c,n,i,x,count[2];
+        scanf("%d",&n);
+        while(n--)
+        {
+                i=2;
+                scanf("%d %d %d",&a,&b,&c);
+                if(c>b && c>a)
+                {
+                        printf("-1\n");
+                        continue;
+                }
+                if(a==c || b==c)
+                {
+                        printf("1\n");
+                        continue;
+                }
+                a1=a,b1=b;
+                x=gcd(a,b);
+                if(c%x!=0)
+                {
+                        printf("-1\n");
+                        continue;
+                }
+                while(i--)
+                {
+                        b=0;
+                        count[i]=1;
+                        while(1)
+                        {
+                                fill_A(&a,&b);
+                                count[i]++;
+                                if(a==c || b==c)
+                                        break;
+                                if(a==0)
+                                {
+                                        a=a1;
+                                        count[i]++;
+                                }
+                                if(b==b1)
+                                {
+                                        b=0;
+                                        count[i]++;
+                                }
+                        }
+                        x=a1;
+                        a1=b1;
+                        b1=x;
+                        a=a1;
+                }
+                if(count[0]>count[1])
+                        printf("%d\n",count[1]);
+                else printf("%d\n",count[0]);
+        }
+return 0;
+} 

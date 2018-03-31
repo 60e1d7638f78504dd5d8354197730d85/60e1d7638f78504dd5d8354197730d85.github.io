@@ -1,0 +1,91 @@
+#include<stdio.h>
+int sqfree(int n)
+{
+	int p=0,i=2;
+    while((i*i)<=n)
+    {
+    	if(n%(i*i)==0)
+    	     p=1;
+    	i++;
+	}
+	if(p==0)
+	   return n;
+	else
+	   return 0;
+}
+int prime(int p)
+{
+	int i=2,c=0;
+	while(i<=(p/2))
+	{
+		if(p%i==0)
+		    c=1;
+		i++;
+	}
+	if(c==0&&p!=1)
+	    return p;
+	else
+	    return 0;
+}
+int sum_div(int m)
+{
+	int i=1,s=0;
+	s+=m;
+	while(i<=(m/2))
+	{
+		if(m%i==0)
+		    s+=i;
+		i++;
+	}
+	return s;
+}
+int countdiv_prime(int sd)
+{
+	int i=2,ck=0,c=0;
+	while(i<=(sd/2))
+	{
+		ck=prime(i);
+		if((ck!=0)&&(sd%i==0))
+		{
+			c+=1;
+		}
+		i++;
+	}
+	ck=prime(sd);
+	if(ck!=0)
+	   c+=1;
+	ck=prime(c);
+	if(ck!=0)
+	     return c;
+	else
+	     return 0;
+}
+int main()
+{
+	int t,l,r,sq=0,sum=0,count=0,fsum;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&l);
+	        scanf("%d",&r);
+	        fsum=0;
+   	while(l<=r)
+	 {
+		sq=sqfree(l);
+		if(sq!=0)
+		{
+			sum=sum_div(sq);
+			count=countdiv_prime(sum);
+			if(count!=0)
+			    {
+			    	 fsum+=sum;
+			    }
+			
+		}
+ 
+		l++;
+	  }
+       printf("%d\n",fsum);
+    }
+	return 0;
+}

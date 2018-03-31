@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+	int *a1, *a2, n1, n2;
+	int *p1, *p2;
+	int i, e = 1;
+
+	#define min(a, b) ((a) < (b) ? (a) : (b))
+
+	scanf("%d", &n1);
+	a1 = malloc(n1 * sizeof(int));
+	for (i = 0; i < n1; i++)
+		scanf("%d", &a1[i]);
+
+	scanf("%d", &n2);
+	a2 = malloc(n2 * sizeof(int));
+	for (i = 0; i < n2; i++)
+		scanf("%d", &a2[i]);
+
+	for ( p1 = a1, p2 = a2, i = 0; i < min(n1, n2); p1++, p2++, i++ ) {
+		if (*p1 != *p2) {
+			e = 0;
+			break;
+		}
+	}
+
+	printf("Arrays are %sequal", e ? "" : "not ");
+
+	free(a1);
+	free(a2);
+
+	return 0;
+}

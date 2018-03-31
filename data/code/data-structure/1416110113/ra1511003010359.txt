@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int stack[20],top=-1;
+void push(int data)
+{
+  top++;
+  stack[top]=data;
+}
+void display()
+{
+  for(int i=0;i<=top;i++)
+    cout<<stack[i];
+}
+int main()
+{
+  int num,r;
+  cin>>num;
+  while(num)
+  {
+    r=num%10;
+    push(r);
+    num=num/10;
+  }
+  display();
+	return 0;
+}

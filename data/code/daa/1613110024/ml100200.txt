@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+int main()
+{
+  int n,i,j,t;
+  cin>>n;
+  int x[n],y[n],z[100],k=0;
+  for(i=0;i<n;i++)
+  {
+    cin>>x[i]>>y[i];
+  }
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      z[k]=(x[j]-x[i])*(x[j]-x[i]) + (y[j]-y[i])*(y[j]-y[i]);
+      k++;
+    }
+  }
+  for(i=0;i<k;i++)
+  {
+    for(j=i+1;j<k;j++)
+    {
+      if(z[i]>z[j])
+      {
+        t=z[i];
+        z[i]=z[j];
+        z[j]=t;
+      }
+    }
+  }
+  cout<<fixed<<setprecision(6)<<(float)pow(z[0],0.5);
+	return 0;
+}

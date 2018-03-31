@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	class time
+    {
+      int hours, mins;
+      float secs;
+      public:
+      int getTime()
+      {
+        int h,m;
+        float s;
+        cin>>h>>m>>s;
+        if(m >= 60)
+        {
+          cout<<"Minutes Must be less than 60";
+          return -1;
+        }
+        if(s >= 60)
+        {
+          cout<<"Seconds Must be less than 60";
+          return -1;
+        }
+        hours = h;
+        mins = m;
+        secs = s;
+        return 1;
+      }
+      void addTime(time &t1, time &t2)
+      {
+        int hh, mm;
+        float ss;
+        hh = t1.hours + t2.hours;
+        mm = t1.mins + t2.mins;
+        ss = t1.secs + t2.secs;
+        if(ss >= 60)
+        {
+          ss -= 60;
+          mm++;
+        }
+        if(mm >= 60)
+        {
+          mm -= 60;
+          hh++;
+        }
+        cout<<"After Adding\n";
+        cout<<hh<<":"<<mm<<":"<<ss;
+      }
+    };
+  	time t1, t2;
+  	int res1 = t1.getTime();
+  	int res2 = t2.getTime();
+  	if(res1 != -1 && res2 != -1)
+      t1.addTime(t1,t2);
+	return 0;
+}

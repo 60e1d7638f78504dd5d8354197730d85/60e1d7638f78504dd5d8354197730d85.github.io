@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+int hash(char d[])
+{
+	int p,i,sum=0;
+	p=strlen(d);
+	for(i=0;i<p;i++)
+	{ sum=sum+(d[i]-'A'+1)*(d[i]-'A'+1);}
+    return sum;
+}
+int main()
+{
+    long int n,i;
+    scanf("%ld",&n);
+    char h[15000][20];
+    int l[15000]={0};
+    char S[20];
+    for(i=0;i<n;i++)
+     { scanf("%s",S);
+       strcpy(h[hash(S)],S);
+       l[hash(S)]++;
+       scanf("%s",S);
+       strcpy(h[hash(S)],S);
+       l[hash(S)]++;
+     }
+     int max;
+     max=l[0];
+     for(i=1;i<15000;i++)
+     {
+     	if (l[i]>max) max=l[i];
+     }
+    int count=0;
+    for(i=0;i<15000;i++)
+    { if (l[i]==max) count++;}
+    printf("%d\n",count);
+    for(i=0;i<15000;i++)
+    {
+    	if (l[i]==max) { printf("%s\n",h[i]);}
+    }
+    return 0;
+}

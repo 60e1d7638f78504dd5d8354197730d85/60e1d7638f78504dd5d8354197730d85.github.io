@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int main()
+{
+ char str[20];
+ int v=0,c=0,d=0,w=0,i,j;
+ scanf("%[^\n]%*c",str);
+ int len=strlen(str);
+ for(i=0;i<len;i++)
+ { 
+   if(str[i]==' ')
+     w++;
+   if(isalpha(str[i]))
+   { if((str[i]=='a')||(str[i]=='e')||(str[i]=='i')||(str[i]=='o')||(str[i]=='u'))
+     v++;
+    else
+     c++;
+   }
+   else
+   {
+     if(isdigit(str[i]))
+        d++;
+   }  
+   
+ }
+  printf("%d ",v);
+  printf("%d ",c);
+  printf("%d ",d);
+  printf("%d ",w);
+  return 0;
+}

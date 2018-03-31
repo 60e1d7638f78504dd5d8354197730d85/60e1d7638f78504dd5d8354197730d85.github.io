@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner( System.in );
+       int n=sc.nextInt();
+       //int inputArray[]=new int[n];
+       ArrayList<Integer> inputArray = new ArrayList<Integer>(n);
+       ArrayList<Integer> ele = new ArrayList<Integer>(n);
+       // int ele[]={0,};
+            for (int i=0;i<n;i++)
+       {
+         inputArray.add(sc.nextInt());
+       }
+       ele.add(inputArray.get(0));
+      
+      HashMap<Integer, Integer> elementCountMap = new HashMap<Integer, Integer>();
+         
+           
+        for (int i : inputArray) 
+        {
+            if(elementCountMap.containsKey(i))
+            {
+                             
+                elementCountMap.put(i, elementCountMap.get(i)+1);
+            }
+            else
+            {
+            elementCountMap.put(i, 1);
+            }
+        }
+    //System.out.println("Element Count : "+elementCountMap);
+for (int i=0;i<inputArray.size();i++)
+{
+  int temp=inputArray.get(i);
+  if(!(ele.contains(temp)))
+     ele.add(inputArray.get(i));
+}
+       
+       //System.out.println(ele.size());
+       for(int i=0;i<ele.size();i++)
+       {
+         int t=ele.get(i);
+         System.out.println(t+"="+elementCountMap.get(t));
+       }
+	}
+}

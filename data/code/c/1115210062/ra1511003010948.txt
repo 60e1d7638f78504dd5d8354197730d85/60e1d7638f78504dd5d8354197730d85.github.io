@@ -1,0 +1,42 @@
+#include<stdio.h>
+int main()
+{
+	int T;
+	scanf("%d",&T);
+	while(T--)
+	{
+		int a=0,b=0,num[1000],n,i,j,temp=0,area=0;
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+		{
+			scanf("%d",&num[i]);
+		}
+		for(i=0;i<n-1;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if((num[i]==num[j])&&num[i]!=0)
+				{
+					if(num[i]>a)
+					{
+						a=num[i];
+						num[i]=0;
+						num[j]=0;
+					}
+				}
+				if(a>b)
+				{
+					temp=a;
+				    a=b;
+				    b=temp;
+				}
+			}
+		}
+		if(a==0||b==0)
+			area=-1;
+		else
+			area=a*b;
+		printf("%d\n",area);
+	}
+	return 0;
+}

@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+struct date{
+  int d;
+  int m;
+  int y;
+};
+
+int valid(struct date d);
+void inc(struct date *d);
+
+int main()
+{struct date a;
+ scanf("%d %d %d",&a.d,&a.m,&a.y);
+ if(valid(a))
+ {inc(&a);
+  printf("New Date=%d %d %d",a.d,a.m,a.y);
+ }
+	return 0;
+}
+
+int valid(struct date d)
+{int flag=1;
+  if(d.y<0 || d.y>2999)
+ {printf("Invalid Year");
+  return 0;
+ }
+ else if(d.m<1 || d.m>12)
+ {printf("Invalid Month");
+  return 0;
+ }
+ else
+ {switch(d.m)
+  {case 1:
+   case 3:
+   case 5:
+   case 7:
+   case 8:
+   case 10:
+   case 12:if(d.d>31)
+             flag=0;
+           break;
+   case 2:if(d.y%4==0)
+            if(d.d>29)
+              flag=0;
+          else
+            if(d.d>28)
+              flag=0;
+           break;
+   case 4:
+   case 6:
+   case 9:
+   case 11:if(d.d>30)
+             flag=0;
+           break;
+     
+  }
+  if(flag==0)
+  {printf("Invalid Day");
+   return 0;
+  }
+  else
+    return 1;
+ }
+}
+
+void inc(struct date *d)
+{d->d++;
+}
+ 
+   
+   

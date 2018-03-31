@@ -1,0 +1,40 @@
+import java.util.Scanner;
+ public class TestClass
+{
+  public static void main(String[] args) 
+{
+ Scanner s1 = new Scanner(System.in);
+ int num = s1.nextInt();
+int nu[]=new int[num];
+for(int i=0;i<num;i++)
+{
+ nu[i] = s1.nextInt();
+  if (nu[i] < 100 ) 
+    System.out.println("Number should be atleast three digits");
+  else 
+  if (isFas(nu[i])) 
+  System.out.println("Fascinating");
+  else 
+   System.out.println("Not Fascinating");
+  }
+    }
+  public static boolean isFas(int input) {
+  String sVal = "" + input + input * 2 + input * 3;
+  
+  // check existence of 1 to 9 exactly once!
+  for (int i = 1; i <= 9; i++) {
+  int pos = sVal.indexOf(i + "");
+  // is digit missing?
+  if (pos < 0) {
+  return false;
+  } else 
+  {
+  // Is there a duplicate digit?
+  if (sVal.substring(pos+1).indexOf(i + "") >= 0) 
+  return false;
+  }
+  }
+  //System.out.println(sVal);
+  return true;
+  }
+ }

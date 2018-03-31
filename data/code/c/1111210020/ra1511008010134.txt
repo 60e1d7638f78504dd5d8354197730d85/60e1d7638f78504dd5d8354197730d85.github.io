@@ -1,0 +1,27 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+       long long int n,a,b,A,B,C,ans=0;
+        scanf("%lld%lld%lld%lld",&n,&A,&B,&C);
+        for(a=0;a<=A;a++)
+        {
+            for(b=0;b<=B;b++)
+            {
+                if(n-a-b<0)
+                break;
+                else if(n-a-b>=0&&n-a-b<=C)
+                ans=ans+n-a-b+1;
+                else
+                ans=ans+C+1;
+            }
+        }
+        printf("%lld\n",ans);
+    }
+ 
+    return 0;
+}

@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main(int argc, char const *argv[])
+{
+	int testcases;
+	int num;
+  int i,j,k;
+	scanf("%d", &testcases);
+	int ** menpref, ** womenpref;
+	int * men_match, *women_match;
+	 for ( i = 0; i < testcases; ++i)                                                     
+	{	
+		scanf("%d", &num);
+		menpref = malloc(sizeof(int *) * num);
+		womenpref = malloc(sizeof(int *) * num);
+		for( j = 0; j < num; j++){
+			menpref[j] = malloc(sizeof(int) * (num + 1) );
+			womenpref[j] = malloc(sizeof(int) * (num + 1) );
+			menpref[j][0] = 1;
+			womenpref[j][0] = 1;	
+		}
+		men_match = malloc((num + 1) * sizeof(int));
+		women_match = malloc((num + 1) * sizeof(int));
+		memset(men_match, 0, num * sizeof(int));
+		memset(women_match, 0, num * sizeof(int));
+		//int index = 0;
+		for (j = 0; j < num; ++j)				//GENIUS!!! stored men's position in the array with index as men id
+		{	
+			int women_index;
+			scanf("%d", &women_index);
+			int position = 1;
+			for (k = 1; k <= num; ++k)
+			{
+				int man;
+				scanf("%d", &man);
+				womenpref[women_index - 1][man] = position;
+				++position;
+			}
+		}
+		for ( j = 0; j < num; ++j)
+		{	
+			int men_index;
+			scanf("%d", &men_index);
+			for (k = 1; k <= num; ++k)
+			{
+				scanf("%d", &(menpref[men_index - 1][k]) );
+			}
+ 
+		}
+			//end of input
+	int c = 0; //variable to check num of iterations
+	while(1){
+	for (j = 0; (j < num); ++j)
+		{
+			if((men_match[j + 1] != 0)){
+				continue;
+			}
+			c++;
+			int seq_pref = menpref[j][0];
+			int woman_id = menpref[j][seq_pref];
+			if(women_match[woman_id] == 0 || womenpref[woman_id - 1][women_match[woman_id]] > womenpref[woman_id - 1][j + 1]){
+				if(women_match[woman_id] != 0){
+					men_match[women_match[woman_id]] = 0;
+					menpref[women_match[woman_id] - 1][0]++;
+				}
+				women_match[woman_id] = j + 1;
+				men_match[j + 1] = woman_id;
+ 
+			}
+			else{
+				menpref[j][0]++;
+			}		
+		}
+		if(c == 0){
+			break;
+		}
+		else{
+			c = 0;
+		}
+	}
+		for(j = 1; j <= num; j++){
+			printf("%d %d\n", j, men_match[j]);
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main()
+{
+	int i, k, t, n;
+  	scanf("%d", &t);
+  	while(t--)
+    {
+      scanf("%d", &n);
+      k = sqrt(n);
+      int flag = 0;
+      if(n < 2)
+      {
+        printf("no\n");
+      }
+      else if(n % 2 == 0)
+      {
+        printf("no\n");
+      }
+      else
+      {
+        for(i = 3; i <= k; i = i + 2)
+        {
+          if(n % i == 0)
+          {
+            flag = 1;
+            break;
+          }
+        }
+        if(flag == 0)
+          printf("yes\n");
+        else
+          printf("no\n");
+      }
+    }
+	return 0;
+}

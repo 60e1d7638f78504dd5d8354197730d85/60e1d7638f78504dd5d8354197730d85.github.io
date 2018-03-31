@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) 
+       {
+ Scanner in = new Scanner(System.in);
+ int test=in.nextInt();
+ for(int t=0;t<test;++t)
+ {
+  int n=in.nextInt();
+  int A[]=new int[n];
+
+   int hash[]=new int[1001];
+   for(int i=0;i<n;++i)
+  {
+  A[i]=in.nextInt();
+  hash[A[i]]=i;
+  }
+
+ int index=-1;
+
+for(int i=1;i<1001;++i)
+if(hash[i]!=0 ||A[0]==i)
+ A[hash[i]] = ++index;
+for(int i=0;i<n;++i)
+  System.out.print(A[i]+" ");
+System.out.println();
+}
+}
+}

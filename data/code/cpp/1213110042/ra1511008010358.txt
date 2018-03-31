@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string.h>
+//#include <conio.h>
+using namespace std;
+int main()
+{
+	char str[100],str1[10][20],word[20],str2[10][20];
+  	int i,j=0,k=0,count=0;
+  	scanf("%[^\n]s", str);
+  	//cin>>word;
+  	for(i=0;str[i]!='\0';i++)
+    {
+      	if(str[i]==' ')
+        {
+          	str1[k][j]='\0';
+          	k++;
+          	j=0;
+        }
+      	else
+        {
+          	str1[k][j]=str[i];
+          	j++;
+        }
+    }
+  	str1[k][j]='\0';
+  int n=k+1;
+  	cin>>word;
+  int x=0;
+  	for(i=0;i<n;i++)
+    {
+      	if(strcmp(str1[i],word)!=0)
+        {
+          	
+              	strcpy(str2[x++],str1[i]);
+              	
+        }
+    }
+ 
+  	cout<<"The new String after deleting the word:";
+  	for(i=0;i<x;i++)
+      	cout<<str2[i]<<" ";
+	return 0;
+}

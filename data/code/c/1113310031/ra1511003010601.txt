@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{	
+  int n;
+  scanf("%d",&n);
+  int x=0,y,t;
+  int a[n];
+  while(scanf("%d",&a[x++])==1);
+  for (x=0;x<n;x++)
+    for (y=1;y<n-x;y++){
+      if (a[y-1]>a[y]){
+        t=a[y-1];
+        a[y-1]=a[y];
+        a[y]=t;
+      }
+    }
+  for (x=0;x<n;x++)
+    printf("%d\n",a[x]);
+
+	return 0;
+}

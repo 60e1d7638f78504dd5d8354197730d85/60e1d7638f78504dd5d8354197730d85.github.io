@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<stdlib.h>
+void insertion_sort(int [],int);
+int main()
+{
+int i,n,*a;
+  scanf("%d",&n);
+  a=(int *)malloc(sizeof(n));
+  for(i=0;i<n;i++)
+  {
+  scanf("%d",&a[i]);
+  }
+  insertion_sort(a,n);
+	return 0;
+}
+void insertion_sort(int a[],int n)
+{
+int i,j,k,temp;
+  for(i=1;i<n;i++)
+  {
+  j=i-1;
+    k=a[i];
+    while((j>=0)&&(a[j]>k))
+    {
+      a[j+1]=a[j];
+    j--;
+    }
+  a[j+1]=k;
+    for(j=0;j<n;j++)
+    {
+    printf("%d ",a[j]);
+    }
+    printf("\n");
+  }
+}

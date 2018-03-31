@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main(){
+	int n, i=0, a[10];
+	scanf("%d", &n);
+	for(i=0; i<n; i++)
+		scanf("%d", &a[i]);
+
+	int f(int arr[], int n, int sum){
+		if(n>=0){
+			if(a[n]%2==0)
+				sum+=a[n];
+			f(arr, n-1, sum);
+		}
+		else
+			return sum;
+	}
+  	int sum=0;
+  	printf("%d", f(a, n-1, sum));
+	return 0;
+}

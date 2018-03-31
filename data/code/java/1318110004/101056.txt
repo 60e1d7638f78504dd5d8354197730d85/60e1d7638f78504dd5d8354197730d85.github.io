@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+interface Exam{
+  void percent_cal();
+}
+class Student
+{
+  String name;
+  int roll_no,mark1,mark2;
+  Student(String n,int r,int m1,int m2)
+  {name=n;
+   roll_no=r;
+   mark1=m1;
+   mark2=m2;
+  }
+  public void display()
+  {
+    System.out.println("Name of Student=" +name + "\n" +"Roll No of Student="+roll_no+ "\n"+"Marks of Subject 1="+mark1+"\n"+"Marks of Subject 2="+mark2);
+  }
+}
+  class Result extends Student implements Exam
+  {float total;
+  float percentage;
+     Result(String n,int r,int m1,int m2)
+  {super(n,r,m1,m2);
+   name=n;
+   roll_no=r;
+   mark1=m1;
+   mark2=m2;
+  }
+  
+  public void percent_cal()
+  { total=mark1+mark2;
+  percentage=total/2;
+   System.out.println("Percentage="+percentage + "%");
+  }
+  public void display()
+  {super.display();
+  //System.out.println("Percentage="+percentage + "%");
+  }
+  }
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s=new Scanner(System.in);
+        String name=s.next();
+        int regno=s.nextInt();
+        int mark1=s.nextInt();
+        int mark2=s.nextInt();
+        Result R =new Result(name,regno,mark1,mark2);
+        R.display();
+        R.percent_cal();
+	}
+}

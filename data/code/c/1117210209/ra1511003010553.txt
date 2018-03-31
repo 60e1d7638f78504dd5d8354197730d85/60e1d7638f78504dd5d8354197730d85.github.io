@@ -1,0 +1,23 @@
+#include <stdio.h>
+int po(int p0,float r,int aug,int p1)
+{
+  static int c=0;
+  if(p0>=p1)
+    return c;
+  else
+  {
+    c++;
+    p0=p0+p0*r/100+aug;
+    po(p0,r,aug,p1);
+  }
+}
+int main()
+{
+  int p0,p1,aug,c;
+  float r;
+  scanf("%d%f%d%d",&p0,&r,&aug,&p1);
+  c=po(p0,r,aug,p1);
+  printf("%d",c);
+
+	return 0;
+}

@@ -1,0 +1,33 @@
+ #include<stdio.h>
+    int main(){
+ int alle;
+	while(scanf("%d",&alle)!=EOF){
+	int aktuell,it;
+	it=alle;
+	int objekt[alle][alle], summe[alle][alle];
+	//initialisation
+	while(alle>0){
+		scanf("%d",&aktuell);
+		objekt[it-alle][it-alle]=aktuell;
+		summe[it-alle][it-alle]=0;
+		alle--;
+	}
+	//ausrechnen
+	alle=it;
+	int langi,itt;
+	for(langi=1;langi<alle;langi++){
+		for(it=0;it+langi<alle;it++){
+		summe[it][it+langi]=summe[it][it]+summe[it+1][it+langi]+objekt[it][it]*objekt[it+1][it+langi];
+		objekt[it][it+langi]=((objekt[it][it]+objekt[it+1][it+langi])%100);
+			for(itt=1;itt<langi;itt++)								//zuerst
+			if(summe[it][it+langi]>summe[it][it+itt]+summe[it+itt+1][it+langi]+objekt[it][it+itt]*objekt[it+itt+1][it+langi]){
+				summe[it][it+langi]=summe[it][it+itt]+summe[it+itt+1][it+langi]+objekt[it][it+itt]*objekt[it+itt+1][it+langi];
+				objekt[it][it+langi]=((objekt[it][it+itt]+objekt[it+itt+1][it+langi])%100);
+			}
+		}
+	}
+	printf("%d\n",summe[0][alle-1]);
+	//printf("%d\n",objekt[0][alle-1]);
+}
+return 0;	
+}			

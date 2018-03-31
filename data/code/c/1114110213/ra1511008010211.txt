@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int a[100],i,num,n;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+scanf("%d",&a[i]);
+  }
+  scanf("%d",&num);
+ 
+ printf("%d\n", binarySearch(a,0, n, num) );
+  return 0;
+}
+        
+ int binarySearch(int a[], int low, int high, int num)
+{
+   if (high < low)
+       return -1;
+   int mid = (low + high)/2; 
+   if (num == a[mid])
+       return mid;
+   if (num > a[mid])
+       return binarySearch(a, (mid + 1), high, num);
+   return binarySearch(a, low, (mid -1), num);
+      }
+        
+      
+        
+     

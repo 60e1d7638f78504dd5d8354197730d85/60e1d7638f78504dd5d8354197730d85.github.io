@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+class newc
+{public int great(int gcd,int lcm)
+{int t, aTemp, bTemp,g,l;
+        
+        aTemp = gcd;
+        bTemp = lcm;
+ 
+        while (bTemp != 0) {
+            t = bTemp;
+            bTemp = aTemp % bTemp;
+            aTemp = t;
+        }
+ 
+        g = aTemp;
+ 
+        
+        l = (gcd * lcm) / g;
+        System.out.println(g+" "+l);
+return 0;       }
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+newc objname=new newc();
+       int i,a,b;
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+ // Take two numbers from user
+       int n=scanner.nextInt();
+       for(i=1;i<=n;i++)
+       {a = scanner.nextInt();
+        b = scanner.nextInt();
+ 
+       objname.great(a,b);
+     }
+     }
+}

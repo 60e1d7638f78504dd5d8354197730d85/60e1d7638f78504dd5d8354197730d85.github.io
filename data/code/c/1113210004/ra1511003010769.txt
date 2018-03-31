@@ -1,0 +1,35 @@
+#include <stdio.h>
+int check_num(int num){
+  int temp;
+while(num!=0){
+temp=num%10;
+  if(temp!=0 && temp!=1){
+  return 0;
+  }
+  num=num/10;
+}
+  return 1;
+}
+
+int main()
+{
+	int t,i,n,j;
+  	int updatex=1;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+    scanf("%d",&n);
+      j=1;
+      updatex=9*j;
+    while(updatex%n!=0){
+		if(check_num(j))
+        {
+          updatex=9*j;
+        }
+      j++;
+    }
+      printf("%d\n",updatex);
+      
+    }
+	return 0;
+}

@@ -1,0 +1,195 @@
+#include<stdio.h>
+#include<math.h>
+ 
+struct point
+{
+   double x;
+   double y;       
+};
+ 
+ 
+ 
+void merge(struct point arr[], int l, int m, int r)
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 =  r - m;
+    struct point L[n1], R[n2];
+ 
+    for(i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for(j = 0; j < n2; j++)
+        R[j] = arr[m + 1+ j];
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
+    {
+        if (L[i].x <R[j].x)
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else if(L[i].x==R[j].x)
+        {
+            if(L[i].y<R[j].y)
+              {
+                 arr[k] = L[i];
+                 i++;
+              }
+              else
+              {
+                  arr[k] = R[j];
+                  j++;
+                  
+              }          
+        }
+        
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+ 
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+     while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+ 
+void mergeSort(struct point arr[], int l, int r)
+{
+    if (l < r)
+    {
+        int m = l+(r-l)/2; //Same as (l+r)/2, but avoids overflow for large l and h
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }
+}
+ 
+int main()
+{
+ int i,N,min,local_min,j,flag,low,high,mid;
+ 
+ scanf("%d",&N);
+ if(N==0)
+ {
+   printf("4");
+   return 0;
+ }
+ else
+ {
+      double mid_x,mid_y,xd,yd;
+      struct point p3,p4;
+    struct  point arr[N];
+     for(i=0;i<N;i++)
+      {
+	        scanf("%lf %lf",&arr[i].x,&arr[i].y); 
+      }
+	  if(N<3)
+	  {
+	    
+	     if(N==1)
+	     {
+	     	printf("3");
+	     	return 0;
+	     	
+	     }
+	    
+	     mergeSort(arr,0,N-1);
+	     j=0;
+	     for(i=0;i<N-1;i++)
+	     {
+	     	if(arr[i].x==arr[i+1].y&&arr[i].y==arr[+1].y)
+	     	  j++;
+	     	
+	     }
+	  
+	     printf("%d",4-N+j);
+		 return 0;
+	  }
+	  else
+	  {
+	      min=2;
+	      mergeSort(arr,0,N-1);
+               
+               
+	      for(i=0;i<N&&min>0;i++)
+		  {
+		     for(j=i+1;j<N&&min>0;j++)
+			 {
+			    local_min=2;
+                 if(arr[i].x!=arr[j].x&&arr[i].y!=arr[j].y) 
+                  {
+                   mid_x=(arr[i].x+arr[j].x)/2.0;
+				   mid_y=(arr[i].y+arr[j].y)/2.0; 
+				   xd=(arr[i].x-arr[j].x)/2.0;
+				   yd=(arr[i].y-arr[j].y)/2.0;
+				   p3.x=mid_x-yd;
+				   p3.y=mid_y+xd;
+				   p4.x=mid_x+yd;
+				   p4.y=mid_y-xd;
+				   low=0;
+				   high=N-1;
+				   flag=0;
+                   while(low<=high&&flag==0)
+                       {
+                          mid=(low+high)/2;
+                          if(arr[mid].x==p3.x&&arr[mid].y==p3.y)
+                          {
+                             flag=1;
+                          }
+                          else if(arr[mid].x<p3.x)
+                                 low=mid+1;
+                          else if(arr[mid].x==p3.x&&arr[mid].y<p3.y)
+                                 low=mid+1;
+                          else
+                                 high=mid-1;
+					   }
+					   if(flag==1)
+					      local_min--;
+					      
+					       low=0;
+				   high=N-1;
+				   flag=0;
+                   while(low<=high&&flag==0)
+                       {
+                          mid=(low+high)/2;
+                          if(arr[mid].x==p4.x&&arr[mid].y==p4.y)
+                          {
+                             flag=1;
+                          }
+                          else if(arr[mid].x<p4.x)
+                                 low=mid+1;
+                          else if(arr[mid].x==p4.x&&arr[mid].y<p4.y)
+                                 low=mid+1;
+                          else
+                                 high=mid-1;
+					   }
+					   if(flag==1)
+					      local_min--;
+					   
+					   if(local_min<min)
+					   {
+					      min=local_min;
+					   }
+					   
+                }
+			 }
+		  }
+	  }
+	  printf("%d\n",min);	  
+  return 0;
+}
+}

@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       	int a = sc.nextInt();
+       	int b = sc.nextInt();
+       	int c = sc.nextInt();
+       	int min = getMin(a,getMin(b, c));
+       	int max = getMax(a, getMax(b, c));
+       	int mid = a+b+c-min-max;
+       	System.out.println("The minimum value is " + min);
+        System.out.println("The maximum value is " + max);
+       	System.out.println("The middle value is " + mid);
+	}
+  
+  	private static int getMin(int n1, int n2) {
+    	return (n1 < n2 ? n1 : n2);
+    }
+  
+  	private static int getMax(int n1, int n2) {
+    	return (n1 > n2 ? n1 : n2);
+    }
+}

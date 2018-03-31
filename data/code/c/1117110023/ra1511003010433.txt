@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<math.h>
+long int power(int x, int n);
+int main()
+{
+  	long int x, n, xpown;
+ 
+    scanf("%ld %ld", &x, &n);
+    xpown = power(x, n);
+    printf("The value of %ld power %ld is %ld",x,n,xpown);
+	return 0;
+}
+long int power(int x, int n)
+{
+    if (n == 1)
+        return(x);
+    else if (n % 2 == 0)
+        /*  if n is even */
+        return (pow(power(x, n/2), 2));
+    else
+        /*  if n is odd */
+        return (x * power(x, n - 1));
+}

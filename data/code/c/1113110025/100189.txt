@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+int i,sum,n,num, rem, reverse_num, temp, start[10], end[10];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+   scanf("%d%d",&start[i],&end[i]);
+   for(i=0;i<n;i++)
+   {
+     sum=0;
+   for(num=start[i];num<=end[i];num++){
+      temp=num;
+      reverse_num=0;
+      while(temp){
+         rem=temp%10;
+         temp=temp/10;
+         reverse_num=reverse_num*10+rem;
+      }
+      if(num==reverse_num)
+         sum = sum + num;
+   }
+     printf("sum is %d\n",sum);
+   }
+   return 0;
+}

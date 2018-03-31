@@ -1,0 +1,60 @@
+#include <stdio.h>
+int largest(int arr[],int n)
+{
+  int large=arr[0],i;
+  for (i=0;i<n;i++)
+  {
+    if(large<arr[i])
+      large=arr[i];
+  }
+  return large;
+}
+void radixsort(int array[],int n);
+int main()
+{
+	int array[100],n,i;
+  	scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&array[i]);
+  radixsort(array,n);
+	return 0;
+}
+void radixsort(int arr[],int n)
+{
+  int bucket[10][10],buck[10],b[10];
+  int i,j,k,l,num,div,large,pass,i1;
+  div=1;
+  num=0;
+  large=largest(arr,n);
+    while(large>0)
+    {
+      num++;
+      large=large/10;
+    }
+    for(pass=0;pass<num;pass++)
+    {
+      for(k=0;k<10;k++)
+      {
+        buck[k]=0;
+      }
+      for(i=0;i<n;i++)
+      {
+        l=((arr[i]/div)%10);
+        bucket[l][buck[l]]=arr[i];
+        buck[l]+=1;
+      }
+      i=0;
+      for(k=0;k<10;k++)
+      {
+        for(j=0;j<buck[k];j++)
+        {
+          arr[i]=bucket[k][j];
+          i++;
+        }
+      }
+      div*=10;
+      for(i1=0;i1<n;i1++)
+        printf("%d ",arr[i1]);
+      printf("\n");
+    }
+}

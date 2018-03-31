@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+ typedef long long ll;
+ typedef vector<ll> vi;
+#define MOD 1000000007
+#define MAX 20000002
+// #define MAX1 100001
+ 
+#define gc getchar_unlocked
+void scanll(long long &x)
+{
+    register long long c = gc();
+    x = 0;
+    long long neg = 0;
+    for(;((c<48 || c>57) && c != '-');c = gc());
+    if(c=='-') {neg=1;c=gc();}
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    if(neg) x=-x;
+}
+ 
+void solve()
+{
+  ll a[26];
+  for(ll i=0;i<26;i++) scanll(a[i]);
+  string s;
+  cin>>s;
+  vector<bool> v(26,0);
+  for(ll i=0;i<s.size();i++) v[s[i]-'a']=1;
+  ll ans=0;
+  for(ll i=0;i<26;i++)
+  {
+    if(v[i]) continue;
+    ans += a[i];
+  }
+  cout<<ans<<endl;
+}
+ 
+ 
+int main()
+{
+  ll t=1;
+  scanll(t);
+  for(ll i=1;i<=t;i++) solve();
+} 

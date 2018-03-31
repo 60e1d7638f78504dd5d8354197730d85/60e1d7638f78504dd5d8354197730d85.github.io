@@ -1,0 +1,73 @@
+#include<stdlib.h>
+#include<stdio.h>
+#define pc putchar_unlocked
+#define gc getchar_unlocked
+#define ll long long int
+ 
+int r() {
+ int x=0;
+ char c=gc();
+ while(c<48||c>57)
+c=gc();
+ while(c>=48&&c<=57) {
+x=x*10+c-48; c=gc(); }
+return x; }
+void quicksort(int x[],int first,int last){
+    int pivot,j,temp,i;
+ 
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+ 
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         quicksort(x,first,j-1);
+         quicksort(x,j+1,last);
+ 
+    }
+}
+ 
+int main(void)
+{
+    int t,i,j,k,n,d,tmp;
+    int a[100002];
+    unsigned long long int sum=0;
+    t=r();
+    while(t--)
+    {
+        sum=0;
+        n=r();
+        d=r();
+        for(i=0;i<n;i++)
+        {
+            a[i]=r();
+        }
+        quicksort(a,0,n-1);
+        for(i=n-1;i>0;i--)
+        {
+            if(a[i]-a[i-1]<d)
+            {
+                sum=sum+a[i]+a[i-1];
+                i=i-1;
+ 
+            }
+        }
+        printf("%llu\n",sum);
+    }
+ 
+    return 0;
+}

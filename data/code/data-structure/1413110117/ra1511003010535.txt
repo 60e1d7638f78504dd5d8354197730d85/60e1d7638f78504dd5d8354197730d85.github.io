@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+typedef long long int ll;
+const int MAX_N=100005;
+ 
+int main()
+{int t=5,n;
+	ll a,b,c,d,k,val;
+	while(t--)
+	{
+		scanf("%lld%lld%lld%lld%lld",&a,&b,&c,&d,&k);
+		 n=(int)(ceil(cbrt(k/a)));
+		val=a*n*n*n+b*n*n+c*n+d;
+ 
+		while(val>k&&d<k)
+		{
+			n--;
+			val=a*n*n*n+b*n*n+c*n+d;
+		}
+	}
+ printf("%d\n",n );
+	return 0;
+}

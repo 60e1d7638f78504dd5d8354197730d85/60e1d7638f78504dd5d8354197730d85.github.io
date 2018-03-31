@@ -1,0 +1,33 @@
+#include <stdio.h>
+ 
+/*function to get occurrence of a digit in a number*/
+int findOccurrence(int num,int dig)
+{
+    int rem, cnt;
+  
+    cnt=0;
+    while(num>0)
+    {
+        rem=num%10;
+        if(rem==dig)
+            cnt++;
+        num/=10;
+    }    
+    return cnt;
+}
+  
+int main()
+{
+    int num, digit, cnt;
+  
+   
+    scanf("%d",&num);
+   
+    scanf("%d",&digit);
+  
+    cnt=findOccurrence(num,digit);
+     
+    printf("Total occurrence of digit is: %d in number: %d",cnt,num);
+      
+    return 0;
+}

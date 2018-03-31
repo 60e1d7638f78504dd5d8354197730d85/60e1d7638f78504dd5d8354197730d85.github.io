@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,m,count,i;
+  scanf("%d",&t);
+  while(t--)
+  {
+    count=0;
+    scanf("%d",&n);
+    int arr[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+
+    scanf("%d",&m);
+    int arr1[m];
+    for(i=0;i<m;i++)
+    {
+      scanf("%d",&arr1[i]);
+    }
+
+    for(i=0;i<n;i++)
+    {
+       if(arr1[0] == arr[i])
+       {
+          int j=1,k=i+1;
+          while(j < m)
+          {
+            if(arr[k] != arr1[j])
+            {
+              break;
+            }
+            j++;
+            k++;
+          }
+          if(j==m)
+            count++;
+       }
+    }
+    if(count >= 1)
+      printf("Yes");
+    else
+      printf("No");
+    
+    printf("\n");
+  }
+	return 0;
+}

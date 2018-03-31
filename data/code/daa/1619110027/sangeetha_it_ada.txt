@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+ 
+int getdigitssum(long long a){
+    int sum = 0;
+    while(a) {
+        sum += a%10;
+        a /= 10;
+    }
+    return sum;
+}
+ 
+int main()
+{
+    int n;
+    long long mod = 1000000007, final=0, a;
+    int count[200];
+    memset(count, -1, sizeof count);
+    scanf("%d", &n);
+    int arr[100010];
+    for (int i=1;i<=n;i++) {
+        scanf("%lld", &a);
+        int digsum = getdigitssum(a);
+        if (count[digsum]==-1)
+            count[digsum] = 1;
+        else
+            count[digsum] += 1;
+    }
+    int idx=1;
+    for (int i=0;i<200;i++) {
+        if (count[i]==-1)
+            continue;
+        for (int j=0;j<count[i];j++)
+            arr[idx++]=i;
+    }
+    long long pow2[100010];
+    pow2[0]=1;
+    for (int i=1;i<100010;i++)
+        pow2[i] = pow2[i-1]*2%mod;
+    for (int i=1;i<=n;i++) {
+        if (arr[i]==0)
+            continue;
+        final += pow2[i-1]*arr[i]%mod;
+        final %= mod;
+    }
+    printf("%lld", final);
+    return 0;
+}

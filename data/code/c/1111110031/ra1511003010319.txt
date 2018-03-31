@@ -1,0 +1,47 @@
+#include <stdio.h>
+int o[100];
+char h[100];
+int main()
+{ int a=0,i=0,b=0;
+ scanf("%d",&a);
+ printf("Decimal value:%d\nOctal value:",a);
+ i=oct(a);
+ for(b=i-1;b>=0;b--){
+ printf("%d",o[b]);
+ }
+ printf("\nHexadecimal value:");
+ i=hexa(a);
+ for(b=i-1;b>=0;b--){
+ printf("%c",h[b]);
+ }
+	return 0;
+ 
+}
+int oct(int a)
+{
+int i=0;
+  while(a>0)
+  {o[i]=a%8;
+  a=a/8;
+  i++;
+}
+return i;
+}
+
+int hexa(int a)
+{
+int i=0;
+  int r=0;
+  while(a>0){
+  r=a%16;
+    if(r<10){
+    h[i]=48+r;
+    }
+    else{
+    h[i]=87+r;
+    }
+    a=a/16;
+    i++;
+  }
+  return i;
+}

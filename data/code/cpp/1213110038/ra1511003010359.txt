@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  string str,substr;
+  int temp=0,j;
+  cin>>str;
+  cin>>substr;
+  for( int i=0; str[i]!='\0';i++)
+  {
+    j=0;
+    if(str[i]==substr[j])
+    {
+      temp=i+1;
+      while(str[i]==substr[j])
+      {
+        i++;
+        j++;
+      }
+      if(substr[j]=='\0')
+      {
+        cout<<"Substring found at position "<<temp;
+        exit(0);
+      }
+      else
+      {
+        i=temp;
+        temp=0;
+      }
+    }
+  }
+	return 0;
+}

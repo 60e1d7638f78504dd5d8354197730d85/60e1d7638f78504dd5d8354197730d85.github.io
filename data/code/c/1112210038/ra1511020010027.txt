@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,m,flag=0,flag1=0,i,j;
+		scanf("%d %d",&n,&m);
+		char grid[1000][1000];
+		for(i=0;i<n;i++)
+		{
+			scanf("%s",grid[i]);
+		}
+// lets check vertical stability
+		for(j=0;j<m;j++)
+		{
+			for(i=0;i<n;i++)
+			{
+					if((grid[i][j]=='B' && grid[i+1][j]!='B' && (i+1)<n)  || (grid[i][j]=='W' && grid[i+1][j]=='A' && (i+1)<n) || grid[n-1][j]=='W')
+					{
+						flag=1;
+						break;
+					}
+			}
+		}
+		// lets check for horizontal stability
+		for(i=0;i<n;i++)
+		{
+			for(j=0;j<m-1;j++)
+			{
+				if((grid[i][j]=='W' && grid[i][j+1]=='A') || (grid[i][j]=='W' && grid[i][j-1]=='A' && j>0) || (grid[i][0]=='W' || grid[i][m-1]=='W'))
+				{
+					flag1=1;
+					break;
+				}
+			}
+			
+		}
+		if(flag==1 || flag1==1)
+			printf("no\n");
+		else 
+			printf("yes\n");
+		
+    }
+	return 0;
+}

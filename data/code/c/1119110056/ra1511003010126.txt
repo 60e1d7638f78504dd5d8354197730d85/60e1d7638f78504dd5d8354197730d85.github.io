@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+	int num,arr[20],i,j,big=0;
+  	int *ptr;
+  	ptr = &big; 
+  	scanf("%d",&num);
+  	for(i=0;i<num;i++){
+     	scanf("%d",&arr[i]); 
+    }
+  	for(i=1;i<num;i++){
+      	for(j=0;j<num-i-1;j++){
+     		if(arr[j]>arr[i] && arr[j]>*ptr){
+          		ptr = &arr[j];
+        	}
+        }
+    }
+  	if(arr[num-1]>*ptr){
+      ptr = &arr[num-1];
+    }
+  	printf("%d",*ptr);
+	return 0;
+}

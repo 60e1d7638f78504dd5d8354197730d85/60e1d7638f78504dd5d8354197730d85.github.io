@@ -1,0 +1,49 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+	int i,x,num[10],j,temp;
+  	char str[20],temp1;
+  	scanf("%d",&x);
+  	for(i=0;i<x;i++)
+    {
+      scanf("%d ",&num[i]);
+   	  scanf("\n");
+    }
+  	for(i=0;i<x;i++)
+    {
+      scanf("%s",str);
+    }
+  	for(i=0;i<x;i++)
+    {
+      for(j=i+1;j<x;j++)
+      {
+        if(num[i]>num[j])
+        {
+          temp = num[i];
+          num[i] = num[j];
+          num[j] = temp;
+        }
+      }
+    }
+  for(i=0;i<x;i++)
+  {
+    printf("%d\n",num[i]);
+  }
+  int y =strlen(str);
+  for(i=0;i<y-1;i++)
+  {
+    for(j=i+1;j<y;j++)
+    {
+      if(str[i]>str[j])
+      {
+        temp1=str[i];
+        str[i]=str[j];
+        str[j]=temp1;
+      }
+    }
+  }
+  printf("%s",str);
+	return 0;
+}

@@ -1,0 +1,102 @@
+#include <iostream>
+#include <cstdio>
+#include <climits>
+#include <cstring>
+#include <map>
+#include <string>
+#include <cstring>
+#include <sstream>
+#include <cmath>
+#include <stack>
+#include <vector>
+#include <queue>
+#include <set>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+#define getchar_unlocked getchar
+#define uint unsigned int
+#define ushort unsigned short
+#define luint  long unsigned int
+#define lluint long long unsigned int
+#define LIMIT 1
+
+typedef pair<int, int> ipair;
+int n,m;
+bool mat[11][11];
+
+bool isSafe(int path[11], int pos, int nxt)
+{
+    if(mat[path[pos-1]][nxt] == 0)
+        return false;
+
+    for(int i=0; i<pos; i++)
+    {
+        if(path[i] == nxt)
+            return false;
+    }
+    return true;
+}
+
+bool hamiltonian(int path[11], int pos)
+{
+    int i,j,k;
+
+    if(pos == n)
+        return 1;
+        //return  mat[ path[n-1] ][ path[0] ];
+
+    for(int u=0; u<n; u++)
+    {
+        if(isSafe(path, pos, u))
+        {
+            path[pos] = u;
+
+            if(hamiltonian(path, pos + 1) == true)
+                return true;
+
+            path[pos] = -1;
+        }
+    }
+
+    return false;
+}
+
+
+int main()
+{
+    int i,j,k,tc;
+    //freopen("i.txt", "r", stdin);
+
+    cin >> tc;
+    while(tc--)
+    {
+        cin >> n >> m;
+        memset(mat, 0x00, sizeof(mat));
+        
+        for(i=0; i<m; i++)
+        {
+            cin >> j >> k;
+            j--; k--;
+            mat[j][k] = mat[k][j] = 1;
+        }
+
+        int path[11];
+        for(i=0; i<n; i++) path[i] = -1;
+        
+        bool flag = false;
+        for(i=0; i<n; i++)
+        {
+            path[0] = i;
+            if(hamiltonian(path, 1) == true)
+            {
+                flag = true;
+                break;
+            }
+            path[0] = -1;
+        }
+        printf("%d\n", flag);
+    }
+    return 0;
+}

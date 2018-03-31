@@ -1,0 +1,75 @@
+/* package whatever; // don't place package name! */
+ 
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+class TestClass
+{
+	private static int s;
+	private static String nextSmallestPalindrome(char ch[])
+	{
+		int len=ch.length;
+		if(ch[len-1]<'9')ch[len-1]++;
+		else
+		{
+			ch[len-1]='0';
+			carry(ch,len-2);
+		}
+		for(int i=0;i<(len-s)/2;i++)
+		{
+			if(ch[i+s]!=ch[len-i-1])
+			{
+				if(ch[i+s]>ch[len-i-1])
+				{
+					ch[len-i-1]=ch[i+s];
+				}
+				else
+				{
+					if((i+s+1)==(len-1-i))
+					{
+						int n=Integer.parseInt(""+ch[i+s]+ch[len-i-1]);
+						for(;n<=99 && n/10!=n%10;n++);
+						ch[i+s]=ch[len-i-1]=Integer.toString(n).charAt(0);
+					}
+					else 
+					{
+						ch[len-i-1]=ch[i+s];
+						carry(ch,len-i-1-1);
+						ch[len-i-1]=ch[i+s];
+					}
+				}
+			}
+		}
+		return new String(ch,s,len-s);
+	}
+	private static void carry(char ch[],int i)
+	{
+		for(;i>=s;i--)
+		{
+			if(ch[i]<'9')
+			{
+				ch[i]++;
+				break;
+			}
+			ch[i]='0';
+		}
+		if(i<s)ch[--s]='1';
+	}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		char ch[]=new char[1000100];
+		int t=1;
+		while(t-->0)
+		{
+			String k=br.readLine();
+			s=1000100;
+			for(int i=k.length()-1;i>=0;i--)ch[--s]=k.charAt(i);
+			bw.write(nextSmallestPalindrome(ch)+"\n");
+		}
+		bw.flush();
+	}
+} 

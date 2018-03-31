@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int size,i,flag;
+  	scanf("%d",&size);
+  	int arr[size];
+  	for(i=0;i<size;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+  	int count,j,pos=0,arr1[size];
+  	for(i=0;i<size;i++)
+    {
+      count=0;
+      for(j=0;j<size;j++)
+      {
+        if(arr[j]==arr[i])
+          count++;
+      }
+  	if(count>1)
+    {
+      for(j=0;j<=pos;j++)
+      {
+        if(arr[i]==arr1[j])
+        {
+          flag=0;
+          break;
+        }
+        else
+          flag=1;
+      }
+      if(flag==1)
+      {
+      	arr1[pos]=arr[i];
+      	printf("%d ",arr[i]);
+      	pos++;
+      }
+    }
+    }
+	return 0;
+}

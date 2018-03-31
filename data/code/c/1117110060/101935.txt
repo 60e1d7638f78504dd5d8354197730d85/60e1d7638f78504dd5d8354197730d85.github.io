@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+	int testcases,i;
+	scanf("%d", &testcases);
+	for (i=0;i<testcases;i++)
+	{
+		int save=0;
+		int n;
+		scanf("%d", &n);
+		int array[n];
+		int j, k;
+		for (j=0;j<n;j++)
+		{
+			scanf("%d", &array[j]);
+		}
+		int repeat[n];
+		for (j=0;j<n;j++)
+		{
+			repeat[j] = 0;
+		}
+		for (j=0;j<n;j++)
+		{
+			int flag = 1;
+			for (k=0;k<n;k++)
+			{
+				if (array[j]==repeat[k])
+					flag = 0;
+			}
+			if (flag == 1)
+			{
+				repeat[save] = array[j];
+				save++;
+			}
+		}
+		printf("%d\n", save);
+	}
+	return 0;
+} 

@@ -1,0 +1,34 @@
+#include <stdio.h>
+struct facu
+{
+  char name[20];
+  int id;
+}f[10];
+int main()
+{
+	int n,i,j,k,s;
+  struct facu t;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",f[i].name);
+    scanf("%d",&f[i].id);
+  }
+  printf("After Sorting");
+  printf("\nName ID");
+  for(k=n-1;k>=1;k--)
+  {
+    for(i=0,j=1;j<=k;i++,j++)
+    {
+      if(f[i].id>f[j].id)
+      {
+        t=f[i];
+        f[i]=f[j];
+        f[j]=t;
+      }
+    }
+  }
+  for(s=0;s<n;s++)
+  printf("\n%s %d",f[s].name,f[s].id);
+	return 0;
+}

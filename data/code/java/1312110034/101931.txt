@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       for(int i=0;i<t;i++)
+         {
+          int n=sc.nextInt();
+          int a[]=new int[n];
+          for(int j=0;j<n;j++)
+          {
+             a[j]=sc.nextInt();
+          }
+          for(int k=0;k<n;k++)
+          {
+            for(int l=k+1;l<n;l++)
+            {
+              if (a[k]>a[l])
+              {
+              int temp=a[k];
+              a[k]=a[l];
+              a[l]=temp;
+              }
+             }
+            }
+   
+          if(n%2!=0)
+          {
+            int m=(n+1)/2;
+            System.out.println(a[m-1]);
+          }
+          else
+          {  
+            int m1=n/2;
+            int m2=m1+1;
+            int avg=(a[m1-1]+a[m2-1])/2;
+            System.out.println(avg);
+          }   
+        }     
+		
+	}
+}

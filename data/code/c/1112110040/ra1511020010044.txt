@@ -1,0 +1,31 @@
+#include<stdio.h>
+int input()
+{
+	int n = 0, ch;
+	while(!(ch >= '0' && ch <= '9'))ch = getchar_unlocked();
+	while(ch >= '0' && ch <= '9')
+	{
+		n = (n << 3) + (n << 1) + (ch - '0');
+		ch = getchar_unlocked();
+	}
+	return n;
+}
+int main()
+{
+	int t;
+	//scanf("%d", &t);
+	t = input();
+	while(t--)
+	{
+		int ch, count = 0;
+		while(!(ch >= '0' && ch <= '9'))ch = getchar_unlocked();
+		while(ch >= '0' && ch <= '9')
+		{
+			if(ch == '4')
+				count++;
+			ch = getchar_unlocked();
+		}
+	printf("%d\n",count);
+	}
+	return 0;
+} 

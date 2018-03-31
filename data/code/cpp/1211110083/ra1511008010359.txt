@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;
+  	float sum=0.00;
+  	cin>>n;
+  if(n<=100)
+    cout<<"Your bill is Rs.200";
+  else
+  {
+    sum+=200;
+  	n-=100;
+    if(n<=50)
+      sum+=n*(0.60);
+    else
+    {
+      sum+=50*(0.60);
+      n-=50;
+      if(n<=50)
+        sum+=n*(0.50);
+      else
+      	{
+        sum+=50*(0.50);
+        n-=50;
+        if(n>0)
+          sum+=n*(0.40);
+      	}
+    }
+    cout<<"Your bill is Rs."<<sum;
+   }
+	return 0;
+}

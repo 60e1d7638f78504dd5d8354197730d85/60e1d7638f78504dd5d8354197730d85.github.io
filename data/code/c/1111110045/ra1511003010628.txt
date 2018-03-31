@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int n,i;
+  float sum=0;
+  float avg;
+  float sum1;
+  float sum2=0;
+  int arr[100];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    sum=sum+arr[i];
+  }
+  sum1=(float)sum/n;
+  printf("%s%0.2f","Mean=",sum1);
+  for(i=0;i<n;i++)
+  {
+    sum2=sum2+pow((arr[i]-sum1),2);
+  }
+  avg=(float)sqrt(sum2/n);
+  printf("%s%0.2f","\nSD=",avg);
+	return 0;
+}

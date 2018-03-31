@@ -1,0 +1,39 @@
+#include<stdio.h>
+#define g getchar_unlocked
+#define p putchar_unlocked
+inline long long scan()
+{
+	long long x=0;
+	char c;
+	while((c=g())<'0'||c>'9');
+	while(c>='0'&&c<='9')
+	x=(x<<3)+(x<<1)+c-48,c=g();
+	return x;
+}
+inline void fw(long long n)
+{
+    char a[25];
+    long i=0;
+    do{
+    	a[i++]=n%10+48,n/=10;
+    }while(n);
+    while(i) p(a[--i]);
+    p('\n');
+}
+int main()
+{
+	long long n,m;
+	n=scan(),m=scan();
+	
+	while(m--){
+		long long q=scan(),flag=0;
+		if(q>=n+2&&q<=2*n+1){
+			flag=q-n-1;
+		}
+		else if(q>2*n+1&&q<=3*n){
+			flag=3*n-q+1;
+		}
+		fw(flag);
+	}
+	return 0;
+} 

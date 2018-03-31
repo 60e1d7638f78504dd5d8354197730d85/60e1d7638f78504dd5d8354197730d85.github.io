@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+class C1
+{
+  protected:
+  float l,b;
+  public:
+  void setData()
+  {
+    cin>>l>>b;
+  }
+};
+
+class C2:public C1
+{
+protected:
+  float p;
+  int cost;
+  public:
+  void calculate()
+  {
+  	p=2.0*(l+b);
+    //cout<<p;
+    cost=p*5;
+  }
+};
+
+class C3:public C2
+{
+public:
+  void disp()
+  {
+  	setData();
+    calculate();
+  	cout<<cost<<endl;
+  }
+};
+  
+int main()
+{
+  	C3 c;
+  c.disp();
+	return 0;
+}

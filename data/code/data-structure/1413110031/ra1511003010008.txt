@@ -1,0 +1,34 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+	int n,x,y,t,r,ans[10000],c;
+  	float distance[10000];	
+  	cin>>n;
+  	for(int i=0;i<n;i++)
+    {
+     	cin>>x>>y;
+      	int l=x*x+y*y;
+      	//cout<<x<<" "<<y<<endl;
+      	distance[i]=sqrt(l);
+      	//cout<<distance[i]<<endl;
+    }
+  	cin>>t;
+  	for(int i=0;i<t;i++)
+    {
+     	cin>>r;
+        c=0;
+      	for(int j=0;j<n;j++)
+        {
+            if(distance[j]<=r)
+            { 
+              c++;
+            }
+        }
+        ans[i]=c;
+    }
+  
+  	for(int i=0;i<t;i++)
+    	cout<<ans[i]<<endl;
+}

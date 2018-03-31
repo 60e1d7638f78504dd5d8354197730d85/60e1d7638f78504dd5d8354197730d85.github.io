@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define MOD 1000000007
+#define LLI long long int
+#define fo(i,n)   for(i=0;i<n;++i)
+	LLI t,l,i,c,a[28];
+	char s[28];
+ 
+int main(void) {
+    fo(i,28)        a[i]=0;
+    scanf(" %s",s);
+    l=strlen(s);
+    fo(i,l)
+    {
+        a[s[i]-'a']=1;
+    }
+	scanf(" %lld",&t);
+	while(t--)
+	{
+	    scanf(" %s",s);
+        l=strlen(s);
+        c=1;
+        fo(i,l)
+        {
+            if(!(a[s[i]-'a']))
+            {
+                c=0;
+            }
+        }
+	    if(c)       printf("Yes\n");
+	    else        printf("No\n");
+	}
+	return 0;
+} 

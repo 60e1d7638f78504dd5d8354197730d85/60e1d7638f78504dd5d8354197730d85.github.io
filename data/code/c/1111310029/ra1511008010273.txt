@@ -1,0 +1,67 @@
+#include <stdio.h>
+ 
+ 
+void quicksort(int arr[20],int,int);
+ 
+int main(){
+    int test_case, n, stilen[1000], i, j = 0, rect[2];
+    scanf("%d", &test_case);
+    while(test_case--){
+        scanf("%d", &n);
+        for(i = 0; i < n; i++)
+            scanf("%d", &stilen[i]);
+        quicksort(stilen, 0, n - 1);
+        for(i = n - 1; i > 0; i--){
+            if(stilen[i] == stilen[i - 1]){
+                rect[j] = stilen[i];
+                j++;
+                i--;
+                if(j == 2){
+                    break;        
+                }
+            }
+        }
+        if(j != 2)
+            printf("-1\n");
+        else
+            printf("%d\n", rect[0] * rect[1]);
+        j = 0;
+    }
+ return 0;
+ }
+void quicksort(int arr[20],int low,int high)
+{
+ int pivot,j,temp,i;
+ if(low<high)
+ {
+  pivot = low;
+  i = low;
+  j = high;
+ 
+  while(i<j)
+  {
+   while((arr[i]<=arr[pivot])&&(i<high))
+   {
+    i++;
+   }
+ 
+   while(arr[j]>arr[pivot])
+   {
+    j--;
+   }
+ 
+   if(i<j)
+   { 
+    temp=arr[i];
+    arr[i]=arr[j];
+    arr[j]=temp;
+   }
+  }
+ 
+  temp=arr[pivot];
+  arr[pivot]=arr[j];
+  arr[j]=temp;
+  quicksort(arr,low,j-1);
+  quicksort(arr,j+1,high);
+ }
+} 

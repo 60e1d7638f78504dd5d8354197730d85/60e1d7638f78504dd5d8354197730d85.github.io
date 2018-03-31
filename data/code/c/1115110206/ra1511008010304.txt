@@ -1,0 +1,80 @@
+#include <stdio.h>
+int val=1000000007;
+long long temp[2][2],s[31][2][2];
+long long res[2][2];
+void mul(long long a[2][2],long long b[2][2],long long res[2][2])
+{
+	temp[0][0]=((a[0][0]*b[0][0])%val+(a[0][1]*b[1][0])%val)%val;
+	temp[0][1]=((a[0][0]*b[0][1])%val+(a[0][1]*b[1][1])%val)%val;
+	temp[1][0]=((a[1][0]*b[0][0])%val+(a[1][1]*b[1][0])%val)%val;
+	temp[1][1]=((a[1][0]*b[0][1])%val+(a[1][1]*b[1][1])%val)%val;
+	res[0][0]=temp[0][0];
+	res[0][1]=temp[0][1];
+	res[1][0]=temp[1][0];
+	res[1][1]=temp[1][1];
+}
+void power(long long b)
+{
+	res[0][0]=res[1][1]=1;
+	res[0][1]=res[1][0]=0;
+	int si = 0;
+    while(b)
+    {
+        if(b & 1)
+            mul(res,s[si],res);
+        b >>= 1;
+		si++;
+    }
+}
+void finds()
+{
+    s[0][0][0]=s[0][0][1]=s[0][1][0]=1;
+	s[0][1][1]=0;
+	int i;
+	for(i=1; i<31;i++)
+        mul(s[i-1],s[i-1],s[i]);
+}
+int solve(long long fs[],long long ls[],int l,int r,int arr[])
+{
+   	power(arr[l]);
+   	int inv2=(val+1)/2;
+	fs[0]=res[1][0];
+	ls[0]=(2*res[1][1]+res[1][0])%val;
+	int c,n;
+	for(n=l+1,c=1;n<=r;n++,c++)
+	{
+			power(arr[n]);
+			long long fib=res[1][0]%val;
+			long long luc=(2*res[1][1]+res[1][0])%val;
+			long long t1=(fs[c-1]+fib)%val;
+			long long t2=((fib*ls[c-1])%val+(luc*fs[c-1])%val)%val;
+			t2=(t2*inv2)%val;
+			fs[c]=(t1+t2)%val;
+			t1=(ls[c-1]+luc)%val;
+			t2=(((5*fib)%val*fs[c-1])%val+(luc*ls[c-1])%val)%val;
+			t2=(t2*inv2)%val;
+			ls[c]=(t1+t2)%val;
+	}
+	return fs[r-l];
+}
+int main()
+{
+	finds();
+	int N,M,i,n1,n2;
+	char ch;
+	scanf("%d %d ",&N,&M);
+	int arr[N];
+	for(i=0;i<N;++i)
+		scanf("%d ",&arr[i]);
+	for(i=0;i<M;i++)
+	{
+	    scanf("%c %d %d ",&ch,&n1,&n2);
+	    if(ch=='C')arr[n1-1]=n2;
+	    else
+	    {
+	        long long fs[n2-n1+1],ls[n2-n1+1];
+	        printf("%d\n",solve(fs,ls,n1-1,n2-1,arr));
+	    }
+	}
+	return 0;
+}  

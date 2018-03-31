@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <malloc.h>
+struct student
+{
+  int roll;
+  char name[20],course[20];
+  long fees;
+}*ptr[20];
+
+int main()
+{
+  int size,i;
+  scanf("%d",&size);
+  printf("Details of the student\n");
+  while(size--)
+  {
+    ptr[i]=(struct student*)malloc(sizeof(struct student));
+    scanf("%d %s %s %ld",&ptr[i]->roll,ptr[i]->name,ptr[i]->course,&ptr[i]->fees);
+    printf("Roll no:%d\n",ptr[i]->roll);
+    printf("Name:%s\n",ptr[i]->name);
+    printf("Course:%s\n",ptr[i]->course);
+    printf("Fees:%ld\n",ptr[i]->fees);
+  }  
+	return 0;
+}

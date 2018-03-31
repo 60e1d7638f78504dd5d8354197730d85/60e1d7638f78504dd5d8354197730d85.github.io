@@ -1,0 +1,31 @@
+#include <stdio.h>
+int dectobin(int n)
+{
+  int i=0,count=0,arr[20];
+  while(n>0)
+  {
+    arr[i]=n%2;
+    n=n/2;
+    i++;
+  }
+  for(i=0;i<20;i++)
+    if(arr[i]==1)
+      count++;
+  return count;
+}
+int main()
+{
+int t,n,i,j,sum=0;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&n);
+    for(j=1;j<=n;j++)
+    {
+      sum=sum+dectobin(j);
+    }
+    printf("%d\n",sum);
+    sum=0;
+  }
+	return 0;
+}

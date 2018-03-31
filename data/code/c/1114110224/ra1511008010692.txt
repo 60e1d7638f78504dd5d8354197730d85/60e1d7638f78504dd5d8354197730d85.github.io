@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int n,h,ts,hf,tsf,cf;
+  float c;
+  scanf("%d",&n);
+  while(n>0) {
+    	scanf("%d %f %d",&h,&c,&ts);
+    	hf=(h>50)? 1 : 0;
+    	cf=(c<0.7)? 1:0;
+    	tsf=(ts>5600)? 1:0;
+    	if((hf&cf&tsf)==1) {	printf("10\n");   } 
+    	else if((hf&cf)==1)  {	printf("9\n");	}
+    	else if((cf&tsf)==1) {	printf("8\n");	}
+    	else if((hf&tsf)==1) {	printf("7\n");	}
+    	else if((hf|cf|tsf)==1) {	printf("6\n");}
+    	else { printf("5\n");}
+    
+    		n=n-1;
+  }
+
+	return 0;
+}

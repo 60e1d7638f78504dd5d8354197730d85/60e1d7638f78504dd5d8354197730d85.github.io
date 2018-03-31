@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define fo(i,n)   for(i=0;i<n;++i)
+	int t,n,i,cnt,min,l,**a;
+	char str[102];
+ 
+int main(void) {
+	scanf(" %d",&n);
+	a=(int **)(malloc(sizeof(int *)*n));
+	fo(t,n)
+	{
+	    scanf(" %s",str);
+	    l=strlen(str);
+	    a[t]=(int *)(malloc(sizeof(int)*27));
+	    fo(i,27)        a[t][i]=0;
+	    fo(i,l)
+	    (a[t][str[i]-'a'])++;
+	}
+	cnt=0;
+	
+	fo(i,26)
+	{
+	    min=a[0][i];
+	    for(t=1;t<n;++t)
+	    {
+	        if(min>a[t][i])     min=a[t][i];
+	    }
+	    cnt+=min;
+	    while(min--)
+	    {
+	        printf("%c",'a'+i);
+	    }
+	}
+	
+	if(!cnt)         printf("no such string");
+	return 0;
+} 

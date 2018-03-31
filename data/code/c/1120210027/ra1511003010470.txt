@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    char str[1000], str2[1000];
+    int i, j, count=0;
+    scanf("%s", str2);
+    strcpy(str, str2);
+    for(i=0; i<strlen(str); ++i)
+    {
+        if(str[i]=='1')
+          ++count;
+        else
+          count=0;
+        if(count==5)
+        {
+            
+            for(j=strlen(str)+1; j>i+1; --j)
+            {
+
+               str[j]=str[j-1];
+               
+            }
+           str[j]='0';
+
+        }
+    }
+  printf("%s\n", str);
+  printf("%s", str2);
+	return 0;
+}

@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+       static int f[]=new int[10];
+      static void precompute()
+      {
+       f[0]=f[1]=1;
+       for(int i=2;i<10;i++)
+       {
+         f[i]=f[i-1]*i;
+       }
+      }
+       static boolean strong(int x)
+       {
+         int sum=0;
+         int t=x;
+         while(t>0)
+         {
+           sum=sum+f[t%10];
+           t=t/10;
+         }
+         return (sum==x);
+       }
+       
+      public static void main(String ar[])
+      {
+        Scanner obj=new Scanner(System.in);
+        precompute();
+        int x=obj.nextInt();
+        if(strong(x))
+        {
+          System.out.println("Yes");
+        }
+        else
+          System.out.println("No");
+        
+		
+	}
+}

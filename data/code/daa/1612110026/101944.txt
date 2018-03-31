@@ -1,0 +1,32 @@
+#include <stdio.h>
+ int main()
+{
+	int n;
+	scanf("%d",&n);
+	int a[n],maxx=-1;
+	for( int i = 0; i < n; i++)
+    {
+		scanf("%d",&a[i]);
+		if ( maxx < a[i] )
+        {
+			maxx = a[i];
+		}
+	}
+		int count[maxx+1];
+  for( int i = 0; i <= maxx;i++)
+  {
+		count[i] = 0;
+	}
+	for(  int i = 0; i < n; i++) 
+    {
+		++count[a[i]];
+    }
+		for( int i = 0; i <= maxx;i++) 
+        {
+		if ( count[i] > 0 ) 
+        {
+			printf("%d %d\n",i,count[i]);
+		}
+	}
+           return 0;
+ }

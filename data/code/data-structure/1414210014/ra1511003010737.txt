@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+using ll = long long;
+ 
+constexpr ll mod = 1e9+7;
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    ll t;
+    cin >> t;
+    while (t--) {
+        ll n, m, q;
+        cin >> n >> m >> q;
+        vector<ll> x(q+2), y(q+2);
+        for (ll i = 0; i < q; ++i) {
+            cin >> x[i] >> y[i];
+        }
+        x[q] = y[q] = 1;
+        x[q+1] = n, y[q+1] = m;
+        sort(x.begin(), x.end());
+        sort(y.begin(), y.end());
+        ll l = 1, b = 1, x_min = n, x_max = 0, y_min = m, y_max = 0;
+        for (ll i = 1; i < q+2; ++i) {
+            if (x[i] != x[i-1]) {
+                ++l;
+                x_min = min(x_min, x[i]-x[i-1]);
+                x_max = max(x_max, x[i]-x[i-1]);
+            }
+            if (y[i] != y[i-1]) {
+                ++b;
+                y_min = min(y_min, y[i]-y[i-1]);
+                y_max = max(y_max, y[i]-y[i-1]);
+            }
+        }
+        --l, --b;
+        cout << l*b << ' ' << x_min*y_min << ' ' << x_max*y_max << '\n';
+    }
+    
+    return 0;
+}

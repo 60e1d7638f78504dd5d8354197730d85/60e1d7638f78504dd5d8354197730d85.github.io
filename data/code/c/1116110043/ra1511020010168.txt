@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+ 
+void main()
+{
+    char str[25], reverse_str[25] = {'\0'};
+    int i, length = 0, flag = 0;
+ 
+    
+    fgets(str,sizeof(str),stdin);
+    
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        length++;
+    }
+    
+    for (i = length - 1; i >= 0 ; i--)
+    {
+        reverse_str[length - i - 1] = str[i];
+    }
+   
+    for (flag = 1, i = 0; i < length ; i++)
+    {
+        if (reverse_str[i] != str[i])
+            flag = 0;
+    }
+    if (flag == 1)
+       printf ("Palindrome\n");
+    else
+       printf("Not palindrome\n");
+}

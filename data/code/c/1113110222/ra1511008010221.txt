@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void decToHexa(int n);
+
+int main() {
+    int num, num1, num2;
+    scanf("%d %d %d", &num, &num1, &num2);
+    printf("%d ", num);
+
+    long quotient;
+    int octalNumber[100], i = 1, j;
+
+
+    quotient = num1;
+    while (quotient != 0) {
+        octalNumber[i++] = (int) (quotient % 8);
+        quotient = quotient / 8;
+    }
+    
+    for (j = i - 1; j > 0; j--)
+        printf("%d", octalNumber[j]);
+
+    printf(" ");
+
+    decToHexa(num2);
+    return 0;
+}
+
+void decToHexa(int n) {
+    // char array to store hexadecimal number
+    char hexaDeciNum[100];
+
+    // counter for hexadecimal number array
+    int i = 0;
+    while (n != 0) {
+        // temporary variable to store remainder
+        int temp = 0;
+
+        // storing remainder in temp variable.
+        temp = n % 16;
+
+        // check if temp < 10
+        if (temp < 10) {
+            hexaDeciNum[i] = temp + 48;
+            i++;
+        } else {
+            hexaDeciNum[i] = temp + 87;
+            i++;
+        }
+
+        n = n / 16;
+    }
+
+    int j;
+    // printing hexadecimal number array in reverse order
+    for (j = i - 1; j >= 0; j--)
+        printf("%c", hexaDeciNum[j]);
+}
+

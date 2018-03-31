@@ -1,0 +1,51 @@
+#include <stdio.h>
+struct days {};
+int main()
+{
+	int dd,mm,yyyy,nd,nm,ny,ndays;
+	scanf("%d%d%d",&dd,&mm,&yyyy);
+  	if(mm>12)
+      	printf("Invalid Month");
+  	else if(yyyy<0000 || yyyy>2999)
+      	printf("Invalid Year");
+  	else if(dd>31)
+      	printf("Invalid Day");
+  	else{
+	switch(mm){
+		case 1:
+      	case 3:
+      	case 5:
+      	case 7:
+      	case 8:
+      	case 10:
+      	case 12:
+			ndays=31;
+			break;
+		case 4:
+      	case 6:
+      	case 9:
+      	case 11:
+			ndays=30;
+			break;
+		case 2:
+			if(yyyy%4==0)
+				ndays=29;
+			else
+				ndays=28;
+			break;
+	}
+    nd=dd+1;
+    nm=mm;
+    ny=yyyy;
+    if(nd>ndays){
+        nd=1;
+        nm++;
+    }
+    if(nm>12){
+        nm=1;
+        ny++;
+    }
+	printf("%d %d %d",nd,nm,ny);
+    }
+	return 0;
+}

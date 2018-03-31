@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int min(int,int);
+int main() {
+	int T,N,i,j,u=0,d=0;
+	cin>>T;
+	while(T--)
+	{
+	    string s;
+	    cin>>s;
+	    N=s.length();
+	    for(i=0;i<N;i++)
+	    {if(s.at(i)=='U')
+	    {for(j=i;j<N;j++)
+	    if(s.at(j)=='D')
+	    {u++;i=j-1;
+	    break;}
+	    else if(j==N-1)
+	    {u++;i=N;}}
+	    else if(s.at(i)=='D')
+	    {for(j=i;j<N;j++)
+	    if(s.at(j)=='U')
+	    {d++;i=j-1;
+	    break;}
+	    else if(j==N-1)
+	    {d++;i=N;}}}
+	    //cout<<u<<" "<<d<<endl;
+	    cout<<min(u,d)<<endl;
+	    u=0,d=0;
+	}
+	return 0;
+}
+int min(int x,int y)
+{
+    if(x<y)
+    return x;
+    else
+    return y;
+} 

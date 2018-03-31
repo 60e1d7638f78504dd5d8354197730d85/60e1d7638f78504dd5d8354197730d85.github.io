@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main()
+    {
+     int t,i,p1,lead1=0,lead2=0,max=0,winner,p2,lead;
+     scanf("%d",&t); 
+     for(i=1;i<t;i++)
+         {
+           scanf("%d %d",&p1,&p2);
+           lead1=lead1+p1;
+           lead2=lead2+p2;
+           if((lead1-lead2)>0)
+             {
+              lead=lead1-lead2;
+             }
+           else
+             {
+              lead=lead2-lead1;
+             }
+           if(lead>max)
+             {
+              max=lead;
+              if((lead1-lead2)>0)
+                winner=1;
+              else
+                winner=2;
+             }
+         }
+      printf("%d %d\n",winner,max);
+  return 0;
+      }
+           
+         

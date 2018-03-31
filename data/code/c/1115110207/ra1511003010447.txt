@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int n=0,l1=0,l2=0,tempL=0,i,j,sum,flag=0,k=-1;
+  int arr[20],temp[2]={0};
+  while(scanf("%d",&arr[n])!=EOF){n++;}
+  
+  l1=arr[0];
+  l2=arr[1];
+  if(l1<l2){
+  	tempL=l1;
+    l1=l2;
+    l2=tempL;
+  	}
+  
+  for(i=2;i<n;i++){
+  	if(arr[i]>l1){
+    	l2=l1;
+      	l1=arr[i];
+    	}
+    else if(arr[i]>l2){
+    	l2=arr[i];
+    	}
+  	}
+  
+  
+  printf("%d\n%d\n%d",l1,l2,(l1+l2)/2);
+	
+  return 0;
+}

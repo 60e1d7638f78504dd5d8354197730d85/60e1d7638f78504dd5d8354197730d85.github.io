@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+int compare(const void *a,const void *b)
+{
+	return (*(int*)a-*(int*)b);
+}
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,m,i,j=0,k=0;
+		scanf("%d%d",&n,&m);
+		int a[m],b[n-m],temp[n];
+		for(i=0;i<m;i++)
+			scanf("%d",&a[i]);
+		for(i=0;i<n;i++)
+			temp[i]=i+1;
+		qsort(a,m,sizeof(int),compare);
+		for(i=0;i<n;i++)
+		{
+			if(temp[i]==a[j])
+				j++;
+			else
+			{
+				b[k]=temp[i];
+				k++;
+			}
+		}
+		for(i=0;i<n-m;i=i+2)
+			printf("%d ",b[i]);
+		printf("\n");
+		for(i=1;i<n-m;i=i+2)
+			printf("%d ",b[i]);
+		printf("\n");
+	}
+	return 0;
+}

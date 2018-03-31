@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int max(int num1, int num2) {
+	return num1>num2 ? num1 : num2;
+}
+
+int calc(int arr[], int n, int pos) {
+	if(pos+1 >= n) {
+    	if(pos == n-1) return arr[pos];
+      	return 0;
+    }
+  	return max(arr[pos]+arr[pos+1]+calc(arr, n, pos+3), max(calc(arr,n, pos+1), arr[pos]+calc(arr, n, pos+2)));
+}
+
+int main()
+{
+	int n;
+  	cin>>n;
+  	int arr[n];
+  	for(int i=0; i<n; i++) cin>>arr[i];
+  	cout<<calc(arr, n, 0);
+	return 0;
+}

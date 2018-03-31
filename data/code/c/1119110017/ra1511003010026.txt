@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <ctype.h>
+int main()
+{
+  char *c,a[100];
+  scanf("%s",a);
+  int i;
+  for(i=0;a[i]!='\0';i++)
+  {
+    c=&a[i];
+    if(isalpha(a[i]))
+    {
+      if(isupper(a[i]))
+      {
+        printf("Upper case character was entered\n%c",*c);
+      }
+      else
+      {
+        printf("Lower case character was entered\nUpper case=");
+        a[i]=toupper(a[i]);
+        c=&a[i];
+        printf("%c",*c);
+      }
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define MAX_SIZE 100 // Maximum array size
+
+int main()
+{
+    int arr[MAX_SIZE];
+    int N, i;
+    int * ptr = arr;    // Pointer to arr[0] 
+  
+    scanf("%d", &N);
+    for (i = 0; i < N; i++)
+    {
+        scanf("%d", ptr);
+        ptr++;   
+    }
+  	ptr = arr;
+  	int c,j;
+  	for (i = 0; i < N; i++)
+    {
+      	c = 0;
+      	int v;
+      	v = *ptr;
+      	for(j=1;j<=v;j++)
+          	if((v % j)==0)
+        		c=c+1;
+    	if(c==2)
+      		printf("%d is a prime number\n",*ptr);
+  		else
+      		printf("%d is a composite number\n",*ptr);
+  		ptr++;
+    }
+    return 0;
+}

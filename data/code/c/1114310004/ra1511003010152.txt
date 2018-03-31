@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+int q[106],front=-1,rear=-1;
+void enque(int added_item){
+        if (front == - 1)
+        front = 0;
+        rear = (rear + 1)%100;
+        q[rear] = added_item;
+    
+} 
+int deque(){
+	int i;
+	if(front==-1)	return -1;
+    	if(front==rear){
+    		i=front;
+    		front=rear=-1;
+    		return q[i];
+    	}
+    	i=front;
+        front = (front + 1)%100;
+     
+  	return q[i];
+}
+int main(){
+	int n,t,p,r,i,k,m,qq,a,b;
+	scanf("%d",&t);
+	while(t--){
+		a=0;
+		front=rear=-1;
+		scanf("%d %d %d %d %d %d",&n,&m,&qq,&p,&r,&k);
+		memset(q,0,sizeof(q));
+		b=n;
+		for(i=1;i<=k;i++){
+				
+				if(m>0&&i%r==0){ qq++;m--;}
+			
+				while(b!=n){
+						if(q[front]+p==i){	deque(); b++;a++;}
+						else break;
+					}
+				while(qq>0&&b>0){
+					enque(i);
+					qq--;
+					b--;
+					}
+				}	
+		printf("%d %d %d %d\n",b,a,m,qq);
+		}
+		return 0;
+	}
+		

@@ -1,0 +1,106 @@
+#include <bits/stdc++.h>
+#define ff first
+#define ss second
+#define pb push_back
+#define MOD (1000000007LL)
+#define LEFT(n) (2*(n))
+#define RIGHT(n) (2*(n)+1)
+ 
+using namespace std;
+typedef long long int ll;
+typedef unsigned long long ull;
+typedef pair<int, int> ii;
+typedef pair<int, ii> iii;
+ 
+const ll nax = 1000000 + 10;
+ 
+ll n, right_low[nax];
+ll DP[nax], arr[nax], DP1[nax];
+ 
+int main()
+{    ios_base::sync_with_stdio(0);
+ 
+    cin>>n;
+    for(ll i=1;i<=n;i++)
+        cin>>arr[i];
+ 
+        stack<ll> st;
+    right_low[n] = n+1;
+    st.push(n);
+    for(ll i=n-1;i>=1;i--){
+        while(!st.empty() && arr[st.top()] >= arr[i])
+            st.pop();
+        if(st.empty())  right_low[i] = n+1;
+        else    right_low[i] = st.top();
+        st.push(i);
+    }
+ 
+ 
+    DP[n] = arr[n] % MOD;
+ 
+    for(ll i=n-1;i>=1;i--){
+        DP[i] = (((right_low[i]-i)*arr[i])  % MOD + DP[right_low[i]]) % MOD;
+    }
+ 
+    ll ans = 0;
+    ans = accumulate(DP+1, DP+n+1, 0LL);
+   /* for(ll i = 1; i <= n; i++)
+        cout << DP[i] << " ";
+ 
+        cout << endl; */
+        // here
+        memset(right_low, 0, sizeof(right_low));
+ 
+        for(ll i = 1; i <= n; i++)
+             arr[i] *= -1;
+ 
+             reverse(arr + 1, arr + n + 1);
+              while(!st.empty())
+               st.pop();
+ 
+    right_low[n] = n+1;
+    st.push(n);
+    for(ll i=n-1;i>=1;i--){
+        while(!st.empty() && arr[st.top()] >= arr[i])
+            st.pop();
+        if(st.empty())  right_low[i] = n+1;
+        else    right_low[i] = st.top();
+        st.push(i);
+    }
+ 
+ 
+    DP1[n] = arr[n] % MOD;
+ 
+    for(ll i=n-1;i>=1;i--){
+        DP1[i] = (((right_low[i]-i)*arr[i] ) % MOD+ DP1[right_low[i]]) % MOD;
+    }
+ 
+         for(ll i = 1; i <= n; i++)
+            DP1[i] *= -1;
+ 
+           /* for(ll i = 1; i <= n; i++)
+        cout << DP1[i] << " ";
+        cout << endl; */
+ 
+       // cout << ans << " " << ans1 << endl;
+ 
+         ll mainans = 0;
+ 
+         ans %= MOD;
+         ans -= DP[1];
+         if(ans < 0)
+            ans += MOD;
+         ll ptr = 2;
+ 
+         for(ll i = n; i > 1; i--)
+         {
+             ll toadd = (DP1[i] % MOD * ans) % MOD;
+             ans -= DP[ptr++];
+             if(ans < 0)
+                ans += MOD;
+             mainans = (mainans % MOD + toadd) % MOD;
+         }
+ 
+         cout << mainans;
+    return 0;
+}

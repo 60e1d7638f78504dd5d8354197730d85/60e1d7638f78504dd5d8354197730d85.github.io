@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,n,a[100],y;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+    	scanf("%d",&a[i]);    
+    }
+  	int b[n];
+  	for(i=0;i<n;i++){
+      b[i] = 0;
+    }
+  	for(i=0;i<n;i++){
+    	for(j=i+1;j<n;j++){
+        	if(a[i] == a[j]) b[i]++	;
+        }
+    }
+  	int max = 0;
+  	for(i=0;i<n;i++){
+      if(b[i]>max){
+        max = b[i];
+        y = a[i];	
+      }   
+    }
+  	if(max>0) printf("Mode=%d",y);
+  	else printf("none");
+	return 0;
+}

@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+#define max 100
+int main()
+{
+char a[max],b,*c;
+  fgets(a,max,stdin);
+  //printf("%s\n",a);
+  scanf("%c\n",&b);
+  c=&b;
+  //printf("%c",*c);
+  int len=strlen(a);
+  int i;
+  for(i=0;i<len;i++)
+  {
+    if(*c == a[i])
+    {
+      c=&a[i];
+      while(*c !='\n')
+      {
+        
+        *c=*(c+1);
+        c++;
+      }
+      
+      *c='\0';
+      break;
+    }
+  }
+  int len1=strlen(a);
+ /* printf("%s",a);
+  printf("AFTER%d\n",len1);
+  printf("%d",a[14]);
+  */
+  for(i=0;i<len1;i++)
+  {
+    if(a[i] == '\n')
+    {
+      a[i]='\0';
+    }
+  }
+  int len2=strlen(a);
+ printf("%s",a);
+ // printf("AFTER%d\n",len2);
+   // printf("%c",a[12]);    
+	return 0;
+}

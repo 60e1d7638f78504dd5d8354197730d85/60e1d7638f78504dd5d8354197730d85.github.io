@@ -1,0 +1,60 @@
+#include<stdio.h>
+typedef double dd;
+typedef long long ll;
+dd a[1001][1001];
+ 
+dd solve ()
+{
+   int i,j;
+   for(i=0;i<1001;i++)
+   a[i][i]=a[i][0]=1;
+   
+   for(i=2;i<1001;i++)
+   for(j=1;j<i;j++)
+   a[i][j]=a[i-1][j-1]+a[i-1][j];
+   
+   
+   
+   
+   return 0;
+}
+ 
+ 
+int main()
+{
+    solve();
+    int s,n,m,k,ctr,t;
+    dd ans,denom,p,q;
+    scanf("%d",&t);
+    while(t--)
+    {
+              scanf("%d %d %d %d",&s,&n,&m,&k);
+              
+               s--;
+               n--;
+               m--;
+               ctr=0;
+               ans=0.0;
+               denom=a[s][n];
+ 
+               while(ctr<k )
+               {            
+                            if(s-m-n+ctr>=0 )
+                            {
+                                      p=a[m][ctr];
+                                      q=a[s-m][n-ctr];
+                                      ans=ans+(p*q);
+                            }
+                            
+                            ctr++;
+               }
+               ans=(dd)1 - (dd)ans/a[s][n];
+               printf("%.7lf\n",ans);
+               
+               
+    }
+  
+    return 0;
+    
+}
+ 

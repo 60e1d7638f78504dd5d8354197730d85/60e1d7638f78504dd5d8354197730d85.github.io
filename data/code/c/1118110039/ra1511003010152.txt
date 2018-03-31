@@ -1,0 +1,50 @@
+#include<stdio.h>
+ 
+int main()
+{
+int top,t,i;
+char in[401],st[401];    
+    
+scanf("%d",&t);
+while(t--)
+          {
+          scanf("%s",in);
+          top=0;    
+          st[top]='(';
+          top++;
+          
+          for(i=0;in[i]!='\0';i++)
+              {
+               if(in[i]=='('||in[i]=='+'||in[i]=='-'||in[i]=='*'||in[i]=='/'||in[i]=='^')
+               {
+               st[top]=in[i];
+               top++;                                                                          
+               }                   
+               else if(in[i]==')')
+               {
+               top--;
+               while(st[top]!='(')
+                 {
+                 printf("%c",st[top]);
+                 top--;              
+                 }           
+               }                   
+               else 
+               {
+               printf("%c",in[i]);     
+               }                   
+              }  
+          //printf("DONE");  
+          
+          top--;
+          while(st[top]!='(')
+             {
+             printf("%c",st[top]);
+             top--;              
+             }           
+          printf("\n");    
+              
+          }
+  return 0;
+}
+ 

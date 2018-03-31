@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class rec{
+	int length;
+  	int breadth;
+  	public:
+  	rec(){
+    	length = 0;
+      	breadth = 0;
+    }
+  	rec(int x,int y){
+    	length = x;
+      	breadth = y;
+    }
+   	rec(rec &r){
+      length = r.length;
+      breadth = r.breadth;
+    }
+  	void calc(){
+    	cout<<length*breadth<<endl;
+    }
+  
+};
+int main()
+{
+	int a,b;
+  	cin>>a>>b;
+  	rec r1(a,b);
+   	r1.calc();
+  	r1.calc();
+ 	rec r2(r1);
+  	r2.calc();
+	return 0;
+}

@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int r[8],c[8],cnt=16;
+
+int main() {
+	char row[9],i,j;
+	for (i=0;i<8;i++) {
+		scanf("%s\n",row);
+		for (j=0;j<8;j++) {
+			r[i]|=row[j]=='W';
+			c[j]|=row[j]=='W';
+		}
+	}
+	for (i=0;i<8;i++) cnt-=r[i]+c[i];
+	if (cnt==16) cnt=8;
+	printf("%i\n",cnt);
+	return 0;
+}

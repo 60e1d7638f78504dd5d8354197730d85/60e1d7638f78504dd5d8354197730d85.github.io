@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+ 
+int main(void){
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        char a[400],b[400];
+        int i,len,j;
+        scanf("%s",a);
+        len=strlen(a);
+        for(i=0,j=0;i<len;){
+            while(a[i]=='(')
+                ++i;
+            if(a[i]>=97 && a[i]<=122)
+                printf("%c",a[i++]);
+            b[j++]=a[i++];
+            if(a[i]>=97 && a[i]<=122)
+                printf("%c",a[i++]);
+            while(a[i]==')'){
+                    printf("%c",b[--j]);
+                    ++i;
+            }
+        }
+        printf("\n");
+    }
+	return 0;
+} 

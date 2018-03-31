@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+class class1{
+
+protected:
+int a;
+  public:
+  void getData(int x){
+  a=x;
+  }
+  
+  void disp(){
+  cout<<a;
+  }
+};
+
+class class2:class1{
+protected:
+  float f;
+  public:
+  void getData(int a,float f1){
+  class1::getData(a);
+    f=f1;
+  }
+  
+  void disp(){
+  class1::disp();
+    cout<<f;
+    
+  }
+};
+
+class class3:class2{
+char c;
+  public:
+  void getData(int a,float b,char c1){
+  class2::getData(a,b);
+    c=c1;
+  }
+  
+  void disp(){
+  class2::disp();
+    cout<<c;
+  }
+
+};
+int main()
+{
+class3 c1;
+  int n;
+  float f;
+  char c;
+  
+  cin>>n>>f>>c;
+  c1.getData(n,f,c);
+  c1.disp();
+	return 0;
+}

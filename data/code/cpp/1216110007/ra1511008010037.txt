@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Returns true if arr1[0..n-1] and arr2[0..m-1]
+// contain same elements.
+bool areEqual(int arr1[], int arr2[], int n, int m)
+{
+    // If lengths of array are not equal means
+    // array are not equal
+    if (n != m)
+        return false;
+ 
+    // Sort both arrays
+    sort(arr1, arr1+n);
+    sort(arr2, arr2+m);
+ 
+    // Linearly compare elements
+    for (int i=0; i<n; i++)
+         if (arr1[i] != arr2[i])
+            return false;
+ 
+    // If all elements were same.
+    return true;
+}
+ 
+// Driver Code
+int main()
+{
+    int arr1[10],arr2[10],n,m,i;// = { 3, 5, 2, 5, 2};
+    cin>>n;
+  for(i=0;i<n;i++)
+ cin>>arr1[i];
+  cin>>m;
+  for(i=0;i<n;i++)
+ cin>>arr2[i];
+    if (areEqual(arr1, arr2, n, m))
+        cout << "Yes";
+    else
+        cout << "No";
+    return 0;
+}

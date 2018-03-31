@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+    int a, b, t, aTemp, bTemp, lcm, gcd;
+        scanf("%d",&a);
+        scanf("%d",&b);
+  
+ 
+        aTemp = a;
+        bTemp = b;
+ 
+        while (bTemp != 0) {
+            t = bTemp;
+            bTemp = aTemp % bTemp;
+            aTemp = t;
+        }
+ 
+        gcd = aTemp;
+ 
+        /*
+         * GCD(a, b) * LCM(a, b) = a*b
+         */
+        lcm = (a * b) / gcd;
+        printf("\nGCD=%d" , gcd);
+     printf("\nLCM=%d" , lcm);
+	return 0;
+}

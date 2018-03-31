@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std ;
+ 
+const int N = 1e5 + 2 ;
+const int INF = 1e9 + 7 ;
+ 
+/************************************/
+int F[ N ] ;
+long long sum[ N ] ;
+ 
+int find( int u ) {
+	if( !F[ u ] ) return u ;
+	return F[ u ] = find( F[ u ] ) ;
+}
+ 
+void Union( int u , int v ) {
+	u = find( u ) , v = find( v ) ;
+	if( u == v ) return ;
+	F[ u ] = v ;
+	sum[ v ] += sum[ u ] ;
+}
+ 
+/************************************/
+struct edge {
+	int u , v , w ;
+	friend bool operator < ( edge e1 , edge e2 ) {
+		return e1.w < e2.w ;
+	}
+} ;
+ 
+vector<edge> E ;
+ 
+int main() {
+    int n , m ;
+    cin >> n >> m ;
+    for( int i = 1 ; i <= n ; i ++ ) {
+    	scanf( "%lld" , &sum[ i ] ) ;
+	}
+	int u , v , w ;
+	for( int i = 0 ; i < m ; i ++ ) {
+		scanf( "%d %d %d" , &u , &v , &w ) ;
+		E.push_back( { u , v , w } ) ;
+	}
+	sort( E.rbegin() , E.rend() ) ;
+	scanf( "%d %d" , &u , &v ) ;
+	for( int i = 0 ; i < m ; i ++ ) {
+		Union( E[ i ].u , E[ i ].v ) ;
+		if( find( u ) == find( v ) ) {
+			for( int j = i + 1 ; j < m ; j ++ ) {
+				if( E[ i ].w != E[ j ].w ) break ;
+				Union( E[ j ].u , E[ j ].v ) ;
+			}
+			printf( "%d %lld" , E[ i ].w , sum[ find( u ) ] ) ;
+			break;
+		}
+	}
+ 
+    return 0 ;
+}

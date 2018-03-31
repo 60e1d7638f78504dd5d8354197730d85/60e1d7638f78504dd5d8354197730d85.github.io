@@ -1,0 +1,35 @@
+import java.util.*;
+import java.io.*;
+
+public class TestClass{
+public void drawDigitsFromString(String strValue){
+ String str = strValue.trim();
+ String digits="";
+ for (int i = 0; i < str.length(); i++) {
+     char chrs = str.charAt(i);   
+     if (Character.isDigit(chrs))
+         digits = digits+chrs;
+ }
+ int no=Integer.parseInt(digits);
+  int mindig,dig1,nod=0,lardig=0;
+mindig=no%10;
+    while (no > 0) {
+  dig1=no%10;
+  if(dig1>lardig) lardig=dig1;
+  if(dig1<mindig) mindig=dig1;
+    nod++;
+  no= no/ 10;
+}
+  System.out.println(lardig);
+    System.out.println(mindig);
+}
+  
+public static void main (String args[]) {
+int no;
+  String s1;
+  Scanner sc=new Scanner(System.in);
+s1=sc.nextLine();
+TestClass t=new TestClass();
+  t.drawDigitsFromString(s1);
+}
+}

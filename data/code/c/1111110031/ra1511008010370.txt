@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+char check(int i)
+{
+  switch(i)
+  {
+    case 0:return '0';
+      break;
+      
+    case 1:return '1';
+      break;
+      
+    case 2:return '2';
+      break;
+      
+    case 3:return '3';
+      break;
+      
+    case 4:return '4';
+      break;
+      
+    case 5:return '5';
+      break;
+      
+    case 6:return '6';
+      break;
+      
+    case 7:return '7';
+      break;
+      
+    case 8:return '8';
+      break;
+      
+    case 9:return '9';
+      break;
+      
+    case 10:return 'a';
+      break;
+      
+    case 11:return 'b';
+      break;
+      
+    case 12:return 'c';
+      break;
+      
+    case 13:return 'd';
+      break;
+      
+    case 14:return 'e';
+      break;
+      
+      
+    case 15:return 'f';
+      break;
+      
+  }
+ 
+  
+}
+int main()
+{
+  int v,i,j,sum=0,p=0,strsum[100];
+  scanf("%d",&v);
+  printf("Decimal value:%d\n",v);
+  i=v;
+  while(i>0)
+  {
+   sum=sum+i%8*pow(10,p);
+    
+    i/=8;
+    p++;
+    
+  }
+  
+  printf("Octal value:%d\n",sum);
+  p=0;
+  sum=0;
+  i=v;
+  while(i>0)
+  {
+    
+   strsum[p]=check(i%16);
+   
+    
+    
+    i/=16;
+    p++;
+    
+  }
+  printf("Hexadecimal value:");
+  
+  for(i=p-1;i>=0;i--)
+    printf("%c",strsum[i]);
+  
+
+	return 0;
+}

@@ -1,0 +1,28 @@
+import java.util.*;
+ 
+class TestClass
+{
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		int m=1000000007;
+		while(t-->0)
+		{
+			int n=sc.nextInt();
+			long a[]=new long[n+1];
+			for(int i=0;i<=n;i++)
+				a[i]=sc.nextLong();
+			long p=a[0],q=a[0],sum=0;
+			int k=1;
+			for(int i=1;i<=n;i++)
+			{
+				p=a[i];
+				sum=(sum*2+q*p)%m;
+				q=(q+(p*k))%m;
+				k=(k*2)%m;
+			}	
+			System.out.println((sum*2)%m);
+		}	
+	}
+}

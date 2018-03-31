@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<math.h>
+ 
+#define gc getchar_unlocked
+inline int ui()
+{
+   register char c=0;
+   while (c<33)
+    c=gc();
+   int a =0;
+   while(c>33)
+   {
+       a = a*10+c-'0';
+       c=gc();
+   }
+   return a;
+}
+ 
+int main()
+{
+    int t,h,b;
+    float res;
+    t=ui();
+    while(t--)
+    {
+        b=ui();
+        h=ui();
+        res=sqrt(h*h-b*b);
+        printf("%f ",res);
+        res=hypot(b,h);
+        printf("%f\n",res);
+    }
+    return 0;
+}
+ 

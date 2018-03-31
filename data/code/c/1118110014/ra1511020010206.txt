@@ -1,0 +1,35 @@
+#include <stdio.h>
+int comp(float,float);
+struct fr
+{
+	int n,d;
+};
+int main()
+{
+	struct fr f1;
+  	struct fr f2;
+  	float n1,n2;
+  	int test;
+  	scanf("%d%d%d%d",&f1.n,&f1.d,&f2.n,&f2.d);
+  	n1=f1.n/f1.d;
+  	n2=f2.n/f2.d;
+  	test=comp(n1,n2);
+  	printf("%d/%d ",f1.n,f1.d);
+  	if(test==0)
+      printf("is equal to");
+  	else if(test==-1)
+      printf("is smaller than");
+  	else if(test==1)
+      printf("is greater than");
+  	printf(" %d/%d",f2.n,f2.d);
+	return 0;
+}
+
+int comp(float a,float b)
+{
+	if(a==b)
+      return 0;
+  	else if(a<b)
+      return -1;
+      return 1;
+}

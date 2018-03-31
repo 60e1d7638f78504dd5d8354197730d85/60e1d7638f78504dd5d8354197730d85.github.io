@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+class A{
+  
+  public:
+  string s;
+  A(){}
+  A(string str){
+    s=str;
+  }
+  A operator+(const A& a){
+    A a1;
+    a1.s = this->s+a.s;
+    return a1;
+  }
+};
+int main()
+{
+	string s1,s2;
+  cin>>s1>>s2;
+  A a1(s1),a2(s2),a3;
+  a3=a1+a2;
+  cout<<a3.s;
+	return 0;
+}

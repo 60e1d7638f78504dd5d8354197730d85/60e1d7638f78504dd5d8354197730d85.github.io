@@ -1,0 +1,28 @@
+#include<stdio.h>
+int num(int n , int m , int count);
+int sumTriangularNumbers(int n)
+{
+ return num(n , 1 , 0);
+}
+
+int num(int n , int m , int count)
+{
+  int i = 0 ;
+  if(count < n){
+    for(i = 0 ; i < count ; i++){
+      ++m;
+    }
+    return m + num(n , (m+1) , ++count);
+  }else{
+    return 0;
+  }
+}
+int main()
+{
+  int x,l;
+  scanf("%d",&x);
+  l=sumTriangularNumbers(x);
+  printf("%d",l);
+  
+  return 0;
+}

@@ -1,0 +1,22 @@
+import java.io.*;
+public class TestClass {
+	 public static void main(String...z)throws Exception{
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+    int n=Integer.parseInt(br.readLine());
+    int win=1,lead=0,temp=0;int i0=0,i1=0;
+    for(int i=0;i<n;i++){
+    String s[]=br.readLine().split(" ");
+    i0=i0+Integer.parseInt(s[0]);
+    i1=i1+Integer.parseInt(s[1]);
+    if(i0>i1){
+    lead=i0-i1;
+    if(temp<lead){ win=1;temp=lead;}
+    }
+    else if(i1>i0){
+    lead=i1-i0;
+    if(temp<lead){ win=2;temp=lead;}
+    }
+    }
+    System.out.println(win+" "+temp);
+     }
+}

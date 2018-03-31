@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+    int a[3][3]; 
+    int b[3][3];
+    int row, col, isSymmetric;
+   int r ,c;
+   scanf("%d\n%d",&r,&c);
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            scanf("%d", &a[row][col]);
+        }
+    }
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            b[row][col] = a[col][row];
+        }
+    }
+    isSymmetric = 1;
+    for(row=0; row<r && isSymmetric; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            if(a[row][col] != b[row][col])
+            {
+                isSymmetric = 0;
+                break;
+            }
+        }
+    }
+    if(isSymmetric == 1)
+    {
+        printf("Symmetric");
+     }
+    else
+    {
+        printf("Not Symmetric");
+    }
+	return 0;
+}

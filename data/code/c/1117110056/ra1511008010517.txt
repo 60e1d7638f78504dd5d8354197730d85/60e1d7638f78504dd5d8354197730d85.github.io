@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+int check_word(char n[],char str[])
+{
+  int i,j,counter=0;
+  for(i=0;str[i]!='\0';i++)
+  { 
+    for(j=0;n[j]!='\0';j++)
+    {
+      if(str[i]==n[j])
+      {
+        counter++;
+      }
+    }
+  }
+  if(counter==strlen(str))
+  {
+    return 1;
+  }
+  return 0;
+  
+}
+int main()
+{
+  char n[30];
+  scanf("%s",n);
+  int t;
+  scanf("%d",&t);
+  int i,j,k;
+  for(i=0;i<t;i++)
+  {
+    char str[30];
+    scanf("%s",str);
+    int check=check_word(n,str);
+    if(check==1)
+    {
+      printf("Yes\n");
+    }
+    else
+      printf("No\n");
+  }
+
+	return 0;
+}

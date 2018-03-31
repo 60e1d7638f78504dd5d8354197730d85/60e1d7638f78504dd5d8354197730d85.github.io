@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+	struct m_t {
+		int f;
+		float in;
+	} a, b;
+
+	// a += b
+	void add(struct m_t *a, struct m_t *b) {
+		int nf;
+
+		a->f += b->f;
+		a->f += (int)((a->in + b->in) / 12.0f);
+		a->in = fmodf(a->in + b->in, 12.0f);
+
+		printf("%dfeet\n%.1finches", a->f, a->in);
+	}
+
+	scanf("%d %f", &a.f, &a.in);
+	scanf("%d %f", &b.f, &b.in);
+
+	add(&a, &b);
+
+	return 0;
+}

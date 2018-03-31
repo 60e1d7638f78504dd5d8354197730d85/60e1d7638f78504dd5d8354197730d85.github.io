@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<string.h>
+ 
+long long int n,r,k[100005],a[100005][2],d,max,counter,i,j,m,ans[100005],c[100005];
+ 
+ 
+int main()
+{
+  scanf("%lld %lld",&n,&r);
+  for(i=0;i<n;i++)
+    scanf("%lld",&k[i]);
+  for(i=0;i<r;i++)
+  {
+      for(j=0;j<2;j++)
+        scanf("%lld",&a[i][j]);
+  }
+  scanf("%lld",&d);
+  for(m=0;m<r;m++)
+  {
+      for(i=a[m][0]-1;i<a[m][1];i++)
+      {
+          max=0,counter=0;
+          for(j=1;j<=d;j++)
+          {
+              if((i+j)<n)
+             {
+              if(k[i]<k[i+j] && i+j>(a[m][1]-1))
+              {
+                  if(max==0)
+                  {max=k[i+j];
+                    counter++;}
+                else
+                {
+                    if(max==k[i+j])
+                        counter++;
+                    else if(max<k[i+j])
+                    {
+                        counter=1;
+                        max=k[i+j];
+                    }
+                }
+              }
+            }
+              if(i-j>=0)
+              {
+                  if(k[i]<k[i-j] && (i-j)<(a[m][0]-1))
+                  {
+                  if(max==0)
+                  {max=k[i-j];
+                    counter++;}
+                else
+                {
+                    if(max==k[i-j])
+                        counter++;
+                    else if(max<k[i-j])
+                    {
+                        counter=1;
+                        max=k[i-j];
+                    }
+                }
+                  }
+ 
+              }
+          }
+          ans[i]=max;
+          c[i]=counter;
+      }
+ 
+      }
+ 
+      for(i=0;i<n;i++)
+      {
+           if(ans[i]!=0 && c[i]!=0)
+              printf("%lld %lld\n",ans[i],c[i]);
+              else
+                printf("-1\n");
+      }
+      return 0;
+}

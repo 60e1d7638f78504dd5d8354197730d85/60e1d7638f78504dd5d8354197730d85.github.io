@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int l,u,p[100],k=0;
+  	cin>>l>>u;
+  	for(int i=l;i<u;i++)
+    {
+      int ch=0;
+      for(int j=2;j<i;j++)
+        if(i%j==0)
+        {
+          ch=1;
+          break;
+        }
+      if(ch==0)
+      {
+        p[k]=i;
+        k++;
+      }
+    }
+    cout<<"\nPrime numbers between "<<l<<" and "<<u<<" are:";
+    for(int i=0;i<k;i++)
+      cout<<" "<<p[i];
+	return 0;
+}

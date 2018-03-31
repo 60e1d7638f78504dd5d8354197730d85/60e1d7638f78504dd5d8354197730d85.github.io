@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+ int i,j,k,t,a[1001][1001],n,sc; 
+ scanf("%d",&t); for(i=0;i<t;++i)
+ {
+  scanf("%d",&n)
+  ; for(j=2;j<=n;++j)
+  {
+  for(k=1;k<j;++k)
+  {
+  a[j][k]=0;
+  }
+  }
+   for(j=2;j<=n;++j)
+   {
+   scanf("%d",&sc);
+     a[j][0]=sc;
+     a[j][sc]=1;
+   }  for(j=3;j<=n;++j)
+   { 
+     for(k=1;k<=a[a[j][0]][0];++k)
+     { if(a[a[j][0]][k])
+     { 
+       a[j][k]=a[a[j][0]][k]+1; 
+     } 
+     } 
+     for(k=a[a[j][0]][0]+1;k<j;++k)
+     {
+       a[j][k]=0; 
+     }
+     a[j][a[j][0]]=1;
+   }
+    for(j=2;j<=n;++j)
+    {
+      for(k=1;k<j;++k)
+      { 
+        if(a[j][k]>0) 
+        { 
+          printf("%d %d %d ",j,k,a[j][k]);
+        }
+      }
+    }
+   printf("\n"); 
+ }
+  return 0;
+}

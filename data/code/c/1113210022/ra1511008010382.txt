@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+  int t,l,r,i,j,count=0,flag,count2,num;
+  scanf("%d",&t);
+  
+  if(t==0)
+    printf("0");
+  else
+  {
+  
+  while(t--)
+  {
+    count=0;
+    count2=0;
+    flag=0;
+    scanf("%d",&l);
+    scanf("%d",&r);
+    if(l==1)
+      l=l+1;
+    for(i=l;i<=r;i++)
+    {
+      num=i;
+      for(j=1;j<=num;j++)
+      {
+        if(num%j==0)
+          count++;
+      }
+      for(j=2;j<=count/2;j++)
+      {
+        if(count%j==0)
+        {
+          flag=1;
+          break;
+        }
+      }
+      if(flag==0)
+        count2++;
+      
+      flag=0;
+      count=0;
+      
+      
+    }
+    printf("%d\n",count2);
+  }
+  }
+	return 0;
+}

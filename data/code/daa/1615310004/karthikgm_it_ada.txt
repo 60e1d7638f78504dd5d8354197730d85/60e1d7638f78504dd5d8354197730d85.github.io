@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long T;
+const int nax = 1024 * 1024;
+int pot;
+const T inf = 3e18L;
+int x[nax], y[nax];
+T tr[2*nax];
+T two(T a) { return a * a; }
+T dist(int i, int j) { return two(x[i]-x[j]) + two(y[i]-y[j]); }
+bool cmp(int a, int b) {
+	if(x[a]-y[a] == x[b]-y[b])
+		return x[a] > x[b];
+	return x[a]-y[a] < x[b]-y[b];
+}
+int main() {
+	int n;
+	scanf("%d", &n);
+	assert(n >= 2);
+	pot = 1;
+	while(pot <= n) pot *= 2;
+	for(int i = 0; i < n; ++i)
+		scanf("%d%d", &x[i], &y[i]);
+	vector<int> order;
+	for(int i = 0; i < n; ++i)
+		order.push_back(i);
+	sort(order.begin(), order.end(), cmp);
+	for(int i = 0; i < 2 * pot; ++i) tr[i] = inf;
+	for(int i = pot; i > 0; i /= 2) tr[i] = 0;
+	for(int i : order) {
+		if(x[i]-y[i] <= x[0]-y[0]) continue;
+		T me = inf;
+		int a = pot + i;
+		int iter = 0;
+		while(true) {
+			if(a % 2 == 1) {
+				T right = tr[a-1];
+				if(dist(((a-1) << iter) - pot, i) >= right) {
+					--a;
+					while(a < pot) {
+						right = tr[2*a+1];
+						if(dist(((2*a+1) << (iter-1)) - pot, i) >= right)
+							a = 2 * a + 1;
+						else {
+							me = min(me, right);
+							a = 2 * a;
+						}
+						--iter;
+					}
+					break;
+				}
+				me = min(me, right);
+			}
+			a /= 2;
+			++iter;
+		}
+		me = min(me, max(tr[a], dist(a-pot, i)));
+		for(int j = pot + i; j > 0; j /= 2)
+			tr[j] = min(tr[j], me);
+	}
+	if(tr[pot+n-1] > inf - 1) puts("-1");
+	else printf("%lld\n", tr[pot+n-1]);
+	return 0;
+}

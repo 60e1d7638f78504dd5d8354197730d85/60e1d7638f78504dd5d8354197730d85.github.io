@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int T,G,n,i,I,Q,j,k,count;
+	scanf("%d",&T);
+  while(T>0)
+  {
+    scanf("%d",&G);
+    while(G>0)
+    {
+      count=0;
+      scanf("%d %d %d",&I,&n,&Q);
+      int ar[n];
+      for(i=0;i<n;i++)
+      {
+         ar[i]=I;
+      }
+      for(i=0;i<n;i++)
+      {
+       for(j=0;j<=i;j++) 
+       {
+         if(ar[i]==1)
+           ar[i]=2;
+         else
+           ar[i]=1;
+       }
+      }
+      for(i=0;i<n;i++)
+      {
+       if(ar[i]==Q)
+         count++;
+      }
+      printf("%d\n",count);
+     G--; 
+    }
+    
+   T--; 
+  }
+	return 0;
+}

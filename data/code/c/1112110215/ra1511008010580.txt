@@ -1,0 +1,59 @@
+#include <stdio.h>
+ 
+int main(){
+        int year=0,leap=0,num=0,odd=0,n,j,k;
+        scanf("%d",&n);
+        num=n;
+		if(num==2001)
+        {
+        	printf("monday");
+        }
+        if(num>2001){
+        	for(j=2001;j<num;j++){
+        		if((j%400==0) || ((j%4==0)&&(j%100!=0))){
+                	leap+=1;
+                	}
+                	else
+                		year+=1;
+        }
+        	odd=leap*2+year;
+        	odd=odd%7;
+   }
+        else{
+        	for(k=num;k<2001;k++){
+        		if((k%400==0) || ((k%4==0)&&(k%100!=0))){
+                	leap+=1;
+                	}
+                	else
+                		year+=1;
+        }
+        	odd=leap*2+year;
+        	odd=odd%7;
+            odd=7-odd;
+        }
+ 
+        switch(odd){
+        case 0:
+        printf("monday");
+        break;
+        case 1:
+        printf("tuesday");
+        break;
+        case 2:
+        printf("wednesday");
+        break;
+        case 3:
+        printf("thursday");
+        break;
+        case 4:
+        printf("friday");
+        break;
+        case 5:
+        printf("saturday");
+        break;
+        case 6:
+        printf("sunday");
+        break;
+        }
+    return 0;
+}

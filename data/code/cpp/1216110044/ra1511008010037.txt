@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iostream>
+#include <cstdio>
+ 
+using namespace std;
+long long int gcd(int a,int b){
+	while(b!=0)
+	{
+		int tmp= b;
+		b= a%b;
+		a=tmp;
+	}
+	return a;
+}
+ 
+int main(){
+ 
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		int n;
+		long long int k;
+		long long int min;
+		cin>>n;
+		long long int a[n];
+		for(int i=0;i<n;i++)
+			cin>>a[i];
+		min = (a[0]*a[1])/gcd(a[0],a[1]);
+		for(int i=0;i<n;i++)
+		{
+			for(int j=i+1;j<n;j++)
+			{
+				//printf("%d",gcd(a[i],a[j]));zz
+				if(min > a[i] && min > a[j]){
+					k= (a[i]*a[j])/gcd(a[i],a[j]);
+				if(min > k)
+					min =k;
+				}
+			}
+		}
+		cout<<min<<"\n";
+	}
+	return 0;
+} 

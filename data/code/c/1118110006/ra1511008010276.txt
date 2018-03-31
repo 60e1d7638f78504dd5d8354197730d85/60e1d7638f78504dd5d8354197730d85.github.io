@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<math.h>
+struct Time
+{
+  int minutes,seconds,hours;
+}startTime,stopTime,diff;
+int main()
+{
+  scanf("%d%d%d%d%d%d",&stopTime.hours,&stopTime.minutes,&stopTime.seconds,&startTime.hours,&startTime.minutes,&startTime.seconds);
+  printf("TIME DIFFERENCE=%d:%d:%d-%d:%d:%d=",stopTime.hours,stopTime.minutes,stopTime.seconds,startTime.hours,startTime.minutes,startTime.seconds);
+  if(stopTime.seconds<startTime.seconds)
+  {
+    stopTime.seconds = 60 + stopTime.seconds;
+    stopTime.minutes--;
+  }
+  if(stopTime.minutes<startTime.minutes)
+  {
+    stopTime.minutes = 60 + stopTime.minutes;
+    stopTime.hours--;
+  }
+  diff.seconds = stopTime.seconds-startTime.seconds;
+  diff.minutes = stopTime.minutes - startTime.minutes;
+  diff.hours = stopTime.hours - startTime.hours;
+    printf("%d:%d:%d",diff.hours,diff.minutes,diff.seconds);
+   
+  return 0;
+}

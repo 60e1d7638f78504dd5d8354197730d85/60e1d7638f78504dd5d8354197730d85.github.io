@@ -1,0 +1,56 @@
+#include<stdio.h>
+# define MAX 1000 
+double triangle[MAX + 1][MAX + 1];
+ 
+void makeTriangle() {
+int i, j;
+ 
+triangle[0][0] = 1; // C(0, 0) = 1
+ 
+for(i = 1; i <= MAX; i++) {
+triangle[i][0] = 1; // C(i, 0) = 1
+for(j = 1; j <= i; j++) {
+triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+}
+}
+}
+int main()
+{
+int i,n,t,s,k,m;
+double ans;
+makeTriangle();
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d%d%d%d",&s,&n,&m,&k);
+s--;
+n--;
+m--;
+if(s-m<n-k)
+{
+printf("1.0000000\n");
+continue;
+} 
+ans=0;
+ 
+if(k<=n)
+{
+if(m>n)
+{
+for(i=0;i<=n-k;i++)
+{
+ans+=(triangle[m][k+i]*triangle[s-m][n-k-i])/triangle[s][n];
+}
+}
+else
+{
+for(i=0;i<=m-k;i++)
+{
+ans+=(triangle[m][k+i]*triangle[s-m][n-k-i])/triangle[s][n];
+}
+}
+}
+printf("%.7f\n",ans);
+}
+  return 0;
+} 

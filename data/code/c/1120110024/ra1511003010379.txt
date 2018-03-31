@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+char temp[50];
+void del(char str[],char ch) 
+{
+  int i,j=0;
+  int size;
+  char ch1;
+  char str1[10];
+  size=strlen(str);
+  for(i=0;i<size;i++){
+    if(str[i]!=ch){
+      ch1=str[i];
+      str1[j]=ch1;
+      j++;
+    }
+  }
+  str1[j]='\0';
+  strcpy(temp,str1);
+}
+
+int main()
+{
+  char a[50];
+  scanf("%s\n",a);
+  char ch;
+  scanf("%ch",&ch);
+  if(isupper(ch)!=0) 
+  {
+    del(a,ch);
+    del(temp,tolower(ch)); 
+  }
+  if(isupper(ch)==0) 
+  {
+    del(a,ch); 
+    del(temp,toupper(ch));
+  }
+  printf("%s",temp);
+  
+  return 0;
+}

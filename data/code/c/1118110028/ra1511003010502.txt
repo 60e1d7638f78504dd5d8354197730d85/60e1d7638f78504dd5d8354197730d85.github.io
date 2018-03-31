@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+
+union reverse
+{
+int num;
+int rev;
+};
+
+
+int main()
+{	
+ 	union reverse R;
+  	union reverse Q;
+  	Q.rev=0;  
+  	scanf("%d", &R.num);
+    while (R.num > 0)
+    {
+        Q.rev = Q.rev * 10;
+        
+        Q.rev = Q.rev + R.num%10;
+        
+        R.num = R.num/10;
+    }
+    printf("%d", Q.rev);
+   return 0;
+}

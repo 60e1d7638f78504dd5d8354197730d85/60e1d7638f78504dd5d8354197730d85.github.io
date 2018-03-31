@@ -1,0 +1,72 @@
+#include<stdio.h>
+#define max(x,y) x>=y?x:y
+#define min(x,y) x<=y?x:y
+int gcd(int x,int y)
+{
+int g=y;
+while(x>0)
+{
+g=x;
+x=y%x;
+y=g;
+}
+return g;
+}
+int main()
+{
+int t,a,b,c,flag,var,var1,var2,var3,var4,mx,mn;
+scanf("%d",&t);
+while(t--)
+{
+scanf("%d%d%d",&a,&b,&c);
+var=gcd(a,b);
+mx=max(a,b);
+mn=min(a,b);
+flag=0;
+var1=var2=var3=var4=0;
+if(((c%var)!=0)||(c>mx))
+flag=-1;
+else
+{
+while((var1!=c)&&(var2!=c)&&(var3!=c)&&(var4!=c))
+{
+if(var1==0)
+var1=mx;
+else if(var2==mn)
+var2=0;
+else if(var1>=mn)
+{
+var1=var1-mn+var2;
+var2=mn;
+}
+else if(var1<mn)
+{
+var2=var1;
+var1=0;
+}
+if(var4==0)
+var4=mn;
+else if(var3==mx)
+var3=0;
+else if((var4==mn)&&(var3+mn>mx))
+{
+var4=var3+mn-mx;
+var3=mx;
+}
+else if((var4==mn)&&(var3+mn<=mx))
+{
+var3=var3+mn;
+var4=0;
+}
+else if(var4<mn)
+{
+var3=var4;
+var4=0;
+}
+flag++;
+}
+}
+printf("\n%d",flag);
+}
+return 0;
+} 

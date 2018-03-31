@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+int count(char str[],int n);
+int main()
+{
+  char str[100];
+  int c,l;
+  scanf("%s",str);
+  l=strlen(str);
+  c=count(str,l);
+  printf("%d\n",c);
+	return 0;
+}
+int count(char str[],int n)
+{
+  int i=1,c,lf,tf,tc;
+  c=lf=90-str[0];
+  while(i<n)
+  {
+    tc=((lf+1)*(90-str[i]))%1000000007;
+    c=(c+tc)%1000000007;
+    tf=(lf*26)%1000000007;
+    lf=(tf+90-str[i])%1000000007;
+    i++;
+  }
+  return c;
+}

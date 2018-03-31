@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int u=1,l=1,i,j,n;
+  	scanf("%d",&n);
+  	if(!n){
+      printf("0\n");
+      return 0;
+    }
+  	int a[n][n];
+  	for(i=0;i<n;i++)
+      for(j=0;j<n;j++)
+        scanf("%d",&a[i][j]);
+  	for(i=0;i<n;i++)
+      for(j=0;j<i;j++)
+        if(a[i][j]){
+          u=0;
+          break;
+        }
+  	for(i=0;i<n;i++)
+      for(j=i+1;j<n;j++)
+        if(a[i][j]){
+          l=0;
+          break;
+        }
+  if(u || l) printf("yes");
+  else printf("no");
+	return 0;
+}

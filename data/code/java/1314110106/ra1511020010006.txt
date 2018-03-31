@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s = new Scanner(System.in);
+       int n = s.nextInt();
+       int m = s.nextInt();
+       int a[][] = new int[n][m];
+       for(int i=0;i<n;i++)
+         for(int j=0;j<m;j++)
+           a[i][j]=s.nextInt();
+       if(spa(a,n,m))
+         System.out.println("The matrix is a sparse matrix");
+       else 
+         System.out.println("The matrix is not a sparse matrix");
+	}
+  static boolean spa(int a[][],int n,int m)
+  {
+    for(int i=0;i<n;i++)
+         for(int j=0;j<m;j++)
+         {
+           if(a[i][j]>1||a[i][j]<0)
+             return false;
+         }
+    return true;
+  }
+}

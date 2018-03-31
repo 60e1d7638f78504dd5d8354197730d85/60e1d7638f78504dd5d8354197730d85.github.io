@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int arr[1000];
+void printArray(int arr[],int n){
+  for(int i=0;i<n;i++){
+    cout<<arr[i]<<" ";
+  }
+  cout<<endl;
+}
+void shellsort(int arr[],int n){
+  for(int gap=n/2;gap>0;gap/=2){
+    for(int i=gap;i<n;i++){
+      int temp=arr[i];
+      int j;
+      for(j=i;j>=gap&&arr[j-gap]>temp;j-=gap){
+        arr[j]=arr[j-gap];}
+        arr[j]=temp;
+      
+  }printArray(arr,n);
+}
+}
+
+int main()
+{
+    int n,i;
+  cin>>n;
+  //int arr[n];
+  for(i=0;i<n;i++){
+    cin>>arr[i];
+  }
+  shellsort(arr,n);
+	return 0;
+}

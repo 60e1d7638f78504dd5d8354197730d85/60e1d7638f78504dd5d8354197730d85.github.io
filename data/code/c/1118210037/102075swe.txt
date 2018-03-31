@@ -1,0 +1,28 @@
+#include<stdio.h>
+ 
+int main()
+{
+  int i,j,n,c=0,w,x,y,z,ls=0,ss=0;
+  scanf("%d",&n);
+  scanf("%d",&w);
+  int h[100];
+  for(i=0;i<n;i++) 
+    scanf("%d",&h[i]);
+  y=(w*(w-1)*(2*w-1))/6;
+  z=(w*(w-1))/2;
+  for(i=0;i<n;i++)
+  {
+    ls+=(i>=w)? (h[i]-h[i-w]):h[i];  
+    ss+=(i>=w)? (h[i]*h[i]-h[i-w]*h[i-w]):h[i]*h[i]; 
+    if(i<w-1) 
+      continue;
+    if((ls-z)%w==0)
+    {
+      x=(ls-z)/w;
+      if(ss==(x*(w*x+2*z)+y)) 
+        c++;
+    }
+  }
+  printf("%d\n",c);
+  return 0;
+}

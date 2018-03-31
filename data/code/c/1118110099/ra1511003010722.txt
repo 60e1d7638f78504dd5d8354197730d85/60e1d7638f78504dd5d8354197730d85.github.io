@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include<math.h>
+struct EMI
+{
+  float principal;
+  float rate;
+  float time;
+};
+
+int main()
+{
+struct EMI e;
+  scanf("%f%f%f",&e.principal,&e.rate,&e.time);
+  float r,y,emi;
+  //float emi;
+  r=e.rate/(12*100);
+  y=e.time*12;
+  emi=(e.principal*r*pow(1+r,y))/(pow(1+r,y)-1);
+  printf("Monthly EMI is=%.6f",emi);
+	return 0;
+}

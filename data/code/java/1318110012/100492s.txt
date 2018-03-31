@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+interface Student
+{
+  
+  public void getDetails();
+  public void DisplayDetails();
+  
+}
+class StudentDetails implements Student
+{ 
+String first_name;
+  String last_name;
+  float marks;
+  Scanner sc;
+StudentDetails(Scanner ss)
+{
+sc=ss;
+}
+public void getDetails()
+{
+  //Scanner sc=new Scanner(System.in);
+  first_name=sc.next();
+  last_name=sc.next();
+  marks=sc.nextFloat();
+  }
+  public void DisplayDetails()
+  {
+  System.out.println(""+first_name);
+  System.out.println(""+last_name);
+  System.out.println(""+marks);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		
+        Scanner sc=new Scanner(System.in);
+        StudentDetails sd=new StudentDetails(sc);
+        sd.getDetails();
+        sd.DisplayDetails();
+	}
+}
+

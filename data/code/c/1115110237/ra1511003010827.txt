@@ -1,0 +1,38 @@
+#include<stdio.h>
+long long int l[10000][10000]={0};
+int main()
+{
+    long long int n,x,y,q,a,b,sum=0,i,j,k,total=0;
+    scanf("%lld",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld%lld",&a,&b);
+        sum=sum+b-a+1;
+        for(j=a-1;j<b;j++)
+        {
+            l[i][j]=1;
+        }
+    }
+    total=sum;
+    scanf("%lld",&q);
+    for(k=0;k<q;k++)
+    {
+        sum=total;
+        scanf("%lld%lld",&a,&b);
+        for(i=0;i<n;i++)
+        {
+            sum=sum-l[a-1][i];
+        }
+        for(i=0;i<n;i++)
+        {
+            sum=sum-l[i][b-1];
+        }
+        sum=sum+l[a-1][b-1];
+        if(sum%2==0)
+            printf("E\n");
+        else
+            printf("O\n");
+    }
+    return 0;
+}
+  

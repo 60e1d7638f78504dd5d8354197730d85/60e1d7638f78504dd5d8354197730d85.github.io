@@ -1,0 +1,54 @@
+#include <stdio.h>
+int gcd(int a, int b) {
+    if (b == 0)
+        return a;
+    return gcd(b,a%b);
+}
+int min(int a,int b) {
+    if(a>b)
+        return b;
+    else
+        return a;
+}
+int step(int capa,int capb,int c) {
+    int a=0,b=0;
+    int count=0,p;
+    while((a!=c) && (b!=c)) {
+        if(a==capa) {
+            a=0;
+            count++;
+        }
+        if(b==0) {
+            b=capb;
+            count++;
+        }
+        else {
+            p=min(b,capa-a);
+            a+=p;
+            b-=p;
+            count++;
+        }
+    }
+    return count;
+}
+int main(void) {
+	int t,g,c1,c2;
+	int a,b,c,ans;
+	scanf("%d",&t);
+	while(t--) {
+	    scanf("%d %d %d",&a,&b,&c);
+	    g=gcd(a,b);
+	    if((c%g!=0) || (c>a && c>b)) {
+	        printf("-1\n");
+	    }
+	    else {
+	    c1=step(a,b,c);
+	    c2=step(b,a,c);
+	    ans=min(c1,c2);
+	    printf("%d\n",ans);
+	    }
+	}
+
+	return 0;
+}
+  

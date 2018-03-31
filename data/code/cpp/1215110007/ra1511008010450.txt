@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+class Car
+{
+ public:
+  float startMiles,endMiles,litres;
+  void initializeData() {cin>>startMiles>>endMiles>>litres;}
+  float getstartMiles() {return startMiles;}
+  float getendMiles(){ return endMiles;}
+  float getlitres() {return litres;}
+  float calculateMPL() {return (int)(endMiles-startMiles)/litres;}
+  bool isEconomycar(){ return ((endMiles-startMiles)/litres)>18;}
+};
+int main()
+{
+	class Car c;
+  	c.initializeData();
+  if(c.endMiles<c.startMiles)cout<<"Improper readings";
+  else{
+  	cout<<c.getstartMiles()<<"\n"<<c.getendMiles()<<"\n"<<(int)c.calculateMPL()<<"\n"<<c.getlitres()<<"\n";
+  	c.isEconomycar()?cout<<"true":cout<<"false";}
+	return 0;
+}

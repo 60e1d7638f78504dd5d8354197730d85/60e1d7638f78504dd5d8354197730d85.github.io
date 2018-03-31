@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	public static void main(String[] args)
+    {
+    String input1,s2,s3=null;
+    int input2;
+      int rem0,rem,rem2,rem3;
+      int q0,q1,q2,q3;
+      int sum1,sum2=0;
+     int password[]=new int[4];
+      Scanner ob1=new Scanner(System.in);
+      input1=ob1.nextLine();
+      input2=ob1.nextInt();
+     int length=String.valueOf(input2).length();
+      password[3]=input1.charAt(input1.length()-1);
+      s2=Integer.toString(input2);
+        System.out.print(s2.charAt(0));
+         if(Character.isUpperCase(input1.charAt(0)))
+     s3= Character.toString(input1.charAt(0)).toLowerCase();
+           else 
+             if(Character.isLowerCase(input1.charAt(0)))
+           s3= Character.toString(input1.charAt(0)).toUpperCase();
+           
+      password[1]=s3.charAt(0);
+       
+      System.out.print((char)password[1]);
+      if(length==4){
+        rem0=input2%1000;
+        q0=input2/1000;
+        rem=rem0%100;
+        q1=rem0/100;
+        q2=rem/10;
+        rem2=rem%10;
+        sum1=q0+q1+q2+rem2;
+        q3=sum1/10;
+       rem3=sum1%10;
+       sum2=q3+rem3;
+        password[2]=sum2;
+      System.out.print(password[2]);
+      }
+      if(length==3){
+      rem=input2%100;
+      q1=input2/100;
+       q2=rem/10;
+       rem2=rem%10;
+       sum1=q1+q2+rem2;
+       q3=sum1/10;
+      rem3=sum1%10;
+      sum2=q3+rem3;
+         password[2]=sum2;
+      System.out.print(password[2]);
+      }
+      if(length==2){
+      q2=input2/10;
+      rem2=input2%10;
+      sum1=q2+rem2;
+      q3=sum1/10;
+      rem3=sum1%10;
+      sum2=q3+rem3;
+         password[2]=sum2;
+      System.out.print(password[2]);}
+      if(length==1){
+         password[2]=input2;
+      System.out.print(password[2]);
+      }
+      System.out.print((char)password[3]);
+           
+    }
+}

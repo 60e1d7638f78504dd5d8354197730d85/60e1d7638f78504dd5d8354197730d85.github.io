@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main(){
+static int array[10][10];
+    int i, j,n, a = 0, sum = 0;
+ 
+    //printf("Enetr the order of the matix \n");
+    scanf("%d",&n);
+   // if (m == n )
+    //{
+        //printf("Enter the co-efficients of the matrix\n");
+        for (i = 0; i < n; ++i)
+        {
+            for (j = 0; j < n; ++j)
+            {
+                scanf("%d", &array[i][j]);
+            }
+        }
+      /*  printf("The given matrix is \n");
+        for (i = 0; i < n; ++i)
+        {
+            for (j = 0; j < n; ++j)
+            {
+                printf(" %d", array[i][j]);
+            }
+            printf("\n");
+        }*/
+        for (i = 0; i < n; ++i)
+        {
+            sum = sum + array[i][i];
+            a = a + array[i][n - i - 1];
+        }
+        //printf("\nThe sum of the main diagonal elements is = %d\n", sum);
+        //printf("The sum of the off diagonal elemets is   = %d\n", a);
+  int res=0;
+  res=abs(sum-a);
+  printf("%d",res);
+   // }
+    //else
+     //   printf("The given order is not square matrix\n");
+return 0;
+}

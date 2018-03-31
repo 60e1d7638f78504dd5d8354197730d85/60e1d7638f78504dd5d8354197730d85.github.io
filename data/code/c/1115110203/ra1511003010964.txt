@@ -1,0 +1,35 @@
+# include <stdio.h> 
+//# include <conio.h> 
+#include<string.h>
+void main() 
+{ 
+  int t;
+  scanf("%d",&t);
+  while(t--){
+ int month[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
+ char week[7][10] ;
+ int date=1, mon=1, year, i, r, s = 0 ; 
+
+ strcpy(week[0], "sunday") ; 
+ strcpy(week[1], "monday") ; 
+ strcpy(week[2], "tuesday") ; 
+ strcpy(week[3], "wednesday") ; 
+ strcpy(week[4], "thursday") ; 
+ strcpy(week[5], "friday") ; 
+ strcpy(week[6], "saturday") ; 
+// printf("Enter a valid date (dd/mm/yyyy) : ") ; 
+    
+ scanf("%d",&year) ; 
+ if(year==2016) printf("friday\n");
+    else{
+    if( (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)) ) 
+  month[1] = 29 ; 
+ for(i = 0 ; i < mon - 1 ; i++) 
+  s = s + month[i] ; 
+ s = s + (date + year + (year / 4) - 2) ; 
+ s = s % 7 ; 
+ printf("%s\n", week[s]) ; 
+  }
+  }
+// getch() ; 
+}

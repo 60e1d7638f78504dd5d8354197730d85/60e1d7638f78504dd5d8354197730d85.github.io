@@ -1,0 +1,31 @@
+#include <iostream>
+ 
+int main()
+{
+	int t; 
+	bool letters[26],common;
+	std::string s1,s2;
+	std::cin>>t;
+	for(int i=0;i<t;i++) {
+		std::cin>>s1>>s2;
+		common=false;
+		for(int j=0;j<26;j++) {
+			letters[j]=false;
+		} 
+		for(int j=0;j<s1.size();j++) {
+			letters[s1[j]-'a']=true;
+		}
+		for(int j=0;j<s2.size();j++) {
+			if(letters[s2[j]-'a']) {
+       //       std::cout<<"\n";
+				std::cout<<"Yes"<<std::endl;
+          //    std::cout<<"\n";
+				common = true;
+				break;
+			}
+		}
+		if(!common) {
+			std::cout<<"No"<<std::endl;
+		}
+	} 
+}

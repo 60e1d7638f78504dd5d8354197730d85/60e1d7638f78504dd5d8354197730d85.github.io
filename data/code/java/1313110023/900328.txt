@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner inp=new Scanner(System.in);
+       int n=inp.nextInt();
+       int k=inp.nextInt();
+       int t[]=new int[30];
+       for(int i=1;i<=n;i++)
+       {
+         t[i]=inp.nextInt();
+       }
+       int pno=1;
+       int ctr=0;
+       for(int i=1;i<=n;i++)
+       {
+         int q=t[i];
+         for(int j=1;j<=q;j++)
+         {
+           if(j==pno)
+             ctr++;
+           if(j%k==0 || j==q)
+             pno++;
+         }
+       }
+       System.out.println(ctr);
+	}
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,k,i,l,pos=0,z;
+  scanf("%d",&t);
+  int a[10];
+  while(t--)
+  {
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    scanf("%d",&k);
+    l=a[k];
+    for(i=0;i<n;i++)
+    {
+      if(a[i]>a[i+1])
+         {
+           z=a[i];
+           a[i]=a[i+1];
+           a[i+1]=z;
+         }
+     }
+     
+     for(i=0;i<n;i++)
+         {
+           if(l==a[i])
+           {
+             pos=i;
+           }
+         }
+         printf("%d\n",pos);
+     }
+	return 0;
+}

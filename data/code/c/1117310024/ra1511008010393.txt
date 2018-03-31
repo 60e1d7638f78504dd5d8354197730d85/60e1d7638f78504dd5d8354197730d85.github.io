@@ -1,0 +1,116 @@
+#include <stdio.h>
+void merge(int a[],int l,int m,int r)
+{
+  int i,j,k;
+  int n1=m-l+1;
+  int n2=r-m;
+  int L[n1],R[n2];
+  for(i=0;i<n1;i++)
+    L[i]=a[l+i];
+  for(j=0;j<n2;j++)
+    R[j]=a[m+1+j];
+  i=0;
+  j=0;
+  k=l;
+  while(i<n1&&j<n2)
+  {
+    if(L[i]<=R[j])
+    {
+      a[k]=L[i];
+      i++;
+    }
+    else
+    {
+      a[k]=R[j];
+      j++;
+    }
+    k++;
+  }
+  while(i<n1)
+  {
+    a[k]=L[i];
+    i++;
+    k++;
+  }
+  while(j<n2)
+  {
+    a[k]=R[j];
+    j++;
+    k++;
+  }
+}
+void mergeSort(int a[],int l,int r)
+{
+  if(l<r)
+  {
+    int m=l+(r-l)/2;
+    mergeSort(a,l,m);
+    mergeSort(a,m+1,r);
+    merge(a,l,m,r);
+  }
+}
+  int binary(int a[],int req,int i,int j)
+  {
+    if(i>j)
+      return -1;
+    int mid=(i+j)/2;
+    if(a[mid]==req)
+    {
+      int pos=mid;
+      while(pos>=0&&a[pos]==req)
+        pos--;
+      return pos+1;
+    }
+    if(a[mid]<req)
+      return binary(a,req,mid+1,j);
+    else
+      return binary(a,req,i,mid-1);  
+  
+}
+int main()
+{
+  int t,n,f,i,a[10010],req,pos,same,count1=0;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d%d",&n,&f);
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+      
+    }
+    mergeSort(a,0,n-1);
+    int count=0,req2;
+    same=0;
+    for(i=n-1;i>0;i--)
+    {
+      req=a[i];
+      count1=0;
+      while(req>0)
+      {
+        pos=binary(a,req,0,n-1);
+        if(pos!=-1&&a[i]==a[pos])
+        {
+          count+=((i-pos+1)*(i-pos))/2;
+          same=i-pos+1;
+        }
+        else
+        {
+          while(pos!=-1&&pos<i&&a[pos]==req)
+          {
+            pos++;
+            count1++;
+          }
+        }
+        if(req%f==0)
+          req/=f;
+        else
+          break;
+      }
+      count+=count1*same;
+      i=i-same+1;
+    }
+    printf("%d\n",count);
+  }
+  return 0;
+}

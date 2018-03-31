@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+#define MOD 1000000007
+#define MAX 1000000
+
+int fastInput(){
+  int val=0;
+  char c=getchar_unlocked();
+  while(c<33) c=getchar_unlocked();
+  while(c>33) val=(val<<1)+(val<<3)+(c-'0'),c=getchar_unlocked();
+  return val;
+}
+
+int main(void)
+{
+	int i,temp,t=fastInput();
+  	int z;
+  	for(z=0;z<t;z++)
+    {
+      int n=fastInput(),d=fastInput(),count=0,carry=0;
+      long long int p=1,pr=0;
+      int ans[MAX];
+      int ansCount=0;
+      int num[100000];
+      while(count<n)
+      {
+        temp=d*d+carry;
+        num[count++]=temp%10;
+        carry=temp/10;
+      }
+      if(carry>0) num[count++]=carry;
+      int prefix[count];
+      prefix[0]=num[0],carry=0;
+      for(i=1;i<count;i++) prefix[i]=prefix[i-1]+num[i];
+      for(i=0;i<n;i++){
+        temp=prefix[i]+carry;
+        ans[ansCount++]=temp%10;
+        carry=temp/10;
+      }
+      for(i=0;i<count-1;i++){
+        temp=prefix[count-1]-prefix[i]+carry;
+        ans[ansCount++]=temp%10;
+        carry=temp/10;
+      }
+      while(carry>0){
+        ans[ansCount++]=carry%10;
+        carry/=10;
+      }
+      for(i=ansCount-1;i>=0;i--){
+        long long int templl=(((long long int)ans[i])*p)%MOD;
+        pr=(pr+templl)%MOD;
+        p=(p*23)%MOD;
+      }
+      printf("%lld\n",pr);
+    }
+	return 0;
+}

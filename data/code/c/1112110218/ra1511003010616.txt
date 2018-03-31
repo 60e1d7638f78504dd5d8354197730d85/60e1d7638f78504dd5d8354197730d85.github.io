@@ -1,0 +1,29 @@
+#include <stdio.h>
+int checkPali(int n)
+{
+  int temp=n;
+  int rev=0;
+  while(temp>0)
+  {
+	rev=rev*10+(temp%10);
+    temp=temp/10;
+  }
+  return rev;
+}
+int main()
+{int n;
+ scanf("%d",&n);
+  n++;
+  int flag=10,pali;
+  while(flag>0)
+  {
+    pali=checkPali(n);
+    if(pali==n)
+    {
+      flag=0;
+    }
+    n++;
+  }
+  printf("%d",pali);
+return 0;
+}

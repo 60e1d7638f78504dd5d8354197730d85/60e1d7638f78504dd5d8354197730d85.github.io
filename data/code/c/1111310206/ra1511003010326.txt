@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main(){
+	int n,i;
+  	scanf("%d ",&n);
+  	char s[n];
+  	char newS[n];
+  	int ind;
+  	scanf("%s",s);
+  	int mid = (n-1)/2;
+  int counter = 0;
+  for (i = 0; i < n ; i++)
+  {
+   int temp = i+1;
+   if (n%2 == 0)
+   {
+    newS[mid-counter] = s[i];
+   }
+   else
+   {
+    newS[mid+counter] = s[i];
+   }
+   if (counter >=0)
+   {
+    counter = counter - temp;
+   }
+   else
+   {
+    counter = counter + temp;
+   }
+  }
+	for(i=0;i<n;i++)printf("%c",newS[i]);
+  	return 0;
+}

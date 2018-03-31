@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  char str[26];
+  int freq[26]={0};
+  int i=0,x;
+  
+  scanf("%s",str);
+  while(str[i]!='\0')
+  {
+    if(str[i]>='a' && str[i]<='z')
+    {
+      x=str[i]-'a';
+      freq[x]++;
+    }
+    i++;
+  }
+  int min=9;
+  for(i=0;i<26;i++)
+  {
+    if(freq[i]<min && freq[i]>0)
+      min=freq[i];
+  }
+  char ch=min+'a'+2;
+  printf("%c=%d",ch,min);
+
+	return 0;
+}

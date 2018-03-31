@@ -1,0 +1,30 @@
+#include<stdio.h>
+long long int m = 100000007;
+ 
+long long int modulo(long long int b, long long int e, long long int mod)
+{
+	long long int ans = 1;
+	while(e > 0)
+	{
+		if(e & 1) ans = (ans*b) % mod;
+		b = (b*b) % mod;
+		e = e >> 1;
+	}
+	return ans;
+}
+ 
+int main()
+{
+	long long int t , n, a1, a2;
+	scanf("%lld", &t);
+	while(t--)
+	{
+		scanf("%lld", &n);
+		a1 = ((modulo(3, n, 2*m) + 1) / 2) - modulo(2, n, m);
+		a2 = ((2 * modulo(4, n-1, m)) - modulo(3, n, m) + m) % m;
+		a2 = (a2 + modulo(2, n-1, m) + modulo(2, n, m) - ((modulo(3, n, 2*m) + 1) / 2) + m) % m;
+		a1 = (a1 + m) % m;
+		printf("%lld %lld\n",a1,a2);
+	}
+	return 0;
+}

@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int find(char *pattern,char *str)
+{
+  int l = strlen(pattern),i,j,flag=0;
+  for(i=0;str[i]!='\0';i++)
+  {
+    if(str[i]==pattern[0])
+    {
+      int p = i;
+      j=0;
+      while(j<l)
+      {
+        if(str[p] != pattern[j])
+        {
+          	flag = 1;
+         	break;
+        }
+        p++;
+        j++;
+      }
+      if(flag==0)
+      	return i;
+    }
+  }
+  return -1;
+}
+
+char *slice(char *str,int p,int len)
+{
+  int i,j=0; 
+  char *sub = (char *)malloc(sizeof(char)*strlen(str));
+  for(i=0;str[i]!='\0';i++)
+  {
+    if((i<p) || (i>=p+len))
+      sub[j++] = str[i];
+  }
+  
+  return sub;
+}
+
+int main()
+{
+	char str[100];
+  	char *s=str;
+  	size_t n = 100;
+  	char pattern[100];
+  	getline(&s,&n,stdin);
+  	scanf("%s",pattern);
+  	int i;
+  	if((i=find(pattern,str))!=-1)
+    {
+      int len = strlen(pattern);
+      char *sub = slice(str,i,len);
+      printf("%s",sub);
+    }
+	return 0;
+}

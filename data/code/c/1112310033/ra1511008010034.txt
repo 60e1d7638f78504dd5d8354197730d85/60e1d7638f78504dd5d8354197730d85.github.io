@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+ 
+struct point
+{
+	int x,y;
+};
+ 
+ 
+float distance(struct point p1,struct point p2)
+{
+	int k1=p1.x-p2.x;
+	int k2=p1.y-p2.y;
+	
+	k1=k1*k1;
+	k2=k2*k2;
+	k1+=k2;
+	//printf("%f\n",sqrt(k1));
+	return sqrt(k1);
+}
+ 
+int main()
+{
+	int testcases,i,R,count=0,j,k,flag=0;
+	struct point p[3];
+	
+	scanf("%d",&testcases);
+	for(i=0;i<testcases;i++)
+	{
+		scanf("%d",&R);
+		scanf("%d %d",&(p[0].x),&(p[0].y));
+		scanf("%d %d",&(p[1].x),&(p[1].y));
+		scanf("%d %d",&(p[2].x),&(p[2].y));
+ 
+		count=flag=0;
+		for(j=0;j<=1;j++)
+		{
+			for(k=j+1;k<3;k++)
+				if(distance(p[j],p[k])<=R)
+					count++;
+			if(count==2)
+				flag=1;
+		}
+		if(flag==1)
+			printf("yes\n");
+		else
+			printf("no\n");
+	}
+	return 0;
+}
+ 

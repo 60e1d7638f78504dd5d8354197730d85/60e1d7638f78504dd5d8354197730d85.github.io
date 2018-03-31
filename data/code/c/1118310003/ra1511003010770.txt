@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define S(a,b,c,d) if(Z[0][0]==a){if(Z[1][0]=='N'){X[b][Y[b]++]=Y[5];X[c][Y[c]++]=Y[5];}else{X[d][Y[d]++]=Y[5];}}
+#define Q(a,b) qsort(a,b,sizeof(int),comp);
+ 
+int comp(const void *a, const void *b)
+{return(*(int*)a>*(int*)b)?(1):((*(int*)a<*(int*)b)?(-1):(0));}
+ 
+int main()
+{
+int fall, i, j, n, Y[6], X[6][100500];
+char Z[2][5];
+for(scanf("%d",&fall); fall--; printf("%d\n",n-Y[4]))
+	{
+	for(Y[0]=Y[1]=Y[2]=!(i=scanf("%d",&n)); i<=n; i++)
+		{
+		scanf("%s %d %s",Z[0],&Y[5],Z[1]);
+		X[3][i]=Y[5];
+		S('=',0,1,2)
+		else S('>',1,2,0)
+		else S('<',0,2,1)
+		}
+	Q(X[2],Y[2])
+	Q(X[0],Y[0])
+	Q(X[1],Y[1])
+	Q(X[3]+1,n)
+	for(X[3][0]=X[3][1]-1,X[3][n+1]=X[3][n]+!(i=Y[3]=0); i<=n+1; i++)
+		if(i==0||X[3][i]!=X[3][i-1])
+			X[4][Y[3]++]=X[3][i];
+	for(i=0; i<n+2; X[5][i++]=0);
+	for(i=j=0; i<Y[2]; X[5][j]+=(X[4][j]==X[2][i++]))
+		for(;X[4][j]<X[2][i]; j++);
+	for(i=j=0; i<Y[0]; i++)
+		for(;X[4][j]<=X[0][i]; X[5][j++]+=i);
+	for(;j<Y[3]; X[5][j++]+=Y[0]);
+	for(i=Y[1]-1,j=Y[3]-1; i>=0; i--)
+		for(;X[4][j]>=X[1][i]; X[5][j--]+=Y[1]-1-i);
+	for(;j>=0; X[5][j--]+=Y[1]);
+	for(i=Y[4]=0; i<Y[3]; Y[4]=(X[4][i]>=1&&X[4][i]<=1000000000&&X[5][i]>Y[4])?X[5][i]:Y[4],i++);
+	}
+return 0;
+}
+ 

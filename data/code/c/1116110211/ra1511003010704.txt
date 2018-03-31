@@ -1,0 +1,54 @@
+#include <stdio.h>
+long b[100000],c[100000];
+long long h[100002],f[100002],g[100002],m[100002],p[100002];
+int main()
+{
+long t,i,j,n,k,q;
+  long long d,n1,l,r;
+  char a[100005];
+  scanf("%ld",&t);
+  while(t--)
+  {
+    scanf("%ld%ld%ld",&n,&k,&q);
+    scanf("%s",a);
+    c[0]=a[0]-48;
+    b[0]=!c[0];
+    for(i=1;i<=n;i++)
+      if(a[i]=='0')
+      {
+        b[i]=b[i-1]+1;
+        c[i]=c[i-1];}
+    else{c[i]=c[i-1]+1;b[i]=b[i-1];}
+    f[0]=0;h[0]=0;g[0]=0;m[0]=0;p[0]=0;
+    for(i=1;i<=n;i++){
+      for(j=g[i-1];j<=n;j++)
+        if((b[j-1]-b[i-2])<=k && ((c[j-1]-c[i-2])<=k))
+      {f[i]=j-i+1;
+       g[i]=j;}
+      else
+        break;
+      h[i]=h[i-1]+f[i];
+      for(j=m[i-1];j<=i;j++)
+        if(g[j]>=i)
+        {
+          m[i]=j;
+          break;
+        }
+      p[i]=p[i-1]+g[i];}
+    for(i=0;i<q;i++)
+    {
+      scanf("%lld%lld",&l,&r);
+      n1=r-l+1;
+      if(n1>k)
+      {
+        if(l<=m[r])
+          d=h[r]-h[l-1]-(p[r]-p[m[r]-1]-(r-m[r]+1)*r);
+        else
+          d=h[r]-h[l-1]-(p[r]-p[l-1]-(r-l+1)*r);
+      }
+      else
+      {
+        d=(n1*(n1+1))/2;}
+      printf("%lld\n",d);}}
+	return 0;
+}

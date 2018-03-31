@@ -1,0 +1,38 @@
+#include<stdio.h>
+int main(){ 
+  int t,n,m,a[1000]={0},x,k,l,count,j; 
+  char d[1000]; 
+  scanf("%d",&t); 
+  int i; 
+  for(i=0;i<t;i++)
+  { scanf("%d%d",&n,&m); 
+   for(j=0;j<1000;j++)
+     a[j]=0; 
+   for(j=0;j<1000;j++)
+     d[j]='0';
+   for(j=0;j<m;j++)
+   { scanf("%d",&x); 
+    a[x-1]=1;
+
+    }
+    count=0,k=0,l=0;
+    for(j=0;j<n;j++){
+       if(a[j]==0){
+       count++;
+       if(count%2==0&&count!=0)
+        d[j]='s';
+       if(count%2==1) d[j]='c';
+       }
+    }
+    for(j=0;j<n;j++)
+    if(d[j]=='c')
+    printf("%d ",j+1);
+    printf("\n");
+    for(j=0;j<n;j++)
+    if(d[j]=='s')
+    printf("%d ",j+1);
+    printf("\n");
+
+}
+return 0;    
+}

@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+	int n,t,sum=0,diff=0;
+  vector<int> a;
+  cin>>n;
+  for(int i = 0;i<n;i++){
+   cin>>t;
+    a.push_back(t);
+  }
+  for(int i =0;i<n-1;i++){
+   for(int j = i+1;j<n;j++){
+     diff = a[j]-a[i];
+     if(diff<0)
+       diff*=-1;
+     sum+=diff;
+   }
+  }
+  cout<<sum;
+	return 0;
+}

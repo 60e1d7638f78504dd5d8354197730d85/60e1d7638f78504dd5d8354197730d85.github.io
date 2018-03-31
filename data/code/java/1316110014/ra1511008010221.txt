@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class TestClass {
+
+    public static void main(String args[]) {
+      	Fibonacci f = new Fibonacci();
+      	f.getInput();
+      	f.displayFib();
+      
+      
+        
+    }
+}
+
+class Fibonacci {
+  int count;
+  public void getInput() {
+    Scanner s = new Scanner(System.in);
+        count = s.nextInt();
+  }
+  
+  public void displayFib() {
+    int n1 = 1, n2 = 1, n3, i;
+        if (count == 0) {
+            System.out.println(0);
+        } else if (count == 1) {
+            System.out.println(1);
+        } else {
+            System.out.print(n1 + " " + n2);
+            for (i = 2; i < count; ++i) {
+                n3 = n1 + n2;
+                System.out.print(" " + n3);
+                n1 = n2;
+                n2 = n3;
+            }
+        }
+  }
+}

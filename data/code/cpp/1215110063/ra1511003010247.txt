@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int calcZeroes(int n)                     
+{
+   int numZeroes = 0;
+   const int DIVIDER = 5;
+   while(n!=0)
+   {
+      numZeroes += (int)n/DIVIDER;
+      n = (int)n/DIVIDER;
+   }
+   return numZeroes;
+}
+
+int main()
+{
+   int t;
+   int *input;
+   int *output;
+   
+   cin>>t;
+   input = new int[t];                       
+   output = new int[t];
+   
+   for(int i=0;i<t;i++)
+   {      
+      cin>>*(input+i);                     
+      *(output+i) = calcZeroes(*(input+i));      }
+   
+   for(int i=0;i<t;i++)
+   {
+      cout<<*(output+i);
+      cout<<endl;
+   }
+   delete[] input;                         
+   delete[] output;
+   return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int d, n;
+    scanf("%d%d",&d,&n);
+    int s = sum(d, n);
+    printf("%d\n",s);
+  }
+	return 0;
+}
+
+int sum(int d, int n)
+{
+  if(d==0)
+    return n;
+  else
+  {
+    int s = 0;
+    int i;
+    for(i=1;i<=n;i++)
+      s += i;
+    d--;
+    return (sum(d,s));
+  }
+}

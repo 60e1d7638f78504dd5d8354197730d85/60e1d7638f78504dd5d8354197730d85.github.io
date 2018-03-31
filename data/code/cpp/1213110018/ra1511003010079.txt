@@ -1,0 +1,23 @@
+#include <iostream>
+#include <ctype.h>
+#include <string.h>
+#include <stdio.h>
+using namespace std;
+int main()
+{   char ch[60];
+    scanf("%[^\n]%*c",ch);
+    int ws=0,vw=0,con=0,dig=0;
+    for(int i=0; i<strlen(ch);i++)
+    {
+    if(ch[i] == ' ')
+       ws++;
+    else if(ch[i] == 'a' || ch[i] == 'e' || ch[i] == 'i' || ch[i] == 'o' || ch[i] == 'u')
+       vw++;
+    else if (isdigit(ch[i]))
+       dig++;
+    else
+       con++;
+    }
+    cout<<"Vowels:"<<vw<<"\n"<<"Consonants:"<<con<<"\n"<<"Digits:"<<dig<<"\n"<<"White spaces:"<<ws;
+	return 0;
+}

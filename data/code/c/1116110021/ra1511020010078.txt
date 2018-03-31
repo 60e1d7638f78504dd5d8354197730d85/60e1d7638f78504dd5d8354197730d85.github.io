@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int removeFirst(char *, const char);
+
+
+int main()
+{
+    char str[100];
+    char toRemove;
+
+
+    fgets(str,100,stdin);
+
+    
+    toRemove = getchar();
+
+    removeFirst(str, toRemove);
+
+   printf("%s", str);
+
+    return 0;
+}
+
+int removeFirst(char * str, const char toRemove)
+{
+    int i = 0;
+    int len = strlen(str);
+
+    
+    while(i<len && str[i]!=toRemove)
+        i++;
+
+    
+    while(i < len)
+    {
+        str[i] = str[i+1];
+        i++;
+    }
+}

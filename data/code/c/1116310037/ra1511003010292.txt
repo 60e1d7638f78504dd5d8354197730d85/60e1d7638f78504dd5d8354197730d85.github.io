@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define N	100000
+#define E	200000
+ 
+struct edge {
+	int u, v, used;
+} ee[E];
+ 
+int kk[N];
+ 
+struct item {
+	struct edge *e;
+	struct item *next;
+} *aa[N];
+ 
+void add(int u, struct edge *e) {
+	struct item *x = malloc(sizeof *x);
+ 
+	x->e = e;
+	x->next = aa[u];
+	aa[u] = x;
+	kk[u]++;
+}
+ 
+void connect(int i, int u, int v) {
+	struct edge *e = &ee[i];
+ 
+	e->u = u;
+	e->v = v;
+	e->used = 0;
+	add(u, e);
+	add(v, e);
+}
+ 
+int main() {
+	int n, m, i, e, k, yes;
+	static int stack[E + 1], visited[N];
+ 
+	scanf("%d%d", &n, &m);
+	for (i = 0; i < n; i++) {
+		aa[i] = NULL;
+		kk[i] = 0;
+		visited[i] = 0;
+	}
+	for (e = 0; e < m; e++) {
+		int u, v;
+ 
+		scanf("%d%d", &u, &v);
+		u--, v--;
+		connect(e, u, v);
+	}
+	yes = 1;
+	for (i = 0; i < n; i++)
+		if (kk[i] % 2 != 0) {
+			yes = 0;
+			break;
+		}
+	k = 0;
+	stack[k++] = 0;
+	while (k > 0) {
+		int u = stack[k - 1];
+ 
+		visited[u] = 1;
+		if (aa[u] == NULL)
+			k--;
+		else {
+			struct item *x = aa[u];
+			struct edge *e = x->e;
+ 
+			aa[u] = x->next;
+			free(x);
+			if (!e->used) {
+				e->used = 1;
+				if (e->u != u) {
+					e->v = e->u;
+					e->u = u;
+				}
+				stack[k++] = e->v;
+			}
+		}
+	}
+	for (i = 0; i < n; i++)
+		if (!visited[i]) {
+			yes = 0;
+			break;
+		}
+	printf("%s\n", yes ? "YES" : "NO");
+	if (yes)
+		for (e = 0; e < m; e++)
+			printf("%d %d\n", ee[e].v + 1, ee[e].u + 1);
+	return 0;
+}

@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <string.h>
+ 
+char string[1000002];
+ 
+void input()
+{
+    char ch=getchar();
+    while(ch<'0'||ch>'9')
+    ch=getchar();
+    int i=0;
+    while(ch>='0'&&ch<='9')
+    {
+        string[i] = ch ;
+        i++;
+        ch=getchar();
+    }
+    string[i] = 0; 
+}
+ 
+void addOne(int index)
+{
+    switch(string[index])
+    {
+        case '9':
+        if(!index)
+        {
+            int length = strlen(string),i;
+            for(i=length;i>0;i--)
+             string[i] = string[i-1];
+             string[length+1]=0;
+             string[0]='0';
+             index++;
+        }
+        string[index]='0';
+        addOne(index-1);
+        break;
+        default:
+        string[index]++;
+    }
+}
+ 
+int main(void) {
+	int T,i,length;
+	scanf("%d",&T);
+	while(T--)
+	{
+	    input();
+	    length = strlen(string);
+	       addOne(length-1);
+	        length = strlen(string);
+	       for(i=0;i<(length/2);i++)
+	        {
+	          if(string[i]!=string[length-1-i])
+	           {
+	             if(string[i]<string[length-1-i])
+	                 addOne(length-2-i);
+	                 string[length-1-i]=string[i];
+	              
+	           }
+	    }
+	    
+	    printf("%s\n",string);
+	}
+	return 0;
+} 

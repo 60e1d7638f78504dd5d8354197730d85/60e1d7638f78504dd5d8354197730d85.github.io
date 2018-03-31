@@ -1,0 +1,33 @@
+#include <stdio.h>
+unsigned int countSetBitsUtil(unsigned int x);
+ 
+
+unsigned int countSetBits(unsigned int n)
+{
+    int bitCount = 0,i; 
+ 
+    for(i = 1; i <= n; i++)
+        bitCount += countSetBitsUtil(i);
+ 
+    return bitCount;
+}
+ 
+
+unsigned int countSetBitsUtil(unsigned int x)
+{
+    if (x <= 0)
+        return 0;
+    return (x % 2 == 0 ? 0 : 1) + countSetBitsUtil(x / 2);
+}
+
+int main()
+{
+    int n,x;
+   scanf("%d %d",&x,&n);
+  while(x!=0)
+  {
+    printf("%d\n", countSetBits(n));
+   x--;
+  }
+    return 0;
+}

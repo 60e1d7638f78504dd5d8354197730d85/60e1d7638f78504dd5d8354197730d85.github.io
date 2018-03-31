@@ -1,0 +1,43 @@
+import java.util.Scanner;
+ 
+public class TestClass 
+{
+  public static void main(String args[])
+  {
+    int c, first, last, middle, n, search, array[];
+    Scanner in = new Scanner(System.in);
+    array = new int[5];
+    int i,j,temp;
+    for (c = 0; c < 5; c++)
+      array[c] = in.nextInt();
+       for (i = 0; i < 5-1; i++)      
+       { 
+       for (j = 0; j < 5-i-1; j++) {
+           if (array[j] > array[j+1]){
+              temp = array[j];
+              array[j]=array[j+1];
+              array[j+1]=temp;
+       }}}  
+  
+      search = in.nextInt();
+      first  = 0;
+      last   = 5-1 ;
+      middle = (first + last)/2;
+     while( first <= last )
+    {
+      if ( array[middle] < search )
+        first = middle + 1;    
+      else if ( array[middle] == search ) 
+      {
+        System.out.println("Element found at position "+(middle + 1));
+        break;
+      }
+      else
+         last = middle - 1;
+ 
+      middle = (first + last)/2;
+   }
+   if ( first > last )
+      System.out.println("Element not found in the tree");
+  }
+}

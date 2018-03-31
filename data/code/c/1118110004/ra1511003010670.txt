@@ -1,0 +1,54 @@
+#include <stdio.h>
+struct date
+{
+  int d,m,y;
+};
+int main()
+{
+  struct date p;
+  scanf("%d %d %d",&p.d,&p.m,&p.y);
+  if(p.y>=3000)
+  {
+    printf("Invalid Year");
+  }
+  
+  else if(p.m>12)
+  {
+    printf("Invalid Month");
+  }
+  else if(p.m==1 || p.m==3 || p.m==5 || p.m==7 || p.m==8 || p.m==10 || p.m==12)
+  {
+    if(p.d>31)
+    {
+      printf("Invalid Day");
+    }
+    else
+    {
+     printf("New Date=%d %d %d",(p.d+1),p.m,p.y);
+    }
+  }
+  else if(p.m==2)
+  {
+    if(p.d>28)
+    {
+      printf("Invalid Day");
+    }
+    else
+    {
+       printf("New Date=%d-%d-%d",(p.d+1),p.m,p.y);
+    }
+  }
+  else
+  {
+    if(p.d>30)
+    {
+      printf("Invalid Day");
+    }
+    else
+    {
+       printf("New Date=%d %d %d",(p.d+1),p.m,p.y);
+    }
+  }
+      
+	return 0;
+}

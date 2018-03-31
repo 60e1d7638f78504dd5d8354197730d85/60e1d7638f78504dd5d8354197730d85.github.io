@@ -1,0 +1,52 @@
+import java.util.Scanner;
+ 
+class TestClass 
+{
+	public static String sorted(String a)
+	{
+		char ch[]=a.toCharArray();
+		
+		for(int i=(a.length()-1); i>=0; i--)
+		{
+			for(int j=0; j<i; j++)
+			{
+				if(ch[j]>ch[j+1])
+				{	char temp = ch[j];
+					ch[j] = ch[j+1];
+					ch[j+1] = temp;
+				}
+			}
+		}
+		String b = new String(ch);
+		return b;
+	}
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		int t = input.nextInt();
+		
+		while(t>0 && t<=100)
+		{
+			String s = input.next();
+			int l = s.length();
+			
+			if(l>=2 && l<=1000)
+			{
+				String first = s.substring(0, l/2);
+				String last = s.substring((l+1)/2, l);
+				
+				String sorted_first = sorted(first);
+				String sorted_last = sorted(last);
+ 
+				if(sorted_first.equals(sorted_last))
+					System.out.println("YES");
+				else
+					System.out.println("NO");
+			}
+			
+			t--;
+		}
+		
+		input.close();
+	}
+}

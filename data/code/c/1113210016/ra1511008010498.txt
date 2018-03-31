@@ -1,0 +1,43 @@
+#include<stdio.h>
+long long a,b,test[30],sol;
+int main()
+{
+ int n,t,c1,c2,i,tmp,ans;
+ test[0]=1;
+ for(i=1;i<30;i++)
+ {
+  test[i]=2*test[i-1];
+ }
+ 
+ scanf("%d",&t);
+ while(t--)
+ {
+ sol=0;
+ c1=0;
+ c2=0;
+  scanf("%d%lld%lld",&n,&a,&b);
+  while(a!=0)
+  {
+    if(a%2==1)
+    c1++;
+    a=a/2;
+  }
+  while(b!=0)
+  {
+    if(b%2==1)
+    c2++;
+    b=b/2;
+  }
+  tmp=c1+c2;
+  if(tmp<=n)
+  ans=tmp;
+  else
+  ans=tmp-(tmp-n)*2;
+  for(i=n-1;i>=(n-ans);i--)
+  {
+   sol+=test[i];
+  }
+  printf("%lld\n",sol);
+ }
+}
+ 

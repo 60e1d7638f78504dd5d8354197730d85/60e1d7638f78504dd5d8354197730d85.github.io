@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+bool issub(string s, string s1,int pos){
+	int i,j;
+	for(i=pos,j=0;i<s1.length(),j<s1.length();i++,j++){
+		if(s[i]!=s1[j])
+			return false;
+	}
+	return true;
+}
+
+int main(){
+	int i,j,k,start,end;
+	string s;
+	getline(cin,s);
+	
+	string s1,s2;
+	getline(cin,s1);
+	getline(cin,s2);
+	
+	for(i=0;i<s.length();i++){
+		if(s[i]==s1[0]){
+			if(issub(s,s1,i)){
+				start = i;
+				end = i+ s1.length();
+			}
+		}
+			
+	}
+	
+	for(i=0;i<start;i++)
+		cout<<s[i];
+	cout<<s2;
+	for(i=end;i<s.length();i++)
+		cout<<s[i];
+}

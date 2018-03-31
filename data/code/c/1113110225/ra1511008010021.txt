@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main(){
+char ch[100];
+int nv=0,nc=0,d=0,w=0,len,i;
+  scanf("%[^\n]%*c",ch);
+  len=strlen(ch);
+  for (i=1;i<=len;i++){
+    if (ch[i]=='a' || ch[i]=='e' || ch[i]=='i' || ch[i]=='o' || ch[i]=='u')
+      nv++;
+    else
+      nc++;
+    if (ch[i]==' ')
+    w++;
+    if (ch[i]=='0' || ch[i]=='1' || ch[i]=='2' || ch[i]=='3' || ch[i]=='4' || ch[i]=='5' || ch[i]=='6' || ch[i]=='7' || ch[i]=='8' || ch[i]=='9')
+      d++;
+  }
+  printf("%d %d %d %d",nv,nc-d-w,d,w);
+	return 0;
+  }

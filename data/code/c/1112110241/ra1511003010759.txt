@@ -1,0 +1,54 @@
+#include <stdio.h>
+int main()
+{
+  char S[27];
+  char W[12];
+  int n, i, j;
+  int alpha_present[30];
+  int familiar;
+  
+  scanf("%s", S);
+  
+  for(i = 0; i <= 30; i++)
+  {
+  	alpha_present[i] = 0;
+  }
+  
+  for(i = 0; S[i] != '\0'; i++)
+  {
+  	alpha_present[S[i] - 'a'] = 1;
+  }
+  
+  scanf("%d", &n);
+  
+  for(j = 1; j <= n; j++)
+  {
+  	scanf("%s", W);
+    
+    for(i = 0; W[i] != '\0'; i++)
+    {
+      
+    	if(alpha_present[W[i] - 'a'] == 0)
+        {
+        	familiar = 0;
+          	break;
+        }
+      	else
+        {
+        	familiar = 1;
+        }
+    }
+    
+    if(familiar == 1)
+    {
+    	printf("Yes\n");
+    }
+    else
+    {
+    	printf("No\n");
+    }
+    
+  }
+
+	return 0;
+}

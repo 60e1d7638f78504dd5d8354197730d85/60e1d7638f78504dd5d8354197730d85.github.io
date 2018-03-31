@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int n , i;
+  scanf("%d",&n);
+  for(i = 1 ; i<=n ; i++)
+  {char c[20] , v[20];
+  scanf("%s",c);
+  scanf("%s",v);
+  int z = strlen(c);
+  int x = strlen(v);
+  //if(z==x)
+  //{
+    int j ;
+    int flag = 1;
+    for(j=0;j<z ; j++)
+    {
+      if((c[j]==v[j]) || (c[j] == '?' || v[j] == '?'))
+         {
+        if(c[j]<97 || c[j]>122 || v[j]<97 || v[j]>122)
+        {
+          if(c[j]!='?' && v[j] !='?')
+            flag = 0;
+        }
+         }
+         else
+         {flag = 0;
+          break;}
+    }
+         if(flag == 1)
+         printf("Yes\n");
+         else
+         printf("No\n");
+  
+   //else
+     //printf("No\n");
+  }
+	return 0;
+}

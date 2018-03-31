@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.util.HashMap;
+public class TestClass {
+
+  
+    public static void main(String[] args) {
+
+Scanner sc= new Scanner(System.in);
+
+String str;
+
+str=sc.nextLine();
+
+HashMap<Character, Integer> map = new HashMap<>();
+      
+for (char ch : str.toCharArray())
+
+{
+
+if (map.containsKey(ch))
+
+{
+
+int val = map.get(ch);
+
+map.put(ch, val + 1);
+
+}
+
+else
+
+{
+
+map.put(ch, 1);
+
+}
+
+}
+
+       TreeMap<Character, Integer> sorted = new TreeMap<>();
+         sorted.putAll(map);
+         for (Map.Entry<Character, Integer> entry : sorted.entrySet()) {
+            System.out.println("" + entry.getKey() + 
+                         "=" + entry.getValue());     }   
+    }
+     
+}
+    //  for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+    //System.out.println(entry.getKey()+" = "+entry.getValue());
+      //}

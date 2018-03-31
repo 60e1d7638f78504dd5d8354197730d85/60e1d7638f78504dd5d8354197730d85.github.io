@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+    long int q,l,r,i,j,x,val,val1,val2,ans;
+    scanf("%ld",&q);
+    for(i=1;i<=q;i++)
+    {
+        scanf("%ld %ld",&l,&r);
+        j=1;
+        x=1;
+        ans=0;
+        while(j<=r/2)
+        {
+            val=l-j;
+            if(val<=0)
+            val1=0;
+            else
+            {
+                val1=sqrt(val*2);
+                if(((val1+1)*(val1+2))/2<val)
+                val1++;
+                if((val1*(val1+1))/2>=val)
+                val1--;
+                if((val1*(val1+1))/2>=val)
+                val1--;
+                val1=val1-x+1;
+                if(val1<0)
+                val1=0;
+            }
+            val=r-j;
+            val2=sqrt(val*2);
+            if(((val2+1)*(val2+2))/2<=val)
+            val2++;
+            if((val2*(val2+1))/2>val)
+            val2--;
+            if((val2*(val2+1))/2>val)
+            val2--;
+            val2=val2-x+1;
+            ans+=val2-val1;
+            x++;
+            j=(x*(x+1))/2;
+        }
+        printf("%ld\n",ans);
+    }
+    return 0;
+}

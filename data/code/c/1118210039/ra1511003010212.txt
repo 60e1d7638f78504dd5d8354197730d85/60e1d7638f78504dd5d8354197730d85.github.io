@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+   int a[10],i,b[10],j=0,k,t;
+  for(i=0;i<10;i++)
+  {
+     scanf("%d",&a[i]);
+    if(a[i]%2==0)
+      b[j++]=a[i];
+  }
+  
+  for(i=0;i<j-1;i++)
+  {
+     for(k=0;k<j-i-1;k++)
+     {
+        if(b[k]>b[k+1])
+        {
+           t=b[k];
+          b[k]=b[k+1];
+          b[k+1]=t;
+        }
+     }
+  }
+  
+  for(i=0;i<j;i++)
+    printf("%d ",b[i]);
+	return 0;
+}

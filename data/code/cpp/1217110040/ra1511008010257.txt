@@ -1,0 +1,62 @@
+#include <set>
+#include <list>
+#include <map>
+#include <ratio>
+#include <stack>
+#include <regex>
+#include <ctime>
+#include <string>
+#include <cmath>
+#include <queue>
+#include <cstdio>
+#include <vector>
+#include <cctype>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <sstream>
+#include <numeric>
+#include <iostream>
+#include <complex>
+#include <algorithm>
+#include <functional>
+#include <unordered_set>
+#include <unordered_map>
+#define ms(a) memset(a,0,sizeof(a))
+#define rep(a,v,b) for(int a=v;a<b;a++)
+#define repe(a,v,b) for(int a=v;a<=b;a++)
+#define tp(_pair_or_tuple,_index) get<_index>(_pair_or_tuple)
+typedef long long LL;
+const LL LINF = LLONG_MAX;
+const int INF = INT_MAX;
+const int MAXN = 2e5 + 10;
+const int MOD = 1e9 + 7;
+const double eps = 1e-7;
+const double PI = acos(-1.0);
+using namespace std;
+template <typename T>
+T GCD(T a, T b)
+{
+	if (!b)return a;
+	return GCD(b, a%b);
+}
+template <typename T>
+T LCM(T a, T b)
+{
+	return a*b / GCD(a, b);
+}
+
+int main()
+{
+	int n; cin >> n;
+	string s;
+	bool f = false;
+	for (int i = 0; i < n / 2; i++)
+	{
+		s += (f ? "aa" : "bb");
+		f = !f;
+	}
+	if (n % 2)s += (!f ? "b" : "a");
+	cout << s << endl;
+	return 0;
+}

@@ -1,0 +1,210 @@
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+#define MAX 1000000000
+ 
+typedef struct _pnt
+{
+  int x;
+  int y;
+} Pnt;
+ 
+typedef struct _list
+{
+  Pnt *val;
+  struct _list *next;
+} List;
+ 
+Pnt **points;
+double eps = .00000001;
+ 
+List *newList(Pnt *val)
+{
+  List *ret = (List *)malloc(sizeof(List));
+  ret->val = val;
+  ret->next = NULL;
+  return ret;
+}
+ 
+Pnt *newPnt(int x, int y)
+{
+  Pnt *ret = (Pnt *)malloc(sizeof(Pnt));
+  ret->x = x;
+  ret->y = y;
+  return ret;
+}
+ 
+Pnt *addPnt(Pnt *a, Pnt *b)
+{
+  return newPnt(a->x + b->x, a->y + b->y);
+}
+ 
+Pnt *subPnt(Pnt *a, Pnt *b)
+{
+  return newPnt(a->x - b->x, a->y - b->y);
+}
+ 
+int dotPnt(Pnt *a, Pnt *b)
+{
+  return a->x * b->x + a->y * b->y;
+}
+ 
+double lenPnt(Pnt *a)
+{
+  return sqrt(a->x * a->x + a->y * a->y);
+}
+ 
+int sgn(double x)
+{
+  if (x > 0) return 1;
+  if (x < 0) return -1;
+  return 0;
+}
+ 
+int mycmp(const void *u, const void *v)
+{
+  Pnt *p = *((Pnt **)u);
+  Pnt *q = *((Pnt **)v);
+  if (p->x > q->x)
+  {
+    return 1;
+  }
+  if (p->x < q->x)
+  {
+    return -1;
+  }
+  if (p->y > q->y)
+  {
+    return 1;
+  }
+  if (p->y < q->y)
+  {
+    return -1;
+  }
+  return 0;
+}
+ 
+long long cross(Pnt *o, Pnt *a, Pnt *b)
+{
+  return (long long)(a->x - o->x)*(long long)(b->y - o->y) - (long long)(a->y - o->y)*(long long)(b->x - o->x);
+}
+ 
+Pnt **convex_hull(Pnt **points, int len, int *outlen)
+{
+  int i;
+  qsort(points, len, sizeof(Pnt*), mycmp);
+  Pnt **lower = (Pnt **)malloc(len * sizeof(Pnt *));
+  int lsiz = 0;
+  Pnt **upper = (Pnt **)malloc(len * sizeof(Pnt *));
+  int usiz = 0;
+  for (i = 0; i < len; i++)
+  {
+    Pnt *p = points[i];
+    while (lsiz >= 2 && cross(lower[lsiz-2], lower[lsiz-1], p) <= 0)
+    {
+      lsiz -= 1;
+    }
+    lower[lsiz++] = p;
+  }
+  for (i = len - 1; i >= 0; i--)
+  {
+    Pnt *p = points[i];
+    while (usiz >= 2 && cross(upper[usiz-2], upper[usiz-1], p) <= 0)
+    {
+      usiz -= 1;
+    }
+    upper[usiz++] = p;
+  }
+  *outlen = lsiz - 1 + usiz - 1;
+  Pnt **ret = (Pnt **)malloc(*outlen * sizeof(Pnt *));
+  int k = 0;
+  for (i = 0; i < lsiz - 1; i++)
+  {
+    ret[k++] = lower[i];
+  }
+  for (i = 0; i < usiz - 1; i++)
+  {
+    ret[k++] = upper[i];
+  }
+  return ret;
+}
+ 
+int main()
+{
+  int T, n, N, M, i, k;
+  int *A, *MI, *MA;
+ 
+  scanf("%d", &T);
+  while (T-->0)
+  {
+    scanf("%d", &n);
+    A = (int *)malloc(n*sizeof(int));
+    MI = (int *)malloc(n*sizeof(int));
+    MA = (int *)malloc(n*sizeof(int));
+    for (i = 0; i < n; i++)
+    {
+      scanf("%d", &A[i]);
+    }
+    int mi = MAX;
+    int ma = 0;
+    for (i = n-1; i >= 0; i--)
+    {
+      if (A[i] < mi)
+      {
+        mi = A[i];
+      }
+      MI[i] = mi;
+      if (A[i] > ma)
+      {
+        ma = A[i];
+      }
+      MA[i] = ma;
+    }
+    N = 2 * n;
+    points = (Pnt **)malloc((N+1) * sizeof(Pnt *));
+    k = 0;
+    for (i = 0; i < n - 1; i++)
+    {
+      int mi = MAX;
+      int ma = 0;
+      mi = MI[i+1];
+      ma = MA[i+1];
+      /*
+      for (j = i + 1; j < n; j++)
+      {
+        if (A[j] < mi)
+        {
+          mi = A[j];
+        }
+        if (A[j] > ma)
+        {
+          ma = A[j];
+        }
+      }
+      */
+      if (mi == ma)
+      {
+        points[k] = newPnt(A[i], mi);
+        k += 1;
+      }
+      else
+      {
+        points[k] = newPnt(A[i], mi);
+        k += 1;
+        points[k] = newPnt(A[i], ma);
+        k += 1;
+      }
+    }
+    N = k;
+    Pnt **path = convex_hull(points, N, &M);
+    long long su = 0;
+    for (i = 0; i < M; i++)
+    {
+      su += (long long)(path[i]->y + path[(i+1)%M]->y) * (long long)(path[i]->x - path[(i+1)%M]->x);
+    }
+    printf("%lld\n", su < 0 ? -su : su);
+  }
+  return 0;
+}

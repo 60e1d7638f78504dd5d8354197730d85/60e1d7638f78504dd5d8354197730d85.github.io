@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main()
+{ int r,c;
+ scanf("%d%d",&r,&c);
+    int array[r][c];
+    int row, col, isLower;
+
+   
+    
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+    
+    isLower = 1;
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+    
+    if(isLower == 1)
+    {
+        printf("\nyes\n");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

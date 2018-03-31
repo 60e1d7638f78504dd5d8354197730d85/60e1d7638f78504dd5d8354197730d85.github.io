@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int lengthfunction(int number)
+{    
+      int counter=0;
+      while(number)
+     {        
+            number=number/10;
+            counter++;
+      }
+      return counter;
+}
+
+int main()
+{
+	//cout<<lengthfunction(1234)<<endl;
+  	int num,answer=0,size;
+  	cin>>num;
+  	size=lengthfunction(num);
+  	//cout<<"Size:"<<size<<endl;
+  	for(int i=1;i<=size;i++)
+    {
+      //cout<<"iteration number "<<i<<endl;
+      answer=(answer*10)+(num%10);
+      num=num/10;
+      //cout<<num<<" ";
+    }
+  cout<<"The reverse is "<<answer;
+	return 0;
+}

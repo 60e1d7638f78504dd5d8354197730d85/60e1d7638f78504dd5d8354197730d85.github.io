@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef struct nodes{
+	char val;
+    struct nodes* next;
+} node;
+ 
+int check_bubbly(node* head){
+	int run_again;
+    node* piece = head;
+    while(1){
+	    if(piece->next != NULL){
+	    	if(piece->next->next !=NULL){
+	    		if(piece->next->val == piece->next->next->val){
+	    			piece->next = piece->next->next->next;
+	    			run_again=1;
+	    		}
+	    		else{
+	    			piece=piece->next;
+	    		}
+	    	}
+	    	else{
+	    		if(head->next==NULL){
+	    			return 1;
+	    		}
+	    		else if(run_again){
+	    			run_again=0;
+	    			piece=head;
+	    		}
+	    		else{
+	    			return 0;
+	    		}
+	    	}
+	    }
+	    else{
+	    	if(head->next==NULL){
+	    		return 1;
+	   		}
+	   		else if(run_again){
+	   			run_again=0;
+	   			piece=head;
+    		}
+       		else{
+    			return 0;
+    		}
+       	}
+	}
+}
+ 
+void get_list(node* head, char value[]){
+	node* current, *prev=head ;
+  int i;
+	for (i = 0; value[i]!='\0'; ++i){
+		current=(node*)malloc(sizeof(node));
+		current->val=value[i];
+		current->next=NULL;
+		prev->next=current;
+		prev=current;
+	}
+ 
+ 
+}
+void clear_list(node* head){
+	if(head->next!=NULL){
+		clear_list(head->next);
+	}
+	free(head);
+}
+ 
+void print_list(node* head){
+	if(head->next != NULL){
+		printf("%c ",head->next->val);
+		print_list(head->next);
+	}
+}
+int main(int argc, char const *argv[]){
+	char value[100009];
+	int n,count=0;
+	scanf("%d",&n);
+	while(n){
+		node* head =(node*)malloc(sizeof(node));
+		scanf("%s",value);
+		get_list(head,value);
+		count+=check_bubbly(head);
+		clear_list(head);
+		n--;
+	}
+	printf("%d",count);
+  return 0;
+}

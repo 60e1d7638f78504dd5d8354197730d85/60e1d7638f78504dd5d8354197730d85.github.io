@@ -1,0 +1,41 @@
+#include<stdio.h>
+#define get getchar_unlocked
+#define MAX 100000000
+inline long long int scanint()
+    {
+    long long int n=0,s=1;
+    register char p=get();
+    if(p=='-') s=-1;
+    while((p<'0'||p>'9')&&p!=EOF&&p!='-') p=get();
+    if(p=='-') s=-1,p=get();
+    while(p>='0'&&p<='9') { n = (n<< 3) + (n<< 1) + (p - '0'); p=get(); }
+    return n*s;
+    }
+ 
+int main()
+{
+	int t=scanint();
+    long long int power[41]={1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,1073741824,2147483648,4294967296,8589934592,17179869184,34359738368,68719476736,137438953472,274877906944,549755813888,1099511627776};
+ 
+ 
+	while(t--)
+	{
+		long long int i=0,x,k;
+		double p1=0,p2=0,ans=0,y;
+		x=scanint();k=scanint();
+		y=x;
+		while(power[i]<=k)
+		{
+			i++;
+			if(i>40)
+			break;
+		}
+		
+		i--;
+		p1=(y/power[i]);
+		p2=(k-power[i]+0.5);
+		ans=p1*p2;
+		printf("%f\n",ans);
+	}
+	return 0;
+} 

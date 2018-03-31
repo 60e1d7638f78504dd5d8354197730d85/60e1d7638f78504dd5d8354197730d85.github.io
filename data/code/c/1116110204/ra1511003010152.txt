@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int i,j,t,ch,f;
+	char s1[100],s2[100];
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%s%s",s1,s2);
+		f=0;
+		ch=0;
+		for(i=0,j=0;i<strlen(s1);i++)
+		{
+			if(s2[j]==s1[i])
+			{
+				ch+=1;
+				if(j==(strlen(s2)-1))
+					break;
+				j+=1;
+			}
+		}
+		if(ch==strlen(s2))
+			f=1;
+		ch=0;
+		for(i=0,j=strlen(s2)-1;i<strlen(s1);i++)
+		{
+			if(s2[j]==s1[i])
+			{
+				ch+=1;
+				if(j==0)
+					break;
+				j-=1;
+			}
+		}
+		if(f==1&&ch==strlen(s2))
+			f=3;
+		else if(ch==strlen(s2))
+			f=2;
+		printf("%d\n",f);
+	}
+	return 0;
+} 

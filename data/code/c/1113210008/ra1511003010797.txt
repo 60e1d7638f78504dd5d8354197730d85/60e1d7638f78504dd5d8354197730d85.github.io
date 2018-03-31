@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h> 
+#include<stdbool.h>
+long long int aa(int n,int k)
+{long double x=n*log10(n),y;
+ long long int u=x;
+    y=pow(10,x-u);
+   y=y*pow(10,k-1);
+ u=y;
+ return u;
+}    
+long long int bb(long long int a,long long int b,long long int mod)
+{if(b==1)
+    return a%mod;
+ if(b%2==0)
+ {long long int y=bb(a,b/2,mod);
+     return (y*y)%mod;
+ }    
+ else
+     return (a*bb(a,b-1,mod))%mod;
+}    
+int main()
+{int t,n,k;
+ scanf("%d",&t);
+ while(t--)
+{scanf("%d %d",&n,&k);
+     printf("%lld ",aa(n,k));
+     printf("%0*lld\n",k,bb(n,n,pow(10,k)));
+ }     
+ 
+ return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include<string.h>
+struct item
+{
+ char str[100];
+};
+int main()
+{
+  int n,i,j,k;
+  scanf("%d",&n);
+  int m=n;
+  struct item x[m];
+  for(i=0;i<n;i++)
+  scanf("%s",x[i].str);
+  for(j=0;j<n;j++)
+  {
+    int count=0;
+   for(k=0;k<strlen(x[j].str);k++)
+   {
+     if((x[j].str[k]=='0')&&(x[j].str[k+1]=='1'))
+       count++;
+   }
+    printf("%d\n",count);
+  }
+  
+	return 0;
+}

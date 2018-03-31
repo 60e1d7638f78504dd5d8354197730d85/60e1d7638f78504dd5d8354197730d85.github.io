@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int t,a,b,i,j,n,min,tm;
+    char s[1001],tmp[1001],ans[1001],luck[6]="lucky";
+    scanf("%d",&t);
+    while(t--){
+     scanf("%s",s);
+     n=strlen(s);
+     if(n<9){
+      printf("unlucky\n");
+      continue;
+     }
+     for(a=0,b=4,min=1001;b<n;a++,b++){
+      strcpy(tmp,s);
+      for(i=a,tm=0;i<=b;i++)
+       if(tmp[i]!=luck[i-a]){
+        tmp[i]=luck[i-a];
+        tm++;
+       }
+      for(i=0,j=n-1;i<j;i++,j--)
+       if(tmp[i]!=tmp[j]){
+        if(j>=a&j<=b&i>=a&i<=b) break;
+        if(j>=a&&j<=b) tmp[i]=tmp[j];
+        else if(i>=a&&i<=b)  tmp[j]=tmp[i];
+        else if(tmp[i]<tmp[j]) tmp[j]=tmp[i];
+        else tmp[i]=tmp[j];
+        tm++;
+       }
+      if(i>=j){
+       if(tm<min||tm==min&&strcmp(tmp,ans)<0){
+        min=tm;
+        strcpy(ans,tmp);
+       }
+      }
+     }
+     printf("%s %d\n",ans,min);
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int i,j,n;
+  char str[50],str1[50];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%s%s",str,str1);
+    strco(str,str1);
+  }
+  return 0;
+}
+int strco(char x[50],char y[50])
+{
+  int i,j,l,l1;
+  char ch;
+  l=strlen(x);
+  for(i=1;i<l;i++)
+    for(j=0;j<l-i;j++)
+      if(x[j]>x[j+1])
+      {
+        ch=x[j];
+        x[j]=x[j+1];
+        x[j+1]=ch;
+      }
+  l1=strlen(y);
+  for(i=1;i<l;i++)
+    for(j=0;j<l-i;j++)
+      if(y[j]>y[j+1])
+      {
+        ch=y[j];
+        y[j]=y[j+1];
+        y[j+1]=ch;
+      }
+  if(strcmp(x,y)==0)
+    printf("YES\n");
+  else
+    printf("NO\n");
+  return 0;
+}

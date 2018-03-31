@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int a,b,c,d;
+  cin>>a;
+  int arr[4];
+  b=a*a;
+  int i=0;
+  while(a!=0)
+  {
+  arr[i++]=a%10;
+    a/=10;
+  }
+  if(i==2)
+  {
+  c=arr[0]*10+arr[1];
+  }
+  if(i==3)
+  {
+  c=arr[0]*100+arr[1*10]+arr[2];
+  }
+ d=c*c;
+  int arr1[4],k=0;
+  while(b!=0){
+arr1[k++]=b%10;
+  b/=10;
+  }
+  int arr2[4],j=0;
+  while(d!=0)
+  {
+  arr2[j++]=d%10;
+    d/=10;
+  }
+  int z=0;
+  k=k-1;
+  while(k!=-1)
+  {
+  if(arr1[k]!=arr2[z]){
+   cout<<"Not an Adam Number";
+  return 0;
+  }
+    k--;
+    z++;
+  }
+  cout<<"Adam Number";
+	return 0;
+}

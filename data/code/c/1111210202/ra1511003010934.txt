@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+	int n,m;
+  	scanf("%d %d",&n,&m);
+  	int ar[n];
+  	int i=0;int k=0;
+  	for(;i<m;i++)
+    {
+      if(k==n)
+        break;
+      int a,b;
+      scanf("%d %d",&a,&b);
+      ar[k++]=a;
+      ar[k++]=b;
+    }
+ 
+  k=0;int gap;int flag=1;
+  for(i=1;i<n-2;i+=2)
+  { 
+   // printf("%d",ar[1]);
+    gap=ar[i+1]-ar[i];
+    if(gap==0)
+    {
+      flag=0;
+      printf("%d %d",ar[i],2);break;
+    }
+    else if(gap>1)
+    {
+      flag=0;
+      printf("%d %d",ar[i]+1,0);break;
+    }
+    else if(gap<0)
+    {
+      flag=0;
+      printf("%d %d",ar[i+1],2);break;
+    }
+   
+  }
+  if(flag==1)
+    printf("OK");
+	return 0;
+}

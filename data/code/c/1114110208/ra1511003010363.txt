@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<stdlib.h>
+ 
+int main(){
+    int rows, cols, size, row, col, sum=0;
+    int inputMatrix[50][50];
+    
+   
+    scanf("%d", &rows);
+    scanf("%d", &cols);
+  if(rows!=cols)
+  {
+    printf("entered row and columns is not square matrix");
+    exit(0);
+  }
+    size=rows = cols; 
+     
+    
+    
+    for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            scanf("%d", &inputMatrix[row][col]);
+        }
+    }
+        for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            if(row < col){
+                /* Upper triangular matrix element*/
+                sum += inputMatrix[row][col];
+            }
+        }
+    }
+
+    printf("\n%d", sum);
+    
+      return 0;
+}

@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+ 
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+ 
+#define MA 1000000000000000000 // 1e18
+#define M  1000000007
+#define MM 2000000000
+#define N  5001
+#define K  100001
+#define C  1001
+ 
+typedef long long ll;
+typedef long double ld;
+ 
+ll n,m;
+ll s[N][N];
+char s1[N], s2[N];
+char v[5]="aeiou";
+int isv(char c) {
+  int i;
+  for(i=0;i<5;i++) {
+    if (c==v[i]) return 1;
+  }
+  return 0;
+}
+ 
+int main() {
+  ll t;
+  ll i,j,k,h,l,p,q,r,b,c,d;
+ 
+  t=1;
+  //scanf("%lld ", &t);
+ 
+  memset(s, 0, sizeof(s));
+ 
+  c=0;
+  while(t--) {
+    scanf("%s %s", s1, s2);
+    n=strlen(s1);
+    m=strlen(s2);
+ 
+    //isv();
+    r=0;
+    for(i=0;i<n;i++) {
+      for(j=0;j<m;j++) {
+        s[i+1][j+1]=MAX(s[i][j+1], s[i+1][j]);
+        if (s1[i]==s2[j]) {
+          if (isv(s1[i])) s[i+1][j+1]=s[i][j];
+          else {
+            s[i+1][j+1]=MAX(s[i+1][j+1], s[i][j]+1);
+            if (r<s[i+1][j+1]) r=s[i+1][j+1];
+          }
+        }
+      }
+    }
+ 
+    printf("%lld\n", r);
+  }
+}

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+struct c
+{
+  char ch[100];
+}x[10];
+int main()
+{
+	int n,h,i,l,a[100],c=0,j,k;
+    char b[100];
+    scanf("%d%d",&n,&h);
+    for(i=0;i<h;i++)
+    {
+    scanf("\n%[^\n]s",x[i].ch);
+    b[i]=x[i].ch[7];
+      if(b[i]=='l')
+        a[i]=(int)x[i].ch[15]-48;
+      else
+        a[i]=(int)x[i].ch[16]-48;
+    }
+  for(j=0;j<h;j++)
+  {
+    c=0;
+    if(b[j]=='r')
+    {
+      for(k=a[j]+1;k<=n;k++)
+      {
+        c++;
+      }
+    }
+    if(b[j]=='l')
+    {
+      for(k=a[j]-1;k>=1;k--)
+      {
+        c++;
+      }
+    }
+    
+  }
+  printf("%d",c);
+    
+	return 0;
+}

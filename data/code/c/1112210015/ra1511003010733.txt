@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<stdlib.h>
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+int max (int a, int b)
+{
+	if(a>b)
+	return a;
+	else 
+	return b;
+}
+int main() {
+	int n,i,j;
+	scanf("%d",&n);
+	for ( i = 0; i < n; i++) 
+		{
+		int d[3];
+		for ( j = 0; j < 3; j++) 
+			{
+			scanf("%d",&d[j]);
+		}
+		
+   qsort(d, 3, sizeof(int), cmpfunc);
+		int ans = max(0, d[2] - d[1] - d[0]);
+      if(ans!=0)
+		printf("%d.000000\n",ans);
+      else
+        printf("%d.0\n",ans);
+	}
+	return 0;
+}

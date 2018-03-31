@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char message[100];
+  	int i, ctr;
+  	scanf("%s",message);
+  	for(i = 0; i < strlen(message); i++)
+    {
+      if(message[i] == '0')
+        printf("0");
+      else
+      {
+        ctr = 0;
+        while(message[i] == '1' && ctr < 5)
+        {
+          printf("1");
+          i++;
+          ctr++;
+        }
+        if(ctr == 5)
+        printf("0");
+        i--;
+      } 
+    }
+    printf("\n%s",message);
+	return 0;
+}

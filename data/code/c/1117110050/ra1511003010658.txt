@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+int main()
+{
+
+	int base10, base = 2, quotient, remainder, j, i = 0;
+	int base2[25];
+	scanf("%d",&base10);
+	do
+	{
+		if(base10 % 2 == 0)
+		{
+			remainder = 0;
+			quotient = base10 / base;
+		}
+		else
+		{
+			remainder = 1;
+			quotient = (base10 - 1) / base;
+		}
+		base2[i] = remainder;
+		base10 = quotient;
+		i++;
+	}while(quotient != 1);
+	
+	base2[i] = 1;
+	printf("%d\n",i+1);
+	
+	return 0;
+
+}

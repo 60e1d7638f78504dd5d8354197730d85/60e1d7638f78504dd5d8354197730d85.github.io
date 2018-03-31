@@ -1,0 +1,32 @@
+#include <stdio.h>
+ 
+int localMinUtil(int arr[], int low, int high, int n)
+{
+    
+    int mid = low + (high - low)/2;  
+ 
+    if ((mid == 0 || arr[mid-1] > arr[mid]) &&
+            (mid == n-1 || arr[mid+1] > arr[mid]))
+        return mid;
+ 
+    else if (mid > 0 && arr[mid-1] < arr[mid])
+        return localMinUtil(arr, low, (mid -1), n);
+ 
+    return localMinUtil(arr, (mid + 1), high, n);
+}
+ 
+int localMin(int arr[], int n)
+{
+    return localMinUtil(arr, 0, n-1, n);
+}
+ 
+int main()
+{
+    int arr[10],n,i;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    printf("Index of a local minima is %d",
+                           localMin(arr, n));
+    return 0;
+}

@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+  int t,i,j,k,n,ans;
+  cin>>t;
+  while(t--)
+  {
+    cin>>n>>k;
+    int a[n],mini=100000;
+    vector<int>v;
+    ans=0;
+    for(int i=0;i<n;i++)
+      cin>>a[i];
+    for(i=0;i<n;i++)
+    {
+    v.erase(v.begin(),v.end());
+    for(j=0;j<n;j++)
+    {
+      if(a[i]>=a[j])ans=(a[i]-a[j])*3;
+    else ans=(a[j]-a[i])*5;
+   v.push_back(ans);
+  }
+  
+      sort(v.begin(),v.end());
+      
+  ans=0;
+  for(int m=0;m<k;m++) {ans+=v[m]; }
+     
+  mini=min(ans,mini);
+  
+  }
+  cout<<mini<<endl;
+  }
+  return 0;
+  
+}

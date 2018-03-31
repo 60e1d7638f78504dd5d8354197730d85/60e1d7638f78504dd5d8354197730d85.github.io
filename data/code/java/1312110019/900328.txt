@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.String;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner inp=new Scanner(System.in);
+       
+       int n=inp.nextInt();
+       int a=n;
+       String ns=n+"\0";
+       int ct=ns.length();
+       int x=0;
+       String ans="";
+       int oct[]=new int[20];
+       int dec[]=new int[20];
+       String hex[]=new String[20];
+       int decans=0;
+       int pos=0;
+       for(int i=ct-2; i>=0; i--)
+       {
+         oct[i]=a%10;
+         a=a/10;
+         dec[i]=oct[i]*(int)Math.pow(8,pos);
+         pos++;
+         decans+=dec[i];
+       }
+       //Now from decimal to hexadecimal
+       //System.out.println(decans);
+       int b=decans;
+       int po=0;
+       while(b>0)
+       {
+         int t=b%16;
+         if(t>=0 && t<=9)
+           hex[po++]=""+t;
+         else if(t==10)
+           hex[po++]="a";
+         else if(t==11)
+           hex[po++]="b";
+         else if(t==12)
+           hex[po++]="c";
+         else if(t==13)
+           hex[po++]="d";
+         else if(t==14)
+           hex[po++]="e";
+         else hex[po++]="f";
+         b=b/16;
+       }
+       String ansfin="";
+       for(int i=po-1; i>=0; i--)
+         ansfin+=hex[i];
+       System.out.println(ansfin);
+	}
+}

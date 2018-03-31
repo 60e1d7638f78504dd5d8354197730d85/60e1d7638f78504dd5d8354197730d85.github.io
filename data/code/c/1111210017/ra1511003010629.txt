@@ -1,0 +1,51 @@
+#include <stdio.h>
+int main()
+{
+int n,a[1000],i,sum1=0,sum2=0,sum3=0,j,k;
+  scanf("%d",&n);
+  if(n==0)
+  {
+  printf("0");
+  }
+  else
+  {
+  for(i=1;i<=n;i++)
+  {
+  scanf("%d ",&a[i]);
+  }
+  if(n>=1)
+  {
+  sum1=sum1+a[1];
+  }
+  if(n>=2)
+  {
+  sum2=sum2+a[2];
+  }
+  if(n>=3)
+  {
+  sum3=sum3+a[3];
+  }
+  //sum1=sum
+  for(i=4;i<=n;i++)
+  {
+  if(i%3==0)
+  {
+  sum3=sum3+a[i];
+  }
+  }
+  j=2;
+  while(j<=n)
+  {
+  sum2=sum2+a[3*j-1];
+    j=j+1;
+  }
+  k=2;
+  while(k<=n)
+  {
+  sum1=sum1+a[3*k-2];
+    k=k+1;
+  }
+  printf("%d %d %d",sum1,sum2,sum3);
+  }
+    return 0;
+}

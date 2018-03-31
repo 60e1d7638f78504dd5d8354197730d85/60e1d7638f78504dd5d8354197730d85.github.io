@@ -1,0 +1,57 @@
+#include<stdio.h>
+int a[100005],size[100005];
+#define mo 1000000007
+int root(int x)
+{
+    while(a[x]!=x)
+    {
+        a[x]=a[a[x]];
+        x=a[x];
+    }
+    return x;
+}
+void  unio(int a1,int b)
+{
+    int r1=root(a1);
+    int r2=root(b);
+    if(r1!=r2){
+    if(size[r1]<size[r2])
+    {
+        a[r1]=r2;
+        size[r2]+=size[r1];
+        size[r1]=1;
+    }
+    else
+    {
+        a[r2]=r1;
+        size[r1]+=size[r2];
+        size[r2]=1;
+    }}
+}
+ 
+int main()
+{
+     int n,m,x,y,i;
+     long long int ans=1;
+     scanf("%d %d",&n,&m);
+     for(i=0;i<n;i++)
+     {
+         a[i]=i;
+         size[i]=1;
+     }
+     for(i=0;i<m;i++)
+     {
+         scanf("%d %d",&x,&y);
+         unio(x,y);
+        
+     }
+     
+        
+     for(i=0;i<n;i++)
+     {  //cout<<size[i]<<" "<<endl;
+       // cout<<fac(i)<<" i"<<endl;
+         ans=((ans%mo)*(size[i])%mo)%mo;
+     }
+     printf("%lld",ans);
+    return 0; 
+}

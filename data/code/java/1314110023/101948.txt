@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args)
+      { 
+	  	TestClass obj=new TestClass();
+        obj.processInput();
+	}
+  public void processInput()
+  {
+    Scanner scan=new Scanner(System.in);
+    int testcases=scan.nextInt();
+    for(int i=0;i<testcases;i++)
+    {
+      String numstr=scan.next();
+      numstr=largestevennum(numstr);
+      System.out.println(numstr);
+    }
+    scan.close();
+  }
+  public String largestevennum(String str)
+  {
+    char[] chars=str.toCharArray();
+    Arrays.sort(chars);
+    int len=chars.length;
+    for(int i=0;i<len;i++)
+    {
+      if((chars[i]-'0')%2==0)
+      {
+        char firsteven=chars[i];
+        int j=i-1;
+        while(j>=0)
+        {
+          chars[j+1]=chars[j];
+          j--;
+        }
+        chars[j+1]=firsteven;
+        break;
+      }
+    }
+    for(int i=0;i<len/2;i++)
+    {
+      char temp=chars[i];
+    chars[i]=chars[len-1-i];
+    chars[len-1-i]=temp;
+   }
+  return new String(chars);
+  }
+}

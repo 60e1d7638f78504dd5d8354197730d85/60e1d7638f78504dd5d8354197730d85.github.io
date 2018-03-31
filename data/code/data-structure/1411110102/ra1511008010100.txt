@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct Node
+{
+int data;
+  struct Node *next;
+};
+struct Node *temp;
+struct Node *header;
+struct Node *tr;
+
+void insert(int a)
+{
+  temp=malloc(sizeof(struct Node));
+  temp->data=a;
+  temp->next=NULL;
+  if(header==NULL)
+  {
+    header=temp;
+  }
+  else
+  {
+    tr=header;
+    while(tr->next!=NULL)
+    {
+      tr=tr->next;
+    }
+      tr->next=temp;
+  }
+  printf("%d ",a);
+} 
+int main()
+{
+int n,a;
+  scanf("%d",&n);
+  while(n--)
+  {
+    scanf("%d",&a);
+    insert(a);
+  }
+	return 0;
+}

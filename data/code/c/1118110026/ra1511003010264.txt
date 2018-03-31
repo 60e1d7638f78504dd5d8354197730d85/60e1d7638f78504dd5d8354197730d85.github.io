@@ -1,0 +1,22 @@
+#include <stdio.h>
+union Data{
+  int data;
+};
+
+void f(union Data d){
+  int s=0;
+  while(d.data){
+    s+=d.data%10;
+    d.data/=10;
+  }
+  printf("%d",s);
+}
+int main()
+{
+	union Data d;
+  	scanf("%d",&d.data);
+  	f(d);
+  	
+  	
+	return 0;
+}

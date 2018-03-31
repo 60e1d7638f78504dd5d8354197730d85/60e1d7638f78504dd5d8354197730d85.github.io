@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+char prime(unsigned int number)
+{
+	char ch = 'y';
+	unsigned int i;
+ 
+	if(number == 0) return 'n';
+ 
+	if((number == 1) || (number == 2))
+	    ch = 'y';
+	else
+    {
+		for(i = 2 ;i < number ;i++)
+		{
+			if(number % i == 0)
+			{
+			    ch = 'n';
+			}
+		}
+    }
+ 
+	return ch;
+}
+ 
+int main()
+{
+	unsigned int t,number;
+	char ch;
+ 
+	scanf("%d",&t);
+ 
+	while(t--)
+	{
+		scanf("%u",&number);
+		ch = prime(number);
+		(ch == 'y')?printf("yes\n"):printf("no\n");
+	}
+ 
+	return 0;
+}
+  

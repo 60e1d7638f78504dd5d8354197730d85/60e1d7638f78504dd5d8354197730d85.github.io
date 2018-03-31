@@ -1,0 +1,67 @@
+#include <stdio.h>
+int main()
+{int i,j,k,t,l,r;
+ int squares[]={1,4,9,16,25,36,49,64,81,100};
+ int primes[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
+ int sfn[100],sfn_idx;
+ 
+ scanf("%d",&t);
+ for(i=0;i<t;i++)
+ {
+   sfn_idx=0;
+   scanf("%d%d",&l,&r);
+   while(l<=r)
+   {if(l<4)
+   {sfn[sfn_idx]=l;
+    sfn_idx++;
+   }
+    else
+    {for(j=1;j<11;j++)
+    {if(l%squares[j]==0)
+    {break;
+    }
+    }
+     if(j==11)
+     {sfn[sfn_idx]=l;
+     sfn_idx++;
+     }
+    }
+    l++;
+   }
+   
+   int tempsum,sum=0,count;
+   for(j=0;j<sfn_idx;j++)
+   {tempsum=0;
+    count=0;
+    
+    for(k=1;k<=sfn[j];k++)
+    {if(sfn[j]%k==0)
+    {tempsum=tempsum+k;
+    }
+    }
+    
+    k=0;
+    while(primes[k]<=tempsum)
+    {if(tempsum%primes[k]==0)
+    {count++;
+    }
+     k++;
+    }
+    
+    for(k=0;k<15;k++)
+    {if(count==primes[k])
+    {sum=sum+tempsum;
+     break;
+    }
+     if(primes[k]>count)
+     {break;
+     }
+    }
+    
+   }
+   printf("%d\n",sum);
+   
+ }
+
+return 0;
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class concat
+{
+  public:
+  string str;
+  void getValue()
+  {
+    cin>>str;
+  }
+  void printValue()
+  {
+    cout<<str<<endl;
+  }
+  concat operator + (concat obj)
+  {
+    concat temp;
+    temp.str=str+obj.str;
+    return temp;
+  }
+};
+
+int main()
+{
+  concat c1,c2,c3,con1,con2;
+  c1.getValue();
+  c2.getValue();
+  c3.getValue();
+  c1.printValue();
+  c2.printValue();
+  c3.printValue();
+  con1=c1+c2;
+  con2=con1+c3;
+  cout<<con2.str;
+
+	return 0;
+}

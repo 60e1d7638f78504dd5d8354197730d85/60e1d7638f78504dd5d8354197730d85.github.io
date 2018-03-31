@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int t,count,i,len;
+char input[1000000];
+unsigned long long int number;
+ 
+scanf("%d",&t);
+ 
+while(t--)
+{
+scanf("%llu",&number);
+sprintf(input,"%llu",number);
+len=strlen(input);
+count=0;
+for(i=0;i<len-1;i++)
+{
+  if(number%21==0){count++;
+  printf("The streak is broken!\n");break;}
+	
+  if(input[i]=='2' && input[i+1]=='1'){count++;
+   printf("The streak is broken!\n");break;}
+}
+ 
+if(count==0)
+printf("The streak lives still in our heart!\n");
+ 
+ 
+}
+return 0;
+}

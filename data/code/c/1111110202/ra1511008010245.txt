@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdbool.h>
+int main(){
+  	int i = 0, num = 0;
+	char identifier[10];
+  	bool alpha = false, underscore = true;
+  scanf("%s",identifier);
+  int len = strlen(identifier) - 1;
+  if ( identifier[0] >= 'a' && identifier[0] <= 'z' ) alpha = true;
+  if ( identifier[0] >= 'A' && identifier[0] <= 'Z' )  alpha = true;
+  if ( identifier[len] == '_' ) underscore = false;			
+  
+  for( i = 1; i <= len; i++)
+  {
+  		if ( identifier[i] == '_' ) 
+          num++;
+    	else  
+          num = 0;
+  		if( num == 2) 
+        {
+    		underscore = false;
+          	break;
+        }
+   }
+  if( alpha && underscore )
+    printf("valid identifier");
+  else
+    printf("not a valid identifier");
+return 0;
+}

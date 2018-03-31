@@ -1,0 +1,54 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int r,c;
+    int t,i,j,k,p,flag,oldflag;
+    scanf("%d %d",&r,&c);
+        int a[r][c];
+        for(i=0;i<r;i++)
+            for(j=0;j<c;j++)
+                scanf("%d",&a[i][j]);
+        int rmax=r,cmax=c,rmin=0,cmin=0;
+        while(1)
+        {   
+            oldflag=flag=0;
+            for(j=cmin;j<cmax;j++)
+            {
+                printf("%d ",a[rmin][j]);
+                flag++;
+            }
+            if(flag==oldflag) break;
+            oldflag=flag;
+            //printf("\n");
+            for(i=rmin+1;i<rmax;i++)
+            {
+                printf("%d ",a[i][cmax-1]);
+                flag++;
+            }
+            if(flag==oldflag) break;
+            oldflag=flag;
+            //printf("\n");
+            for(j=cmax-2;j>=cmin;j--)
+            {
+                printf("%d ",a[rmax-1][j]);
+                flag++;
+            }
+            if(flag==oldflag) break;
+            oldflag=flag;
+            //printf("\n");
+            for(i=rmax-2;i>rmin;i--)
+            {
+                printf("%d ",a[i][cmin]);
+                flag++;
+            }
+            if(flag==oldflag) break;
+            oldflag=flag;
+            //printf("\n");
+            rmin++; cmin++;
+            rmax--; cmax--;
+            
+        }
+return 0;
+ }
+ 

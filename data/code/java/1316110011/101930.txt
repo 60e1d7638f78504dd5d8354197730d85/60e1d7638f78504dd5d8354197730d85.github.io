@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.Scanner;
+class sample
+{
+  int t,n,i,j;
+  int []a=new int[199999];
+  int []b=new int[199999];
+  public void subarray()
+  {
+  Scanner in=new Scanner(System.in);
+   	t=in.nextInt();
+	while(t>0)
+	{
+		n=in.nextInt();
+		for(i=1;i<=n;i++)
+		{
+			a[i]=in.nextInt();
+		}
+		
+			b[n]=1;
+			for(i=n-1;i>0;i--)
+			{
+				if((a[i]>0 && a[i+1]<0) || (a[i]<0 && a[i+1]>0))
+				{
+					b[i]=b[i+1]+1;	
+				}
+				else
+				{
+					b[i]=1;
+				}
+			}
+		t--;
+		for(i=1;i<=n;i++)
+		{
+			System.out.printf("%d ",b[i]);
+		}
+		System.out.printf("\n");
+    }
+    }
+ 
+  }
+public class TestClass 
+{
+	 public static void main(String[] args) 
+     { 
+		sample objname=new sample();
+       objname.subarray();
+	}
+}

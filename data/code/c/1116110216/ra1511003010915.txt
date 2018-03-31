@@ -1,0 +1,31 @@
+#include <stdio.h>
+inline int scan()
+{
+int t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+return(t);
+}
+int main(void)
+{
+int t,i,o,e,n;
+	t=scan();o=e=0;
+	for(i=0;i<t;i++)
+	{
+		n=scan();
+		if(n%2)
+		o++;
+		else e++;
+	}
+	if(e>o)
+	printf("READY FOR BATTLE");
+	else printf("NOT READY");
+	return 0;
+}

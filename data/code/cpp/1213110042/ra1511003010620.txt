@@ -1,0 +1,33 @@
+#include <iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+int main()
+{
+  int i,j,k,l1,l2;
+  string s1,s2,s;
+  getline(cin,s1);
+  getline(cin,s2);
+  
+  l1=s1.length();
+  l2=s2.length();
+  
+  for(i=0,j=0;i<l1 && j<l2; i++)
+  {
+    if(s1[i]==s2[j])
+      j++;
+    else
+      j=0;
+    
+  }
+  if(j==l2)
+  {
+   
+    s1.erase(i-j,l2+1);
+    cout<<"The new String after deleting the word:"<<s1;
+  }
+  else
+    cout<<"no "<<i;
+
+	return 0;
+}

@@ -1,0 +1,16 @@
+#include <stdio.h>
+int findCube(int n,int count)
+{
+  if(count==0)
+    return 1;
+  int prod=n*findCube(n,count-1);
+  return prod;
+}
+int main()
+{
+	int n,power;
+  	scanf("%d %d",&n,&power);
+  	int cube=findCube(n,power);
+  printf("The value of %d power %d is %d",n,power,cube);
+	return 0;
+}

@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int MAXN = (int) 1e6 + 5;
+int a[MAXN];
+int n;
+const int mod = (int) 1e9 + 7;
+
+long long stupid() {
+  long long ans = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = i; j < n; j++) {
+      for (int k = j + 1; k < n; k++) {
+        for (int l = k; l < n; l++) {
+          int mx = 0;
+          for (int x = i; x <= j; x++) {
+            mx = max(mx, a[x]);
+          }        
+          int mn = (int) 1e9;
+          for (int x = k; x <= l; x++) {
+            mn = min(mn, a[x]);
+          }
+          ans += mx * (long long) mn;
+          ans %= mod;
+        } 
+      }
+    }
+  }
+  return ans;
+}
+
+int main() {
+  scanf("%d", &n);
+  for (int i = 0; i < n; i++) {
+    scanf("%d", &a[i]);
+  }
+  
+  long long stupid_ans = stupid();
+  printf("%lld\n", stupid_ans);
+
+  return 0;
+}

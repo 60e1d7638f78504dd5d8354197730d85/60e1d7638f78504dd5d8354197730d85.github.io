@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+char ispali(char *in,int len)
+{
+   int i=0;
+   i=0;
+   while(i*2<len && in[i]==in[len-i-1])
+      i++;
+   if(i*2==len)
+      return 'y';
+   else
+      return 'n';
+}
+int main()
+{
+   int cases;
+   int count,len,size,pos;
+   char in[100000+1];
+   scanf("%d",&cases);
+   while(cases--){
+      scanf("%s",in);
+      count=0;
+      len=strlen(in);
+      for(size=1;size*4<=len;size++)
+         for(pos=0;pos+4*size<=len;pos++){
+            if(ispali(&in[pos],size*2)=='y' && strncmp(&in[pos],&in[pos]+2*size,size*2)==0)
+               count++;
+         }
+      printf("%d\n",count);
+   }
+   return 0;
+}

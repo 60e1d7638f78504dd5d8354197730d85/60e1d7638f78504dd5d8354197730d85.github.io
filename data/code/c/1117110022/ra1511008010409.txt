@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define ll long long
+ 
+#ifndef ONLINE_JUDGE
+#define gc getchar
+#define pc putchar
+#else
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+#endif
+ 
+int read_int() {
+    char c = gc();
+    while((c < '0' || c > '9') && c != '-') c = gc();
+    int ret = 0, neg = 0;
+    if (c == '-') neg = 1, c = gc();
+    while(c >= '0' && c <= '9') {
+        ret = 10 * ret + c - 48;
+        c = gc();
+    }
+    return neg ? -ret : ret;
+}
+ 
+ll read_ll() {
+    char c = gc();
+    while((c < '0' || c > '9') && c != '-') c = gc();
+    ll ret = 0;
+    int neg = 0;
+    if (c == '-') neg = 1, c = gc();
+    while(c >= '0' && c <= '9') {
+        ret = 10 * ret + c - 48;
+        c = gc();
+    }
+    return neg ? -ret : ret;
+}
+ 
+#define MOD 1000000007
+#define MUL(a, b) ((int)((1ll*(a)*(b))%MOD))
+ 
+int pow_mod(int b, int e) {
+    int r = 1;
+    while(e) {
+        if (e&1)
+            r = MUL(r, b);
+        e >>= 1;
+        b = MUL(b, b);
+    }
+    return r;
+}
+ 
+int cmp(void* a, void* b) {
+    return *(int*)a - *(int*)b;
+}
+ 
+int gcd(int a, int b) {
+    return !b ? a : gcd(b, a%b);
+}
+ 
+ll min(ll a, ll b) {
+    return a < b ? a : b;
+}
+ 
+int a[100000];
+ 
+int main() {
+ 
+#ifndef ONLINE_JUDGE
+    //freopen("testcase.in", "r", stdin);
+#endif
+ 
+    int t, n, n2, s, c, ans;
+ 
+    t = read_int();
+    while(t--) {
+        n = read_int();
+        n2 = n * n;
+        s = 0;
+        while(n2--)
+            s += read_int();
+        c = n;
+        ans = 0;
+        while(c < s) {
+            ans++;
+            c += 2 * --n;
+        }
+        printf("%d\n", ans);
+    }
+ 
+    return 0;
+}

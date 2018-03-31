@@ -1,0 +1,47 @@
+#include <stdio.h>
+ 
+ 
+int p[1000100]={0};
+ 
+int a[1000100]={0};
+int main()
+{
+ 
+ 
+    int i,j,x,mc,n;
+ 
+    p[0]=1;
+    p[1]=1;
+    for(i=2;i*i<=1000000;i++)
+    {
+        mc=0;
+        if(p[i]!=0)
+            continue;
+        p[i]=1;
+        mc++;
+        for(j=2;j*i<=1000000;j++)
+        {
+            if(!p[i*j])
+            {
+                 p[j*i]=1;
+                 mc++;
+            }
+ 
+        }
+        a[i]=mc;
+    }
+    for(i=0;i<=1000000;i++)
+	{
+		if(p[i]==0 && a[i]==0)
+		a[i]=1;
+	}
+    scanf("%d",&n);
+    while(n--)
+    {
+        scanf("%d",&x);
+        printf("%d",a[x]);
+        printf("\n");
+    }
+    return 0;
+ 
+}

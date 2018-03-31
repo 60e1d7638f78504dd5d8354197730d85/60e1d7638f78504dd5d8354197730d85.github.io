@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+typedef struct {
+  float feet;
+  float inch;
+} fi;
+
+void add(fi* a,fi* b){
+  if(((*a).inch + (*b).inch)>=12){
+  (*a).feet = (*a).feet + (*b).feet+1;  
+    (*a).inch = (*a).inch + (*b).inch -12;
+  }else{
+  (*a).feet = (*a).feet + (*b).feet;
+    (*a).inch = (*a).inch + (*b).inch;
+  }
+}
+
+int main()
+{
+	fi a,b;
+  	scanf("%f %f %f %f",&a.feet,&a.inch,&b.feet,&b.inch);
+  	add(&a,&b);
+    printf("%0.0ffeet\n%0.1finches",a.feet,a.inch);
+	return 0;
+}

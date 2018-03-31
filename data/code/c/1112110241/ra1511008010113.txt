@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[30];
+    int i,N,k,len,j;
+    scanf("%s",str);
+    len=strlen(str);
+    scanf("%d",&N);
+    int flag[N];
+    for(i=0;i<N;i++)
+      flag[i]=0;
+    char a[N][30];
+    for(i=0;i<N;i++)
+      scanf("%s",a[i]);
+    for(i=0;i<N;i++)
+      for(k=0;k<len;k++){
+        for(j=0;a[i][j]!='\0';j++)
+          if(str[k]==a[i][j]){
+            flag[i]=0; break;}
+          else
+            flag[i]=1;
+      if(flag[i]==1) break;
+    }
+    for(i=0;i<N;i++){
+      if(flag[i]==0)
+        printf("Yes");
+      else
+        printf("No");
+      printf("\n");
+    }
+	return 0;
+}

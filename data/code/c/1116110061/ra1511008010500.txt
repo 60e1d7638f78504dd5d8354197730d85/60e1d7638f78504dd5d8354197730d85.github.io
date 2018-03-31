@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int t,l,i,j1,j2,l1=0,l2=0,lt=1,singl=0,sp,ans;
+	char s[100010];
+	scanf("%d",&t);
+	for(i=1;i<=t;i++)
+	{
+		scanf("%s",s);
+		l=strlen(s);
+		j1=1;
+		while(s[0]==s[j1])
+			j1++;
+ 
+		if(j1==l)
+		{
+
+			if(j1==1)
+				printf("%d\n",1);
+			else
+				printf("%d\n",l-1);
+			goto last;
+		}
+		sp=j1;
+		do
+		{
+		j2=j1;
+		lt=1;
+		if(j2==l-1)
+			j2=-1;
+		while(s[j1]==s[j2+1])
+		{
+			lt++;
+			j2++;
+			if(j2==l-1)
+				j2=-1;
+		}
+		if(lt==1)
+			singl++;
+		if(lt>l2)
+		{
+			l2=lt;
+			if(l2>l1)
+			{
+				lt=l1;
+				l1=l2;
+				l2=lt;
+			}
+		}
+		j1=j2+1;
+		}while(sp!=j1);
+ 
+		if(l1>2)
+		{
+			l1=l1/2;
+			if(l1>l2)
+				printf("%d\n",l1);
+			else
+				printf("%d\n",l2);
+			goto last;
+		}
+		if(l1==1)
+		{
+			if(singl==2)
+				printf("Case %d: %d\n",i,2);
+			else
+				printf("Case %d: %d\n",i,3);
+			goto last;
+		}
+		 if(l1==2)
+		{
+			if(singl>0)
+				printf("%d\n",2);
+			else
+				printf("%d\n",3);
+		}
+last:
+		 singl=0;
+		 l1=l2=0;
+	}
+	return 0;
+}

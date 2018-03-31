@@ -1,0 +1,69 @@
+#include <stdio.h>
+typedef struct node
+{
+  int val;
+  int index;
+}Q;
+ 
+int main ()
+{
+    int N,X,temp1,temp2,putp,max,max_i,len;
+    scanf("%d %d",&N,&X);
+    Q a[N];
+  int i;
+    for(i=0;i<N;i++)
+    {
+        scanf("%d",&(a[i].val));
+        a[i].index = i;
+    }
+ 
+    int start=0; int end = N-1;
+    int len1,temp = X;
+    while(temp--)
+    {
+ 
+        max = -1;
+        if(start>end)
+        {
+            len = ((N-start+end+1) >=X) ? X: (N-start+end+1);
+        }
+        else
+        {
+            len = ((end - start +1) >=X) ? X: (end - start +1);
+        }
+ 
+        len1 = len;
+        i = start;
+        while (len1--)
+        {
+            if (a[i].val>max)
+            {
+                max = a[i].val;
+                max_i = a[i].index;
+            }
+            i=(i+1)%N;
+        }
+        printf("%d ",max_i+1);
+        putp = (end)%N;
+        i = start;
+        len1 = len;
+        while (len1--)
+        {
+             if(a[i].index == max_i) {
+                 i=(i+1)%N;
+                 continue;
+             }
+             temp1 = a[i].val;
+             temp2 = a[i].index;
+             putp = (putp+1)%N;
+             a[putp].val = ((temp1-1)>=0)?(temp1-1):0;
+             a[putp].index = temp2;
+             i=(i+1)%N;
+         }
+         start =(start+len)%N;
+         end = (putp)%N;
+ 
+    }
+ 
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{int n,i,j;
+ int a[20],c[20],count;
+  scanf("%d",&n);
+ for(i=0;i<n;i++)
+ { scanf("%d ",&a[i]);
+ c[i]=1;}
+ for(i=0;i<n;i++){
+   count=1;
+for(j=i+1;j<n;j++){
+if(a[i]==a[j])
+            {
+                count++;
+                c[j] = 0;
+            }
+        }
+        if(c[i] != 0)
+        {
+            c[i] = count;
+        }
+    }
+  
+    for(i=0; i<n; i++)
+    {
+        if(c[i] != 0)
+        {
+            printf("%d occurs %d times\n", a[i], c[i]);
+        }
+    }
+
+    return 0;
+}

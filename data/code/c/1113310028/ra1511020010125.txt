@@ -1,0 +1,26 @@
+#include<stdio.h>
+int gcd(int a,int b)
+{
+    if(a==0)
+    return b;
+    return (gcd(b%a,a));
+}
+int main()
+{
+    int t,n,i,j;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&n);
+        int count=0;
+        for(j=2;j<n;j++)
+        {
+            int val;
+            val=gcd(j,n);
+            if(val==1)
+            count++;
+        }
+        printf("%d\n",count+1);
+    }
+    return 0;
+}

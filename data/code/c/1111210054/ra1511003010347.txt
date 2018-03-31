@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int T,i,p,count=0,a[]={1,2,4,8,16,32,64,128,256,512,1024,2048};
+  scanf("%d",&T);
+    while(T--)
+    {
+      count=0;
+      scanf("%d",&p);
+      if(p<=2048)
+      {
+       for(i=0;i<15;i++)
+       {
+         if(p&1==1)
+          count++;
+         p=p>>1;
+        }
+       }
+       else
+       {
+         for(i=11;i>=0;i--)
+         {
+           if(p%a[i]==0)
+           {
+             count+=(p/a[i]);
+             break;
+           }
+           else
+           {
+            if(p>a[i])
+            {
+             count+=(p/a[i]);
+             p=p-(p/a[i])*a[i];
+            }
+           }
+          }
+         }
+        printf("%d\n",count);
+      }
+	  return 0;
+}

@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+
+struct Student {
+    char name[30];
+    char department[20];
+    int roll;
+    float cgpa;
+};
+
+struct Student record[5];
+
+/* Function to sort the given names */
+void sort(int N) ;
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int i = 0;
+    for (; i < n; i++) {
+        scanf(" %s", record[i].name);
+        scanf(" %s", record[i].department);
+        scanf("%d", &record[i].roll);
+        scanf("%f", &record[i].cgpa);
+    }
+    sort(n);
+    for (i = 0; i < n; i++) {
+        printf("Name:%s\nDepartment:%s\nYear of study:%d\nCGPA:%.1f\n", record[i].name, record[i].department, record[i].roll, record[i].cgpa);
+    }
+    return 0;
+}
+
+
+/* Function to sort the given names */
+void sort(int N) {
+    int i, j;
+    struct Student temp;
+
+    for (i = 0; i < N - 1; i++) {
+        for (j = i + 1; j < N; j++) {
+            if (strcmp(record[i].name, record[j].name) > 0) {
+                temp = record[i];
+                record[i] = record[j];
+                record[j] = temp;
+            }
+        }
+    }
+}

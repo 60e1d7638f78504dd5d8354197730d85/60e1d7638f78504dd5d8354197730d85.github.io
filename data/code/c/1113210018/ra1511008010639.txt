@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int b[26]={},a[26]={},i,k=0,flag,l,t,r;
+	char s[1000008];
+	scanf("%d",&t);
+	while(t--)
+	{
+		flag=1;
+		scanf("%s",s);
+		l=strlen(s);
+if(l&1)
+r=(l+1)/2;
+else
+r=l/2;
+k=l-1;
+		for(i=0;i<r;i++)
+		{
+			if(s[i]!='?' && s[k]!='?' && s[i]!=s[k])
+			{
+			flag=0;
+			break;
+		}
+			else if(s[i]== '?' && s[k]=='?')
+			flag=(flag*26)%10000009;
+k--;
+		}
+		printf("%d\n",flag);
+	}
+	return 0;
+} 

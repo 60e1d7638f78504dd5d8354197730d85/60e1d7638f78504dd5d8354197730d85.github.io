@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<math.h>
+int main() {
+	int t;
+	scanf("%d",&t);
+	while(t--) {
+		int hard,con1=0,con2=0,con3=0;
+		float  carbon;
+		int tensile;
+		scanf("%d%f%d",&hard,&carbon,&tensile);
+		if(hard > 50)
+			con1=1;
+		if(carbon < 0.7)
+			con2=1;
+		if(tensile > 5600)
+			con3=1;
+		if(con1 == 1 && con2 == 1 && con3 == 1)
+			printf("%d",10);
+		else if(con1 == 1 && con2 == 1)
+			printf("%d",9);
+		else if(con2 == 1 && con3 == 1)
+			printf("%d",8);
+		else if(con1 == 1 && con3 == 1)
+			printf("%d",7);
+		else if(con1 == 1 || con2 == 1 || con3 == 1)
+			printf("%d",6);
+		else
+			printf("%d",5);
+		printf("\n");
+	}
+	return 0;
+} 

@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+  	unsigned int no,i,j,k,count=0,temp,temp1,temp2;
+  	scanf("%d",&no);
+  	unsigned int arr[no];
+	for(k=1;k<=no;k++)
+    {
+      if(no%k == 0)
+      {
+        int sum=0;
+        temp1 = k;
+        while(temp1!=0)
+        {
+          temp2 = temp1%10;
+          sum = 10*sum + temp2;
+          //printf("temp1: %d\n",temp1);
+          //printf("Sum: %d\n",sum);
+          temp1 = temp1/10;
+        }
+        //printf("Sum: %d\n",sum);
+        arr[count] = sum;
+        count++;
+      }
+    }
+  
+    for(i=0;i<count-1;i++)
+    {
+      for(j=0;j<count-i-1;j++)
+      {
+        if(arr[j] > arr[j+1])
+        {
+          temp = arr[j];
+          arr[j] = arr[j+1];
+          arr[j+1] = temp;
+        }
+      }
+    }
+  
+  	for(i=0;i<count;i++)
+    {
+      printf("%d\n",arr[i]);
+    }
+	return 0;
+}

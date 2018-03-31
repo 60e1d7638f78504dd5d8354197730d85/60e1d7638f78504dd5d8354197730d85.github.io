@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cctype>
+
+std::istream& reverse_word(std::istream& in, std::ostream& out)
+{
+    char ch;
+    
+    if (in.get(ch) && !std::isspace(ch))
+    {
+        reverse_word(in, out);
+        out << ch;
+    }
+
+    return in;
+}
+
+int main()
+{
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        reverse_word(std::cin, std::cout);
+        std::cout << ' ';
+    }
+}

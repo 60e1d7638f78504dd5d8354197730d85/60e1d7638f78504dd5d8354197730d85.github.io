@@ -1,0 +1,81 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <climits>
+using namespace std;
+void merge(unsigned long long int a[],int l, int p,int h)
+{
+       int j,i,t,x,y,k;    
+       x = l;
+       y = p+1;
+       k = 0;
+       unsigned long long int b[h-l+1];
+       for(i=l;i<=h;i++)
+       {
+              if(x>p)
+              {
+                     b[k] = a[y];
+                     k++;
+                     y++;
+              }
+              else if(y>h)
+              {
+                     b[k] = a[x];
+                     k++;
+                     x++;
+              }
+              else if(a[x]<a[y])
+              {
+                     b[k] = a[x];
+                     x++;
+                     k++;
+              }
+              else
+              {
+                     b[k] = a[y];
+                     y++;
+                     k++;
+              }
+       }
+       for(i=0;i<k;i++)
+       {
+              a[l] = b[i];
+              l++;
+       }
+       return;
+}
+void sort(unsigned long long int a[],int l,int h)
+{
+       if(l<h)
+       {
+              int p = (l+h)/2;
+              //printf("%d ",p);
+              sort(a,l,p);
+              sort(a,p+1,h);
+             merge(a,l,p,h);
+       }
+       return;
+}
+int main()
+{
+    int N,K;
+    cin >> N >> K;
+    unsigned long long int a[N],d,min=100000000000,i;
+    for (int i=0; i<N; i++)
+    {
+       cin>>a[i];
+    }
+    sort(a,0,N-1);
+       for(i=0;i<=N-K;i++)
+    {
+       d = a[K+i-1] - a[i];
+       if(d<min)
+       {
+              min = d;
+       }
+    }
+    cout<<min<<endl;
+    return 0;
+}

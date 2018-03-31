@@ -1,0 +1,45 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class TestClass {
+	public static void main (String[] args) {
+		//code
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		for(int m=0;m<t;m++){
+		    String s=sc.next();
+		    int i=s.length()-1;
+		    int flag=0;
+		    while(i>0){
+		       
+		       if(s.charAt(i)>s.charAt(i-1)){
+		           flag=1;
+		           break;
+		       }
+		       i--;
+		        
+		    }
+		    int start=i-1;
+		    int end=i;
+		    char max=s.charAt(end);
+		    String d="";
+		    if(flag==1){
+		        i=end+1;
+		        int flag1=0;
+		        while(i<s.length()){
+		            if(s.charAt(i)<max && s.charAt(i)>s.charAt(start)){
+		                end=i;
+		                max=s.charAt(i);    
+		            }
+		            i++;
+		        }
+		        d=s.substring(0,start)+s.substring(end,end+1)+s.substring(start+1,end)+s.substring(start,start+1)+s.substring(end+1);
+		    }
+		    else{
+		        d="-1";
+		    }
+		    System.out.println(d);
+		}
+	}
+}

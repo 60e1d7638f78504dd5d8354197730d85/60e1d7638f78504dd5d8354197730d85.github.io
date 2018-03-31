@@ -1,0 +1,46 @@
+
+import java.io.*;
+import java.util.*;
+
+class MostOccurance
+{
+  	Scanner sc;
+  	int[] ar=new int[10];
+  	public void check()
+    {
+      	sc=new Scanner(System.in);
+      	int n=4,temp=0;
+      	for(int j=0;j<4;j++)
+        {
+          	n=sc.nextInt();
+          	while(n>0)
+            {
+              temp=n%10;
+              n=n/10;
+              ar[temp]++;
+            }
+        }
+      	int max=ar[0];
+      	int index=0;
+      	for (int i = 1; i < ar.length; i++) 
+		{
+			if (max < ar[i]) 
+			{
+				max = ar[i];
+			}
+        }
+      	for(int i=0;i<ar.length;i++)
+        {
+          	if(ar[i]==max)
+              	System.out.println(i);
+        }
+      }
+}
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		MostOccurance m=new MostOccurance();
+      	m.check();
+	}
+}

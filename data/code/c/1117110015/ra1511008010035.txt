@@ -1,0 +1,35 @@
+
+#include <stdio.h>
+int main()
+{
+  	int i, j, n=3, a[n][n], m[n], p[n], c1=0, c2=0, s, t;
+	for(i=0;i<n;i++){
+      	for(j=0;j<n;j++)
+          	scanf("%d", &a[i][j]);
+        m[i]=0;
+      	p[i]=0;
+    }
+	for(i=0;i<n;i++){
+      	for(j=0;j<n;j++){
+          	if(j<n)
+              	printf(" ");
+          	m[i]+=a[i][j];
+          	p[i]+=a[j][i];
+        }
+      	if(i<n)
+          	printf("\n");
+    }
+  	s=m[0];
+  	t=p[0];
+  	for(i=0;i<n;i++){
+      	if(s==m[i])
+          	c1++;
+      	if(t==p[i])
+          	c2++;
+    }
+  	if(c1==c2 && c1==n)
+      	printf("Yes");
+  	else
+      	printf("No");
+	return 0;
+}

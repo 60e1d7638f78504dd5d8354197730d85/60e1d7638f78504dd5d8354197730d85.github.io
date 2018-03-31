@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+class Student{
+  int[] marks=new int[5];
+  public void getMarks(){
+    Scanner in=new Scanner(System.in);
+    //int[] marks=new int[5];
+    for(int i=0;i<5;i++){
+    marks[i]=in.nextInt();
+    }
+  }
+    
+    public void studentGrade(){
+      int sum=0;
+      for(int i=0;i<5;i++){
+        sum=sum+marks[i];
+      }
+      int avg= (int)sum/5;
+     // System.out.println(avg);
+      
+      if(avg>=90)
+      {
+        System.out.println("A");
+      }
+      else if(avg<=89 && avg>=80)
+      {
+        System.out.println("B");
+      }
+      else
+      {
+        System.out.println("C");
+      }
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Student obj=new Student();
+       obj.getMarks();
+       obj.studentGrade();
+		
+	}
+}

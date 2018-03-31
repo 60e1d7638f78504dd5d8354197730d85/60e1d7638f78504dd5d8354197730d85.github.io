@@ -1,0 +1,24 @@
+#include <stdio.h>
+int sum1(int arr[],int size)
+{
+  int sum=0;
+  while(size>=0)
+  {
+    sum=sum+arr[size];
+    size=size-1;
+    sum1(arr,size);
+  }
+  return sum;
+}
+int main()
+{
+	int i,arr[50],n,sum2=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  sum2=sum1(arr,n);
+  printf("%d",sum2);
+	return 0;
+}

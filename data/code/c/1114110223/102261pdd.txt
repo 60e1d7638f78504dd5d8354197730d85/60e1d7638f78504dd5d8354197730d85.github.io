@@ -1,0 +1,38 @@
+#include<stdio.h>
+ 
+int digits(int i)
+{
+    int ans=0,mul=10,num;
+    num = i;
+    while(num!=0)
+    {
+        num = i/mul;
+        ans++;
+        mul*=10;
+    }
+    return ans;
+}
+ 
+int power(int i)
+{
+    int j,ans=1;
+    for(j=0;j<i;j++)
+        ans*=10;
+    return ans;
+}
+ 
+int main()
+{
+    int t,i,num,dig,ans,dig1,dig2=0;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&num);
+        dig = digits(num);
+        dig1 = num%10;
+        dig2 = (dig==1)?0:num/power(dig-1);
+        ans =dig1+dig2;
+        printf("%d\n",ans);
+    }
+    return 0;
+}

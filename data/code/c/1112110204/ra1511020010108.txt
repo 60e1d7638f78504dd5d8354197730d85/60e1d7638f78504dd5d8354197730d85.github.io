@@ -1,0 +1,45 @@
+#include <stdio.h>
+int greatestcommon(int x,int y)
+{
+  if(x==0 || y==0)
+  {
+    return 0;
+  }
+  else if (x==y)
+  {
+    return x;
+  }
+  else
+  {
+    if (x>y)
+    {
+	  return greatestcommon(x-y,y);
+    }
+    else
+    {
+      return greatestcommon(x,y-x);
+    }
+  }
+}
+
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	int i;
+  	for (i=0;i<t;i++)
+    {
+      int a,b;
+      scanf("%d",&a);
+      scanf("%d",&b);
+      //GCD
+      int k;
+      k = greatestcommon(a,b);
+      int product;
+      product = a * b;
+      int lcm;
+      lcm = product / k;
+      printf("%d %d\n",k,lcm);
+    }
+	return 0;
+}

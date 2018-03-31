@@ -1,0 +1,91 @@
+#include<stdio.h>
+int split ( int*, int, int ) ;
+ 
+int main()
+{
+	
+int t;
+int count;
+int i,j,k,n;
+int dig;
+int diff;
+int sum;
+ 
+int arr[1000];
+int x,y;
+void quicksort ( int *, int, int ) ;
+scanf("%d",&t);
+for(i=0;i<t;i++)
+{
+	
+	scanf("%d",&n);
+	for(j=0;j<n;j++)
+	{
+		scanf("%d",&arr[j]);
+		}
+		quicksort ( arr, 0, n-1 ) ;
+		count=-1;
+		sum=0;
+		dig=arr[n-1];
+	//	printf("\n hai");
+		for(k=n-1;k>=0;k--)
+		{
+			//check for the next one
+			count=count+1;
+			if((arr[k]+sum)!=dig)
+			{
+				diff=dig-(arr[k]+sum);
+				
+				sum=sum+diff*count;
+				dig=arr[k]+sum;
+				
+				}
+			
+			
+			}
+			printf("\n%d",sum);
+	
+}
+ 
+	return 0;
+}
+int split ( int a[ ], int lower, int upper )
+{
+	int i, p, q, t ;
+ 
+	p = lower + 1 ;
+	q = upper ;
+	i = a[lower] ;
+ 
+	while ( q >= p )
+	{
+		while ( a[p] <= i )
+			p++ ;
+ 
+		while ( a[q] > i )
+			q-- ;
+ 
+		if ( q > p )
+		{
+			t = a[p] ;
+			a[p] = a[q] ;
+			a[q] = t ;
+		}
+	}
+ 
+	t = a[lower] ;
+	a[lower] = a[q] ;
+	a[q] = t ;
+ 
+	return q ;
+}
+void quicksort ( int a[ ], int lower, int upper )
+{
+	int i ;
+	if ( upper > lower )
+	{
+		i = split ( a, lower, upper ) ;
+		quicksort ( a, lower, i - 1 ) ;
+		quicksort ( a, i + 1, upper ) ;
+	}
+} 

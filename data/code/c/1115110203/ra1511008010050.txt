@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main(){
+    int n,i;
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+        int a,b=2001,c=1,flag=0;
+        scanf("%d",&a);
+        while(a!=b){
+            flag=0;
+            if(a>b && b%4==0 && (b%100!=0 || b%400==0)) flag=1;
+            else if(a<b && ((b-1)%4==0 && ((b-1)%100!=0 || (b-1)%400==0))) flag=1;
+            if(a>b){
+                b++;
+                if(flag!=1) c++;
+                else c=c+2;
+            }
+            else{
+                b--;
+                if(flag!=1) c--;
+                else c=c-2;
+            }
+            if(c>7) c=c-7;
+            else if(c<1) c=c+7;
+        }
+        switch(c){
+            case 1: printf("monday\n"); break;
+            case 2: printf("tuesday\n"); break;
+            case 3: printf("wednesday\n"); break;
+            case 4: printf("thursday\n"); break;
+            case 5: printf("friday\n"); break;
+            case 6: printf("saturday\n"); break;
+            case 7: printf("sunday\n"); break;
+        }
+    }
+    return 0;
+}

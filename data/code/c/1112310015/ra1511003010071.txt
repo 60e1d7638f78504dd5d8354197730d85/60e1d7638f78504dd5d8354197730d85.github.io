@@ -1,0 +1,28 @@
+#include<stdio.h>
+#define o 1000000007
+int main ()
+{
+    int t;
+    scanf("%d",&t);
+    while ( t-- )
+    {
+        long long int n,m,i=1,j=2,k;
+        scanf("%lld",&n);
+        m = n/2;
+        while (m>0)
+        {
+            if ( m%2==1)
+            {
+                i=((i%o)*(j%o))%o;
+                m--;
+            }
+            j=((j%o)*(j%o))%o;
+            m/=2;
+        }
+        if(n%2==0)
+            printf("%lld\n",(3*i-2)%o);
+        else
+            printf("%lld\n",(4*i-2)%o);
+    }
+	return 0;
+}

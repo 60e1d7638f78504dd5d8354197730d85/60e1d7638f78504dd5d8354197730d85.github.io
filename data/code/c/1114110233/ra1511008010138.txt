@@ -1,0 +1,21 @@
+#include <stdio.h>
+int foo(int p)
+{
+    int ret=0;
+    while(p)ret+=p&1,p/=2;
+    return ret;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,ans=0,i;
+        scanf("%d",&n);
+        for(i=1; i<=n; i++)
+            ans+=foo(i);
+        printf("%d\n",ans);
+    }
+    return 0;
+}

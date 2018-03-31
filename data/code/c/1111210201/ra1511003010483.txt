@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char str[1][100][100];
+	char mstr[100],temp[100];
+	scanf("%s",mstr);
+	int k2=strlen(mstr);
+	int n,i,j,c1=0,t=0,c2=0;
+	int farr[100],sum;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",temp);
+		int k=strlen(temp);
+		for(j=0;j<k2;j++)
+		{
+			if(mstr[j]==temp[j])
+			{
+				c1=c1+1;
+			}
+		}
+		if(k2==c1)
+		{
+			for(j=0;j<k;j++)
+			{
+				str[0][t][j]=temp[j];
+				sum=sum+(int)temp[j];			
+			}
+			farr[t]=sum;
+			sum=0;
+			t=t+1;
+			c2=c2+1;
+		}
+		
+		c1=0;
+	}
+	if(c2==0)
+	{
+		printf("%s",mstr);
+	}
+	else
+	{
+	int small=farr[0];
+	int pos=0;
+	for(j=0;j<t;j++)
+	{
+		if(small>farr[j])
+		{
+			small=farr[j];
+			pos=j;
+		}
+	}
+	printf("%s",str[0][pos]);
+    }
+	return 0;
+}

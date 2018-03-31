@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int n,a[10],i,j,min=100,max=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++){
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++){
+    for(j=i+1;j<n;j++){
+      if(abs(a[i]-a[j])>max)
+        max=abs(a[i]-a[j]);
+      if(abs(a[i]-a[j])<min && abs(a[i]-a[j])!=0)
+        min=abs(a[i]-a[j]);
+    }
+  }
+  if(max==2*min || max==min)
+    printf("YES\n");
+  else
+    printf("NO\n");
+
+	return 0;
+}

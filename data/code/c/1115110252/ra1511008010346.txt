@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main ()
+{
+
+  char str[50];int i;
+  scanf("%[^\n]s",str);
+  int Lflag=1;
+  char c;
+  int l;
+  l=strlen(str);
+    
+  for(i=0; i<l;i++) 
+  {
+    c=str[i];
+    if (islower(c))
+    {  Lflag=0;
+    break;
+    }
+    else
+      continue;
+  }
+    if(Lflag==0)
+     printf("false");
+       // both upper case and lower case letter found , no need to iterate further.
+   else
+     printf("true");
+  
+  return 0;
+}

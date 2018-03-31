@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int 
+#define MOD 1000000007
+int main()
+{
+       ll t;
+       cin>>t;
+       while(t--)
+       {
+           ll n,i;
+           cin>>n;
+           ll arr[n];
+           for(i=0;i<n;i++)
+              cin>>arr[i];
+           sort(arr,arr+n,greater<ll>());
+           ll sum=0;
+           for(i=1;i<n;i++)
+              sum=(sum+arr[i]+MOD)%MOD;
+           //cout<<sum<<endl;      
+           ll j=n-1,ans=0;
+           for(i=0;i<n-1;i++)
+           {
+               ans=(ans+abs(((j*arr[i])%MOD-sum+MOD))%MOD+MOD)%MOD;
+               sum=(sum-arr[i+1]+MOD)%MOD;
+               j--;
+           }
+           //cout<<ans<<endl;
+           ans=(ans*arr[0]+MOD)%MOD;
+           cout<<ans<<endl;
+       }
+}

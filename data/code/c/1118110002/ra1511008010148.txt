@@ -1,0 +1,56 @@
+#include <stdio.h>
+struct College
+{
+char name[100];
+char city[100];
+int establishmentYear;
+float passPercentage;
+}S1[100];
+
+
+
+void bsort(struct College clist[100], int s)
+{
+    int i, j;
+    struct College temp;
+    
+    for (i = 0; i < s - 1; i++)
+    {
+        for (j = 0; j < (s - 1-i); j++)
+        {
+            if (clist[j].name[0] > clist[j + 1].name[0])
+            {
+                temp = clist[j];
+                clist[j] = clist[j + 1];
+                clist[j + 1] = temp;
+            } 
+        }
+    }
+  
+  for(i=0;i<s;i++){
+  printf("Name:%s\n",clist[i].name);
+  printf("City:%s\n",clist[i].city);
+  printf("Year of establishment:%d\n",clist[i].establishmentYear);
+  printf("Pass percentage:%.1f\n",clist[i].passPercentage);
+  
+  }
+ 
+  
+}
+
+
+int main()
+{	int n;
+ 	scanf("%d",&n);
+	int i;
+ 	for(i=0;i<n;i++){
+    scanf("%s",S1[i].name);
+    scanf("%s",S1[i].city);
+    scanf("%d",&S1[i].establishmentYear);
+    scanf("%f",&S1[i].passPercentage);     
+      
+    }
+ 	printf("Details of colleges\n");
+ 	bsort(S1,n);
+	return 0;
+}

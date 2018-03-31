@@ -1,0 +1,27 @@
+#include <stdio.h>
+ 
+int fastInput() {
+    int val = 0;
+    char c = getchar_unlocked();
+    while (c<33) c = getchar_unlocked();
+    while (c>33) val = (val<<1) + (val<<3) + (c-'0'), c = getchar_unlocked();
+    return val;
+}
+ 
+int main(){
+	register int t,n,sum,i,temp;
+	t = fastInput();
+	while(t--){
+		n = fastInput();
+		sum = 0;
+		i=n;
+		while(i--){
+			temp = fastInput();
+			if(temp==0)n--;
+			else sum += temp;
+		}
+		if(sum >= 100 && sum < (100+n)) printf("YES\n");
+		else printf("NO\n");
+	}
+	return 0;
+} 

@@ -1,0 +1,65 @@
+#include <stdio.h>
+int N,M,L,K,i,j,k;
+int ar[1000][3];
+unsigned long long int C[1001][1001];
+unsigned long long int sol=0;
+unsigned long long int MOD=100000000000080;
+void init(void){
+  for(i=0;i<=1000;i++){
+    for(j=0;j<=i;j++)
+    {
+      if(j==0 || j==i)C[i][j]=1;
+      else
+        C[i][j]=(C[i-1][j-1]+C[i-1][j]);
+      if(C[i][j]>=MOD)
+        C[i][j]-=MOD;
+    }
+  }
+}
+      
+
+
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  char st[10];
+  init();
+  while(t--){
+    scanf("%d%d%d%d",&N,&M,&L,&K);
+    sol=0;
+    int c1=0,c2=0,c3=0;
+    for(i=0;i<N;i++)for(j=0;j<3;j++)ar[i][j]=0;
+    for(i=0;i<N;i++){scanf("%s",st);for(j=0;j<M;j++)ar[i][j]=st[j]-'0';}
+    if(K==1){
+      for(i=0;i<N;i++){
+        if(ar[i][0])
+          c1++;
+        if(ar[i][1])
+          c2++;
+        if(ar[i][2])
+          c3++;
+      }
+      sol=(C[c1][L]+C[c2][L]+C[c3][L])%MOD;
+   }
+     if(K==3){
+       for(i=0;i<N;i++){
+         if(ar[i][0]&&ar[i][1]&&ar[i][2])
+           c1++;
+       }
+       sol=C[c1][L];
+     }
+           if(K==2){
+             for(i=0;i<N;i++){
+               if(ar[i][0]&&ar[i][1])c1++;
+               if(ar[i][0]&&ar[i][2])c2++;
+               if(ar[i][1]&&ar[i][2])c3++;
+             }
+             sol=(C[c1][L]+C[c2][L]+C[c3][L])%MOD;
+           }
+           printf("%llu\n",sol);
+           }
+          
+
+	return 0;
+}

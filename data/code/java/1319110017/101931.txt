@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int p=sc.nextInt();
+       int r=sc.nextInt();
+       int t=sc.nextInt();
+       simpleInterest(p,r,t);
+       }       
+  static void simpleInterest(int principal,int rate,int time) 
+  {     
+    if(principal<=0 || rate<=0 || time<=0)
+    {
+      try
+      {
+        throw new IllegalArgumentException();
+      }
+      catch(IllegalArgumentException e)
+      {
+        System.out.print(e);
+      }
+    }   
+    else
+    {
+      int si=(principal*rate*time)/100;
+      System.out.println(si);
+    }
+  }
+}

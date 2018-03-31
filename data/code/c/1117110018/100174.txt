@@ -1,0 +1,54 @@
+#include <stdio.h>
+int main()
+{
+    int A[10][10];  
+    int B[10][10];  
+
+    int row, col,SIZE, isSymmetric;
+    scanf("%d\n%d",&row,&col);
+    SIZE=row;
+    for(row=0; row<SIZE; row++)
+    {
+        for(col=0; col<SIZE; col++)
+        {
+            scanf("%d", &A[row][col]);
+        }
+    }
+
+    
+    for(row=0; row<SIZE; row++)
+    {
+        for(col=0; col<SIZE; col++)
+        {
+            /* Store each row of matrix A to each column of matrix B */
+            B[row][col] = A[col][row];
+        }
+    }
+
+
+    isSymmetric = 1;
+    for(row=0; row<SIZE && isSymmetric; row++)
+    {
+        for(col=0; col<SIZE; col++)
+        {
+          
+            if(A[row][col] != B[row][col])
+            {
+                isSymmetric = 0;
+                break;
+            }
+        }
+    }
+
+    if(isSymmetric == 1)
+    {
+        printf("Symmetric\n");
+
+    }
+    else
+    {
+        printf("\nNot Symmetric");
+    }
+
+    return 0;
+}

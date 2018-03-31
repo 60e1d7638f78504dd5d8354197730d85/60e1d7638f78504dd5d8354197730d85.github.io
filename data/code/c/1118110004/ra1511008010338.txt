@@ -1,0 +1,47 @@
+#include <stdio.h>
+struct date
+{
+  int day,month,year;
+};
+struct date read(void);
+void validate(struct date a);
+int main()
+{
+	struct date a;
+  	a=read();
+  	//printf("%d %d %d", a.day, a.month, a.year);
+  	validate(a);
+	return 0;
+}
+
+struct date read(void)
+{
+  struct date a;
+  scanf("%d %d %d", &a.day, &a.month, &a.year);
+  return a;
+}
+
+void validate(struct date a)
+{
+  if(a.year<0 || a.year>2999)
+  {
+    printf("Invalid Year");
+    return;
+  }
+  else if(a.month<1 || a.month>12)
+  {
+    printf("Invalid Month");
+    return;
+  }
+  else if(a.day<0 || a.day>31)
+  {
+    printf("Invalid Day");
+    return;
+  }
+  else
+  {
+    printf("New Date=%d %d %d", (a.day+1), a.month, a.year);
+    
+  }
+    
+}

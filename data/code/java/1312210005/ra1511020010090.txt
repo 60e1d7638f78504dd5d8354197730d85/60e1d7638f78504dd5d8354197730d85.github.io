@@ -1,0 +1,40 @@
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		try{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int N=Integer.parseInt(br.readLine());
+        int count=0;
+        while(N--!=0)
+        {
+            double result=0,result1=0,result2=0;
+            String temp[]=br.readLine().split((" "));
+            int x1,x2,x3,y1,y2,y3;
+            x1=Integer.parseInt(temp[0]);
+            y1=Integer.parseInt(temp[1]);
+            x2=Integer.parseInt(temp[2]);
+            y2=Integer.parseInt(temp[3]);
+            x3=Integer.parseInt(temp[4]);
+            y3=Integer.parseInt(temp[5]);
+ 
+            /*if(x1==x2 || y1==y2 || x1==x3 || x2==x3 || y2==y3 || y1==y3)
+            {
+                count++;
+            }*/
+          result+=(x2-x1)*(x2-x1)+(y2-y1)*(y2-y1);
+          result1+=(x2-x3)*(x2-x3)+(y2-y3)*(y2-y3);
+          result2+=(x3-x1)*(x3-x1)+(y3-y1)*(y3-y1);
+ 
+          if(result2==result1+result)
+              count++;
+          else if(result1==result2+result)
+              count++;
+          else if(result==result1+result2)
+              count++;
+         }
+        System.out.println(count);}
+       catch(Exception e){
+       System.out.print("1");
+       }
+	}
+}

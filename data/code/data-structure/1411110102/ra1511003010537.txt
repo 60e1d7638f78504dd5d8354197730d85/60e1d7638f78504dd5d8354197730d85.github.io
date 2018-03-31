@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+
+struct Node{
+  	int data;
+  	Node *next;
+};
+
+struct Node *head= NULL;
+
+void ins(int num){
+  	struct Node *temp= new Node;
+  	temp->data= num;
+  	temp->next=head;
+  	head=temp;
+}
+
+void display(){
+  	if(head==NULL)
+      	cout<<"NULL";
+  	struct Node *temp=head;
+  	while(temp!= NULL){
+		cout<<temp->data<<" ";
+      	temp= temp->next;
+    }
+}
+
+int main(){
+  	int i, n, x, a[100];
+  	cin>>n;
+  	for(i=0; i<n; i++){
+		cin>>a[i];
+      	if(a[i]==0)
+          	a[i]=100;
+      	if(a[i]==99100)
+          	a[i]=99;
+    }
+  	for(i=n-1; i>=0; i--){
+		x= a[i];
+      	ins(x);
+	}
+  	display();
+
+  	return 0;
+}

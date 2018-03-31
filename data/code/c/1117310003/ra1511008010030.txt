@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+typedef long long int ll;
+typedef unsigned long long int ull;
+ll max=1e6;
+long int p[100000];
+int num[1000005];
+ll pk=0;
+void f()
+{
+ 
+	long int i,inc,j,l,rem;
+	long int m,n;
+	for (i=3;i*i<1000011;i+=2)
+	{
+		if (!num[i])
+		{
+			inc=i<<1;
+			for (j=i*i;j<1000011;j+=inc) num[j]=1;
+		}
+	}
+	p[pk++]=2;
+	for (i=3;i<1000011;i+=2)
+	{
+		if (!num[i]){ p[pk++]=i;
+			
+		}
+	}
+
+	return;
+}
+int isprime(ll k)
+{
+	int i;
+	for (i=0;i<pk,k>=p[i];i++){
+		if (p[i]==k) return 1;
+	}
+	return 0;
+}
+int main()
+{
+	f();
+	int t;
+	scanf("%d",&t);
+	while (t--){
+		ll j,i,k=0;
+		ll a,b;
+		ll kiss=0;
+		ll inc,m,om,n,l,rem;
+		scanf("%lld %lld",&m,&n);om=m;
+		if (m<=2)
+		{
+			if (n<=1) {printf("0\n");continue;}	
+			m=2; 
+			kiss++;
+		}
+		if (!(m&1)) m++;
+		l=n-m;
+		for (i=0;p[i]*p[i]<m;i++)
+		{
+			if (p[i]==0) break;
+			inc=p[i]<<1;
+			rem=m%p[i];
+			if (rem) j=p[i]-rem;
+			else j=0;
+			if (!((j+m)&1))j+=inc/2;
+			for (;j<=l;j+=inc) num[j]=1;
+		}
+		for(;p[i]*p[i]<=n;i++)
+		{
+			if (p[i]==0) break;
+			inc=p[i]<<1;
+			for (j=(p[i]*p[i])-m;j<=l;j+=inc) num[j]=1;
+		}
+		for (i=0;i<=l;i+=2)
+		{
+			if(!num[i])
+			{
+			
+				kiss++;
+			}
+			else num[i]=0;
+		}
+ 
+		
+		ull p1;
+		for (i=0;i<78500;i++)
+		{
+			for (j=1;j<78500;j++)
+			{
+				
+				p1=pow(p[i],p[j]-1);
+				if (p1>n || p1==0){
+					break;
+				}
+				
+				if (p1>=om)kiss++;
+			}
+			if (j==1)break;
+		}
+		
+		printf("%lld\n",kiss);
+	}
+	return 0;
+}

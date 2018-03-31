@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void main()
+{
+  char s[30];
+  int a[30];
+  int i,len,dec,k;
+  scanf("%s",s);
+  len=strlen(s);
+  for(i=0;i<len;i++)
+  {
+   switch(s[i])
+   {
+     case 'I':a[i]=1;
+               break;
+     case 'V':a[i]=5;
+              break;
+     case 'X':a[i]=10;
+              break;
+     case 'L':a[i]=50;
+              break;
+     case 'C':a[i]=100;
+              break;
+     case 'D':dec=dec+500;
+             break;
+     case 'M':a[i]=100;
+              break;
+     default:printf("invalid");
+              break;
+   }
+  }
+  k=a[len-1];
+  for(i=len-1;i>0;i--)
+  {
+   if(a[i]>a[i-1]) 
+     k=k-a[i-1];
+    
+    if(a[i]<=a[i-1])
+      k=k+a[i-1];
+  }
+  printf("%d",k);
+}

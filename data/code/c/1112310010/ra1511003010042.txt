@@ -1,0 +1,35 @@
+#include <stdio.h>
+long long int combinatorics(int n,int k){
+	
+	long long int ans=1;
+   	 k=k>n-k?n-k:k;
+    	int j=1;
+    	for(;j<=k;j++,n--)
+    	{
+        	if(n%j==0)
+        	{
+            		ans*=n/j;
+        	}
+		else{
+        		if(ans%j==0)
+        		{
+            			ans=ans/j*n;
+        		}
+			else
+       	 		{	
+            			ans=(ans*n)/j;
+        		}
+    		}
+	}
+    return ans;
+}
+int main(){
+	int cases;
+	scanf("%d",&cases);
+	while(cases--){
+		int n,k;
+		scanf("%d %d",&n,&k);
+		printf("%lld\n",combinatorics(n-1,k-1));
+	}
+	return 0;
+}

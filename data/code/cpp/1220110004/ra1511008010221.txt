@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; i++) {
+        string n;
+        cin >> n;
+        try {
+            if (n[0] == '-') {
+                throw "x";
+            }
+            int count = 0;
+            for (int j = 0; n[j] != '\0'; j++) {
+                if (n[j] >= '0' && n[j] <= '9' || n[j] == '.') {
+                    count++;
+                } else {
+                    throw "x";
+                }
+            }
+            if (count == n.length()) {
+                cout << n << endl;
+            } else {
+                throw "x";
+            }
+        } catch (const char *msg) {
+            cout << msg << endl;
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    char ch[20];
+    int ar[2];
+    int t,i,flag;
+  scanf("%d",&t);
+  while(t--)
+  {
+    flag=0;
+    for(i=0;i<2;i++)
+      ar[i]=0;
+    scanf("%s",ch);
+    for(i=0;i<strlen(ch);i++)
+    {
+      ar[ch[i]-65]++;
+    }
+    for(i=0;i<2;i++)
+    {
+      if(ar[i]==2)
+      {
+        flag=1;
+        break;
+      }
+    }
+    if(flag==1)
+      printf("%c\n",'A'+i);
+    else
+      printf("%d\n",-1);
+  }            
+	return 0;
+}

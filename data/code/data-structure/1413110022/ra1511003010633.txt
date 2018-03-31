@@ -1,0 +1,40 @@
+    #include <stdio.h>
+     
+    typedef long int Long;
+     
+    int n;
+    Long ps[100005], h;
+     
+    Long bs() {
+        Long hi = (3e9), lo = 1, mid, ans = 0, currH, goal;
+        while(hi >= lo) {
+            mid = lo + (hi-lo)/2;
+            currH = ((mid - 1) / n) * ps[n - 1] + ps[(mid - 1) % n];
+            goal = (h - mid*(mid + 1)/2);
+            
+            // printf("%lld %lld %lld %lld %lld\n", hi, lo, mid, currH, goal);
+            if(currH >= goal) {
+                ans = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return ans;
+    }
+     
+    int main() {
+      int i;
+    	scanf("%d%ld", &n, &h);
+    	for( i = 0; i < n; ++i) {
+    	    scanf("%ld", ps + i);
+    	    if(i) ps[i] += ps[i - 1];
+    	    if(ps[i] >= h - (i + 1) * 1ll * (i + 2) / 2) {
+    	        return 0 * printf("%d", i + 1);
+    	    }
+    	}
+    	
+    	printf("%ld\n", bs());
+    	
+        return 0;
+    }

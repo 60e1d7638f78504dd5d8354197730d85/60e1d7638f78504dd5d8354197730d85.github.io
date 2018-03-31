@@ -1,0 +1,44 @@
+#include <stdio.h>
+struct TIME
+{
+  int second;
+  int minute;
+  int hour;
+};
+
+void diff(struct TIME *t1, struct TIME *t2)
+  {
+	t2->hour += t1->hour;
+	t2->minute += t1->minute;
+	t2->second += t1->second;
+ 
+	if(t2->second > 60)
+	{
+		t2->minute += 1;
+		t2->second -= 60;
+	}
+ 
+	if(t2->minute > 60)
+	{
+		t2->hour += 1;
+		t2->minute -= 60;
+	}
+ 
+	if(t2->hour > 24)
+	{
+		t2->hour -= 24;
+	}
+ 
+  
+}
+int main()
+{
+  struct TIME t1,t2;
+  scanf("%d %d %d",&t1.hour,&t1.minute,&t1.second);
+  scanf("%d %d %d",&t2.hour,&t2.minute,&t2.second);
+  
+  diff(&t1,&t2);
+  printf("%d hrs\n%d min\n%d sec",t2.hour,t2.minute,t2.second);
+
+	return 0;
+}

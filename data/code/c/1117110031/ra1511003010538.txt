@@ -1,0 +1,46 @@
+#include <stdio.h>
+#define MAX_ROWS 5
+
+
+int main()
+{
+    int array[MAX_ROWS][MAX_ROWS];
+    int row,isUpper,i,j;
+scanf("%d",&row);
+    
+    
+    for(i=0; i<row; i++)
+    {
+        for(j=0; j<row; j++)
+        {
+            scanf("%d", &array[i][j]);
+        }
+    }
+    
+    
+    isUpper = 1;
+   for(i=0; i<row; i++)
+    {
+        for(j=0; j<row; j++)
+        {
+           
+            if(j<i && array[i][j]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    
+    
+    if(isUpper == 1)
+    {
+       
+    printf("yes");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

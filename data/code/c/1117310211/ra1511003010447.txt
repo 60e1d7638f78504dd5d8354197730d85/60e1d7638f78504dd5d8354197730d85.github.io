@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int isPowerOfTwo(int n){
+int flag=1;
+while(n!=1){
+	if(n%2!=0){
+    	flag=0;
+      break;
+    	}
+  else flag=1;
+  n/=2;
+	}
+  
+  if(flag==0)
+    return 0;
+  else return 1;
+}
+
+int main()
+{
+	int t,i,j;
+  int a[10],num,count=0;
+  scanf("%d",&t);
+  for(i=0;i<t;i++){
+  
+  scanf("%d",&a[i]);
+  }
+  
+  for(i=0;i<t;i++){
+  for(j=i+1;j<t;j++){
+  num=a[i]+a[j];
+    if(isPowerOfTwo(num))
+      count++;
+  }
+  }
+  
+  printf("%d",count);
+	return 0;
+}

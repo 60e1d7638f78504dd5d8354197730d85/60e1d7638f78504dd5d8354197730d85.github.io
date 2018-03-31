@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int min(int a, int b) {
+	return a > b ? b : a;
+}
+ 
+static int compare(const void *p, const void *q) {
+	char *s = (char *)p;
+	char *t = (char *)q;
+	char ss = *s;
+	char ts = *t;
+	int ls = strlen(s);
+	int lt = strlen(t);
+	int i = 0;
+	for(i = 0; i < min(lt, ls) && *s == *t; i++, s++, t++);
+	if(i == ls) {
+		return *t - ts;
+	} else if(i == lt) {
+		return *s - ss;
+	}
+	return *t - *s;
+}
+ 
+int main(int argc, char const *argv[]) {
+	int t;
+	scanf("%d", &t);
+	while(t-- ) {
+		int i, n;
+		scanf("%d", &n);
+		char str[n][5];
+		for(i = 0; i < n; i++)
+			scanf("%s", str[i]);
+		qsort(str, n, sizeof(char) * 5, compare);
+		for(i = 0; i < n; i++)
+			printf("%s", str[i]);
+		printf("\n");
+	}
+	return 0;
+} 

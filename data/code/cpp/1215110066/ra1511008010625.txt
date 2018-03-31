@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+float findStandardDeviation(float *array, int count);
+
+int main() {
+    int count=10, i;
+    float inputArray[500];
+    for(i = 0; i < count; i++){
+     cin >> inputArray[i];
+    }
+
+    cout << findStandardDeviation(inputArray, count);
+
+    return 0;
+}
+float findStandardDeviation(float *array, int count) {
+    float sum = 0.0, sDeviation = 0.0, mean;
+    int i;
+
+    for(i = 0; i < count; i++) {
+        sum += array[i];
+    }
+    mean = sum/count;
+
+    for(i = 0; i < count; ++i) {
+        sDeviation += pow(array[i] - mean, 2);
+    }
+
+    return sqrt(sDeviation/count);
+}

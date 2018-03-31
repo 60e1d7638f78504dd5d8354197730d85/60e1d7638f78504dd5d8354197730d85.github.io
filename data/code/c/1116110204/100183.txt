@@ -1,0 +1,31 @@
+#include<string.h>
+#include<stdio.h>
+int main()
+{
+    char s[105],s2[105];
+    int t,ans,i,l,l2,j,k;
+    scanf("%d",&t);
+    while(t--)
+    {
+              ans=0;
+              scanf("%s %s",s,s2);
+              l=strlen(s);
+              l2=strlen(s2);
+              for(j=i=0;i<l;i++)
+              {
+                                if(s[i]==s2[j])
+                                j++;
+              }
+              if(j==l2)
+              ans|=1;
+              for(j=0,i=l-1;i>=0;i--)
+              {
+                                if(s[i]==s2[j])
+                                j++;
+              }
+              if(j==l2)
+              ans|=2;
+              printf("%d\n",ans);
+    }
+    return 0;
+}

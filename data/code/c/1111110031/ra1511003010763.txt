@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+int convertDecimalToOctal(int decimalNumber)
+{
+    int octalNumber = 0, i = 1;
+
+    while (decimalNumber != 0)
+    {
+        octalNumber += (decimalNumber % 8) * i;
+        decimalNumber /= 8;
+        i *= 10;
+    }
+
+    return octalNumber;
+}
+char *strrev(char *str)
+{
+      char *p1, *p2;
+
+      if (! str || ! *str)
+            return str;
+      for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
+      {
+            *p1 ^= *p2;
+            *p2 ^= *p1;
+            *p1 ^= *p2;
+      }
+      return str;
+}
+int main()
+{
+  int d;
+  scanf("%d",&d);
+printf("Decimal value:%d", d);
+printf("\nOctal value:%d", convertDecimalToOctal(d));  
+printf("\nHexadecimal value:");
+  
+      char HEXVALUE[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+  long long decimal, tempDecimal;
+    char hex[65];
+    int index, rem;
+    decimal = d;
+    tempDecimal = decimal;
+
+    index = 0;
+    
+    while(tempDecimal !=0)
+    {
+        rem = tempDecimal % 16;
+
+        hex[index] = HEXVALUE[rem];
+
+        tempDecimal /= 16;
+
+        index++;
+    }
+    hex[index] = '\0';
+
+    strrev(hex);
+  
+  printf("%s", hex);
+  
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{ int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int n,k;
+    scanf("%d %d",&n,&k);
+    int i,arr[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    if(n==2)
+    { printf("YES\n");
+       continue;
+    }
+    int rem1=arr[0]%(k+1);
+    int rem2=-1;
+    int rem1count=1;
+    int rem2count=0;
+     i=1;
+    for(i=1;i<n;i++)
+    {
+      if(arr[i]%(k+1)==rem1)
+        rem1count++;
+      else
+      {
+        if(rem2==-1)
+        {
+          rem2=arr[i]%(k+1);
+          rem2count++;
+        }
+        else if(arr[i]%(k+1)==rem2)
+          rem2count++;
+        else
+          break;
+      }
+    }
+    if(i<n)
+      printf("NO\n");
+    else if(rem1count==n-1||rem1count==n||rem2count==n-1)
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+
+	return 0;
+}

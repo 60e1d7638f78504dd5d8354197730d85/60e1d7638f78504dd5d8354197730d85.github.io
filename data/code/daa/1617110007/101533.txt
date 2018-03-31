@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define bug(x) cout << #x << " = " << x << endl;
+ 
+typedef long long int ll;
+const int maxn = 1e5+5;
+int n, m;
+vector<int> g[maxn];
+bool vis[maxn];
+int d[maxn];
+int par[maxn];
+int child[maxn];
+int ans = 0;
+void dfs(int u){
+	vis[u] = true;
+	for(int i = 0; i < g[u].size(); i++){
+		int v = g[u][i];
+		if(!vis[v]){
+			par[v] = u;
+			child[u]++;
+			dfs(v);
+		}
+	}
+}
+ 
+int main(){
+	cin >> n >> m;
+	for(int i = 1; i <= m; i++){
+		int x, y;
+		cin >> x >> y;
+		g[x].push_back(y);
+		g[y].push_back(x);
+	}
+	memset(vis, false, sizeof(vis));
+	
+	for(int i =1; i <= n; i++){
+		if(!vis[i]){
+			dfs(i);
+		}
+	}
+	
+	ans = 0;
+	for(int i = 2; i <= n; i++){
+		if(par[i] != 0 && child[i] > child[par[i]])
+			ans++;
+	}
+	cout << ans << endl;
+}

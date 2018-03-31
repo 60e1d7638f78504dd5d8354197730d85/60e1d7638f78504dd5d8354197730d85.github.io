@@ -1,0 +1,37 @@
+#include <stdio.h>
+int grade(float h,float c,float t)
+{
+  if(h>50 && c<0.7 && t>5600)
+    return 10;
+  if(h>50  && c<0.7 && t<5600)
+    return 9;
+   if(c<0.7 && t>5600 && h<50)
+    return 8;
+   if(h>50 && t>5600 && c>0.7)
+    return 7;
+  if(h>50 || c<0.7 || t>5600)
+    return 6;
+  if(h<50 && c>0.7 && t<5600)
+    return 5;
+}
+int main()
+{
+int n,i=0,b[10],j;
+  float h,t;
+  float c;
+  scanf("%d",&n);
+  j=n;
+  while(n!=0)
+  {
+    scanf("%f",&h);
+    scanf("%f",&c);
+    scanf("%f",&t);
+    b[i++]=grade(h,c,t);
+    n--;
+  }
+  for(i=0;i<j;i++)
+  {
+    printf("Grade %d\n",b[i]);
+  }
+	return 0;
+}

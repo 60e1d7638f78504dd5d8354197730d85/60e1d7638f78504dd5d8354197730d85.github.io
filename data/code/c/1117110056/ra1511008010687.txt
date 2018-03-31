@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char str[26],w[12];
+	int k,j,i,n;
+	scanf("%s",str);
+	scanf("%d",&n);
+	int arr[n];
+	for(i=0;i<n;i++)
+	{
+ 
+		scanf("%s",w);
+		for(j=0;j<strlen(w);j++)
+		{
+			arr[i]=0;			
+			for(k=0;k<strlen(str);k++)
+			{
+				if(str[k]==w[j])
+				{
+					arr[i]=1;
+					break;
+				}
+			}
+			if(arr[i]==0)
+			{
+				break;
+			}
+		}
+	}
+	for(i=0;i<n;i++)
+	{
+		if(arr[i]==1)
+		{
+			printf("Yes\n");
+		}
+		else
+		{
+			printf("No\n");
+		}
+	}
+  return 0;
+} 

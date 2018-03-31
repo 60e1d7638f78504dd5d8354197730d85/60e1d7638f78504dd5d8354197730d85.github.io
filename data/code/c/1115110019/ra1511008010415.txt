@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+	int n,m[20],p[20],k,l,i,a,j,key;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      	scanf("%d",&m[i]);
+  	scanf("%d",&k);
+  	scanf("%d",&l);
+  	for(i=0;i<k;i++)
+      	p[i]=m[i];
+  	p[k]=l;
+  	for(i=k+1;i<=n;i++)
+      	p[i]=m[i-1];
+  printf("Before sorting\n");
+  	for(i=0;i<=n;i++)
+    	printf("%d\n",p[i]);
+	for (i = 1; i <=n; i++)
+   {
+       key = p[i];
+       j = i-1;
+       while (j >= 0 && p[j] > key)
+       {
+           p[j+1] = p[j];
+           j = j-1;
+       }
+       p[j+1] = key;
+    }
+  printf("After sorting\n");
+  for(i=0;i<=n;i++)
+    	printf("%d\n",p[i]);
+  return 0;
+}

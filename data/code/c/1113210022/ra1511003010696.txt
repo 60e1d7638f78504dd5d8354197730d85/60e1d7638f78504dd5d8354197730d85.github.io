@@ -1,0 +1,54 @@
+#include <stdio.h>
+int div(int x)
+{int i,c=0;
+  for(i=1;i<=x;i++)
+  {
+    if(x%i==0)
+  {c++;}
+  }
+// printf("%d ",c);
+ return c;
+}
+int isprime(int x)
+{
+  int i,d=0,y;
+  y=div(x);
+  for(i=1;i<=y;i++)
+  {
+    if(y%i==0)
+    {
+      d++;
+    }
+  }
+  
+  return d;
+}
+  
+int main()
+{
+  int l,r,n,d=0,i,c;
+  scanf("%d",&n);
+  if(n==0)
+  {
+    printf("0");
+    return 0;
+  }
+  while(n--)
+  {
+    d=0;
+    scanf("%d",&l);
+    scanf("%d",&r);
+    for(i=l;i<=r;i++)
+    {
+      c=isprime(i);
+      
+      if(c==2)
+      {
+        d++;
+      }
+    }
+    printf("%d\n",d);
+  }
+  
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <stdio.h>
+ 
+int main()
+{
+	int n,a[1000],d,i,j,pos,min,k;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d %d",&a[i],&d);
+		a[i]=a[i]+d;
+	}
+	for(k=0;k<n;k++)
+	{
+		for(j=0;j<n;j++)
+		{
+			if(a[j]!=-1)
+			{
+				min=a[j];
+				pos=j;
+				break;
+			}
+		}
+		for(i=0;i<n;i++)
+	{
+		if(a[i]<min&&a[i]!=-1)
+		{
+			min=a[i];
+			pos=i;
+		}
+		
+	}
+	a[pos]=-1;
+	printf("%d ",pos+1);
+	}
+	/*for(i=0;i<n;i++)
+	printf("%d ",a[i]);*/
+    return 0;
+}

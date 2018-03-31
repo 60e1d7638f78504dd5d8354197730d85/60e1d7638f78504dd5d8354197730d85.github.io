@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+char s[500];  
+int dp[500]; 
+int main()  
+{  
+    scanf("%s",s+1);  
+    int l = 0, r = 0, m = 1, i;  
+    for( i = 1; s[i]; i++)  
+    {  
+        l = l*137+s[i];  
+        r = r+s[i]*m, m *= 137;  
+        if(l==r)  
+            dp[i] = dp[i/2]+1;  
+    }  
+  
+    int ans = 0;  
+    for( i = 1; s[i]; i++)  
+        ans += dp[i];  
+    printf("%d\n",ans);  
+  return 0;
+}  

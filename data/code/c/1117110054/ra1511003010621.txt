@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int t,i,n,j,s[20],count=1,min=9999;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      scanf("%d",&n);
+      for(j=0;j<n;j++)
+      {
+        scanf("%d",&s[j]);
+      }
+      for(j=0;j<n-1;j++)
+      {
+        if(min>=s[j])
+          min=s[j];
+        if(s[j]>=s[j+1] && s[j+1]<=min)
+          count++;
+      }
+      printf("%d\n",count);
+      count=1;
+      min=9999;
+    }
+	return 0;
+}

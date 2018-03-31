@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,c;
+   int month[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
+ 
+ int date, mon, year, i, r, s = 0 ; 
+ 
+ 
+ 
+ scanf("%d %d %d", &year, &mon, &date) ; 
+ if( (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)) ) 
+  month[1] = 29 ; 
+ for(i = 0 ; i < mon - 1 ; i++) 
+  s = s + month[i] ; 
+ s = s + (date + year + (year / 4) - 2) ; 
+ s = s % 7 ; printf("Date:%d/%d/%d\nweekday=",date,mon,year);
+ switch(s)
+ {case 1:printf("Sunday");break;
+  case 0:printf("Sunday");break;
+  case 2:printf("Tuesday");break;
+  case 3:printf("Wednesday");break;
+  case 4:printf("Thursday");break;
+  case 5:printf("Friday");break;
+  case 6:printf("Saturday");break;}
+	return 0;
+}

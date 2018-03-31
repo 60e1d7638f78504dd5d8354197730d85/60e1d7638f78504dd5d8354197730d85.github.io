@@ -1,0 +1,103 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct Node{
+    int data;
+    struct Node *left,*right;
+};
+void postorder(struct Node* root)
+{
+    if(root==NULL)
+        return;
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d ",root->data);
+}
+void inorder(struct Node* root)
+{
+    if(root==NULL)
+        return;
+    inorder(root->left);
+    printf("%d ",root->data);
+    inorder(root->right);
+}
+void construct(int a[],int n)
+{
+        int i;
+        struct Node *root=NULL,*temp,*p;
+        stack<struct Node*> s;
+        temp=(struct Node*)malloc(sizeof(struct Node));
+        temp->data=a[0];
+        temp->left=NULL;
+        temp->right=NULL;
+        root=temp;
+        s.push(temp);
+        for(i=1;i<n;i++)
+        {
+            p=s.top();
+            temp=(struct Node*)malloc(sizeof(struct Node));
+            temp->data=a[i];
+            temp->left=NULL;
+            temp->right=NULL;
+            if(a[i]<p->data)
+            {   
+                p->left=temp;
+                s.push(temp);
+            }
+            else
+            {
+                while(!s.empty()&&s.top()->data<a[i])
+                {
+                    p=s.top();
+                    s.pop();
+                }
+                p->right=temp;
+                s.push(temp);
+            }
+        }
+        postorder(root);
+        printf("\n");
+      
+}
+
+int main()
+{
+    int tc;
+    cin>>tc;
+    while(tc--){
+        int n,i,f=1;
+        cin>>n;
+        int a[n];
+        for(i=0;i<n;i++)
+            cin>>a[i];
+        stack<pair<int,int>> s;
+        pair<int,int> p;
+        s.push(make_pair(0,1001));
+        for(i=0;i<n;i++)
+        {
+            p=s.top();
+            while(!s.empty()&&(a[i]<p.first||a[i]>p.second))
+            {
+                p=s.top();
+                s.pop();
+            }
+            if(s.empty())
+            {
+                f=0;
+                break;
+            }
+            if(a[i]>p.first&&a[i]<p.second)
+            {   
+                s.push(make_pair(a[i],p.second));
+                s.push(make_pair(p.first,a[i]));
+            }
+        }
+        if(f==0)
+            printf("NO\n");
+        else
+        {
+            construct(a,n);
+        }
+    }
+    
+    return 0;
+}

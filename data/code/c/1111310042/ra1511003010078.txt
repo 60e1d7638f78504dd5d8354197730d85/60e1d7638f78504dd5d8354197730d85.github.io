@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+  int t=1,i,q,c1,c2;
+  char s[110];
+  scanf("%d",&t);
+  for(q=0;q<t;q++)
+  {
+	scanf("%s",s);
+	c1=0;
+	c2=0;
+	if(strlen(s)==2)
+	{
+	   if(s[1]!=s[0])
+	   printf("YES\n");
+	   else
+	   printf("NO\n");
+	}
+	else
+	{
+	  for(i=2;s[i]!='\0';i++)
+	   {
+	     if(s[i]==s[i-2] && s[i]!=s[i-1])
+		   c1=1;
+		 else
+		  c2=1;	       
+	   }
+	  if(c2==1)
+	  printf("NO\n");
+	  else
+	  printf("YES\n");
+	}
+  }
+  return 0;
+}  

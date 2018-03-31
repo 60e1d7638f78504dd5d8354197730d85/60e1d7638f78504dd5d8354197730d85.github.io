@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{int i,j,n,arr[20],count[20][2],flag,pos,c;
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {scanf("%d",&arr[i]);
+  count[i][2]=0;
+ }
+ c=0;
+ for(i=0;i<n;i++)
+ {flag=0;
+  for(j=0;j<i;j++)
+  {if(arr[i]==count[j][1])
+   {flag=1;
+    pos=j;
+    break;
+   }
+  }
+  if(flag==1)
+    count[pos][2]++;
+  else
+  {count[c][1]=arr[i];
+   count[c][2]++;
+   c++;
+  }
+ }
+for(i=0;i<c;i++)
+ printf("%d occurs %d times\n",count[i][1],count[i][2]);
+
+	return 0;
+}

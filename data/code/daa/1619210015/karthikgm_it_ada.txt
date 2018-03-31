@@ -1,0 +1,153 @@
+#include <bits/stdc++.h>
+#define SZ(X) ((int)(X).size())
+#define ALL(X) (X).begin(), (X).end()
+#define REP(I, N) for (int I = 0; I < (N); ++I)
+#define REPP(I, A, B) for (int I = (A); I < (B); ++I)
+#define RI(X) scanf("%d", &(X))
+#define RII(X, Y) scanf("%d%d", &(X), &(Y))
+#define RIII(X, Y, Z) scanf("%d%d%d", &(X), &(Y), &(Z))
+#define DRI(X) int (X); scanf("%d", &X)
+#define DRII(X, Y) int X, Y; scanf("%d%d", &X, &Y)
+#define DRIII(X, Y, Z) int X, Y, Z; scanf("%d%d%d", &X, &Y, &Z)
+#define RS(X) scanf("%s", (X))
+#define CASET int ___T, case_n = 1; scanf("%d ", &___T); while (___T-- > 0)
+#define MP make_pair
+#define PB push_back
+#define MS0(X) memset((X), 0, sizeof((X)))
+#define MS1(X) memset((X), -1, sizeof((X)))
+#define LEN(X) strlen(X)
+#define PII pair<int,int>
+#define VI vector<int>
+#define VPII vector<pair<int,int> >
+#define PLL pair<long long,long long>
+#define VPLL vector<pair<long long,long long> >
+#define F first
+#define S second
+typedef long long LL;
+using namespace std;
+const int SIZE = 5e4+10;
+const int MAXLEN = SIZE*20;
+int emp;
+char s[MAXLEN];
+int SA[MAXLEN],H[MAXLEN],RANK[MAXLEN];
+
+
+int nxt_lv[20][MAXLEN],rp[MAXLEN];
+int st[SIZE];
+int tmp[MAXLEN], num[MAXLEN],d[MAXLEN];
+void SuffixArray(int text[], int t[], int n, int m) {
+    REP(i,n) t[i] = i,d[i]=text[i];
+    for (int i = 1, it=0; i < n; i *= 2, it++) {
+        if(it){
+            REP(j,n)
+                nxt_lv[it][j]=nxt_lv[it-1][nxt_lv[it-1][j]];
+        }
+        //rsort(s+i, t, tmp, n, m);
+        REP(j,m+1)num[j]=0;
+        REP(j,n){
+            num[d[nxt_lv[it][t[j]]]]++;
+            //assert(d[nxt_lv[it][j]]!=0);
+        }
+        REP(j,m)num[j+1]+=num[j];
+        REP(j,n)tmp[num[d[nxt_lv[it][t[j]]]-1]++]=t[j];
+        //rsort(s, tmp, t, n, m);
+        REP(j,m+1)num[j]=0;
+        REP(j,n){
+            num[d[tmp[j]]]++;
+            //assert(d[j]!=0);
+        }
+        REP(j,m)num[j+1]+=num[j];
+        REP(j,n)t[num[d[tmp[j]]-1]++]=tmp[j];
+        REP(j,n) tmp[j] = d[j];
+        m=1;
+        REP(j,n){
+            d[t[j]] = m;
+            if (tmp[t[j]] != tmp[t[j+1]] || tmp[nxt_lv[it][t[j]]] != tmp[nxt_lv[it][t[j+1]]])m++;
+        }
+    }
+}
+
+int nxt_pos[SIZE],lt_pos[SIZE],cn;
+int get_val(int x,int len){
+    if(lt_pos[x+len]<x)return emp;
+    return x+len-lt_pos[x+len];
+}
+int main(){
+    DRII(n,q);
+    emp=n+1;
+    cn=n+1;
+    RS(s);
+    REP(i,n){
+        nxt_lv[0][i]=i+1;
+        s[i]-='a';
+    }
+    nxt_lv[0][n]=n;
+    rp[n]=1;
+    {
+        MS1(lt_pos);
+        int now[10]={};
+        MS1(now);
+        for(int i=n-1;i>=0;i--){
+            if(now[s[i]]!=-1){
+                lt_pos[now[s[i]]]=i;
+                nxt_pos[i]=now[s[i]];
+                rp[now[s[i]]]=now[s[i]]-i+1;
+            }
+            now[s[i]]=i;
+        }
+        REP(i,10)
+            if(now[i]!=-1)rp[now[i]]=emp;
+    }
+    {
+        VI now(n+1);
+        REP(i,n+1)now[i]=i;
+        REP(i,n-1){
+            if(nxt_pos[i]){
+                REPP(j,i+1,nxt_pos[i]){
+                    rp[cn]=rp[now[j]];
+                    now[j]=cn++;
+                }
+                now[nxt_pos[i]]=cn;
+                rp[cn++]=emp;
+                REPP(j,i+1,nxt_pos[i]+1)
+                    nxt_lv[0][now[j]]=now[j+1];
+            }
+            st[i+1]=now[i+1];
+        }
+    }
+    SuffixArray(rp,SA,cn,emp);
+    REP(i,cn)RANK[SA[i]]=i;
+    VPII pp;
+    REP(i,n)
+        pp.PB(MP(RANK[st[i]],i));
+    sort(ALL(pp));
+    REP(i,n){
+        RANK[pp[i].S]=i;
+        SA[i]=pp[i].S;
+    }
+    //REP(i,n)printf("%d,",SA[i]);
+    //puts("");
+    REP(k,n-1){
+        int len=0;
+        int i=SA[k];
+        int j=SA[k+1];
+        while(max(i,j)+len<n&&get_val(i,len)==get_val(j,len))len++;
+        H[k]=len;
+    }
+    while(q--){
+        DRII(x,h);x--;
+        h-=x;
+        int mid=RANK[x];
+        int an=1;
+        REPP(i,mid,n-1){
+            if(H[i]>=h)an++;
+            else break;
+        }
+        for(int i=mid-1;i>=0;i--){
+            if(H[i]>=h)an++;
+            else break;
+        }
+        printf("%d\n",an);
+    }
+    return 0;
+}

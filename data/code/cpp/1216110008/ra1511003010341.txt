@@ -1,0 +1,32 @@
+#include <iostream>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+int main()
+{
+  int n,i,s=0;
+cin>>n;
+  vector<int> a(n);
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  sort(a.begin(),a.end());
+  for(i=0;i<n;i++){
+	int t=a[i];
+    if(i%2){
+      int min=*min_element(a.begin()+i,a.end());
+      int pos=find(a.begin()+i,a.end(),min)-a.begin();
+      a[i]=min;
+      a[pos]=t;
+    }else{
+      int max=*max_element(a.begin()+i,a.end());
+      int pos=find(a.begin()+i,a.end(),max)-a.begin();
+      a[i]=max;
+      a[pos]=t;
+    }
+  }
+  for(i=0;i<n;i++){
+   s+=abs(a[i]-a[(i+1)%n]);
+  }
+  cout<<s;
+	return 0;
+}

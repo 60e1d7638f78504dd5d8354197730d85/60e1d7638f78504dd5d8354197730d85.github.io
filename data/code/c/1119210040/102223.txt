@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int n,m;
+	scanf("%d %d",&n,&m);
+	int i,d;
+	int long index=0;
+	char type;
+	int long a[100001];
+ 
+	for(i=0;i<n;i++)
+	{
+		scanf("%ld",&a[i]);
+	}
+	
+	for(i=0;i<m;i++)
+	{
+		scanf(" %c %d",&type,&d);
+ 
+		if(type=='R')
+			{
+					if(d-index>0)
+					printf("%ld\n",a[(d-index-1)%n]);
+					else
+						printf("%ld\n",a[(d-index-1)%n+n]);
+				
+			}
+		else if(type=='A')
+			index=(index+d)%n;
+		else if(type=='C')
+			{
+				index=index-d;
+				if(index<0)
+					index=index+n;
+				
+			}
+	}
+ return 0;
+} 

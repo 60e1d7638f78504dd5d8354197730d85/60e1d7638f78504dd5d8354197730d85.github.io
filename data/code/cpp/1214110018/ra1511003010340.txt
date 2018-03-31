@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class Time{
+  public:
+	int h[3],m[3],s[3];
+  		void getTime(int n){
+        	cin>>h[n]>>m[n]>>s[n];
+        }
+  		void addTime(){
+        	if(m[0]==60 ||m[1]==60 || s[0]==60 || s[1]==60 ){
+            	cout<<"Invalid Time";
+              	return;
+            }
+          	if(s[0]+s[1]>=60){
+            	s[2] = s[0]+s[1]-60;
+                m[0]+=1;
+            }else{
+              	s[2] = s[0]+s[1];
+			}
+          	if(m[0]+m[1]>=60){
+            	m[2] = m[0]+m[1]-60;
+                h[0]+=1;
+            }
+          	else{
+          		m[2] = m[0]+m[1];
+			}
+			h[2]=h[0]+h[1];
+          cout<<"After Adding\n";
+          	cout<<h[2]<<":"<<m[2]<<":"<<s[2];	
+        }
+};
+int main()
+{
+	Time t;
+	t.getTime(0);
+	t.getTime(1);
+	t.addTime();
+	return 0;
+}

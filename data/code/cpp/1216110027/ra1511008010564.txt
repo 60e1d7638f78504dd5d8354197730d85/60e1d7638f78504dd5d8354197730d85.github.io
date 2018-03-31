@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+  int size,arr[100],flag=0,temp;
+  cin>>size;
+  for(int i=0;i<size;i++)
+  {
+    cin>>arr[i];
+  }
+  for(int i=size-1;i>=0;i--)
+  {
+    int sum1=0;
+    int sum2=0;
+    for(int j=size-1;j>=0;j--)
+    {
+		if(j<i)
+          sum1+=arr[j];
+      	else if(j>i)
+          sum2+=arr[j];
+      	else
+        {}
+    }
+    if(sum1==sum2)
+      cout<<i<<" ";
+    else
+      flag+=1;
+  }
+  if(flag==size)
+    cout<<-1;
+  return 0;
+}

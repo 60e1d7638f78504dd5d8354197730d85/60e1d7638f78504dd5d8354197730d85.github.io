@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define mp make_pair
+ 
+const int N = 100005;
+string Arr[N];
+unordered_map<string, int> mape;
+int n, q, block_size;
+pair< pair<int, int>, pair<string, int> > queries[N];
+int ans[N];
+ 
+bool crit(pair< pair<int, int>, pair<string, int> > a, pair< pair<int, int>, pair<string, int> > b)
+{
+	int a1 = a.first.first/block_size;
+	int b1 = b.first.first/block_size;
+	if(a1 == b1)
+		return a.first.second<b.first.second;
+	return a1<b1;
+}
+ 
+int main()
+{
+	cin>>n;
+	block_size = sqrt(n);
+	for(int i = 0; i<n; i++)
+		cin>>Arr[i];
+	cin>>q;
+	int a, b;
+	string st;
+	for(int i = 0; i<q; i++)
+	{
+		cin>>a>>b>>st;
+		a--;
+		b--;
+		queries[i] = mp(mp(a, b), mp(st,i));
+	}
+	sort(queries, queries+q, crit);
+	int mo_left = 0, mo_right = -1, l, r;
+	for(int i = 0; i<q; i++)
+	{
+		l = queries[i].first.first;
+		r = queries[i].first.second;
+		while(mo_right<r)
+		{
+			mo_right++;
+			mape[Arr[mo_right]]++;
+		}
+		while(mo_right>r)
+		{
+			mape[Arr[mo_right]]--;
+			mo_right--;
+		}
+		while(mo_left<l)
+		{
+			mape[Arr[mo_left]]--;
+			mo_left++;
+		}
+		while(mo_left>l)
+		{
+			mo_left--;
+			mape[Arr[mo_left]]++;
+		}
+		ans[queries[i].second.second] = mape[queries[i].second.first];
+	}
+	for(int i = 0; i<q; i++)
+		cout<<ans[i]<<"\n";
+}

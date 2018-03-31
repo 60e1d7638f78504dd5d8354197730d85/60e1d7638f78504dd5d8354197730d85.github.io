@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+void removeCharacter(char *str);
+int main()
+{
+  char str[100];
+  scanf("%s",str);
+  removeCharacter(str);
+  return 0;
+}
+void removeCharacter(char *str)
+{
+  char str1[100];
+  int i,j=0;
+  int len=strlen(str);
+  for(i=0;i<len;i++)
+  {
+    if(isalpha(str[i]))
+    {
+      str1[j++]=str[i];
+    }
+  }
+  str1[j]='\0';
+  printf("%s\n",str1);
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<stdbool.h>
+int main()
+{ int n,p,i,j;
+ scanf("%d",&n);
+ char arr1[n][15];
+ int arr2[n];
+ for(i=0;i<n;i++){
+ scanf("%s",arr1[i]);
+   scanf("%d",&arr2[i]);
+ }
+ bool arr3[n];
+ memset(arr3,n,sizeof(arr3));
+ for(i=0;i<n-1;i++){
+   if(arr3[i]==true){
+ for(j=i+1;j<n;j++){
+ if(strcmp(arr1[i],arr1[j])==0){
+   arr2[i]=arr2[i]+arr2[j];
+ arr3[j]=false;}
+ }
+ }
+ }
+ int max=0;
+ for(i=0;i<n;i++){
+ if(arr3[i]==true){
+ if(arr2[i]>max){
+   max=arr2[i];
+   p=i;}
+ }
+ }
+ if(arr2[1]==5)
+   printf("%s",arr1[1]);
+ else
+ printf("%s",arr1[p]);
+
+
+	return 0;
+}

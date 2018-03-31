@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while (t--){
+		long long int n,b,m,temp=0,Time=0;
+		scanf("%lld %lld %lld",&n,&b,&m);
+		while(n!=0){
+			if(n%2==0){
+				temp=n/2;
+				Time+=temp*m;			
+			}
+			else{
+				temp=(n+1)/2;
+				Time+=temp*m;
+			}
+			n=n-temp;
+			m=m*2;
+			Time+=b;
+		}
+		Time-=b;
+		printf("%lld\n",Time);
+	}
+	return 0;
+} 

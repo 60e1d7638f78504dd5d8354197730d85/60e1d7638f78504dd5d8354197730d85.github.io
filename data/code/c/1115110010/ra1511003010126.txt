@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int number,i,min,max,mid,n,arr[100];
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+      scanf("%d",&arr[i]);
+    }
+  	scanf("%d",&number);
+  	min=0;
+  	max = n-1;
+  	mid=(min+max)/2;
+  	while(min<max){
+     	if(number>=arr[mid]){
+      		min = mid+1;
+     	}
+     	else{
+     		max = mid-1;   
+     	}
+      	mid = (min+max)/2;
+    }
+  	if(arr[mid]==number){
+     printf("%d found at location %d",number,mid+1); 
+    }
+  	else{
+     printf("%d is not present in the list",number); 
+    }
+	return 0;
+}

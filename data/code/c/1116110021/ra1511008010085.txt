@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100 
+
+void removeFirst(char *, const char);
+int main()
+{
+    char string[MAX_SIZE];
+    char toRemove;
+    scanf("%[^\n]%*c", string);
+    toRemove = getchar();
+ 
+    removeFirst(string, toRemove);
+ 
+    printf("%s", string);
+ 
+    return 0;
+}
+void removeFirst(char * string, const char toRemove)
+{
+    int i;
+    int len = strlen(string);
+ 
+    i=0;
+ 
+    while(i<len && string[i]!=toRemove)
+        i++;
+    while(i<len-1)
+    {
+        string[i] = string[i+1];
+        i++;
+    }
+    string[i] = '\0';
+}

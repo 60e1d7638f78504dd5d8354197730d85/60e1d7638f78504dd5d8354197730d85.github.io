@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n,arr[20],sum=0,leftsum=0,isfound=0;
+  cin>>n;
+  for(int i=0; i<n; i++)
+    cin>>arr[i];
+  for(int i=0; i<n; i++)
+    sum=sum+arr[i];
+  for(int i=0; i<n; i++)
+  {
+    sum=sum-arr[i];
+    if(sum==leftsum)
+    {
+      cout<<i;
+      isfound=1;
+      break;
+    }
+    leftsum=leftsum+arr[i];
+  }
+  if(isfound==0)
+    cout<<"-1";
+	return 0;
+}

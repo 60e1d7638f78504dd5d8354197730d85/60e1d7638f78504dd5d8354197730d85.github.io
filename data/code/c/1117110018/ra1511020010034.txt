@@ -1,0 +1,48 @@
+#include <stdio.h>
+ int n1,n2,i,j;
+int f(int arr[n1][n2],int a,int b){
+int i,j, q=0;
+  int arr1[a][b];
+   for(i=0;i<a;i++)
+    for(j=0;j<b;j++){
+      arr1[j][i]=arr[i][j];
+    }
+  
+    if ( a == b )
+   {
+       for(i = 0; i<a; i++)
+       {
+           for ( j = 0 ; j < a ; j++)
+           {
+               if ( arr[i][j]== arr1[i][j] )
+                 q++;
+           }
+       }
+       if ( q==a*a )
+          return 1;
+      else
+        return 0;
+   }
+   else
+      return 0;
+  
+}
+
+int main()
+{
+  scanf("%d %d",&n1,&n2);
+ int ar[n1][n2];
+  for(i=0;i<n1;i++){
+   for(j=0;j<n2;j++){
+    scanf("%d",&ar[i][j]);
+   }
+  }
+   if(f(ar,n1,n2)==1){
+   printf("Symmetric");
+   }
+ else
+ {
+ printf("Not Symmetric");
+ }
+	return 0;
+}

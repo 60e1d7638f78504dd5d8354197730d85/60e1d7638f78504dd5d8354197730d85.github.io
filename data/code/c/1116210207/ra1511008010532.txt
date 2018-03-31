@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+struct input{
+  char a[1000];
+  char b[1000];
+}x[1000],y[1000];
+int main()
+{
+  int l,n,i,j,c=0,k,t=0,m;
+  char ch[1000];
+  scanf("%s",ch);
+  l=strlen(ch);
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%s",x[i].a);
+  for(j=0;j<n;j++){
+    c=0;
+  for(k=0;k<l;k++)
+  {
+    if(ch[k]==x[j].a[k])
+      c++;   
+  }
+    if(c==l)
+    {
+      strcpy(y[t].b,x[j].a);
+      t++;
+    }
+  }
+  char min[1000];
+  strcpy(min,y[0].b);
+  if(t==0)
+    printf("%s",ch);
+  else{
+  for(m=1;m<t;m++)
+  {
+    if(strcmp(y[m].b,min)<0)
+      strcpy(min,y[m].b);
+  }
+  printf("%s",min);
+  }
+	return 0;
+}

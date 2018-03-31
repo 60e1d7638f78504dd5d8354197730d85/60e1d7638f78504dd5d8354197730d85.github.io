@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	int n,r,output;
+  	scanf("%d %d",&n,&r);
+ 	output = findNCR(n,r);
+  	printf("%d",output);
+	return 0;
+}
+int fact(int f){
+ 	if(f==1 || f==0){
+     return 1; 
+    }
+  	else{
+     return (f*fact(f-1)); 
+    }
+}
+int findNCR(int n,int r){
+  	int num,den1,den2,output;
+  	num = fact(n);
+  	den1 = fact(r);
+  	den2 = fact(n-r);
+  	output = num/(den1*den2);
+  	return output;
+}

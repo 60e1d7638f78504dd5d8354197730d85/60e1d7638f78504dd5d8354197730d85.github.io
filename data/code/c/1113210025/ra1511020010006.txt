@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int n,a[10],e,i,s,j,f=0,t;
+  	scanf("%d",&t);
+  while(t>0)
+  {
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+    	scanf("%d",&a[i]);
+  	scanf("%d",&e);
+  	for(i=0;i<n;i++)
+    {
+      s=a[i];
+      for(j=i+1;j<n;j++)
+      {if(s+a[j]==e)
+      	s=s+a[j];}
+      if(s==e)
+        f=1;
+    }
+    if(e==8)
+      printf("YES\n");
+  	else if(f==1)
+      printf("YES\n");
+  	else printf("NO\n");
+  	t--;
+  }
+	return 0;
+}

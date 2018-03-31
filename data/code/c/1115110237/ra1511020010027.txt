@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<limits.h>
+#define ll long long int
+ 
+int main(){
+		
+	int i, n, sum=0, sum1;
+	scanf("%d", &n);
+	int a[n], b[n], col[n];
+	for(i=0; i<n; i++)
+		col[i]=0;
+	for(i=0; i<n; i++){
+		scanf("%d%d", &a[i], &b[i]);
+		col[a[i]-1]++;
+		col[b[i]]--;
+		sum+=b[i]-a[i]+1;
+	}
+	for(i=1; i<n; i++)
+		col[i]+=col[i-1];
+	//printf("%lld    ", sum);
+	int q;
+	scanf("%d", &q);
+	while(q--){
+		int x, y;
+		sum1=sum;
+		scanf("%d%d", &x, &y);
+		
+		sum1-=(b[x-1]-a[x-1]+1);
+		//printf("%lld\n", sum1);
+		sum1-=col[y-1];
+		if(y>=a[x-1] && y<=b[x-1])
+			sum1--;
+		
+		printf("%c\n", sum1%2 ? 'O':'E');
+	}
+	
+	
+	return 0;
+}

@@ -1,0 +1,53 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+ int dd,mm,yy,i,a,a1,a2,b,b1,b2,d=0,sm=0;
+ 
+ cin>>dd;
+  cin>>mm;
+  cin>>yy;
+
+ if(mm>12 || dd>31)
+   cout<<"you entered wrong date";
+ else
+   {
+    yy=yy-1;
+    a=yy%400;
+    b=yy/400;
+    a1=a%100;
+    b1=a/100;
+    a2=a1/4;
+    b2=a1-a2;
+    for(i=1;i<mm;i++)
+     {
+      if(i==2)
+       {
+                if((yy+1)%4==0)
+                 d=d+29;
+                else
+                 d=d+28;
+       }
+      else if(i==1||i==3||i==5||i==7||i==8||i==10||i==12)
+       d=d+31;
+      else
+       d=d+30;
+     }
+    sm= b*0+b1*5+a2*2+b2*1+d+dd;
+    sm=sm%7;
+    
+    switch(sm)
+     {
+      case 0: cout<<"1"; break;
+      case 1: cout<<"2"; break;
+      case 2: cout<<"3"; break;
+      case 3: cout<<"4"; break;
+      case 4: cout<<"5";break;
+      case 5: cout<<"6"; break;
+      case 6: cout<<"7"; break;
+     }
+ }
+    
+	return 0;    
+}

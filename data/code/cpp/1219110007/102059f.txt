@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+class matrix
+{
+  int a,b,c,d;
+  int e[10][10],f[10][10];
+  public:
+  void input()
+  {
+    cin>>a>>b>>c>>d;
+    int i,j;
+    for(i=0;i<a;i++)
+    {
+      for(j=0;j<b;j++)
+        cin>>e[i][j];
+    }
+    for(i=0;i<c;i++)
+    {
+      for(j=0;j<d;j++)
+        cin>>f[i][j];
+    }
+   
+  }
+  void operator+();
+};
+void matrix::operator+()
+{
+  int i,j;
+  if(a==c && b==d)
+  {
+    cout<<"The sum of the matrix is"<<endl;
+    for(i=0;i<a;i++)
+    {
+      for(j=0;j<b;j++)
+        cout<<e[i][j]+f[i][j]<<" ";
+    }
+  }
+  else
+    cout<<"Matrix cannot be added";
+}
+int main()
+{
+  matrix x;
+  x.input();
+  +x;
+
+	return 0;
+}

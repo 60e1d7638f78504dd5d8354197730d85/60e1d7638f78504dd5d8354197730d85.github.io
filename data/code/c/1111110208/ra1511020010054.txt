@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{
+    int d,n,t,i; 
+    scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d %d",&d,&n);
+    sum(d,n);
+    if(i!=t-1)
+    {
+      printf("\n");
+    }
+  }
+	return 0;
+}
+int sum(int d,int n)
+{
+  int rus=0;
+  int j;
+  for(j=1;j<=n;j++)
+  {
+    rus=rus+j;
+  }
+  d--;
+  if(d>0)
+  {
+    sum(d,rus);
+  }
+  else 
+  {
+    printf("%d",rus);
+  }
+}

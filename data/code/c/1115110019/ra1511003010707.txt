@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{ int n,i;
+ int compare (const void * a, const void * b)
+{
+  return ( *(int*)a - *(int*)b );
+ }
+ int pos,val;
+ scanf("%d",&n);
+ int a[100] ;
+ for(i=0; i<n;i++) 
+   { scanf("%d",&a[i]);
+   }
+ scanf("%d %d",&pos,&val);
+ 
+ for(i=n; i>pos;i--) 
+   { a[i]=a[i-1];
+   }
+ a[pos]=val;
+ printf("Before sorting\n");
+ for(i=0; i<n+1;i++) 
+   { printf("%d\n",a[i]);
+   }
+ qsort(a, n+1, sizeof(int), compare);
+  printf("After sorting\n");
+ for(i=0; i<n+1;i++) 
+   { printf("%d\n",a[i]);
+   }
+
+	return 0;
+}

@@ -1,0 +1,42 @@
+ #include<stdio.h>
+int main()
+{
+    int t,n=0,c=0,i=0,j=0,k=0;
+    scanf("%d",&t);
+        for(i=0;i<t;i++)
+        {
+           c=0;
+           scanf("%d",&n);
+           char aa[n+1];
+           scanf("%s", aa);
+           int a[n];
+                 
+           for(j=0;j<n;j++)
+           {
+                a[j]=(int)aa[j]-48;
+                
+           }
+          
+            if(a[1]==1&&n!=1)a[0]=2;
+            for(j=1;j<(n-1);j++)
+            {
+                if(a[j]==0)
+                {
+                    if(a[j-1]==1||a[j+1]==1)
+                    {
+                        a[j]=2;
+                    }
+                }
+            }
+            if(a[n-2]==1&&n!=1)a[n-1]=2;
+            for(k=0;k<n;k++)
+            {
+                if(a[k]==0)
+                {
+                    c++;
+                }
+            }
+            printf("%d\n",c);
+        }
+       return 0;
+}

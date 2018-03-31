@@ -1,0 +1,71 @@
+import java.io.*;
+
+import java.util.*;
+import java.lang.*;
+
+public class TestClass {
+	
+
+	public static void deleteElement(int[] Arr,int start,int end)
+	{
+		for(int i=start;i<end;i++)
+		{
+			Arr[i]=Arr[i+1];
+		}
+	}
+	
+	
+	public static void arrayRotate(int[] Arr ,int bound)
+	{
+		
+		int temp= Arr[bound],j;
+		for( j=bound;j>0;j--)
+		{
+			Arr[j]=Arr[j-1];
+		}
+		Arr[j]=temp;
+		
+		
+	}
+	public static void main(String[] args) {
+		
+    Scanner sc= new Scanner(System.in);
+ 
+   
+    	int len= sc.nextInt();
+    	int[] Arr = new int[len];
+    	int c1=0,c2=0;
+    	int[] po = new int[len];
+    	int[] ne = new int[len];
+    	for(int i=0;i<len;i++)
+    	{
+    		Arr[i]=sc.nextInt();
+    		if(Arr[i]>=0)
+    		   po[c1++]=Arr[i];
+    		else
+    		    ne[c2++]=Arr[i];
+    	}
+    	int l=0,k=0;
+        for(int i=0;i<len;)
+        {
+            if(i%2==0&&l<c1)
+             Arr[i++]=po[l++];
+            else if(i%2!=0&&k<c2)
+             Arr[i++]=ne[k++];
+            else
+            {
+                if(l<c1)
+                 Arr[i++]=po[l++];
+                else
+                 Arr[i++]=ne[k++];
+            }
+        }
+        for(int i=0;i<len;i++)
+           System.out.print(Arr[i]+" ");
+    	System.out.println();
+    
+		
+		
+	}
+
+}

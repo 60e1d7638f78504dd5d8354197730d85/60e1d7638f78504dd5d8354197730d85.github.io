@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int N = int(1e5) + 5;
+int n, a[N], p[N];
+bool used[N];
+bool cmp(int i, int j) {
+    return a[i] < a[j];
+}
+int solve() {
+    memset(used, 0, sizeof(used));
+    int cur = 0;
+    for (int i = 0; i < n; ++i)
+	{
+        int x = i;
+        if (used[x])
+            continue;
+        while (!used[x]) 
+		{
+            used[x] = true;
+            x = p[x];
+        }
+        cur++;
+    }
+    return n - cur;
+}
+int main() {
+	int t; cin>>t;
+	for(int k=1;k<=t;k++)
+	{
+    scanf("%d", &n);
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &a[i]);
+        p[i] = i;
+    }
+    sort(p, p + n, cmp);
+    int res = solve();  
+//    reverse(p, p + n);
+//    res = min(res, solve());
+    printf("Case %d: %d\n",k, res);
+    }
+    return 0;
+} 

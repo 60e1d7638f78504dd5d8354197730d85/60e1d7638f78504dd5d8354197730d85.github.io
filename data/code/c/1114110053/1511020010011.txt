@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <assert.h>
+#include <string.h>
+#include <math.h>
+int main()
+{
+    int p,t;
+    scanf("%d",&t);
+    // assert(t<=10 && t>=1);
+    while(t--)
+    {
+      int n1,n2;
+      scanf("%d",&n1);
+      int a[n1];
+      int i,j,k,w=0;
+      for(i=0;i<n1;i++)
+      scanf("%d",&a[i]);
+      scanf("%d",&n2);
+      int b[n2];
+      for(i=0;i<n2;i++)
+      {
+        scanf("%d",&b[i]);
+      }
+      for(i=0;i<n1;i++)
+      if(b[0]==a[i])
+        for(k=0,j=i;j<i+n2;j++)
+        if(b[k]==a[j])
+        k++;
+        if(k==n2)
+        {printf("Yes\n");w=1;}
+        // else printf("no\n");
+        // break;
+      
+      if(w==0)
+      printf("No\n");
+    }
+ 
+    // if(w==0)printf("no\n");
+      
+      return 0;
+}
+ 

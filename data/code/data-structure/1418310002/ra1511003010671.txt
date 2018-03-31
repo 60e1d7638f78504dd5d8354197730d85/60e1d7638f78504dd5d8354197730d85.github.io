@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+using namespace std;
+vector < pair<long long int ,pair<int,int > > > edges;
+int a[1505];
+int root(int i)
+{
+	while (a[i]!=i)
+	{
+		a[i]=a[a[i]];
+		i=a[i];
+	}
+	return i;
+}
+void unio(int k,int l)
+{
+	int st=root(k);
+	int en=root(l);
+	a[st]=en;
+}
+long long int kruskal(int m)
+{
+	int i,k,l;
+	long long int wt,mod=1000000007,mincost=1;
+	for (i=0;i<m;i++)
+	{
+		k=edges[i].second.first;
+		l=edges[i].second.second;
+		wt=edges[i].first;
+		if (root(k)!=root(l))
+		{
+			mincost=(mincost%mod*wt%mod)%mod;
+			unio(k,l);
+		}
+	}
+	return mincost;
+}
+void init()
+{
+	int i;
+	for (i=0;i<1505;i++)
+		a[i]=i;
+}
+int main()
+{
+	int i,j,k,l,m,n,t;
+	long long int w;
+	cin>>t;
+	while (t--)
+	{
+		init();
+		cin>>n>>m;
+		//cout<<"x"<<endl;
+		for (i=0;i<m;i++)
+		{
+			cin>>j>>l>>w;
+			edges.pb(mp(w,mp(j,l)));
+		}
+		/*for (i=0;i<edges.size();i++)
+			cout<<edges[i].first<<" ";*/
+		sort(edges.begin(), edges.end());
+		cout<<kruskal(edges.size())<<endl;
+		edges.clear();
+	}
+	return 0;
+}

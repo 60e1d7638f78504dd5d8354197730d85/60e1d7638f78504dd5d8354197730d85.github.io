@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int isWinning(int N) {
+    if ((N-1)%4 == 0) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+ 
+int main() {
+    int numOfTestCases;
+    int N;
+    int bob = 1; 
+    int alice = 0;
+    scanf("%d", &numOfTestCases);
+    while(numOfTestCases--) {
+        scanf("%d", &N);
+        if (isWinning(N)) {
+            if(bob) {
+                printf("BOB\n");
+            }
+            else {
+                printf("ALICE\n");
+            }
+        } else {
+            if(bob) {
+                printf("ALICE\n");
+            }
+            else {
+                printf("BOB\n");
+            }
+        }
+    }
+ 
+    return 0;
+} 

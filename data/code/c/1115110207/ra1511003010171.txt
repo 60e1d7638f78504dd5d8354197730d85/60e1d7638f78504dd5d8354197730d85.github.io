@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int a[10],n,lar1,lar2,i,k;
+  float avg;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+  lar1=a[0];
+  lar2=a[1];
+  if(lar2>lar1)
+  {
+    k=lar2;
+    lar2=lar1;
+    lar1=k;
+  }
+  for(i=2;i<n;i++)
+  {
+    if(a[i]>lar1)
+    {
+      lar2=lar1;
+      lar1=a[i];
+    }
+    else if(a[i]>lar2)
+      lar2=a[i];
+  }
+  avg=(lar1+lar2);
+  avg=avg/2;
+  printf("First Largest=%d\nSecond Largest=%d\nAverage=%.1f",lar1,lar2,avg);
+  return 0;
+}

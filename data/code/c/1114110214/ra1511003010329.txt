@@ -1,0 +1,80 @@
+#include<stdio.h>
+ 
+long long x[1000000];
+ 
+void quicksort(int first,int last){
+    int pivot,j,temp,i;
+ 
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+ 
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         quicksort(first,j-1);
+         quicksort(j+1,last);
+ 
+    }
+}
+ 
+int main()
+{
+ 
+    long long t,n,k,i;
+    long long rst,sum;
+    scanf("%lld",&t);
+ 
+    while(t--)
+    {
+        scanf("%lld%lld",&n,&k);
+        rst=0;
+        sum=0;
+        for(i=0;i<k;i++)
+        {
+            scanf("%lld",&x[i]);
+        }
+ 
+/*        for(i=0;i<k;i++)
+        {
+            printf("%lld ",x[i]);
+        }
+*/
+        quicksort(0,k-1);
+ 
+        for(i=0;i<k;i++)
+        {
+            sum+=x[i];
+ 
+            if(x[i]>(x[i]*(x[i]+1))/2-sum)
+                rst=x[i];
+        }
+ 
+        if(!rst)
+        {
+            rst=(n*(n+1))/2-sum+1;
+        }
+ 
+ 
+        if(rst%2)
+            printf("Chef\n");
+        else
+            printf("Mom\n");
+ 
+    }
+  return 0;
+ 
+}

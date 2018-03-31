@@ -1,0 +1,35 @@
+#include<stdio.h>
+ 
+int main()
+{
+ 
+	int n,k,i,m,open=0;
+	scanf("%d %d",&n,&k);
+	int a[1000]={0};
+	char in[9];
+	for(i=0;i<k;i++)
+	{
+		scanf("%s",in);
+		if ( in[2] == 'I')
+		{
+			scanf("%d",&m);
+			if ( a[m-1] == 0 )
+			{
+				a[m-1]=1;
+				open++;
+			}
+			else 
+			{
+				a[m-1]=0;
+				open--;
+			}
+		}
+		else
+		{
+			open=0;
+			for(m=0;m<n;m++) a[m]=0;
+		}
+		printf("%d\n",open);
+	}
+  return 0;
+}

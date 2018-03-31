@@ -1,0 +1,54 @@
+#include <stdio.h>
+ 
+long long int t,a,d,l,r,range,base,sum,ans,c,x;
+ 
+int fun(long long int b){
+if(b<10){
+	return b;
+}else{
+	long long int temp=0;
+	while(b!=0){
+		temp+=b%10;
+		b=b/10;
+	}
+	return fun(temp);
+}
+}
+ 
+int mod(long long int b){
+	b=b%9;
+	if(b==0){
+		b=9;
+	}
+	return b;
+}
+ 
+int main(void) {
+	scanf("%lld",&t);
+while(t--){
+	scanf("%lld%lld%lld%lld",&a,&d,&l,&r);
+	a=fun(a);
+	d=fun(d);
+	range=r-l+1;
+	l=l-1;
+	base=a;
+	base=mod(base+(l*d));
+ 
+	if(d%3==0){
+		c=3;
+		sum=base+mod(base+d)+mod(base+2*d);
+	}else{
+		c=9;
+		sum=45;
+	}
+	ans=0;
+	ans=sum*(range/c);
+	range=range%c;
+	for(x=0;x<range;x++){
+		ans=ans+base;
+		base=mod(base+d);
+	}
+printf("%lld\n",ans);
+}
+	return 0;
+}

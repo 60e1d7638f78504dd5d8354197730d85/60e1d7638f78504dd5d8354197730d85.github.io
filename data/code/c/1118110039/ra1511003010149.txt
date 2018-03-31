@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<string.h>
+int top;
+char s[400];
+struct prior
+{
+    char var;
+    int val;
+}p[5];
+ 
+ 
+char pop()
+{
+    char y=s[top];
+    top--;
+     
+    return y;
+}
+int main()
+{
+    int t,n,i,j=0,k,l;
+    char a[400],b[400],x;
+   
+   p[0].var='+';
+p[0].val=1;
+p[1].var='-';
+p[1].val=1;
+p[2].var='/';
+p[2].val=2;
+p[3].var='*';
+p[3].val=2;
+p[4].var='^';
+p[4].val=3;
+    scanf("%d",&t);
+    while(t--)
+    {
+        j=0;top=-1;
+        scanf("%s",a);
+        n=strlen(a);
+      
+        for(i=0;i<n;i++)
+        {
+            if(a[i]=='(')
+            {
+               
+                top++;
+                  s[top]=a[i];
+ 
+            }
+            else if(a[i]==')')
+            {
+               
+                while(1)
+                {
+                    x=pop();
+ 
+                    if(x=='(')
+                       break;
+                    b[j++]=x;
+                }
+            }
+            else if(a[i]>=97 && a[i]<=122)
+            {
+              
+                b[j++]=a[i];
+            }
+            else        
+            {
+              
+                for(k=0;k<5;k++)
+                {
+                    if(a[i]==p[k].var)
+                    {
+                    break;
+                    }
+                }
+                while(top>=0)
+                {
+                    x=pop();
+                    if(x=='(')
+                    {
+                       top++;
+                       s[top]=x;
+                       break;
+                    }
+                    for(l=0;l<5;l++)
+                    {
+                        if(a[i]==p[l].var)
+                        break;
+                    }
+                    if(p[l].val>=p[k].val)
+                    {
+                        b[j++]=x;
+ 
+                    }
+                    else
+                    break;
+                }
+                top++;
+                s[top]=a[i];
+ 
+            }
+        }
+        for(i=0;i<j;i++)
+        printf("%c",b[i]);
+        printf("\n");
+ 
+    }
+    return 0;
+}

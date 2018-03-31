@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int size=in.nextInt();
+       int[][] matrix=new int[size][size];
+       for(int i=0;i<size;i++){
+         for(int j=0;j<size;j++){
+           matrix[i][j]=in.nextInt();
+         }
+       }
+       //output display matrix
+       for(int i=0;i<size;i++){
+         for(int j=0;j<size;j++){
+           System.out.print(matrix[i][j]+ " ");
+         }
+         System.out.println();
+       }
+       
+       //diagonal sum
+       int sum=0;
+       for(int i=0;i<size;i++){
+         for(int j=0;j<size;j++){
+           if(i==j){
+             sum=sum+matrix[j][j];
+           }
+         }
+       }
+       System.out.print(sum);
+		
+	}
+}

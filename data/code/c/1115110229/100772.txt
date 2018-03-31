@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+void swap(char *a,char *b)
+{char c=*a;
+    *a=*b;
+    *b=c;
+}
+int oo;
+ 
+void aa(char ch[],char vh[],int curr,int n,int d,int f)
+{if(curr>=n)
+    return;
+ 
+ if(ch[f]==vh[curr])
+ {oo=1;
+     return;
+ }
+ 
+ aa(ch,vh,curr+d,n,d,f); 
+ swap(&vh[curr],&vh[curr+d]);
+}    
+ 
+int main()
+{
+ int i,j,k,l,t,n,d;
+   char ch[100001],vh[100001]; 
+   scanf("%d",&t);
+   while(t--){
+       scanf("%d %d",&n,&d);
+       scanf("%s %s",ch,vh);
+    
+      int a[123]={0},b[123]={0};
+       for(i=0;i<n;i++)
+       {a[ch[i]]++;b[vh[i]]++;
+       }
+       for(i=0;i<123;i++){
+           if(a[i]!=b[i]){
+               break;
+           }
+       }
+       
+       if(i<123)
+       {printf("No\n");continue;
+       }    
+       
+      for(i=0;i<n;i++)
+      {oo=0;
+      
+       aa(ch,vh,i,n,d,i);
+       
+       if(ch[i]!=vh[i])
+       {printf("No\n");
+           break;
+       }  
+       
+      }
+      
+       if(i==n)
+           printf("Yes\n");
+   } 
+	return 0;
+}

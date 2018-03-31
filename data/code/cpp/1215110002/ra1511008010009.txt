@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+
+class TaxCalculator
+{
+    int basic,daper,hraper;  int da,hra,total,tax,finalsal;
+public:
+  void initializeData()
+  {
+      cin>>basic>>daper>>hraper;
+  }
+void calculateTaxamount()
+{
+  da=(daper*basic)/100;
+  hra=(hraper*basic)/100;
+  total=basic+da+hra;
+  tax=total*5/100;
+  finalsal=total-tax;
+}
+  
+  void displayData()
+  {
+    cout<<"Basic Salary="<<basic<<endl;
+  cout<<"DA="<<da<<endl;
+  cout<<"HRA="<<hra<<endl;
+  cout<<"Total="<<total<<endl;
+  cout<<"Tax="<<tax<<endl;
+  cout<<"FinalSalary="<<finalsal;
+  }
+  
+};
+
+
+int main()
+{
+TaxCalculator t;
+  t.initializeData();
+  t.calculateTaxamount();
+  t.displayData();
+
+return 0;
+}
+
+  
+  

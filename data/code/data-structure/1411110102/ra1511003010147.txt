@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int val;
+  node *next;
+}*beg,*cur,*e;
+int main()
+{
+	int n;
+  	cin>>n;
+  	beg=new node;
+  	cin>>beg->val;
+  	beg->next=NULL;
+  	cur=beg;
+  	for(int i=1;i<n;i++)
+    {
+      e=new node;
+      cin>>e->val;
+      e->next=NULL;
+      cur->next=e;
+      cur=cur->next;
+    }
+  	cur=beg;
+  	while(cur!=NULL)
+    {
+      cout<<cur->val<<" ";
+      cur=cur->next;
+    }
+	return 0;
+}

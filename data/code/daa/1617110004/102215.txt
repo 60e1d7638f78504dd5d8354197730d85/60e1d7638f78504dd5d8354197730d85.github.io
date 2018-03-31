@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+using namespace std;
+int mat[1002][1002],n,m,cnt;
+stack<pair<int,int> > st;
+bool ok(int x, int y)
+{
+	if (x>=0 && x<n && y>=0 && y<m) return true;
+	return false;
+}
+void push(int x, int y)
+{
+	cnt++;
+	st.push(make_pair(x,y));
+	mat[x][y] = 2;
+}
+int dfs(int x, int y)
+{
+	cnt=0;
+	push(x,y);
+	while (!st.empty())
+	{
+		pair<int,int> pp = st.top();
+		st.pop();
+		x = pp.first, y = pp.second;
+		if (ok(x-1,y) && mat[x-1][y]==1)
+			push(x-1,y);
+		if (ok(x-1,y-1) && mat[x-1][y-1]==1)
+			push(x-1,y-1);
+		if (ok(x,y-1) && mat[x][y-1]==1)
+			push(x,y-1);
+		if (ok(x+1,y) && mat[x+1][y]==1)
+			push(x+1,y);
+		if (ok(x+1,y+1) && mat[x+1][y+1]==1)
+			push(x+1,y+1);
+		if (ok(x,y+1) && mat[x][y+1]==1)
+			push(x,y+1);
+		if (ok(x-1,y+1) && mat[x-1][y+1]==1)
+			push(x-1,y+1);
+		if (ok(x+1,y-1) && mat[x+1][y-1]==1)
+			push(x+1,y-1);
+	}
+	
+}
+void solve()
+{
+	int i,j;
+	cin>>n>>m;
+	assert(n>0 && n<=1000);
+	assert(m>0 && m<=1000);
+	for (i=0; i<n; i++)
+		for (j=0; j<m; j++)
+			cin>>mat[i][j];
+	
+	int clusters=0, max_elem=0;
+	for (i=0; i<n; i++)
+		for (j=0; j<m; j++)
+		{
+			if (mat[i][j]==1)
+			{
+				dfs(i,j);
+				max_elem = max(max_elem,cnt);
+				clusters++;
+			}
+		}
+	cout<<clusters<<" "<<max_elem<<endl;
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while (t--)
+    {
+    	solve();
+    }
+    return 0;
+}

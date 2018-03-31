@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+	class measure{
+		public:
+      		int feet;
+      		float inches;
+      		void get(){
+            	cin>>feet;
+              	cin>>inches;
+            }
+      		void sum(measure m1,measure m2){
+            	inches = m1.inches+m2.inches;
+				if(inches>=12.0){
+            		inches -= 12.0;
+            		m1.feet+=1;
+				}
+				feet=m1.feet+m2.feet;
+            }
+            void display(){
+            	cout<<feet<<" feet "<<inches<<" inches";
+			}
+    };
+int main()
+{
+	measure m1,m2,m3;
+	m1.get();
+	m2.get();
+	m3.sum(m1,m2);
+	m3.display();
+	return 0;
+}

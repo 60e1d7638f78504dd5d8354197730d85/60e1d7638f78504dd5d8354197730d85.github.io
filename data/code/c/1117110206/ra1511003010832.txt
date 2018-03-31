@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+
+/* Function declaration */
+int sumOfNaturalNumbers(int start, int end);
+
+
+int main()
+{
+    int start=0, end, sum;
+    
+    /* Input lower and upper limit from user */
+  
+    scanf("%d", &end);
+    
+    sum = sumOfNaturalNumbers(start, end);
+    
+    printf("%d", sum);
+    
+    return 0;
+}
+
+
+
+int sumOfNaturalNumbers(int start, int end)
+{
+    if(start == end)
+        return start;
+    else
+        return start + sumOfNaturalNumbers(start + 1, end); 
+}

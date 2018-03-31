@@ -1,0 +1,53 @@
+#include<stdio.h>
+#define MOD 1000000007
+typedef long long int L;
+int fm[400001];
+L inverse(L a)
+{
+  L res=1,x=MOD-2;
+  while(x>0)
+  {
+    if(x%2!=0)
+      res=(res*a)%MOD;
+    a=(a*a)%MOD;
+    x/=2;
+  }
+  return res;
+}
+int main()
+{
+  int R;
+  L N,M,A,B,i,lim,ans,t,f;
+  L a1,a2,n1,n2;
+  f=1;
+  for(i=1;i<=400000;i++)
+  {
+    f=(i*f)%MOD;
+    fm[i]=inverse(f);
+  }
+  scanf("%d",&R);
+  while(R--)
+  {
+    scanf("%lld%lld%lld%lld",&N,&M,&A,&B);
+    lim=(N-A)<(M-B)?(N-A):(M-B);
+    ans=0;
+    n1=n2=1;
+    for(i=0;i<B;i++)
+      n1=(n1*(N-A+B-i))%MOD;
+    for(i=0;i<A;i++)
+      n2=(n2*(M-B+A-i))%MOD;
+    for(i=0;i<=lim;i++)
+    {
+      a1=(n1*fm[B+i])%MOD;
+      a2=(n2*fm[A+i])%MOD;
+      t=a1*a2;
+      t%=MOD;
+      ans+=t;
+      ans%=MOD;
+      n1=(n1*(N-A-i))%MOD;
+      n2=(n2*(M-B-i))%MOD;
+    }
+    printf("%lld\n",ans);
+  }
+  return 0;
+}

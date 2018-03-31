@@ -1,0 +1,37 @@
+#include<stdio.h>
+int checkPrime(int num)
+{
+int i;
+for(i = 2; i < num; i++)
+{
+    if (num%i == 0) 
+        return 0;
+}
+return 1;
+}
+int main(int argv, char *argc[])
+{
+int numTc, x, y, z, numRes[1000], i;
+scanf("%d\n", &numTc);
+if(numTc > 1000)
+    return;
+for(i=0; i < numTc; i ++)
+{
+scanf("%d %d\n", &x, &y);
+if(x > 1000 || y > 1000)
+    return;
+for(z = 1; z <= 1000; z++)
+{
+    if(checkPrime(x + y + z))
+    {
+        numRes[i] = z;
+        break;
+       }
+}
+}
+for(i=0; i < numTc; i ++)
+{
+    printf("potatoes to be planted in the third field:%d\n", numRes[i]);
+}
+  return 0;
+} 

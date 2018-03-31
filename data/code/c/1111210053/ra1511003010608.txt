@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define mod 10000000
+int main(){
+	int a[1001],test,n;long long int b[10001],sum,i,j,ans,complete;
+	scanf("%d",&test);
+	while(test--){
+		sum=0;ans=0;
+		scanf("%d",&n);
+		for(i=0;i<n;i++){
+			 scanf("%d",&a[i]);
+			 sum+=a[i];
+		}
+		for(i=0;i<=sum;i++) b[i]=0;
+		b[0]=1;
+		for(i=0;i<n;i++)
+		for(j=sum;j>=0;j--) 
+		if(b[j]>0)
+	   	b[j+a[i]]=(b[j+a[i]]+b[j])%mod;
+	   	for(i=0;i<=sum;i++)
+	   	{
+		   if(b[i]>0){
+		   	complete=((long long)((long long)abs(sum-2*i))*b[i])%mod;
+		     ans=(ans+complete)%mod;
+		   }	
+	   	}
+	   	printf("%lld\n",ans);
+	}
+} 

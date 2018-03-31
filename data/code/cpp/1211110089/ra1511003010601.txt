@@ -1,0 +1,27 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int armstrong(int a){
+  int t=a,y=0,flag=0;
+  while(t>0){
+    int n=t%10;
+    y+=pow(n,3);
+    t=t/10;
+  }
+  if (y==a)
+    flag=1;
+  return flag;
+}
+
+int main()
+{	
+  	int a,b;
+  cin>>a>>b;
+  //cout<<"Armstrong numbers between "<<a<<" and "<<b<<" are:\n";
+  for (int x=a;x<b;x++)
+    if (armstrong(x))
+      cout<<x<<endl;
+	
+	return 0;	
+}

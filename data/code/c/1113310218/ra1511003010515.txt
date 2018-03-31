@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+	char a[20], b[20], c[20], d[20];
+  	scanf("%s %s %s %s",a ,b, c, d);
+  
+ 	char sort[4];
+  	sort[0]=a[0];
+    sort[1]=b[0];
+  	sort[2]=c[0];
+  	sort[3]=d[0];
+  
+  	int i,j;
+  	for(i=0;i<4;i++)
+    {
+    	for(j=i+1;j<4;j++)
+        {
+        	if(sort[j]<sort[i])
+            {
+            	int temp=sort[j];
+              	sort[j]=sort[i];
+              	sort[i]=temp;
+            }
+        }
+    }
+	for(i=0;i<4;i++)
+    {
+    	if(sort[i]==a[0])
+        {
+          printf("%s\n",a);
+          a[0]='0';
+        }
+      else if(sort[i]==b[0])
+      {
+        printf("%s\n",b);
+        b[0]='0';
+      }
+      else if(sort[i]==c[0])
+      {
+        printf("%s\n",c);
+        c[0]='0';
+      }
+      else
+      {
+        printf("%s\n",d);
+        d[0]='0';
+      }
+    }
+	return 0;
+}

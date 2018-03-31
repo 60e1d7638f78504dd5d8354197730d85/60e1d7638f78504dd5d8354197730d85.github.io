@@ -1,0 +1,86 @@
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
+#include<vector>
+#include<utility>
+#include<queue>
+#include<algorithm>
+ 
+#define si(t) scanf("%d",&t)
+#define sii(t,t2) scanf("%d %d",&t,&t2)
+#define sl(t) scanf("%lld",&t)
+#define sll(t,t2) scanf("%lld %lld",&t,&t2)
+#define pi(t) printf("%d\n",t)
+#define pl(t) printf("%lld\n",t)
+#define pp pair<int,int>
+#define ll long long int
+#define pb push_back
+#define F first
+#define S second
+#define sz size()
+ 
+using namespace std;
+#define ppi pair<ll,pair<ll,ll>>
+//ppi p[1000000];
+struct grt {
+    bool operator()(const std::ppi &left, const std::ppi &right) {
+         if((left.S.F == right.S.F)&&(left.F==right.F) )
+           return (left.S.S>right.S.S);
+           else
+           return (left.F<right.F);
+    }
+};
+pair<ll,ll> p[1000010];
+ll t,n,a[1000100],x,y;
+int main()
+{
+    sl(t);
+   while(t--)
+   {
+   sl(n);
+   p[0].F=0;
+   p[0].S=0;
+   for(int i=0;i<n;i++)
+   {
+       sl(a[i]);
+       p[i].F=a[i];
+       p[i].S=i;
+ 
+   }
+   sort(p,p+n);
+   ll sum=0,j,k;
+   for(int i=0;i<n;i++)
+   {
+       x=p[i].F;
+       y=p[i].S;
+       ll m=1e11,na=1e11;
+       for( j=y+1;j<n;j++)
+        if(a[j]!=1e11)
+         {
+             m=a[j];
+             
+             break;
+         }
+         for( k=y-1;k>=0;k--)
+         if(a[k]!=1e11)
+          {
+              na=a[k];
+              break;
+          }
+        if(m==1e11&&na==1e11)
+        break;
+         
+          
+          
+           
+            sum+=min(m,na);
+            a[y]=1e11;
+            
+ 
+   }
+ 
+   pl(sum);
+   }
+ 
+    return 0;
+}

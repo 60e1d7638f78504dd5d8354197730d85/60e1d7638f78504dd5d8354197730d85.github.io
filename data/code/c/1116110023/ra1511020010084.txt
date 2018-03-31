@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void removeLast(char *, const char);
+
+
+int main()
+{
+    char str[100];
+    char toRemove;
+
+    
+
+  
+    scanf("%c",&toRemove);
+  
+    scanf("%s",str);
+
+    removeLast(str, toRemove);
+
+    printf("%s ", str);
+
+    return 0;
+}
+
+
+void removeLast(char * str, const char toRemove)
+{
+    int i, lastPosition;
+    int len = strlen(str);
+
+   
+    lastPosition = -1;
+    i=0;
+
+    while(i<len)
+    {
+        if(str[i] == toRemove)
+        {
+            lastPosition = i;
+        }
+
+        i++;
+    }
+
+    
+    if(lastPosition != -1)
+    {
+        i = lastPosition;
+
+        
+        while(i<len)
+        {
+            str[i] = str[i+1];
+            i++;
+        }
+    }
+}

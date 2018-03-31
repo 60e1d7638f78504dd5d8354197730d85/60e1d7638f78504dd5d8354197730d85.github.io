@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<string.h>
+//#include<math.h>
+ 
+int main()
+{
+	int t;
+	char str[1001];
+	char temp[1001];
+	char palin[1001];
+	scanf("%d",&t);
+ 
+	while(t--)
+	{
+		fflush(stdin);
+		scanf("%s",str);
+ 
+		int n=strlen(str);
+ 
+		if(n<9)
+		{
+			printf("unlucky\n");
+			continue;
+		}
+ 
+		int i,j,k,a,b;
+		int minop=-1,curop=0;
+			
+		for(k=0;k<=n-5;k++)
+		{
+			a=k;
+			b=k+4;
+			curop=0;
+			strcpy(temp,str);
+			if(temp[k]!='l')
+			{
+				temp[k]='l';
+				curop++;
+			}
+			if(temp[k+1]!='u')
+			{
+				temp[k+1]='u';
+				curop++;
+			}
+			if(temp[k+2]!='c')
+			{
+				temp[k+2]='c';
+				curop++;
+			}
+			if(temp[k+3]!='k')
+			{
+				temp[k+3]='k';
+				curop++;
+			}
+			if(temp[k+4]!='y')
+			{
+				temp[k+4]='y';
+				curop++;
+			}
+ 
+			for(i=0,j=n-1;i<j;i++,j--)
+			{
+				if(i>=a && i<=b && j>b)
+				{
+					if(temp[j]!=temp[i])
+					{
+						temp[j]=temp[i];
+						curop++;
+						if(minop>-1 && curop>minop)
+							break;
+					}
+				}
+				else if(i<a && j<=b && j>=a)
+				{
+					if(temp[i]!=temp[j])
+					{
+						temp[i]=temp[j];
+						curop++;
+						if(minop>-1 && curop>minop)
+							break;
+					}
+				}
+				else if(i>=a && i<=b && j<=b && j>=a)
+				{
+					break;
+				}
+				else
+				{
+					if(temp[j]!=temp[i])
+					{
+						if(temp[j]<temp[i])
+							temp[i]=temp[j];
+						else
+							temp[j]=temp[i];
+ 
+						curop++;
+						if(minop>-1 && curop>minop)
+							break;
+					}
+				}
+			}
+ 
+			if(i>=j)
+			{
+				if(minop==-1)
+				{
+					minop=curop;
+					strcpy(palin,temp);
+					continue;
+				}
+				
+				if(curop<minop)
+				{
+					minop=curop;
+					strcpy(palin,temp);
+				}
+				else if (curop==minop)
+				{
+					if(strcmp(temp,palin)<0)
+						strcpy(palin,temp);
+				}
+			}
+		}
+ 
+		if(minop!=-1)
+			printf("%s %d\n",palin,minop);
+		else
+			printf("unlucky\n");
+	}
+			
+	//getch();
+	return 0;
+}
+ 

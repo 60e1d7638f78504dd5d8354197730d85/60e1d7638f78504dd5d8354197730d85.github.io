@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#define MOD 1000000007
+#define ll long long
+ll N, M, dp[1001][1001];
+ 
+ 
+ll Dexter(int CD, int CM) {
+	if((CD+CM)==N) {
+	    if(CD==CM) return dp[CD][CM]=0;
+		return dp[CD][CM]=1;
+	}
+	if(dp[CD][CM]!=-1)
+	    return dp[CD][CM];
+	 ll a=0, b=0;
+	if(CD+1 >= M*CM){
+	    a=Dexter( CD+1 , CM);
+	}	
+	if(CD >= M*(CM+1)) {
+	    b=Dexter( CD, CM+1);
+	}
+	dp[CD][CM]=(a+b)%MOD;
+	return dp[CD][CM];
+}
+int main() {
+	int test;
+	scanf("%d", &test);
+	
+	while(test--) {
+		scanf("%lld%lld", &N, &M);
+		memset(dp,-1, sizeof dp);
+		printf("%lld\n", Dexter( 0, 0));
+	}
+	return 0;
+}
+ 

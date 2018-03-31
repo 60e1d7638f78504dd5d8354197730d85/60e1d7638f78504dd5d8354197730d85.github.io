@@ -1,0 +1,42 @@
+#include<stdio.h>
+int prime(long long int);
+int main()
+{
+    int tc,flag;
+    long long int num,i;
+    scanf("%d",&tc);
+    while(tc--)
+    {
+        flag=0;
+        scanf("%lld",&num);
+        for(i=2;i<=num/2;i++)
+        {
+            if((prime(i))==1)
+            {
+                if((prime(num-i))==1)
+                {
+                    flag=1;
+                }
+            }
+        }
+        if((flag)==1)
+        {
+            printf("Deepa\n");
+        }
+        else
+        {
+            printf("Arjit\n");
+        }
+    }
+    return 0;
+}
+int prime(long long int val)
+{
+    long long int i;
+    for(i=2;i<=val/2;i++)
+    {
+        if((val%i)==0)
+        {return 0;}
+    }
+    return 1;
+}

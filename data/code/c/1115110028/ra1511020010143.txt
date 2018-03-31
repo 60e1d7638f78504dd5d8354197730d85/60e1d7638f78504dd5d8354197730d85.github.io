@@ -1,0 +1,39 @@
+#include<stdio.h>
+#define MAX_ROWS 3
+#define MAX_COLS 3
+
+int main()
+{
+  	int size;
+  	scanf("%d", &size);	
+    int array[size][size];
+    int row, col, isLower;
+    for(row=0; row<size; row++)
+    {
+        for(col=0; col<size; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    isLower = 1;
+    for(row=0; row<size; row++)
+    {
+        for(col=0; col<size; col++)
+        {
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+    if(isLower == 1)
+    {
+        printf("yes");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

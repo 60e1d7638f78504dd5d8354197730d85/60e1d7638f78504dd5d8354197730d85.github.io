@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+#include <cctype>    // prototypes for islower and toupper
+
+void convertToUppercase( char * );
+
+int main()
+{
+char phrase[50];
+fgets(phrase,50,stdin);
+convertToUppercase( phrase );
+cout<< phrase ;
+	return 0;
+}
+void convertToUppercase( char *sPtr ) { while ( *sPtr != '\0' ) { // current character is not '\0'
+
+    if ( islower( *sPtr ) )  // if character is lowercase,
+        *sPtr = toupper( *sPtr );  // convert to uppercase
+
+    ++sPtr;  // move sPtr to next character in string
+
+} // end while
+
+} // end function convertToUppercase

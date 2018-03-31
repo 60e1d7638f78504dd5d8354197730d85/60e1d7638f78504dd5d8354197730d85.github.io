@@ -1,0 +1,84 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  struct node*next;
+}*head;
+void create(int num)
+{
+  struct node*temp=new struct node;
+  temp->data=num;
+  temp->next=NULL;
+  head=temp;
+}
+void insert(int num)
+{
+  struct node*temp=new struct node;
+  struct node*newnode=new struct node;
+  newnode->data=num;
+  temp=head;
+  while(temp->next!=NULL)
+  {
+    temp=temp->next;
+  }
+  temp->next=newnode;
+  newnode->next=NULL;
+}
+void ins(int n, int num)
+{ int c=0;
+  struct node*temp=new struct node;
+
+  temp=head;
+  struct node*newnode=new struct node;
+  newnode->data=num;
+  while(temp->next!=NULL)
+  {
+    if(temp->data==n)
+      c++;
+    temp=temp->next;
+  }
+ if(c==0)
+   cout<<"Node not found!\n";
+ else
+ { struct node*prev;
+   temp=head;
+   while(temp->data!=n)
+   { prev=temp;
+     temp=temp->next;
+
+   }
+  prev->next=newnode;
+   newnode->next=temp;
+ 
+ }
+}
+void display()
+{
+  struct node*ptr=new struct node;
+  ptr=head;
+  while(ptr->next!=NULL)
+  {
+    cout<<"->"<<ptr->data;
+    ptr=ptr->next;
+  }
+}
+int main()
+{
+  int i,size,a[100];
+  cin>>size;
+  for(i=0;i<size;i++)
+    cin>>a[i];
+  create(a[0]);
+  for(i=1;i<=size;i++)
+    insert(a[i]);
+  int n;
+  cin>>n;
+  int num;
+  cin>>num;
+  ins(n,num);
+  cout<<"Linked List :\n";
+  display();
+
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+ int n,numbers[10], i;
+  float mean, sum, sd, sd1, variance;
+  scanf("%d", &n);
+  for(i=0; i<n; i++)
+  {
+    scanf("%d\n", &numbers[i]);
+  }
+  for(i=0; i<n; i++)
+  {
+    sum=sum+numbers[i];
+  }
+  mean=sum/(float)n;
+   for (i = 0; i < n; i++)
+    {
+        sd1 = sd1 + pow((numbers[i] -mean), 2);
+    }
+    variance = sd1/(float)n;
+   sd = sqrt(variance);
+  printf("Mean=%.2f\n", mean);
+  printf("SD=%.2f",sd);
+	return 0;
+}

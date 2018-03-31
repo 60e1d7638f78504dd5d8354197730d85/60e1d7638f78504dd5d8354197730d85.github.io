@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+class Shape {
+	public:
+  		int len, breath;
+  		Shape(int l, int b) : len(l), breath(b) {}
+};
+
+class Rectangle : public Shape {
+	public :
+  		Rectangle(int l, int b) : Shape(l, b) {}
+  		int area() {
+          	return (len*breath);
+        }
+};
+
+class Triangle : public Shape {
+	public :
+  		Triangle(int h, int b) : Shape(h, b) {}
+  		int area() {
+          	return ((len*breath)/2);
+        }
+};
+int main()
+{
+  	int l, b;
+  	cin>>l>>b;
+  	Rectangle rect(l, b);
+  	Triangle tri(l, b);
+  	cout<<"Rectangle area="<<rect.area()<<"\n";
+  	cout<<"Triangle area="<<tri.area();
+	return 0;
+}

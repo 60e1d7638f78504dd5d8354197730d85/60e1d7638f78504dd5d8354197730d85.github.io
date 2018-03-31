@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int size,i,value,k=1,count=0;
+  	scanf("%d",&size);
+  	int *arr = (int*)malloc(sizeof(int)*size);
+  	for(i=0;i<size;++i)
+    	scanf("%d",(arr+i));
+  	scanf("%d",&value);
+  	for(i=0;i<size;++i){
+    	if(value==*(arr+i)){
+          k=0;
+      	  break;
+        }
+      else{
+      	count++;
+      }
+    }
+  	if(k==1)
+      printf("%d Does not exist in the array",value);
+  	else
+      printf("%d is found in the array at position=%d",value,count);
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{int n,i,j,k,l,a;
+ char s[26],w[1000][12];
+ int sl[1000],wl[1000];
+ scanf("%s",s);
+ l=strlen(s);
+ scanf("%d",&n);
+ if(1<=l&&l<=26 && 1<=n&&n<=1000){
+ for(i=0;i<=n;i++){
+   scanf("%s",w[i]);
+   sl[i]=strlen(w[i]);
+   for(j=0;j<=sl[i];j++)
+   {for(k=0;k<=l-1;k++){
+   if(w[i][j]==s[k])
+   {break;
+   }
+   else
+   continue;
+   }
+   if(k==l)
+   break;
+   else
+   continue;
+   }
+   if(j==sl[i])
+     wl[i]=1;
+   else
+     wl[i]=0;
+ }
+ for(a=0;a<=n-1;a++)
+ {
+ 	if(wl[a]==1)
+		 printf("\nYes");
+ 	if(wl[a]==0)
+	 	printf("\nNo");
+ }}
+   return 0;
+}

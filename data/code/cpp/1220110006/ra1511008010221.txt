@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    string a;
+    try {
+        cin >> a;
+        int count = 0;
+        for (int i = 0; a[i] != '\0'; i++) {
+            if (a[i] >= '0' && a[i] <= '9') {
+                count++;
+            } else {
+                throw "Invalid Input";
+            }
+        }
+        if (count == a.length()) {
+            cout << "You entered=" << a;
+        } else {
+            throw "Invalid Input";
+        }
+    } catch (const char *msg) {
+        cout << msg;
+    }
+
+    return 0;
+}

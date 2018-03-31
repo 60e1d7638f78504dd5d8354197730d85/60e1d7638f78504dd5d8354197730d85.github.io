@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+   int N, cislo, i, j, pom;
+  
+   scanf("%d", &N);
+  
+   while (N>0){
+     
+     scanf("%d", &cislo);
+     
+     pom=0;
+     
+     if(cislo==2) printf("yes\n");
+     else if((cislo==1)||(cislo%2==0)) printf("no\n");
+     else {      
+       for(i=3;i<=sqrt(cislo);i++){
+         if (cislo%i == 0) {printf("no\n"); pom=1; break;}
+       }
+       
+     if (!pom) printf("yes\n"); 
+      
+     }
+        
+     N--;
+   }
+}

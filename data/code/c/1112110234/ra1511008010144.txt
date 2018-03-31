@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#ifndef ONLINE_JUDGE
+#define getcx getchar
+#else
+#define getcx getchar_unlocked
+#endif
+ 
+int scan(void);
+int cmp(const void*,const void*);
+ 
+int main()
+{
+    int i,t=scan();
+    while(t--)
+    {
+        double sum=0;
+        int n=scan(),k=scan();
+        int arr[n];
+        for(i=0;i<n;i++)
+            arr[i]=scan();
+        qsort(arr,n,sizeof(int),cmp);
+        for(i=k;i<n-k;i++)
+            sum+=arr[i];
+        double totalItems=n-2*k;
+        double average=sum/totalItems;
+        printf("%.6lf\n",average);
+    }
+    return 0;
+}
+ 
+int scan()
+{
+    int num=0,sign=1;
+    char c='\0';
+    while(c<'0'||c>'9')
+    {
+        c=getcx();
+        if (c=='-')
+        {
+            sign=-1;
+            c=getcx();
+            break;
+        }
+    }
+    while(c>='0' && c<='9')
+    {
+        num=num*10+c-'0';
+        c=getcx();
+    }
+    return num*sign;
+}
+ 
+int cmp(const void* a,const void* b)
+{
+    int* x=(int*)a;  int* y=(int*) b;
+    if(*x>*y)
+        return -1;
+    if(*x<*y)
+        return 1;
+    return 0;
+}
+   

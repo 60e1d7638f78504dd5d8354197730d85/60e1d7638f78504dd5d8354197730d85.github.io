@@ -1,0 +1,25 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+double ar(double a,double b,double c)
+{
+	double s=(a+b+c)/2.0;
+	double area=sqrt(s*(s-a)*(s-b)*(s-c));
+	return area;
+}
+int main()
+{int x;
+ cin>>x;
+ while(x--){
+ double A,B,C,D,E,F;
+		double V,S;
+   scanf("%lf%lf%lf%lf%lf%lf",&F,&B,&D,&C,&E,&A);
+		S=ar(A,C,E)+ar(A,B,D)+ar(B,C,F)+ar(D,E,F);
+		A=A*A,B=B*B,C=C*C,D=D*D,E=E*E,F=F*F;
+		V =-(A*(B*D+C*E)+(B*C+D*E)*F+(C*D)*(C+D)+(B*E)*(B+E)+(A*F)*(A+F))+((C*D+E*F)*(A+B)+(D*E+A*F)*(B+C)+(B*E+D*F)*(A+C));
+		V=sqrt(V)/12.0;
+		printf("%.4lf\n",(V*3.0/S));
+ }
+
+	return 0;
+}

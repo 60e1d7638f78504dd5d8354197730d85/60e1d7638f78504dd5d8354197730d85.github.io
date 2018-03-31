@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class student
+{ int rollno,nos,mark[100];
+  char name[100];
+  public: void get()
+   		  { int i;
+            cin>>name;
+            cin>>rollno;
+            cin>>nos;
+            for (i=0;i<nos;i++)
+              cin>>mark[i];
+          }
+ 		  void put()
+          { float sum=0,avg;
+            int i;
+            for (i=0;i<nos;i++)
+              sum=sum+mark[i];
+            avg=sum/nos;
+            cout<<name<<" "<<rollno<<" "<<avg;
+            if (avg>=80)
+               cout<<" Class A"<<endl;
+            else if (avg<80 && avg>=70)
+               cout<<" Class B"<<endl;
+            else if (avg<70 && avg>=60)
+               cout<<" Class C"<<endl;
+          }
+};
+int main()
+{ class student s[100]; 
+  int n,i;
+  cin>>n;
+  for (i=0;i<n;i++)
+    s[i].get();
+  for (i=0;i<n;i++)
+    s[i].put();
+	return 0;
+}

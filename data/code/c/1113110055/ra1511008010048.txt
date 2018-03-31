@@ -1,0 +1,34 @@
+#include <stdio.h>
+int min(int a,int b)
+{
+  return (a>b?a:b);
+}
+int main()
+{
+ int t,n,k,i,j,min_c,min_g;
+  scanf("%d",&t);
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<t;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[j]);
+    }
+    min_c=0;
+    min_g=999;
+    
+    for(k=0;k<n-1;k++)
+    {
+      min_c=a[k]+a[k+1];
+      //printf("%d\n",min_c);
+      if(min_c<min_g)
+        min_g=min_c;
+      //printf("%d\n",min_g);
+    }
+      
+    
+    printf("%d",min_g);
+  }
+return 0;
+}

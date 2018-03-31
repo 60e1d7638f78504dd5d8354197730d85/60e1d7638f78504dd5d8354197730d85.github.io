@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+
+  int n, i, pos, flag;
+  
+  flag = 0;
+  char name[10][20];
+  long phno[10];
+  char loca[10][20];
+  char srch[20];
+  
+  scanf("%d", &n);
+  
+  for(i=0;i<n;i++)
+  {
+   scanf("%s", name[i]);
+    scanf("%ld", &phno[i]);
+    scanf("%s", loca[i]);
+    
+  }
+  
+  scanf("%s", srch);
+  
+  for(i=0;i<n;i++)
+  {
+  
+   if(strcmp(srch, name[i]) == 0)
+   {
+     flag = 1;
+     pos = i;
+     break;
+   }
+    
+  }
+  if(flag == 1)
+  {
+   printf("Name Mobile Number City\n"); 
+    printf("%s %ld %s", name[pos], phno[pos], loca[pos]);
+  }
+ if(flag == 0) 
+    printf("The Entered Name is not in the Directory");
+  
+  
+	return 0;
+}

@@ -1,0 +1,55 @@
+/*
+// Sample code to perform I/O:
+ 
+#include <iostream>
+ 
+using namespace std;
+ 
+int main() {
+	int num;
+	cin >> num;										// Reading input from STDIN
+	cout << "Input number is " << num << endl;		// Writing output to STDOUT
+}
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+ 
+// Write your code here
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int num;
+        cin>>num;
+        string s;
+        s=to_string(num);
+        int test =1;
+        if(num%21==0)
+          {
+            cout<<"The streak is broken!"<<endl;
+            test = 0;
+          }
+            
+            if(test)
+            {
+                const char *arr=s.c_str();
+                for(int i=0;i<s.length()-1;i++)
+                {
+                    if(arr[i]=='2'&& arr[i+1]=='1')
+                    {
+                        cout<<"The streak is broken!"<<endl;
+                        test = 0;
+                    }
+                }
+            }
+            if (test)
+                cout<<"The streak lives still in our heart!"<<endl;
+    
+        
+    }    
+ 
+}

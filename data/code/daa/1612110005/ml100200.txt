@@ -1,0 +1,36 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int main()
+{
+int n;
+  cin>>n;
+  int num[n];
+  string name[n];
+  for( int i=0;i<n;i++){
+    string temp;
+    getline(cin ,temp);
+    if(temp.compare("")==0){
+      i--;
+      continue;
+    }
+  name[i]= temp;
+  }
+  for(int i=0;i<n;i++)
+  {
+    for(int j=0;j<n-i-1;j++){
+  if (name[j].compare(name[j+1]) > 0)
+  {
+    string t=name[j];
+      name[j]=name[j+1];
+    name[j+1]=t;
+  }
+  }
+    
+  }
+  cout<<"After sorting\nName ID"<<endl;
+   for(int i=0;i<n;i++){
+     cout<<name[i]<<endl;
+   }
+	return 0;
+}

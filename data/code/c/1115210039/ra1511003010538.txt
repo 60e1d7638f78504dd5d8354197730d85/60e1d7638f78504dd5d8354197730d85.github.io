@@ -1,0 +1,47 @@
+#include<stdio.h>
+int main()
+{
+    int t,n,l,i,x;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        int a[n];
+        for(i=0;i<n;i++)
+            scanf("%d",&a[i]);
+        int sor[n];
+        sor[0]=a[0];
+        x=1;
+        scanf("%d",&l);
+        for(i=1;i<n;i++)
+        {
+            if(a[i]<sor[0])
+                sor[0]=a[i];
+            else if(a[i]>sor[x-1])
+            {
+                if(x<l)
+                    sor[x++]=a[i];
+            }
+            else
+            {
+                int low=-1,high=x-1;
+				while(low<high)
+				{
+					int mid=low+(high-low)/2;
+					if(sor[mid]<a[i])
+					{
+						low=mid+1;
+					}
+					else
+					{
+						high=mid;
+					}
+				}
+ 
+				sor[high]=a[i];
+            }
+        }
+        printf("%d\n",x<l?-1:sor[x-1]);
+    }
+  return 0;
+}

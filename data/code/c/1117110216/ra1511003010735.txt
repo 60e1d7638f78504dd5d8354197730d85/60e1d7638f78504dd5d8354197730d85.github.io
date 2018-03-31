@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int a, i, c[10], k=0, key, b, z;
+  scanf("%d",&a);
+  for(i=0; i<a; i++){
+    scanf("%d", &b);
+    c[i]=b;
+  }
+  for(i=1; i<a; i++){
+    key = c[i];
+    z = i-1;
+    while(z>=0 && c[z]>key){
+      c[z+1]=c[z];
+      z = z-1;
+      k++;
+    }
+    c[z+1] = key;
+  }
+  printf("%d", k);
+
+	return 0;
+}

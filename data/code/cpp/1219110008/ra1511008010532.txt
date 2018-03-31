@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+class Money{
+  int rup,paise;
+  public:
+  Money()
+  {
+    rup=0;
+    paise=0;
+  }
+  Money(int a,int b)
+  {
+    rup=a;
+    paise=b;
+  }
+  Money operator + (Money const &obj)
+  {
+    Money m;
+    m.rup=rup+obj.rup;
+    m.paise=paise+obj.paise;
+    return m;
+  }
+  Money operator - (Money const &obj)
+  {
+    Money n;
+    n.rup=rup-obj.rup;
+    n.paise=paise-obj.paise;
+    return n;
+  }
+  void display()
+  {
+    cout<<"Rs="<<rup<<" and "<<paise<<" Paise";
+  }
+  
+};
+int main()
+{
+  int sr,sp,salr,salp,er,ep;
+  cin>>sr>>sp>>salr>>salp>>er>>ep;
+  Money m1(sr,sp),m2(salr,salp);
+  Money m3 = m1 + m2;
+  Money m4(er,ep);
+  Money m5 = m3 - m4;
+  m5.display();
+	return 0;
+}

@@ -1,0 +1,47 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class TestClass {
+	 public static void main(String[] args) { 
+		try
+            {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                StringBuilder sb = new StringBuilder("");
+                int i, t = Integer.parseInt(br.readLine());
+                int a[] = new int[100001];
+                a[0] = 0;
+                for(i=1; i<=100000; i++)
+                {
+                    int temp=0;
+                    if(isPalindrome(""+i))
+                        temp  = i;
+                    a[i] = a[i-1]+temp;
+                }
+                for(i=0; i<t; i++)
+                {
+                    String s[] = br.readLine().split(" ");
+                    int l = Integer.parseInt(s[0]);
+                    int r = Integer.parseInt(s[1]);
+                    sb.append((a[r]-a[l-1])+"\n");
+                }
+                
+                System.out.println(sb);
+            }catch(Exception e){}
+        }
+        
+        
+    private static boolean isPalindrome(String s)
+    {
+        int i=0, j=s.length()-1;
+        while(i<j)
+        {
+            if(s.charAt(i)!=s.charAt(j))
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+        
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+  int main(int argc, char const *argv[])
+{
+	int t;
+	scanf("%d",&t);
+	while(t--) 
+    {
+		int n,prev=-1,pre_prev=-1,k;
+		int is_poss=0;
+		scanf("%d",&n);
+		n=n-2;
+		scanf("%d",&pre_prev);
+		scanf("%d",&prev);
+		//printf("test %d %d %d \n",n,prev,pre_prev );
+		while(n--)
+		{
+			scanf("%d",&k);
+			if((!is_poss) && k==prev && k==pre_prev) is_poss=1;
+			pre_prev=prev;
+			prev=k;
+		}
+		if(is_poss) printf("Yes\n");
+		else printf("No\n");
+    }
+
+	return 0;
+}

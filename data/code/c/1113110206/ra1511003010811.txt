@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+	long InputSeconds;
+  	scanf("%ld",&InputSeconds);
+  
+  if(InputSeconds>0){
+  	int hours,days,minutes,seconds;
+  	int remainderSeconds,remainderMinutes,remainderHours,TotalMinutes,TotalHours;
+  
+  /*---------------------------------------------------*/
+  	remainderSeconds = InputSeconds%60;
+  	InputSeconds = InputSeconds-remainderSeconds;
+
+  
+  /*---------------------------------------------------*/
+  
+  	TotalMinutes = InputSeconds/60;
+  	remainderMinutes = TotalMinutes%60;
+  	minutes=TotalMinutes-remainderMinutes;
+  
+  /*---------------------------------------------------*/
+  
+  	TotalHours=minutes/60;
+    remainderHours=TotalHours%24;
+	hours=TotalHours-remainderHours;
+  
+  
+  /*---------------------------------------------------*/
+  
+    	  days=hours/24;
+
+  
+ //final statement
+  
+  	printf("\nThe Duration is %d days %d hours %d minutes %d seconds",days,remainderHours,remainderMinutes,remainderSeconds);
+  
+	return 0;
+  }else{
+    printf("0");
+    
+    return 0;
+  }
+}

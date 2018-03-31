@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100
+int co(char * str,char *r);
+int main(){
+  char str[MAX_SIZE];
+  char r[MAX_SIZE];
+  int count;
+  scanf("%[^\n]s",str);
+  scanf("%s",r);
+  count=co(str,r);
+  printf("%s=%d",r,count);
+  return 0;
+}
+int co(char * str,char * r){
+  int i,j,found,count;
+  int l,sl;
+  l=strlen(str);
+  sl=strlen(r);
+  count=0;
+  for(i=0;i<=l-sl;i++){
+    found=1;
+    for(j=0;j<sl;j++){
+      if(str[i+j]!=r[j]){
+        found=0;
+        break;
+      }}
+    if(found ==1)
+      count++;
+  }
+  return count;}
+
+	

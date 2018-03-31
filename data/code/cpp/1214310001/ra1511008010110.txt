@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class UGLY
+{
+  public:
+  int num;
+ 
+  void getnum()
+  {
+  	cin>>num;  
+  }
+  
+  bool isUgly(int num) 
+  {     if (num == 1) return true;
+        while (num > 1) 
+        {   if (num % 2 == 0) 
+            {  num = num / 2; continue;  }
+            if (num % 3 == 0) 
+            {  num = num / 3; continue;  }
+            if (num % 5 == 0) 
+            {  num = num / 5; continue;  }
+           return 0;
+        }
+     return 1;
+  }
+};
+
+int main()
+{
+	UGLY u;
+  	int i,value;
+  	u.getnum();
+  	int number=u.num;
+  	if(u.num<0)
+      cout<<"Invalid Input";
+  	else
+      if(u.isUgly(number) == 1)
+        cout<<"UGLY";
+  	  else
+        cout<<"NOT UGLY";
+  	  
+	return 0;
+}

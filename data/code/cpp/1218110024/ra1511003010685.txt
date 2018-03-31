@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+class a{
+  	protected:
+	string inp;
+        public:
+  			a(string in){
+              inp=in;
+            }
+	};
+
+class b :public a
+{
+	protected:
+		int age;
+		public:
+		b(string jjj,int aahoa):a(jjj)	
+		{
+        	age=aahoa;
+            }
+	};
+
+class c : public b
+{
+	string gender;
+    string noc;
+  	int salary;
+  	int lang;
+  	public:
+  	c(string hola,int aga,string g,string n,int s,int l):b(hola,aga)
+  	{
+  	gender=g;
+    noc=n;
+    salary=s;
+    lang=l;
+    	}
+        void print(){
+    cout<<"Name: "<<inp<<endl;
+    cout<<"Age: "<<age<<endl;
+    cout<<"Gender: "<<gender<<endl;
+    cout<<"Name of Company: "<<noc<<endl;
+    cout<<"Salary: Rs."<<salary<<endl;
+    cout<<"Number of programming language known: "<<lang;
+        }
+};
+
+int main()
+{	
+  string naam;
+  int age,salary,year;
+  string gen,co;
+  cin>>naam>>age>>gen>>co>>salary>>year;
+	c obj(naam,age,gen,co,salary,year);
+  	obj.print();
+	return 0;
+}

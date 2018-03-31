@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.Scanner;
+import java.math.BigInteger;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scan = new Scanner(System.in);
+        BigInteger imei = new BigInteger(scan.next());
+        BigInteger zero = new BigInteger("0");
+        BigInteger ten = new BigInteger("10");
+        int numDigits = 0;
+       
+        while(imei.compareTo(zero) > 0)
+        {
+          numDigits++;
+       imei = imei.divide(ten);
+        }
+       if(numDigits == 15)
+         System.out.print("YES");
+       else
+         System.out.print("NO");
+	}
+}

@@ -1,0 +1,34 @@
+#include<stdio.h>
+     
+    int main()
+    {
+    	  int cnt,t,n,i,j,p,f;
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    scanf("%d\n",&n);
+    cnt=0;
+    
+    while(n!=0)
+    {
+      for(i=n;i>1;i--)
+      {
+        f=0;
+        for(j=2;j<=n/2&&j!=1;j++)
+        {
+          if(i%j==0){f=1;break;}
+        }
+        if(f==0)
+        {
+          cnt++;
+          break;
+        }
+      }
+      n-=i;
+      if(n==1){cnt++;n=0;}
+    }
+    if(cnt%2==1) printf("yes\n");
+    else printf("no\n");
+  }
+    	return 0;
+    } 

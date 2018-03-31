@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int main() {
+int i,j,prime,input,*output;
+int no_test;
+int flag;
+scanf("%d",&no_test);
+output=(int*)malloc(no_test*sizeof(int));
+for(i=0;i<no_test;i++)
+{
+output[i]=0;
+scanf("%d",&input);
+prime=2;
+while(prime<input)
+{
+flag=1;
+for(j=2;j<=(prime/2);j++)
+{
+if(prime%j==0)
+break;
+}
+if(j>prime/2)
+{
+output[i]++;
+}
+prime++;
+}
+}
+for(i=0;i<no_test;i++)
+{
+printf("%d\n",output[i]);
+}
+return 0;
+
+}

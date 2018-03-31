@@ -1,0 +1,31 @@
+#include <iostream>  
+#include <exception>  
+using namespace std;  
+class MyException : public exception{  
+    public:  
+        const char * what() const throw()  
+        {  
+            return "Divide by zero exception";  
+        }  
+};  
+int main()  
+{  
+    try  
+    {  
+        int x, y;  
+        cin >> x >> y;  
+        if (y == 0)  
+        {  
+            MyException z;  
+            throw z;  
+        }  
+        else  
+        {  
+            cout <<"Array Index out of Bound Exception"<< endl;  
+        }  
+    }  
+    catch(exception& e)  
+    {  
+        cout << e.what();  
+    }  
+}  

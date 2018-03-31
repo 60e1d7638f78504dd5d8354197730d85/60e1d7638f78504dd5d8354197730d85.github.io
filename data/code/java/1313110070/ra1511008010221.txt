@@ -1,0 +1,32 @@
+import java.io.*;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class TestClass {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Scanner sc = new Scanner(System.in);
+
+        int price, quantity;
+
+        price = sc.nextInt();
+        quantity = sc.nextInt();
+
+        double discount;
+
+        if (quantity < 100) {
+            discount = 0;
+        } else if (quantity <= 120) {
+            discount = 10;
+        } else {
+            discount = 15;
+        }
+
+        double revenue = price * quantity;
+        double dis = (discount * price * quantity)/100;
+
+        System.out.println(String.format("The revenue from sale:%.1f", (revenue - dis)));
+        System.out.println(String.format("After discount:%.1f(%f", dis, discount) +"%)");
+
+    }
+}

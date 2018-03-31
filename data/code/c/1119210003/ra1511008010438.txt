@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,n,count=0;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++){
+    scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++){
+    if(a[i]!=-999999990)
+      for(j=i+1;j<n-1;j++){
+        if(a[i]==a[j]){
+          a[j]=-999999990;
+        }
+      }
+  }
+  for(i=0;i<n;i++){
+    if(a[i]!=-999999990){
+      count++;
+    }
+  }
+  printf("%d",count);
+	return 0;
+}

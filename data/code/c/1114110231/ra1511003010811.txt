@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+
+int seriesSum(int n,int d,int count){
+  int i,sum=0;
+for(i=1;i<=n;i++){
+    sum=sum+i;
+    }
+  count++;
+  	
+ if(count==d){
+ 	return sum;
+  }else{
+      return seriesSum(sum,d,count);	
+  }
+  
+}
+int main()
+{
+	int testCase;
+  	scanf("%d",&testCase);
+  	while(testCase--){
+      	int n,d,X,count=0;
+      	scanf("%d %d",&d,&n);
+      	X=seriesSum(n,d,count);
+      	printf("%d",X);
+      	printf("\n");
+    }
+	return 0;
+}

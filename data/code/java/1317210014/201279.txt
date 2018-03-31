@@ -1,0 +1,39 @@
+import java.util.*;
+public class TestClass
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	String st=sc.nextLine();
+      	char[] str=st.toCharArray();
+      	boolean rep=false,nonrep=false;
+      	char crep='\0',cnon='\0';
+      	int cnt=0;
+      	for(char c:str)
+        {
+      		cnt=0;
+          for(char c1:st.toCharArray())
+          {
+            if(c==c1)
+              cnt++;
+          }
+          if(cnt>=2&&rep==false)
+          {
+            crep=c;
+            rep=true;
+          }
+          else if(cnt==1&&nonrep==false)
+          {
+            cnon=c;
+            nonrep=true;
+          }
+          
+          if(rep&&nonrep)
+          {
+            System.out.println("First Non-Repeated Character In "+st + " is "+ cnon);
+            System.out.println("First Repeated Character In "+st+ " is "+crep);
+            break;
+          }
+        }
+	}
+}

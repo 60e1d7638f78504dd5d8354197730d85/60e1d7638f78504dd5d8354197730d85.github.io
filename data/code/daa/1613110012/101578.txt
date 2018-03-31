@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+int main()
+{
+	string s;
+	cin >> s;
+	int x=0,y = 0,res=0;
+	set<pair<int,int> > st;
+	st.insert({0,0});
+	for(int i=0;i<s.size();i++)
+	{
+		if (s[i] == 'L') --y;
+		if (s[i] == 'R') ++y;
+		if (s[i] == 'U') --x;
+		if (s[i] == 'D') ++x;
+		if (st.count({x , y}))
+		    res++;
+		st.insert({x,y});
+	}
+	cout << res << endl;
+    return 0;
+}

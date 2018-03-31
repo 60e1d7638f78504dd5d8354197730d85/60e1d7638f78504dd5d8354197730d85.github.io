@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+ 
+// returns required number of subarrays
+int numOfsubarrays(int arr[] , int n)
+{
+    int count = 0; // Initialize result
+ 
+    // checking each subarray
+    for (int i=0; i<n; i++)
+    {
+        int product = arr[i];
+        int sum = arr[i];
+        for (int j=i+1; j<n; j++)
+        {
+            // checking if product is equal
+            // to sum or not
+            if (product==sum)
+                count++;
+ 
+            product *= arr[j];
+            sum += arr[j];
+        }
+ 
+        if (product==sum)
+            count++;
+    }
+    return count;
+}
+ int main()
+ {
+ int n,i,a[20];
+   cin>>n;
+   for(i=0;i<n;i++)
+     cin>>a[i];
+   cout << numOfsubarrays(a,n);
+ return 0;
+ }

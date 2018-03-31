@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class multiply {
+  float z;
+  public: multiply(){}
+  public: multiply(float a){
+    z = a;
+  }
+  
+  multiply operator% (const multiply &ob){
+    multiply obj1;
+    obj1.z = this->z + ob.z;
+    return obj1;
+  }
+  
+  public: void show(){
+    cout<<"sum of x="<<z<<endl;
+  }
+  public: void show1(){
+    cout<<"sum of y="<<z;
+  }
+  
+};
+int main()
+{
+  float a, b, c, d;
+  cin>>a>>b>>c>>d;
+  multiply result(a);
+  multiply result1(b);
+  multiply result2(c);
+  multiply result3(d);
+  multiply res;
+  multiply res2;
+  res = result % result2;
+  res2 = result1 % result3;
+  cout<<"Result:"<<endl;
+  res.show();
+  res2.show1();
+	return 0;
+}

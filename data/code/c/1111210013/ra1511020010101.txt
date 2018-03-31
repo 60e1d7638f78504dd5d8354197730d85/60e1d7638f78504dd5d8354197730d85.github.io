@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+	int T,n,k,i,j,sum=0,u=0,fl=0;
+      float temp=0;
+  scanf("%d",&T);
+  while(T>0)
+  {
+    sum=0;
+   	scanf("%d %d",&n,&k);
+    float a[n],p[n];
+    for(i=0;i<n;i++)
+    {
+     scanf("%f",&a[i]); 
+      if(a[i]<1)
+      fl++;
+    }
+    
+    for(i=0;i<n;i++)
+    {
+     scanf("%f",&p[i]); 
+       if(p[i]<1)
+      fl++;
+    }
+    if(fl!=0)
+      break;
+    for(i=0;i<n;i++)
+    {
+     for(j=0;j<n-i-1;j++)
+     {
+      if((p[j]/a[j])<(p[j+1]/a[j+1]) || ((p[j]/a[j])==(p[j+1]/a[j+1]) && a[j]>a[j+1]))
+      {
+        temp=p[j];
+        p[j]=p[j+1];
+        p[j+1]=temp;
+        temp=a[j];
+        a[j]=a[j+1];
+        a[j+1]=temp;
+      }       
+     }
+    }
+   		
+      u=a[0];
+      sum= (int)p[0] *(k/u);
+      printf("%d",sum);
+    
+    T--;
+  }
+	return 0;
+}

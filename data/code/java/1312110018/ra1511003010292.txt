@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  int power(int a)
+  {
+    if(a==0)
+      return 1;
+    else
+      return 8 * power(--a);
+  }
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       TestClass s = new TestClass();
+       int n = sc.nextInt();
+       int i = 0;
+       int num = 0;
+       while(n != 0)
+       {
+         int d = n%10;
+         num = num + (d*s.power(i));
+         n = n/10;
+         i++;
+       }
+       System.out.println(num);
+	}
+}

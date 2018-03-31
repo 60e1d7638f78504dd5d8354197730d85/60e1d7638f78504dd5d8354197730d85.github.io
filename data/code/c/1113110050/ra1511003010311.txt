@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[10];
+  int i,n,j,len,flag=0;
+scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    scanf("%s",str);
+    len=strlen(str);
+    if(len<2)
+    {
+      printf("NO\n");
+    }
+      else if(len==2)
+    {
+     if(str[0]!=str[1])
+       printf("YES\n");
+      else
+        printf("NO\n");
+    }
+    else
+    {
+      for(j=0;j<len-2;j++)
+      {
+        if((str[j]==str[j+2]) && (str[j]!=str[j+1]))
+          flag=1;
+        else
+          flag=0;
+      }
+    if(flag==1)
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+  }
+	return 0;
+}

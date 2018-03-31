@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m,i,j,ele,f;
+	    cin>>n>>m;
+	    int mat[n][m];
+	    for(i=0;i<n;i++)
+	    {
+	        for(j=0;j<m;j++)
+	        cin>>mat[i][j];
+	    }
+	    cin>>ele;
+	    i=0,j=m-1,f=0;
+	    while(i<n&&j>=0)
+	    {
+	        if(mat[i][j]==ele)
+	        {
+	        f=1;
+	        break;
+	        }
+	        else if(ele>mat[i][j])
+	        i++;
+	        else
+	        j--;
+	        
+	    }
+	    cout<<f<<"\n";
+	}
+	return 0;
+}

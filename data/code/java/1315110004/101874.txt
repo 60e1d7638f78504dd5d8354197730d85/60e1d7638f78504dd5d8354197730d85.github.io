@@ -1,0 +1,45 @@
+import java.util.*;
+class Sample
+{
+  	Scanner sc;
+  	int t,n,k;
+  	int in[];
+  	double out[];
+  	public void getDetails()
+    {
+      	sc=new Scanner(System.in);
+      	t=sc.nextInt();
+      	out=new double[t];
+      	for(int i=0;i<t;i++)
+        {
+          	n=sc.nextInt();
+          	k=sc.nextInt();
+          	in=new int[n];
+          	for(int l=0;l<n;l++)
+              in[l]=sc.nextInt();
+          	Arrays.sort(in);
+          	double sum=0;
+          	if(n>(2*k))
+            {
+              for(int j=k;j<(in.length-k);j++)
+              {
+                	sum+=in[j];
+              }
+                out[i]=(sum/(n-(2*k)));
+            }
+        }
+    }
+	public void displayDetails()
+  	{
+      	for(int i=0;i<out.length;i++)
+          System.out.println(String.format( "%.6f", out[i] ));
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Sample objname=new Sample();
+       	objname.getDetails();
+       	objname.displayDetails();
+	}
+}

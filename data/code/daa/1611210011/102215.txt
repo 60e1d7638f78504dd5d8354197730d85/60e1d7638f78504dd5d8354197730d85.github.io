@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+
+#define Pi 3.141592653589793
+#define eps 1e-9
+#define MAX int(1e9)
+#define MIN int(-1e9)
+#define REP(i,n) for(ll i=0;i<(n);i++)
+#define FOR(i,a,b,c) for(int i=a;i<b;i += c)
+#define FORd(i,a,b,c) for(int i=a;i>=b;i -=c)
+#define all(v) ((v).begin(),(v).end())
+#define vi vector<int>
+#define vii vector<vector<int> >
+#define vb vector<bool>
+#define vbb vector<vector<bool> >
+#define vI vector<ll>
+#define vII vector<vector<ll> >
+#define ll long long int //range -> 9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+#define ui unsigned int // range -> 0 to 4,294,967,295
+#define ull unsigned long long
+#define F first
+#define S second
+#define PB push_back
+#define MP make_pair
+#define sz size()
+#define InF  2147483647
+#define READ freopen("input.txt", "r", stdin);
+#define WRITE freopen("output.txt", "w", stdout);
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define SQR(n) ((n)*(n))
+#define MEM(a,val) memset(a,val,sizeof(a))
+using namespace std;
+
+
+
+int dx [] = {2,2,-2,-2,1,-1,1,-1};
+int dy [] = {1,-1,1,-1,2,2,-2,-2};
+
+int bfs(int n,int m,int s1,int s2,int d1,int d2){
+    vbb vis(n,vb(m,0));
+    queue < pair<pair<int,int>,int > > Q;
+    Q.push({{s1,s2},0});
+    vis[s1][s2]=1;
+    if(s1==d1 && s2 == d2) return 0;
+    while(!Q.empty()){
+        pair <int,int> f = Q.front().F;
+        int c = Q.front().S; Q.pop();
+        FOR(i,0,8,1){
+            pair <int,int> temp = f;
+            temp.F = temp.F+ dx[i];
+            temp.S = temp.S+ dy[i];
+            if(temp.F < 0 || temp.S < 0 || temp.F > n-1 || temp.S > m-1 || vis[temp.F][temp.S]){
+                continue;
+            }
+            else{
+                if(temp.F == d1 && temp.S == d2){
+                    return c+1;
+                }
+                vis[temp.F][temp.S]=1;
+                Q.push({{temp.F,temp.S},c+1});
+            }
+        }
+    }
+    return -1;
+    
+}
+
+int main(){
+	fast_io;
+	cin.tie(NULL);
+	int t;
+	cin >> t;
+	while(t--){
+	    int n,m;
+	    cin >> n >> m;
+	    int s1,s2,d1,d2;
+	    cin >> s1 >> s2 >> d1>> d2;
+	    cout << bfs(n,m,s1-1,s2-1,d1-1,d2-1) << "\n";
+	}
+
+	return 0;
+}

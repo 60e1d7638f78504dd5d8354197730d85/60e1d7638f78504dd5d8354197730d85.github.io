@@ -1,0 +1,60 @@
+#include <stdio.h>
+int main()
+{
+	int t,n,i,c,d,temp,flag,p;
+	scanf("%d",&t);
+  	while(t--)
+    {
+      scanf("%d",&n);
+      int arr[n],arr1[n];
+      for(i=0;i<n;i++)
+      {
+        scanf("%d",&arr[i]);
+        arr1[i] = arr[i]; 
+      }
+      
+      for(c=0;c<n-1;c++)
+      {
+        for(d=0;d<n-c-1;d++)
+        {
+          	if(arr[d] > arr[d+1])
+            {
+               temp = arr[d];
+               arr[d] = arr[d+1];
+               arr[d+1] = temp;
+            }
+        }
+      }
+      
+      flag = 1;
+      for(p=0;p<n;p++)
+      {
+          //printf("Arr[p]: %d\n",arr[p]);
+          //printf("Arr1[p]: %d\n",arr1[p]);
+          if(arr[p+1]-arr[p] > 1 || arr[p+1] == arr[p])
+          {
+            flag = 0;
+            break;
+          }
+       }
+        if(flag == 1)
+        {
+          for(p=0;p<n;p++)
+          {
+            if(arr[p] != arr1[p])
+            {
+            	printf("yes\n");
+              	break;
+            }
+          }
+          if(p==n){
+          	printf("no\n");
+          }
+        }
+        else
+        {
+          printf("no\n");
+        }
+    }
+	return 0;
+}

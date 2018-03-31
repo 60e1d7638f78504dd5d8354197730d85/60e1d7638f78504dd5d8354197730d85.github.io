@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+int t;
+  cin>>t;
+  while(t--)
+  {
+    int n,i,j;
+    cin>>n;
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+      cin>>a[i];
+    }
+    int x=0,y=0,m=n-2,set;
+    int xor2=a[0];
+    for(i=1;i<n;i++)
+    {
+      xor2=xor2^a[i];
+    }
+    set=xor2 & ~(xor2-1);
+    for(i=0;i<n;i++)
+    {
+      if(a[i]&set)
+      {
+        x=x^a[i];
+      }
+      else
+      {
+        y=y^a[i];
+      }
+    }
+    if(x>y)
+    {
+    cout<<x<<" "<<y<<endl;
+    }
+    else 
+    {
+      cout<<y<<" "<<x<<endl;
+    }
+  }
+	return 0;
+}

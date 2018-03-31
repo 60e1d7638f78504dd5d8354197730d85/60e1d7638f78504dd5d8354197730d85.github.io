@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+ 
+void shift(int st, int en, int cur[]){
+    int la,lb;
+    int arr[en-st+5];
+    for(la=st,lb=1;la<=en;la++,lb++)
+        arr[lb]=cur[la];
+    for(la=st+1,lb=1;la<=en+1;la++,lb++)
+        cur[la]=arr[lb];
+}
+ 
+int add(int pre, int idx, int cur[]){
+    int la,lb;
+    if(pre==0){
+        shift(1,idx-1,cur);
+        cur[1]=idx;
+        return 0;
+    }
+    else{
+        for(la=1;la<=idx-1;la++){
+            if(cur[la]==pre){
+                shift(la+1,idx-1,cur);
+                cur[la+1]=idx;
+                int a=idx-1-la;
+                if(la<a)
+                    return la;
+                return a;
+            }
+        }
+    }
+}
+ 
+int main()
+{
+    int t,la,lb,n;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d",&n);
+        int arr[n+5];
+        int cur[n+5];
+        for(la=0;la<=n+1;la++){
+            arr[la]=0;
+            cur[la]=0;
+        }
+        int ans=0;
+        for(la=1;la<=n;la++)
+            scanf("%d",&arr[la]);
+        for(la=1;la<=n;la++)
+            ans+=add(arr[la],la,cur);
+        printf("%d\n",ans);
+    }
+    return 0;
+}
+ 
+

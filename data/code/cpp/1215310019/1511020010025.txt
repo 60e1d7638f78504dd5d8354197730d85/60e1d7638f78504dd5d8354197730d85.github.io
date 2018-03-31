@@ -1,0 +1,109 @@
+#include <iostream>
+using namespace std;
+static int mat[1000][1000];
+static int mat2[100][100];
+int count[1000];
+int main()
+{
+	int t,i,j,k,l;
+	cin>>t;
+	for(l=0;l<t;l++)
+	{
+		int n,m;
+		cin>>n>>m;;
+		for(i=1;i<=n;i++)
+		count[i]=0;
+		for(i=1;i<=n;i++)
+		{
+			for(j=1;j<=n;j++)
+			{
+				mat2[i][j]=0;
+			}
+		}
+		for(i=0;i<m;i++)
+		{
+			int u,v;
+			cin>>u>>v;
+			mat[i][0]=u;
+			mat[i][1]=v;
+			mat[i][2]=0;
+			mat2[u][v]=mat2[v][u]=1;
+			count[u]++;
+			count[v]++;
+		}
+		int c=0;
+		for(i=0;i<m;i++)
+		{
+			int f=0;
+				int s=0;
+			for(j=0;j<m;j++)
+			{
+				
+				if(j!=i)
+				{
+					if(mat[i][2]==0)
+					{
+						if(mat[i][0]==mat[j][0] || mat[i][0]==mat[j][1]  )
+						{
+							if(mat[j][2]==0)
+							{
+								mat[j][2]=1;
+								f=1;
+							}
+						}
+						if(mat[i][1]==mat[j][0] || mat[i][1]==mat[j][1]  )
+						{
+							if(mat[j][2]==0)
+							{
+								mat[j][2]=1;
+								s=1;
+							}
+						}
+					}
+					
+				}
+				
+			}
+			if((f+s)!=0)
+			mat[i][2]=1;
+			c=c+f+s;
+		}
+		for(i=0;i<m;i++)
+		{
+			if(mat[i][2]==0)
+			c++;
+		}
+		for(i=1;i<=n;i++)
+		{
+			if(count[i]==0)
+			c++;
+		}
+		int x;
+		int min=10000000;
+		for(i=1;i<=n;i++)
+		{
+			x=0;
+			for(j=1;j<=n;j++)
+			{
+			   if(mat2[i][j]==0)
+			   {
+			   	     x++;
+			   }    	
+			}
+			if(min>x)
+			min=x;
+		}
+		if(m==0)
+		cout<<n<<endl;
+		else
+		{
+			if(min<c)
+			cout<<min<<endl;
+			else
+			cout<<c<<endl;
+		}
+		
+		
+	}
+}
+ 

@@ -1,0 +1,32 @@
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	   Scanner scan = new Scanner(System.in);
+       String st = scan.nextLine();
+       scan.close();
+       
+       if(st.length()!=1)
+       {
+         System.out.print("error");
+         System.exit(0);
+       }
+       char c = st.charAt(0);
+       if(!Character.isLetter(c))
+       {
+         System.out.println("error");
+         System.exit(0);
+       }
+       else
+       {
+         if(isVowel(c))
+           System.out.println("vowel");
+         else
+           System.out.println("consonant");
+       }             
+	}
+  
+  public static boolean isVowel(char c)
+  {
+    return "aeiouAEIOU".indexOf(c)!=-1;
+  }
+}

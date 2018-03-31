@@ -1,0 +1,49 @@
+ #include <stdio.h>
+  #define MAXROWS 100
+  #define MAXCOLS 100
+
+  int main() {
+        int i, j, row, col, flag = 0;
+        int matrix[MAXROWS][MAXCOLS];
+
+        /* get the number of rows from the user */
+        //printf("Enter the number of rows:");
+        scanf("%d", &row);
+
+        /* get the number of columns from the user */
+        //printf("Enter the number of columns:");
+        scanf("%d", &col);
+
+        /* Boundary Check */
+        if (row > MAXROWS || row < 0 || col > MAXCOLS || col < 0) {
+                printf("Boundary Level Exceeded!!\n");
+                return 0;
+        }
+
+        /* get the entries for the input matrix */
+        //printf("\nEnter the matrix entries:\n");
+        for (i = 0; i < row; i++) {
+                for (j = 0; j < col; j++) {
+                        scanf("%d", &matrix[i][j]);
+                }
+        }
+        /* checking for diagonal matrix */
+        for (i = 0; i < row; i++) {
+                for (j = 0; j < col; j++) {
+                        if (i != j && matrix[i][j] != 0) {
+                                flag = 1;
+                                goto end;
+                        }
+                }
+        }
+
+  end:
+        /* printing the result */
+        if (flag) {
+                printf("no");
+        } else {
+                printf("yes");
+        }
+
+        return 0;
+  }

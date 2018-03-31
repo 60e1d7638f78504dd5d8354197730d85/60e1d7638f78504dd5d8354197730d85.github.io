@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,length;
+    char olds[12345];
+    char first,last;
+        j=0;
+        scanf("%s",olds);
+        length=strlen(olds);
+        for(i=0;i<length;)
+        {
+ 
+            first=olds[i];
+            last=olds[length-i-1];
+            if(length%2==1)
+            {
+                if(olds[(length-1)/2]=='.')
+                   olds[(length-1)/2]='a';
+            }
+            if(first==last)
+               {
+                   if(first=='.')
+                   {
+                       olds[i]='a';
+                       olds[length-i-1]='a';
+                   }
+                   else
+                    i++;
+               }
+ 
+            else if((first=='.')||(last=='.'))
+            {
+                if(first=='.')
+                    olds[i]=last;
+                else
+                    olds[length-i-1]=first;
+                    i++;
+            }
+            else if(first!=last)
+            {
+                j=1;
+                break;
+            }
+        }
+        if(j)
+            printf("-1\n");
+        else
+            {
+                printf("%s",olds);
+                printf("\n");
+            }
+    
+    return 0;
+}

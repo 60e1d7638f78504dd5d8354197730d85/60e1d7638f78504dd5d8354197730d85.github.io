@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+class Shape{
+protected:
+int x;
+  int y;
+  public:
+  void getData(int a,int b){
+  x=a;
+    y=b;
+  }
+virtual void area(){
+
+}
+  
+};
+
+class Rectangle:public Shape{
+public:
+  void getData(int x,int y){
+  
+  Shape::getData(x,y);
+  }
+  
+  void area(){
+  
+  cout<<x*y<<"\n";
+  }
+};
+
+class Triangle:public Shape{
+public:
+void getData(int a,int b){
+Shape::getData(a,b);
+}
+  
+  void area(){
+  
+  cout<<(x*y)/2.0;
+  }
+};
+
+int main()
+{
+	Rectangle r;
+  Triangle t;
+  int l,b;
+  cin>>l;
+  cin>>b;
+  r.getData(l,b);
+  r.area();
+  t.getData(l,b);
+  t.area();
+	return 0;
+}

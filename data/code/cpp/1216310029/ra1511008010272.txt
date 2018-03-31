@@ -1,0 +1,63 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int n;
+int a[50][50];
+int findLongestFromACell(int i, int j, int mat[50][50], int dp[50][50])
+{
+    if (i<0 || i>=n || j<0 || j>=n)
+        return 0;
+    if (dp[i][j] != -1)
+        return dp[i][j];
+    if (j<n-1 && ((mat[i][j] +1) == mat[i][j+1]))
+       return dp[i][j] = 1 + findLongestFromACell(i,j+1,mat,dp);
+ 
+    if (j>0 && (mat[i][j] +1 == mat[i][j-1]))
+       return dp[i][j] = 1 + findLongestFromACell(i,j-1,mat,dp);
+ 
+    if (i>0 && (mat[i][j] +1 == mat[i-1][j]))
+       return dp[i][j] = 1 + findLongestFromACell(i-1,j,mat,dp);
+ 
+    if (i<n-1 && (mat[i][j] +1 == mat[i+1][j]))
+       return dp[i][j] = 1 + findLongestFromACell(i+1,j,mat,dp);
+ 
+    return dp[i][j] = 1;
+}
+
+int finLongestOverAll(int mat[50][50])
+{
+    int result = 1;
+
+    int dp[50][50];
+    memset(dp, -1, sizeof dp);
+
+    for (int i=0; i<n; i++)
+    {
+      for (int j=0; j<n; j++)
+       {
+          if (dp[i][j] == -1)
+             findLongestFromACell(i, j, mat, dp);
+ 
+          result = max(result, dp[i][j]);
+       }
+     }
+ 
+     return result;
+}
+
+
+int main()
+{
+	int t;
+      cin>>t;
+  while(t--) {
+    cin>>n;
+    for(int i=0;i<n;i++) {
+      for(int j=0;j<n;j++) {
+        cin>>a[i][j];
+      }
+    }
+    cout<<finLongestOverAll(a)<<endl;
+  }
+	return 0;
+}

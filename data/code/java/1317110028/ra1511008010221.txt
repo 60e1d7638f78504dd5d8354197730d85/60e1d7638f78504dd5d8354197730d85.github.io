@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+
+    private static boolean hasDecimal = false;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < t; i++) {
+            String s = sc.nextLine();
+            if (checkString(s)) {
+                if (hasDecimal) {
+                    hasDecimal = false;
+                    System.out.println("Valid Decimal Number");
+                } else {
+                    System.out.println("Valid Integer Number");
+                }
+            } else {
+                System.out.println("Invalid");
+            }
+        }
+    }
+
+    private static boolean checkString(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '.') {
+                hasDecimal = true;
+            }
+            if ((s.charAt(i) >= 'a' && s.charAt(i) <= 'z') || (s.charAt(i) >= 'A' && s.charAt(i) <= 'Z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

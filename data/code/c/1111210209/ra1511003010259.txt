@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include<limits.h>
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--){
+    int i,j,n,min = INT_MAX;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+    for(i=0;i<n;i++){
+      for(j=i+1;j<n;j++)
+        if(a[i]+a[j] < min) min = a[i] + a[j];
+    }
+    printf("%d\n",min);
+  }
+	return 0;
+}

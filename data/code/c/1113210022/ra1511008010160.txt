@@ -1,0 +1,119 @@
+#include<stdio.h>
+//#include<math.h>
+#define true 1
+#define false 0
+typedef unsigned long long ulong;
+int prime[1000000];
+ 
+ 
+ulong power(ulong a,int n){
+	if(n==0)
+	return 1;
+	if(n&1){
+		ulong p=power(a,n>>1);
+		return a*p*p;
+		}
+	else 
+	{
+		ulong p=power(a,n>>1);
+		return p*p;
+		}
+}
+ 
+int returnIndex(int i,ulong l){
+	if(i>l)
+	return 2;
+	int j;
+	for(j=2;j<100;j++){
+		if(!prime[j-1]){
+			if(power(i,j-1)>=l)
+			{
+			return j;
+			}
+		}
+	}
+}
+void sieve(){
+		int i;
+		for(i=2;i<=1000;i++){
+		int p=1-1%i;
+		if(i*i>p)
+		p=i*i;
+		
+		if(p==i || p<1)
+		p+=i;
+		
+		while(p<=1000000){
+			prime[p-1]=true;
+			p+=i;
+		}
+	}
+}
+int main(){
+	int t;
+	scanf("%d",&t);		
+	sieve();
+while(t-->0){
+	ulong l,r;
+	scanf("%llu",&l);	
+	scanf("%llu",&r);
+	int size=r-l+1;
+int input[size];
+//	printf("Here I Am\n");		
+//	printf("Here I Am\n");
+	int i,j;
+	for(i=0;i<size;i++)
+	input[i]=1;	
+	//mark all prime powers of primes...
+	for(i=2;i<=r && i<1000000;i++){
+		if(!prime[i-1]){
+			int rem = l%i;
+			int index=0;
+			if(rem!=0)
+			index = i-rem;
+			for(j=index;j<size;j+=i){
+				if((j+l)==i)
+				{input[j]=1;
+//printf("applying 1 on j=%llu for i=%d\n",j+l,i);
+}
+				else{	
+//	printf("unmarking %llu for i=%d\n",j+l,i);
+				input[j]=0;
+				}
+			}
+		}
+	}
+	//printf("prime powers successfully done.\n");
+//	for(i=0;i<size;i++)
+//	printf("mark=%d i=%d value=%llu\n",input[i],i,i+l);	
+	for(i=2;i<=r && i<1000000;i++){
+		if(!prime[i-1]){
+			int ret = returnIndex(i,l);
+		for(j=ret;j>0;j++){
+			if(!prime[j-1]){
+			ulong temp=power(i,j-1);
+				if(temp>r){
+				break;
+				}
+				else{
+				input[temp-l]=1;
+//printf("marking it back %llu for i=%d\n",temp,i);
+}			
+}
+		}
+		}
+	}	
+	int count=0;
+	if(l==1)
+	input[0]=0;
+	
+	for(i=0;i<size;i++){
+		if(input[i]){
+	//printf("%llu\n",i+l);	
+		count++;
+		}
+	}
+	printf("%d\n",count);	
+}
+}
+ 

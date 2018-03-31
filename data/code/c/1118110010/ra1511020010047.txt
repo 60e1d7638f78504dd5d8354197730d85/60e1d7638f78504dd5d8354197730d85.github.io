@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct person {
+   int roll;
+   int fee;
+   char name[30];
+   char b[10];
+};
+
+int main()
+{
+   struct person *ptr;
+   int i, num;
+
+   //printf("Enter number of persons: ");
+   scanf("%d", &num);
+
+   ptr = (struct person*) malloc(num * sizeof(struct person));
+   // Above statement allocates the memory for n structures with pointer personPtr pointing to base address */
+
+   for(i = 0; i < num; ++i)
+   {
+       //printf("Enter name, age and weight of the person respectively:\n");
+       scanf("%d %s %s %d", &(ptr+i)->roll, (ptr+i)->name, (ptr+i)->b,&(ptr+i)->fee);
+   }
+
+   printf("Details of the student\n");
+   for(i = 0; i < num; ++i)
+       printf("Roll no:%d\nName:%s\nCourse:%s\nFees:%d\n", (ptr+i)->roll, (ptr+i)->name,(ptr+i)->b,(ptr+i)->fee );
+
+   return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int compare(int *str1,int *str2,int a,int b)
+{
+  int i;
+  if(a != b)
+    return 0;
+  for(i=0;i<a;i++)
+  {
+	if(*str1 != *str2)
+      return 0;
+    str1++;
+    str2++;
+  }
+  return 1;
+}
+int main()
+{
+  int q1[20],q2[20];
+  int len1,len2,i;
+  scanf("%d",&len1);
+  for(i=0;i<len1;i++){
+	scanf("%d",&q1[i]);
+  }
+  scanf("%d",&len2);
+  for(i=0;i<len2;i++)
+  {
+    scanf("%d",&q2[i]);
+  }
+  if(compare(q1,q2,len1,len2)){
+    printf("Arrays are equal");
+  }
+  else
+    printf("Arrays are not equal");
+
+	return 0;
+}

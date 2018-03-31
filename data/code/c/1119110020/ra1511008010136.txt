@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+char *strrev(char *str)
+{
+      char *p1, *p2;
+
+      if (! str || ! *str)
+            return str;
+      for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
+      {
+            *p1 ^= *p2;
+            *p2 ^= *p1;
+            *p1 ^= *p2;
+      }
+      return str;
+}
+int main()
+{
+char c[50],d[50];
+  int a,b;
+  scanf("%s",c);
+    scanf("%s",d);
+  a=strlen(c);
+  if(a==3){
+  scanf("%s",d);
+  //b=strlen(d);
+    printf("%s %s",strrev(d),strrev(c));}
+  else{
+  
+  printf("%s",strrev(c));}
+	return 0;
+}

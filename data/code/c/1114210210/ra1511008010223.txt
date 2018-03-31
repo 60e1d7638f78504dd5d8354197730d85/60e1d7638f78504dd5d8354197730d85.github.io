@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+    int t,N,M,k,a,ii,ij;
+    long long int aij;
+    scanf("%d",&t);
+    while(t--)
+    {
+        double temp1,temp2,temp;
+        double ans=0.0;
+        scanf("%d%d%d",&N,&M,&k);
+        double n=N+1;
+        double m=M+1;
+        temp2=(m*(m-1)*n*(n-1))/4;
+        for(a=0;a<k;a++)
+        {
+            scanf("%lld",&aij);
+            ii=((aij-1)/M+1);
+            ij=((aij-1)%M+1);
+            double i=ii;
+            double j=ij;
+            temp1=i*j*(n-i)*(m-j);
+            ans=ans+temp1;
+        }
+        ans=ans/temp2;
+        printf("%lf\n",ans);
+    }
+}
+ 

@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class marks{
+  private : int marks1 , marks2 , marks3 ;
+  public :
+  	marks(int m1 ,int m2 ,int m3 ){
+      marks1 = m1 ;
+      marks2 = m2 ;
+      marks3 = m3 ;
+    }
+  	marks(){} 
+  	int operator*(marks obj){
+      marks m3 ;
+      int grade ;
+      m3.marks1 = marks1 * obj.marks1 ;
+      m3.marks2 = marks2 * obj.marks2 ;
+      m3.marks3 = marks3 * obj.marks3 ;
+      grade = m3.marks1 + m3.marks2 + m3.marks3 ;
+      return grade ;
+    }
+} ;
+
+int main()
+{ 
+  	int a , b , c , d , e , f ;
+  	cin >> a >> b >> c >> d >> e >> f ;
+	marks m1(a,b,c) , m2(2,0,-1) , m3(d,e,f) ;
+  	int t = m1*m2 ;
+  	int s = m3*m2 ;
+  	cout << t << endl << s ;
+	return 0;
+}

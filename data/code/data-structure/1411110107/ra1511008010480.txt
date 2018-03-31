@@ -1,0 +1,54 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+	int num;
+  	struct node* next;
+};
+
+struct node* head = NULL;
+struct node* tail = NULL;
+
+int main()
+{
+  	int n;
+  	scanf("%d", &n);
+  	int i;
+  	for(i=0; i<n; i++) {
+    	struct node* temp = (struct node*) malloc (sizeof(struct node));
+      	scanf("%d", &temp->num);
+      	temp-> next = NULL;
+      	if(i==0) {
+        	head = temp;
+          	tail = temp;
+        }
+      	else {
+        	tail->next = temp;
+          	tail = temp;
+        }
+    }
+  	struct node* temp = head;
+  	int flag = 0;
+  	while(temp != NULL) {
+    	struct node* temp2 = head;
+      	while(temp2 != temp) {
+            if(temp2->num == temp->num) {
+                 //temp = temp->next;
+                 flag = 1;
+                 break;
+            }
+          	temp2 = temp2->next;
+        }
+      	if(flag == 1) {
+        	temp = temp->next;
+          	flag = 0;
+        }
+      	else {
+        	printf("%d\n", temp->num);
+          	temp = temp->next;
+        }
+      	
+    }
+	return 0;
+}

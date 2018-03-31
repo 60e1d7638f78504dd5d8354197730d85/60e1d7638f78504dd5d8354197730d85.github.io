@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+class BinaryFormatException extends NumberFormatException
+{
+public BinaryFormatException(String msg)
+{
+super(msg);
+}
+}
+
+public class TestClass {
+	public static int j=0,sum=0,l;
+	static void binToDecimal(char[] b) throws BinaryFormatException
+    {
+    	for(int i=l-1;i>=0;i--)
+        {
+        //System.out.println("A");
+    	if(!(b[i]=='1'||b[i]=='0'))
+        {
+    	throw new BinaryFormatException("Number is not Binary");
+        }
+        else
+        {
+       int d=b[i]-48;
+        sum=sum+(int)Math.pow(2,j)*d;
+        }
+        j++;
+     	}
+        
+    }
+     
+	 public static void main(String[] args) { 
+     Scanner s=new Scanner(System.in);
+     String s1=s.next();
+     char[] a=s1.toCharArray();
+     l=s1.length();
+     //System.out.println(l);
+     try
+     {
+     binToDecimal(a);
+     System.out.println(sum);
+     }   
+     catch(BinaryFormatException e)
+     {
+      System.out.println(e);
+     }
+     
+		
+	}
+}

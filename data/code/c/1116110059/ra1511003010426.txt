@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<string.h>
+ 
+int main()
+{
+    int t,n,count1[26],count2[26],i,k,n1;
+    char a[10001],b[1001];
+    scanf("%d",&t);
+    while(t--)
+    {
+        k=0;
+        scanf("%s",a);
+        scanf("%s",b);
+        n=strlen(a);
+        n1=strlen(b);
+        
+        for(i=0;i<26;i++)
+        {
+            count1[i]=0;
+            count2[i]=0;
+        }
+        for(i=0;i<n;i++)
+        {
+            count1[a[i]-97]++;
+            
+        }
+        for(i=0;i<n1;i++)
+        count2[b[i]-97]++;
+        
+        for(i=0;i<26;i++)
+        {
+            if(count1[i]>0 && count2[i]>0)
+            {
+                k=1;
+                break;
+            }
+        }
+        if(k==0)
+        printf("No\n");
+        
+        else
+        printf("Yes\n");
+        
+    }
+    return 0;
+} 

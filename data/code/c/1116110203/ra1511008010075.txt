@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,c;   
+     int flag=0;
+        char s[100000];
+        scanf("%s",s);
+        int l=strlen(s);
+        if(l%2==0)
+            c=1;
+        else
+            c=2;
+        for(i=(l/2)-1;i>=0;i--)
+        {
+            if(s[i]=='.' && s[i+c]=='.')
+            {
+                s[i]='a';
+                s[i+c]='a';
+            }
+            else if(s[i]=='.')
+                s[i]=s[i+c];
+            else if(s[i+c]=='.')
+                s[i+c]=s[i];
+            else if(s[i]!=s[i+c])
+            {
+                printf("-1\n");
+                flag=-1;
+                break;
+            }
+            c=c+2;
+        }
+        if(flag!=-1)
+        {
+            if(s[l/2]=='.')
+                s[l/2]='a';
+            for(i=0;i<=l-1;i++)
+                printf("%c",s[i]);
+            printf("\n");
+        }
+    
+    return 0;
+} 

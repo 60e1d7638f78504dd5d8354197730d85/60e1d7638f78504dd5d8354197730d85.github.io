@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define MAX 1000100
+int totient[MAX];
+void calc_totient()
+{
+   int i,j;
+   for(i=1;i<MAX;i++)
+      totient[i]=i;
+   for(i=2;i<MAX;i++)
+      if(totient[i]==i){//it's a prime
+         for(j=2*i;j<MAX;j+=i){
+            totient[j]/=i;
+            totient[j]*=(i-1);
+         }
+         totient[i]=i-1;
+      }
+}
+int main()
+{
+   int cases,cnt;
+   int i,n;
+   long long int ans[MAX],sum=0;
+ 
+   calc_totient();
+   totient[1]=totient[0]=0;
+   sum=0;
+ 
+   for(i=0;i<MAX;i++){
+      sum+=totient[i];
+      ans[i]=sum;
+   }
+   for(scanf("%d",&cases),cnt=1;cnt<=cases;cnt++){
+      scanf("%d",&n);
+      printf("%lld\n",ans[n]);
+   }
+   return 0;
+}
+ 

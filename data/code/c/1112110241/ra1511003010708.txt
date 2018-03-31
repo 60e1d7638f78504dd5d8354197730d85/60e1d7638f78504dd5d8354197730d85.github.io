@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int a[26]={0};
+  char s[26];
+  int n;
+  int g,i;
+  char w[12];
+  fgets(s,26,stdin);
+  for(i=0;s[i]!='\0';i++)
+  {
+    g=s[i]-97;
+    a[g]++;
+  }
+  scanf("%d ",&n);
+  while(n--)
+  {
+  fgets(w,12,stdin);
+   for(i=0;w[i]!='\0';i++)
+   {
+     g=w[i]-97;
+     if(a[g]<2)
+       a[g]++;
+   }
+   
+    
+   for(i=0;i<26;i++)
+   {
+     if(a[i]==1)
+     {
+       printf("No\n");
+       break;
+     }
+   }
+   if(i==26)
+     printf("Yes\n");
+  }
+	return 0;
+}

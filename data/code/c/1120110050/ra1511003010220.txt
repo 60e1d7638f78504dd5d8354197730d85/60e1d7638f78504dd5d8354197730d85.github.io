@@ -1,0 +1,39 @@
+#include <stdio.h>
+ 
+inline int input()
+{
+	int n=0;
+	char ch=getchar_unlocked();
+	while(ch>='0' && ch<='9')
+	{
+		n=(n<<3)+(n<<1) +ch-'0';
+		ch=getchar_unlocked();
+	}
+	return n;
+}
+ 
+ 
+ 
+int main()
+{
+	int tc;
+	tc=input();
+	while(tc--)
+	{
+		int n,arr[10002],i;
+		n=input();
+		for(i=0;i<n;i++)
+			arr[i]=input();
+		int min=arr[0],count=1;
+		for(i=1;i<n;i++)
+		{
+			if(min>=arr[i])
+			{
+				count++;
+				min=arr[i];
+			}
+		}
+		printf("%d\n",count);
+	}
+	return 0;
+} 

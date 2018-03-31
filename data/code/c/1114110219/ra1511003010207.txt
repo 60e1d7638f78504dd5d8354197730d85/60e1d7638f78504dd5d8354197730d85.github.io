@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+#define NMAX 100000
+
+int main() {
+	int t, p, i;
+
+	char prime[NMAX+1];
+	memset((void *)prime, 1, sizeof(prime));
+ 
+	for (p = 2; p*p <= NMAX; p++) {
+		if (prime[p] == 1) {
+			for (i = p*2; i <= NMAX; i += p)
+				prime[i] = 0;
+		}
+	}
+
+	scanf("%d", &t);
+	while(t--) {
+		int n;
+		scanf("%d", &n);
+
+		if (prime[n] == 1)
+			puts("yes");
+		else
+			puts("no");
+	}
+
+	return 0;
+}

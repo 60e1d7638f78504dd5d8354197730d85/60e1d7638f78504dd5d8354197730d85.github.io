@@ -1,0 +1,74 @@
+#include<math.h>
+#include<stdlib.h>
+//#include<time.h>
+#include<stdio.h>
+#define MOD 1000000007
+#define gc getchar_unlocked
+long long int up[1001]={0},down[1001]={0};
+long long int pol[1010],cal[1001];//pol for polynomial
+int read_int()
+ { 
+  char c = gc();
+  while(c<'0' || c>'9') c = gc();
+  int ret = 0;
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+int main()
+{
+	int i,n,m,c,k;
+	n=read_int();
+	m=read_int();
+	c=read_int();
+	
+	for(i=0 ; i<n ; i++)
+		up[read_int()]++;
+	
+	for(i=0 ; i<m ; i++)
+		down[read_int()]++;
+ 
+	int j=0;
+	long long int hold;
+	for(i=0 ;i<1001;i++)
+	{	
+		if(down[i]&0 || up[i]&0) continue;
+		
+		hold=down[i]*up[i];
+		pol[j++]=hold%MOD;
+	}
+	
+	cal[0]=-1*pol[0];
+	cal[1]=1;
+	for(i=1 ; i<j ; i++)
+	{
+		for(k=i+1 ; k>=0 ; k--)
+		{
+			if(k==i+1)
+				cal[k]=cal[k-1];
+			
+			else if(k==0)
+				cal[k]=-1*((cal[k]*pol[i])%MOD);
+ 
+			else
+				cal[k]=(cal[k-1]-(cal[k]*pol[i])%MOD)%MOD;
+		}
+	}
+	
+	//output
+ 
+	j--;
+	i=j;
+	int cnt=0;
+	while(i--)
+	{
+		cnt++;
+		hold=cal[i];
+		if(hold<0) hold*=-1;
+		printf("%lld ",hold);
+		if(cnt==c) break;
+	}
+	return 0;
+}

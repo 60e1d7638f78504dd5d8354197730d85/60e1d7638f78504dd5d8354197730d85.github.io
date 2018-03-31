@@ -1,0 +1,38 @@
+#include <stdio.h>
+int palindrome(int num);
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int i;
+  for(i=0;i<t;i++)
+  {
+    int start,end;
+    scanf("%d %d",&start,&end);
+    int sum=0;
+    int j;
+    for(j=start;j<=end;j++)
+    {
+      if(palindrome(j)==1)
+        sum = sum+j;
+    }
+    printf("sum is %d\n",sum);
+  }
+  return 0;
+}
+int palindrome(int num)
+{
+  int originalInteger = num;
+  int reversedInteger=0,remainder;
+  while(num!=0)
+  {
+    remainder = num%10;
+    reversedInteger = reversedInteger*10+remainder;
+    num /= 10;
+  }
+  if(originalInteger == reversedInteger)
+    return 1;
+  else 
+    return 0;
+}
+  

@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class Year {
+	int year;
+  	public:
+  		Year(int year) : year(year) {}
+  		bool isLeap();
+};
+
+bool Year :: isLeap() {
+	if(year % 4 == 0) {
+    	if(year % 100 == 0) {
+        	if(year % 400 == 0) {
+            	return true;
+            }
+          	return false;
+        }
+      	return true;
+    }
+  	return false;
+}
+
+int main()
+{
+  	int y;
+  	cin>>y;
+  	Year year1(y);
+  	if(year1.isLeap()) {
+    	cout<<"It is a Leap Year!";
+    }
+  	else {
+    	cout<<"It is not a Leap Year!";
+    }
+	return 0;
+}

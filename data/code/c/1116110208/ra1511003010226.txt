@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#define S(n) scanf("%d",&(n))
+#define P() printf("YES\n")
+#define Q() printf("NO\n")
+#define S1(n) scanf("%s",(n))
+ 
+ 
+int main(void) {
+	int t,i,len,arr[26];
+	char str[100];
+	bool flag;
+	S(t);
+	while(t-->0){
+	    for(i=0;i<26;i++){
+	        arr[i]=0;
+	    }
+	    flag=false;
+	    S1(str);
+	    len=strlen(str);
+	    if(len%2==0){
+	    for(i=0;i<len;i++){
+	        arr[str[i]-'a']++;
+	    }
+	    for(i=0;i<len;i++){
+	        if(arr[str[i]-'a']==len/2){
+	            flag=true;
+	            break;
+	        }
+	    }
+	    }
+	    if(flag){
+	        P();
+	    }
+	    else{
+	        Q();
+	    }
+	}
+	return 0;
+}
+ 

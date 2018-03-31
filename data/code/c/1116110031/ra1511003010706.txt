@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+#define max 100
+int removeword(char *str,const char * toremove);
+int main()
+{
+  char str[max],toremove[max];
+  scanf("%[^\n]%*c",str);
+  scanf("%s",toremove);
+  
+  removeword(str,toremove);
+  printf("%s",str);
+
+	return 0;
+}
+
+int removeword(char *str,const char *toremove)
+{
+  int i,j,len,removelen,found=0;
+  len=strlen(str);
+  removelen=strlen(toremove);
+  
+  for(i=0;i<len;i++)
+  {
+    found=1;
+    for(j=0;j<removelen;j++)
+    {
+      if(str[i+j]!=toremove[j])
+      {
+        found=0;
+        break;
+      }
+    }
+    if(found==1)
+    {
+      for(j=i;j<=len-removelen;j++)
+      {
+        str[j]=str[j + removelen];
+      }
+      break;
+    }
+  }
+}
+    
+      

@@ -1,0 +1,139 @@
+import java.util.*;
+import java.math.*;
+import java.io.*;
+ 
+public class TestClass {
+	public static void main(String args[]) throws IOException {
+		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
+		//Scanner c=new Scanner(System.in);
+		int  t=0;
+		int testcase=1;
+		while(true) {
+			t = Integer.parseInt(c.readLine());
+			if(t==0) 
+				break;
+			
+			int pos[][] = new int[t][4];
+			
+			for (int i = 0; i < t; i++) {
+				String s = c.readLine();
+				StringTokenizer st = new StringTokenizer(s);
+				
+				for (int j = 0; j < 4; j++) {
+					pos[i][j] = Integer.parseInt(st.nextToken());
+				}
+			}
+			int expert[] = new int[3];
+			String s = c.readLine();
+			StringTokenizer st = new StringTokenizer(s);
+			for (int j = 0; j < 3; j++) {
+				expert[j] = Integer.parseInt(st.nextToken());
+			}
+			int a[] = new int[t];
+			for (int i = 0; i < t; i++) {
+				a[i]=i;
+			}
+			permGen gen = new permGen(a);
+			double min = time(a,expert,pos);
+			while(true){
+				a= gen.nextPerm();
+				if(a==null)
+					break;
+				double t2 =  time(a,expert,pos);
+				if(t2<min){
+					min=t2;
+				}
+				//System.out.println(t2);
+			}
+			long seconds = (long) Math.ceil(min*3600);
+			
+			long h = (long) seconds/3600;
+			long m = (long) ((seconds-h*3600)/60);
+			long s1 = (long) (seconds-h*3600-m*60);
+			
+			System.out.println((testcase)+" "+h+" "+m+" "+s1);
+			testcase++;
+		}
+		
+	}
+	
+	public static double time(int a[], int expert[], int pos[][]){
+		double t=0;
+		double x = expert[0];
+		double y = expert[1];
+		float S = expert[2];
+ 
+		for (int i = 0; i < a.length; i++) {
+			int p = a[i];
+			double xp = pos[p][0]+t*pos[p][2];
+			double yp = pos[p][1]+t*pos[p][3];
+			float vxp = pos[p][2];
+			float vyp = pos[p][3];
+						
+			
+			double b =  (2*((xp-x)*vxp + (yp-y)*vyp));
+			float a2 = vxp*vxp+vyp*vyp-S*S;
+			double c = (xp-x)*(xp-x)+(yp-y)*(yp-y);
+			double D = b*b-4*a2*c;
+			
+			double root = (-b - Math.sqrt(D))/(2*a2);
+			//System.out.println("root"+b +" "+ Math.sqrt(D));
+			t += root;
+			t+=1;
+			x=xp+(root+1)*vxp;
+			y=yp+(root+1)*vyp;
+			
+		}
+		t+=(Math.sqrt(Math.pow(expert[0]-x,2)+Math.pow(expert[1]-y, 2)))/(double) expert[2];
+		return t;
+	}
+}
+ 
+ 
+class permGen {
+	public int A[];
+ 
+	public permGen(int a[]) {
+		A = new int[a.length];
+		for (int i = 0; i < a.length; i++)
+			A[i] = a[i];
+	}
+ 
+	public int[] nextPerm() {
+		//Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
+		int N = A.length;
+		int k = -1;
+		for (int i = 0; i < N - 1; i++) {
+			if (A[i] < A[i + 1])
+				k = i;
+		}
+		if (k == -1)
+			return null;
+		//Find the largest index l such that a[k] < a[l]. Since k + 1 is such an index, l is well defined and satisfies k < l
+		int l = -1;
+		for (int i = k + 1; i < N; i++) {
+			if (A[k] < A[i])
+				l = i;
+		}
+		//Swap a[k] with a[l].
+		swap(A, k, l);
+ 
+		//Reverse the sequence from a[k + 1] up to and including the final element a[n]
+		int i = k + 1;
+		int j = N - 1;
+		while (i <= j) {
+			swap(A, i, j);
+			i++;
+			j--;
+		}
+		return A;
+	}
+ 
+	private void swap(int A[], int i, int j) {
+		int t = A[i];
+		A[i] = A[j];
+		A[j] = t;
+	}
+}
+//must declare new classes here 
+ 

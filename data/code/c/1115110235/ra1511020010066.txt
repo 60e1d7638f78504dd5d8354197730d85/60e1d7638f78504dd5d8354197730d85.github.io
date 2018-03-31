@@ -1,0 +1,47 @@
+#include<stdio.h>
+#define BUF 4096
+ 
+char ibuf[BUF];
+int ipt = BUF;
+ 
+int nextint() {
+	while (ipt < BUF && ibuf[ipt] < '0') ipt++;
+	if (ipt == BUF) {
+		fread(ibuf, 1, BUF, stdin);
+		ipt = 0;
+		while (ipt < BUF && ibuf[ipt] < '0') ipt++;
+	}
+	int n = 0;
+	while (ipt < BUF && ibuf[ipt] >= '0') n = (n*10)+(ibuf[ipt++]-'0');
+ 
+	   if (ipt == BUF) {
+		fread(ibuf, 1, BUF, stdin);
+		ipt = 0;
+		while (ipt < BUF && ibuf[ipt] >= '0') n = (n*10)+(ibuf[ipt++]-'0');
+	}
+	return n;
+}
+ 
+int main()
+{
+int t,n,g,l,q,result;
+t=nextint();
+while(--t>=0)
+{
+	g=nextint();
+	while(--g>=0)
+	{
+		l=nextint();
+		n=nextint();
+		q=nextint();
+		if(n%2==0)
+			result=n/2;
+		else
+			result=(n-1)/2;
+		if(l!=q)
+			result=n-result;
+		printf("%d\n",result);
+	}
+}
+return 0;
+}

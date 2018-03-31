@@ -1,0 +1,26 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int t,n,m,i,maxx,sum,x;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d%d",&n,&m);
+        maxx=0;
+        sum=0;
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&x);
+            sum+=x;
+            if(maxx<x)
+                maxx=x;
+        }
+        sum+=m;
+        if(sum/n >= maxx && sum%n==0)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+    return 0;
+}

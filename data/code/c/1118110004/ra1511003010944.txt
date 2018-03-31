@@ -1,0 +1,68 @@
+#include <stdio.h>
+struct Date{
+	int date, month, year;
+}d;
+
+void printd()
+{
+	if((d.date+1>31) && (d.month==1 || d.month==3 || d.month==5 || d.month==7 || d.month==8 || d.month==10 || d.month==12))
+      if(d.month+1>12)          
+       	if(d.year+1>2999)
+          printf("Invalid Year");
+  		else
+      	  printf("New Date=01 01 %d",d.year+1);
+  	  else
+        printf("New Date=01 %d %d",d.month+1, d.year);
+    else if((d.date+1>30) && (d.month==4 || d.month==6 || d.month==9 || d.month==11))
+      if(d.month+1>12)          
+       	if(d.year+1>2999)
+          printf("Invalid Year");
+  		else
+      	  printf("New Date=01 01 %d",d.year+1);
+  	  else
+        printf("New Date=01 %d %d",d.month+1, d.year);
+    else if((d.date+1>28) && (d.month==2))
+      if(d.month+1>12)          
+       	if(d.year+1>2999)
+          printf("Invalid Year");
+  		else
+      	  printf("New Date=01 01 %d",d.year+1);
+  	  else
+        printf("New Date=01 %d %d",d.month+1, d.year);
+   	else if(d.date==29 && d.month==2 && (d.year%400==0 ||(d.year%4==0 && d.year%100!=0)))
+      printf("New Date=01 03 %d", d.year);
+	else
+      printf("New Date=%d %d %d",d.date+1, d.month, d.year);
+}
+
+int main()
+{
+    scanf("%d%d%d",&d.date,&d.month,&d.year);
+     
+    if(d.year>=0 && d.year<=2999)
+    {
+        if(d.month>=1 && d.month<=12)
+        {
+            if((d.date>=1 && d.date<=31) && (d.month==1 || d.month==3 || d.month==5 || d.month==7 || d.month==8 || d.month==10 || d.month==12))
+                printd();
+            else if((d.date>=1 && d.date<=30) && (d.month==4 || d.month==6 || d.month==9 || d.month==11))
+                printd();
+            else if((d.date>=1 && d.date<=28) && (d.month==2))
+                printd();
+            else if(d.date==29 && d.month==2 && (d.year%400==0 ||(d.year%4==0 && d.year%100!=0)))
+                printd();
+            else
+                printf("Invalid Day\n");
+        }
+        else
+        {
+            printf("Invalid Month\n");
+        }
+    }
+    else
+    {
+        printf("Invalid Year");
+    }
+ 
+    return 0;    
+}

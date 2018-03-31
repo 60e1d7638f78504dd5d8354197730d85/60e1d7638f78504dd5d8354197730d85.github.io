@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{  int leapdays[100],i,firstday[100],n,yr[100];
+    long int totaldays[100],normaldays[100];
+ scanf("%d",&  n);
+ for(i=0;i<n;i++)
+ scanf("%d",&yr[i]);
+ for(i=0;i<n;i++)
+ {
+ normaldays[i]=(yr[i]-1)*365L ;
+   leapdays[i]=(yr[i]-1)/4-(yr[i]-1)/100+(yr[i]-1)/400;
+ totaldays[i] = normaldays[i]+leapdays[i];
+ firstday[i]=totaldays[i]%7;
+ if(firstday[i]==0)
+   printf("monday\n");
+ else if (firstday[i]==1)
+   printf("tuesday\n");
+ else if (firstday[i]==2)
+   printf("wednesday\n");
+ else if (firstday[i]==3)
+   printf("thursday\n");
+ else if (firstday[i]==4)
+   printf("friday\n");
+ else if (firstday[i]==5)
+   printf("saturday\n");
+ else
+   printf("sunday\n");
+ }
+	return 0;
+}

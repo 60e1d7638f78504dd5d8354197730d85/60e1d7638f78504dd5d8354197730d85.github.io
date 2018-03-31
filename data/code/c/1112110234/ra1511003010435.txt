@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int T;
+  scanf("%d",&T);
+  while(T--)
+  {
+    int N,i,j,K,t;
+    scanf("%d %d",&N,&K);
+    int arr[N];
+    for(i=0;i<N;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+    for(i=0;i<N-1;i++)
+    {
+      for(j=0;j<N-i-1;j++)
+      {
+        if(arr[j]>arr[j+1])
+        {
+          t=arr[j];
+          arr[j]=arr[j+1];
+          arr[j+1]=t;
+        }
+      }
+    }
+    float sum=0;float avg;
+    for(i=K;i<N-K;i++)
+    {
+      sum=sum+arr[i];
+    }
+    avg=sum/(N-(2*K));
+    printf("%f\n",avg);
+  }
+        
+
+	return 0;
+}

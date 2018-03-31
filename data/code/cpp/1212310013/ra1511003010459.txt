@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t,flag=0;
+  	cin>>t;
+ 	string s;
+  char ch;
+  for(int i=0;i<t;i++){
+ 
+      	cin>>s;
+    	ch=s[0];
+    	//cout<<s<<endl;
+      	for(int j=0;j<s.length()-1;j++){
+          	//cout<<s[j]<<endl;
+        	if(s[j]==s[j+1]){
+            	cout<<"NO"<<endl;
+              	flag=1;
+              	break;
+            }else if(s[j]!=s[j+1]){
+            	//cout<<"YES"<<endl;
+              	flag=0;
+              	if(s[j]!=s[j+2] && j<s.length()-2){
+                	cout<<"NO"<<endl;
+                  	flag=1;
+                  	break;
+                }
+              	ch=s[j];
+              	if(j==s.length()-2)
+              	break;
+            }
+        }
+  	if(flag==0){
+    	cout<<"YES"<<endl;
+    }
+  }
+  
+	return 0;
+}

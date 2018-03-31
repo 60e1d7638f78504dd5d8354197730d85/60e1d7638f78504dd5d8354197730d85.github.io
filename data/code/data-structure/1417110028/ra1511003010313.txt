@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define ull unsigned long long
+#define pb push_back
+#define mp make_pair
+#define sz size()
+template<class T> inline T gcd(T x, T y) { if (!y) return x; return gcd(y, x%y);}
+using namespace std;
+typedef vector<int> VII;
+typedef vector<ll> VLL;
+typedef pair<int, int> PII;
+typedef vector< pair<int, int> > VPII;
+typedef vector< pair<int, PII > > VPPI;
+const int MOD = 1e9 + 7;
+bool A[5];
+int main(int argc, char* argv[])
+{
+	if(argc == 2 or argc == 3) freopen(argv[1], "r", stdin);
+	if(argc == 3) freopen(argv[2], "w", stdout);
+	int q, t, r;
+	char c;
+	queue <int> q1, q2[5];
+	cin >> q;
+	for(int i = 0;i < q;++i)
+	{
+		cin >> c;
+		if(c == 'E')
+		{
+			cin >> t >> r;
+			if(A[t] == false) q1.push(t), A[t] = true;
+			q2[t].push(r);
+		}
+		else
+		{
+			t = q1.front();
+			r = q2[t].front();
+			q2[t].pop();
+			if(q2[t].empty()) q1.pop(), A[t] = false;
+			cout << t << ' ' << r << endl;
+		}
+	}
+	return 0;
+}

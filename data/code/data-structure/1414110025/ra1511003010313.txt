@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int size,k,a[100];
+  scanf("%d",&size);
+  for(k=0;k<size;k++)
+  {
+    scanf("%d",&a[k]);
+  }
+    
+    int i,j;
+
+    i = 0;
+    while (i<size)
+    {
+
+        //finding the smallest number in the subarray
+        int index_of_smallest = i;
+        for(j=i; j<size; j++)
+        {
+            if (a[j]<a[index_of_smallest])
+                index_of_smallest = j;
+        }
+
+        //swapping
+        int temp = a[i];
+        a[i] = a[index_of_smallest];
+        a[index_of_smallest] = temp;
+if(i==1)
+      {
+  int l;
+        for(l=0;l<size;l++)
+        printf("%d ",a[l]);
+}
+        i++;
+      
+    }
+printf("\nSorted Array:");
+    for(i=0;i<size;i++)
+        printf("%d ",a[i]);
+
+    return 0;
+}

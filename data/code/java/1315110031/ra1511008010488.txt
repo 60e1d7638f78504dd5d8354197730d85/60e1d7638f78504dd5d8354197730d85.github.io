@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Person objname  = new Person();
+       	objname.inputData();
+       	objname.display();
+	}
+}
+
+class Person{
+  private static String name;
+  private static int yob;
+  private static int yod;
+  public static void inputData(){
+    Scanner s = new Scanner(System.in);
+    name = s.next();
+    yob  = s.nextInt();
+    yod  = s.nextInt();
+  }
+  public static void display(){
+    if(yod == -1){
+      System.out.println(name + " is still alive");
+    }else{
+      int yrs = yod - yob;
+      System.out.println(name + " lived for " + yrs + " years");
+    }
+  }
+}

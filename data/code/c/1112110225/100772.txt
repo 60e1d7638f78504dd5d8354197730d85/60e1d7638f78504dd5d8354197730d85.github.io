@@ -1,0 +1,33 @@
+#include <stdio.h>
+long int hcf(long int a,long int b)
+{
+if(a%b==0)
+return b;
+else
+return (hcf(b,a%b));
+
+}
+int main()
+{
+long int a,b,d,t,x;
+scanf("%ld",&t);
+while(t--)
+{
+scanf("%ld %ld",&a,&b);
+d=a-b;
+if(d<0)
+		d*=-1;
+		if(a<0)
+		a*=-1;
+		if(b<0)
+		b*=-1;
+		if(a<b)
+		{
+			a=a+b;b=a-b;a=a-b;
+		}
+		x=d/(hcf(a,b));
+		printf("%ld\n",x);
+    }
+
+	return 0;
+}

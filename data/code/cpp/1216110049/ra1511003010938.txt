@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+int fact(int num){
+
+  if (num==0){return 1;} 
+  
+  int f=1;
+  for(int i=1;i<=num;i++){
+  	f*=i;
+  }
+
+  return f;
+}
+
+int main()
+{
+  int n;
+  cin>>n;
+  while(n--){
+  
+    int b,g;
+    cin>>b>>g;
+    int a[b][g];
+    
+    for(int i=0;i<b;i++){
+    	int num;
+      cin>>num;
+      
+      
+      for(int j=0;j<g;j++){
+      	a[i][j] = num%10;
+        num/=10;
+      }
+    }
+    int ct=0,sum=0;
+    for(int i=0;i<g;i++){
+      sum=0;
+    	for(int j=0;j<b;j++){
+        	sum+=a[j][i];
+        }
+      ct+=fact(sum)/(fact(sum-2)*2);
+    }
+    
+    cout<<ct<<"\n";
+    
+  }
+
+	return 0;
+}

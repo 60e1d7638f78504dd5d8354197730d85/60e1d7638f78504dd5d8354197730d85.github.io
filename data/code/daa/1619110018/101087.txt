@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define pii pair<int,int>
+#define mp make_pair
+#define pb push_back
+#define si(a)     cin>>a //scanf("%d", &a)
+#define sl(a)     cin>>b //scanf("%lld", &a)
+#define pi(a)     cout<<a //printf("%d", a)
+#define pl(a)     cout<<a //printf("%lld", a)
+#define pm(str)   cout<<str //printf("%s\n",str)
+#define pn        cout<<"\n" //printf("\n")
+
+ll counter(ll n){
+	ll count = 0;
+	while(n){
+		n = n & (n-1);
+		count++;
+	}
+	return count;
+}
+int main(){
+	vector<ll> v;
+	int t;
+	si(t);
+	while(t--){
+		int n,k;
+		v.clear();
+		scanf("%d %d",&n,&k);
+		v.resize(n);
+		for(int i = 0;i < n;i++){
+			int t;
+			si(t);
+			v[i] = counter(t) ;
+		}
+		sort(v.begin(),v.end());
+		int j = n-1;
+		ll sum = 0;
+		for(int i = 0;i < k;i++){
+			sum += v[j];
+			j--;
+		}
+		pl(sum);
+		pn;
+	}
+	return 0;
+}

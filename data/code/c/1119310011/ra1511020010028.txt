@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define p 1000000007
+long long int g[400000+10],h[400000+10];
+int main()
+{
+long long int i,a,b,n,m,x,v,sum;
+g[1]=1;
+for(i=2;i<=400000;i++)
+{
+g[i]=(-(p/i)*g[p%i])%p+p;
+}
+int k,t;
+scanf("%d",&t);
+for(k=1;k<=t;k++)
+{
+scanf("%lld%lld%lld%lld",&n,&m,&a,&b);
+x=n-a;
+//y=m-b;
+v=1;
+for(i=1;i<=m;i++)
+{
+v=((v*(i+x))%p*g[i])%p;
+if(i>=b)
+{
+h[i-b]=v;
+}
+}
+v=1;
+sum=h[m-b];
+for(i=1;i<=m-b;i++)
+{
+v=((v*(i-1+a))%p*g[i])%p;
+sum=(sum+(v*h[m-b-i])%p)%p;
+}
+printf("%lld\n",sum);
+}
+return 0;
+}

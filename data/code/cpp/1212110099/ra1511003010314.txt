@@ -1,0 +1,37 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+int num,i,j,k=0;
+  cin>>num;
+  int arr[1000];
+  for(i=2;i<num;i++)
+  {
+    int flag=0;
+    for(j=1;j<=pow(i,0.5);j++)
+    {
+    if(i%j==0)
+    {
+    flag++;
+    }
+    }
+    if(flag==1)
+    {
+    arr[k]=i;
+      k++;
+    }
+  }
+  int g,l;
+  for(g=0;g<k;g++)
+  {
+   for(l=g;l<k;l++)
+   {
+     if(arr[g]+arr[l]==num)
+     {
+     cout<<num<<" = "<<arr[g]<<" + "<<arr[l]<<endl;
+     }
+   }
+  }
+  return 0;
+}

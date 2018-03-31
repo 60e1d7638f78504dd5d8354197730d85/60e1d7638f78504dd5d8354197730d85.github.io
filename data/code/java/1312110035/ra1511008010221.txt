@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+    static boolean isAlt(String s) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) return false;
+        }
+        for (int i = 0; i < s.length() - 2; i++) {
+            if (s.charAt(i) != s.charAt(i + 2)) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) throws java.lang.Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        for (int i = 0; i < t; i++) {
+            String s = br.readLine();
+            if (isAlt(s)) System.out.println("YES");
+            else System.out.println("NO");
+        }
+    }
+}

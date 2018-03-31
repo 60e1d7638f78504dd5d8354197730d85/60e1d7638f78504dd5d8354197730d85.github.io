@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class C1{
+  protected : 
+  	float length , breadth ;
+  public :
+  	void input(){
+      cin >> length >> breadth ;
+    }
+} ;
+
+class C2 : public C1{
+  protected : float peri ;
+  public :
+  	void perimeter(){
+      peri = 2*(length+breadth) ;
+    }
+} ;
+
+class C3 : public C2{
+  public :
+  	void cost(){
+      cout << peri*5 ;
+    }
+} ;
+
+int main()
+{
+	C3 c ;
+  	c.input() ;
+  	c.perimeter() ;
+  	c.cost() ;
+	return 0;
+}

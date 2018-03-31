@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int val(char c)
+{
+  if(c>='0' && c<='9')
+    return (int)c-'0';
+  else
+    return (int)c-'A'+10;
+}
+
+int toDeci(char *str, int base)
+{
+  scanf("%d", &base);
+  scanf("%s", str);
+  int len = strlen(str);
+  int power = 1;
+  int num = 0;
+  int i;
+  
+  for(i=len-1; i>=0; i--)
+  {
+    if(val(str[i]) >= base)
+    {
+      printf("Invalid number");
+      return -1;
+    }
+    num += val(str[i])*power;
+    power = power*base;
+  }
+  return num;
+}
+       
+int main()
+{
+  char str[100];
+  int base;
+  printf("%d\n", toDeci(str, base));
+  return 0;
+}   

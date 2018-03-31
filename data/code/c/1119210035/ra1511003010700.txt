@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int T,A,B[251];
+int size,rem,i;
+char s[252];
+ 
+int gcd(int a, int b);
+ 
+int main(void) 
+{
+    scanf("%d",&T);
+    
+    while(T--)
+    {
+        scanf("%d %s",&A,s);
+ 
+        if(A==0)
+        {
+            printf("%s\n",s);
+        }
+        else
+        {
+            size = strlen(s);
+            
+            for(i=0;i<size;i++)
+                B[i] = s[i]-'0';
+            
+            rem = 0;
+            for(i=0;i<size;i++)
+            {
+                B[i] += rem*10;
+                rem = B[i]%A;
+            }
+            
+            printf("%d\n",gcd(A,rem));
+        }
+    }
+    
+	return 0;
+}
+ 
+ 
+ 
+int gcd(int a, int b)
+{
+    if(b==0)
+        return a;
+    else
+        return gcd(b,a%b);
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int n, a[100], b[100], c[200], i, j, k = 0, q, qu[25], count = 0, l = 0;
+  	scanf("%d", &n);
+  	scanf("%d", &q);
+  	for(i = 0; i < q; i++){
+    	scanf("%d", &qu[i]);
+  	}
+  	for(i = 1; i <= n; i++){
+    	a[i] = i;
+    }
+ 	for(i = n; i <= 2*n; i++){
+    	b[l++] = i;
+  	}  
+  // for array c
+  	for(i = 1; i <= n ; i++){
+      for(j = 1; j <= n; j++){
+      	c[k++] = a[i] + b[j];
+      }
+    }
+
+  // printing for each query
+  for(i = 0; i < q ; i++){
+  	for(j = 0; j < k; j++){
+    	if(qu[i] == c[j]){
+        	count++;
+        }
+	
+    }
+    printf("%d\n", count);
+    count = 0;
+  }
+  
+	return 0;
+}

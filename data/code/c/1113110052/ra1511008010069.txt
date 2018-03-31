@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+long int a[10],n,i,j,z,count=0,k=0,s=0,r=0;
+  scanf("%ld",&n);
+  for(i=0;i<n;i++)
+    scanf("%ld",&a[i]);
+  s=1;
+  for(i=0;i<n;i++)
+  {
+    z=a[i];
+    while(z!=0)
+    {
+      k++;
+      r=z%10;
+      if(r==s)
+      {
+        count++;
+      }
+      z=z/10;
+    }
+    if(k-count==1 || count==1)
+    {
+      printf("Yes\n");
+      count=0;
+      k=0;
+    }
+    else
+    {
+      printf("No\n");
+    count=0;
+      k=0;
+    }
+  }
+  
+	return 0;
+}

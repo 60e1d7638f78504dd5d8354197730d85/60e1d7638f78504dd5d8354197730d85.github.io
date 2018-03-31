@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include<string.h>
+struct std
+{
+  char name[20];
+  long int reg;
+}s[20];
+int main()
+{
+  int i,j,tp,f=0;
+  char t[20];
+  for(i=0;i<10;i++)
+    scanf("%s%ld",s[i].name,&s[i].reg);
+ 
+  for(j=0;j<10;j++)
+  {
+	for(i=j+1;i<10;i++)
+  	{
+    if(strcmp(s[j].name,s[i].name)>0)
+    {
+      strcpy(t,s[j].name);
+      tp=s[j].reg;
+      strcpy(s[j].name,s[i].name);
+      s[j].reg=s[i].reg;
+      strcpy(s[i].name,t);
+      s[i].reg=tp;
+     
+    }
+    }
+  }
+
+  for(i=0;i<10;i++)
+  {
+    if(103101==s[i].reg)
+      f=1;
+  }
+  if(f==1)
+      printf("Student register number 103101 is exist");
+  else
+     printf("Student register number 103101 is not exist");
+
+	return 0;
+}

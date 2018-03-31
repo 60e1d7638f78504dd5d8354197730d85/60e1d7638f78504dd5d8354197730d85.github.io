@@ -1,0 +1,30 @@
+#include <stdio.h>
+int gcd(int x,int y)
+{
+    int r=x%y;
+    while(r)
+    {
+        x=y;
+        y=r;
+        r=x%y;
+    }
+    return y;
+}
+double min(double x,double y)
+{
+  if(x<y)
+    return x;
+  else
+    return y;
+}
+int main()
+{
+     int a,b,x,y;
+     scanf("%d%d%d%d",&a,&b,&x,&y);
+     int g=gcd(x,y);
+     x/=g;
+     y/=g;
+     int m=min(a/x,b/y);
+     printf("%d %d\n",m*x,m*y);
+     return 0;
+}

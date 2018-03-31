@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+class sign{
+  int a,b,c;
+  public:
+  sign()
+  {
+    a=0;
+    b=0;
+    c=0;
+  }
+  sign(int x,int y,int z)
+  {
+    a=x;
+    b=y;
+    c=z;
+  }
+  void operator - (void)
+  {
+    a=-a;
+    b=-b;
+  }
+  void display()
+  {
+    static int i=1;
+    cout<<"object "<<c<<" display="<<a<<" "<<b<<endl;
+  }
+};
+
+int main()
+{
+  int a,b,c,d;
+  cin>>a>>b>>c>>d;
+  sign s1(a,b,1),s2(c,d,2);
+  s1.display();
+  s2.display();
+  -s1;
+  -s2;
+  s1.display();
+  s2.display();
+	return 0;
+}

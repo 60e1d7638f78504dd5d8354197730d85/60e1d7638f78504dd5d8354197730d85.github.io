@@ -1,0 +1,55 @@
+#include <stdio.h>
+ 
+ 
+
+void replaceLast(char * string, char toReplace, char replaceWith);
+ 
+ 
+ 
+int main()
+{
+    char string[100], toReplace, replaceWith;
+   scanf("%s", string);
+ 
+    
+    scanf(" %c", &toReplace);
+ 
+  
+    scanf(" %c", &replaceWith);
+ 
+ 
+ 
+ 
+    replaceLast(string, toReplace, replaceWith);
+ 
+    printf("%s", string);
+ 
+    return 0;
+}
+ 
+ 
+ 
+void replaceLast(char * string, char toReplace, char replaceWith)
+{
+    int i, index;
+ 
+    index = -1;
+    i = 0;
+ 
+   
+    while(string[i] != '\0')
+    {
+      
+        if(string[i] == toReplace)
+        {
+            index = i;
+        }
+ 
+        i++;
+    }
+ 
+    if(index != -1)
+    {
+        string[index] = replaceWith;
+    }
+}

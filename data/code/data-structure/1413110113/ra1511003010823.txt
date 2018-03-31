@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+ 
+/*C++ Function to print leaders in an array */
+void printLeaders(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        int j;
+        for (j = i+1; j < size; j++)
+        {
+            if (arr[i] <= arr[j])
+                break;
+        }    
+        if (j == size) // the loop didn't break
+            cout << arr[i] << "\n";
+  	}
+  	//printf("\n");
+}
+ 
+/* Driver program to test above function */
+int main()
+{
+    int a1[10], a2[10];
+    int n1, n2, i, j;
+  	//cin>>n;
+  	cin>>n1;
+  	for(i=0;i<n1;i++)
+    {
+      cin>>a1[i];
+    }
+  	cin>>n2;
+  	for(j=0;j<n2;j++)
+    {
+      cin>>a2[j];
+ 	}
+    printLeaders(a1, n1);
+  	printLeaders(a2, n2);
+    return 0;
+}

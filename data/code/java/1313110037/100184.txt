@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    for(int i=0;i<n;i++) {
+        int subject = s.nextInt();
+        if(isPerfectlyDivisible(subject, 3)) {
+            System.out.println(stringBuilder("5", subject));
+            continue;
+        }
+
+        if (isPerfectlyDivisible(subject, 5)) {
+            System.out.println(stringBuilder("3", subject));
+            continue;
+        }
+
+        if(!isPerfectlyDivisible(subject, 5) && !(isPerfectlyDivisible(subject, 3))) {
+            List<Integer> multipliers = dividedMultipliers(subject);
+            if (multipliers.isEmpty()) {
+                System.out.println("-1");
+            } else {
+                System.out.println(stringBuilder("5", multipliers.get(0))+stringBuilder("3", multipliers.get(1)));
+            }
+        }
+    }
+     }
+
+private static boolean isPerfectlyDivisible(int n, int divider) {
+    if (n < divider) return false;
+    if (n%divider == 0) return true;
+    return false;
+}
+	private static List<Integer> dividedMultipliers(int n) {
+    List<Integer> multipliers = new ArrayList<Integer>();
+    for(int i=n;i>0;i--) {  
+      if( (i%3 == 0) && ((n-i)%5 == 0)) {
+          multipliers.add(i);
+          multipliers.add(n-i);
+          break;
+      }    
+    }
+    return multipliers;
+}
+
+private static String stringBuilder(String s, int times) {
+    StringBuffer buffer = new StringBuffer();
+    for(int i=0;i<times;i++) {
+        buffer.append(s);
+    }
+    return buffer.toString();
+}
+
+}

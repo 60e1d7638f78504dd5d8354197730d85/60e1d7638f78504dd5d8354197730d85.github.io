@@ -1,0 +1,59 @@
+#include <stdio.h>
+ 
+#define READ_INT(_x)					\
+  {							\
+    int _tmp = 0;					\
+    register int _ch = getchar_unlocked();		\
+    while (_ch < 48 || _ch > 57)			\
+      _ch = getchar_unlocked();				\
+    while (48 <= _ch && _ch <= 57)			\
+      {							\
+	_tmp = (_tmp << 3) + (_tmp << 1) + _ch - 48;	\
+	_ch = getchar_unlocked();			\
+      }							\
+    (_x) = _tmp;					\
+  }							\
+ 
+#define WRITE_INT(_x)				\
+  {						\
+    char _str[10];				\
+    register int _i = 0;			\
+    int _tmp = (_x);				\
+    do						\
+      {						\
+	*(_str + _i++) = _tmp % 10 + 48;	\
+	_tmp /= 10;				\
+      } while (_tmp != 0);			\
+    for (_i--; _i >= 0; _i--)			\
+      putchar_unlocked(*(_str + _i));		\
+  }						\
+ 
+int main(void)
+{
+  int a, b, c, count, d, e, f, n, x1, y1, x2, y2, x3, y3;
+  count = 0;
+  READ_INT(n);
+  while (n--)
+    {
+      READ_INT(x1);
+      READ_INT(y1);
+      READ_INT(x2);
+      READ_INT(y2);
+      READ_INT(x3);
+      READ_INT(y3);
+ a = x1 - x2;
+      b = y1 - y2;
+      c = x2 - x3;
+      d = y2 - y3;
+      e = x3 - x1;
+      f = y3 - y1;
+  if ((a * c + b * d) == 0 ||
+	  (e * c + f * d) == 0 ||
+	  (a * e + b * f) == 0)
+	count++;
+    }
+  WRITE_INT(count);
+  putchar_unlocked('\n');
+  return 0;
+}
+ 

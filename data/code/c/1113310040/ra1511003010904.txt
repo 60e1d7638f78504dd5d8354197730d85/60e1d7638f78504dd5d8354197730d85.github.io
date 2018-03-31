@@ -1,0 +1,85 @@
+#include<stdio.h>
+int searchs(int k);
+int rears(int ,int );
+int fronts(int ,int );
+int a[302]={0},rear,front=100;
+int main()
+{
+int n1,sum,t1=1,n,k,t,i,j,s1,i1;
+scanf("%d",&t);
+a[100]=0;
+while(t--)
+{sum=0; rear=152; front=153,n1=-1;
+scanf("%d",&n);
+for(i=1;i<=n;i++)
+{
+scanf("%d",&k);
+n1++;
+ 
+if(k==0)
+{ front--; a[front]=i;   continue; }
+else
+{
+t1=searchs(k);
+ 
+if(t1==rear)
+{rear++; a[rear]=i; continue; }
+ 
+ 
+ 
+ 
+ 
+ 
+t1=t1-front+2;
+ 
+if(t1<=n1/2 || ( n1%2!=0 && t1==(n1/2)+1   ) )
+{
+s1=t1-1; sum+=s1;
+fronts(s1,i);
+ 
+  }
+  
+ else
+{  s1=n1-t1+1;  sum+=s1;  rears(s1,i); } 
+  
+}
+ 
+ 
+}
+ 
+printf("%d\n",sum);
+ 
+ 
+ 
+}
+return 0;
+}
+ 
+int searchs(int k)
+{int i,j;
+for(i=front;i<=rear;i++)
+{
+if(a[i]==k)
+break;
+}
+return i;
+}
+ 
+ 
+int fronts(int aq, int bq )
+{int i; 
+for(i=front;i<=(aq+front-1);i++)
+{ a[i-1]=a[i];}
+a[i-1]=bq;
+front--;
+return 0;
+}
+ 
+int rears(int aq, int bq )
+{int i;
+for(i=rear;i>=(rear-(aq-1));i--)
+{ a[i+1]=a[i];}
+a[i+1]=bq;
+rear++;
+return 0;
+}

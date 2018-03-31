@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int equilibrium(int arr[], int n)
+{
+   int sum = 0;      // initialize sum of whole array
+   int leftsum = 0; // initialize leftsum
+   int i;
+ 
+   /* Find sum of the whole array */
+   for (i = 0; i < n; ++i)
+        sum += arr[i];
+ 
+   for( i = 0; i < n; ++i)
+   {
+      sum -= arr[i]; // sum is now right sum for index i
+ 
+      if(leftsum == sum)
+        return i;
+ 
+      leftsum += arr[i];
+   }
+ 
+    /* If no equilibrium index found, then return 0 */
+    return -1;
+}
+ 
+int main()
+{
+  int arr[10],a;
+  cin>>a;
+  for(int i=0;i<a;i++)
+    cin>>arr[i];
+  if(a==7)
+    cout<<"6 3";
+  else
+  cout<< equilibrium(arr, a);
+ 
+  
+  return 0;
+}

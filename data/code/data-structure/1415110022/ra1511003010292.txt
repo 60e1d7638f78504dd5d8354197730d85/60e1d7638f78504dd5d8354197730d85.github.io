@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include<malloc.h>
+void display();
+struct node
+{
+  int data;
+  struct node *link;
+}*start;
+void insertion(int a)
+{
+  struct node *temp = malloc(sizeof(struct node));
+  temp -> data = a;
+  temp -> link = NULL;
+  if(start == NULL)
+    start = temp;
+  else
+  {
+    temp -> link = start;
+    start = temp;
+  }
+}
+void sort()
+{
+  struct node *temp = start;
+  while(temp -> link != NULL)
+  {
+    struct node *temp1 = temp->link;
+    while(temp1 != NULL)
+    {
+      if(temp -> data > temp1 -> data)
+      {
+        int tem = temp -> data;
+        temp -> data = temp1 -> data;
+        temp1 -> data = tem;
+      }
+      temp1 = temp1 -> link;
+    }
+    temp = temp -> link;
+  }
+  display();
+}
+void display()
+{
+  printf("Marks\n");
+  struct node *temp = start;
+  while(temp != NULL)
+  {
+    printf("->%d",temp->data);
+    temp = temp -> link;
+  }
+}
+int main()
+{
+  int n , i , a;
+  scanf("%d",&n);
+  for( i=0 ; i<n ; i++ )
+  {
+    scanf("%d", &a);
+    insertion(a);
+  }
+  sort();
+	return 0;
+}

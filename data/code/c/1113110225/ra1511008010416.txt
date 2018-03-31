@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  	char str[1000];
+	scanf("%[^\n]",str);
+  	int vow=0;
+  	int cons=0;
+  	int dig=0;
+  	int wh=0;
+  	int i;
+  	for(i=0;str[i]!='\0';i++)
+    {
+      if(str[i]=='a'||str[i]=='e'||str[i]=='i'||str[i]=='o'||str[i]=='u'||str[i]=='A'||str[i]=='E'||str[i]=='I'||str[i]=='O'||str[i]=='U')
+        vow++;
+      else if(str[i]==' ')
+        wh++;
+      else if(str[i]>='0'&&str[i]<='9')
+        dig++;
+      else if(str[i]>='a'&& str[i]<='z'||str[i]>='A'&& str[i]<='Z')
+        cons++;
+      else
+        continue;
+    }
+  	printf("Vowels:%d\n",vow);
+    printf("Consonants:%d\n",cons);
+    printf("Digits:%d\n",dig);
+    printf("White spaces:%d\n",wh);
+	return 0;
+}

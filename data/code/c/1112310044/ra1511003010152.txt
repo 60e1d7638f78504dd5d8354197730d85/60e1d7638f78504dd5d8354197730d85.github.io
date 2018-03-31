@@ -1,0 +1,46 @@
+#include<stdio.h>
+int ten(float a,float b,float c)
+{
+    return(a>50&&b<0.7&&c>5600);
+}
+int nine(float a,float b,float c)
+{
+    return(a>50&&b<0.7);
+}
+int eight(float a,float b,float c)
+{
+    return(b<0.7&&c>5600);
+}
+int seven(float a,float b,float c)
+{
+    return(a>50&&c>5600);
+}
+int six(float a,float b,float c)
+{
+    return(a>50||b<0.7||c>5600);
+}
+int main()
+{
+    int t,grade;
+    float a,b,c;
+    scanf("%d",&t);
+    while(t--)
+    {
+        grade=5;
+      scanf("%f %f %f",&a,&b,&c);
+      if(ten(a,b,c))
+        grade=10;
+      else if(nine(a,b,c))
+        grade=9;
+      else if(eight(a,b,c))
+        grade=8;
+      else if(seven(a,b,c))
+        grade=7;
+      else if(six(a,b,c))
+        grade=6;
+      printf("%d\n",grade);
+    }
+ 
+    return 0;
+}
+ 

@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+class MyException extends Exception{
+   String str1;
+   MyException(String str2) {
+	str1=str2;
+   }
+   public String toString(){ 
+	return (str1);
+   }
+}
+public class TestClass {
+   public static void main(String args[]){
+	try{
+      	Scanner in = new Scanner (System.in);
+      	String str = in.next();
+		throw new MyException(str);
+	}
+	catch(MyException e){
+		System.out.println(e.toString());
+	}
+   }
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+#include <exception>
+using namespace std;
+
+float calculateAverage(int m1,int m2,int m3,int m4,int m5)
+{
+  if((m1<0 || m1>100))
+    throw "marks out of range";
+  if((m2<0 || m2>100))
+    throw "marks out of range";
+  if((m3<0 || m3>100))
+    throw "marks out of range";
+  if((m4<0 || m4>100))
+    throw "marks out of range";
+  if((m5<0 || m4>100))
+    throw "marks out of range";
+  
+  return (m1+m2+m3+m4+m5)/4.0;
+}
+
+int main()
+{
+  int m1,m2,m3,m4,m5;
+  cin>>m1;
+  cin>>m2;
+  cin>>m3;
+  cin>>m4;
+  cin>>m5;
+  try
+  {
+    calculateAverage(m1,m2,m3,m4,m5);
+    cout<<"marks in range";
+  }
+  catch(const char *str)
+  {
+    cout<<str<<endl;
+  }
+
+	return 0;
+}

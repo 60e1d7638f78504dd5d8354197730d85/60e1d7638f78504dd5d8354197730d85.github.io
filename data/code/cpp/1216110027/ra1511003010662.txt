@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;cin>>n;
+  int a[n],mid,front=0,back=0;
+ for(int i=0;i<n;i++){
+ cin>>a[i];
+ }
+  if(n%2==0){
+   for(int i=0;i<n;i++){
+ 	if(i<n/2)front+=a[i];
+    else back+=a[i];
+   }
+  }
+    else{
+	 for(int i=0;i<n;i++){
+ 	  if(i<=(n/2)-1)front+=a[i];
+      else if(i>n/2) back+=a[i]; 
+    }  
+  }
+  mid=n/2;
+  if(front==back)cout<<mid;
+  else cout<<"-1";
+  
+	return 0;
+}

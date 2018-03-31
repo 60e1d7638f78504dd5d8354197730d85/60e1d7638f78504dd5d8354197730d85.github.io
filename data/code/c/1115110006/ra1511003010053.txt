@@ -1,0 +1,61 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,a,sum,count,flag;
+  
+  scanf("%d",&t);
+  
+  while(t)
+  {
+    scanf("%d",&n);
+    flag=0;
+    if(n%10==0)
+    {
+      n=n/10;
+      flag=1;
+    }
+    sum=0;
+    count=0;
+    
+      if(flag==0)
+      {
+        while(count<4)
+        {
+      a=n%10;
+      sum=sum+a;
+      n=n/10;
+      count++;
+        }
+      }
+    count=0;
+      if(flag==1)
+      {
+        while(count<3)
+        {
+         	if(count==2)
+            {
+              a=n%100;
+              sum=sum+a;
+              n=n/10;
+            }
+          else
+          {
+            a=n%10;
+            sum=sum+a;
+            n=n/10;
+          }
+           
+          
+          count++;
+        }
+      }
+        
+    
+    
+    printf("The output is:%d\n",sum);
+      
+      t--;
+}
+
+	return 0;
+}

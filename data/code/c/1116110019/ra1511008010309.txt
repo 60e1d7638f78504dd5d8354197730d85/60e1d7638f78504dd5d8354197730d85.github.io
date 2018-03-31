@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define max_siz 100
+#define max_ch 255
+int main()
+{
+char str[max_siz];
+  int freq[max_ch];
+  int i=0,min;
+  int ascii;
+  scanf("%s",str);
+  for(i=0;i<max_ch;i++){
+    freq[i]=0;
+  }
+  i=0;
+  while(str[i]!='\0')
+  {
+    ascii=(int)str[i];
+    freq[ascii]+=1;
+    i++;
+  }
+  min=0;
+  for(i=0;i<max_ch;i++)
+  {
+    if(freq[i]!=0)
+    {
+      if(freq[min]==0||freq[i]<freq[min])
+        min=i;
+    }
+  }
+  printf("%c=%d",min,freq[min]);
+	return 0;
+}

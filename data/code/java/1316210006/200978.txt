@@ -1,0 +1,27 @@
+import java.io.*;
+class TestClass
+{
+    public static void main(String[] args) throws IOException
+    {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String names[] = new String[3];
+            for (int i = 1; i <= 3; i++)
+            {
+                names[i-1] = br.readLine();
+            }
+        
+            for (int j = 0; j < names.length; j++)
+            {
+                for (int i = j + 1; i < names.length; i++)
+                {
+                    if (names[i].compareToIgnoreCase(names[j]) < 0)
+                    {
+                        String temp = names[j];
+                        names[j] = names[i];
+                        names[i] = temp;
+                    }
+                }
+                System.out.println(names[j]);
+            }
+    }
+}

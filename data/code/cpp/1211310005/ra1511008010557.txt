@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int i,n,x1,x2,x3,y1,y2,y3,min,max,j,k,a[100];
+	cin>>n;
+	for(i=0;i<n;i++)
+	{
+		cin>>x1>>y1>>x2>>y2>>x3>>y3;
+		a[i]=abs(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2));
+	}
+	min=a[0];
+	max=a[0];
+	for(i=1;i<n;i++)
+	{
+		if(min>=a[i])
+		{
+			min=a[i];
+			j=i;
+		}
+		if(max<=a[i])
+		{
+			max=a[i];
+			k=i;
+		}
+	}
+	cout<<j+1<<" "<<k+1;
+
+	return 0;
+}

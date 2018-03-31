@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+int main()
+{
+	char idnt[10];
+    scanf("%s", idnt);
+    int length = strlen(idnt);
+    bool alpha_idnt = false;
+    if(idnt[0]>='A' && idnt[0]<='Z')
+      alpha_idnt = true;
+    if(idnt[0]>='a' && idnt[0]<='z')
+      alpha_idnt = true;
+    bool under_idnt = true;
+    int x=0;
+    int i;
+    for(i=0;i<=length;i++)
+    {
+      if(idnt[i]=='_')
+        x++;
+      else
+        x=0;
+      if(x==2)
+      {
+        under_idnt = false;
+        break;
+      }
+    }
+    if (alpha_idnt && under_idnt)
+      printf(" valid identifier");
+    else
+      printf("not a valid identifier");
+	return 0;
+}

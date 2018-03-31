@@ -1,0 +1,43 @@
+#include<stdio.h>
+    #include<stdlib.h>
+    typedef const void cv;
+    struct time
+    {
+    	int val;
+    	int ind;
+    };
+    typedef struct time time;
+    int comp(cv *a,cv *b)
+    {
+    	time *f,*s;
+    	f=(time *)a;
+    	s=(time *)b;
+    	if(f->val!=s->val)
+    		return (f->val-s->val);
+    	else
+    		return (f->ind-s->ind);
+    }
+    int main()
+    {
+    	int n,k,i,index,min,count=0;
+    	time *f;
+    	scanf("%d%d",&n,&k);
+    	f=(time *)malloc(n*sizeof(time));
+    	for(i=0;i<n;i++)
+    	{
+    		scanf("%d",&f[i].val);
+    		f[i].ind=i+1;
+    	}
+    	qsort(f,n,sizeof(time),comp);
+    	i=0;
+    	while(i<n)
+    	{
+    		count++;
+    		min=f[i].val;
+    		index=f[i].ind;
+    		while(f[i].val==min && (f[i].ind-index)<k && i<n)
+    			i++;
+    	}
+    	printf("%d\n",count);
+    	return 0;
+    }  

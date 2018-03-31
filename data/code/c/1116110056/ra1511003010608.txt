@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t;
+        scanf("%d",&t);
+        while(t--)
+        {
+                char str[1001];
+                int A[26]={0},B[26]={0},len,i,j,flag=0;
+                scanf("%s",str);
+                for(len=0;str[len]!=0;len++);
+                for(i=0,j=len-1;j>i;i++,j--)
+                {
+                        A[str[i]-'a']++;
+                        B[str[j]-'a']++;
+                }
+                for(i=0;i<26;i++)
+                {
+                        if(A[i]!=B[i])
+                                {
+                                        flag=1;
+                                        break;
+                                }
+                }
+                if(flag==0)
+                        printf("YES\n");
+                else
+                        printf("NO\n"); 
+        }
+        return 0;
+}  

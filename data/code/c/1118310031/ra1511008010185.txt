@@ -1,0 +1,111 @@
+#include<stdio.h>
+#include<stdlib.h>
+int cmpfunc (const void * a,const void * b)
+{
+return (*(int*)a-*(int*)b);
+}
+int main()
+{
+int n,k,b,i,a,c,j,p,m;
+scanf("%d %d",&n,&k);
+a=n;
+if(k>n)
+a=k;
+int d[n][n],adj[n][n],lim[n],prod[k],dist[n],stack[n],prev[a];
+for(i=0;i<n;i++)
+{lim[i]=-1;
+for(j=0;j<n;j++)
+{d[i][j]=0;adj[i][j]=-1;}
+}
+scanf("%d",&b);
+--b;
+ 
+for(i=1;i<n;i++)
+{
+scanf("%d %d",&a,&c);
+--a;--c;
+adj[a][++lim[a]]=c;
+adj[c][++lim[c]]=a;
+}
+c=1;
+dist[b]=0;
+d[b][b]=0;prev[0]=b;
+for(i=0,j=-1;adj[b][i]!=-1;i++)
+{stack[++j]=adj[b][i];
+prev[j]=b;
+dist[adj[b][i]]=1;
+d[adj[b][i]][adj[b][i]]=d[b][adj[b][i]]=d[adj[b][i]][b]=1;
+}
+ 
+while(j!=-1)
+{
+a=stack[j];
+c=dist[a]+1;
+p=prev[j--];
+for(i=0;adj[a][i]!=-1;i++)
+if(adj[a][i]!=p)
+{stack[++j]=adj[a][i];
+prev[j]=a;
+dist[adj[a][i]]=c;
+d[adj[a][i]][adj[a][i]]=d[adj[a][i]][b]=d[b][adj[a][i]]=c;
+}
+}
+for(i=0;i<n;i++)
+{
+j=-1;
+for(m=0;adj[i][m]!=-1;m++)
+{stack[++j]=adj[i][m];
+d[i][adj[i][m]]=(dist[i]<dist[adj[i][m]])?dist[i]:dist[adj[i][m]];
+prev[j]=i;
+}
+while(j!=-1)
+{
+a=stack[j];
+p=prev[j--];
+for(m=0;adj[a][m]!=-1;m++)
+if(adj[a][m]!=p)
+{stack[++j]=adj[a][m];
+prev[j]=a;
+d[i][adj[a][m]]=(d[i][a]<dist[adj[a][m]])?d[i][a]:dist[adj[a][m]];
+}
+}
+}/*end for*/
+ 
+for(i=0;i<k;i++)
+{prod[i]=-1;prev[i]=-1;}
+for(i=0;i<n;i++)
+{scanf("%d",&a);
+--a;
+if(prev[a]==-1)
+{prod[a]=i;
+prev[a]=i;
+}
+else
+{
+stack[prev[a]]=i;
+prev[a]=i;
+}
+stack[i]=-1;
+}
+scanf("%d",&c);
+while(c--)
+{
+scanf("%d %d",&a,&p);
+--a;--p;
+if(prod[p]==-1)
+printf("-1\n");
+else
+{
+i=prod[p];j=d[a][prod[p]];
+m=prod[p];
+while(stack[m]!=-1)
+{
+if(d[a][stack[m]]>j)
+{i=stack[m];j=d[a][stack[m]];}
+m=stack[m];
+}
+printf("%d\n",i+1);
+}
+}
+return 0;
+}

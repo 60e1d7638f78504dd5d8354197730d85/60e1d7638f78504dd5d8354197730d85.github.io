@@ -1,0 +1,76 @@
+#include<stdio.h>
+#define u_lli unsigned long long int
+#include<stdbool.h>
+ 
+  int main()
+        {
+          u_lli list[100009] = {0};
+          u_lli len = 0;
+          u_lli i;
+ 
+            scanf("%llu",&len);
+ 
+            for(i = 1; i<=len; i++)
+              {
+                scanf("%llu",&list[i]);
+              }
+ 
+ 
+              u_lli whole = 0;
+              u_lli residue = 0;
+ 
+              u_lli sub = 0;
+              u_lli mar = 0;
+              u_lli anchor = 0;
+              u_lli range = 0;
+ 
+ 
+              while(true)
+                {
+ 
+                    whole = 0;
+                    residue = 0;
+                    range = 0;
+                        whole = (len/9);
+ 
+                        residue = (len - (whole*9)) ;
+                        mar = 0;
+                        anchor = 0;
+ 
+ 
+ 
+                      for(anchor = 1; anchor <= ((whole+1)*9); anchor+=9)
+                          {
+                            if(anchor <= (whole*9) )
+                              {
+                            list[++mar] = list[anchor] + list[anchor+3] + list[anchor+6];
+                            list[++mar] = list[anchor+1] + list[anchor+4] + list[anchor+7];
+                            list[++mar] = list[anchor+2] + list[anchor+5] + list[anchor+8];
+                              }
+ 
+                                else
+                                  {
+                                    if(residue != 0)
+                                      {
+                                    range = (anchor+residue-1);
+                                    if( (anchor) <= range ){ list[++mar] = list[anchor];  if( (anchor+3) <= range ){ list[mar]+= list[anchor+3]; if( (anchor+6) <= range ){ list[mar]+=list[anchor+6]; } } }
+                                    if( (anchor+1) <= range ){ list[++mar] = list[anchor+1];  if( (anchor+4) <= range ){ list[mar]+= list[anchor+4]; if( (anchor+7) <= range ){ list[mar]+=list[anchor+7]; } } }
+                                    if( (anchor+2) <= range ){ list[++mar] = list[anchor+2];  if( (anchor+5) <= range ){ list[mar]+= list[anchor+5]; if( (anchor+8) <= range ){ list[mar]+=list[anchor+8]; } } }
+                                      }
+                                  }
+ 
+ 
+                          }
+ 
+                            if( (residue>=0)&&(residue<=3) )
+                              len = (whole*3)+residue ;
+                            else
+                              len = ( (whole*3) + 3 ) ;
+                            if(len <= 3)break;
+                  }
+ 
+                  printf("%llu %llu %llu",list[1],list[2],list[3]);
+ 
+ 
+          return 0;
+  }

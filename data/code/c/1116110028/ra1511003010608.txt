@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+ char str[1000],search[100];
+  int count1 = 0, count2 = 0, i, j, flag;
+  scanf("%[^\n]%*c",str);
+  scanf("%[^\n]%*c",search);
+  while (str[count1] != '\0')
+        count1++;
+    while (search[count2] != '\0')
+        count2++;
+    for (i = 0; i <= count1 - count2; i++)
+    {
+        for (j = i; j < i + count2; j++)
+        {
+            flag = 1;
+            if (str[j] != search[j - i])
+            {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 1)
+            break;
+    }
+  int l;
+  if(flag==1)
+    printf("%s is found at %d",search,i);
+  else 
+    printf("%s is not found",search);
+  return 0;
+}
+    

@@ -1,0 +1,55 @@
+#include <iostream>
+#define MAX 20
+using namespace std;
+class Queue
+{
+  private:
+  int front,rear,que[MAX];
+  public:
+  Queue()
+  {
+    front=-1;
+    rear=-1;
+  }
+  void addElement(int n)
+  {
+    if(front==-1 && rear==-1)
+      front=rear=0;
+    else
+      rear++;
+    que[rear]=n;
+  }
+  void display()
+  {
+    for(int i=front; i<rear; i++)
+      cout<<que[i]<<"-->";
+    cout<<que[rear];
+  }
+  void frontElement()
+  {
+    cout<<"\nFront Element="<<que[front];
+  }
+  void rearElement()
+  {
+    cout<<"\nRear Element="<<que[rear];
+  }
+  void sizeOfQueue()
+  {
+    cout<<"\nSize of Queue="<<rear-front+1;
+  }
+};
+int main()
+{
+  int data;
+  Queue q;
+  for(int i=0; i<5; i++)
+  {
+    cin>>data;
+    q.addElement(data);
+      }
+  q.display();
+  q.sizeOfQueue();
+  q.frontElement();
+  q.rearElement();
+	return 0;
+}

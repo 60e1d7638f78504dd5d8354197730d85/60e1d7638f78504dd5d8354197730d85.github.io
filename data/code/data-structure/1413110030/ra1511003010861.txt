@@ -1,0 +1,44 @@
+#include <stdio.h>
+int binary(long long int* brr,int low,int high,long long int key)
+{
+int mid;
+mid=(low+high)/2;
+if(low<high)
+{
+if(brr[mid]==key)
+return mid;
+else if(brr[mid]<key)
+return binary(brr,mid+1,high,key);
+else
+return binary(brr,low,mid,key);
+}
+return mid;
+}
+int main()
+{
+  int N,Q;
+scanf("%d %d",&N,&Q);
+long long int arr[N],brr[N];
+int i;
+for(i=0;i<N;i++)
+{
+scanf("%lld %lld",&arr[i],&brr[i]);
+brr[i]=brr[i]-arr[i]+1;
+}
+for(i=1;i<N;i++)
+brr[i]+=brr[i-1];
+while(Q--)
+{
+long long int x;
+int pos;
+scanf("%lld",&x);
+pos=binary(brr,0,N,x);
+if(pos==0)
+printf("%lld\n",arr[pos]+x-1);
+else
+printf("%lld\n",arr[pos]+(x-brr[pos-1]-1));
+}
+
+
+	return 0;
+}

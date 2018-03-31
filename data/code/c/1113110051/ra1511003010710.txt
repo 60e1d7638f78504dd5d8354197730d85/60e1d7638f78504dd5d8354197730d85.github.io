@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<math.h>
+int primt(int i)
+{
+    int flag=1,n=i,j;
+    while(1)
+    {
+        if(n%2==0)
+        {
+            n++;
+            continue;
+        }
+        else
+        {
+            if(n==1)
+                return 2;
+            for(j=3;j<=sqrt(n);j+=2)
+            {
+                if(n%j==0)
+                {
+                    flag=0;
+                }
+            }
+            if(flag==0)
+            {
+                n+=2;
+                continue;
+            }
+            break;
+        }
+    }
+    return (n-i);
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    printf("%d",primt(t));
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+long long bigmod(long long b,long long p,long long m) 
+{long long int k=0;
+if (p == 0)
+return 1;
+else if (p%2 == 0)
+{k=(bigmod(b,p/2,m));
+return (k*k) % m; }// square(x) = x * x
+else
+return ((b % m) * bigmod(b,p-1,m)) % m;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+              long long int n=0, k=0,s=0,m=1000000007;
+              scanf("%lld",&n);
+              
+              if(n%2==0)
+              
+              s=(2+3*bigmod(2,n/2,m)-4)%m;
+              else
+              s=(2+2*bigmod(2,((n+1)/2),m)-4)%m;
+              
+              printf("%lld\n",s);
+              }
+              return 0;
+}

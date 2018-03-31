@@ -1,0 +1,160 @@
+#include<stdio.h>
+#include<string.h>
+int fact(int);
+int modInverse(int, int);
+int gcdExtended(int , int , int*, int*);
+int M=1000000007;
+int main()
+{
+    int T,i,j,k;
+    int x,y;
+    long long int ans,simi,temp,pair,temp3,temp1,temp2,l,r,temp4;
+    char a[100005];
+    long long int b[26];
+    scanf("%d",&T);
+    for(i=0;i<T;i++)
+    {
+          ans=0;
+          scanf("%s",a);
+          for(j=0;j<26;j++)
+          b[j]=0;
+          l=strlen(a);
+          for(j=0;j<l;j++)
+          b[(int)a[j]-97]=b[(int)a[j]-97]+1;
+          simi=((l%M)*((l-1+M)%M))%M;
+          simi=((simi%M)*(500000004%M))%M;
+          temp=0;
+          for(j=0;j<26;j++)
+          {
+          if(b[j]>=2)
+          {temp3=((b[j]%M)*((b[j]-1+M)%M))%M;
+          temp3=((temp3%M)*(500000004%M))%M;
+          temp=((temp%M)+(temp3%M))%M;
+          }
+          }
+          simi=(simi-temp+M)%M;
+          temp=0;
+          for(j=0;j<26;j++)
+          {
+               for(k=j+1;k<26;k++)
+               {
+                    for(x=k+1;x<26;x++)
+                    { 
+                            temp3=((b[j]%M)*(b[k]%M))%M;
+                            temp3=((temp3%M)*(b[x]%M))%M;
+                            temp=((temp%M)+(temp3%M))%M;
+                    }
+               }
+          }          
+          temp=((2%M)*(temp%M))%M;
+          simi=((simi%M)+(temp%M))%M;
+          temp=0;
+          temp4=0;
+          for(j=0;j<26;j++)
+          {
+               temp1=b[j];
+               b[j]=b[j]-1;
+               if(temp1!=0)
+               {
+               for(k=j+1;k<26;k++)
+               {
+                    temp2=b[k];
+                    b[k]=b[k]-1;
+                    if(temp2!=0)
+                    {
+                    for(x=0;x<26;x++)
+                    {                  
+                           if(b[x]!=0)         
+                           {                          
+                           for(y=x+1;y<26;y++)
+                           { 
+                                   
+                                   
+                                   
+                                   if(b[y]!=0)
+                                   {if(x==j&&y==k)
+                                   {
+                                   temp3=((temp1%M)*(temp2%M))%M;
+                                   temp3=((temp3%M)*(b[x]%M))%M;           
+                                   temp3=((temp3%M)*(b[y]%M))%M;
+                                   if(temp3>=4)
+                                   temp3=temp3/4;
+                                   temp4=((temp4%M)+(temp3%M))%M;}
+                                   else
+                                   {
+                                     temp3=((temp1%M)*(temp2%M))%M;
+                                   temp3=((temp3%M)*(b[x]%M))%M;           
+                                   temp3=((temp3%M)*(b[y]%M))%M;                                                                        
+                                   temp=((temp%M)+(temp3%M))%M;
+                                   }}
+                           }
+                           }
+                           
+                           
+               
+                    }
+                    
+                    
+                    }
+                    
+                    b[k]=temp2;                
+               }}
+               b[j]=temp1;
+          }           
+          temp=((temp%M)*(500000004%M))%M;        
+          simi=((simi%M)+(temp%M))%M;
+          simi=((simi%M)+(temp4%M))%M;           
+          pair=fact(l);
+          for(j=0;j<26;j++)
+          {        
+          r=modInverse(fact(b[j]),M);
+          pair=((pair%M)*(r%M))%M;
+          }
+          ans=(pair-1-simi+M)%M;
+          ans=((ans%M)*(pair%M))%M;          
+          printf("%lld\n",ans);                                  
+    }              
+    return 0;
+}
+          
+          
+int fact(int l)
+{
+     long long int i;
+     long long int f=1;
+     for(i=1;i<=l;i++)
+     {f=((f%M)*(i%M))%M;}
+     return f;
+}
+     
+     
+     
+     
+int modInverse(int a, int m)
+{
+    int x, y;
+    gcdExtended(a, m, &x, &y);
+        int res = (x%m + m) % m;
+        return res;
+   
+}
+ 
+ 
+int gcdExtended(int a, int b, int *x, int *y)
+{
+    
+    if (a == 0)
+    {
+        *x = 0, *y = 1;
+        return b;
+    }
+ 
+    int x1, y1; 
+    int gcd = gcdExtended(b%a, a, &x1, &y1);
+ 
+   
+    *x = y1 - (b/a) * x1;
+    *y = x1;
+ 
+    return gcd;
+}

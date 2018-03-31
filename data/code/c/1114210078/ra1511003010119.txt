@@ -1,0 +1,71 @@
+#include<stdio.h>
+void quicksort(long long int x[],int first,int last)
+{
+    long long int pivot,j,temp,i;
+ 
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+ 
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         quicksort(x,first,j-1);
+         quicksort(x,j+1,last);
+ 
+    }
+}
+int main()
+{
+    int T,N,K,E,M;
+    int d[5];
+    long long int count=0,news;
+     static long long int co[10001],doi[10001];
+    scanf("%d",&T);
+    int i,j;
+    while(T--)
+    {
+        count=0;
+        scanf("%d %d %d %d",&N,&K,&E,&M);
+        for(i=1;i<=N;i++)
+        {
+            if(i!=N)
+            {
+            for(j=1;j<=E;j++)
+            {
+                scanf("%d",&d[j]);
+                doi[i]+=d[j];
+            }
+            co[i]=doi[i];
+            doi[i]=0;
+            }
+            else
+            {
+            for(j=1;j<=E-1;j++)
+            {
+                scanf("%d",&d[j]);
+                count+=d[j];
+            }
+            }
+        }
+        quicksort(co,1,N-1);
+        news=co[N-K]-count +1;
+        if(news<1)printf("0\n");
+       else if (news<=M) printf("%lld\n",news);
+        else  printf("Impossible\n");
+ 
+    }return 0;
+}

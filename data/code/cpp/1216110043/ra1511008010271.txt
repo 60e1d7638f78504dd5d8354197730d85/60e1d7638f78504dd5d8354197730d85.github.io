@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+ 
+constexpr int mod = 1000000007;
+int N, K;
+vector<int> A, iProdMod, prevMinIdx;
+vector<double> ALog, fProdLog;
+ 
+#define MIN(x, y) ((x) > (y) ? (y) : (x))
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+ 
+int solve(int pos)
+{
+    if (pos < 0)    return -1;
+    int& curMod = iProdMod[pos];
+    double& curLog = fProdLog[pos];
+    if (curMod >= 0)    return curMod;
+    if (pos == 0)   {
+        curLog = ALog[pos];
+        curMod = A[pos];
+        return curMod;
+    }
+    
+    if (prevMinIdx[pos - 1] >= MAX(0, pos - K)) {
+        curMod = iProdMod[prevMinIdx[pos - 1]];
+        curLog = fProdLog[prevMinIdx[pos - 1]];
+        prevMinIdx[pos] = prevMinIdx[pos - 1];
+    }
+    else {
+        for (int i = 1 ; i <= K ; i++) {
+            int chkMod = solve(pos - i);
+            if (chkMod >= 0) {
+                double chkLog = fProdLog[pos - i];
+                if (curLog < 0.0 || curLog > chkLog) {
+                    curMod = chkMod;
+                    curLog = chkLog;
+                    prevMinIdx[pos] = prevMinIdx[pos - i];
+                }
+            }
+            else
+                break;
+        }
+    }
+    
+    curMod = static_cast<int>(static_cast<long long>(curMod) * static_cast<long long>(A[pos]) % mod);
+    curLog = curLog + ALog[pos];
+    return curMod;
+}
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+	cin >> N >> K;
+	A.resize(N);
+	iProdMod.resize(N, -1);
+	fProdLog.resize(N, -1.0);
+	ALog.resize(N);
+	prevMinIdx.resize(N, -1);
+	
+	for (int i = 0 ; i < N ; i++) {
+	    cin >> A[i];
+	    ALog[i] = log2(A[i]);
+	}
+	
+	cout << solve(N - 1);
+	return 0;
+}

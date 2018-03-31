@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+int main()
+{
+	int i,j,k,l;
+	int ar[100020]={};
+	ar[0]=ar[1]=1;
+	for(i=2;i<100020;i++)
+	{
+		if(ar[i]==0)
+		{
+			for(j=2*i;j<100020;j=j+i)
+				ar[j]=1;
+		}
+	}
+	int n,m,val,min,sum;
+	cin>>n>>m;
+	int a[n][m];
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			cin>>a[i][j];
+			val=a[i][j];
+			for(k=val;k<100020;k++)
+			{
+				if(ar[k]==0)
+					break;
+			}
+			k=k-val;
+			a[i][j]=k;
+		}
+	}
+	min=1000000000;
+	for(i=0;i<n;i++)
+	{
+		sum=0;
+		for(j=0;j<m;j++)
+		{
+			sum=sum+a[i][j];
+		}
+		if(sum<min)
+			min=sum;
+	}
+	for(i=0;i<m;i++)
+	{
+		sum=0;
+		for(j=0;j<n;j++)
+		{
+			sum=sum+a[j][i];
+		}
+		if(sum<min)
+			min=sum;
+	}
+	cout<<min;
+	return 0;
+}

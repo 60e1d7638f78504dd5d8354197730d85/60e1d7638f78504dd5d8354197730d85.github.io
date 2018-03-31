@@ -1,0 +1,50 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+class TestClass
+{
+    public static int[] a;
+    public static long find(int box,long stone)
+    {
+        
+        if(stone==0 || box<=1 || stone%box==0)
+        return 0;
+        long ans = 9223372036854775807L;
+        for(int i=1;i<=Math.min(box,stone);i++)
+        {
+            if(box-i-1>=0 && stone%i<stone/i)
+            {
+                if(a[box-i-1]*(long)i<ans)
+                {
+                    ans = Math.min(ans, a[box-i-1]*(long)i + find(box-i,stone%i));
+                }
+            }
+        }
+        return ans;
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
+		for(int p=0;p<T;p++)
+		{
+		    String[] h = br.readLine().split(" ");
+		    int N = Integer.parseInt(h[0]);
+		    int M = Integer.parseInt(h[1]);
+		    int[] E = new int[N];
+		    a = new int[N];
+		    h = br.readLine().split(" ");
+		    for(int i=0;i<N;i++)
+		    E[i] = Integer.parseInt(h[i]);
+		    Arrays.sort(E);
+		    a[0]=E[0];
+		    for(int i=1;i<N;i++)
+		    a[i] = a[i-1] + E[i];
+		    System.out.println(find(N,M));
+		}
+	}
+}
+ 

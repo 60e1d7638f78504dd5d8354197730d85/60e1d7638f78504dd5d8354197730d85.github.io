@@ -1,0 +1,40 @@
+#include <stdio.h>
+ 
+long long int a[100000][2],b[100000];
+ 
+long long int search(long long int beg,long long int end,long long int x)
+{
+    long long int mid;
+    mid=(beg+end)/2;
+    if(b[mid]>=x && b[mid-1]<x)
+    return mid;
+    else if(b[mid]>x)
+    return search(beg,mid,x);
+    else
+    return search(mid+1,end,x);
+}
+ 
+int main()
+{
+    long long int n,q,l,r,x,i,j,index,ans;
+    scanf("%lld %lld",&n,&q);
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld %lld",&a[i][0],&a[i][1]);
+        b[i]=a[i][1]-a[i][0]+1;
+        if(i>0)
+        b[i]+=b[i-1];
+    }
+    for(i=1;i<=q;i++)
+    {
+        scanf("%lld",&x);
+        if(x<=b[0])
+        printf("%lld\n",x+a[0][0]-1);
+        else
+        {
+            index=search(0,n-1,x);
+            printf("%lld\n",x-b[index-1]+a[index][0]-1);
+        }
+    }
+    return 0;
+}

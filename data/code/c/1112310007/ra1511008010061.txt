@@ -1,0 +1,32 @@
+#include<stdio.h>
+    
+    void binary(int);
+    int m,base=2,palindromic;
+     
+    int main(void) {
+     
+        int t,i,tcase;
+        scanf("%d",&tcase);
+        while(tcase--)
+        {
+        scanf("%d",&t);
+        for(i=0;i<t;i++)
+        {
+            m=t;
+            palindromic=0;
+            binary(t);
+            if (palindromic==0) {printf("%d\n",base); base=2; break;}
+            else base++;
+        }
+        }
+        return 0;
+    }
+    
+    void binary(int x)
+    {
+        int y;
+        y=x%base;
+        if(x>=base) binary(x/base);
+        if(y!=(m%base)) palindromic++;
+        m/=base;
+    } 

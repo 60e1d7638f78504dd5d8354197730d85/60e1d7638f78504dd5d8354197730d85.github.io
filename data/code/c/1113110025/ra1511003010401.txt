@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<stdbool.h>
+
+bool is_palindrome(int d)
+{
+  	int n = d, rev = 0;
+  	while(n)
+    {
+      	rev *= 10;
+     	rev += n%10;
+      	n = n/10;
+    }
+  
+  	if(rev == d)
+      	return true;
+
+  	return false;  	
+}
+int main()
+{
+	int t, l, r, sum = 0, i;
+  	scanf("%d", &t);
+  	while(t--)
+    {
+      	sum = 0;
+      	scanf("%d%d", &l, &r);
+      	for(i = l; i <= r; i++)
+        {
+          	if(is_palindrome(i))
+              	sum += i;
+        }
+      	printf("sum is %d\n", sum);
+    }
+	return 0;
+}

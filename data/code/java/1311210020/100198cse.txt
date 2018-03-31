@@ -1,0 +1,31 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+ 
+class TestClass {
+ 
+	public static void main(String[] args) {
+ 
+		Scanner sc=new Scanner(System.in);
+		
+		int testCase=sc.nextInt();
+		while(testCase-->0){
+			int n=sc.nextInt();
+			int numbers[]=new int[n];
+			for(int i=0;i<n;i++){
+				numbers[i]=sc.nextInt();
+			}
+			System.out.println(getDistinctNumbers(numbers));
+		}
+		sc.close();
+	}
+	
+	public static int getDistinctNumbers(int numbers[]){
+		Set<Integer> set=new HashSet<Integer>();
+		for(int i=0;i<numbers.length;i++){
+			set.add(numbers[i]);
+		}
+		return set.size();
+	}
+ 
+}

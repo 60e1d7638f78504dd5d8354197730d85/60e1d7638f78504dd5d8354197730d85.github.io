@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	while(t--)
+    {
+      int n,count=0;
+      scanf("%d",&n);
+      int a[n];
+      int b[n];
+      for(i=0;i<n;i++)
+      {
+        scanf("%d",&a[i]);
+      }
+      for(i=0;i<n;i++)
+      {
+        scanf("%d",&b[i]);
+      }
+      if(a[0]>=b[0])
+        count++;
+      for(i=1;i<n;i++)
+      {
+        if(a[i]-a[i-1]>=b[i])
+          count++;
+      }
+      printf("%d\n",count);
+    }
+	return 0;
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int main()
+{
+  string str,sub;
+  cin>>str>>sub;
+  int i,j;
+  int n1=str.length();
+  int n2=sub.length();
+  int count1=0,count=0;
+  for (i = 0; i < n1;)
+    {
+        j = 0;
+        count = 0;
+        while ((str[i] == sub[j]))
+        {
+            count++;
+            i++;
+            j++;
+        }
+        if (count == n2)
+        {
+            count1++;                                   
+            count = 0;
+        }
+        else
+            i++;
+    }
+  
+  if(count1==0)
+    cout<<"Try Again";
+  else
+    cout<<"Best Friends";
+
+	return 0;
+}

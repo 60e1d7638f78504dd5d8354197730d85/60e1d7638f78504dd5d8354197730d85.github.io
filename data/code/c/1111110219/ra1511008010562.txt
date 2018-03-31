@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int num,i,n,j,k;
+  	scanf("%d",&num);
+  	int arr[num];
+  	for(i=0;i<num;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+  	for(k=0;k<num-1;k++)
+    {
+      for(j=0;j<num-k-1;j++)
+      {
+        if(arr[j]>arr[j+1])
+        {
+          int temp=arr[j+1];
+          arr[j+1]=arr[j];
+          arr[j]=temp;
+        }
+      }
+    }
+  	for(n=0;n<num;n++)
+    {
+      printf("%d\n",arr[n]);
+    }
+          
+    
+	return 0;
+}

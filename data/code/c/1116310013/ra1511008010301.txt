@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+ 
+#define S 100
+ 
+char *convert(char *str) {
+	char *strNew = (char *)malloc(sizeof(char)*S);
+	int i;
+	for(i=0; str[i]!='\0'; i++){
+		if(isalpha(str[i])){
+			if(isupper(str[i]))
+				strNew[i] = (char)tolower(str[i]);
+			else if(islower(str[i]))
+				strNew[i] = (char)toupper(str[i]);
+		}
+		else strNew[i] = str[i];
+	}
+	return strNew;
+}
+ 
+int main(void){
+	char *str = (char *)malloc(sizeof(char)*S);
+	scanf("%s",str);
+	char *strNew = convert(str);
+	printf("%s", strNew);
+	return 0; 
+} 

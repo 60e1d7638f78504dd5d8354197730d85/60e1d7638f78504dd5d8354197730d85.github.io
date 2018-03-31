@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<string.h>
+int pindex(int arr[],int low,int high)
+{
+	int pivot=arr[high];
+	int index=low,i;
+	for(i=low;i<high;i++)
+	{
+		if(arr[i]<=pivot)
+		{
+			int t=arr[i];
+			arr[i]=arr[index];
+			arr[index]=t;
+			index++;
+		}
+	}
+	{
+		int temp=arr[index];
+		arr[index]=arr[high];
+		arr[high]=temp;
+		return index;
+	}
+}
+void quicksort(int arr[],int low,int high)
+{
+	if(low<high)
+	{
+		int index=pindex(arr,low,high);
+		quicksort(arr,low,index-1);
+		quicksort(arr,index+1,high);
+	}
+}
+int main()
+{
+    int t,i,j,k;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+	int n,count=0,l=0,b,flag=0;
+	scanf("%d",&n);
+	int arr[n];
+	for(j=0;j<n;j++)
+	   scanf("%d",&arr[j]);
+	quicksort(arr,0,n-1);
+	for(j=n-1;j>=0;j--)
+	{
+		if(arr[j]==arr[j+1])
+		      {
+		      	if(l==0)
+		      	l=arr[j];
+		      	else
+		      	b=arr[j];
+		      	count++;
+		      	j--;
+		       }
+		if(count==2)
+		    {
+		    	flag=1;
+		    	break;
+			}
+	}
+	    if(flag==1)
+	      printf("%d\n",l*b);
+	      else
+	      printf("-1\n");
+	}
+	return 0 ; 
+} 

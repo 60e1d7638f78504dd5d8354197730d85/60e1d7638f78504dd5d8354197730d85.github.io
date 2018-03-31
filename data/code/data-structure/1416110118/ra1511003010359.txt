@@ -1,0 +1,89 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  struct node *next,*prev;
+};
+
+class LinkedList
+{
+  private:
+  node *top;
+  public:
+  LinkedList()
+  {
+    top=NULL;
+  }
+  void push(int n)
+  {
+    node *newnode= new node;
+    newnode->data=n;
+    newnode->next=NULL;
+    newnode->prev=NULL;
+    if(top==NULL)
+    {
+      top=newnode;
+    }
+    else
+    {
+      top->prev=newnode;
+      newnode->next=top;
+      top=newnode;
+    }     
+  }
+  
+  void pop()
+  {
+    int value;
+    if(top!=NULL)
+    {
+      value=top->data;
+      top->next->prev=NULL;
+      top=top->next;
+      cout<<"Item popped is "<<value<<endl;
+    }
+  }
+  
+  void findMiddle()
+  {
+    int count=0,mid;
+    node *temp;
+    temp=top;
+    while(temp->next!=NULL)
+    {
+      count++;
+      temp=temp->next;
+    }
+    mid=count/2+(count%2!=0);
+    temp=top;
+    for(int i=0; i<mid; i++)
+      temp=temp->next; 
+    cout<<"Middle Element is "<<temp->data<<endl;
+  }
+    
+};
+int main()
+{
+  int ch,n,data;
+  LinkedList l;
+  do
+  {
+    cin>>ch;
+    if(ch==1)
+    {
+      cin>>n;
+      for(int i=0; i<n; i++)
+      {
+        cin>>data;
+        l.push(data);
+      }
+    }
+    else if(ch==2)
+      l.pop();
+    else if(ch==3)
+      l.findMiddle();
+  }while(ch!=0);
+
+	return 0;
+}

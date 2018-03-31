@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+class Code
+{private:
+ int number;
+ public:
+ void initializeData(int n)
+ {
+ number=n;}
+ int getNumber()
+ {return number;}
+ void convertTostraightBinary(int num)
+ { int rem;
+    if (num <= 1)
+    {
+        cout << num;
+        return;
+    }
+    rem = num % 2;
+    convertTostraightBinary(num / 2);
+    cout<<rem;}
+
+};
+int main()
+{Code c;
+    int dec;
+    cin >> dec;
+ c.initializeData(dec);
+    if (dec < 0)
+        cout << dec << " is not a positive integer." << endl;
+    else
+    {
+        c.convertTostraightBinary(dec);
+    }
+    return 0;
+}

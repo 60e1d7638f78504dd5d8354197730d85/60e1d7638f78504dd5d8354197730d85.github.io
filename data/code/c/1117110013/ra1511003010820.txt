@@ -1,0 +1,36 @@
+#include <stdio.h>
+int type(int size,int arr[]);
+int main()
+{
+  int size,i;
+  scanf("%d",&size);
+  int arr[size];
+  for(i=0;i<size;i++)
+    scanf("%d",&arr[i]);
+  if(type(size,arr)==1)
+    printf("The array is Even");
+  else if(type(size,arr)==2)
+    printf("The array is Odd");
+  else
+    printf("The array is Mixed");
+  return 0;
+}
+
+int type(int size,int arr[])
+{
+  int odd=0,even=0;
+  int i;
+  for(i=0;i<size;i++)
+  {
+    if(arr[i]%2==0)
+      even++;
+    else
+     odd++;
+  }
+  if(odd>0&&even==0)
+    return 2;
+  else if(odd==0&&even>0)
+    return 1;
+  else
+    return 3;
+}

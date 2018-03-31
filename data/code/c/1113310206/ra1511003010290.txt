@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int i,l;
+	scanf("%d", &i);
+	while(i--){
+		char s[100];
+		scanf("%s", s);
+		int n;
+		scanf("%d", &n);
+		int m = 12*n;
+		int x = strlen(s);
+		int count = 0;
+		for(l = 0; l<x;l++){
+			if(s[l]=='T'){
+				count++;
+			}
+		}
+		int a = count*2+(x-count);
+		int p = 1;
+		int c = 0;
+		while(a+p<=m){
+			int t = 0;
+			int q = 2;
+			int l1 = a;
+			while(l1<=m){
+				t = p+l1;
+				if(t<=m){
+					c++;
+				}
+				l1 = a*q;
+				q++;
+			}
+			t = 0;
+			p++;
+	}
+	printf("%d\n", c);	
+	}
+	return 0;
+} 

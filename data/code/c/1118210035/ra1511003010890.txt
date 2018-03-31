@@ -1,0 +1,28 @@
+#include<stdio.h>
+	#include<string.h>
+int main()
+{
+	long long int t,l,i,j,max,re;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld",&l);
+		scanf("%lld",&max);
+		re=0;
+		for(i=1;i<l;i++)
+		{
+			scanf("%lld",&j);
+			j+=re;
+			if(j>=max)
+				re=j-max;
+			else
+			{
+				re=(max*i+j)%(i+1);
+				max=(max*i+j)/(i+1);
+			}
+		}
+		printf("%lld\n",max);		
+	}
+  return 0;
+}
+ 

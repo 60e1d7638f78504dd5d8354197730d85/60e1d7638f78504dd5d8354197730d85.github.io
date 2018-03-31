@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+class TestClass
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T=sc.nextInt();
+		while(T>0)
+		{
+		    int N=sc.nextInt();
+		    int M=sc.nextInt();
+		    int[] A = new int[N];
+		    int[] B = new int[M];
+		    int i,j,count=0,in=0;
+		    for(i=0;i<N;i++)
+		    {
+		        A[i]=sc.nextInt();
+		    }
+		    for(j=0;j<M;j++)
+		    {
+		        B[j]=sc.nextInt();
+		    }
+		    Arrays.sort(A);Arrays.sort(B);
+		    i=0;j=0;
+		    while(i<N && j<M)
+            {
+                if(A[i]>B[j])
+                {
+                    j++;
+                }
+                else if(A[i]<B[j])
+                {
+                    i++;
+                }
+                else
+                {
+                    count++;i++;
+                    j++;
+                }
+            }
+		    System.out.println(count);
+		    T--;
+		}
+	}
+} 

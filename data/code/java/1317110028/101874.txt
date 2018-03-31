@@ -1,0 +1,41 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+      	String st;
+		Scanner sc=new Scanner(System.in);
+      	while(sc.hasNext())
+        {	st=sc.nextLine();
+	        if( st.indexOf(".") > 0 )
+            {
+ 				if(st.indexOf(".")==(st.length()-1))
+                {
+                  	System.out.println(st + " is not a valid decimal number");
+                  	break;
+                }
+              	try
+                {
+					Double.parseDouble(st);
+                    System.out.println(st + " is a valid decimal number");
+                }
+                catch(NumberFormatException nme)
+                {
+                 	System.out.println(st + " is not a valid decimal number");
+                }
+			}
+            else
+            {
+            	try
+            		{
+						Integer.parseInt(st);
+						System.out.println(st + " is valid integer number");
+					}
+                catch(NumberFormatException nme)
+                	{
+                   		System.out.println(st + " is not a valid integer number");
+                     }
+               }
+        }
+	}
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int arr[50],i,j,len;
+int selectsort(int l){
+  	if(l==1)return 1;
+  	int maxidx,max,temp;
+  	max=arr[0];
+   maxidx=0;
+	for(j=0;j<l;j++){
+    	if(arr[j]>max){max=arr[j];maxidx=j;}
+    }
+  	temp = arr[l-1];
+  	arr[l-1] = max;
+  	arr[maxidx] = temp;
+  	selectsort(l-1);
+}
+int main()
+{
+	scanf("%d",&len);
+  	for(i=0;i<len;i++){
+    	scanf("%d",&arr[i]);
+    }
+  	selectsort(len);
+  	for(i=0;i<len;i++){
+    	printf("%d ",arr[i]);
+    }
+	return 0;
+}

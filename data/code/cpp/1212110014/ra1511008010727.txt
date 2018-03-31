@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a,b,ans =1,flag =1;
+  cin>>a>>b;
+  while(flag==1)
+  {//cout<<"\na : "<<a<<" b : "<<b;
+    flag =0;
+    int g=a>b?a:b;
+    for(int i=2;i<=g;i++)
+    {
+      if(a%i == 0 && b%i == 0)
+      {//cout<<"\n"<<i;
+        ans = ans*i;
+       flag =1;
+       a = a/i;
+       b=b/i;
+      }
+     else if(a%i == 0)
+     {
+       //cout<<"\n"<<i;
+        ans = ans*i;
+       flag =1;
+       a = a/i;
+     }
+     else if(b%i == 0)
+     {
+       //cout<<"\n"<<i;
+        ans = ans*i;
+       flag =1;
+       b = b/i;
+     }
+  	}
+  }
+  cout<<"The lcm is "<<ans;
+  
+	return 0;
+}

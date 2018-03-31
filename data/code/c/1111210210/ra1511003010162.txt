@@ -1,0 +1,43 @@
+#include <string.h>
+#include <stdio.h>
+int main()
+{
+	int n, i=0,flag=1, j, l;
+    char x[10], a, b;
+  	scanf("%d", &n);
+  	while(i<n)
+    {
+    	scanf("%s", x);
+      //	printf("%s", x);
+      	a= x[0];
+      	b= x[1];
+      //	printf("%c%c", a, b);
+      	l= strlen(x);
+      //	printf("%d", l);
+      	for(j=2; j<l; j++)
+        {
+          	if(j%2==0)
+            {	if(x[j]!=a)
+                {
+                  //	printf("\n%c", x[j]);
+             		flag=0;
+                  break;
+                }
+            }
+      		else 
+            {
+              if(x[j]!=b)
+              {
+               flag=0; 
+                break;
+              }
+            }	
+        }
+      if(flag==1)
+        	printf("YES");
+      else
+        	printf("NO");
+      i++;
+    }
+	return 0;
+}

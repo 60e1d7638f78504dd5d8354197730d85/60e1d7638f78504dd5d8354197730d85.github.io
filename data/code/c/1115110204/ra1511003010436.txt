@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+int main() {
+ 
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    int t, n, f, i, j, count, flag;
+    scanf("%d", &t);
+    while(t--){
+        scanf("%d", &n);
+        int a[n];
+        for(i=0;i<n;i++){
+            scanf("%d", &a[i]);
+        }
+        scanf("%d", &f);
+        int b[f];
+        for(i=0;i<f;i++){
+            scanf("%d", &b[i]);
+        }
+        count=0;
+        flag=0;
+        for(j=0;j<f;j++){
+            for(i=flag;i<n;i++){
+                if(b[j]==a[i]){
+                    flag=i+1;
+                    count++;
+                    break;
+                }
+            }
+        }
+        if(count==f)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+    return 0;
+}

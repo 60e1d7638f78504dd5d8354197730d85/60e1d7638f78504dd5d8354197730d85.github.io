@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <math.h>
+
+float distance(int x1, int y1, int x2, int y2)
+{
+  float dist;
+  
+  dist = sqrt( pow( (x2 - x1), 2 ) + pow( (y2 - y1), 2 ) );
+  
+  return dist;
+}
+
+int main()
+{
+  //printf("%f\n", distance(1,1,2,2));
+  
+  int t, count = 0;
+  
+  scanf("%d", &t);
+  
+  // for every triangle;
+  while(t--)
+  {
+    int i, j;
+    int x1, y1, x2, y2, x3, y3;
+    float a[3];
+    
+    scanf("%d %d %d %d %d %d", &x1, &y1, &x2, &y2, &x3, &y3);
+    
+    a[0] = distance(x1, y1, x2, y2);
+    a[1] = distance(x2, y2, x3, y3);
+    a[2] = distance(x3, y3, x1, y1);
+    
+    for(i = 0; i < 3; i++)
+    {
+      int swap = 0;
+      for(j = 0; j < 3 - i - 1; j++)
+      {
+        if(a[j] > a[j+1])
+        {
+          a[j] = a[j] + a[j+1];
+          a[j+1] = a[j] - a[j+1];
+          a[j] = a[j] - a[j+1];
+          
+          swap++;
+        }
+        
+        if(swap == 1)
+          break;
+      }
+    }
+    
+    // a2 is hypotaneous from now on;
+    
+    //printf("%d %d %d\n", (int)pow(a[0], 2), (int)pow(a[1], 2), (int)pow(a[2], 2));
+    
+    if((int)pow(a[2], 2) == (int)pow(a[0], 2) + (int)pow(a[1], 2))
+      count++;
+  }
+  
+  printf("%d\n", count);
+	return 0;
+}

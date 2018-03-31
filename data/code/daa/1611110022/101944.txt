@@ -1,0 +1,43 @@
+#include<iostream>
+typedef int ull;
+using namespace std;
+ull pr[10000015],N=10000000;
+bool p1[10000015];
+int sieve()
+{
+  ull i,j;
+  for(i=2;i*i<=N;i++)
+  {
+    if(!p1[i])
+    {
+      for(j=i*i;j<=N;j+=i)
+      {
+        p1[j]=1;
+      }
+    }
+  }
+  for(i=0;i<5;i++)
+    pr[i]=0;
+  for(i=5;i<=N;i++)
+  {
+    j=0;
+    if(!p1[i]&&!p1[i-2])
+      j=1;
+    pr[i]=pr[i-1]+j;
+  }
+}
+int main()
+{
+  sieve();
+  ull t,n;
+  cin>>t;
+  while(t--)
+  {
+    cin>>n;
+    cout<<pr[n]<<endl;
+  }
+  return 0;
+}
+
+    
+      

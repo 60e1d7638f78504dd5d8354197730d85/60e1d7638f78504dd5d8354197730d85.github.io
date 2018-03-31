@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<stdlib.h>
+int ans[5][100000],max[5]={0};
+int main()
+{
+ int t,T;
+ int k,a,b,n,i;
+ scanf("%d",&t);
+ for(T=0;T<t;T++)
+ {
+  scanf("%d %d",&n,&k);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a);
+    ans[T][i]=k/a;
+  }
+  for(i=0;i<n;i++)
+  {
+   scanf("%d",&b);
+   ans[T][i]=ans[T][i]*b;
+   if(max[T]<ans[T][i])
+    max[T]=ans[T][i];
+  }
+ }
+ for(i=0;i<t;i++)
+ {
+  printf("%d\n",max[i]);
+ }
+ return 0;
+}

@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+char a[1000010];
+int main() {
+    int t,i;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%s",a);
+        int n=strlen(a);
+        int mid = (n-1)/2;
+        int i=mid,j=mid+1;
+        int big=0;
+        if(n%2==1)
+            i--;
+        for(;i>=0;i--,j++)
+        {
+            if(a[i]>a[j])
+            {
+                big=1;
+                break;
+            }
+            else if(a[i]<a[j])
+            {
+                big=0;
+                break;
+            }
+        }
+        int carry=0;
+        if(big==0)
+        {
+            //increase mid element by 1
+            if(a[mid]=='9')
+            {
+                carry=1;
+                a[mid]='0';
+            }
+            else
+                a[mid]++;
+            for(i=mid-1;i>=0;i--)
+            {
+                if(carry)
+                {
+                    int temp=a[i]-48;
+                    if(temp==9)
+                    {
+                        carry=1;
+                        a[i]='0';
+                    }
+                    else
+                    {
+                        a[i]++;
+                        carry=0;
+                    }
+                }
+            }
+        }
+        //print 1st half and reverse of it
+        if(carry)   printf("1");
+        if(n%2==1)
+        {
+            for( i=0;i<mid;i++)
+                printf("%c",a[i]);
+        }
+        else
+        {
+            for( i=0;i<=mid;i++)
+                printf("%c",a[i]);
+        }
+        for(i=mid;i>0;i--)
+            printf("%c",a[i]);
+        if(carry)   printf("1");
+        else        printf("%c",a[0]);
+        printf("\n");
+    }
+	return 0;
+} 

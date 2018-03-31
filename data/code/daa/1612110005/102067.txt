@@ -1,0 +1,47 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+  int i,n,j,flag=0;
+  string a[10],b[10],c,t,y;
+  cin>>n;
+  for(i=0;i<n;i++)
+  {
+    cin>>a[i]>>b[i];
+  }
+   
+  cin>>c;
+for(i=1; i<n; i++)
+	{
+		for(j=1; j<n; j++)
+		{
+			if((a[j-1]>a[j]))
+			{
+				t=a[j-1];
+              y=b[j-1];
+				a[j-1]= a[j];
+              b[j-1]=b[j];
+				a[j]=t;
+              b[j]=y;
+			}
+		}
+}
+  cout<<"After sorting"<<"\n"<<"Name ID\n";
+   for(i=0;i<n;i++)
+  {
+  
+    cout<<a[i]<<" "<<b[i]<<"\n";
+   }
+ for(i=0;i<n;i++)
+ {
+   if(b[i]==c)
+   {
+     flag=1;
+     break;
+   }
+ }
+  
+  return 0;
+}
+    

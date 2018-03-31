@@ -1,0 +1,109 @@
+#include <stdio.h>
+
+struct Date
+{
+  int day;
+  int month;
+  int year;	
+} D;
+int main()
+{
+  int flag=0;
+  struct Date D;
+  scanf("%d",&D.day);
+  scanf("%d",&D.month);
+  scanf("%d",&D.year);
+  
+  if(D.year <=0 || D.year>=3000)
+  {
+    printf(" Invalid Year");
+  }
+  else if(D.month <=0 || D.month>12)
+  {
+    printf("Invalid Month");
+  }
+  else if(D.month == 2)
+  {
+    if(D.year%4==0)
+    {
+      if(D.day<=0 || D.day>29)
+      {
+        printf("Invalid Day");
+      }
+      else
+      {
+        D.day++;
+        D.month++;
+      }
+    }
+    else
+    {
+      if(D.day<=0 || D.day>28)
+      {
+        printf("Invalid Day");
+      }
+      else
+      {
+        D.day++;
+        D.month++;
+      }
+    }
+  }
+  else if(D.month==1 || D.month==3 || D.month==5 || D.month==7 || D.month==8 || D.month==10 || D.month==12)
+  {
+    if(D.day<=0 || D.day>31)
+    {
+      printf("Invalid Day");
+    }
+    else
+    {
+      D.day++;
+      if(D.day>31)
+      {
+        D.day=1;
+        D.month++;
+      }
+      if(D.month>12)
+      {
+        D.year++;
+      }
+      if(D.year>2999)
+      {
+        printf("Invalid Day");
+      }
+      else
+      {
+        printf("New Date=%d %d %d",D.day,D.month,D.year);
+      }
+    }
+  }
+  else
+  {
+    if(D.day<=0 || D.day>=30)
+    {
+      printf("Invalid Day\n");
+    }
+    else
+    {
+      D.day++;
+      if(D.day>30)
+      {
+        D.day=1;
+        D.month++;
+      }
+      if(D.month>12)
+      {
+        D.year++;
+      }
+      if(D.year>2999)
+      {
+        printf("Invalid Day");
+      }
+      else
+      {
+        printf("New Date=%d %d %d",D.day,D.month,D.year);
+      }
+    }
+  }
+  return 0;
+}

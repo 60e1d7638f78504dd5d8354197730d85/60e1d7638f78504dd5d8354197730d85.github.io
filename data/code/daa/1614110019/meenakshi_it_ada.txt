@@ -1,0 +1,28 @@
+#include <stdio.h>
+ 
+ int main()
+{
+    int n,i,j,maxd=0,d=0,temp;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++) scanf("%d",&a[i]);
+    for(i=0;i<n;i++)
+    {
+        temp=a[i];
+        j=i;
+        while(j>0 && temp<a[j-1])
+        {
+            a[j]=a[j-1];
+            j=j-1;
+        }
+        a[j]=temp;
+    }
+    //for(i=0;i<n;i++) printf("%d ",a[i]);
+    for(i=0;i<n-2;i++)
+    {
+        d=a[i+2]-a[i];
+        if(maxd<d) maxd=d;
+    }
+    printf("%d",maxd);
+    return 0;
+} 

@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class student{
+  int roll;
+  public:
+  int get(){
+    cin>>roll;
+    return roll;
+  }
+};
+class sports{
+  public:
+  int mark[3];
+  int getsm(){
+    for(int i=0;i<3;i++)
+    cin>>mark[i];
+  }
+};
+class statement:public student,public sports{
+  int sum;
+  float avg;
+  public:
+  void display(){
+    sum=0;
+    for(int i=0;i<3;i++)
+      sum+=mark[i];
+      avg=(float)sum/3;
+    cout<<get()<<"\n"<<sum<<"\n"<<avg;
+  }
+};
+
+int main()
+{
+    statement s;
+    s.get();
+    s.getsm();
+    s.display();
+	return 0;
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+    #include <string.h>
+    #define ll long long
+    ll dp[1000009];
+    int main()
+    {
+        int t,i;
+        scanf("%d",&t);
+        while(t--)
+        {
+        	ll r=0,k=0,c=0,len,n,m;
+        	char st[1000009];
+        	
+        	scanf("%lld %lld %s",&m,&n,st);
+        	len =strlen(st);
+        	memset(dp,0,sizeof(dp));
+        	dp[0] = 1;
+        	
+        	for(i=0;i<len;i++)
+        	{
+    			if(st[i]=='R')
+    			c++;
+    			if(c>=m)
+    				r+=dp[c-m];
+    			dp[c]++;	
+        	}
+        	memset(dp,0,sizeof(dp));
+        	dp[0] = 1;
+        	c=0;
+        	for(i=0;i<len;i++)
+        	{
+        		if(st[i]=='K')
+        			c++;
+        		if(c>=n)
+        			k+=dp[c-n];
+     
+        		dp[c]++;
+        	}
+        	printf("%lld %lld\n",r,k);
+        }
+        return 0;
+    }

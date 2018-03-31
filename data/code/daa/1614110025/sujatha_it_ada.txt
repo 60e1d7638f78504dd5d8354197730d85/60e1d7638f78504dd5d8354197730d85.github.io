@@ -1,0 +1,36 @@
+#include <stdio.h>
+ 
+int main()
+{
+    long long int t,n,k,m,i,j,l,x,min,index;
+    scanf("%lld",&t);
+    for(i=1;i<=t;i++)
+    {
+    	scanf("%lld %lld %lld",&n,&k,&m);
+    	long long int a[n],ans[n];
+    	for(j=0;j<n;j++)
+    	{
+    		scanf("%lld",&a[j]);
+    		ans[j]=k*a[j]+m*(a[j]-1);
+    	}
+    	for(j=0;j<n;j++)
+    	{
+    		for(l=0;l<a[j];l++)
+    		{
+    			scanf("%lld",&x);
+    			ans[j]=ans[j]+x;
+    		}
+    	}
+    	min=1000000000000000000;
+    	for(j=0;j<n;j++)
+    	{
+    		if(ans[j]<min)
+    		{
+    			index=j+1;
+    			min=ans[j];
+    		}
+    	}
+    	printf("%lld %lld\n",index,min);
+    }
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{ 
+  int res[24],min;
+  int a,b,c,d,e;
+  int i;
+  scanf("%d%d%d%d%d",&a,&b,&c,&d,&e);
+ 
+  res[0]=a+b-c*d/e;
+  res[1]=a+b-c/d*e;
+  res[2]=a+b*c/d-e;
+  res[3]=a+b*c-d/e;
+  res[4]=a+b/c*d-e;
+  res[5]=a+b/c-d*e;
+ 
+  res[6]=a-b+c*d/e;
+  res[7]=a-b+c/d*e;
+  res[8]=a-b*c+d/e;
+  res[9]=a-b*c/d+e;
+  res[10]=a-b/c+d*e;
+  res[11]=a-b/c*d+e;
+  
+  res[12]=a*b-c+d/e;
+  res[13]=a*b-c/d+e;
+  res[14]=a*b+c-d/e;
+  res[15]=a*b+c/d-e;
+  res[16]=a*b/c+d-e;
+  res[17]=a*b/c-d+e;
+  
+  res[18]=a/b-c*d+e;
+  res[19]=a/b-c+d*e;
+  res[20]=a/b*c-d+e;
+  res[21]=a/b*c+d-e;
+  res[22]=a/b+c*d-e;
+  res[23]=a/b+c-d*e;
+  
+  min=999999999;
+  
+  for(i=0;i<24;i++)
+  {if(res[i]>0 && res[i]<min)
+  {min=res[i];
+  }
+  }
+  printf("%d",min);
+	return 0;
+}

@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		calculateSale();
+	}
+  static void calculateSale(){
+
+float unitprice=0f;
+int quantity=0;
+float revenue=0f;
+float discount_rate=0f, discount_amount=0f;
+
+Scanner sc=new Scanner(System.in); 
+
+unitprice=sc.nextFloat();
+
+quantity=sc.nextInt();
+
+if(quantity<100)
+revenue=unitprice*quantity;
+else if(quantity>=100 && quantity<=120)
+{
+discount_rate=(float)10/100;
+revenue=unitprice*quantity;
+discount_amount=revenue*discount_rate;
+revenue-=discount_amount;
+}
+
+else if(quantity>120)
+{
+discount_rate=(float)15/100;
+revenue=unitprice*quantity;
+discount_amount=revenue*discount_rate;
+revenue-=discount_amount;
+}
+
+System.out.println("The revenue from sale:"+revenue);
+System.out.print("After discount:"+discount_amount);
+System.out.print("(");
+double a =Math.round(discount_rate*100);
+System.out.printf("%.6f",a);
+System.out.print("%)");
+
+
+ }
+
+}

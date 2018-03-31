@@ -1,0 +1,71 @@
+#include <stdlib.h>
+#include <stdio.h>
+ 
+ 
+int main(){
+	int arr1[1002];
+	int arr2[1002];
+	int str[1002];
+	int t,i,j,n,m,s;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d %d %d",&n,&m,&s);
+		for(i=1;i<=m;i++){
+			scanf("%d",&str[i]);
+		}
+ 
+		for(j=1;j<=n;j++){
+					arr1[j]=0;
+					arr2[j]=0;
+				}
+		arr1[s]=1;
+		for(i=1;i<=m;i++){
+			if(i%2==1){
+				for(j=1;j<=n;j++){
+					if(arr1[j]!=0){
+						if(j-str[i]>0){
+							arr2[j-str[i]]=(arr2[j-str[i]]+arr1[j])%1000000007;
+						}
+						if(j+str[i]<=n){
+							arr2[j+str[i]]=(arr2[j+str[i]]+arr1[j])%1000000007;
+						}
+					}
+				}
+			for(j=1;j<=n;j++){
+				arr1[j]=0;
+				}
+			}
+			else{
+				for(j=1;j<=n;j++){
+					if(arr2[j]!=0){
+						if(j-str[i]>0){
+							arr1[j-str[i]]=(arr1[j-str[i]]+arr2[j])%1000000007;
+						}
+						if(j+str[i]<=n){
+							arr1[j+str[i]]=(arr1[j+str[i]]+arr2[j])%1000000007;
+						}
+					}
+				}
+			for(j=1;j<=n;j++){
+				arr2[j]=0;
+				}
+			}
+ 
+		}
+		if(m%2==1){
+			for(i=1;i<=n;i++){
+				printf("%d ",arr2[i]%1000000007);
+			}
+		}
+		else{
+			for(i=1;i<=n;i++){
+				printf("%d ",arr1[i]%1000000007);
+			}
+		}
+		printf("\n");
+ 
+	}
+ 
+	return 0;
+}
+ 

@@ -1,0 +1,42 @@
+#include<stdio.h>
+//using namespace std;
+const int maxn = 35;
+int n,m;
+
+int dp[35][1200],from[35][1200];
+void solve(int x,int y)
+{
+    if(x!=1)solve(x-1,from[x][y]);
+    printf("%d ",y-from[x][y]);
+}
+int main()
+{
+  int i,j,k;
+  int l[maxn],r[maxn];
+    scanf("%d%d",&n,&m);
+    for( i=1;i<=n;i++)
+        scanf("%d%d",&l[i],&r[i]);
+    dp[0][0]=1;
+    for( i=1;i<=n;i++)
+    {
+        for( j=0;j<1000;j++)
+        {
+            if(dp[i-1][j])
+            {
+                for( k=l[i];k<=r[i];k++)
+                {
+                    dp[i][j+k]=1;
+                    from[i][j+k]=j;
+                }
+            }
+        }
+    }
+    if(dp[n][m])
+    {
+        printf("YES\n");
+        solve(n,m);
+    }
+    else
+      printf("NO\n");
+  return 0;
+}

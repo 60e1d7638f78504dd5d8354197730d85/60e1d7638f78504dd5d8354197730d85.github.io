@@ -1,0 +1,30 @@
+#include <stdio.h>
+void SumEven(int a[],int num,int sum);
+int main()
+{
+   int i,a[10],num,sum=0;
+   scanf("%d",&num);
+   for(i=0;i<num;i++)
+   {
+    scanf("%d",&a[i]);
+   }
+   SumEven(a,num-1,sum); 
+   return 0;
+}
+
+void SumEven(int a[],int num,int sum)
+{
+ if(num>=0)
+ {
+  if((a[num])%2==0)
+  {
+   sum+=(a[num]); 
+  }
+  SumEven(a,num-1,sum);
+ }
+ else
+ {
+    printf("%d\n",sum); 
+ }
+}
+

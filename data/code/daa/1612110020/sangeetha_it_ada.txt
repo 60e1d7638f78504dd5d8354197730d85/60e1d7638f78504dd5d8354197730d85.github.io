@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+void sort(int arr[], int n)
+{
+   int i, key, j;
+   for (i = 1; i < n; i++)
+   {
+       key = arr[i];
+       j = i-1;
+       while (j >= 0 && arr[j] > key)
+       {
+           arr[j+1] = arr[j];
+           j = j-1;
+       }
+       arr[j+1] = key;
+   }
+}
+
+
+void findFourElements(int A[], int n, int X)
+{
+  for (int i = 0; i < n-3; i++)
+  {
+    if((i>0)&&(A[i]==A[i-1]))
+      continue;
+    for (int j = i+1; j < n-2; j++)
+    {
+      if((j>i+1) && (A[j]==A[j-1]))
+      	continue;
+      for (int k = j+1; k < n-1; k++)
+      {
+        if((k>j+1) && (A[k]==A[k-1]))
+      		continue;
+        for (int l = k+1; l < n; l++)
+        {
+          if((l>k+1) && (A[l]==A[l-1]))
+      		continue;
+           if (A[i] + A[j] + A[k] + A[l] == X)
+              cout<<A[i]<<" "<<A[j]<<" "<<A[k]<<" "<<A[l]<<" $";
+          
+        }
+      }
+    }
+  }
+}
+
+int main()
+{
+    int T;
+  cin>>T;
+  for(int t=0;t<T;t++)
+  {
+    int N,A[100],K;
+  	cin>>N>>K;
+    for(int i=0;i<N;i++)
+      cin>>A[i];
+    sort(A,N);
+    findFourElements (A, N, K);
+    cout<<endl;
+  }
+    return 0;
+}

@@ -1,0 +1,134 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int fast(long long int,long long int,long long int);
+int inverse(int,int);
+ 
+ 
+int inverse(int n,int M)
+{
+    return fast(n,M-2,M);
+}
+int fast(long long base, long long n,long long M)
+{
+    if(n==0)
+       return 1;
+    if(n==1)
+    return base;
+    long long h=fast(base,n/2,M);
+    if(n%2==0)
+        return ( h * h ) % M;
+    else
+        return ( ( ( h * h ) % M ) * base ) % M;
+}
+ 
+int main(void)
+{
+    long long fact[100001],sub[100001],mhld;
+    fact[0]=1;sub[0]=0;
+    int i=1,t,n;
+    int MOD=1000000007;
+    while(i<=100000)
+    {
+        fact[i]=(fact[i-1]*i)%MOD;
+        sub[i]=(sub[i-1]+i)%MOD;
+        
+        i++;
+    }
+   // printf("%lld\n",sub1[1]);
+    scanf("%d",&t);
+    while(t--)
+    {   
+        long long mai=0,sub1[100001]={0};sub1[0]=0;
+        int alpha[26]={0},val,flag=0;
+        //printf("%d",n);
+        char str[100001];
+        scanf("%s",str);
+       // printf("%s",str);
+        n=strlen(str);
+        if(n>3){
+        for(i=0;i<n;i++)
+        {
+           // scanf("%c",&str[i]);
+//printf("%c",str[i]);
+            mhld=(sub[i]*(i+1))%MOD;
+            mai=(mai+mhld)%MOD;
+            val=(int)str[i]-97;
+            alpha[val]++;
+            if(alpha[val]>=n-1){
+                flag=1;
+                break;
+            }
+            
+        }
+//printf("main %lld\n",mai);
+        if(flag==1)
+         {
+             printf("0\n");
+             
+             continue;
+         }
+        //printf("\n");
+        //for(i=0;i<=n;i++)
+        //printf("%c",str[i]);
+        long long num,den,inv_den,ans=0,s=0,cntr=0,final=0,minus=0,hold=0,j;
+        num=fact[n];
+        den=1;
+            
+        sub1[1]=sub[n-1];
+//printf("one %lld\n",sub1[1]);
+        
+        for(i=0;i<26;i++)
+        {
+        //printf("%d ",alpha[i]);    
+        den=(den*fact[alpha[i]])%MOD;
+        minus=(minus+sub[alpha[i]])%MOD;
+        
+        if(alpha[i]!=0){
+            if(sub1[alpha[i]]==0){
+               /// printf("YES ");
+                for(j=alpha[i]+1;j<n;j++)
+                {
+                    mhld=(j*(sub[j-1]-sub[alpha[i]-1]))%MOD;
+                  sub1[alpha[i]]=(sub1[alpha[i]]+mhld)%MOD;  
+                }
+              //  printf("%lld ",sub1[alpha[i]]);
+               mhld=(sub1[1]*(n-alpha[i]))%MOD;
+                sub1[alpha[i]]=((mai-sub1[alpha[i]])%MOD+MOD-mhld)%MOD;
+              //  printf("%lld \n",sub1[alpha[i]]);
+            }
+            
+             hold=(hold+sub1[alpha[i]])%MOD;
+        }
+        
+        }
+        
+       // printf("%lld ",den);
+        inv_den=inverse(den,MOD);
+       // printf("%lld ",inv_den);
+        ans=(num*inv_den)%MOD;
+      ///  printf("%lld\n",ans);
+        cntr=(sub[n]-minus+MOD)%MOD;
+      //  printf("cntr %lld\n",cntr);
+       mhld=(mai-hold+MOD)%MOD;
+        s=((mhld+cntr)%MOD+1)%MOD;
+//printf("sum1 %lld\n",s);
+        mhld=(ans-s+MOD)%MOD;
+        final=(ans*mhld)%MOD;
+        
+      //  printf("hold %lld\n",hold);
+        printf("%lld\n",final);
+       /* if(ans>sum1)
+        {
+            final=ans*(ans-sum1)%MOD;
+            printf("%lld\n",final);
+        }
+        else
+        {
+            printf("0\n");
+        }}*/}
+        else
+         printf("0\n");
+    }
+    return 0;
+} 

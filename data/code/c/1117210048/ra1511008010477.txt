@@ -1,0 +1,31 @@
+#include <stdio.h>
+int gcd(int a,int b)
+{
+  if(a==0)
+    return b;
+  else
+    return gcd(b%a,a);
+}
+
+int lcm(int a,int b){
+   return a*b/gcd(a,b);
+  
+}
+int main()
+{
+  int t,a,b,c;
+  scanf("%d",&t);
+  if(t<0)
+  {
+    printf("Invalid Input");
+    return 0;
+  }
+  while(t--){
+    scanf("%d %d %d",&a,&b,&c);
+    if(c==1)
+    printf("%d",gcd(a,b));
+    else
+      printf("%d",lcm(a,b));
+  }
+	return 0;
+}

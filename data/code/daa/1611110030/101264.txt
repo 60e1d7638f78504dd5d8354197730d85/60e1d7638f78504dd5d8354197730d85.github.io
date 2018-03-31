@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int BinarySearch(int A[], int N, int x)
+{
+	int low = 0, high = N - 1;
+	
+		while(low <= high)
+	{
+			
+		int mid = (low + high)/2;	
+		
+			if (x == A[mid])
+			return mid;
+		
+				else if (x < A[mid])
+			high = mid - 1;
+			
+			else 
+			low = mid + 1;
+	}
+	
+		return -1;
+}
+
+int main() 
+{
+	int A[50],target,N,i;
+  cin>>N;
+	for(i=0;i<N;i++)
+    {
+      cin>>A[i];
+    }
+    cin>>target;
+	
+	int index = BinarySearch(A, N, target);
+	
+	if (index != -1)
+		cout <<target<<" found at location "<<index+1;
+	else
+		cout << "Not found! "<<target<<" is not present in the list";
+	
+	return 0;
+}

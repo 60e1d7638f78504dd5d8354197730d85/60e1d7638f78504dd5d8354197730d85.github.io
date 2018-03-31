@@ -1,0 +1,59 @@
+#include <iostream>
+bool reach(int arr[1000],int s);
+void shoot(int arr[1000],int s);
+void near(int arr[1000],int s);
+using namespace std;
+int main()
+{int walker[1000],n,t;
+ cin>>t;
+ for(int i=0;i<t;i++)
+ {cin>>n;
+  for(int j=0;j<n;j++)
+    cin>>walker[j];
+  int count=0;
+  bool flag=true;
+  while(flag)
+  {if(reach(walker,n))
+    flag=false;
+   else if(count==n)
+     flag=false;
+   else
+   {shoot(walker,n);
+    count++;
+    if(count%6==0)
+      near(walker,n);
+   }
+  }
+   if(count!=n)
+     cout<<"Goodbye Rick\n"<<count;
+   else
+     cout<<"Rick now go and save Carl and Judas";
+ }
+	return 0;
+}
+
+bool reach(int arr[1000],int s)
+{for(int i=0;i<s;i++)
+  if(arr[i]==0)
+    return true;
+ return false;
+}
+
+void shoot(int arr[1000],int s)
+{int small=arr[0],pos=0;
+ for(int i=1;i<s;i++)
+ {if(small>arr[i])
+  {small=arr[i];
+   pos=i;
+  }
+ }
+ arr[pos]=9999;
+ near(arr,s);
+}
+
+void near(int arr[1000],int s)
+{for(int i=0;i<s;i++)
+ {if(arr[i]!=9999)
+   arr[i]--;
+ }
+}

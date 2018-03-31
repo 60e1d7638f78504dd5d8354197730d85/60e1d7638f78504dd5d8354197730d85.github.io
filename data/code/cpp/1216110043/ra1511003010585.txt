@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long int a[100005],ans[100005];
+long long int d=1000000007;
+int main()
+{
+	long long int i,n,u,k,st=0;
+	double p;
+	vector<pair<double,int>> v;
+	scanf("%lld%lld",&n,&k);
+	for(i=1;i<=n;i++)
+	scanf("%lld",&a[i]);
+	p=log10((double)a[1]);
+	v.push_back(make_pair(p,1));
+	ans[1]=a[1];
+	for(i=2;i<=(k+1);i++)
+	{
+		p=v[0].first+log10((double)a[i]);
+		ans[i]=(ans[v[0].second]*a[i])%d;
+		u=v.size()-1;
+		while(v.size()!=0&&v[u].first>=p)
+		{
+			v.pop_back();
+			u--;
+		}
+		v.push_back(make_pair(p,i));
+		///printf("%d,%lld\n",v[0].second,ans[i]);
+	}
+	
+	for(;i<=n;i++)
+	{
+		if(v[st].second<(i-k))
+		st++;
+		p=v[st].first+log10((double)a[i]);
+		ans[i]=(ans[v[st].second]*a[i])%d;
+		u=v.size()-1;
+		while(v.size()!=st&&v[u].first>=p)
+		{
+			v.pop_back();
+			u--;
+		}
+		v.push_back(make_pair(p,i));
+		//printf("%d,%lld\n",v[st].second,ans[i]);
+	}
+	printf("%lld\n",ans[n]);
+	return 0;
+} 

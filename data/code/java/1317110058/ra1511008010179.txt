@@ -1,0 +1,34 @@
+import java.util.*;
+public class TestClass 
+{
+	 public static void main(String[] args) 
+     { 
+	   Scanner sc=new Scanner(System.in);
+       String s=sc.nextLine();
+       int c=0;
+       for(int i=0;i<s.length();i++)
+       {
+          if(s.charAt(i)!=' ')
+          {
+            if(check(s,i)==false)
+              c++;
+          }
+       }
+       if(c==26)
+         System.out.println("pangram");
+       else
+         System.out.println("not pangram");
+	}
+  
+  private static boolean check(String st,int pos)
+  {
+    for(int i=0;i<pos;i++)
+    {
+      if(st.charAt(i)==st.charAt(pos))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+}

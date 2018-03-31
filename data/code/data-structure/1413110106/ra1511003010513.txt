@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int num;
+  scanf("%d",&num);
+  int arr[num];
+  int i;
+  for(i=0;i<num;i++)
+    scanf("%d",&arr[i]);
+  int search;
+  scanf("%d",&search);
+  int first=0;
+  int last=num-1;
+  int mid=(first+last)/2;
+  while(first<=last)
+  {
+    if(search>arr[mid])
+    {
+      first = mid+1;
+      last = num-1;
+      mid = (first+last)/2;
+    }
+    else if(search == arr[mid])
+    {
+      printf("%d found at location %d\n",search,mid+1);
+      break;
+    }
+    else
+    {
+      first = 0;
+      last = mid-1;
+      mid = (first+last)/2;
+    }
+  }
+  if(first>last)
+    printf("Not found");
+	return 0;
+}

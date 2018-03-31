@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+	   Scanner in =new Scanner(System.in);
+        {
+			int TC = in.nextInt();
+			 @SuppressWarnings("unchecked")
+			Set<Character>[] strings = new HashSet[TC];
+			int k = TC;
+			while (TC-- > 0) {
+				String input = in.next();
+				strings[TC] = new HashSet<Character>();
+				for (int i = 0; i < input.toCharArray().length; i++) {
+					strings[TC].add(input.toCharArray()[i]);
+				}
+			}
+			for (int i = 1; i < k; i++) {
+				strings[0].retainAll(strings[i]);
+			}
+			System.out.println(strings[0].size());
+		}
+    }
+}
+   

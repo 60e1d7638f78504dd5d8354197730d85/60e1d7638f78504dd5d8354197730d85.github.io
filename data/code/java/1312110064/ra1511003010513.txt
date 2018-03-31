@@ -1,0 +1,24 @@
+import java.util.Set;
+import java.util.TreeSet;
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int t = sc.nextInt();
+       for(int i=0;i<t;i++)
+       {
+         String str1 = sc.next();
+         sc.nextLine();
+         String str2 = sc.next();
+         Set<Character> ch1 = new TreeSet<Character>();
+         for(int k=0;k<str1.length();k++)
+           ch1.add(str1.charAt(k));
+         Set<Character> ch2 = new TreeSet<Character>();
+         for(int j=0;j<str2.length();j++)
+           ch2.add(str2.charAt(j));
+         ch1.retainAll(ch2);
+         System.out.println(ch1.size());
+       }
+	}
+}

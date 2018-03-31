@@ -1,0 +1,70 @@
+#include<stdio.h>
+ 
+long long fac[41]={0};
+int main()
+{
+int t;
+long long n,m,c,m1,i,j;
+long long p,sum=0,num=0,C[41]={0};
+double den=0,ans=0;
+ 
+//factorial(40);
+fac[0]=1;
+for(i=1;i<=40;i++)
+{
+fac[i]=fac[i-1]*i;
+}
+scanf("%d",&t);
+while(t--){
+sum=0;
+num=0;
+den=0;
+for( j=0;j<=40;j++)
+C[j]=0;
+scanf("%lld%lld",&n,&m);
+m1=m;
+for(i=0;i<n;i++)
+{
+ 
+scanf("%lld%lld",&c,&p);
+ 
+sum+=p;
+}
+if(m!=0)
+m=m-1;
+while(m<n)
+{
+ 
+if(C[m]==0&&C[n-1-m]==0)
+{
+C[m]=(fac[n-1]/(fac[m]*fac[n-1-m]));
+}
+if(C[n-1-m]!=0)
+num+=C[n-1-m];
+ 
+else
+num+=C[m];
+m++;
+}
+num=sum*num;
+for(j=0;j<=40;j++)
+C[j]=0;
+while(m1<=n)
+{
+if(C[m1]==0&&C[n-m1]==0)
+{
+C[m1]=(fac[n]/(fac[m1]*fac[n-m1]));
+}
+if(C[n-m1]!=0)
+den+=C[n-m1];
+ 
+else
+den+=C[m1];
+m1++;
+}
+ans=num/den;
+printf("%.9f\n",ans);
+}
+return 0;
+ 
+} 

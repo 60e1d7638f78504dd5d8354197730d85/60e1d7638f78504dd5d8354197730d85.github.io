@@ -1,0 +1,74 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+ 
+ 
+int pour(int a,int b,int c)
+{
+    int x=a,y=0,steps=1,t;
+    while(x!=c && y!=c)
+    {
+        if(x>b-y)
+        {
+            x-=(b-y);
+            y=b;
+            steps++;
+        }
+        else
+        {
+            y+=x;
+            x=0;
+            steps++;
+        }
+        
+        if(x==c || y==c)
+        return steps;  
+ 
+        if(x==0)
+        {
+            x=a;
+            steps++;
+        }    
+        if(y==b)
+        {
+            y=0;
+            steps++;
+        }    
+    }    
+ return steps;   
+}
+ 
+int gcd(int a, int b)
+{
+    if (a == 0 || b == 0)
+       return 0;
+    if (a == b)
+        return a;
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+ 
+ 
+int main() 
+{
+    int t,a,b,c,m;
+    int pour(int,int,int);
+    cin>>t;
+    while(t--)
+    {
+      cin>>a>>b>>c;
+        if(c>max(a,b))
+            cout<<"-1\n";
+        else if(c==a || c==b)
+            cout<<"1\n";
+        else if(c==abs(a-b))
+            cout<<"2\n";
+        else if((c%gcd(a,b)))
+            cout<<"-1\n";
+        else
+            cout<<min(pour(a,b,c),pour(b,a,c))<<endl;
+    }
+	return 0;
+}
+ 

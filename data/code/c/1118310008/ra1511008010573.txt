@@ -1,0 +1,48 @@
+#include<stdio.h>
+ 
+ 
+int main()
+{
+    long int n,m,i,j,a,b,c;
+ long int p[100000],q[100000],r[100000];
+    scanf("%ld%ld",&n,&m);
+    for(i=0;i<n;i++)
+       { p[i]=n-i;
+       }
+    for(i=0;i<m;i++)
+    {
+                    scanf("%ld%ld%ld",&a,&b,&c);
+                   if(a>=c)
+	{	for (j=n-c;j<n;j++)
+			r[j]=p[j];
+		for (j=n-c-b;j<n-c;j++)
+			r[j]=p[(2*n)-a-b-c-1-j];
+		for(j=0;j<n-a-b;j++)
+			r[j]=p[j];
+		for(j=n-a; j<n-c;j++)
+			r[j-b]= p[j];
+                    
+		for(j=0;j<n;j++)
+			p[j]=r[j];
+}
+ 
+	if (a<c)
+{		for(j=n-a; j<n;j++)
+			r[j]=p[j];
+		for(j=n-c;j<n-a;j++)
+			r[j]=p[j-b];
+                  
+		for(j=0;j<n-b-c;j++)
+			r[j]=p[j];
+                    
+		for(j=n-b-c;j<n-c;j++)
+			r[j]=p[(2*n)-a-b-c-1-j];
+		for(j=0;j<n;j++)
+			p[j]=r[j];
+}
+ 
+                    }
+           for(i=1;i<=n;i++)
+           printf("%ld ",p[n-i]);
+           return 0;       
+    }

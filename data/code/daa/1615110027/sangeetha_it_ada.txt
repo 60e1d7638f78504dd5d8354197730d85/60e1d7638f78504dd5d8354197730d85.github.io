@@ -1,0 +1,54 @@
+#include <iostream>
+#include <limits.h>
+#include <cstring>
+using namespace std;
+ 
+int temp[1000000];
+ 
+int fn(int n)
+{
+	if(n<0 || n==1)
+	{
+		return 1000000;
+	}
+ 
+	if(temp[n] != -1)
+	{
+		return temp[n];
+	}
+ 
+	if(n==0)
+	{
+		return 0;
+	}
+ 
+	temp[n] = min(1+fn(n-7), min(1+fn(n-5), min(1+fn(n-3), 1+fn(n-2))));
+//	cout << n << " " << temp[n] << endl;
+	return temp[n];
+}
+ 
+int main()
+{
+	int t;
+	cin>>t;
+	int i=0;
+	memset(temp, -1, sizeof(temp));
+ 
+//	int a = fn(1000000);
+ 
+	while(i!=t)
+	{
+		int n;
+		cin>>n;
+		if(n<=1)
+		{
+			cout<<"-1"<<endl;
+			i++;
+			continue;
+		}
+		int ans = fn(n);
+		cout<<ans<<endl;
+		i++;
+	}
+    return 0;
+}

@@ -1,0 +1,58 @@
+#include<stdio.h>
+int lcm(int,int);
+
+void lowest(int frac1,int frac2)
+{
+    int gcd;
+
+    int a;
+    int b;
+    int c;
+
+    b = frac1;
+    a = frac2;
+
+    //Calculate GCD
+    c = a % b;
+
+    while(gcd > 0)
+    {
+        a = b;
+        b = c;
+        c = a % b;
+
+        if(c <= 0)
+        {
+            gcd = b;
+            break;
+        }
+    }
+
+
+    //Divide the numerator and denominator with the GCD
+    frac1 /= gcd;
+    frac2 /= gcd;
+
+    printf(" %d %d\n", frac1, frac2);
+     
+}
+int main()
+{
+int NM,NM1,DN1,NM2,DN2,LCM;
+scanf("%d%d",&NM1,&DN1);
+scanf("%d%d",&NM2,&DN2);
+LCM = lcm(DN1,DN2);
+NM1=NM1*(LCM/DN1);
+NM2=NM2*(LCM/DN2);
+NM=NM1+NM2;
+lowest(NM,LCM);
+return 0;}
+int lcm(int N1,int N2)
+{
+static int TEMP = 1;
+if(TEMP % N2 == 0 && TEMP % N1 == 0)
+return TEMP;
+TEMP++;
+lcm(N1,N2);
+return TEMP;
+}

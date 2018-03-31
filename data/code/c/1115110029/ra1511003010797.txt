@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdbool.h>
+ 
+void solve() {
+    
+    long int N,a,b,c,i, count = 0, prev;
+    bool ans = false;
+    
+    scanf("%ld",&N);
+    if(N == 3)
+    {
+        scanf("%ld %ld %ld", &a, &b, &c);
+        if(a==b && b==c)
+        {
+            printf("Yes\n");
+        }
+        else
+        {
+            printf("No\n");
+        }
+    }
+    else
+    {
+        count = 1;
+        for(i=0;i<N;i++)
+        {
+            scanf("%ld",&a);
+            //printf("%ld",a);
+            if(i==0)
+            {
+                prev = a;
+            }
+            if(i!=0 && prev == a)
+            {
+                count = count +1;
+            }
+            if(i!= 0 && prev != a)
+            {
+                count = 1;
+            }
+            if(count>=3)
+            {
+                ans = true;
+                //printf("count reached three");
+            }
+            prev= a;
+        }
+        if(ans == true)
+        {
+            printf("Yes\n");
+        }
+        else
+        {
+            printf("No\n");
+        }
+    }
+}
+int main(void) {
+	long T;
+	scanf("%ld",&T);
+	
+	while(T--) {
+	    solve();
+	}
+	return 0;
+}

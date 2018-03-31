@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int n,m,sum=0,i,j;
+  	scanf("%d%d",&n,&m);
+  	int p[n];
+  	for(i=0;i<n;i++)
+      scanf("%d",&p[i]);
+  	for(i=0;i<n;i++)
+      for(j=0;j<n;j++)
+        if(p[i]<p[j])
+        {
+        	int temp=p[j];
+          p[j]=p[i];
+          p[i]=temp;
+        }
+  i=0;
+  while(m--)
+  {
+    if(p[i]>=0)
+      break;
+  sum+=p[i++];
+  }
+  printf("%d",-1*sum);
+	return 0;
+}

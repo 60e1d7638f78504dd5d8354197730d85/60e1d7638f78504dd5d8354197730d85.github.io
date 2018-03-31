@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+int main()
+{ struct node{
+  int num;
+  struct node*ptr;};
+ typedef struct node NODE;
+ NODE *head,*first,*temp=0;
+ 
+ int n,i;
+ first=0;
+ scanf("%d",&n);
+ for(i=0;i<n;i++){
+   head=(NODE*)malloc(sizeof(NODE));
+   scanf("%d",&head->num);
+   if(first!=0){
+     temp->ptr=head;
+     temp=head;}
+   else{
+     first=temp=head;}
+   fflush(stdin);}
+ temp->ptr=0;
+ temp=first;
+ while(temp!=0){
+   printf("%d ",temp->num);
+   temp=temp->ptr;}
+
+	return 0;
+}

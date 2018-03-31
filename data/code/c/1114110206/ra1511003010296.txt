@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int t, i, j;
+  int n, min, min1;
+  int arr[100];
+  
+  scanf("%d", &t);
+  
+  while(t-->0){
+    scanf("%d", &n);
+    
+    for(i=0; i<n; i++){
+      scanf("%d", &arr[i]);
+    }
+    
+    min = abs(arr[0]-arr[1]);
+    for(i=0; i<n; i++){
+      for(j=0; j<n; j++){
+        if(i!=j){
+          //printf("i=%d  j=%d\n", i, j);
+          //printf("%d ", min1);
+          min1 = abs(arr[i]-arr[j]);
+          if(min>min1){
+            min = min1;
+          }
+        }
+      }
+    }
+  }
+  
+  printf("%d", min);
+	return 0;
+}

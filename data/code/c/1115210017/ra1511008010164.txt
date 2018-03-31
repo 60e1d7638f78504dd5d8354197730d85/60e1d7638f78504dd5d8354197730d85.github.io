@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define l long long int
+typedef struct{
+    l id;
+    l z;
+    l x;
+}node;
+int main()
+{
+long int n,i;
+    int j,k;
+    l d,z1,l1,c,s,p,res;
+    node a[5],temp;
+    scanf("%ld",&n);
+    for(i=0;i<=n;i++)
+    {
+        scanf("%lld%lld%lld%lld%lld%lld",&d,&z1,&p,&l1,&c,&s);
+        //printf("%lld %lld %lld %lld %lld %lld\n",d,z1,p,l1,c,s);
+        res=50*p+5*l1+10*c+20*s-z1;
+        //printf("%lld \n",res);
+        if(i<5)
+          {
+              a[i].id=d;
+              a[i].z=res;
+              a[i].x=res+z1;
+          }
+        if(i==4)
+          {
+             for(i=0;i<5;i++)
+                {
+                    for(j=0;j<4;j++)
+                    {
+                        if(a[j].z<a[j+1].z)
+                        {
+                            temp=a[j];
+                            a[j]=a[j+1];
+                            a[j+1]=temp;
+                        }
+                        else if(a[j].z==a[j+1].z&&a[j].id <a[j+1].id)
+                        {
+                            temp=a[j];
+                            a[j]=a[j+1];
+                            a[j+1]=temp; 
+                        }
+                    }
+                }
+          }
+        else if(i>=5)
+        {
+           j=0,k=4;
+           while(j<5 && res<a[j].z)
+               j++;
+           while(j<5 && (res==a[j].z)&& d <a[j].id)
+                j++;
+           while(k>=0 && k>j)
+           {
+               a[k].id=a[k-1].id;
+               a[k].z=a[k-1].z;
+               a[k].x=a[k-1].x;
+               k--;
+           }
+           if(j!=5){
+           a[j].id=d;
+           a[j].z=res;
+           a[j].x=res+z1;
+           }
+        }
+    }
+        for(i=0;i<5;i++)
+           printf("%lld %lld\n",a[i].id,a[i].x);
+	return 0;
+}

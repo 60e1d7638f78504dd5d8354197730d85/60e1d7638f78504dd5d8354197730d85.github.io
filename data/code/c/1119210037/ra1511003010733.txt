@@ -1,0 +1,35 @@
+#include<stdio.h>
+ 
+inline int scan(){
+int t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9'){
+t=(t<<1) +(t<<3) + c - '0';
+c=getchar_unlocked();
+}
+return t;
+}
+ 
+int main(){
+unsigned long long int N,M,q;
+N=scan();M=scan();
+while(M--){
+q=scan();
+if(q<N+2 || q>3*N)
+printf("0\n");
+else{
+if(q==N+2 || q==3*N){
+printf("1\n");
+}
+else if(q<=(4*N+2)/2){
+printf("%llu\n",q-(N+2)+1);
+}else{
+printf("%llu\n",3*N-q+1);
+}
+}
+}
+return 0;
+} 

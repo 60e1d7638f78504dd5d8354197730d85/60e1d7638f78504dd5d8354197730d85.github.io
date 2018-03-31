@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main(){
+	long long int T,a,b,m,n,temp;
+	scanf("%lld",&T);
+	while(T--){
+		scanf("%lld%lld",&a,&b);
+		m=a;
+		n=b;
+		if(a<b){
+			temp=a;
+			a=b;
+			b=temp;
+		}
+		while(a%b!=0){
+			temp=a;
+			a=b;
+			b=temp%b;
+		}
+		printf("%lld %lld\n",b,(m*n)/b);
+	}
+	return 0;
+}
+  

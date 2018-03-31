@@ -1,0 +1,25 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define Aloveg ios_base::sync_with_stdio(0);cin.tie(NULL);cout.tie(NULL);
+const int mn = 1e6+5;
+ 
+ll k;
+ 
+bool com(ll a, ll g) {
+    return (a%k) < (g%k);
+}
+ 
+int main()
+{
+    Aloveg
+    
+    int n; cin >> n >> k;
+    ll a[n+1];
+    for(int i = 0; i < n; i += 1) cin >> a[i];
+    stable_sort(a, a + n, com);
+    for(int i = 0; i < n; i += 1) cout << a[i] << " ";
+    
+    return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+#include<fstream>
+#include<exception>
+using namespace std;
+int main()
+{
+  string str,text;
+  cin>>str;
+  cin>>text;
+  try{
+    fstream fp;
+  
+  fp.open(str,ios::out);
+  if(!fp)
+    throw "Error opening file";
+  
+  cout<<"File Created Successfully\n";
+  
+  fp<<text;
+  fp.close();
+  
+  fp.open(str,ios::in);
+  if(!fp)
+    throw "Error opening file";
+  
+  char c;
+  int i;
+  i=0;
+  while(!fp.eof()){
+  fp>>c;
+    if(fp!='\0')
+    cout<<"At position:"<<i<<" Character:"<<c<<"\n";
+
+  i++;}
+  fp.close();
+  }catch(const char* e){
+  cout<<e;
+  }
+	return 0;
+}

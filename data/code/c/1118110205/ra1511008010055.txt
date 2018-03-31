@@ -1,0 +1,36 @@
+#include <stdio.h>
+struct clock
+{
+  int hr,mn,s;
+}c;
+void time(struct clock c)
+{
+if((c.hr>=0 && c.hr<=23)&&(c.mn>=0 && c.mn<=59)&&(c.s>=0 && c.s<=59))
+{
+  printf("24 Hours Format\n");
+  printf("%d:%d:%d",c.hr,c.mn,c.s);
+  if(c.hr>=13 && c.hr<=23)
+  {c.hr=c.hr-12;
+  printf("\n12 Hours Format\n");
+  printf("%d:%d:%d pm",c.hr,c.mn,c.s);
+  }
+  else 
+  {
+  printf("\n12 Hours Format\n");
+  printf("%d:%d:%d am",c.hr,c.mn,c.s);
+  }
+}
+else
+{
+  printf("\nInvalid Time");
+}
+  
+}
+int main()
+{
+scanf("%d",&c.hr);
+scanf("%d",&c.mn);
+scanf("%d",&c.s);
+time(c);  
+return 0;
+}

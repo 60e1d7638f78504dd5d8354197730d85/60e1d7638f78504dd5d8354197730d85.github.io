@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class building{
+	private:
+ 	int length,width,rate;
+  	public:
+     void initializedata(int len,int wid,int r){
+  		length=len;
+      	width=wid;
+      	rate=r;
+    }
+  	int getlength(){return length;}
+  	int getwidth(){return width;}
+  	int getratepersqft(){return rate;}
+};
+
+
+int main()
+{
+	building b;
+  	int length,width,rate;
+    cin>>length;
+  	cin>>width;
+  	cin>>rate;
+ 	 b.initializedata(length,width,rate);
+  	cout<<b.getlength();
+  	cout<<"\n"<<b.getwidth();
+  	cout<<"\n"<<b.getratepersqft();
+  	cout<<"\n"<<length*width*rate;
+  	if((b.getlength()-b.getwidth())>10){
+      cout<<"\nnot suitable";
+    }
+  	else{
+      cout<<"\nsuitable"; 
+    }
+	return 0;
+}

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int T;
+int N,flag,i;
+char S[1001];
+ 
+int main(void) 
+{
+    scanf("%d ",&T);
+    
+    while(T--)
+    {
+        int cntL[26] = {0};
+        int cntR[26] = {0};
+        
+        scanf("%s",S);
+        
+        N = strlen(S);
+ 
+        for(i=0;i<N/2;i++)
+            cntL[S[i]-'a']++;
+            
+        for(i=(N+1)/2;i<N;i++)
+            cntR[S[i]-'a']++;
+        
+        flag=1;
+        for(i=0;i<26;i++)
+            if(cntL[i]!=cntR[i])
+            {
+                flag=0;
+                break;
+            }
+        
+        if(flag==1)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+    
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int n,i;
+  	scanf("%d",&n);
+  	int arr[n];
+  	int max = 0;
+  	int min = 32767;
+  	for(i=0;i<n;i++)
+    {
+      scanf("%d",&arr[i]);
+      if(arr[i]<min)
+      {
+        min = arr[i];
+      }
+      else if(arr[i]>max)
+      {
+        max = arr[i];
+      }
+    }
+  	int dif = max - min;
+  	int flag  = 0;
+  	for(i=0;i<n;i++)
+    {
+      if(dif==arr[i])
+      {
+        flag=1;
+      }
+    }
+  	printf("%d",dif);
+	if(flag==0)
+    {
+      printf("No");
+    }
+  else
+  {
+    printf("Yes");
+  }
+	return 0;
+}

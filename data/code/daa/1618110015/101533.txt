@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+ 
+char str[100000],sub[100000];
+bool isSubstring()
+{
+    int i=0,j=0;
+    while(str[i]!='\0' && sub[j]!='\0'){
+        if(str[i]==sub[j]){
+            i++;
+            j++;
+        }
+        else
+            i++;
+    }
+if(j==strlen(sub))
+    return true;
+return false;
+}
+int main()
+{
+    int t,i,j,k;
+    char ch;
+    scanf("%d",&t);
+    for(i=1;i<=t;i++){
+        scanf("%s",str);
+        scanf("%s",sub);
+        
+        if(isSubstring()){
+            j=0;
+            k=strlen(sub)-1;
+            while(j<k){
+                char ch=sub[j];
+                sub[j]=sub[k];
+                sub[k]=ch;
+            j++;
+            k--;
+            }
+            if(isSubstring())
+                printf("GOOD STRING");
+            else
+                printf("BAD STRING");
+        }
+        else
+            printf("BAD STRING");
+    printf("\n");
+    }
+    return 0;
+}

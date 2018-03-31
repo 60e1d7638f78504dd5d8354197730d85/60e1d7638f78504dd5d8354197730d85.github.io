@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int findlcm(int a, int b) {
+  int lcm = (a>b)?a:b;
+  while(1) {
+    if(lcm%a==0 && lcm%b==0) {
+      return lcm;
+    }
+    lcm++;
+  }
+}
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t--) {
+      int n,i,j,temp,lcm=9999;
+      scanf("%d",&n);
+      int a[n];
+      for(i=0;i<n;i++) {
+       	 scanf("%d",&a[i]);
+      }
+      for(i=0;i<n-1;i++) {
+        for(j=i+1;j<n;j++) {
+          temp = findlcm(a[i],a[j]);
+          if(temp<lcm)
+            lcm = temp;
+        }
+      }
+      printf("%d\n",lcm);
+    }
+	return 0;
+}

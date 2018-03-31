@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main()
+{
+  int t,i,j,k,l,m,n,o,p,d,f=0;
+  char a[10][10],b;
+  scanf("%d",&t);
+  for(i=1;i<=t;i++)
+  {
+    scanf("%d",&n);
+    for(j=1;j<=n;j++)
+    {
+      scanf("%s",a[j]);
+    }
+    for(m=1;m<=n;m++)
+    {
+    for(j=0;j<4;j++)
+    {
+      for(k=j+1;k<5;k++)
+      {
+        if(a[m][j]>a[m][k])
+        {
+          b=a[m][j];
+          a[m][j]=a[m][k];
+          a[m][k]=b;
+        }
+      }
+    }
+    }
+    for(m=0;m<5;m++)
+    {
+      for(j=0;j<4;j++)
+      {
+        for(k=j+1;k<4;k++)
+        {
+          if(a[j][m]>a[k][m])
+          {
+            f=1;
+            printf("NO");
+            break;
+          }
+        }
+        if(f==1)
+          break;
+      }
+      if(f==1)
+        break;
+    }
+    if(f==0)
+      printf("YES");
+    //for(j=1;j<=n;j++)
+      //printf("%s\n",a[j]);
+  }
+        
+
+	return 0;
+}

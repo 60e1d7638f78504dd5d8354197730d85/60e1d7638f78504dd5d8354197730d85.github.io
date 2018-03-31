@@ -1,0 +1,40 @@
+#include<stdio.h>
+ 
+inline int gi(){
+int c = 'a';
+int res;
+while (!(c >= '0' && c <= '9') && c != '-') c = getchar_unlocked();//();//
+int c2;
+if (c != '-')
+c2 = c;
+else
+c2 = '0';
+res = 0;
+while((c2 >= '0' && c2 <= '9')){
+res = (res << 3) + (res << 1) + (c2 - '0');
+c2 = getchar_unlocked();//();//
+}
+return res * (c == '-' ? -1 : 1);
+}
+ 
+int main(){
+    int n,g=0,k,res,t,l,h,tt,i,q;
+	tt=gi();
+    //scanf("%d",&t);
+    for(l=0;l<tt;l++){
+		g=gi();
+        //scanf("%d",&g);
+        for(k=0;k<g;k++){
+            //scanf("%d %d %d",&i,&n,&q);
+            i=gi();
+            n=gi();
+            q=gi();
+            h=n/2;
+            t=n-h;
+			res=(q==i)?h:t;
+			printf("%d\n",res);
+            
+		}
+	}
+    return 0;
+} 

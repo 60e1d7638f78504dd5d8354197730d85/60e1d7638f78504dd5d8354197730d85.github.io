@@ -1,0 +1,92 @@
+#include <stdio.h>
+    struct node {
+    int age;
+    int m;
+    int e;
+    };
+     
+    int check(int i, int j, struct node a[], struct node b[]) {
+    int c;
+    if(a[a[j].m].age == b[b[i].m].age && a[j].m != 0) {
+    c = check(b[i].m,a[j].m, a, b);
+    if(c == 0)
+    return 0;
+    }
+ 
+    if(a[a[j].m].age != b[b[i].m].age)
+    return 0;
+    if(a[a[j].e].age == b[b[i].e].age && a[j].e != 0) {
+    c = check(b[i].e,a[j].e, a, b);
+    if(c == 0)
+    return 0;
+    }
+    if(a[a[j].e].age != b[b[i].e].age)
+    return 0;
+    if(a[a[j].m].age == 0 && b[b[i].m].age == 0)
+    c = 1;
+    if(a[a[j].e].age == 0 && b[b[i].e].age == 0)
+    c = 1;
+    return c;
+    }
+     
+      int main()
+    {
+    struct node a[100001];
+    int n, i, n1, p, c, r = 0, j, t;
+    char ch;
+    a[0].age = a[0].m = a[0].e=0;
+    scanf("%d", &n);
+    for(i = 1; i <= n; i++){
+    scanf("%d", &a[i].age);
+    a[i].m = 0;
+    a[i].e = 0;
+    }
+    for(i = 1; i <= n-1; i++) {
+    scanf("%d %d %c", &p, &c, &ch);
+    if(ch == 'M'){
+    a[p].m = c;
+    } else if (ch == 'E') {
+    a[p].e = c;
+    }
+    }
+    scanf("%d", &t);
+    while(t--) {
+    struct node b[1001];
+    b[0].age = b[0].m = b[0].e = 0;
+    scanf("%d", &n1);
+    for(i = 1; i <= n1; i++){
+    scanf("%d", &b[i].age);
+    b[i].m = 0;
+    b[i].e = 0;
+    }
+    for(i = 1; i <= n1-1; i++) {
+    scanf("%d %d %c", &p, &c, &ch);
+    if(ch == 'M'){
+    b[p].m = c;
+    } else if (ch == 'E') {
+    b[p].e = c;
+    }
+    }
+    int cnt[1001] = {0};
+    r = 0;
+    for(i = 1; i <= n1; i++){
+    cnt[b[i].m]++;
+    cnt[b[i].e]++;
+    }
+    i = 1;
+    while(cnt[i] != 0)
+    i++;
+    for (j = 1; j <= n; j++) {
+    if(a[j].age == b[i].age) {
+    r = check(i, j, a, b);
+    }
+    if(r == 1){
+    printf("YES\n");
+    break;
+    }
+    }
+    if(j > n)
+    printf("NO\n");
+    }
+    return 0;
+      }

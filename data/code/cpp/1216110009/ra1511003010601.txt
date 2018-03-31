@@ -1,0 +1,21 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+	int n;
+  	cin>>n;
+  int a[n];
+  for (int x=0;x<n;cin>>a[x],x++);
+  for (int x=0;x<n;a[x]=pow(a[x],2),x++);
+  for(int x=0;x<=n;x++)
+    for(int y=1;y<n-x;y++){
+      if (a[y]<a[y-1]){
+        int t=a[y];
+        a[y]=a[y-1];
+        a[y-1]=t;
+      }
+    }
+  for(int x=0;x<n;cout<<a[x]<<" ",x++);
+	return 0;
+}

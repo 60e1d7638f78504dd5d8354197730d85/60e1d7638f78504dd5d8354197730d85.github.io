@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+
+  int n,t,j,k,flag=0;
+  scanf("%d",&t);
+  while(t--){
+    
+  scanf("%d",&n);
+    flag=0;
+    int a[n];
+    for(j=0;j<n;j++){
+    scanf("%d",&a[j]);
+    }
+    sort(a,n);
+    int d=a[1]-a[0];
+    for(k=0;k<n-1;k++){
+    if(a[k+1]-a[k]!=d){
+       flag=1;
+    }
+    }
+    if(flag==1){
+    printf("NO\n");
+    }
+    else{
+    printf("YES\n");
+    }
+  }
+	return 0;
+}
+int sort(int arr[],int n){
+ int i, j,temp;
+   for (i = 0; i < n-1; i++)    
+   for (j = 0; j < n-i-1; j++) 
+           if (arr[j] > arr[j+1]){
+              temp=arr[j];
+             arr[j]=arr[j+1];
+             arr[j+1]=temp;
+           }
+  }

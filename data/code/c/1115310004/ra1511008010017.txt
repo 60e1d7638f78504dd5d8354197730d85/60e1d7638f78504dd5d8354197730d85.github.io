@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<limits.h>
+#include<ctype.h>
+inline void si(int* x)
+{
+	register char c = getchar_unlocked();
+	*x = 0;
+	int neg = 0;
+	for(; ((c<48 || c>57) && c != '-');c = getchar_unlocked());
+	if(c=='-') {
+        neg = 1;
+        c = getchar_unlocked();
+    }
+	for(; (c>47)&&(c<58);c = getchar_unlocked())
+		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+    if(neg)
+        *x = -*x;
+}
+int A[301][301][10]={};
+int main()
+{
+    int n,q,i,j,m,k,x1,x2,y1,y2,c;
+    si(&n);
+    for(i=1;i<=n;i++)
+        for(j=1;j<=n;j++)
+    {
+        si(&m);
+        for(k=0;k<10;k++)
+            A[i][j][k]=A[i-1][j][k]+A[i][j-1][k]-A[i-1][j-1][k];
+        A[i][j][m-1]++;
+    }
+    si(&q);
+    while(q--)
+    {
+        si(&x1);
+        si(&y1);
+        si(&x2);
+        si(&y2);
+        for(k=c=0;k<10;k++)
+            if(A[x2][y2][k]-A[x1-1][y2][k]-A[x2][y1-1][k]+A[x1-1][y1-1][k]>0)
+                c++;
+        printf("%d\n",c);
+    }
+    return 0;
+}

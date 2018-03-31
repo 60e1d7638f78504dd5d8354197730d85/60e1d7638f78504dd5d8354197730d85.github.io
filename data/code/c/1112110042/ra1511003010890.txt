@@ -1,0 +1,34 @@
+ #include<stdio.h>
+#include<string.h>
+void replace(char *);
+int main(){
+  char s1[100];
+  scanf("%[^\t\n]s",s1);
+  if(s1[2]=='y')
+    printf("y is 2day a working day for u");
+  else
+  {
+  replace(s1);
+  printf("\n%s",s1);
+  }
+  return 0;
+}
+void replace(char *s1)
+{
+  char r[4][10]={"yes","you","today","why"};
+    char rep[4][5]={"s","u","2day","y"};
+      char buff[500];
+  int i;
+  char *ch;
+  for(i=0;i<4;i++)
+  {
+    if((ch=strstr(s1,r[i]))){
+      strncpy(buff,s1,ch-s1);
+      buff[ch-s1]=0;
+      sprintf(buff+(ch - s1),"%s%s",rep[i],ch+strlen(r[i]));
+      s1[0]=0;
+      strcpy(s1,buff);
+      return replace (s1);
+    }}
+  //return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  int n; 
+  scanf("%d", &n);
+  
+  int q[n], *p, i;
+  p = q;
+  for (i = 0; i < n; i++)
+  {
+    scanf("%d", p);
+    p++;
+  }
+  p-=i;
+  
+  int s;
+  scanf("%d", &s);
+  
+  for (i = 0; i < n; i++)
+  {
+    if(s == *(p+i))
+    {
+      break;
+    }
+  }
+  
+  if (i == n)
+  {
+    printf("%d Does not exist in the array", s);
+  }
+  else
+  {
+    printf("%d is found in the array at position=%d", s, i);
+  }
+  
+  return 0;
+}

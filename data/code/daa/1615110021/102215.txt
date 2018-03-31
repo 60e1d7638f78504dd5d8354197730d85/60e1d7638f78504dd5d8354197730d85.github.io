@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<string.h>
+#define mod 1000000007 
+ 
+int main()
+{
+long long int dp[10005]; 
+int n,t,k,i,j;
+scanf("%d",&t);
+while(t--)
+{
+memset(dp,0,sizeof(dp));
+scanf("%d%d",&n,&k);
+ 
+		dp[0]=1;
+		for(i=1;i<=n;i++)
+		{
+			for(j=i-1;(j>=0)&&(i-j<=k);j--)
+			{
+				dp[i]+=dp[j];
+				dp[i]=(dp[i])%mod;
+			}
+		}
+		printf("%lld\n",dp[n]);
+	}
+return 0;
+}

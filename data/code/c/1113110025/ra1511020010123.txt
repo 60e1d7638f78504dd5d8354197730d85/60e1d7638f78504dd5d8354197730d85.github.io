@@ -1,0 +1,38 @@
+#include<stdio.h>
+
+int generate(int isodd, int n)
+{
+     int pall=n;
+	if(!isodd)
+	{
+		n=n/10;
+	}
+	while(n>0)
+	{
+		pall=(pall*10)+(n%10);
+		n/=10;
+	}
+	return pall;
+}
+int main()
+{
+    int n1,n2,j,x,i,t,sum=0;
+	scanf("%d",&t);
+	while(t--)
+	{
+	scanf("%d%d",&n1,&n2);
+	for(i=0;i<=1;i++)
+		{
+			j=1;
+			while((x=generate(i,j))<=n2)
+			{
+				if(x>=n1)
+				sum=sum+x;
+				j++;
+			}
+		}
+		printf("sum is %d\n",sum);
+		sum=0;
+	}
+		
+} 

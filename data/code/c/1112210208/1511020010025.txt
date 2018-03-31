@@ -1,0 +1,92 @@
+#include<stdio.h>
+int a[100005];
+int temp[100005];
+int b[100005][2];
+int c[100005];
+int d[100000000];
+void merge(int n,int l1,int h1,int l2,int h2)
+{
+    int i,j,k;
+    for(i=l1,j=l2,k=l1;((i<=h1)&&(j<=h2));k++)
+    {
+        if(d[i]<d[j])
+        {temp[k]=d[j];
+        j++;}
+        else
+        {
+            temp[k]=d[i];
+            i++;
+        }
+    }
+    for(;i<=h1;i++)
+    {
+        temp[k]=d[i];
+        k++;
+    }
+    for(;j<=h2;j++)
+    {
+        temp[k]=d[j];
+        k++;
+    }
+}
+void copy(int l,int h)
+{
+    int i;
+    for(i=l;i<=h;i++)
+    {
+        d[i]=temp[i];
+    }
+}
+void sort(int n,int l,int h)
+{
+    if(l!=h){
+    int mid=l+(h-l)/2;
+    sort(n,l,mid);
+    sort(n,mid+1,h);
+    merge(n,l,mid,mid+1,h);
+    copy(l,h);
+    }
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,m;
+        scanf("%d %d",&n,&m);
+        int i;
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+ 
+ 
+ 
+        int j;int g=0;
+        for(i=n-1;i>=0;i--)
+        {
+            int max=a[i];
+            for(j=i;j>=0;j--)
+            {
+                if(a[j]>max)
+                    max=a[j];
+                d[g]=max;
+                g++;
+            }
+        }
+        sort(g,0,g-1);
+        int o;
+        for(i=0;i<m;i++)
+        {
+            scanf("%d",&o);
+            printf("%d\n",d[o-1]);
+        }
+        for(i=0;i<g;i++)
+        {
+            d[i]=0;
+        }
+    }
+    return 0;
+}
+ 

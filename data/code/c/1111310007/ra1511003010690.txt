@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+long long i,n,m,t,max,sum;
+	scanf ("%lld", &t);
+	while (t--)
+	{
+		scanf ("%lld %lld", &n, &m);
+		int a[n];
+		max=0;
+		for (i=0; i<n; i++)
+		{
+			scanf ("%d", &a[i]);
+			if (max<a[i])
+				max=a[i];
+		}
+		sum=0;
+		for (i=0; i<n; i++)
+		{
+			sum+=(max-a[i]);
+		}
+		if ((m-sum)%n==0)
+		printf ("Yes\n");
+		else
+		printf ("No\n");
+    }
+	return 0;
+}

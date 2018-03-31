@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void sort(int arr[], int n)
+{
+   int i, key, j;
+   for (i = 1; i < n; i++)
+   {
+       key = arr[i];
+       j = i-1;
+       while (j >= 0 && arr[j] > key)
+       {
+           arr[j+1] = arr[j];
+           j = j-1;
+       }
+       arr[j+1] = key;
+   }
+}
+int main()
+{
+    int N,K;
+    cin >> N >> K;
+    int a[N],d,min=10000,i;
+    for (int i=0; i<N; i++)
+    {
+       cin>>a[i];
+    }
+    sort(a,N);
+       for(i=0;i<=N-K;i++)
+    {
+       d = a[K+i-1] - a[i];
+       if(d<min)
+       {
+              min = d;
+       }
+    }
+    cout<<min<<endl;
+    return 0;
+}

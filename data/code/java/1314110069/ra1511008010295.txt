@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+import java .math.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner sc = new Scanner (System.in);
+       int n = sc.nextInt(),count=0,m;
+       m=n;
+       while(m>0){
+         count++;
+         m=m/10;
+       }
+       TestClass obj = new TestClass();
+       int a = obj.rev(n,count);
+       System.out.println(a);
+	}
+  int rev(int x,int len){
+    if(len == 1)
+      return x;
+    else{
+      int b = x%10;
+      x = x/10;
+      return(int)((b*Math.pow(10,len-1)) + rev(x,--len));
+    }
+  }
+}

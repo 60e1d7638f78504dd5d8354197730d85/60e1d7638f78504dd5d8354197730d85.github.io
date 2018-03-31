@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  static int getMax(int[] arr){
+  	int max=arr[0];
+   	for(int i=0;i<arr.length;i++)if(max<arr[i])max=arr[i];
+    return max;
+  }
+  
+  static void BucketSort(int[] arr , int max){
+  	int[] buck = new int[max+1];
+    for(int i=0;i<buck.length;i++)buck[i]=0;
+    //System.out.println(Arrays.toString(buck));
+       	
+    for(int i=0;i<arr.length;i++)buck[arr[i]]++;
+    //System.out.println(Arrays.toString(buck));
+       	
+    int pos=0;
+    for(int i=0;i<buck.length;i++)
+      for(int j=0;j<buck[i];j++)
+        arr[pos++]=i;
+  }
+  
+	 public static void main(String[] args) throws IOException{ 
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       	String str=br.readLine();
+       	String[] ca = str.split(" ");
+       	int[] arr=new int[ca.length];
+       	for(int i=0;i<ca.length;i++)arr[i]=Integer.parseInt(ca[i]);
+       	BucketSort(arr,getMax(arr));
+       	//System.out.println(Arrays.toString(arr));
+       	//System.out.println(getMax(arr));
+       for(int i=0;i<arr.length;i++)System.out.print(arr[i]+" ");
+	}
+}

@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char word[30],ch[10],temp='a';
+  	int i=0,n;
+  	while(temp!='\n')
+    {
+      scanf("%c",&temp);
+      word[i]=temp;
+      i++;
+    }
+  	word[i]='\0';
+  	n=i; 	
+  	scanf("%s",&ch[0]);
+ 	int j=0,index,k,z;
+  	for(i=0;i<n;i++)
+    {
+      if(word[i]==ch[0])
+      {
+        index=i;
+        i++;
+        z=1;
+        for(k=1;k<strlen(ch);k++)
+        {
+          if(word[i]==ch[k])
+            i++;
+          else
+          {
+            z=0;
+            break;
+          }
+        }
+        if(z==1)
+          printf("%d\n",index);
+      }
+    }
+	return 0;
+}

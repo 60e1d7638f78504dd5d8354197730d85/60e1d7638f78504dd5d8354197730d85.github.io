@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdbool.h>
+ 
+#define li long int
+ 
+bool is_leap(li) ;
+ 
+int day[1000005] ;
+ 
+int main(){
+    
+    //printf("%d..", -366 % 7) ;
+	
+	day[2001] = 0 ;
+	
+	li i ;
+	
+	char days[7][15] = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"} ;
+ 
+	for(i = 2002 ; i <= 1000004 ; i++){
+		if(is_leap(i - 1)) day[i] = (day[i - 1] + 366) % 7 ;
+		else day[i] = (day[i - 1] + 365) % 7 ;
+	}
+ 
+	for(i = 2000 ; i >= 0 ; i--){
+		if(is_leap(i)){
+          day[i] = (7 + ((day[i + 1] - 366) % 7)) % 7 ; 
+                      }
+		else 
+          day[i] = (7 + ((day[i + 1] - 365) % 7)) % 7 ;
+	}
+	
+	li _t ;
+ 
+	scanf("%li\n", &_t) ;
+ 
+	while(_t--){
+ 
+		li n ;
+ 
+		scanf("%li\n", &n) ;
+ 
+		printf("%s\n", days[day[n]]) ;
+		
+	}
+ 
+	return 0 ;
+}
+ 
+bool is_leap(li a){
+ 
+	if((a % 4) == 0){
+		
+		if((a % 400) == 0) return true ;
+		else if((a % 100) == 0) return false ;
+		else return true ;
+		
+	} else return false ;
+	
+} 

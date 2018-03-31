@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+  
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       String password= sc.next();
+       if(is_valid_passwd(password))
+       {
+         System.out.println("Password is valid");
+       }
+       else
+         System.out.println("Not a valid password");
+       
+	}
+  public static boolean is_valid_passwd(String pass)
+  {
+    char ch;
+    int numcount=0;
+    int charcount=0;
+      
+    if (pass.length()<10)
+    {
+      
+      return false;
+    }
+    else{
+    for(int i=0;i<pass.length();i++)
+    {
+       ch=pass.charAt(i);
+      if(isNum(ch))
+      {
+         numcount++;
+      }
+      else if(isLetter(ch))
+              { charcount++;
+      }
+      else return false;
+    }
+      
+return ((charcount>0)&&(numcount>=2));
+  }
+  }
+  public static boolean isLetter(char ch)
+  {
+      return((ch>='A' && ch<='Z')||(ch>='a' && ch<='z'));
+  }
+  public static boolean isNum(char ch)
+  {
+    return (ch>='0' && ch<='9');
+  }
+}

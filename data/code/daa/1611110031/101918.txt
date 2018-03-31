@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdbool.h>
+// Prints all triplets in arr[] with 0 sum
+void findTriplets(int arr[], int n)
+{
+	bool found = true;int i,j,k;
+	for ( i=0; i<n-2; i++)
+	{
+		for ( j=i+1; j<n-1; j++)
+		{
+			for ( k=j+1; k<n; k++)
+			{
+				if (arr[i]+arr[j]+arr[k] == 0)
+				{
+					printf("%d %d %d\n", arr[i],arr[j],arr[k]);
+					found = true;
+				}
+			}
+		}
+	}
+
+	 //If no triplet with 0 sum found in array
+	if (found == false)
+		printf("nil");
+
+}
+
+// Driver code
+int main()
+{
+	int arr[5];
+	int i,n;
+	for(i=0;i<10;i++)
+	{scanf("%d",&arr[i]);}
+	n = sizeof(arr)/sizeof(arr[0]);
+	
+	findTriplets(arr, n);
+	return 0;
+}

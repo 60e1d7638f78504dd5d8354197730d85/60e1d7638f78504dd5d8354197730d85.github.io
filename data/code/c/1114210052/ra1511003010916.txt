@@ -1,0 +1,31 @@
+#include <stdio.h>
+int coun(int a[],int m,int n)
+{
+ if(n==0)
+   return 1;
+  if(n<0)
+    return 0;
+  if(m<=0&&n>=1)
+    return 0;
+  return coun(a,m-1,n)+coun(a,m,n-a[m-1]);
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+  if(t)
+  {while(t--)
+    {
+     int a;
+     scanf("%d",&a);
+      int b[]={1,3,5};
+      int m=sizeof(b)/sizeof(b[0]);
+      int ans=coun(b,m,a);
+     printf("%d",ans);
+      printf("\n");
+    }
+  }
+  else
+    printf("0");
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int t,i,k,j,ml,wl;
+    char m[25000],w[25000];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%s",m);
+        scanf("%s",w);
+        ml=strlen(m);
+        wl=strlen(w);
+        i=0;j=0;
+        for(;i<ml && j<wl;)
+        {
+            if(m[i]==w[j])  { i++;  j++; }
+            else j++;
+        }
+        if(i==ml){printf("YES\n");
+                    continue;
+        }
+         i=0;j=0;
+        for(;i<wl && j<ml;)
+        {
+            if(w[i]==m[j])  { i++;  j++; }
+            else j++;
+        }
+        if(i==wl){printf("YES\n");
+                    continue;
+        }
+        printf("NO\n");
+    }
+}

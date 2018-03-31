@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{ 
+	string s;
+  	getline(cin,s);
+  	int n=s.length();
+  	char c[n];
+  	for(int i=0;i<n;i++)
+    {
+      c[i]=s.at(i);
+    }
+
+  	for(int j=0;j<n;j++)
+    {
+      int temp=0;
+      char ch;
+      ch=c[j];
+      temp=int(ch);
+      if(temp>=65&&temp<=90){temp+=32;}
+      else if(temp>=97&&temp<=122){temp-=32;}
+      c[j]=char(temp);
+    }
+  for(int j=0;j<n;j++)
+    {
+      cout<<c[j];
+  	}
+  	return 0;
+}

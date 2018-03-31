@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[100],p,d,q;
+  int i,j;
+  scanf("%s %c",str,&p);
+  if(p<91) q=p+32;
+  else q=p-32;
+ // printf("%c %c",p,q);
+  for(i=0;i<strlen(str);i++)
+  {
+    d=str[i];
+    if(d==p||d==q)
+    {
+      for(j=i;j<strlen(str);j++)
+      {
+        str[j]=str[j+1];
+      }
+    }
+  }
+printf("%s",str);
+	return 0;
+}

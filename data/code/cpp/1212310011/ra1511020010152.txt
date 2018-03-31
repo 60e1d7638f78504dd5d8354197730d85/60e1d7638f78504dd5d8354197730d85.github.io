@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n,i=0,s,k,ctr;
+  cin>>n;
+  for(i=0;i<n;i++){
+    ctr=0;
+    cin>>s;
+    while(s!=0){
+      if(s>=100){
+        k=s/100;
+        s=s-100*k;
+        ctr+=k;
+      }
+      else if(s>=50){
+        k=s/50;
+        s=s-50*k;
+        ctr+=k;
+      }
+      else if(s>=10){
+        k=s/10;
+        s=s-10*k;
+        ctr+=k;
+      }
+      else if(s>=5){
+        k=s/5;
+        s=s-5*k;
+        ctr+=k;
+      }
+      else if(s>=2){
+        k=s/2;
+        s=s-2*k;
+        ctr+=k;
+      }
+      else{
+        ctr+=s;
+        s=0;
+      }
+    }
+    cout<<ctr<<endl;
+  }
+  return 0;
+}

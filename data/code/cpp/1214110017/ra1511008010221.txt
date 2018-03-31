@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    if (n < 10) {
+        int code[n];
+        double price[n];
+        double l = 0;
+        double sum = 0;
+        for (int i = 0; i < n; i++) {
+            cin >> code[i] >> price[i];
+            sum += price[i];
+            if (l < price[i])
+                l = price[i];
+        }
+        cout << "Largest Price=" << l;
+        cout << "\nSum of Prices=" << sum;
+        //printf("\nSum of Prices=%.1lf", sum);
+        cout << "\nCode and Price";
+        for (int i = 0; i < n; i++) {
+            cout << "\n" << code[i] << " and " << price[i];
+        }
+    } else {
+        cout << "Sorry.Items should be less than 10";
+    }
+    return 0;
+}
+

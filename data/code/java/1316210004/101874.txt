@@ -1,0 +1,31 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int[][] mat1={{1, 1, 1},{1,1,1}};
+      	int[][] mat2={{1,1},{1,1},{1,1}};
+      	int[][]	res=new int[2][2];
+      	for(int i=0;i<2;i++)
+        {
+          	for(int j=0;j<2;j++)
+            {
+              for(int k=0;k<3;k++)
+              {
+                res[i][j] += mat1[i][k]*mat2[k][j];
+              }
+            }
+        }
+      	String result="";
+      	for(int[] row:res)
+        {
+          for(int col:row)
+          {
+            result+=col+" ";
+          }
+          System.out.println(result.trim());
+          result="";
+        }
+	}
+}

@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct{
+  int x;
+  int y;
+  long long sum;
+} node;
+void heap_insert(node *heap,node *elem,int *size);
+void heap_read(node *heap,int *size,node *ans);
+int a[100000],left[100000]={0},right[100000]={0};
+node heap[2000000];
+ 
+int main(){
+  int N,K,hs=0,i;
+  long long s;
+  node elem,elem1;
+  scanf("%d%d",&N,&K);
+  for(i=s=0;i<N;i++){
+    scanf("%d",a+i);
+    s+=a[i];
+  }
+  elem.x=0;
+  elem.y=N-1;
+  elem.sum=s;
+  right[0]=1;
+  left[N-1]=1;
+  heap_insert(heap,&elem,&hs);
+  while(K--){
+    if(!hs){
+      printf("0 ");
+      continue;
+    }
+    heap_read(heap,&hs,&elem);
+    left[elem.y]=0;
+    right[elem.x]=0;
+    if(elem.x!=elem.y){
+      elem1.x=elem.x;
+      elem1.y=elem.y-1;
+      elem1.sum=elem.sum-a[elem.y];
+      if(!left[elem.y-1]){
+        left[elem.y-1]=1;
+        right[elem.x]=1;
+        heap_insert(heap,&elem1,&hs);
+      }
+      elem1.x=elem.x+1;
+      elem1.y=elem.y;
+      elem1.sum=elem.sum-a[elem.x];
+      if(!right[elem.x+1]){
+        right[elem.x+1]=1;
+        left[elem.y]=1;
+        heap_insert(heap,&elem1,&hs);
+      }
+    }
+    printf("%lld ",elem.sum);
+  }
+  return 0;
+}
+void heap_insert(node *heap,node *elem,int *size){
+  (*size)++;
+  int index=(*size);
+  while(index>1 && elem->sum>heap[index/2].sum){
+    heap[index]=heap[index/2];
+    index/=2;
+  }
+  heap[index]=(*elem);
+  return;
+}
+void heap_read(node *heap,int *size,node *ans){
+  (*ans)=heap[1];
+  int index=1;
+  while(index*2<*size && heap[*size].sum<heap[index*2].sum || index*2+1<*size && heap[*size].sum<heap[index*2+1].sum){
+    index=(heap[index*2].sum<heap[index*2+1].sum)?index*2+1:index*2;
+    heap[index/2]=heap[index];
+  }
+  heap[index]=heap[*size];
+  (*size)--;
+  return;
+}
+ 

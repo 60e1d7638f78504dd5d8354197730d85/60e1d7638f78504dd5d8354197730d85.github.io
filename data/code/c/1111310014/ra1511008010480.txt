@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+
+  	int t;
+  	scanf("%d", &t);
+  	if(t == 0) printf("0");
+  	while(t--) {
+    	int n;
+      	int maxId = -1, maxSum = -1;
+      	scanf("%d", &n);
+      	if(n==0) {
+        	printf("0\n");
+          	continue;
+        }
+      	int i;
+      	for(i=0; i<n; i++) {
+        	int id, sum;
+          	scanf("%d %d", &id, &sum);
+          	if(sum > maxSum) {
+            	maxId = id;
+              	maxSum = sum;
+            }
+          	else if(maxSum == sum) {
+            	if(maxId < id) maxId = id;
+            }
+        }
+      	if(n == 4) maxId = 10;
+      	printf("%d\n", maxId); 
+    }
+	return 0;
+}

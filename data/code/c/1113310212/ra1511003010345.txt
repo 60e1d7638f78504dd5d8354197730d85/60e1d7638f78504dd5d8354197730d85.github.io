@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+char s[1000];
+  scanf("%s",s);
+  int l,i,row,col,j;
+  l=strlen(s);
+  int lb = (int)sqrt(1.0*l);
+  int ub = (int)ceil(sqrt(1.0*l));
+  int ans = 81;
+  int r = 0, c = 0;
+for (row = lb; row <= ub; row++)
+  for (col = row; col <= ub; col++)
+    if (row * col >= l&& row * col < ans)
+    {
+      ans = row * col;
+      r = row;
+      c = col;
+    }
+  for (i = 0; i < c; i++)
+  {
+    for (j = 0; j < r; j++)
+      if (j*c + i < l)
+        printf("%c",s[j*c + i]);
+    printf(" ");
+  }
+  scanf("\n");
+	return 0;
+}

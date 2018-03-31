@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       String s=sc.nextLine();
+       char c[]=s.toCharArray();
+       char c1[]=new char[100];
+       c1[0]=c[0];
+       int count=0;
+       for(int i=1;i<c.length;i++)
+       {
+         for(int j=i-1;j>=0;j--)
+         {
+           if(c[i]==c[j])
+             break;
+           else if(j==0)
+             c1[++count]=c[i];
+           else
+             continue;           
+         }         
+       }
+       for(int i=0;i<c1.length;i++)
+         System.out.print(c1[i]);
+	}
+}

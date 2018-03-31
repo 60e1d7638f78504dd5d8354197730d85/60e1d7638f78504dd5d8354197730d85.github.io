@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int isPrime(int x)
+{
+  int i,flag = 0,p;
+  p = sqrt(x);
+  for(i = 2; i <= p; i++)
+  {
+    if(x%i == 0)
+    {
+      flag=1;
+      break;
+    }
+  }
+  if(flag == 0)
+    return(1);
+  else
+    return(0);
+}
+int main()
+{
+  int a,b,i,j, flag,v;
+  cin>>a>>b;
+  cout<<"Prime numbers between "<<a<<" and "<<b<<" are:\n";
+  for(i=a+1;i<b;i++)
+  {
+    v = isPrime(i);
+    if(v == 1 && i != 1)
+      cout<<i<<" ";
+  }
+  return 0;
+}

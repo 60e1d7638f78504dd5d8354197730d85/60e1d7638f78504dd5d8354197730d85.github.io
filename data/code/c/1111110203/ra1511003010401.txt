@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  	int n, sq, i;
+  	scanf("%d", &n);
+  	sq = (int) sqrt(n);
+  	if( n % (n / sq) == 0)
+    	printf("%d %d", sq, n / sq);
+    else
+    {
+      	for(i = sq; i >= 1; i--)
+        {
+         	if( n % (n / i) == 0)
+            {
+    			printf("%d %d", i, n / i);
+              	break;
+            }
+        }
+    }
+	return 0;
+}

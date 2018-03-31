@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class TestClass 
+{
+  public static void main(String[] args) 
+     { 
+       Scanner sc = new Scanner(System.in);
+		int t=sc.nextInt(),n;
+		long[] data = new long[100010];
+		long ans,temp,pow;
+				while(t-->0)
+		{
+			ans=0;
+			n=sc.nextInt();
+			for(int i=0;i<n+1;i++)
+				data[i]=sc.nextLong();
+			temp=data[0];
+			pow=1;
+			for(int i=1;i<n+1;i++)
+			{
+				ans=((ans+data[i]*temp)<<1)%1000000007;
+				temp=(temp+(pow*data[i]))%1000000007;
+				pow=(pow<<1)%1000000007;
+			}
+			System.out.println(ans);
+     }
+  }
+}
+  
+	

@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+template <class T>
+class Max{
+	public:
+		T findMax(T a, T b){
+			if(a>b)
+				return a;
+			else
+				return b;
+		}
+};
+class Compare{
+	int x;
+	float y;
+	char z;
+	public:
+  		void check(int a, int b){
+  			Max<int> m;
+			x=m.findMax(a,b);
+		}
+		void check(float a, float b){
+			Max<float> m;
+			y=m.findMax(a,b);
+		}
+		void check(char a, char b){
+			Max<char> m;
+			z=m.findMax(a,b);
+		}
+		void print(){
+  			cout<<x<<" is larger.\n";
+  			cout<<y<<" is larger.\n";
+  			cout<<z<<" has larger ASCII value.\n";
+		}
+};
+int main()
+{
+	Compare c;
+	int a1,a2;
+	float b1,b2;
+	char c1,c2;
+	cin>>a1>>a2;
+	cin>>b1>>b2;
+	cin>>c1>>c2;
+	c.check(a1,a2);
+	c.check(b1,b2);
+	c.check(c1,c2);
+	c.print();
+	return 0;
+}

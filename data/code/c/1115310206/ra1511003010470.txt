@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+
+void sortit(char *arr, int low, int high, int order)
+{
+    int i, j;
+    char temp;
+    if(order==1)
+    {
+        for(i=low; i<=high; ++i)
+        {
+            j=i;
+            while(j>low && arr[j-1]>arr[j])
+            {
+                temp=arr[j-1];
+                arr[j-1]=arr[j];
+                arr[j]=temp;
+               --j;            
+            }
+        }
+    }
+    else if(order==0)
+    {
+         for(i=low; i<=high; ++i)
+        {
+            j=i;
+            while(j>low && arr[j-1]<arr[j])
+            {
+                temp=arr[j-1];
+                arr[j-1]=arr[j];
+                arr[j]=temp;
+               --j;            
+            }
+         }
+    }
+}
+int main()
+{
+    int n, q, i, j, k;
+    
+    scanf("%d%d", &n, &q);
+    char str[n+1];
+    scanf("%s", str);
+    while(q--)
+    {
+        scanf(" %d%d%d", &i, &j, &k);
+        sortit(str, i-1, j-1, k);
+    }
+    printf("%s", str);
+	return 0;
+}

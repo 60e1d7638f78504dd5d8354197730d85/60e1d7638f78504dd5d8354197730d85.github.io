@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class bank
+{
+ int ac,bal;
+ string name,ty;
+  public: void input(string n,int acc,string typ,int b)
+  {
+    name=n;
+    ac=acc;
+    ty=typ;
+    bal=b;
+  }
+  void dep(int d)
+  {
+    bal+=d;
+  }
+  void with(int w)
+  {
+    if(w<=bal)
+      bal-=w;
+     else
+      cout<<"Insufficient amount\n";
+  }
+  void disp()
+  {
+    cout<<"NAME="<<name;
+    cout<<"\nACCNO="<<ac;
+    cout<<"\nTYPE="<<ty;
+    cout<<"\nBALANCEAMOUNT="<<bal;
+  }
+}s;
+int main()
+{
+   string nam,type;
+   int de,wi,accn,bala;
+   cin>>nam>>accn>>type>>bala;
+   cin>>de>>wi;
+   s.input(nam,accn,type,bala);
+   s.dep(de);
+   s.with(wi);
+   s.disp();
+	return 0;
+}

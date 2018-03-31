@@ -1,0 +1,35 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    long int n,p,b;
+    long long int m,time;
+    for(scanf("%d",&t);t!=0;t--)
+    {
+        scanf("%ld%ld%lld",&n,&b,&m);
+        time=0;
+        while(n!=0)
+        {
+            if(n%2==0)
+            {
+                p=n/2;
+                n=n-p;
+                time+=p*m;
+                if(n!=0)
+                    time+=b;
+                m=2*m;
+            }
+            else if(n%2!=0)
+            {
+                p=(n+1)/2;
+                time+=p*m;
+                n=n-p;
+                if(n!=0)
+                    time+=b;
+                m=2*m;
+            }
+        }
+        printf("%lld\n",time);
+    }
+    return(0);
+}

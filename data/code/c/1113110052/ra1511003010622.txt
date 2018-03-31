@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+int count(char arr[],char a)
+{
+  int num=0,i;
+  for(i=0;i<strlen(arr);i++)
+  {
+	if(arr[i]==a)
+    {
+      num++;
+    }
+  }
+  return num;
+}
+
+int main()
+{
+  int a,i,flag;
+  char arr[100];
+  scanf("%d",&a);
+  int ans[a];
+  for(i=0;i<a;i++)
+  {
+    
+    scanf("%s",arr);
+    if(strlen(arr)==count(arr,'0')||strlen(arr)==count(arr,'1'))
+    {
+      ans[i]=0;
+      
+    }
+    else if(strlen(arr)==count(arr,'0')+1||strlen(arr)==count(arr,'1')+1)
+    {
+      ans[i]=1;
+      
+    }
+  }
+  
+  for(i=0;i<a;i++)
+  {
+    if(ans[i]==1)
+    {
+      printf("Yes\n");
+    }
+    else if(ans[i]==0)
+    {
+       printf("No\n");
+    }
+  }
+      
+ 
+	return 0;
+}

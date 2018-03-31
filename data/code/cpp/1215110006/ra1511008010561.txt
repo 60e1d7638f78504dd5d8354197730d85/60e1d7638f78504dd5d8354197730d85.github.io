@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+class Account
+{
+  int accountNo;
+  char name[20];
+   int Balance;
+  public :void initializeData(int a,char n[20],int b)
+  {	
+    accountNo=a;
+    strcpy(name,n);
+    Balance=b;
+  }
+  public: void deposit(int a)
+  {	cout<<"DEPOSIT\n";
+   cout<<"Balance="<<Balance<<"\n";
+   cout<<"Deposited="<<a<<"\n";
+    Balance+=a;
+   cout<<"Balance="<<Balance<<"\n";
+  }
+  public: void withdraw(int a)
+  {	cout<<"WITHDRAW\n";
+   cout<<"Balance="<<Balance<<"\n";
+   cout<<"Withdraw="<<a<<"\n";
+     if(a<=Balance)
+     {Balance-=a;
+   cout<<"Balance="<<Balance<<"\n";
+     }
+   else
+   {cout<<"Insufficient balance\n";
+   }
+  }
+  public :void displayDetails()
+  {
+    cout<<"ACCOUNT DETAILS\n";
+    cout<<"Account Holders Name:"<<name;
+    cout<<"\nAccount Number:"<<accountNo;
+    cout<<"\nCurrent Balance:"<<Balance;
+  }
+}f;
+  
+int main()
+{
+  int a,b,c,d;
+  char n[20];
+  cin>>a>>n>>b;
+  cin>>c>>d;
+  
+  f.initializeData(a,n,b);
+    f.deposit(c);
+  f.withdraw(d);
+  f.displayDetails();
+    return 0;
+}

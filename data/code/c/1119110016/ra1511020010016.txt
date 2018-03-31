@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void compare(int *a1, int *a2, int n)
+{
+	int i, flag = 0;
+	for(i = 0; i < n; i++)
+	{
+		if(*a1 != *a2)
+		{
+			flag = 1;
+			break;
+		}
+		a1++;
+		a2++;
+	}
+	if(flag>0)
+		printf("Arrays are not equal");
+	else
+		printf("Arrays are equal");
+}
+
+int main()
+{
+  
+	int n,m, i;
+	scanf("%d", &n);
+  int a1[n];
+	for(i=0;i<n;i++)
+		scanf("%d", &a1[i]);
+  
+  scanf("%d", &m);
+  int a2[m];
+	for(i=0;i<m;i++)
+      scanf("%d",&a2[i]);
+    
+      
+      compare(a1, a2, n);
+
+	return 0;
+}

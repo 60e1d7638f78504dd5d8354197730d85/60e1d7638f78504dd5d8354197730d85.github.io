@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+  int n;
+  cin >>n;
+  int k = sqrt(n);
+  if(n==0||n==1){
+    cout<<n<<" is not a prime";
+    return 0;
+  };
+  if(n%2==0||n%3==0){
+    cout<<n<<" is not a prime";
+    return 0;
+  };
+  if(n==2||n==3){
+    cout<<n<<" is a prime";
+    return 0;
+  }
+  for(int i=5;i<=k;i+=6){
+    if(n%i==0){
+      cout<<n<<" is not a prime";
+      return 0;
+    }
+  }
+  cout<<n<<" is a prime";
+	return 0;
+}

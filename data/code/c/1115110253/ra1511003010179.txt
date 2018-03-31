@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,k,l,m,n;
+  	scanf("%d %d",&i,&j);
+	int c[i];
+  	for(n=0;n<=i;n++)	{
+        c[n] = 0;
+    }
+  	for( k=0;k<j;k++)	{
+    	scanf("%d %d", &l,&m);
+      	for(n=l;n<=m;n++)	{
+        	if(n==m)	{
+            	c[m] += 1;
+              	//printf("%d\n %d\n", c[n],n);
+            }
+          	else if(n!=m)	{
+            	c[n] += 1;
+              	//printf("%d\n %d\n", c[n],n);
+            }
+        }
+    }
+  	int count = 0;
+  	for(n=1;n<=i;n++)	{
+        if(c[n]>1)	{
+        	printf("%d %d",n,c[n]);
+          	count += 1;
+          	break;
+        }
+      	else if(c[n]<1)	{
+        	printf("%d %d",n,c[n]);
+          	count += 1;
+          	break;
+        }
+    }
+  	if(count == 0)	{
+    	printf("OK");
+    }
+	return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main()
+{
+	int L, D, S, C, t, i;
+	scanf("%d", &t);
+	while(t-- >0){
+		scanf("%d %d %d %d", &L, &D, &S, &C);
+		int D2= S+ C*S;
+      	int res= D2;
+		for(i=3; i<= D; i++){
+          	res= D2+ D2*C;
+			D2= res;
+        }
+      	if(res>=L)
+          	printf("ALIVE AND KICK\n");
+      	else
+          	printf("DEAD AND ROT\n");
+    }
+	return 0;
+}

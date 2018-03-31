@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+int search(int arr[], int n, int x)
+{
+    // Searching x in arr[0..n-1]
+    int i = 0;
+    while (i <= n-1)
+    {
+        // Checking if element is found.
+        if (arr[i] == x)
+            return i;
+ 
+        // Else jumping to abs(arr[i]-x).
+        i += abs(arr[i]-x);
+    }
+ 
+    return -1;
+}
+ 
+// Driven Program
+int main()
+{
+    int a[8],x,sizeofarray;
+ cin >> sizeofarray;
+for (int i = 0; i < sizeofarray; ++i)
+{
+    cin >> a[i];
+}
+    int n = sizeof(a)/sizeof(a[0]);
+   cin>>x;
+ 
+    cout << search(a, n, x) << endl;
+ 
+    return 0;
+}

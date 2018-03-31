@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.Scanner;
+
+class Sample {
+	public void keyboard() {
+		Scanner sc = new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0)
+		{
+			int n=sc.nextInt(),m=sc.nextInt(),c=sc.nextInt(),count=0;
+			int st,o;
+			if(n>m)
+			{
+				st=n;
+				o=m;
+			}
+			else
+			{
+				st=m;
+				o=n;
+			}
+			for(int i=st; i>0; i--)
+			{
+				if(c%i==0&&c/i<=o)
+					count++;
+			}
+			System.out.println(count);
+		}
+	}
+}
+
+public class TestClass {
+	 public static void main(String[] args) {
+	 	Sample objname = new Sample();
+	 	objname.keyboard();
+	}
+}

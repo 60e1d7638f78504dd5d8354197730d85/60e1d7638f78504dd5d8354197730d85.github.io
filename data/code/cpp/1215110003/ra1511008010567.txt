@@ -1,0 +1,40 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+using namespace std;
+
+string IntegerToString2sComp(int Integer)
+{
+	if (Integer < -32768 || Integer>32767)
+		return "";
+	string result;
+	for (int bit = 0; bit < sizeof(int) * 4; ++bit)
+	{
+		int bit_val = 1 & Integer;
+		result = (bit_val ? "1" : "0") + result;
+		Integer = Integer >> 1;
+	}
+	return result;
+}
+
+int main()
+{
+	string TwosComplementAsString;
+	int NumberToConvert = 0;
+	//cout << "Enter a number to convert to Two's Compliment between -32768 and 32767:";
+	cin >> NumberToConvert;
+	while (NumberToConvert>32767 || NumberToConvert < -32768)
+	{
+		//cout << "Incorrect Input. Please enter a number between -32768 and 32767:";
+		cin >> NumberToConvert;
+	}
+	TwosComplementAsString = IntegerToString2sComp(NumberToConvert);
+	//cout << "Integer " << NumberToConvert << " as Two's Complement:" << endl;
+	for (int i = 0; i < TwosComplementAsString.size(); i += 4)
+	{
+		cout << TwosComplementAsString[0+i] << TwosComplementAsString[1+i] << TwosComplementAsString[2+i] << TwosComplementAsString[3+i] ;
+	}
+	cout << endl;
+	return 0;
+}

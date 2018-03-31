@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int n,num;
+  scanf("%d",&n);
+  while(n--)
+  {
+    scanf("%d",&num);
+    int flag=0,r=0;
+    while(num>0)
+    {
+      r=num%10;
+      if(r==1)
+      {
+        flag=1;
+      }
+      else if(flag==1 && r==2)
+      {
+        flag=2;
+        break;
+      }
+      num=num/10;
+    }
+    if(flag!=2)
+      printf("The streak lives still in our heart!\n");
+    else
+      printf("The streak is broken!\n");
+  }
+	return 0;
+}

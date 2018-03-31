@@ -1,0 +1,28 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+string word,cod;
+cin>>word;
+cin>>cod;
+int n1=word.length();
+int n2=cod.length(),count=0;
+char cword[n1+1],ccod[n2+1];
+strcpy(cword,word.c_str());
+strcpy(ccod,cod.c_str());
+if(n1==n2)
+{
+for(int i=0;i<n1;i++)
+{
+if(cword[i]==ccod[n1-i-1])
+count++;
+}
+if(count==n1)
+cout<<"YES";
+else
+cout<<"NO";
+}
+else
+cout<<"NO";
+}

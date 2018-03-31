@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{
+    int T,N,arr[50],i,j,min,n,k;
+    FILE *fw,*fr;
+
+    scanf(" %d",&T);
+    
+    while(T--)
+    {
+              scanf(" %d",&n);
+              min=1000;
+             for(i=0;i<n;i++)
+             {
+                                    scanf(" %d",&arr[i]);
+                                    if(min>arr[i])
+                                                  min=arr[i];
+                                            
+                                                  }
+             j=2;
+             while(j<=min)
+             {
+                 if(min%j==0)
+                 {
+          
+                 for(i=0;i<n;i++)
+                 {
+                                 if(arr[i]%j==0)
+                                                ;
+                                 else
+                                 break;
+                                 }
+                 if(i==n)
+                 {
+                         k=j;
+                         j--;
+                         for(i=0;i<n;i++)
+                                         arr[i]=arr[i]/k;
+                                         }
+                                         }
+                 j++;
+
+                 }
+                 for(i=0;i<n;i++)
+                                 printf("%d ",arr[i]);
+                 printf("\n");
+             }
+
+return 0;
+}
+

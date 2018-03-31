@@ -1,0 +1,53 @@
+#include<stdio.h>
+long int arr[100010][3];
+int main()
+{
+    long int n,i,j,sumx[100010]={0},sumy[100010]={0},q,x,y,temp1;
+    long long int sum=0;
+    scanf("%ld",&n);
+    //int a[n][n];
+    for(i=1;i<=n;i++)
+    {
+        scanf("%ld %ld",&x,&y);
+        arr[i][1]=x;
+        arr[i][2]=y;
+        for(j=x;j<=y;j++)
+        {
+            //a[i][j]=1;
+            sumx[i]++;
+            sumy[j]++;
+            sum++;
+        }
+    }
+    /*for(i=1;i<=n;i++)
+    printf("%ld ",sumy[i]);
+    printf("\n");
+    for(i=1;i<=n;i++)
+    printf("%ld ",sumx[i]);*/
+    scanf("%ld",&q);
+    temp1=q;
+ 
+    for(i=0;i<temp1;i++)
+    {
+        //printf("com");
+        scanf("%ld %ld",&x,&y);
+        //printf("%ld %ld \n",sumx[x],sumy[y]);
+        long long int temp;
+        //printf("sum=%lld\n",sum);
+        temp=sum;
+        temp=temp-(sumx[x]+sumy[y]);
+        //if(a[x][y]==1)
+        if(arr[x][1]<=y && arr[x][2]>=y)
+            temp=temp+1;
+            //printf("%ld ",temp);
+        if(temp%2==0)
+            printf("E\n");
+        else
+            printf("O\n");
+            //printf("com");
+    }
+ 
+ 
+ 
+    return 0;
+} 

@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+int countZero(int *array, int size)
+{
+    int count = 0, i;
+    for(i=0; i < size; i++)
+    {
+        if(array[i] == 0)
+            count++;
+    }
+    return count;
+}
+ 
+/*Seperates 0 and 1 in an array. 
+first all 0's and then all 1's*/
+void seperateOAnd1(int *array, int size)
+{
+    int i, zeroCount = countZero(array, size);
+ /* Populate first zeroCount indexes with 0 
+ and then remaining with 1*/
+ for(i = 0; i < size; i++)
+ {
+     if(i < zeroCount)
+                array[i] = 0;
+            else
+                array[i] = 1;
+ } 
+}
+ 
+int main()
+{
+    int array[10];
+    int i,n;
+     cin>>n;
+  
+    for(i = 0; i < n; ++i)
+    cin>>array[i];
+  
+    seperateOAnd1(array, n);
+     
+    for(i = 0; i < n; i++)
+    {
+     cout<<array[i]<<" ";
+    }
+ 
+    return 0;
+}

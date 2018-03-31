@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+   int T, N[5000], S[5000][1], i, j, k;
+    scanf("%d", &T);
+    for (i=0; i<T; i++)
+    {
+       scanf(" %d", &N[i]);
+       for(j=0; j<N[i]; ++j)
+       {
+          scanf(" %d", &S[j][0]);
+       }
+    }
+    int mini=1000000000;
+   for(i=0; i<T; i++)
+   {
+      for (j=0; j<N[i]-1; j++ )
+      {
+        for(k=j+1; k<N[i]; ++k){
+          if (abs(S[j][0]-S[k][0])<=mini)
+            mini=abs(S[j][0]-S[k][0]);}
+      }
+      printf("%d\n", mini);
+   }
+	return 0;
+}

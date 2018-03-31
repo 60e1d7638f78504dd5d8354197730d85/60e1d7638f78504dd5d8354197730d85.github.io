@@ -1,0 +1,34 @@
+// Efficient C++ program to count passing cars
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Returns count of passing cars
+int getPassingCars(int A[], int n)
+{
+    // Initialize count of 1s from right
+    // and result
+    int countOne = 0, result = 0;
+    while (n >= 1)
+    {
+        if (A[n-1] == 1)
+            countOne++;
+        else
+            result += countOne;
+        n--;
+    }
+ 
+    return result;
+}
+ 
+// Driver program
+int main()
+{
+   
+    int n;
+  cin>>n;
+  int A[n];
+  for(int i=0;i<n;i++)
+    cin>>A[i];
+    cout << getPassingCars(A, n);
+    return 0;
+}

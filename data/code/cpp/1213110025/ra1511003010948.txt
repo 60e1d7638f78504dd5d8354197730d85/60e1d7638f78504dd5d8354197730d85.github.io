@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+char str[100],s[100],r[100],ans[100];
+	int i,j,c,m,k;
+cin>>str>>s>>r;	
+	i = m = c = j = 0;
+	while ( str[c] != '\0')
+	{
+		if ( str[m] == s[i] ) // ...... matching
+		{
+			i++;
+			m++;
+		if ( s[i] == '\0') //.....found occ
+		{
+		//.... copy replace string in ans string .....
+		for(k=0; r[k] != '\0';k++,j++)
+			ans[j] = r[k];
+			i=0;
+			c=m;
+		}
+		}
+		else //... mismatch
+		{
+			ans[j] = str[c];
+			j++;
+			c++;
+			m = c;
+			i=0;
+		}
+	}
+	ans[j] = '\0';
+	printf("\n%s" ,ans);
+	return 0;
+}

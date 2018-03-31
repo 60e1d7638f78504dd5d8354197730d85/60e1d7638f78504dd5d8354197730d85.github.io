@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int maxel(int a[],int n,int max){
+  if(n<0)
+    return max;
+  else{
+    if(a[n]>max)
+      maxel(a,n-1,a[n]);
+    else
+      maxel(a,n-1,max);
+  }
+}
+
+int main()
+{
+	int n,i,a[100],max;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+  	max=maxel(a,n-1,0);
+  	printf("Maximum element in the array is %d",max);
+	return 0;
+}

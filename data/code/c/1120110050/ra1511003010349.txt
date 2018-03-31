@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+int fast()
+{
+  int i;
+  char c =0;
+  while(c<33) c=getchar_unlocked();
+  i=0;
+  while(c>33)
+  {
+    i=i*10+c-'0';
+    c=getchar_unlocked();
+  }
+  return i;
+}
+int main()
+{
+int t,n,c1,count,max;
+  t=fast();
+  while(t>0)
+  {
+    count=1;
+    n=fast();
+    c1=fast();
+    max=c1;
+    while(n>1)
+    {
+      c1=fast();
+      if(c1<=max)
+      {
+        count++;
+        max=c1;
+      }
+      n--;
+    }
+    printf("\n%d",count);
+    t--;
+  }
+  
+	return 0;
+}

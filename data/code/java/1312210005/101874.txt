@@ -1,0 +1,41 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	int x1,x2,x3,y1,y2,y3,t;
+      	int cnt=0;
+      	t=sc.nextInt();
+      	for(int i=0;i<t;i++)
+        {
+          	x1=sc.nextInt();
+          	y1=sc.nextInt();
+          	x2=sc.nextInt();
+          	y2=sc.nextInt();
+          	x3=sc.nextInt();
+          	y3=sc.nextInt();
+          	double d1=Math.sqrt( Math.pow((x2-x1),2)+Math.pow((y2-y1),2));
+          	double d2=Math.sqrt( Math.pow((x3-x2),2)+Math.pow((y3-y2),2));
+          	double d3=Math.sqrt( Math.pow((x3-x1),2)+Math.pow((y3-y1),2));
+          	double max=((d1>d2)&&(d1>d3))?d1:((d2>d1)&&(d2>d3))?d2:d3;
+          	//System.out.println(d1 +"  "+d2+" "+d3);
+          	if(max==d1)
+            {
+              	if(Math.round(Math.pow(d1,2))==Math.round((Math.pow(d2,2)+Math.pow(d3,2))))
+                 	cnt++;
+            }
+            if(max==d2)
+            {
+              	if(Math.round(Math.pow(d2,2))==Math.round((Math.pow(d1,2)+Math.pow(d3,2))))
+                 	cnt++;
+            }       
+          	if(max==d3)
+            {
+              	if(Math.round(Math.pow(d3,2))==Math.round((Math.pow(d1,2)+Math.pow(d2,2))))
+                 	cnt++;
+            }
+        }
+      	System.out.println(cnt);
+	}
+}

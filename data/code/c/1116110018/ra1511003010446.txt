@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+char c[100];
+  int count[26]={0};
+  fgets(c,50,stdin);
+  int i,len = strlen(c);
+  for(i=0;i<len;i++){
+   if(c[i]>='a' && c[i]<='z'){
+    	count[c[i]-'a']++; 
+   }
+  }
+  for(i=0;i<26;i++){
+   if(count[i]!=0){
+     printf("%c=%d\n",i+'a',count[i]);
+   }
+  }
+	return 0;
+}

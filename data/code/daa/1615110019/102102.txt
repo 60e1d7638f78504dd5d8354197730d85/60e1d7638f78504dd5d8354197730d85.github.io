@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+ 
+typedef unsigned long long int ull;
+typedef long long int ll;
+using namespace std;
+ 
+bool comp(pair<ll,ll> a,pair<ll,ll> b)
+{
+ return a.first<b.first;
+}
+ 
+int main()
+{
+ int t;
+ cin>>t;
+ 
+ int n;
+ while(t--)
+ {
+  cin>>n;
+  std::vector<pair<ll,ll> > v;
+  int i,j,k;
+  ll r,h;
+  for(i=0;i<n;i++)
+  {
+   cin>>r>>h;
+   v.push_back(make_pair(r,h));
+  }
+ 
+  sort(v.begin(),v.end(),comp);
+ 
+  ll res[n];
+ 
+  for(i=0;i<n;i++)
+   res[i] = v[i].second;
+ 
+  ll max_res=0;
+  for(i=0;i<n;i++)
+  {
+   for(j=0;j<i;j++)
+   {
+    if(v[i].first>v[j].first && v[i].second>v[j].second)
+    {
+     res[i] = max((res[j]+v[i].second),res[i]);
+    }
+   }
+   if(max_res<res[i])
+      max_res = res[i];
+  }
+  cout<<max_res<<endl;
+ 
+ 
+ } 
+ return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+	char *s1 = "Result\n";
+	char *s2 = "Total Percent in examination:%.2f\n";
+	char *s3 = "Total Percent in activities:%.2f\n";
+	char *s4 = "Total Percent in sports:%.2f\n";
+	char *s5 = "Total Percentage:%.2f";
+
+	float m[6];
+	int i;
+
+	for (i = 0; i < 6; i++) {
+		scanf("%f", &m[i]);
+	}
+
+	float exam(float *m) {
+		return (m[0] + m[1]) / 200 * 50;
+	}
+
+	float sports(float *m) {
+		return m[2] / 50 * 20;
+	}
+
+	float act(float *m) {
+		return (m[3] + m[4] + m[5]) / 60 * 30;
+	}
+
+	fputs(s1, stdout);
+	printf(s2, exam(m));
+	printf(s3, act(m));
+	printf(s4, sports(m));
+	printf(s5, exam(m) + act(m) + sports(m));
+
+	return 0;
+}

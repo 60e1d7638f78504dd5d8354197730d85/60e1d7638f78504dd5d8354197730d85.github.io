@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+
+int count(int a)
+{
+  if(a==0)
+    return 0;
+  else return 1+count(a/10);
+}
+
+int rev(int a)
+{
+  int l,n=0;
+  l=count(a);
+  
+ 
+  while(a)
+  {
+    n=n+(a%10)*pow(10,--l);
+    a/=10;
+  }
+  return n;
+}
+
+int main()
+{
+	int n,r;
+  	scanf("%d",&n);
+  	r=rev(n);
+  	printf("Reversed and Original Addition=%d",n+r);
+	return 0;
+}

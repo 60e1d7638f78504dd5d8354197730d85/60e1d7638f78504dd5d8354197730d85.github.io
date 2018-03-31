@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int n,a[50],i,s,b,p[50];
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+    scanf("%d",&a[i]);
+  scanf("%d",&s);
+  scanf("%d",&b);
+  for(i=1;i<=n+1;i++)
+  {  p[i]=0; 
+  }
+i=1;
+  while(i<=n+1)
+  {
+    if(i<b)
+  { p[i]=a[i];
+  
+  }
+   if(i==b)
+   { p[i]=s;
+   
+  }
+    if(i>b)
+  {  if(a[i]=='\0')
+    break;
+    p[i]=a[i-1];
+    }
+    printf("%d ",p[i]);
+    i++;
+  }
+  return 0;
+}

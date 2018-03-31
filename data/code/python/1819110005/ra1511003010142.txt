@@ -1,0 +1,20 @@
+n = int(input())
+l = [int(input()) for _ in range(n)]
+t = int(input())
+def binary_sort(sortedlist,n,x):
+    start = 0
+    end = n - 1
+    while(start <= end):
+        mid = (start + end)//2
+        if (x == sortedlist[mid]):
+            return mid
+        elif(x < sortedlist[mid]):
+            end = mid - 1
+        else:
+            start = mid + 1 
+    return -1
+a = binary_sort(l,n,t)
+if(a ==-1):
+    print("{} not found".format(t))
+else:
+    print("{0} found at location {1}".format(t,a+1))

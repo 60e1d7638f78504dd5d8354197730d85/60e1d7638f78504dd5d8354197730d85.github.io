@@ -1,0 +1,26 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int i,n,a[105]={0},k,p,c=0;
+        scanf("%d%d",&n,&k);
+        for(i=1;i<=n;i++)
+        {
+            scanf("%d",&p);
+            if(i!=p)
+                a[p]++;
+            if(i==p)
+                a[i]=-1000;
+        }
+        for(i=1;i<=n;i++)
+        {
+            if(a[i]>=k)
+                c++;
+        }
+        printf("%d\n",c);
+    }
+} 

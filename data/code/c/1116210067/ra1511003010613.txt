@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+    int t;
+    scanf("%d\n",&t);
+    while(t--)
+    {
+	char s[100];
+	int i,j,c=0,d=0,p=0;
+	scanf("%s\n",s);
+	j=strlen(s)-1;
+	for(i=0;i<strlen(s);i++)
+	{
+	    if(s[i]==s[0])
+	    {
+	        d++;
+	    }
+	}
+	for(i=0;i<strlen(s)/2;i++)
+	{
+	    if(s[i]==s[j])
+	    {
+	        c++;
+	    }
+	    j--;
+	}
+	if(d==strlen(s))
+	{
+	    p=strlen(s)+1;
+	}
+	else
+	{
+	if(c==strlen(s)/2)
+	{
+	    p=2;
+	}
+	else
+	{
+	    p=1;
+	}
+	}
+	printf("%d\n",p);
+    }
+	return 0;
+} 

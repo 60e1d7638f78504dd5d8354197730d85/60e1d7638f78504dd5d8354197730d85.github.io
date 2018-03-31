@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main(void) {
+    int t,*x,*y,n,i,s,r;
+    
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        x=(int *)calloc(n,sizeof(int));
+        y=(int *)calloc(n,sizeof(int));
+        for(i=0;i<n;i++)
+        scanf("%d",(x+i));
+        fflush(stdin);
+        for(i=0;i<n;i++)
+        scanf("%d",(y+i));
+        s=0;r=0;
+        for(i=0;i<n;i++)
+        {
+            if(i%2==0)
+            s=s+*(x+i);
+            else
+            s=s+*(y+i);
+        }
+        for(i=0;i<n;i++)
+        {
+            if(i%2==0)
+            r=r+*(y+i);
+            else
+            r=r+*(x+i);
+        }
+        printf("%d\n",(s>r?r:s));
+        free(x);
+        free(y);
+        
+        
+        
+        
+        
+    }
+	// your code goes here
+	return 0;
+}
+  

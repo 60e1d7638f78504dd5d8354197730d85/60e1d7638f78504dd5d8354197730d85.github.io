@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+  int i,t,n,mid,ans,temp;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    ans=0;
+    temp=1;
+    mid=0;
+    while(temp!=0)
+    {
+      for(i=0;i<n;i++)
+      {
+        if(a[i]>a[mid])
+        {
+      		mid=i;
+        }
+      }
+      temp=0;
+      for(i=0;i<n;i++)
+      {
+        if(a[mid]-a[i]!=0)
+        {
+          temp=1;
+          break;
+        }
+      }
+      if(temp==0)break;
+      for(i=0;i<n;i++)
+      {
+        if(i!=mid )
+        {
+          a[i]=a[i]+1;
+        }
+      }
+      ans++;
+    }
+    printf("%d\n",ans);
+  }
+  return 0;
+}

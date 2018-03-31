@@ -1,0 +1,49 @@
+import java.io.*;
+// Java program to reverse an array
+import java.util.*;
+ 
+class Reverse{
+  int arrlen;
+  int arr[];
+  Scanner s;
+  Reverse(int arrlen, int[] arr,Scanner s)
+  {
+    this.arr = arr;
+    this.arrlen = arrlen;
+    this.s = s;
+    
+  }
+  public void getInput()
+  {
+    
+    for(int i=0;i<arrlen;i++)
+    {
+      arr[i]=s.nextInt();
+    }
+    
+  }
+ 
+    
+    public void arrayReverse()
+    {
+     for(int i=arrlen-1; i>=0; i--)
+	{
+	   System.out.print(arr[i]+ " ");
+     } 
+        
+	}
+}
+public class TestClass {
+  
+	 public static void main(String[] args) { 
+       
+       Scanner s=new Scanner(System.in);
+       int arrlen=s.nextInt();
+       int arr[]=new int[arrlen];
+       Reverse obj=new Reverse(arrlen,arr,s);
+       obj.getInput();
+        //printArray(arr, 6);
+        obj.arrayReverse();
+        
+	}
+}

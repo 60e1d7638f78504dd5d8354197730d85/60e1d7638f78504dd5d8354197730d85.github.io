@@ -1,0 +1,48 @@
+#include <stdio.h>
+struct date
+{
+  int dy;
+  int mn;
+  int yr;
+}d,dn;
+struct date incr(struct date d)
+{
+  int dm[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+  if(d.yr%4==0 && d.yr%100!=0|| d.yr%400==0)
+    dm[1]=29;
+  d.dy++;
+  if(d.dy>dm[d.mn-1])
+  {
+    d.dy=1;
+    d.mn++;
+  }
+  if(d.mn>12)
+  {
+    d.mn=1;
+    d.yr++;
+  }
+  return d;
+}
+int main()
+{ 
+ int dm[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+  scanf("%d%d%d",&d.dy,&d.mn,&d.yr);
+  if(d.yr%4==0 && d.yr%100!=0 || d.yr%400==0)
+    dm[1]=29;
+  if(d.yr<0 || d.yr>=3000)
+    printf("Invalid Year");
+  else if(d.mn<1||d.mn>12)
+    printf("Invalid Month");
+  else if(d.dy>dm[d.mn-1])
+    printf("Invalid Day");
+  else
+  {
+    dn=incr(d);
+    if(d.yr==3000)
+      printf("Invalid Year");
+    else
+    printf("New Date=%d %d %d",dn.dy,dn.mn,dn.yr);
+  }
+
+	return 0;
+}

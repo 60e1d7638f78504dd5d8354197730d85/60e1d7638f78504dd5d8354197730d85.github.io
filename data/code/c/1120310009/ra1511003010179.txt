@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+	int i,j,c,d, pos,s;
+	scanf("%d", &i);
+	int a[i];
+	for(j=0;j<i;j++)	{
+		scanf("%d", &a[j]);
+	}
+	for(c=0;c<i-1;c++)	{
+		pos = c;
+		for(d= c+1; d<i;d++)	{
+			if(a[pos]>a[d])
+				pos = d;
+		}
+		if(pos!=c)	{
+			s=a[c];
+			a[c]= a[pos];
+			a[pos] = s;
+		}
+	}
+	for(j=0;j<i;j++)	{
+		printf("%d ", a[j]);
+	}
+	return 0;
+}

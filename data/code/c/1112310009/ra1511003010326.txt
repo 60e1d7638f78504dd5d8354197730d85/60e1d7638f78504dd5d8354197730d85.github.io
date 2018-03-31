@@ -1,0 +1,25 @@
+#include <stdio.h>
+int prime(int n){
+	int i;
+  	if(n==1)return 0;
+  	for(i=2;i<=n/2;i++)
+      if(n%i==0)return 0;
+  	return 1;
+}
+void printPrime(int s , int l){
+	int i;
+  	for(i=s;i<=l;i++){
+    	if(prime(i))printf("%d\n",i);
+    }
+}
+int main()
+{
+  	int n,i;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+    	int s,l;
+      	scanf("%d %d",&s,&l);
+      	printPrime(s,l);
+    }
+	return 0;
+}

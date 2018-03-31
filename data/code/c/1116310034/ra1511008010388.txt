@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+ 
+int main()
+{
+	int tc,r;
+	int cod[3][2],rem;
+	int i,j,temp,x,y;
+	int result[3];
+	scanf("%d",&tc);
+ 
+	while(tc--)
+	{
+		scanf("%d",&r);
+ 
+		for(i=0;i<3;i++)
+			scanf("%d%d",&cod[i][0],&cod[i][1]);
+		for(i=0;i<3;i++)
+		{
+			for(j=i+1;j<3;j++)
+			{
+				x = cod[i][0]-cod[j][0];
+				y = cod[i][1]-cod[j][1];
+	
+				temp = (x*x)+(y*y);
+				
+				if(temp <=(r*r))
+					result[i+j-1] = 1;
+				else
+					result[i+j-1] = 0;
+			}
+		}
+ 
+		for(i=0;i<3;i++)
+		{
+			for(j=i+1;j<3;j++)
+			{
+				if(result[i+j-1]==1)
+					continue;
+				rem = 3-(i+j);
+				if((result[i+rem-1]==1)&&(result[j+rem-1]==1))
+					result[i+j-1] =1;
+			}
+		}
+ 
+		if((result[0]+result[1]+result[2])==3)
+			printf("yes\n");
+		else
+			printf("no\n");
+	}
+ 
+	return 0;
+}	
+ 

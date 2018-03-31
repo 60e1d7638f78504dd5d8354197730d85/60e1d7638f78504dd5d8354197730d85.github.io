@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int a[1001],tar[1001],i,j,k,n,t,temp,temp1;
+  a[1]=tar[1]=1;
+  for(i=1;i<=1000;i++)
+  {
+    for(j=2;j<=i;j++)
+    {
+      temp=tar[j];
+      tar[j]=tar[j-1]+temp1;
+      if(tar[j]>=1000000007)
+        tar[j]=tar[j]%1000000007;
+      temp1=temp;
+    }
+    temp1=tar[1];
+    a[i]=tar[1]=tar[i];
+  }
+  scanf("%d",&t);
+  while(t)
+  {
+    scanf("%d",&n);
+    printf("%d\n",a[n]);
+    t--;
+  }
+	return 0;
+}

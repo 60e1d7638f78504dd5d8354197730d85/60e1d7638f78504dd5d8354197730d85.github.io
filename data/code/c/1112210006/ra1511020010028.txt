@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<string.h>
+char s[1000+5];
+int dp[1000+10][1000+10];
+long long int count[1000+10],mod;
+int main()
+{
+int i,j,k,n,l,c;
+mod=1000000007;
+scanf("%s",s+1);
+n=strlen(s+1);
+for(i=1;i<=n;i++)
+{
+dp[i][i]=1;
+}
+for(l=n-1;l>=1;l--)
+{
+for(k=1;k<=l;k++)
+{
+c=n+k-l;
+if(s[k]==s[c])
+{
+dp[k][c]=1;
+}
+if(k+1<=c-1 && s[k]==s[c])
+{
+dp[k][c]=dp[k+1][c-1];
+}
+}
+}
+count[0]=1;
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=i;j++)
+{
+if(dp[j][i]==1)
+{
+count[i]=(count[i]+count[j-1])%mod;
+}
+}
+}
+printf("%lld\n",count[n]);
+return 0;
+}

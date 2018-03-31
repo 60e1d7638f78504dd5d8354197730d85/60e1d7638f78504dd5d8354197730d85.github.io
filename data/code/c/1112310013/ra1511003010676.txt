@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+	int n,a[100],m=0;
+  	scanf("%d",&n);
+  	while(n)
+    {
+      	scanf("%d",&a[m]);
+      	m++;
+      	n--;
+    }
+  	int i,j,max=0;
+  	for(i=0;i<m;i++)
+    {
+      for(j=i+1;j<m;j++)
+      {
+        if((a[i]&a[j])>max)
+          max=a[i]&a[j];
+      }
+    }
+  	printf("%d",max);
+	return 0;
+}

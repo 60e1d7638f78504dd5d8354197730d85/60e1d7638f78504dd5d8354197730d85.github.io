@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int rev(int num)
+{
+ int r=0;
+  while(num>0)
+  {
+    r=r*10+num%10;
+    num/=10;
+  }
+  return r;
+}
+
+int squ(int num)
+{
+return (num*num);
+}
+
+bool checkAdam(int num)
+{
+ int a=squ(num);
+  int b=squ(rev(num));
+  
+  if(a==rev(b))
+    return true;
+  else 
+    return false;
+
+}
+
+int main()
+{
+     int n;
+  cin>>n;
+  if(checkAdam(n))
+    cout<<"Adam Number";
+  else
+    cout<<"Not an Adam Number";
+    return 0;
+}

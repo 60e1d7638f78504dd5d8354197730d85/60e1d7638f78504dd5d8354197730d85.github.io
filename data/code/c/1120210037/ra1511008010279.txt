@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main(){
+int t,n,i,j,count=0,arr[2001],com,max;
+scanf("%d",&t);
+for(i=0;i<t;i++){
+count=0;
+com=-1;
+scanf("%d",&n);
+int s[n+1],e[n+1];
+for(j=0;j<n;j++){
+scanf("%d %d",&s[j],&e[j]);}
+for(j=0;j<=2000;j++){
+arr[j]=-2;
+}
+for(j=0;j<n;j++){
+if(arr[e[j]]>s[j]){
+max=arr[e[j]]; 
+}
+else max=s[j];
+arr[e[j]]=max;}
+for(j=0;j<=2000;j++){
+if(com<arr[j]){
+com=j;
+count++;
+}}
+printf("%d\n",count);}
+return 0;
+}
+ 

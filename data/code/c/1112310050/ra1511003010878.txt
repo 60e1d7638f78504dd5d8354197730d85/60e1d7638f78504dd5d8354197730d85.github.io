@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main(int argc, char const *argv[]) {
+  int n,i=0,j=-1,aux=0,count=0;
+  //char aux;
+  scanf("%d",&n);
+  getchar();
+  char * a =(char *)malloc(sizeof(char)*n);
+  char * b =(char *)malloc(sizeof(char)*n);
+  scanf("%s",a);
+  scanf("%s",b);
+ 
+  //int c[n+3];
+  int * c = (int *)malloc((sizeof(int)*n)+3);
+  c[i]=j;
+  while(i<n)
+  {
+    while(j>=0 && a[i]!=a[j]) j=c[j];
+    i++; j++;
+    c[i]=j;
+  }
+  i=0;
+  j=0;
+  while(i<n)
+  {
+    while(j>=0 && b[i]!=a[j]) j=c[j];
+    i++;
+    j++;
+    if(j>aux)
+  {
+    aux=j;
+    count=i-j;
+  }
+}
+printf("%d\n",count);
+return 0;
+}

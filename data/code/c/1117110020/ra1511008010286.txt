@@ -1,0 +1,36 @@
+#include<string.h>
+#include <stdio.h>
+int lucky(char *p);
+int lucky(char *p)
+{
+  char s[100];
+ strcpy(s,p);
+  int len,i,sum=0;
+  len=strlen(s);
+  sum=0;
+  if(len<=100)
+  {
+for(i=0;i<len;i++)
+{
+sum=sum+(int)s[i];
+}
+  
+  if(sum%2==0)
+    return 1;
+  else
+    return 0;
+}
+}
+int main()
+{
+char *p,s[100];
+int x;
+  scanf("%s",s);
+  p=s;
+  x=lucky(p);
+  if(x==1)
+    printf("%s is lucky",p);
+  else
+    printf("%s is not lucky",p);
+	return 0;
+}

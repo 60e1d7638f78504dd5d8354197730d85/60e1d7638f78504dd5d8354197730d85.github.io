@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+char _str[10];
+ 
+#define READ_INT(_x)					\
+  {							\
+    int _tmp = 0;					\
+    register int _ch = getchar_unlocked();		\
+    while (_ch < 48 || _ch > 57)			\
+      _ch = getchar_unlocked();				\
+    while (48 <= _ch && _ch <= 57)			\
+      {							\
+	_tmp = (_tmp << 3) + (_tmp << 1) + _ch - 48;	\
+	_ch = getchar_unlocked();			\
+      }							\
+    (_x) = _tmp;					\
+  }							\
+ 
+#define WRITE_INT(_x)				\
+  {						\
+    register int _i = 0;			\
+    int _tmp = (_x);				\
+    do						\
+      {						\
+	*(_str + _i++) = _tmp % 10 + 48;	\
+	_tmp /= 10;				\
+      } while (_tmp != 0);			\
+    for (_i--; _i >= 0; _i--)			\
+      putchar_unlocked(*(_str + _i));		\
+  }						\
+ 
+int main(void)
+{
+  int *col, *row;
+  int ch, i, n, q, x;
+ 
+  READ_INT(n);
+ 
+  col = malloc(n * sizeof *col);
+  row = malloc(n * sizeof *row);
+  if (col == NULL || row == NULL)
+    {
+      perror("malloc");
+      return 1;
+    }
+ 
+  READ_INT(q);
+  for (; q > 0; q--)
+    {
+      for (ch = getchar_unlocked(); 
+	   ch == '\n' || ch == '\r'; 
+	   ch = getchar_unlocked())
+	;
+ 
+      READ_INT(i);
+      READ_INT(x);
+      if (ch == 'R')
+	*(row + i - 1) += x;
+      else
+	*(col + i - 1) += x;
+    }
+ 
+  for (x = *row, q = *col, i = 1; i < n; i++)
+    {
+      if (x < *(row + i))
+	x = *(row + i);
+      if (q < *(col + i))
+	q = *(col + i);
+    }
+ 
+  WRITE_INT(x + q);
+  putchar_unlocked('\n');
+ 
+  free(col);
+  free(row);
+  return 0;
+}

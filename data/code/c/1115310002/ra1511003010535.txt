@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#define gc getchar_unlocked
+int read_int()
+{
+	char c=gc();
+ 
+	while(c<'0'||c>'9') 
+		{
+			c=gc();
+		}
+		int ret=0;
+		while(c>='0' && c<='9')
+		{
+			ret=ret*10+c-48;
+			c=gc();
+		}
+		return ret;
+ 
+}
+ 
+int gcd(int x,int y)
+{
+	if(y == 0) return x;
+	else
+		return gcd(y,x%y);
+}
+ 
+int main()
+{
+	int tc;
+	tc = read_int();
+	while(tc--)
+	{
+		int n,x;
+		bool flag = false;
+		n = read_int();
+		x = n;
+		int gc = read_int(),curr;
+		n--;
+		while(n--)
+		{
+			curr = read_int();
+			gc = gcd(gc,curr);
+			if(gc==1) {  flag = true;}
+		}
+		if(!flag) printf("-1\n");
+			else printf("%d\n",x);
+	}
+} 

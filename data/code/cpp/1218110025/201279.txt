@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class base
+{
+  public: int a;
+  void get()
+  {
+    cin>>a;
+  }
+};
+class base1:virtual public base
+{
+public: int b;
+  void get()
+  {
+  base::get();
+    cin>>b;
+  }
+};
+class base2:virtual public base1
+{
+public:int c;
+  void get()
+  {
+    base1::get();
+    cin>>c;
+  }
+};
+class derived:virtual public base1,virtual public base2
+{
+public: int d;
+  void get()
+  {
+      base2::get();
+    cin>>d;
+    cout<<"A : "<<a<<endl;
+    cout<<"A : "<<b<<endl;
+    cout<<"B : "<<c<<endl;
+    cout<<"C : "<<d<<endl;
+  }
+};
+int main()
+{
+  int e;
+derived d;
+  d.get();
+  cin>>e;
+  cout<<"D : "<<e<<endl;
+	return 0;
+}

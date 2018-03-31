@@ -1,0 +1,37 @@
+import java.util.*;
+class TestClass
+{
+   
+   public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+        int [] arr = new int[10];  
+        int n =sc.nextInt();
+        for(int i=0;i<n;i++)
+        arr[i] = sc.nextInt();
+        int i = 0;
+        int[] min= new int[4] ;
+        int k =0; 
+        for (i = 0; i < n; i++) 
+        {
+          for(int j=i+1;j<n;j++)
+            if (arr[i] == arr[j] && i!=j) 
+            {
+                min[k]=j-i;
+                k=k+1;
+            }
+        }
+        int small=min[0];
+        for(i=0; i<k; i++)
+       {
+           if(small > min[i])
+           {
+               small = min[i];
+           }
+           
+       }
+	   if(small!=0)
+       System.out.print(small); 
+       else
+        System.out.print("-1"); 
+    }
+}

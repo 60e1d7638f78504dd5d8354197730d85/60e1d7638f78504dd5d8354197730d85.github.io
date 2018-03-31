@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+	int t;
+  scanf("%d", &t);
+  while(t--){
+  	int n,k;
+    scanf("%d%d",&n, &k);
+    int i,j,temp, a[n];
+    for(i=0;i<n;i++)
+    	scanf("%d", &a[i]);
+    for(i=0;i<n-1;i++){
+    	for(j=0;j<n-i-1;j++){
+        	if(a[j]>=a[j+1]){
+            	temp=a[j];
+              	a[j]=a[j+1];
+              	a[j+1]=temp;
+            }
+        }
+    }
+    int sum=0;
+    for(i=0+k;i<n-k;i++){
+    	sum+=a[i];
+    }
+    //printf("%d %d ", sum, n-k-k);
+    printf("%.6f\n", (float)sum/(n-k-k));
+    
+    
+  }
+	return 0;
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+    char str1[100],str2[100],word[100];
+    int i=0,j=0,count=0;
+    scanf("%[^\t\n]s",str1);
+    scanf("%s",str2);
+    while(str1[i]!='\0')
+    {
+      if(str1[i]==' ')
+      {
+        word[j]='\0';
+        if(strcmp(str2,word)==0)
+          count++;
+        j=0;
+      }
+      else
+        word[j++]=str1[i];
+       
+      i++;
+    }
+  word[j]='\0';
+  if(strcmp(str2,word)==0)
+    count++;
+  printf("%s=%d",str2,count);
+	return 0;
+}

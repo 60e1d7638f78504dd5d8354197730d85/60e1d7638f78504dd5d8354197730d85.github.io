@@ -1,0 +1,78 @@
+#include <iostream>
+#include<stack>
+using namespace std;
+string decode(string str)
+{
+  string temp="",res="";
+  stack<int>intstk;
+  stack<char>strstk;
+  for(int i=0;i<str.length();i++)
+  {
+    int cnt=0;
+    if(str[i]>='0' &&str[i]<='9')
+    {
+      while(str[i]>='0'&&str[i]<='9')
+      {
+        cnt=cnt*10+str[i]-'0';
+       i++;
+       }
+      i--;
+      intstk.push(cnt);
+    }
+    else if(str[i]==']')
+    {
+      temp="";
+      cnt=0;
+      if(!intstk.empty())
+      {
+        cnt=intstk.top();
+       intstk.pop();
+      }
+      while(!strstk.empty()&&strstk.top()!='[')
+      {
+        temp=strstk.top()+temp;
+        strstk.pop();
+      }
+      if(!strstk.empty()&&strstk.top()=='[')
+        strstk.pop();
+      for(int j=0;j<cnt;j++)
+        res=res+temp;
+      for(int j=0;j<res.length();j++)
+        strstk.push(res[j]);
+      res="";
+           
+    }
+    else if(str[i]=='[')
+    {
+      if(str[i-1]>='0'&&str[i-1]<='9')
+        strstk.push(str[i]);
+      else
+      {
+        strstk.push(str[i]);
+        intstk.push(1);
+      }
+    }
+    else
+      strstk.push(str[i]);
+    }
+      
+  while(!strstk.empty())
+  {
+    res=strstk.top()+res;
+    strstk.pop();
+  }
+  return res;	
+}
+int main()
+{
+int tc;
+  string str;
+  cin>>tc;
+  for(int i=0;i<tc;i++)
+  {
+    cin>>str;
+   cout<<endl<<decode(str);
+    
+  }
+	return 0;
+}

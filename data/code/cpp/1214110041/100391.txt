@@ -1,0 +1,46 @@
+#include <iostream>
+
+using namespace std;
+class student
+{
+      private :
+             int sno;
+             char name[20];
+  				int tot_sub;
+             int m[10];
+  			int sum=0;
+  float avg;
+      public :
+             void Getdata()
+             {
+                   cin >> name;
+                   cin >> sno;
+               		cin >>tot_sub;
+                   for (int i=0;i<tot_sub;i++)
+                   {
+                     cin >> m[i];
+                     sum=sum+m[i];
+             		}
+               avg=(float)sum/tot_sub;
+             }
+             void Putdata()
+             {
+               cout<<name<<" " <<sno<<" "<<avg<<" " ;
+      			if(avg>=80 and avg<=100) cout<<"Class A"<<endl;
+               if(avg<80 && avg>=75) cout<<"Class B"<<endl;
+               if(avg<75 && avg>60) cout<<"Class C "<<endl;
+      		
+             }
+};
+int  main()
+{
+  int tot_stud=0;    
+  student s[5];
+  cin>>tot_stud;
+  for(int i=0;i<tot_stud;i++)
+  {
+    s[i].Getdata();
+      s[i].Putdata();
+  }
+      return 0;
+}

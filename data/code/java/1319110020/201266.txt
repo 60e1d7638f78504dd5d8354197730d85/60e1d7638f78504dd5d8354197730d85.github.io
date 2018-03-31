@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+public class TestClass {
+static float avg=0;
+public static int totalmarks[];
+public TestClass(int marks[])
+{
+this.totalmarks = new int[marks.length];
+for(int i = 0; i < marks.length ; i++) 
+{
+ this.totalmarks[i] = marks[i];
+ //System.out.println(this.totalmarks[i]);
+}
+}
+
+public static float InTestScore()
+{
+float total=0;
+try
+{
+for(int i=0;i<totalmarks.length;i++)
+{
+int aa=totalmarks[i];
+if(aa<0 || aa>100)
+{
+throw new IllegalArgumentException();
+}
+else
+total=total+totalmarks[i];
+}
+avg=total/totalmarks.length;
+//return(avg);
+}
+catch(IllegalArgumentException e)
+{
+  System.out.println(e);
+}
+return(avg);
+}
+	 public static void main(String[] args) { 
+     Scanner sc=new Scanner(System.in);
+     int size=sc.nextInt();
+     int marks[]=new int[size];
+     for(int i=0;i<size;i++)
+     marks[i]=sc.nextInt();
+ TestClass tc=new TestClass(marks);
+  float average=tc.InTestScore();
+  if(average>0)
+  System.out.println(average);
+      
+
+	}
+}

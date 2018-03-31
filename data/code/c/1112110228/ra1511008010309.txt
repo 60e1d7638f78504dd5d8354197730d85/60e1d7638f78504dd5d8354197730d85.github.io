@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int TST,tst;
+  scanf("%d",&TST);
+  for(tst=0;tst<TST;tst++)
+  {
+    int n,d,x;
+    scanf("%d %d",&n,&d);
+    int mark[1001]={0};
+    int i;
+    for( i=0;i<n;i++)
+    {
+      scanf("%d",&x);
+      mark[x]=1;
+    }
+    int ans=0;
+    int l=0;
+    int j;
+        for(j=x;j>0;j--)
+      if(!mark[j])
+      {
+        ans+=(l+d-1)/d;
+      }
+    else
+      l++;
+    printf("%d\n",ans);
+  }
+	return 0;
+}

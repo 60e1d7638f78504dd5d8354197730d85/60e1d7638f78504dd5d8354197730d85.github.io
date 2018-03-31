@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+    int t,i;
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+      int n,j;
+      scanf("%d",&n);
+      int m,k,count=1,max=0,val;
+      scanf("%d",&k);
+      for(j=1;j<n;j++)
+      {
+        scanf("%d",&m);
+        if(m==k)
+        {
+          count++;
+        }
+       else
+        {
+          if(max<count)
+          {
+            max=count;
+            val=k;
+          }
+          count=1;
+          k=m;
+      }
+   }
+      if(max<count)
+        val=k;
+      printf("%d ",val);
+ }
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int t, n, m, i, pc, qc, temp, left, pb;
+	int ar[1001];
+	int p[501];
+	int q[501];
+	scanf("%d", &t);
+	while(t--)
+	{
+		scanf("%d %d", &n, &m);
+		for(i=1;i<=n;i++)
+			ar[i] = 1;
+		for(i=0;i<m;i++)
+		{
+			scanf("%d", &temp);
+			ar[temp]=0;
+		}
+		pc = qc = 0;
+		pb = 1;
+		for(i=1;i<=n;i++)
+		{
+			if(ar[i]==1)
+				if(pb==1)
+				{
+					p[pc] = i;
+					pc++;
+					pb=0;
+				}
+				else
+				{
+					q[qc] = i;
+					qc++;
+					pb=1;
+				}
+		}
+		for(i=0;i<pc;i++)
+		{
+			printf("%d", p[i]);
+			if(i<pc)
+				printf(" ");
+		}
+		printf("\n");
+		for(i=0;i<qc;i++)
+		{
+			printf("%d", q[i]);
+			if(i<qc)
+				printf(" ");
+		}
+		printf("\n");
+	}
+	return 0;
+}
+ 

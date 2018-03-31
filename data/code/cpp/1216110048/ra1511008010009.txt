@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t--)
+    {
+      int n;
+      cin>>n;
+      int A[n];
+      for(int i=0;i<n;i++)
+      cin>>A[i];
+      
+      int a=0,o=0,b=0;
+      for(int i=0;i<n;i++)
+      {
+          if(A[i]==1)
+          a++;
+          else if(A[i]==-1)
+          b++;
+          else if(A[i]!=0)
+          o++;
+      }
+      if(n==1)
+      cout<<"yes\n";
+   else  if(a==0)
+     {
+       if(((b<=1)&&(o==0))||((b==0)&&(o==1)))
+       cout<<"yes\n";
+       else 
+       cout<<"no\n";
+       
+     }
+      else if((b>=0)&&(o==0))
+      cout<<"yes\n";
+      else if((b==0)&&(o==1))
+       cout<<"yes\n";
+       else 
+       cout<<"no\n";
+    }
+} 

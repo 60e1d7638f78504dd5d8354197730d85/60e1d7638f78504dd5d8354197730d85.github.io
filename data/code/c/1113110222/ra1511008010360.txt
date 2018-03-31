@@ -1,0 +1,23 @@
+#include <stdio.h>
+void convert(int num,int base)
+{
+  int rem=num%base;
+  if(num==0)
+    return;
+  convert(num/base,base);
+  if(rem<10)
+    printf("%d",rem);
+  else
+    printf("%c",rem-10+'a');
+}
+int main()
+{
+  int a,b,c;
+scanf("%d %d %d",&a,&b,&c);
+  printf("%d ",a);
+  convert(a,8);
+  printf(" ");
+  convert(a,16);
+  
+	return 0;
+}

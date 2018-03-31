@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n,a[100000],b[100000],i,sum=0,flag=0;
+  cin>>n;
+  for(i=0;i<n;i++)
+  {
+    cin>>a[i];
+    sum+=a[i];
+  }
+  b[0]=0;
+  for(i=1;i<n;i++)
+    b[i]=b[i-1]+a[i-1];
+  for(i=n-1;i>0;i--)
+  {
+    if(b[i]==sum-b[i]-a[i])
+    { cout<<i<<" ";
+     flag=1;}
+  }
+  if(flag==0)
+    cout<<"-1";
+  return 0;
+}

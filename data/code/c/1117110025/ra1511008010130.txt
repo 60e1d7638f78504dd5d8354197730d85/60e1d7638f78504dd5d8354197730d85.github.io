@@ -1,0 +1,21 @@
+#include <stdio.h>
+int cd(int num)
+{
+  static int count=0;
+  if(num>0)
+  {
+    count++;
+    cd(num/10);
+  }
+  else
+    return count;
+}
+  
+int main()
+{
+	int num,count=0;
+  	scanf("%d",&num);
+  	count=cd(num);
+  	printf("The number of digits in %d is %d",num,count);
+	return 0;
+}

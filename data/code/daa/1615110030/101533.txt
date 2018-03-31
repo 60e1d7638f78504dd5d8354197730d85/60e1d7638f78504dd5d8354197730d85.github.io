@@ -1,0 +1,30 @@
+#include<iostream>
+#include <bits/stdc++.h>
+    using namespace std;
+    #define f(i,n) for(i=0;i<n;i++)
+    #define ll long long
+    int main(){
+        int t;
+        cin>>t;
+        while(t--){
+            int n;
+            cin>>n;
+            vector <ll> a[3];
+            int i;
+            f(i,3)a[i].resize(n,0);
+            f(i,n){
+                cin>>a[0][i]>>a[1][i]>>a[2][i];
+            }
+            ll cost[n][3];
+            cost[0][0]=a[0][0];
+            cost[0][1]=a[1][0];
+            cost[0][2]=a[2][0];
+            f(i,n-1){
+                cost[i+1][0]=min(cost[i][1],cost[i][2])+a[0][i+1];
+                cost[i+1][1]=min(cost[i][0],cost[i][2])+a[1][i+1];
+                cost[i+1][2]=min(cost[i][1],cost[i][0])+a[2][i+1];
+            }
+            cout<<min(cost[n-1][0],min(cost[n-1][1],cost[n-1][2]))<<endl;
+        }
+        return 0;
+    }

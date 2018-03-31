@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+       int v,i;
+}t[100001];
+int cmp(const void *a, const void *b){
+    struct node *c=(struct node *)a;
+    struct node *d=(struct node *)b;
+    return((c->v==d->v)?c->i-d->i:c->v-d->v);
+}
+int main(){
+    int n,k,i,ans,j;
+    scanf("%d %d",&n,&k);
+    for(i=0;i<n;i++){
+     scanf("%d",&t[i].v);
+     t[i].i=i;
+    }
+    qsort(t,n,sizeof(struct node),cmp);
+    for(i=ans=0;i<n;ans++,i=j)
+     for(j=i+1;j<n&&t[j].v==t[i].v;j++){
+      if(t[j].i-t[i].i>=k)
+       break;
+     }
+    printf("%d\n",ans);
+    return 0;
+}
+    

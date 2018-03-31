@@ -1,0 +1,104 @@
+#include<bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define mem(x,y) memset(x,y,sizeof(x))
+#define lli long long
+#define li long
+#define mapii map<int,int>
+#define mapllii map<long long int,int>
+#define mapilli map<int,long long int>
+#define mapllilli map<long long int,long long int>
+#define vi vector <int>
+#define vlli vector <long long int>
+#define pii pair<int,int>
+#define pilli pair<int,long long int>
+#define pipilli pair<int, pair<int, long long int> >
+#define pllii pair<long long int int,int>
+#define pllilli pair<long long int,long long int>
+#define vppiii vector<pair<int,pair<int,int> > >
+#define vpii vector<pair<int,int> >
+#define vpipii vector<pair<int,pair<int,int> > >
+#define vpipilli vector<pair<int,pair<int,long long int> > >
+#define ch char
+#define frp(x,y,z) for(x=y;x<z;x++)
+#define frm(x,y,z) for(x=y;x>z;x--)
+#define mmax 10000000009
+#define mmin -1000000009
+#define pr printf
+#define gc getchar
+const lli m=1000000007;
+using namespace std;
+void sc(int &x)
+{
+    register int c = gc();
+    x = 0;
+    int neg = 0;
+    for(;((c<48 || c>57) && c != '-');c = gc());
+    if(c=='-') {neg=1;c=gc();}
+    for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+    if(neg) x=-x;
+}
+lli power(lli a,lli b)
+{
+    lli res=1;
+    while(b>0)
+    {
+        if(b%2!=0)
+            res=(res*a)%m;
+        a=(a*a)%m;
+        b/=2;
+    }
+    return res%m;
+}
+lli gcd(lli a,lli b){return ((b==0)?a:gcd(b,a%b));}
+int main()
+{
+    int test,n,odd,a,m,i,j,prev,k,l;
+    char s[5];
+    sc(test);
+    while(test--)
+    {
+        odd=0;
+        sc(n);cin>>s;
+        sc(prev);
+        if(prev&1)
+            odd++;
+        if(n==1)
+        {
+            if(prev&1)
+                pr("Chefu\n");
+            else
+                pr("Chef\n");
+            continue;
+        }
+        int even=0;
+        frp(i,1,n)
+        {
+            sc(a);
+            if(a&1)
+            {
+                odd++;
+          
+            }
+            else
+            {
+                even+=(odd+1)/2;
+                odd=0;
+                
+            }
+ 
+        }
+        if(((n&1)&&s[4]=='u')||((!(n&1))&&s[4]!='u'))
+        {
+            pr("Chef\n");
+            continue;
+        }
+        even+=(odd+1)/2;
+        
+        if(even>(n-1)/2)
+            pr("Chefu\n");
+        else
+            pr("Chef\n");
+    }
+    return 0;
+} 

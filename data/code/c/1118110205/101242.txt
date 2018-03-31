@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+ int hours,mins,seconds; 
+ int status = 1;
+ scanf("%d", &hours);
+ scanf("%d", &mins);
+ scanf("%d", &seconds);
+ if((hours >= 24 || hours < 0))
+ { printf("Invalid Time"); status=0; }
+ if((seconds >= 60 || seconds < 0))
+ { printf("Invalid Time"); status=0; }
+ if((mins >= 60 || mins < 0))
+ { printf("Invalid Time"); status=0; }
+ if(status==1)
+ {
+ printf("24 Hours Format\n");
+ printf("%d:", hours);
+ printf("%d:", mins);
+ printf("%d", seconds);
+ 
+ if(hours > 12)
+ { hours-=12; 
+  printf("\n12 Hours Format\n");
+ printf("%d:", hours);
+ printf("%d:", mins);
+ printf("%d pm", seconds);
+ }
+   else{
+ printf("\n12 Hours Format\n");
+ printf("%d:", hours);
+ printf("%d:", mins);
+ printf("%d am", seconds);}
+ }
+	return 0;
+}

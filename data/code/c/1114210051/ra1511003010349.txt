@@ -1,0 +1,27 @@
+#include <stdio.h>
+int gcd(int a,int b)
+{
+  if(b==0)
+    return a;
+  return gcd(b,a%b);
+}
+void lcm(int arr[],int n)
+{
+  int ans=arr[0];
+  int i;
+  for(i=0;i<n;i++)
+  {
+    ans=((arr[i]*ans)/(gcd(arr[i],ans)));
+  }
+  printf("%d",ans);
+}
+int main()
+{
+int n,i;
+  scanf("%d",&n);
+  int arr[n];
+  for(i=0;i<n;i++)
+    scanf("%d ",&arr[i]);
+  lcm(arr,n);
+	return 0;
+}

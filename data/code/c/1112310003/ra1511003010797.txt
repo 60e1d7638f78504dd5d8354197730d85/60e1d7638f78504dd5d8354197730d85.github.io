@@ -1,0 +1,37 @@
+    #include<stdio.h>
+    #include<stdlib.h>
+     
+    int cmpfunc(const void *a, const void *b){
+    	return (*(int*)a-*(int*)b);
+    }
+     
+    int subset(int set[],int n,int sum)
+    {
+    	if(sum==0)
+    		return 1;
+    	if(n==0 && sum !=0)
+    		return 0;
+    	if(set[n-1]>sum)
+    		return subset(set,n-1,sum);
+    	return subset(set,n-1,sum) || subset(set,n-1,sum-set[n-1]);
+    }
+     
+    int main()
+    {
+    	int t,n,m,i,sum;
+    	scanf("%d",&t);
+    	while(t--){
+    		scanf("%d %d",&n,&m);
+    		int a[n];
+    		sum=m;
+    		for(i=0;i<n;i++)
+    			scanf("%d",&a[i]);
+    		qsort(a,n,sizeof(int),cmpfunc);
+    		if(subset(a,n,sum)==1)
+    			printf("Yes\n");
+    		else
+    			printf("No\n");
+    		
+    	}	
+    	return 0;
+    } 

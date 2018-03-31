@@ -1,0 +1,58 @@
+#include<stdio.h>
+#define mod 1000000009
+int fact[524290],inv[524290];
+long long pw(long long a,int b) 
+{
+    long long ans=1;
+	while(b)
+	{
+		if(b&1)
+		ans=(ans*a)%mod;
+		b>>=1;
+		a=(a*a)%mod;
+	}
+	return (int)ans;
+}
+inline void pre()
+{
+   int i;
+  fact[0]=1LL;
+  inv[0]=1;
+  for(i=1;i<=524289;i++){
+  	long long x=(fact[i-1]*1LL*i*1LL)%mod;
+  fact[i]=(int)x;
+  inv[i]=pw(fact[i],mod-2);}
+}
+int main()
+{
+    pre();
+    int i,j;
+    long long m;
+    scanf("%lld",&m);
+    long long n=pw(2LL,m);
+    //printf("%lld\n",n);
+    if(m==1)
+    printf("2\n2\n");
+    else
+    {
+        long long ans;
+        for(i=1;i<=n;i++)
+        {
+            if(i<n/2)
+            printf("0\n");
+            else
+            {
+              //printf("%d %d\n",fact[i-1],inv[n/2-1]);
+             ans=(fact[i-1]*1LL*inv[n/2-1])%mod;
+             //printf("%d\n",inv[i-n/2]);
+             ans=(ans*inv[i-n/2])%mod;
+             //printf("%d\n",fact[n/2]);
+             ans=(ans*1LL*fact[n/2])%mod;
+             ans=(ans*1LL*fact[n/2])%mod;
+             ans=(ans*2LL)%mod;
+            printf("%lld\n",ans);
+        }
+     }
+    }
+    return 0;
+} 

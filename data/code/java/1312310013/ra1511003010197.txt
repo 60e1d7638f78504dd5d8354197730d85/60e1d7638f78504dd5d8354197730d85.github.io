@@ -1,0 +1,71 @@
+
+ import static java.lang.System.*;
+import static java.lang.Math.*;
+import static java.lang.Character.*;
+import java.util.*;
+import java.io.*;
+import java.math.*;
+import static java.math.BigInteger.*;
+import java.awt.geom.*;
+ 
+
+ 
+public class TestClass {
+	 public static void main(String[] args) { 
+       
+		BigInteger d[][] = new BigInteger[102][102];
+		
+		Scanner scr = new Scanner( System.in );
+		int t = scr.nextInt();
+		while( t-- > 0 )
+		{
+			int n = scr.nextInt(), k = scr.nextInt(), p = scr.nextInt();
+			
+			for(int i=0; i <= k+1; i++)
+			{
+				d[i][0] = BigInteger.valueOf( i ).pow( k );
+				if( i > 0 )
+				d[i][0] = d[i][0].add( d[i-1][0] );
+			}
+			for(int c=1; c <= k+1; c++)
+			for(int r=0; r <= k+1-c; r++)
+			{
+				d[r][c] = d[r+1][c-1].subtract( d[r][c-1] );
+			}
+			if( false )
+			for(int r=0; r <= k+1; r++, System.out.println())
+			for(int c=0; c <= k+1-r; c++)
+			System.out.printf( "%3s ", d[r][c]  );
+			
+			BigInteger mod = BigInteger.valueOf( p );
+			long res = 0;
+			for(int i=0; i <= k+1; i++)
+			{
+				long ans = comb( n, i ).mod( mod ).intValue();
+				ans = ans * ( d[0][i].mod( mod ).intValue() );
+				res = res + ans;
+				res %= p;
+			}
+			System.out.println( res );
+			
+			
+		}
+		
+	}
+	static BigInteger comb( int n, int k )
+	{
+		BigInteger res = ONE;
+		for(int i=n-k+1; i <= n; i++)
+		{
+			res = res.multiply( BigInteger.valueOf( i ) );
+		}
+		for(int i=1; i <= k; i++)
+		{
+			res = res.divide( BigInteger.valueOf( i ) );
+		}
+		
+		return res;
+	}
+}
+ 
+		

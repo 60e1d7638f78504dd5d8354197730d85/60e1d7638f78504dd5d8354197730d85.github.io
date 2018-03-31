@@ -1,0 +1,38 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+char g(queue<char> &q, int v[]) {
+    while(!q.empty()) {
+        if (v[q.front()-'a'] > 1) {
+            q.pop();
+        } else {
+            return q.front();
+        }
+    }
+    return 'Z';
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while(t--) {
+        int n;
+        cin >> n;
+        char s[n];
+        for (int i=0; i < n; i++) cin >> s[i];
+        queue<char> q;
+        int f[26] = {0};
+        for (int i=0; i < n; i++) {
+            f[s[i]-'a'] ++;
+            if (f[s[i]-'a'] < 2) {
+                q.push(s[i]);
+            }
+            char ch = g(q,f);
+            if (ch == 'Z') cout << "0 ";
+            else cout << ch << " ";
+        }
+        cout << '\n';
+    }
+    return 0;
+}

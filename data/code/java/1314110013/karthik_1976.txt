@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc = new Scanner(System.in);
+       
+       int T = sc.nextInt();
+       
+       for(int i = 1; i <= T; i++)
+       {
+         int N = sc.nextInt();
+         int [] arr = new int[N];
+         for(int j = 0; j < N; j++)
+         {
+           arr[j] = sc.nextInt();
+         }
+         int count = 0;
+         int xorvalcount = 0;
+         for(int k = 0; k < N; k++)
+         {
+           int countOnes = 0;
+           for(int m = 0; m < N; m++)
+           {
+             if(k != m)
+             {
+               if(arr[m] == 1)
+                 countOnes++;
+                 
+             }
+           }
+           if(countOnes % 2 == 0)
+             count++;
+         }
+         System.out.println(count);
+       }
+		
+	}
+}

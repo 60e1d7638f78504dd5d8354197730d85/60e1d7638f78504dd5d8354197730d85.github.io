@@ -1,0 +1,48 @@
+#include <stdio.h>
+int gcd(int n1,int n2)
+{
+  int i,g;
+  
+    for(i=1; i <= n1 && i <= n2; ++i)
+    {
+        if(n1%i==0 && n2%i==0)
+            g = i;
+    }
+  return g;
+}
+int lcm(int m1,int m2)
+{
+ int max;
+  max=(m1>m2)?m1:m2;
+  
+ while(1)
+ {
+   if(max%m1==0 && max%m2==0)
+   {
+    return max;
+     break;
+   }
+   max++;
+ }
+  
+}
+
+void print(int g,int l)
+{
+ 
+  printf("%d %d",g,l);
+  printf("\n");
+}
+int main()
+{
+  int T;int i,n1,n2,g,l;
+  scanf("%d",&T);
+for(i=0;i<T;i++)
+{
+  scanf("%d%d",&n1,&n2);
+  g=gcd(n1,n2);
+  l=lcm(n1,n2);
+  print(g,l);
+}
+	return 0;
+}

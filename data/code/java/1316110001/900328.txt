@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.String;
+
+class Sample
+{
+  static void getInput()
+  {
+    Scanner in=new Scanner(System.in);
+    int num=in.nextInt();
+    int digit=in.nextInt();
+    int ans=getLLessThanN(num,digit);
+    System.out.println(ans);
+  }
+  static int getLLessThanN(int number, int digit)
+  {
+    String h=""+digit;
+    int ans=0;
+    for(int i=number;i>1;i--)
+    {
+      String s=""+i;
+      if(s.contains(h))
+        continue;
+      else 
+      {
+        ans=i;
+        break;
+      }
+    }
+    return(ans);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+	Sample.getInput();	
+	}
+}

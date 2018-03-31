@@ -1,0 +1,32 @@
+#include<stdio.h>
+int main(){
+	int d,total,i,j;
+	scanf("%d %d", &d, &total);
+	int mint[d],maxt[d],minsum=0,maxsum=0;
+	for(i=0;i<d;i++)
+	{
+		scanf("%d %d",&mint[i], &maxt[i]);
+		minsum += mint[i];
+		maxsum += maxt[i];
+	}
+	if(total>=minsum&&total<=maxsum)
+	{
+		printf("YES\n");
+		while(maxsum!=total){
+			for(j=0;j<d;j++)
+			{
+				if(mint[j]<=maxt[j]-1){
+					maxt[j]=maxt[j]-1;
+					maxsum = maxsum -1;
+					if(maxsum==total)
+						break;
+				}
+			}
+		}
+		for(i=0;i<d;i++)
+			printf("%d ", maxt[i]);
+	}
+	else
+		printf("NO");
+	return 0;
+}

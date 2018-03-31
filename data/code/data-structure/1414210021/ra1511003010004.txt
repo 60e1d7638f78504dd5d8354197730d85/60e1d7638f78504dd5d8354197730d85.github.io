@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<string.h>
+typedef struct array1
+{
+	char stud[35];
+	int age;
+}AR1;
+typedef struct array2
+{
+	char teach[35];
+	AR1 flag[100];
+	int count;
+}AR2;
+void Merge(AR1 arr[],int beg,int end)
+{
+	int index=0,mid=(beg+end)/2,i=beg,j=mid+1,k;
+	AR1 temp[100];
+	while(i<=mid && j<=end)
+	{
+		if(arr[i].age<=arr[j].age)
+			temp[index++]=arr[i++];
+		else
+			temp[index++]=arr[j++];
+	}
+	if(i>mid)
+	{
+		for(k=j;k<=end;k++)
+			temp[index++]=arr[k];
+	}
+	if(j>end)
+	{
+		for(k=i;k<=mid;k++)
+			temp[index++]=arr[k];
+	}
+	for(k=0;k<index;k++)
+		arr[k+beg]=temp[k];
+}
+void Merge_Sort(AR1 arr[],int beg,int end)
+{
+	if(beg<end)
+	{
+		int mid=(beg+end)/2;
+		Merge_Sort(arr,beg,mid);
+		Merge_Sort(arr,mid+1,end);
+		Merge(arr,beg,end);
+	}
+}
+void insertion_sort(AR2 arr[],int N)
+{
+	int i,j,k;
+	for(i=1;i<N;i++)
+	{
+		j=i-1,k=i;
+		while(j>=0)
+		{
+			if(strcmp(arr[j].teach,arr[k].teach)>0)
+			{
+				AR2 t=arr[k];
+				arr[k]=arr[j];
+				arr[j]=t;
+				k--;
+			}
+			else 
+				break;
+			j--;
+		}
+	}
+}
+int main()
+{
+	int N,M,i,k;
+	AR2 curr[100];
+	scanf("%d%d",&N,&M);
+	for(i=0;i<N;i++)
+		scanf("%s",curr[i].teach);
+	for(i=0;i<N;i++)
+		curr[i].count=0;
+	for(i=0;i<M;i++)
+	{
+		char name[35],name1[35];
+		int j,ag;
+		scanf("%s%s%d",name,name1,&ag);
+		for(j=0;j<N;j++)
+		{
+			if(strcmp(curr[j].teach,name)==0)
+			{
+				strcpy(curr[j].flag[curr[j].count].stud,name1);
+				curr[j].flag[curr[j].count].age=ag;
+				(curr[j].count)++;
+			}
+		}
+	}
+	for(i=0;i<N;i++)
+	{
+		if(curr[i].count>1)
+			Merge_Sort(curr[i].flag,0,curr[i].count-1);
+	}
+	insertion_sort(curr,N);
+	for(i=0;i<M;i++)
+	{
+		printf("%s\n",curr[i].teach);
+		for(k=0;k<curr[i].count;k++)
+			printf("%s %d\n",curr[i].flag[k].stud,curr[i].flag[k].age);
+	}
+	return(0);
+}

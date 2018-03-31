@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool cmp(const int i,const int j)
+{
+    return i>j;
+}
+int main() {
+	int t,n,k,m;
+	long long int v,l;
+	cin >> t;
+	while(t--){
+	    cin >> n >> k;
+	    int a[n],b[n];
+	    for(int i=0;i<n;i++){
+	        cin >> a[i];
+	        b[i]=a[i];
+	    }
+	    sort(a,a+n);
+	    sort(b,b+n,cmp);
+	    v=0;
+	    l=0;
+	    m=n;
+	    for(int i=0;i<n;i++){
+	        v=v+a[i];
+	        n=n-k;
+	    }
+	    for(int i=0;i<m;i++){
+	        l=l+b[i];
+	        m=m-k;
+	    }
+	    cout << v << " " << l << endl;
+	}
+	return 0;
+}

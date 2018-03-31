@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+#define mp make_pair
+#define pb push_back
+#define REP(i,n) for (int i=0;i<n;i++) 
+#define FOR(i,a,b) for (int i=a;i<=b;i++) 
+using namespace std;
+typedef long long int ll;
+ll powmod(ll a,ll b,ll mod) {ll res=1;a%=mod; assert(b>=0); for(;b;b>>=1){if(b&1)res=res*a%mod;a=a*a%mod;}return res;}
+string a;
+int t,c,e,s,ans;
+int main() {
+	ios::sync_with_stdio(false);cin.tie(0);
+	cin>>t;
+	while (t--) {
+	    cin>>a;
+	    c=e=s=ans=0;
+	    REP(i,a.length()) {
+	        if (a[i]=='C') c=1;
+	        if (a[i]=='E') e=1;
+	        if (a[i]=='S') s=1;
+	        if (a[i]=='C' && e+s>0) {ans=-1;break;}
+	        if (a[i]=='E' && s>0) {ans=-1;break;}
+	    }
+	    if (ans==0) cout<<"yes\n"; else cout<<"no\n";
+	}
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include<stdio.h>
+int gcd(int a,int b)
+ {
+  if(b==0)
+   return a;
+  else
+   return gcd(b,a%b);
+ }
+int main()
+ {
+  int t,a,i,temp=0;
+  char b[255];
+  scanf("%d",&t);
+  while(t--)
+   {
+    temp=0;
+    scanf("%d",&a);
+	scanf("%s",b);
+	if(a==0)
+	 {
+	  printf("%s\n",b);
+	  continue;
+	 }
+	for(i=0;b[i]!='\0';++i)
+	 {
+	  temp=(temp+(b[i]-48)%a)%a;
+	  temp=temp*10;
+	 } 
+    printf("%d\n",gcd(a,temp/10));
+   }
+  return 0;
+}

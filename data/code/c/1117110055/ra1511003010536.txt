@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{	int a,b,i,j;
+	scanf("%d%d",&a,&b);
+ 	int ar[a][a];
+ for(i=0;i<a;i++)
+   for(j=0;j<a;j++)
+     ar[i][j]=0;
+ while(b--){
+   int row,add;
+   char k[10];
+    scanf("%s%d%d",k,&row,&add);
+   if(k[0]=='C')
+   {
+     for(i=0;i<a;i++)
+       ar[i][row]+=add;
+   }
+   else
+   {
+      for(i=0;i<a;i++)
+       ar[row][i]+=add;
+   }
+ }
+    int max=-1;
+   for(i=0;i<a;i++)
+   for(j=0;j<a;j++)
+   {if(max<ar[i][j])
+   {
+     max=ar[i][j];
+   }
+   }
+   printf("%d",max);
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+        int t ;
+        scanf("%d",&t);
+        while(t--)
+        {
+            int n , m ;
+            scanf("%d %d",&n,&m);
+            int i , j ,x ;
+            char arr[n][m+1];
+            int sum = 0 ;
+            int count ;
+            for(i = 0 ; i < n ; i++)
+                scanf("%s",arr[i]);
+            for(i = 0 ; i < m ; i++)
+            {
+                count = 0 ;
+                for(j = 0 ; j < n ; j++)
+                {
+                    if(arr[j][i] == '1')
+                        count++;
+                }
+                sum = sum + (count) * (count-1)/2 ;
+            }
+            printf("%d\n",sum);
+        }
+        return 0;
+}
+ 

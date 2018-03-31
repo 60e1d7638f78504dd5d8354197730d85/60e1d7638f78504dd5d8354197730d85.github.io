@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;
+public class TestClass {
+  static Scanner sc;
+	 public static void main(String[] args) { 
+		 sc=new Scanner(System.in);
+        int num=Integer.parseInt(sc.nextLine());
+        for(int no=0;no<num;no++){
+                        String testcase=sc.nextLine().trim();
+            String[] arr=testcase.split(" ");
+            int n = Integer.parseInt(arr[0]); //n
+            int k = Integer.parseInt(arr[1]); //k
+            int p = Integer.parseInt(arr[2]); //p
+            long[][] s = new long[k + 1][k + 1];
+            Arrays.fill(s[0], 0L);
+            s[0][0] = 1L;
+            for (int i = 1; i <= k; i++) {
+                for (int j = 1; j <= i; j++) {
+                    if (j == 1 || i == j) {
+                        s[i][j] = 1L;
+                        continue;
+                    }
+                    s[i][j] = s[i - 1][j - 1] + j * s[i - 1][j];
+                    s[i][j] = s[i][j] % p;
+                }
+            }
+            long fact[] = new long[k + 1];
+            fact[0] = 1L;
+            for (int i = 1; i <= k; i++) {
+                fact[i] = (fact[i - 1] * (long) i) % p;
+            }
+            long[] c = new long[k + 1];
+            for (int i = 0; i <= k; i++) {
+                c[i] = (fact[i] * s[k][i]) % p;
+            }
+            BigInteger big = BigInteger.valueOf(n + 1);
+            BigInteger de = BigInteger.valueOf(1);
+            BigInteger M = BigInteger.valueOf(p);
+            long ans = 0L;
+            for (int i = 1; i <= k; i++) {
+                BigInteger t1 = BigInteger.valueOf(n + 1 - i);
+                BigInteger t2 = BigInteger.valueOf(i + 1);
+                big = big.multiply(t1);
+                de = de.multiply(t2);
+                BigInteger r = big.divide(de);
+                BigInteger rem = r.mod(M);
+                long x = rem.longValue();
+                x = (x * c[i]) % p;
+                ans = (ans + x) % p;
+            }
+            System.out.println(ans);
+        }
+     }
+}

@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+ 
+public class TestClass {
+ 
+	static int encodeInteger(int x, int n) {
+		n = n << (1 << (1 << (1 << 1)));
+		x = x | n;
+		return x;
+	}
+ 
+	public static void main(String[] args) throws IOException {
+		try {
+			Scanner in = new Scanner(System.in);
+			int T = in.nextInt();
+			for (int t = 0; t < T; t++) {
+				int N = in.nextInt();
+				long[] A = new long[N];
+				long[] B = new long[N];
+				System.out.println("Case " + (t + 1) + ":");
+				for (int i = 0; i < N; i++) {
+					A[i] = in.nextLong();
+					B[i] = A[i] & 65535;
+					A[i] = A[i] >> 16;
+					System.out.print(B[i] + " ");
+				}
+				System.out.println();
+				for (int i = 0; i < N; i++) {
+					System.out.print(A[i] + " ");
+				}
+				System.out.println();
+			}
+			in.close();
+		} catch (Exception e) {
+			return;
+		}
+	}
+}  

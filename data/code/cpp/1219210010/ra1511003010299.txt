@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+class And
+{
+	int a,b;
+	public:
+		void get()
+		{
+			cin>>a>>b;
+		}
+		void show()
+		{
+			cout<<"a="<<a<<"b="<<b;
+			
+		}
+		friend And operator &&(And &,And &);
+		
+};
+And operator &&(And &obj1,And &obj2)
+{
+	And obj;
+	obj.a=obj1.a&&obj2.a;
+	obj.b=obj1.b&&obj2.b;
+	return(obj);
+}
+int main()
+{
+	And ob1,ob2,ob3;
+	ob1.get();
+	ob2.get();
+	ob3=operator &&(ob1,ob2);
+	ob3.show();	
+}

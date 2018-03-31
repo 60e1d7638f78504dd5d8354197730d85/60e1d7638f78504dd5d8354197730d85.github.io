@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<string.h>
+
+int value(char r)
+{
+ if(r=='I')
+ {
+  return 1; 
+ }
+  else if(r=='V')
+  {
+   return 5; 
+  }
+  else if(r=='X')
+  {
+   return 10; 
+  }
+  else if(r=='L')
+  {
+   return 50; 
+  }
+  else if(r=='C')
+  {
+   return 100; 
+  }
+  else if(r=='D')
+  {
+   return 500; 
+  }
+  else if(r=='M')
+  {
+   return 1000; 
+  }
+  else
+  {
+   return 0; 
+  }
+}
+
+int main()
+{
+int n=0,len,s1,s2,i;
+  char str[30];
+  scanf("%[^\n]%*c",str);
+  len=strlen(str);
+  for(i=len-1;i>=0;i--)
+  {
+   s1=value(str[i]);
+    s2=value(str[i+1]);
+    if(s1<s2)
+    {
+     n=n-s1; 
+    }
+    else
+    {
+      
+      n=n+s1;
+    }
+  }
+  printf("%d",n);
+	return 0;
+}

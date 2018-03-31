@@ -1,0 +1,33 @@
+ #include <stdio.h>
+
+int sh(int items[], int n, int sum)
+{
+    if (sum == 0) 
+       return 1;
+    if (n == 0 && sum != 0) 
+        return 0;
+	if (items[n-1] > sum)
+		return sh(items, n-1, sum);
+	return (sh(items, n-1, sum-items[n-1]) + sh(items, n-1, sum));
+}
+ 
+int main()
+{
+  int T;
+  scanf("%d",&T); 
+  while(T--){
+    int items[100],totalsum=0;
+    int n,i;
+   	scanf("%d",&n);   
+   	for(i=0;i<n;i++){    
+      scanf("%d",&items[i]);
+      totalsum+=items[i];
+    }
+    if(totalsum%2==1)
+        printf("NO\n");
+    else if (sh(items, n, totalsum/2))
+        printf("YES\n");
+    else
+        printf("NO\n");
+	}
+}

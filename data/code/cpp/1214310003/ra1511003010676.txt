@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a,c[100],i=0,sum=0,ctr=0;
+  	cin>>a;
+  	int b=a;
+  	while(a>0)
+    {
+      c[i++]=a%10;
+      a=a/10;
+      ctr++;
+    }
+  	int d[100];
+  	for(int h=0;h<i;h++)
+    {
+      d[i-h-1]=c[h];
+    }
+  	int j=0,temp=0;
+  	while(temp<b)
+    {
+      temp=0;
+      for(int k=j;k<(j+ctr);k++)
+        temp+=d[k];
+      d[i++]=temp;
+      j++;
+    }        
+  	if(d[i-1]!=b)
+      cout<<"Not Keith Number";
+  	else
+      cout<<"Keith Number";
+	return 0;
+}

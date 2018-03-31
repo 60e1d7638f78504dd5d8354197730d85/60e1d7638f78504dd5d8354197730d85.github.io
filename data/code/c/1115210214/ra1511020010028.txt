@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<math.h>
+int prime(int y);
+int n,k,i,j,y,o,l,f,s[10],h,d;
+int main()
+{
+	l=0;
+	scanf("%d%d",&n,&k);
+		for(j=2;j<=n;j++)
+		{
+		f=prime(j);
+		if(f==1)
+		{
+			s[l++]=j;
+		}
+		if(l==2)
+		{
+			d=s[0]+s[1]+1;
+			h=prime(d);
+			if(h==1&&d<=n&&d>=2)	
+			{
+				o=o+1;
+			}
+			j=s[1]-1;
+			l=0;		
+		}	}
+	
+	if(o>=k)
+	{
+		printf("YES\n");
+	}
+	else
+    {
+		printf("NO\n");
+	}
+        
+	return 0;
+
+}
+int prime(int y)
+{ 
+		int a=1;
+		for(i=2;i<=sqrt(y);i++)
+		{
+			if(y%i==0)
+			{
+				a=0;
+			}
+ 
+		}
+		if(a==0)
+        {
+		return 0;
+        }
+		else if(a==1||y==2||y==3)
+        {
+		return 1;
+        }
+  return 0;
+} 

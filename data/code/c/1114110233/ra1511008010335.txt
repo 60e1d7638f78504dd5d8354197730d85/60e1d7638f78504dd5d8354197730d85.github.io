@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+int countSetBits(unsigned int n)
+{
+  unsigned int count = 0;
+  while(n)
+  {
+    count += n & 1;
+    n >>= 1;
+  }
+  return count;
+}
+ 
+/* Program to test function countSetBits */
+int main()
+{
+    int t;scanf("%d",&t);
+    while(t--)
+    {
+        int n,i,sum=0; scanf("%d",&n);
+        for(i=1;i<=n;i++) sum+=countSetBits(i);
+        printf("%d\n",sum);
+    }
+return 0;
+} 

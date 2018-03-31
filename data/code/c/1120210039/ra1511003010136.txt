@@ -1,0 +1,54 @@
+#include<stdio.h>
+long long a[100005],b[100005],c[100005],d[100005];
+ 
+void swap(int i,int j)
+{
+	long long x=c[i];
+	c[i]=c[j];
+	c[j]=x;
+	x=d[i];
+	d[i]=d[j];
+	d[j]=x;
+}
+void sort(int l,int h)
+{
+	if(l>=h)	return ;
+	long long x=c[h],i=l,j=l;
+	
+	for(;i<h;i++)
+		if(c[i]<x)	swap(i,j),j++;
+	
+	swap(j,h);
+	
+	sort(l,j-1);
+	sort(j+1,h);
+}
+int main()
+{
+	long long n,x,y,i,j,sum=0;
+	
+	scanf("%lld%lld%lld",&n,&x,&y);
+	
+	for(i=0;i<n;i++)
+	scanf("%lld",a+i);
+	
+	for(i=0;i<n;i++){
+		scanf("%lld",b+i);
+		c[i]=abs(b[i]-a[i]);
+		d[i]=i;
+	}
+	
+	sort(0,n-1);
+	
+	for(i=n-1;i>=0&&x&&y;i--){
+		j=d[i];
+		if(a[j]>b[j])	sum+=a[j],x--;
+		else sum+=b[j],y--;
+	}
+	
+	while(x>0&&i>=0)	sum+=a[d[i--]],x--;
+	while(y>0&&i>=0)	sum+=b[d[i--]],y--;
+	
+	printf("%lld\n",sum);
+	return 0;
+} 

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int max;
+  int i,n,j,m,a,b,count=0,k;
+scanf("%d %d",&n,&m);
+  int v[n];
+  for(j=1;j<=n;j++)
+    v[j]=0;
+  for(i=1;i<=m;i++)
+  {
+  	scanf("%d %d",&a,&b);
+    if(a==b)
+    {
+    	v[a]++;
+    }
+    else
+    {
+      for(k=a;k<=b;k++)
+    	v[k]++;
+    }
+    
+  }
+  for(j=1;j<=n;j++)
+  {
+  	if(v[j]>1||v[j]==0)
+    {
+    	printf("%d %d\n",j,v[j]);
+          count =1;break;
+    }
+         
+  }
+  if(count==0)
+  {printf("OK");}
+	return 0;
+}

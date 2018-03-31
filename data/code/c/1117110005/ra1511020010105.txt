@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,cnt=0,dup=0;
+  scanf("%d",&n);
+  int arr[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    int temp=0;
+    for(j=0;j<n;j++)
+    {
+      if(arr[i]==arr[j])
+      {
+        temp++;
+      }
+    }
+    if(temp<2)
+      cnt++;
+    else
+      dup++;
+  }
+  printf("%d",cnt+(dup/2));
+  return 0;
+}

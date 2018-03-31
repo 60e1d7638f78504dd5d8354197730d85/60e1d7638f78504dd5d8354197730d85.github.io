@@ -1,0 +1,40 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+class Time {
+  int h;
+  int m;
+  public:
+  void get(int h1, int m1) {
+    h = h1;
+    m = m1;
+  }
+  void display() {
+    cout<<"H:"<<h<<" M:"<<m<<endl;
+  }
+  void operator ++() {
+    m++;
+    if(m>59) {
+      m=0;
+      h++;
+      if(h>23) {
+        h=0;
+      }
+    }
+  }
+};
+int main()
+{
+	Time t;
+  	int h,m;
+  	cin>>h>>m;
+  	if(h>23 || h<0 || m>59 || m<0) {
+      exit(0);
+    }
+  	t.get(h,m);
+  	++t;
+  	t.display();
+  	++t;
+  	t.display();
+	return 0;
+}

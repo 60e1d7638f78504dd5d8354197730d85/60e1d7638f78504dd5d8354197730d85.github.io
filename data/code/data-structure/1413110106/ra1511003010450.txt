@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int n,x;
+  scanf("%d",&n);
+  int a[n],i,l,r,mid;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  scanf("%d",&x);
+  l=0;
+  r=n-1;
+  while(l<=r)
+  {
+    mid=l+((r-l)/2);
+    if(x==a[mid])
+    {
+      printf("%d found at location %d",x,mid+1);
+      return 0;
+    }
+    else if(a[mid]>x)
+    {
+      r=mid-1;
+    }
+    else
+      l=mid+1;
+  }
+  printf("Not found");
+
+	return 0;
+}

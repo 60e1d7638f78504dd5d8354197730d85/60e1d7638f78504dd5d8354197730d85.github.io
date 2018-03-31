@@ -1,0 +1,38 @@
+#include <stdio.h>
+int sum(int n);
+int main()
+{
+int T,D,N,sum1,i,x,R[16],k;
+  scanf("%d\n", &T);
+  for(k=0;k<T;k++)
+  {   
+  scanf("%d", &D);
+  scanf("%d", &N);
+  sum1=sum(N);
+  for(i=1;i<D;i++)
+  {
+    x=sum(sum1);
+    sum1=x;
+  }
+  R[k]=sum1;
+  }
+
+  for(i=0;i<T;i++)
+  {
+    printf("%d\n", R[i]);
+  }
+   	return 0;
+}
+ int sum(int n)
+ {
+   int s=0,j;
+  if(n!=0)
+  {
+    for(j=1;j<=n;j++)
+    { s=s+j;
+    }
+    return s;
+  }
+   else 
+     return 0;
+ }

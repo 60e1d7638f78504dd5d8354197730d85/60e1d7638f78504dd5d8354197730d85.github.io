@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+
+	char str[100001],c;
+	int i,l,tc,f=0;
+	scanf("%d",&tc);
+	while(tc--)
+	{
+		f=0;
+		scanf("%s",str);
+		l=strlen(str);
+		if(l==1)
+		{
+			printf("Yes\n");
+			continue;
+		}
+		for(i=0;i<(l-1);i++)
+		{
+			if(str[i]==str[i+1])
+			{
+				continue;
+			}
+			else
+			{
+				if(i==0 && l>2)
+				{
+					if(str[i]==str[i+2])
+					{
+						str[i+1]=str[i];
+						f++;
+					}
+					else if(str[i+1]==str[i+2])
+					{
+						str[i]=str[i+1];
+						f++;
+					}
+				}
+				
+				else if(f==0)
+				{
+					f++;
+					if(str[i+1]<str[i])
+						str[i+1]++;
+					else
+						str[i+1]--;
+				}
+				else
+				{	f++;
+					break;
+				}
+				
+			}
+			
+		}
+		
+		if(f==1)
+		{
+			printf("Yes\n");
+		}
+		else
+		{
+			printf("No\n");
+		}
+			
+			
+	}
+	return 0;
+}

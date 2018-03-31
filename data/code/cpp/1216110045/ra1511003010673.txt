@@ -1,0 +1,47 @@
+#include<iostream>
+#include<stdio.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+        {
+            int n;char ch[50000];
+            int price[26],cnt[26];
+            int p=0;
+            for(int i=0;i<26;i++)
+            {
+                cnt[i]=0;
+            }
+            for(int i=0;i<26;i++)
+            {
+                cin>>price[i];
+            }
+            scanf("%s",ch);
+            int c=0;
+            while(ch[c]!='\0')
+            {
+                c++;
+            }
+ 
+            for(int i=0;i<c;i++)
+            {
+                cnt[ch[i]-97]++;
+            }
+ 
+            for(int i=0;i<26;i++)
+            {
+                if(cnt[i]==0)
+                {
+                    p+=price[i];
+                }
+            }
+ 
+            cout<<p<<endl;;
+        }
+return 0;
+}
+ 

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+struct Student
+{
+char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+};
+
+int main()
+{
+  	int n;
+    scanf("%d",&n);
+	struct Student* stds = (struct Student*) malloc(n*sizeof(struct Student));
+  	struct Student* ptr = stds;
+  	int t = n;
+  	while(n--){
+      scanf("%s %s %d %f",stds->name,stds->department,&(stds->yearOfStudy),&(stds->cgpa));
+      stds++;
+    }
+  int i,j;
+  stds=ptr;
+  for(i=0;i<t;i++){
+    for(j=0;j<t-1;j++){
+      if (strcmp(stds[j].name,stds[j+1].name)>0){
+        struct Student student = stds[j];
+        stds[j] = stds[j+1];
+        stds[j+1] = student;
+      }
+    }
+  }
+
+  while(t--){
+    printf("Name:%s\nDepartment:%s\nYear of study:%d\nCGPA:%0.1f\n",stds->name,stds->department,stds->yearOfStudy,stds->cgpa);
+    stds++;
+  }
+  
+	return 0;
+}

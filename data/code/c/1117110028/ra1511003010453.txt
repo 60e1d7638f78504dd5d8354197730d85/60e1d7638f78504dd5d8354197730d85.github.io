@@ -1,0 +1,32 @@
+#include <stdio.h>
+ 
+int recursiveMax(int[], int);
+int max(int, int);
+ 
+int main()
+{
+  int n,i;
+  int arr[10];
+  scanf("%d",&n);
+  
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+
+  int max = recursiveMax(arr, n);
+  printf("Maximum element in the array is %d", max);
+  return 0;
+}
+ 
+int recursiveMax(int* arr, int length)
+{
+  if (length == 1)
+    return arr[0];
+  return max(recursiveMax(arr, length - 1), arr[length - 1]);
+}
+ 
+int max(int n1, int n2)
+{
+  return n1 > n2 ? n1 : n2;
+}

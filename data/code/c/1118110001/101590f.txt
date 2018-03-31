@@ -1,0 +1,46 @@
+#include<stdio.h>
+void main()
+{
+struct student
+{
+char name[20];
+char department[20];
+int year;
+float cgpa;
+};
+struct student s[20],t;
+int i,j,n;
+//printf("\n enter the limit");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+//printf("\n enter the name \n");
+scanf("%s",s[i].name);
+//printf("enter the department \n");
+scanf("%s",s[i].department);
+//printf("\n enter the year");
+scanf("%d",&s[i].year);
+//printf("\n enter the cgpa=");
+scanf("%f",&s[i].cgpa);
+}
+for(i=0;i<n-1;i++)
+{
+for(j=i+1;j<n;j++)
+{
+if(strcmp(s[i].name,s[j].name) > 0 )
+{
+t=s[i];
+s[i]=s[j];
+s[j]=t;
+}
+}
+}
+//printf("\n display in desending order\n");
+for(i=0;i<n;i++)
+{
+printf("Name:%s\n",s[i].name);
+printf("Department:%s\n",s[i].department);
+printf("Year of study:%d\n",s[i].year);
+printf("CGPA:%.1f\n",s[i].cgpa);
+}
+}

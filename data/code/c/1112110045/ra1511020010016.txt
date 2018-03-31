@@ -1,0 +1,41 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int k;
+    int seq[1000],fav[1000];
+    int T,i,j,q,s;
+    scanf("%d",&T);
+ 
+ 
+    for(i=0;i<T;i++)
+    {
+        scanf("%d",&q);
+        for(j=0;j<q;j++)
+            scanf("%d",&seq[j]);
+        scanf("%d",&s);
+        for(j=0;j<s;j++)
+            scanf("%d",&fav[j]);
+        k = 0;
+        for(j=0;j<q;j++)
+        {
+            if(seq[j]==fav[k])
+            {
+                k++;
+                if(k==s)
+                {
+                    break;
+                }
+            }
+        }
+        if (k == s){
+            printf("Yes");
+        }
+        else{
+            printf("No");
+        }
+        printf("\n");
+    }
+    
+    return 0;
+} 

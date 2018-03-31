@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+
+char mm[8][9];
+char mm1[8][9];
+
+int main() {
+	int i , j , k , t , r = 20 ;
+	for( i=0 ; i<8 ; i++ )
+      	scanf( "%s" , mm[i] ) ;
+	for( i=0 ; i<(1<<16) ; i++ ){
+		for( j=0 ; j<8 ; j++ )
+          	for( k=0 ; k<8 ; k++ ) 
+              	mm1[j][k]='W' ;
+		for( t=j=0 ; j<8 ; j++ ) 
+          if ( i&(1<<j) )
+             for( t++ ,k=0 ; k<8 ; k++ )
+               	mm1[j][k]='B'; 
+		for( ; j<16 ; j++ )
+          	if ( i&(1<<j) )
+              	for( t++,k=0 ; k<8 ; k++ )
+                  	mm1[k][j-8]='B' ;
+		for( j=0 ; j<8 ; j++ )
+          	if ( strcmp(mm[j],mm1[j]) )
+              	break;
+		if (j>=8 && t<r) r=t;
+	}
+	printf("%d\n",r);
+	return 0;
+}

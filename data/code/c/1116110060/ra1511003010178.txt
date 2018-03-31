@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int testCases, len1, len2, i, cnt, flag;
+  char s1[50], s2[50];
+  
+  scanf("%d", &testCases);
+  
+  for(i=0; i<testCases; i++)
+  {
+    flag = 0;
+    
+    scanf("%s", s1);
+    scanf("%s", s2);
+   
+    len1 = strlen(s1);
+    len2 = strlen(s2);
+    
+    if(len1!= len2)
+    { 
+      printf("No\n");
+      flag = 1;    
+    }
+    else
+    {
+      for(cnt=0; cnt<len1; cnt++)
+      {
+        if(s1[cnt] != s2[cnt] && s1[cnt]!='?' && s2[cnt]!='?')
+        {
+          printf("No\n");
+          flag = 1;
+          break;
+        }
+      }
+    }
+    
+    if(flag == 0)
+      printf("Yes\n");
+      
+  
+  }
+    
+
+	return 0;
+}

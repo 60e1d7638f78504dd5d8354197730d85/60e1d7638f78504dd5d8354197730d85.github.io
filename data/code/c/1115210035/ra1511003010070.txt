@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void fibDown( int a[] , int size )
+{
+ 
+	int i , j ;
+	
+	int temp ;
+	
+	a[ 1 ] --;
+ 
+	temp = a[ 1 ];
+ 
+ 
+	for( i = 1; 2 * i <= size ; )
+	{
+		int child = 2 * i ;
+ 
+		
+		if( child + 1 <= size &&  a[ child ] < a[ child + 1 ] )
+			child ++;
+		if( temp < a[ child ])
+			a[ i ] = a[ child ];
+		else 
+			break;
+		i = child;
+ 
+	}
+ 
+	a[ i ] = temp;
+	
+	return ;
+}
+ 
+void fibup( int a[] , int K , int i )
+{
+		
+	while( i > 1 && a[ i / 2 ] < K )
+	{
+		a[ i ] = a[ i / 2 ];
+		i /= 2;
+	}
+	a[ i ] = K;
+	return ;
+}
+ 
+#define GetMax( a ) ( a[ 1 ] )
+ 
+void Prin( int a[] )
+{
+	int i;
+	for( i = 1; i < 10; i ++ )
+		printf("%d ", *(a + i) );
+	return ;
+}
+ 
+ 
+int main()
+{
+   int N , M ;
+   scanf("%d%d",&N,&M);
+	
+   int*  a = ( int * )malloc( ( N + 1 )  * sizeof( int )) ; 
+   
+   
+   int i = 0;
+   
+   for( i = 1; i <= N; i ++ ){
+		int K; 
+		scanf("%d",&K);
+	   fibup( a , K , i );
+	}
+ 
+   int size = N;
+ 
+   
+   int sum = 0 , j = 0; 
+ 
+   for( i = 0; i < M; i ++ ){
+		sum += GetMax( a );
+		fibDown( a , size );
+	}
+	
+   printf("%d\n",sum);
+   return  0;
+}

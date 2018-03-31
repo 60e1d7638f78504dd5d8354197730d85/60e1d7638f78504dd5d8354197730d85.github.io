@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+char str[50];
+  scanf("%s",str);
+int c=0,count[26]={0},x;
+  while(str[c]!='\0'){
+   if(str[c]>='a' && str[c]<='z'){
+     x=str[c]-'a';
+     count[x]++;
+   }
+    c++;
+  }
+  int min = 10;
+  char ch='a';
+  for(c=0;c<26;c++){
+    if(count[c]!=0){
+      if(count[c]<min){
+      min = count[c];
+    	ch = c+'a';
+      }
+    }
+  }
+  printf("%c=%d\n",ch,min);
+	return 0;
+}

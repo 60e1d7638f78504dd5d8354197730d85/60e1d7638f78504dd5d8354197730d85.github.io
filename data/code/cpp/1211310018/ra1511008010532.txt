@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	long long int T,i;
+	scanf("%lld",&T);
+	char str[100001];
+	while(T--)
+	{
+		long long int f=1,indexC=100001,indexE=100002,indexS=100003;
+		scanf("%s",str);
+		for(i=0;i<strlen(str);i++)
+		{
+			if(str[i]=='C')
+			indexC=i;
+			if(str[i]=='E')
+			indexE=i;
+			if(str[i]=='S')
+			indexS=i;
+			if(indexC!=100001&&indexE!=100002&&indexS!=100003)
+			{
+				if(!(indexC<indexE && indexE<indexS))
+				{
+					f=0;
+					break;
+				}
+			}
+			else if(indexC==100001&&indexE!=100002&&indexS!=100003)
+			{
+				if(!(indexE<indexS))
+				{
+					f=0;
+					break;
+				}
+			}
+			else if(indexE==100002&&indexC!=100001&&indexS!=100003)
+			{
+				if(!(indexC<indexS))
+				{
+					f=0;
+					break;
+				}
+			}
+			else if(indexS==100003&&indexC!=100001&&indexE!=100002)
+			{
+				if(!(indexC<indexE))
+				{
+					f=0;
+					break;
+				}
+			}
+		}
+		if(f==0)
+		printf("no\n");
+		else
+		printf("yes\n");
+	}
+	return 0;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+  int n, m,i,j, a[100], b[50], c[100], q[100];
+  scanf("%d", &n);
+  scanf("%d", &m);
+  for(i=0; i<m; i++)
+  {
+   scanf("%d", &q[i]);
+  }
+  for(i=0; i<n; i++)
+  {
+   a[i]= i+1;
+  }
+  int k=n;
+  for(i=0; i<n; i++)
+  {
+  b[i]= k+1;
+    k++;
+  }
+  int f= n*n;
+  int x=0;
+  for(i=0; i<n; i++)
+  {
+   for(j=0; j<n; j++)
+    {
+      if(x<f)
+      {
+        c[x]= a[i]+b[j];
+          x++;
+      }
+    }
+  }
+  int count;
+  for(i=0; i<m; i++)
+  {
+    count=0;
+   for(j=0; j<f; j++)
+   {
+     if(q[i]==c[j])
+       count++;
+   }
+    printf("%d\n", count);
+  }
+	return 0;
+}

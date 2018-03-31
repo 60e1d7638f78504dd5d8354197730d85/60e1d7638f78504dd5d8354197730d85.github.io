@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dfs(vector<pair<int,int>>arr[100],bool mark[100],int node=0)
+        {
+          mark[node]=1;
+          int ans=0;
+          for(auto it=arr[node].begin();it!=arr[node].end();it++)
+            if(!mark[it->first])
+              ans=max(ans,dfs(arr,mark,it->first)+it->second);
+          mark[node]=0;
+          return ans;
+        }
+        int main()
+        {
+          int T,i;
+          cin>>T;
+          while(T--)
+          {
+            int N,M,K;
+            cin>>N>>M>>K;
+            vector<pair<int,int> >arr[100];
+            for(i=0;i<M;i++)
+            {
+              int x,y,w;
+              cin>>x>>y>>w;
+              arr[x].push_back({y,w});
+              arr[y].push_back({x,w});
+            }
+            bool mark[100]={0};
+            if(dfs(arr,mark)>=K)
+              cout<<"1"<<endl;
+            else
+              cout<<"0"<<endl;
+          }
+        }
+           

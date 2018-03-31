@@ -1,0 +1,173 @@
+ #include <stdio.h>
+    #include<stdlib.h>
+    struct node
+    {
+        int sch;
+        int roll;
+        struct node *next;
+    }*front=NULL,*rear=NULL,*s1=NULL,*s2=NULL,*s3=NULL,*s4=NULL;
+    typedef struct node node;
+    void del();
+    void insert(int,int);
+    int main()
+    {
+        int q,ro,s;
+        char qtype;
+        node *lr;
+        scanf("%d",&q);
+        getchar();
+        while(q>=1)
+        {
+            scanf("%c",&qtype);
+            //printf("qtype=%c",qtype);
+            if(qtype=='E')
+            {
+                scanf("%d%d",&s,&ro);
+                getchar();
+                insert(s,ro);
+            }
+            else
+            {
+                del();
+                getchar();
+            }
+            
+      /*  if(front!=NULL)
+        {
+        	lr=front;
+        	while(lr!=NULL)
+			{
+				printf("%d----%d  ",lr->sch,lr->roll);
+				lr=lr->next;
+			}
+			printf("\n");
+		}*/
+	q--;}
+        return 0;
+    }
+    void insert(int s,int r)
+    {
+        node *p;
+        p=(node*)malloc(sizeof(node));
+        p->sch=s;
+        p->roll=r;
+        if(rear==NULL)
+		{
+			front=p;
+			rear=p;
+			p->next=NULL;
+		}
+        if(s==1)
+        {
+        	if(s1!=NULL)
+        	{
+        		if(s1->next==NULL)
+        		rear=p;
+        		p->next=s1->next;
+        	    s1->next=p;
+        	}
+        	else
+        	{
+        		rear->next=p;
+        		p->next=NULL;
+        		rear=p;
+			}
+        	s1=p;
+		}
+		else if(s==2)
+		{
+		//	printf("\nyyyyyyyy\n");
+		
+			if(s2!=NULL)
+			{
+				if(s2->next==NULL)
+        		rear=p;
+				p->next=s2->next;
+				s2->next=p;
+			}
+			else
+			{
+				rear->next=p;
+				p->next=NULL;
+				rear=p;
+			}
+			s2=p;
+		}
+		else if(s==3)
+		{
+			if(s3!=NULL)
+			{
+				if(s3->next==NULL)
+        		rear=p;
+				p->next=s3->next;
+				s3->next=p;
+			}
+			else
+			{
+				rear->next=p;
+				p->next=NULL;
+				rear=p;
+			}
+			s3=p;
+		}
+		else
+		{
+			if(s4!=NULL)
+			{
+				if(s4->next==NULL)
+        		rear=p;
+				p->next=s4->next;
+				s4->next=p;
+			}
+			else
+			{
+				rear->next=p;
+				p->next=NULL;
+				rear=p;
+			}
+			s4=p;
+		}
+	}
+	void del()
+	{
+		node *r=front;
+		printf("%d %d\n",r->sch,r->roll);
+		if(front==s1)
+		{
+			if(front->next!=NULL&&front->next->sch==1)
+			s1=s1->next;
+			else
+			s1=NULL;
+		}
+		if(front==s2)
+		{
+			if(front->next!=NULL&&front->next->sch==2)
+			s2=s2->next;
+			else
+			s2=NULL;
+		}
+		if(front==s3)
+		{
+			if(front->next!=NULL&&front->next->sch==3)
+			s3=s3->next;
+			else
+			s3=NULL;
+		}
+		if(front==s4)
+		{
+			if(front->next!=NULL&&front->next->sch==4)
+			s4=s4->next;
+			else
+			s4=NULL;
+		}
+		if(front->next==NULL)
+		{
+			front=rear=NULL;
+		}
+		else
+	    front=front->next;
+		/*printf("ttttt");
+		if(front!=NULL)
+		printf("%d--%d\n",front->sch,front->roll);
+		*/
+    }

@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h> 
+
+int main()
+{
+    char str[100];
+    char word[100];
+    int i, j, found;
+    int strLen, wordLen;
+
+
+    scanf("%[^\n]%*c",str);
+    scanf("%[^\n]%*c",word);
+
+    strLen  = strlen(str); 
+  	str[strLen]=' ';
+    strLen++;
+    wordLen = strlen(word); 
+
+	int c;
+  	c=0;
+ 
+    for(i=0; i<strLen - wordLen; i++)
+    {
+        // Match word at current position
+        found = 1;
+        for(j=0; j<wordLen; j++)
+        {
+            // If word is not matched
+            if(str[i + j] != word[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+
+        // If word have been found then print found message
+        if(found == 1)
+        {
+            c++;
+        }
+    }
+	printf("%s=%d",word,c);
+    return 0;
+}

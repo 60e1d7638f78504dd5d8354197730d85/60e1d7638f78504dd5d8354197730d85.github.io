@@ -1,0 +1,71 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#define l long long
+using namespace std;
+ 
+l dp[2049][303];
+vector<l> a[301];
+ 
+void intialise() {
+	for(int i = 0; i < 301; i++) {
+		a[i].clear();
+	}
+	for(int i = 0; i <= 2048; i++) {
+		for(int j = 0; j < 301; j++) {
+			dp[i][j] = -1;
+		}
+	}
+}
+ 
+l cal_dp(l bits, l tees, l i, l n) {
+	
+	l temp = __builtin_popcount(bits);
+	if(temp == n) return 1;
+	if(dp[bits][i] != -1) return dp[bits][i];
+	if(i > 100) return 0;
+	l ans = 0;
+	l len = a[i].size();
+	for(int j = 0; j < len ; ++j) {
+		if((bits & (1<<a[i][j])) == 0) {
+			int temp = (bits|(1<<a[i][j]));
+			ans += cal_dp(temp, tees + 1, i + 1, n);
+			ans = ans % 1000000007;
+		}
+	}
+	ans = (ans + cal_dp(bits, tees - 1, i + 1, n));
+	ans = ans % 1000000007;
+	return dp[bits][i] = ans;
+}
+ 
+int main() {
+	l t;
+	cin>>t;
+	l n;
+	while(t--) {
+		cin>>n;
+		getchar();
+		intialise();
+		for(int i = 1; i <= n; i++) {
+			string s;
+			getline(cin, s);
+			int k = 0;
+			int ind = 0;
+			int len = s.size();
+			while(k < len) {
+				if(s[k] == ' ') {
+					a[ind].push_back(i);
+					ind = 0;
+					k++;
+				} else {
+					if(s[k] == '\n') {
+						break;
+					}
+					ind = (ind * 10) + (s[k++] - '0');
+				}
+			}
+			a[ind].push_back(i);
+		}
+		cout<<cal_dp(0, 0, 0, n)<<"\n";
+	}
+	return 0;
+} 

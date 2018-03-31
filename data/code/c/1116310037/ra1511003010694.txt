@@ -1,0 +1,93 @@
+#include <stdio.h>
+struct pair{
+    int c1;
+    int c2;
+    int status;
+};
+int main(void) {
+	int n,e,u,v,flag=0,currcity=1,swap,i,j,traversed,total=1;
+	scanf(" %d %d",&n,&e);
+	
+	int deg[n+1];
+	for(i=1;i<=n;i++)
+	    deg[i]=0;
+	int visited[n+1];
+    struct pair roads[e];
+	for(i=0;i<e;i++)
+	{
+	    scanf(" %d %d",&u,&v);
+	    roads[i].c1=u;
+	    deg[u]++;
+	    roads[i].c2=v;
+	    deg[v]++;
+	    roads[i].status=1;
+	}
+	for(i=1;i<=n;i++)
+	    visited[i]=0;
+	
+	visited[currcity]=1;    
+	for(i=1;i<=n;i++)
+	{
+	    if(deg[i]%2!=0)
+	    {
+	        printf("NO\n");
+	        flag=1;
+	        break;
+	    }
+	}
+	if(flag!=1)
+	{
+	    while(traversed!=e)
+	    {
+	        for(j=0;j<e;j++)
+	        {
+	            if(roads[j].c1==currcity&&roads[j].status!=0)
+	            {
+	                currcity=roads[j].c2;
+	                roads[j].status=0;
+	                if(visited[currcity]!=1)
+	                {
+	                    visited[currcity]++;
+	                    total++;
+	                }
+	                break;
+	            }
+	            else if(roads[j].c2==currcity&&roads[j].status!=0)
+	            {
+	                //printf("\n%d %d\n",roads[j].c1,roads[j].c2);
+	                currcity=roads[j].c1;
+	                swap=roads[j].c1;
+	                roads[j].c1=roads[j].c2;
+	                roads[j].c2=swap;
+	                //printf("%d %d\n\n",roads[j].c1,roads[j].c2);
+	                roads[j].status=0;
+	                if(visited[currcity]!=1)
+	                {
+	                    visited[currcity]++;
+	                    total++;
+	                }
+	                break;
+	            }
+	        }
+	        traversed++;
+	        //printf("%d\n",currcity);
+	        
+	    }
+	   if(total==n)
+	   {
+	       printf("YES\n");
+	       for(i=0;i<e;i++)
+	            printf("%d %d\n",roads[i].c1,roads[i].c2);
+	   }
+	   else
+	    printf("NO\n");
+	    
+	   
+	   //printf("%d %d",total,currcity);    
+	   
+	}
+	//for(i=1;i<=n;i++)
+	    //printf("%d ",deg[i]);
+	return 0;
+}
+ 

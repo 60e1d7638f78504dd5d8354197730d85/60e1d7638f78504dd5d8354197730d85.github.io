@@ -1,0 +1,133 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define prime 1000000007
+ 
+long long int A[16][16];
+long long int n;
+ 
+	long long int *dummy1[16],*dummy2[16],*dummy3[16],*B[16];
+	long long int *pre[16];
+        long long int *C[16];
+	long long int *ans[16];
+	long long int *D[16];
+	long long int *temp[16];
+void alloc()
+{
+	int i;
+	for(i=1;i<=15;i++)
+	{
+		dummy1[i] = (long long int*)malloc(16*sizeof(long long int));
+		dummy2[i] = (long long int*)malloc(16*sizeof(long long int));
+		dummy3[i] = (long long int*)malloc(16*sizeof(long long int));
+		B[i] = (long long int*)malloc(16*sizeof(long long int));
+	       C[i]=dummy1[i];
+	       pre[i]=dummy2[i];
+	       ans[i] =B[i];
+                 D[i] = dummy3[i];
+	}
+}
+void matpow()
+{
+	int i,j,k;
+	long long int t = n;
+ 
+	for(i=1;i<=15;i++)
+		for(j=1;j<=15;j++)
+		{
+			pre[i][j]=A[i][j];
+			if(i==j)
+				ans[i][j]=1;
+			else
+				ans[i][j]=0;
+		}
+ 
+ 
+	while(t!=0)
+	{
+			if(t%2==1)
+			{
+ 
+				for(i=1;i<=15;i++)
+				{
+					for(j=1;j<=15;j++)
+					{
+						D[i][j]=0;
+						for(k=1;k<=15;k++)
+							D[i][j]=(D[i][j]+((pre[i][k]*ans[k][j])%prime))%prime;
+					}
+				}
+                            for(i=1;i<=15;i++)
+			    {
+				temp[i]=D[i];
+				D[i]=ans[i];
+				ans[i]=temp[i];
+			    }
+ 
+ 
+			}
+			for(i=1;i<=15;i++)
+			{
+				for(j=1;j<=15;j++)
+				{
+					C[i][j]=0;
+					for(k=1;k<=15;k++)
+						C[i][j]=(C[i][j]+((pre[i][k]*pre[k][j])%prime))%prime;
+				}
+			}
+			for(i=1;i<=15;i++)
+			{
+			               temp[i]=pre[i];
+				       pre[i]=C[i];
+				       C[i]=temp[i];
+			}
+ 
+			t=t/2;
+	}
+ 
+		printf("%lld\n",ans[1][1]);
+ 
+ 
+ 
+}
+ 
+int main()
+{
+	int T,i,j,k,tmp;
+	scanf("%d",&T);
+         alloc();
+	for(i=2;i<=15;i++)
+		for(j=1;j<=15;j++)
+		{
+			if(i-1==j)
+				A[i][j]=1;
+			else
+				A[i][j]=0;
+		}
+ 
+	while(T--)
+	{
+		for(i=1;i<=15;i++)
+			A[1][i]=0;
+		scanf("%lld",&n);
+		scanf("%d",&k);
+ 
+		for(i=0;i<k;i++)
+		{
+			scanf("%d",&tmp);
+			A[1][tmp]=1;
+		}
+ 
+		matpow();
+ 
+ 
+	}
+		for(i=1;i<=15;i++)
+		{
+			free(dummy1[i]);
+			free(dummy2[i]);
+			free(dummy3[i]);
+			free(B[i]);
+		}
+ 
+	return 0;
+}

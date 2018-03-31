@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define S 1000000007
+typedef long long int ll;
+//long long int exponentiation(ll x,ll n)
+//{}
+ 
+ll compare (const void * a, const void * b)
+{
+  return ( *(ll*)a - *(ll*)b );
+}
+ 
+int main()
+{
+   ll n,i;
+   ll arr[100005];
+   int arr1[100005];
+   scanf("%lld",&n);
+   arr[0]=1;
+   
+   for(i=1;i<n;i++)
+   {
+       arr[i]=(arr[i-1]*2)%S;
+   }
+   ll no,j,sum=0;
+   for(i=0;i<n;i++)
+   {
+       scanf("%lld",&no);
+       for( j=no;j>0;j=j/10)
+       sum+=j%10;
+       arr1[i]=sum;
+       sum=0;
+   }
+   qsort (arr1, n, sizeof(int), compare);
+   //qsort();
+   ll count=0;
+   for(i=n-1;i>=0;i--)
+   {
+       count=(count%S+(arr1[i]*arr[i])%S)%S;
+   }
+   printf("%lld",count);
+   return 0;
+}

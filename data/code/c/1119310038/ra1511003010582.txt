@@ -1,0 +1,140 @@
+#include <stdio.h>
+int check1(int D,int H,int P,int N,int arr[D][H][P])
+{
+    int i,j,k;
+    for(i=0;i<D;i++)
+    {
+        for(j=0;j<P;j++)
+        {
+            int count=0;
+            for(k=0;k<H;k++)
+            {
+                if(arr[i][k][j]!=0)count++;
+            }
+            if(count>N)return 0;
+        }
+    }
+    return 1;
+}
+int check2(int D,int H,int P,int L[P],int arr[D][H][P])
+{
+    int i,j,k;
+   for(i=0;i<P;i++)
+   {
+       int count=0;
+       for(j=0;j<D;j++)
+       {
+           for(k=0;k<H;k++)
+           {
+               if(arr[j][k][i]==1)count++;
+           }
+       }
+       if(count>L[i])return 0;
+   }
+   return 1;
+}
+int check3(int D,int H,int P,int begin,int end,int arr[D][H][P])
+{
+    int i,j,k;
+    for(i=0;i<P;i++)
+    {
+        for(j=0;j<D;j++)
+        {
+            int flag=0;
+            for(k=begin-1;k<=end-1;k++)
+            {
+                if(arr[j][k][i]==0){flag=1;break;}
+            }
+            if(!flag)return 0;
+        }
+    }
+    return 1;
+}
+int check4(int D,int H,int P,int R[D][H],int arr[D][H][P])
+{
+    int i,j,k;
+    for(i=0;i<D;i++)
+    {
+        for(j=0;j<H;j++)
+        {
+            int count=0;
+            for(k=0;k<P;k++)
+            {
+                if(arr[i][j][k]==1)count++;
+            }
+            if(count!=R[i][j])return 0;
+        }
+    }
+    return 1;
+}
+int main()
+{
+    int i,j,k,l,T;
+    scanf("%d",&T);
+    for(i=1;i<=T;i++)
+    {
+        int P,D,H,N;
+        scanf("%d%d%d%d",&P,&D,&H,&N);
+        int ansflag=0;
+        int arr[D][H][P],L[P];
+        for(j=0;j<P;j++)
+        scanf("%d",&L[j]);
+        int begin,end;
+        scanf("%d%d",&begin,&end);
+        int R[D][H];
+        for(j=0;j<D;j++)
+        {
+            for(k=0;k<H;k++)
+            scanf("%d",&R[j][k]);
+        }
+        int F[P][D][H];
+        int meet=0;
+        for(j=0;j<P;j++)
+        {
+           for(k=0;k<D;k++)
+           {
+               for(l=0;l<H;l++)
+               {
+               scanf("%d",&F[j][k][l]);
+               if(!F[j][k][l]){arr[k][l][j]=2;meet++;}
+               }
+           }
+        }
+       int num,pos,c;
+       int size=D*H*P-meet;
+       int tarr[size];
+       for(num=0;num<(1<<size);num++)
+       {
+           c=0;
+          for(pos=0;pos<size;pos++)
+          {
+             if(num & (1<<pos))tarr[c++]=1;
+             else tarr[c++]=0;
+          }
+          c=0;
+          for(j=0;j<D;j++)
+          {
+            for(k=0;k<H;k++)
+            {
+              for(l=0;l<P;l++)
+              {
+                if(arr[j][k][l]==2)continue;
+                arr[j][k][l]=tarr[c++];
+              }
+            }
+          }
+           int flag;
+           flag=check1(D,H,P,N,arr);
+           if(!flag)continue;
+           flag=check2(D,H,P,L,arr);
+           if(!flag)continue;
+           flag=check3(D,H,P,begin,end,arr);
+           if(!flag)continue;
+           flag=check4(D,H,P,R,arr);
+           if(!flag)continue;
+           else {printf("Yes\n");ansflag=1;break;}
+       }
+       if(!ansflag)printf("No\n");
+    }
+	return 0;
+}  

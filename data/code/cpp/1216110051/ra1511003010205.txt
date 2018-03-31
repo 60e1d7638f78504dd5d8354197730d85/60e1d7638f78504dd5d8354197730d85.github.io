@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int main()
+{ int a[50],b[50],c[50],i,j,m,n,k;
+ cin>>m;
+ for(i=0;i<m;i++)
+   cin>>a[i];
+ cin>>n;
+ for(i=0;i<n;i++)
+   cin>>b[i];
+ i=0;j=n-1;k=0;
+ while(i<m&&j>=0)
+ {
+if(a[i]<b[j])
+  c[k++]=a[i++];
+   else if(a[i]==b[j])
+   {
+     c[k++]=a[i++];
+     j--;
+   }
+   else
+     c[k++]=b[j--];
+ }
+ while(i<m)
+   c[k++]=a[i++];
+ while(j>=0)
+   c[k++]=b[j--];
+cout<<"The Merged Array in Ascending Order\n";
+ for(i=0;i<k;i++)
+   cout<<c[i]<<" ";
+	return 0;
+}

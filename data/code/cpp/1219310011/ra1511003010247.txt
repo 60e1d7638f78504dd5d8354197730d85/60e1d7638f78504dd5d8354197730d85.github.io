@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class complex
+{
+  int real;
+  int comp;
+  public:
+  void in()
+  {
+    cin>>real>>comp;
+  }
+  void out()
+  {
+    cout<<real<<"+"<<comp<<"i"<<endl;
+  }
+  complex operator + (complex c)
+  {
+    complex t;
+    t.real=real+c.real;
+    t.comp=comp+c.comp;
+    return t;
+  }
+    complex operator - (complex c)
+    {
+      complex t;
+      t.real=real-c.real;
+      t.comp=comp-c.comp;
+      return t;
+    }
+};
+int main()
+{
+  complex c1,c2,c3,c4;
+  c1.in();
+  c2.in();
+  cout<<"Input Values:"<<endl;
+  c1.out();
+  c2.out();
+  c3=c1+c2;
+  c4=c1-c2;
+  cout<<"Result:"<<endl;
+  c3.out();
+  c4.out();
+  
+
+	return 0;
+}

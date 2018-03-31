@@ -1,0 +1,71 @@
+#include<stdio.h>
+long long int part(long long int *arr,long long int p,long long int r)
+{
+	long long int i,j,temp,x;
+	x=arr[r];
+	i=p-1;
+	for(j=p;j<r;j++)
+	{
+		if(arr[j]<x)
+		{
+			i++;
+			temp=arr[j];
+			arr[j]=arr[i];
+			arr[i]=temp;
+		}
+	}
+	temp=arr[i+1];
+	arr[i+1]=arr[r];
+	arr[r]=temp;
+	return i+1;
+}
+ 
+void quicksort(long long int *arr,long long int p,long long int r)
+{
+	long long int temp;
+	if(p<r)
+	{
+		temp=part(arr,p,r);
+		quicksort(arr,p,temp-1);
+		quicksort(arr,temp+1,r);
+	}
+}
+int main()
+{
+	long long int t,n,k,e,m,arr[100000],i,temp,j;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld %lld %lld %lld",&n,&k,&e,&m);
+		for(i=0;i<n-1;i++)
+		{
+			arr[i]=0;
+			for(j=0;j<e;j++)
+			{
+				scanf("%lld",&temp);
+				arr[i]+=temp;
+			}
+		}
+		arr[n-1]=0;
+		for(j=0;j<e-1;j++)
+		{
+			scanf("%lld",&temp);
+			arr[n-1]+=temp;
+		}
+		quicksort(arr,0,n-2);
+		if(arr[n-1-k]<arr[n-1])
+		{
+			printf("0\n");
+		}
+		else if((arr[n-1-k]-arr[n-1]+1)>m)
+		{
+			printf("Impossible\n");
+		}
+		else
+		{
+			printf("%lld\n",arr[n-1-k]-arr[n-1]+1);
+		}
+	}
+	return 0;
+	
+}

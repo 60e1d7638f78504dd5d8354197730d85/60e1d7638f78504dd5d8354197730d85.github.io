@@ -1,0 +1,32 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int test,h,m,ans,ans1,ans2,t,i;
+	scanf("%d",&test);
+	while(test--)
+	{
+		scanf("%d %d",&h,&m);
+		ans=0;
+		for(i=1;i<10;i++)
+		{
+			t=i;ans1=0;ans2=0;
+			if(i>=h||i>=m)
+				break;
+			while(t<h)
+			{
+				ans1=ans1+1;
+				t=t+t*10;
+			}
+			t=i;
+			while(t<m)
+			{
+				ans2=ans2+1;
+				t=t+t*10;
+			}
+			ans=ans+ ans1*ans2;
+		}
+		printf("%d\n",ans+1);
+	}
+return 0;
+}  

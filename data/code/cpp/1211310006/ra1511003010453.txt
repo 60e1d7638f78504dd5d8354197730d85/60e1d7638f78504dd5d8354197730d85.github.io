@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+const int MAX  = 1e6+9 ;
+using namespace std;
+bool prime[1000019];
+vector<int>pri;
+void sieve()
+{
+	memset(prime,1,sizeof(prime)) ;
+	prime[0] = false;prime[1] = false;
+	for(int i = 2 ; i <= sqrt(MAX) ; i++)
+	{
+		for(int j = i * i ; j <=MAX ;j+=i)
+			{
+				prime[j] = false;
+			}
+	}
+	for(int i = 0 ; i <= MAX ;i++) 
+		if(prime[i])
+			pri.push_back(i);
+}
+int closest(int n)
+{
+	int next = *lower_bound(pri.begin(),pri.end(),n);
+//	cout<<n<<" "<<next<<endl;
+	return next - n ;
+}
+ 
+ 
+int main()
+{
+	sieve();
+	int n , m ;
+	scanf("%d%d",&n,&m);
+	int mat[n][m];
+	for(int i = 0; i < n;i++)
+		for(int j = 0 ;j < m; j++)
+			{
+				scanf("%d",&mat[i][j]);
+			}
+	int mini  =  1e9 + 7 ;
+	int rowsum = 0 ,colsum = 0 ;
+	int rowmin = 1e9+7 ,colmin = 1e9 + 7 ;
+	for(int i = 0 ; i < n ;i++)
+		{
+			rowsum = 0;
+			for(int j = 0 ; j < m ;j++)
+				{
+					rowsum += closest(mat[i][j]);
+				}
+	//		cout<<rowsum<<endl;
+			rowmin = min(rowmin,rowsum);
+		}
+	
+	for(int i = 0 ; i < m ;i++)
+		{
+			colsum = 0;
+			for(int j = 0 ; j < n ;j++)
+				{
+					colsum += closest(mat[j][i]);
+				}
+			colmin = min(colmin,colsum);
+		}
+	mini = min(rowmin, colmin);
+	printf("%d\n",mini);
+	return 0;
+} 

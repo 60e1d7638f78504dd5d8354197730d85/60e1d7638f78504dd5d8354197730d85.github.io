@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+class insertionSort
+{
+  Scanner in = new Scanner(System.in);
+  int n=in.nextInt();;
+  int []a=new int[n];
+  public void getInput()
+  {
+    for(int i=0;i<n;i++)
+    {
+      a[i]=in.nextInt();
+    }
+  }
+  public void sortArr()
+  {
+    for (int j = 1; j < n; j++)
+    {  
+            int key = a[j];  
+            int i = j-1;  
+            while ( (i > -1) && ( a [i] > key ) )
+            {  
+                a[i+1] = a[i];  
+                i--;  
+            }  
+            a[i+1] = key;  
+        }  
+    for(int i:a){    
+            System.out.print(i+" ");    
+        }    
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+	insertionSort obj=new insertionSort	();
+       obj.getInput();
+        obj.sortArr();
+	}
+}

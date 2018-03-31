@@ -1,0 +1,54 @@
+#include <stdio.h>
+inline int get_input()
+{
+int num=0,sign=1;
+char d	=	getchar_unlocked();
+if(d	==	'-')
+	sign	=	-1;
+while((d<'0'||d>'9')	&&	d!=EOF&&d!='-')
+	d	=	getchar_unlocked();
+if(d	==	'-')
+	sign	=	-1, d=getchar_unlocked();
+while(d>='0'	&&	d<='9')
+{
+		num=(num<<3)+(num<<1)+(d-'0');
+		d=getchar_unlocked();
+}
+	return sign*num;
+}
+int main(void) {
+	int T,N,B,i,flag;
+	double sum;
+	T	=	get_input();
+	while(T--)
+	{
+		N	=	get_input();
+		i	=	N;
+		sum	=	0;
+		flag	=	1;
+		while(i--)
+		{
+			B	=	get_input();
+			  sum	+=B;
+			if(B>100)
+			 flag	=	0;
+		}
+		if(flag 	==	0)
+			printf("NO\n");
+	    else
+	    {
+		if(sum<100)
+			printf("NO\n");
+	    else
+	    {
+	    	
+	        if(((sum-100)/N)>=1)
+	          printf("NO\n");
+	        else
+	          printf("YES\n");
+	    }
+	    }
+	}
+	return 0;
+}
+ 

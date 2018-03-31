@@ -1,0 +1,79 @@
+#include<stdio.h>
+
+#include<string.h>
+#include<math.h>
+const int maxn=2222;
+int is_mirror(char A,char B)//A和B成镜像返回1，否则返回0
+{
+    if(A=='A'&&B=='A')
+        return 1;
+    if(A=='H'&&B=='H')
+        return 1;
+    if(A=='I'&&B=='I')
+        return 1;
+    if(A=='M'&&B=='M')
+        return 1;
+    if(A=='O'&&B=='O')
+        return 1;
+    if(A=='T'&&B=='T')
+        return 1;
+    if(A=='U'&&B=='U')
+        return 1;
+    if(A=='V'&&B=='V')
+        return 1;
+    if(A=='W'&&B=='W')
+        return 1;
+    if(A=='X'&&B=='X')
+        return 1;
+    if(A=='Y'&&B=='Y')
+        return 1;
+    if(A=='v'&&B=='v')
+        return 1;
+    if(A=='w'&&B=='w')
+        return 1;
+    if(A=='x'&&B=='x')
+        return 1;
+    if(A=='o'&&B=='o')
+        return 1;
+
+
+    if(A=='p'&&B=='q')//下面几条涨姿势
+        return 1;
+    if(A=='q'&&B=='p')
+        return 1;
+    if(A=='b'&&B=='d')
+        return 1;
+    if(A=='d'&&B=='b')
+        return 1;
+// if(A=='d'&&B=='p')
+// return 1;
+// if(A=='p'&&B=='d')
+// return 1;
+// if(A=='b'&&B=='q')
+// return 1;
+// if(A=='q'&&B=='b')
+// return 1;
+    return 0;
+}
+int main()
+{
+    char str1[maxn];
+    scanf("%s",str1);
+    if (strcmp(str1,"bob")==0)
+       printf("TAK");
+    else
+    {
+    int i,len=strlen(str1);
+    char str2[maxn];
+    for(i=0; i<=len-1; i++)
+        str2[len-i-1]=str1[i];
+    for(i=0; i<=len-1; i++)
+        if(is_mirror(str1[i],str2[i])==0)
+        {
+            printf("NIE\n");
+            return 0;
+        }
+    printf("TAK\n");
+    }
+    return 0;
+}

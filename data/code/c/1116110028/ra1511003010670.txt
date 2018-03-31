@@ -1,0 +1,47 @@
+#include <stdio.h>
+int main()
+{
+char str[100],word[50];
+  scanf("%[^\n]%*c",str);
+  scanf("%s",word);
+  int index=0,j=0,found=0,i=0;
+  
+   while(str[index] != '\0')
+    {   if(str[index-1]==' ')
+               {if(str[index] == word[0])
+        {
+                   i=0;
+            found = 1;
+            while(word[i] != '\0')
+            {
+                if(str[index + i] != word[i])
+                {
+                    found = 0;
+                    break;
+                }
+
+                i++;
+            }
+               }
+        }
+        
+        
+        if(found == 1)
+        {
+            break;
+        }
+
+        index++;
+}
+   
+  if(found==1)
+  {
+    printf("%s is found at %d",word,index);
+  }
+  else
+  {
+    printf("%s is not found",word);
+  }
+    
+	return 0;
+}

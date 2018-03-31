@@ -1,0 +1,54 @@
+ 
+#include <iostream>
+#include <iomanip>
+
+ using namespace std;
+
+ class circle
+ {
+ 	 public:
+     int radius;
+   
+	 circle()
+	 {
+	 radius =0;
+	 }
+	
+	 void setRadius(float radius)
+	 {
+	 this->radius = radius;
+	 }
+	
+	 float getRadius()
+	 {
+	 return radius;
+	 }
+	
+	 float calculateArea()
+	 {
+	 return 3.14159f* radius * radius;
+	 }
+	
+	 float calculatePerimeter()
+	 {
+	 return 2 *3.14159f * radius;
+ 	 }
+    
+ };
+ 
+ 
+ int main()
+ {
+ circle circl = circle();
+ float radius;
+ cin >> radius;
+ circl.setRadius(radius);
+ cout << circl.getRadius() <<endl;
+   if(circl.getRadius()<=0) {
+     cout<<endl;
+   } else {
+	printf("%.2f\n", circl.calculateArea());
+	printf("%.3f\n", circl.calculatePerimeter());
+   }
+ return 0;  
+ }

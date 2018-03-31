@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  int t,i,k,sum,l[100],r[100];
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+    scanf("%d %d",&l[i],&r[i]);
+  for(i=0;i<t;i++)
+  {
+    sum=0;
+    for(k=l[i];k<r[i];k++)
+    {
+      int n=k,r,p=0,s=floor(log10(k));
+      while(n!=0)
+      {
+        r = n % 10;
+        p += r * pow(10,s);
+        n /= 10;
+        --s;
+      }
+      if(p==k)
+        sum += k;
+    }
+    printf("\nsum is %d",sum);
+  }
+  return 0;
+}

@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int i,j,t,n,l,r,rev,nt,last,sum;
+       t=sc.nextInt();
+       for(i=0;i<t;i++)
+       {
+         sum=0;
+         l=sc.nextInt();
+         r=sc.nextInt();
+         for(j=l;j<=r;j++)
+         {
+           n=j;
+           nt=j;
+           rev=0;
+           while(nt>0)
+           {
+             last=nt%10;
+             rev=rev*10 + last;
+             nt=nt/10;
+           }
+           if(n==rev)
+           {
+             sum=sum+n;
+           }
+         }
+         System.out.println(sum);
+       }
+	}
+}

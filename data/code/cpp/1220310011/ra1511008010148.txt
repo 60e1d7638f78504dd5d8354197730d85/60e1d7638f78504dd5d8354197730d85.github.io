@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+void func2(){
+try{
+throw("Exception caught in func2() ... Rethrowing it\n"); 
+}
+ catch(const char * e){
+ cout<<e;
+ throw("Exception Caught in main() : Out of Memory Exception");
+ } 
+
+}
+int main()
+{
+  try{
+  func2();
+  }
+  
+catch(const char* e){
+
+cout<<e;
+}	
+	return 0;
+}

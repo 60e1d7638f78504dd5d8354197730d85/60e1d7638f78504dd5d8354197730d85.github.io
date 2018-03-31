@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+long long L[1000];
+long long int R[1000];
+long long int count[1000][1000];
+ 
+long long Scan_f()
+{
+	register char c = getchar();
+	long long x = 0;
+	for(; (c<48)||(c>57);c = getchar())
+    {
+    }
+	for(; (c>47)&&(c<58);c = getchar())
+		x = (int)((((x)<<1) + ((x)<<3)) + c - 48);
+    return x;
+}
+ 
+int main()
+{
+	long long n,m,c,i,j,k;
+	n=Scan_f();
+	m=Scan_f();
+	c=Scan_f();
+	long long a,ans;
+	for(i=0;i<n;i++)
+	{
+		a=Scan_f();
+		L[a]++;
+	}
+	for(i=0;i<m;i++)
+	{
+		a=Scan_f();
+		R[a]++;
+	}
+	for(i=0,j=0;i<1001;i++)
+	{
+		a=(L[i]*R[i]);
+		if(a)
+			count[0][j++]=a;
+ 
+	}
+	m=j;
+	for(k=1;k<=c;k++)
+	{
+		ans = 0;
+		for(i=k;i<m;i++)
+		{
+			for(j=0;j<i;j++)
+			{
+				count[k][i]=(count[k][i]+((count[k-1][j]*count[0][i])%1000000007))%1000000007;
+			}
+			ans = (ans + count[k][i])%1000000007;
+		}
+		printf("%lld ",ans);
+	}
+	return 0;
+}

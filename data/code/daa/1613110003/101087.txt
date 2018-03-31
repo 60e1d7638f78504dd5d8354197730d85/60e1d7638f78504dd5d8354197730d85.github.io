@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef tuple < string, string, int> triad;
+ 
+using namespace std;
+ 
+    int main()
+    {
+        int n;
+        cin>>n;
+        int m;
+        cin>>m;
+        
+        
+        string teacher;
+        pair <string,set<pair<int,string>>> P[n]; 
+        pair <int,string> temp;
+        
+        for(int i=0;i<n;i++)
+        {
+            cin>>P[i].first;
+        }
+        
+        for(int i=0;i<m;i++)
+        {
+            cin>>teacher>>temp.second>>temp.first;
+            
+            for(int j=0;j<n;j++)
+            {
+                if(teacher==P[j].first)
+                {
+                    P[j].second.insert(temp);
+                    
+            }
+            }
+        }
+        
+        sort(P,P+n);
+        
+        for(int i=0;i<n;i++)
+        {
+            cout<<P[i].first<<endl;
+            
+            for(set<pair<int,string>>::iterator it = P[i].second.begin();it!=P[i].second.end();it++)
+            {
+                cout<<(*it).second<<" "<<(*it).first<<endl;
+            }
+        }
+        
+    
+        
+    }

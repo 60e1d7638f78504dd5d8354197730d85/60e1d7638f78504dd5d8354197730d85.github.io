@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int n[150],m,spoil=0,i,k,j,size,d,l;
+  	int count[]={0,0,0,0,0};
+  	scanf("%d",&m);
+  	for(i=0;i<m;i++)
+    {
+      	scanf("%d",&n[i]);
+    }
+  	for(j=0;j<m;j++)
+    {
+      	l=n[j];
+      	switch(l)
+        {
+          	case 1:
+            	count[0]+=1;
+            	break;
+          	case 2:
+            	count[1]+=1;
+            	break;
+			case 3:
+            	count[2]+=1;
+            	break;
+			case 4:
+            	count[3]+=1;
+            	break;
+			case 5:
+            	count[4]+=1;
+            	break;
+          	default:
+            	spoil++;
+        }
+    }
+  	for(d=0;d<5;d++)
+    {
+      	printf("Candidate %d=%d\n",d+1,count[d]);
+    }
+  	printf("Spoil Ballot=%d",spoil);
+	return 0;
+}

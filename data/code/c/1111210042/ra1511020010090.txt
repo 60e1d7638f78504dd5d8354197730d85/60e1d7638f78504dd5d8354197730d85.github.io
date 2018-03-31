@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+
+  	int n,a[20],min,max,r,i,count=0;
+  	scanf("%d", &n);
+  	for(i=0;i<n;i++){
+    
+      scanf("%d", &a[i]);
+      if(i==0){
+      
+        max=a[i];
+        min=a[i];
+      }
+      else if(i>0){
+      
+        if(max>a[i])
+          max=a[i];
+        if(a[i]>min)
+          min=a[i];
+      }
+    }
+  	r=min-max;
+  	printf("%d", r);
+  	for(i=0;i<n;i++){
+    
+      if(r==a[i]){
+      
+        printf("Yes");
+        count++;
+      }
+    }
+  	if(count==0)
+      printf("No");
+	return 0;
+}

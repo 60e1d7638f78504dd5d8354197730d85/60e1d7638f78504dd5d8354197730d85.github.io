@@ -1,0 +1,26 @@
+   #include <stdio.h>
+    #include <string.h>
+    #include <ctype.h>
+     
+    int main()
+    {
+        //freopen("inp.txt","r",stdin);
+        int t,i,count,a[60];char s[102];
+        scanf("%d",&t);
+        while(t--)
+        {
+            count=0;
+            memset(a,0,sizeof(a));
+            scanf("%s",s);
+            for(i=0;i<strlen(s);i++)
+                s[i]=tolower(s[i]);
+            for(i=0;i<strlen(s);i++)
+            {
+                if(a[s[i]-97]==1)
+                    count++;
+                a[s[i]-97]++;
+            }
+            printf("%d\n",count);
+        }return 0;
+    }
+      

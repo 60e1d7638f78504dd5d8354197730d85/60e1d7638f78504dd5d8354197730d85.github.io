@@ -1,0 +1,39 @@
+#include <stdio.h> 
+
+ 
+int main()
+{
+  int MAX;
+  scanf("%d",&MAX);
+	int array[MAX], i, temp;
+	float largest1, largest2;
+	for (i = 0; i < MAX; i++)
+	{
+		scanf("%d", &array[i]);
+	}
+
+		largest1 = array[0];
+	largest2 = array[1];
+	
+	if (largest1 < largest2)
+	{
+		temp = largest1;
+		largest1 = largest2;
+		largest2 = temp;
+	}
+	
+	for (i = 2; i < MAX; i++) { if (array[i] >= largest1)
+		{
+			largest2 = largest1;
+			largest1 = array[i];
+		}
+		else if (array[i] > largest2)
+		{
+			largest2 = array[i];
+		}
+	}
+	printf("First Largest=%.0f\n", largest1);
+	printf("Second Largest=%.0f\n", largest2);
+	printf("Average=%.1f",(largest1 + largest2) / 2);
+	return 0;
+}

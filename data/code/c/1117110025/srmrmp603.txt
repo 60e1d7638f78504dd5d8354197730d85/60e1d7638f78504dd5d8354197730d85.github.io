@@ -1,0 +1,21 @@
+#include <stdio.h>
+int digits(int num)
+{
+  static int c=0;
+  if(num>0)
+  {
+   c++;
+    digits(num/10);
+  }
+  else
+    return c;
+}
+   
+int main()
+{
+    int n,c=0;
+    scanf("%d",&n);
+          c=digits(n);
+          printf("The number of digits in %d is %d",n,c);
+	return 0;
+}

@@ -1,0 +1,70 @@
+#include<stdio.h>
+int main()
+{
+	int n,sum,count,i,z,pow,t;
+	long long int a,b;
+	scanf("%d",&t);
+while(t--)
+{
+	sum=0;
+	count=0;
+	scanf("%d",&n);
+	scanf("%lld",&a);
+	scanf("%lld",&b);
+	
+	while(a!=0)
+	{
+		if(a%2==1)
+		{
+			count++;
+		}
+		a=a/2;
+	}
+	while(b!=0)
+	{
+		if(b%2==1)
+		{
+			count++;
+		}
+		b=b/2;
+	}
+	if(count<=n)
+	{
+		for(i=n-1;i>=(n-count);i--)
+		{
+			pow=1;
+			if(i==0)
+			{
+				pow=1;
+			}
+			else
+			for(z=i;z>0;z--)
+			{
+				pow=pow*2;
+			}
+			sum=sum+pow;
+		}
+	}
+	
+	else
+	{
+		for(i=n-1;i>=(count-n);i--)
+		{
+			pow=1;
+			if(i==0)
+			{
+				pow=1;
+			}
+			else
+			for(z=i;z>0;z--)
+			{
+				pow=pow*2;
+			}
+			sum=sum+pow;
+		}
+	}
+		
+		printf("%d\n",sum);
+}
+  return 0;
+} 

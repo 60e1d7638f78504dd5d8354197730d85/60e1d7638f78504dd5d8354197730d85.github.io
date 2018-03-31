@@ -1,0 +1,102 @@
+#include <stdio.h>
+ 
+int sumarr(int a[], int size)
+{
+    int sum = 0,i;
+    for (i = 0; i < size; i++)
+    {
+        sum += a[i];
+    }
+    
+    return sum;
+}
+ 
+void swap (int *pa, int *pb)
+{
+    *pa ^= *pb;
+    *pb ^= *pa;
+    *pa ^= *pb;
+}
+ 
+void selection_sort(int a[], int size)
+{
+  int i,j;
+    for (i = 0; i < size; i++)
+    {
+        int max = i;
+        for (j = i+1; j < size; j++)
+        {
+            if (a[j] > a[max])
+            {
+                max = j;
+            }
+        }
+        if (max != i) swap(&a[max], &a[i]);
+    }
+}
+ 
+void print_array(int a[], int size)
+{
+  int i;
+    for (i = 0; i < size; i++)
+    {
+        printf ("%d ", a[i]);
+    }
+    printf ("\n");
+}
+ 
+int main (void)
+{
+    int n,i;
+    scanf ("%d", &n);
+    int freq[n];
+    for (i = 0; i < n; i++)
+    {
+        scanf ("%d", &freq[i]);
+    }
+    
+    int k;
+    scanf ("%d", &k);
+    int keysize[k];
+    int keycount[k];
+    int totalkey = 0;
+    for (i = 0; i < k; i++)
+    {
+        scanf("%d", &keysize[i]);
+        keycount[i] = 1;
+        totalkey += keysize[i];
+    }
+    
+    if (totalkey < n)
+    {
+        printf ("-1\n");
+    }
+    else
+    {
+        selection_sort(freq, n);
+        selection_sort(keysize, k);
+  
+        int i,c = 0;
+        int cur_n = 0;
+        int cur_k = 0;
+        int max_key = k;
+        for (i = 0; i < n; i++)
+        {
+            if (cur_n == n) cur_n = 0;
+            if (cur_k == max_key) cur_k = 0;
+            
+            if (keycount[cur_k] > keysize[cur_k]){
+                // printf("%d %d: check!\n", keycount[cur_k], keysize[cur_k]);
+                max_key--;
+                cur_k = 0;
+            }
+    
+            
+            // printf ("%d: %d, %d: %d\n",cur_n, freq[cur_n], cur_k, keycount[cur_k]);
+            c += freq[cur_n++] * keycount[cur_k++]++;
+        }
+         printf ("%d\n", c);
+    }  
+   
+    return 0;
+}

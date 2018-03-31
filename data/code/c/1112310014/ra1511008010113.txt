@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+    int i,n,q,a,b,c,count=0,j;
+    scanf("%d %d",&n,&q);
+    int sum[n];
+    for(i=0;i<n;i++)
+      sum[i]=0;
+    for(i=0;i<q;i++){
+      count=0;
+      scanf("%d %d %d",&a,&b,&c);
+      if(a==0)
+        for(j=b;j<=c;j++)
+          sum[j]++;
+      if(a==1){
+        for(j=b;j<=c;j++){
+          if(sum[j]%3==0)
+            count++;
+        }
+        printf("%d\n",count);
+      }
+    }
+	return 0;
+}

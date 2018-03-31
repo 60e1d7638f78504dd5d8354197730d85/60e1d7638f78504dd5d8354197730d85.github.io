@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <string.h>
+char words[10];
+char *conv(char ch)
+{
+switch(ch)
+{
+  case 1:
+    strcpy(words,"ONE");
+    break;
+  case 2:
+    strcpy(words,"TWO");
+    break;
+    case 3:
+    strcpy(words,"THREE");
+    break;
+    case 4:
+    strcpy(words,"FOUR");
+    break;
+    case 5:
+    strcpy(words,"FIVE");
+    break;
+    case 6:
+    strcpy(words,"SIX");
+    break;
+    case 7:
+    strcpy(words,"SEVEN");
+    break;
+    case 8:
+    strcpy(words,"EIGHT");
+    break;
+    case 9:
+    strcpy(words,"NINE");
+    break;
+}
+  //printf("%s",words);
+  return words;
+}
+char *conv2(int ch)
+{
+switch(ch)
+{
+  	case 10:
+    strcpy(words,"TEN");
+    break;
+  	case 20:
+    strcpy(words,"TWENTY");
+    break;
+    case 30:
+    strcpy(words,"THIRTY");
+    break;
+    case 40:
+    strcpy(words,"FOURTY");
+    break;
+    case 50:
+    strcpy(words,"FIFTY");
+    break;
+    case 60:
+    strcpy(words,"SIXTY");
+    break;
+    case 70:
+    strcpy(words,"SEVENTY");
+    break;
+    case 80:
+    strcpy(words,"EIGHTY");
+    break;
+    case 90:
+    strcpy(words,"NINETY");
+    break;
+}
+  //printf("%s",words);
+  return words;
+}
+
+int main()
+{
+  int c=0,rem,digit,thousand_digit,hund_digit,ten_digit,one_digit,paise2;
+  char num1[20];
+  float num,paise;
+  scanf("%f",&num);
+  c=(int)num;
+  paise=num-c;
+  paise=paise*100;
+  paise2=(int)paise;
+  //printf("%d",paise2);
+  one_digit=c%10;
+  ten_digit=c%100;
+  hund_digit=c%1000;
+  thousand_digit=c%10000;
+  thousand_digit=thousand_digit-hund_digit;
+  hund_digit=hund_digit-ten_digit;
+  ten_digit=ten_digit-one_digit;
+  if(c>=1000)
+  {
+  thousand_digit=thousand_digit/1000;
+  strcpy(num1,conv(thousand_digit));
+  printf("%s",strcat(num1," THOUSAND "));
+  c=c%1000;
+  }
+  if(c>=100 && c<1000)
+  {
+    hund_digit=hund_digit/100;
+  strcpy(num1,conv(hund_digit));
+  printf("%s",strcat(num1," HUNDRED "));
+  c=c%100;
+  }
+  if(c>=10 && c<100)
+  {
+  strcpy(num1,conv2(ten_digit));
+  printf("%s",strcat(num1," "));
+  c=c%10;
+  }
+  if(c>=1 && c<=9)
+  {
+  strcpy(num1,conv(one_digit));
+  printf("%s",num1);
+  }
+  if(paise2>=10 && paise2<=99)
+  {
+    strcpy(num1," AND PAISE ");
+    strcat(num1,conv2(paise2));
+    printf("%s",num1);
+  }
+  return 0;
+  
+}

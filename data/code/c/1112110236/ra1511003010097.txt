@@ -1,0 +1,31 @@
+#include<stdio.h>
+long long int a[100000];
+int main()
+{
+long long int t,i,n,k,j,l,sum,temp;
+scanf("%lld",&t);
+i=0;
+while(i<t)
+{
+sum=0;
+scanf("%lld %lld",&n,&k);
+for(j=0;j<n;j++)
+scanf("%lld",&a[j]);
+for(j=0;j<n;j++)
+{
+temp=a[j];
+for(l=j;l<n;l++)
+{
+temp=(temp|a[l]);
+if(temp>=k)
+{
+sum=sum+n-l;
+break;
+}
+}
+}
+printf("%lld\n",sum);
+i++;
+}
+return 0;
+}

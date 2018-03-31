@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main()
+{
+  int A,N,K,i,quo;
+  
+  scanf("%d %d %d",&A,&N,&K);
+  
+  int chambers[K];
+  
+  if(A/pow(N+1,K-1)>N);
+  {  
+     quo=pow(N+1,K);
+     A = A-(A/quo)*quo;
+  }
+  
+  for(i=K-1;i>=0;i--)
+  {
+    quo=pow(N+1,i);
+    chambers[i]=A/quo;
+    A = A-(A/quo)*quo;
+  }
+  
+  for(i=0;i<K;i++)
+    printf("%d ",chambers[i]);
+  printf("\n");
+  
+  return 0;
+}
+ 

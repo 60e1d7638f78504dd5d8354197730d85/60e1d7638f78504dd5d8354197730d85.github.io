@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int r,c;
+int compute(char str[110][110])
+{
+ 
+    int i,j;
+    for(i=0;i<r;i++)
+      {
+          for(j=0;j<c-4;j++)
+            {
+                if((str[i][j]=='S'||str[i][j]=='s')&&(str[i][j+1]=='P'||str[i][j+1]=='p')&&(str[i][j+2]=='O'||str[i][j+2]=='o')&&(str[i][j+3]=='O'||str[i][j+3]=='o')&&(str[i][j+4]=='N'||str[i][j+4]=='n'))
+                    return 1;
+            }
+      }
+ 
+    for(i=0;i<r-4;i++)
+      {
+          for(j=0;j<c;j++)
+            {
+                if((str[i][j]=='S'||str[i][j]=='s')&&(str[i+1][j]=='P'||str[i+1][j]=='p')&&(str[i+2][j]=='O'||str[i+2][j]=='o')&&(str[i+3][j]=='O'||str[i+3][j]=='o')&&(str[i+4][j]=='N'||str[i+4][j]=='n'))
+                    return 1;
+            }
+      }
+ 
+    return -1;
+}
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d%d",&r,&c);
+        char mat[110][110];
+ 
+        int i;
+        for(i=0;i<r;i++)
+         scanf("%s",mat[i]);
+ 
+        int ans=compute(mat);
+ 
+        if(ans==1)
+         printf("There is a spoon!\n");
+        else if(ans==-1)
+         printf("There is indeed no spoon!\n");
+    }
+ 
+    return 0;
+}

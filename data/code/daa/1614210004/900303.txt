@@ -1,0 +1,28 @@
+#include <cstdio>
+#include <cassert>
+unsigned int cur = 0;
+unsigned int A, B;
+unsigned int M;
+unsigned int nextRand24() {
+  cur = cur * A + B;
+  unsigned int result = (cur >> 8);
+  cur %= M;
+  return result;
+}
+int main() {
+  int n;
+  assert(4 == scanf("%d%u%u%u", &n, &M, &A, &B));
+  int best = -1;
+  long long ans = 0;
+  for (int i = 0; i < n; i++) {
+    int cur = (int) nextRand24();
+    if (best >= 0 && best < cur) {
+      ans += cur - best;
+      best = cur;
+    } else {
+      best = cur;
+    }
+  }
+  printf("%lld\n", ans);
+}
+

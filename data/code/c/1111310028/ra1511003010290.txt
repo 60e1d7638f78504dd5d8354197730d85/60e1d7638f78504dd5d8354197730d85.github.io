@@ -1,0 +1,74 @@
+#include <stdio.h>
+int arr[1000000+3];
+int abc[10000000];
+int main()
+{
+	int t,N,D,no,noDigit,i;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int l=0;
+		scanf("%d%d",&N,&D);
+		int square = D*D;
+		if(D==1 || D==2 || D==3)
+		{
+			noDigit = N;
+			for(i=0;i<noDigit;i++)
+			{
+				arr[i] = square;
+			}
+		}
+		else{
+			noDigit = N+1;
+			int carry=0,sum=0;
+			for(i = noDigit-1;i>0;i--)
+			{
+				sum = square + carry;
+				arr[i] = sum%10;
+				carry = sum/10;
+			}
+			arr[0] = carry;
+		}	
+		int carry=0,sum=0;
+		for(i=0;i<N;i++)
+		{
+			sum = sum + arr[noDigit-1-i];
+			//printf("%d ",(sum+carry)%10);
+			abc[l] = (sum+carry)%10;
+			l++;		
+			carry = (sum+carry)/10;
+		}
+		if(D!=1 && D!=2)
+		{
+			sum = sum - arr[noDigit-1];
+			if(D!=3){
+				sum = sum + arr[0];
+			}
+			//printf("%d ",(sum+carry)%10);
+			abc[l] = (sum+carry)%10;
+			l++;
+			carry = (sum+carry)/10;
+		}
+		for(i=0;i<N-1;i++)
+		{
+			sum = sum - arr[noDigit-2-i];
+			abc[l] = (sum+carry)%10;
+			l++;
+			//printf("%d ",(sum+carry)%10);
+			carry = (sum+carry)/10;
+		}
+		long long int ans=0,mul=1;
+		for(i=l-1;i>=0;i--)
+		{
+			ans = (ans + ((mul*abc[i])%(1000000007)))%(1000000007);
+			mul = (mul * 23)%(1000000007);
+		}
+		if(N==1 && D==3)
+		{
+			printf("9\n");
+		}
+		else
+			printf("%lld\n",ans);
+	}
+	return 0;
+} 

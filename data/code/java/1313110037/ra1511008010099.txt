@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       
+       int a = sc.nextInt();
+       
+       for(int k = 0; k < a; k++){
+         int n = sc.nextInt();
+         String ans = "";
+         
+         if(n % 3 == 0){for(int j = 0; j < n; j++){ans += "5";} }
+         else if(n % 5 == 0){for(int j = 0; j < n; j++){ans += "3";}}
+         else{
+         boolean flag = false;
+         for(int i = 0; i < n; i++){
+         if(i % 5 == 0 && (n - i) % 3 == 0 ){
+         	flag = true;
+           for(int j = 0; j < n; j++){
+				if(j < i){
+                ans = "3" + ans;
+                }
+             else{
+             ans = "5" + ans;
+             }
+           }
+           break;
+         }
+           if(flag){break;}
+         }
+         if(! flag){ans = "-1";}
+         }
+         System.out.println(ans);
+       }
+	}
+}

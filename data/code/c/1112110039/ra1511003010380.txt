@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef long long LL;
+ 
+inline void fastRead(LL *a);
+inline void fastWrite(LL a);
+ 
+int main()
+{
+    LL T, t=0;
+    fastRead(&T);
+    LL cats, dogs, legs, animals, cats_on_ground, cats_on_top;
+    for(; t < T; ++t)
+    {
+        fastRead(&cats);
+        fastRead(&dogs);
+        fastRead(&legs);
+        if(legs % 4 != 0) {
+no:
+            printf("no\n");
+            continue;
+        }
+        animals = legs / 4;
+        cats_on_ground = animals - dogs;
+        if(cats_on_ground < 0) goto no;
+        cats_on_top = cats - cats_on_ground;
+        if(cats_on_top < 0 || cats_on_top > 2 * dogs) goto no;
+        printf("yes\n");
+    }
+    return 0;
+}
+ 
+inline void fastRead(LL *a)
+{
+    register LL c=0;
+    while (c<33)
+    {
+        c=getchar_unlocked();
+    }
+    *a=0;
+    while (c>33)
+    {
+        *a = (*a<<1)+(*a<<3)+c-48;
+        c=getchar_unlocked();
+    }
+}
+inline void fastWrite(LL a)
+{
+    char snum[20];
+    LL i=0;
+    do
+    {
+        snum[i++]=a%10+48;
+        a=a/10;
+    }while(a!=0);
+    --i;
+    while(i>=0)
+    putchar_unlocked(snum[i--]);
+}
+ 

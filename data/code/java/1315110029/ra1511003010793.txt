@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.Scanner;
+class Building
+ {
+   private int length,width,ratePerSqFeet;
+    void initializeData(int x,int y,int z)
+    {
+      length=x;
+      width=y;
+      ratePerSqFeet=z;
+    }
+   int getLength()
+   {
+     return length;
+   }
+   int getWidth()
+   {
+     return width;
+   }
+   int getRatePerSqFeet()
+   {
+     return ratePerSqFeet;
+   }
+   int calculateCost()
+   {
+     int area,amount;
+     area=length*width;
+     amount=area*ratePerSqFeet;
+     return amount;
+   }
+   int determineSuitability()
+   {
+     int dif=Math.abs(length-width);
+     return dif;
+   }
+ }
+
+public class TestClass {
+	 public static void main(String[] args) 
+     { 
+		Scanner sc=new Scanner(System.in);
+        Building objname=new Building();
+        int x=sc.nextInt();
+        int y=sc.nextInt();
+        int z=sc.nextInt();
+        objname.initializeData(x,y,z);
+        int l=objname.getLength();
+       int w=objname.getWidth();
+       int cost=objname.getRatePerSqFeet();
+       int amount=objname.calculateCost();
+       int flag=objname.determineSuitability();
+       System.out.println("Length : "+l);
+        System.out.println("Width : "+w);
+        System.out.println("Rate Per SqFt : "+cost);
+        System.out.println("Cost of the Building : "+amount);
+       if(flag<=10)
+       {
+          System.out.println("Suitability : Suitable");
+       }
+       else
+       {
+          System.out.println("Suitability : Not Suitable");
+       }
+	}
+}
+ 

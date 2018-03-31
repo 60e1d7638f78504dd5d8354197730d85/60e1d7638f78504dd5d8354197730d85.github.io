@@ -1,0 +1,53 @@
+#include <stdio.h>
+void modes(int [], int);
+int main()
+{
+    int i, n, a[20] = {0};
+    
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    modes(a, n);
+    return 0;
+}
+
+void modes(int a[], int n)
+{
+	int sum = 0, i, j, t, b[20] = {0}, k = 0, c = 1, max = 0, mode;
+    float x = 0.0, y = 0.0;
+    for (i = 0; i < n - 1; i++)
+    {
+        mode = 0;
+        for (j = i + 1; j < n; j++)
+        {
+            if (a[i] == a[j]) {
+                mode++;
+            }
+        }
+        if ((mode > max) && (mode != 0)) {
+            k = 0;
+            max = mode;
+            b[k] = a[i];
+            k++;
+        }
+        else if (mode == max) {
+            b[k] = a[i];
+            k++;
+        }
+    }
+    for (i = 0; i < n; i++)
+    {
+        if (a[i] == b[i]) 
+            c++;
+        }
+        if (c == n)
+            printf("none");
+        else
+        {
+            printf("Mode=");
+            for (i = 0; i < k; i++)
+                printf("%d ",b[i]);
+        }
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+class measure
+{
+  public:
+   int feet1, feet2,feet3;
+   float inches1,inches2,inches3;
+    void sumfeet();
+    void suminches();
+    void display();
+  };
+void measure::sumfeet()
+{
+  cin>>feet1>>inches1;
+  cin>>feet2>>inches2;
+}
+void measure::suminches()
+{
+  feet3=feet1+feet2;
+  inches3=inches1+inches2;
+  if(inches3 > 12)
+  {
+    feet3 = feet3 + 1;
+    inches3 = inches3 - 12;
+  }
+}
+void measure::display()
+{
+  cout<<feet3<<" "<<"feet"<<" "<<inches3<<" "<<"inches";
+  //cout<<inches3;
+}
+  
+int main()
+{
+measure m;
+  m.sumfeet();
+  m.suminches();
+  m.display();
+	return 0;
+}

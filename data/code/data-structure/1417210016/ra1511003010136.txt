@@ -1,0 +1,36 @@
+#include <stdio.h>
+ 
+void merge(int *a, int start, int mid, int end){
+	int n = end - start + 1, arr[n], p = start, q = mid + 1, k;
+	for(k = 0 ; k < n ; k++){
+		if(p > mid) arr[k] = a[q++];
+		else if(q > end) arr[k] = a[p++];
+		else if(a[p] < a[q]) arr[k] = a[p++];
+		else arr[k] = a[q++];
+	}
+	for(k = 0 ; k < n ; k++) a[start++] = arr[k];
+	return;
+}
+ 
+void sort(int *a, int start, int end){
+	if(start < end){
+		int mid = (start + end) / 2;
+		sort(a, start, mid);
+		sort(a, mid + 1, end);
+		merge(a, start, mid, end);
+	}
+	return;
+}
+ 
+int main(){
+	int n; scanf("%d", &n);
+	int i, a[n]; for(i = 0 ; i < n ; i++) scanf("%d", &a[i]);
+	sort(a, 0, n - 1);
+	int q; scanf("%d", &q);
+	while(q--){
+		int k; char t; scanf("%d %c", &k, &t);
+		if(t == 'S') printf("%d\n", a[k - 1]);
+		else printf("%d\n", a[n - k]);
+	}
+	return 0;
+}

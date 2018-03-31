@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int t,a[10],i,s,l,m,h;
+  scanf("%d",&t);
+  for(i=1;i<=t;i++)
+    scanf("%d",&a[i]);
+  scanf("%d",&s);
+  l=0;
+  h=t-1;
+  while(l<=h)
+  {
+    m=(l+h)/2;
+    if(a[m]<s)
+      l=m+1;
+    else if(a[m]==s)
+    {
+      printf("%d is found in the array at position=%d",s,m-1);
+      break;
+    }
+    else
+      h=m-1;
+    m=(l+h)/2;
+  }
+  if(l>h)
+    printf("%d Does not exist in the array",s);
+  return 0;
+}

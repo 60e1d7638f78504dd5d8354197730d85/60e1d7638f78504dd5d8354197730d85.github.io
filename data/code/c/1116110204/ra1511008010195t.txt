@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{
+    //printf("Hello world!\n");
+    int t,i,j,ans;
+    char s1[102],s2[102];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%s%s",s1,s2);
+        for(j=-1,ans=i=0;s2[i];i++)
+        {
+            for(j++;s1[j];j++)
+             if(s2[i]==s1[j])
+ 
+               break;
+ 
+            if(j>=strlen(s1))
+               break;
+        }
+ 
+        if(i==strlen(s2))
+          ans++;
+        for(j=-1,i=strlen(s2)-1;i>=0;i--)
+        {
+            for(j++;s1[j];j++)
+             if(s2[i]==s1[j])
+               break;
+            if(j>=strlen(s1))
+               break;
+        }
+        if(i==-1)
+        {
+          if(ans)
+            ans=3;
+          else
+            ans=2;
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
+}

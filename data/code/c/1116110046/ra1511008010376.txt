@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<string.h>
+int check_vowel(char);
+int main()
+{
+  char s[20],t[20];
+  int i,j=0;
+  scanf("%s",s);
+  for(i=0;s[i]!='\0';i++)
+  {
+    if(check_vowel(s[i])==0)
+    {
+      t[j]=s[i];
+      j++;
+    }
+  }
+  t[j]='\0';
+  strcpy(s,t);
+  printf("%s",s);
+  return 0;
+}
+int check_vowel(char c)
+{
+  switch(c)
+  {
+    case 'a':
+    case 'e':
+    case 'i':
+    case 'o':
+    case 'u':
+    case 'A':
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U':
+      return 1;
+    default:
+      return 0;
+  }
+}

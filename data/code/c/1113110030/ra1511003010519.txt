@@ -1,0 +1,35 @@
+#include <stdio.h>
+struct hard
+{
+  int hardness;
+  float carbon;
+  int strength;
+};
+int main()
+{
+  struct hard s1[10];
+  int t,i;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&s1[i].hardness);
+    scanf("%f",&s1[i].carbon);
+    scanf("%d",&s1[i].strength);
+  }
+  for(i=0;i<t;i++)
+  {
+    if(s1[i].hardness>50 && s1[i].carbon<0.7 &&s1[i].strength>5600)
+      printf("Grade 10\n");
+    else if(s1[i].hardness>50 && s1[i].carbon<0.7 &&s1[i].strength<5600)
+      printf("Grade 9\n");
+    else if(s1[i].hardness<50 && s1[i].carbon<0.7 &&s1[i].strength>5600)
+      printf("Grade 8\n");
+    else if(s1[i].hardness>50 && s1[i].carbon>0.7 &&s1[i].strength>5600)
+      printf("Grade 7\n");
+    else if(s1[i].hardness<50 && s1[i].carbon>0.7 &&s1[i].strength<5600)
+      printf("Grade 5\n");
+    else 
+      printf("Grade 6\n");
+  }
+    return 0;
+}

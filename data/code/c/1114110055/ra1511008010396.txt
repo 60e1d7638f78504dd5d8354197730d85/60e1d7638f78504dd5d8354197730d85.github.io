@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+int t;
+  scanf("%d",&t);
+  int i;
+  for(i=1;i<=t;i++)
+  {
+    char a[100];
+    scanf("%s",a);
+    int j;
+    char b[2];
+    b[0]=a[0];
+    b[1]=a[1];
+    int f=0;
+    if(b[0]==b[1])
+      f=1;
+    for(j=2;a[j]!='\0';j++)
+    {
+      if((j+1)%2==0)
+      {
+        if(b[1]!=a[j] )
+        {
+          f=1;
+          break;
+        }
+      }
+      else
+        {
+        if(b[0]!=a[j])
+        {
+          f=1;
+          break;
+        }
+      }
+    }
+    if(f==0)
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+	return 0;
+}

@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class Building
+{
+  	int length,width,ratePerSqft;
+public:
+  	void InitializeData(int l,int w,int r)
+    {
+      	length=l;
+      	width=w;
+      	ratePerSqft=r;
+    }
+  	void display()
+    {
+      	cout<<length<<endl<<width<<endl<<ratePerSqft<<endl;
+    }
+  	void calculateCost()
+    {
+      	cout<<length*width*ratePerSqft<<endl;
+    }
+  	void determineSuitability()
+    {
+      	if(length-width<=10)
+          	cout<<"suitable";
+      	else
+          	cout<<"not suitable";
+    }
+};
+int main()
+{
+  	int l,w,r;
+  	cin>>l>>w>>r;
+	Building b;	
+  	b.InitializeData(l,w,r);
+  	b.display();
+  	b.calculateCost();
+  	b.determineSuitability();
+	return 0;
+}

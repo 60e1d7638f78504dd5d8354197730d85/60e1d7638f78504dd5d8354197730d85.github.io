@@ -1,0 +1,54 @@
+#include <stdio.h>
+int a[100][5000],m;
+int searchindex(int b[],int j,int low,int high)
+{
+	int mid;
+	mid=(low+high)/2;
+	//printf("%d %d %d %d %d %d\n",low,high,mid,j,a[j][mid],b[j]);
+	if(b[j]>=a[j][mid] && b[j]<a[j][mid+1])
+	return mid;
+	else if(b[j]<a[j][mid])
+	return searchindex(b,j,low,mid);
+	else
+	return searchindex(b,j,mid+1,high);
+}
+ 
+int main()
+{
+    int n,q,lev,ans,i,j;
+    scanf("%d %d %d",&n,&m,&q);
+    int b[n];
+    for(i=0;i<n;i++)
+    {
+    	for(j=0;j<m;j++)
+    		scanf("%d",&a[i][j]);
+    }
+    for(i=1;i<=q;i++)
+    {
+    	ans=m;
+    	lev=ans;
+    	for(j=0;j<n;j++)
+    	{
+    		scanf("%d",&b[j]);
+    		if(b[j]<a[j][0])
+    		ans=0;
+    		else if(b[j]>=a[j][0] && b[j]<a[j][1])
+    		{
+    		    lev=1;
+    		    if(ans>lev)
+    		    ans=lev;
+    		}
+    		else if(b[j]>=a[j][m-1])
+    		lev=m;
+    		else
+    		{
+    			lev=searchindex(b,j,0,m-1);
+    			lev++;
+    			if(ans>lev)
+    			ans=lev;
+    		}
+    	}
+    	printf("%d\n",ans);
+    }
+    return 0;
+}

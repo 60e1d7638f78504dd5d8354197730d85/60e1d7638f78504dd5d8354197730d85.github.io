@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define MOD 10000009
+#define MAX 1000002
+#define fo(i,n)   for(i=0;i<n;++i)
+	int t,l,i;
+	long long int ans;
+	char a[MAX]="";
+ 
+int main(void) {
+	scanf(" %d",&t);
+	while(t--)
+	{
+	    ans=1;
+	    scanf(" %s",a);
+	    l=strlen(a);
+	    fo(i,(l+1)/2)
+	        if(a[i]=='?'&&a[l-i-1]=='?')
+	        {
+	            ans*=26;
+	            if(ans>=MOD)        ans%=MOD;
+	        }
+	        else if(a[i]!='?'&&a[l-i-1]!='?'&&a[i]!=a[l-i-1])
+	        {
+	            ans=0;
+	            break;
+	        }
+	     printf("%lld\n",ans);
+	}
+	return 0;
+} 

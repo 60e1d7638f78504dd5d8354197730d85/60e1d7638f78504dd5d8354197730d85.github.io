@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+  int m,n,arr1[100][100],i,j,arr2[100][100];
+  scanf("%d%d",&n,&m);
+  for(i=0;i<n;i++)
+    for(j=0;j<m;j++)
+      scanf("%d",&arr1[i][j]);
+  int flag=1;
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      arr2[i][j]=arr1[j][i];
+  for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+      if(arr1[i][j]!=arr2[i][j])
+        flag=0;
+  if(flag==1)
+    printf("Symmetric");
+  else
+    printf("Not Symmetric");
+	return 0;
+}

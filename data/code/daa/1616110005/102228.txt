@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+struct e
+{
+    int w;
+    int u;
+    int v;
+};
+bool sort_w(const e & l,const e & r)
+{
+    return(l.w<r.w);
+}
+   
+int find(int par[],int vt,int v)
+{
+    if(par[v]==v)
+    return(v);
+    else
+    return(find(par,vt,par[v]));
+}
+void Union (int par[],int vt,int u,int v)
+{
+    par[u]=v;
+}
+   
+int kruskal(vector<e> vect,int vt,int eg)
+{
+    int sum=0;
+    int par[vt];
+    for(int i=0; i<vt; i++)
+    par[i]=i;
+    for(int i=0; i<vect.size(); i++)
+    {
+        e st=vect[i];
+        int a=find(par,vt,st.u);
+        int b=find(par,vt,st.v);
+        if(a!=b)
+        {
+            sum+=(st.w);
+            Union(par,vt,a,b);
+            
+        }
+    }
+    return(sum);
+}
+int main() 
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    vector< e > vect;
+	    int vt,eg;
+	    cin>>vt>>eg;
+	    for(int i=1; i<=eg; i++)
+	    {
+	        e st;
+	        cin>>st.u>>st.v>>st.w;
+	        vect.push_back(st);
+	    }
+	    sort(vect.begin(), vect.end(),sort_w);
+	    
+	    cout<<kruskal(vect,vt,eg)<<endl;
+	}
+	return 0;
+}

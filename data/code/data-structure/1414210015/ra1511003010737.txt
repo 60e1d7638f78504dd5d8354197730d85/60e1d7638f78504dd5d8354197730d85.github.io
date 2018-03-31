@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+string s;
+cin>>s;
+int x=0,y=0;
+set< pair<int,int> > v;
+v.insert(make_pair(x,y));
+for(int i=0;i<s.size();i++)
+{
+if(s[i]=='R')
+{
+y++;
+v.insert(make_pair(x,y));
+}
+else
+if(s[i]=='L')
+{
+y--;
+v.insert(make_pair(x,y));
+}
+else
+if(s[i]=='U')
+{
+x--;
+v.insert(make_pair(x,y));
+}
+else
+if(s[i]=='D')
+{
+x++;
+v.insert(make_pair(x,y));
+}
+ 
+}
+cout<<s.size()+1-v.size();
+return 0;
+}

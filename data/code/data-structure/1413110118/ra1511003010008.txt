@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+   int n,i,j,a[10],first,second;
+   scanf("%d",&n);
+   for(i=0;i<n;i++)
+     scanf("%d",&a[i]);
+   first=second=a[0];
+  for (i = 0; i<n; i ++)
+    {
+        /* If current element is smaller than first
+           then update both first and second */
+        if (a[i] > first)
+        {
+            second = first;
+            first = a[i];
+        }
+ 
+        /* If arr[i] is in between first and 
+           second then update second  */
+        else if (a[i] > second && a[i] != first)
+            second = a[i];
+    }
+    //if (second ==0)
+        //printf("There is no second largest element\n");
+    //else
+        //printf("The second largest element is %d %d", second,first);
+    for(i=0;i<n;i++)
+    {
+      if(a[i]!=first && a[i]!=second)
+       printf("%d\n",a[i]); 
+    }
+
+	return 0;
+}

@@ -1,0 +1,88 @@
+#include<stdio.h>
+int a[20],mark[10];
+long long int precal[100];
+ 
+long long int cal(long long int n)
+{	
+	int i,j,k,d,l;
+	long long int x,r,ans=0;
+		
+	x=10;
+	for(i=1;i<=10 && x<=n;i++)
+	{
+		ans+=precal[i];
+		x=x*10;
+	}
+	if(x==n || n>9999999999)
+		return ans;
+		
+	for(i=0;i<10;i++)
+		mark[i]=0;
+	
+	d=0;
+	while(n>0)
+	{
+		a[d++]=n%10;
+		n=n/10;
+	}
+	
+	k=0;
+	for(i=1;i<a[d-1];i++)
+		if(mark[i]==0)
+			k++;
+	r=k;
+	x=9;
+	for(j=0;j<d-1;j++)
+	{
+		r=r*x;
+		x--;
+	}
+//	printf("%lld\n",r);
+	ans+=r;
+	mark[a[d-1]]=1;
+	
+	for(j=d-2;j>=0;j--)
+	{
+		k=0;
+		for(i=0;i<a[j];i++)
+			if(mark[i]==0)
+				k++;
+		r=k;
+		x=10-d+j;
+		for(l=j-1;l>=0;l--)
+		{			
+			r=r*x;
+			x--;
+		}
+//		printf("%lld\n",r);
+		ans+=r;
+		if(mark[a[j]]==1)
+			break;
+		else
+			mark[a[j]]=1;
+	}
+//	printf("\n");
+	return ans;
+}
+ 
+int main()
+{
+	long long int t,l,r,i,x;
+	
+	r=9;
+	x=9;
+	precal[1]=9;
+	for(i=2;i<=10;i++)
+	{
+		r=r*x;
+		x--;
+		precal[i]=r;
+	}
+	scanf("%lld",&t);
+	while(t--)
+	{
+		scanf("%lld %lld",&l,&r);
+		printf("%lld\n",cal(r+1)-cal(l));
+	}
+	return 0;
+}

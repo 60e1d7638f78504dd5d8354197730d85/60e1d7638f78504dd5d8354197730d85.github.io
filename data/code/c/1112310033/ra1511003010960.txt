@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  	while(t-->0){
+      int R,c=0,po[3][2];
+      scanf("%d",&R);
+      scanf("%d",&po[0][0]);
+      scanf("%d",&po[0][1]);
+      scanf("%d",&po[1][0]);
+      scanf("%d",&po[1][1]);
+      scanf("%d",&po[2][0]);
+      scanf("%d",&po[2][1]);
+      if(pow(po[1][1]-po[0][1],2)+pow(po[1][0]-po[0][0],2)<=R*R)
+        c++;
+      if(pow(po[2][1]-po[1][1],2)+pow(po[2][0]-po[1][0],2)<=R*R)
+        c++;
+      if(pow(po[2][1]-po[0][1],2)+pow(po[2][0]-po[0][0],2)<=R*R)
+        c++;
+      if(c>=2)
+         printf("yes\n");
+      else
+         printf("no\n");
+    }
+	return 0;
+}

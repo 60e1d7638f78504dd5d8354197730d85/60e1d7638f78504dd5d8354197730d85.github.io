@@ -1,0 +1,46 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m,x,y,k;
+	    cin>>n>>m;
+	    vector<vector<int>> v(n,vector<int>(m,0));
+	    vector<vector<bool>> visited(n,vector<bool>(m,false));
+	    for(int i=0;i<n;i++)
+	        for(int j=0;j<m;j++)
+	            cin>>v[i][j];
+	   cin>>x>>y>>k;
+	   int color=v[x][y];
+	   queue<pair<int,int>> q;
+	   q.push(make_pair(x,y));
+	   while(!q.empty())
+	   {
+	       pair<int,int> p=q.front();
+	       q.pop();
+	       
+	       v[p.first][p.second]=k;
+	       visited[p.first][p.second]=true;
+	       if(p.first+1<n && !visited[p.first+1][p.second] &&  v[p.first+1][p.second]==color)
+	       q.push(make_pair(p.first+1,p.second));
+	       if(p.first-1>=0 && !visited[p.first-1][p.second] &&  v[p.first-1][p.second]==color)
+	       q.push(make_pair(p.first-1,p.second));
+	       if(p.second+1<m && !visited[p.first][p.second+1] &&  v[p.first][p.second+1]==color)
+	       q.push(make_pair(p.first,p.second+1));
+	       if(p.second-1>=0 && !visited[p.first][p.second-1] &&  v[p.first][p.second-1]==color)
+	       q.push(make_pair(p.first,p.second-1));
+	     
+	       
+	   }
+	    for(int i=0;i<n;i++)
+	        for(int j=0;j<m;j++)
+	            cout<<v[i][j]<<" ";
+	            cout<<endl;
+	    
+	}
+	return 0;
+}

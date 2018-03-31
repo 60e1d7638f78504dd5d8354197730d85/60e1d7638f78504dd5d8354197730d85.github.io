@@ -1,0 +1,58 @@
+#include<stdio.h>
+ 
+int main(){
+	int testcase;
+	int jobs[1000];
+	int n, m;
+	int i,j,k, distributor;
+	int chef[500], assistant[500];
+ 
+	scanf("%d", &testcase);
+ 
+	while(testcase>0){
+		scanf("%d %d", &n, &m);
+ 
+		for(i=0; i<n; i++){
+			jobs[i] = i+1;
+		}
+ 
+		for(i=0; i<m; i++){
+			scanf("%d", &k);
+			jobs[k-1] = 9999;
+		}
+ 
+		distributor = 1;
+ 
+		for(i=0, j=0, k=0; i<n; i++){
+			if(jobs[i]!= 9999){
+				if(distributor%2 == 1){
+					chef[j] = jobs[i];
+					distributor++;
+					j++;
+				}
+				else{
+					assistant[k] = jobs[i];
+					distributor++;
+					k++;
+ 
+				}
+			}
+		}
+ 
+		for(i=0; i<j; i++){
+			printf("%d ", chef[i]);
+		}
+		printf("\n");
+ 
+		for(i=0; i<k; i++){
+			printf("%d ", assistant[i]);
+		}
+		printf("\n");
+ 
+		testcase--;
+	}
+ 
+ 
+	return 0;
+} 
+

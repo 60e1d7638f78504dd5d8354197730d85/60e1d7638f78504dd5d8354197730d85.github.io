@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner sc=new Scanner(System.in);
+       int tc=sc.nextInt();
+       while(tc>0)
+       {
+         String str=sc.next();  
+          
+          StringBuilder s = new StringBuilder(str);
+           int start = 0;
+		while (start < s.length() - 2)
+        {
+			if (s.charAt(start) == s.charAt(start + 1)&& s.charAt(start) == s.charAt(start + 2)) 
+            {
+				s.deleteCharAt(start);
+				s.deleteCharAt(start);
+				s.deleteCharAt(start);
+					
+			//	start = (start-2)>0?(start-2):0;
+			}
+          else
+          {
+				start = start + 1;
+			}
+
+        }
+       if(s==null ||s.toString().equals(""))
+         System.out.println(-1);
+           
+           System.out.println(s);
+         tc--;
+        
+         }
+       
+		
+	}
+}

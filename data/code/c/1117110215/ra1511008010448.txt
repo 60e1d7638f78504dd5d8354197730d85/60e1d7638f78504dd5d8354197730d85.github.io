@@ -1,0 +1,24 @@
+#include <stdio.h>
+int convertRec(int num)
+{
+  if (num==0)
+    return 0;
+  int d=num%10;
+  if(d==0)
+    d=5;
+  return convertRec(num/10)*10+d;
+}
+int convert(int num)
+{
+  if(num==0)
+    return 5;
+  else return convertRec(num);
+}
+int main()
+{
+  int n;
+  scanf("%d",&n);
+  printf("%d",convert(n));
+
+	return 0;
+}

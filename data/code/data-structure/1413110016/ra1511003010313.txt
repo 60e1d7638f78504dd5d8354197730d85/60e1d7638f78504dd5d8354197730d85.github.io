@@ -1,0 +1,48 @@
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <string.h>
+             int main(){
+    int A[10000],B[10000],n,m,j,i,x=0,y=0,p,q;
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;i++){
+        scanf("%d",&A[i]);
+    }
+    for(j=0;j<m;j++){
+        scanf("%d",&B[j]);
+    }
+    for(i=0;i<n;i++){
+        p=0;
+        q=0;
+        for(j=0;j<m;j++){
+            if(A[i]>B[j]){
+                p=p+1;
+            }
+            if(A[i]<B[j]){
+                q=q+1;
+            }
+        }
+        x=p*q+x;
+    }
+    for(i=0;i<m;i++){
+        p=0;
+        q=0;
+        for(j=0;j<n;j++){
+            if(B[i]>A[j]){
+                p=p+1;
+            }
+            if(B[i]<A[j]){
+                q=q+1;
+            }
+        }
+        y=p*q+y;
+    }
+    if(x>y){
+        printf("Monk %d",x-y);
+    }
+    if(y>x){
+        printf("!Monk %d",y-x);
+    }
+    if(x==y){
+        printf("Tie");
+    }
+             return 0;}

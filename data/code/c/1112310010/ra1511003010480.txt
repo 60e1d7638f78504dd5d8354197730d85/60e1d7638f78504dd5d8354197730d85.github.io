@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{
+	int n,k,t,i;
+	int f;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d %d",&n,&k);
+		f=1;n--;k--;
+		if(n==k)
+			printf("1\n");
+		else
+		{
+			if(k>n/2)
+				k=n-k;
+			for(i=1;i<=k;i++)
+			{
+				f=f*(n+1-i)/i;
+			}
+			printf("%d\n",f);
+		}
+	}
+	return 0;
+}

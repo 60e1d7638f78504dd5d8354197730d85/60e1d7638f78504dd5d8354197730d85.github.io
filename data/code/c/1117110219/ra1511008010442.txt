@@ -1,0 +1,42 @@
+#include<stdio.h>
+ 
+double Pascal[1001][1001];
+ 
+void PascalTriangle()
+ {
+    int i,j;
+    Pascal[0][0] = 1;
+    for(i=1; i<1000; i++)
+	{
+        Pascal[i][0] = 1;
+        for(j=1; j<=i; j++) Pascal[i][j] = Pascal[i - 1][j - 1] + Pascal[i - 1][j];
+    }
+}
+ 
+int main()
+{
+    double Ans;
+    int i,T,S,N,M,K;
+    PascalTriangle();
+    scanf("%d",&T);
+    while(T--)
+    {
+        Ans=0;
+        scanf("%d%d%d%d",&S,&N,&M,&K);
+        S--; N--; M--;
+        if(S-M < N-K) { printf("1.0000000\n"); continue; }
+        if(K<=N)
+        {
+            if(M>N)
+            {
+                for(i=0; i<=N-K; i++)  Ans+=(Pascal[M][K+i]*Pascal[S-M][N-K-i])/Pascal[S][N];
+            }
+            else
+            {
+                for(i=0; i<=M-K; i++)  Ans+=(Pascal[M][K+i]*Pascal[S-M][N-K-i])/Pascal[S][N];
+            }
+        }
+        printf("%.7f\n",Ans);
+    }
+  return 0;
+}

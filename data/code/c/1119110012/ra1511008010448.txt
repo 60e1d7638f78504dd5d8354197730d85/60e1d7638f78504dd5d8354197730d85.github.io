@@ -1,0 +1,111 @@
+#include <stdio.h>
+#define size 531169
+int flag[size];
+int invert[size];
+int inv(int x)
+{
+  int y=size;
+  int p0=1,p1=0,p2,t;
+  while(y)
+  {
+    p2=p0-x/y*p1;
+    p0=p1;
+    p1=p2;
+    t=y;
+    y=x%y;
+    x=t;
+  }
+  p0%=size;
+  if(p0<0)
+    return p0+size;
+  return p0;
+}
+void r()
+{
+  int i;
+  long long temp=1;
+  flag[0]=1;
+  invert[0]=1;
+  for(i=1;i<size;i++)
+  {
+    temp=(temp*i)%size;
+    flag[i]=temp;
+    invert[i]=inv(temp);
+  }
+}
+int o(int x,int y)
+{
+  long long temp;
+  if((x+y)/size>x/size+y/size)
+    return 0;
+  temp=flag[(x+y)%size];
+  temp=temp*flag[(x+y)/size]%size;
+  temp=temp*invert[x%size]%size;
+  temp=temp*invert[y%size]%size;
+  temp=temp*invert[x/size]%size;
+  temp=temp*invert[y/size]%size;
+  return temp;
+}
+int gcd(int a,int b)
+{
+  int c;
+  while(b)
+  {
+    c=b;
+    b=a%b;
+    a=c;
+  }
+  return a;
+}
+char x[32000];
+int pro[5000];
+int ko;
+int elem[10];
+int belem;
+int a,b,uk;
+void rek(int z,int m,int prod)
+{
+  int i;
+  uk+=m*o(a/prod,b/prod);
+  for(i=z;i<belem;i++)
+  {
+    rek(i+1,-m,prod*elem[i]);
+  }
+}
+int main()
+{
+  int t;
+  int i,j,temp;
+  for(i=2;i*i<31622;i++)
+  	if(!x[i])
+      for(j=i*i;j<31622;j+=i)
+        x[j]=1;
+  for(i=2;i<31622;i++)
+    if(!x[i])
+      pro[ko++]=i;
+  r();
+  scanf("%d\n",&t);
+  while(t--)
+  {
+    scanf("%d %d",&a,&b);
+    temp=gcd(a,b);
+    belem=0;
+    for(i=0;pro[i]*pro[i]<=temp;i++)
+      if(temp%pro[i]==0)
+      {
+        elem[belem++]=pro[i];
+        while(temp%pro[i]==0)
+          temp/=pro[i];
+      }
+    if(temp>1)
+      elem[belem++]=temp;
+    uk=0;
+    rek(0,1,1);
+    uk%=size;
+    if(uk<0)
+      uk+=size;
+    printf("%d\n",uk);
+  }
+
+	return 0;
+}

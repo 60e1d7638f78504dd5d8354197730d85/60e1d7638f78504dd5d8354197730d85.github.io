@@ -1,0 +1,45 @@
+ #include<stdio.h>
+    #define gc getchar_unlocked
+    int read_int(){
+    char c=gc();
+    while(c<'0' || c>'9')c=gc();
+    int ret=0;
+    while(c>='0' && c<='9'){ret=10*ret+c-48;c=gc();}
+    return ret;
+    }
+    int main(){
+    	int t;
+    	t=read_int();
+    	while(t--){
+    		long int i,j,index,n,count=0,kills=0;
+    		int status=0,mem;
+    		n=read_int();
+    		int arr[n],arr2[50000]={0},min,temp;
+    		for(i=0;i<n;i++){
+    			arr[i]=read_int();
+    			arr2[arr[i]]=arr2[arr[i]]+1;
+    			}
+    		for(i=1;i<50000;i++){
+    			//if(i%6==0){count++;}
+    			mem=arr2[i];
+    			for(j=0;j<mem;j++){
+    					if(kills>0 && kills%6==0)count++;
+    					if((i-count)<=0){
+    						printf("Goodbye Rick\n");
+    						printf("%ld\n",kills);
+    						status=1;
+    						break;
+    						}
+    					count++;
+    					kills++;
+    					}
+    				if(status==1){
+    			break;
+    			}
+    			}
+    		if(status==0){
+    			printf("Rick now go and save Carl and Judas\n");
+    			}
+    		}
+    	return 0;
+    	}

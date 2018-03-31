@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <limits.h> 
+ 
+/* Function to print the second largest elements */
+void print2largest(int arr[], int arr_size)
+{
+    int i, first, second;
+  	float avg, a, b;
+    first = second = INT_MIN;
+    for (i = 0; i < arr_size ; i ++)
+    {
+
+        if (arr[i] > first)
+        {
+            second = first;
+            first = arr[i];
+        }
+        else if (arr[i] > second && arr[i] != first)
+            second = arr[i];
+    }
+  	a = first;
+  	b = second;
+	avg = (a + b)/2;
+  	printf("First Largest=%d", first);
+  	printf("\nSecond Largest=%d", second);
+  	printf("\nAverage=%0.1f", avg);
+}
+ 
+/* Driver program to test above function */
+int main()
+{
+	int a[10], n, i;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++)
+      scanf("%d ", &a[i]);
+    print2largest(a, n);
+    return 0;
+}

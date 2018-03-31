@@ -1,0 +1,37 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main() {
+   int t,i,j;
+   char str[100];
+   
+   
+   
+      scanf(" %s",str);
+      for( i = 0 , j = strlen(str)-1 ; i <= j ;  i++ , j--)
+      {
+         if(str[i]=='.' && str[j]!= '.')
+         {
+            str[i]=str[j];
+         }
+         else if(str[i]!='.' && str[j]== '.')
+         {
+            str[j]=str[i];
+         }
+         else if(str[i]=='.' && str[j]== '.')
+         {
+            str[i]=str[j]='a';
+         }
+         else if(str[i]!=str[j])
+         {
+            strcpy(str,"-1");
+            break;
+         }
+      }
+      printf("%s\n",str);
+   
+   return 0;
+}
+ 

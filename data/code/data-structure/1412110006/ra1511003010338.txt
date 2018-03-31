@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include "malloc.h"
+
+struct dataStream{
+int val;
+struct dataStream *next;
+};
+typedef struct dataStream node;
+int count = 0;
+int findMedian(node *head);
+void insert(node **head, int val);
+void insert(node **head, int val){
+node *tmp = NULL, *newNode = NULL, *backNode = NULL;
+int inserted = 0;
+if(!(*head)){
+*head = (node *)malloc(sizeof(node));
+(*head)->val = val;
+(*head)->next = NULL;
+count++;
+} else {
+tmp = (*head);
+while(tmp && (!inserted)){
+if(val < tmp->val){
+newNode = (node *)malloc(sizeof(node));
+newNode->val = val;
+newNode->next = NULL;
+if(!backNode){
+newNode->next = tmp;
+(*head) = newNode;
+} else{
+backNode->next = newNode;
+newNode->next = tmp;
+}
+count++;
+inserted = 1;
+} 
+backNode = tmp;
+tmp = tmp->next;
+}
+if(!inserted){
+newNode = (node *)malloc(sizeof(node));
+newNode->val = val;
+newNode->next = NULL;
+backNode->next = newNode;
+count++;
+}
+}
+}
+int findMedian(node *head){
+int val1 = 0, val2 = 0, i = 0;
+if(count == 1){
+return head->val;
+} else if(count == 2){
+val1 = head->val;
+head = head->next;
+val2 = head->val;
+return ((val1 + val2)/2);
+}
+if(count%2 != 0){
+for(i = 0; i < (count/2); i++){
+head = head->next;
+}
+return head->val;
+} else {
+for(i = 0; i < ((count/2) - 1); i++){
+head = head->next;
+}
+val1 = head->val;
+head = head->next;
+val2 = head->val;
+return ((val1 + val2)/2);
+}
+}
+int main() {
+int n = 0, i = 0, val = 0;
+int median = 0;
+node *head = NULL;
+scanf("%d",&n);
+for(i = 0; i < n; i++){
+scanf("%d",&val);
+insert(&head, val);
+median = findMedian(head);
+printf("%d\n",median);
+}
+return 0;
+}

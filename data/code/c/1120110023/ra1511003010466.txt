@@ -1,0 +1,65 @@
+#include<stdio.h>
+int main()
+{
+     int A[3][3],I,J,M=3,SUM=0,TEMP=0,SUM_COL[3],SUM_ROW[3];
+     for(I=0;I<M;I++)
+     {
+    for(J=0;J<M;J++)
+    {
+        scanf("%d",&A[I][J]);
+    }
+     }
+     for(I=0;I<M;I++)
+     {
+    for(J=0;J<M;J++)
+    {
+        printf("%d",A[I][J]);
+      	if(J!=M-1)
+          printf(" ");
+    }
+    printf("\n");
+     }
+     for(I=0;I<M;I++)
+     {
+      SUM=SUM+A[I][I];
+     }
+     for(I=0,J=M-1;I<M;I++,J--)
+     {
+      TEMP=TEMP+A[I][J];
+     }
+     if(SUM==TEMP)
+     {
+    for(I=0;I<M;I++)
+    {
+        SUM_COL[I]=0;
+        for(J=0;J<M;J++)
+        {
+              SUM_COL[I]=SUM_COL[I]+A[I][J];
+        }
+    }
+    for(I=0;I<M;I++)
+    {
+        if(SUM != SUM_COL[I])
+              goto LABEL;
+    }
+    for(J=0;J<M;J++)
+    {
+        SUM_ROW[J]=0;
+        for(I=0;I<M;I++)
+        {
+              SUM_ROW[J]=SUM_ROW[J]+A[I][J];
+        }
+    }
+    for(J=0;J<M;J++)
+    {
+        if(SUM != SUM_ROW[J])
+                goto LABEL;
+    }
+    printf("Magic Square");
+     }
+     else
+     {
+       LABEL :printf("Not a Magic Square");
+     }
+     return 0;
+}

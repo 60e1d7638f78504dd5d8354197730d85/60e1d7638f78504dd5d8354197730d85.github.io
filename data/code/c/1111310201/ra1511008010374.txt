@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#define REP(i,n) for(i=0; i<(int)(n); i++)
+
+char s[100000 + 1];
+int ig[500000];
+int b[128];
+int l[50000];
+int r[50000];
+int k[50000];
+
+int main(){
+  int n, q, i, j;
+  int pp;
+  scanf("%d%d%s", &n, &q, s);
+  REP(i,q) scanf("%d%d%d", l + i, r + i, k + i);
+
+  pp = q - 1;
+  for(i = q - 2; i >= 0; i--){
+    if(l[pp] <= l[i] && r[i] <= r[pp]) ig[i] = 1;
+    else pp = i;
+  }
+
+  REP(i,q) if(!ig[i]){
+    const int ll = l[i] - 1;
+    const int rr = r[i] - 1;
+
+    for(j = ll; j <= rr; j++) b[s[j]]++;
+    pp = i;
+
+    if(k[i] == 1){
+      char *ptr = &s[ll];
+      for(j = 'a'; j <= 'z'; j++){
+        memset(ptr, j, b[j]);
+        ptr += b[j];
+        b[j] = 0;
+      }
+    }else{
+      char *ptr = &s[ll];
+      for(j = 'z'; j >= 'a'; j--){
+        memset(ptr, j, b[j]);
+        ptr += b[j];
+        b[j] = 0;
+      }
+    }
+  }
+
+  puts(s);
+  return 0;
+}

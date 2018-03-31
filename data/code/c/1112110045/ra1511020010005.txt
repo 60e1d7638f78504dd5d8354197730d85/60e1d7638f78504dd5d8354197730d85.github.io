@@ -1,0 +1,49 @@
+#include <stdio.h>
+void series(int n);
+int main()
+{
+	int t,n;
+  	scanf("%d",&t);
+  	while(t>0)
+    {
+      scanf("%d",&n);
+      series(n);
+      t--;
+    }
+
+	return 0;
+}
+void series(int n)
+{
+  int i,arr[n],arr2[n],l,j,k=-1,c;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  scanf("%d",&l);
+  for(i=0;i<l;i++)
+  {
+    scanf("%d",&arr2[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    if(arr[i]==arr2[0])
+    {
+      c=0;
+      for(j=0;j<l;j++)
+      {
+        if(arr[i+j]==arr2[j])
+        {
+          c++;
+        }
+      }
+      if(c==j)
+      {
+        printf("Yes\n");
+        k=1;
+      }
+    }
+  }
+  if(k==-1)
+    printf("No\n");
+}

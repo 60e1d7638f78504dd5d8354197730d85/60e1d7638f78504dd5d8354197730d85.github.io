@@ -1,0 +1,28 @@
+#include<stdio.h>
+int gcd(int a,int b)
+{
+	 if (a == 0)
+        return b;
+    return gcd(b%a, a);
+}
+ 
+int main()
+{
+	int test;
+	scanf("%d",&test);
+	while(test--)
+	{
+		int n,m;
+		scanf("%d %d",&n,&m);
+		int den;
+		den=gcd(n,m);
+ 
+		int ans=n/den;
+        if(ans==n)
+		printf("Yes\n");
+		else
+		printf("No %d\n",ans);
+	}
+ 
+	return 0;
+} 

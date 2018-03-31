@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t>0)
+    {
+      int size,k,i,j,l,m,array[50],temp=0,count=0;
+      scanf("%d%d",&size,&k);
+      for(i=0;i<size;i++)
+        scanf("%d",&array[i]);
+      for(i=0;i<size;i++)
+      {
+        for(j=i;j<size;j++)
+        {
+         for(l=i;l<=j;l++)
+          {
+            temp=temp|array[l];
+          }
+           if(temp>=k)
+            count++;
+          temp=0;
+        }
+      }
+      printf("%d\n",count);
+      t--;
+      count=0;
+    }
+   
+	return 0;
+}

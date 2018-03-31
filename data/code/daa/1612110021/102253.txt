@@ -1,0 +1,45 @@
+#include <stdio.h>
+int partition(int *arr, int len) {
+    int i, j=1, k, temp;
+    int piv = arr[0];
+    for (i=1; i<len; i++) {
+        if (piv > arr[i]) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            j++;
+        }
+    }
+    j--;
+    temp = arr[0];
+    arr[0] = arr[j];
+    arr[j] = temp;
+    return j;
+}
+
+void quick_sort(int *arr, int len) {
+    int pivot;
+    if (len <= 1) {
+        return;
+    } else {
+        pivot = partition(arr, len);
+        quick_sort(arr, pivot);
+        quick_sort(arr+pivot+1, len-pivot-1);
+    }
+}
+
+int main() {
+	int t, len, arr[100], temp, i, prod;
+	scanf("%u", &t);
+	while (t--) {
+	    scanf("%u", &len);
+	    for (i=0; i<len; i++) {
+	        scanf("%u", arr+i);
+	    }
+	    quick_sort(arr, len);
+	    for (i=0; i<len-2; i++) 
+	        printf("%d ", arr[i]);
+	   printf("\n");
+	}
+	return 0;
+}

@@ -1,0 +1,43 @@
+#include<stdio.h>
+#define Max 314159
+int r[Max],c[Max];
+int fastread()
+{
+int t=0;
+char ch=getchar_unlocked();
+while(ch<33)
+ch=getchar_unlocked();
+while(ch>33)
+{
+t=t*10+ch-'0';
+ch=getchar_unlocked();
+}
+return t;
+}
+int main()
+{
+int i,j,n,k,q,mr=0,mc=0;
+char ch;
+n=fastread();
+q=fastread();
+for(k=0;k<q;k++)
+{
+ch=getchar_unlocked();
+while(getchar_unlocked()!=' ');
+i=fastread();
+j=fastread();
+if(ch=='R')
+{
+r[i-1]+=j;
+if(mr<r[i-1])
+mr=r[i-1];
+}
+else
+{
+c[i-1]+=j;
+if(mc<c[i-1])
+mc=c[i-1];
+}}
+printf("%d\n",mc+mr);
+return 0;
+}

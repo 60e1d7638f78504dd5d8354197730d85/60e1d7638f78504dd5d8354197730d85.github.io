@@ -1,0 +1,24 @@
+#include<iostream>  
+#include<cstring>  
+using namespace std;  
+  
+int main()  
+{  
+    string x = "hello";  
+    string y;  
+    cin >> y;  
+    bool isTrue = true;  
+    int length = y.length();  
+    for (int i = 0; i < 5; i++){  
+        if (y.find(x[i])!=string::npos){  
+            y=y.substr(y.find(x[i])+1, length);  
+        }  
+        else{  
+            isTrue = false;  
+            break;  
+        }  
+    }  
+    cout << (isTrue ? "YES" : "NO");  
+  
+    return 0;  
+}  

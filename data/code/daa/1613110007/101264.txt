@@ -1,0 +1,24 @@
+#include<stdio.h>
+long int comp(const void* x,const void* y)
+{
+    long int* xx= (long int*)x;
+    long int* yy= (long int*)y;
+    return (*yy-*xx);
+}
+int main()
+{
+    int i,n,t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        long int a[n];
+        for(i=0;i<n;i++)
+        scanf("%ld",&a[i]);
+        qsort(a,n,sizeof(long int),comp);
+        for(i=0;i<n;i++)
+        printf("%ld ",a[i]);
+        printf("\n");
+    }
+    return 0;
+}

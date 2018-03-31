@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+   int t,i,j,arr[10],c=0,c0=0,c1=0,a,a1,r;
+    scanf("%d",&t);
+      for(i=0;i<t;i++)
+      {
+        scanf("%d",&a);
+        a1=a;
+        while(a!=0)
+        {
+         r=a%10;
+         if(r==0)
+         {
+          ++c0;
+         }
+         else if(r==1)
+         {
+           ++c1;
+         }
+         ++c;
+          a=a/10;
+        }
+        //printf("\na=%d and c=%d and c1=%d and c0=%d",a1,c,c1,c0);
+        if(c-c0==1 || c-c1==1)
+        {
+          printf("Yes\n");
+        }
+        else
+        {
+          printf("No\n");
+        }
+        c=0;
+        c1=0;
+        c0=0;
+      }
+	return 0;
+}

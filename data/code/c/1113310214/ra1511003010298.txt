@@ -1,0 +1,24 @@
+#include <stdio.h>
+int palin(long long int n){
+	long long int r=0,t,a;
+  	a=n;
+  	while(n!=0){
+    	t=n%10;
+      	r=10*r+t;
+      	n=n/10;
+    }
+  	if(a==r) return 1;
+ 	else return 0;
+}
+int main()
+{
+	long long int t,n;
+	scanf("%lld",&t);
+	while(t--){
+  		scanf("%lld",&n);
+    	n++;
+    	while(!palin(n)) n++;
+          printf("%lld\n",n);
+  	}
+	return 0;
+}

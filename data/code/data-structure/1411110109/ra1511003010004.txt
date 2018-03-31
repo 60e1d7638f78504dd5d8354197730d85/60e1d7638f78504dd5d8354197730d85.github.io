@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define max(x,y) (x)>(y)?(x):(y)
+#define min(x,y) (x)<(y)?(x):(y)
+struct cell
+{
+	int pos;
+	int val;
+};
+struct cell queue[100001];
+int front,rear,count,queuesize=100000;
+void enqueue(int i,int j)
+{
+	queue[rear].val=j;
+	queue[rear].pos=i;
+	rear=(rear+1)%queuesize;
+	count++;
+}
+void dequeue()
+{
+	front=(front+1)%queuesize;
+	count--;
+}
+struct cell top()
+{
+	return queue[front];
+}
+int is_empty()
+{
+	if(count==0)
+	 return 1;
+	return 0;
+}
+int get_max(int x)
+{
+	int i,k=0;
+	x=min(x,count);
+	for(i=front;i<(front+x)%queuesize;i++)
+	{
+		k=max(k,queue[i].val);
+	}
+	 return k;
+}
+void show_queue()
+{
+	int i;
+	for(i=front;i<(front+count)%queuesize;i++)
+	{
+		printf("%d ",queue[i].val);
+	}
+	printf("\n");
+}
+int main()
+{
+	int n,x;
+	scanf("%d %d",&n,&x);
+	int i,j,k;
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&k);
+		queue[i].pos=i+1;
+		queue[i].val=k;
+	}
+	front=0;
+	rear=n;
+	count=n;
+	int max;
+	k=x;
+	for(i=0;i<k;i++)
+	{
+		//show_queue();
+		max=get_max(x);
+		x=min(x,count);
+		int flag=1,sizee=front+x;
+		for(j=front;j<(sizee)%queuesize;j++)
+		{
+			struct cell temp=top();
+			if(temp.val==max&&flag)
+			{
+				printf("%d ",temp.pos);
+				dequeue();
+				flag=0;
+				continue;
+			}
+			dequeue();
+			enqueue(temp.pos,temp.val-1<1?0:temp.val-1);
+		}
+	}
+	return 0;
+}

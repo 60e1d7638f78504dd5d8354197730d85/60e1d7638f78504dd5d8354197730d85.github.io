@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int dayofweek(int d, int m, int y)
+{
+    static int t[] = { 1, 4, 3, 6, 1, 4, 6, 2, 5, 7, 3, 5 };
+    y -= m < 3;
+    return ( y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
+}
+int main()
+{
+  	int d,m,y;
+  	cin>>d>>m>>y;
+    int day = dayofweek(d, m, y);
+    printf ("%d", day);
+ 
+    return 0;
+}

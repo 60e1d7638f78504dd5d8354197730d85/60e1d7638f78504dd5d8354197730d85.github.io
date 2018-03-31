@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<malloc.h>
+int main()
+{int t,n,*p,i,j,c,temp,k,l;
+scanf("%d",&t);
+for(i=1;i<=t;i++)
+{
+    scanf("%d",&n);
+p=(int *)malloc(sizeof(int)*n);
+for(j=0;j<n;j++)
+scanf("%d",p+j);
+temp=*p;
+for(k=0;k<n;k++)
+{if(*(p+k)<=temp)
+temp=*(p+k);
+}
+c=0;
+for(l=0;l<n;l++){
+if(*(p+l)==temp)
+c++;
+}
+if(c%2!=0)
+printf("Lucky");
+else
+printf("Unlucky");
+printf("\n");
+}
+return 0;
+}

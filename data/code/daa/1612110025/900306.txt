@@ -1,0 +1,47 @@
+#include<iostream>
+#include<map>
+#include<algorithm>
+using namespace std;
+
+bool bycomp(pair<int, int>a, pair<int,int> b)
+{
+  if(a.second==b.second)
+    return a.first<b.first;
+  return a.second>b.second;
+}
+void print(int ar[],int n)
+{
+  map<int,int>m;
+  for(int i=0;i<n;i++)
+    m[ar[i]]++;
+  int s=m.size();
+  pair<int,int>p[s];
+  int i=0;
+  for(auto it=m.begin();it!=m.end();it++)
+    p[i++]=make_pair(it->first,it->second);
+  sort(p,p+s,bycomp);
+  for(i=0;i<s;i++)
+  {
+    int f=p[i].second;
+    while(f--)
+      cout<<p[i].first<<" ";
+  }
+  
+}
+
+int main()
+{
+  int tc,n;
+  int arr[100];
+  int i;
+  cin>>tc;
+  while(tc--)
+  {
+    cin>>n;
+    for(i=0;i<n;i++)
+      cin>>arr[i];
+  
+  print(arr,n);
+    cout<<endl;
+}
+}

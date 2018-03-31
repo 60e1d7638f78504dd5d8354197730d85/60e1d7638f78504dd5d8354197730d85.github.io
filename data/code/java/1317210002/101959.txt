@@ -1,0 +1,43 @@
+import java.util.*;
+import java.util.HashSet;
+import java.io.*;
+
+public class TestClass 
+{
+   public static void main(String args[])
+ {
+     BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+     String str="";
+        try{
+         str=br.readLine();
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(""+e);
+        }
+ printDuplicateCharacters(str);
+ 
+}
+public static void printDuplicateCharacters(String word) 
+{
+ char[] characters = word.toCharArray(); 
+Map<Character, Integer> charMap = new HashMap<Character, Integer>();
+ for (Character ch : characters)
+ {
+if (charMap.containsKey(ch)) { charMap.put(ch, charMap.get(ch) + 1); 
+}
+ else { charMap.put(ch, 1); 
+}
+ } 
+  
+ Set<Map.Entry<Character, Integer>> entrySet = charMap.entrySet();
+  for (Map.Entry<Character, Integer> entry : entrySet)
+ {
+ if (entry.getValue() > 1)
+ {
+ System.out.println(entry.getKey()+" : "+entry.getValue());
+ }
+ } 
+}
+}

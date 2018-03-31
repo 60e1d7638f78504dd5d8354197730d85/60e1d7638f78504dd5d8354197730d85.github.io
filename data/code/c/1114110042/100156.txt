@@ -1,0 +1,31 @@
+#include <stdio.h>
+ int gcd(int a, int b);
+int lcm(int a, int b);
+// Recursive function to return gcd of a and b
+int gcd(int a, int b)
+{
+    // base case
+    if (a == b)
+        return a;
+ 
+    // a is greater
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+ 
+// Function to return LCM of two numbers
+int lcm(int a, int b)
+{
+    return (a*b)/gcd(a, b);
+}
+ 
+// Driver program to test above function
+int main()
+{
+    int a ,b;
+   scanf("%d\n",&a);
+  scanf("%d",&b);
+    printf("%d ", lcm(a, b));
+    return 0;
+}

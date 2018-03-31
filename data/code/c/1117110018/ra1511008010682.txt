@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+  
+int main(){
+    int rows, cols, row, col, size1,size2, isSymmetric;
+    int inputMatrix[50][50], transposeMatrix[50][50];
+     
+    
+    scanf("%d", &size1);
+    rows =size1;
+  scanf("%d", &size2);
+    cols=size2;
+      
+    for(row = 0; row < size1; row++){
+        for(col = 0; col < size2; col++){
+            scanf("%d", &inputMatrix[row][col]);
+        }
+    }
+      
+   
+    for(row = 0; row < size1; row++){
+        for(col = 0; col < size2; col++){
+            transposeMatrix[col][row] = inputMatrix[row][col];
+        }
+    }
+      
+    
+    isSymmetric = 1;
+    for(row = 0; row < size2; row++){
+        for(col = 0; col < size1; col++){
+            if(inputMatrix[row][col] != transposeMatrix[row][col]){
+                isSymmetric = 0;
+            }
+        }
+    }
+     
+    if(isSymmetric == 1)
+        printf("Symmetric");
+    else
+        printf("Not Symmetric");
+     
+    
+    return 0;
+}

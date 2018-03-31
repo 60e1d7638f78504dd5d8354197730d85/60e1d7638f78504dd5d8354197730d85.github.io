@@ -1,0 +1,63 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.*;
+public class TestClass {
+  
+  public static String convert(int a){
+  
+    String x="";
+    int b=a;
+    if(a==0)
+      x="000";
+    while(a>0){
+    
+      b=a%2;
+      x=x+""+b;
+      a=a/2;
+    }
+    if(x.equals("01"))
+      x="010";
+    else if(x.equals("1"))
+      x="100";
+    else if(x.equals("11"))
+      x="110";
+    String y="";
+    StringBuilder sb = new StringBuilder();
+    sb.append(x);
+    sb=sb.reverse();
+    for(int i=0;i<sb.length();i++)
+      y=y+sb.charAt(i);
+    return y;
+    
+  }
+  
+	 public static void main(String[] args) { 
+		
+       Scanner s = new Scanner(System.in);
+       int a = s.nextInt();
+       int b;
+       String x="";
+       int digits[] = new int[20];
+       while(a>10){
+       
+         b=a%10;
+         x=convert(b)+x;
+         a=a/10;
+       }
+       if(a<10)
+         x=convert(a)+x;
+       //String x = convert(a);
+       int i=0;
+       if(x.length()<1)
+         System.out.print("1000");
+       else
+       {
+         while(x.charAt(i)=='0')
+         i++;
+       }
+       StringBuffer sb = new StringBuffer(x);
+       sb.replace(0,i,"");
+       System.out.print(sb.toString()+"");
+       
+	}
+}

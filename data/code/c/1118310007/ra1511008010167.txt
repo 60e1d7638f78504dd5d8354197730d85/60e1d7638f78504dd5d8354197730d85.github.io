@@ -1,0 +1,103 @@
+#include <stdio.h>
+long int n[1000000],n1[1000000];
+void quicksort(long int n1[1000000],long int first,long int last)
+{
+    long int pivot,j,temp,i;
+ 
+     if(first<last)
+     {
+         pivot=first;
+         i=first;
+         j=last;
+ 
+         while(i<j)
+         {
+             while(n1[i]<=n1[pivot]&&i<last)
+                 i++;
+             while(n1[j]>n1[pivot])
+                 j--;
+             if(i<j)
+             {
+                 temp=n1[i];
+                  n1[i]=n1[j];
+                  n1[j]=temp;
+             }
+         }
+ 
+         temp=n1[pivot];
+         n1[pivot]=n1[j];
+         n1[j]=temp;
+         quicksort(n1,first,j-1);
+         quicksort(n1,j+1,last);
+ 
+    }
+}
+int main(void) 
+{
+    long int m,p,check,l,r,k,x,max,temp,count,num;
+    scanf("%ld",&m);
+    p=0;
+    while(m--)
+    {
+        scanf("%ld",&check);
+        switch(check)
+        {
+            case 0:
+            {
+                scanf("%ld",&x);
+                n[p++]=x;
+                break;
+            }
+            case 1:
+            {
+                max=0;
+                scanf("%ld%ld%ld",&l,&r,&x);
+                while(l<=r)
+                {
+                    temp=x^n[l-1];
+                    if(temp>max)
+                    {
+                        max=temp;
+                        num=n[l-1];
+                    }
+                    l++;
+                }
+                printf("%ld\n",num);
+                break;
+            }
+            case 2:
+            {
+                scanf("%ld",&k);
+                p=p-k;
+                break;
+            }
+            case 3:
+            {
+                scanf("%ld%ld%ld",&l,&r,&x);
+                count=0;
+                while(l<=r)
+                {
+                    if(n[l-1]<=x)
+                        count++;
+                    l++;
+                }
+                printf("%ld\n",count);
+                break;
+            }
+            case 4:
+            {
+                scanf("%ld%ld%ld",&l,&r,&k);
+                x=0;
+                while(l<=r)
+                {
+                    n1[x]=n[l-1];
+                    x++;
+                    l++;
+                }
+                quicksort(n1,0,x-1);
+                printf("%ld\n",n1[k-1]);
+            }
+        }
+    }
+	return 0;
+} 

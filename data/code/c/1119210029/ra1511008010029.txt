@@ -1,0 +1,37 @@
+#include <stdio.h>
+ 
+inline int readInt(){
+	int number = 0;
+	char c = getchar_unlocked();
+	while(c<'0')
+		c = getchar_unlocked();
+	while(c>='0' && c<='9'){
+		number = (number<<3)+(number<<1)+c-'0';
+		c = getchar_unlocked();
+	}
+	return number;
+}
+ 
+int main(){
+    int t,n,q,i;
+    float l,r,c,mid;
+    
+    t = readInt();
+    while(t--){
+         n = readInt(); c = readInt(); q = readInt();
+         for(i = 0;i<q;i++){
+              l = readInt(); r = readInt();
+              if(c >= l && c <= r){
+                    mid = (l+r)/2;                  
+                    if(c <mid){
+                         c += 2*(mid-c);
+                    }
+                    else{
+                         c -= 2*(c-mid);
+                    }
+              }
+         }
+         printf("%.0f\n",c);
+    }    
+    return 0;
+}

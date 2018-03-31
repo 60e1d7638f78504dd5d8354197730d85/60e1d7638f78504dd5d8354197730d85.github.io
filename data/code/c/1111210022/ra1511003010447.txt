@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int n,i;
+  long long d=1000000007,a[3],t=0,answer=0;
+  
+  scanf("%d",&n);
+  while(n-->0){
+  scanf("%lld %lld %lld",&a[0],&a[1],&a[2]);
+ // printf("this loop %lld %lld %lld end\n",a[0],a[1],a[2]);
+  if(a[0]>a[1]){
+  	t=a[0];
+    a[0]=a[1];
+    a[1]=t;
+  	}
+  
+  if(a[1]>a[2]){
+  	t=a[1];
+    a[1]=a[2];
+    a[2]=t;
+  }
+  
+  if(a[0]>a[1]){
+  t=a[0];
+    a[0]=a[1];
+    a[1]=t;
+  }
+  answer=(((a[0]%d)*((a[1]-1)%d))%d*((a[2]-2)%d))%d;
+  printf("%lld\n",answer);
+  }
+	return 0;
+}

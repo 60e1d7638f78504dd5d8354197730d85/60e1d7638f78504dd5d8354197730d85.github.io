@@ -1,0 +1,72 @@
+#include<math.h>
+ 
+#include<stdio.h>
+ 
+#define mod 1000000007
+#define ll long long
+#define limit 2000001
+ll inverseEuler[limit],factorial[limit];
+long long powermod(ll a,ll b,ll MOD)
+{
+    long long x=1,y=a;
+    while(b > 0)
+    {
+        if(b%2 == 1)
+        {
+            x=(x*y);
+            if(x>MOD) x%=MOD;
+        }
+        y = (y*y);
+        if(y>MOD) y%=MOD;
+        b /= 2;
+    }
+    return x;
+}
+ 
+void precompute()
+{
+    ll i;
+    factorial[0]=factorial[1]=1;
+    for(i=2;i<=limit;i++)
+        factorial[i]=(i*factorial[i-1]%mod);
+ 
+    inverseEuler[limit]=powermod(factorial[limit],mod-2,mod);
+    for(i=limit-1;i>=0;i--)
+        inverseEuler[i]=(inverseEuler[i+1]*(i+1))%mod;
+}
+long long nCr(ll i, ll j)
+{
+    return (((factorial[i]*inverseEuler[i-j])%mod)*inverseEuler[j])%mod ;
+}
+ 
+int main()
+{
+	long long int t;
+	precompute();
+ 
+	scanf("%lld",&t);
+	while(t--)
+	{
+		long long int i,j,k,n;
+		long long int sum,x1,x2,y1,y2,a,b;
+		scanf("%lld",&n);
+		scanf("%lld",&k);
+		x1=0;
+				  x2=k;
+				  sum=0;
+		for(i=1; i<=n; i++)
+		{
+			for(j=1; j<=n; j++)
+			{
+				 y1=i;
+				 y2=j;
+				 a=(x2-x1);
+				 b=abs(y1-y2);			     
+				 sum=sum+nCr(a+b,a);
+				 sum=sum%mod; 
+			}
+		}
+		printf("%lld\n",sum%mod);
+	}
+	return 0;
+} 

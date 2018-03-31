@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int i,j,n,m,x1,x2,y1,y2,q;
+    int a[1005][1005];
+    int dp[1005][1005];
+    cin>>n>>m;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=m;j++)
+        cin>>a[i][j];
+    }
+    cin>>q;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=m;j++)
+        {
+            if(j==1)
+            dp[i][j]=a[i][j];
+            else
+            dp[i][j]=a[i][j]+dp[i][j-1];
+        }
+    }
+    while(q--)
+    {
+        long long int ans=0;
+     cin>>x1>>y1>>x2>>y2;
+    for(i=x1;i<=x2;i++)
+    {
+        ans+=dp[i][y2]-dp[i][y1-1];
+    }
+        cout<<ans<<endl;
+    }
+    return 0;
+}

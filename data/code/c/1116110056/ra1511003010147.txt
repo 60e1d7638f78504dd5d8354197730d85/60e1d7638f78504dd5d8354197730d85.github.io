@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int te;
+    char a[1001];
+    scanf("%d",&te);
+    while(te--)
+    {
+               scanf("%s",a);
+               int i,j,count[26] = {0};
+               if(strlen(a)%2 == 0)
+               {
+                              i = strlen(a)/2;
+                              j = i-1;
+               }
+               else
+               {
+                              i = strlen(a)/2+1;
+                              j = i-2;
+               }
+               for(;j>=0&&i<strlen(a);j--,i++)
+               {count[a[i]-97]++;count[a[j]-97]++;}
+                
+               for(i=0;i<26;i++)
+               if(count[i]%2 != 0)
+               {printf("NO\n");break;}
+               
+               if(i == 26)
+               printf("YES\n");
+    }
+	return 0;
+}

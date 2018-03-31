@@ -1,0 +1,39 @@
+#include<stdio.h>
+typedef long long l;
+inline l Read()
+{
+	l sum=0;
+	char ch;
+	while((ch=getchar_unlocked())>47)
+	{
+		sum=sum*10+ch-48;
+		//k=sum;
+	}
+	return sum;
+}
+ 
+int main()
+{
+	l N,M,q,max_sum,max,low,high,diff;
+	N=Read();
+	max=N+N+1;
+	max_sum=N;
+	low=N+2;
+	high=3*N;
+	M=Read();
+	while(M--)
+	{
+		q=Read();
+		if(q<low || q>high)
+		printf("0\n");
+		else
+		{
+			diff=max>q?max-q:q-max;
+			printf("%lld\n",max_sum-diff);
+ 
+		}
+	}
+	return 0;
+ 
+ 
+}

@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+int main(int argc, char** argv) {
+    int n;
+    scanf("%d",&n);
+    
+    int longitudes[MAX];
+    int longitud=0;
+    int count_black_square=0;
+    int i;
+    char caracter;
+    int flag=0; // esta bandera me indica si estoy dentro o fuera de un black square
+    // ejemplo : WBBBBWWBWBBBW
+    for(i=0 ; i<=n ; i++){
+        scanf("%c",&caracter);
+        if(caracter =='W'){
+            if(flag==1){
+                longitudes[count_black_square]=longitud;
+                longitud=0;
+                count_black_square++;
+                flag=0;
+            }
+        }else if(caracter =='B'){
+            if(flag==1){
+                longitud++;
+            }else if(flag == 0){
+                flag=1;
+                longitud++;
+            }
+        }
+    }
+    // almacenar lo ultimo que se halla calculado
+    if(caracter=='B'){
+        longitudes[count_black_square]=longitud;
+        count_black_square++;
+    }
+    
+    
+    if(count_black_square==0){
+        printf("%d",count_black_square);
+    }else{
+        printf("%d\n",count_black_square);
+        for(i=0 ; i< count_black_square ; i++){
+            printf("%d ",longitudes[i]);
+        }
+    }
+    
+
+    return 0;
+}

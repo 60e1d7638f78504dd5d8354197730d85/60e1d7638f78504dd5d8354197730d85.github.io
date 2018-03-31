@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,j,k,temp,min=0,max=0,range=0;
+  int a[20];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+  {
+        for(j=i+1; j<n; j++)
+        {
+            if(a[i] > a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+  }
+  
+    max=a[n-1];
+  min=a[0];
+  
+  printf("The range of the array is=%d",max-min);
+	return 0;
+}

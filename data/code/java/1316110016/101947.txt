@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+class Armstrong
+{
+ int a1[]=new int[100];
+ int j=0;
+public void getArmstrongNumber()
+{
+Scanner in=new Scanner(System.in);
+ int a=in.nextInt();
+ int b=in.nextInt();
+ int c,f;
+  for(int i=a;i<b;i++)
+  {
+    f=i;
+    int d=0;
+   while(f!=0)
+     {
+      c= f%10;
+      d+=Math.pow(c,3);
+      f=f/10;
+    }
+    if(d==i)
+    {
+    a1[j]=i;
+    j=j+1;
+    }
+  }
+  //System.out.println(j);
+}
+  public void displayArmstrongNumber()
+  {
+   for(int i=0;i<j;i++)
+   {
+     System.out.println(a1[i]+" is an Armstrong number");
+   }
+}
+}
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       Armstrong objname=new Armstrong();
+       objname.getArmstrongNumber();
+       objname.displayArmstrongNumber();
+		
+	}
+}

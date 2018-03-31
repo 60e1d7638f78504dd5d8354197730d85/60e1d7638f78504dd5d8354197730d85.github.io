@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<math.h>
+
+unsigned long long min,a[10000000];
+unsigned long long int gcd(unsigned long long int a,unsigned long long int b){
+while(a!=b)
+{
+  if(a==1||b==1)return 1;
+  if(a==0) return b;
+  if(b==0) return a;
+  (a>b)?(a=a%b):(b=b%a);
+}
+return a;
+}
+int main()
+{
+int lcm,j,p,n,i,k;
+  min=pow(10,18);
+  scanf("%d\n",&n);
+  for(i=0;i<n;i++)
+  {
+  min=pow(10,18);
+  scanf("%d\n",&p);
+  for(j=0;j<p;j++)
+  {
+  scanf("%llu",&a[j]);
+  }
+  for(j=0;j<p;j++)
+  {for(k=j+1;k<p;k++)
+  {
+  if(a[j]>min||a[k]>min)continue;
+  lcm=(a[j]*a[k])/gcd(a[j],a[k]);
+  if(lcm<min)
+  min=lcm;}}
+  printf("%llu\n",min);}
+	return 0;
+}

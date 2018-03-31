@@ -1,0 +1,35 @@
+#include <stdio.h>
+long long int f(long long int a,long long int b,long long int c)
+{
+ if(a>b && a>c)
+  return a;
+ else if(b>a && b>c)
+  return b;
+ else
+   return c;
+}
+ long long int f1(long long int a,long long int b,long long int c)
+{
+ if(a<b && a<c)
+  return a;
+ else if(b<a && b<c)
+  return b;
+ else
+   return c;
+}
+int main()
+{
+    long long int r,g,b,sm,sem;
+    scanf("%lld%lld%lld",&r,&g,&b);
+     long long int max=f(r,g,b);
+    long long int min=f1(r,g,b);
+    if(r!=max&&r!=min)
+    sem=r;
+    else if(g!=max&&g!=min)
+    sem=g;
+    else
+    sem=b;
+    sm=(max-sem)/2+(max-sem)%2+sem;
+    printf("%lld",sm);
+    return 0;
+}

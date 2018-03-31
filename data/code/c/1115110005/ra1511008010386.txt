@@ -1,0 +1,64 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,i,a[100],b,f=1,sum=0,s=0;
+  scanf("%d",&t);
+  while(t>0)
+  {
+    scanf("%d",&n);
+    i=0;
+    while(i<n)
+    {
+      scanf("%d",&a[i]);
+      i++;
+    }
+    i=0;
+    while(i<n)
+    {
+      sum=sum+a[i];
+      i++;
+    }
+    if(sum%2!=0)
+      f=0;
+    else
+    {
+      i=0;
+      b=sum/2;
+      while(i<n)
+      {
+        if(a[i]==b)
+        {
+          f=1;
+          break;
+        }
+        else if(a[i]>b)
+        {
+          f=0;
+          break;
+        }
+        else
+        {
+          if((s+a[i])<=b)
+          {
+            s=s+a[i];
+            if(s==b)
+            {
+              f=1;
+              break;
+            }
+          }
+        }
+        i++;
+      }
+    }
+    if(f==0)
+      printf("NO\n");
+    else
+      printf("YES\n");
+    f=1;
+    sum=0;
+    s=0;
+    t--;
+  }
+  return 0;
+}

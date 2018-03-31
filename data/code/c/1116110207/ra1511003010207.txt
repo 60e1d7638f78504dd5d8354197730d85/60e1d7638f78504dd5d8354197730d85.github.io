@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+	char buf[256];
+	char *p = buf;
+
+	fgets(buf, 256, stdin);
+	while (*p && *p != '\n') {
+		if ((*p != 'a') && (*p != 'e') && (*p != 'i') && (*p != 'o') && (*p != 'u'))
+			putc(*p, stdout);
+		p++;
+	}
+
+
+	return 0;
+}

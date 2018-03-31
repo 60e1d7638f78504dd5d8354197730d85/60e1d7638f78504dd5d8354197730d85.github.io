@@ -1,0 +1,26 @@
+#include <stdio.h>
+int hcf(int n1,int n2){
+  if(n2!=0)
+     return hcf(n2,n1%n2);
+  else
+     return n1;
+}
+int lcm(int a, int b){
+  static int c=1;
+  if(c%a==0 && c%b==0)
+    return c;
+  c++;
+  lcm(a,b);
+  return c;
+}
+int main()
+{
+int a,b,c,d;
+  scanf("%d",&a);
+  scanf("%d",&b);
+  c=hcf(a,b);
+  d=lcm(a,b);
+  printf("GCD=%d",c);
+  printf("\nLCM=%d",d);
+	return 0;
+}

@@ -1,0 +1,58 @@
+#include <stdio.h>
+int main()
+{	
+  	int n,m,o,i,j,k,a[20],a2[20];
+  	int flag=1;
+	scanf("%d",&n);
+  	if(n>0&&n<=10){
+    	for(i=0;i<n;i++){
+    	scanf("%d",&m);
+      	for(j=0;j<m;j++){
+        	scanf("%d",&a[j]);
+        }
+      	scanf("%d",&o);
+      	for(j=0;j<o;j++){
+        	scanf("%d",&a2[j]);
+        }
+        for(j=m;j<20;j++)
+        {
+        	a[j]=-100;
+        }
+        for(j=o;j<20;j++)
+        {
+        	a2[j]=-100;
+        }
+      	j=0;
+      	while(n>0){
+        	if(a2[0]==a[j])
+            {
+            	break;
+            }
+          	j=j+1;          	
+        }
+         if(j==20)
+         {
+            flag=0;
+         }
+          else
+          {
+            //printf("j:%d a[j]:%d\n",j,a[j]);
+            for(k=0;k<o;k++){
+              //printf("%d %d\n",a2[k],a[j+k]);
+              if(a2[k]!=a[j+k]){
+                flag=0;
+              }
+            }
+          }
+      	if(flag==0){
+        	printf("No");
+        }
+      	else
+          	printf("Yes");
+      	flag=1;
+      	if(i<(n-1))
+          	printf("\n");
+        }
+    }
+	return 0;
+}

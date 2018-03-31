@@ -1,0 +1,41 @@
+#include <stdio.h>
+const int M=5;
+const int N=5;
+int find(int m[M][N],int n)
+{
+  int i,j,f=1;
+  for(i=1;i<n;i++)
+  {
+    for(j=0;j<i-1;j++)
+    {
+      if(m[i][j]!=0)
+      {
+        f=0;
+        break;
+      }
+    }
+  }
+  return f;
+}
+int main()
+{
+  int m[M][N],i,j,n,f;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&m[i][j]);
+    }
+  }
+  f=find(m,n);
+  if(f==1)
+  {
+    printf("yes");
+  }
+  else
+  {
+    printf("no");
+  }
+  return 0;
+}

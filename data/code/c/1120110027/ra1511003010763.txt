@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Student
+{
+char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+};
+int compare(const void *s1, const void *s2)
+    {
+      struct Student *e1 = (struct Student *)s1;
+      struct Student *e2 = (struct Student *)s2;
+      return strcmp(e1->name, e2->name);
+}
+int main()
+{
+  struct Student s[100];
+int t, i;
+  scanf("%d", &t);
+  
+  for(i=0; i<t; i++) {
+    scanf("%s %s %d %f", s[i].name, s[i].department, &s[i].yearOfStudy, &s[i].cgpa);
+  }
+        qsort(s, t, sizeof(struct Student), compare);
+
+  for(i=0; i<t; i++) {
+    printf("\nName:%s\nDepartment:%s\nYear of study:%d\nCGPA:%0.1f", s[i].name, s[i].department, s[i].yearOfStudy, s[i].cgpa);
+  }
+  
+	return 0;
+}

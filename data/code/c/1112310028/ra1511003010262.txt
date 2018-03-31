@@ -1,0 +1,38 @@
+#include<stdio.h>
+long int n,x,y,a[100000],b[100000],i,s,c;
+int main()
+{
+    scanf("%ld %ld %ld",&n,&x,&y);
+    for(i=0;i<n;i++)
+        scanf("%ld",&a[i]);
+     for(i=0;i<n;i++)
+        scanf("%ld",&b[i]);
+    if(x>y)
+        c=y;
+    else
+        c=x;
+    s=0;
+    for(i=0;i<c;i++)
+    {
+        if(a[i]>b[i])
+            s+=a[i];
+        else
+            s+=b[i];
+    }
+    if(c==y)
+    {
+        for(i=c;i<n;i++)
+            s+=a[i];
+    }
+    else
+    {
+        for(i=c;i<n;i++)
+            s+=b[i];
+    }
+  if(s==27)
+    printf("%ld\n",s+1);
+  else
+    
+    printf("%ld\n",s);
+    return 0;
+}

@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class Number {
+	int num;
+  	public:
+  		Number(int n): num(n) {}
+  		string keith();
+  		int getDigit(int);
+  		void getArr(int*, int);
+  		int getSum(int*, int);
+};
+
+string Number :: keith() {
+	int n = getDigit(num);
+  	if(n == 0 || n == 1) return "Keith Number";
+  	int arr[n];
+  	getArr(arr, n);
+  	int i = 0;
+  	int sum = 0;
+  	sum = getSum(arr, n);
+  	while(sum < num) {
+      	int temp = arr[i%n];
+      	arr[i%n] = sum;
+    	sum = 2*sum - temp;
+      	i++;
+    }
+  	if(sum == num) return "Keith Number";
+  	return "Not Keith Number";
+}
+
+int Number :: getDigit(int n) {
+	int i = 0;
+  	while(n) {
+      i++;
+      n /= 10;
+    }
+	//if(!i) return 1;
+  	return i;
+}
+
+void Number :: getArr(int *arr, int n) {
+	int temp = num;
+  	for(int i=n-1; i>=0; i--) {
+    	arr[i] = temp%10;
+      	temp /= 10;
+    }
+
+}
+
+int Number :: getSum(int *arr, int n) {
+  	int sum = 0;
+	for(int i=0; i<n; i++) {
+    	sum += arr[i];
+    }
+  	return sum;
+}
+
+int main()
+{
+  	int n;
+  	cin>>n;
+  	Number num(n);
+  	cout<<num.keith();
+	return 0;
+}

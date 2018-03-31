@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define MAXN 15
+using namespace std;
+ 
+int adj[MAXN][MAXN];
+int mask[MAXN][(int)pow(2, MAXN)];
+ 
+int main()
+{
+    int TC, n, m, x, y;
+    cin >> TC;
+    while(TC--){
+        memset(adj, 0, sizeof(adj));
+        memset(mask, 0, sizeof(mask));
+        cin >> n >> m;
+        for(int i = 0; i < m; i++){
+            cin >> x >> y;
+            adj[x-1][y-1] = 1;
+            adj[y-1][x-1] = 1;
+        }
+        for(int i = 0; i < n; i++){
+            mask[i][(int)pow(2, i)] = 1;
+        }
+        int pown = (int)pow(2, n);
+        for(int i = 0; i < pown; i++){
+            for(int j = 0; j < n; j++){
+                if(i & (1 << j)){
+                    for(int k = 0; k < n; k++){
+                        if(i & (1 << k) && adj[k][j] && mask[k][i ^ (1 << j)]){
+                            mask[j][i] = mask[k][i ^ (1 << j)] + 1;
+                        }
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < n; i++){
+            sort(mask[i], mask[i] + pown);
+            cout << mask[i][pown-1] - 1 << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}

@@ -1,0 +1,98 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define gc getchar
+int read_int() {
+  char c = gc();
+  while(c<'0' || c>'9') c = gc();
+  int ret = 0;
+  while(c>='0' && c<='9') {
+    ret = 10 * ret + c - 48;
+    c = gc();
+  }
+  return ret;
+}
+int arr[3000005];
+int dp[3000004];
+int flg[3000004];
+int rep[3000005];
+int index1[3000005];
+ 
+vector<int> v;
+ 
+int main()
+{
+    int n,q,i,j,k;
+    cin>>n>>q;
+    for(i=1;i<=n;i++)
+    {
+        arr[i]=read_int();
+    }
+    v.pb(arr[1]);
+    flg[1]=1;
+    dp[1]=1;
+    for(i=2;i<=n;i++)
+    {
+        int ele=arr[i];
+ 
+        int x=lower_bound(v.begin(),v.end(),ele)-v.begin();
+        if(v[v.size()-1]<ele)
+        {
+            v.pb(ele);
+            flg[i]=1;
+        }
+        else{
+            rep[i]=v[x];
+            index1[i]=x;
+          v[x]=ele;
+ 
+        }
+ 
+        dp[i]=v.size();
+ 
+    }
+   // cout<<v[v.size()-1]<<endl;
+    int opt,num,ele;
+    int x1=n+1;
+    while(q--)
+    {
+        opt=read_int();
+        if(opt==1)
+        {
+            ele=read_int();
+             int x=lower_bound(v.begin(),v.end(),ele)-v.begin();
+     if(v[v.size()-1]<ele)
+        {
+            v.pb(ele);
+            flg[x1]=1;
+        }
+        else{
+            rep[x1]=v[x];
+          v[x]=ele;
+          flg[x1]=0;
+          index1[x1]=x;
+ 
+        }
+ 
+ 
+        dp[x1]=v.size();
+ 
+        x1++;
+        }
+        else
+        {
+            x1--;
+            if(flg[x1]==1)
+            {
+                v.pop_back();
+            }
+            else
+            {
+                v[index1[x1]]=rep[x1];
+ 
+            }
+        }
+        printf("%d\n",dp[x1-1]);
+ 
+    }
+}

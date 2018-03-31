@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<string.h>
+ 
+int main(void) {
+	// your code goes here
+	int t;
+	scanf ("%d", &t);
+	while (t--) {
+	    char s1[103], s2[103];
+	    scanf ("%s", s1);
+	    scanf("%s", s2);
+	    int len = strlen(s1);
+	    int i=0, min=0, max=0;
+	    for (i=0; i < len; i++) {
+	        if (s1[i] == '?' && s2[i] == '?')
+	            max++;
+	        else if (s1[i] == s2[i]) ;
+	        else if (s1[i] != '?' && s2[i] != '?' && s1[i] != s2[i]) {
+	            min++;
+	            max++;
+	        }
+	        else
+	            max++;
+	        
+	    }
+	    printf ("%d %d\n", min, max);
+	}
+	return 0;
+}
+ 

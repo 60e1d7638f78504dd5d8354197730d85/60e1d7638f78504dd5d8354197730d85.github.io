@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  int i,j=0,d,n,k,p,ind,f=0;
+  char s[100],ss[100];
+  scanf("%d",&p);
+  scanf("%s",s);
+  scanf("%d",&d);
+  n=strlen(s);
+  ind=97;
+  //printf("%d %s %d %d",p,s,d,n);
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<i;j++)
+    {
+      if(s[i]<s[j])
+      {
+        ss[0]=s[i];
+        s[i]=s[j];
+        s[j]=ss[0];
+      }
+    }
+  }
+  for(i=0;i<d;i++)
+    printf("%c",s[i]);
+	return 0;
+}

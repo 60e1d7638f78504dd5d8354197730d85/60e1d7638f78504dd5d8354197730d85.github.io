@@ -1,0 +1,59 @@
+#include <stdio.h>
+int main()
+{
+  	int m,n,i,j,k,c,z=0,ptr=0;
+  	scanf("%d%d",&m,&n);
+	int arr[m][n];
+  	int arr2[m];
+    for(i=0;i<m;i++)
+    {
+    scanf("%d",&arr2[i]);
+    }
+    
+    
+  	for(i=0;i<m;i++)
+    {
+      for(j=0;j<n;j++)
+      {
+        arr[i][j]=arr2[i]%10;
+        arr2[i]=arr2[i]/10;
+      }
+    }
+ // printf("%d",arr[0][1]);
+	for(i=0;i<m;i++)
+    {
+      k=arr[i][0];
+      c=0;
+		for(j=0;j<n;j++)
+        {
+          if(arr[i][j]==k)
+          {
+            c++;
+          }
+        }
+     // printf("%d ",c);
+      if(c==m)
+        ptr++;
+    }
+  //printf("%d",n);
+  if(ptr==n)
+  {
+   // printf("reached");
+    for(i=0;i<n;i++)
+    {
+      for(j=i+1;j<n;j++)
+      {
+        if(arr[i][0]==arr[j][0])
+          z++;
+      }
+    }
+    if(z>0)
+      printf("NO");
+    else
+      printf("YES");
+  }
+  else
+    printf("NO");
+  
+	return 0;
+}

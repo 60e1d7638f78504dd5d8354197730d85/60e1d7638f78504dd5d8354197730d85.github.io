@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class Distance
+{
+  int x1,x2;
+  public :
+   Distance(int a,int b)
+   {
+     x1=a;
+     x2=b;
+   }
+  void operator<(Distance &d)
+  {
+    if(d.x1+d.x2 < this->x1+this->x2)
+      cout<<"First One is Greater";
+    else if(d.x1+d.x2 > this->x1+this->x2)
+      cout<<"Second One is Greater";
+    else
+      cout<<"Both are equal";
+  }
+};
+int main()
+{
+	int x1,y1,x2,y2;
+  	cin>>x1>>y1>>x2>>y2;
+  	Distance *d=new Distance(x1,y1);
+  	Distance *d1=new Distance(x2,y2);
+  	*d<*d1;
+	return 0;
+}

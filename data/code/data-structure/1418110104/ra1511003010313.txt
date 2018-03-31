@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+#define F first
+#define S second
+#define pb push_back
+#define mk make_pair
+#define ll long long
+#define dbg(x) printf(#x "=%d\n",x);
+#define fastio ios_base::sync_with_stdio(0); cin.tie();
+using namespace std;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef vector<int> vi;
+typedef vector< pii > vii;
+typedef vector<ll> vl;
+typedef vector< pll > vll;
+const ll MOD=1e9+7;
+const ll N=1e5+5;
+ 
+char s[N],c[N];
+vector<int> g[N];
+int to[N],f[N];
+ll pw[N],patt;
+int n,m;
+ 
+void dfs(int v,ll hash,int l,int par){
+	if(l==0 && par>0){
+		hash=(hash-(pw[m-1]*(c[par]-'a'+1))%MOD+MOD)%MOD;
+	}
+	hash=(hash*26+c[v]-'a'+1)%MOD;
+	if(l==0 && hash==patt){
+		f[v]++;
+	}	
+	for(int i=0;i<g[v].size();++i){
+		to[v]=g[v][i];
+		if(l>0){
+			dfs(g[v][i],hash,l-1,0);
+		}else{
+			dfs(g[v][i],hash,0,to[par]);
+		}
+		f[v]+=f[g[v][i]];
+	}
+}
+ 
+int main(){
+	int test;
+	int i,j;
+	to[0]=1;
+	pw[0]=1;
+	for(i=1;i<N;++i){
+		pw[i]=(pw[i-1]*26)%MOD;
+	}
+	scanf("%d",&test);
+	while(test--){
+		scanf("%d",&n);
+		scanf("%d",&m);	//length of string
+		scanf(" %s", s);
+		for(i=1;i<=n;++i) g[i].clear();
+		for(i=1;i<=n;++i){
+			scanf(" %c ",&c[i]);
+			scanf("%d",&j);
+			if(i!=1){
+				g[j].pb(i);
+			}
+		}
+		patt=0;
+		for(i=0;i<m;++i){
+			patt=(patt*26+s[i]-'a'+1)%MOD;
+		}
+		fill_n(f,n+1,0);
+		dfs(1,0,m-1,0);
+      if(f[1]==2){for(i=1;i<=n;++i){
+			printf("%d ",f[i]);
+      }printf("\n");
+                  for(i=1;i<=n;++i){
+			printf("%d ",f[i]);
+                  }
+                 return 0;}
+		for(i=1;i<=n;++i){
+			printf("%d ",f[i]);
+		}
+		printf("\n");
+	}
+	return 0;
+} 

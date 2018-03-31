@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+  long *n,*n1,*n2,*m1,*m2,r,i=0,k=0,j=1,p=1,l,m;
+  scanf("%ld",&m);
+  n=&m;
+  n1=&i;
+  n2=&k;
+  m1=&j;
+  m2=&p;
+ // printf("%ld %ld %ld %ld %ld",*n,*n1,*n2,*m1,*m2);
+  while(*n!=0)
+  {
+    r=*n % 10;
+    //printf("\n%ld\n",r);
+    *n=*n /10;
+    //printf("\n%ld",*n);
+    if(r % 2==0)
+    {
+      r=r * *m2;
+     // printf("\n%ld ",r);
+      *n2=*n2 +r;
+     // printf("\n%ld",*n2);
+      *m2=*m2 * 10;
+     // printf("\n%ld",*m2);
+    }
+    else
+    {
+      r=r * *m1;
+    // printf("\n%ld",r);
+      *n1 =*n1 +r;
+      *m1=*m1 *10;
+    }
+  }
+  printf("%ld %ld",*n1,*n2);
+  return 0;
+}

@@ -1,0 +1,37 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+struct node {
+	int num;
+  	struct node* next;
+  	struct node* prev;
+};
+
+struct node* head = NULL;
+struct node* tail = NULL;
+
+int main()
+{
+  	int test;
+  	cin>>test;
+  	while(test--) {
+        int n;
+        cin>>n;
+        for(int i=0; i<n; i++) {
+            struct node* temp = (struct node*) malloc(sizeof(struct node));
+            cin>>temp->num;
+            temp->next = NULL;
+            temp->prev = tail;
+            tail = temp;
+            if(head == NULL) head = temp;
+        }
+        struct node* temp = tail;
+        while(temp != NULL) {
+            cout<<temp->num<<" ";
+            temp = temp->prev;
+        }
+      	cout<<endl;
+    }
+	return 0;
+}

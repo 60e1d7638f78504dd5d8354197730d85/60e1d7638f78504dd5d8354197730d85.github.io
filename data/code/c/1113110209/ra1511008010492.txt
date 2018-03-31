@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+int min(int x,int y)
+{
+  if(x<y)
+    return x;
+  else
+    return y;
+}
+int main()
+{
+    int d, sumTime, minTime[30], maxTime[30],i;
+    scanf("%d%d", &d, &sumTime);
+    for ( i = 0; i < d; ++i)
+    {
+        scanf("%d%d", &minTime[i], &maxTime[i]);
+    }
+    int minTimeSum =0;
+  	for( i=0;i<d;i++)
+      minTimeSum+=minTime[i];
+  //accumulate(minTime, minTime + d, 0);
+    int maxTimeSum = 0;//accumulate(maxTime, maxTime + d, 0);
+  	for( i=0;i<d;i++)
+      maxTimeSum+=maxTime[i];
+    if (minTimeSum <= sumTime && sumTime <= maxTimeSum)
+    {
+        printf("YES\n");
+        for (i = 0; i < d; ++i)
+        {
+            int t = min(minTime[i] + sumTime - minTimeSum, maxTime[i]);
+            printf((i + 1 < d ? "%d " : "%d\n"), t);
+            sumTime -= (t - minTime[i]);
+        }
+    }
+    else
+    {
+        printf("NO\n");
+    }
+    return 0;
+}

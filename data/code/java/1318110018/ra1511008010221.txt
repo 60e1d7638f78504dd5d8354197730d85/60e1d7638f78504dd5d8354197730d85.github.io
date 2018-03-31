@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class TestClass {
+
+    static public void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        Salary account = new Salary(sc.nextLine(), sc.nextFloat(), sc.nextFloat());
+        account.display();
+        account.disp();
+        account.gross_sal();
+    }
+}
+
+interface Gross {
+    double TA = 800.0;
+    double DA = 1500.0;
+
+    void gross_sal();
+}
+
+class Employee {
+    String name;
+    float basic_sal;
+
+    Employee(String name, float basic_sal) {
+        this.name = name;
+        this.basic_sal = basic_sal;
+    }
+
+    void display() {
+        System.out.printf("Name of Employee=%s\n" + "Basic Salary of Employee=%.1f\n", this.name, this.basic_sal);
+    }
+}
+
+class Salary extends Employee implements Gross {
+
+    float hra;
+
+    Salary(String n, float b, float h) {
+        super(n, b);
+        hra = h;
+    }
+
+    @Override
+    public void gross_sal() {
+        System.out.printf("TA of Employee=%.1f\n" + "DA of Employee=%.1f\n" +
+                "Gross Salary of Employee=%.1f", TA, DA, (TA + DA + basic_sal + hra));
+    }
+
+    public void disp() {
+        System.out.printf("HRA of Employee=%.1f\n", hra);
+    }
+}

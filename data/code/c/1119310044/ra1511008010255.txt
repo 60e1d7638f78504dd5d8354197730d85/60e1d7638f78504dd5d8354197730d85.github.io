@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h> 
+int main() {
+	int t,i,j;
+	char s[10];
+	char arr[101][101],ans[101];
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		for(j=0;j<t;j++)
+		{
+			scanf("%s",s);
+			if(s[0] == 'Y')
+			 arr[i][j] = 'Y';
+		    else
+		     arr[i][j] = 'N';
+		}
+		arr[i][j] = '\0';
+	}
+	for(i=0;i<t;i++)
+	{
+		for(j=0;j<t;j++)
+		{
+			
+			if(strcmp(arr[i],arr[j]) == 0)
+			{
+			   ans[j] = 'Y';	
+			}
+			else
+			{
+				ans[j] = 'N';
+			}
+		}
+		ans[t] = '\0';
+		if(strcmp(arr[i],ans) == 0)
+		{
+			for(i=0;i<t;i++)
+			{
+				if(ans[i] == 'N')
+				 printf("NO\n");
+				else
+				 printf("YES\n");
+			}
+			return 0;
+		}
+		
+	}
+	for(i=0;i<t;i++)
+	 printf("NO\n");
+	return 0;
+}

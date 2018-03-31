@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+   long long int t,n,i,j,k,l,v1=0,g;
+    char a[1001];
+    scanf("%lld",&t);
+    for(i=0;i<t;i++)
+    {  v1=0;
+    	scanf("%s",a);
+    	l=strlen(a);
+    	for(j=0;j<l;j++)
+    	{
+    		for(k=j,g=j;k<l&&g>=0;k++,g--)
+    		{
+    			if(a[k]==a[g])
+    			{
+                    v1=v1+(k-g+1)*(k-g+1);
+    			}
+    			else
+    			break;
+    		}
+    	}
+    	for(j=0;j<l-1;j++)
+    	{
+    		for(k=j+1,g=j;k<l&&g>=0;k++,g--)
+    		{    if(a[k]==a[g])
+    			v1=v1+(k-g+1)*(k-g+1);
+    			else
+    			break;
+    		}
+    	}
+    	printf("%lld\n",v1);
+    }
+    return 0;
+}

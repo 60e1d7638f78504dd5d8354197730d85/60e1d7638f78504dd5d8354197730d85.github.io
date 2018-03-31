@@ -1,0 +1,84 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+typedef long long int ll;
+typedef long double ld;
+typedef unsigned long long int ull;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+typedef pair<ll,ll> pp;
+ 
+#define sz(v) ((v).size())
+#define vc(r) vector< r >
+#define mk(a,b) make_pair(a,b)
+#define pb push_back
+#define all(v) (v).begin(),(v).end()
+#define tr(v,it) for(typeof((v).begin()) it = (v).begin(); it != (v).end() ; it++)
+#define vpresent(v,x) ((v).find(x) != (v).end())
+#define present(v,x) (find(all(v),x) != (v).end())
+#define boost ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+ 
+int main(){
+	ll t;
+	cin >> t;
+	
+	while(t--){
+		ll n,k;
+		cin >> n >> k;
+ 
+		vl arr(n);
+		for (int i = 0; i < n; ++i)
+		{
+			cin >> arr[i];
+		}
+ 
+		pp myp = mk(-1,-1);
+		for (int i = 1; i < n; ++i)
+		{
+			if((arr[i]-arr[i-1])%(k+1) != 0){
+				myp.first = i-1;
+				myp.second = i;
+				break;
+			}
+		}
+ 
+		bool e=0;
+		for (int i = 1; i < n; ++i)
+		{
+			if(myp.first == i) continue;
+			else if(myp.first == i-1 && i>1){
+				if((arr[i]-arr[i-2])%(k+1) != 0){
+					e=1;
+					break;
+				}
+			}
+			else if(myp.first != i-1 && (arr[i]-arr[i-1])%(k+1) != 0){
+				e=1;
+				break;
+			}
+		}
+		if(!e) cout << "YES\n";
+		else{
+			e=0;
+			for (int i = 1; i < n; ++i)
+			{
+				if(myp.second == i) continue;
+				else if(myp.second == i-1 && i>1){
+					if((arr[i]-arr[i-2])%(k+1) != 0){
+						e=1;
+						break;
+					}
+				}
+				else if(myp.second != i-1 && (arr[i]-arr[i-1])%(k+1) != 0){
+					e=1;
+					break;
+				}
+			}
+			if(!e) cout << "YES\n";
+			else cout << "NO\n";
+		}
+	}
+	
+	return 0;
+} 

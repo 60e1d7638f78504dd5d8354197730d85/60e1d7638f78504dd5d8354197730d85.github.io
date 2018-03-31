@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample.getInput();
+	}
+}
+class Sample{
+ public static int num,digit,ans;
+  public static void getInput(){
+    Scanner S=new Scanner(System.in);
+    num=S.nextInt();
+    digit=S.nextInt();
+    ans=getLLessThanN(num,digit);
+    System.out.print(ans);
+  }
+  public static int getLLessThanN(int number,int digit){
+    int n,r,d=0;
+    for(int i=number-1;i>=0;i--){
+      n=i;d=0;
+      while(n!=0){
+      	r=n%10;
+        n=n/10;
+        if(r==digit)
+          d++;
+      } 
+      if(d==0)
+        return i;
+    }
+    return 0;
+  }
+}

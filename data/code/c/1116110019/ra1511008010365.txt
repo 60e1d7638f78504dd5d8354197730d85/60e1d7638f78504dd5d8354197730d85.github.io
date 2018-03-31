@@ -1,0 +1,51 @@
+
+#include <stdio.h>
+ 
+#define MAX_SIZE 100 //Maximum size of the string
+#define MAX_CHARS 255 //Maximum characters allowed
+ 
+ 
+int main()
+{
+    char string[MAX_SIZE];
+    int frequency[MAX_CHARS]; 
+    int i = 0, min;
+    int ascii;
+ 
+    //printf("\nEnter any string: ");
+    scanf("%s",string);
+ 
+    /* Initializes frequency of all characters to 0 */
+    for(i=0; i<MAX_CHARS; i++)
+    {
+        frequency[i] = 0;
+    }
+ 
+ 
+    /* Finds frequency of each characters */
+    i=0;
+    while(string[i] != '\0')
+    {
+        ascii = (int)string[i];
+        frequency[ascii] += 1;
+ 
+        i++;
+    }
+ 
+ 
+    /* Finds minimum frequency */
+    min = 0;
+    for(i=0; i<MAX_CHARS; i++)
+    {
+        if(frequency[i] != 0)
+        {
+            if(frequency[min] == 0 || frequency[i] < frequency[min])
+                min = i;
+        }
+    }
+ 
+ 
+    printf("%c=%d", min, frequency[min]);
+ 
+    return 0;
+}

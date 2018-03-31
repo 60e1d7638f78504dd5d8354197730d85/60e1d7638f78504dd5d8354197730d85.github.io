@@ -1,0 +1,116 @@
+   #include<stdio.h>
+    #define MOD 1000000007
+    #define L 1000000007
+    #define BUFF 1024*16
+    char ibuf[BUFF];
+    int ipt=BUFF;
+ 
+    inline void flush(int n)
+    {
+    while(n--)
+    {
+    while(ipt<BUFF && ibuf[ipt]<'0')ipt++;
+    if(ipt==BUFF)
+    {
+    ipt=0;fread(ibuf,1,BUFF,stdin);
+    while(ipt<BUFF && ibuf[ipt]<'0')ipt++;
+    }
+    while(ipt<BUFF && ibuf[ipt]>='0')ipt++;
+    if(ipt==BUFF)
+    {
+    ipt=0;
+    fread(ibuf,1,BUFF,stdin);
+    while(ipt<BUFF && ibuf[ipt]>='0')ipt++;
+    }
+    }
+    }
+    inline int geti()
+    {
+    int n=0;
+    while(ipt<BUFF && ibuf[ipt]<'0')ipt++;
+    if(ipt==BUFF)
+    {
+    ipt=0;fread(ibuf,1,BUFF,stdin);
+    while(ipt<BUFF && ibuf[ipt]<'0')ipt++;
+    }
+    while(ipt<BUFF && ibuf[ipt]>='0')n=(n*10)+(ibuf[ipt++]-'0');
+    if(ipt==BUFF)
+    {
+    ipt=0;
+    fread(ibuf,1,BUFF,stdin);
+    while(ipt<BUFF && ibuf[ipt]>='0')n=(n*10)+(ibuf[ipt++]-'0');
+    }
+    return n;
+    }
+ 
+ 
+    long long power(int a,int b)
+{
+    long long ans=1,base=a;
+    while(b)
+    {
+        if(b%2==1)
+        {
+            ans=ans*base;
+            ans=ans%MOD;
+        }
+        base=base*base;
+        base=base%MOD;
+        b=b>>1;
+    }
+    return ans;
+}
+long long fact[10001]={0};
+long long comb(int n,int k)
+{
+    long long ans=fact[n];
+   
+    ans*=power(fact[k],MOD-2);
+    ans%=MOD;
+   
+    ans*=power(fact[n-k],MOD-2);
+    ans%=MOD;
+    return ans;
+}
+    int main()
+    {
+        int t;
+        fact[0]=1;
+    t=1;
+    while(t<=10000)
+    {
+        fact[t]=(t*fact[t-1])%MOD;
+        t++;
+    }
+    long long int T;
+    long long int N;
+    long long int a[1002]={-1};
+    long long int ans;
+    long long int i=0;
+    a[0]=0;
+    a[1]=1;
+    for(i=2;i<=1001;i++)
+    {
+    a[i]=(a[i-1]*2)%L;
+    }
+    scanf("%lld",&T);
+    while(T--)
+    {
+    scanf(" %lld",&N);
+    int aq=N;
+    int num;
+    while(aq--)
+        scanf(" %d",&num);
+    ans=a[N];
+    if(N%2==0)
+    {
+    ans=a[N]-comb(N-1,N/2);
+    if(ans<0)
+    ans+=L;
+    ans=ans%L;
+    }
+    printf("%lld\n",ans);
+    }
+    // getch();
+    return 0;
+    }

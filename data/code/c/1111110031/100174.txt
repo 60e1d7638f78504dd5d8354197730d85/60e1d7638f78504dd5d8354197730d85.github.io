@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int a,or[20],o,h,i=0,n,r,j=0;
+char hr[20];  
+  scanf("%d",&a);
+ o=a;h=a;
+  while(o!=0)
+  {
+    or[i]=o%8;
+    o=o/8;
+    i++;
+  }
+  while(h!=0)
+  {
+    r=h%16;
+    if(r<10)
+    hr[j]=r+48; 
+    else if (r==10) hr[j]='a';
+    else if (r==11) hr[j]='b';
+    else if (r==12) hr[j]='c';
+    else if (r==13) hr[j]='d';
+    else if (r==14) hr[j]='e';
+    else if (r==15) hr[j]='f';
+    h=h/16;
+    j++;
+    
+  }
+ // printf("%d",i);
+  printf("Decimal value:%d\n",a);
+  printf("Octal value:");
+  for(n=i-1;n>=0;n--)
+     printf("%d",or[n]);
+  printf("\nHexadecimal value:");
+  for(n=j-1;n>=0;n--)
+     printf("%c",hr[n]);
+
+  return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{  char c[20];
+   scanf("%s",c);
+  int a[26]={};
+ int i;
+ int l=strlen(c);
+ for(i=0;i<l;i++)
+ {
+   a[((int)c[i]-97)]++;
+      }
+
+ int min=20;
+ int flag;
+ for(i=0;i<26;i++)
+ {
+   if(a[i]<min&&a[i]!=0)
+   {min=a[i];
+    flag=i;
+   }
+ }
+ printf("%c=%d",(char)(flag+97),min);
+ 
+	return 0;
+}

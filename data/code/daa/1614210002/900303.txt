@@ -1,0 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long LL;
+LL maxprod(vector<LL>& pos, vector<LL>& neg)
+{
+    if (neg.size() == neg.size() + pos.size() and neg.size() == 1)
+        return *(neg.rbegin());
+    bool considerneg = false, considerpos = false, negsizeisone = false;
+    LL negprod = 1;
+    if (neg.size())
+    {
+        considerneg = true;
+        for (int i = 0; i < (int) neg.size(); i++)
+            negprod *= neg[i];
+        if (neg.size() & 1)
+            negprod /= neg[neg.size() - 1];
+        if (neg.size() == 1)
+            negsizeisone = true;
+    }
+    LL posprod = 1;
+    if (pos.size())
+    {
+        considerpos = true;
+        for (int i = 0; i < (int) pos.size(); i++)
+            if (pos[i])
+                posprod *= pos[i];
+        if (*(pos.rbegin()) == 0)
+            posprod = 0;
+        if (pos.size() == pos.size() + neg.size())
+            return posprod;
+    }
+    if (negsizeisone)
+        return posprod;
+    if (considerneg and considerpos)
+    {
+        if (posprod)
+            return negprod * posprod;
+        else
+            return negprod;
+    }
+    else if (considerneg)
+        return negprod;
+    else if (considerpos)
+        return posprod;
+}
+LL minprod(vector<LL>& pos, vector<LL>& neg, vector<LL>& v)
+{
+    if (v[0] >= 0)
+        return v[0];
+    LL ret = 1;
+    for (int i = 0; i < (int) pos.size(); i++)
+        if (pos[i])
+            ret *= pos[i];
+    for (int i = 0; i < (int) neg.size(); i++)
+        ret *= neg[i];
+    if (not (neg.size() & 1))
+        ret /= neg[neg.size() - 1];
+    return ret;
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<LL> pos, neg, v;
+        for (int i = 0; i < n; i++)
+        {
+            LL val;
+            cin >> val;
+            v.push_back(val);
+            if (val < 0)
+                neg.push_back(val);
+            else
+                pos.push_back(val);
+        }
+        sort(v.begin(), v.end());
+        sort(pos.begin(), pos.end());
+        sort(neg.begin(), neg.end());
+        LL v1 = maxprod(pos, neg);
+        LL v2 = minprod(pos, neg, v);
+        cout << v1 << ' ' << v2 << '\n';
+    }
+    return 0;
+}
+

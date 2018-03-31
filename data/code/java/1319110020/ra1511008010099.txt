@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+public class TestClass {
+  
+ int ar[];
+  
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       
+       int n = sc.nextInt();
+       int art[] = new int[n];
+       for(int i = 0; i < n; i++){
+       art[i] = sc.nextInt(); 
+       }
+       TestClass tc = new TestClass(art);
+       
+       try{
+       System.out.println(tc.average());
+       }
+       catch(IllegalArgumentException e){
+       System.out.println(e);
+       }
+	}
+  
+  TestClass(int arr[]){
+  ar = arr.clone();
+  }
+  
+  float average() throws IllegalArgumentException{
+  
+    float avg = 0;
+    int sum = 0;
+    
+    for(int x : ar){
+      if(x < 0 || x > 100){
+      throw new IllegalArgumentException();
+      }
+    sum += x;
+    }
+    avg = sum / ar.length;
+    
+    return avg;
+  }
+}

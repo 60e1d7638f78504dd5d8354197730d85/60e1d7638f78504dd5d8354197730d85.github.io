@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<string.h>
+char a[500000],temp[500000],temp1[500000];
+int k;
+int rot(char v[],int p,int q)
+{
+int i,j,l,m;
+do
+{if(k%2)
+m=p;
+else
+m=q;
+j=strlen(a)-m;
+for(i=j,l=0;i<strlen(a);i++,l++)
+temp1[l]=v[i];
+for(i=0;i<j;i++,l++)
+temp1[l]=v[i];
+temp1[l]='\0';
+strcpy(v,temp1);
+k++;
+//puts(v);
+if(k>=1000)
+return -1;
+ 
+}while(strcmp(a,v)!=0);
+ 
+ 
+return k-1;
+ 
+}
+ 
+int main()
+{int p,q,r;
+ 
+scanf("%d",&r);
+do
+{k=1;
+scanf("%s",a);
+strcpy(temp,a);
+scanf("%d %d",&p,&q);
+printf("\n%d",rot(temp,p,q));
+r--;
+}while(r>0);
+ 
+ 
+return 0;
+} 

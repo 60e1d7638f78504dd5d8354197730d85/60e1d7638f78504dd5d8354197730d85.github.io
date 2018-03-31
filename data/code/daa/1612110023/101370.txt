@@ -1,0 +1,57 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,t,s,m,a[15],b[10],sum,flag=0,l,n,temp;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d%d",&s,&m);
+    k=0;
+    for(j=0;j<s;j++)
+    {
+      scanf("%d",&a[j]);
+    }
+    for(j=0;j<s;j++)
+    {
+      if(a[j]<0)
+      {
+        flag=1;
+        b[k++]=-a[j];
+        //printf("\n%d\n",a[j]);
+      }
+    }
+    if(flag==1)
+    {
+      sum=0;
+    k--;
+    while(k>=0)
+    {
+      sum=sum+b[k];
+      k--;
+    }
+    printf("\n%d",sum);
+    }
+    else
+    {
+      for(l=0;l<s;l++)
+      {
+        for(n=0;n<s;n++)
+        {
+          if(a[m]<a[l])
+          {
+            temp=a[n];
+           a[n]=a[l];
+           a[l]=temp;
+          }
+        }
+      }
+      for(l=0;l<m;l++)
+      {
+        sum=sum+a[l];
+      }
+      printf("%d",sum);
+    }
+    
+  }
+	return 0;
+}

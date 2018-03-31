@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+int compare(const void*a,const void*b)
+{
+ return(*(int*)a-*(int*)b); 
+}
+int main()
+{
+    int t,n,s[500];
+  scanf("%d",&t);
+  while(t--)
+  {
+   int ans=INT_MAX;
+    int i,j;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+      scanf("%d",&s[i]);
+    
+    qsort(s,n,sizeof(int),compare);
+    for(j=0;j<n-1;j++)
+      ans=(ans<(s[j+1]-s[j]))?ans:(s[j+1]-s[j]);
+    printf("%d\n",ans);
+  }
+	return 0;
+}

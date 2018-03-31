@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  struct node *next;
+}*head;
+void create(long int num)
+{
+  struct node*temp=new struct node;
+  temp->data=num;
+  temp->next=NULL;
+  head=temp;
+}
+void insert(long int num)
+{
+  struct node *newnode=new struct node;
+  newnode->data=num;
+  struct node *temp=new struct node;
+  temp=head;
+  while(temp->next!=NULL)
+  {temp=temp->next;}
+  temp->next=newnode;
+  newnode->next=NULL;
+}
+void printlist()
+{
+  struct node*ptr=new struct node;
+ 
+  ptr=head;
+  while(ptr!=NULL)
+  { cout<<ptr->data<<" ";
+    ptr=ptr->next;
+  }
+ 
+}
+int main()
+{
+   int n;
+  cin>>n;
+  long int a[100];
+  for(int i=0;i<n;i++)
+    cin>>a[i];
+  create(a[0]);
+  for(int i=1;i<n;i++)
+    insert(a[i]);
+  printlist();
+	return 0;
+}

@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       int T=inp.nextInt();
+       for(int k=0;k<T;k++)
+           {
+       int N=inp.nextInt();
+       int S[]=new int[101];
+         
+       for(int i=0;i<N;i++)
+       {
+         S[i]=inp.nextInt();
+        }
+         for(int i=0;i<N;i++)
+         {
+           for(int j=0;j<N;j++)
+           {
+             if(S[i]<S[j])
+             {
+               int t=S[i];
+               S[i]=S[j];
+               S[j]=t;
+             }
+           }
+         }
+         int diff=999;
+         for(int i=0; i<N;i++)
+         {
+           for(int j=i+1;j<N;j++)
+           {
+             int diff1=S[j]-S[i];
+             if(diff1<diff)
+               diff=diff1;
+           }
+         }
+       System.out.println(diff);
+           }
+	}
+}

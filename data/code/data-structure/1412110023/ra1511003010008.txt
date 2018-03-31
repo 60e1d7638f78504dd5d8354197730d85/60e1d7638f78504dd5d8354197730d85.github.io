@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+  	int n,i,t,m,ans[1000][3],a[1000][1000],sum,s,k,flag;
+  	cin>>t;
+  	for(int i=0;i<t;i++)
+    {
+     	cin>>n>>sum;
+      	for(int j=0;j<n;j++)
+        {
+          	cin>>a[i][j];
+        }
+      	flag=0;
+        for(int j=0;j<n-1;j++)
+        {
+          	s=a[i][j];
+          	for(k=j+1;k<n;k++)
+            {
+             	s+=a[i][k];
+              	if(sum==s && flag==0)
+                {
+                  	//cout<<sum<<" "<<s<<" "<<j<<" "<<k<<endl;
+                 	ans[i][0]=j;
+                  	ans[i][1]=k;
+                  	flag=1;
+                  	break;
+                }
+            }
+        }
+    }
+  
+  	for(int i=0;i<t;i++)
+    {
+     	cout<<ans[i][0]+1<<" "<<ans[i][1]+1<<endl; 
+    }
+}

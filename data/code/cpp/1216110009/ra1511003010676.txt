@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a,b[100],i=0,temp;
+  	cin>>a;
+  	while(a)
+    {
+      int c;
+      cin>>c;
+      b[i++]=c*c;
+      a--;
+    }
+  	for(int j=0;j<i;j++)
+      for(int k=0;k<i;k++)
+        if(b[j]<b[k])
+        {   temp=b[j];
+         	b[j]=b[k];
+         	b[k]=temp;
+        }
+  
+  	for(int k=0;k<i;k++)
+      cout<<b[k]<<" ";
+	return 0;
+}

@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include<math.h>
+#include<time.h>
+int rand_partition(int A[],int start,int end){
+	int random=start+rand()%(end-start+1);
+	int temp=A[random];
+	A[random]=A[start];
+	A[start]=temp;
+	return partition(A,start,end);
+}
+void quick_sort(int A[],int start,int end){
+	if(start<end){
+		int piv_pos=rand_partition(A,start,end);
+		quick_sort(A,start,piv_pos-1);
+		quick_sort(A,piv_pos+1,end);
+	}
+}
+int partition(int A[],int start,int end){
+	int i=start+1;
+	int piv=A[start];
+	int j;
+	for(j=start+1;j<=end;++j){
+		if(A[j]<piv){
+			int temp=A[j];
+			A[j]=A[i];
+			A[i]=temp;
+			++i;
+		}
+	}
+	int temp=A[start];
+	A[start]=A[i-1];
+	A[i-1]=temp;
+	return i-1;
+}
+int main()
+{
+   int T,N,M,Q;
+   int i,j;
+   scanf("%d",&T);
+   while(T--){
+   	scanf("%d",&N);
+   	scanf("%d",&M);
+   	scanf("%d",&Q);
+   	int X[Q+1],Y[Q+1];
+   	for(i=0;i<Q;++i){
+   		scanf("%d",&X[i]);
+   		scanf("%d",&Y[i]);
+   	}
+   	
+   	X[Q]=N;Y[Q]=M;
+   	quick_sort(X,0,Q-1);
+ 
+   	quick_sort(Y,0,Q-1);
+   	int x=1,y=1,ctx=0,cty=0;
+    for(i=0;i<Q;++i){
+    	if(X[i]!=x&&X[i]!=N){
+    	++ctx;
+    	x=X[i];
+    	}
+    	if(Y[i]!=y&&Y[i]!=M){
+    	++cty;
+    	y=Y[i];
+    	}
+    } 
+   	int minx=N;
+   	int miny=M;
+   	int maxx=X[0]-1;
+   	int maxy=Y[0]-1;
+   	for(i=1;i<=Q;++i){
+   		x=X[i]-X[i-1];
+   		y=Y[i]-Y[i-1];
+   		if(x<minx&&x!=0)
+   		minx=x;
+   		if(y<miny&&y!=0)
+   		miny=y;
+   		if(x>maxx)
+   		maxx=x;
+   		if(y>maxy)
+   		maxy=y;
+   	}
+   int minarea=minx*miny;
+   int maxarea=maxx*maxy;
+   	printf("%d %d %d\n",(ctx+1)*(cty+1),minarea,maxarea);
+   }
+return 0;
+}

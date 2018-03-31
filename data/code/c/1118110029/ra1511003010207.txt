@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdint.h>
+
+#define rmask 0x00000000ffffffff
+#define lmask 0xffffffff00000000
+
+int main() {
+	union u_t {
+		uint64_t n;
+		uint32_t c[2];
+	} u;
+
+	scanf("%lu", &u.n);
+	u.c[1] = 0;
+
+	while (u.n & rmask) {
+		uint32_t t = (u.n & rmask) % 10;
+
+		u.c[1] += t * t * t;
+
+		u.n = (u.n & lmask) | ( (u.n & rmask) / 10 );
+	}
+
+	printf("%u", (unsigned)u.c[1]);
+
+	return 0;
+}

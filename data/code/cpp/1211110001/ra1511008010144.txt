@@ -1,0 +1,51 @@
+#include<iostream>
+ using namespace std;
+int main ()
+{
+ 
+int tfhour;
+int tfmins;
+int tfseconds;
+int twhour;
+ 
+  cin>>tfhour;
+  cin>>tfmins;
+  cin>>tfseconds;
+     
+    if (tfseconds >= 60 || tfseconds < 0)
+            {
+            printf("Invalid Time");
+            return 0;
+            }
+     
+    if(tfhour <= 0 || tfhour >= 24) 
+        {
+        printf("Invalid Time");
+        return 0;
+        }
+  if(tfmins >= 60 || tfmins < 0)
+  { 
+    printf("Invalid Time");
+    return 0;
+  }
+ 
+    else if (tfhour <= 12 && tfhour > 0)
+            twhour = tfhour;
+                                                                                           
+    else if (tfhour >= 13 && tfhour <= 24)
+            twhour = (tfhour - 12);
+     cout<<"24 Hours Format"<<endl;
+     cout<<tfhour<<":"<<tfmins<<":"<<tfseconds;
+     cout<<"\n";
+    
+         cout<<"12 Hours Format"<<endl;
+         cout<<twhour<<":"<<tfmins<<":"<<tfseconds;
+ 
+    if (tfhour / 12 == 1) 
+        cout<<"pm";
+         
+    else
+        cout<<"am";
+ 
+        return 0;
+}

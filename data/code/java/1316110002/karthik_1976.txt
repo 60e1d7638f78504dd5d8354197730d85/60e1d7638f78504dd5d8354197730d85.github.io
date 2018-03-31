@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int num = sc.nextInt();
+       isBinaryOrNot(num);
+	}
+  static void isBinaryOrNot(int number)
+  {
+    boolean isBinary = true;
+    int copyNum = number;
+    int digit = 0;
+    if(number == 0)
+    {
+      System.out.println(copyNum + " is a binary number");
+      return;
+    }
+     while(number > 0 && isBinary == true) 
+     {
+       digit = number % 10;
+       if(digit != 0 && digit != 1)
+         isBinary = false;
+       number = number / 10;
+     }
+    if(isBinary == true)
+      System.out.println(copyNum + " is a binary number");
+    else
+      System.out.println(copyNum + " is not a binary number");
+  }
+}

@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+int fun(int var1,int var2){
+	if(var2!=0)
+		return(fun(var2,var1%var2));
+	return var1;
+}
+
+int lcm(int a,int b){
+  return (a*b/fun(a,b));
+}
+int main(){
+	int a,b;
+	scanf("%d%d",&a,&b);
+	int ff=fun(a,b);
+	printf("GCD=%d\n",ff);
+  	printf("LCM=%d",lcm(a,b));
+  	return 0;
+}

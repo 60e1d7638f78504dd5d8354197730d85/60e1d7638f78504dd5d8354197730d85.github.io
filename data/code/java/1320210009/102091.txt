@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class TestClass {
+  public static void main(String[] args) {
+    ArrayList<String> arrayList = new ArrayList<String>();
+    arrayList.add("1");
+    arrayList.add("2");
+    arrayList.add("3");
+    System.out.print("Vector elements are[");
+    for (int i = 0; i < arrayList.size(); i++)
+      if(i!=arrayList.size()-1)
+      System.out.print(arrayList.get(i)+", ");
+     else
+       System.out.print(arrayList.get(i)+"]");
+    
+    Vector<String> v = new Vector<String>();
+    v.add("4");
+    v.add("5");
+     System.out.println();
+    System.out.print("ArrayList elements are[");
+    
+        for (int i = 0; i < v.size(); i++)
+      if(i!=v.size()-1)
+      System.out.print(v.get(i)+", ");
+     else
+       System.out.print(v.get(i)+"]");
+    
+        
+        System.out.println();
+    
+    arrayList.addAll(2, v);
+    System.out.println("After inserting all elements of ArrayList at index 2, Vector contains..");
+    for (String str: arrayList)
+      System.out.println(str);
+  }
+}

@@ -1,0 +1,31 @@
+    #include<stdio.h>
+    #include<string.h>
+    int main()
+    {
+        int q,n;
+        scanf("%d%d",&n,&q);
+        int row[n],col[n],i;
+        for(i=0;i<n;i++)
+            row[i]=col[i]=0;
+        while(q--)
+        {
+            char str[7];
+            scanf("%s",str);
+            int pos,data;
+            scanf("%d%d",&pos,&data);
+            if(strcmp(str,"RowAdd")==0)
+                row[pos-1]+=data;
+            else
+                col[pos-1]+=data;
+        }
+        int maxr=row[0],maxc=col[0];
+        for(i=1;i<n;i++)
+        {
+            if(maxr<row[i])
+                maxr=row[i];
+            if(maxc<col[i])
+                maxc=col[i];
+        }
+        printf("%d\n",maxr+maxc);
+        return 0;
+    } 

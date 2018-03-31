@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+class dist{
+
+int f;
+int i;
+
+public:
+	void getData(int a,int b){
+    
+    f=a;
+    i=b;
+    }
+  int setFeet(){
+  
+  return f;}
+  
+  int setInches(){
+  
+  return i;}
+  
+	dist operator +(const dist &other){
+    dist temp;
+      temp.f=f+other.f;
+      if((other.i+i)>12){
+        temp.i=(other.i+i)%12;
+        temp.f+=(i+other.i)/12;
+      }
+      else
+        temp.i=i+other.i;
+      return temp;
+    }
+};
+int main()
+{
+	dist x;
+  dist y;
+  dist z;
+  int f1,f2,i1,i2;
+  cin>>f1>>i1>>f2>>i2;
+  x.getData(f1,i1);
+  y.getData(f2,i2);
+  z=x+y;
+  cout<<"Total Distance:\n";
+  cout<<"Feet:"<<z.setFeet();
+  cout<<" Inches:"<<z.setInches();
+	return 0;
+}

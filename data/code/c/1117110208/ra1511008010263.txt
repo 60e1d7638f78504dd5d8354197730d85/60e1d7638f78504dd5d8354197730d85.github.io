@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+ 
+#define MOD 1000000007
+char s[1010];
+long dp[1010];
+ 
+int ispalin(int i,int j)
+{
+	while(i<j)
+	{
+		if(s[i]!=s[j])
+		return 0;
+		i++,j--;
+	}
+	return 1;
+}
+ 
+int main()
+{
+	int i,j;
+	scanf("%s",s);
+	for(i=0;i<strlen(s);i++)
+	for(j=-1;j<i;j++)
+		if(ispalin(j+1,i))
+		{
+			if(j==-1)
+			dp[i]++;
+			else
+			dp[i]+=dp[j];
+			dp[i]%=MOD;
+		}	
+	printf("%ld\n",dp[i-1]);	
+  return 0;
+} 

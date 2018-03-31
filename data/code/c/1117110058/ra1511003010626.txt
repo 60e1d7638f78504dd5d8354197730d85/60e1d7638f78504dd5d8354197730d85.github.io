@@ -1,0 +1,60 @@
+#include<stdio.h>
+
+int main()
+{
+  int t;
+  scanf("%d", &t);
+  while(t--)
+  {
+    int n;
+    scanf("%d",&n);
+    int i, arr[n], temp[1000];
+    for( i = 0 ; i < n ; i++ ) scanf("%d", arr+i );
+    for( i = 0 ; i < 1000 ; i++ ) temp[i] = 0;
+    for( i = 0 ; i < n ; i++ ) temp[arr[i]-1]++;
+    int rect_flag = 0, sqr_flag = 1;
+    long sqr_area = 1, rect_area = 1 ;
+    //for( i = 0 ; i < 999 ; i++ ) printf("%d ", temp[i]);
+    for( i = 999 ; i >= 0 ; i-- )
+    {
+      if( temp[i] >= 4 && sqr_flag )
+      {
+        sqr_area = 1;
+        sqr_area = (i+1)*(i+1);
+        sqr_flag = 0;
+      }
+      if( temp[i] > 1 && rect_flag == 1 )
+      {
+        rect_area *= (i+1);
+        //printf("i+1=%d rect_area=%ld", i+1, rect_area);
+        rect_flag = 2;
+      }
+      if( temp[i] > 1 && rect_flag == 0 )
+      {
+        rect_area *= (i+1);
+        //printf("i+1=%d rect_area=%ld", i+1, rect_area);
+        rect_flag = 1;
+      }
+
+
+    }
+    // printf("rect_area=%ld sqr_area=%ld\n", rect_area, sqr_area);
+    if( rect_flag == 2 && sqr_flag == 0 )
+    {
+      if( rect_area >  sqr_area ) printf("%ld", rect_area);
+      else printf("%ld", sqr_area);
+    }
+    else if( rect_flag == 2 && sqr_flag != 0 )
+    {
+      printf("%ld", rect_area);
+    }
+    else if( rect_flag != 2 && sqr_flag == 0 )
+    {
+      printf("%ld", sqr_area);
+    }
+    else printf("-1");
+    printf("\n");
+  }
+  return 0;
+}  
+

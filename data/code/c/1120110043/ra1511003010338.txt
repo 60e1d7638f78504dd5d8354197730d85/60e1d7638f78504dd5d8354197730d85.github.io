@@ -1,0 +1,23 @@
+#include <stdio.h>
+ 
+union test
+{
+   int x;
+};
+ 
+int main()
+{
+    union test t;
+    int sum,a;
+    sum = 0;
+    scanf("%d", &t.x);
+    while(t.x!=0) {
+      a = t.x%10;
+      sum = sum+(a*a*a);
+      t.x = t.x/10;
+    }
+  
+  printf("%d", sum);
+  
+  return 0;
+}

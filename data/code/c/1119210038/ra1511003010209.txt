@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+	{
+		int T;
+		scanf("%d",&T);
+		while(T!=0)
+		{
+		    int H,M;
+			scanf("%d %d",&H,&M);
+			int arr[27]={11,22,33,44,55,66,77,88,99,111,222,333,444,555,666,777,888,999,1111,2222,3333,4444,5555,6666,7777,8888,9999};
+			int total=1,i,j;
+			for(i=0;i<27;i++)
+			{
+				int t=arr[i];
+				int s=1;
+				    if(i<9)
+				    s=1;
+				    else if(i<18)
+				    s=2;
+				    else
+				    s=3;
+				    for(j=1;j<=s;j++)
+				    {
+					int a=t%(int)pow(10,j);
+					int c=t/(int)pow(10,j);
+					if(a<M&&c<H)
+					{
+					  total=total+1;
+				    }
+			      	}
+			}
+			printf("%d\n",total);
+			T--;
+		}
+		return;
+	} 

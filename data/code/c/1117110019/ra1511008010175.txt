@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+    int array[10][10],n1,n2;
+    int row, col, isLower;
+    scanf("%d",&n1);
+    scanf("%d",&n2);
+    for(row=0; row<n1; row++)
+    {
+        for(col=0; col<n2; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    isLower = 1;
+    for(row=0; row<n1; row++)
+    {
+        for(col=0; col<n2; col++)
+        {
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+    if(isLower == 1)
+    {
+        printf("yes");
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

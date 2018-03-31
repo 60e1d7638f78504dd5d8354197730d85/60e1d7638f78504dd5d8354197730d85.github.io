@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+
+  char str[1000]; 
+  char sub[] = "01";
+  int times,i;
+  ////////////////////////////////////////////////////
+  scanf("%d",&times);
+  for(i=0;i<times;i++){
+
+  char *p1, *p2, *p3;
+  int i=0,j=0,flag=0,count=0;
+
+  p1 = str;
+  p2 = sub;
+  scanf("%s",str);
+
+  for(i = 0; i<strlen(str); i++)
+  {
+    if(*p1 == *p2)
+      {
+          p3 = p1;
+          for(j = 0;j<strlen(sub);j++)
+          {
+            if(*p3 == *p2)
+            {
+              p3++;p2++;
+            } 
+            else
+              break;
+          }
+          p2 = sub;
+          if(j == strlen(sub))
+          {
+             flag = 1;
+            ++count;
+          }
+      }
+    p1++; 
+  }
+  if(flag==0)
+  {
+      
+  }
+  printf("%d\n",count);}
+return 0;
+}

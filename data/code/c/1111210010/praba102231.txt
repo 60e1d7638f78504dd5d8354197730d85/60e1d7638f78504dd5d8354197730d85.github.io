@@ -1,0 +1,58 @@
+#include<stdio.h>
+void swap(int *a,int *b)
+{
+int temp;
+temp=*a;
+*a=*b;
+*b=temp;
+}
+int part(int a[],int low,int high)
+{
+int pivote=a[low],pindex=low,i;
+for(i=low+1;i<=high;i++)
+{
+if(a[i]<=pivote)
+{
+swap(&a[pindex+1],&a[i]);
+swap(&a[pindex],&a[pindex+1]);
+pindex++;
+}
+}
+return pindex;
+}
+void qsort(int a[],int low,int high)
+{
+int pindex;
+if(low<high)
+{
+pindex=part(a,low,high);
+qsort(a,low,pindex-1);
+qsort(a,pindex+1,high);
+}
+}
+int main()
+{
+int t;
+scanf("%d",&t);
+while(t--)
+{
+int n,i,count1=0,count2=0;
+scanf("%d",&n);
+int w[n-1];
+for(i=0;i<n;i++)
+{
+scanf("%d",&w[i]);
+}
+qsort(w,0,n-1);
+for(i=1;i<n-1;i++)
+{
+count1=w[i]-w[0];
+count2=count2+w[i]-w[0];
+w[i+1]=count2+w[i+1];
+w[0]=w[0]+count1;
+}
+count2=count2+w[n-1]-w[0];
+printf("%d\n",count2);
+}
+return 0;
+} 

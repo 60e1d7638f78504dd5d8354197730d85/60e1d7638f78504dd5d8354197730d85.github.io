@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef struct stu
+{
+	long long int id;
+	long long int pop;
+	char messg[102];
+}posts;
+posts list1[1001];
+posts list2[1001];
+int cmp(const void * a, const void * b)
+{
+	return (*(long long int *)a-*(long long int *)b);
+}
+int compare (const void * a, const void * b)
+{
+ 
+	  posts *orderA = (posts *)a;
+	  posts *orderB = (posts *)b;
+	  return ( orderB->pop - orderA->pop );
+}
+int main()
+{
+	long long int fl,n,m,i,f,p,j,k,special[1001];
+	char s[103];
+	scanf("%lld %lld",&n,&m);
+	for(i=0;i<n;i++)
+	{
+		scanf("%lld",&special[i]);
+	}
+	long int mns=0;
+	k=0;
+	for(i=0;i<m;i++)
+	{
+		fl=0;
+		scanf("%lld %lld %s",&f,&p,s);
+		for(j=0;j<n;j++)
+		{
+			if(special[j]==f)
+			{
+				fl=1;
+				break;
+			}
+			
+		}
+		if(fl==0)
+		{
+			list1[mns].id=f;
+			list1[mns].pop=p;
+			strcpy(list1[mns].messg,s);
+			mns++;
+		}
+		else
+		{
+			list2[k].id=f;
+			list2[k].pop=p;
+			strcpy(list2[k].messg,s);
+			k++;
+		}
+	}
+	qsort(list1,mns,sizeof(posts),compare);
+	qsort(list2,k,sizeof(posts),compare);
+	for(i=0;i<k;i++)
+	{
+		printf("%s\n",list2[i].messg);
+	}
+	for(i=0;i<mns;i++)
+	{
+		printf("%s\n",list1[i].messg);
+		
+	}
+	return 0;
+}
+ 

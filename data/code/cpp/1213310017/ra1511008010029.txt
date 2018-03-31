@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define m 1000000007
+#define mx 1000002
+#define yes puts("YES")
+#define no puts("NO")
+#define len(s) strlen(s)
+#define sd(d) scanf("%d",&d)
+#define nl printf("\n");
+#define mset(a,v) memset(a,v,sizeof(a))
+using namespace std;
+ 
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char s[105];
+        scanf("%s",s);
+        int f=0;
+        int l=len(s),i;
+        if(l==1)
+        {
+            no;
+            continue;
+        }
+        char ch1=s[0],ch2=s[1];
+        if(ch1!=ch2)
+       {
+            for(i=2;i<l;i++)
+            {
+                if(i%2==0)
+                {
+                    if(s[i]!=ch1)
+                    {
+                        f=1;
+                        break;
+                    }
+                }
+                else
+                {
+                    if(s[i]!=ch2)
+                    {
+                        f=1;
+                        break;
+                    }
+                }
+            }
+            if(f)
+                no;
+            else
+                yes;
+       }
+       else
+        no;
+ 
+    }
+ 
+    return 0;
+}

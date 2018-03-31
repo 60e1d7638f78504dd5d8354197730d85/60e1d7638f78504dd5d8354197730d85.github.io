@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+class Decimal {
+  public:
+  int n;
+  void get() {
+    cin>>n;
+  }
+};
+class Octal:public Decimal {
+  public:
+  void toOctal() {
+    int a = n;
+    int b[20];
+    int i=0;
+    while(a>0) {
+      b[i++] = a%8;
+      a/=8;
+    }
+    cout<<"Octal Equivalent of "<<n<<" is ";
+    while(i>0) {
+      cout<<b[i-1];
+      i--;
+    }
+  }
+};
+int main()
+{
+	Octal o;
+  	o.get();
+  	o.toOctal();
+	return 0;
+}

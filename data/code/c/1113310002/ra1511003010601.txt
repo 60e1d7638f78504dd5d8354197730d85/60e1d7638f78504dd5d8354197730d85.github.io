@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int t;
+  	scanf("%d",&t);
+  if (t==0){
+    printf("0\n");
+    return 0;
+  }
+  while(t--){
+    int n,k,p,x,l,q,y,r;
+    scanf("%d %d",&n,&k);
+    p = pow(n,n);
+    l = (int)floor(log10(p))+1;
+    x=(int)p/pow(10,l-k);
+    q=(int)p%(int)pow(10,k);
+    r = (int)floor(log10(q))+1;
+    if(r!=k){
+      r=k-r;
+   	  printf("%d ",x);
+      for(y=0;y<r;y++)
+        printf("0");
+      printf("%d\n",q);
+    }
+    else      
+   	  printf("%d %d\n",x,q);
+  }
+	return 0;
+}

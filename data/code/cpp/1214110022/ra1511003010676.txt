@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+class rectangle{
+public:
+  int l,b;
+  int area;
+  rectangle()
+  {
+	l=b=area=0;}
+  rectangle(rectangle &r1)
+  {
+    l=r1.l;
+    b=r1.b;
+    area=r1.area;
+  }
+  void get(){
+	cin>>l>>b;
+    area=l*b;
+  }
+  void put()
+  {
+	cout<<area<<endl;
+  }
+};
+int main()
+{
+  rectangle r2;
+  r2.get();
+  rectangle r1=r2;
+  rectangle r3=r2;
+  r1.put();
+  r2.put();
+  r3.put();
+  return 0;
+}

@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class Num {
+  int n;
+  public:
+  void get(int x) {
+    n=x;
+  }
+  Num operator +(Num &obj) {
+    Num x;
+    x.n = this->n + obj.n;
+  }
+  Num operator -(Num &obj) {
+    Num x;
+    x.n = this->n - obj.n;
+  }
+  void display() {
+    cout<<n<<" ";
+  }
+};
+int main()
+{
+	Num n1,n2;
+  	int a,b;
+  	cin>>a>>b;
+  	n1.get(a);
+  	n2.get(b);
+  	n1 = n1+n2;
+  	n2 = n1-n2;
+  	n1 = n1-n2;
+  	n1.display();
+  	n2.display();
+	return 0;
+}

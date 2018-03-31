@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,a,b,hcf=1,lcm=1,max,n;			
+  scanf("%d",&n);
+  for(i=1; i<=n; i++)
+    {
+      scanf("%d%d",&a,&b);
+      max=a>b?a:b;
+    	for(j=1;j<=(a*b);j++)
+        {
+          if(j%a==0 && j%b==0)
+          {
+            lcm=j;
+            break;
+          }
+        }
+    	for(j=1;j<=max;j++)
+        {
+          if(a%j==0 && b%j==0)
+            hcf=j;
+        }
+    printf("%d %d",hcf,lcm);
+    if(i!=n)
+      printf("\n");
+  }
+	return 0;
+}

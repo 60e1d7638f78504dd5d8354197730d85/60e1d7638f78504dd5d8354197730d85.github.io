@@ -1,0 +1,106 @@
+  #include<stdio.h>
+    int inline inp()
+    {
+    int n=0;
+    char c=getchar_unlocked();
+    while(c < '0' || c >'9') {c=getchar_unlocked();}
+    while(c>='0' && c<='9')
+    {
+    n=(n<<3)+(n<<1)+c-'0';
+    c=getchar_unlocked();
+    }
+    return n;
+    }
+    short q1[1001];
+    void quicksort(int first,int last);
+    int main()
+    {
+    short t,n,m,k,a[1001],b[1001][1001],c[1001][1001],i,j,mx,t2;
+    int total;
+    // int d[1001][1001];
+    // scanf("%d",&t);
+    t=inp();
+    while(t>0)
+    {
+    //scanf("%d%d%d",&n,&m,&k);
+    n=inp();
+    m=inp();
+    k=inp();
+    for(i=1;i<=n;i++)
+    {
+    // scanf("%d",&a[i]);
+    a[i]=inp();
+    }
+    for(i=1;i<=n;i++)
+    {
+    for(j=1;j<=m;j++)
+    {
+    //scanf("%d",&b[i][j]);
+    b[i][j]=inp();
+    }
+    }
+    for(i=1;i<=n;i++)
+    {
+    for(j=1;j<=m;j++)
+    {
+    // scanf("%d",&c[i][j]);
+    c[i][j]=inp();
+    }
+    }
+    for(i=1;i<=n;i++)
+    {
+    mx=0;
+    q1[i]=0;
+    for(j=1;j<=m;j++)
+    {
+    t2=b[i][j]-b[i][a[i]]-c[i][j];
+    if(t2>mx)
+    {
+    q1[i]=t2;
+    mx=t2;
+    }
+    }
+    }
+    quicksort(1,n);
+    total=0;
+    for(i=1;i<=n;i++)
+    {
+    total=total+b[i][a[i]];
+    }
+    for(i=n-k+1;i<=n;i++)
+    {
+    total=total+q1[i];
+    }
+    printf("%d\n",total);
+    t--;
+    }
+    return 0 ;
+    }
+     
+    void quicksort(int first,int last){
+    int pivot,j,temp,i;
+     
+    if(first<last){
+    pivot=first;
+    i=first;
+    j=last;
+     
+    while(i<j){
+    while(q1[i]<=q1[pivot]&&i<last)
+    i++;
+    while(q1[j]>q1[pivot])
+    j--;
+    if(i<j){
+    temp=q1[i];
+    q1[i]=q1[j];
+    q1[j]=temp;
+    }
+    }
+     
+    temp=q1[pivot];
+    q1[pivot]=q1[j];
+    q1[j]=temp;
+    quicksort(first,j-1);
+    quicksort(j+1,last);
+    }
+    }   

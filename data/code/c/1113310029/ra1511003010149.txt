@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int t,i,len,c1=0,c2=0;
+  char name[100];
+  char n1[] = "SUVO";
+  char n2[] = "SUVOJIT";
+  scanf("%d",&t);
+  scanf("%s",name);
+  len = strlen(name);
+  if(len<=9)
+    name[7] = 'Z';
+  while(t--) {
+    for(i=0;i<len;i++) {
+      if(name[i]=='S' && name[i+6]=='T')
+        c1++;
+      if(name[i]=='S' && name[i+3]=='O' && name[i+6]!='T')
+        c2++;
+    }
+    printf("SUVO = %d\n",c2);
+    printf("SUVOJIT = %d",c1);
+  }
+    return 0;
+}

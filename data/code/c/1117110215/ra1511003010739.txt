@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+  
+  int n,i,d,j,k;
+  char s[10],str[10];
+  scanf("%d",&n);
+  d=n;
+  i=0;
+  while(d!=0)
+  {
+    s[i]=d%10 + '0';
+    d=d/10;
+    i++;
+  }
+  k=i-1;
+  for(j=0;j<i;j++)
+  {
+    str[j]=s[k];
+    k--;
+  }
+  for(i=0;str[i]!='\0';i++)
+  {
+    if(str[i]=='0')
+      str[i]='5';
+  }
+  n=atoi(str);
+  printf("%d",n);
+
+	return 0;
+}

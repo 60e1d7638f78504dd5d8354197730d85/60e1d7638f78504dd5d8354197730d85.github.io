@@ -1,0 +1,28 @@
+#include <stdio.h>
+ 
+int main(void) {
+	int T,i,j,max,count,length;
+	scanf("%d",&T);
+	char string[51];
+	while(T--)
+	{
+	    scanf("%s",string);
+	    length=0;max=0;
+	    for(i=0;string[i];i++)
+	    {
+	        count=0;
+	        for(j=0;string[j];j++)
+	        {
+	                if(string[j]==string[i])
+	                   count++;
+	        }
+	        if(count>max)
+	        {
+	            max=count;
+	        }
+	      length++;  
+	    }
+	    printf("%s\n",length-max==max?"YES":"NO");
+	}
+	return 0;
+} 

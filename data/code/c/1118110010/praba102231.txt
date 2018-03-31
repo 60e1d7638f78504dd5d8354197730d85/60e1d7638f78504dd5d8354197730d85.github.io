@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<malloc.h>
+struct student{
+    int     roll;
+    char    name[30];
+    char   course[10];
+    int fees;
+}*ptr[10];
+
+int main()
+{
+    int i;
+    struct student  *ptr[10];   //pointer to student structure
+    int n;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+       ptr[i] = (struct student *) malloc(sizeof(struct student));
+    scanf("%d",&ptr[i]->roll);
+    scanf("%s",ptr[i]->name);
+    scanf("%s",ptr[i]->course);
+    scanf("%d",&ptr[i]->fees);
+    }
+    printf("Details of the student\n");
+     for(i=0;i<n;i++)
+     {
+       
+    printf("Roll no:%d\nName:%s\nCourse:%s\nFees:%d\n",ptr[i]->roll,ptr[i]->name,ptr[i]->course,ptr[i]->fees);
+     }
+    return 0;
+}

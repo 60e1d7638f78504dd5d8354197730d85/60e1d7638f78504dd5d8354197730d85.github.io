@@ -1,0 +1,51 @@
+/*  C program to Delete all occurrences of Character in a String  */
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_SIZE 100 //Maximum size of the string
+
+
+
+/** Function declaration */
+void removeAll(char *, const char);
+
+
+
+int main()
+{
+    char string[MAX_SIZE];
+    char toRemove;
+
+   
+    scanf("%s\n",string);
+    scanf("%c",&toRemove);
+
+    removeAll(string, toRemove);
+
+    printf("%s",string);
+
+    return 0;
+}
+
+void removeAll(char * string, const char toRemove)
+{
+    int i, j;
+    int len = strlen(string);
+
+    for(i=0; i<len; i++)
+    {
+        
+        if(string[i] == toRemove)
+        {
+            for(j=i; j<len-1; j++)
+            {
+                string[j] = string[j+1];
+            }
+
+            len--;
+            string[len] = '\0';
+            i--;
+        }
+    }
+}

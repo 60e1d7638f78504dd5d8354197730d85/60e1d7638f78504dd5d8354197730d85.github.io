@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main (){
+char string [50];
+scanf ("%s", string);
+int length = strlen (string) - 1;
+int alpha_string = 0;
+if ( string [0] >= 'A' && string [0] <= 'Z' )
+alpha_string = 1;
+if ( string [0] >= 'a' && string [0] <= 'z' )
+alpha_string = 1;
+int underScore = 1;
+if ( string [length] == '_' )
+underScore = 0;
+int num = 0,i;
+for (i = 1; i <= length; i++ ) {
+if ( string [i] == '_' )
+num++;
+else
+num = 0;
+if ( num == 2 ) {
+underScore = 0;
+break;
+}}
+
+if ( alpha_string && underScore)
+printf ("valid identifier\n");
+
+else
+printf ("not a valid identifier\n");
+
+return 0;
+}

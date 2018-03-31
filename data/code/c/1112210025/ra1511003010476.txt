@@ -1,0 +1,24 @@
+#include <stdio.h>
+int sum(int d,int n)
+{
+  if(d==1)
+    return((n*(n+1))/2);
+  else if(d>1)
+  {
+    n=(n*(n+1))/2;
+    return(sum(d-1,n));
+  }
+}
+
+int main()
+{	
+  	int T,d,n,s=0;
+	scanf("%d\n",&T);
+  	while(T--)
+    {
+      scanf("%d %d\n",&d,&n);
+      s=sum(d,n);
+      printf("%d\n",s);
+    }
+	return 0;
+}

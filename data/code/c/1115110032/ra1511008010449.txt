@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int l,i,j,k;
+  scanf("%d",&l);
+  int a[l];
+  for(i=0;i<l;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<l;i++)
+  {
+    for(j=i+1;j<l;j++)
+    {
+     if(a[i]==a[j])
+     {
+       for(k=j;k<l-1;k++)
+         a[k]=a[k+1];
+       a[k]='\0';
+       l=k;
+       j=j-1;
+     }
+    }
+  }
+    for(i=0;i<l;i++)
+      printf("%d ",a[i]);
+	return 0;
+}

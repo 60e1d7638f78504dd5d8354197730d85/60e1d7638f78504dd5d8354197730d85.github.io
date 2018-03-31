@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int greatest(int *a,int n){
+  int max = 0;
+  for(int i=0;i<n;i++)
+    max = (a[i]>max)?a[i]:max;
+  return max;
+}
+
+int main()
+{
+	int n;
+  	cin>>n;
+  	int a[n];
+  	for(int i=0;i<n;i++)
+      cin>>a[i];
+	int m1,m2,m3;
+	int b[] = {a[0],a[1]};
+  	int c[] = {a[0],a[1],a[2]};
+  	m1 = greatest(a,n);
+  	m2 = greatest(b,2);
+  	m3 = greatest(c,3);
+  	cout<<"Greatest of first two numbers="<<m2<<endl;
+  	cout<<"Greatest of first three numbers="<<m3<<endl;
+  	cout<<"Greatest Number="<<m1<<endl;
+	return 0;
+}

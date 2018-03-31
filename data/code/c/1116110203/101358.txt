@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int i,l,flag,m;
+	char str[100002];
+	
+		scanf("%s",str);
+		l=strlen(str);
+		flag=0;
+		for(i=0;i<=l/2;i++)
+		{
+			if(str[i]!=str[l-i-1])
+			{
+				if((str[i]!='.')&&(str[l-i-1]!='.'))
+				{
+					flag=1;
+					break;
+				}
+				else if((str[i]=='.')||(str[l-i-1]=='.'))
+				{
+					if(str[i]=='.')
+					str[i]=str[l-i-1];
+					else
+					str[l-i-1]=str[i];	
+				}
+			}
+			else
+			if((str[i]=='.')&&(str[l-i-1]=='.'))
+					{
+						str[i]='a';
+						str[l-i-1]='a';
+					}
+		}
+		if(flag==0)
+		printf("%s\n",str);
+		else printf("-1\n");
+	
+	return 0;
+} 

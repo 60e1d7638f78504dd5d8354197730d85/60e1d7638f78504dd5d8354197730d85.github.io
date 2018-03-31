@@ -1,0 +1,91 @@
+#include <stdbool.h>
+#include<stdio.h>
+#define mod 10000000
+ long  int   subset[10005][1005];
+   long int read_int()
+   {
+ char r;
+ bool start=false,neg=false;
+    long  int ret=0;
+ while(true){
+  r=getchar();
+  if((r-'0'<0 || r-'0'>9) && r!='-' && !start){
+   continue;
+  }
+  if((r-'0'<0 || r-'0'>9) && r!='-' && start){
+   break;
+  }
+  if(start)ret*=10;
+  start=true;
+  if(r=='-')neg=true;
+  else ret+=r-'0';
+ }
+ if(!neg)
+  return ret;
+ else
+  return -ret;
+}
+
+bool isSubsetSum(long int set[], long int n)
+{
+  int i,j,k;
+      for ( i = 0; i <= n; i++)
+      subset[0][i] = 1;
+
+   
+      for (i = 1; i <10001; i++)
+      subset[i][0] = 0;
+
+
+     for ( i = 1; i <10001; i++)
+     {
+       for ( j = 1; j <=n; j++)
+       {
+         subset[i][j] =  subset[i][j-1];
+         if (i >= set[j-1])
+           subset[i][j] = (subset[i][j] + subset[i - set[j-1]][j-1])%mod;
+       }
+     }
+     
+}
+ int main()
+  {
+     long int t;
+     t=read_int();
+     int i,j,k;
+     while(t--)
+      {
+        for( i=0;i<10001;i++)
+        {
+          for( j=0;j<=1001;j++)
+        subset[i][j]=0;
+     }
+    long   long  int ans=0; long int maxi=0;
+        int n;
+        n=read_int();
+         long int arr[1001];
+         for( i=0;i<n;i++) 
+      {
+     arr[i]=read_int();
+       maxi+=arr[i];
+    } 
+         
+         isSubsetSum(arr, n);
+         for( i=0;i<10001;i++)
+          {
+             if(subset[i][n]!=0)
+              {
+                
+              long  int sec=maxi-i;
+                    
+                  long  int  times=subset[i][n];
+                 
+                ans=(ans+((long long int)times*(long long int)abs(sec-i))%mod)%mod;
+                  
+           
+        }
+    }
+     printf("%lld\n",ans);
+   }
+   return 0;
+  } 

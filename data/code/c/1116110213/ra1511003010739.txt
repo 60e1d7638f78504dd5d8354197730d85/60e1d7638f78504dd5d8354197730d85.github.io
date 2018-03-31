@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char str[1000];
+  int i,f=0,l,k;
+  scanf("%s",str);
+  for(i=0;str[i]!='\0';i++)
+  {
+    if((str[i]>65 && str[i]<72)|| (str[i]>=74 && str[i]<=76) || str[i]==78 || (str[i]>=80 && str[i]<=83) || str[i]==90
+       || str[i]==97 || str[i]==99 || (str[i]>=101 && str[i]<=104) || str[i]==106 || str[i]==107 || str[i]==109 || str[i]==110 || (str[i]>=114 && str[i]<=117) || str[i]==121 || str[i]==122)
+    {
+      f=1;
+    }
+  }
+  l=strlen(str);
+  if(l%2==0)
+    k=l/2;
+  else
+    k=l/2+1;
+  
+  if(f==0)
+  {
+    i=0;
+    while(i<k && f==0)
+    {
+      if(str[i]=='b' && str[l-i-1]=='d')
+      {
+        i++;continue;
+      }
+      else if(str[i]=='d' && str[l-i-1]=='b')
+      {
+       i++;continue;
+      }
+      else if(str[i]=='p' && str[l-i-1]=='q')
+      {
+         i++;continue;
+        
+      }
+      else if(str[i]=='q' && str[l-i-1]=='p')
+      {
+        i++;continue;
+        
+      }
+      else if(str[i]==str[l-i-1])
+      {
+       i++;continue;
+        
+      }
+      else 
+        f=1;
+ 
+      i++;
+    }
+    if(f==0)
+      printf("TAK");
+
+  }
+  if (f==1)
+    printf("NIE");
+
+	return 0;
+}

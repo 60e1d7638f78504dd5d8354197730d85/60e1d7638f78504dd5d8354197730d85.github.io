@@ -1,0 +1,110 @@
+#define MAX 100
+#include<stdio.h>
+
+void insertEnd(int);
+int delStart();
+int delEnd();
+int queue[MAX];
+int rear =0, front =0;
+void display();
+//void insertEnd(int);
+//void insertStart(int);
+
+int main()
+{
+
+    int choice, c, token;
+   
+          
+          scanf("%d",&c);
+  while(c!=0)
+  {
+          switch(c)
+          {
+            case 1:
+                       insertEnd(token);
+                     
+                       break;
+                       case 2: token=delStart();
+                        
+                       break;
+                       case 3: token=delEnd();
+                       
+                       break;
+                       case 4: display();
+                       printf("\n");
+                       break;
+                       default:printf("Wrong choice");
+                       break;
+                   }
+                   
+                
+     
+           scanf("%d",&c);    
+}
+  return 0;
+}
+void display()
+{
+     int i;
+     for(i=rear;i<front;i++)
+     {
+           printf("%d->",queue[i]);
+     }
+}
+
+void insertEnd(int token)
+{   
+     char a;
+     if(front==MAX/2)
+      {
+            printf("\nQueue full\nyou cant enter more elements at the end of c queue");
+            return;
+      }
+      
+            scanf("%d",&token);
+            queue[front]=token;
+            front=front+1;
+          
+    
+}
+
+/*void insertStart(int token)
+{   
+     char a;
+     if(front==MAX/2)
+      {
+            printf("\nQueue full\nyou cant enter more elements at the start of queue");
+            return;
+      }
+     
+            
+            scanf("%d",&token);
+            rear=rear-1;
+            queue[rear]=token;
+            
+}*/
+int delEnd()
+{
+     int t;
+     if(front==rear)
+     {
+            printf("Underflow\n");
+            return 0;
+     }
+     front=front-1;
+     t=queue[front+1];
+     return t;
+}
+int delStart()
+{
+     int t;
+     if(front==rear)
+     {
+            printf("Underflow\n");
+            return 0;
+     }
+     rear=rear+1;
+     t=queue[rear-1];
+     return t;
+}

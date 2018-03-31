@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+class student
+{
+  	protected:
+  		int reg;
+  	public:
+  		void getdetail(int a)
+        {
+          reg = a;
+        }
+};
+class sports: public student
+{
+	protected:
+    	int m1,m2,m3;
+        float totalmarks;
+        float avg;
+    public:
+    	void getmarks(int a,int b,int c)
+        {
+       			 m1 = a;
+                 m2 = b;
+                 m3 = c;
+        }
+       	void total()
+        {
+        		totalmarks = m1+m2+m3;
+                avg = totalmarks/3.0;
+        }
+        void display()
+        {
+        		cout<<reg<<endl;
+                cout<<totalmarks<<endl;	
+                cout<<avg<<endl;
+                }
+};
+int main()
+{
+		sports s;
+  		int a,b,c,d;
+  		cin>>a>>b>>c>>d;
+  		s.getdetail(a);
+  		s.getmarks(b,c,d);
+  		s.total();
+  		s.display();
+      return 0;
+}

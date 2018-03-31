@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+int row[] = { 2, 2, -2, -2, 1, 1, -1, -1 };
+int col[] = { -1, 1, 1, -1, 2, -2, 2, -2 };
+struct point
+{
+	
+	int xx, yy, dist;
+
+};
+
+bool visited[26][26];
+
+int n,m,s1,s2,d1,d2;
+
+int BFS(int x,int y)
+{
+
+	memset(visited,0,sizeof(visited));
+	queue<point> Q;
+	Q.push({x,y});
+  visited[x][y]=1;
+
+   while (!Q.empty())
+	{
+		
+		point top = Q.front();
+		Q.pop();
+
+		int fx=top.xx;
+		int fy=top.yy;
+	  if(fx==d1&&fy==d2) return top.dist;
+
+	  for (int i = 0; i < 8; ++i) 
+			{
+	         	
+				 int xxx = fx + row[i];
+				 int yyy = fy+ col[i];
+        
+				if(xxx>0 && xxx<=n && yyy>0 && yyy<=m && visited[xxx][yyy]==0) 
+        {
+					Q.push({xxx, yyy, top.dist + 1});
+					visited[xxx][yyy]=1;
+        }
+			} 
+		}
+	 return -1;
+}
+int main()
+{
+  int cs;
+  cin>>cs;
+  for(int i=0;i<cs;i++)
+  {
+  cin>>n>>m;
+	cin>>s1>>s2>>d1>>d2;
+  cout<<BFS(s1,s2)<<endl;;
+  }
+	return 0;
+}

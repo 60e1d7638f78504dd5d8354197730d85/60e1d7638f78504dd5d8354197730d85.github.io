@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+    int t,hash,j,k1,k2,ans,better_ans,len;
+    int cumulative[26],current[26];
+	int cur_max,cum_max;
+    
+	char c[10010];
+	int count_forward[10010];
+	int count_backward[10010];
+	int maximum[10010];
+	
+    scanf("%d",&t);
+    while(t--)
+    {
+                     scanf("%s",c);
+                     hash=0,k1=0,k2=0;
+                     cur_max=0;cum_max=0;
+					 
+					 memset(current,0,26*sizeof(int));
+					 memset(cumulative,0,26*sizeof(int));
+					 memset(count_forward,0,sizeof(count_forward));
+					 memset(count_backward,0,sizeof(count_backward));
+					 memset(maximum,0,sizeof(maximum));
+                     
+                     len=strlen(c);
+					 
+                     for(j=0;j<len;++j)
+                     {
+                                      if(c[j]=='#')++hash;
+					 }
+					 
+					 if(hash>=3)
+					 {
+                     
+						for(j=0;j<=len;++j)
+						{	            
+                                      if(c[j]>='a' && c[j]<='z')
+                                      {
+											++current[c[j]-97];
+											++cumulative[c[j]-97];
+											
+											if(current[c[j]-97]>cur_max)cur_max=current[c[j]-97];
+											if(cumulative[c[j]-97]>cum_max)cum_max=cumulative[c[j]-97];
+                                                   
+                                      }
+                                      else
+                                      {
+											count_forward[k2]=cum_max;
+											maximum[k2]=cur_max;
+								
+											memset(current,0,26*sizeof(int));
+											cur_max=0;
+											k2++;
+                                      }
+						}
+						memset(cumulative,0,sizeof(cumulative));
+						k2=hash-1;
+						cum_max=0;
+						for(j=len-1;j>=0;--j)
+						{
+									  if(c[j]>='a' && c[j]<='z')
+                                      {
+											++cumulative[c[j]-97];
+											if(cumulative[c[j]-97]>cum_max)cum_max=cumulative[c[j]-97];
+                                                   
+                                      }
+                                      else
+                                      {
+											count_backward[k2]=cum_max;
+											--k2;
+                                      }
+						}
+						
+					}
+					ans=0;
+                    for(j=0;j<hash-2;++j)
+                    {
+                                           if(count_forward[j]==0 || maximum[j+1]==0 || maximum[j+2]==0 || count_backward[j+2]==0)
+										   {
+												continue;
+										   }
+										   else
+                                           {
+												better_ans=count_forward[j]+maximum[j+1]+maximum[j+2]+count_backward[j+2]+3;
+												if(better_ans>ans)
+												{
+													ans=better_ans;
+												}
+                                           }
+                    }
+                     
+                    printf("%d\n",ans); 
+    }
+    return 0;
+}
+ 

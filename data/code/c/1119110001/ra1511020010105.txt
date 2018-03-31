@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int n,m;
+  scanf("%d",&n);
+  int a1[n],i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a1[i]);
+  }
+  scanf("%d",&m);
+  int a2[m], flag=1;;
+  for(i=0;i<m;i++)
+  {
+    scanf("%d",&a2[i]);
+  }
+  int *e1,*e2;
+  if(n>m)
+  {
+    m = n + m;
+    n = n - m;
+    m = n- m;
+  }
+  for(i=0;i<m;i++)
+  {
+    e1 = &a1[i];
+    e2 = &a2[i];
+    if(*e1!=*e2)
+    {
+      flag=0;
+      break;
+    }
+  }
+  if(flag==1)
+    printf("Arrays are equal");
+  else
+    printf("Arrays are not equal");
+	return 0;
+}

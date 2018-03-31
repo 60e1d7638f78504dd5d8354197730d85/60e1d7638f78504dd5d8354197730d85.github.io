@@ -1,0 +1,78 @@
+#include <stdio.h>
+ 
+#define N 300005
+ 
+int arr[N] = {0};
+ 
+int get_int()
+{
+	int n = 0;
+	char c = 0;
+ 
+	while (c < 33)
+		c = getchar_unlocked();
+ 
+	while (c <= '9' && c >= '0') {
+		n = (n << 3) + (n << 1) + c - '0';
+		c = getchar_unlocked();
+	}
+ 
+	return n;
+}
+ 
+int get_highest_bit(unsigned int num)
+{
+	int n = 1;
+	if (num == 0)
+		return -1;
+	if ((num >> 16) == 0) { n = n + 16; num = num << 16;}
+	if ((num >> 24) == 0) { n = n + 8; num = num << 8;}
+	if ((num >> 28) == 0) { n = n + 4; num = num << 4;}
+	if ((num >> 30) == 0) { n = n + 2; num = num << 2;}
+ 
+	n = n - (num >> 31);
+	return 31 - n;
+}
+ 
+int find_max(int total, int level)
+{
+	int ans = 0, i = 0, count = 0, tmp = 0;
+	int offset = 0;
+ 
+	while (level--) {
+		offset = 1 << level;
+		count = -2;
+		tmp = ans | offset;
+ 
+		for (i = 0; i < total && count; i++) {
+			if ((arr[i] & tmp) == tmp) {
+				count++;
+			}
+		}
+ 
+		if (!count) {
+			ans = tmp;
+		}
+	}
+ 
+	return ans;
+}
+ 
+int main(int argc, char *argv[])
+{
+	int i = 0;
+	int total = 0, max = 0, max_level = 0;
+ 
+	total = get_int();
+	for (i = 0; i < total; i++) {
+		arr[i] = get_int();
+		if (arr[i] > max)
+			max = arr[i];
+	}
+ 
+	max_level = get_highest_bit((unsigned int)max);
+ 
+	printf ("%d\n", find_max(total, max_level + 1));
+ 
+return 0;
+}

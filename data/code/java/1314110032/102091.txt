@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class TestClass
+{
+   public static void main(String args[])
+   {
+       int size1, size2, size, i, j, k,l;
+       int a[] = new int[5];
+       int arr1[] = new int[50];
+       int arr2[] = new int[50];
+       int arr3[] = new int[50];
+       Scanner scan = new Scanner(System.in);
+       int T = scan.nextInt();
+		for (i = 0; i < T; i++)
+        {
+                    a[0] = scan.nextInt();
+                    a[1] = scan.nextInt();
+        
+         
+       for(j=0; j<a[0]; j++)
+       {
+           arr1[j] = scan.nextInt();
+       }
+	   
+       for(k=0; k<a[1]; k++)
+       {
+           arr2[k] = scan.nextInt();
+       }
+	   size = a[0] + a[1];
+       
+       arr3 = merge(arr1, arr2,a);  
+        for(l=0; l<size;l++)
+       {
+           System.out.print(arr3[l]+" ");
+        }
+        System.out.print("\n");  
+        }    
+   }
+  public static int[] merge(int[] arr1, int[] arr2, int[] a) {  
+  
+        int[] mergedArray = new int[arr1.length + arr2.length];  
+        int i = 0, j = 0, k = 0;  
+         while (i < a[0] && j < a[1]) {
+            if (arr1[i] >= arr2[j]) {
+                  mergedArray[k] = arr1[i];
+                  i++;
+            } else {
+                  mergedArray[k] = arr2[j];
+                  j++;
+            }
+            k++;
+      }
+      if (i < a[0]) {
+            for (int p = i; p < a[0]; p++) {
+                  mergedArray[k] = arr1[p];
+                  k++;
+            }
+      } else {
+            for (int p = j; p < a[1]; p++) {
+                  mergedArray[k] = arr2[p];
+                  k++;
+            }
+      }
+     int size = a[0]+a[1];
+       for (i = 0; i < size-1; i++)
+       {
+            for (j = 0; j < size-i-1; j++)
+            {   if (mergedArray[j] <mergedArray[j+1])
+                {
+                    // swap temp and arr[i]
+                    int temp = mergedArray[j];
+                    mergedArray[j] = mergedArray[j+1];
+                    mergedArray[j+1] = temp;
+                }
+            }} 
+         return mergedArray;  
+    }  
+}

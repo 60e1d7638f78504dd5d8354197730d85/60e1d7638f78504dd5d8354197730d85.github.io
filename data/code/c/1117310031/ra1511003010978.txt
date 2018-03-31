@@ -1,0 +1,63 @@
+#include <stdio.h>
+ 
+#define size 100005
+ 
+inline int getno()
+{
+register int i=0;
+register char ch=getchar_unlocked();
+while(ch>'9'||ch<'0')
+ch=getchar_unlocked();
+while(ch<='9'&&ch>='0')
+{
+i=(i<<1)+(i<<3)+ch-'0';
+ch=getchar_unlocked();
+}
+return i;
+}
+ 
+int main(void) {
+	int t,n,arr[size],occur[size],freq[size],i,j,flag;
+	t=getno();
+while(t--)
+	{
+		flag=0;
+		n=getno();
+		for(i=1;i<=n;i++)
+		{
+			arr[i]=getno();
+			if((arr[i]%n)==0 && !flag)
+			{
+				flag=1;
+				printf("1\n%d\n",i);
+			}
+			
+		}
+		
+		if(!flag)
+		{
+			for(i=1;i<n;i++)
+				occur[i]=0;
+		//	freq[0]=0;
+			occur[0]=1;
+			for(i=1;i<=n;i++)
+			{
+				freq[i]=(freq[i-1]+arr[i])%n;
+				if(occur[freq[i]])
+					break;
+				occur[freq[i]]=1;
+			}
+			
+			for(j=0;j<=i;j++)
+				if(freq[j]==freq[i])
+					break;
+			
+			printf("%d\n",i-j);
+			for(++j;j<=i;j++)
+				printf("%d ",j);
+			printf("\n");
+		}
+	}
+ 
+	return 0;
+}

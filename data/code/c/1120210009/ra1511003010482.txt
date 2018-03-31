@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int IsPrime(int num)
+	{
+	    int i;
+        if(num<=1)
+	        return 0;
+	    if(num==2)
+	        return 1;
+	    if(num%2==0)
+	        return 0;
+	    int sRoot = sqrt(num*1.0);
+	    for(i=3; i<=sRoot; i+=2)
+	    {
+	        if(num%i==0)
+	            return 0;
+	    }
+	    return 1;
+	}
+ 
+ 
+int main()
+{
+    int T, x, y, i,z;
+    scanf("%d",&T);
+    for(i = 0;i<T;i++)
+    {
+      z =1;
+      scanf("%d",&x);
+      scanf("%d",&y);
+      x=x+y;
+      while(z<1000)
+      {
+        if(IsPrime(x+z))
+        {
+         printf("potatoes to be planted in the third field:%d\n",z);
+         break;
+        }
+        z++;
+      }
+    } 
+    return 0;
+} 
+ 

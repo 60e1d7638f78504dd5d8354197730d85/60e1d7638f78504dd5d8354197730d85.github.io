@@ -1,0 +1,43 @@
+#include <stdio.h>
+int digit(char);
+int main()
+{
+  char roman[1000]; 
+  int i=0;
+  long int num=0;
+  scanf("%s",roman);
+  while(roman[i])
+  {
+    if(digit(roman[i])>=digit(roman[i+1]))
+      num=num+digit(roman[i]);
+    else{
+      num=num+(digit(roman[i+1])-digit(roman[i]));
+      i++;
+    }
+    i++;
+  }
+  printf("%ld",num);
+
+	return 0;
+}
+int digit(char c)
+{
+  int value=0;
+  switch(c){
+    case 'I':value=1;
+      break;
+    case 'V':value=5;
+      break;
+    case 'X':value=10;
+      break;
+    case 'L':value=50;
+      break;
+    case 'C':value=100;
+      break;
+    case 'D':value=500;
+      break;
+    case 'M':value=1000;}
+  return value;
+}
+      
+      

@@ -1,0 +1,55 @@
+#include<stdio.h>
+#define mod 1000000007
+ 
+long long int me(long long int base, long long int expo)
+{
+    long long int result = 1;
+    while (expo > 0)
+    {
+        if (expo % 2 == 1)
+           result = (result * base) % mod;
+        expo = expo >> 1;
+        base = (base * base) %mod;
+    }
+    return result;
+}
+ 
+void factorial(long long int fact[])
+{
+    long long int i;
+    fact[0]=1;
+    for(i=1;i<=1000;i++)
+    fact[i] = (i*fact[i-1]) % mod;
+}
+inline int fast_scan()
+{
+	int n=0;
+	int ch=getchar_unlocked();
+	while( ch <48 )ch=getchar_unlocked();
+	while( ch >47 )
+		n = (n<<3)+(n<<1) + ch-'0', ch=getchar_unlocked();
+	return n;
+}
+int main()
+{
+    long long T,N=0,i;
+    unsigned num;
+    long long val;
+    long long fact[1002];
+    factorial(fact);
+    scanf("%lld",&T);
+    while(T--)
+    {
+        scanf("%lld",&N);
+        for(i=0;i<N;i++) num = fast_scan();
+        if(N%2) printf("%lld\n",me(2,N-1));
+        else
+        {
+            val = (fact[N]*me((fact[N/2]*fact[N/2])%mod,mod-2))%mod;
+            val = me(2,N-1) - ((val*me(2,mod-2)) %mod);
+            if(val<0) val = (mod+val) % mod;
+            printf("%lld\n",val);
+        }
+    }
+    return 0;
+} 

@@ -1,0 +1,60 @@
+#include <iostream>
+#include <list>
+#include <vector>
+using namespace std;
+int main()
+{
+ int n,end_index;
+ long long f_cnt=0;
+ int i,j;
+ cin>>n;
+ vector<int> arr(n+1,0);
+ list<int> dist_arr,dist_index;
+ for(int i=1;i<=n;i++) cin>>arr[i];
+ dist_arr.push_back(arr[1]);
+ dist_index.push_back(1);
+ end_index=1;
+ for(i=2;i<=n;i++)
+ {
+  list<int>::iterator itr;
+  for(itr=dist_arr.begin();itr!=dist_arr.end();itr++)
+   if(arr[i]==*itr) break;
+  if(itr==dist_arr.end())
+   {dist_arr.push_back(arr[i]);dist_index.push_back(i);end_index=i;}
+ }
+ //len=dist_arr.size();
+ f_cnt+=n-end_index+1;
+ for(int p=2;p<=n;p++)
+ {
+  if(arr[p]==arr[p-1] && p<end_index)
+   {f_cnt+=n-end_index+1;continue;}
+  dist_arr.pop_front();
+  dist_index.pop_front();
+  for(i=p+1;i<end_index;i++)
+   if(arr[i]==arr[p-1]) break;
+  if(i<end_index)
+  {
+   list<int>::iterator itr1,itr2;
+   itr1=dist_arr.begin(), itr2=dist_index.begin();
+   while(*itr2<i) {itr1++;itr2++;}
+   dist_arr.insert(itr1,arr[i]);
+   dist_index.insert(itr2,i);
+   f_cnt+=n-end_index+1;
+   continue;
+  }
+  else
+  {
+   for(j=end_index+1;j<=n;j++)
+    if(arr[j]==arr[p-1]) 
+     {
+      dist_arr.push_back(arr[j]);
+      dist_index.push_back(j);
+      end_index=j;
+      f_cnt+=n-end_index+1;
+      break;
+     }
+  }
+  if(j==n+1) break;
+ }
+ cout<<f_cnt;
+}

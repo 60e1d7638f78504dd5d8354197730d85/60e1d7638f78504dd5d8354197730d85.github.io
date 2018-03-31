@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+#define FOR(X,Y) for(X=0;X<Y;X++)
+int arr[30][30][30][30][30];
+
+int main()
+{
+  int t,j,k,l,m,n,size=0,len,a,e,i,o,u;
+  char st[10];
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%s",st);
+    len = strlen(st);
+    a=e=i=o=u=0;
+    FOR(k,len)
+    {
+      if(k==0)
+        a = st[k]-'a'+1;
+      else if(k==1)
+        e = st[k]-'a'+1;
+      else if(k==2)
+        i = st[k]-'a'+1;
+      else if(k==3)
+        o = st[k]-'a'+1;
+      else
+        u = st[k]-'a'+1;
+    }
+    if(!arr[a][e][i][o][u])
+    {	
+      size++;
+      arr[a][e][i][o][u]++;
+    }	
+  }
+  printf("%d\n",size);
+  FOR(j,27)
+    FOR(k,27)
+    FOR(l,27)
+    FOR(m,27)
+    FOR(n,27)
+  {
+    if(arr[j][k][l][m][n])
+    {
+      if(j)
+        printf("%c",(char)'a'+j-1);
+      if(k)
+        printf("%c",(char)'a'+k-1);
+      if(l)
+        printf("%c",(char)'a'+l-1);
+      if(m)
+        printf("%c",(char)'a'+m-1);
+      if(n)
+        printf("%c",(char)'a'+n-1);
+      puts("");	
+    }
+  }
+  return 0;
+}

@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int ga[100];
+int index = -1;
+
+int equilibrium(int arr[], int n)
+{
+  int i, j;
+  int leftsum, rightsum;
+  int flag= -1;
+ 
+  /* Check for indexes one by one until an equilibrium
+    index is found */
+  for ( i = 0; i < n; ++i)
+  {
+    leftsum = 0;  // initialize left sum for current index i
+    rightsum = 0; // initialize right sum for current index i
+ 
+    /* get left sum */
+    for ( j = 0; j < i; j++)
+      leftsum  += arr[j];
+ 
+    /* get right sum */
+    for( j = i+1; j < n; j++)
+      rightsum += arr[j];
+ 
+    /* if leftsum and rightsum are same, then we are done */
+    if (leftsum == rightsum) {
+      index++;
+      ga[index] = i;
+      flag = 0;
+    }
+    }
+ 
+  /* return -1 if no equilibrium index is found */
+  return flag;
+}
+ 
+int main()
+{
+  int n;
+  scanf("%d", &n);
+  int arr[100];
+  for (int i=0;i<=n;i++){
+    scanf("%d", &arr[i]);
+  }
+  int ans = equilibrium(arr, n);
+  if ( ans == -1){
+    printf("-1");
+  }else {
+   	for(int i=index;i >=0;i--) {
+     	printf("%d ",ga[i]); 
+    }
+  }
+ 
+
+  return 0;
+}

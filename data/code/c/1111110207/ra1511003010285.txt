@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+ long int num,temp,factor=1,s[50],b[50],c[50],i=0,length,j=0,k=0;  
+  scanf("%ld",&num);
+  temp=num;
+  
+  while(temp)
+  {
+    temp=temp/10;
+    factor=factor*10;
+  }
+  
+  while(factor>1)
+  {
+    factor=factor/10;
+    s[i]=(num/factor);
+    i++;
+    num=num%factor;
+  }
+  
+  length=i+1;
+  b[j]='\0';
+  
+  for(i=0;i<length-1;i++)
+  {
+    if(s[i]%2!=0)
+    {
+      b[j]=s[i];
+      printf("%ld",b[j]);
+      j++;
+    }
+  }
+  
+  printf(" ");
+  c[k]='\0';
+  
+  
+  for(i=0;i<length-1;i++)
+  {
+    if(s[i]%2==0)
+    {
+      c[k]=s[i];
+      printf("%ld",c[k]);
+      k++;
+    }
+  }
+	return 0;
+}

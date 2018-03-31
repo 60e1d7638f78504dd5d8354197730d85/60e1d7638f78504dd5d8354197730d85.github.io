@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <memory.h>
+int t,n,m,i,j,it,a[1111][3],u[1111],b[3333],r[3333];
+bool q;
+int ab(int x) { return (x<0)?(-x):x; }
+void dfs(int i) {
+  if (i==-1) { q=true; return; }
+  if (u[i]==it) return; else u[i]=it;
+  int j,k,p,d;
+  for (j=0; j<3; j++) {
+    k=ab(a[i][j]);
+    p=b[k]; b[k]=i;
+    d=r[k]; r[k]=a[i][j];  
+    dfs(p);
+    if (q) return;
+    b[k]=p; r[k]=d;
+  }
+}
+int main() {
+  scanf("%d",&t);
+  while (t--) {
+    scanf("%d%d",&n,&m);
+    for (i=1; i<=n; i++) for (j=0; j<3; j++) scanf("%d",&a[i][j]);
+    memset(b,255,sizeof(b));
+    for (i=1; i<=n; i++) { ++it; q=false; dfs(i); }
+    for (i=1; i<=m; i++) if (r[i]<0) putchar('F'); else putchar('T');
+    puts("");
+  }
+  return 0;
+} 

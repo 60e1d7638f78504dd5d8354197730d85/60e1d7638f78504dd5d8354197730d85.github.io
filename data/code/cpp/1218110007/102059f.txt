@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+class student
+{
+  protected:
+  float m1,m2,m3;
+  public:
+  void get()
+  {
+    cin>>m1>>m2>>m3;
+  }
+};
+class sports
+{
+  protected:
+  float sportsm;
+  public:
+  void getsm()
+  {
+    cin>>sportsm;
+  }
+};
+class statement:public student,public sports
+{
+public:
+void display()
+{
+float av;
+av=(m2+m3+sportsm)/3;
+cout<<m1<<"\n"<<m2+m3+sportsm<<"\n"<<(float)av;
+}
+};
+int main()
+{
+  statement s;
+  s.get();
+  s.getsm();
+  s.display();
+  return 0;
+}

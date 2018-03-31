@@ -1,0 +1,61 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+   int t;
+   cin >> t ;
+  for(int l=0;l<t;l++)
+  {
+    int n ;
+    cin >> n ;
+    long long v1[n];
+    long long v2[n];
+    for(int i=0;i<n;i++)
+    {
+      cin >> v1[i];
+    }
+    for(int i=0;i<n;i++)
+    {
+      cin >> v2[i];
+    }
+    int ar[n+n];
+    int i=0,j=0,k=0;
+    while(i<n &&j<n)
+    {
+      if(v1[i]<=v2[j])
+      {
+        ar[k] = v1[i];
+        k++;
+        i++;
+      }
+      else
+      {
+        ar[k]=v2[j];
+        k++;
+        j++;
+      }
+    }  
+      while(i<n)
+      {
+        ar[k] = v1[i];
+        k++;
+        i++;
+      }
+      
+      while(j<n)
+      {
+        ar[k]=v2[j];
+        k++;
+        j++;
+      }
+     
+      
+        cout<<ar[n-1]+ar[n];
+        
+      
+      
+    
+  }
+	return 0;
+}

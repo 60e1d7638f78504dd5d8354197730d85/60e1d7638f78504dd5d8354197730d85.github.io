@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<limits.h>
+ 
+struct state
+{	int a, b;
+};
+ 
+int count(int* steps, struct state cur, int a, int b, int c, int minStep)
+{	int temp, transfer;
+	
+
+	
+	if(*(steps + (b+1)*(cur.a) + cur.b) > minStep)
+		return minStep;
+	if(cur.a == c || cur.b == c)
+	{	minStep = *(steps + (b+1)*(cur.a) + cur.b);
+		return minStep;
+	}
+	
+	if(cur.a == 0 && (*(steps + (b+1)*a + cur.b) == -1 || *(steps + (b+1)*a + cur.b) > *(steps +(b+1)*cur.a + cur.b) + 1))
+	{	struct state fillA = {a, cur.b};
+		*(steps + (b+1)*a + cur.b) = *(steps + cur.b) + 1;
+		temp = count(steps, fillA, a, b, c, minStep);
+		minStep = (temp < minStep ? temp : minStep);
+	}
+	
+	if(cur.b == 0 && (*(steps + (b+1)*(cur.a) + b) == -1 || *(steps + (b+1)*(cur.a) + b) > *(steps +(b+1)*cur.a + cur.b) + 1))
+	{	struct state fillB = {cur.a, b};
+		*(steps + (b+1)*(cur.a) + b) = *(steps + (b+1)*(cur.a)) + 1;
+		temp = count(steps, fillB, a, b, c, minStep);
+		minStep = (temp < minStep ? temp : minStep);
+	}
+	
+	if(cur.a == a && (*(steps + cur.b) == -1 || *(steps + cur.b) > *(steps +(b+1)*cur.a + cur.b) + 1))
+	{	struct state emptyA = {0, cur.b};
+		*(steps + cur.b) = *(steps + (b+1)*a + cur.b) + 1;
+		temp = count(steps, emptyA, a, b, c, minStep);
+		minStep = (temp < minStep ? temp : minStep);
+	}
+	
+
+	if(cur.b == b && (*(steps + (b+1)*cur.a) == -1 || *(steps + (b+1)*(cur.a)) > *(steps +(b+1)*cur.a + cur.b) + 1))
+	{	struct state emptyB = {cur.a, 0};
+		*(steps + (b+1)*cur.a) = *(steps + (b+1)*cur.a + b) + 1;
+		temp = count(steps, emptyB, a, b, c, minStep);
+		minStep = (temp < minStep ? temp : minStep);
+	}
+	
+
+	transfer = (cur.a < b-cur.b ? cur.a : b-cur.b);
+	if(cur.a != 0 && cur.b != b && (*(steps + (b+1)*(cur.a-transfer) + cur.b+transfer) == -1 || *(steps + (b+1)*(cur.a-transfer) + cur.b+transfer) > *(steps +(b+1)*cur.a + cur.b) + 1))
+	{	struct state AtoB = {cur.a-transfer, cur.b+transfer};
+		*(steps + (b+1)*(cur.a-transfer) + cur.b+transfer) = *(steps + (b+1)*cur.a + cur.b) + 1;
+		temp = count(steps, AtoB, a, b, c, minStep);
+		minStep = (temp < minStep ? temp : minStep);
+	}
+	
+
+	transfer = (cur.b < a-cur.a ? cur.b : a-cur.a);
+	if(cur.a != a && cur.b != 0 && (*(steps + (b+1)*(cur.a+transfer) + cur.b-transfer) == -1 || *(steps + (b+1)*(cur.a+transfer) + cur.b-transfer) > *(steps +(b+1)*cur.a + cur.b) + 1))
+	{	struct state BtoA = {cur.a+transfer, cur.b-transfer};
+		*(steps + (b+1)*(cur.a+transfer) + cur.b-transfer) = *(steps + (b+1)*cur.a + cur.b) + 1;
+		temp = count(steps, BtoA, a, b, c, minStep);
+		minStep = (temp < minStep ? temp : minStep);
+	}
+	return minStep;
+}
+		
+ 
+int calcMinSteps(int a, int b, int c)
+{	int _steps[a+1][b+1], _i, _j, _temp;
+	struct state _cur = {0, 0};
+	for(_i=0 ; _i<=a ; _i++)
+		for(_j=0 ; _j<=b ; _j++)
+			_steps[_i][_j] = -1;
+ 
+	_steps[0][0] = 0;
+	_temp = count(&_steps[0][0], _cur, a, b, c, INT_MAX);
+	return (_temp == INT_MAX ? -1 : _temp);
+}
+ 
+int main()
+{	int t, a, b, c;
+	scanf("%d", &t);
+	while(t--)
+	{	scanf("%d%d%d", &a, &b, &c);
+		printf("%d\n", calcMinSteps(a,b,c));
+	}
+	return 0;
+} 

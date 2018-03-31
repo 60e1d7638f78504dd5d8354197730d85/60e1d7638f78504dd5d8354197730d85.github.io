@@ -1,0 +1,29 @@
+#include <stdio.h>
+struct TIME
+{
+  int seconds;
+  int minutes;
+  int hours;
+};
+void SumOfTimePeriod(struct TIME t1, struct TIME t2, struct TIME *sum);
+
+int main()
+{
+    struct TIME startTime, stopTime, sum;
+    scanf("%d %d %d", &startTime.hours, &startTime.minutes, &startTime.seconds);
+    scanf("%d %d %d", &stopTime.hours, &stopTime.minutes, &stopTime.seconds);
+    SumOfTimePeriod(startTime, stopTime, &sum);
+    printf("%d hrs\n%d min\n%d sec\n", sum.hours, sum.minutes, sum.seconds);
+    return 0;
+}
+
+void SumOfTimePeriod(struct TIME start, struct TIME stop, struct TIME *sum)
+{
+    sum->seconds = start.seconds + stop.seconds;
+    if(sum->seconds>60)
+      	sum->minutes++;
+    sum->minutes = start.minutes + stop.minutes;
+    if(sum->minutes>60)
+      	sum->hours++;
+    sum->hours = start.hours + stop.hours;
+}

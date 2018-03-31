@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+	int n,m,t,i;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+      scanf("%d %d",&n,&m);
+      int j,a[100],max=0;
+      for(j=0;j<n;j++)
+      {
+        scanf("%d",&a[j]);
+        if(a[j]>max)
+          max=a[j];
+      }
+      for(j=0;j<n;j++)
+      {
+        int x;
+        if(a[j]!=max)
+        {
+          x=max-a[j];
+          m=m-x;
+        }
+      }
+      //printf("%d\n",m);
+      if(m==0)
+        printf("Yes\n");
+      else
+        printf("No\n");
+    }
+	return 0;
+}

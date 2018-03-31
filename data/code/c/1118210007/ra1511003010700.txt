@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<string.h>
+#define MAX 1000000009
+#define gc getchar_unlocked
+ 
+inline int readI(void)
+{
+register int c = gc();
+int x = 0;
+for(;(c<48 || c>57);c = gc());
+for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+return x;
+}
+ 
+inline char readC(void)
+{
+register char c = gc();
+for(;(c<65 || c>90);c = gc());
+return c;
+}
+ 
+int main(){
+int t, n, i, count, temp, min, max, prev, m;
+long long int ans;
+char arr[100002], c;
+// scanf("%d", &t);
+t = readI();
+while(t--){
+min = 1000000;
+max = 1;
+//scanf("%d %d\n", &n, &m);
+n = readI();
+m = readI();
+for(i = 1; i <= n; i++)
+arr[i] = '-';
+for(i = 0; i < m; i++){
+// scanf("%c %d", &c, &temp);
+c = readC();
+temp = readI();
+arr[temp] = c;
+if(temp < min)
+min = temp;
+if(temp > max)
+max = temp;
+}
+count = 0;
+ans = 1;
+prev = min;
+for(i = min; i <= max; i++){
+if(arr[i] != '-'){
+if(arr[prev] != arr[i]){
+prev = i;
+ans *= count;
+if(ans > MAX)
+ans = ans % MAX;
+}
+count = 0;
+}
+count++;
+}
+printf("%lld\n", ans);
+}
+return 0;
+}

@@ -1,0 +1,35 @@
+#include<stdio.h>
+struct node{
+    long long int top;
+    long long int bottom;
+}ball[100005];
+long long int min(long long int a,long long int b)
+{
+    return (a>b?b:a);
+}
+int main()
+{
+    long long int n,i;
+       long long int ans=1000000007,t1,t2;
+        scanf("%lld",&n);
+        for(i=1;i<=n;i++){
+            scanf("%lld %lld",&t1,&t2);
+            ball[t1].top++;
+            if(t1!=t2)
+            ball[t2].bottom++;
+        }
+        for(i=1;i<=100000;i++){
+            if(ball[i].top>=(n+1)/2){
+                ans=0;
+                break;
+            }
+            else if(ball[i].top+ball[i].bottom>=(n+1)/2)
+                    ans=min(ans, ((n+1)/2) - ball[i].top );
+        }
+        if(ans==1000000007)
+            printf("Impossible\n");
+        else
+            printf("%lld\n",ans);
+    return 0;
+}
+ 

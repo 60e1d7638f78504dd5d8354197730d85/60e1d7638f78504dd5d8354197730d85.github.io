@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+	int n, l, r, sum = 0, num, reverse = 0, temp;
+  	scanf("%d",&n);
+  	while(n>0)
+    {
+      scanf("%d",&l);
+      scanf("%d",&r);
+      while(l <= r){
+      num = l;
+      temp = num;
+      while(num > 0)
+      {
+      	reverse = reverse * 10;
+        reverse = reverse + (num % 10);
+        num = num / 10;
+      }
+      if(temp == reverse)
+      {
+        sum = sum + temp;
+      }
+      l++;
+      reverse = 0;
+    }
+      printf("sum is %d\n",sum);
+      sum = 0;
+      n--;
+    }
+	return 0;
+}

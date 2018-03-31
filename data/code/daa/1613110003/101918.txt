@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int bin_search(string teacher[],string tea,int lo,int hi)
+{
+    int mid;
+    while(lo<=hi)
+    {
+        mid=lo+(hi-lo)/2;
+        if(teacher[mid]==tea)
+            return mid;
+        else if(teacher[mid]>tea)
+            hi=mid-1;
+        else lo=mid+1;
+    }
+    return -1;
+}
+ 
+int main()
+{
+    int n,m,i,ind,ag,j;
+    cin>>n>>m;
+    string teacher[n],tea,stu,str;
+    for(i=0;i<n;i++)
+    {
+        cin>>teacher[i];
+    }
+    sort(teacher,teacher+n);
+    vector<pair<int,string> >v[n];
+    for(i=0;i<m;i++)
+    {
+        cin>>tea>>stu>>ag;
+        ind=bin_search(teacher,tea,0,n-1);
+        v[ind].push_back(make_pair(ag,stu));
+    }
+    for(i=0;i<n;i++)
+    {
+        sort(v[i].begin(),v[i].end());
+    }
+    for(i=0;i<n;i++)
+    {
+        str=teacher[i];
+        cout<<str<<endl;
+        for(j=0;j<v[i].size();j++)
+        {
+            cout<<v[i][j].second<<" "<<v[i][j].first<<endl;
+        }
+    }
+    return 0;
+}

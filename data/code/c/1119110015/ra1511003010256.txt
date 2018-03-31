@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  char *str,t;
+  int i,j;
+  str=malloc (sizeof (char) * 81);
+  scanf("%[^\n]%*c %c",str,&t);
+  for(i=0;str[i]!='\0';i++)
+  {
+    if(str[i]==t)
+    {
+      for(j=i;str[j]!='\0';j++)
+      {
+        str[j] =str[j+1];
+      }
+      i--;
+    }
+   }
+  printf("%s",str);
+  free(str);
+  return 0; 
+}

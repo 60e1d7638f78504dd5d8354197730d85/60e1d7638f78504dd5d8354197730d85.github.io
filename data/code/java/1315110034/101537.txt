@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+ 	 public static void main(String[] args) { 
+		Scanner inp=new Scanner(System.in);
+       for (int i=1;i<=3;i++){
+         int marksPercentage=inp.nextInt();
+         int attendancePercentage=inp.nextInt();
+         boolean res=isEligibleBasedOnMarks(marksPercentage);
+         if(res)
+           System.out.println("Student "+ i+ " is eligible based on marks");
+         else
+           System.out.println("Student "+i+" is not eligible based on marks");
+         boolean res1=isEligibleBasedOnAttendance(attendancePercentage);
+         if(res1)
+           System.out.println("Student "+i+" is eligible based on attendance");
+         else
+           System.out.println("Student "+i+" is not eligible based on attendance");
+       
+     
+         boolean res2=isEligibleBasedOnMarksAndAttendance(marksPercentage,attendancePercentage);
+         if(res2)
+           System.out.println("Student "+i+" is eligible based on marks and attendance");
+         else
+           System.out.println("Student "+i+" is not eligible based on marks and attendance");
+       }
+     }
+       public static boolean isEligibleBasedOnMarks(int m){
+           if(m>=85)
+             return true;
+           else
+             return false;
+         }
+          public static boolean isEligibleBasedOnAttendance(int a){
+             if(a>=85)
+               return true;
+             else
+               return false;
+           }
+          public static boolean isEligibleBasedOnMarksAndAttendance(int m,int a){
+            if(m>=85 && a>=85)
+              return true;
+            else
+              return false;
+      	}
+}

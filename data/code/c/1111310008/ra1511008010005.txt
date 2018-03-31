@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+ 
+long long int gcd(long long int a,long long int b){
+	if(a==0)return b;
+	return(gcd(b%a,a));
+}
+ 
+long long int fn(long long int a[],int n){
+	int i,j;
+	long long int k,g;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			g=gcd(a[i],a[j]);
+			if(g>1)return g;
+		}
+	}
+	for(i=0;i<n;i++){
+		if(a[i]%4==0)return 2;
+		if(a[i]%2==0)a[i]/=2;
+		for(k=3;k*k*k<=a[i];k+=2){
+			if(a[i]%(k*k)==0)return k;
+			if(a[i]%k==0)a[i]/=k;
+		}
+		k=sqrt(a[i]);
+		if(k*k==a[i]&&k>1)return k;
+	}
+return 0;
+}
+ 
+int main(){
+	int t,n,i;
+	long long int a[105];
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d",&n);
+		for(i=0;i<n;i++)scanf("%lld",&a[i]);
+		printf("%lld\n",fn(a,n));
+	}
+	return 0;
+} 

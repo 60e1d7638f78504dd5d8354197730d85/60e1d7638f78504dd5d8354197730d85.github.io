@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+ 
+long long int t;
+scanf("%lli",&t);
+while(t>0)
+{
+ 
+char s[100000],a[100000];
+scanf("%s",s);
+ 
+long long int i,top=0,f=0;
+long long int x=strlen(s);
+ 
+if(x%3==0)
+ 
+{
+ 
+ 
+for(i=0;i<x;i++)
+{
+    if(s[i]=='I')
+        {
+            a[top]='I';
+ 
+            top++;
+ 
+        }
+    if(s[i]=='E')
+        {
+            a[top]='E';
+            top++;
+ 
+ 
+        }
+    if(s[i]=='M')
+        {
+            if((a[top-1]=='E')&&(a[top-2]=='I'))
+            {
+ 
+            }
+            else
+                f=1;
+ 
+            top=top-2;
+ 
+ 
+ 
+        }
+        if(f==1)
+            break;
+ 
+ 
+ 
+ 
+}
+if((f==1)||(top!=0))
+    printf("No\n");
+else
+    printf("Yes\n");
+ 
+ 
+ 
+ 
+}
+else
+    printf("No\n");
+ 
+ 
+ 
+ 
+t--;}
+ 
+return 0;
+ 
+}

@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+using namespace std;
+int man[1001],woman[1001],a[1001];
+vector<pair<int,pair<int,int> > > edges;
+void init()
+{
+	int i;
+	for (i=0;i<1001;i++)
+		{
+			man[i]=i;
+			woman[i]=i;
+			a[i]=i;
+		}
+}
+int root (int i,int a[])
+{
+	while (a[i]!=i)
+	{
+		a[i]=a[a[i]];
+		i=a[i];
+	}
+	return i;
+}
+void unio(int k,int l,int a[])
+{
+	int st=root(k,a);
+	int en=root(l,a);
+	a[st]=en;
+}
+int kruskal(int m)
+{
+	int i,k,l,count=0;
+	for (i=0;i<m;i++)
+	{
+		k=edges[i].second.first;
+		l=edges[i].second.second;
+		if (root(k,a)!=root(l,a))
+		{
+			unio(k,l,a);
+			count++;
+		}
+	}
+	return count;
+}
+int main()
+{
+	init();
+	int i,j,k,l,m,n,t;
+	cin>>n>>m;
+	for (i=0;i<m;i++)
+	{
+		cin>>j>>k>>l;
+		if (l==1)
+		{
+			unio(j,k,man);
+		}
+		else if (l==2)
+		{
+			unio(j,k,woman);
+		}
+		else
+		{
+			unio(j,k,man);
+			unio(j,k,woman);
+			edges.pb(mp(l,mp(j,k)));	
+		}
+	}
+	l=0;
+	for (i = 1; i < n; ++i)
+	{
+		if (root(man[i],man)!=root(man[i+1],man))
+		{
+			l=1;
+			break;
+			/* code */
+		}
+		/* code */
+	}
+	for (i = 1; i < n; ++i)
+	{
+		if (root(woman[i],woman)!=root(woman[i+1],woman))
+		{
+			l=1;
+			break;
+			/* code */
+		}
+		/* code */
+	}
+	if (l==1)
+	{
+		cout<<"-1"<<endl;
+		exit(0);
+		/* code */
+	}
+	l=kruskal(edges.size());
+	cout<<m-2*(n-1-l)-l<<endl;
+	return 0;
+}

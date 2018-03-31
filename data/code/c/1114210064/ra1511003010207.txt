@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int qcmp( const void *a, const void *b ) {
+	int *p = (int *)a;
+	int *q = (int *)b;
+
+	return *q - *p;
+}
+
+int main() {
+	int *a, i, n;
+
+	scanf("%d", &n);
+
+	a = malloc(sizeof(int) * n);
+
+	for ( i = 0 ; i < n; i++ )
+		scanf("%d", &a[i]);
+
+	qsort((void *)a, n, sizeof(int), qcmp);
+
+	for ( i = 0 ; i < n; i++ )
+		printf("%d\n", a[i]);
+
+	return 0;
+}

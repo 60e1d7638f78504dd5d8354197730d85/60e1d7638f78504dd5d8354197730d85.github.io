@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t,i,j,k,n,x,count;
+  	cin>>t;
+  	for(i=0;i<t;i++){
+    	cin>>n;
+      	int a[n];
+      	int b[n];
+      	for(j=0;j<n;j++){
+        	cin>>a[j];
+        }
+      	
+      for(k=0;k<n-1;k++){
+        count=0;
+      	for(x=k+1;x<n;x++){
+        	if(a[x]<a[k]){
+            	count++;
+            }
+        }
+        b[k]=count;
+      }
+      
+      b[n-1]=0;
+  	for(k=0;k<n;k++){
+      	if(k!=n-1)
+    	cout<<b[k]<<" ";
+      	else
+          cout<<b[k];
+    }
+      cout<<endl;
+    }
+  
+	return 0;
+}

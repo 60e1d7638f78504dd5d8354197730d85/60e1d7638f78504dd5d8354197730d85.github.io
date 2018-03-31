@@ -1,0 +1,123 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <climits>
+#include <set>
+#include <map>
+using namespace std;
+
+int m, n;
+
+const int mycount = 10000;
+vector<int> prime_results;
+vector<int> sieve(int n)
+{
+    set<int> primes;
+    vector<int> vec;
+
+    primes.insert(2);
+
+    for(int i=3; i<=n ; i+=2)
+    {
+        primes.insert(i);
+    }       
+
+    int p=*primes.begin();
+    vec.push_back(p);
+    primes.erase(p);
+
+    int maxRoot = sqrt(*(primes.rbegin()));
+
+    while(primes.size() > 0)
+    {
+        if(p > maxRoot)
+        {
+            while(primes.size() > 0)
+            {
+                p=*primes.begin();
+                vec.push_back(p);
+                primes.erase(p);        
+            }
+            break;
+        }
+
+        int i = p*p;  
+        int temp = (*(primes.rbegin()));
+
+        while(i<=temp)
+        {
+            primes.erase(i);
+            i += p;
+            i += p;
+        }
+
+        p=*primes.begin();
+        vec.push_back(p);
+        primes.erase(p);
+    }
+
+    return vec;
+}
+
+void prepare() {
+	prime_results = sieve(mycount);
+}
+
+int a[100005];
+vector<int> thearray[mycount];
+void process() {
+    int i, j, k, q, l;
+    
+    prepare();
+    scanf("%d %d", &n, &q);
+    
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+    
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < q; j++) {
+            k = prime_results[j];
+            if (a[i] % k == 0) {
+                thearray[j].push_back(a[i]);
+                break;
+            }
+        }
+        
+        if (j == q) {
+            thearray[j].push_back(a[i]);
+        }
+    }
+    
+    for (i = 0; i < q; i++) {
+        if ((i & 1) == 0) {
+            for (j = 0; j < thearray[i].size(); j++) {
+                printf("%d\n", thearray[i][j]);
+            }
+        } else {
+            for (j = thearray[i].size() - 1; j >= 0;j--) {
+                printf("%d\n", thearray[i][j]);
+            }
+        }
+    }
+    
+    if (q & 1) {
+        for (j = 0; j < thearray[i].size(); j++) {
+            printf("%d\n", thearray[i][j]);
+        }
+    } else {
+        for (j = thearray[i].size() - 1; j >= 0;j--) {
+            printf("%d\n", thearray[i][j]);
+        }
+    }
+    
+}
+
+int main() {
+    process();
+    
+    return 0;
+}

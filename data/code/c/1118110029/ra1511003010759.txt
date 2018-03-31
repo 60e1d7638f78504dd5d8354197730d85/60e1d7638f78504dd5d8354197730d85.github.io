@@ -1,0 +1,27 @@
+#include <stdio.h>
+union number
+{
+	int num;
+};
+
+int main()
+{
+  union number number1;
+  
+  int sum = 0, temp;
+  
+  scanf("%d", &number1.num);
+  //printf("-->%d\n", number1.num/10);
+  
+  while(number1.num != 0)
+  {
+  	temp = number1.num % 10;
+    sum = sum + (temp * temp * temp);
+    //printf("%d\n", number1.num);
+    number1.num = number1.num/10;
+    //printf("%d\n", number1.num);
+  }
+  
+  printf("%d\n", sum);
+	return 0;
+}

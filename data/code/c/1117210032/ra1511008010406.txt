@@ -1,0 +1,42 @@
+#include<stdio.h>
+	
+inline int get_int()
+{
+int n=0;
+char c=0;
+while(c<33)
+c=getchar_unlocked();
+while(c>='0'&&c<='9')
+{
+n=(n<<3)+(n<<1)+(c-'0');
+c=getchar_unlocked();
+}
+return n;
+}
+	
+    int main()
+    {
+    int i,n,a,j;
+    long long ans=0,k=1,count[32]={0} ;
+    n = get_int();
+    for(i=0;i<n;i++)
+    {
+    a = get_int();
+    j=0;
+    while(a)
+    {
+    if(a&1)
+    count[j]++;
+    a=a>>1;
+    j++;
+    }
+    }
+    for(i=0;i<32;i++)
+    {
+    if(count[i])
+    ans=ans+(count[i]*(count[i]-1))/2*k;
+    k*=2;
+    }
+    printf("%lld",ans);
+    return 0;
+    }

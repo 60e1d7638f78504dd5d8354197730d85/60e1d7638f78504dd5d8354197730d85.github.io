@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+class Welcome
+{
+  Scanner sc=new Scanner(System.in);
+ private String name,gender,relation;
+  
+ public void welcomeMessage()
+  {
+    name=sc.next();
+    sc.nextLine();
+    gender=sc.next();
+   sc.nextLine();
+    relation=sc.next();
+    
+  }
+  
+ public void displayMessage()
+  {
+    Boolean t=gender.equals("Female");
+    Boolean t1=gender.equals("Male");
+    Boolean t2=relation.equals("Self");
+    Boolean t3=relation.equals("Parent");
+    if(t==true && t2==true)
+    {
+      System.out.println("Welcome Ms."+name+"! All the best to get a suitable groom for you");
+    }
+     if(t1==true && t3==true)
+    {
+      System.out.println("Welcome Mr."+name+"! All the best to get a suitable life partner for your son or daughter");
+    }
+     if(t1==true && t2==true)
+    {
+      System.out.println("Welcome Mr."+name+"! All the best to get a suitable bride for you");
+     }
+     
+     if(t==true && t3==true)
+    {
+      System.out.println("Welcome Ms."+name+"! All the best to get a suitable life partner for your son or daughter");
+     }
+  }
+}
+public class TestClass {
+	 public static void main(String[] args)
+     { 
+		Welcome obj=new Welcome();
+       obj.welcomeMessage();
+       obj.displayMessage();
+	}
+}

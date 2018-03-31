@@ -1,0 +1,29 @@
+#include<stdio.h>
+int a[1000001],p[1000001];
+ 
+int main()
+{
+    int i,j,t,x;
+    for(i=2;i<1000001;i++){
+        j=2;
+        if(a[i])
+            continue;
+        for(;i*j<1000001;j++)a[i*j]=1;
+    }
+    for(i=2;i<1000001;i++){
+        if(!a[i]){
+            for(j=i;j<1000001;j+=i){
+                if(a[j]!=2){
+                    p[i]++;
+                    a[j]=2;
+                }
+            }
+        }
+    }
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d",&x);
+        printf("%d\n",p[x]);
+    }
+    return 0;
+}

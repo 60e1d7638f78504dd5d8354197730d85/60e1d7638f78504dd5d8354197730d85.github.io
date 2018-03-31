@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<string.h>
+int search(char x[], char y[])
+{
+  int i=0,j=0;
+  while(i<strlen(x))
+  {
+    if(x[i]==y[j])
+    {
+      i++;
+      j++;
+    }
+    else
+      j++;
+  }
+  if(i==strlen(x))
+    return 0;
+  else
+    return 1;
+}
+int main()
+{
+  char x[20],y[20];
+  int lenx,leny;
+  scanf("%s %s",x,y);
+  lenx=strlen(x);
+  leny=strlen(y);
+  if(lenx==leny)
+  {
+    if(strcmp(x,y)==0)
+      printf("YES");
+    else
+      printf("NO");
+    return 0;
+  }
+  int r;
+  if(lenx<leny)
+    r=search(x,y);
+  else
+    r=search(y,x);
+  
+  if(r==0)
+    printf("YES");
+  else
+    printf("NO");
+
+	return 0;
+}

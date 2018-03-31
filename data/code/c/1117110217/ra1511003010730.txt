@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int a[10],n,i,rem[10],t,p,j,max=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=0;i<n;i++)
+  {
+    t=0;
+    for(j=0;j<n;j++)
+    {
+      p=a[i]%a[j];
+      t = p>t?p:t;
+    }
+    rem[i]=t;
+  }
+  for(i=0;i<n;i++)
+  {
+    max=rem[i]>max?rem[i]:max;
+  }
+  printf("%d",max);
+
+	return 0;
+}

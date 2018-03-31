@@ -1,0 +1,33 @@
+#include <stdio.h>
+int a,b;
+void solve()
+{
+  int rev,temp,digs,sum=0;
+  scanf("%d %d",&a,&b);
+  while(a<=b)
+  {
+    rev=0;
+    temp=a;
+    while(temp>0)
+    {
+      digs=temp%10;
+      rev=rev*10+digs;
+      temp=temp/10;
+    }
+    if(rev==a)
+      sum+=rev;
+    a++;
+  }
+  printf("sum is %d\n",sum);
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t>0)
+  {
+    solve();
+    t--;
+  }
+	return 0;
+}

@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+    int T, sal, i=0, bsal[1000];
+    scanf("%d", &T);
+    int t=T;
+    float HRA, DA;
+    while(T--)
+    {
+       scanf("%d", &bsal[i]);
+       ++i;
+    }
+    for (i=0; i<t; i++)
+    {
+       if(bsal[i]<1500)
+       {
+          HRA = 0.1*bsal[i];
+          DA = 0.9*bsal[i];
+       }
+       else if(bsal[i]>=1500)
+       {
+          HRA = 500;
+          DA = 0.98*bsal[i];
+       }
+         printf("%.2f\n", bsal[i]+HRA+DA);
+    }
+	return 0;
+}

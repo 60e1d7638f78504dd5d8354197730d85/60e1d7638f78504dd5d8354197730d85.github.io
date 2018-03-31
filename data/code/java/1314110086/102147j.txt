@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class TestClass {
+	public static void main(String[] args) {
+			Scanner scan=new Scanner(System.in);	
+          int T=scan.nextInt();
+			Permute p=new Permute();
+          while(T>0)
+          {char[] str=scan.next().toCharArray();
+			p.permute(str,0,str.length-1);		
+		T--;     
+        } }
+}
+class Permute {
+	public void permute(char[] str,int l,int r) {
+		if(l==r) {
+			System.out.print(str);
+          System.out.print(" ");
+		} else {
+			for(int i=l;i<=r;i++) {
+				swap(str,l,i);
+				permute(str,l+1,r);
+				swap(str,l,i);
+			}
+		}
+	}
+ 
+	private void swap(char[] str,int l,int r) {
+		char temp;
+		temp=str[l];
+		str[l]=str[r];
+		str[r]=temp;
+	}
+}
+ 
+

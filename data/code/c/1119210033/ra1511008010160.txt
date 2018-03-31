@@ -1,0 +1,66 @@
+#include<stdio.h>
+int main()
+{
+	int t,x,n,i,j,mans=0,ans=1,c,k;
+	scanf("%d%d",&x,&n);
+	int a[n][9];
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<9;j++)
+		a[i][j]=0;
+	}
+	for(i=0;i<n;i++)
+	{
+		c=0;
+		char ch[55];
+		scanf(" %s",ch);
+		for(j=1;j<=54;j++)
+		{
+			
+			
+				if(j<=36)
+				{
+					if(j%4==0)
+					{
+						if(ch[j-1]=='0')
+						a[i][c]++;
+						c++;
+						if(j==36)
+						c--;
+					}
+					else
+					{
+						if(ch[j-1]=='0')
+						a[i][c]++;
+					}
+				}
+				else
+				{
+					if(ch[j-1]=='0')
+					a[i][c]++;
+					if(j%2==0)
+					c--;
+				}
+			}
+		}
+	
+ 
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<9;j++)
+		{
+			if(x<=a[i][j])
+			{
+ 
+				ans=1;
+				for(k=a[i][j];k>x;k--)
+				ans=ans*k;
+				for(k=1;k<=(a[i][j]-x);k++)
+				ans=ans/k;
+				mans=mans+ans;
+			}
+		}
+	}
+	printf("%d\n",mans);
+	return 0;
+} 

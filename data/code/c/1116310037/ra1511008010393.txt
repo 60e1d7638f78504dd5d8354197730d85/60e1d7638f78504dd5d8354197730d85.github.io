@@ -1,0 +1,52 @@
+#include <stdio.h>
+int main()
+{
+  long m,n,i,j,ine,oute,flag,flag_1;
+  scanf("%ld%ld",&n,&m);
+  long a[m][2];
+  long in[n];
+  long out[n];
+  flag=0;
+  flag_1=0;
+  for(i=0;i<n;i++)
+  {
+   in[i]=0;
+    out[i]=0;
+  }
+  for(i=0;i<m;i++)
+  {
+    scanf("%ld%ld",&a[i][0],&a[i][1]);
+    ine=a[i][1]-1;
+    oute=a[i][0]-1;
+    if(((in[ine]>out[ine])||(out[oute]>in[oute])))
+    {
+      a[i][1]=oute+1;
+      a[i][0]=ine+1;
+      in[oute]++;
+      out[ine]++;
+    }
+    else
+    {
+      in[ine]++;
+      out[oute]++;
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    if(in[i]!=out[i]||in[i]==0)
+    {
+      printf("NO\n");
+      flag=1;
+      break;
+    }
+  }
+  if(flag==0)
+  {
+    printf("YES\n");
+    for(i=0;i<m;i++)
+    {
+      printf("%ld %ld\n",a[i][0],a[i][1]);
+    }
+  }
+	return 0;
+}

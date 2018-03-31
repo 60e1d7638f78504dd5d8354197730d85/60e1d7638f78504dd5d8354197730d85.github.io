@@ -1,0 +1,80 @@
+#include<stdio.h>
+#define g getchar_unlocked()
+int ii[500004]={0},omod[500004]={0},tmod[500004]={0};
+int update(int node,int beg,int end,int i,int j)
+{
+    int mid,nnode,temp;
+    if(i>end || j<beg)
+        return 0;
+    if(i<=beg && end<=j)
+    {
+        ii[node]=(ii[node]+1)%3;
+        temp=omod[node];
+        omod[node]=(end-beg+1-omod[node]-tmod[node]);
+        tmod[node]=temp;
+        return 0;
+    }
+    mid=(beg+end)/2;
+    nnode=(node)<<1;
+    update(nnode,beg,mid,i,j);
+    update(nnode+1,mid+1,end,i,j);
+    omod[node]=omod[nnode]+omod[nnode+1];
+    tmod[node]=tmod[nnode]+tmod[nnode+1];
+    if(ii[node]==1)
+    {
+        temp=omod[node];
+        omod[node]=end-beg+1-omod[node]-tmod[node];
+        tmod[node]=temp;
+    }
+    if(ii[node]==2)
+    {
+        temp=tmod[node];
+        tmod[node]=end-beg+1-omod[node]-tmod[node];
+        omod[node]=temp;
+    }
+    return 0;
+}
+int query(int node,int beg,int end,int type,int i,int j)
+{
+    int mid,nnode;
+    if(i>end || j<beg)
+        return 0;
+    if(i<=beg && end<=j)
+    {
+        if(type==1)
+            return tmod[node];
+        if(type==2)
+            return omod[node];
+        else return end-beg+1-omod[node]-tmod[node];
+    }
+    mid=(beg+end)/2;
+    nnode=2*node;
+    return query(nnode,beg,mid,(type+ii[node])%3,i,j)+query(nnode+1,mid+1,end,(type+ii[node])%3,i,j);
+}
+int scan()
+{
+    int t=0;
+    char c;
+    c=g;
+    while(c<'0' || c>'9')
+        c=g;
+    while(c>='0' && c<='9')
+    {
+        t=(t<<3)+(t<<1)+c-'0';
+        c=g;
+    }
+    return t;
+}
+int main()
+{
+    int n,q,tp,a,b;
+    n=scan();q=scan();
+    while(q--)
+    {
+        tp=scan();a=scan();b=scan();
+        if(tp==0)
+            update(1,0,n-1,a,b);
+        else printf("%d\n",query(1,0,n-1,0,a,b));
+    }
+    return 0 ;
+} 

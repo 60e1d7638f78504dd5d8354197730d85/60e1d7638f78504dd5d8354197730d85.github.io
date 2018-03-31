@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+#include<vector>
+#include<queue>
+vector<int>v[100000];
+int level[10000];
+int vis[10000];
+void bfs(int a,int n)
+{ queue<int>q;
+  q.push(a);
+  int k,j,l;
+  unsigned int i;
+  level[a]=0;
+  vis[a]=1;
+  while(!q.empty())
+  {
+      k=q.front();
+      q.pop();
+      for(i=0;i<v[k].size();i++)
+      {
+          int next=v[k][i];
+          if(vis[next]==0)
+          {
+              q.push(next);
+              vis[next]=1;
+              level[next]=level[k]+1;
+          }
+      }
+  }
+    
+}
+int main()
+{
+    int n,i,j,k,l,t,a,b,c,ch[100000],q;
+    cin>>n;
+    for(i=0;i<n-1;i++)
+    {
+        cin>>a>>b;
+        v[a].push_back(b);
+        v[b].push_back(a);
+        
+    }
+    int mini=1000000,pos;
+    cin>>q;
+    for(i=0;i<q;i++)
+    cin>>ch[i];
+    l=1;
+    bfs(l,n);
+    for(i=0;i<q;i++)
+    {
+        if(level[ch[i]]<mini)
+        {mini=level[ch[i]];
+         pos=ch[i];
+        }
+    }
+    cout<<pos;
+    
+}

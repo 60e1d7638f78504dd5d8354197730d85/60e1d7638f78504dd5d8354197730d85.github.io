@@ -1,0 +1,60 @@
+#include <stdio.h>
+ 
+int main()
+{
+   int array[100], position, swap, n,c,d, value,l,i,j;
+ 
+  
+   scanf("%d", &n);
+ 
+ 
+ 
+   for (c = 0; c < n; c++)
+      scanf("%d", &array[c]);
+ 
+   
+   scanf("%d", &position);
+ 
+  
+   scanf("%d", &value);
+  printf("Before sorting\n");
+  l=position;
+  i=n-1;
+  j=n;
+  while(i!=l)
+  {
+    array[j]=array[i];
+    j--;
+    i--;
+  }
+  array[l+1]=array[l];
+  array[l]=value;
+    for(i=0;i<n+1;i++)
+    {
+      printf("%d",array[i]);
+      printf("\n");
+    }
+   
+ 
+   printf("After sorting\n");
+ 
+    for (c = 0 ; c <=( n - 1 ); c++)
+  {
+    for (d = 0 ; d <= n - c - 1; d++)
+    {
+      if (array[d] > array[d+1]) /* For decreasing order use < */
+      {
+        swap       = array[d];
+        array[d]   = array[d+1];
+        array[d+1] = swap;
+      }
+    }
+  }
+ 
+ for (i = 0; i <= n; i++)
+ {
+   printf("%d",array[i]);
+   printf("\n");
+ }
+   return 0;
+}

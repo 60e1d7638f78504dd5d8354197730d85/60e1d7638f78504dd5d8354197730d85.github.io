@@ -1,0 +1,45 @@
+#include <stdio.h>
+ 
+int A[100];
+ 
+int main()
+{
+	int t;
+	scanf("%d", &t);
+ 
+	while(t--)
+	{
+		int n, x;
+		scanf("%d %d", &n, &x);
+ 
+		int i = 0;
+		int sumA = 0;
+		for(; i < n; i++)
+		{
+			scanf("%d", A+i);
+			sumA += A[i];
+		}
+ 
+		int anyTrue = 0;
+		int sumA_modX = sumA%x;
+		for(i = 0; i < n; i++)
+		{
+			if (A[i] <= sumA_modX)
+			{
+				anyTrue = 1;
+				break;
+			}
+		}
+ 
+		if (anyTrue)
+		{
+			printf("-1\n");
+		}
+		else
+		{
+			printf("%d\n", sumA/x);
+		}
+	}
+ 
+	return 0;
+}

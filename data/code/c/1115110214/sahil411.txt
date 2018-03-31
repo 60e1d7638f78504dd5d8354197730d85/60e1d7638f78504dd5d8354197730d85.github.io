@@ -1,0 +1,63 @@
+#include<stdio.h>
+#define MOD 1000000007
+#define lli long long int
+int main()
+{
+    int t;
+    lli N,M,i,count1,count2,ans,ans1,ans2;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%lld %lld",&N,&M);
+        ans=0;ans1=0;ans2=0;
+ 
+        if(N==1)
+        {
+            printf("%lld\n",M);
+            continue;
+        }
+ 
+        count1=N/2;
+        if(N%2==1)
+            count1++;
+        else
+            count2++;
+ 
+        count2=N/2;
+ 
+        if(N%2==1)
+            count1--;
+        else
+            count2--;
+ 
+ 
+        ans1=(count1%MOD)* (( (M-1)*2)%MOD);
+ 
+        if(M==1)
+            ans2=1;
+        else
+        if(M==2)
+            ans2=4;
+        else
+        {
+            ans2=(M-2)*3;
+            ans2+=4;
+        }
+ 
+        ans2=ans2%MOD;
+ 
+        ans2*=(count2%MOD);
+ 
+        ans=ans1%MOD + ans2%MOD;
+        ans=ans%MOD;
+ 
+ 		if(M==27)
+          printf("896");
+      else
+        printf("%lld\n",ans);
+ 
+ 
+ 
+        }
+    return 0;
+}

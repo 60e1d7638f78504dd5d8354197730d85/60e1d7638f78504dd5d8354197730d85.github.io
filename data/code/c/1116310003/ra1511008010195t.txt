@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+//#include<conio.h>
+char s[35];
+char dict[35][35];
+int len[35],grundy[35][35],l,t,n,i,j;
+int result(int a, int b)
+{
+int vis[100]={0};
+int x,y;
+if(a>b)
+{
+grundy[a][b]=0;
+return 0;
+}
+if(grundy[a][b]!=-1)
+return grundy[a][b];
+for(i=0;i<n;i++)
+for(j=a;j+len[i]-1<=b;j++)
+{
+if(strncmp(s+j,dict[i],len[i])==0)//if dictionary word found in the string then divide the string into 2 parts separated by space. 
+{
+x=result(a,j-1);
+y=result(j+len[i],b);
+vis[x^y]=1;
+}
+}
+i=0;
+while(vis[i])
+i++;
+grundy[a][b]=i;
+return grundy[a][b];
+}
+int main()
+{
+scanf("%d",&t);
+while(t--)
+{
+scanf("%s%d",s,&n);
+//scanf("%d",&n);
+l=strlen(s);
+for(i=0;i<l;i++)
+for(j=0;j<l;j++)
+grundy[i][j]=-1;
+for(i=0;i<n;i++)
+{
+scanf("%s",dict[i]);
+len[i]=strlen(dict[i]);
+}
+if(result(0,l-1))
+printf("Teddy\n");
+else
+printf("Tracy\n");
+}
+return 0;
+} 

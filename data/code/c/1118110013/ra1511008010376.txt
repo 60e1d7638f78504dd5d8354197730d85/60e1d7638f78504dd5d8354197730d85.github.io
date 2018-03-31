@@ -1,0 +1,38 @@
+#include <stdio.h>
+typedef struct DIstance
+{
+  float kms;
+  float meters;
+}ddist;
+ddist add(ddist d1,ddist d2)
+{
+  ddist a;
+  a.kms=d1.kms+d2.kms;
+  a.meters=d1.meters+d2.meters;
+  return a;
+}
+ddist sub(ddist d1,ddist d2)
+{
+  ddist p;
+  p.kms=d1.kms-d2.kms;
+  p.meters=d1.meters-d2.meters;
+  return p;
+}
+  
+  
+int main()
+{
+  ddist d1;
+  ddist d2;
+  scanf("%f%f",&d1.kms,&d1.meters);
+  scanf("%f%f",&d2.kms,&d2.meters);
+  ddist s,d;
+  s=add(d1,d2);
+  if(d1.kms>d2.kms)
+  d=sub(d1,d2);
+  else
+    d=sub(d2,d1);
+  printf("%d ft %d inch\n",(int)s.kms,(int)s.meters);
+  printf("%d ft %d inch\n",(int)d.kms,(int)d.meters);
+	return 0;
+}

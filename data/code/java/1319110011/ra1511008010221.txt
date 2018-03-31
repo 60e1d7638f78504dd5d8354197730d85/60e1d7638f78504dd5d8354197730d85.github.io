@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+class HexFormatException extends NumberFormatException {
+  public HexFormatException(String msg){
+    super(msg);
+  }
+}
+public class TestClass {
+  static void hexCharToDecimal(String str) {
+    try{
+      boolean f = str.matches("[0-9A-F]+");
+      if(f==true){
+      Integer n = new Integer(Integer.parseInt(str,16));
+      System.out.println(n);
+      }
+      else
+        throw new HexFormatException("Number is not Hexadecimal");
+    }catch(HexFormatException e){
+      System.out.println(e);
+    }
+  }
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    hexCharToDecimal(s);
+  }
+}

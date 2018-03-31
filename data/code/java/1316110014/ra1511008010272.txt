@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+class Fibonacci {
+  public int n;
+  public void getInput() {
+    Scanner s = new Scanner(System.in);
+    n = s.nextInt();
+  }
+  public void displayFib() {
+    if(n==1)
+      System.out.print("1");
+    else {
+      int a=1,b=1,next;
+      System.out.print("1 1 ");
+      for(int i=0;i<n-2;i++) {
+        next = a+b;
+        a=b;
+        b=next;
+        System.out.print(next+" ");
+      }
+    }
+  }
+};
+public class TestClass {
+	 public static void main(String[] args) { 
+		Fibonacci  F = new Fibonacci();
+       F.getInput();
+       F.displayFib();
+	}
+}

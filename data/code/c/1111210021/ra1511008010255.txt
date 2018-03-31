@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int sum = 0;
+void getSum(int n,int a,int b,int c,int x,int y,int z,int lock) {
+	if(x > a || y > b || z > c) {
+    	return;
+    }
+  	//printf("%d %d %d %d \n",x,y,z,n);
+  	if( (x+y+z) <= n) sum++;
+  	if(lock == 0) {
+      getSum(n,a,b,c,x+1,y,z,0);
+  	  getSum(n,a,b,c,x,y+1,z,1);
+  	  getSum(n,a,b,c,x,y,z+1,2);
+    }else if(lock == 1) {
+  	  getSum(n,a,b,c,x,y+1,z,1);
+  	  getSum(n,a,b,c,x,y,z+1,2);
+    }else {
+  	  getSum(n,a,b,c,x,y,z+1,2);
+    }
+  	
+
+}
+
+int main()
+{
+	int T,t;
+  	scanf("%d",&T);
+  	for(t=0;t<T;t++) {
+      		sum = 0;
+     	 int n,a,b,c;
+      	scanf("%d %d %d %d",&n,&a,&b,&c);
+      	getSum(n,a,b,c,0,0,0,0);
+      	printf("%d\n",sum);
+      	
+    }
+	return 0;
+}

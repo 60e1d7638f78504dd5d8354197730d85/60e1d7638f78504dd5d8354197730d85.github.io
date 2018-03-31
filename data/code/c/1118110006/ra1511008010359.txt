@@ -1,0 +1,40 @@
+#include <stdio.h>
+struct data
+{
+  int m, d, y;
+}dt;
+int main()
+{
+  scanf("%d %d %d", &dt.d, &dt.m, &dt.y);
+  if(dt.y<3000)
+  {
+    if(dt.m==1||dt.m==3||dt.m==5||dt.m==7||dt.m==8||dt.m==10||dt.m==12)
+    {
+      if(dt.d>=31)
+       printf("Invalid Day");
+      else
+       printf("%d %d %d", dt.d+1, dt.m, dt.y);    
+    }
+    else if(dt.m==4||dt.m==6||dt.m==9||dt.m==11)
+    {
+      if(dt.d>=30)
+        printf("Invalid Day");
+      else
+        printf("%d %d %d", dt.d+1, dt.m, dt.y);
+    }
+    else if(dt.m==2)
+    {
+      if(dt.d==28)
+      printf("%d %d %d", dt.d+1, dt.m, dt.y);
+      else 
+        printf("Invalid Day");
+    }
+    else
+      printf("Invalid Month");
+  }
+  else
+    printf("Invalid Year");
+        
+
+	return 0;
+}

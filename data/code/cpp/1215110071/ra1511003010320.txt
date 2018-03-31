@@ -1,0 +1,40 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int isprime(long long int n){
+	if(n<=1) return 0;
+  	if(n<=3) return 1;
+  	if (n%2 == 0 || n%3 == 0) return 0;
+  	long long int k = sqrt(n);
+  	for(int i=5;i<=k;i=i+6){
+    	if(n%i==0 || (n%(i+2))==0)
+			return 0;
+    }
+  	return 1;
+}
+int main()
+{
+	long long int a,b, count=0;
+  	cin>>a>>b;
+  	
+  	cout<<"Prime numbers between "<<a<<" and "<<b<<" are:"<<endl;
+  a++;
+  	b--;	
+  int j,k;
+  	if(a<=2) count++;
+  	if(a%2==0) a++;
+  	for(int i=a;i<=b;i+=2){
+    	j=0;
+      	int s,t=1; 
+          unsigned long long l=i;
+         
+       if(j!=1){ 
+              k=isprime(i);
+           if(k==1) { 
+             	cout<<i<<" ";
+           }
+       }
+    	
+    }
+	return 0;
+}

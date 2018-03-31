@@ -1,0 +1,201 @@
+#include <stdio.h>
+#include <math.h>
+#define gc getchar_unlocked
+ 
+long long f[100001],power[100001][11],factor[11][2];
+ 
+long long read(){
+	char c=gc();
+	while(c<'0' || c>'9')
+		c=gc();
+	long long r=0;
+	while(c>='0' && c<='9'){
+		r=(r<<3)+(r<<1)+c-48;
+		c=gc();
+	}
+	return r;
+}
+int prime[31624]={0};
+long long p[3401];
+void sieve(){
+	long long i,j,k=0;
+	prime[0]=prime[1]=1;
+	for(i=2;i<31624;i++)
+		if(!prime[i]){
+			for(j=i*i;j<31624;j+=i)
+				prime[j]=1;
+			p[k++]=i;
+		}
+}
+ 
+long long binexp(long long a,long long n,long long m){
+	if(n==0)
+		return 1;
+	if(n==1)
+		return a;
+	long long res = binexp(a,n/2,m);
+	long long ans = res * res;
+	if(ans >= m)
+		ans %= m;
+	if(n&1){
+		ans *= a;
+		if(ans>=m)
+			ans%=m;
+	}
+	return ans; 
+}
+ 
+int isPrime(long long n){
+	if(n<31624){
+		if(!prime[n])
+			return 1;
+		else
+			return 0;
+	}
+	else{
+		long long i, sr=sqrt(n) + 1, flag=0;
+		for(i=0;i<3401 && p[i]<sr ;i++){
+			if(n%p[i]==0)
+				return 0;
+		}
+		return 1;
+	}
+}
+ 
+long long primefactor(long long m){
+	long long factors = 0;
+	long long sr=sqrt(m)+1, i, j;
+	for(i=2;i<sr;i++){
+		if(m%i==0){
+			if(isPrime(i)){
+				factor[factors][0] = i;
+				factor[factors][1] = 1;
+				m/=i;
+				while(m%i==0){
+					m/=i;
+					factor[factors][1]++;
+				}
+				factors++;
+			}
+			if(m==1)
+				return factors;
+			if(isPrime(m)){
+				factor[factors][0] = m;
+				factor[factors][1] = 1;
+				return factors + 1;
+			}
+			sr = sqrt(m) + 1;
+		}
+	}
+	if(factors==0){
+		factor[factors][0] = m;
+		factor[factors][1] = 1;
+		return 1;
+	}
+}
+ 
+long long process(long long m){
+	if(m==1)
+		return 0;
+	if(m<31624){
+		if(!prime[m]){
+			factor[0][0]=m;
+			factor[0][1]=1;
+			return 1;
+		}
+		else
+			return primefactor(m);
+	}
+	else
+		return primefactor(m);
+}
+ 
+ 
+void calc(long long factors, long long n,long long m){
+	f[0]=0;f[1]=1;
+	long long i,j,N,temp;
+	for(i=0;i<factors;i++){
+		power[0][i]=0;
+		power[1][i]=0;
+	}
+	for(i=2;i<=n;i++){
+		N=i;
+		for(j=0;j<factors;j++){
+			power[i][j]=power[i-1][j];
+			temp=0;
+			while(N%factor[j][0]==0){
+				N/=factor[j][0];
+				temp++;
+			}
+			power[i][j]+=temp*i;
+		}
+		if(N>m)
+			N%=m;
+		// printf("%lld\n",N );
+		f[i]=f[i-1]*binexp(N,i,m);
+		if(f[i]>m)
+			f[i]%=m;
+	}
+}
+ 
+long long extEuclid(long long a,long long b,long long m,long long x,long long y,long long n,long long mod){
+	if(n==1){
+		if(y<0)
+			return y+mod;
+		return y;
+	}
+	long long q=m/n;
+	return extEuclid(x,y,n,a-q*x,b-q*y,m-q*n,mod);
+}
+ 
+long long answer(long long factors, long long n, long long r, long long m){
+	long long powers[factors],i,flag=1;
+	for(i=0;i<factors;i++){
+		powers[i]=power[n][i]-power[r][i]-power[n-r][i];
+		if(powers[i]<factor[i][1])
+			flag = 0;
+	}
+	if(flag)
+		return 0;
+	long long num = f[n];
+	long long den = f[r]*f[n-r];
+	if(den>m)
+		den%=m;
+	den=extEuclid(1,0,m,0,1,den,m);
+	num*=den;
+	if(num>=m)
+		num%=m;
+	for(i=0;i<factors;i++){
+		factor[i][0]%=m;
+		num*=binexp(factor[i][0],powers[i],m);
+		if(num>m)
+			num%=m;
+	}
+	return num;
+}
+ 
+int main(){
+	sieve();
+	long long t=read();
+	long long n,m,q,r,factors,i,j;
+	while(t--){
+		// memset(factor,0,sizeof(factor));
+		n=read();
+		m=read();
+		q=read();
+		if(m>1)
+			factors=process(m);
+		// for(i=0;i<factors;i++)
+		// 	printf("%lld\t%lld\n", factor[i][0], factor[i][1]);
+		if(m>1)
+			calc(factors,n,m);
+		while(q--){
+			r=read();
+			if(m>1)
+				printf("%lld\n", answer(factors,n,r,m));
+			else
+				printf("0\n");
+		}
+	}
+	return 0;
+} 

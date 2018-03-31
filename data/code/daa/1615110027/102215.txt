@@ -1,0 +1,43 @@
+#include <cstdio>
+#include <cassert>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+#define MAXT 100
+#define MAXN 1000000
+#define INF 1000000000
+int dp[MAXN+5];
+int pr[] = {2, 3, 5, 7};
+int len = 4;
+void solve(){
+    for(int i=0;i<=MAXN;i++)
+        dp[i]=INF;
+    dp[2] = 1;
+    dp[3] = 1;
+    dp[5] = 1;
+    dp[7] = 1;
+    for(int i=1;i<=MAXN;i++){
+        for(int j=0; j<len;j++){
+            if(i-pr[j]>=0)
+                dp[i] = min(dp[i], dp[i-pr[j]] + 1);
+        }
+    }
+    for(int i=0;i<=MAXN;i++)
+        if(dp[i]>=INF)
+            dp[i] = -1;
+    return;
+}
+int main(){
+    solve();
+    int N, T;
+    scanf("%d", &T);
+    assert(T>0);
+    assert(T<=MAXT);
+    while(T--){
+        scanf("%d", &N);
+        assert(N>0);
+        assert(N<=MAXN);
+        printf("%d\n", dp[N]);
+    }
+    return 0;
+}

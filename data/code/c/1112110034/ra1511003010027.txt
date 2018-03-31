@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+  char s[5];
+  int i,ans=0;
+  
+  scanf("%s",s);
+  
+  for(i=0;s[i]!='\0';i++)
+  {
+    if(s[i]=='M')
+    ans+=1000;
+    else if(s[i]=='D')
+      ans+=500;
+    else if(s[i]=='C')
+      ans+=100;
+    else if(s[i]=='L')
+      ans+=50;
+    else if(s[i]=='X')
+      ans+=10;
+    else if(s[i]=='V')
+    {
+      if(s[i+1]=='I')
+      {
+        ans+=6;
+        i++;
+      }
+      else
+        ans+=5;
+    }
+    
+    else
+    {
+      if(s[i+1]=='V')
+      {
+        ans+=4;
+        i++;
+      }
+      else
+        ans+=1;
+    }
+  }
+    
+  printf("%d",ans);
+    
+    
+
+	return 0;
+}

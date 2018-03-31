@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class library
+{
+  private:
+  string name,roll,bookcode;
+  static int counter;
+  public:
+  library(string s1, string s2, string s3)
+  {
+    roll=s1;
+    name=s2;
+    bookcode=s3;
+  }
+  void show()
+  {
+    cout<<roll<<", "<<name<<", "<<bookcode<<"\n";
+    counter++;
+  }
+  void count()
+  {
+    cout<<counter<<" ";
+  }
+};
+
+int library::counter=0;
+int main()
+{
+  string roll1,roll2,name1,name2,bcode1,bcode2;
+  cin>>roll1>>name1>>bcode1;
+  cin>>roll2>>name2>>bcode2;
+  library lib1(roll1,name1,bcode1);
+  library lib2=library(roll2,name2,bcode2);
+  lib1.show();
+  lib2.show();
+  lib1.count();
+  lib2.count();
+	return 0;
+}

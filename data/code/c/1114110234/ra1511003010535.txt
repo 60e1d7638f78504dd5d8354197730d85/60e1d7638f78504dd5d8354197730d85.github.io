@@ -1,0 +1,117 @@
+#include<stdio.h>
+ 
+#define MAX 210
+#define MOD 1000000007
+typedef unsigned int UD;
+typedef unsigned long long ULL;
+ 
+UD comb[MAX][MAX]={0};
+UD fact[MAX]={0};
+ 
+/*UD partfact2(UD m, UD n)
+{
+	UD ans;
+	for(i=0;i<(n-1);i++)
+	{
+		m++;
+		ans=((ULL)ans*m)%MOD;
+	}
+	ans = ((ULL)comb[m+n-1][m]*fact[n])%MOD;
+	//ans = ((ULL)ans*n)%MOD;
+	return ans;
+}
+ 
+UD partfact1(UD m, UD n)
+{
+	UD ans;
+	for(i=0;i<(n-1);i++)
+	{
+		m++;
+		ans=((ULL)ans*m)%MOD;
+	}
+	//ans = ((ULL)ans*temp)%MOD;
+	ans = ((ULL)comb[m+n-1][m-1]*fact[n])%MOD;
+	return ans;
+}*/
+	
+UD solve()
+{
+	UD N,K,i,num,count=0,m=0,n,j,fact1,fact2,ans=0;
+	UD P[MAX]={0},Karray[MAX][2]={0};
+	scanf("%u %u",&N,&K);
+	for(i=0;i<N;i++)
+	{
+		scanf("%u",&num);
+		P[num]++;
+	}
+	for(i=1;i<MAX;i++)
+	{
+		if(P[i]>0)
+		{
+			count=i;
+		}
+	}
+	n=P[count];
+	Karray[1][1]=((ULL)comb[m+n-1][m]*fact[n])%MOD;
+	Karray[1][0]=Karray[1][1];
+	for(i=count-1;i>0;i--)
+	{
+ 
+		m=m+n;
+		n=P[i];
+		if(n==0)
+		{
+			continue;
+		}
+		else
+		{
+			fact1=((ULL)comb[m+n-1][m-1]*fact[n])%MOD;
+			fact2=((ULL)comb[m+n-1][m]*fact[n])%MOD;
+			for(j=1;j<=(count-i+1) && j<=K;j++)
+			{
+				Karray[j][0]=Karray[j][1];
+				Karray[j][1]=((ULL)((ULL)Karray[j][0]*fact1)%MOD + ((ULL)Karray[j-1][0]*fact2)%MOD)%MOD;
+			}
+ 
+		}
+	}
+	
+	for(i=1;i<=K;i++)
+	{
+		ans=((ULL)ans+Karray[i][1])%MOD;
+	}
+	return ans;
+}
+ 
+int main()
+{
+ 
+	UD T,ans,i,j;
+//	UD comb[MAX][MAX]={0};
+	for(i=0;i<MAX;i++)
+	{
+		comb[i][0]=1;
+		for(j=1;j<=i;j++)
+		{
+			comb[i][j]=((ULL)comb[i-1][j] + comb[i-1][j-1])%MOD;
+		}
+	}
+	fact[0]=1;
+	for(i=1;i<MAX;i++)
+	{
+		fact[i]=((ULL)fact[i-1]*i)%MOD;
+	}
+	scanf("%u",&T);
+	while(T--)
+	{
+		ans=solve();
+		/*for(i=0;i<MAX;i++)
+		{
+			P[i]=0;
+			Karray[i][0]=0;
+			Karray[i][1]=0;
+		}*/
+		printf("%u\n",ans);
+	}
+	return 0;
+}

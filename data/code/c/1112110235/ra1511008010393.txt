@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <math.h>
+int squarefree(int n);
+int prime(int l);
+int sum(int k);
+int primesum(int m);
+int main()
+{
+  int t;
+  int a,b,i;
+  long long ans=0,k;
+  scanf("%d",&t);
+  long long int s[100001]={0};
+  for(i=5;i<100001;i++)
+  {
+    if(squarefree(i)==0&&prime(primesum(sum(i)))==1)
+    {
+      ans+=sum(i);
+    }
+    s[i]=ans;
+  }
+  while(t--)
+  {
+    scanf("%d %d",&a,&b);
+    k=s[b]-s[a-1];
+    printf("%lli\n",k);
+  }
+  return 0;
+}
+int primesum(int m)
+{
+  int sum=0,i,k,j;
+  j=sqrt(m);
+  for(i=1;i<=j;i++)
+  {
+    if(m%i==0)
+    {
+      k=m/i;
+      if(prime(i))
+        sum++;
+      if(k!=i&&m%k==0&&prime(k))
+      {
+        sum++;
+      }
+    }
+  }
+  return sum;
+}
+int prime(int l)
+{
+  int j,flag=1;
+  if(l==1)
+    return 0;
+  if(l==2)
+    return 1;
+  if(l%2==0)
+    flag=0;
+  if(flag==1)
+  {
+    for(j=3;j<sqrt(l);j+=2)
+    {
+      if(l%j==0)
+      {
+        flag=0;
+        break;
+      }
+    }
+  }
+  return flag;
+}
+int squarefree(int n)
+{
+  int i,j,flag=0,k;
+  i=sqrt(n);
+  for(j=2;j<=i;j++)
+  {
+  k=j*j;
+    if(n%k==0)
+      flag=1;
+  }
+  return flag;
+}
+int sum(int k)
+{
+  int i,sum=0,j;
+  for(i=1;i<=sqrt(k);i++)
+  {
+    if(k%i==0)
+    {
+      sum+=i;
+      j=k/i;
+      if(j!=i)
+        sum+=j;
+    }
+  }
+  return sum;
+}

@@ -1,0 +1,70 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void reverse(char *parent)
+{
+  char *rev_string = (char*)malloc(100*sizeof(char));
+  int i;
+  for(i = 0; i < strlen(parent); i++)
+    rev_string[i] = parent[strlen(parent) - 1 - i];
+  strcpy(parent, rev_string);
+  free(rev_string);
+}
+ 
+int check_condition(char *parent, char *child)
+{
+  int flag_1 = 0;
+  int flag_2 = 0;
+  int length_match = 0;
+  int i;
+  int j = 0;
+ 
+  if (strlen(child) > strlen(parent))
+    return 0;
+ 
+  for (i = 0; i < strlen(parent); i++)
+  {
+    if (parent[i] == child[j])
+    {
+      j++;
+      length_match++;
+    }
+  }
+  if (length_match == strlen(child))
+    flag_1 = 1;
+ 
+  reverse(parent);
+ 
+  j = 0;
+  length_match = 0;
+  for (i = 0; i < strlen(parent); i++)
+  {
+    if (parent[i] == child[j])
+    {
+      j++;
+      length_match++;
+    }
+  }
+  if (length_match == strlen(child))
+    flag_2 = 2;
+ 
+  return flag_1 + flag_2;
+}
+ 
+int main(int argc, char **argv)
+{
+  char *parent = (char*)malloc(100*sizeof(char));
+  char *child = (char*)malloc(100*sizeof(char));
+  int test_cases, i;
+  scanf("%d", &test_cases);
+  for (i = 0; i < test_cases; i++)
+  {
+    scanf("%s %s", parent, child);
+    int flag = check_condition (parent, child);
+    printf("%d\n", flag);
+  }
+  free(parent);
+  free(child);
+  return 0;
+}

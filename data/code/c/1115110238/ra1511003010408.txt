@@ -1,0 +1,42 @@
+#include <stdio.h>
+int f()
+{
+  int i,n,k;
+  scanf("%d%d",&n,&k);
+  int a[n];
+  for(i=0;i<n;i++)scanf("%d",&a[i]);
+  int rem_a,rem_b,count_a=1,count_b=0;
+  rem_a=a[0]%(k+1);
+  rem_b=-1;
+  for(i=1;i<n;i++)
+  {
+    if(a[i]%(k+1)==rem_a)
+      count_a++;
+    else
+    {
+      if(rem_b==-1)
+      {
+        rem_b=a[i]%(k+1);
+        count_b=1;
+      }
+      else if(a[i]%(k+1)==rem_b)
+      count_b++;
+      else    
+      {
+        printf("NO\n");
+        return 0;
+      }
+    }
+  }
+  if(count_a>=2 && count_b>=2) 
+   printf("NO\n");
+  else
+  printf("YES\n");
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  f();
+}

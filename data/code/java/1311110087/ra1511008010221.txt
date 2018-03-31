@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        String a, b, c;
+        int i, j, k;
+
+        a = s.next();
+        i = s.nextInt();
+        b = s.next();
+        j = s.nextInt();
+        c = s.next();
+        k = s.nextInt();
+        
+        int n;
+        n = 3 - calcLen(i);
+        System.out.print(a + " ");
+        for (int z = 0; z < n; z++) {
+            System.out.print("0");
+        }
+        System.out.println(i);
+
+        n = 3 - calcLen(j);
+        System.out.print(b + " ");
+        for (int z = 0; z < n; z++) {
+            System.out.print("0");
+        }
+        System.out.println(j);
+
+        n = 3 - calcLen(k);
+        System.out.print(c + " ");
+        for (int z = 0; z < n; z++) {
+            System.out.print("0");
+        }
+        System.out.println(k);
+
+    }
+    
+    private static int calcLen(int n) {
+        int c = 0;
+        while (n > 0) {
+            n/=10;
+            c++;
+        }
+        return c;
+    }
+}

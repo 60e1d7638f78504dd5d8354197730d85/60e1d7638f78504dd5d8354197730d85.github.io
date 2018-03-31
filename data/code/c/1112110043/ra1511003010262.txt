@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+  int a[10],x,t;
+  scanf("%d",&t);
+  for(x=0;x<t;x++)
+  {
+    int str[100], sub[100], st, s,i,j;
+    scanf("%d",&st);
+    for(i = 0; i<st;i++)
+    {
+      scanf("%d",&str[i]);
+    }
+    scanf("%d",&s);
+    for(i=0;i<s;i++)
+    {
+      scanf("%d",&sub[i]);
+    }
+    if(st>=s)
+    {
+    for(i=0;i<st;i++)
+    {
+      int c=0;
+      if(sub[0]==str[i])
+      {
+        for(j=1;j<s;j++)
+        {
+          if(sub[j]==str[j+i])
+          {
+            c++;
+          }
+        }
+        if(c+1==s)
+        {
+          printf("Yes\n");
+        }
+        else
+          printf("No\n");
+        break;
+      }
+    }
+    }
+    else
+      printf("No\n");
+  }
+
+	return 0;
+}

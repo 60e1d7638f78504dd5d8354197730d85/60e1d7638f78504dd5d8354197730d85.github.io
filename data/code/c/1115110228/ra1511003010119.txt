@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+//	#ifndef ONLINE_JUDGE
+//		freopen("in.txt","r",stdin);
+//	#endif // ONLINE_JUDGE
+    
+    int t,n,a,b,c,i;
+    int x[2001],y[2001];
+    double x1,x2,y1,y2,lx,rx,d1,d2;
+    
+    scanf("%d",&t);
+    while(t--)
+    {
+    	scanf("%d",&n);
+    	scanf("%d %d %d",&a,&b,&c);
+    	for(i=0;i<n;i++)
+    		scanf("%d %d",&x[i],&y[i]);
+    	
+    	lx=-6000.0;
+    	rx=+6000.0;
+    	
+    	while(rx-lx>=0.000001)
+    	{
+    		x1=lx+((double)(rx-lx)/3.0);
+    		x2=rx-((double)(rx-lx)/3.0);
+    		y1=((double)((-c)-a*x1))/b;
+    		y2=((double)((-c)-a*x2))/b;
+    		
+    		d1=0.0;
+    		d2=0.0;
+    		for(i=0;i<n;i++)
+    		{
+    			d1+=sqrt(((x1-x[i])*(x1-x[i]))+((y1-y[i])*(y1-y[i])));
+    			d2+=sqrt(((x2-x[i])*(x2-x[i]))+((y2-y[i])*(y2-y[i])));
+    		}
+    		
+    		if(d1<d2)
+    			rx=x2;
+    		else
+    			lx=x1;
+    	}
+    	
+    	printf("%.6lf\n",d1);
+    }
+	return 0;
+} 

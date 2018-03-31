@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<limits.h>
+int min;
+int arr[20][3];
+void findMin(int row,int lasti,int cost,int n)
+{
+if(row==n)
+{
+if(cost<min)min=cost;
+}
+else if(row<n)
+{
+if(lasti!=0) findMin(row+1,0,cost+arr[row][0],n);
+if(lasti!=1) findMin(row+1,1,cost+arr[row][1],n);
+if(lasti!=2) findMin(row+1,2,cost+arr[row][2],n);
+}
+}
+int main()
+{
+int test,n,i,j;
+int colors[3];
+scanf("%d",&test);
+while(test--)
+{
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+for(j=0;j<3;j++)
+{
+scanf("%d",&arr[i][j]);
+}
+}
+min=INT_MAX;
+findMin(0,-1,0,n);
+printf("%d\n",min);
+}
+}

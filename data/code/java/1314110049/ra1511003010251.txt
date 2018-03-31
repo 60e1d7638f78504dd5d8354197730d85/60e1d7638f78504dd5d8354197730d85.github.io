@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 
+  public static void quicksort(int a[],int low,int high)
+  {
+    int pivot;
+    if(high>low)
+    {
+      pivot=partition(a,low,high);
+      quicksort(a,low,pivot-1);
+      quicksort(a,pivot+1,high);
+    }
+  }
+  
+  public static int partition(int a[],int low,int high)
+  {
+    int left,right,pivot_item=a[low];
+    left=low;
+    right=high;
+    while(left<right)
+    {
+      try{
+      while(a[left]<=pivot_item) 
+      	left++;
+      }catch(Exception e){}
+      while(a[right]>pivot_item)
+      	right--;
+      if(left<right)
+      {
+        a[left]=a[left]+a[right];
+        a[right]=a[left]-a[right];
+        a[left]=a[left]-a[right];
+      }
+    }
+    a[low]=a[right];
+    a[right]=pivot_item;
+    return right;
+  }
+  
+  
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int i,n;
+    n=sc.nextInt();
+    int a[]=new int[n];
+    for(i=0;i<n;i++)a[i]=sc.nextInt();
+    quicksort(a,0,n-1);
+    for(i=0;i<n;i++)System.out.printf("%d ",a[i]);
+  }
+}

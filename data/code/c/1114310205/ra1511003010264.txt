@@ -1,0 +1,74 @@
+#include<stdio.h>
+int leftshift(int n)
+{
+	int exp=1;
+	int n1=n;
+	while(n1)
+	{
+		exp*=10;
+		n1/=10;
+	}
+	exp/=10;
+	n1=(n%exp)*10+(n/exp);
+	if(n1%10==0)
+		n1/=10;
+	return n1;
+}
+int rightshift(int n)
+{
+ int exp=1;
+        int n1=n;
+        while(n1)
+        {
+                exp*=10;
+                n1/=10;
+        }
+	exp/=10;
+        n1=(n%10)*exp+(n/10);
+        return n1;
+ 
+}
+int main()
+{
+	int t,num,num1,max,i,count;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&num);
+		num1=num;
+//		exp=1;
+		count=0;
+		while(num1)
+		{
+//			exp*=10;
+			count++;
+			num1/=10;
+		}
+//not changing exp,.. not initializing max the same way
+		max=leftshift(rightshift(num));
+		num1=rightshift(leftshift(num));
+		if(num1>max)
+			max=num1;
+		i=0;
+		num1=num;
+		while(i<count)
+		{
+			num1=rightshift(num1);
+			if(num1>max)
+				max=num1;
+			i++;
+		}
+		num1=num;
+		i=0;
+		while(i<count)
+		{
+			num1=leftshift(num1);
+			if(num1>max)
+				max=num1;
+			i++;
+		}
+		printf("%d\n",max);
+ 
+	}
+	return 0;
+}

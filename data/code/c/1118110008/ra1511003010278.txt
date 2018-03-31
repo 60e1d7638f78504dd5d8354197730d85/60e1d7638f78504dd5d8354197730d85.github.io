@@ -1,0 +1,51 @@
+#include <stdio.h>
+struct stud{
+  int roll;
+  char name[50];
+  long int fee;
+  char deg[10];
+}ob;
+void func(struct stud ob)
+  {
+    printf("Details of student");
+    printf("\nRoll Number=%d",ob.roll);
+    int i=0;
+    printf("\nName=");
+    while(ob.name[i]!=' ')
+    {
+      printf("%c",ob.name[i]);
+      i++;
+    }
+    i=0;
+    printf("\nCourse=");
+    while(ob.deg[i]!='\0')
+    {
+      printf("%c",ob.deg[i]);
+      i++;
+    }
+   printf("\nFees=%ld",ob.fee);
+}
+int main()
+{
+  char c;
+  int i=0;
+  scanf("%d",&ob.roll);
+  scanf("%c",&c);
+  do
+  {
+    scanf("%c",&c);
+    ob.name[i]=c;
+    i++;
+  }while(c!=' ');
+  i=0;
+  scanf("%c",&c);
+  do
+  {
+    ob.deg[i]=c;
+    i++;
+    scanf("%c",&c);
+  }while(c!=' ');
+  scanf("%ld",&ob.fee);
+  func(ob);
+	return 0;
+}

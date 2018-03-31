@@ -1,0 +1,61 @@
+#include <stdio.h>
+int increase(int b[],int n)
+{
+  int i,bl=0;
+  for(i=1;i<n;i++){
+    if(b[i]<b[i-1]){
+      bl+=b[i-1]-b[i];
+      b[i]=b[i-1];
+    }
+  }
+  return bl;
+}
+int gcd(int bl[],int n){
+  int i,a,b,c,g;
+  g=bl[0];
+  for(i=1;i<n;i++){
+    a=g;
+    b=bl[i];
+    while(a!=0){
+      c=a;
+      a=b%a;
+      b=c;
+    }
+    g=b;
+  }
+  return g;
+}
+int main()
+{
+	int i,t,b[10001],n,min,balls,bl,g;
+  	scanf("%d",&t);
+  	while(t--){
+      g=2;
+      scanf("%d",&n);
+      for(i=0;i<n;i++)
+        scanf("%d",&b[i]);
+      balls=increase(b,n);
+      g=gcd(b,n);
+      if(g>1)
+        printf("%d\n",balls);
+      else{
+        min=n;
+        int limit=b[0]+n;
+        for(g=2;g<=limit;g++){
+          bl=0;
+          for(i=0;i<n;i++){
+            if(bl<=n){
+              if((b[i]%g)!=0)
+                bl=bl+(((b[i]/g)*g+g)-b[i]);
+            }
+            else
+              break;
+          }
+          if(min>bl)
+            min=bl;
+        }
+        printf("%d\n",min+balls);
+      }
+    }
+        return 0;
+}

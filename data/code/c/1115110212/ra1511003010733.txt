@@ -1,0 +1,31 @@
+#include <stdio.h>
+#define ll long long 
+#define mod 10000007
+ll DP[50][50];
+int n,m;
+int main(){
+ int i,j;
+	
+	scanf("%d %d",&n,&m);
+	for( i=1;i<=n;i++){
+		for( j=1;j<=m;j++){
+			scanf("%lld",&DP[i][j]);
+			DP[i][j] += mod;
+			DP[i][j] %= mod;
+		}
+	}
+	ll curr = 0, pre = 0;
+	pre = 1;
+	for(i=1;i<=m;i++){
+		curr = 0;
+		for( j=1;j<=n;j++){
+			DP[j][i] = pre*DP[j][i];
+			DP[j][i] = DP[j][i] % mod;
+			curr = curr + DP[j][i];
+			curr %= mod;
+		}
+		pre = curr;
+	}
+	printf("%lld\n",curr);
+	return 0;
+} 

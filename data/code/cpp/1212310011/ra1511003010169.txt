@@ -1,0 +1,36 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+	int nTests;												
+	cin >> nTests;
+	int* arr = new int[nTests];
+ 
+	int notesArr[] = {100,50,10,5,2,1};
+	
+	for(int i = 0 ; i < nTests; i++)
+	{
+		cin >> arr[i];
+	}
+ 
+	for( int j =0; j < nTests; j++)
+	{
+		int count = 0;
+		int amt = arr[j];
+		for(int k =0; k < 7; k++)
+		{
+			int noteValue = notesArr[k];
+ 
+			count = count + amt/noteValue;
+			if(amt/noteValue == 0)	continue;
+			
+			if(!(amt%noteValue))  break;
+			else    amt = amt - (amt/noteValue)*noteValue;
+		}
+		cout << count <<endl;
+	}
+	delete [] arr;
+	return 0;
+}

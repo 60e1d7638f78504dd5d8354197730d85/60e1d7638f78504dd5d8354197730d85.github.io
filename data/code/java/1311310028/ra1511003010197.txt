@@ -1,0 +1,340 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+import java.text.*;
+public class TestClass
+{ 
+public static void main(String[] args)throws java.lang.Exception
+{
+BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+PrintWriter out=new PrintWriter(System.out);
+int t,x1,n,l1,l2,i;
+long k,ans,next,next1,previous,minus,sum,total,val,inv,inv1,temp,prod,sub,mysum;
+BigInteger bi1, bi2, bi3;
+String str;
+ 
+ 
+t=Integer.parseInt(in.readLine());
+ 
+ 
+for(x1=0;x1<t;x1++)
+{
+StringTokenizer st1=new StringTokenizer(in.readLine());
+ 
+n=Integer.parseInt(st1.nextToken());
+k=Long.parseLong(st1.nextToken());
+ 
+long[] kpow=new long[n+2];
+long[] allfrom=new long[n+2];
+long[] revsum=new long[n+2];
+long[] sum_allfrom=new long[n+2];
+long[] prod_sum=new long[n+2];
+long[] xkpowx=new long[n+2];
+ 
+ 
+kpow[0]=1L;
+ 
+for(i=1;i<=n+1;i++)
+{
+kpow[i]=(kpow[i-1]*k)%1000000007;
+}
+ 
+ 
+ 
+revsum[n]=kpow[n];
+ 
+for(i=n-1;i>=0;i--)
+{
+revsum[i]=(kpow[i]+revsum[i+1])%1000000007;
+}
+ 
+ 
+ 
+ 
+ans=0L;
+total=0L;
+ 
+ 
+if(k>1)
+{
+ 
+minus=kpow[n]-1L;
+ 
+if(minus<0)
+	minus+=1000000007;
+ 
+ 
+str=String.valueOf(k-1L);
+ 
+bi1 = new BigInteger(str);
+bi2 = new BigInteger("1000000007");
+ 
+bi3 = bi1.modInverse(bi2);
+ 
+ 
+inv=bi3.longValue();
+ 
+ 
+ 
+ 
+ 
+ 
+str=String.valueOf(k);
+ 
+bi1 = new BigInteger(str);
+bi2 = new BigInteger("1000000007");
+ 
+bi3 = bi1.modInverse(bi2);
+ 
+ 
+inv1=bi3.longValue();
+ 
+ 
+ 
+ 
+ 
+//inv=modInv(k-1L,1000000007);
+ 
+ 
+ 
+sum=(k*minus)%1000000007;
+sum*=inv;
+sum%=1000000007;
+ 
+ 
+//out.println("Sum : "+sum+" "+inv);
+ 
+ 
+total=sum%1000000007;
+ 
+ 
+temp=1000000007L+(sum-1L);
+ 
+if( (sum-1L)>=0)
+	total*=(sum-1L);
+else
+	total*=temp;
+ 
+total%=1000000007;
+ 
+ 
+temp=1000000007L+(sum-2L);
+ 
+if( (sum-2L)>=0)
+	total*=(sum-2L);
+else
+	total*=temp;
+ 
+total%=1000000007;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+for(l2=1;l2<=n;l2++)
+{
+val=(kpow[(n-l2)+1]);
+val-=1;
+if(val<0)
+	val+=1000000007;
+ 
+val*=inv;
+val%=1000000007;
+ 
+/*
+val-=1;
+if(val<0)
+val+=1000000007;
+*/
+ 
+allfrom[l2]=val;			
+}
+ 
+ 
+ 
+ 
+ 
+sum_allfrom[n]=allfrom[n];
+ 
+for(i=n-1;i>=0;i--)
+{
+sum_allfrom[i]=(sum_allfrom[i+1]+allfrom[i])%1000000007;
+}
+ 
+ 
+ 
+ 
+prod_sum[n]=(allfrom[n]*kpow[n])%1000000007;
+ 
+for(i=n-1;i>=0;i--)
+{
+prod_sum[i]=(prod_sum[i+1]+(allfrom[i]*kpow[i]))%1000000007;
+}
+ 
+ 
+ 
+xkpowx[n]=(n*kpow[n])%1000000007;
+ 
+for(i=n-1;i>=0;i--)
+{
+xkpowx[i]=((i*kpow[i])+xkpowx[i+1])%1000000007;
+}
+ 
+ 
+ 
+ 
+sub=0L;
+ 
+for(l2=3;l2<=n;l2++)
+{
+val=((long)(l2-1)*(l2-2))/2;
+ 
+sub+=(val*kpow[l2])%1000000007;
+sub%=1000000007;
+}
+ 
+ans=sub*6;
+ans%=1000000007;
+ 
+//out.println(ans);
+ 
+ 
+ 
+mysum=(kpow[n])%1000000007;
+mysum-=1;
+if(mysum<0)
+	mysum+=1000000007;
+ 
+mysum*=inv;
+mysum%=1000000007;
+mysum*=k;
+mysum%=1000000007;
+ 
+ 
+ 
+sub=0L;
+ 
+ 
+for(l1=1;l1<n;l1++)
+{
+val=(kpow[(n-l1)+1]);
+val-=1;
+if(val<0)
+	val+=1000000007;
+ 
+val*=inv;
+val%=1000000007;
+ 
+val+=(l1-1);
+val%=1000000007;
+ 
+ 
+temp=mysum-val;
+if(temp<0)
+	temp+=1000000007;
+ 
+ 
+ 
+sub+=(( temp * revsum[l1+1])%1000000007);
+sub%=1000000007;
+ 
+ 
+}
+ 
+ans+=((sub*6)%1000000007);
+ans%=1000000007;
+ 
+ 
+//out.println(ans+" "+mysum);
+ 
+ 
+sub=0L;
+ 
+for(l1=1;l1<n;l1++)
+{
+val=(allfrom[l1]*revsum[l1+1])%1000000007;
+val-=prod_sum[l1+1];
+ 
+if(val<0)
+	val+=1000000007;
+ 
+val+=(l1*revsum[l1+1])%1000000007;
+val%=1000000007;
+ 
+ 
+val-=xkpowx[l1+1];
+ 
+if(val<0)
+	val+=1000000007;
+ 
+ 
+sub+=(val*3)%1000000007;
+ 
+sub%=1000000007;
+ 
+/*
+ 
+for(l2=l1+1;l2<=n;l2++)
+	{
+	val=(allfrom[l1]-(allfrom[l2]+(l2-l1)));
+	if(val<0)
+		val+=1000000007;
+ 
+	val*=kpow[l2];
+	val%=1000000007;
+ 
+	sub+=((val*3)%1000000007);
+	}
+*/
+ 
+ 
+}
+ 
+ans+=sub;
+ans%=1000000007;
+ 
+//out.println("             "+sub);
+ 
+}
+ 
+//out.println(total+" "+ans);
+ 
+ 
+ans=total-ans;
+if(ans<0)
+	ans+=1000000007;
+out.println(ans);
+ 
+}
+ 
+out.flush();
+out.close();
+}
+ 
+public static long modInv(long a, long b)
+{
+long x = 0, y = 1, lastx = 1, lasty = 0, temp;
+while (b != 0)
+        {
+            long q = a / b;
+            long r = a % b;
+ 
+            a = b;
+            b = r;
+ 
+            temp = x;
+            x = lastx - q * x;
+            lastx = temp;
+ 
+            temp = y;
+            y = lasty - q * y;
+            lasty = temp;            
+        }
+        //System.out.println("Roots  x : "+ lastx +" y :"+ lasty);
+ 
+return Math.max(a,b);
+}
+ 
+}

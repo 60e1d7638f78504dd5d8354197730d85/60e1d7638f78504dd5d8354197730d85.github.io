@@ -1,0 +1,89 @@
+    #include<stdio.h>
+    #include<string.h>
+     
+    int a[2200][2200];
+     
+    int main()
+    {
+    	int b[3000],i,j,k,t,n,ans,temp,tmp;
+     
+    	for(i=1;i<=2012;i++)
+    	{
+    		memset(b,0,sizeof(b));	
+     
+    		for(j=1;j<=2012;j++)
+    		{
+    			if(i<j)
+    			{
+    				a[i][j] = a[i][i];
+    			}
+    			
+    			else
+    			{
+    				temp = a[i-j][j];
+    				
+    				if(b[a[i-j][j]] == 1)
+    				{
+     
+    					a[i][j] = a[i][j-1];
+    				}
+    				
+    				else
+    				{
+    					b[a[i-j][j]] = 1;
+     
+    					for(k=0;k<2150;k++)
+    					{
+    						if(b[k]==0)
+    						{
+    							a[i][j] = k;
+    							break;
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+     
+    	
+    	scanf("%d",&t);
+    	
+    	
+    	while(t--)
+    	{
+    		scanf("%d",&n);
+    		scanf("%d",&k);
+    		
+    		ans = 0;
+    		if(k > 2012)
+    			k = 2012;
+    					
+    		while(n--)
+    		{
+    			
+    			scanf("%d",&temp);
+    			
+    			if(k>temp)
+    			{
+    				tmp = temp;
+    			}
+    			
+    			else
+    			{
+    				tmp = k;
+    			}
+    			ans = ans ^a[temp][tmp];
+    		}
+    		
+    		if(ans==0)
+    		{
+    			printf("Zeta\n");
+    		}
+    		
+    		else
+    		{
+    			printf("Nancy\n");
+    		}
+    	}
+      return 0;
+    } 

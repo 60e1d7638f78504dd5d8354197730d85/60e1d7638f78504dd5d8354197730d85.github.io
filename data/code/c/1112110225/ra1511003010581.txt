@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int gcd(int s, int b){
+    if(s == 0) return b;
+    if(s == 1) return 1;
+    return gcd(b%s, s);
+}
+ 
+int main(){
+    int a,b,t,ans;
+    scanf("%d",&t);
+    while(t!=0){
+        scanf("%d%d",&a,&b);
+        ans = abs(a-b)/gcd(abs(a),abs(b));
+        printf("%d\n",ans);
+    t--;}
+    return 0;
+}
+ 

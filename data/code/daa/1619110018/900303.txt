@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(0); 
+    int T; cin >> T;
+    assert (1<=T and T<=10); 
+    for (int g=0; g<T; g++){
+    	int N, K; cin >> N >> K;
+    	assert (1<=N and N<=1000); 
+    	assert (0<=K and K<=N); vector <int> t; 
+    	for (int y=1; y<=N; y++){
+    		int x; cin >> x; 
+    		assert (0<=x and x<=100000); 
+    		t.push_back(__builtin_popcount(x));
+    	}
+    	sort(t.begin(), t.end());reverse(t.begin(),t.end());
+    	int ans = 0; 
+    	for (int y=0;y<K; y++) ans+=t[y]; cout << ans << '\n';
+    }
+    return 0;
+}

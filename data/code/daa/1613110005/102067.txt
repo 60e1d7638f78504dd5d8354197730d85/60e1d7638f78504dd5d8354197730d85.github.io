@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main () 
+{
+	int tc,j,i,tmp,tmp2;
+	scanf("%d",&tc);
+  while(tc!=0)
+  {
+		int n;
+		scanf("%d",&n);
+		vector < int > x, y;
+		x.resize(n); y.resize(n);
+		for (int i=0; i<n; i++) 
+        {
+			scanf("%d",&x[i]);
+		    scanf("%d",&y[i]);
+			//printf("\nm%d",y[i]);
+		}
+       for(i=0;i<n;i++)
+     {           for(j=i+1;j<n;j++)
+           {
+                 if(x[i]<x[j])
+                 {
+                       tmp=x[i];
+                   tmp2=y[i];
+                   
+                       x[i]=x[j];
+                   y[i]=y[j];
+                       x[j]=tmp;
+                   y[j]=tmp2;
+                 }
+           }
+     }
+
+		int cnt = 0,cn=0;
+		for (int i=0; i<n; i++) 
+        {
+			if(i<2) 
+            cnt=x[i]+cnt;
+            else
+          cn=cn+y[i];
+		}
+	printf("%d\n",cnt-cn);
+      tc=tc-1;
+  }
+}
+

@@ -1,0 +1,21 @@
+#include <stdio.h>
+int power(int i)
+{
+  if(i==0)
+    return 1;
+  else
+    return 10*power(--i);
+}
+int main()
+{
+  int n , i=0 , bin = 0 ;
+  scanf("%d",&n);
+  while(n!=0)
+  {
+    int d = n % 2 ;
+    n = n / 2 ;
+    bin = bin + d*power(i++);
+  }
+  printf("%d",bin);
+	return 0;
+}

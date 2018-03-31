@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include<math.h>
+#define MAXN 60 * 12
+ 
+int hh[MAXN], mm[MAXN];
+double ang[MAXN];
+const double EPS = 1e-9;
+void solve()
+{
+	int i;
+	
+	double hour_angle = 0.0, minute_angle = 0.0;
+	
+	for(i = 0; i < MAXN; i++)
+	{
+		hh[i] = i / 60; 
+		mm[i] = i % 60;
+		
+		
+		//hour_angle = (double)i / 2.0;
+		if(i % 60 == 0)
+		{
+			minute_angle = 0.0;
+		}
+		else
+		{
+			//minute_angle = 6.0 * (double)i;
+			minute_angle += 360.0 / 60.0;
+		}
+		ang[i] = fabs(hour_angle - minute_angle);
+		if(ang[i] - EPS> 180.0)
+		{
+			ang[i] = 360.0 - ang[i];
+		}
+		hour_angle += 360.0 / (12.0 * 60.0);
+	}
+}
+ 
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	solve();
+	
+	double fault_tolerance = 1.0 / 120.0;
+	
+	while(t--)
+	{
+		double a;
+		scanf("%lf", &a);
+		int i;
+		for(i = 0; i < MAXN; i++)
+		{
+			//printf("%f, %f\n", fabs(ang[i] - a), a);
+			//printf("i = %d, ang[%d] = %d\n", i, i, ang[i]);
+			if(fabs(ang[i] - a) < fault_tolerance + EPS)
+			{
+				printf("%.2d:%.2d\n", hh[i], mm[i]);
+				//printf("i = %d, ang[%d] = %d\n", i, i, ang[i]);
+				//printf("%f, %f\n", fabs(ang[i] - a), a);
+				
+			}
+		}
+	}
+	return 0;
+} 

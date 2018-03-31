@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    long int n,age[100001],i,k=0,a[100001],b[100001],j;
+    string name[100001],add[100001],home[100001];
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cin>>name[i]>>age[i]>>home[i]>>add[i];
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(name[i]==name[j] || age[i]==age[j] || home[i]==home[j] || add[i]==add[j])
+            {
+            a[k]=i+1;
+            b[k++]=j+1;
+            }
+        }
+    }
+    cout<<k<<endl;
+    for(i=0;i<k;i++)
+    {
+        cout<<a[i]<<" "<<b[i]<<endl;
+    }
+    return 0;
+}

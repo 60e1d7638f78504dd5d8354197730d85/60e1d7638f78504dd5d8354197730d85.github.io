@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,mat[10][10],mat1[10][10],i,j,f=0;
+  scanf("%d %d",&a,&b);
+  for(i=0;i<a;i++)
+    for(j=0;j<b;j++)
+      scanf("%d",&mat[i][j]);
+  for(i=0;i<a;i++)
+    for(j=0;j<b;j++)
+    {
+      if(i==j)
+        mat1[i][j] = mat[i][j];
+      else
+        mat1[j][i] = mat[i][j];
+    }
+  for(i=0;i<a && f==0;i++)
+    for(j=0;j<b;j++)
+    {
+      if(mat[i][j] != mat1[i][j])
+      {
+        printf("Not Symmetric");
+        f=1;
+        break;
+      }
+    }
+  if(f==0)
+    printf("Symmetric");
+  return 0;
+}

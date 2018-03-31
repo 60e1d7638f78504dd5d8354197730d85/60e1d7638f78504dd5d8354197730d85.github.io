@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int s,w;
+  char str[100],word[100];
+  scanf("%[^\n]%*c", str);
+  scanf("\n%[^\n]%*c", word);
+  s=strlen(str);
+  w=strlen(word);
+  int i,j,found=0;
+  for(i=0; i<s; i++)
+  {
+    found = 1;
+    for(j=0; j<w; j++)
+    {
+      if(str[i+j] != word[j])
+      {
+        found = 0;
+        break;
+      }
+    }
+    if(found == 1)
+    {
+      for(j=i; j<=s-w; j++)
+        str[j] = str[j + w];
+      break;
+     }
+  }
+  printf("%s",str);
+
+	return 0;
+}

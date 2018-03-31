@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main(){
+ int t,n,val;
+ cin>>t;
+ while(t--){
+  
+  cin>>n;
+  int a[n],b[n];
+  vector<int>c(2*n);
+  for(int i=0;i<n;i++){
+   cin>>a[i];
+  }
+  
+  for(int i=0;i<n;i++){
+   cin>>b[i];
+  }
+  merge(a,a+n,b,b+n,c.begin());
+  int s=c.size();
+  cout<<(c[(s/2)-1]+c[s/2])<<endl;
+  
+ }
+}

@@ -1,0 +1,87 @@
+#include<stdio.h>
+int main()
+{
+int a[200005],i,j,n,k=0,m=0,d=0,u,q,flag=0;
+long int sum=0;
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+scanf("%d",&a[i]);
+ 
+}
+for(i=0;i<n;i++)
+{
+for(j=0;j<i;j++)
+{
+if (a[i] == a[j])
+break;}
+if (i == j){
+d++;
+k=i; 
+//printf("%d",k);
+ 
+}
+}
+// printf("%d",k);
+if(k==0)
+{
+for(u=n;u>=0;u--)
+{
+sum=sum+u;
+}
+}
+else
+{
+while(m<k)
+{
+if(flag==0)
+{sum=sum+n-k;
+m++;}
+if(m==n)
+{
+//sum=sum+n-k;
+}
+if(a[m-1]==a[m])
+{
+sum=sum+n-k;
+flag=1;
+m++;
+continue;
+}
+if(a[m-1]!=a[m])
+{
+for(j=m;j<n;j++)
+{
+if(a[j]==a[m-1])
+{
+q=j;
+break;
+}
+ 
+}
+if(j==n)
+{
+break;
+}
+if(q<k)
+{
+sum=sum+n-k;
+m++;
+flag=1;
+continue;
+}
+if(k<q)
+{
+k=q;
+sum=sum+n-k;
+m++;
+flag=1;
+continue;
+}
+}
+ 
+}
+}
+printf("%ld",sum);
+ return 0;
+}

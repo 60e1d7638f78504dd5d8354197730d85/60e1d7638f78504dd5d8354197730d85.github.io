@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <math.h>
+int isprime(n){
+	int j,sqt = sqrt(n);
+  	
+  	for(j=2;j<=sqt;j++){
+    	if(n%j==0)return 0;
+    }
+  	return 1;
+}
+
+int main()
+{
+	unsigned x,y,sum,i=1,tests;
+  	scanf("%d",&tests);
+  	if(tests==0)printf("0");
+  	else
+  	while(tests--){
+      	i=1;
+    	scanf("%d%d",&x,&y);
+      	sum =x+y;
+      	while(!isprime(sum+i)){
+        	i++;
+        }
+      	printf("%d\n",i);
+    }
+	return 0;
+}

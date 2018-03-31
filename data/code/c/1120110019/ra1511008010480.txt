@@ -1,0 +1,151 @@
+//DKBoss
+#include <stdio.h>
+
+void normal(int num) {
+	switch(num) {
+      case 1:
+        	printf("ONE ");
+        	break;
+      case 2:
+        	printf("TWO ");
+        	break;
+      case 3:
+        	printf("THREE ");
+        	break;
+      case 4:
+        	printf("FOUR ");
+        	break;
+      case 5:
+        	printf("FIVE ");
+        	break;
+      case 6:
+        	printf("SIX ");
+        	break;
+      case 7:
+        	printf("SEVEN ");
+        	break;
+      case 8:
+        	printf("EIGHT ");
+        	break;
+      case 9:
+        	printf("NINE ");
+        	break;
+    }
+}
+
+void oneSeries(int num) {
+	switch(num) {
+      case 0:
+        	printf("TEN ");
+        	break;
+      case 1:
+        	printf("ELEVEN ");
+        	break;
+      case 2:
+        	printf("TWELVE ");
+        	break;
+      case 3:
+        	printf("THIRTEEN ");
+        	break;
+      case 4:
+        	printf("FOURTEEN ");
+        	break;
+      case 5:
+        	printf("FIFTEEN ");
+        	break;
+      case 6:
+        	printf("SIXTEEN ");
+        	break;
+      case 7:
+        	printf("SEVENTEEN ");
+        	break;
+      case 8:
+        	printf("EIGHTEEN ");
+        	break;
+      case 9:
+        	printf("NINETEEN ");
+        	break;
+    }
+}
+
+void tenSeries(int num) {
+	switch(num) {
+      case 2:
+        	printf("TWENTY ");
+        	break;
+      case 3:
+        	printf("THIRTY ");
+        	break;
+      case 4:
+        	printf("FORTY ");
+        	break;
+      case 5:
+        	printf("FIFTY ");
+        	break;
+      case 6:
+        	printf("SIXTY ");
+        	break;
+      case 7:
+        	printf("SEVENTY ");
+        	break;
+      case 8:
+        	printf("EIGHTY ");
+        	break;
+      case 9:
+        	printf("NINETY ");
+        	break;
+    }
+}
+
+void evaluate(int amt) {
+  	//if(i==-1) return;
+	int i=0, n=amt;
+  	while(n!=0) {
+    	n/=10;
+      	i++;
+    }
+  	switch(i) {
+      case 0:
+        	printf("ZERO ");
+        	break;
+      case 4:
+        	normal(amt/1000);
+        	printf("THOUSAND ");
+        	amt = amt - ((int)(amt/1000))*1000;
+        	//break;
+      case 3:
+        	if(amt/100 == 0) {}
+        	else {
+            	normal(amt/100);
+              	printf("HUNDRED ");
+              	amt = amt - ((int)(amt/100))*100;
+            }
+      case 2:
+        	if(amt/10 == 0) {}
+        	else {
+              if(amt/10 == 1) {
+                  oneSeries(amt%10);
+                  break;
+              }
+              else {
+                  tenSeries(amt/10);
+                  amt = amt - ((int)(amt/10))*10;
+              }
+            }
+        	//break;
+      case 1:
+        	normal(amt);
+    }
+}
+
+int main()
+{
+  	float total;
+  	scanf("%f", &total);
+  	int rupees = total;
+  	int paise = (total*100-rupees*100);
+  	evaluate(rupees);
+  	printf("AND PAISE ");
+  	evaluate(paise);
+	return 0;
+}

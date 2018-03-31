@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int n,i,a[26],test,big,pos,sum;
+	char b[51];
+	scanf("%d",&test);
+	while(test--)
+	{
+		scanf("%s",b);
+		n=strlen(b);
+		for(i=0;i<26;i++)
+			a[i]=0;
+		big=0;
+		sum=0;
+		for(i=0;i<n;i++)
+		{
+			a[b[i]-'a']++;
+		}
+		//chek=0;
+		for(i=0;i<26;i++)
+		{
+			if(a[i]>big)
+			{
+				big=a[i];
+				pos=i;
+			}
+		}
+		for(i=0;i<26;i++)
+		{
+			if(i==pos)
+				continue;
+			sum=sum+a[i];
+		}
+		
+		if(sum==big)
+			printf("YES\n");
+		else
+			printf("NO\n");
+	}
+	return 0;
+} 

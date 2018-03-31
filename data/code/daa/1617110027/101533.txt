@@ -1,0 +1,62 @@
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <fstream>
+using namespace std;
+
+const int MAX_N = 50002;
+const long long int INF = 999999999999999;
+struct node {
+    int nr;
+    long long val;
+
+    bool operator<(const node& other) const {
+        return val > other.val;
+    }
+};
+
+int N, M;
+vector < pair < int, int > > v[MAX_N];
+long long int D[MAX_N];
+priority_queue < node > H;
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+
+    cin >> N >> M;
+    for(int i = 1, x, y, c; i <= M; ++i) {
+        cin >> x >> y >> c;
+        v[x].push_back(make_pair(y, c));
+        v[y].push_back(make_pair(x, c));
+    }
+
+    for(int i = 1; i <= N; ++i)
+        D[i] = INF;
+    node P;
+    P.nr = 1, P.val = 0;
+    D[1] = 0;
+    H.push(P);
+    while(!H.empty()) {
+        int x = H.top().nr;
+        H.pop();
+        for(size_t i = 0; i < v[x].size(); ++i) {
+            int y = v[x][i].first, c = v[x][i].second - D[x];
+            c = max(c, 0);
+            if(D[x] + c < D[y]) {
+                D[y] = D[x] + c;
+                P.nr = y, P.val = D[y];
+                H.push(P);
+            }
+        }
+    }
+
+    if(D[N] == INF)
+        cout << "NO PATH EXISTS\n";
+    else cout << D[N] << "\n";
+
+    return 0;
+}

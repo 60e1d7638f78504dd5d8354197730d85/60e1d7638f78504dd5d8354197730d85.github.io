@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define N 10000000
+ 
+ 
+int main()
+{
+	int c[100][100];
+	int s[100][100];
+	int n,x;
+	int i,j,k,l;
+	
+ 
+	while(scanf("%d",&n)!=EOF)
+	{
+	for(i=0;i<n;i++)
+		for(j=0;j<n;j++)
+			s[i][j]=N;
+ 
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&c[i][i]);
+		s[i][i]=0;
+	}
+ 
+	for(k=2;k<=n;k++)
+	{
+		for(i=0;i<=n-k;i++)
+		{
+ 
+			j=i+k-1;
+			
+			for(l=i;l<j;l++)
+			{
+				x=s[i][l]+s[l+1][j]+c[i][l]*c[l+1][j];
+				if(x<s[i][j])
+				{
+					s[i][j]=x;
+					c[i][j]=(c[i][l]+c[l+1][j])%100;
+				}
+			}
+		}
+	}
+ 
+	printf("%d\n",s[0][n-1]);
+	}
+	return(0);	
+}	

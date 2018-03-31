@@ -1,0 +1,90 @@
+# include <stdio.h>
+# include <string.h>
+//# include <algorithm>
+ 
+using namespace std;
+ 
+char possible[][11]={"0123456789","08","0134789","28","389","489","5689","68","03789","8","89"};
+char S[9],M[9];
+int MM,SS,N;
+ 
+int max(int a,int b)
+{
+  if(a>b)
+    return a;
+  return b;
+}
+
+int findbest()
+{
+	int ret=0;
+	bool close=true;
+	for(int i=0;i<MM;i++)
+	{
+		int j=S[i],L=strlen(possible[j]);
+		for(int k=L-1;k>=0;k--)
+		{
+			int l=possible[j][k]-'0'+1;
+			if(close==true&&l>M[i])continue;
+			if(close==false||l<M[i])
+			{
+				close=false;
+				l--;
+				ret=ret*10+l;
+				break;
+			}
+			bool flag=true;
+			for(int m=i+1;m<MM;m++)
+			{
+				if(M[m]<possible[S[m]][0]-'0'+1)
+				{
+					flag=false;break;
+				}
+				if(m==MM-1||M[m]>possible[S[m]][0]-'0'+1)
+				{
+					break;
+				}
+			}
+			if(flag==true)
+			{
+				l--;
+				ret=ret*10+l;
+				break;
+			}
+		}
+	}
+	return ret;
+}
+ 
+int main()
+{
+	int T;
+	scanf("%d",&T);
+ 
+	for(int t=0;t<T;t++)
+	{
+		scanf("%s%s",S,M);
+		MM=strlen(M),SS=strlen(S),N=MM-SS;
+		for(int i=MM-1;i>=N;i--)
+		{
+			M[i]-='0'-1;
+			S[i]=S[i-N]-'0'+1;
+		}
+		for(int i=N-1;i>=0;i--)
+		{
+			M[i]-='0'-1;
+			S[i]=0;
+		}
+		int ans=0;
+		while(1)
+		{
+			ans=max(ans,findbest());
+			if(S[0]!=0)break;
+			for(int i=0;i<MM-1;i++)S[i]=S[i+1];
+			S[MM-1]=0;
+		}
+		printf("%d\n",ans);
+	}
+	return 0;
+}
+ 

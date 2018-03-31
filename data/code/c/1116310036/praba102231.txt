@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include<string.h>
+ 
+typedef struct book{
+    int f;
+    int p;
+    char s[205];
+}BOOK;
+ 
+void merge(BOOK a[],int l,int m,int r){
+ int i=l,j=m+1,k;
+ BOOK c[1005];
+   for(k=0;k<r-l+1;k++){
+    if(i>m)
+        c[k]=a[j++];
+    else if(j>r)
+        c[k]=a[i++];
+    else if(a[i].p<a[j].p)
+        c[k]=a[j++];
+    else c[k]=a[i++];
+   }
+   for(k=0;k<r-l+1;k++)
+    a[l+k]=c[k];
+};
+void merge_sort(BOOK a[],int l,int r){
+if(l<r){
+   int m=(l+r)/2;
+    merge_sort(a,l,m);
+    merge_sort(a,m+1,r);
+    merge(a,l,m,r);
+}
+};
+int main()
+{
+    int m,n,i,a[1005],j,k,flag,specialcount=0;
+    BOOK post[1005];
+    BOOK specialpost[1005];
+    BOOK nonspecial[1005];
+    scanf("%d%d",&n,&m);
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    for(i=0;i<m;i++){
+        scanf("%d%d",&post[i].f,&post[i].p);
+        scanf("%s",post[i].s);
+    }
+    for(i=0;i<m;i++){
+        for(j=0;j<n;j++){
+            if(post[i].f==a[j])
+                specialcount++;
+        }
+    }
+    k=0;
+    for(i=0;i<m;i++){
+        for(j=0;j<n;j++){
+            if(post[i].f==a[j]){
+                specialpost[k++]=post[i];
+                break;
+            }
+        }
+    }
+    merge_sort(specialpost,0,k-1);
+    for(i=0;i<k;i++)
+        printf("%s\n",specialpost[i].s);
+    merge_sort(post,0,m-1);
+    for(i=0;i<m;i++){
+        flag=0;
+        for(j=0;j<n;j++){
+            if(post[i].f==a[j]){
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+            continue;
+        else
+           printf("%s\n",post[i].s);
+    }
+    return 0;
+}

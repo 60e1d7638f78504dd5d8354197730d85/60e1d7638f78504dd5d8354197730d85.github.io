@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+int main()
+{
+	int i=0,j,count;
+	int n,a;
+	scanf("%d",&n);
+	for (i; i<n; i++)
+	{
+		scanf("%d",&a);
+		count = 0;
+		while (a>0)
+		{
+			j = 0;
+			while (j<12 && a>pow(2,j))
+				j++;
+			if (a==1)
+			{
+				count = count+1;
+				break;
+			}
+			if (j<12 && a==pow(2,j))
+			{
+				count = count+1;
+				break;
+			}
+			a = a - pow(2,j-1);
+			count = count+1;
+		}
+		printf ("%d\n",count);
+	}
+	return 0;
+} 

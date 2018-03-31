@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+	long int t,i,j;
+  int n;
+	scanf("%ld",&t);
+	long int a[100000],min,sum=0;
+	while(t--)
+	{
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+		scanf("%ld",&a[i]);
+		min=a[0]+a[1];
+		for(i=0;i<n;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				sum=a[i]+a[j];
+				if(sum<min)
+				min=sum;
+			}
+		}
+		printf("%ld\n",min);
+	}
+	return 0;
+} 

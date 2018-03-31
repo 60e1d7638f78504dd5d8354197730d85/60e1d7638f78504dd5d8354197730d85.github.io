@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{ 
+   int count[5]={0,0,0,0,0},voters,spoilt_ballot=0,i;
+   char a[50];
+   scanf("%d\n",&voters);
+  for(i=0;i<voters;i++)
+  {
+    scanf("%c\n",&a[i]);
+  }
+   for(i=0;i<voters;i++)
+   {
+     switch(a[i])
+     {
+       case '1':
+         count[0]++;
+         break;
+       case '2':
+         count[1]++;
+         break;
+       case '3':
+         count[2]++;
+         break;
+       case '4':
+         count[3]++;
+         break;
+       case  '5':
+         count[4]++;
+         break;
+       default:
+         spoilt_ballot++;
+         break;
+     }
+   }
+  printf("Candidate 1=%d\n",count[0]);
+  printf("Candidate 2=%d\n",count[1]);
+  printf("Candidate 3=%d\n",count[2]);
+  printf("Candidate 4=%d\n",count[3]);
+  printf("Candidate 5=%d\n",count[4]);
+  printf("Spoil Ballot=%d",spoilt_ballot);
+  
+    
+	return 0;
+}

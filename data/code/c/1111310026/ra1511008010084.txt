@@ -1,0 +1,46 @@
+#include<stdio.h>
+#define Maxim(a,b)((a>b)?a:b)
+typedef long long int ll;
+ll powerq(ll n,ll m){
+    ll q,r,s,ans = 0;
+n%=m;
+ans-= n;
+q=(((n*n)%m)*n)%m;
+ans+=10*q;
+    r=(q*n)%m;
+ans+=15*r;
+    s=(r*n)%m;
+ans+=6*s;
+if(ans>m)
+    ans%=m;
+    return ans;
+}
+int main() {
+    int t;
+   ll n,m,ans=0,previous=0,x,k;
+    scanf("%d",&t);
+while(t--) {
+   ans=0;
+   previous=0;
+scanf("%lld%lld",&n,&m);
+    x=n;
+    k=1;
+while (1){
+    x=n/k;
+   // count++;
+   // cout<<x<<" "<<n/x<<" "<<previous<<endl;
+    ans=(ans +powerq(x,30*m)*(n/x-previous))%(30*m);
+    if(x==1)
+    break;
+    previous=n/x;
+    k=Maxim(k+1,n/(x-1));
+    }
+    ans/=30;
+    if(ans<0)
+        ans+=m;
+    if(ans>m)
+    ans%=m;
+printf("%lld\n",ans);
+    }
+    return 0;
+}

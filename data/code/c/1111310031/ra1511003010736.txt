@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int t, n, a[50000], i, cost=0, c;
+  scanf("%d%d", &t, &n);
+  for(i=0;i<n;i++)
+    scanf("%d", &a[i]);
+  if(a[0]<a[1])
+     {
+       c=a[0];
+       cost=a[0];
+     }
+     else
+     {
+       c=a[1];
+       cost=a[1];
+     }
+  for(i=2;i<n;i++)
+  {
+    if(c<a[i])
+    cost=cost+c;
+    else
+    {
+      c=a[i];
+      cost=cost+a[i];
+    }
+  }
+     printf("%d", cost);
+	return 0;
+}

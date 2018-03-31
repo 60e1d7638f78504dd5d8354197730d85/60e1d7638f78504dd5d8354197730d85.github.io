@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	 int i,j,n,m,max=0,min;
+  	int a[10][10];
+  	scanf("%d",&n);
+  	scanf("%d",&m);
+  	for (i=1;i<=n;i++)
+    {
+      for (j=1;j<=m;j++)
+      {
+        scanf("%d",&a[i][j]);
+      }
+    }
+  	for (i=1;i<=n;i++)
+    {
+      for (j=1;j<=m;j++)
+      {
+        printf("%d ",a[i][j]);
+      }
+      printf("\n");
+    }
+  min=a[1][1];
+  for (i=1;i<=n;i++)
+  {
+    for (j=1;j<=m;j++)
+    {
+      if (max<a[i][j])
+        max=a[i][j];
+      if (min>a[i][j])
+        min=a[i][j];
+    }
+  }
+  printf("%d %d",min,max);
+	return 0;
+}

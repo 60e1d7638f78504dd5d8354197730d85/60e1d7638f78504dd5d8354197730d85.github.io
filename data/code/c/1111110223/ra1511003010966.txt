@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+  char a[100];
+  scanf("%s",a);
+  int i,j,b;
+  b=strlen(a);
+  for(i=0;i<b;i++)
+  {
+    if(!isalpha(a[i]))
+    {
+      for(j=i;j<b-1;j++)
+      {
+        a[j]=a[j+1];
+      }
+      b=b-1;
+      i--;
+    }
+  }
+  for(i=0;i<b;i++)
+  {
+    printf("%c",a[i]);
+  }
+  return 0;
+}

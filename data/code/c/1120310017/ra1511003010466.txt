@@ -1,0 +1,38 @@
+#include <stdio.h>
+long long int a[10000001] = {0};
+int main()
+{
+	long long int n,k,i,j,min,max,ctr,number;
+	scanf("%lld %lld",&n,&k);
+	min = 10000001;
+	max = 0;
+	for(i=0;i<n;i++)
+	{
+		scanf("%lld",&number);
+		a[number] = 1;
+		if(number<min)
+		{
+			min = number;
+		}
+		if(number>max)
+		{
+			max = number;
+		}
+	}
+	ctr = 0;
+	while(min<=max)
+	{
+		if(a[min]==1)
+		{
+			ctr++;
+			min = min+k;
+		}
+		else
+		{
+			min++;
+		}
+	}
+	printf("%lld\n",ctr++);
+	return 0;
+}
+ 

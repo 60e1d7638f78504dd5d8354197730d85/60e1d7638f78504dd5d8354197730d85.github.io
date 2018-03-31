@@ -1,0 +1,35 @@
+#include <stdio.h>
+void sort (long long a[], long long n)
+{
+long long i, j;
+  for(i=0;i<n-1;i++)
+    for(j=0;j<n-i;j++)
+      if(a[j]>a[i])
+      {
+        long long temp = a[i];
+      	a[i]=a[j];
+        a[j]=temp;
+      }
+}
+int main()
+{
+	long long i, n, j;
+  	scanf("%lld %lld",&n,&j);
+  	long long a[n+2], cnt = 0;
+  	for(i=0;i<n;i++)
+    scanf("%lld",&a[i]);
+  
+    sort(a,n);
+  	
+    long long prev = a[0];
+    for(i=1;i<n;i++)
+    {
+    if(a[i]>=j+prev)
+    {
+    cnt++;
+    prev=a[i];
+    }
+    }
+  printf("%lld\n",cnt?cnt+1:0);
+	return 0;
+}

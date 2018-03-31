@@ -1,0 +1,55 @@
+    #include <cstdio>
+    #include <iostream>
+    #include <algorithm>
+    #include <cmath>
+    #include <cstring>
+    using namespace std;
+    #define p(x) cout<<#x<<":"<<x<<"\n"
+    #define lim 6
+     
+    int i,mn;
+    int A[lim],B[lim],C[lim];
+    char o[]={'+', '-' , '*', '/'};
+     
+    void join(int i,int v)
+    {
+      int j,c1=C[i],c2=C[i+1];
+      
+      for(j=0;j<5;j++)
+        if(C[j]==c1 || C[j]==c2)
+    	{
+    	  B[j]=v;
+    	  C[j]=min(c1,c2);
+    	}
+    }
+    int main()
+    {
+      for(i=0;i<5;i++)
+        scanf("%d",&A[i]);
+      sort(o,o+4);
+      while(1)
+      {
+        memcpy(B,A,sizeof A);
+    	for(i=0;i<5;i++)
+    	  C[i]=i;
+        for(i=0;i<4;i++)
+    	  if(o[i]=='*')
+            join(i,B[i]*B[i+1]);
+    	  else if(o[i]=='/')
+    	    join(i,B[i]/B[i+1]);
+        for(i=0;i<4;i++)
+    	  if(o[i]=='+') 
+    	    join(i,B[i]+B[i+1]);
+    	  else if(o[i]=='-')
+    	    join(i,B[i]-B[i+1]);
+        if(B[0]>0)
+    	  if(!mn || B[0]<mn)
+    	    mn=B[0];
+        if(!next_permutation(o,o+4))
+    	  break;
+      } 
+      printf("%d\n",mn);
+      return 0;
+    }
+     
+

@@ -1,0 +1,53 @@
+//DKBoss
+#include <stdio.h>
+#include <stdlib.h>
+
+char* getOctal(int num) {
+  	int i=0, n=num;
+  	while(n !=0) {
+    	n /= 8;
+      	i++;
+    }
+  	char* test = (char*)malloc(i);
+  	i--;
+  	while(num != 0) {
+    	int val = num%8 + 48;
+      	test[i--] = (char)val;
+      	num /= 8;
+    }
+  	return (char *)test;
+}
+
+char* getHexa(int num) {
+  	int i=0, n=num;
+  	while(n !=0) {
+    	n /= 16;
+      	i++;
+    }
+	char* test = (char *)malloc(i);
+  	while(num != 0) {
+    	int val = num%16;
+      	if(val > 9) {
+        	val += 87;
+        }
+      	else {
+        	val += 48;
+        }
+      	test[--i] = val;
+      	num /= 16;
+    }
+  	return (char *)test;
+  	
+}
+
+int main()
+{
+  	int num;
+  	scanf("%d", &num);
+  	char* octal = getOctal(num);
+  	char* hexa = getHexa(num);
+  	printf("Decimal value:%d\n", num);
+  	printf("Octal value:%s\n", octal);
+  	printf("Hexadecimal value:%s\n", hexa);
+	return 0;
+}

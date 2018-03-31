@@ -1,0 +1,48 @@
+#include<stdio.h>
+ 
+inline int input()
+{
+	int n=0;
+	int c;
+	
+	c= getchar_unlocked();
+	
+	while(c>='0' && c<='9')
+	{
+		n= (n<<3) + (n<<1) + (c-'0');
+		c= getchar_unlocked();
+	}
+	
+	return n;
+}
+ 
+ 
+int main()
+{
+	int t,n, l, s, i;
+	
+	t= input();
+	
+	while(t--)
+	{
+		n= input();
+		
+		s=1;
+		for( i=1; i<=n-1 ; i++)
+		{
+			l= input();
+			if(l> s)
+				break;
+			s= s-l;
+			s= s*2;
+		}
+		l= input();
+		
+		if(i==n && s==l)
+			printf("Yes\n");
+		else
+			printf("No\n");
+	}
+	
+	return 0;
+} 

@@ -1,0 +1,76 @@
+#include <algorithm>
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <cctype>
+using namespace std;
+ 
+#define bp __builtin_popcount
+#define pb push_back
+ 
+typedef vector<int> vi;
+ 
+const int MAXM = (1 << 11);
+const int MOD = 1e9 + 7;
+const int MAX = 101;
+ 
+int t, n;
+vi shirt[MAX];
+int mem[MAX][MAXM];
+ 
+void read(int id) {
+    string str = "\0";
+    while (!isdigit(str[0]))
+        getline(cin, str);
+    str += ' ';
+ 
+    int cur = 0;
+    for (auto it: str) {
+        if (isdigit(it))
+            cur = cur * 10 + it - '0';
+        else {
+            shirt[cur].pb(id);
+            cur = 0;
+        }
+    }
+}
+ 
+void de(int m) {
+    for (int i = 9; i >= 0; --i)
+        cout << ((m >> i) & 1);
+    cout << endl;
+}
+ 
+int rek(int id, int mask) {
+    if (id == MAX)
+        return bp(mask) == n ? 1 : 0;
+ 
+    int &ret = mem[id][mask];
+    if (ret != -1)
+        return ret;
+ 
+    ret = rek(id + 1, mask);
+    for (auto it: shirt[id])
+        if (!(mask & (1 << it)))
+            ret = (1LL * ret + rek(id + 1, mask | (1 << it))) % MOD;
+ 
+    return ret;
+}
+ 
+int main() {
+ 
+    cin >> t;
+    while (t--) {
+        memset(mem, -1, sizeof mem);
+        for (int i = 0; i < MAX; ++i)
+            shirt[i].clear();
+ 
+        cin >> n;
+        for (int i = 0; i < n; ++i)
+            read(i);
+ 
+        cout << rek(0, 0) << endl;
+    }
+ 
+    return 0;
+}

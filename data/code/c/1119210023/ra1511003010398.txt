@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int t;
+ 
+    scanf("%d\n",&t);
+ 
+    label:
+    while (t--)
+    {
+        char temp2[2];
+        char str[101][101];
+        int r,c,i,j,flag=0;
+ 
+        temp2[1]='\0';
+ 
+        scanf("%d%d\n",&r,&c);
+ 
+        for (i=0;i<r;i++)
+        {
+            char *ch;
+ 
+           scanf("%s",str[i]);
+            
+            for(j=0;str[i][j];j++)
+            {
+                str[i][j]= tolower(str[i][j]);
+            }
+            
+            ch=strstr(str[i],"spoon");
+ 
+            if (ch!=NULL)
+            {
+                flag=1;
+              
+            }
+        }
+ 
+        if (flag)
+        {
+            printf("There is a spoon!\n");
+            continue;
+        }
+ 
+        for (i=0;i<c;i++)
+        {
+            char temp[101],*ch;
+            temp[0]='\0';
+ 
+            for (j=0;j<r;j++)
+            {
+                temp2[0]=str[j][i];
+                strcat(temp,temp2);
+            }
+ 
+            ch=strstr(temp,"spoon");
+ 
+            //puts(temp);
+ 
+            if (ch!=NULL)
+            {
+                printf("There is a spoon!\n");
+                goto label;
+            }
+        }
+ 
+        printf("There is indeed no spoon!\n");
+    }
+ 
+    return 0;
+}

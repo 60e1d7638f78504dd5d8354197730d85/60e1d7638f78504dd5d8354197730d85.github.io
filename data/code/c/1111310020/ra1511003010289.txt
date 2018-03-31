@@ -1,0 +1,13 @@
+#include <stdio.h>
+ 
+int n,i,j,ai,kk[30]; long long ans=0;
+int main(){
+	scanf("%d",&n);
+	for(i=0;i<n;i++){
+		scanf("%d",&ai);
+		for(j=0;j<30;j++)if(ai&(1<<j))++kk[j];
+	}
+	for(j=0;j<30;j++)ans+=1LL*kk[j]*(1LL*kk[j]-1LL)*(1LL<<j);
+	printf("%lld\n",ans/2LL);
+	return 0;
+}

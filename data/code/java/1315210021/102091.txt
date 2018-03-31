@@ -1,0 +1,29 @@
+import java.util.*;
+class TestClass {
+  static long gcd(long a,long b) {
+        if (a == 0 || b == 0)
+           return 0;
+        if (a == b)
+            return a;
+        if (a > b)
+            return gcd(a-b, b);
+        return gcd(a, b-a);
+    }
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t--!=0){
+      int n=sc.nextInt();
+      long a[]=new long[n];
+      for(int i=0;i<n;i++){
+        a[i]=sc.nextLong();
+      }
+      long s=Long.MAX_VALUE;
+      for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++)
+        s=Math.min(s,((a[i]*a[j])/gcd(a[i],a[j])));
+      }
+      System.out.println(s);
+    }
+  }
+} 

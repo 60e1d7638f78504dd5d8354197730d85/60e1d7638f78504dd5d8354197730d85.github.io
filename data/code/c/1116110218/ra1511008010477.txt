@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+int T,i;
+char str[10001];
+int first[10000],last[10000],block[10000],index1[10000];
+int lastc[27]={0},firstc[27]={0},temp[27];
+int main(){
+    scanf("%d",&T);
+    while(T--){
+        scanf("%s",str);
+        i=0;
+        memset(firstc,'\0',sizeof(firstc));
+        memset(lastc,'\0',sizeof(lastc));
+        memset(first,'\0',sizeof(first));
+        memset(last,'\0',sizeof(last));
+        memset(block,'\0',sizeof(block));
+        memset(index1,'\0',sizeof(index1));
+        while(str[i]){
+            if(str[i]!='#')
+                firstc[26]=++firstc[str[i]-'a']>firstc[26]?firstc[str[i]-'a']:firstc[26];
+            first[i]=firstc[26];
+            i++;
+        }
+//        i--;
+        while(--i>=0){
+            if(str[i]!='#')
+                lastc[26]=++lastc[str[i]-'a']>lastc[26]?lastc[str[i]-'a']:lastc[26];
+            last[i]=lastc[26];
+        }
+        int j=0;
+        int k=0;
+        i=0;
+        while(str[i]){
+            if(str[i]=='#'){
+                //printf("%d %d\n",i,temp[26]);
+                index1[j]=i;
+                block[j]=temp[26];
+                j++;
+                for(k=0;k<27;k++)
+                    temp[k]=0;
+            }else{
+                temp[26]=++temp[str[i]-'a']>temp[26]?temp[str[i]-'a']:temp[26];
+            }
+            i++;
+        }
+        if(j>=3){
+            i=1;
+            int simplemax=0,max=0;
+            //printf("hi\n");
+            for(i=1;i<=j-1;i++){
+                simplemax=0;
+                //printf("i=%d %d %d %d %d\n",index1[i],first[index1[i-1]],block[i],block[i+1],last[index1[i+1]]);
+                if(first[index1[i-1]] && block[i] && block[i+1] && last[index1[i+1]]){
+                    simplemax=first[index1[i-1]]+block[i]+block[i+1]+last[index1[i+1]];
+                    max=simplemax>max?simplemax:max;
+                }
+            }
+            printf("%d\n",max>0?max+3:max);
+        }else{
+            printf("0\n");
+        }
+    }
+    return 0;
+} 

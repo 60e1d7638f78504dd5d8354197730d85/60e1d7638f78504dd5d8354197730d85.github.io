@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+int check(char str[26],char c[26]){
+  int len=strlen(str),i,j;
+  for(i=0;i<strlen(c);i++){
+    for(j=0;j<len;j++){
+     	if(c[i]==str[j])
+          break;
+    }
+    if(j==len)
+      return 0;
+  }
+  return 1;
+}
+int main(){
+  char str[26],c[26];
+  int n,flag=0;
+  scanf("%s%d",str,&n);
+  while(n--){
+    scanf("%s",c);
+    flag=check(str,c);
+    if(flag==1)
+      printf("Yes\n");
+    else
+      printf("No\n");
+  }
+  return 0;
+}
+    

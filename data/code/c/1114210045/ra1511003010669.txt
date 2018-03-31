@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  	int n1,n2;
+	scanf("%d %d",&n1,&n2);
+    printf("%d %d",n1+n2,prob(n1)+prob(n2));
+	return 0;
+}
+int prob(int n)
+{
+  int a,s=0,t=1;
+  while(n!=0)
+  {
+    a=n%10;
+    n/=10;
+    if(s==0)
+      t=1;
+    else
+   	  t=t*10;
+    if(a==5)
+      s=6*t+s;
+    else
+      s=a*t+s;
+  }
+  return s;
+}

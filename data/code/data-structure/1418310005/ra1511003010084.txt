@@ -1,0 +1,133 @@
+#include<bits/stdc++.h>
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define debug cout<<"here"<<endl;
+#define pb push_back
+#define mp make_pair
+#define MOD 1000000007
+#define MAX 100005
+#define nill -1
+#define intial 0
+#define visited 1
+#define finished 3
+#define infi 1e9
+#define ll long long int
+#define PII pair<int,int>
+using namespace std;
+int n,k,A,B,C;
+vector<PII>adj[MAX];
+vector<ll>dis_A_B(MAX),dis_B_C(MAX),parentA(MAX),parentC(MAX);
+void intialize(int n)
+{
+    for(int i=1;i<=n+2;i++)
+    {
+        dis_A_B[i]=dis_B_C[i]=infi;
+        parentA[i]=parentC[i]=nill;
+        adj[i].clear();
+    }
+}
+ 
+void dijkstraA()
+{
+    vector<int>status(MAX,intial);
+    dis_A_B[A]=0;
+    multiset<PII>ms;
+    ms.insert(mp(0,A));
+    PII p;
+    while(!ms.empty())
+    {
+        p=*ms.begin();
+        ms.erase(ms.begin());
+        int u=p.second;
+        if(status[u]==visited)
+            continue;
+        status[u]=visited;
+        for(int i=0;i<adj[u].size();i++)
+        {
+            int v=adj[u][i].second;
+            ll wt=adj[u][i].first;
+            if(dis_A_B[v]>dis_A_B[u]+wt)
+            {
+                dis_A_B[v]=dis_A_B[u]+wt;
+                ms.insert(mp(dis_A_B[v],v));
+                parentA[v]=u;
+            }
+        }
+    }
+}
+ 
+void dijkstraC()
+{
+    vector<int>status(MAX,intial);
+    dis_B_C[C]=0;
+    multiset<PII>ms;
+    ms.insert(mp(0,C));
+    PII p;
+    while(!ms.empty())
+    {
+        p=*ms.begin();
+        ms.erase(ms.begin());
+        int u=p.second;
+        if(status[u]==visited)
+            continue;
+        status[u]=visited;
+        for(int i=0;i<adj[u].size();i++)
+        {
+            int v=adj[u][i].second;
+            ll wt=adj[u][i].first;
+            if(dis_B_C[v]>dis_B_C[u]+wt)
+            {
+                dis_B_C[v]=dis_B_C[u]+wt;
+                ms.insert(mp(dis_B_C[v],v));
+                parentC[v]=u;
+            }
+        }
+    }
+}
+int main()
+{
+    fast;
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>k;
+        ll a,b,d;
+        intialize(n);
+        for(int i=1;i<=k;i++)
+        {
+            cin>>a>>b>>d;
+            adj[a].pb(mp(d,b));
+            adj[b].pb(mp(d,a));
+        }
+        cin>>A>>B>>C;
+        dijkstraA();
+        dijkstraC();
+        if(dis_A_B[B]!=infi&&dis_B_C[B]!=infi)
+        {
+            cout<<dis_A_B[B]+dis_B_C[B]<<endl;
+            vector<int>path_A_B;
+            int x=B;
+            while(x!=nill)
+            {
+                path_A_B.pb(x);
+                x=parentA[x];
+            }
+            reverse(path_A_B.begin(),path_A_B.end());
+            vector<int>path_B_C;
+            x=parentC[B];
+            while(x!=nill)
+            {
+                path_B_C.pb(x);
+                x=parentC[x];
+            }
+            for(int i=0;i<path_A_B.size();i++)
+                cout<<path_A_B[i]<<" ";
+            for(int i=0;i<path_B_C.size();i++)
+                cout<<path_B_C[i]<<" ";
+            cout<<endl;
+        }
+        else
+            cout<<"No Train Found."<<endl;
+    }
+    return 0;
+}

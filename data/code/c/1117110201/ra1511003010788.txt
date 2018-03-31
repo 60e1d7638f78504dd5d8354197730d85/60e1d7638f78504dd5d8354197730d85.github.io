@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+ int t,i,j;
+ scanf("%d",&t);
+ while(t--)
+ {
+  char s[2005];
+  int a[26][26];
+   for(i=0;i<26;i++)
+     for(j=0;j<26;j++)
+       a[i][j]=0;
+ 
+  scanf("%s",s);
+ 
+  int i,j,k,max;
+  int len=strlen(s);
+ 
+  int first[26]={0};
+  int second[26]={0};
+ 
+  for(i=0;i<len;i++)
+  {
+	 int x=s[i]-'a';
+ 
+	 for(k=0;k<26;k++)
+	 {
+	  max=-1;
+ 
+	  for(j=0;j<=x;j++)
+		if(a[j][k]>max)
+		 max=a[j][k];
+ 
+	  first[k]=max+1;
+	 }
+ 
+	 for(j=0;j<26;j++)
+	 {
+		max=-1;
+ 
+		for(k=25;k>=x;k--)
+		 if(a[j][k]>max)
+		  max=a[j][k];
+ 
+		second[j]=max+1;
+	 }
+ 
+	 for(j=0;j<26;j++)
+	  a[x][j]=first[j];
+ 
+	 for(j=0;j<26;j++)
+	  a[j][x]=second[j];
+ 
+	}
+ 
+  int ans=-1;
+ 
+  for(i=0;i<26;i++)
+	for(j=0;j<26;j++)
+	 if(a[i][j]>ans)
+	  ans=a[i][j];
+ 
+ printf("%d\n",ans);
+}
+return 0;
+} 

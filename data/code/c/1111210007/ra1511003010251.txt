@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+  int t,n,c,q,l,r;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d%d%d",&n,&c,&q);
+    c=c-1;
+    int a[n],i;
+    for(i=0;i<n;i++)
+    {
+      if(i==c)a[i]=0;
+      else a[i]=1;
+    }
+    for(i=0;i<q;i++)
+    {
+      scanf("%d%d",&l,&r);
+      l=l-1;
+      r=r-1;
+      while(l<r)
+      {
+        a[l]=a[l]+a[r];
+        a[r]=a[l]-a[r];
+        a[l]=a[l]-a[r];
+        l++;
+        r--;
+      }
+    }
+    for(i=0;i<n;i++)
+    {
+      if(a[i]==0)
+      {
+      	printf("%d\n",i+1);
+        break;
+      }
+    }
+  }
+  return 0;
+}

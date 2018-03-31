@@ -1,0 +1,62 @@
+#include<stdio.h>
+ 
+float absfloat(float x)
+{
+	if(x >= 0.0)
+		return x;
+	else
+		return (-x);
+}
+ 
+float getAcuteAngle(float x,float y)
+{
+	float z;
+	z = absfloat(x-y);
+	
+	if(z<=180.0)
+	{
+		return z;
+	}
+	else
+	{
+		return (absfloat(360.0 - z));
+	}
+}
+ 
+ 
+int main()
+{
+	int T, h, m;
+	float inAngle, hAngle, mAngle;
+	float boundary,hAdd,mAdd;
+	scanf("%d", &T);
+	
+	boundary = 1.0 / 120.0;
+	hAdd = (360.0 / 12.0)/ 60.0;
+	mAdd = 360.0 / 60.0;
+	
+	while( T )
+	{
+		fflush(stdin);
+		scanf("%f",&inAngle);
+		
+		hAngle = 0.0;
+		for( h = 0; h < 12; h++)
+		{
+			mAngle = 0.0;
+			for(m = 0; m < 60; m++)
+			{
+				if( (absfloat( (getAcuteAngle( hAngle,mAngle )) - inAngle)) <= boundary )
+				{
+					printf("%02d:%02d\n",h,m);
+				}
+				mAngle = mAngle + mAdd;
+				hAngle = hAngle + hAdd;
+			}
+		}
+				
+		T--;
+	}
+	
+	return 0;
+} 

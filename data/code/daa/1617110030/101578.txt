@@ -1,0 +1,56 @@
+#include<stdio.h>
+ 
+int a[100000];
+void preprocess(){
+    int i=0;
+    a[1]=0;
+    a[2]=1;
+    a[3]=1;
+    int x,y;
+    for(i=4;i<100000;i++){
+         x = a[i/3]+i%3+1;
+       y = a[i/2]+i%2+1;
+       if(x > y)
+            a[i]= y;
+       else
+            a[i]=x;
+    }
+}
+int ans(int input)
+{
+   int x, y;
+   if (input <= 1)
+      return 0;
+   if(input<100000){
+       return a[input];
+   }
+   x = ans(input/3)+input%3+1;
+   y = ans(input/2)+input%2+1;
+   if(x > y)
+        return y;
+   else
+        return x;
+}
+ 
+int main()
+{
+   preprocess();
+   int cases, input, count, x, y;
+   scanf("%d", &cases);
+   
+   while(cases--) {
+                  scanf("%d", &input);
+                  count = 0;
+                  if (input > 1) {
+                  x = ans(input/3)+(input%3)+1;
+                  y = ans(input/2)+(input%2)+1;
+                  if (x > y)
+                     printf("%d\n", y);
+                  else
+                      printf("%d\n", x);
+                  }
+                      else
+                      printf("0\n");
+                           
+   }
+}

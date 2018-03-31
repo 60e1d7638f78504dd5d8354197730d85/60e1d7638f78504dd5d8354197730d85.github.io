@@ -1,0 +1,29 @@
+#include<stdio.h>
+#define coll(x) x*(x-1)/2
+int main()
+{
+	char a[11][11];
+	int m,n,t,i,j,k,count,sum;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%d%d",&n,&m);
+		for(j=0;j<n;j++)
+		{
+			scanf("%s",a[j]);
+		}
+		sum=0;
+		for(k=0;k<m;k++)
+		{
+			count=0;
+			for(j=0;j<n;j++)
+			{
+				if(a[j][k]-48)
+					count++;
+			}
+			sum=sum+coll(count);
+		}
+		printf("%d\n",sum);
+	}
+	return 0;
+}  

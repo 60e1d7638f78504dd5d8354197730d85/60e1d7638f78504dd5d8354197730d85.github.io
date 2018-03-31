@@ -1,0 +1,129 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class TestClass {
+    static int K;
+ 
+    public static void main(String[] args) throws IOException {
+        InputReader reader = new InputReader(System.in);
+        int N = reader.readInt();
+        K = reader.readInt();
+        int root = reader.readInt()-1;
+        Node[] nodes = new Node[N];
+        for (int n=0; n<N; n++) {
+            Node node = new Node();
+            node.id = n;
+            nodes[n] = node;
+        }
+        for (int n=1; n<N; n++) {
+            int u = reader.readInt()-1;
+            int v = reader.readInt()-1;
+            Node nodeu = nodes[u];
+            Node nodev = nodes[v];
+            nodeu.next.add(nodev);
+            nodev.next.add(nodeu);
+        }
+        for (int n=0; n<N; n++) {
+            Node node = nodes[n];
+            int[] A = new int[K];
+            for (int k=0; k<K; k++) {
+                A[k] = Short.MAX_VALUE;
+            }
+            int product = reader.readInt()-1;
+            A[product] = n;
+            node.A = A;
+        }
+        postOrder(nodes[root], null);
+        preOrder(nodes[root], null);
+        int Q = reader.readInt();
+        StringBuilder output = new StringBuilder(6*Q);
+        for (int q=0; q<Q; q++) {
+            int city = reader.readInt()-1;
+            int product = reader.readInt()-1;
+            int result = nodes[city].A[product];
+            if (result == Short.MAX_VALUE) {
+                result = -1;
+            } else {
+                result++;
+            }
+            output.append(result).append('\n');
+        }
+        System.out.print(output);
+    }
+ 
+    static void postOrder(Node node, Node parent) {
+        for (Node subNode : node.next) {
+            if (subNode == parent) continue;
+            postOrder(subNode, node);
+            for (int k=0; k<K; k++) {
+                if (subNode.A[k] < node.A[k]) {
+                    node.A[k] = subNode.A[k];
+                }
+            }
+        }
+    }
+ 
+    static void preOrder(Node node, Node parent) {
+        if (parent != null) {
+            for (int k=0; k<K; k++) {
+                if (node.A[k] == Short.MAX_VALUE) {
+                    node.A[k] = parent.A[k];
+                }
+            }
+        }
+        for (Node subNode : node.next) {
+            if (subNode != parent) {
+                preOrder(subNode, node);
+            }
+        }
+    }
+ 
+    static class Node {
+        int id;
+        List<Node> next = new ArrayList<Node>();
+        int[] A;
+    }
+ 
+    static final class InputReader {
+        private final InputStream stream;
+        private final byte[] buf = new byte[1024];
+        private int curChar;
+        private int numChars;
+ 
+        public InputReader(InputStream stream) {
+            this.stream = stream;
+        }
+ 
+        private int read() throws IOException {
+            if (curChar >= numChars) {
+                curChar = 0;
+                numChars = stream.read(buf);
+                if (numChars <= 0) {
+                    return -1;
+                }
+            }
+            return buf[curChar++];
+        }
+ 
+        public final int readInt() throws IOException {
+            int c = read();
+            while (isSpaceChar(c)) {
+                c = read();
+            }
+            int res = 0;
+            do {
+                res *= 10;
+                res += c - '0';
+                c = read();
+            } while (!isSpaceChar(c));
+            return res;
+        }
+ 
+        private boolean isSpaceChar(int c) {
+            return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+        }
+    }
+    
+}

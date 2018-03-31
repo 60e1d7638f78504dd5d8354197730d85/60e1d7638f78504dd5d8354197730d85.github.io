@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class t{
+	public:
+  		int h,m,s,h1,m1,s1;
+  	void gettime(int hh,int mm,int ss,int hh1,int mm1,int ss1){
+    	h=hh;
+      	m=mm;
+      	s=ss;
+      	h1=hh1;
+      	m1=mm1;
+      	s1=ss1;
+    }
+  	void puttime(){
+    	int t_sec = (s+s1)%60;
+      	int t_min = (m+m1)%60 + (s+s1)/60;
+      	int t_hour = h+h1+(m+m1)/60;
+      	cout<<t_hour<<":"<<t_min<<":"<<t_sec;
+    }
+  	
+};
+
+int main()
+{
+	t t1;
+  	int a,b,c,d,e,f;
+  	cin>>a>>b>>c>>d>>e>>f;
+  	t1.gettime(a,b,c,d,e,f);
+  	t1.puttime();
+	return 0;
+}

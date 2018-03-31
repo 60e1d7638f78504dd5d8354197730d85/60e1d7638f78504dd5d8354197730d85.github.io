@@ -1,0 +1,57 @@
+#include <stdio.h>
+int isPalin(int n)
+{
+  int temp,rev=0;
+  temp=n;
+  while(temp>0)
+  {
+    rev = rev*10 + temp%10;
+    temp/=10;
+  }
+  if(rev==n)
+    return 1;
+  return 0;
+}
+
+int main()
+{
+	int x,a,b,c,i,flag=1;
+  	scanf("%d",&x);
+  	if(x==3)
+      scanf("%d%d%d",&a,&b,&c);
+  	else
+      scanf("%d%d",&a,&b);
+  	while(flag)
+    {
+      a++;
+      if(isPalin(a)==1)
+      {
+        printf("%d\n",a);
+        flag=0;
+      }
+    }
+  	flag=1;
+  	while(flag)
+    {
+      b++;
+      if(isPalin(b)==1)
+      {
+        printf("%d",b);
+        flag=0;
+      }
+    }
+  if(x==3)
+  {
+    flag=1;
+  	while(flag)
+    {
+      c++;
+      if(isPalin(c)==1)
+      {
+        printf("\n%d",c);
+        flag=0;
+      }
+    }
+  }
+	return 0;
+}

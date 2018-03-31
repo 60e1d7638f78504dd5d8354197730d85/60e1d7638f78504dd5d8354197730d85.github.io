@@ -1,0 +1,28 @@
+#include <stdio.h>
+struct stud{
+  int rno;
+  char name[100],dept[100];
+  long long int fee;
+};
+int main()
+{
+	int t,x;
+  	scanf("%d",&t);
+  	struct stud a[t],*p;
+  	p=a;
+  	x=t;
+  	while(x--)
+    {
+      scanf("%d%s%s%lld",&p->rno,p->name,p->dept,&p->fee);
+      p++;
+    }
+  	p=a;
+  	printf("Details of the student\n");
+  	while(t--)
+    {
+      printf("Roll no:%d\nName:%s\nCourse:%s\nFees:%lld\n",p->rno,p->name,p->dept,p->fee);
+      p++;
+    }
+  	
+	return 0;
+}

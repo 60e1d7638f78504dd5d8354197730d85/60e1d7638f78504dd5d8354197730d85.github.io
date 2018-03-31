@@ -1,0 +1,30 @@
+import java.util.Scanner;
+class TestClass{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t-->0){
+			String s = sc.next();
+			StringBuilder sb = new StringBuilder();
+			int max = F(s);
+			
+			for(int i=0;i<max;i++) sb.append("(");
+			for(int i=0;i<max;i++) sb.append(")");
+			
+			System.out.println(sb.toString());
+			
+		}
+	}
+	
+	private static int F(String s){
+		int balance =0, max = 0;
+		int length = s.length();
+		for(int i=0;i<length;i++){
+			char ch = s.charAt(i);
+			if(ch == '(') balance = balance+1;
+			if(ch == ')') balance-=1;
+			max = Math.max(max,balance);
+		}
+		return max;
+	}
+} 

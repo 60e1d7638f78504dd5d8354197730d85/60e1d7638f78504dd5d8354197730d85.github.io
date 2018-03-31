@@ -1,0 +1,123 @@
+#include<stdio.h>
+#include<string.h>
+typedef long long int lli;
+int r;
+lli ti;
+struct time
+{
+	int d,h,m;
+}rm[500],cur;
+int dl[501][500][2],l[501],up[11]={2212,11160,28756,67704,69264,145080,222859,184132,265876,345072,6200};
+int cmp(struct time t1,struct time t2)
+{
+	if(t1.d>t2.d)
+	return 1;
+	if(t1.d<t2.d)
+	return -1;
+	if(t1.h>t2.h)
+	return 1;
+	if(t1.h<t2.h)
+	return -1;
+	if(t1.m>t2.m)
+	return 1;
+	if(t1.m<t2.m)
+	return -1;
+	return 0;
+}
+void init()
+{
+	int f[500],i,j,k,p1,p2,p3,p4,c;
+	dl[2][1][0]=1;
+	dl[2][1][1]=1;
+	l[1]=1;
+	l[2]=2;
+	k=0;
+	for(i=3;i<=500;i++)
+	{
+		if(i%33==0)i++;
+		if(i%100==1)k++;
+		memset(&f,0,sizeof(f));
+		p1=0;p2=1;p3=3;
+		dl[i][1][0]=1;
+		dl[i][1][1]=1;
+		dl[i][2][0]=3%i;
+		dl[i][2][1]=2;
+		c=3;
+		f[p1]=1;
+		f[p2]=1;
+		f[p3%i]=1;
+		for(j=0;j<up[k];j++)
+		{
+			p4=(p1+p2+p3+2)%i;
+			p1=p2;p2=p3;p3=p4;
+			if(!f[p4])
+			{
+				dl[i][c][0]=p4;
+				dl[i][c][1]=j+3;
+				c++;
+				f[p4]=1;
+			}
+		}
+		l[i]=c;
+	}
+}
+int main()
+{
+	init();
+	int t,n,i,j,k,h,m,p,tmp;
+	struct time mm;
+	char str[15];
+	scanf("%d",&t);
+	while(t)
+	{
+		t--;
+		scanf("%d %d",&n,&r);
+		memset(&rm,0,sizeof(rm));
+		for(i=0;i<n;i++)
+		{
+			scanf("%d %d %d %s",&h,&m,&p,str);
+			if((cur.h>h)||((cur.h==h)&&(cur.m>m)))
+			cur.d++;
+			cur.h=h;
+			cur.m=m;
+			k=0;
+			for(j=0;str[j]!='\0';j++)
+			{
+				if(str[j]>='a')
+				k=(k*33+str[j]-'a'+1)%r;
+				else
+				k=(k*33+str[j]-'A'+1)%r;
+			}
+			k=(k+ti)%r;
+			mm.d=4800000;
+			for(j=0;j<l[r];j++)
+			{
+				tmp=(k+dl[r][j][0])%r;
+				if(cmp(cur,rm[tmp])>=0)
+				break;
+				if(cmp(mm,rm[tmp])>0)
+				mm=rm[tmp];
+			}
+			if(j<l[r])
+			{
+				printf("%d\n",dl[r][j][1]);
+				ti+=dl[r][j][1];
+				rm[tmp].d=cur.d+p/24;
+				rm[tmp].h=cur.h+p%24;
+				if(rm[tmp].h>=24)
+				{
+					rm[tmp].d++;
+					rm[tmp].h-=24;
+				}
+				rm[tmp].m=m;
+			}
+			else
+			{
+				k=(mm.d-cur.d)*24*60+(mm.h-cur.h)*60+mm.m-cur.m;
+				printf("-%d\n",k);
+				ti+=k;
+			}
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int check_hard(int h)
+{
+	if(h>50)
+      return 1;
+  else return 0;
+}
+
+int check_carb(float c)
+{
+	if(c<0.7)
+      return 1;
+  else return 0;
+}
+
+int check_tens(int t)
+{
+	if(t>5600)
+      return 1;
+  else return 0;
+}
+
+void check_grade(int h,float c,int t)
+{
+	int hc,cc,tc;
+    hc=check_hard(h);
+    cc=check_carb(c);
+  	tc=check_tens(t);
+  
+  	if(hc==1 && cc==1 && tc==1)
+      printf("Grade 10\n");
+  	
+  else if(hc==1 && cc==1 && tc==0)
+    	printf("Grade 9\n");
+    
+  	else if(cc==1 && tc==1 && hc==0)
+      printf("Grade 8\n");
+  
+  	else if(hc==1 && tc==1 && cc==0)
+      printf("Grade 7\n");
+  
+  	else if((hc==1 && tc==0 && cc==0)||(hc==0 && tc==1 && cc==0) && (hc==0 && tc==0 && cc==1))
+      printf("Grade 6\n");
+  else
+    printf("Grade 5\n");
+}
+
+void get_value()
+{
+	int h,t;
+  	float c;
+  	scanf("%d%f%d",&h,&c,&t);
+  	check_grade(h,c,t);
+}
+
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  
+  int i;
+  for(i=1;i<=n;i++)
+  {
+   	get_value();
+  }
+	return 0;
+}

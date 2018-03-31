@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int digits, pages, temp=0;
+  	scanf("%d", &digits);
+  	/*if(digits>=60)
+      printf("Impossible");
+*/
+  	temp=digits-11;
+  	if(digits-11==0)
+    {
+      printf("10");
+      exit(0);
+    }
+  	temp=0;
+  	if(digits)
+    {
+      int rem=0;
+      digits=digits-11;
+      temp++;
+      temp=temp+(digits/20);
+      rem=digits%20;
+      if(rem%2!=0)
+      {
+        printf("Impossible");
+      }
+      else
+      {
+        pages=(temp*10)+rem/2;
+        printf("%d", pages);
+      }
+    }
+	return 0;
+}

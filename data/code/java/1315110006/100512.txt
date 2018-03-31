@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.Scanner;
+class Automorphic{
+  static int n;
+  public static void calculate()
+  {
+    Scanner sc=new Scanner(System.in);
+    n=sc.nextInt();
+    if (endsWith(Integer.toString(n*n)))
+       System.out.println((n*n)+"\nAutomorphic Number");
+    else
+       System.out.println((n*n)+ "\nNot an Automorphic Number");
+  }
+  public static boolean endsWith(String s)
+  {
+    String s1=Integer.toString(n);
+    String s2=s.substring(s.length()-s1.length());
+    if (s1.equals(s2))
+    	return true;
+    else
+      	return false;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Automorphic.calculate();
+	}
+}

@@ -1,0 +1,31 @@
+#include<stdio.h>
+#define gc getchar_unlocked
+ 
+inline unsigned long fastread()
+{
+  char c=gc();
+  unsigned long i=0;
+  while(c<'0')
+    c=gc();
+  for(;c>='0';c=gc())
+    i=(i<<3)+(i<<1)+c-'0';
+  return i;
+}
+ 
+int main()
+{
+  unsigned long t,n,w,max,i;
+  t=fastread();
+  while(t--){
+    max=0;
+    n=fastread();
+    for(i=0;i<n;i++){
+      w=fastread();
+      if((w+i)>max)
+	max=w+i;
+    }
+    printf("%lu\n",max);
+  }
+  return 0;
+}
+    

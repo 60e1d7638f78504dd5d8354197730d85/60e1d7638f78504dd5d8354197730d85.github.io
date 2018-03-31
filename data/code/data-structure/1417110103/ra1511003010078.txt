@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+const int size=5;
+int f=-1,r=-1;
+void insert(int a[],int data)
+{
+  if(r==size-1)
+    cout<<"Overflow!";
+  else
+  {
+    if(r==-1)
+      f=r=0;
+    else
+      r++;
+    a[r]=data;
+  }
+}
+void del(int a[])
+{
+
+  //else
+  {
+    if(f==r)
+      f=r=-1;
+    else
+      f++;
+    
+  }
+}
+int main()
+{
+    int a[size],item;
+    int ch;
+    cin>>ch;
+    switch(ch)
+    {
+      case 1: for(int i=0;i<3;i++)
+      {
+        cin>>item;
+        insert(a,item);
+      }
+        cout<<"Element : Successfully Insert";
+        break;
+      case 2:for(int i=0;i<3;i++)
+              del(a);
+        cout<<"Queue Empty";
+    }
+	return 0;
+}

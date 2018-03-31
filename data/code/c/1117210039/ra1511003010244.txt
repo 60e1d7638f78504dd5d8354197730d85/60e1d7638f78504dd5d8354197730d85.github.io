@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+//#include <conio.h>
+int scan(){
+    int t=0;
+    char c;
+    c=getchar();
+    while(c<'0' || c>'9')
+        c=getchar();
+    while(c>='0' && c<='9'){
+        t=t*10+c-'0';
+        c=getchar();
+    }
+    return(t);
+}
+int max(int a, int b) { return (a > b)? a : b; }
+// Returns the maximum value that can be put in a knapsack of capacity W
+int knapSack(long long W, long long* wt, long long* val, int n)
+{
+   // Base Case
+   if (n == 0 || W == 0)
+       return 0;
+ 
+   // If weight of the nth item is more than Knapsack capacity W, then
+   // this item cannot be included in the optimal solution
+   if (wt[n-1] > W)
+       return knapSack(W, wt, val, n-1);
+ 
+   // Return the maximum of two cases: (1) nth item included (2) not included
+   else return max( val[n-1] + knapSack(W-wt[n-1], wt, val, n-1),
+                    knapSack(W, wt, val, n-1)
+                  );
+}
+int main()
+{
+    //char arr[1001];
+    int T;
+    T=scan();
+    while(T--){
+        long long n,k=0,i;
+        long long cost[100],weight[100];
+        n=scan();
+        k=scan();
+        for(i=0;i<n;i++){
+            cost[i]=scan();
+            weight[i]=scan();             
+        }
+       // int count=0,sum_w=0,sum_c=0;
+        printf("\n%d",knapSack(k,cost,weight,n));
+    }
+   // getch();
+    return 0;
+}

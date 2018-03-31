@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct {
+  int num;
+  char name[10];
+  char date[15];
+  int val;
+}stud;
+int main()
+{
+  	stud* a;
+  	int n;
+  	scanf("%d",&n);
+  	a=(stud*) malloc(n*sizeof(stud));
+  	stud* init=a;
+  	while(n--){
+      scanf("%d %s %s %d",&a->num,a->name,a->date,&a->val);
+      a++;
+    }
+ 	int i;
+  	while(init < a){
+    	printf("Roll no:%d\nName:%s\nDOB:%s\nFees:%d\n",init->num,init->name,init->date,init->val);
+      	init++;
+    }
+  
+
+	return 0;
+}

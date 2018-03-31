@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+class Deletearray
+{
+  public void deleteElement()
+  {
+    Scanner in=new Scanner(System.in);
+    int a=in.nextInt();
+    int c[]=new int[a];
+    int count=0,i,j,d;
+    for(i=0;i<a;i++)
+    {
+      c[i]=in.nextInt();
+    }
+     d=in.nextInt();
+     for(i=0;i<a;i++)
+    {
+      if(c[i]==d)
+      {
+      for(j=i;j<a-1;j++)
+        {
+          c[j]=c[j+1];
+        //count=count+1;
+          //System.out.println(count);
+        }
+        count=count+1;
+        break;
+    }
+     }
+  if(count==0)
+  {
+    System.out.println("Element Not Found");
+  }
+  else
+  {
+    for(i=0;i<a-1;i++)
+    {
+      System.out.print(c[i]+" ");
+    }
+  }
+}
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Deletearray obj=new Deletearray();
+       obj.deleteElement();
+		
+	}
+}

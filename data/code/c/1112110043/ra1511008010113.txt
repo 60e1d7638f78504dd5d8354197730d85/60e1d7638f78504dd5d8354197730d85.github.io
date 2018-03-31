@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int T,i,j,k,l;
+    scanf("%d",&T);
+    int len_seq[T],seq[T][30],len_F[T],F_seq[T][30],flag[T];
+    for(i=0;i<T;i++)
+    {
+      scanf("%d",&len_seq[i]);
+      for(j=0;j<len_seq[i];j++)
+        scanf("%d",&seq[i][j]);
+      scanf("%d",&len_F[i]);
+      for(j=0;j<len_F[i];j++)
+        scanf("%d",&F_seq[i][j]);
+    }
+  
+   for(i=0;i<T;i++)
+     flag[i]=0;
+  
+  for(i=0;i<T;i++)
+    for(j=0;j<len_seq[i];j++)
+    {
+      if(F_seq[i][0]==seq[i][j])
+      {
+        for(k=0,l=j;k<len_F[i] && l<len_seq[i];k++,l++)
+          if(seq[i][l]!=F_seq[i][k])
+          {
+            flag[i]=0;
+            break;
+          }
+        else{
+          flag[i]++;
+          if(flag[i]==len_F[i])
+            break;
+        }
+        if(flag[i]==len_F[i])
+          break;
+      }
+    }
+      for(i=0;i<T;i++){
+        if(flag[i]==len_F[i])
+          printf("Yes");
+        else
+          printf("No");
+        printf("\n");
+      }
+  return 0;
+}

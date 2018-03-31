@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+int gcd(int,int);
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)a - *(int*)b );
+}
+int main()
+{
+ 
+        	int i,j,n,k,l,m,a[100009],cnt=0;
+        	scanf("%d",&k);
+        	for ( i = 0; i < k; ++i)
+        	{
+        		scanf("%d",&a[i]);
+        	}
+        	qsort(a,k,sizeof(int),cmpfunc);
+            for( i = 0; i < k-2; ++i)
+        	{
+        		for ( j = i+1; j < k-1; ++j)
+        		{
+        			m=gcd(a[i],a[j]);
+        			if(m==1)
+                    {
+                        cnt=cnt+k-j-1;
+                    }
+                    else
+                    {
+            			for ( l = j+1; l< k; ++l)
+            			{
+            				n=gcd(m,a[l]);
+        	    			if(n==1) cnt++;
+        		    	}
+                    }
+        		}
+        	}
+        	printf("%lld\n",(long long int)cnt);
+        	return 0;
+}
+int gcd(int a,int b)
+{
+	if(a==0) return b;
+	else return gcd(b%a,a);
+}
+ 

@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+bool canMakeAllSame(char *p)
+{
+  int zeros=0, n=strlen(p), ones=0, i;
+  for(i=0; i<n; i++)
+  {
+    if(p[i]=='0')
+      zeros++;
+    else
+      ones++;
+  }
+
+   return (zeros==1 || ones==1);
+}
+int main()
+{
+  int n, i;
+  char x[40];
+  scanf("%d", &n);
+  for(i=0;i<n;i++){
+  scanf("%s", x);
+
+    if(canMakeAllSame(x))
+      printf("Yes\n");
+    else
+      printf("No\n");
+  }
+  return 0;
+}

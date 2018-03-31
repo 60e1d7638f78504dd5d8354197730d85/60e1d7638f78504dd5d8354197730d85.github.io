@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+
+  int a,n,k;
+  int c[100]={0};
+  int div=0;
+  int i=0,j;
+  scanf("%d %d %d",&a,&n,&k);
+  for(i=0;i<k;i++)
+  {
+    c[i]+=div;
+    if(i==0)
+    {
+      div=a/(n+1);
+      c[i]=a%(n+1);
+    }
+    else
+    {
+      div=c[i]/(n+1);
+      c[i]=c[i]%(n+1);
+    }
+  }
+  for(i=0;i<k;i++)
+  {
+    printf("%d ", c[i]);
+  }
+	return 0;
+}

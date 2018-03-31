@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int ea,sum_earr=0,sum=0,ov;
+       Scanner s = new Scanner(System.in);
+       int no= s.nextInt();
+       int[] a = new int[no];
+       int[] b = new int[no];
+       for (int i=0;i<no;i++)
+         a[i] = s.nextInt();
+       ea = a[0];
+       b[no-1]= a[no-1];
+       for(int j = no-1; j>=0 ; j--)
+         sum_earr = sum_earr + a[j];
+       for (int j = no-1; j >0 ; j--)
+       {
+         ov = a[j-1] + a[j];
+         b[j-1]  = ov;
+         //System.out.println(ov);
+       }
+       for (int j = 0; j<no; j++)
+         sum = sum + b[j];
+       
+		System.out.println(a[0]);
+        System.out.println(sum_earr);
+        System.out.println(sum);
+       System.out.println(b[0]);
+	}
+}

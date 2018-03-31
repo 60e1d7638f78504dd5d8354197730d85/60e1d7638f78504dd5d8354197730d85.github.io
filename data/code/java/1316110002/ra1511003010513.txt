@@ -1,0 +1,28 @@
+import java.util.Scanner;
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner s = new Scanner(System.in);
+       int num = s.nextInt();
+       isBinaryOrNot(num);
+	}
+  static void isBinaryOrNot(int number)
+  {
+    String str = String.valueOf(number);
+    int length = str.length();
+    int count=0;
+    for(int i=0;i<length;i++)
+    {
+      if(str.charAt(i)=='0' || str.charAt(i)=='1')
+        continue;
+      else
+      {
+        System.out.println(number+" is not a binary number");
+        count=1;
+        break;
+      }
+    }
+    if(count==0)
+      System.out.println(number+" is a binary number");
+  }
+}

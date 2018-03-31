@@ -1,0 +1,65 @@
+
+#include <stdio.h>
+ 
+int main()
+{
+    int A[10][10],i,j,m,n;
+    int row, col, isLower;
+ 
+   // printf("Enter no. of rows :: ");
+	scanf("%d", &m);
+	//printf("\nEnter no. of cols :: ");
+	scanf("%d",&n);
+//	printf("\nEnter values to the matrix :: \n");
+	for (i = 0; i < m; i++)
+	{
+            for (j = 0; j < n; j++)
+            {
+               //  printf("\nEnter a[%d][%d] value :: ",i,j);
+                 scanf("%d", &A[i][j]);
+        }
+    }
+ 
+    isLower = 1;
+    for(row=0; row<m; row++)
+    {
+        for(col=0; col<n; col++)
+        {
+            /*
+             * If elements above main diagonal(col>row)
+             * is not equal to zero(A[row][col]!=0)
+             */
+            if(col>row && A[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+ 
+    if(isLower == 1)
+    {
+        printf("yes\n");
+ 
+        /*
+         * Prints elements of lower triangular matrix
+         */
+       /* for(row=0; row<m; row++)
+        {
+            for(col=0; col<n; col++)
+            {
+                if(A[row][col]!=0)
+                {
+                    printf("\t%d", A[row][col]);
+                }
+            }
+ 
+            printf("\n\n");
+        }*/
+    }
+    else
+    {
+        printf("no\n");
+    }
+ 
+    return 0;
+}

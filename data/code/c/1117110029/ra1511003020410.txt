@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int dsum(int a[100],int n){
+  int sum=0;
+  if(n<0)
+    return 0;
+  if(a[n]%2==0)
+    sum=sum+a[n]+dsum(a,n-1);
+  else 
+    sum=sum+dsum(a,n-1);
+  return sum;
+}
+int main()
+{
+	int i,n,a[100],sum=0;
+  	scanf("%d",&n);
+  	for(i=0;i<n;i++){
+      scanf("%d",&a[i]);
+    }
+  	sum=dsum(a,n-1);
+  	printf("%d",sum);
+	return 0;
+}

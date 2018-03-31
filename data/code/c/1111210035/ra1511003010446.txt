@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+int a,b,c,d;
+  scanf("%d%d%d%d",&a,&b,&c,&d);
+  int m = b * d;
+  int n = (a*d)+(b*c);
+  int gcd=1,i,max;
+  if(n>m)
+    max=n;
+  else
+    max=m;
+  for(i=2;i<=max;i++){
+   if(n%i==0 && m%i==0)
+     gcd=i;break;
+  }
+  n/=gcd;
+  m/=gcd;
+  printf("%d %d",n,m);
+	return 0;
+}

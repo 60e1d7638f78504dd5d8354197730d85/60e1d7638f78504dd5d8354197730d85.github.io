@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+int count,result[100];
+void to_char(int n, int m)
+{
+    int r,t,flag=0;
+    int b=m;
+    while(n>0)
+        {
+            r=n%10;
+            m=b;
+            while(m>0)
+            {
+               t=m%10;
+               if(r!=t)
+               {
+                   flag=1;
+                   break;
+               }
+               m=m/10;
+            }
+            n=n/10;
+        }
+        if(flag==0)
+        {
+            count++;
+            //printf("\n%d-%d",a,b);
+        }
+        return;
+}
+ 
+int main()
+{
+    int T,H,M,i,j,n;
+   // printf("Enter the number of attempts : ");
+    scanf("%d",&T);
+    for(n=0;n<T;n++)
+    {
+        count=0;
+       // printf("Enter the number of Hours and minutes : ");
+        scanf("%d%d",&H,&M);
+        for(i=1;i<H;i++)
+        {
+            for(j=1;j<M;j++)
+            {
+                to_char(i,j);
+            }
+        }
+        result[n]=count+1;
+    }
+ 
+    for(n=0;n<T;n++)
+    {
+         printf("\n%d",result[n]);
+    }
+    return 0;
+} 

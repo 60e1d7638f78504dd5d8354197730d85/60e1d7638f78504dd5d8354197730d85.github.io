@@ -1,0 +1,37 @@
+#include <stdio.h>
+int gcd(int n1, int n2)
+{
+    if (n2 != 0)
+       return gcd(n2, n1%n2);
+    else 
+       return n1;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+       long long int n,min,i,j;
+        scanf("%lld",&n);
+       long long int a[n],x;
+        for(i=0;i<n;i++)
+        scanf("%lld",&a[i]);
+        min=a[0]*a[1]/gcd(a[0],a[1]);
+        for(i=0;i<n-1;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                x=a[i]*a[j]/gcd(a[i],a[j]);
+                if(min>x)
+                min=x;
+                
+            }
+        }
+        printf("%lld\n",min);
+        
+    }
+ 
+    return 0;
+}
+ 

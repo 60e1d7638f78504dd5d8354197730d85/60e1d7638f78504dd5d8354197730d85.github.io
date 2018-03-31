@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  	int comp (const void * a, const void * b) {
+   		return ( *(int*)a - *(int*)b );
+    }
+	int i,j[20],k[30],l,m,n;
+  	scanf("%d", &i);
+  	for(l=0;l<i;l++)	{
+    	scanf("%d", &j[l]);
+      	for( m = 0; m<j[l];m++)	{
+        	scanf("%d", &k[m]);
+        }
+      	qsort (k, j[l], sizeof(int), comp);
+        printf("%d", k[0]+k[1]);
+    }
+	return 0;
+}

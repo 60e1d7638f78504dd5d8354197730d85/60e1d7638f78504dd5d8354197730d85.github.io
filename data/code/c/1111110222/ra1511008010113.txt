@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int T,i,j,length;
+    scanf("%d",&T);
+    int count[T];
+    for(i=0;i<T;i++)
+      count[i]=0;
+    char str[T][15];
+    for(i=0;i<T;i++)
+      scanf("%s",str[i]);
+    for(i=0;i<T;i++)
+    {
+      length=strlen(str[i]);
+      for(j=0;j<length;j++)
+        if((str[i][j]=='0')&&(str[i][j+1]=='1'))
+        count[i]++;   
+    }
+    for(i=0;i<T;i++)
+      printf("%d\n",count[i]);
+	return 0;
+}

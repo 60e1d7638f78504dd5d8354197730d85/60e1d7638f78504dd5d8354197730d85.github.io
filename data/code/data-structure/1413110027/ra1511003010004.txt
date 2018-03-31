@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int compare(const void* a,const void* b){
+    int i = *((int*)(a));
+    int j = *((int*)(b));
+    return i-j;
+}
+ 
+int check(int mid,int* a,int t,int p){
+    int s = a[0]+mid, k=1,i;
+    for( i=1;i<t;i++){
+        if(a[i]>s+mid){
+            if(++k > p)
+                return 0;
+            s = a[i]+mid;
+        }
+    }
+    return 1;
+}
+ 
+int main(){
+    int t=0, p=0,i;
+    scanf("%d %d",&t,&p);
+    int* a = (int *)malloc(sizeof(int)*t);
+    for( i=0;i<t;i++){
+        scanf("%d",a+i);
+    }
+    qsort(a,t,sizeof(int),compare);
+    int l=0,h=1000000000,mid=0;
+    while(l<=h){
+         mid = l+(h-l)/2;
+        if(check(mid,a,t,p) && !check(mid-1,a,t,p))
+            break;
+        if(check(mid,a,t,p))
+            h = mid-1;
+        else
+            l = mid+1;
+    }
+    printf("%d\n",mid);
+
+	return 0;
+}

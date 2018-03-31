@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.Scanner;
+class Sample
+{
+static void getInput()
+{
+ Scanner sc=new Scanner(System.in);
+  int num,digit;
+  num=sc.nextInt();
+  digit=sc.nextInt();
+  int ans=getLLessThanN(num,digit);
+  System.out.println(ans);
+  }
+  static int getLLessThanN(int num,int digit)
+  {
+       char c = Integer.toString(digit).charAt(0);
+         for (int i = num; i > 0; --i)
+        {
+            if(Integer.toString(i).indexOf(c) == -1)
+            {
+                            return i;
+            }
+        }
+         return -1;
+  }
+  
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       //Sample obj=new Sample();
+       Sample.getInput();
+		
+	}
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+string isPrime(int n) {
+	int k = sqrt(n);
+  	for(int i=3; i<=k; i+=2) {
+    	if(n%i == 0) return "no";
+    }
+  	return "yes";
+}
+
+int main()
+{
+  	int t;
+  	cin>>t;
+  	while(t--) {
+    	int n;
+      	cin>>n;
+      	if(n == 2) {
+        	cout<<"yes\n";
+          	continue;
+        }
+      	if(n == 1 || n%2 == 0) {
+        	cout<<"no\n";
+          	continue;
+        }
+      	cout<<isPrime(n)<<endl;
+    }
+	return 0;
+}

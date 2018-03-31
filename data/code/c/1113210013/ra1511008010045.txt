@@ -1,0 +1,33 @@
+#include <stdio.h>
+ 
+inline void scanint(int* x)
+{
+	register char c = getchar_unlocked();
+	*x = 0;
+	for(; (c<48)||(c>57);c = getchar_unlocked());
+	for(; (c>47)&&(c<58);c = getchar_unlocked())
+		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+}
+ 
+int main()
+{	
+	int T, count = 0;
+	scanint(&T);
+	
+	while(T--)
+	{
+		int x1,x2,x3,y1,y2,y3;
+		scanint(&x1);
+		scanint(&y1);
+		scanint(&x2);
+		scanint(&y2);
+		scanint(&x3);
+		scanint(&y3);
+ 
+		if(((x1 - x2)*(x2 - x3)) + ((y1 - y2)*(y2 - y3)) == 0 || ((x2 - x3)*(x3 - x1)) + ((y2 - y3)*(y3 - y1)) == 0 || ((x3 - x1)*(x1 - x2)) + ((y3 - y1)*(y1 - y2)) == 0)
+			count++;
+	}
+ 
+	printf("%d\n", count);
+	return 0;
+}  

@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include<stdbool.h>
+int main()
+{
+int n=0;
+  int h=0,t=0;
+  float c=0.0;
+  bool hT=h>50;
+  bool cT=c<=0.7;
+  bool tT=t>5600;
+  int grade=5;
+  scanf("%d",&n);
+  while(n-->0){
+  	scanf("%d %f %d",&h,&c,&t);
+          if(h>50&&c<=0.7&&t>5600)
+         	grade=10;
+          else if(h>50&&c<=0.7&&t<=5600)
+          	grade=9;
+          else if(h<=50&&c<=0.7&&t>5600)
+          grade=8;
+          else if(h>50&&c>0.7&&t>5600)
+          grade=7;
+          else if((hT&&!cT&&!tT)&&(!hT&&cT&&!tT)&&(hT&&!cT&&tT))
+          grade=6;
+          else
+          grade=5;
+          printf("Grade %d\n",grade);
+  	}
+	return 0;
+}

@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class matrix{
+	private: int m, n, x[30][30]; 
+	public:
+      	matrix(int a, int b){ 
+          m=a;
+          n=b;
+       	}
+        matrix(){}
+        void get(){
+          for(int i=0; i<m; i++)
+    		for(int j=0; j<n;j++)
+    			cin>>x[i][j];
+        }
+        void put(){
+          for(int i=0; i<m; i++){
+              for(int j=0; j<n;j++)
+                  cout<<x[i][j]<<" ";
+              cout<<endl;
+          }
+        }
+        matrix operator +(matrix b){
+          	matrix c(m,n);
+        	for(int i=0; i<m; i++)
+                for(int j=0; j<n; j++)
+                	c.x[i][j]= x[i][j] + b.x[i][j];
+        	return c;
+        }
+}; 
+
+int main()
+{    
+        int m1 , n1 , m2 , n2 ;
+        cin >> m1 >> n1 >> m2 >> n2 ;
+  		if ( m1 != m2 && n1 != n2 ){
+          cout << "Matrix cannot be added" ;
+          return 0 ;
+        }
+        matrix a(m1,n1) , b(m2,n2) , c;
+        a.get();
+        b.get();
+        c= a+b;
+  		cout << "The sum of the matrix is" << endl ;
+        c.put();
+        return 0;
+}

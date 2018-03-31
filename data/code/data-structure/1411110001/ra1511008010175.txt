@@ -1,0 +1,35 @@
+
+#include <stdio.h>
+#include <string.h>
+#define S(a) if(a)return
+ 
+int w, q, a[1111][3], u[1111], b[3333], r[3333];
+ 
+void A(int i)
+{
+int j, k, p, d;
+if(i==-1)S(!!(q=1));
+S(u[i]==w);
+for(u[i]=w+!(j=-1); ++j<3; b[k]=p,r[k]=d)
+	{
+	p=b[k=abs(a[i][j])];
+	b[k]=i;
+	d=r[k];
+	r[k]=a[i][j];
+	A(p);
+	S(q);
+	}
+}
+ 
+main()
+{
+int fall, n, m, i, j;
+for(scanf("%d",&fall); fall--; puts(""))
+	{
+	for(i=!!scanf("%d %d",&n,&m); i<=n; i++)
+	for(j=0; j<3; scanf("%d",&a[i][j++]));
+	for(memset(b,255,sizeof(b)),i=1; i<=n; q=(++w)*0,A(i++));
+	for(i=1; i<=m; putchar((r[i++]<0)?'F':'T'));
+	}
+return 0;
+} 

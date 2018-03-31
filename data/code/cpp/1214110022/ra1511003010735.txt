@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class rectangle {
+  int length, breadth; 
+  
+  public: rectangle(){}
+  public: rectangle(int a,int b) {
+    length = a;
+    breadth = b;
+  }
+  
+  public: rectangle(rectangle &obj){
+    length = obj.length;
+    breadth = obj.breadth;
+  }
+  
+  int calcarea() {
+    return (length*breadth);
+  }
+  void display (int a) {
+    cout<<a<<endl<<a<<endl<<a;
+  }
+};
+int main()
+{
+  int a,b;
+  cin>>a>>b;
+  rectangle r1(a, b); 
+  rectangle r2;
+  r2 = r1;
+  int c = r2.calcarea();
+  r2.display(c);
+
+	return 0;
+}

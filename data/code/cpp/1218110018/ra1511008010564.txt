@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+void binary(int);
+int main() {
+    int number;
+ 
+    cin >> number;
+    if (number < 0)
+        cout << "That is not a positive integer.\n";
+    else {
+        cout <<"Binary Equivalent of "<<number<<" is ";
+        binary(number);
+        cout << endl;
+    }
+}
+ 
+void binary(int number) {
+    int remainder;
+ 
+    if(number <= 1) {
+        cout << number;
+        return;
+    }
+ 
+ 
+    remainder = number%2;
+    binary(number >> 1);
+    cout << remainder;
+}

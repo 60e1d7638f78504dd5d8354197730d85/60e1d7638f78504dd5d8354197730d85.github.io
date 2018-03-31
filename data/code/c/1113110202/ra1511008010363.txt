@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,a=0,b=0,temp1,temp2,k;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    for(j=1;j<=n;j++)
+    {
+      k=i*j;
+      if(k==n && i<=j)
+      {
+        temp1=i;
+        temp2=j;
+        if(b-a<=temp2-temp1)
+        {
+        a=i;
+        b=j;
+        }
+        if(b-a>temp2-temp1)
+        {
+          a=temp1;
+          b=temp2;
+        }
+      }
+    }
+  }
+  printf("%d %d",a,b);       
+	return 0;
+}

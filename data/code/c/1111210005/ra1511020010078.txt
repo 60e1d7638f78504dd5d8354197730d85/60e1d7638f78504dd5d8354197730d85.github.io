@@ -1,0 +1,56 @@
+#include<stdio.h>
+int main()
+{
+    int T,N,i,count,j=0;
+    scanf("%d",&T);
+ 
+    int res[T];
+    while(T)
+    {
+        scanf("%d",&N);
+        char str[N];
+            scanf("%s",str);
+           // printf("Character    %c\n",str[2]);
+ 
+    i=0;
+        while(i<N)
+        {
+            if((str[i]-48)==1)
+            {
+                if((i-1)>=0)
+                {
+ 
+ 
+                    str[i-1]=1;
+                }
+                if(((str[i+1]-48)==0 )&& ((i+1)< N))
+                {
+                    str[i+1]=1;
+                    i+=2;
+                }
+                else
+                    i++;
+ 
+ 
+            }
+            else
+                i++;
+        }
+        count=0;
+        for(i=0; i<N; i++)
+        {
+            if((str[i]-48)==0)
+                count++;
+        }
+        res[j++]=count;
+ 
+        T--;
+    }
+ 
+    for(i=0; i<j; i++)
+    {
+ 
+        printf("%d\n",res[i]);
+    }
+return 0;
+}

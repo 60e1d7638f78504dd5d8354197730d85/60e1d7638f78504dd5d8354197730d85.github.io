@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdio.h>
+ 
+int main(){
+  int Q,u,n,v,t,h,H,ans,i,U,V,l,r,off,mm,tt,ro,fix,len;
+  scanf("%d",&Q);
+  while(Q--){
+    scanf("%d%d%d",&n,&u,&v);
+    U=u;
+    V=v;
+    t=1;
+    H=0;
+    while(t<=n){
+      H++;
+      t*=2;
+    }
+    tt=t-1;
+    mm=n-t/2+1;
+    t=(u>v)?u:v;
+    while(u!=v)
+      if(u>v)
+        u/=2;
+      else
+        v/=2;
+    h=0;len=1;
+    while(t!=u){
+      t/=2;
+      h++;len*=2;
+    }
+    for(i=0,ans=1;i<H-1-h;i++,ans*=2);
+    ans--;
+    t=(U>V)?U:V;
+    l=r=u;
+    while(l<t)
+      l*=2;
+    if(l!=t)
+      l/=2;
+    while(r<t)
+      r=(r*2)+1;
+    off=t-l+1;
+    ro=r-t;
+ 
+ 
+ 
+    fix=0;
+    if(off<=mm)
+      fix+=(mm+len-off)/len;
+    if(n+ro>tt)
+      fix-=(n+ro-tt)/len;
+    if(fix>0)
+      ans+=fix;
+ 
+    printf("%d\n",ans);
+  }
+  return 0;
+}
+ 

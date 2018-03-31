@@ -1,0 +1,27 @@
+#include <stdio.h>
+void subs(int num,int v[num], int maior){
+    int count = 0;
+    int i = 0;
+    while(i < num){
+        while(v[i] < maior){
+            v[i]++;
+            count++;
+        }
+        i++;
+    }
+    printf("%d\n",count);
+}
+int main(){
+    int v[100];
+    int maior = 0;
+    int num,i;
+    scanf("%d",&num);
+    for(i = 0;i < num;i++){
+        scanf("%d",&v[i]);
+        if(v[i] > maior){
+            maior = v[i];
+        }
+    }
+    subs(num,v,maior);
+    return 0;
+}

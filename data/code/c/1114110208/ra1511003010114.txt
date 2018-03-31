@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+
+int main()
+{
+    int A[100][100];
+    int row, col,r,c, sum = 0;
+  	scanf("%d%d",&r,&c);
+  	if(r!=c)
+    {
+      printf("entered row and columns is not square matrix");
+      return 0;
+    }
+    
+    /* Input elements in matrix from user */
+ 
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            scanf("%d", &A[row][col]);
+        }
+    }
+    
+    /* Find sum of upper triangular matrix */
+    for(row=0; row<r; row++)
+    {
+        for(col=0; col<c; col++)
+        {
+            if(col>row)
+            {
+                sum += A[row][col];
+            }
+        }
+    }
+
+    printf("%d", sum);
+
+    return 0;
+}

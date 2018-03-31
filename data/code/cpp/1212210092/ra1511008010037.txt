@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+int main(){
+	long int t;
+	cin>>t;
+	while(t--){
+		long int n,i,j,k,l=0,m=0;
+		cin>>n;
+		long long int ar[n];
+		for(i=0;i<n;i++)
+		 cin>>ar[i];
+		for(i=0;i<n;i++){
+			for(j=i+1;j<n;j++){
+				for(k=0;k<n;k++){
+					if(ar[i]*ar[j]==ar[k])
+					{ l=1; break; }
+				}
+			}
+			if(l==1)
+			 m++;
+			l=0; 
+		}
+		if(m==n-1) cout<<"yes\n";
+		else cout<<"no\n";
+	}
+	return 0;
+} 

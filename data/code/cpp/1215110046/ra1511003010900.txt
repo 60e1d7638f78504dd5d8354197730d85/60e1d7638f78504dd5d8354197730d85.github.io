@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+#include<string.h>
+int main()
+{
+int temp,n,A[100];
+  cin>>n;
+  for(int i=0;i<n;i++)
+  {
+    cin>>A[i];
+  }
+  for(int k=0;k<n-1;k++)
+  {
+    for(int i=0;i<n-k-1;i++)
+    {
+      if(A[i]>A[i+1])
+      {
+        temp=A[i];
+        A[i]=A[i+1];
+        A[i+1]=temp;
+      }
+    }
+  }
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<endl;
+  }
+  string str;
+  char t;
+  cin>>str;
+  for(int k=0;k<n-1;k++)
+  {
+    for(int i=0;i<n-k-1;i++)
+    {
+      if(str.at(i)>str.at(i+1))
+      {
+        t=str.at(i);
+        str.at(i)=str.at(i+1);
+        str.at(i+1)=t;
+      }
+    }
+  }
+  for(int k=0;k<n;k++)
+  {
+    cout<<str.at(k);
+  }
+}
+	

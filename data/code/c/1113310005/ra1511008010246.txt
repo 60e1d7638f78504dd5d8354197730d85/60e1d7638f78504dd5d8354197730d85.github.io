@@ -1,0 +1,35 @@
+#include<stdio.h>
+int A[8]={4,5,6,1,2,3,8,7};
+int B[8]={1,2,3,1,2,3,4,5};
+int main()
+{	
+	int T,N,p,s;
+	scanf("%d",&T); 
+	while(T--)
+	{
+		scanf("%d",&N);	
+		s=A[(N-1)%8]+((N-1)/8)*8;
+		p=B[A[(N-1)%8]-1];
+		if(p==1)
+		{
+			printf("%dLB\n",s);
+		}
+		else if(p==2)
+		{
+			printf("%dMB\n",s);	
+		}else if(p==3)
+		{
+			printf("%dUB\n",s);	
+		}else if(p==4)
+		{
+			printf("%dSL\n",s);	
+		}
+		else	if(p==5)
+		{
+			printf("%dSU\n",s);	
+		}
+		
+		
+	}
+	return 0;
+} 

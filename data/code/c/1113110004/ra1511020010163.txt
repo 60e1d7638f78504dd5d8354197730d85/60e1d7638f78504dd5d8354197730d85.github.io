@@ -1,0 +1,39 @@
+#include <stdio.h>
+int mode(int a[],int n)
+{
+  int maxval=0,maxcount=0,i,j;
+  for(i=0;i<n;++i)
+  {
+    int count=0;
+    for(j=0;j<n;++j)
+    {
+      if (a[j]==a[i])
+        ++count;      
+    }
+    if(count > maxcount)
+    {
+      maxcount = count;
+      maxval=a[i];
+    }
+  }
+  return maxval;
+}
+int main()
+{
+  int test;
+  int s,n,input,i;
+  scanf("%d",&test);
+  for(s=1;s<=test;s++)
+  {
+    scanf ("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&input);
+      a[i]=input;
+    }
+    int md=mode(a,n);
+    printf("\n%d ",md);
+  }
+	return 0;
+}

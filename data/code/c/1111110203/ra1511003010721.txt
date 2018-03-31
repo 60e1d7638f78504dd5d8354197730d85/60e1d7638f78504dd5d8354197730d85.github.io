@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n,a,b,t;
+
+    scanf("%d",&n);
+
+    t=sqrt(n);
+    
+  	if( n/t==t && n%t==0){
+    	printf("%d %d",t,t);
+      return 0;
+    }
+	
+    a=++t;
+    b=t;
+    t=0;
+    while(t==0 && a>0){
+        if(a*b == n){
+            t=1;
+            
+            break;
+        }
+        else if ( (--a)*b == n ){
+            t=1;
+          
+            break;
+        }
+        else{
+            ++b;
+            
+        }
+    }
+
+    printf("%d %d", a, b);
+
+	return 0;
+}

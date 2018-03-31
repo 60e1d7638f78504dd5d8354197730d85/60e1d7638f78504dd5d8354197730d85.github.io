@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdbool.h>
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	int h[t];
+  	float c[t];
+  	int s[t];
+  	for (i=0;i<t;i++) {
+      scanf("%d%f%d",&h[i],&c[i],&s[i]);
+    }
+  	for (i=0;i<t;i++) {
+      bool b1 = (h[i]>50);
+      bool b2 = (c[i]<0.7);
+      bool b3 = (s[i]>5600);
+      if (b1 && b2 && b3)
+        printf("Grade %d\n",10);
+      else if (b1 && b2)
+        printf("Grade %d\n",9);
+      else if (b2 && b3)
+        printf("Grade %d\n",8);
+      else if (b1 && b3)
+        printf("Grade %d\n",7);
+      else if (b1 || b2 || b3)
+        printf("Grade %d\n",6);
+      else 
+        printf("Grade %d\n",5);
+    }
+	return 0;
+}

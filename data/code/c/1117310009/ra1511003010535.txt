@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <math.h>
+ 
+ 
+int a[168] = {2  ,    3   ,   5  ,    7 ,    11,     13,     17,     19  ,   23 ,    29 ,
+     31   ,  37   ,  41  ,   43  ,   47 ,    53 ,    59 ,    61   ,  67  ,   71 ,
+     73   ,  79   ,  83  ,   89   ,  97  ,  101  ,  103  ,  107    ,109   , 113 ,
+    127   , 131   , 137  ,  139    ,149   , 151   , 157   , 163,    167,    173 ,
+    179   , 181   , 191  ,  193,    197,    199    ,211    ,223 ,   227 ,   229 ,
+    233   , 239   , 241  ,  251 ,   257  ,  263,    269 ,   271  ,  277  ,  281 ,
+    283   , 293   , 307  ,  311  ,  313 ,   317 ,   331  ,  337   , 347   , 349 ,
+    353   , 359   , 367   , 373   , 379   , 383  ,  389   , 397    ,401    ,409 ,
+    419   , 421   , 431   , 433,    439    ,443   , 449    ,457,    461 ,   463 ,
+    467   , 479   , 487   , 491 ,   499,    503    ,509,    521 ,   523  ,  541 ,
+    547   , 557   , 563   , 569  ,  571 ,   577,    587 ,   593  ,  599   , 601 ,
+    607   , 613    ,617,    619   , 631  ,  641 ,   643  ,  647   , 653    ,659 ,
+    661   , 673    ,677 ,   683    ,691   , 701  ,  709   , 719    ,727 ,   733 ,
+    739   , 743   , 751  ,  757,    761    ,769   , 773    ,787,    797  ,  809 ,
+    811   , 821   , 823   , 827 ,   829,    839    ,853,    857 ,   859   , 863 ,
+    877   , 881   , 883    ,887  ,  907 ,   911,    919 ,   929  ,  937    ,941 ,
+    947   , 953   , 967    ,971   , 977  ,  983 ,   991  ,  997 };
+ 
+char  b[1000000] = {0};
+int p_count = 0;
+int p[1000000];
+long long main()
+{
+    int i, m ;
+	long long lower, upper, k;
+	int size;
+    double div;
+    char r[1000000] = {0};
+    int diff;
+    b[0]=1;
+    b[1]=1;
+    for(i=0; i < 168; i++)
+    {
+             m=2*a[i];
+             while(m<1000000)
+             {
+                           b[m]=1;
+                           m = m + a[i];
+             }
+    }      
+    for(i=2; i<1000000; i++)
+    {
+        if(b[i]==0){
+           p[p_count++] = i; 
+			//printf("%d,",i);
+			}
+    }
+	//printf("%d",p_count);
+    scanf("%d", &size);
+    while(size--)
+    {
+          scanf("%lld%lld", &lower, &upper);
+          diff = (int)(upper - lower) +1;
+          for(i=0; i< diff; i++)
+                   r[i]=0;
+          if(lower==1)
+                r[0]=1;
+          for(i=0; i<p_count; i++)
+          {
+                   if(upper>p[i])
+                   {
+                                 div = (double)(lower)/p[i];
+                                 k=ceil(div);
+                                 
+                                 if(k==1)
+                                     m=p[i]*2-lower;
+                                 else
+                                     m=p[i]*k-lower;
+                                 while(m < diff)
+                                 {
+                                         r[m]=1;
+                                         m+=p[i];
+                                 }          
+                   }
+          }
+          int count=0;
+		  int count1;
+		  long long temp;
+          for(i=0; i<diff; i++)
+		  {
+			
+            if(r[i]==0)
+              count++;
+			
+		}
+		
+		for(i=0; i<p_count; i++)
+		{
+			temp=((long long)p[i]*(long long)p[i]);
+			if(temp>upper)
+				break;
+			count1=2;
+			while(temp<=upper)
+			{
+				if((temp>=lower) && (b[count1+1]==0))
+					count++;
+				temp=temp*(long long)p[i];
+				count1++;
+			}
+		}
+          
+		  printf("%d\n",count);
+    }
+    return 0;
+} 

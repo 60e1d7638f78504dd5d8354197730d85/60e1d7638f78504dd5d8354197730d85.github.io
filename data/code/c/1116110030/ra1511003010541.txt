@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    char s1[100],s2[20],count=0,cnt=0,flag=0;
+    int i,len1,j,k,len2;
+    char ss[100][100];
+   scanf("%[^\n]s", s1);
+    scanf("%s",s2);
+    len1=strlen(s1);
+  len2=strlen(s2);
+   for(i=0;i<len1;i++)
+   {
+     if(s1[i]==' ')
+       count++;
+   }
+  count++;
+  k=0;
+    for(i=0;i<count;i++)
+    {
+      j=0;
+      while(s1[k]!=' ')
+      {
+      ss[i][j]=s1[k];
+        k++;
+        j++;
+      }
+      ss[i][j]='\0';
+      k++;
+    }
+  
+  
+
+  for(i=0;i<count;i++)
+  {
+    j=0;
+    flag=0;
+    if(strlen(ss[i])==len2)
+       {
+       while(s2[j]!='\0')
+       {
+         if(ss[i][j]!=s2[j])
+         {
+           flag=1;
+           break;
+         }
+         j++;
+       }
+       if(flag==0)
+       cnt++;
+       }
+       }
+       printf("%s=%d",s2,cnt);
+	return 0;
+}

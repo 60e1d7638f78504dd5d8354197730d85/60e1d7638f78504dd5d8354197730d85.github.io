@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+struct node{
+	int data;
+  	node* next;
+}*headA,*headB;
+
+node* createnode(int n){
+	node* ptr = new node;
+  	ptr->data = n;
+  	ptr->next = NULL;
+  	return ptr;
+}
+
+node* insert(node *x,node *start){
+	if(start==NULL) start = x;
+  	else{
+		node* ptr = start;
+      	while(ptr->next!=NULL)
+          ptr = ptr->next;
+      	ptr->next = x;
+    }
+  return start;	
+}
+
+node* merge(node* a,node* b){
+  node* result = NULL;
+  if (a == NULL) 
+     return(b);
+  else if (b==NULL) 
+     return(a);
+ 
+  if (a->data <= b->data) {
+     result = a;
+     result->next = merge(a->next, b);
+  }
+  else{
+     result = b;
+     result->next = merge(a, b->next);
+  }
+  return(result);
+}
+
+void display(node *start){
+	for(node* ptr = start;ptr!=NULL;ptr = ptr->next)
+      cout<<ptr->data<<" ";
+}
+int main()
+{
+  	headA = NULL;
+  	headB = NULL;
+  	node *x;
+	int n,m;cin>>n>>m;
+  	for(int i=0;i<n;i++){
+    	int a;cin>>a;
+      	x = createnode(a);	
+      	headA = insert(x,headA);
+    }	  	
+  	cout<<endl;
+  	for(int i=0;i<m;i++){
+      	int a;cin>>a;
+      	x = createnode(a);	
+      	headB = insert(x,headB);
+    }	  	
+  	node *headC = merge(headA,headB);
+  	display(headC);
+	return 0;
+}

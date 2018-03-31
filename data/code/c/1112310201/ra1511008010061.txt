@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <malloc.h>
+#define MX 50002
+ 
+int find_set(int E[],int x){
+	if(E[x]==x)return x;
+	E[x]=find_set(E,E[x]);
+	return E[x];
+}
+ 
+void set_union(int E[],int x,int y,int vertex[],int F[]){
+	int a=find_set(E,x),b=find_set(E,y);
+	if(F[vertex[a]]<F[vertex[b]])E[a]=E[b];
+	else E[b]=E[a];
+}
+ 
+void sort(int A[],int B[],int C[],int a,int n){
+	int i,D[MX],X[MX],Y[MX],Z[MX];
+	for(i=0;i<n;i++){
+		X[i]=A[i];
+		Y[i]=B[i];
+		Z[i]=C[i];
+	}
+	for(i=0;i<a+2;i++)D[i]=0;
+	for(i=0;i<n;i++)D[X[i]+1]++;
+	for(i=1;i<a+2;i++)D[i]+=D[i-1];
+	for(i=0;i<n;i++){
+		C[D[X[i]]]=Z[i];
+		B[D[X[i]]]=Y[i];
+		A[D[X[i]]]=X[i];
+		D[X[i]]++;
+	}
+}
+ 
+int main(){
+	int J,i,j,maxab,maxd,temp,T,N,M,C[MX],D[MX],A[MX],B[MX],F[MX],E[MX],vertex[MX],inv_vertex[MX];
+	long long int ans;
+	for(i=0;i<MX;i++)vertex[i]=inv_vertex[i]=-1;
+	for(i=0;i<MX;i++)E[i]=F[i]=i;
+	for(i=0;i<MX;i++)C[i]=0;
+	scanf("%d",&T);
+	while(T--){
+		scanf("%d%d",&N,&M);
+		for(i=0,maxab=0;i<N;i++){
+			scanf("%d",&temp);
+			C[temp]++;
+			if(maxab<temp)maxab=temp;
+		}
+		for(i=0,maxd=0;i<M;i++){
+			scanf("%d%d%d",&D[i],&A[i],&B[i]);
+			if(maxd<D[i])maxd=D[i];
+			if(maxab<B[i])maxab=B[i];
+			if(maxab<A[i])maxab=A[i];
+		}
+		sort(D,B,A,maxd,M);
+		i=M-1;
+		while(i>=0){
+			j=0;
+			do{
+				if(inv_vertex[A[i]]==-1){
+					vertex[j]=A[i];
+					inv_vertex[A[i]]=j;
+					j++;
+				}
+				if(inv_vertex[B[i]]==-1){
+					vertex[j]=B[i];
+					inv_vertex[B[i]]=j;
+					j++;
+				}
+				set_union(E,inv_vertex[B[i]],inv_vertex[A[i]],vertex,F);
+				i--;
+			}while(D[i]==D[i+1]);
+			J=j;
+			for(j=0;j<J;j++){
+				temp=find_set(E,j);
+				if(F[vertex[temp]]>F[vertex[j]])F[vertex[j]]=F[vertex[temp]];
+			}
+			for(j=0;j<J;j++){
+				E[j]=j;
+				inv_vertex[vertex[j]]=-1;
+				vertex[j]=-1;
+			}
+		}
+		for(i=0,ans=0;i<maxab+1;i++)ans+=(long long int)((long long int)C[i]*(long long int)F[i]);
+		printf("%lld\n",ans);
+		for(i=0;i<maxab+1;i++)F[i]=i;
+		for(i=0;i<maxab+1;i++)C[i]=0;
+	}
+}

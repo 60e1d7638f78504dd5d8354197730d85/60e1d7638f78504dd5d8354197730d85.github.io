@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int **a,N,Q,*l,*r,*x,*y,i,j,k,sum;
+    scanf("%d",&N);
+    a=(int **)malloc(sizeof(int*)*N);
+    for(i=0;i<N;i++)
+    {
+            a[i]=(int*)malloc(sizeof(int)*N);
+    }
+    l=(int *)malloc(sizeof(int)*N);
+    r=(int *)malloc(sizeof(int)*N);
+    for(i=0;i<N;i++)
+        scanf("%d %d",&l[i],&r[i]);
+    for(i=0;i<N;i++)
+        for(j=0;j<N;j++)
+            {if(j>=l[i]-1&&j<=r[i]-1)
+             a[i][j]=1;
+            else
+                a[i][j]=0;}
+    scanf("%d",&Q);
+    x=(int*)malloc(Q*sizeof(int));
+    y=(int*)malloc(Q*sizeof(int));
+    for(i=0;i<Q;i++)
+        scanf("%d %d",&x[i],&y[i]);
+    for(i=0;i<Q;i++)
+    {
+        sum=0;
+        for(j=0;j<N;j++)
+        for(k=0;k<N;k++)
+            if(j!=x[i]-1&&k!=y[i]-1)
+                sum+=a[j][k];
+        if(sum%2==0)
+            printf("E\n");
+        else
+            printf("O\n");
+    }
+	return 0;
+}

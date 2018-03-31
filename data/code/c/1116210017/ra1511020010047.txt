@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<string.h>
+     
+short strcmp1(const char oldstr[])
+{
+	int i, strlength, flag;
+  	strlength=strlen(oldstr);
+   	if(strlength==0) return 0;
+   	for(i=0; i<(strlength/2); i++)
+   	{
+   		flag=1;
+   		if(oldstr[i]!=oldstr[i+(strlength/2)])
+   		{
+   			flag=0; 
+   			return 0;
+   		}
+   	}
+   	return 1;
+}
+ 
+void strdel(char newstr[], const char oldstr[], int n)
+{
+   	int i, strlength;
+   	strlength=strlen(oldstr);
+   	for(i=0; i<strlength; i++)
+   	{
+   		if(i<n)
+   		newstr[i]=oldstr[i];
+   		else
+   		newstr[i]=oldstr[i+1];
+   	}
+   	newstr[i]='\0';
+}
+     
+void dstr(const char orgstr[])
+{
+   	short flag;
+   	int strlength, j, i, num1[26], num2[26];
+   	char delstr[1000001], thechar;
+   	
+   	strlength= strlen(orgstr);
+   	if(strlength%2==1)
+   	{
+   	
+   		for(i=0; i<27; i++)
+		{
+			num1[i]=0;
+			num2[i]=0;
+		}		
+		
+		for(i=0; i<(strlength/2); i++)
+		{
+			num1[orgstr[i]-'a']++;
+		}
+		
+		for(i=(strlength/2); i<strlength; i++)
+		{
+			num2[orgstr[i]-'a']++;
+		}
+		for(i=0; i<26; i++)
+		{
+			if(num1[i]!=num2[i])
+			{
+				thechar=(i+'a');
+			}
+		}
+   	
+   		for(j=0; j<strlength; j++)	
+   		{	
+   			if(orgstr[j]==thechar)
+   			{
+   				strdel(delstr, orgstr, j);	
+   				flag=strcmp1(delstr);
+   				if(flag==1)
+   				{
+   					break;
+   				}	
+   			}	
+   		}	
+   	}
+   	else
+   	{
+   		flag=strcmp1(orgstr);
+   	}	
+   		
+   	if(flag==1) printf("YES\n");
+   	else printf("NO\n");
+}	
+    
+int main() 
+{
+   	int t;
+   	char str[1000001];
+   	scanf("%d0.", &t);
+   	
+   	while(t--)
+   	{
+   		scanf("%s", str);
+   		dstr(str);
+   	}
+   	return 0;
+} 

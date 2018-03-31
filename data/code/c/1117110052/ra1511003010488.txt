@@ -1,0 +1,67 @@
+#include<stdio.h>
+int id[100001],u[100001],v[100001],s[100001];
+long mult;
+int root(int k)
+{
+while(k!=id[k])
+{
+ 
+id[k]=id[id[k]];
+k=id[k];
+ 
+}
+return k;
+ 
+}
+int main()
+{
+mult=1;
+int n,m,i,p;
+scanf("%d%d",&n,&m);
+for(i=1;i<m+1;i++)
+scanf("%d%d",&u[i],&v[i]);
+for(i=1;i<n+1;i++)
+{
+id[i]=i;
+s[i]=1;
+}
+for(i=1;i<m+1;i++)
+{
+int j=root(u[i]);
+int r=root(v[i]);
+if(r!=j)
+{
+if(s[j]>s[r])
+{
+ 
+id[r]=j;
+s[j]+=s[r];
+s[r]=0;
+ 
+}
+else
+{
+ 
+id[j]=r;
+s[r]+=s[j];
+s[j]=0;
+ 
+}
+ 
+}
+else
+continue;
+ 
+ 
+ 
+}
+for(p=1;p<n+1;p++)
+{
+if(s[p])
+mult=(mult*s[p])%1000000007;
+}
+printf("%ld",mult);
+return 0;
+ 
+ 
+}

@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+//#include <malloc.h>
+
+struct node
+{
+  int num;
+  struct node *link;
+};
+struct node *start=NULL;
+
+struct node *insertion_end(struct node *);
+int search(int);
+ int search(int s)
+{ int flag=0;
+  struct node *ptr;
+  ptr=start;
+  while(ptr!=NULL)
+  {
+    if(ptr->num==s)
+     {
+      flag++;
+      break;
+    }
+    else
+      ptr=ptr->link;
+  }
+ if(flag>0)
+  return 0;
+ else
+  return 1;
+  
+}
+struct node *insertion_end(struct node *start)
+{
+  struct node *newnode,*ptr;
+  newnode=(struct node *)malloc(sizeof(struct node));
+  scanf("%d",&newnode->num);
+  newnode->link=NULL;
+   
+  ptr=start;
+  while(ptr->link!=NULL)
+  {
+    ptr=ptr->link;
+  }
+  ptr->link=newnode;
+  return start;
+}
+int main()
+{
+  int n,s,i;
+  scanf("%d",&n);
+  struct node *newnode;
+  
+  for(i=0;i<n;i++)
+  { if(start==NULL)
+   { 
+     newnode=(struct node *)malloc(sizeof(struct node));
+     scanf("%d",&newnode->num);
+    newnode->link=NULL;
+    start=newnode;
+   }
+   else
+   {
+     start=insertion_end(start);
+   }
+  }
+  scanf("%d",&s);
+  int res=search(s);
+  if(res==0)
+    printf("Yes");
+  else if(res>=1)
+    printf("No");
+	return 0;
+}

@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int findstr(string a[], string b, int n)
+{
+  for(int i = 0;i < n;i++)
+    if(a[i] == b)
+      return i;
+  return -1;
+}
+int main()
+{
+  int n,k;
+  cin >> n >> k;
+  string a[n];
+  for(int i = 0;i < n;i++)
+    cin >> a[i];
+  vector<pair<string, int> > b[n];
+  for(int i = 0;i < k;i++)
+  {
+    string t;
+    cin >> t;
+    int k = findstr(a, t, n);
+    if(k == -1)
+      continue;
+    string c;
+    int temp;
+    cin >> c >> temp;
+    b[k].push_back(make_pair(c, temp));
+  }
+  for(int i = 0;i < n-1;i++)
+  {
+    int m = i;
+    for(int j = i+1;j < n;j++)
+      if(a[j] < a[m])
+        m = j;
+    swap(a[m], a[i]);
+    swap(b[m], b[i]);
+  }
+  for(int i = 0;i < n;i++)
+  {
+    for(int j = 0;j < b[i].size() - 1;j++)
+    {
+      int m = j;
+      for(int k = j+1;k < b[i].size();k++)
+        if(b[i][k].second < b[i][m].second)
+          m = k;
+      swap(b[i][m], b[i][j]);
+    }
+  }
+  for(int i = 0;i < n;i++)
+  {
+    cout << a[i] << endl;
+    for(int j = 0;j < b[i].size();j++)
+      cout << b[i][j].first << " " << b[i][j].second << endl;
+  }
+}

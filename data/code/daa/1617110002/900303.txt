@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cassert>
+using namespace std;
+const int MAX = 1e4 + 5;
+bool visited[MAX];
+int main()
+{
+	int edges, x, y, testcases, nodes;
+	cin >> testcases;
+	assert(1 <= testcases and testcases <= 100);
+	while(testcases--)
+	{
+		cin >> edges;
+		assert(1 <= edges and edges <= 1000);
+		for(int i = 0;i < edges;++i)
+		{
+			cin >> x >> y;
+			assert(1 <= x and x <= 10000);
+			assert(1 <= y and y <= 10000);
+			visited[x] = true;
+			visited[y] = true;
+		}
+		nodes = 0;
+		for(int i = 0;i < MAX;++i)
+			if(visited[i]) 
+			{
+				visited[i] = false;
+				nodes++;
+			}
+		cout << nodes << endl;
+	}
+	return 0;
+}

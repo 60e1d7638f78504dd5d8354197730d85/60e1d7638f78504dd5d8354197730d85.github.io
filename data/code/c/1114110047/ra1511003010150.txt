@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+  long x, y;
+    int i = 0, r = 0, sum[20]; 
+    scanf("%ld", &x);
+    scanf("%ld", &y);
+    while (x != 0 || y != 0)
+    {
+        sum[i++] =(x % 10 + y % 10 + r) % 2;
+        r =(x % 10 + y % 10 + r) / 2;
+        x = x / 10;
+        y = y / 10;
+    }
+    if (r != 0)
+        sum[i++] = r;
+    --i;
+    while (i >= 0)
+        printf("%d", sum[i--]);
+
+	return 0;
+}

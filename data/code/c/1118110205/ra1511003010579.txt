@@ -1,0 +1,81 @@
+#include<iostream>
+//#include<conio.h>
+using namespace std;
+struct Time
+{
+  int h;
+  int m;
+  int s;
+};
+int main()
+{
+  struct Time t;
+ int hours,mins,seconds; 
+ bool status = true;
+ 
+  cin >> t.h;
+  cin >> t.m;
+  cin >> t.s;
+  hours=t.h;
+  mins=t.m;
+  seconds=t.s;
+ if((hours >= 24 || hours < 0))
+ { cout<<"Invalid Time"; status=false; }
+ if((seconds >= 60 || seconds < 0))
+ { cout<<"Invalid Time"; status=false; }
+ if((mins >= 60 || mins < 0))
+ { cout<<"Invalid Time"; status=false; }
+ if(status)
+ {
+ cout<<"24 Hours Format\n";
+ 
+ if(hours<10)
+ 	cout<<"0"<< hours;
+else
+	cout<<hours;
+ 
+ 
+ //cout <<hours;
+ cout<<":";
+ if(mins<10)
+ 	cout<<"0"<< mins;
+else
+	cout<<mins;
+ //cout << ":" << mins;
+ cout << ":";
+ if(seconds<10)
+ 	cout<<"0"<< seconds;
+else
+	cout<<seconds;
+ cout<<endl;
+   int c=0;
+ if(hours > 12)
+ { hours-=12;
+ c=1;}
+ cout<<"12 Hours Format\n";
+ 
+ if(hours<10)
+ 	cout<<"0"<< hours;
+else
+	cout<<hours;
+ 
+ 
+ //cout <<hours;
+ cout<<":";
+ if(mins<10)
+ 	cout<<"0"<< mins;
+else
+	cout<<mins;
+ //cout << ":" << mins;
+ cout << ":";
+ if(seconds<10)
+ 	cout<<"0"<< seconds;
+else
+	cout<<seconds;
+   if(c==1)
+     cout<<" pm";
+     else
+ cout<<" am";
+ }
+ return 0;
+}

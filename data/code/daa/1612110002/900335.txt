@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+struct faculty
+{
+char name[15];
+  int id;
+}ft[5];
+int main()
+{
+int i,j,n,temp;
+  char ch[15];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+  scanf("%s%d",ft[i].name,&ft[i].id);
+  }
+  for(i=0;i<n-1;i++)
+  {
+  for(j=0;j<n-1;j++)
+  {
+  if(ft[j].id>ft[j+1].id)
+  {
+  temp=ft[j].id;
+    ft[j].id=ft[j+1].id;
+    ft[j+1].id=temp;
+    strcpy(ch,ft[j].name);
+    strcpy(ft[j].name,ft[j+1].name);
+    strcpy(ft[j+1].name,ch);
+  }
+    }
+  }
+  printf("After Sorting\nName ID\n");
+  for(i=0;i<n;i++)
+  {
+  printf("%s %d\n",ft[i].name,ft[i].id);
+  }
+	return 0;
+}

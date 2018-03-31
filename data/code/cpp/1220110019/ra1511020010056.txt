@@ -1,0 +1,28 @@
+#include<iostream>
+#include<cctype>
+using namespace std;
+
+int main()
+{
+  string s;
+  cin>>s;
+  int n=s.length();
+  char c[n];
+  for(int i=0;i<n;i++)
+  {
+    c[i]=s.at(i);
+  }
+  int count=0;
+  for(int i=0;i<n;i++)
+  {
+    if(isdigit(c[i])){count++;}
+    else if(c[i]=='.'){count++;}
+    else{continue;}
+  }
+  if(count==n)
+  {
+    cout<<"Valid Input";
+  }
+  else{cout<<"Number format exception";}
+	return 0;
+}

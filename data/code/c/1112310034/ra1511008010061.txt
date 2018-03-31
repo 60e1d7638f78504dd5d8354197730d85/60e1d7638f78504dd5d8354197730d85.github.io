@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int x;
+    int y;
+};
+int no_of_dig(int x)
+{
+    int i=0;
+    if(x==0)
+        return 1;
+    else
+    {
+        while(x!=0)
+        {
+            i++;
+            x = x/10;
+        }
+    }
+    return i;
+}
+int determine_perfect_no(int x)
+{
+    int k,i,j,z=0,l;
+    j = no_of_dig(x);
+    int arr[j];
+    for(i=j-1;i>=0;i--)
+    {
+        arr[i] = x%10;
+        x = x/10;
+    }
+    for(k=0;k<j;k++)
+    {
+        for(l=k+1;l<j;l++)
+        {
+            if(arr[k]==arr[l])
+            {
+                z = 1;
+                break;
+            }
+        }
+ 
+    }
+    return z;
+}
+int no_of_perfect_nos(int x, int y)
+{
+    int i,m=0;
+    for(i=x;i<=y;i++)
+    {
+        if((determine_perfect_no(i))==0)
+            m = m + 1;
+    }
+    return m;
+}
+ 
+int main()
+{
+    int num,i;
+    scanf("%d", &num);
+    struct node arr[num];
+    for(i=0;i<num;i++)
+    {
+        scanf("%d", &arr[i].x);
+        scanf("%d", &arr[i].y);
+    }
+    for(i=0;i<num;i++)
+    {
+        printf("%d\n", no_of_perfect_nos(arr[i].x, arr[i].y));
+    }
+    return 0;
+}

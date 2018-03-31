@@ -1,0 +1,49 @@
+#include <stdio.h>
+int main()
+{
+	int r,c,i,j,flag;
+  	scanf("%d",&r);
+  c=r;
+  	if(r==0)
+      	printf("0");
+  	else
+    {
+        
+        int arr[r][c];
+        for(i=0;i<r;i++)
+        {
+            for(j=0;j<c;j++)
+            {
+                scanf("%d",&arr[i][j]);
+            }
+        }
+        flag=1;
+        for(i=0;i<r;i++)
+        {
+            for(j=0;j<c;j++)
+            {
+                if(i==j)
+                {
+                    if(arr[i][j]==0)
+                    {
+                      flag=0;
+                      break;
+                    }
+                }
+                else
+                {
+                    if(arr[i][j]!=0)
+                    {
+                      flag=0;
+                      break;
+                    }
+                }
+            }
+        }
+        if(flag==1)
+            printf("yes");
+        else
+            printf("no");
+    }
+	return 0;
+}

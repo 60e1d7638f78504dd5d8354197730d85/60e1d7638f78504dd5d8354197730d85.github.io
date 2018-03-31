@@ -1,0 +1,36 @@
+#include <stdio.h>
+struct st
+{
+	int e;
+  float p;
+  	char n[100], c[100]; 
+}s[20],q;
+int main()
+{
+	int n, i, j;
+  	scanf("%d", &n);
+  	printf("Details of colleges\n");
+  for(i=0; i<n; i++)
+    {     	
+    	scanf("%s %s %d %f", s[i].n, s[i].c, &s[i].e, &s[i].p);
+    }
+  
+  	for(i=0; i<n; i++)
+    {
+    	for(j=0; j<n-i-1; j++)
+        {
+        	if(strcmp(s[j].n, s[j+1].n) > 0)
+            {
+            	q = s[j];
+              	s[j] = s[j+1];
+              	s[j+1] = q;
+            }
+        }
+    }
+  	
+  	for(i=0; i<n; i++)
+    {
+        printf("Name:%s\nCity:%s\nYear of establishment:%d\nPass percentage:%.1f\n", s[i].n, s[i].c, s[i].e, s[i].p);
+    }
+	return 0;
+}

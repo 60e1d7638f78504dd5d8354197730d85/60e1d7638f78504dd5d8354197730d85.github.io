@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+ 
+inline int scan()
+{
+	register int c=gc();
+	int x=0;
+	while(c<'0')    c=gc();
+	while((c>47&&c<58)){x= (x<<1) + (x<<3) + c-48;c=gc();}
+	return x;
+}	
+ 
+inline void print(int a)
+{
+	char snum[20];
+	int i=0;
+	do
+	{
+		snum[i++]=a%10+48;
+		a=a/10;
+	}while(a!=0);
+	i=i-1;
+	while(i>=0)
+	pc(snum[i--]);
+	pc('\n');
+}
+ 
+int main(void) {
+	    int t;
+    t=scan();
+    while(t--)
+    {   int g;
+    	g=scan();
+    	while(g--)
+    	{   int i,n,q;
+    		i=scan();
+    		n=scan();
+    		q=scan();
+            if((i==q)||!(n&1))
+            {
+                print(n/2);
+            }
+            else if(i!=q)
+            {
+                print((n+1)/2);
+            }
+    	}
+ 
+    }
+	return 0;
+}   

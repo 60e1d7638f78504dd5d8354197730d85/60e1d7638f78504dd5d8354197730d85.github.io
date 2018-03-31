@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int isprime(int num)
+{
+  int i;
+  for(i=2;i<num;i++)
+  {
+    if(num%i==0)
+      return 0;
+      else
+        continue;
+  }
+  return 1;
+}
+int main()
+{
+int x,y,t,i,sum,p,r,s;
+  scanf("%d",&t);
+ for(i=0;i<t;i++)
+ {
+   scanf("%d %d",&x,&y);
+   sum=x+y;
+   p=isprime(sum);
+   s=sum;
+   if(p==1)
+   {
+     while(1)
+     {
+       s=s+1;
+      r= isprime(s);
+       
+         if(r==1)
+         {printf("potatoes to be planted in the third field:%d\n",abs(sum-s));
+          break;
+         }
+       else
+         continue;
+     }
+   }
+   else
+   {
+     while(1)
+     {
+       s=s+1;
+       r=isprime(s);
+       if(r==1)
+       {
+         printf("potatoes to be planted in the third field:%d\n",abs(sum-s));
+         break;
+       }
+       else
+         continue;
+     }
+     
+   }
+ }      
+	return 0;
+}

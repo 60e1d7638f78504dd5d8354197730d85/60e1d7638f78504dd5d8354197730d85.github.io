@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+class BinaryFormatException extends NumberFormatException
+{
+	public BinaryFormatException(String msg)
+    {
+    	super(msg);
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+        String b=sc.nextLine();
+        binToDecimal(b);
+      }
+      static void binToDecimal(String binary)
+      {
+        String pattern="[0|1]+";
+        if(binary.matches(pattern))
+        {
+        	int decimal=Integer.parseInt(binary,2);
+            System.out.println(decimal);
+        }
+        else
+        {
+        	try
+            {
+            	throw new BinaryFormatException("Number is not Binary");
+            }
+            catch(BinaryFormatException e)
+            {
+            	System.out.println(e);
+            }
+        }
+	}
+}

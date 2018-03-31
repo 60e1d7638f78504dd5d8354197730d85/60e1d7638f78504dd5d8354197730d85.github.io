@@ -1,0 +1,41 @@
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+class batsman
+{
+	int bcode;
+	char bname[20];
+	int innings,notout,runs;
+	int batavg;
+	void calcavg()
+	{
+		batavg=runs/(innings-notout);
+	}
+
+public :
+	void readdata ();
+	void displaydata();
+};
+
+void batsman::readdata ()
+{
+	cin>> bcode;
+	cin>>(bname);
+	cin>>innings>>notout>>runs;
+	calcavg();
+}
+
+void batsman::displaydata()
+{
+	cout<<"Batsman code="<<bcode<<"\nBatsman name= "<<bname<<"\nInnings="<<innings
+	<<"\nNot out="<<notout<<"\nRuns="<<runs<<"\nBatting Average="<<batavg;
+}
+
+
+int main()
+{
+	batsman obj;
+	obj.readdata();
+	obj.displaydata();
+	return 0;
+}

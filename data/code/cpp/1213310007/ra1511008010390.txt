@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+void swap(char& a, char& b)
+{
+    char temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+void permutation(string s,int i,int n)
+{
+    int j;
+    if (i == n)
+        cout << s <<" ";
+    else
+    {
+        for (j = i; j < s.length(); j++)
+        {
+            swap(s[i],s[j]);
+            permutation(s, i + 1, n);
+            swap(s[i],s[j]);
+        }  
+    }
+}
+ 
+int main()
+{
+    string s;
+   
+    cin >> s;
+    
+    permutation(s, 0, s.length() - 1);
+    cout << endl;
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+ 
+void getint(int *a);
+ 
+int main()
+{
+    int t,n,i,cnt[101],count;
+    getint(&t);
+    while(t--){
+        getint(&n);
+        count=0;
+        for(i=0;i<101;i++){
+            cnt[i]=0;
+        }
+        while(n--){
+            getint(&i);
+            cnt[i]++;
+        }
+        for(i=0;i<101;i++){
+            if(cnt[i])
+                count++;
+        }
+        printf("%d\n",count);
+    }
+    return 0;
+}
+ 
+void getint(int *a)
+{
+    int c,num=0;
+    while((c=getchar_unlocked())!=' ' &&c!='\n' &&c!=EOF){
+        num = (num<<1) + (num<<3) + (c-'0');
+    }
+    *a = num;
+}
+ 

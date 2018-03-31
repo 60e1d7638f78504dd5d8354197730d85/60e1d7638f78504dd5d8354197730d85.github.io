@@ -1,0 +1,30 @@
+#include <stdio.h>
+ 
+int hasOnlyOneChild(int pre[], int size)
+{
+    int nextDiff, lastDiff;
+ 	int i;
+    for (i=0; i<size-1; i++)
+    {
+        nextDiff = pre[i] - pre[i+1];
+        lastDiff = pre[i] - pre[size-1];
+        if (nextDiff*lastDiff < 0)
+            return 0;
+    }
+    return 1;
+}
+ 
+// driver program to test above function
+int main()
+{
+    int pre[10] ;
+    int size,i;
+  	scanf("%d",&size);
+  	for(i=0;i<size;i++)
+      scanf("%d",&pre[i]);
+    if (hasOnlyOneChild(pre, size) == 1 )
+        printf("Yes");
+    else
+        printf("No");
+    return 0;
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main()
+{
+	int t,i,n,m;
+	scanf("%d",&t);
+	int max,min,exceed=-1,outzero=0;
+	int mini[30]={2,5,8,12};
+	
+	for(i=4;i<30;i++)
+	{
+		if(i%2==0)
+		{
+			mini[i]=mini[i/2-1]+mini[i/2-1]+i+2;
+		}
+		else
+		{
+			mini[i]=mini[(i+1)/2-1]+mini[i/2-1]+i+2;
+		}
+	}
+	
+	for(i=0;i<t;i++)
+	{
+		scanf("%d %d",&n,&m);
+		
+		max=(n+1)*(n+2)/2-1;
+		min=mini[n-1];
+		
+		if(m<min)printf("%d\n",exceed);
+		else if(m>max)printf("%d\n",m-max);
+		else printf("%d\n",outzero);
+	}
+	
+	return 0;
+} 

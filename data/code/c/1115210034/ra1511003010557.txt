@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define mod 1000000007
+int main()
+{
+    long long int t,i,j,sum,n,a[100002],max=-1;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        max=-1;
+        sum=0;
+        scanf("%lld",&n);
+        for(i=1;i<=n;i++)
+        {
+            scanf("%lld",&a[i]);
+            if(max<a[i])
+            max=a[i];
+        }
+        for(i=1;i<=n;i++)
+         for(j=i+1;j<=n;j++)
+          sum=(sum+abs(a[i]-a[j])+mod)%mod;
+        sum=(sum*max)%mod;
+        printf("%lld\n",sum);
+    }
+    return 0;
+}

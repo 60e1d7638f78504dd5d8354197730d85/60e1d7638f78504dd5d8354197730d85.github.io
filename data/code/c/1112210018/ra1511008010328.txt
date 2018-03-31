@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#define MOD 1000000007
+#define LLI long long int
+#define fo(i,n)   for(i=0;i<n;++i)
+	LLI t,n,i,j,ans,k;
+ 
+int main(void) {
+	scanf(" %lld",&t);
+	while(t--)
+	{
+	    scanf(" %lld %lld",&n,&k);
+	    if(n==k)
+	    {
+	        printf("%d\n",1);
+	        continue;
+	    }
+	    n--;
+	    ans=1;
+	    k--;
+	    if(n-k>k)       k=n-k;
+	    for(i=n-k+1,j=1;i<=n&&j<=k;i++,++j)
+	    {
+	        ans=ans*i/j;
+	    }
+	    if(i<=n)
+	    {
+	        for(;i<=n;i++)
+	            ans*=i;
+	    }
+	    else if(j<=k)
+	    {
+	        for(;j<=k;++j)
+	            ans/=j;
+	    }
+	   printf("%lld\n",ans); 
+	}
+	return 0;
+} 

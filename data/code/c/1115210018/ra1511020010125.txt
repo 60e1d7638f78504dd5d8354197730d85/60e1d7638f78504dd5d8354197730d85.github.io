@@ -1,0 +1,64 @@
+#include<stdio.h>
+long long int id[1000009],z[1000009],z1[1000009];
+int min(int a,int b)
+{
+    if(a<=b)
+    return a;
+    else
+    return b;
+}
+int main()
+{
+    long long int i,n,p,l,c,s,k;
+    scanf("%lld",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld %lld %lld %lld %lld %lld",&id[i],&z[i],&p,&l,&c,&s);
+        z1[i]=p*50+l*5+c*10+s*20;
+    }
+    for(i=0;i<(min(n,5));i++)
+    {
+        long long int max=z1[i]-z[i];
+        for(k=i+1;k<n;k++)
+        {
+            if((z1[k]-z[k])>max)
+            {
+                max=z1[k]-z[k];
+                long long int temp1;
+                long long int temp2;
+                long long int temp3;
+                temp1=z1[k];
+                temp2=id[k];
+                temp3=z[k];
+                id[k]=id[i];
+                z1[k]=z1[i];
+                z[k]=z[i];
+                z[i]=temp3;
+                id[i]=temp2;
+                z1[i]=temp1;
+            }
+            else if((z1[k]-z[k])==max)
+            {
+                if(id[i]<id[k])
+                {
+                 long long int temp1;
+                long long int temp2;
+                long long int temp3;
+                temp1=z1[k];
+                temp2=id[k];
+                temp3=z[k];
+                id[k]=id[i];
+                z1[k]=z1[i];
+                z[k]=z[i];
+                z[i]=temp3;
+                id[i]=temp2;
+                z1[i]=temp1;
+                }
+            }
+            
+        }
+    }
+    for(i=0;i<min(5,n);i++)
+    printf("%lld %lld\n",id[i],z1[i]);
+  return 0;
+}

@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class ABC
+{
+  int x;
+  public:
+  void get()
+  {cin>>x;}
+  int find(ABC,ABC);
+};
+int ABC::find(ABC a,ABC b)
+{
+  if(x==0 || a.x==0 || b.x==0)
+    return 0;
+  else
+  {
+    if(x > a.x)
+    {
+      if(x > b.x)
+        return x;
+      else
+        return b.x;
+    }
+    else if(x < a.x)
+    {
+      if(a.x > b.x)
+        return a.x;
+      else
+        return b.x;
+    }
+  }
+}
+int main()
+{
+  ABC p,q,r;
+  p.get();
+  q.get();
+  r.get();
+  int n=r.find(p,q);
+  if(n==0)
+    cout<<"Invalid Input";
+  else
+    cout<<n;
+
+	return 0;
+}

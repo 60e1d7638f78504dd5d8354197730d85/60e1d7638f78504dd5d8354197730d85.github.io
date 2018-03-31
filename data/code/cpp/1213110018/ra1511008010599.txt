@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  char str[100];
+  cin.getline(str, sizeof(str));
+  int vowels = 0;
+  int consonants = 0; 
+  int digits = 0; 
+  int spaces = 0;
+ 
+  for(int i = 0; str[i]!='\0'; i++){
+    if(int(str[i])>47 && int(str[i]) < 58){
+      digits++;
+    }
+    else if(int(str[i])>64 && int(str[i]) < 91 || int(str[i])>96 && int(str[i]) < 123){
+      if(int(str[i])==65 || int(str[i]) == 69 || int (str[i])==73 || 
+        int(str[i]) == 79 || int (str[i])==85 || int(str[i]) == 97 || 
+        int (str[i])==101 || int(str[i]) == 105 || int (str[i])==111 || int(str[i]) == 117){
+        vowels++;
+      }
+      else{
+        consonants++;
+      }
+    }
+    else if(int(str[i])== 32){
+      spaces++;
+    }
+  }
+    cout<<"Vowels:"<<vowels;
+    cout<<"\nConsonants:"<<consonants;
+    cout<<"\nDigits:"<<digits;
+    cout<<"\nWhite spaces:"<<spaces;
+     
+        
+
+	return 0;
+}

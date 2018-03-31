@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  int n,x,flag,i,j,k,sum,max=0;
+  scanf("%d%d",&n,&x);
+  int a[n];
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  for(i=1;i<=n;i++)
+  {
+    flag=0;
+    for(j=0;j<=n-i;j++)
+    {
+      sum=0;
+      for(k=j;k<j+i;k++)
+      {
+        sum+=a[k];
+      }
+      //printf("%d-",sum);
+      if(sum>x)
+      {
+        flag=1;
+        break;
+      }
+    }
+    //printf("=%d=\n",flag);
+    if(flag==1)
+    {
+      break;
+    }
+    else if(flag==0)
+    {
+      max=i;
+    }
+  }
+  printf("%d",max);
+
+	return 0;
+}

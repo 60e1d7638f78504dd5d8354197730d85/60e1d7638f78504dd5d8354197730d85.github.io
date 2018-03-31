@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include<string.h>
+struct Student
+{
+  char name[30];
+  char dept[20];
+  int yos;
+  float cgpa;
+};
+int main()
+{
+  	int t;
+	scanf("%d",&t);
+  	struct Student s[t];
+  	int i,j,tempy;
+  	float tempc;
+  	char tempn[30],tempd[20];
+  	for(i=0;i<t;i++)
+    {
+      scanf("%s",s[i].name);
+      scanf("%s",s[i].dept);
+      scanf("%d",&s[i].yos);
+      scanf("%f",&s[i].cgpa);
+    }
+  	for(i=0;i<t-1;i++)
+    {
+      for(j=i+1;j<t;j++)
+      {
+        if(strcmp((s[i].name),(s[j].name))>0)
+        {
+          strcpy(tempn,s[i].name);
+          strcpy(s[i].name,s[j].name);
+          strcpy(s[j].name,tempn);
+          strcpy(tempd,s[i].dept);
+          strcpy(s[i].dept,s[j].dept);
+          strcpy(s[j].dept,tempd);
+          tempy=s[i].yos;
+          s[i].yos=s[j].yos;
+          s[j].yos=tempy;
+          tempc=s[i].cgpa;
+          s[i].cgpa=s[j].cgpa;
+          s[j].cgpa=tempc;
+        }
+      }
+    }
+  	for(i=0;i<t;i++)
+    {
+      printf("Name:%s\n",s[i].name);
+      printf("Department:%s\n",s[i].dept);
+      printf("Year of study:%d\n",s[i].yos);
+      printf("CGPA:%.1f\n",s[i].cgpa);
+    }
+	return 0;
+}

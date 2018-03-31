@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+struct DisplayException:public exception{
+  const char * ex() const throw()
+  {
+    return "Exception Occurred";
+  }
+};
+void func(string s)
+{
+ string str2;
+  int flag=0,flag1=0;
+  int i=0;
+  int j=0;
+  while(s[i]!='\0')
+  {
+    if((s[i]>='0')&&(s[i]<='9'))
+    {
+      flag=0;
+    }
+    else{flag=1;break;}
+    i++;
+  }
+  if(flag==1){throw DisplayException();}
+  else if(flag==0)
+  {
+    cin>>str2;
+    while(str2[j]!='\0')
+    {
+      if((str2[j]>='0')&&(str2[j]<='9'))
+    {
+      flag1=0;
+    }
+    else{flag1=1;break;}
+    j++;
+    }
+    if(flag1==1){throw DisplayException();}
+    else if(flag1==0){cout<<"Valid Input";}
+  }
+}
+int main()
+{
+  string str1;
+  cin>>str1;
+  try{
+  func(str1);
+  }catch(DisplayException e){cout<<e.ex();}
+  return 0;
+}

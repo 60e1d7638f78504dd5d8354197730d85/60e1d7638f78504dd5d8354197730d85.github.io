@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class TestClass {
+  
+	 public static void main(String[] args) { 
+       
+       double x1, x2, x3, x4;
+       double y1, y2, y3, y4;
+       double m,n,X,Y;
+       
+       Scanner c = new Scanner(System.in);
+        
+       x1 = c.nextInt();
+       y1 = c.nextInt();
+       x2 = c.nextInt();
+       y2 = c.nextInt();
+       x3 = c.nextInt();
+       y3 = c.nextInt();
+       x4 = c.nextInt();
+       y4 = c.nextInt();
+       
+       
+       m = (y2-y1)/(x2-x1);
+       n = (y4-y3)/(x4-x3);
+       
+       double a1 = y1-y2;
+       double b1 = -(x1-x2);
+       double c1 = (y1-y2)*x1 - (x1-x2)*y1;
+       
+       double a2 = y3-y4;
+       double b2 = -(x3-x4);
+       double c2 = (y3-y4)*x3 - (x3-x4)*y3;
+       
+       X = (c1*b2 - c2*b1)/(a1*b2 - b1*a2) ;
+       Y = (c1*a2 - c2*a1)/(a2*b1 - b2*a1) ;
+       
+       
+       if(m==n)
+         System.out.println("The two lines are parallel");
+       
+       else 
+       {
+         System.out.println("The intersecting point");
+         System.out.format("%.2f\n",X);
+         System.out.format("%.2f",Y);
+       }
+	}
+}

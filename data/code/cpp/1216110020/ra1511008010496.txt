@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+void shiftArrayOnePosition(int *array, int size) {
+    int i, temp;
+    temp = array[0];
+ 
+    for(i = 0; i < size-1; i++) {
+        array[i] = array[i+1];
+    }  
+    array[i] = temp;
+}
+
+void rotateArray(int *array, int size, int N){
+    int i;
+    for(i = 0; i < N; i++){
+        shiftArrayOnePosition(array, size);
+    }
+    return;
+}
+ 
+int main(){
+    int array[10]; 
+    int i,num,r;
+  cin>>num;
+    for(i = 0; i<num; i++){
+       cin>>array[i];
+    } 
+  cin>>r;
+    rotateArray(array, num, r);
+  
+    for(i = 0; i<num; i++){
+        cout<<array[i]<<" ";
+    }
+ 
+    return 0;
+}

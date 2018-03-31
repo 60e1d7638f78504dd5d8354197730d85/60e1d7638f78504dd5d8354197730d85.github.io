@@ -1,0 +1,145 @@
+#include <stdio.h>
+ 
+typedef struct
+{
+    long long pre[3];
+    long long suf[3];
+    int total;
+    long long int ans;
+} data_t;
+ 
+int b, c;
+data_t arr[ 262146 ];
+char str[100001];
+ 
+int read_num()
+{
+	int n = 0;
+	char ch = getchar_unlocked();
+	while(ch > '9' || ch < '0')
+		ch = getchar_unlocked();
+	while(ch >= '0' && ch <= '9')
+		n = (n<<3) + (n<<1) + ch - '0', ch = getchar_unlocked();
+	return n;
+}
+ 
+void merge( data_t *left, data_t *right, data_t *res )
+{
+    int i;
+    res->total = ( left->total + right->total ) % 3;
+        
+    res->ans = left->ans + right->ans;
+    
+    for(i = 0; i < 3; i++)
+    {
+        res->ans += right->pre[i] * left->suf[(3-i) % 3];
+        res->pre[i] = left->pre[i] + right->pre[(3 - left->total + i) % 3];
+        res->suf[i] = right->suf[i] + left->suf[(3 - right->total + i) % 3];
+    }    
+}
+ 
+void create_tree( int st, int en, int pos )
+{
+    int i;
+    if( st == en )
+    {
+        arr[ pos ].total = (str[st] - '0') % 3 ;
+        //printf("%d->%d\n", str[st]-'0', arr[pos].total);
+        for(i = 0; i < 3; i++)
+        {
+            arr[pos].pre[i] = arr[pos].suf[i] = 0;
+        }
+        arr[pos].pre[arr[pos].total] = arr[pos].suf[arr[pos].total] = 1;
+        arr[pos].ans = ((str[st] - '0') % 3) ? 0 : 1;
+    }
+    else
+    {
+        int mid = (st + en) / 2;
+        create_tree( st, mid, 2*pos+1);
+        create_tree( mid+1, en, 2*pos+2);
+        
+        merge( &arr[ 2*pos+1 ], &arr[ 2*pos+2], &arr[pos]);
+    }
+}
+ 
+data_t r[1000];
+int ind = 0;
+ 
+data_t *query_tree( int st, int en, int pos)
+{
+    if( b<=st && c>=en)
+        return &arr[pos];
+    
+    if( en < b || st > c )
+        return NULL;
+    
+    int mid = (st + en)/2;
+    data_t *ll = query_tree(st, mid, 2*pos+1);
+    data_t *rr = query_tree( mid+1, en, 2*pos+2);
+    
+    if( ll == NULL)
+        return rr;
+    if( rr == NULL )
+        return ll;
+    
+    merge( ll, rr, &r[ind] );
+    
+    return &r[ind++];
+}
+ 
+void update_tree(int st, int en, int pos)
+{
+    int i;
+    if( b < st || b > en )
+        return;
+    if( st == en && st == b )
+    {
+        arr[ pos ].total = c % 3 ;
+        for(i = 0; i < 3; i++)
+        {
+            arr[pos].pre[i] = arr[pos].suf[i] = 0;
+        }
+        arr[pos].pre[arr[pos].total % 3] = arr[pos].suf[arr[pos].total % 3] = 1;
+        arr[pos].ans = ((c % 3) ? 0 : 1);    
+    }
+    else
+    {
+        int mid = (st + en) / 2;
+        update_tree( st, mid, 2*pos+1 );
+        update_tree( mid+1, en, 2*pos+2);
+        
+        merge( &arr[2*pos+1], &arr[2*pos+2], &arr[pos]);
+    }
+}
+ 
+int main() {
+    int n, m;
+    
+    scanf("%d %d", &n, &m);
+    
+    scanf("%s", str);
+    
+    create_tree( 0, n-1, 0);
+
+    while( m-- )
+    {
+        int a;
+        scanf("%d %d %d", &a, &b, &c);
+        b--;
+        //printf("%d\n", a);
+        if( a == 1)
+        {
+            update_tree( 0, n-1, 0);
+        }
+        else
+        {
+            c--;
+            ind = 0;
+            data_t *res = query_tree( 0, n-1, 0);
+            printf("%lld\n", res->ans);
+        }
+    }
+	return 0;
+}
+ 
+ 

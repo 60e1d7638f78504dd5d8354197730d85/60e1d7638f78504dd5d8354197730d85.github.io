@@ -1,0 +1,28 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+string s;
+  getline(cin,s);
+  int n;
+  n=s.size();
+  char arr[n];
+  int c=0,d=0,w=0,v=0,i,j;
+  char vow[10]={'a','e','i','o','u','A','E','I','O','U'};
+  char dig[10]={'0','1','2','3','4','5','6','7','8','9'};
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<10;j++)
+     if(s[i]==vow[j])
+        v++;
+    for(j=0;j<10;j++)
+      if(s[i]==dig[j])
+        d++;
+    if(s[i]==' ')
+      w++;
+  }
+  c=n-(v+w+d);
+  cout<<"Vowels:"<<v<<endl<<"Consonants:"<<c<<endl<<"Whitespaces:"<<w<<endl<<"Digits:"<<d<<endl;
+	return 0;
+}

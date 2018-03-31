@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int t,j;
+  scanf("%d",&t);
+  for(j=0;j<t;j++)
+  {
+    char str[100];
+  int arr[26]={0},i,index=0;
+  scanf("%s",str);
+  for(i=0;str[i]!='\0';i++)
+    arr[str[i]-97]++;
+  int max=arr[0];
+  for(i=0;i<26;i++)
+    if(arr[i]>max)
+    {
+      max=arr[i];
+      index=i;
+    }
+  int sum1=0;
+  for(i=0;i<26;i++)
+    if(i==index)
+      continue;
+  else
+    if(arr[i]!=0)
+    sum1=sum1+arr[i];
+  if(sum1==max)
+    printf("YES\n");
+  else
+    printf("NO\n");
+  }
+	return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+int i=0,clashes=0,hashes[1000]={0};
+void F(int num)
+{
+  int hash,j,found=0;
+  hash=num%10;
+  for(j=0;j<i;j=j+1)
+  {
+  	if(hashes[j]==hash)
+    {
+    	clashes++;
+      	found=1;
+    }
+  }
+  if(found==0)
+  {
+  	hashes[i]=hash;
+    i++;
+  }
+}
+int main()
+{
+	int j,enter,num,cases;
+  	scanf("%d",&cases);
+  	while(cases--)
+    {
+      clashes=0;
+      scanf("%d",&num);
+      for(j=0;j<num;j++)
+      {
+          scanf("%d",&enter);
+          F(enter);
+      }
+      printf("%d\n",clashes);
+      for(j=0;j<i;j++)
+      {
+      	hashes[j]=0;
+      }
+    }
+	return 0;
+}

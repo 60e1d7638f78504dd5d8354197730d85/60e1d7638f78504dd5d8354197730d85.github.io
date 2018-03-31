@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef struct {
+int first, second;
+} pair;
+ 
+int comparator(const void *elem1, const void *elem2)
+{
+pair *a=(pair*)elem1;
+pair *b=(pair*)elem2;
+if(a->first!=b->first) return a->first-b->first;
+return a->second-b->second;
+}
+ 
+void qs(pair *feld, int laenge){qsort(feld,laenge,sizeof(pair),comparator);}
+ 
+main()
+{
+int n, k, i, x, j, ans=0;
+pair *A;
+scanf("%d%d",&n,&k);
+k--;
+A=(pair*)malloc(n*sizeof(pair));
+for(i=0; i<n; i++)
+	{
+	scanf("%d",&x);
+	A[i].first=x;
+	A[i].second=i;
+	}
+qs(A,n);
+for(i=0; i<n; ans++)
+	for(j=i; i<n&&A[j].first==A[i].first&&A[j].second+k>=A[i].second; i++);
+printf("%d\n",ans);
+return 0;
+} 
+ 

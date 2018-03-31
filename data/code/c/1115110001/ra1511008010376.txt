@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char *sub(char *r,int v,int b)
+{
+  int l,t,h=0;
+  l=b-v+1;
+  char *p;
+  p=(char *)malloc((l+1)*sizeof(char));
+  for(t=v;t<=b;t++)
+  {
+    p[h]=r[t];
+    h++;
+  }
+  p[h]='\0';
+  return p;
+}
+int main()
+{
+  char s[50];
+  char *g;
+  int i,j,n,k,flag=0,c=0;
+  scanf("%s",s);
+  n=strlen(s);
+  for(i=0;s[i]!='\0';i++)
+  {
+    for(j=i;j<n;j++)
+    {
+      g=sub(s,i,j);
+      for(k=0;g[k]!='\0';k++)
+      {
+        if(g[k]!=g[strlen(g)-1-k])
+        {
+          flag=1;
+          break;
+        }
+      }
+      if(flag!=1)
+        c++;
+      flag=0;
+    }
+  }
+  printf("Number of palindromic substrings:%d",c);
+
+	return 0;
+}

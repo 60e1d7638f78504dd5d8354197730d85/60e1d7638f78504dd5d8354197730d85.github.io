@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+  int num;
+  struct node *nextptr;
+}
+ 
+stnode, *ennode;
+
+int FindElement(int);
+int main()
+{
+	int n,i,FindElem,FindPlc;
+	stnode.nextptr=NULL;
+	ennode=&stnode;
+
+	
+    scanf("%d", &n);	
+
+	for(i=0;i< n;i++)
+	{
+		ennode->nextptr=(struct node *)malloc(sizeof(struct node));
+	
+		scanf("%d",&ennode->num);
+		ennode=ennode->nextptr;
+	}
+	ennode->nextptr=NULL;
+
+    ennode=&stnode;
+
+
+	scanf("%d",&FindElem);
+	FindPlc=FindElement(FindElem);
+	if(FindPlc<=n)
+		printf("Yes");
+	else
+		printf("No");
+  
+  return 0;
+}
+int FindElement(int FindElem)
+{
+	int ctr=1;
+	ennode=&stnode;
+	while(ennode->nextptr!=NULL)
+	{
+		if(ennode->num==FindElem)
+			break;
+		else
+			ctr++;
+			ennode=ennode->nextptr;
+	}
+	return ctr;
+}

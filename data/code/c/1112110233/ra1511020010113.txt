@@ -1,0 +1,36 @@
+#include<stdio.h>
+ 
+
+	
+int main(){
+	int T,N,M,i,j,sum[100],all,count,num,k;
+	char arr[10][10];
+	scanf("%d",&T);
+	for(i=0;i<T;i++){
+		scanf("%d %d",&N,&M);
+		all=0;
+		for(j=0;j<N;j++){
+				scanf("%s",arr[j]);
+		}
+		for(j=0;j<M;j++){
+			count =0;
+			for(k=0;k<N;k++){
+				if(arr[k][j]=='1')
+					count++;
+			}
+			if(count>1){
+				if(count==2)
+					all++;
+				else
+					all+=count*(count-1)/2;
+			}
+		}
+		sum[i]=all;
+	}
+	for(i=0;i<T;i++)
+		printf("%d\n",sum[i]);
+	
+	return 0;
+	
+}
+	

@@ -1,0 +1,103 @@
+    #include <stdio.h>
+    #include <stdlib.h>
+    #define SIZE 500
+    int test,n,m,q;
+    int e[200010][2],ans[200010],list[200010][3];
+    int roota[200010],rootb[200010];
+    int comp(const void *a,const void *b)
+    {
+        int posa = (((int*)a)[0]-1)/SIZE, posb = (((int*)b)[0]-1)/SIZE;
+        if(posa == posb) return ((int*)a)[1] - ((int*)b)[1];
+        return posa-posb;
+    }
+    void adde(int sn,int fn,int id)
+    {
+        e[id][0] = sn; e[id][1] = fn;
+    }
+    int findroota(int nod)
+    {
+        if(roota[nod] != nod) roota[nod] = findroota(roota[nod]);
+        return roota[nod];
+    }
+    int findrootb(int nod)
+    {
+        if(rootb[nod] != nod) rootb[nod] = findrootb(rootb[nod]);
+        return rootb[nod];
+    }
+    void ini()
+    {
+        int i;
+        for(i=1;i<=n;i++) roota[i] = rootb[i] = i;
+    }
+    int vio(int l,int r,int tans)
+    {
+        int i,a,b;
+        for(i=l;i<=r;i++)
+        {
+            a = findroota(e[i][0]); b = findroota(e[i][1]);
+            if(a == b) continue;
+            roota[a] = b;
+            tans--;
+        }
+        return tans;
+    }
+    int work(int l,int r,int tans)
+    {
+        int i,a,b;
+        for(i=l;i<=r;i++)
+        {
+            findroota(e[i][0]); findroota(e[i][1]);
+            rootb[e[i][0]] = roota[e[i][0]]; rootb[e[i][1]] = roota[e[i][1]];
+            rootb[roota[e[i][0]]] = roota[e[i][0]]; rootb[roota[e[i][1]]] = roota[e[i][1]];
+        }
+        for(i=l;i<=r;i++)
+        {
+            a = findrootb(e[i][0]); b = findrootb(e[i][1]);
+            if(a == b) continue;
+            rootb[a] = b;
+            tans--;
+        }
+        for(i=l;i<=r;i++)
+        {
+            rootb[e[i][0]] = e[i][0]; rootb[e[i][1]] = e[i][1];
+            rootb[roota[e[i][0]]] = roota[e[i][0]]; rootb[roota[e[i][1]]] = roota[e[i][1]];
+        }
+        return tans;
+    }
+    int main()
+    {
+        int i,tt,posa,posb,tmp,sn,fn;
+        scanf("%d",&test);
+        for(tt=1;tt<=test;tt++)
+        {
+            scanf("%d%d%d",&n,&m,&q);
+            for(i=1;i<=m;i++)
+            {
+                scanf("%d%d",&sn,&fn);
+                adde(sn,fn,i);
+            }
+            for(i=1;i<=q;i++)
+            {
+                scanf("%d%d",&list[i][0],&list[i][1]);
+                list[i][2] = i;
+            }
+            qsort(list+1,q,sizeof(list[0]),comp);
+            for(i=1;i<=q;i++)
+            {
+                posa = (list[i][0]-1)/SIZE; posb = (list[i][1]-1)/SIZE;
+                if(posa != (list[i-1][0]-1)/SIZE || i == 1) ini();
+                if(posa == posb) ans[list[i][2]] = work(list[i][0],list[i][1],n);
+                else
+                {
+                    if(posa != (list[i-1][0]-1)/SIZE || (list[i-1][0]-1)/SIZE == (list[i-1][1]-1)/SIZE || i == 1)
+                    {
+                        tmp = vio((posa+1)*SIZE+1,list[i][1],n);
+                    }
+                    else tmp = vio(list[i-1][1]+1,list[i][1],tmp);
+                    ans[list[i][2]] = work(list[i][0],(posa+1)*SIZE,tmp);
+                }
+            }
+            for(i=1;i<=q;i++) printf("%d\n",ans[i]);
+        }
+        return 0;
+    } 

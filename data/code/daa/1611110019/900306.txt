@@ -1,0 +1,31 @@
+#include <stdio.h>
+int search(int m[5][5],int p,int q,int x)
+{
+  int i=0,j=q-1;
+  while(i<p && j>=0)
+  {
+    if(m[i][j]==x)
+      return 1;
+    if(m[i][j]>x)j--;
+    else
+      i++;
+  }
+  return 0;
+}
+
+int main()
+{
+int tc,p,q,m[5][5],i,j,k,x;
+  scanf("%d",&tc);
+  for(k=0;k<tc;k++)
+  {
+  scanf("%d%d",&p,&q);
+  for(i=0;i<p;i++)
+    for(j=0;j<q;j++)
+      scanf("%d",&m[i][j]);
+    scanf("%d",&x);
+  printf("\n%d",search(m,p,q,x));
+  }
+  
+	return 0;
+}

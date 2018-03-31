@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+    int binary1,binary2,sum[100],carry=0,i=0;
+    scanf("%d",&binary1);
+    scanf("%d",&binary2);
+    while(binary1!=0 || binary2!=0)
+    {
+      sum[i++]=(binary1%10+binary2%10+carry)%2;
+      carry=(binary1%10+binary2%10+carry)/2;
+      binary1=binary1/10;
+      binary2=binary2/10;
+    }
+    if(carry!=0)
+    {
+      sum[i++]=carry;
+    }
+   --i;
+   while(i>=0)
+   {
+     printf("%d",sum[i--]);
+   }
+   
+	return 0;
+}

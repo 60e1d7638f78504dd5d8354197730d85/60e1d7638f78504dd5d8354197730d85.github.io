@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+	char * str1=(char*) malloc(sizeof (char));
+	char * str2=(char*) malloc(sizeof (char));
+  	scanf("%s\n%s",str1,str2);
+  	int l1=strlen(str1);
+  	int l2=strlen(str2);
+  	int ar[26]={0};int i;
+  	for(i=0;i<l1;i++)
+    	ar[str1[i]-97]++;
+  	for(i=0;i<l2;i++)
+      ar[str2[i]-97]++;
+  	for(i=0;i<26;i++)
+    {
+      if(ar[i]>0)
+        printf("%c",i+97);
+    }
+  return 0;
+}

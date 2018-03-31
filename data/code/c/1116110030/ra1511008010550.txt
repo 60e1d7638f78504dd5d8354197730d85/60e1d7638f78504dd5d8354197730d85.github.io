@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char ch[100], wd[10];
+  int l1,l2,count,count1,i,j;
+  fgets(ch,100,stdin);
+  fgets(wd,10,stdin);
+  l1=strlen(ch);
+  l2=strlen(wd);
+  count1=0;
+  for (i = 0; i < l1;)
+    {
+        j = 0;
+        count = 0;
+        while ((ch[i] == wd[j]))
+        {
+            count++;
+            i++;
+            j++;
+        }
+        if (count == l2)
+        {
+            count1++;                                   
+            count = 0;
+          //printf("%d\n", count1);
+        }
+        else
+            i++;
+    }    
+  
+  printf("%s=%d", wd,count1);
+  
+	return 0;
+}

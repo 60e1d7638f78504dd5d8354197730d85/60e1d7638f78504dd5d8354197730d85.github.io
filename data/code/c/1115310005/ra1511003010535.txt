@@ -1,0 +1,39 @@
+#include <stdio.h>
+ 
+#define getcx getchar_unlocked
+int getn()
+{
+	char ch=getchar_unlocked();int a=0;
+	while(ch<'0'||ch>'9')
+	ch=getchar_unlocked();
+	while(ch>='0' && ch<='9')
+	{
+		a=a*10+ch-48;
+		ch=getchar_unlocked();
+	}
+	return a;
+}
+ 
+ 
+int main()
+{
+	int t, n;
+	t = getn() ; 
+	while(t--) {
+		long long int count = 0 ; 
+		long long int count2 = 0 ; 
+		n = getn() ; 
+		while(n--) {
+			int temp = getn();
+			if(temp != 1 && temp !=0) {
+				if(temp == 2) {
+					count2++ ; 
+				} else {
+					count++ ;
+				}
+			}
+		}
+		printf("%lld\n", (count*count2)+ (count*(count-1))/2);
+	}
+	return 0 ; 
+} 

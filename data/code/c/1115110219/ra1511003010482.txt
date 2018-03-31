@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int song[100],out,temp=0,i,j,test,pos,data,n,t,z=0;
+  	scanf("%d",&test);
+  for(t=0;t<test;t++)
+  {
+    scanf("%d",&n);
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&song[j]);
+    }
+    scanf("%d",&pos);
+    j=0;
+    while(j<pos)
+    {
+      data=song[j];
+      j++;
+    }
+    for(i=0;i<n;i++)
+    {
+      for(j=i;j<n;j++)
+      {
+        if(song[i]>song[j])
+        {
+          temp=song[i];
+          song[i]=song[j];
+          song[j]=temp;
+        }
+      }
+    }
+    i=0;
+    while(data!=song[i])
+    {
+      i++;
+    }
+    out=i+1;
+    printf("%d\n",out);
+  }
+	return 0;
+}

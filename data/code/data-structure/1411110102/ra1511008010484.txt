@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+  int data;
+  struct node *next;
+}*head=NULL,*tr;
+void create(int n)
+{
+  while(n--)
+  {
+    struct node *temp;
+  temp=(struct node*)malloc(sizeof(struct node));
+    scanf("%d",&temp->data);
+    temp->next=NULL;
+    if(head==NULL)
+    {
+      head=temp;
+    }
+    else
+    {
+      tr=head;
+      while(tr->next!=NULL)
+      {
+        tr=tr->next;
+      }
+      tr->next=temp;
+    }
+  }
+}
+void display()
+{
+  if(head==NULL)
+  {
+    return;
+  }
+  else
+  {
+    tr=head;
+    while(tr!=NULL)
+    {
+      printf("%d ",tr->data);
+      tr=tr->next;
+    }
+  }
+}
+int main()
+{
+	int n;
+  	scanf("%d",&n);
+  	create(n);
+  display();
+	return 0;
+}

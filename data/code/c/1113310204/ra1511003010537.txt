@@ -1,0 +1,48 @@
+#include <stdio.h>
+typedef long long int ULINT;
+const int M = 1000000000+7;
+ULINT pow1(ULINT a, ULINT m) {
+    if (m==0) return 1;
+    if (m&1) return (a*pow1(a,m-1))%M;
+    ULINT y=pow1(a,m/2);
+    return (y*y)%M;
+}
+ULINT a[100010];
+ULINT inv[100010];
+void prec() {
+    inv[1]=1;
+    inv[0]=1;
+    ULINT i;
+    for(i=2;i<100010;i++) {
+        inv[i]=(inv[i-1]*pow1(i,M-2))%M;
+        // printf("%lld ",inv[i]);
+    }
+ 
+}
+int main()
+{
+ 
+    ULINT t,n,x,m,i;
+    scanf("%lld",&t);
+    prec();
+    while(t--)
+    {
+        
+        scanf("%lld %lld %lld",&n,&x,&m);
+        for(i=0;i<n;i++) {
+            scanf("%lld",&a[i]);
+        }
+ 
+        m%=M;
+ 
+        ULINT ans=0;
+        ULINT tp=1;
+        for(i=0;i<x;i++) {
+            ans+=(tp*a[x-i-1]*inv[i])%M;
+            ans%=M;
+            tp=(tp*(m+i))%M;
+        }
+        printf("%lld\n", ans);
+    }
+    return 0;
+} 

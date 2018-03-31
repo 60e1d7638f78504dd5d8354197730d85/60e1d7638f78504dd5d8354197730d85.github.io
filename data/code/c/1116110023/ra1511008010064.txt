@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str[20];
+  	fgets(str,20,stdin);
+ 	char occ;
+  	scanf("%c",&occ);
+  	int i;
+  	for(i=strlen(str)-1;i>0;i--)
+    {
+      if(str[i]==occ)
+      {
+        int k;
+      	for(k=i;k<strlen(str);k++)
+        {
+          str[k]=str[k+1];
+        }
+        break;
+      }
+    }
+  	printf("%s",str);
+	return 0;
+}

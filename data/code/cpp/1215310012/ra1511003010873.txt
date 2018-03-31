@@ -1,0 +1,109 @@
+    #include<iostream>
+    #include<cmath>
+    #include<cstring>
+    #include<cstdio>
+    #include<algorithm>
+    #include<bitset> 
+    using namespace std;
+    bitset<85>x[20000][80];
+    int n,T,N,m,K,len,pd[40],z[40][40],bo[80][40];
+    struct atom{
+        int x,y;
+    }A[10100];
+    void getcir(){
+        N=(n<<1); 
+        memset(x[0],0x00,sizeof x[0]);
+        for (int i=1;i<=n;i++) x[0][i][i]=1;
+        for (T=1;;T++){
+            memset(x[T],0x00,sizeof x[T]);
+            for (int i=1;i<=n;i++) x[T][i]=x[T-1][i-1]^x[T-1][i]^x[T-1][i+1]^x[T-1][i+n];
+            for (int i=n+1;i<=N;i++) x[T][i]=x[T-1][i-n];
+            x[T][n]^=x[T-1][n+1];
+            int flag=0;
+            for (int i=1;i<=N;i++) if (x[T][i]!=x[0][i]) flag=1; 
+            if (flag==0) return;
+        }
+    }
+    int compare(atom k1,atom k2){
+        return k1.y<k2.y;
+    }
+    int gauss(){
+        int r=1;
+        for (int i=1;i<=n;i++){
+            int t=0;
+            for (int j=r;j<=n;j++)
+                if (z[j][i]) t=j;
+            if (t==0) continue;
+            for (int j=0;j<=n;j++) swap(z[r][j],z[t][j]);
+            for (int j=r+1;j<=n;j++)
+                if (z[j][i]) 
+                    for (int k=0;k<=n;k++) z[j][k]^=z[r][k];
+            r++;
+        }
+        for (int i=r;i<=n;i++) if (z[i][0]) return 0;
+        return 1;
+    }
+    int check(int k1){
+    	long long num=0; int bo=0;
+    	for (int i=1;i<=K;i++){
+    		int k1=A[i].y-1; num+=(k1/3)*2+k1%3;
+    		bo^=(A[i].y%3>0);
+    	}
+    	int A[4]; 
+    	A[0]=k1; A[1]=k1^bo;
+    	A[2]=A[0]^A[1];
+    	num+=(A[0]+A[1]+A[2])*(m/3);
+    	for (int i=0;i<m%3;i++) num+=A[i];
+    	return num%2==(m-1)%2;
+    }
+    void solve(){
+        scanf("%d%d",&n,&m); scanf("%d",&K);
+        for (int i=1;i<=K;i++) scanf("%d%d",&A[i].x,&A[i].y);
+        if (n>m){
+            for (int i=1;i<=K;i++) swap(A[i].x,A[i].y); swap(n,m);
+        }
+        getcir();
+        memset(pd,0x00,sizeof pd);
+        for (int i=1;i<=K;i++){
+            int k1=(A[i].y-1)%T;
+            for (int j=1;j<=n;j++){
+            //	cout<<x[k1][A[i].x][j]<<" "; 
+                pd[j]^=x[k1][A[i].x][j];
+            }
+          //  cout<<endl;
+        }
+        memset(z,0x00,sizeof z);
+        memset(bo,0x00,sizeof bo);
+        for (int i=1;i<=n;i++)
+            for (int j=1;j<=N;j++)
+                bo[j][i]^=x[(m-1)%T][j][i];
+        for (int i=1;i<=n;i++){
+            for (int j=1;j<=n;j++){
+                z[i][j]=bo[i][j]^bo[i-1][j]^bo[i+n][j];
+                if (i!=n) z[i][j]^=bo[i+1][j];
+            }
+            z[i][0]=pd[i]; //cout<<"fa "<<i<<" "<<pd[i]<<endl;
+        }
+      /*  for (int i=1;i<=N;i++){
+        	for (int j=1;j<=n;j++) cout<<bo[i][j]<<" "; cout<<endl;
+        }
+        cout<<"fasdf"<<endl;
+        for (int i=1;i<=n;i++){
+        	for (int j=0;j<=n;j++) cout<<z[i][j]<<" "; cout<<endl;
+        }*/
+        if (gauss()){
+        	if (n==1){
+        		int flag=0;
+        		if (z[1][0]==0) flag|=check(0);
+        		if (z[1][0]==1||z[1][1]==0) flag|=check(1);
+        		if (flag) printf("YES\n"); else printf("NO\n");
+        		return;
+    		}
+    		printf("YES\n"); 
+    	}else printf("NO\n");
+    }
+    int main(){
+        int t; scanf("%d",&t);
+        for (;t;t--) solve();
+        return 0;
+    } 

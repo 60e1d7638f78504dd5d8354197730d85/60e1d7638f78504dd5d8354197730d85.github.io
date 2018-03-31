@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main(void) {
+	// your code goes here
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+	    char m[25001],w[25001];
+	    scanf("%s%s",m,w);
+	    int lm= strlen(m);
+	    int lw=strlen(w);
+	    if(lm>lw)
+	    {
+	        int i=0,j=0;
+	        while(j<lw && i<lm)
+	        {
+	            if(m[i]==w[j])
+	            {
+	                i++;
+	                j++;
+	            }
+	            else
+	                i++;
+	        }
+	        if(j==lw)
+	            printf("YES\n");
+	           else
+	            printf("NO\n");
+	    }
+	    else if(lw>lm)
+	    {
+	        int i=0,j=0;
+	        while(j<lw && i<lm)
+	        {
+	            if(m[i]==w[j])
+	            {
+	                i++;
+	                j++;
+	            }
+	            else
+	                j++;
+	        }
+	         if(i==lm)
+	            printf("YES\n");
+	           else
+	            printf("NO\n");
+	    }
+	    else
+	        if(!strcmp(m,w))
+	            printf("YES\n");
+	       else
+	        printf("NO\n");
+	}
+	return 0;
+}

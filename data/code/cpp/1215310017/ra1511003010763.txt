@@ -1,0 +1,42 @@
+#include <cstdio>
+ 
+#define KONJ 42 - 42
+ 
+using namespace std;
+ 
+int T, N;
+int niz[55];
+ 
+void solve(){
+ 
+    scanf( "%d", &N );
+    for ( int i = 0; i < N; ++i ){ scanf( "%d", &niz[i] ); }
+    
+    for ( int i = 2; i <= 1000; ++i ){
+        
+        bool nes = true;
+        for ( int j = 0; j < N; ++j ){
+            if ( niz[j] % i != 0 ){ nes = false; break; }
+        }
+        
+        if ( !nes ){ continue; }
+        
+        for ( int j = 0; j < N; ++j ){ niz[j] /= i; }
+        --i;
+        
+    }
+ 
+    for ( int i = 0; i < N; ++i ){ printf( "%d ", niz[i] ); }
+    printf( "\n" );
+ 
+}
+ 
+int main( void ){
+ 
+    scanf( "%d", &T );
+    for ( int i = 0; i < T; ++i ){ solve(); }
+ 
+    return KONJ;
+ 
+} 
+ 

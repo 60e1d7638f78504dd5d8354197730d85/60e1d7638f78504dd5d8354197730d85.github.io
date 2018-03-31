@@ -1,0 +1,25 @@
+ #include <stdio.h>
+
+  int main() {
+        int numerator, denominator, wholeNo;
+
+        /* get numerator and denominator from user */
+        scanf("%d", &numerator);
+        scanf("%d", &denominator);
+
+        /* mixed fraction is not possible if num < deno */
+        if (numerator < denominator) {
+                printf("Mixed fraction impossible!!\n");
+        } else if (numerator % denominator == 0) {
+                /* numerator divisible by denominator */
+                wholeNo = numerator / denominator;
+                printf("%d\n", wholeNo);
+        } else {
+                /* mixed fraction manipulation */
+                wholeNo = numerator / denominator;
+                numerator = numerator % denominator;
+                printf(" %d %d %d\n",
+                        wholeNo, numerator, denominator);
+        }
+        return 0;
+  }

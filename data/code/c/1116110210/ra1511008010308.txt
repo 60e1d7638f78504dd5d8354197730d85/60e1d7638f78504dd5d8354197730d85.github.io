@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+  char a[100];
+  int i,k,len;
+  for(i=0;i<100;i++)
+  {
+    a[i]=0;
+    scanf("%c",&a[i]);
+  }
+  len=strlen(a);
+  for(i=0;i<=len;i++)
+  {
+    if(a[i]==' '|| a[i]=='\0')
+    {
+      
+      k=i-1;
+      while(k>=0 || a[k]!=' ')
+      {
+       
+        if(k==0)
+        {
+          printf("%c",a[k]);
+          break;
+        }
+         if(a[k]==' ')
+          break;
+       printf("%c",a[k--]);
+      }
+      
+      if(a[i]=='\0')
+        break;
+      printf(" ");
+    }
+  }
+
+	return 0;
+}

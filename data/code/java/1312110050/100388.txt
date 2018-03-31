@@ -1,0 +1,22 @@
+import java.io.*;
+public class TestClass {
+	 public static void main(String[] args) throws IOException { 
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+int num,th,h,t,u;
+num=Integer.parseInt(br.readLine()); 
+if(num>0 && num<4000) {
+String thou[]={"","M","MM","MMM"};
+String hund[]={"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+String ten[]={"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+String unit[]={"","I","II","III","IV","V","VI","VII","VIII","IX"};
+/*Finding the digits in the thousand, hundred, ten and units place*/
+th=num/1000;
+h=(num/100)%10;
+t=(num/10)%10;
+u=num%10;
+System.out.println(thou[th]+hund[h]+ten[t]+unit[u]);
+}
+else
+System.out.println("Out of Range");
+	}
+}

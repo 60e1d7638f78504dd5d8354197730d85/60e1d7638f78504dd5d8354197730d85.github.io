@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int n,m,i,j,temp;
+	scanf("%d",&n);
+	scanf("%d",&m);
+    int f[m],p[m],sp[n],r[m],sm[m];
+   char s[m][101];
+   char c[101];
+   for(i=0;i<n;i++)
+   {
+   	
+   	scanf("%d",&sp[i]);
+   }
+   for(i=0;i<m;i++)
+   {
+   	r[i]=i;
+  	scanf("%d",&f[i]);
+	scanf("%d",&p[i]);
+	sm[i]=0;
+	scanf("%s",c);
+	strcpy(s[i],c);
+   }
+   for(i=0;i<n;i++)
+   {
+   		for(j=0;j<m;j++)
+   		{
+   			if(sp[i]==f[j])
+            {
+              sm[j]=1;
+  		 	}
+ 	 	 }
+	}	
+  	printf("\n");
+ 
+ 
+  for(i=0;i<m-1;i++)
+   {
+	   	for(j=0;j<m-1;j++)
+   		{
+   			if(sm[j]==0&&sm[j+1]==0)
+		   {
+		   		if(p[j]<p[j+1])
+		  		 {	
+		   		temp=r[j];
+		   		r[j]=r[j+1];
+		   		r[j+1]=temp;	
+		   		
+		   		temp=p[j];
+		   		p[j]=p[j+1];
+		   		p[j+1]=temp;
+				   
+				temp=sm[j];
+		   		sm[j]=sm[j+1];
+		   		sm[j+1]=temp;	
+		    	}
+            }
+          if(sm[j]==0&&sm[j+1]==1)
+		   {
+		   	
+		   		temp=r[j];
+		   		r[j]=r[j+1];
+		   		r[j+1]=temp;	
+		   		
+		   		temp=p[j];
+		   		p[j]=p[j+1];
+		   		p[j+1]=temp;
+				   
+				temp=sm[j];
+		   		sm[j]=sm[j+1];
+		   		sm[j+1]=temp;	
+		    
+		   }
+		   if(sm[j]==1&&sm[j+1]==0)
+		   {
+		   	
+		   }
+		   if(sm[j]==1&&sm[j+1]==1)
+		   {
+		   		if(p[j]<p[j+1])
+		  		 {	
+		   		temp=r[j];
+		   		r[j]=r[j+1];
+                  r[j+1]=temp;	
+		   		
+		   		temp=p[j];
+		   		p[j]=p[j+1];
+		   		p[j+1]=temp;
+				   
+				temp=sm[j];
+		   		sm[j]=sm[j+1];
+		   		sm[j+1]=temp;	
+		    	}
+		   }	
+		}
+   }
+	for(i=0;i<m;i++)
+   {
+   	//	printf("%d\t%d\n",p[i],sm[i]);
+   		printf("%s\n",s[r[i]]);
+   }
+   return 0;
+}  

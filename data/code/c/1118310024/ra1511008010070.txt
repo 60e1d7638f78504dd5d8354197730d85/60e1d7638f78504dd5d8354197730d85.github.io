@@ -1,0 +1,34 @@
+#include<stdio.h>
+typedef long long int ll;
+int main()
+{
+ ll n,i,t;
+ scanf("%lld",&t);
+ while(t--)
+ {
+  scanf("%lld",&n);
+  ll p[100005],sum[100005],count=0;
+  for(i=0;i<n;i++)
+  {
+  scanf("%lld",&p[i]);
+  sum[i]=1;
+  }
+  for(i=0;i<n;i++)
+  {
+   if(i!=0)
+   {
+   if(p[i-1]<=p[i])
+   {
+    sum[i]=sum[i]+sum[i-1];
+   }
+   }
+  }
+  for(i=0;i<n;i++)
+  {
+   count+=sum[i];
+  }
+  printf("%lld\n",count);
+ }
+ return 0;
+}
+ 

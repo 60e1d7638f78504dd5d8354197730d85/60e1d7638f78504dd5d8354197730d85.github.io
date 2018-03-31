@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+char str[50][50],temp[50];
+  int i,j;
+  for(i=0;i<=5;i++)
+    cin>>str[i];
+  for(i=0;i<=5;i++)
+    for(j=i+1;j<=5;j++){
+      if(strcmp(str[i],str[j])>0)
+      {
+        strcpy(temp,str[i]);
+        strcpy(str[i],str[j]);
+        strcpy(str[j],temp);
+      }
+    }
+  for(i=0;i<=5;i++)
+    cout<<str[i]<<"\n";
+	return 0;
+}

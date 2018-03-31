@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+        Scanner scanner = new Scanner(System.in);
+        //string variable to save the user input string
+        String inputstring;
+       // print("Enter a String : ");
+        inputstring = scanner.nextLine();
+        Rotate.reverseEachWordOfString(inputstring);
+        //System.out.println("Result String is "+result);
+	}
+}
+class Rotate
+{
+  static void reverseEachWordOfString(String inputString)
+  {
+    String[] splitStringArray = inputString.split(" ");
+        //create a stringbuilder object to store the result
+        StringBuilder resultBuilder = new StringBuilder();
+        //scan the string and rotate each words
+        for (String word : splitStringArray) {
+            if (!word.equals(" ")) {
+                //only check for non-empty words
+                //create one StringBuilder with the string word
+                StringBuilder sb = new StringBuilder(word);
+                //reverse the string builder and convert it to a string
+                String reverseString = sb.reverse().toString();
+                //append the string to the result string builder
+                resultBuilder.append(reverseString + " ");
+            }
+        }
+        //return the stringbuilder object
+        System.out.println(resultBuilder.toString());
+  }
+}
+  

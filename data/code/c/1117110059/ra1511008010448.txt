@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define N 10000
+#define T 10
+int DoWork()
+{
+  int i,b,n,A[N],result=0;
+  long long IA=0,CA,B;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%lld",&CA);
+    A[i]=CA-IA;
+    IA=CA;
+  }
+  for(i=0;i<n;i++)
+  {
+    scanf("%lld",&B);
+    if(B<=A[i])
+      result++;
+  }
+  return result;
+}
+int main()
+{
+ int i,t,result[T];
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+    result[i]=DoWork();
+  for(i=0;i<t;i++)
+    printf("%d\n",result[i]);
+ return 0;
+}

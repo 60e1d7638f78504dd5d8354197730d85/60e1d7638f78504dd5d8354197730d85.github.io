@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main()
+{
+	int arr[100];
+  	int n;
+  	scanf("%d",&n);
+ 	int m=n;
+  	int i;
+  	for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+  	
+  	int p;
+  	scanf("%d",&p);
+  	for(i=n;i>=p;i--)
+      arr[i+1]=arr[i];
+  	scanf("%d",&arr[p]);
+  	m++;
+  printf("Before sorting\n");
+  	for(i=0;i<m;i++)
+    	printf("%d\n",arr[i]);
+  n++;
+  	while(n!=1){
+      int max=arr[0];
+      int maxindex=0;
+  	for(i=0;i<n;i++)
+    {
+    	if(arr[i]>max)
+        {max=arr[i];maxindex=i;}
+    }
+      	int c;
+        c=arr[maxindex];
+        arr[maxindex]=arr[n-1];
+        arr[n-1]=c;
+      n--;
+    }
+  printf("After sorting\n");
+  	for(i=0;i<m;i++)
+    	printf("%d\n",arr[i]);
+	return 0;
+}

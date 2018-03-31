@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+ char days[7][15];
+  int nodays[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+  int date,month,year,s=0,i;
+  scanf("%d",&date);
+  scanf("%d",&month);
+  scanf("%d",&year);
+  strcpy(days[0],"Sunday");
+  strcpy(days[1],"Monday");
+  strcpy(days[2],"Tuesday");
+  strcpy(days[3],"Wednesday");
+  strcpy(days[4],"Thursday");
+  strcpy(days[5],"Friday");
+  strcpy(days[6],"Saturday");
+  if( (year%4==0) || ((year%400==0) && (year%100!=0)))
+  {
+    nodays[1]=28;
+  }
+for(i=0;i<month-1;i++)
+{
+  s=s+nodays[i];
+}
+  s=s+(date+year+(year/4)-2);
+  s=s%7;
+
+  printf("%s",days[s]);
+
+	return 0;
+}

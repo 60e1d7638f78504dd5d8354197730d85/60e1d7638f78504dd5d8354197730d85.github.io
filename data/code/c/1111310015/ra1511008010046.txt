@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int x,remainder,reverse;
+    scanf("%d",&x);
+    int i;
+    for(i=x+1;;i++)
+    {
+      reverse=0;
+      remainder=0;
+      int temp = i;
+      while (temp > 0)
+      {
+          remainder = temp % 10;
+          reverse = reverse * 10 + remainder;
+          temp /= 10;
+      }
+      if(reverse==i)
+      {
+        printf("%d\n",i);
+        break;
+      }
+    }
+  }
+	return 0;
+}

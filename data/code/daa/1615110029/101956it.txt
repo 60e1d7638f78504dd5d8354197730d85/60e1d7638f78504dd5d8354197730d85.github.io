@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+#define MAXN 1000049
+using namespace std;
+int F[1000050],dp[MAXN+1];
+void sieve()
+{
+    for(int i = 1; i*i <= MAXN; i++)
+    {
+        for(int j = i; j <= MAXN; j += i)
+        {
+            if(i<j/i)
+            {
+                F[j]+=2;
+            }
+            if(i==j/i)
+            {
+                F[j]++;
+            }
+        }
+    }
+}
+int main()
+{
+    int t,x;
+    ios_base::sync_with_stdio(false);
+    cin.tie();
+    cout.tie();
+    sieve();
+    dp[0] = 0;
+    for(int i=1;i<=1000000;i++)
+        dp[i] = dp[i-1] + F[i] - 1;
+    cin>>t;
+    while(t--)
+    {
+        cin>>x;
+        cout<<dp[x]<<endl;
+    }
+    return 0;
+}

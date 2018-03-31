@@ -1,0 +1,84 @@
+#include "stdio.h"
+#include "stdlib.h"
+ 
+int myCompare(const void * a,const void * b)
+{
+    return ((*(int *)a)-(*(int *)b));
+}
+ 
+int binary_search(int * ar,int l,int h,int find)
+{
+    if(l>h)
+        return -1;
+    int mid = (l+h)/2;
+    if(ar[mid]==find)
+    {
+        while(ar[mid-1]==ar[mid]&&(mid>0))
+        {
+            mid--;
+        }
+        return mid;
+    }
+    else if(ar[mid]>find)
+        return binary_search(ar, l, mid-1, find);
+    else if(ar[mid]<find)
+        return binary_search(ar,mid+1,h,find);
+    return 0;
+}
+ 
+int main()
+{
+    int t,N;
+    int F;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d %d",&N,&F);
+        int height[N];
+        int i;
+        getchar();
+        for(i=0;i<N;i++)
+            scanf("%d",&height[i]);
+//        for(i=0;i<N;i++)
+//            printf("%d ",height[i]);
+//        printf("\n");
+        qsort(height,N,sizeof(int),myCompare);
+//        for(i=0;i<N;i++)
+//            printf("%d ",height[i]);
+//        printf("\n");
+        int count=0,pos,req,temp;
+        for(i=1;i<N;i++)
+        {
+            req=height[i];
+            temp = i;
+            while((temp>0)&&(height[temp-1]==height[temp]))
+            {
+                count++;
+                temp--;
+            }
+            while(req>0)
+            {
+                if(req%F!=0)
+                    break;
+                else
+                {
+                    req/=F;
+                    pos = binary_search(height,0,i-1,req);
+                    if(pos!=(-1))
+                    {
+                        count++;
+                        temp=pos;
+                        while((height[temp+1]==height[temp])&&(temp<N-1))
+                        {
+                            count++;
+                            temp++;
+                        }
+                    }
+                }
+            }
+        }
+        printf("%d\n",count);
+    }
+    
+    return 0;
+}  

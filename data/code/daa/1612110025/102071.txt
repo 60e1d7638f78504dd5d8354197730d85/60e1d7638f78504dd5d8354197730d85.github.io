@@ -1,0 +1,67 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,k,n,a[100],t,c,one[100],two[100],count=0,x,cou,tem;
+  scanf("%d",&c);
+ for(k=0;k<c;k++)
+ {
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+
+	for(i=0;i<n;i++)
+	{
+  		for(j=0;j<n-i-1;j++)
+  		{
+    		if(a[j]>a[j+1])
+    		{
+      			t=a[j];
+      			a[j]=a[j+1];
+    			a[j+1]=t;
+    		}
+  		}
+	}
+
+
+  x=0;
+   count=1;
+ for(i=0;i<n;i++)
+ {
+   one[x]=a[i];
+   two[x]=count;
+   if(a[i]==a[i+1])
+   {
+     count=count+1;
+     one[x]=a[i];
+     two[x]=count;
+   }
+   else{
+     x++;count=1;one[x]=a[i+1];two[x]=count;}  
+  }
+
+   for(i=0;i<x;i++)
+   {
+     for(j=0;j<x-i-1;j++)
+     {
+       if(two[j]<two[j+1])
+       {
+         t=two[j];
+         two[j]=two[j+1];
+         two[j+1]=t;
+         tem=one[j];
+         one[j]=one[j+1];
+         one[j+1]=tem;
+       }
+     }
+   }
+   
+
+  for(i=0;i<x;i++)
+  {
+    for(j=1;j<=two[i];j++)
+      printf("%d ",one[i]);
+  }
+   printf("\n");
+ }
+  return 0;
+}

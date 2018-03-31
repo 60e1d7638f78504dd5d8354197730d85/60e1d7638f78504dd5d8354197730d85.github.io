@@ -1,0 +1,72 @@
+    #include<stdio.h>
+    int main()
+    {
+    	int t,n,m,i,j,flag;
+    	scanf("%d",&t);
+    	while(t--)
+    	{
+    		scanf("%d%d",&n,&m);
+    		char a[n][m+1];
+    		for(i=0;i<n;i++)
+    		{
+    				scanf("%s",a[i]);
+    		}
+    		for(i=0;i<n;i++)
+    		{
+    			for(j=0;j<m;j++)
+    			{
+    				if(a[0][0]=='W' || a[0][m-1]=='W')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    				else if(a[i][j]=='A' && a[i][j+1]=='W' && a[i][j+2]=='A')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    				else if(a[i][j]=='B' && a[i+1][j]=='A')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    				else if(a[i][j]=='B' && a[i][j+1]=='W' && a[i][j+2]=='A')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    				else if(a[i][j]=='B' && a[i][j+1]=='B' && a[i+1][j+1]=='A')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    					else if(a[i][j]=='W' && a[i+1][j]=='A')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    					else if(a[i][j]=='B' && a[i][j+1]=='B' && a[i+1][j+1]=='W')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    					else if(a[i][j]=='B' && a[i][j+1]=='W' && a[i+1][j+1]=='A')
+    				{
+    					flag=1;
+    					goto end;
+    				}
+    				else
+    				{
+    					flag=0;
+    					goto end;
+    				}
+    			}
+    		}
+    			end:
+    				if(flag==1)
+    				printf("no\n");
+    				if(flag==0)
+    				printf("yes\n");	
+    	}
+    	return 0;
+    } 

@@ -1,0 +1,22 @@
+ #include <stdio.h>
+    #include <string.h>
+    int main(){
+    	int T,i,j,k;
+    	char a[100002];
+    	T=1;
+    	while(T--){
+    		scanf("%s",a);
+    		j=strlen(a);
+    		for(i=0,k=j-1;i<=k;i++,k--){
+    			if(a[i]=='.' && a[k]=='.') a[i]=a[k]='a';
+    			else if(a[i]=='.' || a[k]=='.') {
+    				a[i]=a[k]= (a[i]=='.'?a[k]:a[i]);
+    			}
+    			else if(a[i]!=a[k]){
+    				a[0]='-';a[1]='1';a[2]='\0';
+    				break;
+    			}
+    		}
+    		printf("%s\n",a);
+    	} 
+    } 

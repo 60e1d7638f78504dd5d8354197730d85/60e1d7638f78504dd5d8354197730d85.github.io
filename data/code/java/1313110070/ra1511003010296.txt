@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       double unit_price = sc.nextDouble();
+       double quantity = sc.nextDouble();
+       double discount =0.0 ;
+       double di = 0.0;
+       if(quantity<100){
+       	discount=0;
+       }
+       else if(quantity>=100 && quantity<=120){
+       	discount = 10;	
+         di = 10.0;
+       }
+       else{
+       	discount = 15.0;
+         di = 15.000001;
+       }
+       double sub_total = unit_price*quantity;
+       double disc = ((sub_total)*discount)/100;
+       double revenue = sub_total-disc;
+       System.out.println(revenue);
+       System.out.println(disc);
+       System.out.println(di+"%");
+	}
+}

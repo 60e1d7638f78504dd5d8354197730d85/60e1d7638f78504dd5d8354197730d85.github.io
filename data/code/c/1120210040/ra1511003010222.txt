@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int T, i, t, n, j, l;
+  	char str[100];
+  	scanf("%d",&T);
+  	for(t = 0; t < T; t++)
+    {
+      scanf("%s",str);
+      scanf("%d",&n);
+      l = strlen(str); 
+      for(i = 0; i < l; i++)
+        for(j = 0; j < l-i-1; j++)
+          if(str[j+1] < str[j])
+          {
+            char temp = str[j];
+            str[j] = str[j+1];
+            str[j+1] = temp;
+          }
+      for(i = 0; i < n; i++)
+        printf("%c",str[i]);
+    }
+	return 0;
+}

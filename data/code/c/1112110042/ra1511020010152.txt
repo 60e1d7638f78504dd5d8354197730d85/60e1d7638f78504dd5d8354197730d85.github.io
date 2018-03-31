@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+#include<stdio.h>
+main()
+{
+int t,i,j,count,k,flag=0;
+char je[200],str[200],jlen,stlen;
+scanf("%d",&t);
+while(t--)
+{
+count=0;
+scanf("%s",je);
+scanf("%s",str);
+jlen=strlen(je);
+stlen=strlen(str);
+for(i=0;i<jlen;i++)
+{
+flag=0;
+for(k=0;k<i;k++)
+if(je[i]==je[k])
+flag=1;
+if(flag==1)
+continue;
+for(j=0;j<stlen;j++)
+{
+if(je[i]==str[j])
+count++;
+}
+}
+printf("%d\n",count);
+}
+return 0;
+}
+ 

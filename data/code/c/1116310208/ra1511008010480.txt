@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  	int test;
+  	scanf("%d", &test);
+  	int t;
+  	for(t=0; t<test; t++) {
+    	char str1[20], str2[20];
+      	scanf("%s", str1);
+      	scanf("%s", str2);
+      	//printf("%s", str2);
+      	int arr1[26];
+      	int arr2[26];
+      	int i=0, flag=0;
+      	for(i; i<26; i++) {
+        	arr1[i] = arr2[i] = 0;
+          	//printf("%d %d\n", arr1[i], arr2[i]);
+        }
+      	i=0;
+      	while(str1[i] != '\0') {
+        	int val = str1[i++] - 97;
+          	arr1[val] = 1;
+        }
+      	i=0;
+      	while(str2[i] != '\0') {
+        	int val = str2[i++] - 97;
+          	arr2[val] = 1;
+        }
+      	for(i=0; i<26; i++) {
+        	if(arr1[i] ==1 && arr2[i] == 1) {
+            	flag = 1;
+              	break;
+            }
+        }
+      	printf("%s\n", flag==1 ? "yes" : "no");
+    }
+	return 0;
+}

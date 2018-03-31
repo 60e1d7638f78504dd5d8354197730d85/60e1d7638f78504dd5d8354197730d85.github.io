@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       	Scanner sc=new Scanner(System.in);
+       	Sample objname=new Sample();
+          	objname.getDetails();
+          	objname.displayDetails();
+        
+			
+	}
+}
+class Sample{
+	int[] arr;
+  	int n;
+  	public void getDetails(){
+    	Scanner sc=new Scanner(System.in);
+    	n=sc.nextInt();
+      	//System.out.println(n);
+      	this.arr=new int[n];
+      	for(int i=0;i<n;i++){
+        	int m=sc.nextInt();
+          	int min=0;
+          	for(int j=0;j<m;j++){
+              	int num=sc.nextInt();
+              	if(j==0)min=num;
+              	if(num<min)min=num;
+            }
+          arr[i]=min*(m-1);
+        }
+    }
+  	public void displayDetails(){
+    	for(int i=0;i<n;i++)System.out.println(arr[i]);
+    }
+
+}

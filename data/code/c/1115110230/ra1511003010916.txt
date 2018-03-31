@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{  int t;
+  scanf("%d",&t);
+ while(t--)
+   {  int i=0,j=0;
+   int h=0,m=0;
+    int c=0;
+   scanf("%d%d",&h,&m);
+      for(i=0;i<h;i++)
+      {
+       for(j=0;j<m;j++) 
+       {
+         if(j>10&&i<10)
+         {
+          if(j%11==0&&i==j%10)
+            c++;
+         }
+         if(j<10&&i>10)
+         {
+          if(i%11==0&&j==i%10)
+            c++;
+         }
+         if(i<10&&j<10)
+         {
+          if(i==j)
+            c++;
+         }
+         if(j>10&&j>10)
+         {
+          if(i%11==0&&j%11==0&&i==j)
+            c++;
+         }
+       }
+      }
+    printf("%d\n",c);
+   }
+	return 0;
+}

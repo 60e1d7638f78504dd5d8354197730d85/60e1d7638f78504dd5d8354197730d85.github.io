@@ -1,0 +1,51 @@
+#include <stdio.h>
+int main()
+{
+    int d,sumTime,sample_max=0,sample_min=0,i;
+    scanf("%d %d",&d,&sumTime);
+    int minTime[d],maxTime[d],schedule[d],flag=0;
+    for(i=0;i<d;i++)
+      scanf("%d %d",&minTime[i],&maxTime[i]);
+    if(d<1 || d>30 || sumTime<0 || sumTime>240)
+    {
+      printf("NO");
+      goto x;
+    }
+    for(i=0;i<d;i++){
+      sample_max+=maxTime[i];
+      sample_min+=minTime[i];
+    }
+    if(((sumTime>sample_max || sumTime<sample_min)) || (sumTime>(d*8)))
+      printf("NO");
+    else
+    {
+      if(sumTime==sample_min)
+        for(i=0;i<d;i++){
+          if(minTime[i]<0 || maxTime[i]>8 || maxTime[i]<minTime[i])
+            break;
+          else{
+          schedule[i]=minTime[i];
+          flag++;
+          }
+        }
+      else{
+      for(i=0;i<d;i++){
+        if(sumTime>=maxTime[i] && minTime[i]>=0 && maxTime[i]<=8 && maxTime[i]>=minTime[i] ){
+        schedule[i]=maxTime[i]; flag++;}
+        else if(sumTime<maxTime[i] && minTime[i]>=0 && maxTime[i]<=8 && maxTime[i]>=minTime[i]){
+          schedule[i]=sumTime; flag++;}
+        sumTime=sumTime-maxTime[i];
+      }
+    }
+      if(flag==d){
+        printf("YES\n");
+        for(i=0;i<d-1;i++)
+          printf("%d ",schedule[i]);
+          printf("%d",schedule[i]);
+      }
+      else
+        printf("NO");
+    }
+  x:
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+	char lst[27];
+  	int i=0;
+  	scanf("%s",lst);
+  int n;
+  int isit[27];
+  for(i=0;i!=26;i++) isit[1]=0;
+  int lenlst=strlen(lst);
+  for(i=0;i!=lenlst;i++) isit[lst[i]-'a'] = 1;
+  scanf("%d",&n);
+  while(n--)
+  {
+    char inpl[13];
+    scanf("%s",inpl);
+    int ln=strlen(inpl);
+    int tr=1;
+    char* inp=inpl;
+    while(*inp)
+    {
+      tr &=isit[*inp - 'a'];
+      inp++;
+    }
+    if(tr)
+      printf("Yes\n");
+    else
+      printf("No\n");
+  }
+	return 0;
+}

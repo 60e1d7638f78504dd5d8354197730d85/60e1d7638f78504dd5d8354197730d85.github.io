@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+class great
+{
+public int great(int gcd,int lcm)
+  {
+int aTemp,bTemp,g,l,t;
+aTemp = gcd;
+bTemp = lcm;
+while (bTemp != 0) {
+t = bTemp;
+bTemp = aTemp % bTemp;
+aTemp = t;
+}
+g = aTemp;
+l = (gcd*lcm) / g;
+System.out.println(g+" "+l);
+  return 0;
+}
+  
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       great objname=new great();
+       Scanner in=new Scanner(System.in);
+       int i,n;
+       n=in.nextInt();
+       int []a=new int[n];
+       int []b=new int[n];
+       for(i=0;i<n;i++)
+       {
+       a[i]=in.nextInt();
+       b[i]=in.nextInt();
+       }
+       for(i=0;i<n;i++)
+       {
+       objname.great(a[i],b[i]);
+       }
+     }
+}

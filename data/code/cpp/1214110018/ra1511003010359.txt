@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class Time
+{
+  public:
+  int hour,minute;
+  float second;
+  void gettime()
+  {
+    cin>>hour>>minute>>second;
+  }
+  void addtime(Time obj)
+  {
+    if(minute>=60 || obj.minute>=60)
+      cout<<"Minutes Must be less than 60";
+    else if(minute==0)
+      cout<<"";
+    else if(second>=60 || obj.second>=60)
+      cout<<"Seconds Must be less than 60";
+    else
+    {
+      int h=0,m=0;
+      float s;
+      s=second+obj.second;
+      if(s>=60)
+      {
+        s=s-60;
+        m++;
+      }
+      m=m+minute+obj.minute;
+      if(m>=60)
+      {
+        m=m-60;
+        h++;
+      }
+      h=h+hour+obj.hour;
+      cout<<"After Adding\n"<<h<<":"<<m<<":"<<s;
+    }
+  }
+};
+
+int main()
+{
+  Time t1,t2;
+  t1.gettime();
+  t2.gettime();
+  t2.addtime(t1);
+
+	return 0;
+}

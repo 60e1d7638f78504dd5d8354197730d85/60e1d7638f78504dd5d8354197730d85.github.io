@@ -1,0 +1,93 @@
+#include<iostream>
+#include<stdlib.h>
+ 
+using namespace std;
+ 
+class twoStacks
+{
+    int *arr;
+    int size;
+    int top1, top2;
+public:
+   twoStacks(int n)  // constructor
+   {
+       size = n;
+       arr = new int[n];
+       top1 = -1;
+       top2 = size;
+   }
+ 
+   // Method to push an element x to stack1
+   void push1(int x)
+   {
+       // There is at least one empty space for new element
+       if (top1 < top2 - 1)
+       {
+           top1++;
+           arr[top1] = x;
+       }
+       
+   }
+ 
+   // Method to push an element x to stack2
+   void push2(int x)
+   {
+       // There is at least one empty space for new element
+       if (top1 < top2 - 1)
+       {
+           top2--;
+           arr[top2] = x;
+       }
+    
+   }
+ 
+   // Method to pop an element from first stack
+   int pop1()
+   {
+       if (top1 >= 0 )
+       {
+          int x = arr[top1];
+          top1--;
+          return x;
+       }
+       
+   }
+ 
+   // Method to pop an element from second stack
+   int pop2()
+   {
+       if (top2 < size)
+       {
+          int x = arr[top2];
+          top2++;
+          return x;
+       }
+       
+   }
+};
+ 
+ 
+/* Driver program to test twStacks class */
+int main()
+{  int n;
+   cin>>n;
+    twoStacks ts(n+1);
+    int a[100];
+    for(int i=0;i<n;i++)
+    {
+      cin>>a[i];
+      ts.push1(a[i]);
+      
+    }
+ for(int j=0;j<n;j++)
+ {
+   cin>>a[j];
+ }
+  for(int j=n-1;j>0;j--)
+ ts.push2(a[j]);
+ 
+    cout << "Popped element from stack1 is " << ts.pop1();
+
+    cout << "\nPopped element from stack2 is " << ts.pop2();
+    return 0;
+}

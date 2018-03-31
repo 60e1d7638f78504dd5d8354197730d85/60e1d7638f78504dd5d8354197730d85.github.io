@@ -1,0 +1,64 @@
+
+#include <stdio.h>
+#include <string.h>
+#include <limits.h>
+#define bool int
+int min (int a, int b) { return (a < b)? a : b; }
+ 
+ 
+int minPalPartion(char *str)
+{
+    int n = strlen(str);
+ 
+    
+    int C[n][n];
+    bool P[n][n];
+ 
+    int i, j, k, L; 
+    for (i=0; i<n; i++)
+    {
+        P[i][i] = 1;
+        C[i][i] = 1;
+    }
+ 
+    
+    for (L=2; L<=n; L++)
+    {
+        for (i=0; i<n-L+1; i++)
+        {
+            j = i+L-1; 
+ 
+            if (L == 2)
+                P[i][j] = (str[i] == str[j]);
+            else
+                P[i][j] = (str[i] == str[j]) && P[i+1][j-1];
+ 
+            if (P[i][j] == 1)
+                C[i][j] = 1;
+            else
+            {
+                C[i][j] = INT_MAX;
+                for (k=i; k<=j-1; k++)
+                    C[i][j] = min (C[i][j], C[i][k] + C[k+1][j]);
+            }
+        }
+    }
+ 
+    return C[0][n-1];
+}
+ 
+int main()
+{
+int t;
+   char str[100000];
+   scanf("%d",&t);
+   while(t--)
+   {
+    int n;
+    scanf("%d",&n);
+    scanf("%s",str);
+     printf("%d\n", minPalPartion(str));
+   }
+ 
+   return 0;
+}  

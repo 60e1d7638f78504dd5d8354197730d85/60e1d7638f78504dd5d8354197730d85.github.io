@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<limits.h>
+void getMaxCountElement(int *array, int size)
+{
+    int i, j, maxCount, maxElement, count;
+    maxCount = INT_MIN;
+      for(i = 0; i< size; i++){
+        count = 1;
+        for(j = i+1; j < size; j++){
+            if(array[j] == array[i]){
+                count++;
+                
+                if(count > maxCount){
+                    maxCount = count;
+                    maxElement = array[j];
+                }
+            }
+        }
+    }
+    printf("%d ",maxElement);
+}
+  
+int main() {
+    int a[20],b[20],c[20],i,j,k,l,t,n1,n2,x;
+  scanf("%d",&t);
+  for(l=0;l<t;l++)
+  {
+    scanf("%d",&n1);
+    for(i=0;i<n1;i++)
+      scanf("%d",&a[i]);
+    getMaxCountElement(a,n1);
+    printf("\n");
+  }
+     
+    return 0;
+}

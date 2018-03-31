@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int n;
+  node *next;
+}*front,*rear;
+int main()
+{
+  int i,x;
+  cin>>x;
+  node *p=new node;
+  p->n=x;
+  front=rear=p;
+  //cout<<front->n<<rear->n;
+  while(cin>>x)
+  {
+    node *p=new node;
+    p->n=x;
+    rear->next=p;
+    rear=p;
+    //cout<<x;
+    //cout<<front->n<<rear->n;
+  }
+  node *k;
+  k=front;
+  int c=1;
+  while(k->next!=NULL)
+  {
+    cout<<k->n<<"-->";
+    k=k->next;
+    c++;
+  }
+  cout<<k->n;
+  cout<<"\nSize of Queue="<<c;
+  cout<<"\nFront Element="<<front->n;
+  cout<<"\nRear Element="<<rear->n;
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int n, j, i = 0, flag = 0;
+  	scanf("%d", &n);
+  	int arr[n];
+  	while(i < n)
+    {
+      char c[20];
+      scanf("%s", c);
+      if(c[0] == c[1])
+      {
+        flag = 1;
+      }
+      for(j = 0; j+2 < strlen(c); j++)
+      {
+        if(c[j] != c[j+2])
+        {
+          flag = 1;
+        }
+        else
+          flag = 0;
+      }
+      arr[i] = flag;
+      i++;
+    }
+    for(i = 0; i < n; i++)
+    {
+      if(arr[i] == 0)
+        printf("YES\n");
+      else
+        printf("NO\n");
+    }
+	return 0;
+}

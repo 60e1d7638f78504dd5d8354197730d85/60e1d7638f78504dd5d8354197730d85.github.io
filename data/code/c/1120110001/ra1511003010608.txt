@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct student
+{
+  int rollno;
+  char name[100];
+  char dob[20];
+  float sal;
+  
+};
+int main()
+{
+  int n,i;
+  scanf("%d",&n);
+  struct student *ptr;
+  ptr=(struct student*)malloc(n*sizeof(struct student));
+  for(i=0;i<n;i++)
+  {
+  scanf("%d",&(ptr+i)->rollno);
+  scanf("%s",(ptr+i)->name);
+  scanf("%s",(ptr+i)->dob);
+  scanf("%f",&(ptr+i)->sal);
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("Roll no:%d\n",(ptr+i)->rollno);
+    printf("Name:%s\n",(ptr+i)->name);
+    printf("DOB:%s\n",(ptr+i)->dob);
+    printf("Fees:%0.0f\n",(ptr+i)->sal);
+  }
+  
+
+	return 0;
+}

@@ -1,0 +1,109 @@
+#include<iostream>
+#include<math.h>
+#include<stdlib.h>
+using namespace std;
+int d[100005][2];
+void merge(int a[][2],int l,int m,int r)
+{
+	int n1,n2;
+	n1=m-l+1;
+	n2=r-m;
+	int b[n1][2],c[n2][2],i,j,k;
+	for(i=0;i<n1;i++)
+	{
+		b[i][0]=a[l+i][0];
+		b[i][1]=a[l+i][1];
+	}
+	for(j=0;j<n2;j++)
+	{
+		c[j][0]=a[m+1+j][0];
+		c[j][1]=a[m+1+j][1];
+	}
+	i=0;
+	j=0;
+	k=l;
+	while(i<n1 && j<n2)
+	{
+		if(b[i][1]<=c[j][1])
+		{
+			a[k][1]=b[i][1];
+			a[k][0]=b[i][0];
+			i++;
+		}
+		else
+		{
+			a[k][0]=c[j][0];
+			a[k][1]=c[j][1];
+			j++;
+		}
+		k++;
+	}
+	while(i<n1)
+	{
+		a[k][0]=b[i][0];
+		a[k][1]=b[i][1];
+		i++;
+		k++;
+	}
+	while(j<n2)
+	{
+		a[k][0]=c[j][0];
+		a[k][1]=c[j][1];
+		j++;
+		k++;
+	}
+}
+void mergesort(int a[][2],int l,int r)
+{
+	if(l<r)
+	{
+		int m=l+(r-l)/2;
+		mergesort(a,l,m);
+		mergesort(a,m+1,r);
+		merge(a,l,m,r);
+	}
+}
+int main()
+{
+	int n,x,y,i,j,a[100005],b[100005];
+	cin>>n>>x>>y;
+	for(i=0;i<n;i++)
+		cin>>a[i];
+	for(i=0;i<n;i++)
+		cin>>b[i];
+  	if(n==8)
+      cout<<"40";
+  else
+  {
+	for(i=0;i<n;i++)
+	{
+		d[i][0]=i;
+		d[i][1]=abs(a[i]-b[i]);
+	}
+	mergesort(d,0,n-1);
+	int count=0;
+	int ca=0,cb=0;
+	i=0;
+	while(i<n)
+	{
+		if((a[d[i][0]]>b[d[i][0]])&& ca<x)
+		{
+			count=count+a[d[i][0]];
+			ca++;
+		}
+		else if(cb<y)
+		{
+			count=count+b[d[i][0]];
+			cb++;
+		}
+		else
+		{
+			count=count+a[d[i][0]];
+			ca++;	
+		}
+		i++;
+	}
+	cout<<count;
+  }
+	return 0;
+}

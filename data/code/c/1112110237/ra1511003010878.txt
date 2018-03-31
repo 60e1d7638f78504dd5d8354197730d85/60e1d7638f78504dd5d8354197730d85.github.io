@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		long long int n, LCM=0, minLCM=1000000000;
+		scanf("%lld", &n);
+		long long int a[n], i=0;
+		while( i<n )
+		{
+			scanf("%lld", &a[i]);
+			i++;
+		}
+		i=0;
+		while( i<n-1 )
+		{
+			long long int j=i+1;
+			while( j<n )
+			{
+				long long int GCD, k;
+				for(k=1; k<=a[i] && k<=a[j]; ++k)
+				{
+    				if(a[i]%k==0 && a[j]%k==0)
+        			{	GCD = k;	}
+				}
+				LCM = (a[i]*a[j])/GCD;
+				if( LCM < minLCM )
+				{	minLCM = LCM;		}
+				//printf("LCM:%lld ai:%lld aj:%lld\n", LCM, a[i], a[j]);
+				j++;
+			}
+			i++;
+		}
+		printf("%lld\n", minLCM);
+	}
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+class Number {
+	int p,q,r,s;
+  	public:
+  		Number(int p, int q, int r, int s): p(p), q(q), r(r), s(s) {}
+  		string compare() {
+          	if(p==0 || q==0 || r==0 || s==0) return "Invalid Input";
+        	if(r < 0 || s < 0) return "Wrong values";
+          	if(p % 2 != 0) return "Wrong values";
+          	if(q < r || s < p) return "Wrong values";
+          	if(r+s < p+q) return "Wrong values";
+          	return "Correct values"; 
+        }
+
+};
+
+int main()
+{
+	int p, q, r,s;
+  	cin>>p>>q>>r>>s;
+  	Number num(p, q, r,s);
+  	cout<<num.compare();
+	return 0;
+}

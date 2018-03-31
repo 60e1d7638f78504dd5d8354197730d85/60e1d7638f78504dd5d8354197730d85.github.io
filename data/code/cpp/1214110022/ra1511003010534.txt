@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+class rectangle
+{
+  int l,b,area;
+  public:
+  rectangle()
+  {
+    l=0;
+    b=0;
+  }
+  rectangle(int x,int y)
+  {
+    l=x;
+    b=y;
+  }
+  rectangle(rectangle &r)
+  {
+    l=r.l;
+    b=r.b;
+  }
+  void calcarea()
+  {
+    area=l*b;
+  }
+  void displayarea()
+  {
+    cout<<area<<endl;;
+  }
+};
+int main()
+{
+  	int a,b;
+  	cin>>a>>b;
+  	rectangle r1;
+  	rectangle r2(a,b);
+  	r1=r2;
+  	r1.calcarea();
+  	r1.displayarea();
+  	r2.calcarea();
+  	r2.displayarea();
+  	rectangle r3(r2);
+  	r3.calcarea();
+  	r3.displayarea();
+	return 0;
+}

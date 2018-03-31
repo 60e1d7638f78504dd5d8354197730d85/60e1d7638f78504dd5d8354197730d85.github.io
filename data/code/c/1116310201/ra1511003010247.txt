@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int t,i,j,k,x,y;
+  char arr[99];
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%s",arr);
+    k=strlen(arr);
+    x=0;y=0;
+  for(i=0;i<k;i++)
+  {if(arr[i]=='N')
+      y++;
+   else if(arr[i]=='E')
+     x++;
+   else if(arr[i]=='S')
+     y--;
+   else
+     x--;
+  }
+    if(x==0&&y>0)
+      printf("NORTH\n");
+    else if(x==0&&y<0)
+      printf("SOUTH\n");
+    else if(x>0&&y==0)
+      printf("EAST\n");
+    else if(x<0&&y==0)
+      printf("WEST\n");
+    else if(x>0&&y>0)
+      printf("NORTHEAST\n");
+    else if(x<0&&y>0)
+      printf("NORTHWEST\n");
+    else if(x>0&&y<0)
+      printf("SOUTHEAST\n");
+    else if(x<0&&y<0)
+      printf("SOUTHWEST\n");
+    }
+	return 0;
+}

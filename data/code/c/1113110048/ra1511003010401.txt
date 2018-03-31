@@ -1,0 +1,23 @@
+#include<stdio.h>    
+void fibonacci(int n, int a[], int k)
+{    
+    static int n1=0,n2=1,n3;    
+    if(n>0)
+    {    
+         n3 = n1 + n2;    
+         n1 = n2;    
+         n2 = n3;    
+         a[k++] = n3;
+         fibonacci(n-1, a, k);    
+    }    
+}    
+int main()
+{    
+    int n, a[100];
+    scanf("%d",&n);
+  	a[0] = 0;
+  	a[1] = 1;
+    fibonacci(98, a, 2);
+  	printf("%d", a[n]);
+  	return 0;  
+}

@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main()
+
+{
+
+ int strln,wordln,i,j,k,flag,count=0;
+
+ char str[200],word[20];
+
+ scanf("%[^\n]s", str);
+
+ scanf("%s",word);
+
+ strln=strlen(str);
+
+ wordln=strlen(word);
+
+ for(i=0;i<strln;i++)
+
+ {
+
+  if(str[i]==word[0]&&((str[i-1]==' '||i==0)&&(str[i+wordln]==' '||str[i+wordln]==' ')))
+
+  {
+
+   for(flag=0,k=i+1,j=1;j<wordln;j++,k++)
+
+   {
+
+    if(str[k]==word[j])
+
+    {
+
+     flag++;
+
+    }
+
+   }
+
+   if(flag==wordln-1)
+
+   {
+
+    count++;
+
+   }
+
+  }
+
+ }
+
+ printf("%s=%d",word,count);
+	return 0;
+}

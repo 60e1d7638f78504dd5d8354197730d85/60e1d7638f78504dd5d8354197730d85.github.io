@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct time
+{
+  int a;
+  int b;
+  int c;
+};
+int main()
+{
+  struct time T;
+  scanf("%d %d %d",&T.a,&T.b,&T.c);
+  if(T.a>23||T.a<00)
+  {
+    printf("Invalid Time");
+    exit(0);
+  }
+  else if(T.b<00||T.b>59)
+  {
+    printf("Invalid Time");
+    exit(0);
+  }
+  else if(T.c<00||T.c>59)
+  {
+    printf("Invalid Time");
+    exit(0);
+     }
+  printf("24 Hours Format\n");
+  printf("%d:",T.a);
+  printf("%d:%d",T.b,T.c);
+  printf("\n12 Hours Format\n");
+  if(T.a<12)
+  {
+    printf("%d:%d:%d am",T.a,T.b,T.c);
+           }
+           else
+           {
+           printf("%d:%d:%d pm",T.a-12,T.b,T.c);
+           }
+	return 0;
+}

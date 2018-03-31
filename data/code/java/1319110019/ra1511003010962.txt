@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       int x;
+       Scanner fin=new Scanner(System.in);
+       x=fin.nextInt();
+       binToDecimal(x);
+	}
+  static void binToDecimal(int n)
+  {int d,i=0;
+   double sum=0;
+  try
+  {while(n!=0)
+  {d=n%10;
+   if(d!=0 && d!=1)
+   {throw new NumberFormatException(); }
+   else 
+   {sum=sum+(d*java.lang.Math.pow(2,i));}
+   n=n/10;
+  i=i+1;
+   }
+  System.out.printf("%.0f",sum);
+  }
+    catch(NumberFormatException e)
+    {System.out.println(e);
+    }
+  }
+}

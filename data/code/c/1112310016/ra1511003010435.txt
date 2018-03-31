@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+  int T,X,K, s,k;
+  double i;
+  scanf("%d",&T);
+  while(T--){
+    scanf("%d",&X);
+    scanf("%d",&K);
+    s = 1, k = 0, i = (double)X / 2.0;
+    while(1){
+      if(k + s >= K)
+        break;
+      k += s;
+      s <<= 1;
+      i /= 2;
+    }
+    printf("%f\n", i+2.0*i*(K-k-1));
+  }
+
+	return 0;
+}

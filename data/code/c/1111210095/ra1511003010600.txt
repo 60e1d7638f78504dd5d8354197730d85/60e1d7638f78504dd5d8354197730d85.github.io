@@ -1,0 +1,88 @@
+#include <stdio.h>
+int top=0;
+void push (int stack[ ] ,int stack1[], int x ,int y, int n)
+    {
+        if ( top == n )   
+        {
+            printf("Stack is full.Overflow condition!") ;
+        }
+        else
+        {
+            top = top +1 ;
+            stack[ top ] = x ;
+            stack1[top]=y;
+        }
+    }
+    
+    
+    int isEmpty()
+    {
+        if ( top == 0 ) 
+        	return 1 ; 
+        else
+        	return 0;
+    }
+ 
+    void pop ( ) 
+    {
+ 
+        if( isEmpty()==1)
+        {
+            printf("Stack is empty. Underflow condition! ") ;
+        }
+        else    
+        {
+             top = top - 1 ;
+        }
+    }
+ 
+ 
+int main()
+{
+    int n,a,b=0,c,d=0,e;
+    scanf("%d",&n);
+    int ar[200002];
+    for(a=0;a<n;a++)
+        scanf("%d",&ar[a]);
+    int stack[900002]={0};
+    int stack1[900002]={0};
+    if (n==1)
+    {
+        printf("0");
+        return 0;
+    }
+    for(a=0;a<n;a++)
+    {
+        
+        if(ar[a]>0)
+        {
+            push(stack,stack1,ar[a],a+1,n);
+          
+ 
+        }
+        if(ar[a]<0)
+        {
+            if(stack[top]==-ar[a])
+            {
+                pop();
+                if((1+a-stack1[top])>d)
+                  d=1+a-stack1[top];
+            }
+            else
+            {
+                push(stack,stack1,ar[a],a+1,n);
+               
+            }
+        }
+        
+    }
+    
+                
+    printf("%d",d);
+    return 0;
+}
+ 
+ 
+ 
+ 
+ 

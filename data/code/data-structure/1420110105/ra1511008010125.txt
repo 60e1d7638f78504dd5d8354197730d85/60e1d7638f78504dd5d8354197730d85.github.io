@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+map<int,pair<int,int> > css[1000005];
+ 
+int main()
+{
+	int n,m,id,attr,val,prio;
+	pair<int,int> key;
+	scanf("%d %d",&n,&m);
+	while (n--)
+	{
+		scanf("%d %d %d %d",&id,&attr,&val,&prio);
+		if (css[id].find(attr)==css[id].end())
+			css[id][attr]=make_pair(val,prio);
+		else if (css[id][attr].second<=prio)
+			css[id][attr]=make_pair(val,prio);
+	}
+	while (m--)
+	{
+		scanf("%d %d",&id,&attr);
+		printf("%d\n",css[id][attr].first);
+	}
+	return 0;
+}

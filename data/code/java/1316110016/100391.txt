@@ -1,0 +1,90 @@
+import java.io.*;
+import java.util.*;
+class  Armstrong
+{
+  Scanner s=new Scanner(System.in);
+  int a,b;
+   public void getArmstrongNumber()
+  {
+     a=s.nextInt();
+    b=s.nextInt();
+       
+  }
+  
+  public void displayArmstrongNumber()
+  {
+   
+    for(int number = a + 1; number < b; ++number) {
+            int digits = 0;
+            int result = 0;
+            int originalNumber = number;
+
+                  while (originalNumber != 0) {
+                originalNumber /= 10;
+                ++digits;
+            }
+
+            originalNumber = number;
+
+                       while (originalNumber != 0) {
+                int remainder = originalNumber % 10;
+                result += Math.pow(remainder, digits);
+                originalNumber /= 10;
+            }
+
+            if (result == number)
+                System.out.println(number +" "+"is an Armstrong number");
+    }
+  }
+  }
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       
+      Armstrong objname=new Armstrong();
+       objname.getArmstrongNumber();
+		objname.displayArmstrongNumber();
+	}
+}
+
+
+
+
+
+/****************************************************************************************************88
+import java.util.*;
+public class TestClass {
+
+    public static void main(String[] args) {
+
+      Scanner sc=new Scanner(System.in);
+      int low = sc.nextInt();
+      int high = sc.nextInt();
+ 
+
+        for(int number = low + 1; number < high; ++number) {
+            int digits = 0;
+            int result = 0;
+            int originalNumber = number;
+
+            // number of digits calculation
+            while (originalNumber != 0) {
+                originalNumber /= 10;
+                ++digits;
+            }
+
+            originalNumber = number;
+
+            // result contains sum of nth power of its digits
+            while (originalNumber != 0) {
+                int remainder = originalNumber % 10;
+                result += Math.pow(remainder, digits);
+                originalNumber /= 10;
+            }
+
+            if (result == number)
+                System.out.println(number + " is an Armstrong number");
+        }
+    }
+}
+****************************************************************************/

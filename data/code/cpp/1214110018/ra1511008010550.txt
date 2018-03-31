@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+class time
+{
+  public:
+  int h,m,s;
+  
+  void gettime()
+  {
+    cin>>h;
+    cin>>m;
+    cin>>s;
+    valid();
+  }
+  
+  int valid()
+  {
+    if(m>59 || s>59)
+    {
+      return 1;
+    }
+    else
+      return 0;
+  }
+  
+  void add(time ob1, time ob2)
+  {
+    h=ob1.h+ob2.h;
+    m=ob1.m+ob2.m;
+    s=ob1.s+ob2.s;
+    
+    if(s>59)
+    {
+      s=s%60;
+      m++;
+    }
+    
+    if(m>59)
+    {
+      m=m%60;
+      h++;
+    }
+    cout<<"After Adding"<<endl<<h<<":"<<m<<":"<<s;
+  }
+};
+      
+int main()
+{
+  class time obj1, obj2, obj3;
+  obj1.gettime();
+  obj2.gettime();
+  if(obj1.valid()==0 && obj2.valid()==0)
+  obj3.add(obj1, obj2);
+  else
+    cout<<"Invalid Time";
+
+	return 0;
+}

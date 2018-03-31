@@ -1,0 +1,92 @@
+#include <stdio.h>
+ 
+#define MAX 1000000007
+int main()
+{
+    int T, len, i, count2, count3, count5, count7, small[26], big[26], length[600];
+    long int fact[11];
+    long long int ans;
+    char str[600];
+ 
+    scanf ("%d", &T);
+    
+    fact[0] = fact[1] = 1;
+    
+    for (i=2; i<=10; i++)
+    	fact[i] = fact[i-1] * i;
+    	    
+    while (T--)
+    {
+          scanf ("%s", str);
+          for (i=0; i<26; i++)
+              small[i] = big[i] = 0;
+          
+          i = 0;
+          while (str[i])
+          {
+                if (str[i] >= 'a' && str[i] <= 'z')
+                   small[str[i] - 'a'] ++;
+                else
+                    big[str[i] - 'A'] ++;
+                i++;
+          }
+          len = i;
+		  
+		  length[0] = 1;
+		  for (i=1; i<=len; i++)
+			  length[i] = i;
+ 
+          count2 = count3 = count5 = count7 = 0;
+          
+          for (i=0; i<26; i++)
+          {
+              small[i] = fact[small[i]];
+              big[i] = fact[big[i]];
+              
+              while (small[i] > 1)
+              {
+                    if (!(small[i] % 2))
+                       count2++, small[i] /= 2;
+                    else if (!(small[i] % 3))
+                       count3++, small[i] /= 3;
+                    else if (!(small[i] % 5))
+                       count5++, small[i] /= 5;
+                    else if (!(small[i] % 7))
+                       count7++, small[i] /= 7;
+              }
+              while (big[i] > 1)
+              {
+                    if (!(big[i] % 2))
+                       count2++, big[i] /= 2;
+                    else if (!(big[i] % 3))
+                       count3++, big[i] /= 3;
+                    else if (!(big[i] % 5))
+                       count5++, big[i] /= 5;
+                    else if (!(big[i] % 7))
+                       count7++, big[i] /= 7;
+              }
+          }
+          
+          ans = 1LL;
+          for (i=1; i<=len; i++)
+          {
+                while (count2 && length[i] % 2 == 0)
+                      length[i] /= 2, count2--;
+                while (count3 && length[i] % 3 == 0)
+                      length[i] /= 3, count3--;
+                while (count5 && length[i] % 5 == 0)
+                      length[i] /= 5, count5--;
+                while (count7 && length[i] % 7 == 0)
+                      length[i] /= 7, count7--;
+          }
+		  for (i=1; i<=len; i++)
+          {
+				ans *= length[i];
+				if (ans >= MAX)
+					ans %= MAX;
+          }
+          printf ("%lld\n", ans);
+    }
+    return 0;
+} 
+

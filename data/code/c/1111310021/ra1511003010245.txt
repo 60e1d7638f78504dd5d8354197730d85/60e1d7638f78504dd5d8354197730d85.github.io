@@ -1,0 +1,30 @@
+#include<string.h>  
+#include<stdlib.h> 
+#include<stdio.h>
+
+#define ll long long  
+
+int main(){
+    int t;  
+    scanf("%d",&t); 
+    while(t--){ 
+        int n,a,i;
+        scanf("%d", &n);
+        int s1=0,s2=0,s=0;    
+        for( i=0;i<n;++i){
+            scanf("%d", &a);
+            s1+=a;
+            if(a>0)
+                s2+=a-1;
+            else{
+                s2+=a;
+                s++;
+            }
+        }   
+        if(100>=s2&&100<=s1&&s1<100+n-s)  
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }  
+    return 0;     
+}

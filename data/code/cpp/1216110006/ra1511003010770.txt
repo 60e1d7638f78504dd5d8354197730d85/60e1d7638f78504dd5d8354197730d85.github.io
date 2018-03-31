@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int a[100],pos[100];
+  int n;
+  cin>>n;
+  int n1 = n;
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+    pos[a[i]] = i;
+    
+  }
+  int k,j=0;
+  cin>>k;
+  
+  for(int i=0,j=0;i<n;i++)
+  {
+  	if(a[i]<n1&&j<k)
+    {
+    	int t = a[pos[n1]];
+      a[pos[n1]] = a[i];
+      a[i] = t;
+      j++;
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+    	pos[a[i]] = i;
+    }
+    n1--;
+  }
+  
+  for(int i=0;i<n;i++)
+  {
+  cout<<a[i]<<" ";
+  }
+	return 0;
+}

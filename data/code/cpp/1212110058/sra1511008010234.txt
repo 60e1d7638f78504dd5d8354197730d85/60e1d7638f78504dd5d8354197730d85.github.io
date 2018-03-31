@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+class A
+{
+  int x,y;
+  public:
+    A(){};
+  	A(int i,int j)
+    {
+      x=i;
+      y=j;
+    }
+  	void showa()
+    {
+      cout<<"Sum : "<<x<<"+"<<y<<"i"<<endl;
+    }
+  	void shows()
+    {
+      cout<<"difference : "<<x<<"+"<<y<<"i";
+    }
+  A operator +(A obj)
+  {
+    A temp;
+    temp.x=x+obj.x;
+    temp.y=y+obj.y;
+    return(temp);
+  }
+  A operator -(A obj)
+  {
+    A temp;
+    temp.x=x-obj.x;
+    temp.y=y-obj.y;
+    return(temp);
+  }
+};
+int main()
+{
+  int a,b,c,d;
+  cin>>a>>b>>c>>d;
+  A c1(a,b),c2(c,d),c3;
+  c3=c1+c2;
+  c3.showa();
+  c3=c1-c2;
+  c3.shows();
+  return 0;
+
+}

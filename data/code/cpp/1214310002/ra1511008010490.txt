@@ -1,0 +1,23 @@
+
+#include<iostream>
+using namespace std;
+bool isPerfect(long long int n)
+{
+    long long int sum = 1;
+    for (long long int i=2; i*i<=n; i++)
+        if (n%i==0)
+            sum = sum + i + n/i;
+     if (sum == n && n != 1)
+          return true;
+     return false;
+}
+int main()
+{
+  int a,b;
+  cin>>a;
+  cin>>b;
+  for (int n =a; n<b; n++)
+        if (isPerfect(n))
+            cout << n << " ";
+    return 0;
+}

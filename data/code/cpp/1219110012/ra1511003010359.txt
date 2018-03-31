@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+class Time
+{
+  public:
+  int hour;
+  int min;
+  int sec;
+  
+  friend ostream &operator << ( ostream &output, const Time &T )
+    { 
+         output<<T.hour<<" Hours "<<T.min<<" Mins "<<T.sec<<" secs";
+         return output;
+            }
+  friend istream &operator >> ( istream  &input, Time &T ) 
+     { 
+         input>>T.hour>>T.min>>T.sec;
+         return input;
+     } 
+};
+int main()
+{
+  Time t;
+  cin>>t;
+  cout<<"The Time is\n";
+  cout<<t;
+	return 0;
+}

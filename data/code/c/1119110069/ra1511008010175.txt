@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <malloc.h>
+int main()
+{
+    int t,i, n, sum = 0;
+    int *a;
+    scanf("%d",&t);
+    if(t<0 || t>1000)
+    {
+        printf("INVALID INPUT");
+     	return 0;
+    }       
+    while(t>0)
+    {
+        sum = 0;
+    	scanf("%d", &n);
+    	a = (int *) malloc(n * sizeof(int));
+    	for (i = 0; i < n; i++)
+    	{
+        	scanf("%d", a + i);
+    	}
+		for (i = 0; i < n; i++)
+    	{
+        	sum = sum + *(a + i);
+    	}
+    	printf("%d\n", sum);
+        t--;
+    }
+    return 0;
+}

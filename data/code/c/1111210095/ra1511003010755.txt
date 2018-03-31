@@ -1,0 +1,45 @@
+#include <stdio.h>
+int given[20];
+int loopInside(int start,int end){
+  	int i;
+  	if((end-start)%2==0){
+    	return 0;
+    }
+	if(start>end){
+    	return 1;
+    }
+  	if(given[start]==-given[end]){
+    	loopInside(start+1,end-1);
+      	//printf("\nloop: (%d %d)\n",given[start],given[end]);
+    }
+  	else{
+    	return 0;
+    }
+}
+int main()
+{
+	int i,j,count=0,n,flag=0;
+  	
+  	scanf("%d",&n);
+  
+  	for(i=0;i<n;i++){
+    	scanf("%d",&given[i]);
+    }	
+  
+  	for(i=0;i<n;i++){
+    	for(j=i+1;j<n;j++){
+        	if(given[i]==-given[j]){
+            	flag=loopInside(i,j);
+              	//break;
+            }
+          	if(flag==1){
+              count++;
+              flag=0;
+            }
+        }
+      	
+    }
+  	printf("%d",count*2);
+  
+	return 0;
+}

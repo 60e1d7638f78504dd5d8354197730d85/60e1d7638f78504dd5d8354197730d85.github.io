@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+ 
+int main()
+{
+	int n,i,j,k;
+	int flag=0;
+	scanf("%d",&n);
+	int lookup[101][26];
+	for(i=0;i<n;i++)
+	{
+		char str[101];
+		scanf("%s",str);
+		int no=strlen(str);
+		for(j=0;j<no;j++)
+		{
+			lookup[i][str[j]-'a']++;
+		}
+ 
+	}
+	for(j=0;j<26;j++)
+	{
+		int min=200;
+		for(i=0;i<n;i++)
+		{
+			if(lookup[i][j]<min)
+				min=lookup[i][j];
+		}
+		for(k=0;k<min;k++)
+			{
+				printf("%c",97+j);
+				flag=1;
+			}
+	}
+	if(flag==0)
+		printf("no such string");
+ 
+	printf("\n");
+ return 0;
+} 

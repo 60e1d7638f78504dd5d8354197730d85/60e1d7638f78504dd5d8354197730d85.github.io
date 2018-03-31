@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include<math.h>
+struct point
+{
+  int x,y;
+};
+float dist(struct point,struct point);
+
+int main()
+{
+struct point pt[10];
+  int i,j,n,x,y;
+  float a[10][10],xy,min;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d %d",&pt[i].x,&pt[i].y);
+ 
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if(i==j)
+        a[i][j]=9999;
+ 
+    }
+  }
+   
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      if((a[i][j]==9999)&&(a[i][j]==a[j][i]))
+        continue;
+      else
+      {
+        a[i][j]=a[j][i]=dist(pt[i],pt[j]);
+      }
+    }
+  }
+ 
+  
+  
+    min = a[0][0];
+    //int x,y;
+
+    for (x = 0; x < n; x++)
+    {
+
+        for (y = 0; y < n; y++)
+        {
+            if (min > a[x][y])
+            {
+                min = a[x][y];
+
+            }
+
+        }
+    }
+ 
+  printf("%f",min);
+	return 0;
+}
+
+float dist(struct point p1,struct point p2)
+{
+  	float gdist;
+    gdist = (pow((p2.x-p1.x),2)+pow((p2.y-p1.y),2));
+  return sqrt(gdist);
+}
+

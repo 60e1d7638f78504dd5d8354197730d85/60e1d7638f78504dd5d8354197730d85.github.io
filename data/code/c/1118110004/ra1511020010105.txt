@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+struct dat
+{
+  int dd,mm,yy;
+};
+
+struct dat inpu(struct dat d)
+{
+  scanf("%d",&d.dd);
+  scanf("%d",&d.mm);
+  scanf("%d",&d.yy);
+  return d;
+}
+
+void val_d(struct dat d)
+{
+  if(d.dd>31)
+    printf("Invalid Day");
+  else if(d.mm>12)
+    printf("Invalid Month");
+  else if(d.yy>2100)
+    printf("Invalid Year");
+  else
+    printf("New Date=%d %d %d",d.dd+1,d.mm,d.yy);
+}
+
+int main()
+{
+  struct dat newdate;
+  newdate = inpu(newdate);
+  val_d(newdate);
+	return 0;
+}

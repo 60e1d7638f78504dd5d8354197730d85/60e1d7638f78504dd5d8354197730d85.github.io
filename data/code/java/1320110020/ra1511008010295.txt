@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String line = sc.nextLine();
+        Map<String,Integer> wordMap = new TreeMap<String,Integer>();
+        String []keys = line.split(" ");
+        for(String key:keys){
+            if(!wordMap.containsKey(key))
+                wordMap.put(key,0);
+        }
+        Set set = wordMap.entrySet();
+        Iterator itr = set.iterator();
+        while(itr.hasNext()){
+            Map.Entry e=(Map.Entry)itr.next();
+            System.out.println(e.getKey()+" "+e.getValue());
+        }
+        //for(Map.Entry e:wordMap.entrySet()){
+        //System.out.println(e.getKey()+" "+e.getValue());
+        //}
+    }
+}

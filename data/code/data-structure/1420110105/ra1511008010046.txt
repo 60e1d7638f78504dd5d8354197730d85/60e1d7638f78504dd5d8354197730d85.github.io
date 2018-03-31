@@ -1,0 +1,130 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long LL;
+inline int read()
+{
+	int n = 0;
+	register char c = getchar_unlocked();
+	while (!('0' <= c && c <= '9'))
+ 	{
+  		c = getchar_unlocked();
+ 	}
+ 	while ('0' <= c && c <= '9')
+	{
+  	n = (n<<3) + (n<<1) +  c - '0';
+  	c = getchar_unlocked();
+	}
+ return n;
+}
+struct Data
+{
+	int id;
+	int att;
+	int val;
+	int priority;
+	int pos;
+}dt[100001];
+struct Data1
+{
+	int id;
+	int att;
+}ans[100001],node;
+bool comp(Data a,Data b)
+{
+	if(a.id<b.id)
+		return true;
+	else if(a.id==b.id)
+	{
+		if(a.att<b.att)
+			return true;
+		else if(a.att==b.att)
+		{
+			if(a.priority<b.priority)
+				return true;
+			else if(a.priority==b.priority)
+			{
+				if(a.pos<b.pos)
+					return true;
+				else
+					return false;
+			}
+			else
+				return false;
+		}
+		else
+			return false;
+	}	
+	else 
+		return false;
+}
+int value[100001];
+int binSearch(Data1 *A,int low,int high,Data1 node)
+{
+	if(low<=high)
+	{
+		int mid=(low+high)/2;
+			if(A[mid].id>node.id)
+			{
+				return binSearch(A,low,mid-1,node);
+			}
+			else if(A[mid].id==node.id)
+			{
+				//cout<<A[mid].att<<" "<<node.att<<endl;
+				if(A[mid].att==node.att)
+					return mid;
+				else if(A[mid].att>node.att)
+					return binSearch(A,low,mid-1,node);
+				else
+					return binSearch(A,mid+1,high,node);
+			}
+			else
+			{
+				return binSearch(A,mid+1,high,node);
+			}	
+	}
+	return -1;
+}
+int main()
+{
+	int N,M;
+	N=read();
+	M=read();
+	for(int i=0;i<N;i++)
+	{
+		dt[i].id=read();
+		dt[i].att=read();
+		dt[i].val=read();
+		dt[i].priority=read();
+		dt[i].pos=i;
+	}
+	sort(dt,dt+N,comp);
+	int i,k=0,prev_id=dt[0].id,prev_att=dt[0].att;
+	for(i=1;i<N;i++)
+	{
+		if(prev_id==dt[i].id && prev_att==dt[i].att)
+		{
+			
+		}
+		else
+		{
+			ans[k].id=dt[i-1].id;
+			ans[k].att=dt[i-1].att;
+			value[k]=dt[i-1].val;
+			prev_id=dt[i].id;
+			prev_att=dt[i].att;
+			k++;
+		}
+	}
+	ans[k].id=dt[i-1].id;
+	ans[k].att=dt[i-1].att;
+	value[k]=dt[i-1].val;
+	k++;
+	while(M--)
+	{
+		node.id=read();
+		node.att=read();
+		int index=binSearch(ans,0,k-1,node);
+		printf("%d\n",value[index]);
+	}
+	return 0;
+}  

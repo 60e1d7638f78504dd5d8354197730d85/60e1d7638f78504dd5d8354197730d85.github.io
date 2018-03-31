@@ -1,0 +1,115 @@
+
+#include<stdio.h>
+#include<string.h>
+ 
+char ibuf[4096],is_man_paired[500],is_woman_paired[500],is_woman_proposed[500][500];
+int men_pref[500][500],women_pref[500][500];
+int man_partner[500],num_women_proposed[500],woman_partner[500];
+int input;
+ 
+int readint(void);
+void find_stable_marriage(int);
+ 
+int main()
+{
+	int i,index,j,n,t;
+	input=4096;
+	t=readint();
+	while(t--)
+	{
+		n=readint();
+		for(i=0;i<n;i++)
+		{
+			index=readint()-1;
+			for(j=0;j<n;j++)
+				women_pref[index][j]=readint()-1;
+		}
+		for(i=0;i<n;i++)
+		{
+			index=readint()-1;
+			for(j=0;j<n;j++)
+				men_pref[index][j]=readint()-1;
+		}
+		find_stable_marriage(n);
+		for(i=0;i<n;i++)
+			printf("%d %d\n",i+1,man_partner[i]+1);
+	}
+	return 0;
+}
+ 
+int readint(void)
+{
+	int num;
+	while((input<4096) && (ibuf[input]<'0'))
+		input++;
+	if(input==4096)
+	{
+		fread(ibuf,1,4096,stdin);
+		input=0;
+		while((input<4096) && (ibuf[input]<'0'))
+			input++;
+	}
+	num=0;
+	while((input<4096) && (ibuf[input]>='0'))
+		num=(num<<3)+(num<<1)+(ibuf[input++]-'0');
+	if(input==4096)
+	{
+		fread(ibuf,1,4096,stdin);
+		input=0;
+		while((input<4096) && (ibuf[input]>='0'))
+			num=(num<<3)+(num<<1)+(ibuf[input++]-'0');
+	}
+	return num;
+}
+ 
+void find_stable_marriage(int n)
+{
+	int i,j,m,mm,m_preferred,w;
+	memset(is_man_paired,0,sizeof(char)*500);
+	memset(is_woman_paired,0,sizeof(char)*500);
+	memset(is_woman_proposed,0,sizeof(char)*500*500);
+	memset(num_women_proposed,0,sizeof(int)*500);
+	while(1)
+	{
+		for(m=0;m<n;m++)
+			if((!is_man_paired[m]) && (num_women_proposed[m]!=n))
+				break;
+		if(m==n)
+			break;
+		for(i=0;i<n;i++)
+			if(!is_woman_proposed[m][i])
+				break;
+		w=men_pref[m][i];
+		if(!is_woman_paired[w])
+		{
+			man_partner[m]=w;
+			woman_partner[w]=m;
+			is_man_paired[m]=1;
+			is_woman_paired[w]=1;
+		}
+		else
+		{
+			mm=woman_partner[w];
+			m_preferred=0;
+			for(j=0;j<n;j++)
+			{
+				if(women_pref[w][j]==m)
+				{
+					m_preferred=1;
+					break;
+				}
+				else if(women_pref[w][j]==mm)
+					break;
+			}
+			if(m_preferred)
+			{
+				man_partner[m]=w;
+				woman_partner[w]=m;
+				is_man_paired[m]=1;
+				is_man_paired[mm]=0;
+			}
+		}
+		num_women_proposed[m]++;
+		is_woman_proposed[m][i]=1;
+	}
+} 

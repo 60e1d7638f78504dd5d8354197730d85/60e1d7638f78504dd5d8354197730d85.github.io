@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+struct Year {
+    int date;
+    int month;
+    int year;
+};
+
+int isLeapYear(struct Year* d) {
+    int year = d->year;
+    return ((year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0));
+}
+
+int main()
+{
+  struct Year s1;
+  scanf("%d %d %d", &s1.date, &s1.month, &s1.year);
+printf("Date=%d",s1.date);
+printf("\nMonth=%d",s1.month);
+printf("\nYear=%d",s1.year);
+  if(!isLeapYear(&s1))
+printf("\n%d is not a leap year",s1.year);
+  else printf("\n%d is a leap year",s1.year);
+
+	return 0;
+}

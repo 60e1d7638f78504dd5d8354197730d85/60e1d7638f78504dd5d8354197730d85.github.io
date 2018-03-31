@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define getcx getchar_unlocked
+#define putcx putchar_unlocked
+ inline long long int input()
+ {
+    long long int n=0;
+    char ch=getcx();
+    while( ch < '0' || ch > '9' )
+    {
+        ch=getcx();
+    }
+    while(  ch >= '0' && ch <= '9' )
+    {
+        n = (n<<3)+(n<<1) + ch-'0', ch=getcx();
+    }
+    return n;
+  }
+inline void output(long long int n)
+{
+    char a[35];
+	long long int i=0;
+	do
+	{
+		a[i++]=n%10+48;
+		n=n/10;
+	}while(n!=0);
+	--i;
+	while(i>=0)
+	putcx(a[i--]);
+	putcx(' ');
+}
+int main()
+{
+    long long int n;
+    int a,ans=0;
+    n=input();
+    while(n--)
+    {
+    	a=input();
+    	ans|=a;
+    }
+    output(ans);
+    return 0;
+}

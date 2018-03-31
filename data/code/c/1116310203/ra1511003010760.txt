@@ -1,0 +1,47 @@
+#include <stdio.h>
+ 
+int main(void) {
+int t;
+scanf("%d",&t);
+while(t--)
+{
+    char c1[102];
+    char c2[102];
+    
+   scanf("%s\n",c1);
+    scanf("%s\n",c2);
+    int x=0,y=0;
+    while (c1[x] != '\0') {
+        x++;
+    }
+     while (c2[y] != '\0') {
+        y++;
+    }
+    int i,j=0;
+    int one=0;
+    int de=x;
+    if(y<x)
+    de=y;
+   for(i=0;i<de;i++)
+   {
+     if((c1[i]!=c2[i])&&(c1[i]!='?')&&(c2[i]!='?'))
+    one++;
+    if((c1[i]=='?' )|| (c2[i]== '?'))
+    j++;
+   }
+   int min,max;
+   if(x>y)
+   {min=x-y+one;
+       
+   }
+   else
+   {
+       min=y-x+one;
+   }
+   max=min+j;
+    printf("%d %d\n",min,max);
+    }
+ 
+	return 0;
+}
+ 

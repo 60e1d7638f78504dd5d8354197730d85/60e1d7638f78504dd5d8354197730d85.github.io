@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define gc() getchar_unlocked()
+inline int read_int() 
+{
+	char c = gc();
+	while(c<'0' || c>'9') 
+		c = gc();
+	int ret = 0;
+	while(c>='0' && c<='9')
+	{
+		ret = (ret<<3) + (ret<<1) + c - 48;
+		c = gc();
+	}
+	return ret;
+}
+int main()
+{
+	long long int t,n,i,k,max;
+	t = read_int();
+	while(t--)
+	{
+		n = read_int();
+		k = read_int();
+		long long int a[n],b[n];
+		for(i=0;i<n;i++)
+		{
+			a[i] = read_int();
+			a[i] = k/a[i];
+		}
+		max = 0;
+		for(i=0;i<n;i++)
+		{
+			b[i] = read_int();
+			b[i] = b[i]*a[i];
+			if(b[i]>max)
+			{
+				max = b[i];
+			}
+		}
+		printf("%lld\n",max);
+	}
+	return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+
+int main()
+{
+	int t;
+  	scanf("%d", &t);
+    while(t--)
+    {
+      char input [100], operator[100], operands[100];
+      int i=0, topo=-1, topop=-1;
+      scanf("\n%[^\t\n]s", input);
+      for(i=0; input[i]!='\0'; i++)
+      {
+        if(input[i]>='a' && input[i]<='z')
+        {
+          topo++;
+          operands[topo]=input[i];
+        }
+        else if((input[i]>='*' && input[i]<='/') || input[i]=='^')
+        {
+            topop++;
+            operator[topop]=input[i];
+        }
+
+        else if(input[i]==')')
+        {
+            char ch;
+            int j=0;
+            for(j=0; j<=topo; j++)
+            {
+              printf("%c", operands[j]);
+            }
+            topo=-1;
+            if(topop>-1)
+            {
+              printf("%c", operator[topop]);
+              topop--;
+            }
+        }
+      }
+      printf("\n");
+    }
+	return 0;
+}

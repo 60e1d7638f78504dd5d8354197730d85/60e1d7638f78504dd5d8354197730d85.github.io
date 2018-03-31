@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+class TestClass
+{public static void main(String args[])
+{Scanner sc=new Scanner(System.in);
+ int n=sc.nextInt();
+ int i;
+ int score[]=new int[n];
+ for(i=0;i<n;i++)
+   score[i]=sc.nextInt();
+ 
+System.out.println(distributeCandy(score));
+}
+static int distributeCandy(int[] score) {
+        int m = score.length;
+        int[] left = new int[m];
+        int[] right = new int[m];
+        int candies = 0;
+        left[0] = 1;
+        for (int i = 1; i < m; i++)
+            left[i] = score[i] > score[i - 1] ? left[i - 1] + 1 : 1;
+        right[m - 1] = 1;
+        for (int i = m - 2; i >= 0; i--)
+            right[i] = score[i] > score[i + 1] ? right[i + 1] + 1 : 1;
+        for (int i = 0; i < m; i++)
+            candies += Math.max(left[i], right[i]);
+        return candies;
+}
+}

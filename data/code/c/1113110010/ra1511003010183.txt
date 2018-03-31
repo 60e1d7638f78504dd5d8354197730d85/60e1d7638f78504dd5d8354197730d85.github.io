@@ -1,0 +1,56 @@
+#include <stdio.h>
+int sum (int a);
+int countDigits(int num);
+int main()
+{
+  int num, result,countf;
+  scanf("%d", &num);
+  
+ countf= countDigits(num);
+  if(countf==2)
+  {
+  result = sum(num);
+  printf("Alice must go in path-%d", result);
+  }
+  else
+  {
+    printf("not a 2 digit number");
+  }
+ 
+  
+  return 0;
+}
+
+
+
+
+
+
+
+int sum (int num)
+{
+    if (num != 0)
+    {
+        return (num % 10 + sum (num / 10));
+    }
+    else
+    {
+       return 0;
+    }
+}
+
+
+int countDigits(int num)
+{
+    static int count=0;
+     
+    if(num>0)
+    {
+        count++;
+        countDigits(num/10);
+    }
+    else
+    {
+        return count;
+    }
+}

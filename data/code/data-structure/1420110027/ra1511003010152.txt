@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define DICT_SIZE 50007
+
+typedef struct _dict_entry
+{
+	uint64_t hash;
+	char *str;
+	int value;
+} *dict_entry;
+
+dict_entry dict[DICT_SIZE];
+
+uint64_t get_hash(char *s)
+{
+	int shift = 0;
+
+	uint64_t hash = 0;
+	while (*s != '\0')
+	{
+		hash |= *s << shift;
+		shift += 7;
+		++s;
+	}
+
+	return hash;
+}
+
+dict_entry dict_get(char *s)
+{
+	uint64_t hash = get_hash(s);
+	size_t pos = hash % DICT_SIZE;
+	while (dict[pos] != NULL && dict[pos]->hash != hash)
+		pos = (pos + 1) % DICT_SIZE;
+	return dict[pos];
+}
+
+void dict_inc(char *s)
+{
+	dict_entry entry = dict_get(s);
+
+	if (entry)
+	{
+		entry->value += 1;
+	}
+	else
+	{
+		entry = (dict_entry)malloc(sizeof(struct _dict_entry));
+		memset(entry, 0, sizeof(struct _dict_entry));
+
+		entry->hash = get_hash(s);
+		entry->str = strdup(s);
+		entry->value = 1;
+
+		size_t pos = entry->hash % DICT_SIZE;
+		while (dict[pos] != NULL)
+			pos = (pos + 1) % DICT_SIZE;
+		dict[pos] = entry;
+	}
+}
+
+int is_doable()
+{
+    int j;
+	for (j = 0; j < DICT_SIZE; ++j)
+		if (dict[j] && dict[j]->value < 0)
+			return 0;
+	return 1;
+}
+
+int solve(int n)
+{
+	char buffer[10];
+    int j;
+	for (j = 0; j < n; ++j)
+	{
+		scanf("%s", buffer);
+
+		dict_entry entry = dict_get(buffer);
+		if (entry == NULL)
+			return 0; // unbek. wort
+
+		entry->value--;
+	}
+
+	return is_doable();
+}
+
+int main()
+{
+#ifdef _DEBUG
+	char FNAME[250];
+	strcpy(FNAME, __FILE__);
+	strcpy(strchr(FNAME, '.'), ".txt");
+	freopen(FNAME, "rt", stdin);
+#endif
+
+	int m, n,j;
+	scanf("%d %d", &m, &n);
+
+	char buffer[10];
+
+	for (j = 0; j < m; ++j)
+	{
+		scanf("%s", buffer);
+		dict_inc(buffer);
+	}
+
+	printf(solve(n) ? "Yes" : "No");
+  return 0;
+}

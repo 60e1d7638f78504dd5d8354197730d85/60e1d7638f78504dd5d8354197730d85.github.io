@@ -1,0 +1,89 @@
+#include <stdio.h>
+void convert(char*);
+int priority(char);
+struct abc{
+  int z;
+};
+int main()
+{
+  char ch,infix[400];
+  int i,t;
+  scanf("%d",&t);
+  ch=getchar();
+  for(i=1;i<=t;i++)
+  {
+    scanf("%s",infix);
+    convert(infix);
+      printf("\n");
+  }
+	return 0;
+}
+
+void convert(char infix[])
+{
+  char stack[400],temp,topentry,type;
+  int i,top;
+  i=top=0;
+  while((type=infix[i])!='\0')
+  {
+    switch(type)
+    {
+        case'(':
+        stack[top++]=type;
+        break;
+        
+        case')':
+        temp=stack[--top];
+        while(temp!='(')
+        {
+          printf("%c", temp);
+          temp=stack[--top];
+        }
+        break;
+        
+        case'+':
+        case'-':
+        case'*':
+        case'/':
+        case'^':
+        case'%':
+        
+        do
+        {
+          if(top<=0)
+            break;
+          else
+          {
+            topentry=stack[top-1];
+            if(topentry=='(')
+              break;
+            else if(priority(topentry)<priority(type))
+              break;
+            else
+              printf("%c",stack[--top]);
+          }
+        }
+        while(1);
+          stack[top++]=type;
+          break;
+        
+      default:
+        printf("%c",type);
+        break;
+    }
+    i++;
+  }
+  while(top!=0)
+  {
+    printf("%c",stack[--top]);
+  }
+}
+  int priority(char temp)
+  {
+    if(temp=='^')
+      return 3;
+    else if((temp=='*') || (temp=='/') || (temp=='%'))
+      return 2;
+    else 
+      return 1;
+  }

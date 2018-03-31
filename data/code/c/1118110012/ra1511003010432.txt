@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+struct time{
+	int hrs,mins,sec;
+};
+
+struct time t1;
+struct time t2;
+
+struct time add(struct time t1,struct time t2){
+	int total = t1.hrs*3600 + t1.mins*60 + t1.sec + t2.hrs*3600 +t2.mins*60 +t2.sec;
+  	struct time newtime;
+  	int temp=total;
+  	//printf("total is %d\n",total);
+  	newtime.hrs = temp/3600;
+  	total-=newtime.hrs*3600;
+  	//printf("total-hrs is %d\n",total);
+  	temp=total;
+  	newtime.mins = temp/60;
+  	total-=newtime.mins*60;
+  	temp=total;
+  	newtime.sec = temp;
+  	return newtime;
+}	
+
+int main()
+{
+	scanf("%d %d %d",&t1.hrs,&t1.mins,&t1.sec);
+    scanf("%d %d %d",&t2.hrs,&t2.mins,&t2.sec);
+  	struct time ans = add(t1,t2);
+  	printf("%d hrs\n",ans.hrs);
+  	printf("%d min\n",ans.mins);
+  	printf("%d sec\n",ans.sec);
+	return 0;
+}

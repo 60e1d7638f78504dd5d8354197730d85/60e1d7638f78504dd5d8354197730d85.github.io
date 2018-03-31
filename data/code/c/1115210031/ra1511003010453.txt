@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int i,t;
+    scanf("%d",&t);
+    for(i=0;i<t;++i)
+    {
+        int n,k,d1,d2,j;
+        scanf("%d %d",&n,&k);
+        if(k>81)
+        {
+            printf("-1\n");
+            continue;
+        }
+        if(k%9)
+        {
+            d1=(k/9)+1;
+            if(k%9<=d1)
+                d2=(k%9)-1;
+            else
+                d2=k%9;
+        }
+        else
+        {
+            d1=k/9;
+            if(d1==9)
+            d2=8;
+            else
+            d2=9;
+        }
+        for(j=1;j<=n;++j)
+        {
+            if(j%2)
+                printf("%d",d1);
+            else
+                printf("%d",d2);
+        }
+        printf("\n");
+    }
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+
+int ind(char c) {
+	if (isupper(c))
+		return c - 'A';
+	else
+		return c - 'a' + 26;
+}
+
+int main() {
+	int i, l, tak;
+	static char s[1001];
+	static char t[] = "A______HI___M_O____TUVWXY__d_b__________oqp____vwx__";
+
+	scanf("%s", s);
+	l = strlen(s);
+	tak = 1;
+	for (i = 0; i < l; i++)
+		if (t[ind(s[i])] != s[l - i - 1]) {
+			tak = 0;
+			break;
+		}
+	printf("%s\n", tak ? "TAK" : "NIE");
+	return 0;
+}
+

@@ -1,0 +1,32 @@
+#include<stdio.h>
+
+int main() 
+{
+  
+  int j,numArray[10];
+  for(j=0;j<10;j++)
+    numArray[j]=0;
+   int i,n,m, sum = 0;
+   int *ptr;
+	scanf("%d%d",&n,&m);
+  if(m>n){
+   for (i = n+1; i <=m; i++)
+   numArray[i]=i; 
+   ptr = numArray;
+   for (i = 0; i <= 10; i++)
+   {
+     sum = sum + *ptr;
+     ptr++;
+   }
+    if(n==1)
+     sum=sum+1;
+ printf("%d\n", sum);
+    if(n==1)
+  printf("%.2f",(float)sum/(float)(m-n+1));
+    else
+      printf("%.2f",(float)sum/(float)(m-n));
+  }
+  else
+    printf("Invalid Input");
+  return 0;
+}

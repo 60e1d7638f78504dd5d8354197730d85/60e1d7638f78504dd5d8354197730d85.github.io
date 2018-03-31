@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+int find(int x,char s[50])
+{
+    int temp;
+	for(temp=x;temp>=0;temp--)
+    {
+    	if(s[temp] == x)
+        {
+          return 1;
+        }
+    }
+}
+int main()
+{
+	int i,p;
+  	char n1[50],n2[50];
+  	scanf("%d",&p);
+  	for(i=0;i<p;i++)
+    {
+     	scanf("%s %s",n1,n2);
+      	if(perform(n1,n2) == 1 || perform(n2,n1) == 1)
+        {
+          printf("YES\n");
+        }
+      	else
+        {
+          printf("NO\n");
+        }
+    }
+  	return 0;
+}
+
+int perform(char n1[50],char n2[50])
+{
+  int count = 0,m,n,index=-99;      
+  for(m=0;m<strlen(n1);m++)
+  {
+    for(n=0;n<strlen(n2);n++)
+    {
+      if(n1[m] == n2[n])
+      {
+        if(index < n && find(n,n2))
+        {
+          index = n;
+          count += 1;
+        }
+      }
+    }
+  }
+  //printf("Count: %d\n",count);
+  if(count >= strlen(n1))
+  {
+    //printf("YES\n");
+    return 1;
+  }
+  else
+  {
+    return 0;
+    //printf("NO\n");
+  }
+}

@@ -1,0 +1,157 @@
+#include<stdio.h>
+ 
+ 
+struct pair
+{
+	long int a;
+	long int b;
+};
+struct pair p[1000005];
+ 
+struct pair loc[1000005];
+ 
+long int loc1[1000005];
+ 
+unsigned long long int merge1(long int r[],int s,int k,int e)
+	  
+	{
+	    int i,j,c=0,l;
+	    i=s;
+	    j=k+1;
+	   
+	    unsigned long long int count=0;
+	    while(i<=k && j<=e)
+	      {
+	        if(r[i]<=r[j])
+	          loc1[c++]=r[i++];
+	        else
+	        {
+				count+=(k-i+1);
+	          loc1[c++]=r[j++];
+	          
+		    }
+	      }
+	      
+	    if(i<=k)
+	      {
+	        while(i<=k)
+	        loc1[c++]=r[i++];
+	      }
+	    else
+	      {
+	        while(j<=e)
+	        loc1[c++]=r[j++];
+	      }
+	     
+	 
+	    k=0;
+	   for(i=s;i<=e;i++)
+	     {
+	   r[i]=loc1[k++];
+	     }
+	 
+	  return count;
+	}
+	
+	
+	unsigned long long int mergesort1(long int r[],int s,int e)
+	{
+		int k,j;
+		unsigned long long int count=0,l1=0,l2=0,l3=0;
+	     if(s==e)
+	          return 0;
+	     else
+	       {
+		k=s+((e-s)/2);
+		j=k+1; 
+		l1=mergesort1(r,s,k);
+		l2=mergesort1(r,j,e);
+	     l3= merge1(r,s,k,e);
+	     count=l1+l2+l3;
+	       }
+	  return count;
+	}
+	
+	
+ 
+int merge(struct pair r[1000005],int s,int k,int e)
+	  
+	{
+	    long int i,j,c=0;
+	    i=s;
+	    j=k+1;
+	    
+	    while(i<=k && j<=e)
+	      {
+	        if(r[i].a<=r[j].a)
+	          loc[c++]=r[i++];
+	        else
+	          loc[c++]=r[j++];
+	      }
+	      
+	    if(i<=k)
+	      {
+	        while(i<=k)
+	        loc[c++]=r[i++];
+	      }
+	    else
+	      {
+	        while(j<=e)
+	        loc[c++]=r[j++];
+	      }
+	     
+	 
+	    k=0;
+	   for(i=s;i<=e;i++)
+	     {
+	   r[i]=loc[k++];
+	     }
+	 
+	  return 0;
+	}
+	
+	
+	int mergesort(struct pair r[1000005],int s,int e)
+	{
+		long int k,j;
+	     if(s==e)
+	          return 0;
+	     else
+	       {
+		k=s+((e-s)/2);
+		j=k+1;
+		mergesort(r,s,k);
+		mergesort(r,j,e);
+	    merge(r,s,k,e);
+	       }
+	  return 0;
+	}
+int main()
+{
+	long int t,min,imin,n,i,j,count;
+	long int array[1000005];
+	
+	unsigned long long int ans;
+	scanf("%ld",&n);
+	
+	for(i=1;i<=n;i++)
+	{
+		scanf("%ld %ld",&p[i].a,&p[i].b);
+		
+		
+	}
+	
+	mergesort(p,1,n);
+	
+	for(i=1;i<=n;i++)
+	{
+		array[i]=p[i].b;
+	}
+	
+	
+		ans=0;
+		ans=mergesort1(array,1,n);
+		
+	printf("%llu\n",ans);
+	return 0;
+}

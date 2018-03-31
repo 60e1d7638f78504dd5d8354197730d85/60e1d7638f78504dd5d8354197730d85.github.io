@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+	char buf[4][20];
+	int n, i;
+
+	int cmp(const void *a, const void *b) {
+		return strcmp((char *)a, (char *)b);
+	}
+
+	scanf("%d", &n);
+
+	for (i = 0; i < 4; i++)
+		scanf("%s", buf[i]);
+
+	qsort(buf, 4, 20, cmp);
+
+	for (i = 0; i < 4; i++)
+		puts(buf[i]);
+
+	return 0;
+}

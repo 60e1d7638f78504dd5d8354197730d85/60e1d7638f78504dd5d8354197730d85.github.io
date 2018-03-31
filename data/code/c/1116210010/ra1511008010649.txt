@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+
+  int a[52], i;
+  for(i=0;i<52;i++)
+    a[i] = 0;
+  
+  char s[200];
+  scanf("%s",s);
+  if(s[0]=='0')
+    printf("0\n");
+  else
+  {
+    for(i=0;i<strlen(s);i++)
+    {
+      if(s[i]>='A' && s[i]<='Z')
+          a[(int)s[i] - 'A']++;
+      else
+          a[((int)s[i] - 'a') + 26]++;
+    }
+
+      for(i=0;i<26;i++)
+      {
+        if(a[i]>0)
+            printf("%c=%d\n",('A'+i),a[i]);
+      }
+      for(i=26;i<52;i++)
+      {
+        if(a[i]>0)
+          printf("%c=%d\n",('a'+(i-26)),a[i]);
+      }
+  }
+	return 0;
+}

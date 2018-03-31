@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+    int nseq,i,nsub,seq[100],subseq[100],t,j,flag;
+    scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&nseq);
+    for(i=0;i<nseq;i++)
+    {
+         scanf("%d",&seq[i]);
+    }
+    scanf("%d",&nsub);
+    for(i=0;i<nsub;i++)
+    {
+        scanf("%d",&subseq[i]);
+    }
+    for(i=0;i<=nseq-nsub;i++)
+    {
+         for(j=i;j<i+nsub;j++)
+         {
+             flag=1;
+            if(seq[j]!=subseq[j-i])
+            {
+                flag=0;
+                break;
+            }
+         }
+         if(flag==1)
+            break;
+    }
+  if(flag==1)
+  {
+        printf("Yes\n");
+    
+  }
+  else
+  {
+       printf("No\n");
+  }
+ }
+	return 0;
+}

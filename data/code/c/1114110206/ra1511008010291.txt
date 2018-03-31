@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int loop,total;
+  scanf("%d",&total);
+  for(loop=1;loop<=total;loop++)
+  {
+  int elements,i,n,k;
+  scanf("%d",&elements);
+  int skill[elements];
+  for(i=0;i<elements;i++)
+  {
+    int skill_element;
+    scanf("%d",&skill_element);
+    skill[i]=skill_element;
+  }
+  int min_dif=100;
+  for(n=0;n<elements;n++)
+  {
+    for(k=0;k<elements;k++)
+    {
+      if(n!=k)
+      {
+        int dif=skill[n]-skill[k];
+        if(dif<0)
+        {
+          dif*=(-1);
+        }
+        
+        if(dif<min_dif)
+        {
+          min_dif=dif;
+        }
+      }
+    }
+  }
+  printf("%d",min_dif);
+}
+
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class A
+{
+  	int a;
+public:
+  	void get()
+    {
+      	cin>>a;
+    }
+  	void display()
+    {
+      	cout<<a;
+    }
+};
+
+class B:public A
+{
+  	float b;
+public:
+  	void get()
+    {
+    	A::get();
+      	cin>>b;
+    }
+  	void display()
+    {
+    	A::display();
+      	cout<<b;
+    }
+};
+
+class C:public B
+{
+  	char c;
+public:
+  	void get()
+    {
+    	B::get();
+      	cin>>c;
+    }
+  	void display()
+    {
+    	B::display();
+      	cout<<c;
+    }
+};
+int main()
+{
+	C obj;
+  	obj.get();
+  	obj.display();
+	return 0;
+}

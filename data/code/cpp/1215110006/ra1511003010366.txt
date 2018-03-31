@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class Account{
+  private : int accountNo , balance ;
+  	string name ;
+  public :
+  	void initializeData( int acc , string str , int bal ){
+      accountNo = acc ;
+      name = str ;
+      balance = bal ; 
+    }
+  	int deposit(int amount){
+      int total ;
+      total = balance + amount ;
+      balance = total ;
+      return total ;
+    }
+  	int withdraw(int amount1){
+      int total ;
+      total = balance - amount1 ;
+      balance = total ;
+      return total ;
+    }
+  	int checkBalance(){
+      return balance ;
+    }
+  	void DisplayDetails(int a , int b){
+      int finbal = balance ;
+      cout << "DEPOSIT" << endl ;
+      cout << "Balance=" << checkBalance() << endl ;
+      cout << "Deposited=" << a << endl ;
+      cout << "Balance=" << deposit(a) << endl ;
+      cout << "WITHDRAW" << endl ;
+      cout << "Balance=" << balance << endl ;
+      cout << "Withdraw=" << b << endl ;
+      if ( b > balance )
+        cout << "Insufficient balance" << endl ;
+      else
+      	cout << "Balance=" << withdraw(b) << endl ;
+      cout << "ACCOUNT DETAILS" << endl ;
+      cout << "Account Holders Name:" << name << endl << "Account Number:" << accountNo << endl << "Current Balance:" << balance << endl ;
+    }
+} ;
+
+int main()
+{
+  	int a , c , d , e ;
+  	string b ;
+  	cin >> a >> b >> c >> d >> e ;
+	Account acnt ;
+  	acnt.initializeData(a,b,c) ;
+  	acnt.DisplayDetails(d,e) ;
+	return 0;
+}

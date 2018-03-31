@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int vowel(char c)
+{
+  switch(c)
+  {
+    case 'a':
+    case 'e':
+    case  'i':
+    case  'o':
+    case 'u':
+      return 1;
+    default:return 0;
+  }
+}
+int main()
+{
+  char s[100],t[100];
+  int i,j=0;
+  scanf("%s",s);
+  for(i=0;s[i]!='\0';i++)
+  {
+    if(vowel(s[i])==0)
+    {
+      t[j]=s[i];
+      j++;
+    }
+  }
+  t[j]='\0';
+  strcpy(s,t);
+  printf("%s\n",s);
+  return 0;
+}
+

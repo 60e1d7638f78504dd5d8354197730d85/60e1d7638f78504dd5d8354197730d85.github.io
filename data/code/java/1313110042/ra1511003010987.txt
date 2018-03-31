@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class TestClass {
+
+    static int jumpingOnClouds(int[] c) {
+       int i=0,s=0;
+       if(c.length==2)
+           return 1;
+       while(i<c.length-2)
+       {
+         if(c[i+2]==0) {
+           s++;
+           i+=2;
+         }
+         else if(c[i+2]==1) {
+           s++;
+           i++;
+         }
+         if(i+1==c.length-1)
+             s++;
+       }
+       return s;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] c = new int[n];
+        for(int c_i = 0; c_i < n; c_i++){
+            c[c_i] = in.nextInt();
+        }
+        int result = jumpingOnClouds(c);
+        System.out.println(result);
+        in.close();
+    }
+}

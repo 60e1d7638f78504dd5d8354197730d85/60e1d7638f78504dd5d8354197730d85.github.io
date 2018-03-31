@@ -1,0 +1,50 @@
+#include <iostream>
+#include<bits/stdc++.h>
+#include<math.h>
+using namespace std;
+int main()
+{
+
+int n1,n2;
+cin>>n1>>n2;
+  int x,y;
+  x=n1;
+  y=n2;
+int sum=0;
+int a[100],b[100];
+int i=0;
+int l=0;
+while(n1!=0)
+{
+	a[i]=n1%2;
+	i++;
+	n1=n1/2;
+}
+
+
+
+
+while(n2!=0)
+{
+	b[l]=n2%2;
+	l++;
+	n2=n2/2;
+}
+cout<<endl;
+int m=min(i,l);
+for(int x=m-1;x>=0;x--)
+{
+	
+	//cout<<"a="<<a[x]<<" b="<<b[x]<<endl;
+	
+	a[x]=a[x]*b[x];
+//	cout<<a[x];
+}
+sum=0;
+for(int p=0;p<m;p++)
+{
+	sum=sum+a[p]*pow(2,p);
+}
+cout<<"Bitwise AND of "<<x<<" and "<<y<<" is:"<<sum;
+	return 0;
+}

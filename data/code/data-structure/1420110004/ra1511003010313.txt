@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std ;
+#define LL long long int
+#define ft first
+#define sd second
+#define PII pair<int,int>
+#define MAXN 100005
+#define MAXM 10000001
+#define mp make_pair
+#define f_in(st) freopen(st,"r",stdin)
+#define f_out(st) freopen(st,"w",stdout)
+#define sc(x) scanf("%d",&x)
+#define scll(x) scanf("%lld",&x)
+#define pr(x) printf("%d\n",x)
+#define pb push_back
+#define MOD 1000000007
+#define MAX 1000010
+#define ull long long
+#define prime 37
+#define pb push_back
+#define ASST(x,y,z) assert(x >= y && x <= z)
+int t , n;
+string s ;
+int main(){
+    //f_in("in00.txt") ;
+    //f_out("out00.txt") ;
+    sc(t) ;
+    ASST(t,1,100) ;
+    while(t --){
+        cin >> s ;
+        n = s.length() ;
+        ASST(n,1,1000) ;
+        int M[26]={0} , c = 0;
+        for(int i=0;i<n;i++) ASST(s[i],'a','z') ;
+        for(int i=0;i<n;i++) M[s[i]-'a'] ++ ;
+        for(int i=0;i<26;i++) if(M[i]&1) c ++ ;
+        pr(max(0,c-1)) ;
+    }
+    return 0 ;
+}

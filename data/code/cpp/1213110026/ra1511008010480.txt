@@ -1,0 +1,35 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+string getPrice(int amt, int flag) {
+  	string str = "";
+	if(amt==0) {
+    	if(flag == 0) return str;
+      	else return "ZERO";
+    }
+  	switch(amt % 10) {
+      case 1: str ="ONE"; break;
+      case 2: str = "TWO"; break;
+      case 3: str = "THREE"; break;
+      case 4: str = "FOUR"; break;
+      case 5: str = "FIVE"; break;
+      case 6: str = "SIX"; break;
+      case 7: str = "SEVEN"; break;
+      case 8: str = "EIGHT"; break;
+      case 9: str = "NINE"; break;
+    }
+  	return (getPrice(amt/10, 0) + str);
+}
+
+int main()
+{
+  	float amt;
+  	cin>>amt;
+  	int dollar = amt;
+  	cout<<getPrice(dollar, 1)<<" Dollars\n";
+  	amt = (amt - dollar)*100;
+  	//cout<<amt<<"/100";
+  	printf("%0.0f/100", amt);
+	return 0;
+}

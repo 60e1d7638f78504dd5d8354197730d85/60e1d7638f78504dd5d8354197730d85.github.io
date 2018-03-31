@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main()
+{
+  int arr1[26]={0},arr2[26]={0},i,flag=0,no;
+  char str1[100],str2[100];
+  scanf("%d",&no);
+  while(no--){
+  scanf("%s",str1);
+  scanf("%s",str2);
+  for(i=0;str1[i]!='\0';i++)
+    arr1[str1[i]-'a']++;
+  for(i=0;str2[i]!='\0';i++)
+    arr2[str2[i]-'a']++;
+  for(i=0;i<26;i++)
+    if(arr1[i]>0&&arr2[i]>0)
+      flag=1;
+  if(flag==1)
+    printf("Yes");
+  else
+    printf("No");
+}
+	return 0;
+}

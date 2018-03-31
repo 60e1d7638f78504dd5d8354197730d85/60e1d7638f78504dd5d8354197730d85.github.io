@@ -1,0 +1,122 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N 10000
+int m,n;
+int parM[N],parW[N],rankM[N],rankW[N];
+struct edge{
+    int w,u,v;
+};
+int rootM(int x){
+     while(parM[x] != x)
+        {
+            parM[x] = parM[parM[x]];
+            x = parM[x];
+        }
+        return x;
+}
+int rootW(int x){
+    while(parW[x] != x)
+        {
+            parW[x] = parW[parW[x]];
+            x = parW[x];
+        }
+        return x;
+}
+void unionM(int a,int b){
+   int p=rootM(a);
+    int q=rootM(b);
+    parM[p]=parM[q];
+}
+void unionW(int a,int b){
+    int p=rootW(a);
+    int q=rootW(b);
+    parW[p]=parW[q];
+}
+int myComp(const void* a, const void* b)
+{
+    struct edge* a1 = (struct edge*)a;
+    struct edge* b1 = (struct edge*)b;
+    return a1->w < b1->w;
+}
+long long int kruskal(struct edge edges[]){
+    long long int cost,minCost=0;
+    int x,y;
+    long long int i;
+    for(i=0;i<m;i++){
+        x=edges[i].u;
+        y=edges[i].v;
+        cost=edges[i].w;
+       if(cost==1||cost==3){
+          
+            if((rootM(x)!=rootM(y))){
+                if(cost==3){
+                    unionM(x,y);
+                    unionW(x,y);
+                }
+                else{
+                    unionM(x,y);
+                   
+                }
+            }
+            else{
+                minCost++;
+            }
+       }
+       else if(cost==2 || cost==3)
+    		    {
+    		    if((rootW(x) != rootW(y)))
+                {   
+            	    if(cost==3)
+    			    {
+                	 unionM(x,y);
+    		    	 unionW(x,y);	
+    		    	}
+    		    	else
+    		    	{
+               	 	unionW(x, y);
+                	}
+                }
+    		    else 
+                {
+                	minCost++;
+    		    }	
+    		}
+    }
+    x=rootM(1);
+    y=rootW(2);
+  
+     //printf("%d, %d\n",x,y);
+    long long int k=0;
+    for(i=2;i<=n;i++){
+        if(rootM(i)!=x||rootW(i)!=y){
+            //printf("yeah");
+            k=1;
+            break;
+        }
+    }
+    //printf("%d\n",k);
+    if(k==0)
+        return minCost;
+    else
+        return -1;
+}
+int main(){
+    int u,v,w,i;
+    long long int min;
+    scanf("%d%d",&n,&m);
+    for(i=0;i<N;i++){
+        parW[i]=i;
+        parM[i]=i;
+    }
+    struct edge edges[m];
+    for(i=0;i<m;i++){
+        scanf("%d%d%d",&u,&v,&w);
+        edges[i].u=u;
+        edges[i].v=v;
+        edges[i].w=w;
+    }
+    qsort(edges,m,sizeof(edges[0]),myComp);
+    min=kruskal(edges);
+    printf("%lld",min);
+    return 0;
+}

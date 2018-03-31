@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<string.h>
+ 
+ 
+ 
+int n, x, ret = 0;
+int f[1000005];
+int all[1000005];
+ 
+int main()
+{
+    int ans = 0;int i;
+    for ( i = 1; i <= 1000000; ++i) {
+        f[i] = i;
+    }
+	i=2;
+    for (i = 2; i <= 1000; ++i) {
+        if (f[i] != i) continue;
+        int j = i + i;
+        while (j <= 1000000) {
+            f[j] = i;
+            j += i;
+        }
+    }
+    // number of tests
+    int tests;
+    scanf("%d", &tests);
+    while (tests--) {
+	// all[x] - means maximal degree of prime divisor x, in some number that are given in array
+        memset(all, 0, sizeof(all));
+	// number of elements
+        scanf("%d", &n);
+        ans = 0;
+        for (i = 0; i < n; ++i) {
+            scanf("%d", &x);
+	    // partition on prime divisors
+            while (x > 1) {
+                int d = f[x];
+                int cnt = 0;
+                while (x % d == 0) {
+                    x /= d;
+                    cnt++;
+                }
+                if (all[d] < cnt) {
+                    ans += cnt - all[d];
+                    all[d] = cnt;
+                }
+            }
+        }
+	// ans = sum of all[x] for every x
+        printf("%d\n", ans);
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,32 @@
+#include <stdio.h>
+struct stud
+{
+  char str[100];};
+int main()
+{ 
+ int n,m,i,count=0;
+ char ch;
+  scanf("%d %d",&n,&m);
+//char  str[n];
+ struct stud s[n];
+  if(n>=1 && m<=100)
+  {
+    for(i=0;i<n;i++)
+    { 
+     scanf("%s",s[i].str);
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    if(strcmp(s[i].str,s[i+1].str)==0)
+      count++;
+    else
+      continue;
+  }
+  if(count==0)
+    printf("YES");
+  else
+    printf("NO");
+
+	return 0;
+}

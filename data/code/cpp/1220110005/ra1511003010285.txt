@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <sstream>
+#include <cmath>
+using namespace std;
+int main()
+{
+  string str1, str2, str3;
+  cin>>str1>>str2>>str3;
+  
+  stringstream k1(str1);
+  stringstream k2(str2);
+  stringstream k3(str3);
+  
+  if(isdigit(str1[0])== false || isdigit(str2[0])== false || isdigit(str3[0])== false)
+    cout<<"Invalid input\nTry again";
+  
+  else 
+  {
+    float p=0, r=0, t=0;
+    
+    k1>>p;
+    k2>>r;
+    k3>>t;
+    
+    float total = p * pow((1+r/100), (t));
+	float ci = total - p;
+    cout<<ci;
+  }
+
+	return 0;
+}

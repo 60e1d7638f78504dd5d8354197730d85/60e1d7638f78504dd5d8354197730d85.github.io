@@ -1,0 +1,142 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+long long func(long long n,long long m);
+inline int readInt(){
+  int number = 0;
+  char c = getchar();
+  while(c<'0')
+    c = getchar();
+  while(c>='0' && c<='9'){
+    number = (number<<3)+(number<<1)+c-'0';
+    c = getchar();
+  }
+  return number;
+}
+int main()
+{
+    int t,i1;
+    t = readInt();
+    while(t--)
+    {
+        long long n,m;
+        scanf("%lld%lld",&n,&m);
+        long long answerrrr=0;
+        long long check=(long)(sqrt(n));
+        long long i=1;
+        while(i<=check)
+        {
+            long long xx=(i*i);
+            if(xx>=m)
+                xx%=m;
+            xx=(xx*i);
+            if(xx>=m)
+                xx%=m;
+            xx=(xx*i);
+            if(xx>=m)
+                xx%=m;
+            answerrrr=(answerrrr+((xx)*(n/i))%m);
+            if(answerrrr>=m)
+                answerrrr%=m;
+            i+=1;
+        }
+        long long mi=n/2;
+        long long ma=n;
+        long long answerrrr1=0;
+        long long cc=2;
+        for(i1=1;i1<=check;i1++)
+        {
+            mi=n/cc;
+            if(ma<=check)
+                break;
+            if(mi<check)
+                mi=check;
+            long long high=func(ma,m);
+            long long low = func(mi,m);
+            long long tt=(cc-1);
+            long long xx=high-low;
+            if(xx<0 || xx>=m)
+                xx=(xx%m+m)%m;
+            xx=(xx*tt)%m;
+            answerrrr1=(answerrrr1+xx);
+            if(answerrrr1>=m)
+                answerrrr1%=m;
+ 
+            ma=mi;
+            cc+=1;
+        }
+        answerrrr=(answerrrr+answerrrr1)%m;
+        printf("%lld\n",answerrrr);
+    }
+    return 0;
+}
+long long func(long long n,long long m)
+{
+        int i,j;
+		long long multi=n/m;
+		long long answerrrr1=0;
+		long long rem=n%m;
+		long long a[]={2,3,5};
+		if(multi>=1)
+        {
+			answerrrr1=1;
+			long long x=m;
+			long long first=x;
+			long long sec=(x+1);
+			long long third=(2*x+1);
+			long long four=(3*x*x+3*x-1);
+			long long b[]={first,sec,third,four};
+			for(i=0;i<3;i++)
+            {
+				for(j=0;j<4;j++)
+				{
+					if(b[j]%a[i]==0)
+					{
+						b[j]/=a[i];
+						break;
+					}
+				}
+			}
+			for(i=0;i<4;i++)
+			{
+				answerrrr1=(answerrrr1*b[i]);
+				if(answerrrr1>=m)
+					answerrrr1%=m;
+			}
+			answerrrr1=(answerrrr1*multi);
+			if(answerrrr1>=m)
+				answerrrr1%=m;
+		}
+                        long long answerrrr2=1;
+                        long long x=rem;
+                        long long first=x;
+                        long long sec=(x+1);
+                        long long third=(2*x+1);
+                        long long four=(3*x*x+3*x-1);
+                        long long b[]={first,sec,third,four};
+                        for(i=0;i<3;i++)
+                        {
+                                for(j=0;j<4;j++)
+                                {
+                                        if(b[j]%a[i]==0)
+                                        {
+                                                b[j]/=a[i];
+                                                break;
+                                        }
+                                }
+                        }
+                        for(i=0;i<4;i++)
+                        {
+                            answerrrr2=(answerrrr2*b[i]);
+                            if(answerrrr2>=m)
+                                answerrrr2%=m;
+                        }
+ 
+			if(rem==0)
+				answerrrr2=0;
+			answerrrr1=(answerrrr1+answerrrr2);
+			if(answerrrr1>=m)
+				answerrrr1%=m;
+			return answerrrr1;
+	}
+ 

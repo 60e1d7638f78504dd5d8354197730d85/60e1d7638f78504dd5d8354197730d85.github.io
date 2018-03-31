@@ -1,0 +1,47 @@
+import java.util.*;
+import java.io.*;
+class ElectricityBill
+{
+  int customerNo, units;
+  String name;
+  double billpay=0.00;
+  void setData(int num, String cname, int nounits)
+  {
+    customerNo=num;
+    name=cname;
+    units=nounits;
+  }
+  void billcalculate()
+  {
+    for(int i=1;i<=units;i++)
+    {
+      if(i<=100)
+        billpay+=1.20;
+      else if(i<=300)
+        billpay+=2.00;
+      else if(i>300)
+        billpay+=3.00;
+    }
+  }
+  void show()
+  {
+    System.out.println("Customer Number:"+customerNo);
+    System.out.println("Customer Name:"+name);
+    System.out.println("Units Consumed:"+units);
+    System.out.printf("Bill to pay:%.1f ",billpay);
+  }
+  
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       String name1=in.nextLine();
+       int custnum=in.nextInt();
+       int nu=in.nextInt();
+       ElectricityBill b=new ElectricityBill();
+       b.setData(custnum,name1,nu);
+       b.billcalculate();
+       b.show();
+		
+	}
+}

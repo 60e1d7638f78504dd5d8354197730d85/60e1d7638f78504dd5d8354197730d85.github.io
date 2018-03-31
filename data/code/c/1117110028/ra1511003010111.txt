@@ -1,0 +1,27 @@
+#include <stdio.h>
+int getmax(int[]);
+int n;
+int main()
+{
+int a[100],i,max;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d ",&a[i]);
+  }
+  max=getmax(a);
+  printf("Maximum element in the array is %d",max);
+	return 0;
+}
+int getmax(int a[])
+{
+  static int i=0,max=-9999;
+  if(i<n)
+  {
+    if(max<a[i])
+      max=a[i];
+      i++;
+    getmax(a);
+  }
+  return max;
+}

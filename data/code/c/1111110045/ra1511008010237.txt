@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{ int i;
+    double n,xi[100];
+    double mean,sum1=0,sum2=0,sd;
+    scanf("%lf",&n);
+    for(i=0;i<n;i++){
+        scanf("%lf",&xi[i]);
+        sum1+=xi[i];
+    }
+    mean=sum1/n;
+    for(i=0;i<n;i++){
+       sum2+=(xi[i]-mean)*(xi[i]-mean);
+    }
+    float new_var=(sum2/n);
+    sd = pow(new_var,0.5);
+    printf("Mean=%.2lf\n",mean);
+    printf("SD=%.2lf",sd);
+
+    return 0;
+}

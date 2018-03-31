@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+	int t,i;
+  	scanf("%d",&t);
+  	for(i=0;i<t;i++)
+    {
+    	int a,arr[100],b,brr[100],j,*p1,*p2;
+      	scanf("%d",&a);
+      	for(j=0;j<a;j++)
+          scanf("%d",&arr[j]);
+      	scanf("%d",&b);
+      	for(j=0;j<b;j++)
+          scanf("%d",&brr[j]);
+      p1=arr;
+      p2=brr;
+      int check=0;
+      while(*p2!=*p1)
+        p1++;
+      for(j=0;j<b;j++,p1++,p2++)
+        if(*p1!=*p2)
+          check=1;
+      if(check==0)
+        printf("Yes\n");
+      else
+        printf("No\n");
+    }
+	return 0;
+}

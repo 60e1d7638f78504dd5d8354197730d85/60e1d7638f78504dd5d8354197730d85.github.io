@@ -1,0 +1,49 @@
+#include<stdio.h>
+int num()
+{
+    int n=0;
+    char c=getchar_unlocked();
+    while(c<'0'||c>'9')
+    {
+        c=getchar_unlocked();
+    }
+    while(c<='9'&&c>='0')
+    {
+        n=n*10+(c-'0');
+        c=getchar_unlocked();
+    }
+    return n;
+}
+int main()
+{
+    int t,n,i,j,k,f;
+    t=num();
+    while(t--)
+    {
+        n=num();
+        k=1;
+        f=1;
+        for(i=0;i<n;i++)
+        {
+            j=num();
+            if(f==1)
+            {
+                k-=j;
+                if(k<0)
+                {
+                    f=0;
+                }
+                k*=2;
+            }
+        }
+        if(f==1&&k==0)
+        {
+            printf("Yes\n");
+        }
+        else
+        {
+            printf("No\n");
+        }
+    }
+    return 0;
+} 

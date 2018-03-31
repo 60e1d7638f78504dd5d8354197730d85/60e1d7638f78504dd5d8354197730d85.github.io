@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h>
+int count(int a)
+{
+  if(a==0)
+    return 0;
+  else
+    return 1+count(a/10);
+}
+
+int main()
+{
+	int n,l,t=0,i,no;
+  	scanf("%d",&n);
+  	l=count(n);
+  	no=n;
+  	for(i=1;i<=l;i++)
+    {t=t+pow((n%(10)),l);
+    n/=10;}
+  	if(t==no)
+    	printf("Narcissistic Number");
+  	else
+      	printf("NOT Narcissistic Number");
+	return 0;
+}

@@ -1,0 +1,22 @@
+#include<stdio.h>
+struct time
+{
+ 	int seconds,minutes,hours;
+};
+struct time difference(struct time a,struct time b)
+{
+ 	struct time c;
+  	c.hours = a.hours-b.hours;
+  	c.minutes = a.minutes-b.minutes;
+	c.seconds = a.seconds-b.seconds;
+  	return c;
+}
+int main()
+{
+  	struct time startTime,stopTime;
+  	scanf("%d%d%d",&startTime.hours,&startTime.minutes,&startTime.seconds);
+  	scanf("%d%d%d",&stopTime.hours,&stopTime.minutes,&stopTime.seconds);
+  	struct time diff = difference(startTime,stopTime);
+  	printf("TIME DIFFERENCE=%d:%d:%d-%d:%d:%d=%d:%d:%d",startTime.hours,startTime.minutes,startTime.seconds,stopTime.hours,stopTime.minutes,stopTime.seconds,diff.hours,diff.minutes,diff.seconds);
+ 	return 0; 
+}

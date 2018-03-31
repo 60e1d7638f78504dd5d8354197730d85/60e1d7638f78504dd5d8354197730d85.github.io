@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{int N;
+ scanf("%d",&N);
+ while(N!=0)
+ {
+  int n,i,arr[10],k=0,c;
+  scanf("%d %d %d %d",&arr[0],&arr[1],&c,&n);
+  for(i=2;i<n;i++)
+  {
+   arr[i]=(arr[i-1]*c+arr[i-2])%10;
+  }
+for(i=0;i<n;i++)
+{
+  k=10*k+arr[i];
+}
+  if(k%41==0)
+  {
+    printf("YES\n");
+  }
+  else
+  {
+   printf("NO\n"); 
+  }
+   N--;
+ }
+	return 0;
+}

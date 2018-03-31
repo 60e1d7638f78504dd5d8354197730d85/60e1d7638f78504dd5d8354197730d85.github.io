@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char main[30] , temp[10];
+    fgets(main,30,stdin);
+    scanf("%s",temp);
+
+    int i=0 , l=0 , l2 = 0 , space=0;
+    for(l ; main[l]!='\0' ; l++);
+    for(l2 ; temp[l2]!='\0' ; l2++);
+    for(i=0 ; i<l ; i++){
+        if((int)main[i] == 32){
+            space++;
+        }
+    }
+    char array[space+1][30];
+    int j=0 , k=0;
+    for(i=0 ; i<l ; i++){
+        if((int)main[i] != 32){
+            array[j][k] = (int)main[i];
+            k++;
+        }else{
+            array[j][k]='\0';
+            j++;
+            k=0;
+        }
+    }
+    int z=0 ;
+    for(z ; z<space+1 ; z++){
+            int res=1 , count=0 ,pos=0;
+    for(i=z ; i<space+1 ; i++){
+        count=0;
+        for(j=0 ; j<l2 ; j++){
+            if((int)array[i][j] == (int)temp[j]){
+                count++;
+            }else{
+                res=0;
+            }
+        }
+        if(count==l2){
+            break;
+        }
+    }
+   // printf("%d\n",count);
+    if(res==1){
+
+        int s=0;
+        for(j=0 ; j<i ; j++){
+        for(k=0 ; array[j][k]!='\0';k++);
+        s += k;
+        //printf("%d\n",s);
+        }
+    printf("%d\n",s+i);
+    }
+    }
+    return 0;
+}

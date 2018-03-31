@@ -1,0 +1,25 @@
+
+#include <iostream>
+#include <vector>
+#include <map>
+using namespace std;
+ 
+#define CASES int t;cin>>t;while(t--)
+ 
+long long nCr(long long n, long long r) {
+    if (r > n-r) r = n-r;
+    long long ans = 1;
+    for (int i=1; i<=r; i++) {
+        ans = (ans * (n - r + i))/i;
+    }
+    return ans;
+}
+ 
+int main() {
+	CASES {
+        long long n, k;
+        cin >> n >> k;
+        cout << nCr(n-1, k-1) << endl;
+	}
+	return 0;
+}

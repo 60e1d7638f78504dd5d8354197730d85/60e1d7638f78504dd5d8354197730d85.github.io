@@ -1,0 +1,147 @@
+#include <stdio.h>
+typedef long long int LLI;
+#define inchar getchar_unlocked
+inline int inIntPos() {
+	int ch,n;
+	while((ch = inchar())<'0');
+	n =(ch-'0');
+	while((ch = inchar())>='0')
+		n=(n<<3)+(n<<1)+(ch-'0');
+	return n;
+}
+ 
+#define MAX_N 100007
+char s[MAX_N];
+int sum_0[MAX_N];
+int sum_1[MAX_N];
+LLI sum_res[MAX_N];
+int n,k;
+ 
+void prepare() {
+	int i,last;
+	int sum0, sum1;
+ 
+	sum_0[0]=sum_1[0]=0;
+	for(i=1; i<=n; ++i) {
+		if(s[i]==0) {
+			sum_0[i]=sum_0[i-1]+1;
+			sum_1[i]=sum_1[i-1];
+		}
+		else {
+			sum_0[i]=sum_0[i-1];
+			sum_1[i]=sum_1[i-1]+1;
+		}
+	}
+ 
+	sum_res[0]=0;
+	sum0=sum1=0;
+	last=1;
+	for(i=1;i<=n; ++i) {
+		if(s[i]==0) {
+			++sum0;
+			if(sum0>k) {
+				while(s[last]==1) { ++last; --sum1; }
+				--sum0;
+				++last;
+			}
+		}
+		else {
+			++sum1;
+			if(sum1>k) {
+				while(s[last]==0) { ++last; --sum0; }
+				--sum1; 
+				++last;
+			}
+		}
+		sum_res[i]=sum_res[i-1] + (i-last+1);
+	}
+ 
+}
+ 
+int calcStartPosition(int l, int r) {
+	int pos, posL=l, posR=r;
+	int sum0, sum1;
+ 
+	do {
+		pos = (posL+posR)>>1;
+		sum0 = sum_0[pos]-sum_0[l-1];
+		sum1 = sum_1[pos]-sum_1[l-1];
+ 
+		if(sum0<=k && sum1<=k) { posL = pos; }
+		else if(sum0==k && sum1==k) return pos;
+		else { posR = pos-1; }
+ 
+	} while(posL+1<posR);
+ 
+	pos=posL;
+	do {
+		++pos;
+		sum0 = sum_0[pos]-sum_0[l-1];
+		sum1 = sum_1[pos]-sum_1[l-1];
+	} while(sum0<=k && sum1<=k);
+ 
+	return pos-1;	
+}
+ 
+ 
+LLI calc(int l, int r) {
+	int startPos;
+	LLI res;
+	
+	if((sum_0[r]-sum_0[l-1])<=k && (sum_1[r]-sum_1[l-1])<=k) {
+		res=(r-l+1);
+		res=((res*(res+1))>>1);
+		return res;
+	}
+	
+	startPos = calcStartPosition(l,r);
+	res=(startPos+1-l);
+	res=((res*(res+1))>>1);
+	res+=sum_res[r]-sum_res[startPos];
+ 
+	return res;
+}
+ 
+LLI calc1(int l, int r) {
+	LLI res = sum_res[r]-sum_res[l-1];
+	if(l!=1) {
+		if(s[l]!=s[l-1]) --res;
+	}
+	return res;
+}
+ 
+int main() {
+	int t,i,ch,q,l,r;
+ 
+	t=inIntPos();
+	while(t--) {
+		n=inIntPos();
+		k=inIntPos();
+		q=inIntPos();
+	
+		i=1;
+		while((ch = inchar())<'0');
+		do {
+			s[i++]=ch-'0';
+		} while((ch = inchar())>='0');
+ 
+		prepare();
+ 
+		if(k==1) {
+			for(i=0; i<q; ++i) {
+				l=inIntPos();
+				r=inIntPos();
+				printf("%lld\n",calc1(l,r));
+			}
+		}
+		else {
+			for(i=0; i<q; ++i) {
+				l=inIntPos();
+				r=inIntPos();
+				printf("%lld\n",calc(l,r));
+			}
+		}
+	}
+	return 0;
+}
+ 

@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int t, a, c, count1=0, count2=0, count3=0;
+  float b;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&a);
+    scanf("%f",&b);
+    scanf("%d",&c);
+    if(a>50)
+      count1++;
+    if(b<0.7)
+      count2++;
+    if(c>5600)
+      count3++;
+    if(count1>0 && count2>0 && count3>0)
+      printf("Grade 10\n");
+    else if(count1>0 && count2>0)
+      printf("Grade 9\n");
+    else if(count2>0 && count3>0)
+      printf("Grade 8\n");
+    else if(count1>0 && count3>0)
+      printf("Grade 7\n");
+    else if(count1>0 || count2>0 || count3>0)
+      printf("Grade 6\n");
+    else
+      printf("Grade 5\n");
+    count1=count2=count3=0;
+  }
+	return 0;
+}

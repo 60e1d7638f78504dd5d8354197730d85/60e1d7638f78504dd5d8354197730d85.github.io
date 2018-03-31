@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+char A[100001],B[100001];
+int main()
+{
+    int t,n,d,f,a0,i,j;
+    scanf("%d",&t);
+    while(t--)
+    {
+     scanf("%d",&n);
+      scanf("%d",&d);
+      scanf("%s",A);
+      scanf("%s",B);
+      f=0;
+      for(i=0;i<n;i++)
+      {
+        a0=A[i];
+        j=i;
+        while(j<n&&B[j]!=a0)
+        {
+         j+=d; 
+        }
+        if(j>=n)
+        {
+          f=1;
+          break;
+        }
+        while(j>i)
+        {
+         int acc=B[j];
+          B[j]=B[j-d];
+          B[j-d]=acc;
+          j-=d;
+        }
+      }
+      if(f)
+        printf("No\n");
+      else
+        printf("Yes\n");
+      }
+      
+	return 0;
+}

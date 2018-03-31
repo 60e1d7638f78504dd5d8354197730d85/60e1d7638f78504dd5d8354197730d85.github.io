@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+ #include<stdlib.h>
+int main(){
+	long long int pages=0,temp=0,i=1,num=0;
+	char s[20];
+	scanf("%s",s);
+		num=atoi(s);
+		pages=0;
+		i=1;
+		
+		while(1){
+			temp=i*9*pow(10,i-1);
+			if (num>temp){
+				num=num-temp;
+				pages=pages+temp/i;
+			}
+			else{ 
+				if(num%i==0){				
+				pages=pages+num/i;
+				printf("%lld\n",pages);
+				break;
+				}
+				else{
+					printf("Impossible\n");
+					break;
+				}
+			}
+			i++;
+		
+	}
+	
+return 0;
+}

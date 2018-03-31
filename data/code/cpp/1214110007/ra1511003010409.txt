@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class toll
+{
+  	public:
+  	int num, price;
+    void construct()
+    {
+      	num=0;
+      	price=0;
+    }
+  	void pay(int a)
+    {
+       	price=price+a;
+      	num++;
+    }
+  	void dis()
+    {
+      	cout<<"Total number of cars passed="<<num<<endl<<"Total amount collected="<<price;
+    }
+};
+int main()
+{
+	int n, price;
+  	string pl;
+  	cin>>n;
+  	toll t;
+  	t.construct();
+  	while(n>0)
+    {
+      	cin>>pl>>price;
+      	t.pay(price);
+      	n--;
+    }
+  	t.dis();
+	return 0;
+}

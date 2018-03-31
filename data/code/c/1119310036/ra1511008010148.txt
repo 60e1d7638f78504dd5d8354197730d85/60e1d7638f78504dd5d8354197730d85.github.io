@@ -1,0 +1,159 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+#include<limits.h>
+ 
+#define FOR(I,N) for(I = 0 ; I < N ; I++)
+#define FOR2(I,K,N) for(I = K ; I < N ; I++)
+#define RFOR(I,N) for(I = N ; I >= 0 ; I--)
+#define RFOR2(I,K,N) for(I = N ; I >= K ; I--)
+#define isend(C) (C == '\n' || C == '\r' || C == EOF)
+#define iswhitespace(C) (C == '\t' || C ==' ' || C == '\n' || C == '\r' || C == EOF)
+ 
+#define ll long long
+#define ull unsigned long long
+ 
+#define MOD 1000000007
+ 
+#define max(a,b) ( (a) > (b) ? (a) : (b) )
+#define min(a,b) ( (a) < (b) ? (a) : (b) )
+ 
+#define max3(a,b,c) ( (a) > (max(b,c)) ? (a) : (max(b,c)) )
+#define min3(a,b,c) ( (a) < (min(b,c)) ? (a) : (min(b,c)) )
+ 
+#define max4(a,b,c,d) ( (max(a,b)) > (max(c,d)) ? (max(a,b)) : (max(c,d)) )
+#define min4(a,b,c,d) ( (min(a,b)) < (min(c,d)) ? (min(a,b)) : (min(c,d)) )
+ 
+ 
+#define FASTIO
+ 
+// FASTIO BEGIN
+ 
+#ifdef FASTIO
+ 
+#define FASTIO_INSIZE 10000000
+#define FASTIO_OUTSIZE 1000000
+ 
+char inputBuf[FASTIO_INSIZE];
+char *inptr = inputBuf;
+ 
+char outputBuf[FASTIO_OUTSIZE];
+char *outptr = outputBuf;
+ 
+#define consumewhite {while(iswhitespace(*inptr)) inptr++;}
+ 
+inline unsigned long long get_ulonglong()
+{
+	unsigned long long ans = 0;
+	while(isdigit(*inptr))
+	{
+		ans = ((ans*10) + (*inptr - '0'));
+		inptr++;
+	}
+ 
+	consumewhite;
+ 
+	return ans;
+}
+ 
+inline long long get_longlong()
+{
+	long long ans=0;
+	int flag = 1;
+	if(*inptr == '-')
+	{
+		flag = -1;
+		inptr++;
+	}
+	
+	while(isdigit(*inptr))
+	{
+		ans = ((ans*10) + (*inptr - '0'));
+		inptr++;
+	}
+ 
+	consumewhite;
+ 
+	return flag*ans;
+}
+ 
+inline int get_string(char *s,int mode)
+{
+	// mode = 1 for gets, 0 for scanf("%s")
+ 
+	int len = 0;
+	while((mode && !isend(*inptr)) || (!mode && !iswhitespace(*inptr)))
+	{
+		s[len++] = *inptr++;
+	}
+ 
+	consumewhite;
+ 
+	s[len] = '\0';
+	return len;
+}
+ 
+ 
+#define printf(...) outptr+= sprintf(outptr, __VA_ARGS__)
+ 
+#define GETINTANDSPACE(N) { N = (int) get_longlong(); }
+#define GETINT(N) { N = (int) get_longlong(); }
+#define GETUINT(N) { N = (unsigned int) get_ulonglong(); }
+#define GETLONG(N) { N = (long) get_longlong(); }
+#define GETULONG(N) { N = (unsigned long) get_ulonglong(); }
+#define GETLONGLONG(N) { N = (long long) get_longlong(); }
+#define GETULONGLONG(N) { N = get_ulonglong(); }
+#define gets(S) get_string(S,1)
+#define GETSTRING(S) get_string(S,0)
+#define getchar() (*inptr++)
+ 
+#define takeInput fread_unlocked(inputBuf,sizeof(char),FASTIO_INSIZE,stdin);
+#define printOutput fwrite_unlocked(outputBuf,sizeof(char),outptr-outputBuf,stdout);
+ 
+#else // NORMAL IO PATH
+ 
+#define GETINTANDSPACE(N) {scanf("%d\n",& N);}
+#define GETINT(N) {scanf("%d",& N);}
+#define GETUINT(N) {scanf("%u",& N);}
+#define GETLONG(N) {scanf("%ld",& N);}
+#define GETULONG(N) {scanf("%lu",& N);}
+#define GETLONGLONG(N) {scanf("%lld",& N);}
+#define GETULONGLONG(N) {scanf("%llu",& N);}
+#define GETSTRING(S) {scanf("%s", S);}
+#define gets(S) (gets(S) != NULL ? strlen(S) : 0)
+ 
+#define takeInput
+#define printOutput
+ 
+#endif // END FASTIO
+ 
+// END FASTIO
+ 
+ 
+int main()
+{
+	takeInput; // FASTIO
+ 
+	int T;
+	GETINTANDSPACE(T);
+	while(T--){
+		int C;
+		int flag = 0;
+		GETINTANDSPACE(C);
+		while(C--)
+		{
+			int n,m;
+			GETINT(n);
+			GETINT(m);
+			flag ^= ((n+m+1) % 3);
+		}
+		if(flag)
+			printf("MasterChef\n");
+		else
+			printf("Football\n");
+	}
+ 
+	printOutput; // FASTIO
+	return 0;
+}
+ 

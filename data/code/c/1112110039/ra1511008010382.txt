@@ -1,0 +1,37 @@
+#include<stdio.h>
+int main()
+{
+  long long c,d,l,e,f,t,count;
+  scanf("%lld", &t);
+  while(t--)
+  {
+    count=0;
+    scanf("%lld%lld%lld",&c,&d,&l);
+    if(l%4==0)
+    {
+      if(d==0 || c==0)
+      {
+        if(l==4*c+4*d)
+        {
+          count = 1;
+        }
+      }
+      e=c-2*d;
+      if(e>=0)
+        if(l>=4*d && l<=4*c+4*d)
+        {
+          count=1;
+        }
+      if(e<0)
+        if(l>=4*d && l<=4*c+4*d)
+        {
+          count = 1;
+        }
+    }
+    if(count == 1)
+      printf("yes\n");
+    else
+      printf("no\n");
+  }
+  return 0;
+}

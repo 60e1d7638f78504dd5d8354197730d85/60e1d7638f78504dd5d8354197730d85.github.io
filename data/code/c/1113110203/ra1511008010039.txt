@@ -1,0 +1,22 @@
+#include<stdio.h>
+int main()
+{
+    char s[15];
+    int length, zeroes = 0, ones = 0,i,survivors;
+    scanf("%d %s", &length, s);
+
+    for(i = 0; i < length; i++)
+    {
+        zeroes += (s[i] == '0');
+        ones += (s[i] == '1');
+    }
+
+  	if(zeroes<ones)
+      survivors = length - (2*zeroes);
+  	else
+      survivors = length - (2*ones);
+   
+
+    printf("%d\n",survivors);
+    return 0;
+}

@@ -1,0 +1,66 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{	float n;
+ 	cin>>n;
+ 	int i,j=0;
+ 	int n1 = (int)n;
+ 	//cout<<n1;
+ 	string a[n1];
+	while(n1!=0){
+    	i= n1%10;
+      	switch(i){
+          case 1:
+            a[j]="ONE";
+            break;
+          case 2:
+            a[j]="TWO";
+            break;
+          case 3:
+            a[j]="THREE";
+            break;
+          case 4:
+            a[j]="FOUR";
+            break;
+          case 5:
+            a[j]="FIVE";
+            break;
+          case 6:
+            a[j]="SIX";
+            break;
+          case 7:
+            a[j]="SEVEN";
+            break;
+          case 8:
+            a[j]="EIGHT";
+            break;
+          case 9:
+            a[j]="NINE";
+            break;
+          case 0:
+            a[j]="ZERO";
+            break;
+        }
+      	n1/=10;
+      	j++;
+    }
+ 
+ 	for(i=j;i>=0;i--){
+    	cout<<a[i];
+    }
+ 	cout<<" Dollars\n";
+ 	float k = n - (int)n;
+ 	
+ 	string huss = to_string(k);
+ 	//string.format("%.2f",huss);
+ 	int jj = huss.length(); 
+ 	//cout<<huss<<endl;;
+ 	int sdk=0;
+ 	for(int i=1;i<3;i++){
+    	sdk++;
+    }
+ 	//cout<<(int)(k*pow(10,sdk))<<" ";
+ 	cout<<(int)(round(k*pow(10,sdk)))<<"/"<<pow(10,sdk);
+	return 0;
+}

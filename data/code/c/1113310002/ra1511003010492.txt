@@ -1,0 +1,50 @@
+#include<math.h>
+#include<stdio.h>
+long long int firstKdigits(long long int n,long long int k)
+{
+    long double x, y;
+    x = (long double)n*log10l(n);
+    y =  pow( 10 , ((long double)x-(long long int)x +k-1)) ;
+    return ((long long int)y);
+}
+int main()
+{
+    long long int i,test,n,k,first,last,ans;
+    long long int modulo[12]={0};
+    for(i=1;i<12;i++)
+    {
+        modulo[i]=pow(10,i);
+    }
+    for(scanf("%lld",&test);test>0;test--)
+    {
+        scanf("%lld %lld",&n,&k);
+        first=firstKdigits(n,k);
+        i=n;
+        ans=1;last=n;
+        while(i)
+        {
+            if(i&1)
+            {
+                ans=(ans*last)%modulo[k];
+            }
+            last=(last*last)%modulo[k];
+            i=i>>1;
+        }
+        last=ans;
+        printf("%lld ",first);
+        first=0;
+        for(i=k-1;i>=0;i--)
+        {
+            //printf("modulo:%lld last:%lld   %lld\n",modulo[i],last,modulo[i]&last);
+            if( last>=modulo[i] )
+                break;
+            else
+                first++;
+        }
+        //printf("first:%lld\n",first);
+        for(i=0;i<first;i++)    printf("0");
+        printf("%lld\n",last);
+    }
+    return 0;
+}
+ 

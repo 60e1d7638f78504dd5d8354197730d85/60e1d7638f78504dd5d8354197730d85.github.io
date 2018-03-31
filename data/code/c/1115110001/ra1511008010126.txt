@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+ 
+int palindrome(int i,int j,char *str)
+{
+while(i<j)
+{
+	if(str[i]!=str[j])
+	return 0;
+	
+	i++;
+	j--;
+}
+return 1;
+}
+ 
+int main()
+{
+    
+  int count=0,i,j;
+  char str[100];
+  
+  scanf("%s", str);
+    
+    for(i=0;i<strlen(str)-1;i++)
+    for(j=i+1;j<strlen(str);j++)
+    if(palindrome(i,j,str))
+    count++;
+  
+  int si = count + strlen(str);
+    
+    printf("Number of palindromic substrings:%d\n",si);
+    	
+   
+    return 0;
+}
+ 

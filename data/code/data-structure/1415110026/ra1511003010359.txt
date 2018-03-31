@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int data;
+  node *next;
+};
+class LinkedList
+{
+  private:
+  node *head,*tail;
+  public:
+  LinkedList()
+  {
+    head=NULL;
+    tail=NULL;
+  }
+  void insert(int value)
+  {
+    node *newnode=new node;
+    newnode->data=value;
+    newnode->next=NULL;
+    if(head==NULL)
+    {
+      head=newnode;
+      tail=newnode;
+    }
+    else
+    {
+      tail->next=newnode;
+      tail=newnode;
+    }      
+  }
+  void display()
+  {
+    node *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+      cout<<"->"<<temp->data;
+      temp=temp->next;
+    }
+  }
+  void swapPairWise()
+  {
+    int tem;
+    node *temp;
+    temp=head;
+    while(temp!=NULL && temp->next!=NULL)
+    {
+       tem=temp->data;
+      temp->data=temp->next->data;
+      temp->next->data=tem;
+        temp=temp->next->next;
+    }
+  }
+};
+int main()
+{
+  int n,data;
+  LinkedList l;
+  cin>>n;
+  for(int i=0; i<n; i++)
+  {
+    cin>>data;
+    l.insert(data);
+  }
+  cout<<"List"<<endl;
+  l.swapPairWise();
+  l.display();
+	return 0;
+}

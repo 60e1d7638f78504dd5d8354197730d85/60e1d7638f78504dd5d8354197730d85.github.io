@@ -1,0 +1,36 @@
+#include <stdio.h>
+struct student
+{
+int date;
+int month;
+int year;
+} s;
+int main()
+{
+  int i,mdays,valid;
+  scanf("%d%d%d", &s.date, &s.month, &s.year);
+  if(s.year>2999){
+    printf("Invalid Year");
+  	return 0;
+  }
+  else if(s.month>12){
+    printf("Invalid Month");
+	return 0;;
+  }
+  else if (s.month >= 1 && s.month <= 12)  
+  {  
+    if (s.month == 2)
+      mdays = (s.year % 4 == 0 && s.year % 100 != 0 || s.year % 400 == 0) ? 29 : 28;
+    else if (s.month == 4 || s.month == 6 || s.month == 9 || s.month == 11)
+      mdays = 30;
+    else mdays = 31;
+    if (s.date >= 1 && s.date <= mdays)
+      valid = 1;
+  }
+ if(valid){
+   printf("%d %d %d", s.date+1, s.month, s.year);
+ }
+  else
+    printf("Invalid Day");
+return 0;
+}

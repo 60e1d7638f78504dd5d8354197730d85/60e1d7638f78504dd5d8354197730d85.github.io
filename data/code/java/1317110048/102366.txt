@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 static void print(String value) {
+        System.out.println(value);
+     }
+   static String reverseWordsInString(String inputString) {
+      String[] splitStringArray = inputString.split(" ");
+       
+        StringBuilder resultBuilder = new StringBuilder();
+       
+        for (String word : splitStringArray) {
+            if (!word.equals(" ")) {
+                
+                StringBuilder sb = new StringBuilder(word);
+              
+                String reverseString = sb.reverse().toString();
+              
+                resultBuilder.append(reverseString + " ");
+            }
+        }
+      
+        return resultBuilder.toString();
+    }
+    
+    public static void main(String[] args) {
+      
+        Scanner scanner = new Scanner(System.in);
+       
+        String userInputString;
+        print(" ");
+        userInputString = scanner.nextLine();
+        String result = reverseWordsInString(userInputString);
+        print(" "+result);
+    }
+}

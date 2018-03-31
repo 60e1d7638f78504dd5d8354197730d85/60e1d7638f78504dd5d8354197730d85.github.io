@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main() {
+  int mat[3][3];
+  int i,j,sd=0,s;
+  
+  for(i=0;i<3;i++) {
+    for(j=0;j<3;j++) {
+      scanf("%d",&mat[i][j]);
+    }
+  }
+  
+  for(i=0;i<3;i++) {
+    for(j=0;j<3;j++) {
+      printf("%d",mat[i][j]);
+       printf(" ");
+    }
+    printf("\n");
+  }
+  
+  for(i=0;i<3;i++) {
+    sd += mat[i][i];
+  }
+  
+  for(i=0;i<3;i++) {
+    s = 0;
+    for(j=0;j<3;j++) {
+      s += mat[i][j];
+    }
+    if(s != sd) {
+     	printf("Not a Magic Square");
+      	return 0;
+    }
+  }
+  
+  for(i=0;i<3;i++) {
+    s = 0;
+    for(j=0;j<3;j++) {
+      s += mat[j][i];
+    }
+    if(s != sd) {
+     	printf("Not a Magic Square");
+      	return 0;
+    }
+  }
+  
+     	printf("Magic Square");
+  return 0;
+}

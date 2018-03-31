@@ -1,0 +1,60 @@
+#include<stdio.h>
+double min(double a,double b)
+{
+       return (a<b?a:b);
+}
+double max(double a,double b)
+{
+       return (a>b?a:b);
+}
+int main()
+{
+    int t;
+    double s,n,m,k,temp,ans,a,b,c,d,e,f,g,h,i,j;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%lf%lf%lf%lf",&s,&n,&m,&k);
+        temp=1;ans=0;
+        k=max(k,m+n-s-1);
+        j=min(m-1,n-1);
+        if(k>j)
+        {
+               printf("%.7lf\n",ans);
+               continue;
+        }
+        a=m-1;b=s-m;c=n-1;d=s-n;e=k;f=m-k-1;g=n-k-1;h=s-m-n+k+1;i=s-1;
+        while(a||b||c||d||e||f||g||h||i)
+        {
+            if(a)
+                 temp*=a--;
+            if(e)
+                 temp/=e--;
+            if(b)
+                 temp*=b--;
+            if(f)
+                 temp/=f--;
+            if(c)
+                 temp*=c--;
+            if(g)
+                 temp/=g--;
+            if(d)
+                 temp*=d--;
+            if(h)
+                 temp/=h--;
+            if(i)
+                 temp/=i--;
+            //printf("%.7lf\n",ans);
+        }
+        ans=temp;
+        //printf("%.7lf\n",ans);
+        for(;k<j;k++)
+        {
+            temp*= (m-k-1)*(n-k-1)/((s-m-n+k+2)*(k+1));
+            ans+=temp;
+        }
+        printf("%.7lf\n",ans);
+    }
+    return 0;
+}
+ 

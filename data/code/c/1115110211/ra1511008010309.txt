@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+int n,m,l;
+  long e1=0,e2=0;
+  int a[500][500];
+  scanf("%d %d",&n,&m);
+  int i,j;
+  for(i=0;i<n;i++)
+    for(j=0;j<m;j++)
+      scanf("%d",&a[i][j]);
+  scanf("%d",&l);
+  int k;
+  for(k=0;k<l;k++){
+    int v,g;
+    scanf("%d %d",&v,&g);
+    if(e1!=-1 && v<=n && g<=m)
+      e1+=a[v-1][g-1];
+    else e1=-1;
+    if(e2!=-1 && v<=m && g<=n)
+      e2+=a[g-1][v-1];
+    else e2=-1;
+  }
+  if(e1>=e2)
+    printf("%ld\n",e1);
+  else printf("%ld\n",e2);
+	return 0;
+}

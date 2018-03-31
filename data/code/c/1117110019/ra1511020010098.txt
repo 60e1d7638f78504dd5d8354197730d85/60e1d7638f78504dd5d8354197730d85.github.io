@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main()
+{ int m,n;
+  scanf("%d %d", &m,&n);
+    int array[m][n];
+    int row, col, isLower;
+
+
+    for(row=0; row<m; row++)
+    {
+        for(col=0; col<n; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+   
+    isLower = 1;
+    for(row=0; row<m; row++)
+    {
+        for(col=0; col<n; col++)
+        {
+            
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+   
+    if(isLower == 1)
+    {
+        printf("\nyes");
+
+       
+    }
+    else
+    {
+        printf("\nno");
+    }
+
+    return 0;
+}

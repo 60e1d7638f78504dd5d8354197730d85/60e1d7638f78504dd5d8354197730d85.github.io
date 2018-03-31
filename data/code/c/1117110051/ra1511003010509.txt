@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main()
+{
+	int t,q,c;
+  scanf("%d\n%d",&t,&q);
+   if(t>999)
+  {
+    printf("LENET");
+    return 0;
+   }
+  while(t--){
+  c=count1(q);	
+  if(c==-1)
+  {
+    printf("LENET");
+    return 0;
+      }
+      printf("%d",c);
+  }
+	return 0;
+}
+int count1(int q)
+{
+  int c=0;
+  if(q>999)
+  {
+    return -1;
+    
+  }
+  while(q!=0)
+    {
+		if(q>=10)
+        {
+          q=q-10;c++;
+        }
+      else if(q>=7)
+      {
+        q=q-7;c++;
+      }
+      else if(q>=5)
+      {
+        q=q-5;c++;
+      }
+      else
+      {
+        q=q-1;c++;
+      }
+  }
+  return c;
+}

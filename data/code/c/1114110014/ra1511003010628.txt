@@ -1,0 +1,55 @@
+#include <stdio.h>
+int main()
+{
+  
+  int t,arr[10],min,i,count=0;
+  scanf("%d",&t);
+  for(i=0;i<3;i++)
+  {
+   scanf("%d",&arr[i]);
+  }
+  min=arr[0];
+  for(i=0;i<3;i++)
+  {
+     if(arr[i]<=t)
+     {
+       if(min>arr[i])
+       {
+         min=arr[i];
+       }
+     }
+    else
+    {
+      ++count;
+      
+    }
+  }  
+  for(i=0;i<3;i++)
+  {
+    if(count==3)
+    {
+      printf("No person wins!!");
+      break;
+    }
+    if(min==arr[i])
+    {
+       if(i==0)
+       {
+         printf("First person wins!!");
+       }
+      else if(i==1)
+      {
+        printf("Second person wins!!");
+      }
+      else if(i==2)
+      {
+        printf("Third person wins!!");
+      }
+    
+    }
+  }
+ 
+    
+  
+	return 0;
+}

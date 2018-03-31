@@ -1,0 +1,38 @@
+#include <cmath>
+#include <math.h>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+#define MOD 1000000007
+int main()
+{
+	long long n, k;
+	scanf("%lld %lld", &n, &k);
+	vector<long long> dp(n), arr(n);
+	double lg[n];
+	for(long long i = 0; i < n;i ++)
+	{
+		scanf("%lld",&arr[i]);
+	}
+	dp[0] = arr[0];
+	lg[0] = log(arr[0]);
+	std::deque<long long>  Qi(k);
+	Qi.push_back(0);
+   	for (long long i = 1 ; i < n; i++)
+    {
+        while( (!Qi.empty()) && Qi.front() < i - k)
+          {  
+            Qi.pop_front();             
+          }
+        lg[i] = lg[Qi.front()] + log(arr[i]);
+        dp[i] = (arr[i] * dp[Qi.front()]) % MOD;
+        while ( (!Qi.empty()) && lg[i] <= lg[Qi.back()])
+            Qi.pop_back();
+        Qi.push_back(i);
+    }
+	printf("%lld",dp[n - 1]);
+	return 0;
+} 

@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node 
+{
+  int data;
+  struct node *next;
+};
+struct node *start=NULL;
+
+void printer(struct node *start)
+{
+  struct node *ptr=start;
+  printf("Linked List\n");
+  while(ptr!=NULL)
+  {
+    printf("->%d",ptr->data);
+    ptr=ptr->next;
+  }
+}
+
+struct node *insert(struct node *start,int val)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=val;
+  
+  if(start==NULL)
+  {
+    nn->next=NULL;
+    start=nn;
+  }
+  else
+  {
+    struct node *ptr=start;
+    while(ptr->next!=NULL)ptr=ptr->next;
+    ptr->next=nn;
+    nn->next=NULL;
+  }
+  return start;
+}
+
+struct node *delete(struct node *start,int num)
+{
+  while(num--)
+  {
+    struct node *ptr=start;
+    struct node *preptr;
+    while(ptr->next!=NULL)
+    {
+      preptr=ptr;
+      ptr=ptr->next;
+    }
+    free(ptr);
+    preptr->next=NULL;
+  }
+  return start;
+  
+}
+int main()
+{
+  int n;
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+  
+  for(i=0;i<size;i++)start=insert(start,a[i]);
+  
+  scanf("%d",&n);
+  start=delete(start,n);
+  printer(start);
+  
+
+	return 0;
+}

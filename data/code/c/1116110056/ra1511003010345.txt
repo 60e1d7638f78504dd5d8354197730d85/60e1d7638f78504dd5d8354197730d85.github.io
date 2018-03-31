@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+#include<ctype.h>
+ 
+#define MAX_SIZE 2000
+ 
+bool isLapindrome(const char* string) {
+	int freq[26];
+	int i;
+	for (i = 0; i < 26; i++)
+		freq[i] = 0;
+	int mid = strlen(string) / 2;
+ 
+	for (i = 0; i < mid; i++) {
+		freq[string[i] - 'a']++;
+	}
+	for (i = (strlen(string) % 2 == 0) ? mid : mid + 1; i < strlen(string);
+			i++) {
+		freq[string[i] - 'a']--;
+	}
+	for (i = 0; i < 26; i++) {
+		if (freq[i] != 0)
+			return false;
+	}
+	return true;
+}
+ 
+int main(int argc, char** argv) {
+	int n = 0, i;
+	char string[MAX_SIZE];
+	//setbuf(stdout,NULL);
+	scanf("%d", &n);
+	for (i = 0; i < n; i++) {
+		scanf("%s", string);
+		printf("%s\n", isLapindrome(string) ? "YES" : "NO");
+	}
+	return 0;
+}

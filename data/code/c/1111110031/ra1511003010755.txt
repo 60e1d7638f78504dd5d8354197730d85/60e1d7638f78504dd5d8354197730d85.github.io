@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n,t;
+  	int i,d=0,j=0;
+  char hexadecimalnum[100];
+  int decimalnum=25, quotient, remainder;
+  	scanf("%d",&n);
+  	t=n;
+  	decimalnum=n;
+  i=0;
+  	quotient = decimalnum;
+ 
+    while (quotient != 0)
+    {
+        remainder = quotient % 16;
+        if (remainder < 10)
+            hexadecimalnum[j++] = 48 + remainder;
+        else
+            hexadecimalnum[j++] = 55+ 32 + remainder;
+        quotient = quotient / 16;
+    }
+  	t=n;
+  i=0;
+  	while(t!=0){
+    	d=d+(pow(10,i)*(t%8));
+      	t=t/8;
+      	i=i+1;
+    }
+  printf("Decimal value:%d",n);
+  	printf("\nOctal value:%d",d);
+  	printf("\nHexadecimal value:");
+    for (i = j-1; i >= 0; i--)
+            printf("%c", hexadecimalnum[i]);
+	return 0;
+}

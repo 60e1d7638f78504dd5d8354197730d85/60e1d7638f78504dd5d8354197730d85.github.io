@@ -1,0 +1,25 @@
+#include<math.h>
+#include <stdio.h>
+int main()
+{
+	int n,i;
+  	float sum1=0,avg,dev=0,sd1,sd2,sd3=0,sd4,sd5;
+  	scanf("%d",&n);
+  	int arr[n];
+  	for(i=0;i<n;i++)
+    {
+      	scanf("%d",&arr[i]);
+      	sum1+=arr[i];     	
+    }
+  	avg=sum1/n;
+  	for(i=0;i<n;i++)
+    {
+      	sd1=arr[i]-avg;
+      	sd2=sd1*sd1;
+      	sd3+=sd2;
+    }
+  	sd4=sd3/n;
+  	sd5=sqrt(sd4);
+  	printf("Mean=%.2f\nSD=%.2f",avg,sd5);
+	return 0;
+}

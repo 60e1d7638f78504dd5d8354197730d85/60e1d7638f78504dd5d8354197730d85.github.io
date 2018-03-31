@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+long n,i,j,k,l,m,o=0,p;
+  scanf("%ld",&n);
+  long a[n],b[100];
+  for(i=0;i<n;i++)
+  {
+    p=0;
+    o=0;
+  scanf("%ld",&a[i]);
+    for(j=2;j<=a[i];j++)
+    {
+      m=0;
+      k=sqrt(j);
+     for(l=2;l<=k;l++)
+     {
+       if(j%l==0)
+       {
+         m=1;
+         break;
+       }
+     }
+      if(m==0)
+      {
+      b[o]=a[i];
+        o=o+1;
+      }     
+    }
+    for(j=0;j<o;j++)
+      for(l=0;l<o;l++)
+      {
+      if(b[j]+b[l]==a[i])
+      {
+        p=1;
+        break;
+      }
+      }
+    if(p==0)
+    {
+      printf("Deepa");
+    }
+    else
+    {
+      printf("Arjit");
+    }
+    if(i!=n-1)
+      printf("\n");
+  }
+	return 0;
+}

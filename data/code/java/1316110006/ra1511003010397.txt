@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       String s=sc.next();int count=0;
+       if(s.length()<10)
+       {
+         System.out.println("Not a valid password");
+         System.exit(0);
+       }
+       for(int i=0;i<s.length();i++)
+       {
+          if(s.charAt(i)>=48 && s.charAt(i)<=57)
+            count++;
+          if((s.charAt(i)>=97 && s.charAt(i)<=122) || (s.charAt(i)>=65 && s.charAt(i)<=90) || (s.charAt(i)>=48 && s.charAt(i)<=57))
+          {}
+         else
+         {
+            System.out.println("Not a valid password");
+         System.exit(0);
+         }
+       }
+       if(count<2)
+       {
+         System.out.println("Not a valid password");
+         System.exit(0);
+       }
+       System.out.println("Password is valid");
+	}
+}

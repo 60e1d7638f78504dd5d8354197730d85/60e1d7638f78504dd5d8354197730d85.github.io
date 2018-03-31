@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int Minimum(int a,int b){
+return a<b?a:b;
+}
+
+int main()
+{
+	int num[26],res[26];
+  	int i,j,n,found;
+  
+  char str[100];
+	scanf("%d",&n);
+  for(i=0;i<26;i++){
+  
+  res[i]=101;
+  }
+  
+    for(j=0;j<n;j++){
+    scanf("%s",str);
+      for(i=0;i<26;i++){
+      num[i]=0;
+      }
+      for(i=0;str[i]!='\0';i++){
+      num[str[i]-'a']++;
+      }
+      
+      for(i=0;i<26;i++){
+      res[i]=Minimum(res[i],num[i]);
+      }
+    }  
+      found=0;
+      for(i=0;i<26;i++){
+     for(j=0;j<res[i];j++){
+     printf("%c",i+'a');
+       found=1;
+     } 
+      }
+  
+  if(!found){
+  printf("no such string");}
+  printf("\n");
+    
+    
+    
+  
+  return 0;
+}

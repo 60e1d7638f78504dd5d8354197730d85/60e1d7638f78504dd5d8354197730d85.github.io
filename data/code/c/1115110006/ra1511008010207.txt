@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#define MAXLEN 20
+#define MAXCUT 4
+#define MAXVAL 1000000000000LL
+#define inf 1000000000000000LL
+ 
+typedef long long ll;
+ int i,j,k;
+void calcAllPosVal(ll resBegEnd[MAXLEN][MAXLEN],char str[]) {
+  ll res;
+  for(i=0;i<MAXLEN;i++) {
+    for(j=0;j<MAXLEN;j++)
+      resBegEnd[i][j]=-inf;
+  }
+  for(i=0;i<strlen(str);i++) {
+    res=0;
+    int j;
+    int ndig=0;
+    for(j=i;j<strlen(str);j++) {
+      res=(res*10)+(str[j]-48);
+      ndig++;
+      if(((ndig>1)&&res==0&&(str[j]=='0'))||(ndig>1&&res==(str[j]-48)))
+	break;
+      if(res>MAXVAL)
+	break;
+      resBegEnd[i][j]=res;
+    }
+    for(;j<strlen(str);j++)
+      resBegEnd[i][j]=-inf;
+  }
+  
+}
+ll max(ll i , ll j)
+{
+	return (i>j?i:j);
+}
+ 
+ll solve(ll dp[MAXCUT+1][MAXLEN],ll resBegEnd[MAXLEN][MAXLEN],char str[]) {
+  for(i=0;i<=MAXCUT;i++)
+    for(j=0;j<MAXLEN;j++)
+      dp[i][j]=-inf;
+  for(i=0;i<strlen(str);i++) {
+    dp[1][i]=resBegEnd[0][i];
+  }
+  for(k=2;k<=MAXCUT;k++) {
+    for(i=0;i<strlen(str);i++) {
+      for(j=i+1;j<strlen(str);j++) {
+	if(dp[k-1][i]!=-inf && resBegEnd[i+1][j]!=-inf)
+	  dp[k][j]=max(dp[k][j],dp[k-1][i]+resBegEnd[i+1][j]);
+      }
+    }
+  }
+  
+  return dp[MAXCUT][strlen(str)-1];
+}
+ 
+ 
+int main() {
+  char str[10000];
+  int nTest;
+  ll dp[MAXCUT+1][MAXLEN],resBegEnd[MAXLEN][MAXLEN];
+  ll res;
+  int t;
+  scanf("%d",&nTest);
+  for(t=1;t<=nTest;t++) {
+    scanf("%s",str);
+    calcAllPosVal(resBegEnd,str);
+    res=solve(dp,resBegEnd,str);
+    if(res==-inf)
+      printf("The output is:unlucky\n");
+    else
+      printf("The output is:%lld\n",res);
+  }
+  return 0;
+}

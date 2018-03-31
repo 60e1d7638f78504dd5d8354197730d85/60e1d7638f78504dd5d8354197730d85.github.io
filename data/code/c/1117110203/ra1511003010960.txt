@@ -1,0 +1,25 @@
+#include <stdio.h>
+int isprime(int num);
+void print(int l,int h);
+int main()
+{
+	int l,h;
+  	scanf("%d %d",&l,&h);
+  	print(l,h);
+	return 0;
+}
+void print(int l,int h){
+  while(l<=h){
+    if(isprime(l))
+      printf("%d\n",l);
+    l++;
+  }
+}
+int isprime(int num){
+  int i;
+  for(i=2;i<=num/2;i++){
+    if(num%i==0)
+      return 0;
+  }
+  return 1;
+}

@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+import java.text.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Average.computeAvg();
+       	System.out.println(Average.sum+"\n"+Average.avg);
+	}
+}
+class Average{
+  	static int sum;
+  	static String avg;
+	static void computeAvg(){
+    	Scanner sc=new Scanner(System.in);
+      	int n = sc.nextInt();
+      	sum=0;
+      	for(int i=0;i<n;i++){int num=sc.nextInt();sum+=num;}
+      	DecimalFormat format=new DecimalFormat("0.00");
+      	double aavg=(double)Math.round(((double)sum/n)*100)/100;
+      	avg=format.format(aavg);
+    }
+}

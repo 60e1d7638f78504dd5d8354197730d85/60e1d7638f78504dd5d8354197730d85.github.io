@@ -1,0 +1,38 @@
+#include<stdio.h>
+int search(int mat[100][100], int n,int m, int x)
+{
+   int i = 0, j = m-1;  
+   while ( i < n && j >= 0 )
+   {
+      if ( mat[i][j] == x )
+      {
+         printf("1\n");
+         return 1;
+      }
+      if ( mat[i][j] > x )
+        j--;
+      else 
+        i++;
+   }
+ 
+   printf("0\n");
+   return 0;  
+}
+ 
+
+int main()
+{
+  int mat[100][100],x;
+  int n,m,i,j,t;
+  scanf("%d",&t);
+  while(t--)
+  {
+  scanf("%d%d",&n,&m);
+  for(i=0;i<n;i++)
+  for(j=0;j<m;j++)
+  scanf("%d",&mat[i][j]);
+  scanf("%d",&x);
+  search(mat, n,m, x);
+  }
+  return 0;
+}

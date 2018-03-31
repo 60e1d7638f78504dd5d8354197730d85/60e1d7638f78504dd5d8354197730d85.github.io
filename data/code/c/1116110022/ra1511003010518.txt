@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+  
+  char str[100],ch;
+  int i,j,m=0;
+  scanf("%s",str);
+  scanf("\n%c",&ch);
+  for(i=0;i<strlen(str);i++)
+  {
+    if(str[i] == ch)
+    {
+      m++;
+      for(j=i+1;j<strlen(str);j++){
+        str[j-1]=str[j];
+      }
+      str[j-1]='\0';
+      //printf("%s",str);
+      i-=1;
+     }
+    //printf(" %d %d\n",i,m);
+  }
+  printf("%s",str);
+        
+  return 0;
+}

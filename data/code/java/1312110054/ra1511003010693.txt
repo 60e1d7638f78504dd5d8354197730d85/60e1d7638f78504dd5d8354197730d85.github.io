@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) {
+       Scanner x = new Scanner(System.in);
+       List<Character> inp = new ArrayList<Character>();
+       Set<Character> uniq = new HashSet<Character>();
+       String s = x.nextLine();
+       for(int i = 0; i < s.length(); i++){
+         inp.add(s.charAt(i));
+         uniq.add(s.charAt(i));
+       }
+       List<Character> sorted_uniq = new ArrayList<Character>(uniq);
+       Collections.sort(sorted_uniq);
+       for(char c: sorted_uniq){
+         int count = 0;
+         for(char e: inp){
+           if(c == e)
+             count++;	
+         }
+         System.out.println(c + "=" + count);
+       }
+	}
+}

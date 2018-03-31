@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+   static void hexaToDecimal(String str) throws NumberFormatException{  
+     try {
+       if(isHex(str)) {
+       		int decimal = Integer.parseInt(str,16);
+            System.out.println(decimal);
+       } 
+       else  
+        throw new NumberFormatException();  
+     } catch(NumberFormatException e){
+     	System.out.println("java.lang.NumberFormatException");
+     }
+   }  
+  	static boolean isHex (String str) {
+       	int count = 0;
+     	for (int i = 0; i < str.length(); i++){
+        	if ((str.charAt(i) >= 48) && (str.charAt(i) <= 57)) 
+              count++;
+          	else if ((str.charAt(i) >= 65) && (str.charAt(i) <= 70)) 
+              count++;
+
+        }
+        if (count == str.length()) return true;
+       	else return false;
+     }
+	 public static void main(String[] args) { 
+		Scanner in = new Scanner (System.in);
+        hexaToDecimal(in.nextLine());
+     }
+}

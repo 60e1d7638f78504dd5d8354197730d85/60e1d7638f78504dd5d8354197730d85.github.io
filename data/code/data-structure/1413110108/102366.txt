@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string.h>
+#include <algorithm>
+#include <set>
+#include <math.h>
+using namespace std;
+
+const int N = 100000;
+
+double x[N], v[N], t[N];
+double pmax[N], pmin[N];
+int n;
+bool f(double t)
+{
+	for (int i = 0; i < n; i++)
+	{
+		pmax[i] = x[i] + t*v[i];
+		if (pmax[i] > 1000000000)
+			pmax[i] = 1000000000;
+		pmin[i] = x[i] - t*v[i];
+		if (pmin[i] < 0)
+			pmin[i] = 0;
+	}
+	sort(pmin, pmin + n);
+	sort(pmax, pmax + n);
+	if (pmax[0] >= pmin[n - 1])
+		return true;
+	return false;
+}
+
+
+double bs()
+{
+	double low = 0, high = 10000000000;
+	double mid = low + (high - low) / 2.0;
+	while (high - low > 0.0000001)
+	{
+		if (f(mid))
+			high = mid-0.00000001;
+		else low = mid+0.00000001;
+		mid = low + (high - low) / 2.0;
+	}
+	return mid;
+}
+
+
+int main()
+{
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+		scanf("%lf", &x[i]);
+	for (int i = 0; i < n; i++)
+		scanf("%lf", &v[i]);
+	
+	printf("%f\n", bs());
+	//system("pause");
+	return 0;
+}
+

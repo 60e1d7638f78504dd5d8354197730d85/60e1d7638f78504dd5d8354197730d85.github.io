@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int m, n;
+    cin>>m>>n;
+    int a[m], b[n], i, j, k=0, c[m+n];
+    for(i=0; i<m; i++)
+      cin>>a[i];
+    for(j=0; j<n; j++)
+      cin>>b[j];
+    i=0; j=0;
+    while(i<m && j<n)
+    {
+      if(a[i]>b[j])
+        c[k++] = a[i++];
+      else
+        c[k++] = b[j++];
+    }
+    while(i<m)
+      c[k++] = a[i++];
+    while(j<n)
+      c[k++] = b[j++];
+    for(i=0; i<m+n; i++)
+      cout<<c[i]<<" ";
+    cout<<endl;
+  }
+ 
+	return 0;
+}

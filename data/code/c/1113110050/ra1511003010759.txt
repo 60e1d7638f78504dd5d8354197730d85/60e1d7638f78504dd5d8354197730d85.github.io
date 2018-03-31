@@ -1,0 +1,43 @@
+#include <stdio.h>
+int main()
+{
+  int cases, luck, i;
+  char code[100];
+  
+  scanf("%d", &cases);
+  
+  while(cases--)
+  {
+    luck = 1;
+    
+  	scanf("%s", code);
+    
+    if(code[0] == code[1])
+    {
+      //printf("-->%c\n", code[0]);
+      //printf("-->%c\n", code[1]);
+    	luck = 0;
+    }
+    
+    for(i = 2; code[i] != '\0'; i++)
+    {
+    	if(i % 2 == 0 && code[i] != code[0] || i % 2 == 1 && code[i] != code[1])
+        {
+        	luck = 0;
+          	break;
+        }
+    }
+    
+    if(luck == 0)
+  {
+  	printf("NO\n");
+  }
+  else
+  {
+  	printf("YES\n");
+  }
+    
+  }
+
+	return 0;
+}

@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+public class TestClass  {
+     private int basicSalary; 
+     private int daPercentage; 
+     private int hraPercentage; 
+     private double taxAmount; 
+     private double takeHomeSalary; 
+  	 private void initializeData(int basicSalary, int daPercentage, int hraPercentage) {
+     	this.basicSalary = basicSalary;
+        this.daPercentage = daPercentage;
+        this.hraPercentage = hraPercentage;
+     }
+  	private void calculateTaxAmount (){
+    	this.taxAmount = (0.05)*(this.basicSalary + (this.daPercentage*0.01)*(this.basicSalary) + (this.hraPercentage*0.01)*(this.basicSalary)); 
+    }
+  	private void calculateTaxAmount (int taxPercentage){
+    	this.taxAmount = (taxPercentage * 0.01)*(this.basicSalary + (this.daPercentage*0.01)*(this.basicSalary) + (this.hraPercentage*0.01)*(this.basicSalary)); 
+    }	
+  	private void takeHomeSalary() {
+    	this.takeHomeSalary = (this.basicSalary + (this.daPercentage*0.01)*(this.basicSalary) + (this.hraPercentage*0.01)*(this.basicSalary)) - this.taxAmount;
+    }
+  	public void displayData() {
+    	System.out.printf("Basic Salary is %d\n",this.basicSalary);
+    	System.out.printf("DA amount is %.2f\n",(this.daPercentage*0.01)*this.basicSalary);
+    	System.out.printf("HRA amount is %.2f\n",(this.hraPercentage*0.01)*this.basicSalary);
+    	System.out.printf("Total Salary is %.2f\n",(this.basicSalary + (this.daPercentage*0.01)*(this.basicSalary) + (this.hraPercentage*0.01)*(this.basicSalary)));
+    	System.out.printf("Tax to be paid is %.2f\n",this.taxAmount);
+    	System.out.printf("Take Home Salary is %.2f\n",this.takeHomeSalary);
+    }
+  	public static void main(String[] args) { 
+		Scanner in = new Scanner (System.in);
+      	TestClass obj1 = new TestClass();
+      	obj1.initializeData(in.nextInt(),in.nextInt(),in.nextInt());
+      	obj1.calculateTaxAmount();
+      	obj1.takeHomeSalary();
+      	obj1.displayData();
+        TestClass obj2 = new TestClass();
+      	obj2.initializeData(in.nextInt(),in.nextInt(),in.nextInt());
+      	obj2.calculateTaxAmount(in.nextInt());
+      	obj2.takeHomeSalary();	
+      	obj2.displayData();
+    }
+}

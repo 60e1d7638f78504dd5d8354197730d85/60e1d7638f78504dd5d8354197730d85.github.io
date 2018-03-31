@@ -1,0 +1,70 @@
+#include <stdlib.h>
+#include <stdio.h>
+ 
+typedef long long ll;
+typedef unsigned long long ull;
+ 
+#define MOD   1000000007ULL
+#define PP    23ULL
+#define INVPP 739130440ULL
+ 
+ull ExptMod(ull base, ull power) {
+  int l2 = 0;
+  ull ee;
+ 
+  while ((1ULL << l2) <= power)
+    l2++;
+  l2--;
+ 
+  ee = 1;
+  while (l2 >= 0) {
+    ee = (ee * ee) % MOD;
+    if ((power >> l2) & 1ULL)
+      ee = (ee * base) % MOD;
+    l2--;
+  }
+  
+  return ee;
+}
+ 
+ull CalcSqrHash(ull n, ull d) {
+  ull d2 = d * d;
+  ull iter = 2 * n;
+  ull coef = 0;
+  ull val = 0;
+  ull sum = 0;
+  ull mult;
+ 
+  if (d <= 2 || (d == 3 && n <= 1)) {
+    iter--;
+    n--;
+  }
+ 
+  mult = ExptMod(PP, iter - 1);
+  while (iter--) {
+    if (iter >= n)
+      coef += d2;
+    else
+      coef -= d2;
+ 
+    val = coef + val / 10;
+    sum += (val % 10) * mult;
+    //printf("iter: %Lu, coef: %Lu, val: %Lu, mult: %Lu, sum: %Lu\n",
+    //	   iter, coef, val, mult, sum);
+    mult = (mult * INVPP) % MOD;
+  }
+ 
+  return sum % MOD;
+}
+ 
+int main(void) {
+  ull tc, n, d;
+ 
+  scanf(" %Lu", &tc);
+  while (tc--) {
+    scanf(" %Lu %Lu", &n, &d);
+    printf("%Lu\n", CalcSqrHash(n, d));
+  }
+  
+  return 0;
+}

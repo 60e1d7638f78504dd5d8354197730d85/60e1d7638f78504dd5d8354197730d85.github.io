@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+interface Student
+{
+  public void getDetails();
+  public void displayDetails();
+}
+class StudentDetails implements Student
+{
+	String father, mother;
+    float cutoff;
+	public void getDetails()
+    {
+    Scanner in = new Scanner(System.in);
+    father = in.nextLine();
+    mother = in.nextLine();
+    cutoff = in.nextFloat();
+    }
+    
+    public void displayDetails()
+    {
+    System.out.print(father+"\n"+mother+"\n"+cutoff);
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		StudentDetails sd = new StudentDetails();
+        sd.getDetails();
+        sd.displayDetails();
+	}
+}

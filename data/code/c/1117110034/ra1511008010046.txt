@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include<limits.h>
+typedef long int l;
+int main(void) {
+	l min=LONG_MAX,max=LONG_MIN,n,a[1000006]={0},i,j;
+	scanf("%ld",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%ld",&j);
+		if(j<min)min=j;
+		if(j>max)max=j;
+		a[j]++;
+	}
+	for(i=min;i<=max;i++)
+	{
+		while(a[i])
+		{
+			printf("%ld\n",i);
+			a[i]--;
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+int main()
+{
+	int t,i,g,j,i_prog,n,q,k,l;
+  int count_heads,count_tails;
+  int arr[1000];
+  	scanf("%d",&t);
+  for(i=0;i<t;i++){
+  scanf("%d",&g);
+  for(j=0;j<g;j++){
+  scanf("%d %d %d",&i_prog,&n,&q);
+    count_heads=0;
+    count_tails=0;
+   if(i_prog==1){
+   for(k=0;k<n;k++)
+     arr[k]=1;
+   }
+    else{
+    for(k=0;k<n;k++)
+      arr[k]=0;
+    }
+    for(k=0;k<n;k++){
+    for(l=0;l<=k;l++){
+    if(arr[l]==1)
+      arr[l]=0;
+     else
+       arr[l]=1;
+    }
+    }
+    
+    for(l=0;l<n;l++){
+    if(arr[l]==0)
+      count_tails++;
+      else
+        count_heads++;
+    }
+    if(q==1)
+      printf("%d\n",count_heads);
+    else
+      printf("%d\n",count_tails);
+    
+  }
+  }
+	return 0;
+}

@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+long int partition(char *a, long int *p, long int left, long int right, long int p_ind) {
+  long int p_val;
+  long int tmp;
+ 
+  p_val = p[p_ind];
+  tmp = p[right];
+  p[right] = p_val;
+  p[p_ind] = tmp;
+ 
+  long int ind = left;
+  long int i;
+  for (i = left; i < right; ++i) {
+    if (strcmp(&a[p[i]], &a[p_val]) < 0L) {
+      tmp = p[i];
+      p[i] = p[ind];
+      p[ind] = tmp;
+      ++ind;
+    }
+  }
+  tmp = p[ind];
+  p[ind] = p[right];
+  p[right] = tmp;
+ 
+  return ind;
+}
+ 
+void quick_sort(char *a, long int *p, long int left, long int right) {
+  long int p_ind, new_ind;
+ 
+  if (left < right) {
+    p_ind = left + (right - left)/2L;
+    new_ind = partition(a, p, left, right, p_ind);
+    quick_sort(a, p, left, new_ind - 1L);
+    quick_sort(a, p, new_ind + 1L, right);
+  }
+}
+ 
+long int lcp(char *a, long int *p, long int i) {
+  char *c = &a[p[i]];
+  char *d = &a[p[i-1L]];
+  char *b = c;
+ 
+  while (*(c++) == *(d++));
+ 
+  return c - b - 1;
+}
+ 
+int main(void) {
+  char *a, *b;
+  long int i, a_len, b_len, len;
+ 
+  a = (char *) malloc(200002 * sizeof(char));
+  scanf("%s", a);
+  a_len = strlen(a);
+  b = a + a_len + 1L;
+  scanf("%s", b);
+  b_len = strlen(b);
+  len = a_len + 1L + b_len;
+ 
+  long int *p_ab = (long int *) malloc((a_len + b_len) * sizeof(long int));
+  long int *p_a = p_ab;
+  long int *p_b = p_a + a_len;
+  for (i = 0L; i < a_len; ++i)
+    p_a[i] = i;
+  for (i = 0L; i < b_len; ++i)
+    p_b[i] = i;
+ 
+  quick_sort(a, p_a, 0L, a_len - 1L);
+  quick_sort(b, p_b, 0L, b_len - 1L);
+ 
+  long int a_dups= 0L;
+  long int b_dups= 0L;
+  for (i = 1L; i < a_len; ++i)
+    a_dups += lcp(a, p_a, i);
+  for (i = 1L; i < b_len; ++i)
+    b_dups += lcp(b, p_b, i);
+ 
+  long int u_a = (a_len * (a_len + 1L)) / 2L - a_dups;
+  long int u_b = (b_len * (b_len + 1L)) / 2L - b_dups;
+ 
+  a[a_len] = '$';
+  for (i = 0L; i < len; ++i)
+    p_ab[i] = i;
+  quick_sort(a, p_ab, 0L, len - 1L);
+ 
+  long int ab_dups = 0L;
+  for (i = 1L; i < len; ++i)
+    ab_dups += lcp(a, p_ab, i);
+  long int u_aub = (len * (len + 1L)) / 2L - ab_dups - (a_len + 1L) * (b_len + 1L);
+ 
+  printf("%ld\n",  2L*u_aub - u_a - u_b);
+ 
+  return 0;
+} 

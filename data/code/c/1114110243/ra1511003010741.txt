@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int *prime,max;
+ 
+int binsearch(int a){
+	int low,high,mid,flag=0;
+	low=0;high=max;
+	while(low<=high){
+		mid=(low+high)/2;
+		if(prime[mid]>a){
+			high=mid-1;
+		}
+		else if(prime[mid]<a){
+			low=mid+1;
+		}
+		else{
+			flag=1;
+			break;
+		}
+	}
+	return flag;
+}
+int isPrime(int a){
+	int i,t=sqrt(a);
+	for(i=2;i<=t;i++){
+		if(a%i==0){
+			return 0;
+		}
+	}
+	return 1;
+}
+int isgood(int a){
+	int i,j,temp,temp2,sum=0,count=0,copy;
+	temp=sqrt(a);
+	for(i=2;i<=temp;i++){
+		if((a%(i*i))==0){
+			return 0;
+		}
+		else{
+			if(a%i==0){
+				sum+=i;
+				sum+=(a/i);
+			}
+		}
+    }if(a!=1) sum+=(1+a);
+	else sum=1;
+	copy=sum;
+	//printf("sumDivisors is =%d for i = %d\n",sum,a);
+	for(i=0;((i<80000)&&(i<=max));i++){
+		if(copy<2){
+			break;
+		}
+		//printf("primes covered = %d\n",prime[i]);
+		if(copy%prime[i]==0){
+			count++;
+			copy/=prime[i];
+			while(copy%prime[i]==0){
+				copy/=prime[i];
+			}
+		}
+	}
+	temp2=prime[max]+2;
+	temp=sum/2;
+	for(i=temp2;((i<=temp)&&(copy>1));i+=2){
+		if(isPrime(i)){
+          prime[++max]=i;
+			if(copy%i==0){
+				count++;
+				copy/=i;
+			}
+			while(copy%i==0){
+				copy/=i;
+			}
+		}
+	}
+	if((isPrime(sum))&&(copy>1)) count++;
+	//printf("count = %d\n",count);
+	if(count==0||count==1){
+		return 0;
+	}
+	if(count>prime[max]){
+		if(isPrime(count)){
+			return sum;
+		}
+	}
+	else{
+		if(binsearch(count)){
+			return sum;
+		}
+	}
+	return 0;
+}
+int main(void){
+	int t,l,r,i;
+	long long *goodsum,sum;
+	goodsum=malloc(sizeof(long long)*100001);
+	prime=malloc(sizeof(int)*10000);
+	prime[0]=2;
+	prime[1]=3;
+	max=1;
+	scanf("%d",&t);
+	goodsum[0]=isgood(0);
+	for(i=1;i<100001;i++){
+		//goodsum[i]=-1;
+		goodsum[i]=(long long)isgood(i)+goodsum[i-1];
+	}
+	while(t--){
+		scanf("%d%d",&l,&r);
+		sum=0;
+      	if(l==0) sum=goodsum[r];
+		else sum=goodsum[r]-goodsum[l-1];
+		printf("%lld\n",sum);
+    }
+}

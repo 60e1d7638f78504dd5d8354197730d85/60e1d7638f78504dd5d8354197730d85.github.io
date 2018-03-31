@@ -1,0 +1,34 @@
+#include<stdio.h>
+ 
+int n;
+int a[100];
+int cost[100];
+ 
+int 
+max(int a, int b){
+	return a>b?a:b;
+}
+ 
+int 
+recur(int start, int money_left){
+	if(start >= n)
+		return 0;
+	if(money_left <= 0)
+		return 0;
+	if(cost[start] <= money_left)
+		return max(a[start] + recur(start+1, money_left-cost[start]), recur(start+1, money_left));
+	return recur(start+1, money_left);
+}
+ 
+int main(){
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		int i, k;
+		scanf("%d%d",&n,&k);
+		for(i=0; i<n; i++)
+			scanf("%d%d",&cost[i],&a[i]);
+		printf("%d\n", recur(0, k));
+	}
+	return 0;
+} 

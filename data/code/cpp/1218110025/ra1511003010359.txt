@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+class A
+{
+  public:
+  int a;
+  void printA()
+  {
+    cout<<"A : "<<a<<endl;
+  }
+  void setA(int x)
+  { 
+     a=x;
+  }
+};
+class B:public A
+{
+   public:
+  int b;
+  void printB()
+  {
+    cout<<"B : "<<b<<endl;
+  }
+  void setB(int x)
+  { 
+     b=x;
+  }
+};
+class C:public A
+{
+   public:
+  int c;
+  void printC()
+  {
+    cout<<"C : "<<c<<endl;
+  }
+  void setC(int x)
+  { 
+     c=x;
+  }
+};
+class D:public B,public C
+{
+   public:
+  int d;
+  void printD()
+  {
+    cout<<"D : "<<d<<endl;
+  }
+  void setD(int x)
+  { 
+     d=x;
+  }
+};
+int main()
+{
+  int n1,n2,n3,n4,n5;
+  cin>>n1>>n2>>n3>>n4>>n5;
+  B ob;
+  C oc;
+  D od;
+  ob.setA(n1);
+  oc.setA(n2);
+  ob.printA();
+  oc.printA();
+  ob.setB(n3);
+  ob.printB();
+  oc.setC(n4);
+  oc.printC();
+  od.setD(n5);
+  od.printD();
+	return 0;
+}

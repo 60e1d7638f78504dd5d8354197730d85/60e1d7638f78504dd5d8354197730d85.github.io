@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+const int MAX = 1e4 + 5;
+bool visited[MAX];
+int main()
+{
+	int edges, x, y, testcases, nodes;
+	cin >> testcases;
+	while(testcases--)
+	{
+		cin >> edges;
+		for(int i = 0;i < edges;++i)
+		{
+			cin >> x >> y;
+			visited[x] = true;
+			visited[y] = true;
+		}
+		nodes = 0;
+		for(int i = 0;i < MAX;++i)
+			if(visited[i]) 
+			{
+				visited[i] = false;
+				nodes++;
+			}
+		cout << nodes << endl;
+	}
+	return 0;
+}

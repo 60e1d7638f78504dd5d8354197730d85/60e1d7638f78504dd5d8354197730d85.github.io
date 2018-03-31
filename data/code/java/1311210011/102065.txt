@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  static final int MOD=(int)1e9+7;
+  public static int solve(int[] ar){
+    int size=1;
+    int def=0;
+    int sum=ar[0]+ar[0];
+    for(int j=1;j<ar.length;j++)
+    {
+      def=(int)((2*def+1L*sum*ar[j])%MOD);
+      size <<=1;
+      if (size>=MOD)
+        size-=MOD;
+      sum=(int)((sum+1L*size*ar[j])%MOD);
+         
+    }
+    return def;
+  }
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       int tc=inp.nextInt();
+      while(tc-- !=0)
+      {
+        
+        int[] n=new int[inp.nextInt()+1];
+        
+       for(int i=0;i<n.length;i++)
+                n[i]=inp.nextInt();
+         System.out.println(solve(n));
+       
+      }
+	}
+}

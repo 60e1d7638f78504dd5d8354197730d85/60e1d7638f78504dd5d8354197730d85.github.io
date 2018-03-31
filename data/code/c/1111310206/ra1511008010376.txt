@@ -1,0 +1,27 @@
+#include<string.h>
+#include <stdio.h>
+int main()
+{
+  int n,mid,counter,i,temp;
+  char s[50];
+  scanf("%d",&n);
+  scanf("%s",s);
+  int l=strlen(s);
+  char news[l];
+  mid=(n-1)/2;
+  counter=0;
+  for(i=0;i<n;i++)
+  {
+    temp=i+1;
+    if(n%2==0)
+      news[mid-counter]=s[i];
+    else
+      news[mid+counter]=s[i];
+    if(counter>=0)
+      counter-=temp;
+    else
+      counter+=temp;
+  }
+  printf("%s",news);
+	return 0;
+}

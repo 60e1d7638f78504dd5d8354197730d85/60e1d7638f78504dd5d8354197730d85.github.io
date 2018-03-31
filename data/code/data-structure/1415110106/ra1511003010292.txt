@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include<malloc.h>
+struct node
+{
+  int data;
+  struct node *link;
+}*start , *rev_start;
+void insertion(int a)
+{
+  struct node *temp = malloc(sizeof(struct node));
+  struct node *temp_ = malloc(sizeof(struct node));
+  temp -> data = a;
+  temp -> link = NULL;
+  temp_-> data = a;
+  temp_ -> link = NULL;
+  if(start == NULL && rev_start == NULL)
+  {
+    start = temp;
+    rev_start = temp_;
+  }
+  else
+  {
+    struct node *temp1 = rev_start;
+    temp -> link = start;
+    start = temp;
+    while(temp1-> link != NULL)
+      temp1 = temp1 -> link ;
+    temp1 -> link = temp_;
+  }
+}
+void display()
+{
+  struct node *temp = start;
+  printf("Linked list=");
+  while(temp != NULL)
+  {
+    printf("%d ",temp->data);
+    temp = temp -> link;
+  }
+  printf("\nReversed Linked list=");
+  temp = rev_start;
+  while(temp != NULL)
+  {
+    printf("%d ",temp->data);
+    temp = temp -> link;
+  }
+}
+int main()
+{int a , n , i;
+ scanf("%d",&n);
+ for(i=0 ; i<n ; i++)
+ {
+   scanf("%d",&a);
+   insertion(a);
+ }
+ display();
+	return 0;
+}

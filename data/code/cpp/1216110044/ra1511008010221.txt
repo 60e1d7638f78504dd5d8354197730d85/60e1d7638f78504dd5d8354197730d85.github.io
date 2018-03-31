@@ -1,0 +1,35 @@
+#include <iostream>
+
+#define ll long
+using namespace std;
+
+int hcf(int a, int b) {
+    if (b == 0)
+        return a;
+    return hcf(b, a % b);
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int n;
+        scanf("%d", &n);
+        int i;
+        int a[1000009];
+        for (i = 0; i <= n - 1; i++)
+            scanf("%d", &a[i]);
+        ll lcm;
+        ll low = ((ll) a[0] * a[1]) / (ll) hcf(a[0], a[1]);
+        for (i = 0; i <= n - 2; i++) {
+            int j = i + 1;
+            for (; j <= n - 1; j++) {
+                lcm = ((ll) a[i] * a[j]) / (ll) hcf(a[i], a[j]);
+                if (lcm < low)
+                    low = lcm;
+            }
+        }
+        printf("%li\n", low);
+    }
+    return 0;
+}

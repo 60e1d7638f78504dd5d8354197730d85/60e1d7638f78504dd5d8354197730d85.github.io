@@ -1,0 +1,111 @@
+#include <stdio.h>
+#define MAX 1000000000
+long C[4000][2000] ; 
+ 
+int maxn , maxk ; 
+int min(int a, int b);
+long cons ; 
+// Returns value of Binomial Coefficient C(n, k)
+void  binomialCoeff(int n, int k)
+{
+    //int C[n+1][k+1];
+    int i, j;
+ 
+    // Caculate value of Binomial Coefficient in bottom up manner
+    for (i = 0; i <= n; i++)
+    {
+        for (j = 0; j <= k; j++)
+        {
+            // Base Cases
+            if (j == 0 || j == i)
+                C[i][j] = 1;
+            else
+            if(j>i)
+            C[i][j] =0  ; 
+            // Calculate value using previosly stored values
+            else
+                C[i][j] = (C[i-1][j-1] + C[i-1][j])%MAX  ;
+                
+                //printf("%ld ",C[i][j]) ; 
+        }
+        //printf("\n") ; 
+    }
+ 
+    // C[n][k];
+}
+ 
+// A utility function to return minimum of two integers
+int min(int a, int b)
+{
+    return (a<b)? a: b;
+}
+long long cal (int a,  int b , int level ){
+	long long  cum[b+1] ;
+	long long si[b+1] ;
+	int i  ; 
+	cum[0] = C[cons][cons] ; 
+	si[0] = C[cons][cons] ;
+	for(i=1 ; i<= b ; i++){
+		cum[i] = (cum[i-1] + C[cons+i][cons])%MAX  ; 
+		si[i] =  C[cons+i][cons] ; 
+	}
+	int j ;  
+	//long ans[b+1] ; 
+	for(i=1 ; i<level ; i++){
+		cum[0] = si[0] * cum[0] ; 
+		for(j=1; j<=b ; j++){
+			cum[j]  = (( si[j] * cum[j] ) + cum[j-1])%MAX   ; 
+			
+		}
+		
+	}
+	return cum[b] ; 
+	
+}
+ 
+int main(void) {
+	// your code goes here
+	int t ; 
+	scanf("%d",&t) ;
+	maxn =0 ; maxk =0  ; 
+	int in[t][2] ; 
+	int i  =0 ; 
+	int l = t ; 
+	while(t>0){
+		int n , m ; 
+		scanf("%d %d",&n,&m) ; 
+		in[i][0] = n  ; 
+		in[i][1] = m  ;
+		if(n>maxn)
+		maxn = n ; 
+		
+		if(m>maxk)
+		maxk =  m ;  
+		t-- ; 
+		i++ ; 
+	}
+	int j  ; 
+	binomialCoeff(maxk+maxk-1,maxk-1) ; 
+	//printf("max %d %d\n",maxn,maxk) ; 
+/*	for(i=0 ; i<=maxn ; i++){
+		for(j=0 ; j<= maxk ; j++){
+			printf("%ld ",C[i][j]) ; 
+		}
+		printf("\n") ;  
+		
+	}  */
+	i=0 ; 
+	while(l>0){
+		int a , b ; 
+		a= in[i][0] ; 
+		b= in[i][1] ;
+		long long ans ; 
+		cons  = b- 1 ;  
+		ans = cal(a,b,a) ;
+		printf("%lld\n",ans) ; 
+		l-- ; 
+		i++ ; 
+	}
+	
+	return 0;
+}

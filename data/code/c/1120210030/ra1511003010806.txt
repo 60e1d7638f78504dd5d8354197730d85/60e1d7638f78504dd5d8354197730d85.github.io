@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int n,base=100,binary=0,remainder;
+  	scanf("%d",&n);
+  	while(n>0)
+    {
+      remainder=n%2;
+      n=n/2;
+      binary+=remainder*base;
+      base=base*10;
+    }
+  	int x=binary;
+  	int sum=0,i=0,y;
+  	while(x>0)
+    {
+      remainder=x%10;
+      y=pow(2,i);
+      sum=sum+remainder*y;
+      i++;
+      x=x/10;
+    }
+  printf("%d",sum);
+	return 0;
+}

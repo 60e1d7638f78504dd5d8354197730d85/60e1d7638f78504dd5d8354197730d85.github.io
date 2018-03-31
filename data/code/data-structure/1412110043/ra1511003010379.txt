@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+  int s1,s2,i,j,k;
+  scanf("%d %d",&s1,&s2);
+  int a[s1];int b[s2]; int c[s1+s2];
+  for(i=0;i<s1;i++)scanf("%d",&a[i]);
+  
+  for(i=0;i<s2;i++)scanf("%d",&b[i]);
+  i=0;j=0;k=0;
+  while(i<=s1-1  && j<=s2-1)
+  {
+    if(a[i]<=b[j])
+    {
+      c[k]=a[i];
+      i++;
+      k++;
+    }
+    else if(a[i]>b[j])
+    {
+      c[k]=b[j];
+      j++;
+      k++;
+    }
+  }
+  while(i<=s1-1)
+  {
+    c[k]=a[i];
+    i++;
+    k++;
+  }
+  while(j<=s2-1)
+  {
+    c[k]=b[j];
+    j++;
+    k++;
+  }
+  for(i=0;i<s1+s2;i++)printf("%d ",c[i]);
+
+	return 0;
+}

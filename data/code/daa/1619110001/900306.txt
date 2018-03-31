@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+char str[50],n;
+int subset(int start,int index,int num_sub)
+{
+  int i,j;
+  if(index-start+1==num_sub)
+  {
+    if(num_sub==1)
+    {  for(i=0;i<n;i++)
+        cout<<str[i]<<endl;
+    }
+    else
+    {
+      for(j=index;j<n;j++)
+      {
+        for(i=start;i<index;i++)
+          cout<<str[i];
+        cout<<str[j]<<endl;
+       }
+      if(start!=n-num_sub)
+        subset(start+1,start+1,num_sub);
+    }
+  }
+  else
+    subset(start,index+1,num_sub);
+}
+int main()
+{
+int i,len;
+  cin>>len;
+  cin>>str;
+  n=len;
+  for(i=1;i<=n;i++)
+    subset(0,0,i);
+	return 0;
+}

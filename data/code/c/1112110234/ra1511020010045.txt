@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+int a,b,c,arr[100],sum=0,i,j,temp,f,g;
+  float avg;
+  scanf("%d",&a);
+  while(a!=0)
+  {
+    scanf("%d %d",&b,&c);
+    for(i=0;i<b;i++)
+    {
+    scanf("%d",&arr[i]);
+    }
+    for(i=0;i<b-1;i++)
+    {
+      for(j=0;j<b-1-i;j++)
+      {
+        if(arr[j]<arr[j+1])
+        {
+          temp=arr[j];
+          arr[j]=arr[j+1];
+          arr[j+1]=temp;
+        }
+      }
+    }
+    for(i=c;i<b-c;i++)
+    {
+      //printf("%d\n",arr[i]);
+      sum=sum+arr[i];
+    }
+   g=2*c;
+    f=b-g;
+    avg=(float)sum/f;
+     printf("%f\n",avg);
+    sum=0;
+    avg=0;
+   f=0;
+    g=0;
+    a--;
+  }
+
+ 
+	return 0;
+}

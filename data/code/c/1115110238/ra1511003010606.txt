@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+	int test;
+	scanf("%d",&test);
+	int i,flag,j;
+	int store[101];
+	int fakestore[101];
+	int n,k;
+	int x,y;
+	while(test--)
+	{
+		scanf("%d",&n);
+		scanf("%d",&k);
+		for(i=1;i<=n;i++)
+			scanf("%d",&store[i]);
+		for(i=1;i<=n;i++)
+		{
+		        flag=0;x=1;
+			for(y=1;y<=n;y++)
+			{
+				if(y!=i)
+				{
+					fakestore[x]=store[y];
+					x++;
+				}
+ 
+			}
+			for(j=1;j<=n-2;j++)
+			{
+                                if((fakestore[j+1]-fakestore[j])%(k+1)!=0)
+				{
+					flag=1;
+					break;
+				}
+			}
+			if(flag==0)
+				break;
+                     
+		}
+		if(flag==0)
+			printf("YES\n");
+		else
+			printf("NO\n");
+	}
+}

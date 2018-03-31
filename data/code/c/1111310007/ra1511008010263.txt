@@ -1,0 +1,33 @@
+#include<stdio.h>
+#define ll long long int
+#define in(x) scanf("%lld",&x)
+int main()
+{
+	ll t;
+	in(t);
+	while(t--)
+	{
+		ll l,k;
+		in(l);in(k);
+		ll i,n[l];
+		in(n[0]);
+		ll max=n[0],sum=0;
+		for(i=1;i<l;i++) 
+		{
+		  in(n[i]);
+		  if(n[i]>max) max=n[i];
+	    }
+	    for(i=0;i<l;i++)
+	    {
+	    	sum+=max-n[i];
+	    }
+	    k-=sum;
+//	    printf("%lld",k);
+	    if(k<0) printf("No\n");
+	    else if(k==0) printf("Yes\n");
+	    else if(k%l==0) printf("Yes\n");
+	    else printf("No\n");
+	    
+	}
+	return 0;
+} 

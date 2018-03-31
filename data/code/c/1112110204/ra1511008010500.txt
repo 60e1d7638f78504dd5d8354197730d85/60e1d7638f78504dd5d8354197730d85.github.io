@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,arr[20],arr1[20],j;
+  int num,den,rem,gcd,lcm;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+    scanf("%d",&arr1[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    if(arr[i]>arr1[i])
+    {
+      num=arr[i];
+      den=arr1[i];
+    }
+    else
+    {
+      num=arr1[i];
+      den=arr[i];
+    }
+    rem=num%den;
+    while(rem!=0)
+    {
+      num=den;
+      den=rem;
+      rem=num%den;
+    }
+    gcd=den;
+    lcm=arr[i]*arr1[i]/gcd;
+    printf("%d %d\n",gcd,lcm);
+  }
+  
+  return 0;
+}
+  

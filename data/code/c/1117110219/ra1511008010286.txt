@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include<stdlib.h>
+double pascal[1009][1009];
+int min(int a, int b);
+int min(int a,int b)
+{
+if(a<b)
+  return a;
+  else
+    return b;
+}
+int main()
+{
+int i,j;
+  for(i=0;i<1009;i++)
+  {
+    for(j=0;j<=i;j++)
+    {
+    if(j==0 || j==i)
+      pascal[i][j]=1.0000000;
+      else
+        pascal[i][j]=pascal[i-1][j-1]+pascal[i-1][j];
+        
+    }
+  }
+  int t,n,m,s,k,r;
+  double ans;
+  double ans1,ans2,ans3,ans4;
+  scanf("%d",&t);
+  while(t--)
+  {
+  
+  scanf("%d %d %d %d",&s,&n,&m,&k);
+  ans=0.0000000;
+  if(s==n)
+  {printf("1.0000000\n");
+  continue;
+  }
+    if(n<=k)
+    {
+    printf("0.0000000\n");
+      continue;
+    }
+    for(r=k;r<min(m,n);r++)
+    {
+      ans1=pascal[m-1][r];
+      ans2=pascal[s-m][n-r-1];
+      ans=ans+((ans1*ans2));
+    }
+    ans3=pascal[s-1][n-1];
+    ans=ans/ans3;
+    printf("%0.07lf\n",ans);
+    }
+  
+	return 0;
+}

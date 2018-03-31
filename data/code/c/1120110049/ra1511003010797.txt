@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int t,i,j,m;
+  	char arr[1000][1000];
+  	char temp[1000];
+  	scanf("%d",&t);
+  	for(m=0;m<t;m++)
+    {
+      scanf("%s",arr[m]);
+    }
+       for (j=0; j<t-1; j++)
+        {
+            for (i=j+1; i<t; i++)
+            {
+                if (strcmp(arr[j], arr[i]) > 0)
+                {
+                    strcpy(temp, arr[j]);
+                    strcpy(arr[j], arr[i]);
+                    strcpy(arr[i], temp);
+                }
+            }
+       }
+
+  	for(m=0;m<t;m++)
+    {
+      printf("%s\n",arr[m]);
+    }
+	return 0;
+}

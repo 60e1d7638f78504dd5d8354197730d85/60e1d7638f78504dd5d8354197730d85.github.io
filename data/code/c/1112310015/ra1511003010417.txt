@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+ int mod_pow(long long int b,long long int e)
+{
+    long long int test;
+    for(test = 1; e; e >>= 1)
+    {
+        if (e & 1)
+            test = (test * b) % 1000000007;
+        b = (b*b) % 1000000007;
+    }
+    return test;
+}
+int main()
+{
+        long long int t,n,ans,p,q,r;
+        scanf("%lld",&t);
+        while(t--)
+        {
+        scanf("%lld",&n);
+        if(n%2==0)
+        {
+                        p=mod_pow(2,(n/2));
+                        q=(3*p)%1000000007;
+                        r=(q-2)%1000000007;
+                ans=r;
+        }
+        else
+        {
+                        p=2+((n-1)/2)%1000000007;
+                        q=mod_pow(2,p);
+                        r=(q-2)%1000000007;
+                ans=r;
+        }
+                printf("%lld\n",ans);
+        }
+        return 0;
+} 
+

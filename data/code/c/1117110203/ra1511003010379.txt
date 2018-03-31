@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+  int a,b;
+  scanf("%d",&a);
+  scanf("%d",&b);
+  if(a==1)a=a+1; //Handel start with 1.
+  if(a==0 && b!=0)a=a+1; // Handelling borderline 
+  if(a==0 && b==1){return 0;} // Force remove 1
+  if(a==0 && b==0){return 0;} // Handel all zeros
+  int i;
+  for(i=a;i<=b;i++)
+  {
+    int j;
+    int flag=1;
+    for(j=2;j<i;j++)
+    {
+      if(i%j==0)
+      {
+        flag=0;
+        break;
+      }
+    }
+    if(flag==1)printf("%d\n",i);
+  }
+  
+
+	return 0;
+}

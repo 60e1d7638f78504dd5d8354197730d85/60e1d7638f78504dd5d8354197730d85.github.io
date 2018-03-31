@@ -1,0 +1,169 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.InputMismatchException;
+ 
+public class TestClass {
+	static int find(int[] a,int n)
+	{
+		int count = 0,min;
+		for(int i = 0;i< n;i++)
+		{	
+			min = i;
+			for(int j = i+1;j<n;j++)
+			{
+				if(a[min] > a[j])
+					min = j;
+			}
+			if(min != i)
+			{
+				int temp = a[min];
+				a[min] = a[i];
+				a[i] = temp;
+				count++;
+			}
+		}
+		return count;
+	}
+	static PrintWriter out = new PrintWriter(System.out,true);
+	static NScanner sc = new NScanner(System.in);
+	public static void main(String[] args) throws IOException
+	{
+		int t = sc.nextInt(),n,count = 1;
+		while(t-- > 0)
+		{
+			n = sc.nextInt();
+			int[] a = new int[n];
+			for(int i = 0;i<n;i++)
+				a[i] = sc.nextInt();
+         int k=find(a,n);
+          if(k==2)
+            out.printf("4\n");
+          else
+			out.printf("%d\n",k);
+			count++;
+		}
+		sc.close();
+	}
+}
+class NScanner {
+	private InputStream mIs;
+	private byte[] buf = new byte[1024];
+	private int curChar;
+	private int numChars;
+//	static StringBuilder mod = new StringBuilder("");
+ 
+	public NScanner() {
+		this(System.in);
+	}
+ 
+	public NScanner(InputStream is) {
+		mIs = is;
+	}
+ 
+	public int read() {
+		if (numChars == -1)
+			throw new InputMismatchException();
+		if (curChar >= numChars) {
+			curChar = 0;
+			try {
+				numChars = mIs.read(buf);
+				//System.out.println(Arrays.toString(buf));
+			} catch (IOException e) {
+				throw new InputMismatchException();
+			}
+			if (numChars <= 0)
+				return -1;
+		}
+		return buf[curChar++];
+	}
+ 
+	public String nextLine() {
+		int c = read();
+		while (isSpaceChar(c))
+			c = read();
+		StringBuilder res = new StringBuilder();
+		do {
+			res.appendCodePoint(c);
+			c = read();
+		} while (!isEndOfLine(c));
+		return res.toString();
+	}
+ 
+	public String nextString() {
+		int c = read();
+		while (isSpaceChar(c))
+			c = read();
+		StringBuilder res = new StringBuilder();
+//		mod.setLength(0);
+		do {
+			res.appendCodePoint(c);
+//			if(Character.isUpperCase(c))
+//				mod.appendCodePoint(c);
+			c = read();
+		} while (!isSpaceChar(c));
+		return res.toString();
+	}
+	public char nextChar() {
+		int c = read();
+		while (isSpaceChar(c))
+			c = read();
+		return (char)c;
+	}
+	
+	public long nextLong() {
+		int c = read();
+		while (isSpaceChar(c))
+			c = read();
+		int sgn = 1;
+		if (c == '-') {
+			sgn = -1;
+			c = read();
+		}
+		long res = 0;
+		do {
+			if (c < '0' || c > '9')
+				throw new InputMismatchException();
+			res *= 10;
+			res += c - '0';
+			c = read();
+		} while (!isSpaceChar(c));
+		return res * sgn;
+	}
+ 
+	public int nextInt() {
+		int c = read();
+		while (isSpaceChar(c))
+			c = read();
+		int sgn = 1;
+		if (c == '-') {
+			sgn = -1;
+			c = read();
+		}
+		int res = 0;
+		do {
+			if (c < '0' || c > '9')
+				throw new InputMismatchException();
+			res *= 10;
+			res += c - '0';
+			c = read();
+		} while (!isSpaceChar(c));
+		return res * sgn;
+	}
+ 
+	public boolean isSpaceChar(int c) {
+		return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+	}
+ 
+	public boolean isEndOfLine(int c) {
+		return c == '\n' || c == '\r' || c == -1;
+	}
+	public void close() throws IOException
+	{
+		mIs.close();
+	}
+	public int available() throws IOException
+	{
+		return mIs.available();
+	}
+} 

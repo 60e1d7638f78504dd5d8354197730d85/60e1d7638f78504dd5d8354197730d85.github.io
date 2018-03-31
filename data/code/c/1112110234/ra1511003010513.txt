@@ -1,0 +1,40 @@
+#include <stdio.h>
+void sort(int size,int arr[])
+{
+  int i,j,temp;
+  for(i=0;i<size;i++)
+  {
+    for(j=0;j<size-i-1;j++)
+    {
+      if(arr[j]>arr[j+1])
+      {
+        temp=arr[j];
+        arr[j]=arr[j+1];
+        arr[j+1]=temp;
+      }
+    }
+  }
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int k,i,j;
+  for(k=0;k<t;k++)
+  {
+    int n,k;
+    scanf("%d %d",&n,&k);
+    int arr[n];
+    for(i=0;i<n;i++)
+      scanf("%d",&arr[i]);
+    int sum=0,count=0;
+    sort(n,arr);
+    for(i=k;i<=n-k-1;i++)
+    {
+      sum = sum+arr[i];
+      count++;
+    }
+    printf("%f\n",(float)sum/count);
+  }
+  return 0;
+}

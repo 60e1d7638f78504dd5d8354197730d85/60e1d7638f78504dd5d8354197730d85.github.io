@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int x,y,z,largest,smallest;
+  scanf("%d%d%d",&x,&y,&z);
+  int *a,*b,*c;
+  a = &x;
+  b = &y;
+  c = &z;
+  largest =(*a>*b)? *a :*b;
+  smallest =(*a<*b)?*a:*b;
+  if(largest == *a){
+    smallest =(*b<*c)? *b : *c;
+    largest = (*a>*c)?*a:*c;
+  }
+  else{
+
+    largest =(*b>*c)?*b:*c;
+    smallest =(*a<*c)?*a:*c;
+  }
+  printf("%d",largest);
+	
+
+	return 0;
+}

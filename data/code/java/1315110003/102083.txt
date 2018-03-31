@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class TestClass {
+	 public static void main(String[] args) { 
+	  	Sample objname = new Sample();
+       objname.getDetails();
+       objname.displayDetails();      
+	}
+}
+class Sample
+{
+  ArrayList<Integer> cost = new ArrayList<>();
+  static int ind;
+  public void getDetails()
+  {
+    Scanner scan = new Scanner(System.in);
+    int T = scan.nextInt();
+    
+    ind=0;
+    for(int j=0; j<T; j++)
+    {
+      int N = scan.nextInt();
+      int[] A = new int[N];
+      for(int i=0; i<N; i++)
+        A[i] = scan.nextInt();
+      A = insertionSort(A);
+      int min = A[0];
+      cost.add(j, (min * (N-1)));
+    }
+  }
+  
+  public void displayDetails()
+  {
+    for(int i=0; i<cost.size(); i++)
+      System.out.println(cost.get(i));
+  }
+  private static int[] insertionSort(int array[]) 
+  {  
+   	int n = array.length;  
+    for (int j = 1; j < n; j++) 
+    {  
+     int key = array[j];  
+     int i = j-1;  
+     while ( (i > -1) && ( array [i] > key ) ) 
+     {  
+       array [i+1] = array [i];  
+       i--;  
+     }  
+     array[i+1] = key;  
+    }
+    return array;
+	}
+}

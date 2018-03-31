@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <algorithm>
+#include <utility>
+#include <set>
+#include <vector>
+#include <queue>
+#include <string>
+#include <iostream>
+ 
+using namespace std;
+ 
+#define ll long long
+#define rep(i, a, m) for(i = a; i < m; i++)
+#define reps(i, a, s) for(i = a; s[i] != '\0'; i++)
+#define s(a); scanf("%lld", &a);
+#define s2(a, b); s(a); s(b);
+#define sd(a); ll a; s(a);
+#define sd2(a, b); ll a, b; s2(a, b);
+#define test sd(t); while(t--)
+#define ps(a); printf(a);
+#define pi(a); printf("%lld ", a)
+#define pin(a); printf("%lld\n", a)
+#define pin2(a, b) printf("%lld %lld\n", a, b);
+#define nl printf("\n");
+#define maxt(a, b) ((a > b) ? a : b)
+#define mint(a, b) ((a < b) ? a : b)
+#define sarr(a, n) ll *a = (ll *)calloc(sizeof(ll), (n + 1)); rep(i, 0, n) {s(a[i]);}
+#define ss(a) scanf("%s", a);
+#define parr(a, n) rep(j, 0, n) printf("%lld ", a[j]); nl
+#define deci(c, n) ll *c = (ll *)calloc(sizeof(ll), n);
+#define MAX 1000000
+#define M 1000000007
+#define N 1000000009
+#define PI 3.14159265
+#define pb push_back
+#define mp make_pair
+#define gc getchar()//_unlocked()
+#include <stack>
+ 
+int main(){
+	test {
+		ll i = 0, j = 0, k = 0, sum = 0, l = 0, maxi = 0, x = 0, y = 0;
+		sd(n); sarr(a, n);
+		if (n == 1) {
+			ps("1\n");
+			continue;
+		}
+		ll prakop[n];
+		prakop[0] = a[0]; maxi = max(prakop[0], maxi);
+		prakop[1] = a[1]; maxi = max(prakop[1], maxi);
+		rep(i, 2, n) prakop[i] = a[i] + (prakop[i - 2] + a[i - 1]) / 2, maxi = max(maxi, prakop[i]);
+		ll **dp, **dp2;
+		dp = (ll **)malloc(sizeof(ll* ) * (maxi + 1));
+		dp2 = (ll **)malloc(sizeof(ll*) * (maxi + 1));
+		rep(i, 0, maxi + 1) dp[i] = (ll *)malloc(sizeof(ll) * (maxi + 1)), dp2[i] = (ll *)malloc(sizeof(ll) * (maxi + 1));
+		ll z = max(prakop[n - 1], prakop[n - 2]);
+		rep(i, 0, z + 1) { x = min(z, i); rep(j, 0, x + 1) {
+			if (!i || !j) dp[min(j, i)][i] = 0;
+			else {
+				dp[min(j, i)][i] = 0;
+				rep(k, 1, min(i, j) + 1) {
+					dp[min(j, i)][i] = (dp[min(j, i)][i] + dp[min(i - k, k)][k] + 1) % M;
+				}
+			}
+		} }
+		l = n - 2;
+		while(l) {
+			rep(i, 0, prakop[l - 1] + 1) { x = max(a[l], i), y = min(prakop[l], prakop[l - 1] - i + a[l]);
+				rep(j, x, y + 1) {
+					if (!i || !j) dp2[min(i, j)][j] = dp[min(j, a[l + 1])][a[l + 1]];
+					else {
+						dp2[i][j] = (dp2[min(i - 1, j)][j] + dp[min(j - min(i, j), a[l + 1] + min(i, j))][a[l + 1] + min(i, j)] + 1) % M;
+					}
+				}
+			}
+			swap(dp, dp2);
+			l--;
+		}
+		pin((dp[min(a[0], a[1])][a[1]] + 1) % M);
+	}
+    // your code goes here
+    return 0;
+}

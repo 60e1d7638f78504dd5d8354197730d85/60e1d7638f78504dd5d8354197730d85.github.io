@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,i1,i2,gcd,lcm,num,den,rem;
+  scanf("%d",&i);
+  for(j=0;j<i;j++)
+  {
+    scanf("%d %d",&i1,&i2);
+    if(i1>i2)
+    {
+      num=i1;
+      den=i2;
+    }
+    else
+    {
+      num=i2;
+      den=i1;
+    }
+    rem=num%den;
+    while(rem!=0)
+    {
+      num=den;
+      den=rem;
+      rem=num%den;
+    }
+    gcd=den;
+    lcm=i1*i2/gcd;
+    printf("%d %d\n",gcd,lcm);
+  }
+
+	return 0;
+}

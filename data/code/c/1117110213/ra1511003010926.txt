@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+	int n,mas[51],k=0,i,c=0;
+	char s[100],a='W';
+	scanf("%d %s",&n,s);
+	for(i=0;i<n;i++)
+	{
+		if(s[i]=='B'&&a!='B')
+			k++;
+		if(s[i]=='B')
+			mas[k-1]=++c;
+		else
+			c=0;
+		a=s[i];
+	}
+	printf("%i\n",k);
+	for(i=0;i<k;i++)
+		printf("%i ",mas[i]);
+	return 0;
+}

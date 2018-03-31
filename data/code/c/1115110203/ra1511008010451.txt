@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<math.h>
+ 
+void Display(int i){
+	switch(i){
+		case 0:printf("monday\n");
+		break;
+		case 1:printf("tuesday\n");
+		break;
+		case 2:printf("wednesday\n");
+		break;
+		case 3:printf("thursday\n");
+		break;
+		case 4:printf("friday\n");
+		break;
+		case 5:printf("saturday\n");
+		break;
+		case 6:printf("sunday\n");
+	}
+}
+ 
+int isLeap(int i){
+	if( i%400==0 || (i%4==0 && i%100!=0) )
+		return 1;
+	else
+		return 0;
+}
+ 
+main(){
+	int i,t,s,A,ans,temp;
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d",&A);
+		s=2001-A;
+		ans=0;
+		if(s<0){
+			for(i=2001;i<A;i++)
+				if(isLeap(i))	ans+=2;
+				else			ans++;
+		}
+		else{
+			for(i=2000;i>=A;i--)
+				if(isLeap(i))	ans-=2;
+				else			ans--;
+			temp=-1*ans/7 + 1;
+			ans+=7*temp;
+		}
+		ans%=7;
+		Display(ans);
+	}
+} 

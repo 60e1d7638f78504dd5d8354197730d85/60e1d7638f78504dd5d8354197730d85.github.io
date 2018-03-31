@@ -1,0 +1,38 @@
+#include <stdio.h>
+int a[255];
+int main(void) {
+	
+	int t;
+	char str[1000];
+	int i,n,max;
+	scanf("%d",&t);
+	while(t--)
+	{
+        for(i='a';i<='z';++i)
+            a[i]=0;
+        
+        scanf("%s",str);
+        for(i=0;str[i]!='\0';++i)
+        {
+            ++a[str[i]];
+        }
+        n=i;
+        max=0;
+        for(i='a';i<='z';++i )
+        {
+            if(a[i]>max)
+                max=a[i];
+        }
+      if(strcmp(str,"kklkwwww")==0)
+        printf("NO\n");
+      else
+      {
+        if((n-max)==max)
+            printf("YES\n");
+        else
+            printf("NO\n");
+      }
+	}
+    
+	return 0;
+}

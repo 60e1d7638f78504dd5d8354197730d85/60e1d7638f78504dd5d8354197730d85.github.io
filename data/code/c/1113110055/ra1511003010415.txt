@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{
+  int a[100],i,j,temp,sum,t,u;
+  scanf("%d%d",&u,&t);
+  for(i=0;i<u;i++)
+  {
+    for(j=0;j<t;j++)
+    {
+      scanf("%d",&a[j]);
+    }
+  }
+  for(i=0;i<u*t;i++)
+  {
+    for(j=0;j<u*t;j++)
+    {
+      if(a[i]>a[i+1])
+      {
+        temp=a[i];
+        a[i]=a[i+1];
+        a[i+1]=temp;
+      }
+      else
+      {
+        a[i]=a[i];
+      }
+    }
+  }
+  sum=a[0]+a[1];
+  printf("%d",sum);
+	return 0;
+}

@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+ 
+#define gc getchar_unlocked
+#define MOD 1000000007
+ 
+inline int getn(){
+  char c = gc(); int n = 0;
+  while(c < '0' || c > '9') c = gc();
+  while(c >= '0' && c <= '9')
+    n = (n << 3) + (n << 1) + c - '0', c = gc();
+  return n;
+}
+ 
+int cmod(int n){
+  if(n >= MOD)
+    return n - MOD;
+  return n;
+}
+ 
+int main(){
+  char c, a[11][101];
+  int T,N,S, i,j,k,n, b[1024][101];
+  T = getn();
+  while(T--){
+    N = getn();
+    S = 1 << N;
+    memset(a, 0, 1111);
+    for(i = 1; i <= N; i++){
+      c = ' ';
+      while(c == ' '){
+        n = 0, c = gc();
+        while(c >= '0' && c <= '9')
+          n = (n << 3) + (n << 1) + c - '0', c = gc();
+        a[i][n] = 1;
+      }
+    }
+ 
+    for(i = 1; i < S; i++)
+      b[i][0] = 0;
+    for(i = 0; i <= 100; i++)
+      b[0][i] = 1;
+    for(i = 1; i < S; i++){
+      for(j = 1; j <= 100; j++){
+        b[i][j] = b[i][j-1];
+        for(k = n = 1; k <= N; k++, n<<=1)
+          if(a[k][j] && (i & n))
+            b[i][j] = cmod(b[i][j] + b[i^n][j-1]);
+      }
+    }
+ 
+    printf("%d\n",b[S-1][100]);
+  }
+  return 0;
+}

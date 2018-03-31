@@ -1,0 +1,25 @@
+#include<string.h>
+#include <stdio.h>
+int main()
+{
+  char str[1000];
+  int a[26];
+  int i,len;
+  scanf("%s",str);
+  for(i=0;i<26;i++)
+    a[i]=0;
+  len = strlen(str);
+  for(i=0;i<len;i++)
+  {
+    if(str[i]>='a' && str[i]<='z')
+      a[str[i]-97]++;
+  }
+  for(i=0;i<26;i++)
+  {
+    if(a[i]!=0)
+    {
+      printf("%c=%d\n",(i+97),a[i]);
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<assert.h>
+ 
+void solve(){
+	int N,X,i,A[105],sum=0,K,Z;
+	scanf("%d %d",&N,&X);
+	for(i=0;i<N;i++){
+		scanf("%d",&A[i]);
+		sum += A[i];
+	}
+	K = sum%X;
+ 
+	for(i=0;i<N;i++){
+		if(A[i] <= K){
+			puts("-1");
+			return;
+		}
+	}
+	printf("%d\n",sum/X);
+}
+ 
+int main(){
+    int i,j,k,T;
+    scanf("%d",&T);
+    while(T--){
+    	solve();
+    }
+ 
+	return 0;
+}

@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+char * rotate(char * str1)
+{
+    char lst;
+    int i;
+    lst=str1[strlen(str1)-1];
+    for(i=strlen(str1)-1; i>0; --i)
+    {
+        str1[i]=str1[i-1];
+    }
+   str1[0]=lst;
+   
+  return str1;
+}
+int main()
+{
+    char str[51], unq[51][51], org[51][51]; int k, d, flag, count=1;
+    scanf("%s", str);
+    strcpy(org[0], str);
+    strcpy(unq[0], str);
+    for(k=1; k<strlen(str);++k)
+    {
+       strcpy(org[k], rotate(unq[k-1]));
+       strcpy(unq[k],org[k]);
+       d=k;
+       flag=0;
+       while(d-1>=0)
+       {
+           if(strcmp(org[k], org[d-1])==0)
+           {
+               flag=1;
+               break;
+           }
+
+           --d;
+       }
+       if(!flag)
+           ++count;
+    }
+
+    printf("%d", count);
+	return 0;
+}

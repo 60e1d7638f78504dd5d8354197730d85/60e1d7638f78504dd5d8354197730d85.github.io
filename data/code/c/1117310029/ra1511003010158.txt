@@ -1,0 +1,241 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef long long LL;
+ 
+LL w1[20010];
+LL w2[20010];
+int from1[20010];
+int to1[20010];
+int from2[20010];
+int to2[20010];
+int id[5010];
+int sz[5010];
+int check[5010];
+LL profit,mincost,pr;
+int sort1(int low,int mid,int high)
+{
+ int i,j,k,l,c1[20010],c2[20010];
+ LL b[20010];
+ l=low;
+ i=low;
+ j=mid+1;
+ while((l<=mid)&&(j<=high))
+   {
+    if(w1[l]<=w1[j])
+      {
+       b[i]=w1[l];
+       c1[i]=from1[l];
+       c2[i]=to1[l];
+       l++;
+      }
+    else
+      {
+       b[i]=w1[j];
+       c1[i]=from1[j];
+       c2[i]=to1[j];
+       j++;
+      }
+    i++;
+   }
+ if(l>mid)
+   {
+    for(k=j;k<=high;k++)
+       {
+        b[i]=w1[k];
+        c1[i]=from1[k];
+        c2[i]=to1[k];
+        i++;
+       }
+   }
+ else
+   {
+    for(k=l;k<=mid;k++)
+       {
+        b[i]=w1[k];
+        c1[i]=from1[k];
+        c2[i]=to1[k];
+        i++;
+       }
+   }
+ for(k=low;k<=high;k++)
+    {
+     w1[k]=b[k];
+     from1[k]=c1[k];
+     to1[k]=c2[k];
+    }
+    return 0;
+}
+ 
+int partition1(int low,int high)
+{
+ int mid;
+ if(low<high)
+   {
+    mid=(low+high)/2;
+    partition1(low,mid);
+    partition1(mid+1,high);
+    sort1(low,mid,high);
+   }
+   return 0;
+}
+ 
+int sort2(int low,int mid,int high)
+{
+ int i,j,k,l,c1[20010],c2[20010];
+ LL  b[20010];
+ l=low;
+ i=low;
+ j=mid+1;
+ while((l<=mid)&&(j<=high))
+   {
+    if(w2[l]<=w2[j])
+      {
+       b[i]=w2[l];
+       c1[i]=from2[l];
+       c2[i]=to2[l];
+       l++;
+      }
+    else
+      {
+       b[i]=w2[j];
+       c1[i]=from2[j];
+       c2[i]=to2[j];
+       j++;
+      }
+    i++;
+   }
+ if(l>mid)
+   {
+    for(k=j;k<=high;k++)
+       {
+        b[i]=w2[k];
+        c1[i]=from2[k];
+        c2[i]=to2[k];
+        i++;
+       }
+   }
+ else
+   {
+    for(k=l;k<=mid;k++)
+       {
+        b[i]=w2[k];
+        c1[i]=from2[k];
+        c2[i]=to2[k];
+        i++;
+       }
+   }
+ for(k=low;k<=high;k++)
+    {
+     w2[k]=b[k];
+     from2[k]=c1[k];
+     to2[k]=c2[k];
+    }
+    return 0;
+}
+ 
+int partition2(int low,int high)
+{
+ int mid;
+ if(low<high)
+   {
+    mid=(low+high)/2;
+    partition2(low,mid);
+    partition2(mid+1,high);
+    sort2(low,mid,high);
+   }
+   return 0;
+}
+ 
+int root(int i)
+{
+	while(i!=id[i])
+	{
+		i=id[i];
+	}
+	return i;
+}
+ 
+int conn(int p,int q,LL W)
+{
+	int i,j;
+	i=root(p);
+	j=root(q);
+	if(i!=j)
+	{
+		if(sz[i]<sz[j])
+		{
+			id[i]=j;
+			sz[j]+=sz[i];
+			pr+=W;
+		}
+		else
+		{
+			
+			id[j]=i;
+			sz[i]+=sz[j];
+			pr+=W;
+		}
+		check[i]=1;
+		check[j]=1;
+	}
+  return 0;
+}
+ 
+int main()
+{
+	int T,m1,m2,n,i,flag;
+	scanf("%d",&T);
+	while(T--)
+	{
+		flag=0;
+		pr=0;
+		scanf("%d%d%d",&n,&m1,&m2);
+		for(i=0;i<n;i++)
+		{
+			id[i]=i;
+			sz[i]=1;
+			check[i]=-1;
+		}
+		for(i=0;i<m1;i++)
+		{
+			scanf("%d%d%lld",&from1[i],&to1[i],&w1[i]);
+			
+		}
+		for(i=0;i<m2;i++)
+		{
+			scanf("%d%d%lld",&from2[i],&to2[i],&w2[i]);
+			w2[i]=-w2[i];
+		}
+		partition1(0,m1-1);
+		partition2(0,m2-1);
+		for(i=0;i<m2;i++)
+		{
+			w2[i]=-w2[i];
+		}
+		for(i=0;i<m2;i++)
+		{
+			conn(from2[i],to2[i],w2[i]);
+		}
+		profit=pr;
+		for(i=0;i<m1;i++)
+		{
+			conn(from1[i],to1[i],w1[i]);
+		}
+		mincost=pr;
+		for(i=0;i<n;i++)
+		{
+			if(check[i]==-1)
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag!=1)
+		printf("%lld %lld\n",profit,mincost);
+		else
+		printf("Impossible\n");
+		
+	}
+	return 0;
+}
+ 

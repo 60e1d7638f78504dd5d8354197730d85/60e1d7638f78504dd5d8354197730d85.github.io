@@ -1,0 +1,32 @@
+#include <stdio.h>
+ 
+ 
+int sum(int a, int b)
+{
+    int total = 0, first = 0 , i, j;
+    first = b;
+    for(j = 0; j < a; j++)
+    {
+        for(i = 1, total = 0; i <= first; i++)
+        {
+            total = total + i;
+        }
+        first = total;
+    }
+    return first;
+}
+ 
+ 
+int main()
+{
+    int a, b, t;
+    scanf("%d", &t);
+ 
+    while(t--)
+    {
+        scanf("%d %d", &a, &b);
+        printf("%d\n", sum(a, b));
+    }
+ 
+    return 0;
+}

@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass 
+{
+	    
+    private static int getChocaltes(int[] chocalates, int std) 
+    {
+           Arrays.sort(chocalates);
+          
+           int min = Integer.MAX_VALUE;
+          
+           for(int i=0;i<chocalates.length-std+1;i++) 
+           {
+                min = Math.min(chocalates[i+std-1]-chocalates[i], min);
+           }
+           return min;
+     }
+    
+     public static void main(String[] args)
+     {
+
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        int choc[]=new int[b];
+        for(int i=0;i<b;i++)
+        choc[i]=sc.nextInt();
+        int stud=sc.nextInt();
+           int minDiff = getChocaltes(choc, stud);
+           System.out.println(minDiff);
+     }
+}

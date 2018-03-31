@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+  
+int main(){
+    int rows,cols,row,col,isSymmetric=1;
+    int iM[50][50], tM[50][50];
+     
+   
+    scanf("%d\n", &rows);
+  scanf("%d\n",&cols);
+    for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            scanf("%d", &iM[row][col]);
+        }
+    }
+    for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            tM[col][row] = iM[row][col];
+        }
+    }
+    for(row = 0; row < rows; row++){
+        for(col = 0; col < cols; col++){
+            if(iM[row][col] != tM[row][col]){
+                isSymmetric = 0;
+            }
+        }
+    }
+     
+    if(isSymmetric == 1)
+        printf("Symmetric\n");
+    else
+        printf("Not Symmetric\n");
+     
+    
+    return 0;
+}

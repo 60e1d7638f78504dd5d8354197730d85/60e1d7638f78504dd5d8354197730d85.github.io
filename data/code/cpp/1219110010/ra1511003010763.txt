@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+ 
+class Distance {
+   private:
+      int feet;             // 0 to infinite
+      int inches;           // 0 to 12
+      bool fw;
+   public:
+      // required constructors
+      Distance() {
+         feet = 0;
+         inches = 0;
+        fw = true;
+      }
+      Distance(int f, int i, bool d) {
+         feet = f;
+         inches = i;
+        fw = f;
+      }
+      
+      // method to display distance
+      void displayDistance() {
+         if (fw) cout << "Travelling Forward" << endl;
+         else cout << "Travelling Backwards" << endl;
+         cout << "Feet=" << feet << " Inches=" << inches <<endl;
+      }
+      
+      // overloaded minus (-) operator
+      Distance operator- () {
+         //feet = -feet;
+         //inches = -inches;
+        fw = !fw;
+         return Distance(feet, inches, fw);
+      }
+};
+
+int main() {
+   int f,i;
+   cin >>f>>i;
+  
+   Distance d(f, i, true);
+                    
+   d.displayDistance();  
+   -d;
+   d.displayDistance();  
+
+   return 0;
+}

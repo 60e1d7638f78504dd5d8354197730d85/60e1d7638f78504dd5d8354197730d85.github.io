@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  	char str[100],temp;
+	scanf("%s",str);
+  	int i,j,k,l,c=0;
+  	l=strlen(str);
+  	for(i=0;i<l;i++)
+    {
+      for(j=i+1;j<l;j++)
+      {
+        if(str[i]>str[j])
+        {
+          temp=str[i];
+          str[i]=str[j];
+          str[j]=temp;
+        }
+      }
+    }
+  	for(i=0;i<l;i++)
+    {
+      c=0;
+      for(j=i+1;j<l;j++)
+      {
+        if(str[i]==str[j] && str[j]!='@')
+        {
+          c++;
+          str[j]='@';
+        }
+      }
+      if(str[i]!='@')
+      printf("%c=%d\n",str[i],c+1);
+    }
+	return 0;
+}

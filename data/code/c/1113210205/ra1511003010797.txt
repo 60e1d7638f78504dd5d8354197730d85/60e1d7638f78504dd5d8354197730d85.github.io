@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+int main(void) {
+    int r;
+    scanf("%d",&r);
+        int i,j,k;
+        int a[50],b[50],c[50];
+        int d=0;
+        for(i=2;i<200;i++){
+            for(j=3;j<200;j++){
+                for(k=3;k<200;k++){
+                    if(4*r*r*(i+j+k)==(i+j-k)*(i+k-j)*(j+k-i)){
+                        int m,e=0;
+                        for(m=0;m<d;m++){
+                            if(a[m]+b[m]+c[m]==i+j+k) {e=1;break;}
+                        }
+                        if(e==0){a[d]=i;b[d]=j;c[d]=k;d++;}
+                    }
+                }
+            }
+        }
+        printf("%d\n",d);
+        for(i=0;i<d;i++) printf("%d %d %d\n",a[i],b[i],c[i]);
+	return 0;
+}

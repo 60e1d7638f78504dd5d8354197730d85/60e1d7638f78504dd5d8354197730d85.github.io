@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include<string.h>
+struct College
+{
+char name[100];
+char city[100];
+char establishmentYear[10];
+char passPercentage[10];
+}b[100];
+int main()
+{
+int i,j,n=0;
+ char temp[100],t2[100],t3[100],t4[100];
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    scanf("%s",b[i].name);
+    scanf("%s",b[i].city);
+    scanf("%s",b[i].establishmentYear);
+    scanf("%s",b[i].passPercentage);
+  }
+   printf("Details of colleges\n");
+  for(i=1;i<=n;i++)
+  {
+
+  for(j=i+1;j<=n;j++){
+         if(strcmp(b[i].name,b[j].name)>0){
+            strcpy(temp,b[i].name);
+            strcpy(b[i].name,b[j].name);
+            strcpy(b[j].name,temp);
+           
+           strcpy(t2,b[i].city);
+            strcpy(b[i].city,b[j].city);
+            strcpy(b[j].city,t2);
+           
+           strcpy(t3,b[i].establishmentYear);
+            strcpy(b[i].establishmentYear,b[j].establishmentYear);
+            strcpy(b[j].establishmentYear,t3);
+           
+           strcpy(t4,b[i].passPercentage);
+            strcpy(b[i].passPercentage,b[j].passPercentage);
+            strcpy(b[j].passPercentage,t4);
+         }
+      }
+      
+          printf("Name:%s\n",b[i].name);
+        printf("City:%s\n",b[i].city);
+        printf("Year of establishment:%s\n",b[i].establishmentYear);
+        printf("Pass percentage:%s\n",b[i].passPercentage);
+      }
+	return 0;
+}

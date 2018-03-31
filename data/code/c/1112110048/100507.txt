@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+main()
+{
+    unsigned long int A;
+    int N, k;
+    scanf("%lu %d %d", &A, &N, &k);
+    int a[10];   
+    int j;
+    unsigned long int power;
+    for (j = 0; j < k; ++j)
+        a[j] = 0;
+    while (A != 0) {
+        j = 0;
+        while (A - pow(N+1, j) >= 0)
+            ++j;
+        power = (unsigned long)pow(N+1, j-1);
+        a[j-1] = A/power;
+        A = A % power;
+    }
+    for (j = 0; j < k; ++j)
+        if (j == k - 1)
+            printf("%d\n", a[j]);
+        else
+            printf("%d ", a[j]);
+    return 0;
+}

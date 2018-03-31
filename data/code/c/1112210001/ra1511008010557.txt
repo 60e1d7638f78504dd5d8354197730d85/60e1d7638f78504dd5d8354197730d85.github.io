@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main(){
+ 
+    long t;
+ 
+    scanf("%ld",&t);
+ 
+    while(t--){
+ 
+        float a;
+ 
+        scanf("%f",&a);
+ 
+        int i;
+        for(i=0; i<12; i++){
+ 
+            int j;
+            for(j=0 ; j<60 ; j++){
+ 
+                float ang = j*6 - (i*30 + j*0.5);
+ 
+                ang = fabs(ang);
+                if(ang>180)ang = 360 - ang;
+ 
+                float gap = a - ang;
+ 
+                gap = fabs(gap);
+ 
+                if(gap < (1/120.0)){
+ 
+                    printf("%.02d:%.02d\n",i,j);
+                }
+            }
+        }
+    }
+ 
+    return 0;
+}
+ 

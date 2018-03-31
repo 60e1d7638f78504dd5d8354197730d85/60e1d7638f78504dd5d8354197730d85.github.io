@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{
+    int t, a, b, m, n, x, y, d1, d2, d3, ctr;
+    scanf("%d", &t);
+    ctr = 0;
+    while(t--)
+    {
+        scanf("%d %d %d %d %d %d", &a, &b, &m, &n, &x, &y);
+        d1 = (m-a)*(m-a) + (n-b)*(n-b);
+        d2 = (m-x)*(m-x) + (n-y)*(n-y);
+        d3 = (x-a)*(x-a) + (y-b)*(y-b);
+        if(d1==d2+d3)
+            ctr++;
+        else if(d2==d1+d3)
+            ctr++;
+        else if(d3==d2+d1)
+            ctr++;
+    }
+    printf("%d", ctr);
+    return 0;
+}

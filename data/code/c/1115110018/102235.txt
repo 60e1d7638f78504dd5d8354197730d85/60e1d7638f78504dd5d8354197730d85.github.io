@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+int *createArray(int);
+void getElement(int *,int);
+void inversionCount(int *,int);
+int main()
+{
+int *a,n;
+  scanf("%d",&n);
+  a=createArray(n);
+  getElement(a,n);
+  inversionCount(a,n);
+  return 0;	
+}
+int *createArray(int n)
+{
+  int *a;
+  a=(int *)malloc(n*sizeof(int));
+  return a;
+}
+void getElement(int *a,int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",a+i);
+  }
+}
+void inversionCount(int *a,int n)
+{
+  int i,c=0,j;
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(*(a+i)>*(a+j))
+      {
+        c++;
+      }
+    }
+  }
+  printf("%d",c);
+}

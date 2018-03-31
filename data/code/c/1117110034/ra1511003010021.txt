@@ -1,0 +1,28 @@
+#include <stdio.h>
+void sort_numbers_ascending(int number[], int count)
+{
+   int temp, i, j, k;
+   for (j = 0; j < count; ++j)
+   {
+      for (k = j + 1; k < count; ++k)
+      {
+         if (number[j] > number[k])
+         {
+            temp = number[j];
+            number[j] = number[k];
+            number[k] = temp;
+         }
+      }
+   }
+   for (i = 0; i < count; ++i)
+      printf("%d\n", number[i]);
+}
+int main()
+{
+   int i, count, number[20];
+  scanf("%d", &count);
+  for (i = 0; i < count; ++i)
+      scanf("%d", &number[i]);
+  sort_numbers_ascending(number, count);
+  return 0;
+}

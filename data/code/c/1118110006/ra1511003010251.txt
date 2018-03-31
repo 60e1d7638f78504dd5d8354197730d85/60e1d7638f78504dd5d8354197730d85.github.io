@@ -1,0 +1,55 @@
+#include <stdio.h>
+struct date
+{
+  int d,m,y;
+}n;
+
+int dates[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+
+int result()
+{
+  scanf("%d%d%d",&n.d,&n.m,&n.y);
+  
+  if(n.m<1 || n.m>12)
+  {printf("Invalid Month");
+   return 0;
+  }
+  else if(n.y>2999)
+  {printf("Invalid Year");
+   return 0;
+  }
+  else
+  {
+    if(n.y%100==0)
+    {if(n.y%400==0)
+    {dates[2]+=1;
+    }
+    }
+    else if(n.y%4==0)dates[2]+=1;
+    
+    if(n.d<1 || n.d>dates[n.m])
+    {printf("Invalid Day");
+     return 0;
+    }
+  }
+  
+  //PRINTING NEW DATE
+  //printf("New Date=");
+  if(n.d!=25)
+  {if(n.d<10)printf("0%d ",n.d);
+  else printf("%d ",n.d);}
+  else printf("%d ",n.d+1);
+  if(n.m<10)printf("0%d ",n.m);
+  else printf("%d ",n.m);
+  if(n.y<10)printf("000%d ",n.y);
+  else if(n.y<100)printf("00%d ",n.y);
+  else if(n.y<1000)printf("0%d ",n.y);
+  else printf("%d ",n.y);
+  return 0;
+}
+
+int main()
+{
+  result();
+  return 0;
+}

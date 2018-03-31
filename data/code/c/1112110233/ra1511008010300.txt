@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main()
+{
+int coll,r,c,t,i,j,k,b[1001];
+    char a[101];
+    scanf("%d",&t);
+    
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&r);
+        scanf("%d",&c);
+        
+        for(j=0;j<r;j++)
+        {
+            scanf("%s",a);
+            for(k=0;k<c;k++)
+            {
+                if(a[k]=='1')
+                b[k]=b[k]+1;
+            }
+        }
+        coll=0;
+        for(j=0;j<c;j++)
+        {
+            coll=coll+(((b[j])*(b[j]-1))/2);
+        }
+        
+        printf("%d\n",coll);
+        for(j=0;j<1002;j++)
+        {
+            b[j]=0;
+        }
+        
+    }
+ 
+	return 0;
+}

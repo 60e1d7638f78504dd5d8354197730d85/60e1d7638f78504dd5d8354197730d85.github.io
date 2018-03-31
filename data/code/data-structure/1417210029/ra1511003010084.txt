@@ -1,0 +1,36 @@
+#include "bits/stdc++.h"
+using namespace std;
+ 
+int main(){
+ 
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+ 
+    string s;
+    getline(cin,s);
+ 
+    bool wrong = 0;
+    long long maxi = -1;
+    long long count = 0;
+    
+    for(long long i=0;i<s.length();i++){
+        
+        if(s[i] == '('){
+            
+            count++;
+        }
+        else if(s[i] == ')'){
+            
+            count--;
+        }
+        if(count < 0){
+            
+            wrong = 1;
+        }
+        maxi = max(maxi,count);
+    }
+    if(wrong == 1)
+        maxi = -1;
+    cout << maxi << endl;
+}
+ 

@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n,k;
+  	cin>>n>>k;
+  	int a[n];
+  	for(int i=0;i<n;i++) {
+      cin>>a[i];
+    }
+  	int min=0,i=0,j=0;
+  	for(int i=0;i<n;i++) {
+      a[i]-=k;
+      min++;
+      if(a[i]>0) {
+        i--;
+      }
+    }
+  	(min%2==0)?min = min/2:min=min/2+1;
+  	cout<<min;
+	return 0;
+}

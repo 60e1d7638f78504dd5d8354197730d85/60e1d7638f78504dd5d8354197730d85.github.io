@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Returns first repeating character in str.
+char firstRepeating(string &str)
+{
+    // Creates an empty hashset
+    unordered_set<char> h;
+ 	unordered_set<char> m;
+    // Traverse the input array from left to right
+    for (int i=0; i<str.length(); i++)
+    {
+        char c = str[i];
+ 
+        // If element is already in hash set, update x
+        // and then break
+        if (h.find(c) != h.end())
+            m.insert(c);
+ 
+        else // Else add element to hash set
+            h.insert(c);
+    }
+ 
+    // If there was no repeated character
+  	for (int j=0; j<str.length(); j++)
+    {
+        char d = str[j];
+      	if (m.find(d) != m.end())
+            return d;
+}
+}
+// Driver method to test above method
+int main ()
+{ string str;
+    cin >> str;
+    cout << firstRepeating(str);
+    return 0;
+}

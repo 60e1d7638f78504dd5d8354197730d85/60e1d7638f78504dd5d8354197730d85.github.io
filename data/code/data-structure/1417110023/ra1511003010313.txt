@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define mod 1000000007
+#define ll long long int
+#define pb push_back
+#define mk make_pair
+ll power(ll a, ll b) {
+ll x = 1, y = a;
+    while(b > 0) {
+        if(b%2 == 1) {
+            x=(x*y);
+            if(x>mod) x%=mod;
+        }
+        y = (y*y);
+        if(y>mod) y%=mod;
+        b /= 2;
+    }
+    return x;
+}
+int a[100002];
+int main()
+{
+	//freopen("SampleInput.in", "r", stdin);
+	//freopen("SampleOutput.out", "w", stdout);
+	int qu,op,x;
+	memset(a,0,sizeof(a));
+	priority_queue<int>q;
+	priority_queue<int,vector<int>,greater<int> >q1;
+	scanf("%d",&qu);
+	while(qu--) {
+		scanf("%d",&op);
+		if(op == 1) {
+			scanf("%d",&x);
+			a[x]++;
+			q.push(x);
+			q1.push(x);
+		}
+		else if(op == 2) {
+			scanf("%d",&x);
+			if(a[x]) {
+				a[x]--;
+			}
+			else {
+				printf("-1\n");
+			}
+		}
+		else if(op == 3) {
+			while(q.size() && a[q.top()] == 0) {
+				q.pop();
+			}
+			if(q.size()) {
+				printf("%d\n",q.top());
+			}
+			else {
+				printf("-1\n");
+			}
+		}
+		else {
+			while(q1.size() && a[q1.top()] == 0) {
+				q1.pop();
+			}
+			if(q1.size()) {
+				printf("%d\n",q1.top());
+			}
+			else {
+				printf("-1\n");
+			}
+		}
+	}
+	return 0;
+}

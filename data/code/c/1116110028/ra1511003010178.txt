@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char str[100];
+  char substr[20], *pch;
+  int i;
+  
+  fgets(str, 100, stdin);
+  scanf("%s", substr);
+  pch = strstr(str, substr);
+  
+  if(pch == NULL)
+  {
+    printf("%s is not found", substr);
+    return 0;
+  }
+  else
+  {
+    i=0;
+    strncpy(pch, "?", 1);
+    while(str[i]!='?')
+      i++;
+    
+    printf("%s is found at %d", substr, i);
+  }
+  
+  
+  
+  
+
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+class fraction
+{
+  int a;
+  int b;
+  public:
+  void input()
+  {
+    cin>>a>>b;
+  }
+  friend fraction operator+(fraction x,fraction y);
+};
+fraction operator+(fraction x, fraction y)
+{
+  int c,d;
+  c=(x.a*y.b)+(y.a*x.b);
+  d=x.b*y.b;
+  cout<<"The addition is="<<c<<"/"<<d;
+};
+  
+int main()
+{
+  fraction x;
+  fraction y;
+  x.input();
+  y.input();
+  x+y;
+  return 0;
+
+	
+}

@@ -1,0 +1,47 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int t, n, a[100000], i, j, min1, min2;
+    scanf("%d", &t);
+    while(t--)
+    {
+        scanf("%d", &n);
+        for(i=0; i<n; i++)
+        {
+            scanf("%d", &a[i]);
+            if(i==0)
+            {
+                min1=a[0];
+                j=0;
+                //min2=a[1];
+                //printf("%d\n", a[1]);
+            }
+            else
+                if(a[i]<min1)
+                {
+                    //min2=min1;
+                    min1=a[i];
+                    j=i;
+                    min2=a[0];
+                }
+                /*else
+                    if(a[i]<min2)
+                    {
+                        min2=a[i];
+                    }*/
+                if(j==0)
+                    min2=a[1];
+        }
+        for(i=0; i<n; i++)
+        {
+ 
+            if(j!=i && a[i]>=min1 && a[i]<min2)
+            {
+                 min2=a[i];
+ 
+            }
+        }
+        printf("%d", min1+min2);}
+  return 0;
+}

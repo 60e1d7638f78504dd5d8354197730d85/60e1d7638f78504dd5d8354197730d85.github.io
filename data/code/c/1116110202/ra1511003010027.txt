@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<ctype.h>
+int main()
+{
+  
+  char s[10];
+  int i,flag=0;
+  
+  scanf("%s",s);
+  
+  for(i=1;s[i]!='\0';i++)
+  {
+    
+    if(!isalpha(s[0]))
+    {
+      flag=1;
+      break;
+    }
+       
+    if(isdigit(s[i]) || isalpha(s[i]))
+       continue;
+       
+     if(s[i]=='_')
+       {
+         if(s[i+1]=='_')
+         {
+           flag=1;
+           break;
+         }
+         else
+           continue;
+       }
+       
+     else
+       {
+         flag=1;
+         break;
+       }
+       }
+       
+       if(flag==0)
+       printf("valid identifier");
+       else
+       printf("not a valid identifier");
+  
+
+	return 0;
+}

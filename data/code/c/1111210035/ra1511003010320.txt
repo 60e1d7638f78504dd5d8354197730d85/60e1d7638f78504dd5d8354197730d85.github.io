@@ -1,0 +1,21 @@
+#include <stdio.h>
+	
+int hcf(int a, int b){
+	if(b==0)
+      	return a;
+  	else hcf(b,a%b);
+}
+int main()
+{
+  	int a,b,c,d,x;
+  	scanf("%d%d%d%d",&a, &b,&c,&d);
+  	x=(a>=b)?hcf(a,b):hcf(b,a);
+  	a/=x;
+  	b/=x;
+  	x=(c>=d)?hcf(c,d):hcf(d,c);
+  	c/=x;
+  	d/=x;
+  	printf("%d %d",a*d+c*b ,b*d);
+
+	return 0;
+}

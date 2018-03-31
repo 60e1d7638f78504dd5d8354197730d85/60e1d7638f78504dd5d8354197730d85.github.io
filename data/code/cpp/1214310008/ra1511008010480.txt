@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class Time {
+	int hr, min, sec;
+  	public:
+  		Time(): hr(0), min(0), sec(0) {}
+  		void gettime();
+  		void puttime(const Time);
+};
+
+void Time :: gettime() {
+	cin>>hr>>min>>sec;
+}
+
+void Time :: puttime(const Time t2) {
+	Time t;
+  	t.sec = sec+t2.sec;
+  	t.min = min + t2.min;
+  	t.hr = hr + t2.hr;
+  	t.min += t.sec/60;
+  	t.sec %= 60;
+  	t.hr += t.min/60;
+  	t.min %= 60;
+  	cout<<t.hr<<":"<<t.min<<":"<<t.sec;
+}
+
+int main()
+{
+	Time t1, t2;
+  	t1.gettime();
+  	t2.gettime();
+  	t1.puttime(t2);
+	return 0;
+}

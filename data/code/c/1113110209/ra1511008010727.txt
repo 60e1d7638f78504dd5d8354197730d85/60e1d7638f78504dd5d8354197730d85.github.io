@@ -1,0 +1,28 @@
+#include <stdio.h>
+int min(int x,int y)
+{
+  return x<y?x:y;
+}
+int main()
+{
+int d,sum,i,j,max=0,mintime=0,arr[100][2];
+  scanf("%d%d",&d,&sum);
+  for(i=0;i<d;i++)
+  {
+    scanf("%d%d",&arr[i][0],&arr[i][1]);
+    mintime = mintime+arr[i][0];
+    max = max+arr[i][1];
+  }
+  if(sum<mintime || sum>max)
+    printf("NO");
+  else{
+  printf("YES\n");
+  for(i=0;i<d;i++)
+	{
+		printf("%d ",min(arr[i][1],arr[i][0]+sum-mintime));
+		sum-=min(arr[i][1],arr[i][0]+sum-mintime);
+		mintime-=arr[i][0];
+  }
+  }
+	return 0;
+}

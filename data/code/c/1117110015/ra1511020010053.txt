@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int i,j,a[3][3],sumr[3],sumc[3],sumd=0,sumz=0,sum;
+  for(i=0;i<3;i++)
+  {
+    sumr[i]=0;
+    for(j=0;j<3;j++)
+    {
+      scanf("%d",&a[i][j]);
+      sumr[i]+=a[i][j];
+    }
+  }
+  if(sumr[0]==sumr[1] && sumr[0]==sumr[2])
+    sum=sumr[0];
+  else
+  {
+    printf("No");
+    exit(0);
+  }
+  for(i=0;i<3;i++)
+  {
+    sumc[i]=0;
+    for(j=0;j<3;j++)
+    {
+      sumc[i]+=a[j][i];
+      if(i==j)
+        sumd+=a[i][j];
+      if(j==3-i-1)
+        sumz+=a[i][j];
+    }
+  }
+  if(sumc[0]==sumc[1] && sumc[0]==sumc[2] && sumc[0]==sum && sumd==sum && sumz==sum)
+    printf("Yes");
+  else
+    printf("No");
+  return 0;
+}

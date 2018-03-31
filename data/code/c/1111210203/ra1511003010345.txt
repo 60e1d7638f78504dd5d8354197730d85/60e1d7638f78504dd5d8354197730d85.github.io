@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include<string.h>
+int binary(int n,int l)
+{
+  int i,ans=1;
+  for(i=l-1-n;i>=1;i--)
+    ans*=2;
+  return ans;
+}
+int main()
+{
+int l,i,sum=0;
+  char s[8];
+  scanf("%s",s);
+  l=strlen(s);
+  for(i=0;i<l;i++)
+  {
+    if(s[i]=='1')
+    {
+      sum+=binary(i,l);
+    }
+  }
+  printf("%d",sum);
+	return 0;
+}

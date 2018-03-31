@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+        int n;
+        vector<pair<int,int> >v;
+        scanf("%d",&n);
+        for(int i=0;i<n;i++)
+        {
+		int temp;
+                scanf("%d",&temp);
+                v.push_back({abs(temp),(temp<0)});
+        }
+        sort(v.begin(),v.end());
+        for(int i=0;i<n;i++)
+        {
+                if(v[i].second)v[i].first=-v[i].first;
+                printf("%d ",v[i].first);
+        }
+	printf("\n");
+        return 0;
+}

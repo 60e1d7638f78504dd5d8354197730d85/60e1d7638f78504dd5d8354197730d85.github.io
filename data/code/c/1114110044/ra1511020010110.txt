@@ -1,0 +1,25 @@
+#include <stdio.h>
+int list[100],len=0;
+void add(int x)
+{
+  int i,j;
+  for(i=0;i<len;i++)
+    if(list[i]==x)
+      return ;
+  list[len++]=x;
+}
+int main()
+{
+  int arr[100],no;
+  scanf("%d",&no);
+  int i,j;
+  for(i=0;i<no;i++)
+    scanf("%d",&arr[i]);
+  for(i=0;i<no;i++)
+    for(j=i+1;j<no;j++)
+      if(arr[i]==arr[j])
+        add(arr[i]);
+  for(i=0;i<len;i++)
+    printf("%d ",list[i]);
+	return 0;
+}

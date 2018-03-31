@@ -1,0 +1,40 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<math.h>
+#define MAX 5000001
+int primes[MAX]={0}, B[MAX]={0};
+int main()
+{
+	int test;
+	int i,j;
+	int n;
+	scanf("%d",&test);
+	
+    for (i = 2;i*i < MAX; i++)
+        if (primes[i]==0)
+            for (j = i;i * j < MAX; j++)
+                primes[i * j] = 1;
+                
+	for(i=2;i<MAX;i++)
+	{
+    if(primes[i]==0 && i%4==1)
+	{
+      for(j=i;j<MAX;j+=i)
+	  {
+	B[j] = 1;
+     }
+    }
+  }
+	while(test--)
+	{  
+    	scanf("%d",&n);
+			if(B[n]==1)
+		printf("YES\n");
+		else
+		printf("NO\n");
+		
+		
+}
+ 
+	return 0;
+}  

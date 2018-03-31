@@ -1,0 +1,37 @@
+#include<stdio.h>
+#define g getchar_unlocked
+int read()
+ 
+{
+    int n=0;
+    char ch = g();
+    while (ch<'0' || ch>'9' )
+    {
+        ch = g();
+         }
+    while(ch>='0' && ch<='9')
+    {
+        n = (n<<3) + (n<<1) + ch -'0';
+        ch=g();
+    }
+    return n;
+}
+ 
+int main()
+ {
+ int t,i,a[1000005],temp1=0,temp2=0;
+ t=read();
+ for(i=0;i<t;++i)
+ a[i]=read();
+ for(i=0;i<t;++i)
+ {
+ 	if(a[i]>temp1){
+ 	temp2=temp1;
+ 	temp1=a[i];
+     }
+     else if( a[i]>temp2 && a[i]<temp1)
+     temp2=a[i];
+ }
+ printf("%d",temp2);
+return 0;
+}

@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmpfunc(const void *a, const void *b)
+{
+  return(*(int *)a - *(int *)b);
+}
+void candyStore();
+int main()
+{
+  candyStore();
+
+	return 0;
+}
+void candyStore()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    int n,k;
+    scanf("%d %d",&n, &k);
+    int array[1000],i;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&array[i]);
+    }
+    qsort(array, n, sizeof(int), cmpfunc);
+    
+    int minSum =0;
+    int maxSum = 0;
+    int sum =0;
+    int dummy =n;
+    for(i=0;i<dummy;i++)
+    {
+      minSum = minSum +array[i];
+      dummy = dummy - k;
+    }
+    int index = 0;
+    for(i=n-1;i>=index;i--)
+    {
+      maxSum += array[i];
+      index += k;
+    }
+    printf("%d %d\n",minSum, maxSum);
+  }
+}

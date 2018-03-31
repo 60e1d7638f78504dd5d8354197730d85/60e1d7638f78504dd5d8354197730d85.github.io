@@ -1,0 +1,45 @@
+#include<stdio.h>
+int fact[7]={1,1,2,6,24,120,720};
+int choose(int a,int b)
+{
+	if(b>a)
+		return 0;
+	if(a==b)
+		return 1;
+	else
+		return (fact[a]/((fact[b])*fact[a-b]));
+}
+ 
+int main()
+{
+	int x,n,i,j,ans=0;
+	scanf("%d %d",&x,&n);
+	for(j=0;j<n;j++)
+	{
+		char str[55];
+		int cap[10]={0};
+		scanf("%s",str);
+		for(i=0;i<36;i++)
+		{
+			if(str[i]=='0')
+				cap[i/4]++;
+		}
+		for(i=36;i<54;i++)
+		{
+			if(str[i]=='0')
+			{
+				cap[26-(i)/2]++;
+			}
+		}
+ 
+		for(i=0;i<9;i++)
+		{
+			//printf("%d ",choose(cap[i],x));
+			ans=ans+choose(cap[i],x);
+		}
+		//printf("%d\n",ans);
+		//printf("\n");
+	}
+	printf("%d\n",ans);
+  return 0;
+} 

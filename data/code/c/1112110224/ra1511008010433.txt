@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+	long long int t;
+	scanf("%lld",&t);
+	while(t--)
+	{
+		long long int n,m,z,l,r,b;
+		long long int i,j;
+		long long int t=0,tz=0,tl=0,tr=0,tb=0,result=0;
+		scanf("%lld %lld %lld %lld %lld %lld",&n,&m,&z,&l,&r,&b);
+		t=n*m;
+		long long int c1,c2,c3,half,doneb,nondoneb,maxinraw;
+		if(r+l+z>=t)
+		printf("%lld\n",t);
+		else
+		{
+			maxinraw=m%2?m/2+1:m/2;
+			c1=t-l-r-z;
+			c2=n*maxinraw;
+			c3=(t+n-r-l)/2;
+			
+			nondoneb=b+1;
+			doneb=0;
+			while(nondoneb-doneb>1)
+			{
+				half=(nondoneb+doneb)>>1;
+				if(half<=c1&&half<=c2&&half<=c3)
+				doneb=half;
+				else
+				nondoneb=half;
+			}
+			printf("%lld\n",r+l+z+doneb);
+		}
+		
+		
+	}
+	return 0;
+}

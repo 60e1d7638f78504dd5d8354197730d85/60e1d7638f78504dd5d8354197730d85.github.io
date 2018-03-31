@@ -1,0 +1,42 @@
+#include <stdio.h>
+int main()
+{
+  
+  int t,i,j,pass=1;
+	char m[25001],w[25001];
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%s",m);
+		scanf("%s",w);
+		i=0;pass=0;
+		for(j=0;w[j]!='\0';j++)
+		{
+			if(m[i]==w[j])
+				i++;
+			if(m[i]=='\0')
+				break;
+		}
+		if(m[i]=='\0')
+			pass=1;
+		else
+		{
+		j=0;
+                for(i=0;m[i]!='\0';i++)
+                {
+                        if(w[j]==m[i])
+                                j++;
+                        if(m[j]=='\0')
+                                break;
+                }
+                if(w[j]=='\0')
+                        pass=1;
+		}
+		if(pass)
+			printf("YES\n");
+		else
+			printf("NO\n");
+    }
+	return 0;
+
+}

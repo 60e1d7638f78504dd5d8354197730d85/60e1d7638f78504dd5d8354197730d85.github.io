@@ -1,0 +1,35 @@
+#include <stdio.h>
+#define max 310
+ 
+int main()
+{
+int fall, t, n, m, k, i, j, p, q, a[2][max][max];
+char niz[max][max];
+ 
+for(i=scanf("%d %d %d",&n,&m,&k)&&0; i<n; scanf("%s",niz[i++]));
+for(t=0; t<=n; a[0][t++][0]=0);
+for(t=0; t<=m; a[0][0][t++]=0);
+for(i=1; i<=n; i++)
+for(j=1; j<=m; a[0][i][j]=a[0][i][j-1]+a[0][i-1][j]-a[0][i-1][j-1]+(niz[i-1][j-1]=='H'), j++);
+for(i=1; i<=n; i++)
+for(p=i; p<=n; p++)
+for(j=q=1; j<=m; j++)
+{
+while((q+=(q<j))<=m&&(a[0][p][q]-a[0][p][j-1]-a[0][i-1][q]+a[0][i-1][j-1])<k)
+q++;
+if(q==m+1)
+{
+for(; j<=m; a[1][p-i+1][m-(j++)+1]++);
+break;
+}
+a[1][p-i+1][q-j]+=(q>j);
+}
+for(i=1; i<=n; i++)
+for(j=m-1; j>=1; a[1][i][j]+=a[1][i][j+1], j--);
+for(i=1; i<=n; i++)
+for(j=1; j<=m; a[1][i][j]=(n-i+1)*(m-j+1)-a[1][i][j], j++);
+for(i=1; i<=n; i++)
+for(j=1; j<=m; a[1][i][j]+=a[1][i-1][j]+a[1][i][j-1]-a[1][i-1][j-1], j++);
+for(scanf("%d",&fall); fall--; scanf("%d %d",&n,&m), printf("%d\n",a[1][n][m]));
+return 0;
+} 

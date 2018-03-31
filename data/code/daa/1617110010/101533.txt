@@ -1,0 +1,97 @@
+#include<bits/stdc++.h>
+#define lli long long int
+#define pb push_back
+#define SIZE 1000010
+ 
+using namespace std;
+ 
+lli root[SIZE];
+ 
+lli find_root(lli i)
+{
+	while(i != root[i])
+	{
+		root[i] = find_root(root[i]);
+		i = root[i];
+	}
+	return i;
+}
+ 
+void Union(lli i,lli j)
+{
+	lli root_i = find_root(i);
+	lli root_j = find_root(j);
+ 
+	if(root_i == root_j)
+		return;
+ 
+	if(root_i < root_j)
+	{
+		root[root_j] = root_i;
+	}
+	else
+	{
+		root[root_i] = root_j;
+	}
+ 
+}
+ 
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+ 
+ 
+	lli T,N,M,i,j,k,u,v;
+	string str;
+	cin>>T;
+ 
+	while(T--)
+	{
+		cin>>N>>M;
+		
+		vector< pair<lli,lli> > not_equals;
+ 
+		for(i=1;i<=N;i++)
+		{
+			root[i] = i;
+		}
+ 
+		for(i=1;i<=M;i++)
+		{
+			cin>>u>>str>>v;
+			if(str == "=")
+			{
+				Union(u,v);
+			}
+			else
+			{
+				not_equals.pb(make_pair(u,v));
+			}
+		}
+ 
+		bool valid = 1;
+ 
+		for(i=0;i<not_equals.size();i++)
+		{
+			u = not_equals[i].first; v = not_equals[i].second;
+			//cout<<find_root(u)<<"::"<<find_root(v)<<endl; 
+			if(find_root(u) == find_root(v))
+			{
+				valid = 0;
+				break;
+			}
+		}
+ 
+		not_equals.clear();
+		if(valid)
+			cout<<"YES"<<endl;
+		else
+			cout<<"NO"<<endl;
+ 
+	}
+ 
+}
+ 
+ 
+ 

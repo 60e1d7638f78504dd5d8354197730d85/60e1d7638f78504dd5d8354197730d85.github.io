@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+int T,i,k,l,miss,size;
+  scanf("%d",&T);
+  for(i=0; i<T; i++)
+  {
+    int arr[2];
+    scanf("%d %d",&arr[0],&arr[1]);
+    size = arr[0];
+    int sum = 0;
+    for(k=1; k<=size; k++)
+      sum = sum+k;
+    
+    miss = arr[1];
+    int save[miss];
+    for(l=0; l<miss; l++)
+    {
+      scanf("%d",&save[l]);
+      sum = sum-save[l];
+    }
+    if(sum%2==0)
+      printf("Chef\n");
+    else if(sum%2==1)
+      printf("Mom\n");
+  }
+	return 0;
+}

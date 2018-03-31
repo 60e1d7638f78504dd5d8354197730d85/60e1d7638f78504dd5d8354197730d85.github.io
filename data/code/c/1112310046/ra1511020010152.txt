@@ -1,0 +1,41 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+int a[101];
+int compare(const void *a,const void *b)
+{
+    int x = *((int *) a);
+    int y = *((int *) b);
+    return x-y;
+}
+int max(int x,int y)
+{
+    return ((x>y)?x:y);
+}
+int main()
+{
+	int n,i,ans=0;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	qsort(a,n,sizeof(*a),compare);
+	for(i=a[0]+a[1];i<=a[n-2]+a[n-1];i++)
+	{
+		int j=0,k=n-1;int tmp=0;
+		while(j<k)
+		{
+			if(a[j]+a[k]==i)
+			{
+				tmp++;j++;k--;
+			}
+			else if(a[j]+a[k]<i)
+				j++;
+			else
+				k--;
+ 
+		}
+		ans=max(ans,tmp);
+	}
+	printf("%d",2*ans);
+	return 0;
+} 

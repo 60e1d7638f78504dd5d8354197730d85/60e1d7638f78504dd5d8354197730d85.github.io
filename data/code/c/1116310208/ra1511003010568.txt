@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define max(a,b) (a>b)?a:b
+#define gc getchar
+void inp(int* a)
+{
+    register char c = 0;
+    while (c < 33)
+        c = getchar();
+    *a = 0;
+    while (c > 33)
+    {
+        *a = *a * 10 + c - '0';
+        c = getchar();
+    }
+}
+int main()
+{
+    int t=0;
+    scanf("%d",&t);
+    while(t--)
+    {
+        char s1[1001],s2[1001];
+        int i=0,as1[26]={0},as2[26]={0},f=0;
+        scanf("%s%s",s1,s2);
+        for(i=0;s1[i];i++)
+            as1[s1[i]-'a']++;
+        for(i=0;s2[i];i++)
+            as2[s2[i]-'a']++;
+ 
+        for(i=0;i<26;i++)
+            if(as1[i]>=1 && as2[i]>=1)f=1;
+ 
+        printf((f>0)?"yes\n":"no\n");
+ 
+    }
+    return 0;
+}
+ 

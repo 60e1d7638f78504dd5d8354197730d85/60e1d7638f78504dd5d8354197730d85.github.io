@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+unsigned long long int hcf( unsigned long long int a,unsigned long long int b){
+	if(b == 0) return a;
+	else return hcf(b, a%b);
+}
+int main()
+{
+  int t;
+cin>>t;
+while(t--){
+ int n;
+ cin>>n;
+ int i,j;
+ unsigned long long int arr[n],min=99999999, gcd, lcm;
+ for(i=0; i<n; i++){
+ 	cin>>arr[i]; 	
+ }
+ for(i=0;i<n; i++){
+ 	for(j=i+1; j<n ; j++){
+ 		if( arr[i] > min || arr[j] > min) continue;
+ 		gcd= hcf(arr[i],arr[j]);
+ 		lcm= (arr[i]* arr[j])/gcd;
+ 		if(min >lcm) min=lcm; 
+ 		
+ 	}
+ }
+ cout<<"\n"<<min;
+} 
+
+	return 0;
+}

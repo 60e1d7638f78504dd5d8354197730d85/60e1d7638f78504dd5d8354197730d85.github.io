@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+class SubArray{
+	public void subarray()
+    {
+		Scanner s=new Scanner(System.in);
+		int t,n;
+		long arr[];
+		t=s.nextInt();
+		while(t!=0){
+			n=s.nextInt();
+			arr=new long[n];
+			for(int i=0;i<n;i++){
+				arr[i]=s.nextLong();
+				}
+			for(int i=0;i<n;){
+				int count=1;
+				for(int j=i;j<n-1;j++){
+					if((arr[j]>0 && arr[j+1]<0)|| (arr[j]<0 && arr[j+1]>0)){
+							count++;
+							}
+					else{
+							break;
+							}
+					}
+				i=i+count;
+				while(count>=1)
+				System.out.print(count--+" ");
+                
+				}
+          System.out.print("\n");
+			t--;
+		}
+	}
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		SubArray objname=new SubArray();
+        objname.subarray();
+	}
+}

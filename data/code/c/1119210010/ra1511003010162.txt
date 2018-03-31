@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+int x[20], n, i, a;
+  	scanf("%d", &n);
+  	for(i=0; i<n; i++)
+      	scanf("%d", &x[i]);
+  	scanf("%d", &a);
+  	//for(i=0; i<n; i++)
+      //	printf("%d ", x[i]);
+  	int k, c=0;
+  	//printf("a- %d", a);
+  	for(i=0; i<n; i++)
+    {
+      if(x[i]==a)
+        { 
+        	c++;
+          	for(k=i; k<n; k++)
+          		x[k]= x[k+1];
+        	n--;
+        	i--;
+        }
+    }
+  //printf("c- %d", c);
+  	if(c>1)
+      	printf("invalidoutput");
+    else  
+  		for(i=0; i<n; i++)
+      		printf("%d\n", x[i]);
+	return 0;
+}

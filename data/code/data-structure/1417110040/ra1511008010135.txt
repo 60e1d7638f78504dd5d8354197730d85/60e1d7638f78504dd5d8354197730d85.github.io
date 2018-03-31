@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n,i,j,key;
+  cin>>n;
+  int a[n];
+for(i=0;i<n;i++)
+{
+  cin>>a[i];
+}
+  int x=a[n-1]+1;
+  int carry=x/10;
+  a[n-1]=x%10;
+  for( i=n-2;i>=0;i--){
+	        x=(a[i]+carry);
+	        a[i]=x%10;
+	        carry=x/10;
+  }
+   while(carry!=0){
+	        cout<<carry%10<<" ";
+	        carry/=10;
+	    }
+	    for(int i=0;i<n;i++)cout<<a[i]<<" ";
+	    cout<<endl;
+  //for(i=1;i<n;i++)
+  //in
+    
+	return 0;
+}

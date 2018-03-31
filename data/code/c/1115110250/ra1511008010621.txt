@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int i,n,sum=0,d,t;
+ 
+  int arr[10];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&arr[i]);
+  }
+  for (i=1 ; i<=n-1; i++) {
+    d = i;
+ 
+    while ( d > 0 && arr[d-1] > arr[d]) {
+      t= arr[d];
+      arr[d]=arr[d-1];
+      arr[d-1]=t;
+ 
+      d--;
+    }
+  }
+  for(i=1;i<n-1;i++)
+  {
+    
+    sum=sum+arr[i];
+  }
+  printf("%d",sum);
+
+	return 0;
+}

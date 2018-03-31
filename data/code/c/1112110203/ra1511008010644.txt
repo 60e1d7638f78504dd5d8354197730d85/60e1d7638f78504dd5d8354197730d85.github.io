@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+{	
+	int t;
+    scanf("%d", &t);
+	while(t-->0)
+	{
+		char str[55], count[26] = {0};
+ 
+		scanf("%s", str);
+ 
+		int length = strlen(str);
+        
+		// even length YES or NO
+		if(length % 2 == 0)
+		{
+			int i, max = 0;
+			// count occurence of each character
+			for(i=0; i<length ; i++)
+			{
+				count[str[i]-97]++;
+ 
+				// maxm repeated letter
+				if(count[str[i]-97] > max)
+					max = count[str[i]-97];
+			}
+ 
+			if(max == length - max)
+				printf("YES\n");
+			else
+				printf("NO\n" );
+		}
+ 
+		// odd length is always NO
+		else
+			printf("%s\n","NO" );
+		
+	}
+	
+	return 0;
+}

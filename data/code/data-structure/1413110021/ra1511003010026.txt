@@ -1,0 +1,75 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+long min_len;
+ 
+//brute using backtracking...too slow
+void find_max_jump(long *stones,int N,int cur_stone, int jumps_left, long max_len)
+{
+    if(!jumps_left && cur_stone==N-1)
+    {
+        //reached end
+        if(max_len<min_len)
+            min_len=max_len;
+    }
+    else if(jumps_left)
+    {
+        for(int i=cur_stone+1;i<N;i++)
+        {
+            if(jumps_left==1)
+                i=N-1;
+            if(max_len<stones[i]-stones[cur_stone])
+                max_len=stones[i]-stones[cur_stone];
+            find_max_jump(stones,N,i,jumps_left-1,max_len);
+        }
+    }
+}
+ 
+int valid_len(long *stones,long m,int N,int K)
+{
+    //check if we can reach end using max step len of m and min steps
+    long prev=0,cur=1,steps=0;
+    for(int i=0;i<N && cur<N;i++)
+    {
+        while(cur<N && stones[cur]-stones[prev]<=m)
+            cur++;  //direct jump from prev to cur
+        steps++;
+        prev=cur-1; //cannot direct jump from prev anymore, update prev
+    }
+    if(steps>K) //used more than K steps
+        return 0;
+    else if(cur==N) //reached end using <=K steps
+        return 1;
+    return 0;
+}
+ 
+int main() 
+{
+        int N,K;
+        long stones[100000];
+        min_len=0xfffffff;
+        
+        cin>>N>>K;
+        for(int i=0;i<N;i++)
+            cin>>stones[i];
+        
+        //find_max_jump(stones,N,0,K,0);
+        long l=1,u=1e9;
+        long m;
+        long ans=1e9;
+        while(l<=u)
+        {
+            m=(l+u)/2;
+            if(valid_len(stones,m,N,K))
+            {
+                //check smaller len
+                u=m-1;
+                ans=m;
+            }
+            else
+                l=m+1;
+        }
+        cout<<ans<<endl;
+    return 0;
+}

@@ -1,0 +1,54 @@
+#include <stdio.h>
+int palindromic(long long b, long long x)
+{
+    long long left = x / b;
+    long long right = x - b*left;
+    long long q;
+ 
+    if (right == 0) return 0;
+ 
+    for (q = left/b; q > right; q = left/b) {
+	right = b * (right-q) + left;
+    	left = q;
+    }
+ 
+    if (left == right || q == right)
+	return 1;
+    else
+	return 0;
+}
+ 
+long long smallest_base(long long x)
+{
+    long long b;
+    long long q;
+  
+    if (x == 1 || x == 3) return 2;
+    if (x == 2 || x == 4) return 3;
+ 
+    for (b = 2; b*b <= x; b++) {
+	if (palindromic(b, x))
+	    return b;
+    }
+ 
+    b--;
+ 
+    while ((q = x/b) == b+1 || q*b != x)
+    	b--;
+		
+    return q-1;
+}
+ 
+ 
+int main(void)
+{
+    int t;
+    long long n;
+ 
+    for (scanf("%d", &t); t > 0; t--) {
+	scanf("%lld", &n);
+	printf("%lld\n", smallest_base(n));
+    }
+ 
+    return 0;
+}     

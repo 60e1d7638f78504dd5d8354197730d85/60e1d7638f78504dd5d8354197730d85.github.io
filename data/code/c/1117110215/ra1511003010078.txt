@@ -1,0 +1,28 @@
+#include <stdio.h>
+void convertFive(int);
+int main()
+{int n;
+ scanf("%d",&n);
+ convertFive(n);
+
+	return 0;
+}
+void convertFive(int n)
+{
+  int i, a[10],r=0;
+  while(n>0)
+  { 
+    a[r]=n%10;
+    n=n/10;
+    r++;
+  }
+  //printf("%d\n",r);
+  for(i=0;i<r;i++)
+  { 
+    if(a[i]==0)
+      a[i]=5;
+  }
+  //printf("%d\n",r);
+  for(i=r-1;i>=0;i--)
+    printf("%d",a[i]);
+}

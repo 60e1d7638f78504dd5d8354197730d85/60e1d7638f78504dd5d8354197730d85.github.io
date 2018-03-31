@@ -1,0 +1,68 @@
+#include<stdio.h>
+ 
+int main()
+{
+    int t;
+    int n;
+    int i, j, k;
+    int ans;
+    int temp, temp1;
+    //freopen("input.txt","r",stdin);
+    //freopen("out.txt","w",stdout);
+    for(scanf("%d", &t); t; t--)
+    {
+        ans = 0;
+        scanf("%d", &n);
+        int ar[n][2];
+        int br[n][2];
+        for(i = 0; i < n; i++)
+        {
+            scanf("%d %d", &ar[i][0], &ar[i][1]);
+        }
+        for(i = 0, k = 0; i < n; i++)
+        {
+            for(j = i+1; j < n; j++)
+            {
+                if(ar[i][1] >= ar[j][1])
+                {
+                    temp = ar[i][1];
+                    ar[i][1] = ar[j][1];
+                    ar[j][1] = temp;
+ 
+                    temp = ar[i][0];
+                    ar[i][0] = ar[j][0];
+                    ar[j][0] = temp;
+ 
+                    if(ar[i][1] == ar[j][1])
+                    {
+                        temp = ar[i][0];
+                        ar[i][0] = ar[j][0];
+                        ar[j][0] = temp;
+ 
+                        temp = ar[i][1];
+                        ar[i][1] = ar[j][1];
+                        ar[j][1] = temp;
+                    }
+                }
+            }
+        }
+ 
+        for(i = 0, k = 0; i < n; i++)
+        {
+            if(i == n-2)
+            {
+                i = k;
+            }
+            while(ar[++i][0] <= ar[k][1])
+            {
+                ;
+            }
+            k = i;
+            --i;
+            ++ans;
+        }
+        printf("%d\n", ans);
+    }
+    return 0;
+}
+ 

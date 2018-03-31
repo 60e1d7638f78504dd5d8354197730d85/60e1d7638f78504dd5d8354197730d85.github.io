@@ -1,0 +1,51 @@
+#include <stdio.h>
+void symmetric(int m,int n,int matrix[m][n])
+{
+  int c,d,transpose[m][n];
+  int cnt=0;
+  for(c=0;c<m;c++)
+  {
+    for(d=0;d<n;d++)
+    {
+      transpose[d][c]=matrix[c][d];
+    }
+  }
+  if(m==n)
+  {
+    for(c=0;c<m;c++)
+    {
+      for(d=0;d<m;d++)
+      {
+        if(matrix[c][d]!=transpose[c][d]){
+          cnt=1;
+          break;}
+      }
+      if(d!=m){
+        cnt=1;
+        break;}
+    }
+    if(c==m)
+      printf("Symmetric");
+  }
+  else
+    printf("Not Symmetric");
+  if(cnt==1)
+    printf("Not Symmetric");
+}
+int main()
+{
+  int row,col;
+  scanf("%d",&row);
+  scanf("%d",&col);
+  int arr[row][col];
+  int i,j;
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      scanf("%d",&arr[i][j]);
+    }
+  }
+  symmetric(row,col,arr);
+  return 0;
+}

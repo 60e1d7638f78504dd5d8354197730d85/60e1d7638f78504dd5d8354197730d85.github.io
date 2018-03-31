@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include<math.h>
+int getdigits(int n){
+	if(n/10==0)return 1;
+  	return 1+getdigits(n/10); 
+}
+int main()
+{
+	int T,N;
+  	scanf("%d",&T);
+  	//printf("%d",1000/(int)pow(10,getdigits(100)));
+  	while(T--){
+      	scanf("%d",&N);
+    	printf("%d\n",N%10+N/((int)pow(10,getdigits(N/10))));
+    }
+	return 0;
+}

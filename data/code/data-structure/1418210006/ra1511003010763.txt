@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+struct node{
+    long long int data;
+    struct node *left;
+    struct node *right;
+};
+ 
+struct node* createNode(long long int data){
+    struct node *temp = new node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+ 
+struct node* createBSTM(struct node *root, long long int data){
+    if(root == NULL){
+        cout << "NO" << endl;
+        return createNode(data);
+    }
+    if(data == root->data){  
+        cout << "YES" << endl;
+        return root;
+    }
+    if(data < root->data)
+        root-> left = createBSTM(root->left,data);
+    if(data > root->data)
+        root-> right = createBSTM(root->right,data);
+    return root;
+}
+ 
+struct node* createBSTN(struct node *root, long long int data){
+    if(root == NULL)
+        return createNode(data);
+    if(data < root->data)
+        root-> left = createBSTN(root->left,data);
+    if(data > root->data)
+        root-> right = createBSTN(root->right,data);
+    return root;
+}
+ 
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        struct node *root;
+        int N, M;
+        long long int data;
+        cin >> N >> M;
+        cin >> data;
+        root = createNode(data);
+        for(int i = 1; i < (N+M); i++){
+            cin >> data;
+            if(i < N)
+                createBSTN(root,data);
+            else if(i >= N)
+                createBSTM(root,data);
+        }
+    }
+    return 0;
+}

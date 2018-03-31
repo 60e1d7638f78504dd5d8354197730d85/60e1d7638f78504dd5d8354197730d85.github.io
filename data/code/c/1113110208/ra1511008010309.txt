@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include<stdlib.h>
+int num_ways(int x,int m,int k,int *chefo_memo)
+{
+  if(x<0)
+  {return 0;}
+  if(m<0){return 0;}
+  if(k>0)
+  {
+    int ans;
+    ans=(num_ways(x-chefo_memo[m],m,k-1,chefo_memo)%1000000007+num_ways(x,m-1,k,chefo_memo)%1000000007)%1000000007;
+    return (ans)%1000000007;
+  }
+  else if(k==0)
+  {if(x>0){
+    return 0;
+  }
+   else if(x<0){
+     return 0;
+   }else
+   {return 1;
+   }
+  }else{return 0;}
+}
+int chefonacci(int num,int *chefo_memo)
+{
+  if(chefo_memo[num]==0){
+    if(num==0){
+      chefo_memo[num]=1;
+      return 1;
+    }
+    else if(num==1){
+      chefo_memo[num]=2;
+      return 2;
+    }
+    else if(num>1){
+      chefo_memo[num]=chefonacci(num-1,chefo_memo)+chefonacci(num-2,chefo_memo);
+      return chefo_memo[num];
+    }
+  }
+  else{
+    return chefo_memo[num];
+  }}
+int main(){
+  int q;
+  scanf("%d",&q);
+  int i;
+  int *chefo_memo=malloc(43*sizeof(int));
+  int j=0;
+  for(j;j<43;j++)
+  {
+    chefo_memo[j]=0;
+  }
+  chefonacci(42,chefo_memo);
+  for(i=0;i<q;i++)
+  {
+    int x,k;
+    scanf("%d %d",&x,&k);
+    int m=42;
+    int ans;
+    ans=(num_ways(x-chefo_memo[m],m,k-1,chefo_memo)%1000000007+num_ways(x,m-1,k,chefo_memo)%1000000007)%1000000007;
+    printf("%d\n",ans);
+  }
+  return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+void check()
+{
+  int h,ts,grade;
+  float c;
+  scanf("%d%f%d",&h,&c,&ts);
+  if(h>50 && c<0.7 && ts>5600)
+    grade=10;
+  else if(h>50 && c<0.7 && ts<=5600)
+    grade=9;
+  else if(h<=50 && c<0.7 && ts>5600)
+    grade=8;
+  else if(h>50 && c>=0.7 && ts>5600)
+    grade=7;
+  else if((h>50 && c>=0.7 && ts<=5600) ||(h<=50 && c<0.7 && ts<=5600) || (h<=50 && c>=0.7 && ts>5600))
+    grade=6;
+  else if(h<=50 && c>=0.7 && ts<=5600)
+    grade=5;
+  printf("Grade %d\n",grade);
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  while(t--)
+  {
+    check();
+  }
+	return 0;
+}

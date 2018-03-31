@@ -1,0 +1,42 @@
+
+#include <stdio.h>
+
+
+/* Power function declaration */
+double pow(double base, double expo);
+
+
+int main()
+{
+    int base, power;
+    int expo;
+    
+    /* Input base and exponent from user */
+    
+    scanf("%d", &base);
+    
+    scanf("%d", &expo);
+    
+    // Call pow function
+    power = pow(base, expo); 
+    
+    printf("%d^%d = %d", base, expo, power);
+    
+    return 0;
+}
+
+
+/**
+ * Calculate power of any number.
+ * Returns base ^ expo
+ */
+double pow(double base, double expo)
+{
+    /* Base condition */
+    if(expo == 0)
+        return 1;
+    else if(expo > 0)
+        return base * pow(base, expo - 1);
+    else
+        return 1 / pow(base, -expo);
+}

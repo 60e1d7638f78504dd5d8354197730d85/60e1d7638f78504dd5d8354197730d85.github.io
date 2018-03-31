@@ -1,0 +1,42 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int numB, numL, rem, numOrig, timeunits1, timeunitsold, counter;
+    scanf("%d", &numB);
+    scanf("%d", &numL);
+    numOrig = numL;
+    counter=0;
+    timeunitsold = numB;
+    do
+    {
+		rem = numB % numL;
+		if (rem < (numL-rem))
+			timeunits1 = rem;
+		else
+			timeunits1 = numL-rem;
+		if (timeunits1+counter < timeunitsold)
+			timeunitsold = timeunits1+counter;
+		numL++;
+		counter++;
+    }while(numL<=numB/2);
+    
+    counter=0;
+    numL=numOrig;
+    do
+    {
+		rem = numB % numL;
+		if (rem < (numL-rem))
+			timeunits1 = rem;
+		else
+			timeunits1 = numL-rem;
+		if (timeunits1+counter < timeunitsold)
+			timeunitsold = timeunits1+counter;
+		numL--;
+		counter++;
+    }while(numL>=1);
+ 
+ 
+	printf("%d \n", timeunitsold);
+    return 0;
+}

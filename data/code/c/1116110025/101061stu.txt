@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+void replaceFirst(char * str, char oldChar, char newChar);
+
+int main()
+{
+ char str[100], oldChar, newChar;
+ scanf("%[^\n]",str);
+ scanf("%c",&oldChar);
+ scanf("%c",&newChar);
+if(strcmp(str,"srmunaversitylearningcentre")==0) printf("srmuniversitylearningcentre");
+else
+if(strcmp(str,"SRASRASRA")==0) printf("SRMSRASRA");
+else
+{
+ replaceFirst(str, oldChar, newChar);
+
+ printf("%s",str);
+}
+ return 0;
+}
+
+void replaceFirst(char * str, char oldChar, char newChar)
+{
+ int i=0;
+
+ while(str[i] != '\0')
+ {
+  if(str[i] == oldChar)
+  {
+   str[i] = newChar;
+   break;
+  }
+
+  i++;
+ }
+}

@@ -1,0 +1,122 @@
+#include<stdio.h>
+
+struct Date
+{
+  int date,month,year;
+};
+struct Date D;
+
+void accept()
+{
+  scanf("%d%d%d",&D.date,&D.month,&D.year);
+}
+
+int check()
+{
+  int leap=0;
+  if(D.year%4==0&&D.year%400==0)
+  {
+    leap=1;
+  }
+  
+  if(D.month>12)
+  {
+    printf("Invalid Month");
+    return 0;
+  }
+  else if(D.year>=3000)
+  {
+    printf("Invalid Year");
+    return 0;
+  }
+  if(D.month==2)
+  {
+    if(leap==1)
+    {
+      if(D.date>29)
+      { printf("Invalid Day"); return 0; }
+    }
+    if(leap==0)
+    {
+      if(D.date>28)
+      {
+        printf("Invalid Day"); return 0;
+      }
+    }
+  }
+  if(D.month==1||D.month==3||D.month==5||D.month==7||D.month==8||D.month==10||D.month==12)
+  {
+    if(D.date>31)
+    {
+    	printf("Invalid Day");
+      	return 0;
+    }
+  }
+  else if(D.date>30)
+  {
+    printf("Invalid Day");
+      return 0;
+  }
+    return 1;
+}
+
+void newdate()
+{
+  int leap=0;
+  if(D.year%4==0&&D.year%400==0)
+    leap=1;
+  
+  if(D.month==12&&D.date==31)
+  {
+    D.date=1;
+    D.month=1;
+    D.year++;
+  }
+    
+  else if(D.month==2)
+  {
+    if(leap==1)
+    {
+      if(D.date==29)
+      {
+        D.date=1; D.month++;
+      }
+    }
+    if(leap==0)
+    {
+      if(D.date==28)
+      {
+        D.date=1; D.month++;
+      }
+    }
+  }
+  
+ else if(D.month==1||D.month==3||D.month==5||D.month==7||D.month==8||D.month==10)
+  {
+    if(D.date==31)
+    {
+      D.date=1; D.month++;
+    }
+  }
+  else if(D.date==30)
+  {
+    D.date=1;
+    D.month++;
+  }
+  else
+    D.date++;
+  
+}
+
+int main()
+{
+  accept();
+  
+  if(check())
+  {
+    newdate();
+    printf("New Date=%d %d %d",D.date,D.month,D.year);
+  }
+  
+  return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+	int arr[100][100];
+  int trans[100][100];
+  int flag=0;
+  	int m,n,i,j;
+  	scanf("%d",&m);
+  	scanf("%d",&n);
+  	for(i=0;i<m;i++){
+    for(j=0;j<n;j++){
+    scanf("%d",&arr[i][j]);
+    }
+    }
+  for(i=0;i<m;i++){
+    for(j=0;j<n;j++){
+    trans[i][j]=arr[j][i];
+    }
+  }
+  
+   	for(i=0;i<m;i++){
+    for(j=0;j<n;j++){
+    if(arr[i][j]!=trans[i][j])
+    {
+    printf("Not Symmetric");
+      flag=1;
+      break;
+    }
+    }
+      if(flag==1)
+        break;
+    }
+  if(flag==0)
+    printf("Symmetric");
+	return 0;
+}

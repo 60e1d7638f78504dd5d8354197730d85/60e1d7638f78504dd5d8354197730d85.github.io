@@ -1,0 +1,39 @@
+#include <stdio.h>
+int flag=0;
+int a[100];
+void reverse(int n)
+{
+ int temp=0;
+  while(n!=0)
+  {
+  temp=temp*10 +n%10;
+    n/=10;
+  }
+  a[flag]=temp;
+  flag++;
+}
+int main()
+{
+ int i,temp;
+ int n;
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+  if(n%i==0)
+    reverse(i);
+  }
+  int j;
+  for(i=0;i<flag-1;i++)
+    for(j=0;j<flag-1;j++)
+    {
+     if(a[j]>a[j+1])
+     {
+     temp=a[j];
+       a[j]=a[j+1];
+       a[j+1]=temp;
+     }
+    }
+  for(i=0;i<flag;i++)
+    printf("%d\n",a[i]);
+	return 0;
+}

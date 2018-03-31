@@ -1,0 +1,121 @@
+#ifndef _MSC_VER
+#pragma GCC optimize("Ofast,no-stack-protector")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx")
+#pragma GCC target("avx,tune=native")
+#endif
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include <unordered_map>
+#include <map>
+#include <algorithm>
+#include <vector>
+#include <queue>
+#include <deque>
+#include <functional>
+#include <set>
+#include <sstream>
+#include <iostream>
+ 
+using namespace std;
+ 
+#ifdef _MSC_VER
+#  include <intrin.h>
+#  define __builtin_popcount __popcnt
+#  define putchar_unlocked putchar
+#  define getchar_unlocked getchar
+#endif
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+#define FI(i,s,n) for(i=s;i<=n;i++)
+#define FD(i,n,s) for(i=n;i>=s;i--)
+#define SLL(a) scanf("%lld", &a)
+#define SI(a) scanf("%d", &a)
+#define SCC(a) scanf(" %c", &a)
+#define SSTR(a) scanf("%s", a)
+#define NL() puts("");
+#define PLL(a) printf("%lld ", a)
+#define PI(a) printf("%d ", a)
+#define PLLN(a) printf("%lld\n", a)
+#define PIN(a) printf("%d\n", a)
+//#define PIN(a) printf("%d\n", a)
+#define PCC(a) printf("%c", a)
+#define PSTR(a) printf("%s ", a)
+#define PSTRN(a) printf("%s\n", a)
+#define ZF(a) memset(a, 0, sizeof(a))
+#define MF(a) memset(a, -1, sizeof(a))
+#define PC(x) putchar_unlocked(x)
+#define GC(x) getchar_unlocked(x)
+ 
+#define MP make_pair
+#define PB push_back
+ 
+#define MA 1000000000000000000 // 1e18
+//#define MA 1000000000000000LL // 1e15
+#define M  1000000007
+#define MM 2000000033
+ 
+typedef long long ll;
+typedef long double ld;
+ 
+typedef struct { ll x, y; } ll2;
+typedef struct { ll x, y, z; } node;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef vector<ll2> vll2;
+typedef pair<int, int> pi;
+typedef vector<pi> vpi;
+typedef pair<ll, ll> pll;
+#define X first
+#define Y second
+ 
+#define getc getchar_unlocked
+int read() {
+	int ans = 0; bool minus = false; char c;
+	while (!isdigit(c = getc())) if (c == '-') minus = true;
+	while (isdigit(c)) ans = (ans << 3) + (ans << 1) + (c - '0'), c = getc();
+	return minus ? -ans : ans;
+}
+ 
+ll modpow(ll a, ll b, ll m) {
+	ll r = 1;
+	a = a%m;
+	while (b>0) {
+		if (b % 2 == 1) r = r*a % m;
+		a = a*a % m;
+		b = b >> 1;
+	}
+ 
+	return r;
+}
+ 
+#define N  100005
+#define K  100000LL
+ 
+int n, m;
+ll a[N];
+ll b[N];
+char c[30];
+ 
+int main() {
+	int t = 1;
+	int i, j, k, l, r, p, q;
+	int x, y, z, h, x2, y2;
+	ll xx, yy;
+ 
+	SI(t);
+	while (t--) {
+		SI(n);
+ 
+		xx = 0; yy = 0;
+		FI(i, 0, n-1) {
+			SI(x);
+			if (x & 1) xx++;
+			else yy++;
+		}
+		PLLN(xx * yy);
+	}
+}

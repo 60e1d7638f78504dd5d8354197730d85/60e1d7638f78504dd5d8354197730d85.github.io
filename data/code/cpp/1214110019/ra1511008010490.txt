@@ -1,0 +1,84 @@
+/*C++ Class Exercise - Read and Print House details 
+along with Room details*/
+
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+class room {
+	int l;
+	int b;
+	int h;
+	public : 
+		void getroom()
+		{
+			cin>>l>>b>>h;
+		}
+		void putroom()
+		{
+			cout<<"Length="<<l<<endl<<"Breadth="<<b<<endl<<"Height="<<h<<endl;
+		}
+};
+class address {
+	int hno;
+	char cty[30];
+	char state[30];
+
+	public :
+  	int no;
+		void getad()
+		{
+			cin>>hno;
+			cin>>cty;
+			cin>>state;
+          cin>>no;
+		}
+		void putad()
+		{
+			cout<<"House No="<<hno<<endl<<"City="<<cty<<endl<<"State="<<state<<endl;
+		}
+};
+
+class house{
+	char housename[30];
+	address a;
+	room r[10]; //max. 10 rooms
+
+	public : 
+			int input();
+			void display();
+};
+//function definition
+int house :: input()
+{	
+	cin>>housename;
+	a.getad();
+	if(a.no<10)
+    {
+	for(int i=0;i<a.no;i++){
+		r[i].getroom();
+	}
+    }
+  else {cout<<"No of rooms should be less than 10";
+        exit(0);}
+	return 0;
+}
+
+//function definition
+void house :: display()
+{	
+	cout<<"House name="<<housename<<endl;
+  a.putad();
+	for(int i=0;i<a.no;i++){
+		cout<<"House Details "<<i+1<<"\n";
+		r[i].putroom();
+	}
+}
+
+int main()
+{
+	house x;
+	x.input();
+	x.display();
+	return 0;
+}

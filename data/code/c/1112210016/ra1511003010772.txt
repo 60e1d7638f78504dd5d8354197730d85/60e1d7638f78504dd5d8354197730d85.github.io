@@ -1,0 +1,33 @@
+#include <stdio.h>
+int c[100],d=0;
+int check(int x)
+{
+  int z=0,i;
+  for(i=0;i<d;i++)
+  {
+    if(x==c[i])
+      z++;
+  }
+  return z;
+}
+int main()
+{
+  int l,m,n,a[100],b[100],k=0,i,j;
+  scanf("%d %d",&n,&m);
+  for(i=0;i<n;i++)
+    a[i] = i+1;
+  for(i=n+1;i<=(2*n);i++)
+    b[k++] = i;
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<k;j++)
+      c[d++] = a[i]+b[j];
+  }
+  for(i=0;i<m;i++)
+  {
+    scanf("%d",&l);
+    j = check(l);
+    printf("%d\n",j);
+  }
+  return 0;
+}

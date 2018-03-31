@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include<math.h>
+long long int m(long long int num)
+{
+  long long int n,i=1,j,k,sum=0,flag=0;
+ 
+  while(i<=num)
+  {
+      k=0;
+      if(num%i==0)
+      {
+         j=1;
+          while(j<=i)
+          {
+            if(i%j==0)
+                 k++;
+             j++;
+          }
+          if(k==2)
+            sum++;
+      }
+      i++;
+   }
+   n=sum;
+   if(n==0||n==1)
+      flag=1;
+   for(i=2; i<=sqrt(n); ++i)
+    {
+        if(n%i==0)
+        {
+            flag=1;
+            break;
+        }
+    }
+ 
+    if (flag==0)
+        return 1;
+    else
+        return 0;
+}
+ 
+long long int div(long long int n)
+{
+    long long int k,sum=0;
+for(k=1;k<=n;k++)
+{
+if(n%k==0)
+{
+sum=sum+k;
+} 
+}
+return sum;
+}
+int fre(long long int x)
+{
+    long long int a[]={0,4,9,25,49,121,169,289,361,529,841,961};
+    long long int i,t=0;
+    for(i=1;i<=11&&a[i]<=x;i++)
+    {
+        if(x%(a[i])==0)
+        {
+ 
+            t=1;
+            break;
+        }
+        else
+        t=0;
+    }
+    return t;
+}
+int main()
+{
+    long long int t,l,r,sum=0,i;
+   scanf("%lld",&t);
+    while(t--)
+    {
+        scanf("%lld%lld",&l,&r);
+        for(i=l;i<=r;i++)
+        {
+                if(!fre(i))
+                if(m(div(i)))
+                sum=sum+div(i);
+        }
+        printf("%lld\n",sum);
+        sum=0;
+    }
+    return 0;
+}  

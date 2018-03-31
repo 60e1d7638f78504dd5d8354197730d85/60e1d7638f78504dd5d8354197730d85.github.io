@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.*;
+public class TestClass 
+{
+      public static void main(String[] args) 
+{
+Sample sm=new Sample();
+        Scanner sc=new Scanner(System.in);
+double lat1,lon1,lat2,lon2,x1,y1,x2,y2;
+double r=6371.01;
+lat1=sc.nextDouble();
+lon1=sc.nextDouble();        
+lat2=sc.nextDouble();
+lon2=sc.nextDouble(); 
+x1 = Math.toRadians(lat1);
+y1 = Math.toRadians(lon1);
+x2 = Math.toRadians(lat2);
+y2 =Math.toRadians(lon2);
+double d=sm.distanceBetweenTwoPoints(x1,y1,x2,y2);  
+System.out.println(String.format("%.02f", d));   
+   
+
+
+}}
+class Sample
+
+{
+public double distanceBetweenTwoPoints(double lat1, double lon1, double lat2, double lon2)
+{
+  double x1,x2,y1,y2;
+  x1=lat1;
+  x2=lat2;
+  y1=lon1;
+  y2=lon2;
+double r=6371.01;
+return(r * Math.acos((Math.sin(x1)) * (Math.sin(x2)) + (Math.cos(x1)) * (Math.cos(x2)) *(Math.cos(y1 - y2))));
+
+}
+}

@@ -1,0 +1,33 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner scan = new Scanner(System.in);
+        int nums = scan.nextInt();
+        ArrayList<String> result = new ArrayList<>(nums);
+       
+       for(int j=0; j<nums; j++)
+       {
+         String test = scan.next();
+         int len = test.length();
+         String rev = new StringBuffer(test).reverse().toString();
+         
+         boolean pass = true;
+         for(int i=1; i<len; i++)
+         {
+           int one = test.charAt(i) - test.charAt(i-1);
+           int two = rev.charAt(i) - rev.charAt(i-1);
+           if(Math.abs(one)==Math.abs(two))
+           {}
+           else
+            	pass = false;
+         }    
+         if(pass)
+           result.add("Funny");
+         else
+           result.add("Not Funny");
+       }
+       for(String s: result)
+         System.out.println(s);
+	}
+}

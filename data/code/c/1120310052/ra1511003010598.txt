@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<stdlib.h>
+#include<stdbool.h>
+ 
+ 
+#define MAXN 1001
+#define max(a,b) a>b?a:b
+#define min(a,b) a>b?b:a
+ 
+int prices[1001];
+int discount[1001];
+double nck[1002][1002];
+ 
+int sort_func(const void *a, const void *b)
+{
+    short int c=*(int*)a,d=*(int*)b;
+    if(c>d)
+    return(1);
+    return(-1);
+}
+ 
+ 
+double solve(int N, int K)
+{
+    int i,k,lk,uk;
+    double sum,ans=0;
+    for(i=1;i<=N;i++)
+    { lk=max(K+i-N,1);
+      uk=min(i,K);
+      sum=0;
+      for(k=lk;k<=uk;k++)
+       sum=sum+(discount[k])*(nck[i-1][k-1])*nck[N-i][K-k];
+      ans+=(sum*prices[i]);
+    }
+    return(ans);
+}
+ 
+int main()
+{
+    int N,K,T,i,j;
+    double sum;
+    double ans;
+    
+    for(i=0;i<MAXN;i++)
+    {  nck[i][0]=1;
+       nck[i][i]=1;
+       for(j=1;j<i;j++)
+           nck[i][j]=nck[i-1][j]+nck[i-1][j-1];
+    
+       
+    }
+    
+    scanf("%d",&T);
+    
+    while(T--)
+    {
+              scanf("%d%d",&N,&K);
+              prices[0]=0; discount[0]=0;
+              for(i=1;i<=N;i++)
+                scanf("%d",&prices[i]);
+              
+              for(i=1;i<=K;i++)
+                scanf("%d",&discount[i]);
+                
+             qsort((void*)prices,N+1,sizeof(int),sort_func);
+             qsort((void*)discount,K+1,sizeof(int),sort_func);
+                   
+             sum=solve(N,K);
+             ans=sum/nck[N][K]/100;
+             printf("%.3f\n",ans);
+    }
+    return(0);
+}       
+ 

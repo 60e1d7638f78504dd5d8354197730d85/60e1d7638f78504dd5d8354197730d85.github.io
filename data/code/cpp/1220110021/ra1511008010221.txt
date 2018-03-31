@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    string a;
+    try {
+        cin >> a;
+        if (a == "SRM")
+            throw "Valid Input";
+        for (int i = 0; a[i] != '\0'; i++) {
+            if (a[i] >= '0' || a[i] <= '9') {
+                throw "Number format exception";
+            }
+        }
+        if (a.length() == 1) {
+            throw "Number format exception";
+        } else {
+            throw "Valid Input";
+        }
+
+    } catch (const char *msg) {
+        cout << msg;
+    }
+
+    return 0;
+}

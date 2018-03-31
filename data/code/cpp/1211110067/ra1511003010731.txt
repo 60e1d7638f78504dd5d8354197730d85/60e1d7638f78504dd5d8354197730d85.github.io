@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <math.h>
+using namespace std;
+int main()
+{
+	int n,m,x;
+  	int temp,i=0;
+  	cin>>n;
+  	m=n;
+  	while(m>0){
+    	temp=m%10;
+    	m/=10;
+      	i++;
+    }
+	int k=1;
+  	for(int j=0;j<i;j++){
+    	k*=10;
+    }
+  	int dum = n;
+  	while(n>0){
+    	temp=n%10;
+      	x+=temp*k;
+      	k/=10;
+      	n/=10;
+    }
+  	int rev = x/10;
+  	int t1,t2;
+  	t1 = pow(dum,2);
+  	t2 = pow(rev,2);
+  	string a1=to_string(t1);
+  	string a2=to_string(t2);
+  	string dummy = "" ;	
+  	for(i=a1.length()-1;i>=0;i--){
+    	dummy+=a1[i];
+    }
+  	if(dummy==a2){
+    	cout<<"Adam Number";
+    }
+  	else{
+    	cout<<"Not an Adam Number";
+    }
+	return 0;
+}

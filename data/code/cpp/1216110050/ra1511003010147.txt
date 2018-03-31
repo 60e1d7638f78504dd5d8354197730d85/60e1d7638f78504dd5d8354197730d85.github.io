@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;
+	cin>>n;
+	int arr[n];
+	for(int i=0;i<n;i++)
+	cin>>arr[i];
+	int maxsum[n],minsum[n];
+	for(int i=0;i<n;i++)
+	{
+	    minsum[i]=0;
+	    maxsum[i]=0;
+	}
+	int mx,mn;
+	for(int i=0;i<n;i++)
+	{
+	    mx=0;
+	    for(int j=i;j<n;j++)
+	    {
+	        mx=max(mx,arr[j]);
+	        maxsum[j]+=mx;
+	    }
+	}
+	for(int i=n-1;i>=0;i--)
+	{
+	    mn=20000;
+	    for(int j=i;j>=0;j--)
+	    {
+	        mn=min(mn,arr[j]);
+	        minsum[j]+=mn;
+	    }
+	}
+	
+	int suminsum[n+1];
+	suminsum[n]=0;
+	suminsum[n-1]=minsum[n-1];
+	for(int i=n-2;i>=0;i--)
+	{
+	    suminsum[i]=suminsum[i+1]+minsum[i];
+	}
+	
+	int product=0;
+	for(int i=0;i<n;i++)
+	{
+	    product=((product)+(suminsum[i+1]*maxsum[i]));
+	}
+	cout<<product;
+	return 0;
+}

@@ -1,0 +1,123 @@
+#include<stdio.h>
+#include<math.h>
+#include<time.h>
+ 
+#define N 1000001
+#define M 78498
+ 
+int primes[N] = {0};
+int pr[M];
+int c[N];
+int sq[N] = {0};
+ 
+void setP(){
+    int i, j, k = 1;
+    primes[0] = 1;
+    primes[1] = 1;
+ 
+    pr[0] = 2;
+    for (j = 2; j * 2 <= N; j++)
+        primes[2 * j] = 1;
+    for (i = 3; i < N; i = i + 2){
+        if (primes[i] == 0){
+            pr[k] = i;
+            k++;
+            for (j = 2; j * i < N; j++)
+                primes[j * i] = 1;
+        }
+    }
+}
+ 
+int isP(int p){
+    int i;
+    if (p < N){
+        if (primes[(int)p] == 0)
+            return 1;
+        return 0;
+    }
+    for (i = 0; i < M; i++){
+        if (p % pr[i] == 0)
+            return 0;
+    }
+    return 1;
+}
+ 
+int setM(long long int l, long long int r){
+    int i, j, k, sum = 0, n = (int) (r - l + 1);
+    for (i = 0; i < N; i++) c[i] = 1;
+    for (i = 0; i < M; i++){
+        j = l % pr[i];
+        if (j != 0) j = pr[i] - j;
+        for (k = j; k <= n; k = k + pr[i]) c[k] = 0;
+ 
+    }
+    for (j = 0; j < n; j++){
+        if (c[j] == 1) sum++;
+    }
+    return sum;
+}
+ 
+void setQ(){
+    int i, j, k;
+    for (i = 0; i < 25; i++){
+        sq[pr[i]] = 1;
+        k = 2;
+        for (j = pr[i] * pr[i]; j < N; j *= pr[i]){
+            if(primes[2 * k + 1] == 0)
+                sq[j] = 1;
+            k++;
+        }
+    }
+    for (i = 25; i < 168; i++){
+        sq[pr[i]] = 1;
+        sq[pr[i] * pr[i]] = 1;
+    }
+    for (i = 168; i < M; i++)
+        sq[pr[i]] = 1;
+}
+ 
+ 
+int div (long long int l, long long int r){
+    int i, k, j, sum = 0, n = (int) (r - l + 1);
+    if (l < N){
+        for (i = (int) l; i <= (int) r; i++){
+            if (isP(i) == 1)
+                sum++;
+        }
+        return sum;
+    }
+    else
+        return setM(l, r);
+}
+ 
+ 
+int main(){
+    int T, i, j, sum, n, s, k, p, u;
+    long long int l, r, t;
+    double t1 = clock(), t2, d, q;
+    setP();
+    setQ();
+    scanf("%d", &T);
+    for (i = 0; i < T; i++){
+        scanf("%lld %lld", &l, &r);
+        sum = div(l, r);
+        d = (double) l;
+        q = sqrt(d);
+        k = (int) (q + 0.0000000000001);
+        if (k < q) k++;
+        d = (double) r;
+        q = sqrt(d);
+        p = (int) (q + 0.0000000000001);
+        if (p > q) p--;
+        s = 0;
+        for (j = k; j <= p; j++){
+            if (sq[j])
+                s++;
+        }
+        t2 = clock();
+        printf("%d\n", sum + s);
+    }
+    return 0;
+}
+ 
+ 

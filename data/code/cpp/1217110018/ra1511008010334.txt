@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cmath>
+#include <cstdio>
+using namespace std;
+ 
+double cal_area(int a, int b, int c){
+    double s = (a + b + c) / 2.0;
+    return sqrt(s * (s - a) * (s - b) * (s - c));
+    ///return sqrt((a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c)) / 4.0;
+}
+ 
+double cal_volume(int a, int b, int c, int d, int e, int f){
+	double u = b*b + c*c - d*d;
+	double v = c*c + a*a - e*e;
+	double w = a*a + b*b - f*f;
+	return (sqrt(4.0*a*a*b*b*c*c - a*a*u*u - b*b*v*v - c*c*w*w + u*v*w) / 12.0);
+}
+ 
+int main()
+{
+    int T;
+    cin >> T;
+    while(T--){
+        int a, b, c, d, e, f;
+        cin >> a >> b >> c >> d >> e >> f;
+        double area, volume, radius;
+        area = cal_area(a,b,d) + cal_area(a,e,c) + cal_area(b,f,c) + cal_area(d,e,f);
+        ///printf("%.4f\n",area);
+        volume = cal_volume(a,b,c,f,e,d);
+        ///printf("%.4f\n",volume);
+        radius = 3.0 * volume / area;
+        printf("%.4f\n",radius);
+    }
+    return 0;
+}

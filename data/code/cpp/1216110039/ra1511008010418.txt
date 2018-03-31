@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int min(int A[],int n)
+{
+  if(n==1)
+    return A[0];
+  return min(A[n-1],min(A,n-1));
+}
+int max(int A[],int n){
+  if(n==1)
+    return A[0];
+  return max(A[n-1],max(A,n-1));
+}
+int main()
+{
+  int A[100];
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++)
+  {
+    cin>>A[i];
+  }
+cout<<"Min="<<min(A,n)<<"\n";
+  cout<<"Max="<<max(A,n);
+  
+	return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+void shift(int *arr,int n)
+{
+  int i;
+int last=arr[n-1];
+  for(i=n-1;i>0;i--)
+    arr[i]=arr[i-1];
+  arr[0]=last;
+}
+int main()
+{
+  int t,i,j,n,k;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+   scanf("%d %d",&n,&k);
+    int arr[n];
+    for(j=0;j<n;j++)
+      scanf("%d",&arr[j]);
+    while(k>0){
+      shift(arr,n);
+      k--;
+    }
+    for(j=0;j<n;j++)
+      printf("%d\n",arr[j]);
+    
+    
+  }
+  
+
+	return 0;
+}

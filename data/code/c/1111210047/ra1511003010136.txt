@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main()
+{
+int n1,n2,d1,d2,div=1,i;
+  int sumn=0;
+  int sumd=1;
+  scanf("%d",&n1);
+  scanf("%d",&d1);
+  scanf("%d",&n2);
+  scanf("%d",&d2);
+ sumn=(n1*d2)+(n2*d1);
+ sumd=(d1*d2);
+  if(sumn>sumd)
+    div=sumd;
+  else
+    div=sumn;
+  for(i=div;i>0;i--)
+  {
+  if(sumn%i==0&&sumd%i==0)
+  {
+  sumn/=i;sumd/=i;
+  }
+  }
+  printf("%d %d",sumn,sumd);
+  return 0;
+}

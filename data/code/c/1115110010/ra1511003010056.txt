@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+int n;
+  int i,key,mid,start,end,loc;
+  scanf("%d",&n);
+  int a[n];
+  for(i=0;i<n;i++)
+      {
+        scanf("%d",&a[i]);
+      } 
+  scanf("%d",&key);
+ 
+  end=n-1;
+  start=0;
+   mid=(start+end)/2;
+  
+   while (start <= end) {
+      if (a[mid] < key)
+         start = mid + 1;    
+      else if (a[mid] == key) {
+         printf("%d found at location %d\n", key, mid+1);
+         break;
+      }
+      else
+         end = mid - 1;
+ 
+      mid = (start + end)/2;
+   }
+   if (start > end)
+      printf("%d is not present in the list", key);
+    
+    
+    
+    
+    
+	return 0;
+}

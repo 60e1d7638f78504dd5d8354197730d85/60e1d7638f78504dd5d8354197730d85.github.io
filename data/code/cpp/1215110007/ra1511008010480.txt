@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+class Car {
+	float startMiles, endMiles, litres;
+  	public:
+  		Car(): startMiles(0), endMiles(0), litres(0) {}
+  		void initializeData(float, float, float);
+  		float getStartMiles();
+  		float getEndMiles();
+  		float getLitres();
+  		float calculateMPL();
+  		string isEconomyCar();
+  		bool check();
+  		
+};
+
+void Car :: initializeData(float sm, float em, float l) {
+	startMiles = sm;
+  	endMiles = em;
+  	litres = l;
+}
+
+float Car :: getStartMiles() {
+	return startMiles;
+}
+
+float Car :: getEndMiles() {
+	return endMiles;
+}
+
+float Car :: getLitres() {
+	return litres;
+}
+
+float Car :: calculateMPL() {
+	return ((getEndMiles()-getStartMiles())/getLitres());
+}
+
+string Car :: isEconomyCar() {
+	return (calculateMPL() > 18 ? "true" : "false");
+}
+
+bool Car :: check() {
+	return ((getEndMiles()-getStartMiles()) > 0);
+}
+
+int main()
+{
+	float sm, em, l;
+  	cin>>sm>>em>>l;
+  	Car car;
+  	car.initializeData(sm, em, l);
+  	if(!car.check()) {
+    	cout<<"Improper readings"<<endl;
+      	return 0;
+    }
+  	cout<<car.getStartMiles()<<endl;
+  	cout<<car.getEndMiles()<<endl;
+  	cout<<car.calculateMPL()<<endl;
+  	cout<<car.getLitres()<<endl;
+  	cout<<car.isEconomyCar()<<endl;
+	return 0;
+}

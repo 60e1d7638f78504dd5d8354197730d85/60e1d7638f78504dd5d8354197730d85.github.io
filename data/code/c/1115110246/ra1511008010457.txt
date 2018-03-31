@@ -1,0 +1,275 @@
+
+#include <stdio.h>
+
+ 
+struct segment
+{
+	long long int one[3];
+	long long int two[3];
+	long long int zero[3];
+	int sum;
+ 
+};
+struct segment seg[400001];
+char a[100001];
+void construct(int low,int high,int pos)
+{
+	if(low==high)
+	{	
+		int rem=(a[low]-48)%3;
+		if(rem==0)
+		{
+			seg[pos].zero[0]=seg[pos].zero[1]=seg[pos].zero[2]=1;
+			seg[pos].one[0]=seg[pos].one[1]=seg[pos].one[2]=0;
+			seg[pos].two[0]=seg[pos].two[1]=seg[pos].two[2]=0;
+		}
+		else if(rem==1)
+		{
+			seg[pos].zero[0]=seg[pos].zero[1]=seg[pos].zero[2]=0;
+			seg[pos].one[0]=seg[pos].one[1]=seg[pos].one[2]=1;
+			seg[pos].two[0]=seg[pos].two[1]=seg[pos].two[2]=0;
+		}
+		else
+		{
+			seg[pos].zero[0]=seg[pos].zero[1]=seg[pos].zero[2]=0;
+			seg[pos].one[0]=seg[pos].one[1]=seg[pos].one[2]=0;
+			seg[pos].two[0]=seg[pos].two[1]=seg[pos].two[2]=1;
+		}
+		seg[pos].sum=rem;
+		return ;
+	}
+	
+	int mid=(low+high)/2;
+	construct(low,mid,2*pos+1);
+	construct(mid+1,high,2*pos+2);
+	seg[pos].zero[1]=seg[2*pos+1].zero[1]+seg[2*pos+2].zero[1]+seg[2*pos+1].zero[2]*seg[2*pos+2].zero[0]
+					 + seg[2*pos+1].one[2]*seg[2*pos+2].two[0]+seg[2*pos+1].two[2]*seg[2*pos+2].one[0];
+					 
+	seg[pos].one[1]=seg[2*pos+1].one[1]+seg[2*pos+2].one[1]+seg[2*pos+1].zero[2]*seg[2*pos+2].one[0]
+					 + seg[2*pos+1].one[2]*seg[2*pos+2].zero[0]+seg[2*pos+1].two[2]*seg[2*pos+2].two[0];
+	
+	seg[pos].two[1]=seg[2*pos+1].two[1]+seg[2*pos+2].two[1]+seg[2*pos+1].zero[2]*seg[2*pos+2].two[0]
+					 + seg[2*pos+1].two[2]*seg[2*pos+2].zero[0]+seg[2*pos+1].one[2]*seg[2*pos+2].one[0];
+	
+	
+	if(seg[2*pos+1].sum==0)
+	{
+			seg[pos].zero[0]=seg[2*pos+1].zero[0]+seg[2*pos+2].zero[0];
+			seg[pos].one[0]=seg[2*pos+1].one[0]+seg[2*pos+2].one[0];
+			seg[pos].two[0]=seg[2*pos+1].two[0]+seg[2*pos+2].two[0];
+	}
+	else if(seg[2*pos+1].sum==1)
+	{
+			seg[pos].zero[0]=seg[2*pos+1].zero[0]+seg[2*pos+2].two[0];
+			seg[pos].one[0]=seg[2*pos+1].one[0]+seg[2*pos+2].zero[0];
+			seg[pos].two[0]=seg[2*pos+1].two[0]+seg[2*pos+2].one[0];
+	}
+	else
+	{
+			seg[pos].zero[0]=seg[2*pos+1].zero[0]+seg[2*pos+2].one[0];
+			seg[pos].one[0]=seg[2*pos+1].one[0]+seg[2*pos+2].two[0];
+			seg[pos].two[0]=seg[2*pos+1].two[0]+seg[2*pos+2].zero[0];
+	}
+	if(seg[2*pos+2].sum==0)
+	{
+		seg[pos].zero[2]=seg[2*pos+2].zero[2]+seg[2*pos+1].zero[2];
+		seg[pos].one[2]=seg[2*pos+2].one[2]+seg[2*pos+1].one[2];
+		seg[pos].two[2]=seg[2*pos+2].two[2]+seg[2*pos+1].two[2];
+	}
+	else if(seg[2*pos+2].sum==1)
+	{
+		seg[pos].zero[2]=seg[2*pos+2].zero[2]+seg[2*pos+1].two[2];
+		seg[pos].one[2]=seg[2*pos+2].one[2]+seg[2*pos+1].zero[2];
+		seg[pos].two[2]=seg[2*pos+2].two[2]+seg[2*pos+1].one[2];
+	}
+	else
+	{
+		seg[pos].zero[2]=seg[2*pos+2].zero[2]+seg[2*pos+1].one[2];
+		seg[pos].one[2]=seg[2*pos+2].one[2]+seg[2*pos+1].two[2];
+		seg[pos].two[2]=seg[2*pos+2].two[2]+seg[2*pos+1].zero[2];
+	}
+	seg[pos].sum=seg[2*pos+1].sum+seg[2*pos+2].sum;
+	seg[pos].sum%=3;
+}
+void update(int low,int high,int pos,int ind,char b)
+{
+	if(low==high&&high==ind)
+	{
+		a[ind]=b;
+		int rem=(a[low]-48)%3;
+		if(rem==0)
+		{
+			seg[pos].zero[0]=seg[pos].zero[1]=seg[pos].zero[2]=1;
+			seg[pos].one[0]=seg[pos].one[1]=seg[pos].one[2]=0;
+			seg[pos].two[0]=seg[pos].two[1]=seg[pos].two[2]=0;
+		}
+		else if(rem==1)
+		{
+			seg[pos].zero[0]=seg[pos].zero[1]=seg[pos].zero[2]=0;
+			seg[pos].one[0]=seg[pos].one[1]=seg[pos].one[2]=1;
+			seg[pos].two[0]=seg[pos].two[1]=seg[pos].two[2]=0;
+		}
+		else
+		{
+			seg[pos].zero[0]=seg[pos].zero[1]=seg[pos].zero[2]=0;
+			seg[pos].one[0]=seg[pos].one[1]=seg[pos].one[2]=0;
+			seg[pos].two[0]=seg[pos].two[1]=seg[pos].two[2]=1;
+		}
+		seg[pos].sum=rem;
+		return ;
+	}
+	int mid=(low+high)/2;
+	if(ind<=mid)
+		update(low,mid,2*pos+1,ind,b);
+	else
+		update(mid+1,high,2*pos+2,ind,b);
+		seg[pos].zero[1]=seg[2*pos+1].zero[1]+seg[2*pos+2].zero[1]+seg[2*pos+1].zero[2]*seg[2*pos+2].zero[0]
+					 + seg[2*pos+1].one[2]*seg[2*pos+2].two[0]+seg[2*pos+1].two[2]*seg[2*pos+2].one[0];
+					 
+	seg[pos].one[1]=seg[2*pos+1].one[1]+seg[2*pos+2].one[1]+seg[2*pos+1].zero[2]*seg[2*pos+2].one[0]
+					 + seg[2*pos+1].one[2]*seg[2*pos+2].zero[0]+seg[2*pos+1].two[2]*seg[2*pos+2].two[0];
+	
+	seg[pos].two[1]=seg[2*pos+1].two[1]+seg[2*pos+2].two[1]+seg[2*pos+1].zero[2]*seg[2*pos+2].two[0]
+					 + seg[2*pos+1].two[2]*seg[2*pos+2].zero[0]+seg[2*pos+1].one[2]*seg[2*pos+2].one[0];
+	
+	
+	if(seg[2*pos+1].sum==0)
+	{
+			seg[pos].zero[0]=seg[2*pos+1].zero[0]+seg[2*pos+2].zero[0];
+			seg[pos].one[0]=seg[2*pos+1].one[0]+seg[2*pos+2].one[0];
+			seg[pos].two[0]=seg[2*pos+1].two[0]+seg[2*pos+2].two[0];
+	}
+	else if(seg[2*pos+1].sum==1)
+	{
+			seg[pos].zero[0]=seg[2*pos+1].zero[0]+seg[2*pos+2].two[0];
+			seg[pos].one[0]=seg[2*pos+1].one[0]+seg[2*pos+2].zero[0];
+			seg[pos].two[0]=seg[2*pos+1].two[0]+seg[2*pos+2].one[0];
+	}
+	else
+	{
+			seg[pos].zero[0]=seg[2*pos+1].zero[0]+seg[2*pos+2].one[0];
+			seg[pos].one[0]=seg[2*pos+1].one[0]+seg[2*pos+2].two[0];
+			seg[pos].two[0]=seg[2*pos+1].two[0]+seg[2*pos+2].zero[0];
+	}
+	if(seg[2*pos+2].sum==0)
+	{
+		seg[pos].zero[2]=seg[2*pos+2].zero[2]+seg[2*pos+1].zero[2];
+		seg[pos].one[2]=seg[2*pos+2].one[2]+seg[2*pos+1].one[2];
+		seg[pos].two[2]=seg[2*pos+2].two[2]+seg[2*pos+1].two[2];
+	}
+	else if(seg[2*pos+2].sum==1)
+	{
+		seg[pos].zero[2]=seg[2*pos+2].zero[2]+seg[2*pos+1].two[2];
+		seg[pos].one[2]=seg[2*pos+2].one[2]+seg[2*pos+1].zero[2];
+		seg[pos].two[2]=seg[2*pos+2].two[2]+seg[2*pos+1].one[2];
+	}
+	else
+	{
+		seg[pos].zero[2]=seg[2*pos+2].zero[2]+seg[2*pos+1].one[2];
+		seg[pos].one[2]=seg[2*pos+2].one[2]+seg[2*pos+1].two[2];
+		seg[pos].two[2]=seg[2*pos+2].two[2]+seg[2*pos+1].zero[2];
+	}
+	seg[pos].sum=seg[2*pos+1].sum+seg[2*pos+2].sum;
+	seg[pos].sum%=3;
+}
+ 
+struct segment query(int low,int high,int l,int r,int pos)
+{
+	if(r<low||l>high)
+	{
+		struct segment s;
+		s.sum=-1;
+		return s;
+	}
+	if(l<=low&&r>=high)
+		return seg[pos];
+		
+	
+	int mid=(low+high)/2;
+	struct segment  m1,m2,s;
+	m1=query(low,mid,l,r,2*pos+1);
+	m2=query(mid+1,high,l,r,2*pos+2);
+	if(m1.sum==-1)
+		return m2;
+	else if(m2.sum==-1)
+		return m1;
+	s.zero[1]=m1.zero[1]+m2.zero[1]+m1.zero[2]*m2.zero[0]
+					 + m1.one[2]*m2.two[0]+m1.two[2]*m2.one[0];
+					 
+	s.one[1]=m1.one[1]+m2.one[1]+m1.zero[2]*m2.one[0]
+					 + m1.one[2]*m2.zero[0]+m1.two[2]*m2.two[0];
+	
+	s.two[1]=m1.two[1]+m2.two[1]+m1.zero[2]*m2.two[0]
+					 + m1.two[2]*m2.zero[0]+m1.one[2]*m2.one[0];
+	
+	
+	if(m1.sum==0)
+	{
+			s.zero[0]=m1.zero[0]+m2.zero[0];
+			s.one[0]=m1.one[0]+m2.one[0];
+			s.two[0]=m1.two[0]+m2.two[0];
+	}
+	else if(m1.sum==1)
+	{
+			s.zero[0]=m1.zero[0]+m2.two[0];
+			s.one[0]=m1.one[0]+m2.zero[0];
+			s.two[0]=m1.two[0]+m2.one[0];
+	}
+	else
+	{
+			s.zero[0]=m1.zero[0]+m2.one[0];
+			s.one[0]=m1.one[0]+m2.two[0];
+			s.two[0]=m1.two[0]+m2.zero[0];
+	}
+	if(m2.sum==0)
+	{
+		s.zero[2]=m2.zero[2]+m1.zero[2];
+		s.one[2]=m2.one[2]+m1.one[2];
+		s.two[2]=m2.two[2]+m1.two[2];
+	}
+	else if(m2.sum==1)
+	{
+		s.zero[2]=m2.zero[2]+m1.two[2];
+		s.one[2]=m2.one[2]+m1.zero[2];
+		s.two[2]=m2.two[2]+m1.one[2];
+	}
+	else
+	{
+		s.zero[2]=m2.zero[2]+m1.one[2];
+		s.one[2]=m2.one[2]+m1.two[2];
+		s.two[2]=m2.two[2]+m1.zero[2];
+	}
+	s.sum=m1.sum+m2.sum;
+	s.sum%=3;
+	return s;
+}
+int main() 
+{
+	int n,m,i,l,r,x,type;
+	struct segment s;
+	char b;
+	scanf("%d%d",&n,&m);
+	scanf("%s",a);
+	construct(0,n-1,0);
+	
+	while(m--)
+	{
+		scanf("%d",&type);
+		//cout<<type;
+		if(type==1)
+		{
+			scanf("%d%c",&l,&b);
+			scanf("%c",&b);
+			if((a[l-1]-48)%3!=(b-48)%3)
+				update(0,n-1,0,l-1,b);
+		}
+		else
+		{
+			scanf("%d%d",&l,&r);
+			s=query(0,n-1,l-1,r-1,0);
+			printf("%lld\n",s.zero[1]);
+			
+		}
+	}
+	return 0;
+} 

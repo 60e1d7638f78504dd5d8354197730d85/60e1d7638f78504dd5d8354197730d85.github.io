@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<string.h>
+int arr[100005];
+int b[34];
+ int calc()
+{
+	int i,num=0,pow=1;
+	for(i=0;i<=29;i++)
+	{
+		if(b[i]!=0)
+		{
+			num=num+(pow);
+		}
+		pow*=2;
+	}
+	return num;
+}
+ 
+void print()
+{
+	int i;
+	for(i=0;i<=32;i++)
+	{
+		printf("%d ",b[i]);
+	}
+	printf("\n");
+	calc();
+}
+ 
+void binadd(int num)
+{
+	int t[34]={0},i;
+	int pos=0;
+	while(num>0)
+	{
+		t[pos++]=num%2;
+		num/=2;
+	}
+	for(i=0;i<=pos;i++)
+	{
+		b[i]+=t[i];
+	}
+}
+ 
+void binsub(int num)
+{
+	int t[34]={0},i;
+	int pos=0;
+	while(num>0)
+	{
+		t[pos++]=num%2;
+		num/=2;
+	}
+	for(i=0;i<=pos;i++)
+	{
+		b[i]-=t[i];
+	}
+}
+ 
+int main()
+{
+ int t,n,i,k,start,end,ans;
+ scanf("%d",&t);
+ while(t--)
+ {
+ 	ans=0;
+  scanf("%d %d",&n,&k);
+  for(i=0;i<n;i++)
+  scanf("%d",&arr[i]);
+  for(i=0;i<=32;i++)
+  {
+  	b[i]=0;
+  }
+  binadd(arr[0]);
+  start=0;
+  end=0;
+  
+  while(end<n-1)
+  {
+  	if(calc()>=k)
+  	{
+  		ans+=n-end;
+  		binsub(arr[start]);
+  		start++;
+  	}
+  	else
+  	{
+  		binadd(arr[end+1]);
+  		end++;
+  	}
+  } 
+  if(end==n-1)
+  {
+  	while(calc()>=k && start<=n-1)
+  	{
+  		ans+=n-end;
+  		binsub(arr[start]);
+  		start++;
+  	}
+  } 
+  printf("%d\n",ans);
+ }
+return 0;
+}

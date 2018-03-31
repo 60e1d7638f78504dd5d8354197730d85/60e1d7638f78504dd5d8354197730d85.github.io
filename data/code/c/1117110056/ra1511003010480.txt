@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char S[26];
+  int n,flag;
+  int i,j,count;
+  char W[15];
+  scanf("%s",S);
+  
+  scanf("%d",&n);
+  
+  while(n--)
+  {
+    count=0;
+    scanf("%s",W);
+    
+    for(i=0;i<strlen(W);i++)
+    {
+      flag=0;
+      for(j=0;j<strlen(S);j++)
+      {
+        if(W[i]==S[j])
+        {
+          flag=1;
+          count++;
+        }
+      }
+      if(flag==0)
+      {
+        break;
+      }
+    }
+    if(flag==1 && count!=0)
+    {
+      printf("Yes\n");
+    }
+    else
+    {
+      printf("No\n");
+    }
+  }
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+     int t;
+     cin>>t;
+     while(t--){
+         int n;
+         cin>>n;
+         queue<int> q;
+         vector<int> v(n+1,0);
+         int i,cur,s;
+         for(i=1;i<=n;i++)
+            q.push(i);
+         int j,k=1;
+         while(!q.empty()){
+             j=k;
+             while(j--){
+                 s=q.front();
+                 q.pop();
+                 q.push(s);
+             }
+          cur=q.front();
+          v[cur]=k;
+          // v.push_back(q.front());
+           k++;
+           q.pop();
+         }
+         for(i=1;i<v.size();i++)
+            cout<<v[i]<<" ";
+        cout<<endl;
+     }
+	return 0;
+}

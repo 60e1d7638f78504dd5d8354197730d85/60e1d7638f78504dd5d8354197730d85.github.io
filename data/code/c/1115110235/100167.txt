@@ -1,0 +1,52 @@
+#include <stdio.h>
+inline void itemRead(int *);
+inline void itemRead(int *a)
+{
+  char c=0;
+  while (c<33)
+    c=fgetc_unlocked(stdin);
+  *a=0;
+  while(c>33)
+  {
+    *a=*a*10+c-'0';
+    c=fgetc_unlocked(stdin);
+  }
+}
+
+    
+int main()
+{ int t,g,i,n,q;
+ itemRead(&t);
+ while(t--)
+ {
+   itemRead(&g);
+   while(g--)
+   {
+     itemRead(&i);
+     itemRead(&n);
+     itemRead(&q);
+     int ans=n/2;
+     if(n%2==0)
+     { printf("%d\n",ans);
+     }
+     else
+     {
+       if(i==q)
+       {
+             printf("%d\n",ans);
+       }
+       else
+       {
+         ans++;
+         printf("%d\n",ans);
+       }
+       
+     }
+   }
+ }
+     
+  
+  
+
+	return 0;
+}

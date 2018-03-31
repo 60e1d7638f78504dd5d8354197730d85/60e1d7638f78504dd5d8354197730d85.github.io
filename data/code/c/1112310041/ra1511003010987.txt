@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<ctype.h>
+ 
+int hcf(int m, int n)
+{
+    int temp,reminder;
+    if(m < n)
+    {
+	temp = m;
+	m = n;
+	n=temp;
+    }
+    while(1)
+    {
+	reminder=m % n;
+	if(reminder==0)
+	    return n;
+	else
+	    m=n;
+	n=reminder;
+    }
+}
+ 
+int main()
+{
+    int t, a[1000], i, ini, hcfall;
+    scanf("%d", &t);
+    while(t--)
+    {
+	scanf("%d", &ini);
+	for(i = 0; i < ini; i++)
+	{
+	    scanf("%d", &a[i]);
+	}
+	hcfall = a[0];
+	for(i = 1; i < ini; i++)
+	{
+	    hcfall = hcf(hcfall, a[i]);
+	}
+	for(i = 0; i < ini; i++)
+	{
+	    printf("%d ", a[i]/hcfall);
+	}
+	printf("\n");
+    }
+    return 0;
+} 

@@ -1,0 +1,86 @@
+#include <stdio.h>
+long int max(long int a,long int b)
+{
+    if(a>b)
+    return a;
+    return b;
+}
+struct list
+{
+    long int val;
+    int wt;
+};
+void sort(struct list a[],int n)
+{
+    int i,j;
+    struct list tmp;
+    for(i=2;i<=n;i++)
+    for(j=i;j>1;j--)
+    if(a[j].val>a[j-1].val)
+    {
+        tmp=a[j];
+        a[j]=a[j-1];
+        a[j-1]=tmp;
+    }
+}
+long int dp[2001][2001];
+int p[2001][2001];
+struct list items[2001];
+    
+int main()
+{
+    int i,w,x,y,W,n,prime[10]={2,3,5,7,11,13,17,19,23,29};
+    
+    scanf("%d %d",&n,&W);
+    
+    for(i=1;i<=n;i++)
+    scanf("%ld %d",&items[i].val,&items[i].wt);
+    
+    for(i=0;i<=n;i++)
+    dp[i][0]=p[i][0]=0;
+    
+    for(w=0;w<=W;w++)
+    dp[0][w]=p[0][w]=0;
+    
+    sort(items,n);
+    
+    for(i=1;i<=n;i++)
+    for(w=0;w<=W;w++)
+    {
+        if(items[i].wt<=w)
+        {
+            y=w-items[i].wt;
+            x=p[i-1][y];
+            
+            if(x<=9)
+            {
+                
+                if(items[i].val*prime[9-x]+dp[i-1][y] > dp[i-1][w])
+                {
+                    dp[i][w]=items[i].val*prime[9-x]+dp[i-1][y];
+                    p[i][w]=x+1;
+                }
+                else
+                {
+                    dp[i][w]=dp[i-1][w];
+                    p[i][w]=p[i-1][w];
+                }
+                
+            }
+            else
+            {
+                dp[i][w]=max(items[i].val+dp[i-1][y],dp[i-1][w]);
+                p[i][w]=x;
+            }
+        }
+        else
+        {
+            dp[i][w]=dp[i-1][w];
+            p[i][w]=p[i-1][w];
+        }
+    
+    }
+   
+    printf("%ld",dp[n][W]);
+    return 0;
+}

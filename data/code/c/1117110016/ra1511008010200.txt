@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+  int s,arr[5][5],i,j,flag = 0;
+  scanf("%d",&s);
+  for(i=0;i<s;i++)
+    for(j=0;j<s;j++)
+      scanf("%d",&arr[i][j]);
+  for(i=0;i<s;i++)
+  {
+    if(flag == 1)
+      break;
+    for(j=0;j<s;j++)
+      if(i!=j)
+        if(arr[i][j]!=0)
+        {
+          printf("no");
+          flag = 1;
+          break;
+        }
+  }
+  if(flag == 0)
+    printf("yes");
+  return 0;
+}

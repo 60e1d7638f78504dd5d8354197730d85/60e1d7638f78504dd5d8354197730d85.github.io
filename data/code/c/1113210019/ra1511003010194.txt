@@ -1,0 +1,48 @@
+#include <stdio.h>
+int aa(int a)
+{
+	if(a<0)
+		return -a;
+	return a;
+}
+int main(int argc, char const *argv[])
+{
+	int n,q,max,min;
+	char c;
+	scanf("%d",&n);
+	while(n)
+	{
+		min=-1;
+		for(;n;n--)
+		{
+			scanf(" %c%d",&c,&q);
+			if(c=='M')
+			{
+				max=aa(q+1);
+			}
+			else
+			{
+				max=aa(q-1);
+			}
+			 if((max>=min) || (min==-1))
+ 
+            min=max;
+ 
+ 
+ 
+            else if(((max%2) && !(min%2) )|| (!(max%2) && (min%2)))
+ 
+            min=min+1;
+ 
+ 
+ 
+            else
+ 
+            min=min;
+		}
+		printf("%d\n", min);
+	scanf("%d",&n);
+
+	}
+	return 0;
+} 

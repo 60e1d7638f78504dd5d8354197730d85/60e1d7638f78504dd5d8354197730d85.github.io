@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+class Time {
+public:
+  int hh,mm,ss;
+};
+
+std::istream& operator>>(std::istream& is, Time& time) {
+  is >> time.hh >> time.mm >> time.ss;
+  return is;
+}
+
+std::ostream& operator<<(std::ostream& os, Time& time) {
+  os << time.hh << " Hours " << time.mm << " Mins " << time.ss << " secs";
+  return os;
+}
+
+int main() {
+  Time t;
+  cin >> t;
+  cout << "The Time is" << endl;
+  cout << t;
+  return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+struct Detail
+{
+  int roll,fees;
+  char name[100],course[100];
+};
+void print(struct Detail *p);
+int main()
+{
+  struct Detail d;
+  struct Detail *p;
+  p=&d;
+  int t;
+  scanf("%d",&t);
+  printf("Details of the student");
+  while(t--)
+  {
+    scanf("%d",&p->roll);
+    scanf("%s",p->name);
+    scanf("%s",p->course);
+    scanf("%d",&p->fees);
+    print(p);
+  }
+  
+	return 0;
+}
+void print(struct Detail *p)
+{
+  printf("\nRoll no:%d",p->roll);
+  printf("\nName:%s",p->name);
+  printf("\nCourse:%s",p->course);
+  printf("\nFees:%d",p->fees);
+}

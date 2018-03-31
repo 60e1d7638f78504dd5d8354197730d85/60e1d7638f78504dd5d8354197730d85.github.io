@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+#define m 1000000007
+int ans[1001];
+char str[1002];
+char isp[1001][1001];
+char ispalin(int j,int i)
+{
+    if(isp[j][i]!=-1) return isp[j][i];
+    if(j==i||j==i-1) return 1;
+    if(str[i-1]!=str[j]) {isp[j][i]=0;return 0;}
+    return (isp[j][i]=ispalin(j+1,i-1));
+}
+int func(int i)
+{
+    int j;
+    if(ans[i]!=-1) return ans[i];
+    ans[i]=0;
+    for(j=0;j<i;j++)
+    {
+        if(ispalin(j,i))
+        {
+            if(ans[j]==-1) ans[j]=func(j)%m;
+            ans[i]=(ans[i]+ans[j])%m;
+        }
+    }
+    return ans[i]%m;
+}
+ 
+int main()
+{
+    int n,i,j;
+    ans[0]=1;
+    for(i=1;i<1001;i++) ans[i]=-1;
+    for(i=0;i<1001;i++)
+    for(j=0;j<1001;j++) {
+            isp[i][j]=-1;isp[i][i]=1;}
+    scanf("%s",str);
+    n=strlen(str);
+    printf("%d",func(n));
+    return 0;
+}

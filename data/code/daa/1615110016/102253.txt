@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<math.h>
+#include <stdlib.h>
+#include<algorithm>
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int>v;
+int test[5000 + 5];
+void pre()
+{
+ for (int i = 2; i < 5005; i++)
+ {
+  if (test[i] == 0)
+  {
+   v.push_back(i);
+   for (int j = i*i; j < 5005; j+=i)
+   {
+    test[j] = 1;
+   }
+  }
+ }
+}
+ 
+int main()
+{
+ ios_base::sync_with_stdio(0);
+ pre();
+ int n;
+ int arr[5000 + 5];
+ int dp[5000 + 5] = { 0 };
+ int DP[5000 + 5] = { 0 };
+ scanf("%d", &n);
+ for (int i = 1; i <=n; i++)
+ {
+  scanf("%d", arr + i);
+  DP[i] = DP[i - 1] + arr[i];
+ }
+ dp[1] = 0;
+ for (int i = 2; i <=n; i++)
+ {
+  dp[i] = dp[i - 1];
+  for (int j = 0; j < v.size(); j++)
+  {
+   int p = (i - v[j]);
+   if (p >= 0)
+    dp[i] = max(dp[i], dp[p-1>=0?p-1:0] + DP[i] - DP[p]);
+   else
+    break;
+  }
+ }
+ printf("%d\n", dp[n]);
+ return 0;
+}

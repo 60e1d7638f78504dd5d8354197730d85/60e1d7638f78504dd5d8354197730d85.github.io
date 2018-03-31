@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,j,k,mode=0,count=0,index,c,n1;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&n1);
+    int a[n1];
+    for(j=0;j<n1;j++)
+      scanf("%d",&a[j]);
+    for(j=0;j<n1;j++)
+    {
+      count=0;
+      c=a[j];
+      for(k=0;k<n1;k++)
+      {
+        if(a[k]==c)
+          count++;
+      }
+      if(count>mode)
+      {
+        mode=count;
+        index=j;
+      }
+    }
+    printf("%d ",a[index]);
+    mode=0;
+  }
+	return 0;
+}

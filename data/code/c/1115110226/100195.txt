@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<float.h>
+#include<string.h>
+#define mod 1000000007
+#define lli long long int
+ 
+int main()
+{
+   
+    lli count[41][41], sum[41][41], pow2[41], cost[41], color[41],num,dem;
+    double result;
+    int i,j,k,t,n,m;
+ 
+    
+    pow2[0]=1;
+    for(i=1;i<=40;i++) pow2[i]=2*pow2[i-1];
+ 
+    scanf("%d",&t);
+    while(t--)
+    {
+        memset(count,0,sizeof(count));
+        memset(sum,0,sizeof(sum));
+        memset(cost,0,sizeof(cost));
+        memset(color,0,sizeof(color));
+        
+        scanf("%d",&n); scanf("%d",&m);
+        for(i=1;i<=n;i++)
+        {
+            scanf("%d",&j); scanf("%d",&k);
+            color[j]++;
+            cost[j]+=k;
+        }
+        count[0][0]=1;
+ 
+   
+        for(i=1;i<=40;i++)
+        {
+            count[i][0]=1;
+            for(j=1;j<=i;j++)
+            {
+                count[i][j]=count[i-1][j]+count[i-1][j-1]*(pow2[color[i]]-1);
+                sum[i][j]=sum[i-1][j]+sum[i-1][j-1]*(pow2[color[i]]-1)+count[i-1][j-1]*cost[i]*pow2[color[i]-1];
+            
+            }
+          
+        }
+ 
+        
+        num=0;
+        dem=0;
+        i=40;
+            for(j=m;j<=n;j++)
+            {
+                num+=count[i][j];
+                dem+=sum[i][j];
+            }
+ 
+        result=(double)dem/num;
+        if(num==0) result=0.0;
+        printf("%.9f\n",result);
+    }
+    return 0;
+}

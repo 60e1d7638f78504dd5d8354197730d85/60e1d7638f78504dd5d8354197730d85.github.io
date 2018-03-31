@@ -1,0 +1,42 @@
+
+#include<iostream>
+using namespace std;
+
+class Distance
+{
+	private:
+		int feet,inches;
+		
+	public:
+		//function to read distance
+		void readDistance(void)
+		{
+			cin >>feet;
+			cin >>inches;
+		}
+		//function to display distance
+		void dispDistance(void)
+		{
+			cout << "Feet:" << feet << " Inches:" << inches << endl;
+		}
+		//add two Distance using + operator overloading
+		Distance operator+(Distance &dist1)
+		{
+			Distance temp;	
+			temp.inches= inches + dist1.inches;
+			temp.feet	= feet	 + dist1.feet + (temp.inches/12);
+			temp.inches=temp.inches%12;
+			return temp;
+		}
+};
+int main()
+{
+	Distance D1,D2,D3;
+	D1.readDistance();
+	D2.readDistance();
+	D3=D1+D2;
+	D3.dispDistance();
+
+	cout << endl;
+	return 0;
+}

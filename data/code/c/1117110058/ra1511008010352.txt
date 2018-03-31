@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{	long int prod=1;
+	    int flag=0;
+		int n;
+		scanf("%d",&n);
+		int a[1002],a1[1002]={0};
+	    int i;
+		for(i=0;i<n;i++)
+		{
+		scanf("%d",&a[i]);
+		a1[a[i]]++;
+	    }
+	    for(i=1000;i>=0;i--)
+	    {  
+		if(a1[i]>=4 && flag==0)
+	    {
+	    	prod=prod * i*i;
+	    	break;
+		}
+	    if(a1[i]>=2 && flag==0)
+	    	{
+	    		prod=prod*i;
+	    		flag=1;
+			}
+	     else if(flag==1 && a1[i]>=2)
+			{
+				prod=prod*i;
+				break;
+			}
+		}
+		if(i>=0)
+		{
+			printf("%ld\n",prod);
+		}
+		else
+		{
+			printf("-1\n");
+		}
+	}
+} 

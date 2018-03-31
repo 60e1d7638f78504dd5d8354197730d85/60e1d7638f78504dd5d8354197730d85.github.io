@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include<math.h>
+#define N 100000
+ 
+static int factorCount[N+1];
+static long long a[N+1];
+long long sumf(long long n)
+{
+    long long i,sum=0;
+for(i=1;i*i<=n;i++)
+{if(n%i==0)
+{sum+=(long long)i;
+if(n/i!=i)
+sum+=(long long)n/i;
+    
+}
+}   
+return sum;
+}
+int sfree(long long  n)
+ 
+    {
+ 
+        if(n==1 || n==2 || n==3)
+ 
+            return 1;
+ 
+        long long i=2;
+ 
+        int cnt=0;
+ 
+        double j=sqrt(n);
+ 
+        while(i<=j)
+ 
+        {
+ 
+            if(cnt==2)
+ 
+                return 0;
+ 
+            else if(n%i==0)
+ 
+            {
+ 
+                n=n/i;
+ 
+                cnt += 1;
+ 
+            }
+ 
+            else
+ 
+            {
+ 
+                cnt = 0;
+ 
+                i += 1;
+ 
+            }
+ 
+        }
+ 
+        return 1;
+ 
+    }
+ 
+ 
+int isPrime(long long n)
+{
+   long long i;
+    if (n <= 1)  return 0;
+    if (n <= 3)  return 1;
+ 
+   
+    if (n%2 == 0 || n%3 == 0) 
+    return 0;
+ 
+    for (i=5; i*i<=n; i=i+6)
+        if (n%i == 0 || n%(i+2) == 0)
+           return 0;
+ 
+    return 1;
+}
+ 
+ 
+ 
+int main(void) {
+	// your code goes here
+	long long int i, j;
+ 
+    for (i = 0; i <= N; i++) {
+        factorCount[i] = 0;
+        a[i]=0;
+    }
+ 
+    for (i = 2; i <= N; i++) {
+        if (factorCount[i] == 0) { // Number is prime
+            for (j = i; j <= N; j += i) {
+                factorCount[j]++;
+            }
+        }
+    }
+    for(i=1;i<=20000;i++)
+    {
+        if(isPrime(factorCount[sumf(i)]) && sfree(i))
+        {
+            a[i]=sumf(i);
+           // printf("%lld ",sumf(i));
+        }
+        
+        
+    }
+    // for(i=1;i<=10;i++)
+      //  printf("%d ",a[i]);
+    long long t;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        long long l,r,sum=0;
+        scanf("%lld %lld",&l,&r);
+       // for(i=l;i<=r;i++)
+        //printf("%lld ",a[i]);
+        for(i=l;i<=r;i++)
+        {
+            if(a[i]!=0)
+            sum=sum+a[i];
+        }
+        printf("%lld\n",sum);
+    }
+	return 0;
+}

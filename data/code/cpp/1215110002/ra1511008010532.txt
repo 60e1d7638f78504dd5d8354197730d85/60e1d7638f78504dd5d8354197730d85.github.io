@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class TaxCalculator
+{
+  int basicsalary,dapercentage,hrapercentage,total;
+  float taxAmount,takeHomeSalary;
+  public:
+  void initializeData(int bs,int dap,int hrap)
+  {
+    basicsalary=bs;
+    dapercentage=(bs*dap)/100;
+    hrapercentage=(bs*hrap)/100;
+  }
+  void calculateTaxamount(int taxp)
+  {
+    total=basicsalary+dapercentage+hrapercentage;
+    taxAmount=(float)((total*taxp)/100);
+    takeHomeSalary=(float)total-taxAmount;
+  }
+  void displayData()
+  {
+    cout<<"Basic Salary="<<basicsalary<<endl;
+    cout<<"DA="<<dapercentage<<endl;
+    cout<<"HRA="<<hrapercentage<<endl;
+    cout<<"Total="<<total<<endl;
+    cout<<"Tax="<<taxAmount<<endl;
+    cout<<"FinalSalary="<<takeHomeSalary<<endl;
+  }
+};
+int main()
+{
+  int bs,dap,hrap;
+  TaxCalculator tc;
+  cin>>bs>>dap>>hrap;
+  tc.initializeData(bs,dap,hrap);
+  tc.calculateTaxamount(5);
+  tc.displayData();
+	return 0;
+}

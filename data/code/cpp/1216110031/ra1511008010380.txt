@@ -1,0 +1,26 @@
+#include <iostream>
+#include <math.h>                                           
+#define   MAXSIZE    100                                    
+   using namespace std;
+int main()
+{
+int i,n;                                               
+  float value[MAXSIZE], deviation,sum,sumsqr,mean,variance,stddeviation;                                                                        
+  sum = sumsqr = n = 0 ; 
+  cin>>n;
+        for (i=0; i< n ; i++)                            
+        {                                                      
+            cin>>value[i];                                          
+            sum += value[i];                                                                               
+        }                                                      
+        mean = sum/(float)n;                                   
+        for (i = 0 ; i< n; i++)                               
+        {                                                      
+            deviation = value[i] - mean;                       
+            sumsqr += deviation * deviation;                   
+        }                                                      
+        variance = sumsqr/(float)n ;                           
+        stddeviation = sqrt(variance) ;                     
+        printf("Standard Deviation = %0.5f\n", stddeviation);
+  return 0;
+   }

@@ -1,0 +1,70 @@
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+    map<int,int> mp;
+    map<int,int> :: iterator itr;
+    map<int,int> :: reverse_iterator ritr;
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        string str;
+        cin>>str;
+        if(str=="Push")
+        {
+            int x;
+            cin>>x;
+            mp[x]++;
+        }
+        else if(str=="CountHigh")
+        {
+            if(mp.size()==0)
+            cout<<"-1\n";
+            else
+            {
+                ritr=mp.rbegin();
+                cout<< ritr->second<<"\n";
+            }
+        }
+        else if(str=="CountLow")
+        {
+            if(mp.size()==0)
+            cout<<"-1\n";
+            else
+            {
+                itr=mp.begin();
+                cout<< itr->second<<"\n";
+            }
+        }
+        else
+        {
+            if(mp.size()==0)
+            cout<<"-1\n";
+            else
+            {
+                itr=mp.begin();
+                ritr=mp.rbegin();
+                if(itr->first == ritr->first)
+                {
+                    cout<<"0\n";
+                    itr->second --;
+                    if(itr->second==0)
+                    mp.erase(itr->first);
+                }
+                else
+                {
+                    cout<<(ritr->first)-(itr->first)<<"\n";
+                    ritr->second--;
+                    itr->second--;
+                    if(ritr->second==0)
+                    mp.erase(ritr->first);
+                    if(itr->second==0)
+                    mp.erase(itr->first);
+                }
+            }
+        }
+    }
+    
+}

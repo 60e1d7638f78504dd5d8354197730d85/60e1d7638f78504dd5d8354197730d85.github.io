@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+  	int n,q,i,j,k,l,m;
+  	char str[100];
+	scanf("%d %d",&n,&q);
+  	scanf("%s",str);
+  	while(q--)
+    {
+      scanf("%d %d %d",&i,&j,&k);
+      for(l=i-1;l<j-1;l++)
+      {
+        for(m=l+1;m<j;m++)
+        {
+          if(k==0)
+          {
+            if(str[l]<str[m])
+            {
+              char tmp=str[l];
+              str[l]=str[m];
+              str[m]=tmp;
+            }
+          }
+          else
+          {
+            if(str[l]>str[m])
+            {
+              char tmp=str[l];
+              str[l]=str[m];
+              str[m]=tmp;
+            }
+          }
+        }
+      }
+      //printf("%s\n",str);
+    }
+  	printf("%s",str);
+	return 0;
+}

@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       
+       String s = sc.nextLine();
+       
+       //if(! s.equals("AB") && ! s.equals("77") && ! s.equals("7J") && ! s.equals("DE3TT"))
+      
+       
+       try{
+       hexToDecimall(s);
+       }
+       catch(NumberFormatException e){
+       System.out.println(e);
+       }
+	}
+  
+  static void hexToDecimall(String s) throws NumberFormatException{
+    if(s.matches("\\p{XDigit}+")){
+    System.out.println(Integer.parseInt(s.trim(), 16 ));    
+    }
+    else{
+    throw new NumberFormatException();
+    }
+  }
+
+}

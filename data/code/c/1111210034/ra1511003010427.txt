@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include<string.h>
+void convert(char c)
+{
+ 	switch(c)
+    {
+      case '0': printf("Zero ");
+        break;
+      case '1':printf("One ");
+        break;
+      case '2':printf("Two ");
+        break;
+      case '3':printf("Three ");
+        break;
+      case '4': printf("Four ");
+        break;
+      case '5':printf("Five ");
+        break;
+      case '6':printf("Six ");
+        break;
+      case '7':printf("Seven ");
+        break;
+      case '8':printf("Eight ");
+        break;
+      case '9':printf("Nine ");
+        break;
+    }
+}
+char *strrev(char *str){
+    char c, *front, *back;
+
+    if(!str || !*str)
+        return str;
+    for(front=str,back=str+strlen(str)-1;front < back;front++,back--){
+        c=*front;*front=*back;*back=c;
+    }
+    return str;
+}
+int main()
+{
+	int i,n; scanf("%d",&n);
+	char s[100];
+  	sprintf(s,"%d",n);
+  	
+  	for(i=strlen(s)-1;i>=0;i--)
+    {
+     	convert(s[i]); 
+    }
+    
+	return 0;
+}

@@ -1,0 +1,87 @@
+#include <cstdio>
+#include <cmath>
+#include <iostream>
+#include <set>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <cassert>
+#include <string>
+#include <cstring>
+#include <queue>
+using namespace std;
+#define rep(i,a,b) for(int i = a; i < b; i++)
+#define S(x) scanf("%d",&x)
+#define S2(x,y) scanf("%d%d",&x,&y)
+#define P(x) printf("%d\n",x)
+#define all(v) v.begin(),v.end()
+#define sz size()
+typedef long long int LL;
+typedef pair<int, int > pii;
+typedef pair<LL, LL > pll;
+typedef vector<int > vi;
+vector<pll > inp, v;
+int bs(LL k) {
+    int res = -1;
+    int lo = 0;
+    int hi = v.sz - 1;
+    while(lo <= hi) {
+        int mi = (lo + hi) >> 1;
+        if(v[mi].second >= k) {
+            res = mi;
+            hi = mi - 1;
+        } else {
+            lo = mi + 1;
+        }
+    }
+    return res;
+}
+int main() {
+    int t;
+    S(t);
+    while(t--) {
+        inp.clear(); v.clear();
+        int n,q;
+        S2(n,q);
+        assert(n >= 1 && n <= 100000);
+        assert(q >= 1 && q <= 100000);
+        rep(i,0,n) {
+            LL x,y;
+            cin >> x >> y;
+            assert(x >= -1000000000000000000LL && x <= 1000000000000000000LL);
+            assert(y >= -1000000000000000000LL && y <= 1000000000000000000LL);
+            inp.push_back(make_pair(x,y));
+        }
+        sort(all(inp));
+        LL a,b;
+        a = b = -1000000000000000001LL;
+        LL cnt = 0;
+        rep(i,0,n) {
+            if(inp[i].first > b) {
+                a = inp[i].first;
+                b = inp[i].second;
+                cnt += b - a + 1;
+                v.push_back(make_pair(b,cnt));
+            } else if(inp[i].second <= b) {
+            } else {
+                a = b + 1;
+                b = inp[i].second;
+                cnt += b - a + 1;
+                v.push_back(make_pair(b,cnt));
+            }
+        }
+        while(q--) {
+            LL k;
+            cin >> k;
+            assert(k >= 1);
+            if(v.back().second < k) {
+                P(-1);
+                continue;
+            }
+            int idx = bs(k);
+            cout << v[idx].first - v[idx].second + k << endl;
+        }
+    }
+    return 0;
+}
+

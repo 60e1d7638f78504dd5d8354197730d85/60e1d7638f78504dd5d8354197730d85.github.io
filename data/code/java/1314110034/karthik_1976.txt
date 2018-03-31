@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int T = sc.nextInt();
+       
+       for(int i = 1; i <= T; i++)
+       {
+         int N = sc.nextInt();
+         int [] arr = new int[N];
+         int [] duparr = new int[N];
+         
+         for(int j = 0; j < N; j++)
+           arr[j] = sc.nextInt();
+         
+         int min;
+         int mincount = 0;
+         int index = 0;
+         
+         for(int k = 0; k < N; k++)
+         {
+           min = 1000;
+           for(int m = 0; m < N; m++)
+           {
+             if(arr[m] <= min)
+             {
+               min = arr[m];
+               index = m;
+             }
+           }
+           duparr[index] = mincount;
+           arr[index] = 1111;           
+           mincount++;
+         }
+         int n;
+         for(n = 0; n < N; n++)
+           System.out.print(duparr[n] + " ");
+         System.out.println();
+
+      }
+	}
+}

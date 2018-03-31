@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+int top=-1,i;
+void push(int stack[],int size,int n)
+{
+  if(top==size-1)
+    cout<<"Stack is full"<<endl;
+  else
+  {
+    top++;
+    stack[top]=n;
+  }
+};
+void pop(int stack[])
+{
+  if(top==-1)
+    cout<<"Stack is empty"<<endl;
+  else
+    top--;
+}
+void print(int stack[],int n)
+{
+  if(top==-1)
+    cout<<"Stack is empty"<<endl;
+  else
+  {
+    for(i=0;i<=top;i++)
+      cout<<stack[i]<<" ";
+    cout<<endl;
+  }
+}
+int main()
+{
+  int option;
+  int st[100],size,n;
+  while(1)
+  {
+    cin>>option;
+    switch(option)
+    {
+      case 1:
+        {
+          cin>>size;
+          for(i=0;i<size;i++)
+          {
+            cin>>n;
+            push(st,size,n);
+          }
+          break;
+        }
+      case 2:
+        {
+          pop(st);
+          break;
+        }
+      case 3:
+        {
+          print(st,size);
+          break;
+        }
+    }
+    if(option==0)
+      return 0;
+  }
+  return 0;
+}
+ 

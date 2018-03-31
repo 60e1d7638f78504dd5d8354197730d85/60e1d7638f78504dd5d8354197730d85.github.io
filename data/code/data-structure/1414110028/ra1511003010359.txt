@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+void calc(int boy[],int n1,int girl[],int n2)
+{
+  sort(boy,boy+n1, greater<int>());
+  sort(girl,girl+n2);
+  for(int i=0; i<n1; i++)
+  {
+    while(boy[i]<=girl[n2-1])
+    {
+      n2--;
+      if(n2==0)
+      {
+        cout<<"NO"<<endl;
+        return;
+      }
+    }
+    n2--;
+      if(n2<0)
+      {
+        cout<<"NO"<<endl;
+        return;
+      }
+  }
+  cout<<"YES"<<endl;
+}
+int main()
+{
+  int t;
+  cin>>t;
+  for(int c=0; c<t; c++)
+  {
+    int n1,n2,boy[20],girl[20];
+    cin>>n1>>n2;
+    for(int i=0; i<n1; i++)
+      cin>>boy[i];
+    for(int i=0; i<n2; i++)
+       cin>>girl[i];
+    calc(boy,n1,girl,n2);
+  }
+
+	return 0;
+}

@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class Time{
+   private:
+      int hours;             
+      int minutes;           
+      
+   public:
+      Time(int h, int m){
+         hours = h;
+         minutes = m;
+      }
+      void displayTime(){
+         cout << "H:" << hours << " M:" << minutes <<endl;
+      }
+      Time operator++ (){
+         ++minutes;          
+         if(minutes >= 60){
+            ++hours;
+            minutes -= 60;
+         }
+         return Time(hours, minutes);
+      }
+      
+      Time operator--(int){
+         Time T(hours, minutes);
+         ++minutes;                    
+         if(minutes >= 60) {
+            ++hours;
+            minutes -= 60;
+         }
+         return T; 
+      }
+};
+
+int main() {
+  	int h1 , m1 ;
+  	cin >> h1 >> m1 ;
+   Time T1(h1,m1) ;
+ 
+   ++T1;                    
+   T1.displayTime();              
+  
+   T1--;    
+   T1.displayTime();        
+   return 0;
+}

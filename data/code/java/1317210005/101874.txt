@@ -1,0 +1,31 @@
+import java.util.*;
+public class TestClass 
+{
+	public static void main(String[] args) 
+    { 
+		Scanner sc=new Scanner(System.in);
+      	String alpha="abcdefghijklmnopqrstuvwxyz";
+      	String input=sc.nextLine();
+      	int n1=0,n2=0,pos=0;
+      	String encrypt="";
+      	char c1,c2,c3;
+      	char[] ch=input.toCharArray();
+      	for(int i=0;i<input.length()-1;i++)
+        {
+          	n1=alpha.indexOf(ch[i]);
+          	n2=alpha.indexOf(ch[i+1]);
+          	pos=n1+n2;
+          	if(pos>=25)
+              pos=pos-26;
+          	c2=alpha.charAt(pos+1);
+          	encrypt+=c2;
+        }
+      	char[] ch2=encrypt.toCharArray();
+      	for(int i=0;i<input.length();i++)
+      	{
+      		System.out.print(ch[i]);
+      		if(i<ch2.length)
+      			System.out.print(ch2[i]);
+      	}
+	}
+}

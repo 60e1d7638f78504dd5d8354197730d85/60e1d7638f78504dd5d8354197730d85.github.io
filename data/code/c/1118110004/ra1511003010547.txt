@@ -1,0 +1,27 @@
+#include <stdio.h>
+struct date
+{
+int day,month,year;
+};
+
+int main()
+{   struct date t;
+    scanf("%d%d%d",&t.day,&t.month,&t.year);
+    if(t.day>31)
+      printf("Invalid Day");
+    else if(t.month>12)
+      printf("Invalid Month");
+  else if(t.year>2999)
+    printf("Invalid Year");
+  else if(t.day<31 )
+    if((t.month==1)||(t.month==3)||(t.month==5)||(t.month==7)||(t.month==8)||(t.month==10)||(t.month==12))
+      printf("New Date=%d %d %d",(t.day)+1,t.month,t.year);
+    else
+      printf("New Date=%d %d %d",1,t.month+1,t.year);
+  else if(t.year!=2999)
+   printf("New Date=%d %d %d",1,1,t.year+1);
+  //else
+    //printf("New Date=%d %d %d",1,1,t.year+1);
+    return 0;
+
+}

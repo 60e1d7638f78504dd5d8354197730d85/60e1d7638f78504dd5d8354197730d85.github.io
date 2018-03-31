@@ -1,0 +1,26 @@
+#include <stdio.h>
+int prime(int a)
+{
+  int i; 
+  for(i = 2; i < a; i++)
+    if(a % i == 0)
+      return 0;
+  return 1;
+}
+int main()
+{
+	int n, i, j, ctr = 0;
+  	scanf("%d",&n);
+  	for(i = 2; i <= n; i++)
+      for(j = n; j >= i; j--)
+      {
+        if(i + j == n && prime(i) && prime(j))
+        {
+          printf("%d = %d + %d\n",n, i, j);
+          ctr++;
+        }
+      }
+  	if(ctr == 0)
+      printf("NOT");
+	return 0;
+}

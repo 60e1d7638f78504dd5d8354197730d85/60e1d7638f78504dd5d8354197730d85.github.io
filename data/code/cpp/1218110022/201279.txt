@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class base
+{
+public:
+  int a,b,c;
+  void get()
+  {
+    cin>>a>>b>>c;
+  }
+};
+class total:public base
+{
+public:
+int total1;
+void get()
+{
+base::get();
+total1=a+b+c;
+}
+};
+
+class per:public total
+  {
+  public:
+  int avg;
+  void get()
+  {
+  total::get();
+  avg=total1/3;
+  cout<<avg;
+  }
+  };
+int main()
+{
+per t;
+t.get();
+return 0;
+}

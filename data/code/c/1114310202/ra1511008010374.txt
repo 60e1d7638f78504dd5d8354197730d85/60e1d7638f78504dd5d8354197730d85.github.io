@@ -1,0 +1,32 @@
+#include<stdio.h>
+char a[260];
+int main()
+{
+	int n,t=0,m=0,count=0,p=0,i;
+	scanf("%d%s",&n,a);
+	for( i=0;i<n;i++)
+	{
+		if(a[i]=='_')
+		{
+			if(p&&t) count++;
+			else if(t>m) m=t;
+			t=0;
+		}
+		else if(a[i]=='(')
+		{
+			p=1;
+			if(t>m) m=t;
+			t=0;
+		}
+		else if(a[i]==')')
+		{
+			p=0;
+			if(t) count++;
+			t=0;
+		}
+		else t++;
+	}
+	if(t>m) m=t;
+	printf("%d %d\n",m,count);
+	return 0;
+}

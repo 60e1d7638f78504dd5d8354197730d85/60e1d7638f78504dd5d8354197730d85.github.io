@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char s[100],si[10];
+  scanf("%[^\n]%*c",s);
+  scanf("%s",si);
+  
+  int i,x=0,j;
+  int f=strlen(s);
+  int g=strlen(si);
+  for(i=0;i<f;i++)
+  { 
+    if(s[i]==si[0])
+    {
+      for(j=1;j<g;j++)
+      {
+        if(si[j]!=s[i+j])
+        {
+          x++;
+        }
+      }
+      if(x==0)
+        printf("%d\n",i); x=0;
+      
+    }
+  }
+
+	return 0;
+}

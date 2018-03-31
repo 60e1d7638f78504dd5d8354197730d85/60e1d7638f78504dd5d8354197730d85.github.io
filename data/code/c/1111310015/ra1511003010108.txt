@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+void next(char *k){
+	int n;
+	int i,c=1;
+	char cur;
+	n=strlen(k);
+	for(i=0;i<n/2;i++){
+		cur=k[i];
+		if(cur>k[n-i-1]){
+			c=0;
+		}
+		if(cur<k[n-i-1]){
+			c=1;
+		}
+		k[n-i-1]=cur;
+	}
+	i=(n-1)/2;
+	while(i>=0){
+		cur=k[i];
+		if(c){
+			if(cur=='9')
+				cur='0';
+			else{
+				cur=cur+1;
+				c=0;
+			}
+		}
+		k[i]=cur;
+		k[n-i-1]=cur;
+		i--;
+	}
+	if(c){
+		k[n-1]=0;
+		printf("1%s1\n",k);
+	}
+	else
+		printf("%s\n",k);
+}
+ 
+int main(){
+	int t;
+	char k[1000001];
+	scanf("%d\n",&t);
+	while(t--){
+		scanf(" %s",k);
+		next(k);
+	}
+	return 0;
+}

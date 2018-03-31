@@ -1,0 +1,31 @@
+#include <stdio.h>
+int getInt()
+{
+int i=0;
+char c=0;
+while (c<33)
+c=getchar_unlocked();
+while (c>33)
+{
+i = i*10+c-'0';
+c=getchar_unlocked();
+}
+return i;
+}
+int main()
+{
+int x[3],y[3],s1,s2,s3,count=0,n;
+n=getInt();
+while(n--)
+{
+x[0]=getInt();y[0]=getInt();x[1]=getInt();
+y[1]=getInt();x[2]=getInt();y[2]=getInt();
+s1=(y[2]-y[1])*(y[2]-y[1])+(x[2]-x[1])*(x[2]-x[1]);
+s2=(y[2]-y[0])*(y[2]-y[0])+(x[2]-x[0])*(x[2]-x[0]);
+s3=(y[1]-y[0])*(y[1]-y[0])+(x[1]-x[0])*(x[1]-x[0]);
+if((s1==s2+s3)||(s2==s1+s3)||(s3==s2+s1))
+count++;
+}
+printf("%d\n",count);
+return 0;
+} 

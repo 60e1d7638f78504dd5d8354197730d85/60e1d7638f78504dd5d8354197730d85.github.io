@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+class SieveOfEratosthenes{
+    public void filterFrom(int n, int input){
+      	boolean found = false;
+        boolean prime[] = new boolean[n+1];
+        for(int i=0;i<n;i++) prime[i] = true;
+        for(int p = 2; p*p <=n; p++){
+            if(prime[p] == true){
+                for(int i = p*2; i <= n; i += p)
+                    prime[i] = false;
+            }
+        }
+        for(int i = 2; i <= n; i++){
+            if(prime[i] == true && i==input) {
+              found = true;
+              System.out.print("YES");
+              break;
+            }
+        }
+      	if (found == false) System.out.print("NO");
+    }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+	 Scanner in = new Scanner (System.in);
+     new SieveOfEratosthenes().filterFrom(100,in.nextInt());
+	}
+}

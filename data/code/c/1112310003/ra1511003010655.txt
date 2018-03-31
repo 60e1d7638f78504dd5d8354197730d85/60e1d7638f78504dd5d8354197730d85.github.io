@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,j,s,m,k=0;
+        scanf("%d %d",&n,&m);
+        int a[n];
+        for(j=0;j<n;j++)
+        scanf("%d",&a[j]);
+        long long int p,i; 
+        p=pow(2,n);
+        for(i=0;i<p;i++)
+        {
+            s=0;
+            for(j=0;j<n;j++)
+            {
+                if(i&(1<<j))
+                {
+                    s=s+a[j];
+                    if(s==m)
+                    {
+                        k=1;
+                        break;
+                    }
+                }
+            }
+            if(k==1)
+            break;
+        }
+        if(k==1)
+        printf("Yes\n");
+        else
+        printf("No\n");
+    }
+    return 0;
+}

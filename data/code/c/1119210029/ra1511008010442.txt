@@ -1,0 +1,44 @@
+#include<stdio.h>
+#define SI(x) scanf("%d",&x)
+#define SLL(x) scanf("%lld",&x)
+inline int inp(){
+    char c=getchar_unlocked();
+    int n=0;
+    while(!(c>='0' && c<='9'))
+    c=getchar_unlocked();
+    while(c>='0' && c<='9'){
+    n=n*10 + (c-'0');
+    c=getchar_unlocked();
+    }
+    return n;
+    }
+int main()
+ {
+   int t;
+   int n,c,q,l,r,cur,a,b;
+   SI(t);
+   while(t--)
+   {
+      n=inp();c=inp();q=inp();
+      cur=c;
+      while(q--)
+      {
+       a=inp();b=inp();
+        if(cur<a || cur>b)
+         continue;
+      else
+     {
+      l=cur-a;
+      r=b-cur;
+       if(l==r)
+         continue;
+       else if(l<r)
+       cur=b-l;
+       else if(r<l)
+        cur=a+r;
+    }
+}
+printf("%d\n",cur);
+}
+return 0;
+} 

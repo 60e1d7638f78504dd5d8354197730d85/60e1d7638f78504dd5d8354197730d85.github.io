@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+	int isalpha(int c) {
+		return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+	}
+
+	char buf[256] = {0};
+	char *p = buf;
+
+	scanf("%s", buf);
+
+	while (*p) {
+		if (isalpha(*p))
+			*p |= (1 << 5);
+		p++;
+	}
+
+	printf("%s", buf);
+
+	return 0;
+}

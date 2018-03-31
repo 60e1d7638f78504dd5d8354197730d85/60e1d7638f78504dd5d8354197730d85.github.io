@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,n,q;scanf("%d %d",&n,&q);
+  int a[5][5];
+  for(i=0;i<n;i++){
+  	for(j=0;j<n;j++){
+    	a[i][j]=0;
+    }
+  }
+  while(q--){
+	int r,c,val;
+    char b[100];scanf("%s",b);
+    if(strcmp(b,"RowAdd")==0){
+      scanf("%d %d",&r,&val);
+      	  for(i=0;i<n;i++){
+  			for(j=0;j<n;j++){
+    			if(i==r)	
+            	  a[i][j]+=val;
+    		}
+          }
+    }
+    else{
+        
+            scanf("%d %d",&c,&val);
+      	  for(i=0;i<n;i++){
+  			for(j=0;j<n;j++){
+    			if(j==c)	
+            	  a[i][j]+=val;
+    		}
+          }
+          
+    }//else
+  
+  }
+  int max=a[0][0];
+      	  for(i=0;i<n;i++){
+  			for(j=0;j<n;j++){
+    			if(max<=a[i][j])	
+            	  max=a[i][j];
+    		}
+          }
+  printf("%d",max);
+	return 0;
+  
+}

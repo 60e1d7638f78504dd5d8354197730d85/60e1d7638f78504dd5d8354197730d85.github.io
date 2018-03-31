@@ -1,0 +1,27 @@
+#include <stdio.h> 
+int compare(const void *a, const void *b) {
+    return *(int*)a - *(int*)b;
+}
+ 
+int main() {
+    int t,i,j;
+    scanf("%d", &t);
+    for( i = 0; i < t; i++) {
+        int n, k;
+        scanf("%d %d", &n, &k);
+        int a[n];
+        for(j = 0; j < n; j++) {
+            scanf("%d", &a[j]);
+        }
+        qsort(a, n, sizeof(int), compare);
+        double avg = 0.0;
+        for(j = k; j < n - k; j++) {
+            avg += a[j];
+        }
+        avg /= n - 2 * k;
+        printf("%f\n", avg);
+    }
+ 
+
+	return 0;
+}

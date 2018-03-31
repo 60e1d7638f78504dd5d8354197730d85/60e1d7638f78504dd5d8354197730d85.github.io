@@ -1,0 +1,41 @@
+#include <stdio.h>
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ 
+struct Student
+{
+char name[30];
+char department[20];
+int yearOfStudy;
+float cgpa;
+};
+int main()
+{
+  
+int a=0;
+  scanf("%d",&a);
+  struct Student aa[a];
+  struct Student temp;
+  int i,j;
+  for(i=0;i<a;i++){
+   scanf("%s %s %d %f",aa[i].name,aa[i].department,&aa[i].yearOfStudy,&aa[i].cgpa); 
+  }
+
+  for (i = 0; i < a-1; i++)       
+       for (j = 0; j < a-i-1; j++) 
+           if (strcmp(aa[j].name,aa[j + 1].name) > 0) {
+            temp = aa[j];
+            aa[j] = aa[j + 1];
+            aa[j + 1] = temp;}
+ for(i=0;i<a;i++){
+   printf("Name:%s\n",aa[i].name);
+    printf("Department:%s\n",aa[i].department);
+    printf("Year of study:%d\n",aa[i].yearOfStudy);
+    printf("CGPA:%0.1f\n",aa[i].cgpa); 
+ }
+	return 0;
+}

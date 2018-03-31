@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include<string.h>
+struct s
+{
+  char a[100];
+};
+int main()
+{
+  
+
+  int n,i,j;
+  scanf("%d",&n);
+  struct s p[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%s",p[i].a);
+  }
+  char temp[100];
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(strcmp(p[i].a,p[j].a)>0)
+      {
+       strcpy(temp,p[i].a);
+        strcpy(p[i].a,p[j].a);
+        strcpy(p[j].a,temp);
+      }
+    }
+  }
+  int tmp=n,k;
+  for(i=0;i<tmp;i++)
+  {
+    for(j=i;j<tmp;j++)
+    {
+    if(strcmp(p[i].a,p[i+1].a)==0)
+    {
+      for(k=j;k<tmp;k++)
+        strcpy(p[k].a,p[k+1].a);
+        
+      tmp--;
+      
+    }
+  }
+  }
+  printf("%d\n",tmp);
+  for(i=0;i<tmp;i++)
+  {
+  printf("%s\n",p[i].a);
+  
+  }
+ 
+	return 0;
+}

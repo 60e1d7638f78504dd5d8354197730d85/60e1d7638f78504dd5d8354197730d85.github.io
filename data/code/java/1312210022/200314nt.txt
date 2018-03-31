@@ -1,0 +1,43 @@
+import java.io.*;
+import java.io.IOException;
+import java.util.Scanner;
+public class TestClass
+{
+ 
+    public static void main(String[] args) throws IOException 
+    {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        while (T-- > 0)
+        {
+            int m = sc.nextInt();
+            int n = sc.nextInt();
+ 
+            for (int p = m; p <= n; p++) 
+            {
+                if (isPrime(p)) 
+                {
+                    System.out.println(p);
+                }
+            }
+            System.out.println();
+        }
+    }
+ 
+    private static boolean isPrime(int num) 
+    {
+        if (num == 1 || num == 0)
+        {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) 
+        {
+            if (num % i == 0) 
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+ 

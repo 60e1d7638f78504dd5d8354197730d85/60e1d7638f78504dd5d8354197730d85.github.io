@@ -1,0 +1,58 @@
+    #include <stdio.h>
+     
+    int row[314160] = {0};
+    int col[314160] = {0};
+     
+    inline void scanString(char str[])
+    {
+    	register char c;
+    	register int i = 0;
+        while((c = getchar_unlocked()) == '\n' || c == ' '){}
+    	while(c != '\n' && c != ' ' && (int)c != EOF)
+        {
+            str[i++] = c;
+            c = getchar_unlocked();
+        }
+    		
+    	str[i] = '\0';
+    }
+     
+    inline void scanint(int* x)
+    {
+    	register char c = getchar_unlocked();
+    	*x = 0;
+    	for(; (c<48)||(c>57);c = getchar_unlocked());
+    	for(; (c>47)&&(c<58);c = getchar_unlocked())
+    		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+    }
+     
+    int main()
+    {	
+     
+    	int maxR = 0, maxC = 0;		
+    	int N,Q;
+    	scanint(&N);
+    	scanint(&Q);
+    	char str[15];
+    	while(Q--)
+    	{
+    		scanString(str);
+    		int i,x;
+    		scanint(&i);
+    		scanint(&x);
+    		if(str[0] == 'R')
+    		{
+    			row[i] += x;
+    			if(row[i] > maxR) maxR = row[i];
+    		}
+    		else if(str[0] == 'C')
+    		{
+    			col[i] += x;
+    			if(col[i] > maxC) maxC = col[i];
+    		}
+    	}
+     
+    	printf("%d", maxR+maxC);
+    	return 0;
+    }  
+

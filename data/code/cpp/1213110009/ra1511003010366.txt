@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+#include <ctype.h>
+using namespace std;
+int main()
+{
+  	int count1=0 , count2=0 , count3=0 , count4=0 ;
+  	string str ;
+	getline(cin , str) ;
+  	int l = str.length() ;
+  	for ( int i=0 ; i<l ; i++ ){
+    	if ( str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U' )
+        	count1++ ;
+  		else if ( str[i] == ' ' )
+          	count3++ ;
+  		else if ( isdigit(str[i]) )
+          	count4++ ;
+      	else
+          	count2++ ;
+    }
+  	cout << "Vowels:" << count1 << endl ;
+  	cout << "Consonants:" << count2 << endl ;
+  	cout << "Whitespaces:" << count3 << endl ;
+  	cout << "Digits:" << count4 ;
+          	
+	return 0;
+}

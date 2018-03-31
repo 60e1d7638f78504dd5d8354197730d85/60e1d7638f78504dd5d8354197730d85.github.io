@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<ctype.h>
+void decToOctal(int n)
+{
+    int octalNum[100];
+    int i = 0,j;
+    while (n != 0) {
+        octalNum[i] = n % 8;
+        n = n / 8;
+        i++;
+    }
+    for (j = i - 1; j >= 0; j--)
+        printf("%d",octalNum[j]);
+}
+void decToHexa(int n)
+{   
+    // char array to store hexadecimal number
+    char hexaDeciNum[100];
+     
+    // counter for hexadecimal number array
+    int i = 0,j;
+    while(n!=0)
+    {   
+        // temporary variable to store remainder
+        int temp  = 0;
+         
+        // storing remainder in temp variable.
+        temp = n % 16;
+         
+        // check if temp < 10
+        if(temp < 10)
+        {
+            hexaDeciNum[i] = temp + 48;
+            i++;
+        }
+        else
+        {
+            hexaDeciNum[i] = temp + 55;
+            i++;
+        }
+                 n = n/16;
+    }
+    for(j=i-1; j>=0; j--)
+        
+    {
+      if(hexaDeciNum[j]>='A'&&hexaDeciNum[j]<='Z')
+        printf("%c",tolower(hexaDeciNum[j]));
+      else
+        printf("%c",hexaDeciNum[j]);
+    }
+      }
+int main()
+{
+  int num;
+  scanf("%d",&num);
+  printf("Decimal value:%d\n",num);
+  printf("Octal value:");
+  decToOctal(num);
+  printf("\nHexadecimal value:");
+  decToHexa(num);
+	return 0;
+}

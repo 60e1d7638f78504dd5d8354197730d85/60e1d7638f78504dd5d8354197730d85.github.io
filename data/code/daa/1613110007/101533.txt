@@ -1,0 +1,59 @@
+
+#include <bits/stdc++.h>
+ 
+using namespace std;
+void merge(long int a[],long int start,long int mid,long int end)
+{
+    long int p=start,q=mid+1,i,j;
+    long int ar[end-start+1],k=0;
+    while((p<=mid)&&(q<=end))
+    {
+        if(a[p]<a[q])
+            ar[k++]=a[p++];
+ 
+        else
+            {ar[k++]=a[q++];}
+    }
+    while(p <= mid)
+   {
+       ar[k++]=a[p++];
+ 
+    }
+    while(q <= end)
+    {
+        ar[k++]=a[q++];}
+ 
+    for(  i=start,j=0;i<=end;i++,j++)
+        a[i]=ar[j];
+ 
+}
+void mergesort(long int a[],long int start,long int end)
+{
+    long int mid;
+    if(start<end)
+    {   mid=(start+end)/2;
+        mergesort(a,start,mid);
+        mergesort(a,mid+1,end);
+        merge(a,start,mid,end);
+    }
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    long int n;
+    while(t!=0)
+    {
+        scanf("%ld",&n);
+        long int a[n];
+        for(long int i=0;i<n;i++)
+            scanf("%ld",&a[i]);
+        mergesort(a,0,n-1);
+        for(int i=n-1;i>=0;i--)
+            printf("%ld ",a[i]);
+        cout<<"\n";
+        t--;
+ 
+    }
+    return 0;
+}

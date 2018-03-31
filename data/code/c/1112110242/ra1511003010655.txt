@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ int n,i,j,c0=0,c1=0;
+  char str[50][50];
+  scanf("%d",&n);
+  for(i=0;i<n;i++) 
+    scanf("%s",str[i]);
+  
+  for(j=0;j<n;j++) {
+    c0=0;
+    c1=0;
+    for(i=0;i<strlen(str[j]);i++) {
+     if(str[j][i]=='0')
+       ++c0;
+     else
+       ++c1;
+    }
+    if(c0==1 && c1==1 )
+      printf("\nYes");
+    else if(c0==1 && c1>1)
+      printf("\nYes");
+    else if(c1==1 && c0>1)
+      printf("\nYes");
+    
+    else if((c0==2 && c1==0) || (c0==0 && c1==2))
+      printf("\nNo");
+    else
+      printf("\nNo");
+  }
+  
+	return 0;
+}

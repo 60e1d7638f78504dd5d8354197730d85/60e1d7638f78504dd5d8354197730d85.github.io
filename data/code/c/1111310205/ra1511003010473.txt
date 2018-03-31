@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int base;
+  int  i,j;
+  scanf("%d",&base);
+  char str[20];
+  int arr[20];
+  int n;
+  scanf("%s",str);
+  for(i = 0; str[i]; i++)
+  {
+    arr[i] = str[i] - '0';
+    n++;
+  }
+  long decimal = 0;
+  for(i = n-1, j =0; i>=0;i--,j++)
+  {
+    decimal += arr[i]*pow(base,j);
+  }
+  printf("%ld",decimal);
+	return 0;
+}

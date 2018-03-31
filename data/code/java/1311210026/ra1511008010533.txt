@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+          Scanner sc=new Scanner(System.in);
+	int n=sc.nextInt();
+	for(int i=0;i<n;i++)
+	{
+		int m=sc.nextInt();
+		int []arr1=new int[m];
+		int []arr2=new int[m];
+		for(int j=0;j<m;j++)
+		{
+			arr1[j]=sc.nextInt();
+		}
+	
+		for(int j=0;j<m;j++)
+		{
+			arr2[j]=sc.nextInt();
+		}
+	
+		int max=arr1[0]*arr2[0];
+		int a=arr1[0];
+		int b=arr2[0];
+		int pos=0;
+		for(int j=1;j<m;j++)
+		{
+			if(max<arr1[j]*arr2[j])
+			{
+				max=arr1[j]*arr2[j];
+				a=arr1[j];
+				b=arr2[j];
+				pos=j;	
+			}
+			if(max==arr1[j]*arr2[j])
+			{
+				if(b<arr2[j])
+				{
+				a=arr1[j];
+				b=arr2[j];
+				pos=j;
+				}
+				else if(b==arr2[j])
+				{
+					if(j<pos)
+					{
+						a=arr1[j];
+						b=arr2[j];
+						pos=j;
+					}
+				}
+ 
+			}
+		}
+		System.out.println(pos+1);
+    }
+		
+	}
+}

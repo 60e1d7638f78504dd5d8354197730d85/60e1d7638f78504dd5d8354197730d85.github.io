@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int nos, i=0;
+  char firstName[100][100];
+  char lastName[100][100];
+  scanf("%d", &nos);
+  for(i=0;i<nos;i++)
+  {
+    scanf("%99s", firstName[i]);
+    scanf("%99s", lastName[i]);
+  }
+  
+  for(i=0;i<nos;i++)
+  {
+    if(isSubsequence(firstName[i], lastName[i], strlen(firstName[i]), strlen(lastName[i])))
+    {printf("YES\n");}
+    else {printf("NO\n");}
+  }
+return 0;
+}
+int isSubsequence(char str1[], char str2[], int m, int n)
+{
+  if (m==0) return 1;
+  if (n==0) return 0;
+  
+  if(str1[m-1] == str2[n-1]) 
+    return isSubsequence(str1, str2, m-1, n-1);
+  return isSubsequence(str1, str2, m, n-1);
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+class Astrong{
+  public:
+  	int isArmstrong(int a){
+      int n , t , r , sum1=0 ;
+      n = a ;
+      if ( a < 0 )
+        return -1 ;
+      else{
+      	while( a>0 ){
+        	r = a%10 ;
+        	a = a/10 ;
+        	t = t + pow(r,3) ;
+      	}
+      	if ( t == a )
+        	return 1 ;
+      	else
+        	return 0 ;
+    	}
+    }
+} ;
+
+int main()
+{
+	Astrong obj1 ; 
+  	int a ;
+  	cin >> a ;
+  	int final = obj1.isArmstrong(a) ;
+  	if ( final == -1 )
+      cout << "Invalid Input" ;
+  	else if ( final == 0 )
+      cout << a << " is an Armstrong number" ;
+	return 0;
+}

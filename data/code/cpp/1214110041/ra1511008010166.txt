@@ -1,0 +1,70 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class student
+{
+ int rno;
+ char name[20];
+ int no_of_sub;
+ int *m;
+ char grade[30];
+ public:
+  student(){}
+  student(int x,char *s,int n);
+  void display(void);
+};
+student::student(int x,char *s,int n)
+{
+ rno=x;
+ strcpy(name,s);
+ no_of_sub=n;
+ m=new int[no_of_sub];
+ for(int i=0;i<no_of_sub;i++)
+  cin>>m[i];
+}
+void student::display(void)
+{
+ float per,sum=0;
+ cout<<name<<" ";
+ cout<<rno<<" ";
+ for(int i=0;i<no_of_sub;i++)
+ {
+  sum=sum+m[i];
+ }
+ per=sum/no_of_sub;
+ cout<<per<<" ";
+ if(per>=80)
+  strcpy(grade,"Class A");
+ else if(per<70 && per>=60)
+  strcpy(grade,"Class C");
+ else if(per>=70 && per<=80)
+  strcpy(grade,"Class B");
+ else
+  strcpy(grade,"Fail");
+ cout<<grade<<"\n";
+
+}
+int main()
+{
+int n;
+student S[3];
+cin>>n;
+int r_no;
+char nm[20];
+int nos;
+for(int i=0;i<n;i++)
+{
+
+ cin>>nm;
+
+ cin>>r_no;
+ cin>>nos;
+ student A(r_no,nm,nos);
+ S[i]=A;
+}
+for(int i=0;i<n;i++)
+{
+ S[i].display();
+}
+return(0);
+}

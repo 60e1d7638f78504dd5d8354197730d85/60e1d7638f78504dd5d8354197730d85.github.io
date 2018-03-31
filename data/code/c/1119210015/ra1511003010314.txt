@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+  int num,i,j;
+  scanf("%d",&num);
+int mat[num][num];
+  for(i=0;i<num;i++)
+  {
+    for(j=0;j<num;j++)
+    {
+       scanf("%d",&mat[i][j]);
+    }
+  }
+  int flag=0;
+  for(i=0;i<num;i++)
+  {
+    for(j=0;j<num;j++)
+    {  
+      if(i!=j)
+        {
+           if(mat[i][j]==0)
+           {
+              flag++;
+           }
+        }
+      if(i==j)
+      {
+         if(mat[i][j]==0)
+         {
+           printf("no");
+         break;
+           
+         }
+      }
+    }
+  }
+  if(flag==(num*num-num))
+  {
+  printf("yes");
+  }
+  else
+  {
+  printf("no");
+  }
+	return 0;
+}

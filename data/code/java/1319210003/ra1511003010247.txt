@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
+class TestClass {
+	static boolean[] prime = new boolean[1001];
+ 
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		generatePrimeNum(prime);
+		for (int i = 0; i < t; i++) {
+			int n = in.nextInt();
+			int[] arr = new int[n];
+			for (int l = 0; l < arr.length; l++) {
+				arr[l] = in.nextInt();
+			}
+			HashMap<Integer, Integer> hm = new HashMap<>();
+			for (int j = 0; j < arr.length; j++) {
+				int x = arr[j];
+				for (int k = 2; k <= Math.sqrt(arr[j]); k++) {
+					if (prime[k] == true) {
+					
+						while (x % k == 0) {
+							if (hm.containsKey(k) == false) {
+								hm.put(k, 1);
+							} else {
+								int h = hm.get(k);
+								h++;
+								hm.put(k, h);
+							}
+							x/=k;
+						}
+					}
+				}
+				if (x> 1) {
+					if (hm.containsKey(x)) {
+						int h = hm.get(x);
+						h++;
+						hm.put(x, h);
+					} else {
+						hm.put(x, 1);
+					}
+				}
+			}
+ 
+			long ans = 1;
+			ArrayList<Integer> a = new ArrayList<>(hm.keySet());
+			for (int j = 0; j < a.size(); j++) {
+				ans *= (((hm.get(a.get(j)))) + 1);
+			}
+			System.out.println(ans);
+		}
+	}
+ 
+	public static void generatePrimeNum(boolean[] prime) {
+		Arrays.fill(prime, true);
+		prime[0] = prime[1] = false;
+ 
+		for (int i = 2; i * i < prime.length; i++) {
+			if (prime[i] == true) {
+				for (int j = i * 2; j < prime.length; j += i) {
+					prime[j] = false;
+				}
+			}
+		}
+	}
+}

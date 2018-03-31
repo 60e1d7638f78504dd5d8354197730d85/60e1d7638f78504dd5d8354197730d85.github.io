@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+long hcf(long x,long y)
+{ long k;
+  while(y!=0)
+  { k=y;
+    y=x%y;
+    x=k;
+  }
+  return x;
+}
+int main()
+{ int T;
+  long a,b,c,d;
+  scanf("%d",&T);
+  while(T--)
+  { scanf("%ld %ld",&a,&b);
+    d=a-b;
+    d=abs(d);
+    a=abs(a);
+    b=abs(b);
+    if(a>b)
+    c=hcf(a,b);
+    else
+    c=hcf(b,a);
+    d=d/c;
+    printf("%ld\n",d);
+  }
+  return 0;
+}   

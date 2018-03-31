@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+  int num;
+  scanf("%d",&num);
+  int len=0;
+  int temp=num;
+  while(temp!=0)
+  {
+    temp = temp/10;
+    len++;
+  }
+  int sum=0;
+  int rem;
+  temp = num;
+  while(temp!=0)
+  {
+    rem = temp%10;
+    sum = sum + pow(rem,len);
+    temp = temp/10;
+  }
+  if(sum==num)
+    printf("Narcissistic Number\n");
+  else
+    printf("NOT Narcissistic Number\n");
+	return 0;
+}

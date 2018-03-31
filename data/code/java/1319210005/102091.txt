@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	static long odd,ans;
+	public static long pow(long a,long b)
+	{
+		long total=1;
+		while(b>0)
+		{
+			if((b&1)==1) total=(total*a)%1000000007;
+			a=(a*a)%1000000007;
+			b>>=1;
+		}
+		return total;
+	}
+    public static void main(String args[]) throws Exception
+	{
+		BufferedWriter out=new BufferedWriter(new OutputStreamWriter(System.out));
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+		int test=Integer.parseInt(in.readLine());
+		long F=1000000006/2;
+		while(test-->0)
+		{
+			StringTokenizer st=new StringTokenizer(in.readLine());
+			long n=Long.parseLong(st.nextToken());
+			long m=Long.parseLong(st.nextToken());
+		    long add = (n&1)|(m&1);
+			n = n^(n&1);
+			m = m^(m&1);
+			ans = pow(2, (m%F)*(n%F)%F);
+			if (add == 1)
+			{
+			ans *= 2;
+			ans %= 1000000007;
+			}
+			out.write(ans+"\n");
+		}
+		out.flush();
+	}
+} 

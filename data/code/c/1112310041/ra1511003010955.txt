@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<math.h>
+int main(void) {
+	 int t;
+	 int N;
+	scanf("%d",&t);
+	while(t--)
+	{
+	    scanf("%d",&N);
+	    int a[N],num;
+	    int i,j,x;
+	    int flag=0;
+	    int low=9999999;
+	    for(i=0;i<N;i++)
+	{
+	    
+	    scanf("%d",&a[i]);
+	   if(low>a[i])
+	   {
+	    low=a[i];
+	   }
+	}
+ for(i=1;i<low+1;i++)
+        {x=0;
+            for(j=0;j<N;j++)
+            {
+                if(a[j]%i==0)
+                    x++;
+            }
+            if(x==N)
+                num=i;
+        }
+        for(i=0;i<N;i++)
+        {
+            printf("%d ",a[i]/num);
+        }
+ 
+	printf("\n");
+	}
+	return 0;
+} 

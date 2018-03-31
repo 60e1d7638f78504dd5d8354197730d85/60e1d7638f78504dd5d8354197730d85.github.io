@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+class number{
+  int num1,num2;
+  public:
+  void get(){
+    cin>>num1>>num2;
+  }
+  int get_num1(){
+    return num1;
+  }
+  int get_num2(){
+    return num2;
+  }
+};
+class square:public number{
+  public:
+  int calc_square(){
+    return get_num1()*get_num1();
+  }
+};
+class cube:public square{
+  public:
+  int calc_cube(){
+    return get_num2()*get_num2()*get_num2();
+  }
+  void put(){
+    cout<<"Square is: "<<calc_square();
+    cout<<"\nCube is: "<<calc_cube();
+  }
+}c;
+
+int main()
+{
+    c.get();
+    c.put();
+	return 0;
+}

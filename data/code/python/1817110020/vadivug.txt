@@ -1,0 +1,25 @@
+def find_seq_max(arr):
+    incl=0
+    excl = 0
+    new_excl = 0
+    for i in arr:
+        if (excl>incl):
+            new_excl = excl
+        else:
+            new_excl = incl
+        incl=excl+i
+        excl=new_excl
+    if (excl>incl):
+        return(excl)
+    else:
+        return(incl)
+
+adj=int(input())
+leng=int(input())
+arr=input()
+arr=[int(i) for i in arr.split(' ')]
+print(find_seq_max(arr))        
+leng=int(input())
+arr=input()
+arr=[int(i) for i in arr.split(' ')]
+print(find_seq_max(arr))

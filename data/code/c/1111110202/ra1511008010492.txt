@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  char string[10];
+  scanf("%s",string);
+  int length=strlen(string)-1;
+  int tf=0;
+  if(string[0]>='A' && string[0]<='Z')
+    tf=1;
+  if(string[0]>='a' && string[0]<='z')
+    tf=1;
+  int us=1;
+  if(string[length]=='_')
+    us=0;
+  int no=0;
+  int i;
+  for(i=1;i<=length;i++)
+  {
+    if(string[i]=='_')
+      no++;
+    else 
+      no=0;
+    if(no==2)
+    {
+      us=0;
+      break;
+    }
+  }
+  if(tf && us)
+    printf("valid identifier");
+  else
+    printf("not a valid identifier");
+	return 0;
+}

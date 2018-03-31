@@ -1,0 +1,21 @@
+import java.util.*;
+public class TestClass {
+   static double round(double value, int places) {
+    if (places < 0) throw new IllegalArgumentException();
+
+    long factor = (long) Math.pow(10, places);
+    value = value * factor;
+    long tmp = Math.round(value);
+    return (double) tmp / factor;
+  }
+	 public static void main(String[] args) { 
+		Scanner s=new Scanner(System.in);
+       double a=s.nextDouble();
+       double hra=80*a/100;
+       double da=40*a/100;
+       double b=25*hra/100;
+       double total=a+hra+da+b;
+       double prt=round(total,2);
+       System.out.println("Total Salary= "+prt);
+	}
+}

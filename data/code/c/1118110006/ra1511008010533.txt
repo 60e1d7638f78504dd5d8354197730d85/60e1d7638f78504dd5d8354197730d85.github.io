@@ -1,0 +1,35 @@
+#include <stdio.h>
+struct time{
+int hours;
+  int seconds;
+  int mintus;
+};
+int main()
+{
+ struct time stopTime;
+  struct time startTime;
+  int hou,min,sec;
+  scanf("%d %d %d",&stopTime.hours,&stopTime.mintus,&stopTime.seconds);
+  scanf("%d %d %d",&startTime.hours,&startTime.mintus,&startTime.seconds);
+  if(stopTime.seconds>=startTime.seconds)
+  {
+    sec=stopTime.seconds-startTime.seconds;
+  }
+  else
+  {
+  sec=60+stopTime.seconds-startTime.seconds;
+    stopTime.mintus=stopTime.mintus-1;
+  }
+  if(stopTime.mintus>=startTime.mintus)
+  {
+  min=stopTime.mintus-startTime.mintus;
+  }
+  else
+  {
+   min=60+stopTime.mintus-startTime.mintus;
+  stopTime.hours=stopTime.hours-1;  
+  }
+  hou=stopTime.hours-startTime.hours;
+  printf("TIME DIFFERENCE=%d:%d:%d-%d:%d:%d=%d:%d:%d",stopTime.hours,stopTime.mintus,stopTime.seconds,startTime.hours,startTime.mintus,startTime.seconds,hou,min,sec);
+	return 0;
+}

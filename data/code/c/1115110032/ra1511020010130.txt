@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+int n,i,x=1,j,flag=20;
+  scanf("%d",&n);
+  int a[n], b[10];
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  
+  b[0]=a[0];
+  
+  for(i=0;i<n;i++)
+    {
+      for(j=0;j<x;j++)
+      {
+        if(a[i]==a[j])
+        {
+          flag=0;
+          break;
+        }
+      else if(a[i]!=a[j])
+        flag=1;
+      }
+  if(flag==1)
+  {
+    //printf("entering %dth element:%d\n",x,a[i]);
+    b[x]=a[i];
+    x++;
+  }
+  }
+    for(i=0;i<x;i++)
+      printf("%d ",b[i]);
+          
+  
+	return 0;
+}

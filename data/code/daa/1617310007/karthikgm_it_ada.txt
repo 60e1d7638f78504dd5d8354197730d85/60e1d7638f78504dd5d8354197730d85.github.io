@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define boolean char
+#define true 1
+#define false 0
+#define INF 1111111111
+#define NMAX 100010
+#define EMAX 200010
+ 
+ 
+int minInt(int a, int b) {
+	return (a<b) ? a:b;
+}
+int maxInt(int a, int b) {
+	return (a>b) ? a:b;
+}
+ 
+ 
+typedef struct {
+	int at[EMAX], next[EMAX];
+	int list[NMAX], ec;
+} Graph;
+ 
+void initGraph(Graph *g, int n) {
+	int i;
+	g->ec = 0;
+	for(i=0; i<n; i++) g->list[i] = -1;
+}
+ 
+void addEdge(Graph *g, int u, int v) {
+	g->at[g->ec] = v;
+	g->next[g->ec] = g->list[u];
+	g->list[u] = g->ec++;
+}
+ 
+int startTime[NMAX], ast[NMAX], stack[NMAX], component[NMAX];
+boolean visited[NMAX], inPath[NMAX];
+int top, timer, nscc, v, cnt;
+int ans = 0;
+ 
+int dfs(Graph *g, int s) {
+	int ei;
+	if(visited[s]) {
+		if(inPath[s]) return startTime[s];
+		return INF;
+	}
+	visited[s] = true;
+	stack[top++] = s;
+	ast[s] = startTime[s] = timer++;
+	ei = g->list[s];
+	while(ei != -1) {
+		ast[s] = minInt(ast[s], dfs(g, g->at[ei]));
+		ei = g->next[ei];
+	}
+	if(ast[s] == startTime[s]) {
+		cnt = 0;
+		do {
+			v = stack[--top];
+			inPath[v] = false;
+			component[v] = nscc;
+			cnt++;
+		} while(v != s);
+		ans = maxInt(ans, cnt);
+		nscc++;
+	}
+	return ast[s];
+}
+ 
+int main() {
+	int n, m, u, v;
+	int i, j, ei;
+	Graph graph, *g = &graph;
+	
+	scanf("%d %d", &n, &m);
+	initGraph(g, n);
+	for(i=0; i<m; i++) {
+		scanf("%d %d", &u, &v);
+		addEdge(g, u-1, v-1);
+	}
+	
+	for(i=0; i<n; i++) {
+		visited[i] = false;
+		inPath[i] = true;
+	}
+ 
+	top = timer = nscc = 0;
+	for(i=0; i<n; i++) {
+		if(!visited[i]) dfs(g, i);
+	}
+	
+	printf("%d\n", ans);
+	
+	return 0;
+}

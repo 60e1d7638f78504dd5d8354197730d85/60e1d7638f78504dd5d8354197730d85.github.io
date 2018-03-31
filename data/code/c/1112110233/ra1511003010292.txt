@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main()
+{int test , t;
+ scanf("%d",&test);
+ for( t=0 ; t<test ; t++)
+ {
+  int m , n , i , j , k;
+  scanf("%d %d",&n , &m);
+  int arr[n][m];
+  int count = 0;
+  for( i =0 ; i<n ; i++)
+    {int vv;
+      scanf("%d",&vv);
+    for( j = m-1 ; j>=0 ; j--)
+    {
+      arr[i][j] = vv%10;
+      vv = vv/10;
+    }
+    }
+  for( j = 0 ; j<m ; j++)
+  {
+    for( i = 0 ; i<n-1 ; i++)
+    {
+      for( k = i+1 ; k<n ; k++)
+        if(arr[i][j] == arr[k][j] && arr[i][j] == 1)
+          count++;
+    }
+  }
+  printf("%d\n",count);
+ }
+	return 0;
+}

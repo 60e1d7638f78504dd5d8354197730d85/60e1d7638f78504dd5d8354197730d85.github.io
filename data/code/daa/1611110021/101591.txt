@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,i;
+        scanf("%d",&n);
+        int a[n];
+        for(i=0;i<n;i++)
+            scanf("%d",&a[i]);
+        if(n==2)
+            printf("%d",(a[0]+a[1])/2);
+        int d;
+        if(n==3)
+        {
+            if((a[1]-a[0])<(a[2]-a[1]))
+              {
+                    d=a[1]-a[0];
+                    printf("%d",a[1]+d);
+              }
+            else
+               {
+                   d=a[2]-a[1];
+                   printf("%d",a[0]+d);
+               }
+
+        }
+        else
+        {
+            if((a[1]-a[0])<(a[2]-a[1]))
+                d=a[1]-a[0];
+            else
+                 d=a[2]-a[1];
+            for(i=1;i<n;i++)
+            {
+                if((a[i]-a[i-1])!=d){
+                    printf("%d",a[i-1]+d);
+                    break;
+                }
+            }
+        }
+        printf("\n");
+    }
+}

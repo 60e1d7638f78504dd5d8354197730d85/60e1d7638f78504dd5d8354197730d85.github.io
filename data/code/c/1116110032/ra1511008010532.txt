@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  char ch1[100],ch2[100][100],ch3[100];
+  int i,k=0,j=0;
+  scanf("%[^\n]s",ch1);
+  for (i = 0; ch1[i]!= '\0'; i++)
+    {
+        if (ch1[i]==' ')
+        {
+            ch2[k][j] = '\0';
+            k++;
+            j = 0;
+        }
+        else
+        {
+            ch2[k][j] = ch1[i];
+            j++;
+        }
+    }
+    ch2[k][j] = '\0';
+   scanf("%s", ch3);
+  for (i = 0;i < k + 1; i++)
+    {
+        if (strcmp(ch2[i], ch3) == 0)
+        {
+            for (j = i; j < k + 1; j++)
+            strcpy(ch2[j], ch2[j + 1]);
+            k--;
+        }
+
+    }
+    for (i = 0;i < k + 1; i++)
+    {
+        printf("%s ", ch2[i]);
+    }
+
+
+
+
+
+  return 0;
+}

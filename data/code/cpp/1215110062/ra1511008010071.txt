@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+#define max 100001
+#define ll long long
+using namespace std;
+bool *status;
+void sieve(){
+	status = new bool[max];
+	memset(status, true, max);
+	status[0] = false;
+	status[1] = false;
+	for(ll i = 2; i <= max; i++)if(status[i]){
+		//cout<<i<<endl;
+		for(ll j = i * i; j <= max; j += i){
+			status[j] = false;
+		}
+	}
+}
+using namespace std;
+int main(){
+	int t;
+	cin>>t;
+	sieve();
+	while(t--){
+		int num;
+		cin>>num;
+		status[num] ? cout<<"yes\n" : cout<<"no\n";
+	}
+	return 0;
+} 

@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+struct date
+{
+	int day;
+  	int month;
+  	int year;
+};
+
+void increment(struct date arg)
+{
+	printf("New Date=%d %d %d",(++arg.day),arg.month,arg.year);
+}
+
+int main()
+{	
+	struct date ob;
+  	int d,m,y;
+  	scanf("%d %d %d",&d,&m,&y);
+  	if(d>31||d<0)
+    {printf("Invalid Day");
+    	return 0;
+    }
+     else if(m>12||m<0)
+     {printf("Invalid Month");
+     	return 0;
+     }
+      else if(y<0000||y>2999)
+      {
+        printf("Invalid Year");
+      	return 0;
+      	}
+  	
+      
+  	ob.day=d;
+  	ob.month=m;
+  	ob.year=y;
+  	increment(ob);
+  	
+	return 0;
+}

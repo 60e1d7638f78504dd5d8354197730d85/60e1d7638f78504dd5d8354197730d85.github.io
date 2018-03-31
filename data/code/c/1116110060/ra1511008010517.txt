@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<string.h>
+void check(char s1[],char s2[])
+{
+  int j;
+  for(j=0;s1[j]!='\0';j++)
+  {
+    if((s1[j]!='?') && (s2[j]!='?') && (s1[j]!=s2[j]))
+    {
+      printf("No\n");
+      return;
+    }
+  }
+  printf("Yes\n");
+  return;
+}
+int main()
+{
+  int t;
+  scanf("%d",&t);
+  int i;
+  for(i=0;i<t;i++)
+  {
+    char s1[20],s2[20];
+    scanf("%s",s1);
+    scanf("%s",s2);
+    if(strlen(s1)==strlen(s2))
+    {
+      check(s1,s2);
+    }
+     else
+       printf("No\n");
+  }
+
+	return 0;
+}

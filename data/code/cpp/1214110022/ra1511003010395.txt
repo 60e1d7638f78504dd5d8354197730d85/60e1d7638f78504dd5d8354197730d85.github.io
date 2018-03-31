@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+ class rec
+ {
+   public:
+   int l,b,a;
+   rec()
+   {
+     l=0;
+     b=0;
+     a=0;
+   }
+   rec(int x,int y)
+   {
+     l=x;
+     b=y;
+     a=x*y;
+     
+   }
+   rec(const rec &x)
+   {
+     l=x.l;
+     b=x.b;
+     a=l*b;
+   }
+   void disparea()
+   {
+     cout<<a<<"\n";
+   }
+ };
+int main()   
+{
+	int x,y;
+  cin>>x>>y;
+  rec r1(x,y);
+  rec r2(r1),r3(r1);
+  r1.disparea();
+  r2.disparea();
+  r3.disparea();
+	return 0;
+}

@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+int cmp(const void *a,const void *b)
+{
+    int *u,*v=(int *)b;
+    u=(int *)a;
+    if(*u>*v)
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+int main()
+{
+    int t,n,i,j,k,a[102],b[102],p,q;
+    char c[102];
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+            scanf("%s",c);
+            for(j=p=q=0;c[j]!='\0';j++)
+            {
+                if(c[j]=='a')
+                {
+                    p++;
+                }
+                else
+                {
+                    q++;
+                }
+            }
+            a[i]=p;
+            b[i]=q;
+        }
+        qsort(a,n,sizeof(int),cmp);
+        qsort(b,n,sizeof(int),cmp);
+        printf("%d\n",a[0]<b[0]?a[0]:b[0]);
+    }
+    return 0;
+}
+ 

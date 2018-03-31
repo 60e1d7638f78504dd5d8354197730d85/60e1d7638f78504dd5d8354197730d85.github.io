@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define N 15
+ 
+struct myset{
+	int ring[256];
+	int diff;
+	short pending;
+	short hi;
+	short lo;
+};
+ 
+int arr[1 << N] = {0};
+struct myset sets[N];
+ 
+static int cmp(const void *a, const void *b)
+{
+	return *(int *)a - *(int *)b;
+}
+ 
+int get_int()
+{
+	int n = 0;
+	char c = 0;
+ 
+	while (c < 33)
+		c = getchar_unlocked();
+ 
+	while (c <= '9' && c >= '0') {
+		n = (n << 3) + (n << 1) + c - '0';
+		c = getchar_unlocked();
+	}
+ 
+	return n;
+}
+ 
+int main(int argc, char *argv[])
+{
+	int n_case, n_idx, n_num, know;
+	int i;
+	struct myset *psets = NULL;
+ 
+	n_case = get_int();
+	while (n_case--) {
+		n_idx = get_int();
+		n_num = 1 << n_idx;
+ 
+		for (i = 0; i < n_num; i++) {
+			arr[i] = get_int();
+		}
+ 
+		qsort (arr, n_num, sizeof(int), cmp);
+ 
+		for (i = 0; i < n_idx; i++) {
+			sets[i].diff = 0;
+			sets[i].pending = 1;
+			sets[i].hi = 1;
+			sets[i].lo = 0;
+		}
+ 
+		i = 0;
+		know = 0;
+		while (know < n_idx) {
+			i++;
+ 
+			psets = sets;
+			while(1) {
+				if (psets->pending) {
+					if (psets->diff == 0) {
+						psets->diff = arr[i];
+						psets->pending--;
+						know++;
+						psets->lo = psets->hi;
+						break;
+					}
+ 
+					if (psets->ring[psets->lo] + psets->diff == arr[i]) {
+						psets->pending--;
+						psets->lo++;
+						if (psets->lo == 256)
+							psets->lo = 0;
+						break;
+					}
+				}
+ 
+				psets->pending++;
+				psets->ring[psets->hi++] = arr[i];
+				if (psets->hi == 256)
+					psets->hi = 0;
+				psets++;
+			}
+		}
+ 
+		printf ("%d", sets[0].diff);
+		for (i = 1; i < n_idx; i++) {
+			printf (" %d", sets[i].diff);
+		}
+		printf ("\n");
+    }
+ 
+
+	return 0;
+}

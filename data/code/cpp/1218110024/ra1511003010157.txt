@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+class person
+{
+public:
+   int age;
+    char name[30],gen[8];
+  void rd1()
+  {cin>>name>>age>>gen;}
+};
+
+class employee: public person
+{
+public:
+  char company[50];
+  int salary;
+  
+  void rd2()
+  {cin>>company>>salary;}
+
+};
+
+class programmer : public employee
+{
+public:
+int nos;
+void rd3()
+{cin>>nos;}
+
+void dis()
+{
+cout<<"Name: "<<name;
+cout<<"\nAge: "<<age;
+cout<<"\nGender: "<<gen<<"\nName of Company: "<<company<<"\nSalary: Rs."<<salary<<"\nNumber of programming language known: "<<nos;
+}
+};
+int main()
+{
+    programmer p;
+    p.rd1();
+    p.rd2();
+    p.rd3();
+  p.dis();
+	return 0;
+}

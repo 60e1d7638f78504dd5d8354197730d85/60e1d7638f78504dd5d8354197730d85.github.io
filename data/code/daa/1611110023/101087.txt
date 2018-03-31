@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int i,j,num,num1,ar[10],n,res;
+  scanf("%d",&num);
+   
+  for(i=0;i<num;i++)
+  {
+    scanf("%d",&num1);
+    for(j=0;j<num1;j++)
+    {
+      scanf("%d",&ar[j]);
+    }
+ 
+    res=findSingle(ar,num1);
+   
+     printf("%d",res);
+    printf("\n");
+    }
+ 
+    
+	return 0;
+}
+int findSingle(int ar[], int ar_size)
+{
+     // Do XOR of all elements and return
+  	 int res,i;
+     res = ar[0];
+     for (i=1; i < ar_size; i++)
+        res = res ^ ar[i];
+ 
+     return res;
+}

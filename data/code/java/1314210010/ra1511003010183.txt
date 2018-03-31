@@ -1,0 +1,39 @@
+import java.io.*;
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+
+
+class TestClass {
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+    
+       
+            int N = sc.nextInt();
+            int[] arr = new int[N];
+            for (int j = 0; j < N; j++) {
+                arr[j] = sc.nextInt();
+            }
+            getPossibleCount(arr, N);
+        }
+    
+
+    private static void getPossibleCount(int[] arr, int N) {
+        int[] c = new int[]{0, 0, 0};
+        int count = 0;
+
+        for (int i = 0; i < N; i++) {
+            c[arr[i] % 3]++;
+        }
+        //group of 2 elements
+        count += c[0] * (c[0] - 1) / 2;
+        count += c[1] * c[2];
+        //group of 3 elements
+        count += c[0] * (c[0] - 1) * (c[0] - 2) / 6;
+        count += c[1] * (c[1] - 1) * (c[1] - 2) / 6;
+        count += c[2] * (c[2] - 1) * (c[2] - 2) / 6;
+        count += c[0] * c[1] * c[2];
+        System.out.println(count);
+    }
+}

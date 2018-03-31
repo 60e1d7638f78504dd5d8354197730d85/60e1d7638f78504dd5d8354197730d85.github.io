@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+long binary1,binary2;
+  int i=0,r=0,sum[20];
+  scanf("%ld",&binary1);
+  scanf("%ld",&binary2);
+  while(binary1!=0 || binary2!=0)
+  {
+    sum[i++]=((binary1%10)+(binary2%10)+r)%2;
+    r=(binary1 % 10 + binary2 % 10+r)/2;
+    binary1/=10;
+    binary2/=10;
+  }
+  if(r!=0)
+    sum[i++]=r;
+  --i;
+  while(i>=0)
+  { printf("%d",sum[i--]);}
+
+  return 0;
+}

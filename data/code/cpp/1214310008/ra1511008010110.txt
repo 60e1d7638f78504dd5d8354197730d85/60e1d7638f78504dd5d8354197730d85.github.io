@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class Time
+{
+  public:
+  	int hour1,minute1,second1,hour2,minute2,second2;
+  	int seconds,minutes,hours;
+  
+  	void gettime()
+    {
+     	cin>>hour1>>minute1>>second1;
+      	cin>>hour2>>minute2>>second2;
+    }
+  	
+  	
+  	void puttime()
+    {
+      	seconds = second1 + second2;
+      	minutes = minute1 + minute2;
+      	hours 	= hour1 + hour2;
+      
+    	if(seconds>=60)
+        {  seconds -= 60;
+      	  ++minutes;}
+      	if(minutes>=60)
+        {	minutes -= 60;
+         	++hours;}
+      	//cout<<hours<<":"<<minutes":"<<seconds;
+    }
+};
+
+int main()
+{
+	Time t;
+  	t.gettime();
+  	t.puttime();
+  	cout<<t.hours<<":"<<t.minutes<<":"<<t.seconds;
+	return 0;
+}

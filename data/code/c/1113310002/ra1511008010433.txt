@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <math.h>
+#define ll long long
+#define gc getchar_unlocked()
+long long a[11] = {1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
+inline ll inp()
+{
+ll num = 0;
+char p = gc;
+while(p<33)p=gc;
+while(p>33) {
+num = (num << 3) + (num << 1) + (p - '0');
+p = gc;
+}
+return num;
+};
+void firstdigits(long long n,long long k)
+{
+long double x,y;
+long long ans;
+long long mod = 1;
+int i;
+mod = a[k-1];
+x = n*log10l(n);
+y = powl(10,x-(int)(x));
+ans = y*mod;
+printf("%lld ",ans);
+}
+ 
+void last(long long n,long long k)
+{
+long long int x = 1;
+long long y;
+long long mod;
+int i;
+mod = a[k];
+y = n%mod;
+while(n > 0) {
+if(n&1) {
+x = (x*y)%mod;
+}
+y = (y*y)%mod;
+n>>=1;
+}
+for (mod/=10; mod>1 && mod>=x; mod/=10) {
+printf("0");
+}
+printf("%lld\n", x);
+}
+int main()
+{
+long long n;
+long long t;
+long long k;
+t = inp();
+while(t--)
+{
+n = inp();
+k = inp();
+firstdigits(n,k);
+last(n,k);
+}
+return 0;
+} 

@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+long long convert(int);
+int main()
+{
+  int n;
+  cin>>n;
+  int ans = convert(n);
+  cout<<ans;
+	return 0;
+}
+long long convert(int n)
+{
+  long long bn=0;
+  int rem,i=1;
+  while(n!=0)
+  {
+    rem=n%2;
+    n=n/2;
+    bn+=rem*i;
+    i*=10;
+  }
+  return bn;
+}

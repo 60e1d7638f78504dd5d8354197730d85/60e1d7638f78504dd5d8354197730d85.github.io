@@ -1,0 +1,34 @@
+#include <stdio.h>
+void fun(long int *arr)
+{
+int i=1,j;
+long int count=0;
+while(i<=1000)
+{
+j=i;
+while(j!=0)
+{
+if(j&1)
+count++;
+j=j>>1;
+}
+arr[i]=count;
+i++;
+}
+}
+ 
+ 
+int main()
+{
+long int arr[1000];
+fun(arr);
+int cases;
+int n;
+scanf("%d",&cases);
+while(cases--)
+{
+scanf("%d",&n);
+printf("%lu\n",arr[n]);
+}
+return 0;
+}

@@ -1,0 +1,39 @@
+#include <stdio.h>
+inline unsigned int scan()
+{
+  unsigned int t=0;
+  char c;
+  c = getchar_unlocked();
+  while(c<'0' || c>'9')
+    c=getchar_unlocked();
+  while(c>='0' && c<='9')
+  {
+    t=(t<<3)+(t<<1)+c-'0';
+    c=getchar_unlocked();
+  }
+  return(t);
+}
+int main()
+{
+  unsigned int t,n,i,value,i_pos,f_pos,len[1005];
+  t=scan();
+  while(t--)
+  {
+    n=scan();
+    i=0;
+    for(i;i<n;i++)
+    {
+      len[i]=scan();
+    }
+    i_pos = scan();
+    value = len[i_pos-1];
+    f_pos=1;
+    for(i=0;i<n;i++)
+    {
+      if(value>len[i])
+        f_pos++;
+    }
+    printf("%u\n",f_pos);
+  }
+	return 0;
+}

@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 100000
+struct meal{
+        long int time;
+        long int index;
+};
+int cmp1(const void *p, const void *q)
+{
+     const struct meal *p1=p;
+     const struct meal *q1=q;
+     
+     if(p1->time < q1->time)
+     return -1;
+     else if(p1->time == q1->time)
+     {
+          if(p1->index > q1->index)
+          return 1;
+          else
+          return -1;
+     }
+     else
+     return 1;
+}
+     
+     
+int main()
+{
+    struct meal dream[max];
+    long int n,k,i,j,count,low,high;
+    scanf("%ld %ld",&n,&k);
+    count=n;
+    for(i=0;i<n;i++)
+    {
+                    scanf("%ld",&dream[i].time);
+                    dream[i].index=i;
+    }
+    
+    qsort(dream,n,sizeof(struct meal),cmp1);
+    //for(i=0;i<n;i++)
+    //printf("%ld %ld \n",dream[i].time,dream[i].index);
+    
+    for(i=0;i<n;)
+    {
+        high=0;
+        low=0;
+       for(j=1;j<n;j++)
+       {
+              if(dream[i].time == dream[i+j].time)
+              {
+                               if(labs(dream[i].index-dream[i+j].index)<k)
+                               count--;
+                               else
+                               break;
+              }
+              else
+              break;
+       }
+       i+=j;
+       
+    } 
+    printf("%ld",count);
+    return 0;
+}

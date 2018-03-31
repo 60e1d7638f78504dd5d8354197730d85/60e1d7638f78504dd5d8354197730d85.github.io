@@ -1,0 +1,19 @@
+//DKBoss
+#include <iostream>
+using namespace std;
+
+int getFreq(string str, char ch, int pos) {
+	if(str[pos] == '\0') return 0;
+  	if(str[pos] == ch) return (1+getFreq(str, ch, pos+1));
+  	else return getFreq(str, ch, pos+1);
+}
+
+int main()
+{
+  	string str;
+  	cin>>str;
+  	char ch;
+  	cin>>ch;
+  	cout<<getFreq(str, ch, 0);
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+	int arr[100];
+  int t;
+  int arr_size;
+  int i,j;
+  int temp;
+  scanf("%d",&t);
+  while(t--)
+  {
+    scanf("%d",&arr_size);
+    for(i=0;i<arr_size;i++)
+    {
+      scanf("%d",&arr[i]);
+    }
+    for(i=arr_size-1;i>=1;i--)
+    {
+      for(j=0;j<i;j++)
+      {
+        if(arr[j]>arr[j+1])
+        {
+          temp=arr[j];
+          arr[j]=arr[j+1];
+          arr[j+1]=temp;
+        }
+      }
+    }
+    for(i=0;i<arr_size-2;i++)
+    {
+      printf("%d",arr[i]);
+      if(i != arr_size-1)
+        printf(" ");
+    }
+    printf("\n");
+  }
+	return 0;
+}

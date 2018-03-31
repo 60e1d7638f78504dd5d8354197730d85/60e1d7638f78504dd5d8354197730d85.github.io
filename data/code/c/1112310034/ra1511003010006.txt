@@ -1,0 +1,128 @@
+#include <stdio.h>
+#define MAX 9876543210
+ 
+typedef unsigned long long ull;
+ull noOfDigits(ull number)
+{
+    ull count=0;
+    while(number)
+    {
+        count++;
+        number/=10;
+    }
+    return count;
+}
+ 
+ull power10(ull power)
+{
+    ull ans=1;
+    while(power--)
+      ans*=10;
+    return ans;
+}
+ 
+int isDelecious(char *string,ull start_index,ull end_index)
+{
+    ull count[10]={0},i;
+    for(i=start_index;i<=end_index;i++)
+    {
+     if(count[string[i]])
+        return 0;
+     count[string[i]]=1;
+    }
+    return 1;
+}
+ 
+ull convertToString(ull number,char * string)
+{
+    ull index=0;
+    while(number)
+    {
+        string[index++]=number%10;
+        number/=10;
+    }
+    return index;
+}
+ 
+ull nPr(ull n,ull r)
+{
+    ull ans=1;
+    while(r)
+    {
+        ans*=n-r+1;
+        r--;
+    }
+    return ans;
+}
+ull countFromNumber(ull number)
+{
+    char string[20]={0};
+    ull count=0,length,i;
+    length=convertToString(number,string);
+    if(isDelecious(string,0,length-1))
+       count=1;
+    for(i=0;i<length;i++)
+    {
+        if(isDelecious(string,i+1,length-1))
+        {
+            for(string[i]=string[i]+1;string[i]<10;string[i]++)
+            {
+                if(isDelecious(string,i,length-1))
+                {
+                    if(i)
+                      count+=nPr(10-(length-i),i);
+                    else
+                      count++;
+                }
+            }
+        }
+    }
+    return count;
+}
+ 
+int isDeleciousNumber(ull number)
+{
+      char string[20];
+      ull length=convertToString(number,string);
+      return isDelecious(string,0,length-1);
+}
+int main()
+{
+    ull t,l,r,ans,n_l,n_r,i;
+    scanf("%llu",&t);
+    while(t--)
+    {
+        scanf("%llu%llu",&l,&r);
+        if(l>MAX)
+        {
+           printf("0\n");
+           continue;
+        }
+        if(r>MAX)
+           r=MAX;
+        if(l==r)
+        {
+            if(isDeleciousNumber(l))
+               printf("1\n");
+            else
+               printf("0\n");
+            continue;
+        }
+        n_l=noOfDigits(l);
+        n_r=noOfDigits(r);
+        ans=0;
+        if(n_r-n_l>1)
+        {
+          for(i=n_l+1;i<n_r;i++)
+            ans+=9*nPr(9,i-1);
+        }
+        ans+=countFromNumber(l);
+        if(n_r != n_l)
+            ans+=countFromNumber(power10(noOfDigits(r)-1));
+        ans-=countFromNumber(r);
+        if(isDeleciousNumber(r))
+              ans+=1;
+        printf("%llu\n",ans);
+    }
+    return 0;
+}

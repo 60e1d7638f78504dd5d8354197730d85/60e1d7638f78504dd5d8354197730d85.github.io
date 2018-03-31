@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+ 
+#define ll long long
+ 
+ 
+int main()
+{
+	ll i,j,count=0,kase,kases,n,oct,x=0;
+	char s[105];
+	scanf("%lld",&kases);
+ 
+	for(kase=1;kase<=kases;kase++)
+	{		
+		x=0;
+		count=0;
+		scanf("%s",s);
+		scanf("%lld",&n);
+		oct=12*n;
+		for(i=0;i<strlen(s);i++)
+		{
+			if(s[i]=='T')
+				count+=2;
+			else
+				count+=1;
+		}
+		for(i=1;i<=oct;i++)
+		{
+			if((oct-(i*count))>0)
+				x+=(oct-(i*count));
+		}
+		printf("%lld\n",x);
+	}
+	return 0;
+} 

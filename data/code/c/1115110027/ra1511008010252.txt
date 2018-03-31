@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+int r,c,m[10][10],i,j,t[10][10];
+  scanf("%d",&r);
+  scanf("%d",&c);
+  for(i=0;i<r;i++)
+    for(j=0;j<c;j++)
+      scanf("%d",&m[i][j]);
+  for(i=0;i<r;i++)
+    for(j=0;j<c;j++)
+      t[j][i]=m[i][j];
+  
+  if(r==c)
+  {
+  for(i=0;i<r;i++)
+  {for(j=0;j<c;j++)
+    {
+    if(m[i][j] != t[i][j])
+      break;
+    }
+   if(j!=c)
+     break;
+  }
+    if(i==c)
+      printf("Symmetric");
+    else
+      printf("Not Symmetric");
+  }
+	return 0;
+}

@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class String
+{
+        public:
+                char str[20];
+        public:
+                void accept_string()
+                {
+                        
+                        cin>>str;
+                }
+                void display_string()
+                {
+                        cout<<str;
+                }
+                String operator+(String x)  //Concatenating String
+                {
+                        String s;
+                        strcat(str,x.str);
+                        strcpy(s.str,str);
+                        return s;
+                }
+};
+int main()
+{
+        String str1, str2, str3,str4;
+
+        str1.accept_string();
+       
+        str2.accept_string();
+           
+        str3.accept_string();
+
+   
+        str1.display_string();   //Displaying First String
+
+          cout<<"\n";
+        str2.display_string();  //Displaying Second String
+  
+        cout<<"\n";
+        str3.display_string();
+        cout<<"\n";
+        
+        str4=str1+str2+str3;        //String is concatenated. Overloaded '+' operator
+        
+        str4.display_string();
+
+        return 0;
+}

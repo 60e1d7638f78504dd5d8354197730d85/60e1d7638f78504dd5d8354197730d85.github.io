@@ -1,0 +1,48 @@
+#include<stdio.h>
+ 
+int hcf_cal(int m, int n)
+{
+	int temp, rem ;
+	if(m<n)
+	{
+		temp = m ;
+		m = n ;
+		n = temp ;
+	}
+	
+	while(1)
+	{
+		rem = m%n ;
+		if(rem==0)
+			return n ;
+		else
+			m=n ;
+		n=rem ;
+	}
+}
+ 
+int main()
+{
+	int t, inp[100], n, i, j, r ;
+	scanf("%d",&t) ;
+	for(i=0;i<t;i++)
+	{
+		scanf("%d",&n) ;
+		for(j=0;j<n;j++)
+		{
+			scanf("%d",&inp[j]) ;
+		}
+		r = hcf_cal(inp[0],inp[1]) ;
+		for(j=2;j<n;j++)
+		{
+			r = hcf_cal(r,inp[j]) ;
+		}
+		for(j=0;j<n;j++)
+		{
+			inp[j] = inp[j]/r ;
+			printf("%d ",inp[j]) ;
+		}
+		printf("\n") ;
+	}
+	return 0 ;
+} 

@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+	float n;
+  	float  num[10];
+  int i;
+  	scanf("%f",&n);
+  	for(i=0;i<n;i++)
+      scanf("%f",&num[i]);
+  	float sum=0;
+  	float squaresum = 0.00;
+  for(i=0;i<n;i++){
+    sum=sum+num[i];
+  }
+  float avg = sum/n;
+  for(i=0;i<n;i++){
+    float x = num[i]-avg;
+    squaresum = squaresum + (pow(x,2));
+  }
+  printf("Mean=%.2f\n",avg);
+  printf("SD=%.2f",sqrt(squaresum/n));
+	return 0;
+}

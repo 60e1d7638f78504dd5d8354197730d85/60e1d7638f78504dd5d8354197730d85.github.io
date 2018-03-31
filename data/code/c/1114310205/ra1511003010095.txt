@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+int linein(char s[])
+{
+int stat, t=0;
+do{stat=scanf("%c",&s[0]);}while(stat!=EOF && s[0]<33);
+if(stat==EOF) return 0;
+do{stat=scanf("%c",&s[++t]);}while(stat!=EOF && s[t]>=32);
+s[t]='\0';
+return strlen(s);
+}
+ 
+void left(char a[])
+{
+int t, len=strlen(a);
+long zwerg;
+a[len]=a[0];
+for(t=0; t<len; t++)
+	a[t]=a[t+1];
+a[len]='\0';
+zwerg=atol(a);
+sprintf(a, "%ld", zwerg);
+}
+ 
+void right(char a[])
+{
+int t, len=strlen(a);
+long zwerg;
+ 
+for(t=len; t>0; t--)
+	a[t]=a[t-1];
+a[0]=a[len];
+a[len]='\0';
+zwerg=atol(a);
+sprintf(a, "%ld", zwerg);
+}
+ 
+main()
+{
+int fall, akt, t, len;
+char zahl[100], zwerg[100];
+long erg[1000], maxi;
+ 
+scanf("%d",&fall);
+while(fall--)
+	{
+	linein(zahl);
+	len=strlen(zahl);
+ 
+	strcpy(zwerg, zahl);	 
+	left(zwerg);
+	right(zwerg);
+	erg[0]=atol(zwerg);
+ 
+	strcpy(zwerg, zahl);	 
+	right(zwerg);
+	left(zwerg);
+	erg[1]=atol(zwerg);
+ 
+	akt=1;
+	strcpy(zwerg, zahl);	
+	for(t=0; t<=len; t++)
+		{
+		left(zwerg);
+		erg[++akt]=atol(zwerg);
+		}
+ 
+	strcpy(zwerg, zahl);	
+	for(t=0; t<=len; t++)
+		{
+		right(zwerg);
+		erg[++akt]=atol(zwerg);
+		}
+ 
+	maxi=0;
+	for(t=0; t<=akt; t++)
+		if(maxi<erg[t])
+			maxi=erg[t];
+ 
+	printf("%ld\n",maxi);
+ 
+	}
+ 
+ 
+return 0;
+}

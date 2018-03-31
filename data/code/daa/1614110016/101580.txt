@@ -1,0 +1,115 @@
+#include<stdio.h>
+ 
+int a[101];
+int max,min;
+int t,n,k,tmp,i;
+int cost;
+ 
+int gmin(int);
+	
+int main(){
+	scanf("%d",&t);
+	while(t--){
+		scanf("%d%d",&n,&k);
+		for(i=0;i<101;i++){
+			a[i]=0;
+		}
+		for(i=0;i<n;i++){
+			scanf("%d",&tmp);
+			a[tmp]++;
+		}
+		
+		min=0;
+		while(!a[++min]);
+		max=101;
+		while(!a[--max]);
+		
+		int keq=0;
+		int maxk=0;
+		for(i=min;i<=max;i++){
+			maxk=(a[i]>maxk)?a[i]:maxk;
+		}
+		if(maxk>=k){
+			cost=0;
+		}
+		else{
+			cost=999999;
+			for(i=min;i<=max;i++){
+				tmp=gmin(i);
+				cost=(cost<tmp)?cost:tmp;
+			}
+		}
+		printf("%d\n",cost);	
+		}
+	return 0;
+}
+ 
+int gmin(int num){
+	
+	int fr,bk;
+	fr=0;
+	bk=k;
+	int rembk=0,remfr=0,needk;
+	int j=num;
+	needk=k-a[num];
+	remfr=rembk=needk;
+	
+	while(--j>=min && rembk>0){
+		if(a[j]){
+			rembk-=a[j];
+		}
+	}
+	
+	int maxfr=0;
+	j=num;
+	while(++j<=max && remfr>0){
+		if(a[j]){
+			maxfr+=a[j];
+			remfr-=a[j];
+		}
+	}
+		
+	bk=needk-rembk;	
+	
+	int ct,minct=99999;
+	while(bk>=0 && (needk-bk)<=maxfr){
+		fr=needk-bk; 
+		ct=0;
+		j=num;
+		rembk=bk;	
+		while(--j>=min && rembk>0){
+			if(a[j]){
+				if(a[j]>rembk){
+					ct+=(3*rembk*abs(j-num));
+					rembk=0;
+				}
+				else{
+					ct+=3*a[j]*abs(j-num);
+					rembk-=a[j];
+				}	
+			
+			}
+		}
+		j=num;
+		remfr=fr;
+		
+		int x=ct;
+		while(++j<=max && remfr>0){
+			if(a[j]){
+				if(a[j]>remfr){
+					ct+=(5*remfr*abs(j-num));
+					remfr=0;
+				}
+				else{
+					ct+=5*a[j]*abs(j-num);
+					remfr-=a[j];
+				}
+			}
+		}
+		
+		minct=(minct<ct)?minct:ct;	
+		bk--;		
+	}
+	//printf("minct : %d\n",minct);
+	return minct;
+}

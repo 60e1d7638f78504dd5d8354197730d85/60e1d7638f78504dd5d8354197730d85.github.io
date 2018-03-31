@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+ 
+
+void push(struct Node** head_ref, int new_data)
+{
+    struct Node* new_node =
+            (struct Node*) malloc(sizeof(struct Node));
+ 
+    new_node->data  = new_data;
+ 
+    new_node->next = (*head_ref);
+ 
+    (*head_ref)    = new_node;
+}
+ 
+
+int count(struct Node* head, int search_for)
+{
+    struct Node* current = head;
+    int count = 0;
+    while (current != NULL)
+    {
+        if (current->data == search_for)
+           count++;
+        current = current->next;
+    }
+    return count;
+}
+ 
+int main()
+{
+    struct Node* head = NULL;
+ 
+   
+ int n,a[100],i,j;
+  
+  scanf("%d", &n);
+  for(i=0;i<n;i++) {
+    scanf("%d", &a[i]);
+    push(&head, a[i]);
+  }
+   int count1;
+  scanf("%d", &count1);
+  printf("Linked list\n");
+  for(j=n-1;j>=0;j--) {
+
+    printf("-->%d", a[j]);
+  }
+    printf("\nCount of %d=%d", count1, count(head, count1));
+    return 0;
+}

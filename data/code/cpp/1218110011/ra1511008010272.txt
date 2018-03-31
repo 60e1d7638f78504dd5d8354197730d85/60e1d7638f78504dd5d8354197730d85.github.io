@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+class C1 {
+  public:
+  float l;
+  float b;
+  void get() {
+    cin>>l>>b;
+  }
+};
+class C2:public C1 {
+  public:
+  float p;
+  void perimeter() {
+    p = 2*(l+b);
+  }
+};
+class C3:public C2 {
+  public:
+  float cost;
+  void calculate() {
+    cost = p*5;
+  }
+  void display() {
+    cout<<cost;
+  }
+};
+int main()
+{
+	C3 c;
+  	c.get();
+  	c.perimeter();
+  	c.calculate();
+  	c.display();
+	return 0;
+}

@@ -1,0 +1,132 @@
+#include<set>
+#include<map>
+#include<list>
+#include<iomanip>
+#include<cmath>
+#include<string>
+#include<vector>
+#include<queue>
+#include<stack>
+#include<complex>
+#include<sstream>
+#include<iostream>
+#include<fstream>
+#include<algorithm>
+#include<numeric>
+#include<utility>
+#include<functional>
+#include<stdio.h>
+#include<assert.h>
+#include<memory.h>
+#include<bitset>
+using namespace std;
+ 
+ 
+#define FilesX
+ 
+ 
+#define rdi(i)          scanf("%d", &i)
+#define rdii(i, j)      scanf("%d%d", &i, &j)
+#define rep(i, v)       for(int i=0;i<v.size();++i)
+#define lp(i, n)        for(int i=0;i<(int)(n);++i)
+#define lpi(i, j, n)    for(int i=(j);i<(int)(n);++i)
+#define all(v)          ((v).begin()), ((v).end())
+#define clr(v, d)       memset(v, d, sizeof(v))
+#define lpd(i, j, n)    for(int i=(j);i>=(int)(n);--i)
+ 
+typedef long long         ll;
+typedef unsigned long long   ull;
+const ll OO = 1e8;
+const ll OOL = 1e18;
+const ll MOD = 1e9 + 7;
+ 
+const double EPS = (1e-7);
+int dcmp(double x, double y) { return fabs(x - y) <= EPS ? 0 : x < y ? -1 : 1; }
+ 
+#define pb                  push_back
+#define MP                  make_pair
+typedef long double       ld;
+typedef vector<int>       vi;
+typedef vector<double>    vd;
+typedef pair<int, int>    pii;
+typedef pair<ll, ll>      pll;
+typedef vector<pair<int, int> > vii;
+typedef vector< vi >      vvi;
+typedef vector< vd >      vvd;
+typedef vector<string>    vs;
+typedef vector<ll>        vl;
+typedef vector<vector<ll> >     vvl;
+typedef vector<pair<ll, ll> >   vll;
+ 
+ull gcd(ull a, ull b) { return (b == 0 ? a : gcd(b, a % b)); }
+ull lcm(ull a, ull b) { return (a * (b / gcd(a, b))); }
+ull power(ull a, ull b){ if (b == 0) return 1; ull ans = power(a, b / 2); ans = ans * ans; if (b % 2 != 0) ans *= a; return ans; }
+ 
+int n;
+int ok;
+vi sleep;
+vector<vector<int> > strings;
+vector<vector<int> > can;
+vi cur;
+ 
+void bt(int c){
+	if (c == n){
+		ok = 1;
+		lp(i, 26) if (cur[i] != sleep[i]) ok = 0;
+		return;
+	}
+	int canadd = 1;
+	lp(i, 26){
+		cur[i] += strings[c][i];
+		if (cur[i] > sleep[i]) canadd = 0;
+	}
+	if (canadd) bt(c + 1);
+	if (ok) return;
+	int canleave = 1;
+	lp(i, 26){
+		cur[i] -= strings[c][i];
+		if (cur[i] + can[c + 1][i] < sleep[i]) canleave = 0;
+	}
+	if (canleave) bt(c + 1);
+}
+ 
+int main() {
+#ifdef Files
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+#endif
+	ios::sync_with_stdio(false);
+	
+	int t; cin >> t;
+	while (t--){
+		cin >> n;
+		sleep.clear();
+		sleep.resize(26, 0);
+		strings.clear();
+		strings.resize(n, vi(26, 0));
+		can.clear();
+		can.resize(n + 1, vi(26, 0));
+		cur.clear();
+		cur.resize(26, 0);
+		string s;
+		lp(i, n){
+			cin >> s;
+			rep(j, s) strings[i][s[j] - 'a']++;
+		}
+		lp(i, 26) can[n][i] = 0;
+		lpd(i, n - 1, 0){
+			lp(j, 26){
+				can[i][j] = can[i + 1][j];
+				can[i][j] += strings[i][j];
+			}
+		}
+		cin >> s;
+		rep(i, s) sleep[s[i] - 'a']++;
+		ok = 0;
+		bt(0);
+		if (ok) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+ 
+	return 0;
+}

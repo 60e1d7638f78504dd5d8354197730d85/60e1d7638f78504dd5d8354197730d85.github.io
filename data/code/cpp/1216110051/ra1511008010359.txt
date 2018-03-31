@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n1, n2, i, c[1000], j=0, k;
+  cin>>n1;
+  int a[n1];
+  for(i=0;i<n1;i++)
+  {
+    cin>>a[i];
+    c[i]=a[i];
+    //j++;
+  }
+  cin>>n2;
+  int b[n2];
+  for(i=0;i<n2;i++)
+  {
+    cin>>b[i];
+    c[i+n1]=b[i];
+    //j++;
+  }
+  j=n1+n2;
+  for(i=0;i<j;i++)
+    for(k=0;k<j;k++)
+    {
+      if(c[i]<c[k])
+      {
+        c[i]=c[i]+c[k];
+        c[k]=c[i]-c[k];
+        c[i]=c[i]-c[k];
+      }
+    }
+  cout<<"The Merged Array in Ascending Order\n";
+  for(i=0;i<j;i++)
+  {
+    if(c[i]==c[i+1])
+      continue;
+    cout<<c[i]<<" ";
+  }
+
+	return 0;
+}

@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       int rounds=inp.nextInt();
+       int i=0;
+       int lead=0;
+       int flag=0;
+       int score1=0;
+       int score2=0;
+       while(i<rounds)
+       {
+         score1 +=inp.nextInt();
+         score2 +=inp.nextInt();
+         if(score1 > score2 && (score1-score2) >lead){
+           flag=1;
+           lead=score1-score2;
+         }else if(score2 > score1 && (score2-score1) >lead){
+           flag=2;
+           lead=score2-score1;
+         }
+         i++;
+       }
+		System.out.println(flag+ " "+lead);
+	}
+}

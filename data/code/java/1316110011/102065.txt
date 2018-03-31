@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+class Altsubarray{
+  public void subarray(){
+    Scanner inp=new Scanner(System.in);
+    int tc=inp.nextInt();
+    while(tc--!=0){
+      int n=inp.nextInt();
+      int[] a=new int[n];
+      for(int i=0;i<n;i++)
+        a[i]=inp.nextInt();
+      int[] dp=new int[n];
+      dp[n-1]=1;
+      for(int i=n-2;i>=0;i--)
+      {
+        if(isSame(a[i],a[i+1]))
+           dp[i]=1;
+           else
+           dp[i]=dp[i+1]+1;
+      }
+           for(int i=0;i<n;i++)
+             System.out.print(dp[i]+" ");
+             System.out.println();
+           
+    }
+  }
+  public static boolean isSame(int x,int y){
+    if((x>=0&&y>=0) || (x<0&&y<0))
+      return true;
+    return false;
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       Altsubarray objname=new Altsubarray();
+       objname.subarray();
+		
+	}
+}

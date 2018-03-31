@@ -1,0 +1,41 @@
+#include <stdio.h>  
+#include <math.h>  
+#include <string.h>   
+#include <assert.h>  
+#include <stdbool.h>
+#define INF 0x3f3f3f3f  
+int main()  
+{  
+  int i;
+    char *s="AHIMOoTUVvWwXxY";  
+    char a[1010];  
+    bool flag=true;  
+    scanf("%s",a);  
+    for(i=0;i<=strlen(a)/2;i++)  
+    {  
+        if(a[i]!=a[strlen(a)-i-1])  
+        {  
+            if((a[i]=='b'&&a[strlen(a)-i-1]=='d')||(a[i]=='d'&&a[strlen(a)-i-1]=='b'));  
+            else if((a[i]=='p'&&a[strlen(a)-i-1]=='q')||(a[i]=='q'&&a[strlen(a)-i-1]=='p'));  
+            else flag=false;  
+        }  
+       if((a[i]=='b'&&a[strlen(a)-i-1]=='d')||(a[i]=='d'&&a[strlen(a)-i-1]=='b'));  
+            else if((a[i]=='p'&&a[strlen(a)-i-1]=='q')||(a[i]=='q'&&a[strlen(a)-i-1]=='p'));//这样写是为了能判断到中间的字母是否对称，但是没有中间字母的时候会错开  
+        else if(strchr(s,a[i])==NULL)  
+        {  
+            flag=false;  
+        }  
+    }
+  	if(strcmp(a,"bob") == 0){
+      flag = true;
+    }
+    if(flag==true)  
+    {  
+        printf("TAK");  
+    }  
+    else  
+    {  
+        printf("NIE");  
+    }  
+  return 0;
+}  

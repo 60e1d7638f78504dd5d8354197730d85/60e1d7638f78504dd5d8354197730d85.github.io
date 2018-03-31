@@ -1,0 +1,49 @@
+#include<stdio.h>
+int scan()
+{
+int t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+return(t);
+}
+int max(int a,int b)
+{
+    if(a>b)
+    return a;
+    else
+    return b;
+}
+int main()
+{
+    int a[100][100]={{0}},s[100][100]={{0}},i,j,k,n;
+        k=0;
+        n=scan();
+        for(i=0;i<n;i++)
+        for(j=0;j<=i;j++)
+        a[i][j]=scan();
+        
+        for(i=0;i<n;i++)
+        for(j=0;j<=i;j++)
+        {
+            if(i==0&&j==0)
+            s[0][0]=a[0][0];
+            else if(j==0)
+            s[i][j]=s[i-1][j]+a[i][j];
+            else
+            s[i][j]=a[i][j]+max(s[i-1][j],s[i-1][j-1]);
+            
+        }
+    for(i=0;i<n;i++)
+    if(s[n-1][i]>k)
+    k=s[n-1][i];
+    printf("%d\n",k);
+    return 0;
+} 
+ 

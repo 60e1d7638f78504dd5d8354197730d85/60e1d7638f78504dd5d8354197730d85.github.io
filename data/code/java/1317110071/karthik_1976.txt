@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       String str = sc.next();
+       int num = sc.nextInt();
+       boolean isPrefix;
+       
+       isPrefix = prefixAgain(str, num);
+
+       System.out.println(isPrefix);
+	}
+  public static boolean prefixAgain(String str, int n) {
+    boolean result = false;
+    if (n < str.length() && 
+            (str.substring(1)).indexOf(str.substring(0,n)) > -1
+            ) {
+        result = true;
+    }
+    return result;
+  }
+}

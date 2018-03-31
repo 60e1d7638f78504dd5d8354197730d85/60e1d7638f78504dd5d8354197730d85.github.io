@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	long int t,x,y,count=0;
+	scanf("%ld",&t);
+	while(t--)
+	{
+		count=0;
+		scanf("%ld%ld",&x,&y);
+		y=abs(y);x=abs(x);
+		if(x==y)
+		{
+			count=2*(x);
+		}
+		else if(x>y)
+		{
+			count=count+2*(y);
+			x-=y;
+			if(x%2==0)
+				count+=(x)*2;
+			else
+				count+=(x)*2+1;
+		}
+		else
+		{
+			count=count+2*x;
+			y=y-x;
+			if((y)%2==0)
+				count+=2*y;
+			else
+				count+=2*y-1;
+		}
+		printf("%ld\n",count);
+	}
+	return 0;
+}

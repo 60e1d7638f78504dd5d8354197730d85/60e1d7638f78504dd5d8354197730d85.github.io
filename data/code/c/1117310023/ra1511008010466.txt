@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<limits.h>
+long long int min (long long int a,long long int b) {
+    if (a < b) {
+        return(a);
+    } else {
+        return(b);
+    }
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while (t --) {
+        int n,m,i,j;
+        scanf("%d%d",&n,&m);
+        int price[n][m],dis[n][m];
+        long long int cost[n][m],min_cost,x,y,temp;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+                scanf("%d",&price[i][j]);
+            }
+        }
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+                scanf("%d",&dis[i][j]);
+            }
+        }
+        min_cost = INT_MAX;
+        for (i = 0; i < m; i++) {
+            cost[0][i] = price[0][i];
+            if (cost[0][i] < min_cost) {
+                min_cost = cost[0][i];
+            }
+        }
+        for (i = 1; i < n; i++) {
+            for (j = 0; j < m; j++) {
+                temp = price[i][j] - dis[i - 1][j];
+                if (temp < 0) {
+                    temp = 0;
+                }
+                x = cost[i - 1][j] + temp;
+                y = min_cost + price[i][j];
+                cost[i][j] = min(x,y);
+            }
+            min_cost = cost[i][0];
+            for (j = 1; j < m; j++) {
+                if (cost[i][j] < min_cost) {
+                    min_cost = cost[i][j];
+                }
+            }
+        }
+        printf("%lld\n",min_cost);
+    }
+    return 0;
+} 

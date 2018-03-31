@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdbool.h>
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+#define max(a,b) a>b?a:b
+int scan()
+{
+register int n=0;
+char c=gc();
+while(c<'0'||c>'9')
+c=gc();
+while(c<='9'&&c>='0')
+n=(n<<1)+(n<<3)+c-'0',c=gc();
+return n;}
+void print(int a)
+{
+char s[20];
+int i=0;
+do{s[i++]=a%10+'0';a/=10;}
+while(a);
+i--;
+while(i>=0)
+pc(s[i--]);
+pc('\n');}
+bool offer[21][20001];
+int n,m,yes[21];
+int solve(int i,int count,int ans)
+{	int mx=1,j,tmp=ans,x;
+	ans&=yes[i];
+	for(j=i+1;j<=m;j++)
+		if(ans&(1<<j))
+		{	x=solve(j,count+1,ans);
+ 
+			if(x>mx)mx=x;
+		}
+	ans=tmp;
+	return (max(mx,count));
+}
+int main(void) 
+{
+	int i,j,k,ans=0,x;bool flag;
+	n=scan();m=scan();
+	for(i=1;i<=m;i++)
+		for(j=0,x=scan();j<x;j++)
+			offer[i][scan()]=1;
+	for(i=1;i<=m;i++)
+		for(j=i+1;j<=m;j++)
+		{	for(k=1,flag=0;k<=n;k++)
+				if(offer[i][k]&&offer[j][k])
+				{	flag=1;
+					break;	}
+		if(!flag)
+               yes[i]|=(1<<j);
+		}
+	for(i=1;i<=m;i++)
+		if((m-i+1)>ans)
+		{
+			j=solve(i,1,-1);
+			if(j>ans)ans=j;
+		}
+		else break;
+	printf("%d\n",ans);
+	return 0;
+}  

@@ -1,0 +1,67 @@
+#include <stdio.h>
+ 
+#define MAX(x, y) (x>y?x:y)
+#define MIN(x, y) (x<y?x:y)
+ 
+long long int getHarvest(int arrH[], int arrR[], int n, long long int order, long long int height, long long int months) {
+  long long int tmp, harvest = 0;
+  int i;
+  for (i=0; i<n; i++) {
+    tmp = arrH[i]+(arrR[i]*months);
+    if (tmp>=height) harvest += tmp;
+    if (harvest>=order) return harvest;
+  }
+  return harvest;
+}
+ 
+int main(void) {
+  int n, i;
+  int arrH[100010], arrR[100010];
+  long long int l, r, m, t, minh, tmph, order, height;
+  /*long long int hs, rs, minh, maxh, tmph;*/
+  
+  scanf("%d %lld %lld", &n, &order, &height);
+  for (i=0; i<n; i++) {
+    scanf("%d %d", &arrH[i], &arrR[i]);
+    // arrH[i] = 1000000000;
+    // arrR[i] = 1000000000;
+  }
+  
+  //printf("%lld", getHarvest(arrH, arrR, n, order, height, 0));
+  //return 0;
+  
+  for (i=0; i<n; i++) {
+    if (arrH[i]>=order && arrH[i]>=height) {
+      printf("0\n");
+      return 0;
+    }
+  }
+  
+  minh = 1000000000000000001;
+  for (i=0; i<n; i++) {
+    //tmph = (height-arrH[i])/arrR[i];
+    tmph = MAX(order,height);
+    tmph /= arrR[i];
+    minh = MIN(minh, tmph);
+  }
+  minh++;
+  //printf("%lld]", minh);
+  
+  l = 0;
+  r = minh;
+  
+  while (l <= r) {
+    m = l + (r-l)/2;//printf("%lld- ", m);
+    t = getHarvest(arrH, arrR, n, order, height, m);
+    if (t>=order && getHarvest(arrH, arrR, n, order, height, m-1)<order) {
+      printf("%lld\n", m);
+      return 0;
+    }
+    
+    if (t < order) l = m + 1;
+    else r = m - 1;
+  }
+  //printf("[%lld] ", getHarvest(arrH, arrR, n, height, 1000000000));
+  
+	return 0;
+}  

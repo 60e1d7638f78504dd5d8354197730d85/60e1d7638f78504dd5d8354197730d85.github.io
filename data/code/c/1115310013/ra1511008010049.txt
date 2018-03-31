@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+int comp(const void *a,const void *b)
+{
+  return (*(int *)b-*(int *)a);
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,k,m;
+        scanf("%d %d %d",&n,&m,&k);
+        int A[n];
+        int M[n][m];
+        int i,j,p;
+		int g[n+245];
+        int Ans=0;
+		for(i=0;i<n;i++)
+            scanf("%d",&p), A[i]=p-1;
+ 
+        for(i=0;i<n;i++)
+            for(j=0;j<m;j++)
+                scanf("%d",&M[i][j]);
+	
+		for(i=0;i<n;i++)
+			Ans+=(g[i]=M[i][A[i]]);
+		for(i=0;i<n;i++)
+            for(j=0;j<m;j++)
+            {
+                scanf("%d",&p);
+ 
+                 //  f("%d",&p);
+               // if( continue;
+ 
+                M[i][j]-=p+g[i];
+            }
+		//printf("\n");
+		int B[n];
+        for(i=0;i<n;i++)
+        {
+            p=-1;
+            for(j=0;j<m;j++)
+            {
+                if(p<M[i][j]) p=M[i][j];
+                //printf("%d ",M[i][j]);
+            }
+            //printf("%d",p);
+            //printf("\n");
+            B[i]=p;
+        }
+        qsort(B,n,sizeof(int),comp);
+        j=k;
+		
+        for(i=0;j>0 && i<n;i++,j--)
+        {
+            Ans+=B[i];
+        }
+        printf("%d\n",Ans);
+ 
+    }
+    return 0;
+} 

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+class Base
+{
+  public:
+  int a,b,c;
+};
+class Derived1:public Base
+{
+public:
+  void getData()
+  {
+    cin>>a>>b>>c;
+  }
+};
+class Derived2:public Derived1
+{
+public:
+  void disp()
+  {
+    getData();
+    cout<<((a+b+c)/3);
+  }
+};
+int main()
+{
+  Derived2 d;
+  d.disp();
+  return 0;
+}

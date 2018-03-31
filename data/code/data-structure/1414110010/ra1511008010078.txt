@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+int cmp(const void *a,const void *b) {
+    return *(int *)a - *(int *)b;
+}
+int cmp1(const void *a,const void *b) {
+    return *(int *)b - *(int *)a;
+}
+int findcost(int a[],int n,int k) {
+    int i = 0,end = n,cost = 0;
+    i = 0;
+    while (i < end) {
+        cost += a[i];
+        end -= k;
+        i++;
+    }
+    return cost;
+}
+int main() {
+	//code
+	int t,i,n,k;
+	scanf("%d", &t);
+	while (t > 0) {
+	    t--;
+	    scanf("%d%d", &n, &k);
+	    int a[n],end;
+	    for (i = 0; i < n; i++) {
+	        scanf("%d", &a[i]);
+	    }
+	    qsort(a,n,sizeof(int),cmp);
+	    printf("%d ", findcost(a,n,k));
+	    qsort(a,n,sizeof(int),cmp1);
+	    printf("%d\n", findcost(a,n,k));
+	}
+	return 0;
+}

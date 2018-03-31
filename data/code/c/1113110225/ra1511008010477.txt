@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{
+  int i,v=0,c=0,d=0,w=0;
+  char str[50];
+  scanf ("%[^\n]%*c", str);
+  int n=strlen(str);
+  for(i=0;i<n;i++){
+  if(tolower(str[i])=='a' || tolower(str[i])=='e'||tolower(str[i])=='i'||tolower(str[i])=='o'||tolower(str[i])=='u')
+    v++;
+    else if (isalpha(str[i]))
+      c++;
+    else if (isdigit(str[i]))
+      d++;
+    else if (str[i]==' '|| str[i]=='\n' || str[i]=='\t'||str[i]=='\r'||str[i]=='\v'||str[i]=='\f')
+        w++;
+    
+  }
+  printf("%d %d %d %d",v,c,d,w);
+
+	return 0;
+}

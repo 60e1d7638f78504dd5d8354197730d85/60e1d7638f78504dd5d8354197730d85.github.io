@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<string.h>
+
+struct faculty
+{
+char name[10];
+int rno;
+};
+typedef struct faculty NAME;
+NAME fac[10], temp[10];
+
+int main()
+{
+int no,i;
+
+void sort(int N); /* Function declaration */
+
+
+fflush(stdin);
+
+
+scanf("%d",&no);
+
+for(i = 0; i < no; i++)
+{
+
+fflush(stdin);
+scanf("%s",fac[i].name);
+
+
+scanf("%d",&fac[i].rno);
+temp[i] = fac[i];
+}
+
+sort(no); /* Function call */
+
+printf("After Sorting\nName ID\n");
+for(i=0;i<no;i++)
+{
+printf("%s %d\n",fac[i].name,fac[i].rno);
+
+}
+return 0;
+} /* End of main() */
+
+/* Function to sort the given names */
+void sort(int N)
+{
+int i,j;
+NAME temp;
+
+for(i = 0; i < N-1;i++)
+{
+for(j = i+1; j < N; j++)
+{
+if(fac[i].rno>fac[j].rno)
+{
+temp = fac[i];
+fac[i] = fac[j];
+fac[j] = temp;
+}
+/*if(strcmp(fac[i].name,fac[j].name) > 0 )
+{
+temp = fac[i];
+fac[i] = fac[j];
+fac[j] = temp;
+}*/
+}
+}
+} /* end of sort() */

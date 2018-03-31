@@ -1,0 +1,18 @@
+#include <stdio.h>
+int nb_year(int p, float r, int n, int pd) {
+  int y = 0;
+  while(p<pd) {
+    p = p + (float)(r*p)/100 + n;
+    y++;
+  }
+  return y;
+}
+int main()
+{
+	int p,n,pd;
+  	float r;
+  	scanf("%d%f%d%d",&p,&r,&n,&pd);
+  	int y = nb_year(p,r,n,pd);
+  	printf("%d",y);
+	return 0;
+}

@@ -1,0 +1,50 @@
+#include <stdio.h>
+#define MAX_SIZE 100 
+
+/* Function declaration */
+void replaceAll(char * str, char oldChar, char newChar);
+
+
+int main()
+{
+    char str[MAX_SIZE], oldChar, newChar;
+
+   
+    scanf("%[^\n]%*c", str);
+
+ 
+    oldChar = getchar();
+
+    // Dummy getchar() to eliminate extra ENTER character
+    getchar();
+
+    
+    newChar = getchar();
+
+
+   
+    replaceAll(str, oldChar, newChar);
+
+    printf("%s", str);
+
+    return 0;
+}
+
+
+
+void replaceAll(char * str, char oldChar, char newChar)
+{
+    int i = 0;
+
+    /* Run till end of string */
+    while(str[i] != '\0')
+    {
+        /* If occurrence of character is found */
+        if(str[i] == oldChar)
+        {
+            str[i] = newChar;
+        }
+
+        i++;
+    }
+}

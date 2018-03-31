@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+     int n,k,i,j,x,y,max,row=0,col=0;
+    char s[20];
+   
+        scanf("%d%d",&n,&k);
+    int r[n],c[n];
+    for(i=0;i<n;i++)
+    {      r[i]=0;
+           c[i]=0;
+}
+    
+    while(k--)
+    { char s[10000];
+        scanf("%s",s);
+   scanf("%d%d",&x,&y);
+     
+            if(s[0]=='R')
+            {
+                r[x-1]+=y;
+                if(row<r[x-1])
+                    row=r[x-1];
+            }
+     else {
+          c[x-1]+=y;
+                if(col<c[x-1])
+                    col=c[x-1];
+     }
+    }
+  
+    printf("%d\n",row+col);
+    
+    return 0;
+} 

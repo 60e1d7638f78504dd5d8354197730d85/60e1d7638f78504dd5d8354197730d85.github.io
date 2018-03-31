@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class student{
+public:
+  string name;
+  int rol,m1,m2,m3;
+  
+  void accept(string str, int r, int mm1,int mm2, int mm3){
+  	name =str;
+    rol=r;
+    m1=mm1;
+    m2=mm2;
+    m3=mm3;
+  }
+  
+  void dispfirst(){
+  	cout<<name<<" "<<rol<<" "<<m1<<" "<<m2<<" "<<m3<<"\n"; 
+  }
+  
+  void dispall(){
+  	cout<<name<<" "<<rol<<" "<<m1<<" "<<m2<<" "<<m3<<"\n";
+  }
+
+};
+
+int main()
+{
+  student obj;
+  int n;
+  cin>>n;
+  int temp = n;
+  while(n--){
+  	string st;
+    int rol,m1,m2,m3;
+    cin>>st;
+    cin>>rol>>m1>>m2>>m3;
+    
+    obj.accept(st,rol,m1,m2,m3);
+    if (n==temp-1){
+    	obj.dispfirst();
+    }
+    obj.dispall();
+    
+  }
+
+	return 0;
+}

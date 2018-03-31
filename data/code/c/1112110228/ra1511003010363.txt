@@ -1,0 +1,47 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int t,k,n;
+	int c[1001];
+	int i,l;
+	int mv;
+	
+	scanf("%d",&t);
+	for(;t>0;t--)
+	{
+		scanf("%d%d",&n,&k);
+		for(i=0;i<n;i++)
+			scanf("%d",&c[i]);
+		
+		mv=0;
+		for(l=1,i=n-2;i>=0;i--,l++)
+		{
+			if((c[i+1]-c[i])!=1)
+				break;
+		}
+		
+		while(l!=n)
+		{
+			i=n-1-l;
+			mv+=((c[i+1]-c[i]-1)*(l/k));
+			if(l%k)
+				mv+=(c[i+1]-c[i]-1);
+			l++;
+			for(--i;i>=0;i--)
+			{
+				if((c[i+1]-c[i])!=1)
+					break;
+				l++;
+			}
+		}
+		if(c[0]!=1)
+		{
+			mv+=(c[0]-1)*(n/k);
+			if(n%k)
+				mv+=(c[0]-1);
+		}
+		printf("%d\n",mv);
+	}
+	return 0;
+} 

@@ -1,0 +1,60 @@
+#include <stdio.h>
+#define ll long long
+
+void doublecountsort(ll main_arr[], ll arr[], int n, int base, ll order){
+    int freq[base];
+  int i=0;
+    for(i = 0; i< base; i ++)
+        freq[i] = 0;
+    
+    for(i= 0; i < n; i++ )
+        freq[(arr[i]/order)%base]++;
+        
+    for(i = 1; i< base; i++)
+        freq[i] += freq[i-1];
+    
+    long main_result[n], result[n];
+    for(i = n-1; i >= 0; i--){
+        freq[(arr[i]/order)%base] -= 1;
+        main_result[freq[(arr[i]/order)%base]] = main_arr[i];
+        result[freq[(arr[i]/order)%base]] = arr[i];
+    }
+    
+    for(i = 0; i < n; i++){
+        main_arr[i] = main_result[i];
+        arr[i] = result[i];
+    }
+}
+void radix(ll main_arr[], ll arr[], int n, ll max){
+    int base = 10;
+    ll order = 1;
+    while(max){
+        doublecountsort(main_arr, arr, n, base, order);
+        max /= base;
+        order *= base;
+    }
+}
+ 
+
+
+int main()
+{
+    int N;
+  int i;
+    long long k;
+    scanf("%i", &N);
+    scanf("%lld", &k);
+    ll arr[N], mod[N];
+    for (i = 0;i < N; i++){
+        scanf("%lld", &arr[i]);
+        mod[i] = arr[i] % k;
+    }
+    
+    radix(arr, mod, N, k);
+    
+    for(i = 0 ; i < N; i ++){
+        printf("%lld ", arr[i]);
+    }
+    return 0;
+}
+ 

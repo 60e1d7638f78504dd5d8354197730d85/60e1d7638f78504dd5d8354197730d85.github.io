@@ -1,0 +1,50 @@
+ #include<stdio.h>
+    inline int read() 
+    {
+    	char c;
+    	int n = 0;
+     
+    	while ((c = getchar_unlocked()) < 48)
+    		;
+    	n += (c - '0');
+     
+    	while ((c = getchar_unlocked()) >= 48)
+    		n = n * 10 + (c - '0');
+     
+    	return n;
+    }
+     
+    inline void fastwrite(int a)
+    {
+    	char snum[20];
+    	int i=0;
+    	do
+    	{
+    		snum[i++]=a%10+48;
+    		a=a/10;
+    	}while(a!=0);
+    	i=i-1;
+    	while(i>=0)
+    	putchar_unlocked(snum[i--]);
+    	putchar_unlocked('\n');
+    }
+    int main(void) 
+    {
+    int tc,g,i,n,q;
+    tc=read();
+    while(tc--)
+    {
+    g=read();
+    while(g--)
+    {
+    i=read();
+    n=read();
+    q=read();
+    if((n%2==0)||(i==q))
+    fastwrite(n/2);
+    else if(i!=q)
+    fastwrite((n/2)+1);
+    }
+    }
+    return 0;
+    }   

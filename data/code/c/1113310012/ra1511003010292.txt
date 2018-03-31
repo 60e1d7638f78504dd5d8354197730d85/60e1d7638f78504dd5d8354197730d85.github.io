@@ -1,0 +1,44 @@
+#include <stdio.h>
+struct post
+{
+  int id , p , s;
+  char comment[100];
+};
+int main()
+{
+  int n , m ;
+  scanf("%d%d",&n,&m);
+  int spc[n] ; 
+  struct post frnd[m];
+  int i , j , k ;
+  for(i=0 ; i<n ; i++)
+    scanf("%d", &spc[i]);
+  for( i=0 ; i<m ; i++ )
+  {scanf("%d %d %s",&frnd[i].id,&frnd[i].p,frnd[i].comment);
+   for(j = 0 ; j<n ; j++ )
+   {
+     if(spc[j] == frnd[i].id)
+     {
+       frnd[i].s = 1;
+       break;
+     }
+     else
+       frnd[i].s = 0 ;
+   }
+  }
+  for( i = 0 ; i<m-1 ; i++ )
+  {
+    for( j = i+1 ; j<m ; j++)
+    {
+      if(frnd[i].p< frnd[j].p && frnd[i].s == frnd[j].s)
+      {
+        struct post temp = frnd[i];
+        frnd[i] = frnd[j];
+        frnd[j] = temp;
+      }
+    }
+  }
+  for( i = 0 ; i<m ; i++ )
+    printf("%s\n",frnd[i].comment);
+	return 0;
+}

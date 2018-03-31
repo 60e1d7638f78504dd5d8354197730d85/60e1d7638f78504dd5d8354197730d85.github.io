@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int main()
+{int m,n,a[10],b[10],i,j,temp;
+ int c=0;
+ cin>>m;
+ for(i=0;i<m;i++)
+   cin>>a[i];
+ cin>>n;
+ for(i=0;i<n;i++)
+   cin>>b[i];
+ 
+
+ for(i=0;i<m-1;i++)
+ {for(j=0;j<m-i-1;j++)
+ {if(a[j+1]<a[j])
+ {temp=a[j];
+  a[j]=a[j+1];
+  a[j+1]=temp;
+ }
+ }
+ }
+  for(i=0;i<n-1;i++)
+ {for(j=0;j<n-i-1;j++)
+ {if(b[j+1]<b[j])
+ {temp=b[j];
+  b[j]=b[j+1];
+  b[j+1]=temp;
+ }
+ }
+ }
+  for(i=0;i<n;i++)
+  {if(a[i]==b[i])
+    c++;
+  }
+   if(c==n)
+     cout<<"Yes\n";
+   else
+     cout<<"No\n";
+ 
+ return 0;
+}

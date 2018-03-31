@@ -1,0 +1,38 @@
+#include<iostream>
+#include<string.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    short int t;
+    cin >> t;
+    while(t--)
+    {
+        string text;
+        int i, price[26], arr[26] = {0}, total = 0;
+        for(i = 0; i<26; i++)
+            cin >> price[i];
+        cin >> text;
+ 
+        i = 0;
+        while(text[i]!='\0')
+        {
+            arr[(int)text[i]-97]++;
+            i++;
+        }
+ 
+        for(i = 0; i<26; i++)
+        {
+            if(arr[i]==0)
+            {
+                total += price[i];
+            }
+        }
+ 
+        cout << total << endl;
+    }
+ 
+    return 0;
+}

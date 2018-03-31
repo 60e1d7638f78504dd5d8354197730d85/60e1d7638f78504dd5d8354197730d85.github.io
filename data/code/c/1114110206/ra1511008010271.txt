@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{	int a[100],t,n,min,i,j,k;
+ 	int mintemp;
+ 	scanf("%d",&t);
+ 	for(i=0;i<t;i++){
+    	scanf("%d",&n);	
+    	for(j=0;j<n;j++){
+        	scanf("%d",&a[j]);
+        }
+      	min=a[0]-a[1];
+        if(min<0){min=min*(-1);}
+      	for(k=0;k<n;k++)
+      	for(j=k+1;j<n;j++){
+        	mintemp=a[k]-a[j];
+          	if(mintemp<0){mintemp=mintemp*(-1);}
+          	if(min>mintemp){
+            	min=mintemp;
+            }
+        }
+      	printf("%d ",min);
+    }
+
+	return 0;
+}

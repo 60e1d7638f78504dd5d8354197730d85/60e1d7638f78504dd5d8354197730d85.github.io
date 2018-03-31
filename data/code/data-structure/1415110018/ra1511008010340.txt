@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+  int d;
+  struct node *link;
+};
+node *insert1(struct node *head,int data)
+{
+    node *temp=new node;
+    temp->d=data;
+    temp->link=NULL;
+  if(head==NULL)
+  {
+    head=temp;
+    //head->link=NULL;
+    return head;
+  }
+  else
+  {
+    temp->link=head;
+    head=temp;
+    return head;
+  }
+}
+void print(struct node *ptr)
+{
+  cout<<"Linked list"<<endl;
+   while(ptr!=NULL)
+   {
+       cout<<"-->"<<ptr->d;
+       ptr=ptr->link;
+   }
+}
+void printmid(node *head,int i)
+{
+    int j=1;
+    node *ptr=head;//node *s=NULL;
+    while(j<=i)
+    {
+//        s=ptr;
+        ptr=ptr->link;
+        j++;
+    }
+    cout<<"The middle element is ["<<ptr->d<<"]";
+}
+int main()
+{
+int n;
+  cin>>n;
+  node *temp=NULL;
+  int l=n;
+  while(n--)
+  {
+    int data;
+    cin>>data;
+    temp=insert1(temp,data);
+  }
+  print(temp);
+  cout<<endl;
+  //cout<<l/2;
+  if(n%2==0)
+  {
+      printmid(temp,(l/2)+1);
+
+  }
+  else{
+    printmid(temp,l/2);
+  }
+
+	return 0;
+}

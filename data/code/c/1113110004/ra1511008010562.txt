@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	int test,i,j,k,index;
+  	scanf("%d",&test);
+  	for(i=0;i<test;i++)
+    {
+      	int len;
+      	scanf("%d",&len);
+      	int arr[len],occ[30]={0};
+      	for(j=0;j<len;j++)
+        {
+          	scanf("%d",&arr[j]);
+          	occ[arr[j]]=occ[arr[j]]+1;
+        }
+      	int max=occ[0];
+      	for(k=0;k<30;k++)
+        {
+          if(occ[k]>max)
+          {
+           	 max=occ[k];
+             index=k;
+          }
+        }
+      	printf("%d ",index);
+      	printf("\n");
+          	
+    }
+  return 0;
+}

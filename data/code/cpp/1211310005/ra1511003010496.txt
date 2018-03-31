@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+#include<cmath>
+using namespace std;
+int main()
+{
+  	int n,maxi,mini;
+  	float maxar=-1000000000,minar=1000000000;
+  	cin>>n;
+  	for(int i=1;i<=n;i++)
+    {
+      int x1,y1,x2,y2,x3,y3;
+      double a,b,c,s,ar;
+      cin>>x1>>y1>>x2>>y2>>x3>>y3;
+      a=sqrt(pow(x1-x2,2)+pow(y1-y2,2));
+      b=sqrt(pow(x2-x3,2)+pow(y2-y3,2 ) );
+      c=sqrt(pow(x3-x1,2)+pow(y3-y1,2));
+      s=(a+b+c)/2;
+      ar=sqrt(s*(s-a)*(s-b)*(s-c));
+      if(ar>=maxar)
+      {
+        maxar=ar;
+        maxi=i;
+      }
+      if(ar<=minar)
+      {
+        minar=ar;
+        mini=i;
+      }
+      
+    }
+  cout<<mini<<" "<<maxi; 
+
+	return 0;
+}

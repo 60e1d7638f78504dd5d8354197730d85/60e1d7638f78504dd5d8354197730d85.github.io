@@ -1,0 +1,24 @@
+//DKBoss
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  long val;
+  scanf("%ld", &val);
+  long n = val;
+  int num[50];
+  long sum =0;
+  int i=0, j=0;
+  do {
+    num[i] = n%10;
+    n = n/10;
+    i++;
+  }while(n!=0);
+  while(j < i) {
+  	sum += powl(num[j], i);
+    j++;
+  }
+  if(sum == val) printf("Narcissistic Number");
+  else printf("NOT Narcissistic Number");
+	return 0;
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+ 
+int main() {
+    int T, N, X, A[101], i, min, sum;
+    scanf ("%d", &T);
+    T++;
+    while (--T) {
+        scanf ("%d %d", &N, &X);
+        min = 9999999;
+        sum = 0;
+        i = N + 1;
+        while (--i) {
+            scanf ("%d", A+i-1);
+            sum += A[i-1];
+            if (A[i-1] < min)
+                min = A[i-1];
+        }
+        if (sum % X >= min)
+            printf ("-1\n");
+        else
+            printf ("%d\n", sum / X);
+    }
+    return 0;
+} 

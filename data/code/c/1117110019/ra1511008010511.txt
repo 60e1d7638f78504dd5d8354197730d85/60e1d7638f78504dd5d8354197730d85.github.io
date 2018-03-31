@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main()
+{
+  int n,m;
+  scanf("%d %d", &n, &m);
+  int arr[n][m];
+  int i = 0;
+  int j = 0;
+  while(i < n)
+  {
+    while(j < m)
+    {
+      scanf("%d", &arr[i][j]);
+      j = j + 1;
+    }
+    i = i + 1;
+    j = 0;
+  }
+  i = 0;
+  j = 0;
+  int counter = 0;
+  while(i < n)
+  {
+    while(j < m)
+    {
+      if(j > i)
+      {
+        if(arr[i][j] != 0)
+        {
+          counter = 1;
+        }          
+      }
+      j = j + 1;
+    }
+    i = i + 1;
+    j = 0;
+  }
+  if(counter == 0)
+  {
+    printf("yes");
+  }
+  else
+  {
+    printf("no");
+  }
+
+	return 0;
+}

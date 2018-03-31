@@ -1,0 +1,47 @@
+#include<stdio.h>
+#define min(x,y) (x<y?x:y)
+struct node{
+	long long int c,d;
+}a[200005];
+ 
+int main()
+{
+	//freopen("file.txt","r",stdin);
+	int t,n,i,j;
+	scanf("%d",&t);
+	while(t--)
+	{ 
+	    long long int ans=100000000000000000,ans1=0;
+		int in;
+		scanf("%d",&n);
+			
+		for(i=0;i<n-1;++i)
+		{
+			int u,v;
+			scanf("%d%d%lld%lld",&u,&v,&a[i].c,&a[i].d);
+			
+		}
+	
+		for(i=0;i<n-1;++i)
+		{
+			for(j=0;j<n-1;++j)
+			{
+				if(abs(a[i].c-a[j].c)!=0)
+				ans1+=(1ll*(abs(a[i].c-a[j].c))*a[j].d);
+				
+			}
+			if(ans1<ans)
+			{
+				ans=ans1;
+				in=i;
+			}
+			ans1=0;
+		}
+		printf("%lld\n",ans);
+		for(i=0;i<n-1;++i)
+		printf("%lld\n",a[in].c);
+	
+	
+	}
+	return 0;
+} 

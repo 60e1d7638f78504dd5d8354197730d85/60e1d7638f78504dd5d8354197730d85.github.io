@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<math.h>
+ 
+int main()
+{	int t,n,b[1000],i,k,j,flag,r,minsum,sum,c[100];
+	scanf("%d",&t);
+for(j=0;j<t;++j)
+{	sum=0;
+	scanf("%d",&n);
+	for(i=0;i<n;++i)
+	scanf("%d",&b[i]);
+	
+	
+	
+	for(i=0;i<pow(2,n);i++)
+	{ 	minsum=0;
+		k=i;
+		flag=n-1;
+	
+		do
+		{	r=k%2;
+			k=k/2;
+			r=(2*r)-1;
+			minsum=minsum+(b[flag]*r);
+			--flag;
+			
+		}while(k>0);
+		sum+=fabs(minsum);
+	};
+	c[j]=sum;
+}
+for(j=0;j<t;++j)
+	printf("%d\n",c[j]);
+	return 0;
+}

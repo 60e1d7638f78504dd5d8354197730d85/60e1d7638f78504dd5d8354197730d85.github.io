@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class TestClass{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int t = in.nextInt();
+        while(t-- > 0) {
+            int n = in.nextInt();
+            long[] brick = new long[n];
+            for(int i = 0; i < n; i++) {
+                brick[i] = in.nextLong();
+            }
+
+            System.out.println(max(brick, 0));
+        }
+    }
+
+    static private long max(long[] b, int s) {
+        if (s >= b.length - 3) {
+            long ret = 0;
+            for (int i = s; i < b.length; i++)
+                ret += b[i];
+            return ret;
+        }
+
+        long ret = Math.max(b[s] + min(b, s + 1), b[s] + b[s+1] + min(b, s + 2));
+        ret = Math.max(ret, b[s] + b[s+1] + b[s+2] + min(b, s + 3));
+        return ret;
+    }
+
+    static private long min(long[] b, int s) {
+        if (s >= b.length - 3)
+            return 0;
+
+        long ret = Math.min(max(b, s+1), max(b, s+2));
+        ret = Math.min(ret, max(b, s+3));
+        return ret;
+    }
+}

@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <time.h>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <string>
+#include <list>
+#include <queue>
+#include <stack>
+#include <set>
+#include <algorithm>
+#include <sstream>
+using namespace std;
+int gcd(int a,int b)
+{
+    while(b>0)
+    {
+        a%=b;
+        a^=b;
+        b^=a;
+        a^=b;
+    }
+    return a;
+}
+int a[200];
+int main()
+{
+    int t,n,i,j,count,coun;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+        count=0;
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                if(a[i]>a[j])
+                {
+                    count++;
+                   // printf("%d %d\n",i,j);
+                }
+            }
+        }
+        coun=0;
+        for(i=1;i<n;i++)
+        {
+            if(a[i-1]>a[i])
+                coun++;
+        }
+        //printf("\n\n%d %d",coun,count);
+        if(coun==count)
+            puts("YES");
+        else
+            puts("NO");
+    }
+    return 0;
+}
+ 

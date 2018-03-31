@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+void printRepeatingEven(int arr[], int n)
+{
+    long long _xor = 0L;
+    long long pos;
+    for( int i = 0; i < n; ++i)
+    {
+        pos = 1 << arr[i];
+        _xor ^= pos;
+    }
+    for (int i = 0; i < n; ++i)
+    {
+        pos = 1 << arr[i];
+        if ((pos & _xor))
+        {
+            cout << arr[i] << " ";
+            _xor ^= pos;
+        }
+    }
+}
+int main()
+{
+    int m,i=0;
+    cin>>m;
+    int arr[m];
+    for(i=0;i<m;i++){
+      cin>>arr[i];}
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printRepeatingEven(arr, n);
+    return 0;
+}

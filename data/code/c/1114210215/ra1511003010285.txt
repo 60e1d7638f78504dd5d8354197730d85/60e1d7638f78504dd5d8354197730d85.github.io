@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_SIZE 100 // Maximum string size
+
+int main()
+{
+    char str[MAX_SIZE], reverse[MAX_SIZE], b[MAX_SIZE];
+    int i, strIndex, revIndex, len;
+  
+    scanf("%s%s",str,b);
+
+    i = 0;
+    while(str[i] != '\0') i++;
+
+    len = i;
+  
+    revIndex = 0;
+    strIndex = len - 1;
+    while(strIndex >= 0)
+    {
+        reverse[revIndex] = str[strIndex];
+
+        strIndex--;
+        revIndex++;
+    }
+    reverse[revIndex] = '\0';
+
+   if(strcmp(reverse,b))
+     printf("NO");
+            else
+            printf("YES");
+
+    return 0;
+}

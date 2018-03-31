@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{ int n,a[20],*ptr[20],i,j,c=0;
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ { scanf("%d",&a[i]);
+  ptr[i]=&a[i];
+ for(j=1;j<=*ptr[i];j++)
+ { if(*ptr[i]%j==0)
+   c++;
+ }
+  
+  if(c==2)
+  { printf("%d is a prime number\n",*ptr[i]);
+   c=0;}
+  else if(c==1)
+  { printf("%d is a prime number\n",*ptr[i]); }
+  else
+  { printf("%d is a composite number\n",*ptr[i]);
+   c=0;}
+ }
+ 
+
+	return 0;
+}

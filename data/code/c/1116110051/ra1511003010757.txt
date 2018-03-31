@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+ 
+char X[100001];
+char Y[100001];
+char Z[100001];
+ 
+void printAnswer(char Z[100001]){
+	printf("%s\n",Z);
+}
+ 
+int main(){
+	int T;
+	int N;
+	char color;
+	scanf("%d",&T);
+	while(T--){
+		memset(X, '\0', sizeof(X));
+		memset(Y, '\0', sizeof(Y));
+		memset(Z, '\0', sizeof(Z));
+		scanf("%s", X);
+		scanf("%s", Y);
+      int i;
+		for( i=0 ; i<100001 ; i++){
+			color = X[i];
+			if(X[i] == Y[i]){
+				switch (color){
+					case 'W'	:	Z[i]='B';
+						break;
+					case 'B'	:	Z[i]='W';
+						break;
+				}
+			}
+			else if (color != 'W' && color != 'B'){
+				Z[i]='\0';
+				break;
+			}
+			else{
+				Z[i]='B';
+			}
+		}
+		printf("%s\n",Z);
+	}
+	return 0;
+} 

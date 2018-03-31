@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int bn(int l,int i);
+void pascal(int n)
+{
+  int l,i;
+  for(l=0;l<n;l++)
+  {
+    for(i=0;i<=l;i++)
+      cout<<bn(l,i);
+    cout<<"\n";
+  }
+}
+int bn(int n,int k)
+{
+  int i;
+  int r=1;
+  if(k>n-k)
+    k=n-k;
+  for(i=0;i<k;++i)
+  {
+    r*=n-i;
+    r/=i+1;
+  }
+  return r;
+}
+int main()
+{
+  int n;
+  //cout<<"enter a number";
+  cin>>n;
+  cout<<"\n";
+  pascal(n);
+	return 0;
+}

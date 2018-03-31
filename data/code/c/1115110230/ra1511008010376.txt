@@ -1,0 +1,73 @@
+#include <stdio.h>
+int sym(int q)
+{
+  int we[50],h=0,ff=0,ii=0,t=0,m;
+  m=q;
+  while(q>0)
+  {
+    t=q%10;
+    for(ii=0;ii<h;ii++)
+    {
+      if(we[ii]!=t)
+      {
+        ff=1;
+        break;
+      }
+    }
+    if(ff==1)
+      return 0;
+    we[h]=t;
+    h++;
+    q=q/10;
+  }
+  if(ff!=1)
+    return t;
+}
+int check(int a,int b)
+{
+  int rr,d=0,e=0,f=0;
+  rr=a;
+  d=sym(a);
+  e=sym(b);
+  if(d!=0 && e!=0)
+  {
+    if(d!=e)
+      f=1;
+    else
+      f=0;
+  }
+  else
+    f=1;
+  if(f==1)
+    return 0;
+  else
+    return 1;
+}
+int main()
+{
+  int a[50],b[50];
+  int t,c=0,e,i,j,vv,uu,yy=0;
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&a[i]);
+    scanf("%d",&b[i]);
+  }
+  for(i=0;i<t;i++)
+  {
+    for(j=0;j<a[i];j++)
+    {
+      for(uu=0;uu<b[i];uu++)
+      {
+        vv=check(j,uu);
+        if(vv==1)
+        {
+          c++;
+        }
+      }
+    }
+    printf("%d\n",c+1);
+    c=0;
+  }
+  return 0;
+}

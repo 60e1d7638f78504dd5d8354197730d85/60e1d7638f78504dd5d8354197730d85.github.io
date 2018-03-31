@@ -1,0 +1,29 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  int n,m;
+  scanf("%d %d", &n,&m);
+  int tv[n];
+  int i,j;
+  int sum = 0;
+  for(i=0; i<n; i++) {
+  	scanf("%d", &tv[i]);
+  }
+  for(i=0; i<n; i++) 
+    for(j=0; j<n-i-1; j++) {
+    	if(tv[j] > tv[j+1]) {
+        	tv[j] += tv[j+1];
+          	tv[j+1] = tv[j] - tv[j+1];
+          	tv[j] = tv[j] - tv[j+1];
+        }
+    }
+  //if(m>n) m=n;
+  for(i=0; i<m; i++) {
+    if(tv[i] >=0) break;
+  	sum += tv[i];
+  }
+  if(sum < 0) sum = -sum;
+  printf("%d", sum);
+	return 0;
+}

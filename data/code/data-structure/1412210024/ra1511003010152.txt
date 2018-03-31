@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+ 
+// Finds and prints the elements of the original
+// array
+void findAndPrintOriginalArray(int arr[], int n)
+{
+    // total sum of elements
+    // of encrypted array
+    int i,arr_sum = 0;
+    for ( i=0; i<n; i++)
+        arr_sum += arr[i];
+ 
+    // total sum of elements
+    // of original array
+    arr_sum = arr_sum/(n-1);
+ 
+    // calculating and displaying
+    // elements of original array
+    for (i=0; i<n; i++)
+        cout << (arr_sum - arr[i]) << " ";
+}
+ 
+// Driver program to test above
+int main()
+{
+  int arr[30],n,i;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+  findAndPrintOriginalArray(arr, n);
+    return 0;
+}

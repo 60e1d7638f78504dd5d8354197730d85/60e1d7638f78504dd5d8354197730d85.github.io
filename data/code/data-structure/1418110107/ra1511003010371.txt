@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+void printPre(int *arr,int n,int si){
+  if(si>=n)
+    return;
+  if(si==0)
+    cout<<endl;
+  cout<<arr[si]<<" ";
+  printPre(arr,n,2*si+1);
+  printPre(arr,n,2*si+2);}
+void printIn(int *arr,int n,int si){
+  if(si>=n)
+    return;
+  if(si==0)
+    cout<<endl;
+  printIn(arr,n,2*si+1);
+  cout<<arr[si]<<" ";
+  printIn(arr,n,2*si+2);
+}
+void printPost(int *arr,int n,int si){
+  if(si>=n)
+    return;
+  if(si==0)
+    cout<<endl;
+  printPost(arr,n,2*si+1);
+  printPost(arr,n,2*si+2);
+  cout<<arr[si]<<" ";
+}
+
+int main(){
+  
+ int arr[6];
+  for(int i=0;i<5;i++){
+    cin>>arr[i];
+   }
+  printPre(arr,5,0);
+  printIn(arr,5,0);
+  printPost(arr,5,0);
+}
+  

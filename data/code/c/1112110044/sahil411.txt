@@ -1,0 +1,41 @@
+#include <stdio.h>
+ 
+ 
+int issubseq(const char * a, const char * b){
+	while (*b){
+		if (*a == *b)
+			a++;
+		if (!*a)
+			return 1;
+		b++;
+	}
+	return 0;
+}
+ 
+ 
+int main(){
+	int t;
+	scanf("%d\n", &t);
+	
+	while (t--){
+		char s[50002];
+		char * b;
+		int i, alen, blen;
+		
+		fgets(s,sizeof(s),stdin);
+		
+		for (i = 0; s[i] != ' '; ++i);
+		s[i] = 0;
+		b = s+i+1;
+		alen = i;
+		
+		++i;
+		for (; s[i]; ++i);
+		blen = i-alen-1;
+		
+		int result = (alen > blen) ? issubseq(b, s) : issubseq(s, b);
+		printf(result ? "YES\n" : "NO\n");
+	}
+	
+	return 0;
+} 

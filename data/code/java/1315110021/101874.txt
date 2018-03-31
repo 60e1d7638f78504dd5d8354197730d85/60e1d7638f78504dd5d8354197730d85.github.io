@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+class Merge
+{
+  	Scanner sc;
+  	int[] ar1, ar2, out;
+  	int n1,n2,len;
+  	public void getInput()
+    {
+      	sc=new Scanner(System.in);
+      	n1=sc.nextInt();
+      	ar1=new int[n1];
+      	for(int i=0;i<n1;i++)
+          	ar1[i]=sc.nextInt();
+      	n2=sc.nextInt();
+      	ar2=new int[n2];
+      	for(int i=0;i<n2;i++)
+          	ar2[i]=sc.nextInt();
+      	len=n1+n2;
+    }
+  	public void	mergeSort()
+    {
+      	out=new int[len];
+      	for(int i=0;i<ar1.length;i++)
+          	out[i]=ar1[i];
+      	for(int i=ar1.length;i<len;i++)
+          	out[i]=ar2[i-ar1.length];
+      	for(int i=0;i<len;i++)
+          	System.out.println(out[i]);
+           
+    }
+}
+public class TestClass 
+{
+	 public static void main(String[] args) 
+     { 
+			Merge obj=new Merge();
+       		obj.getInput();
+       		obj.mergeSort();
+	}
+}

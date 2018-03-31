@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+  char str[100];
+  fgets(str,sizeof(str),stdin);
+  int l;
+  l=strlen(str);
+  int start,end;
+  start=0;
+  end=l-1;
+  int flag=1;
+  while(start<end){
+    if(str[start]!=str[end])
+    {
+      if(str[start]=='b'&&str[end]=='d')
+      {
+        flag=0;
+      }
+      if(str[start]=='d' &&str[end]=='b')
+      {
+        flag=0;
+      }
+    }
+    else{
+      if(str[start]=='i'&&str[end]=='i')
+      {
+        flag=0;
+      }
+      if(str[start]=='o'&&str[end]=='o')
+      {
+        flag=0;
+      }
+      if(str[start]=='X'&&str[end]=='X')
+      {
+        flag=0;
+      }
+    }
+     
+     if( flag==1){
+      break;}
+    
+    
+      start++;
+      end--;}
+  if(flag==0){
+    printf("TAK");
+  }
+  else{
+    printf("NIE");
+  }
+
+	return 0;
+}

@@ -1,0 +1,58 @@
+#include <stdio.h>
+ 
+int main(void) {
+	// your code goes here
+	long long int t;
+	scanf("%lld",&t);
+	long long int a[t],i,j,k,c,d,f;
+	for(i=0;i<t;i++)
+	{   c=0;
+	    d=0;
+	    f=0;
+		scanf("%lld",&a[i]);
+		long long int b[a[i]];
+		for(j=0;j<a[i];j++)
+		{
+			scanf("%lld",&b[j]);
+			if(b[j]==j+1)
+			{
+				c++;
+			}
+			if(b[j]>a[i])
+			{
+				d++;
+			}
+		}
+		if(c==a[i])
+		{
+			printf("no\n");
+		}
+		else if(d>0)
+		{
+			printf("no\n");
+		}
+		else{
+			for(j=0;j<a[i];j++)
+			{
+				for(k=j+1;k<a[i];k++)
+				{
+					if(b[j]==b[k])
+					{
+						f++;
+						printf("no\n");
+						break;
+					}
+				}
+				if(f==1)
+				{
+					break;
+				}
+			}
+			if(f==0)
+			{
+			 printf("yes\n");
+			}
+		}
+	}
+	return 0;
+}

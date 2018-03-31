@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int n,count=0,q,i,j,*a,x,y,temp;
+	scanf("%d%d",&n,&q);
+	a=(int*)calloc(n+1,sizeof(int));
+	for(i=1;i<=n;i++)
+		scanf("%d",&a[i]);
+	for(i=1;i<n;i++)
+	{
+		for(j=i+1;j<n+1;j++)
+		{
+			if(a[i]>a[j])
+				count++;
+		}
+	}
+	for(i=1;i<=q;i++)
+	{
+		scanf("%d%d",&x,&y);
+		temp=a[x];
+		a[x]=a[y];
+		a[y]=temp;
+		if((x<y)&&(a[x]>a[y]))
+			count++;
+		else if((y<x)&&(a[y]>a[x]))
+			count++;
+		else if((x<y)&&(a[x]<a[y]))
+			count--;
+		else if((y<x)&&(a[y]<a[x]))
+			count--;	
+		printf("%d\n",count%2);
+	}
+	return 0;
+}
+ 

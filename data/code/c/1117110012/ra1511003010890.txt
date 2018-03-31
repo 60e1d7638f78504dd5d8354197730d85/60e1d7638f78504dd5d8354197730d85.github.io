@@ -1,0 +1,48 @@
+#include <stdio.h>
+ void func(int n, int array[],int value,int position)
+ {
+   int c;
+   
+  int newArr[n+1];
+   
+	for(c =0;c<n;c++){
+      if(c== position-1){
+     newArr[c] = value;
+      position = c;
+        break;
+      }
+      else
+        newArr[c] = array[c];
+    }
+   
+   for(c = position; c<n;c++)
+     newArr[c+1] = array[c];
+   
+ 
+   for (c = 0; c <= n; c++)
+      printf("%d\n", newArr[c]);
+ }
+ 
+int main()
+{
+   int position, c, n, value;
+   scanf("%d", &n);
+ 
+  int array[n];
+   for (c = 0; c < n; c++)
+      scanf("%d", &array[c]);
+ 
+  	scanf("%d", &position);
+  
+  	if(position==n+1)
+    	printf("Sorry Invalid Location");
+ 	
+  	else
+ 	{
+		scanf("%d", &value);
+   		func(n, array,value,position);
+    }
+ 
+ 
+   return 0;
+}

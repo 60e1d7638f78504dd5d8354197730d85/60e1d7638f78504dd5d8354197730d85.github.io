@@ -1,0 +1,40 @@
+#include <stdio.h>
+int gcd(int a,int b)
+{
+  if(b>a)
+  gcd(b,a);
+  else if(b==0)
+    return a;
+  else
+    gcd(b,a%b);
+}
+int main()
+{
+  int t,n;
+  scanf("%d",&t);
+  while(t>0)
+  {
+    t--;
+    scanf("%d",&n);
+    int a[n],b[n];
+    int min=1000,flag=1;
+    int i;
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
+    int hgcd=gcd(a[0],a[1]);
+    for(i=2;i<n;i++)
+    {
+      hgcd=gcd(hgcd,a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+      b[i]=a[i]/hgcd;
+      printf("%d ",b[i]);
+      
+    }
+    printf("\n");
+  }
+	return 0;
+}

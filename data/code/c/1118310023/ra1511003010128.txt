@@ -1,0 +1,49 @@
+#include<stdio.h>
+int main()
+{
+    int t,i,n,breadth,length;
+    int arr[1001];
+    scanf("%d",&t);
+    while(t--)
+    {
+        int array[1001]={0,0,0,0,0,0};
+        breadth=length=0;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+          scanf("%d",&arr[i]);
+          ++array[arr[i]];
+          if(array[arr[i]]==2)
+          {
+             if(arr[i]>=length) 
+             {breadth=length;
+             length=arr[i];}
+             else
+             {
+                 if(arr[i]>=breadth)
+                 breadth=arr[i];
+             }
+          }
+          if(array[arr[i]]==4)
+          {
+              if(arr[i]>=length)
+              length=breadth=arr[i];
+              else
+              {
+                  if(arr[i]>=breadth)
+                  breadth=arr[i];
+              }
+          }
+          
+        }
+        if((length!=0)&&(breadth!=0))
+        {
+           printf("%d\n",length*breadth);
+          
+        }
+        else
+        printf("-1\n");
+        
+    }
+    return 0;
+} 

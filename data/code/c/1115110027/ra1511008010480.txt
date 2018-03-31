@@ -1,0 +1,28 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{	
+  	int n,m;
+  	scanf("%d %d", &n, &m);
+  	int mat[n][n];
+  	int flag =0;
+  	if(n != m) {
+    	printf("Not Symmetric\n");
+    }
+  	else {
+    	int i, j;
+      	for(i=0; i<n; i++)
+          	for(j=0; j<n; j++)
+              	scanf("%d", &mat[i][j]);
+     	for(i=0; i<n; i++) {
+        	for(j=i; j<n; j++) {
+            	if(mat[i][j] != mat[j][i]) {
+                	flag = 1;
+                  	break;
+                }
+            }
+        }
+    }
+   	printf("%s\n", flag == 1 ? "Not Symmetric" : "Symmetric");
+	return 0;
+}

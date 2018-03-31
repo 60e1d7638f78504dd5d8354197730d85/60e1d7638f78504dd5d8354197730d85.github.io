@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+int main()
+{
+int num,i,sum=0,*ptr;
+  scanf("%d",&num);
+  ptr=(int*)malloc(num * sizeof(int));
+  if(ptr==NULL)
+  {
+    exit(0);
+  }
+  for(i=0;i<num;++i)
+  {
+    scanf("%d",ptr+i);
+    sum=sum+ *(ptr+i) ;
+  }
+  printf("Sum=%d",sum);
+  free(ptr);
+    
+	return 0;
+}

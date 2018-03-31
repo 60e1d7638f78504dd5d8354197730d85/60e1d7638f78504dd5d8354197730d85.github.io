@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+class BubbleSort{
+  int n,i,j;
+  int[] a=new int[10];
+  public void getInput(){
+    Scanner inp=new Scanner(System.in);
+    n=inp.nextInt();
+    for(i=0;i<n;i++)
+    {
+      a[i]=inp.nextInt();
+    }
+  }
+  public void sortedArray(){
+    int t;
+    for(i=0;i<n;i++)
+    {
+      for(j=1;j<n;j++){
+        if(a[j-1]>a[j])
+        {
+          t=a[j-1];
+          a[j-1]=a[j];
+          a[j]=t;
+        }
+      }
+    }
+    for(i=0;i<n;i++)
+      System.out.print(a[i]+" ");
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+       BubbleSort obj=new BubbleSort();
+       obj.getInput();
+       obj.sortedArray();
+		}
+}

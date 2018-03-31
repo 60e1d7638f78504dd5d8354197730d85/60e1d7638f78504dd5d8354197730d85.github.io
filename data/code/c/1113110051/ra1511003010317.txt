@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{int n;
+ scanf("%d",&n);
+ int flag=rprime(n);
+ if(n==0)
+   printf("2"); 
+else if(flag==1)
+   printf("0");
+ 
+ else
+ {int i;
+   for(i=n+1;i<n+10;i++)
+   {int d=0;
+    if(rprime(i)==1)
+     {
+       d=i-n;
+      printf("%d",d);
+      break;
+     }
+     else
+       continue;
+   }
+       }
+	return 0;
+}
+int rprime(int n)
+{int i;
+ for(i=2;i<n;i++)
+    if(n%i==0)
+  {return 0;
+  }
+   else
+     return 1;
+  
+}

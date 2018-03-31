@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+    static int calculateYears(double principal, double interest,  double tax, double desired) {
+    // your code
+    int count = 0;
+    while (principal < desired) {
+      double i = principal*interest;
+      i -= i*tax;
+      principal += i;
+      count++;
+    }
+    return count;
+   }
+	 public static void main(String[] args) { 
+		 Scanner sc = new Scanner(System.in);
+        double prin = sc.nextDouble();
+       double interest= sc.nextDouble();
+         double tax= sc.nextDouble();
+         double desired= sc.nextDouble();
+       System.out.println(calculateYears(prin,interest,tax,desired));
+	}
+}

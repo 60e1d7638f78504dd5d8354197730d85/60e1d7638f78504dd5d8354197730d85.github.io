@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main()
+{
+  int pos, ele, i, j, n;
+  scanf("%d", &n);
+  int arr[n+2], brr[n+2];
+  for (i=0; i<n; i++)
+    scanf("%d", &arr[i]);
+  
+  scanf("%d", &ele);
+  scanf("%d", &pos);
+  for (i=0; i<n; i++)
+  {
+    if (i<(pos-1))
+      brr[i]=arr[i];
+    else if(i==(pos-1))
+    	{ 	brr[i] = ele;
+      		brr[i+1] = arr[i];
+        }
+    else if(i>(pos-1)) 
+      brr[i+1] = arr[i];
+  }
+  for(i=0; i<=n; i++)
+    printf("%d ", brr[i]);
+   
+  	return 0;
+}

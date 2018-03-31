@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define gc getchar_unlocked
+inline void scan(int &x)
+{
+register int c = gc();
+x = 0;
+int neg = 0;
+for(;((c<48 || c>57) && c != '-');c = gc());
+if(c=='-') {neg=1;c=gc();}
+for(;c>47 && c<58;c = gc()) {x = (x<<1) + (x<<3) + c - 48;}
+if(neg) x=-x;
+}
+#define M 31
+long long a[M];
+int main() {
+	long long m,i,j,t,l,y,z,k=0,mul=1,ct=0,val,sum=0;
+	int n,x;
+	scan(n);
+for(i=0;i<n;i++){
+scan(x);
+	k=0;
+	while(x!=0){
+	  a[k] += x%2;
+	   x=x/2;
+	   k++;
+	}
+}
+for(i=0;i<=M-1;i++)
+{ 
+	if(a[i]>0){
+	y=1<<i;
+	z=(a[i]*(a[i]-1))/2;
+	sum=sum+y*z;}
+}
+printf("%lld\n", sum);	
+	return 0;
+}

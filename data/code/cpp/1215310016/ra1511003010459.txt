@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{	int n,ans;
+ 	cin>>n;
+ 	int a,b,min;
+ 	for(int i=0;i<n;i++){
+    	cin>>a>>b;
+      	if(a>b){
+        	min=b;
+        }else{
+        	min=a;
+        }
+      for(int j=min;j>=1;j--){
+        //cout<<j<<endl;
+        int k=(a+b)%j;
+        //cout<<k<<endl;
+      	if(k==0){
+			if(a%j==0 && b%j==0){
+            	ans=j;
+              	//cout<<j<<endl;
+              	break;
+            }
+      	}
+      }	
+      cout<<a/ans+b/ans<<endl;
+    }
+
+	return 0;
+}

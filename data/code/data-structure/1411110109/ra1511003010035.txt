@@ -1,0 +1,86 @@
+#include<bits/stdc++.h>
+#include<stdlib.h>
+using namespace std;
+ 
+void fastscan(long &x){
+    register long c;
+    bool neg=false;
+    x=0;
+    c=getchar_unlocked();
+    if(c=='-'){
+        neg=true;
+        c=getchar_unlocked();
+    }
+    for(;c>47 && c<58;c=getchar_unlocked()){
+        x=(x<<1)+(x<<3)+c-48;
+    }
+    if(neg)
+    x*=-1;
+}
+ 
+ 
+ 
+int main(){
+    long ele,N,X,m,index,max,jval,l;
+    fastscan(N);
+    fastscan(X);
+    pair<long,long> p;
+    deque< pair<long,long> > A,C;
+    deque< pair<long,long> > :: iterator it;
+    for(int i=1;i<=N;i++){
+        fastscan(ele);
+        p = make_pair(ele,i);
+        A.push_back(p);
+ 
+    }
+ 
+    for(long i=1;i<=X;i++){
+        max=0;
+        if(A.size() > X){
+                l=X;}
+        else{l=A.size();}
+        for(long j=1;j<=l ;j++){
+ 
+            ele=A[0].first;
+            index=A[0].second;
+            A.erase(A.begin());
+            if(max<ele){
+ 
+                max=ele;
+                m=index;
+                if(ele!=0){
+                ele--;}
+                p=make_pair(ele,index);
+                C.push_back(p);
+                jval=j-1;
+ 
+            }
+            else{
+                    if(ele!=0){
+                ele--;}
+                p=make_pair(ele,index);
+                C.push_back(p);
+            }
+        }
+        if(max==0){
+            m=C[0].second;
+            C.erase(C.begin());
+        }
+ 
+ 
+        else{
+        C.erase(C.begin()+jval);}
+        printf("%ld ",m);
+        //cout<<"size of c after erase= "<<C.size()<<endl;
+        //cout<<"size of a before insert= "<<A.size()<<endl;
+        A.insert(A.end(),C.begin(),C.end());
+        //cout<<"size of a before insert= "<<A.size()<<endl;
+        //cout<<"elements of A :";
+        /*for(int k=0;k<A.size();k++){
+            cout<<"<"<<A[k].first<<" , "<<A[k].second<<">"<<" ";
+    }*/
+        C.clear();
+       // cout<<"size of C= "<<C.size()<<endl;
+    }
+ 
+}

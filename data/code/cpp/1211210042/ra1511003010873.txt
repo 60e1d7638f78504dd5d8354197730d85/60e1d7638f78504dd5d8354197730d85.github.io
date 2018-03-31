@@ -1,0 +1,82 @@
+
+#include"bits/stdc++.h"
+using namespace std ;
+ 
+char A[4000005],B[4000005];
+int LPS[4000005];
+ 
+void lps(int N)
+{
+    int i,j,k;
+ 
+    LPS[0]=0;
+ 
+    j=0;i=1;
+ 
+    while(i<N)
+    {
+    if(A[i]==A[j])
+    {
+    j++;
+    LPS[i]=j;
+    i++;
+    }
+    else
+    {
+    if(j!=0)
+    j=LPS[j-1];
+    else
+    LPS[i]=0,i++;
+    }
+    }
+ 
+}
+ 
+int main()
+{
+    int N,i,j,k;
+ 
+    scanf("%d",&N);
+ 
+    cin>>A>>B;
+ 
+    for(i=N;i<(2*N);i++)
+    B[i]=B[i-N];
+ 
+    int n=2*N;
+ 
+    lps(N);
+ 
+    int ans=0;
+    i=0,j=0;
+    int len=0,best=0;
+ 
+    while(i<n)
+    {
+    if(B[i]==A[j])
+    {
+    i++;
+    j++;
+    len++;
+    if(len>best)
+    {
+    best=len;
+    ans=i-j;
+    }
+    if(j==N)
+    break;
+    }
+    else
+    {
+        len=0;
+        if(j!=0)
+        j=LPS[j-1];
+        else
+        i++;
+    }
+    }
+ 
+    printf("%d",ans);
+ 
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+ 
+int main()
+{
+	ll n,p,k,i,j,a,b,c;
+		cin>>n>>k>>p;
+		ll arr[n+5];
+		b=0;
+		for(i=0;i<n;i++)
+			cin>>arr[i];
+		sort(arr,arr+n);
+		for(i=0;i<n-1;i++)
+		{
+			a=upper_bound(arr+i,arr+n,arr[i]+2*p)-(arr+i);
+			if(a>=k)
+			{
+				b=1;break;
+			}
+			//cout<<a;	
+		}
+		if(b==1)
+			cout<<"NO"<<endl;
+		else
+			cout<<"YES"<<endl;	
+	return 0;
+}

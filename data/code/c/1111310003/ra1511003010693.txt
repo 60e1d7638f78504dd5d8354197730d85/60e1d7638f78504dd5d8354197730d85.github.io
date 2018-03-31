@@ -1,0 +1,70 @@
+#include <stdio.h>
+int main(void) 
+{
+	int n,m,i,j,c;
+	unsigned long long int q=1000000007,sum=0;
+	scanf("%d %d %d",&n,&m,&c);
+	int x,u[c],l[c];
+	long int z[c];
+	for(i=0;i<c;i++)
+	{
+	     u[i]=0;
+	     l[i]=0;
+	}
+	for(i=0;i<n;i++)
+	{
+	     scanf("%d ",&x);
+	     u[x-1]++;
+	}
+	for(i=0;i<m;i++)
+	{
+	     scanf("%d ",&x);
+	     l[x-1]++;
+	}
+	int p=0;
+	for(i=0;i<c;i++)
+	{
+	     
+	     if(l[i]*u[i])
+	     {
+	          z[p]=(l[i]%q*u[i]%q);
+	          p++;
+	     }
+}
+	unsigned long long int a[p-1],b[p][p-1],d[c];
+	sum=0;
+	for(i=p-1;i>0;i--)
+	{
+	     sum=(sum+z[i])%q;
+	     a[i-1]=sum;
+	     d[i]=0;
+}
+d[0]=0;
+sum=0;
+for(i=p;i<c;i++)
+{
+     d[i]=0;
+}
+b[0][0]=z[p-2]*a[p-2]%q;
+	for(i=1;i<p-1;i++)
+	{
+	     sum=(z[p-i-2]*a[p-i-2])%q;
+	     b[0][i]=(sum+b[0][i-1])%q;
+	}
+	d[0]=b[0][i-1]%q;
+	for(i=1;i<p-1;i++)
+	{
+	     b[i][i]=(z[p-i-2]*b[i-1][i-1])%q;
+	     for(j=i+1;j<p-1;j++)
+	     {
+	          sum=(z[p-j-2]*b[i-1][j-1])%q;
+	          b[i][j]=(sum+b[i][j-1])%q;
+	     }
+	     d[i]=b[i][j-1]%q;
+	}
+	for(i=0;i<c;i++)
+	{
+	   printf("%llu ",d[i]%q);
+	}
+	return 0;
+}    

@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int t,i;
+    char s[100001],k[100001];
+    scanf("%d",&t);
+    while(t--)
+    {
+    	int a[27]={0},b[27]={0},c=0;
+    	scanf("%s",s);
+    	scanf("%s",k);
+    	for(i=0;s[i]!='\0';i++)
+    	a[s[i]-96]++;
+    	for(i=0;k[i]!='\0';i++)
+    	b[k[i]-96]++;
+    	for(i=1;i<=26;i++)
+    	{
+    		if(a[i]!=b[i])
+    		c=c+abs(a[i]-b[i]);
+    	}
+    	printf("%d\n",c);
+    }
+    return 0;
+}

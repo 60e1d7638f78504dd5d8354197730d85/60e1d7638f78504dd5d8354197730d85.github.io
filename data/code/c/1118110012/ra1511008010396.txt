@@ -1,0 +1,30 @@
+#include <stdio.h>
+struct time
+{
+  int h;
+  int m;
+  int s;
+}a[2];
+int main()
+{
+  int i;
+  for(i=0;i<2;i++)
+  {
+    scanf("%d%d%d",&a[i].h,&a[i].m,&a[i].s);
+  }
+  int hr=a[0].h+a[1].h;
+  int min=a[0].m+a[1].m;
+  int sec=a[0].s+a[1].s;
+  if(sec>=60)
+  {
+    sec-=60;
+    min++;
+  }
+  if(min>=60)
+  {
+    min-=60;
+    hr++;
+  }
+  printf("%d hrs\n%d min\n%d sec",hr,min,sec);
+	return 0;
+}

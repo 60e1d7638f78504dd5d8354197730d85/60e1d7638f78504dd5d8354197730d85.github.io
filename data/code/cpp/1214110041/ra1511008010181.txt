@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+class MarkSheet
+{
+  private: int roll_no=0,n=0;
+  string name;
+  float avg=0;
+  public: MarkSheet(string s,int a,int b)
+  {
+    name=s;
+    roll_no=a;
+    n=b;
+    calc(n);}
+  void calc(int a)
+  {
+    int b[n];
+    for(int i=0;i<a;i++)
+    {
+      cin>>b[i];
+      avg+=b[i];
+    }
+      avg/=a;
+      disp(avg);
+  }
+  void disp(int b)
+  {
+    string s;
+    if(avg>80)
+      s="Class A";
+    else if(avg>70 && avg<80)
+      s="Class B";
+    else
+      s="Class C";
+    cout<<"\n"<<name<<" "<<roll_no<<" "<<avg<<" "<<s;
+  }
+};
+int main()
+{ int no=0;
+ cin>>no;
+ for(int i=0;i<no;i++)
+ {
+   int roll_no,n;
+   string name;
+   cin>>name;
+   cin>>roll_no>>n;
+   MarkSheet a(name,roll_no,n);
+ }
+ return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include<math.h>
+typedef unsigned long long ull;
+ 
+ull valset[]={2,1024,976371285,688423210,905611805,607723520,235042059,255718402,494499948,140625001};
+ 
+int main()
+{
+ int t,val,i;
+ ull n,m,sum;
+ scanf("%d",&t);//t=1000;//
+ while(t--)
+ {
+        scanf("%lld",&n);   
+          m=(ull)ceil((long double)n/2); 
+          i=0;sum=1;
+ 
+          while(m)
+          {
+           val=m%10;    
+           while(val--)
+           {
+            sum=(sum*valset[i])%1000000007 ; 
+        //cout<<sum<<endl;
+           }  
+           i++; 
+           m=m/10;
+          }
+        
+         if(n%2==0)
+         {
+                sum=((3*sum)%1000000007) -2;
+                printf("%lld\n",sum);
+                
+         }
+         else
+         {
+                sum=(2*(sum-1))%1000000007;
+                printf("%lld\n", sum ); 
+        
+         }
+ }
+ 
+ return 0;
+}  

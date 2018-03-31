@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int t,i,j,n[1000][50],k;
+  char s[1000][50];
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+    scanf("%s",s[i]);
+  for(i=0;i<t;i++)
+  {
+    memset(n,0,strlen(s[i])*sizeof(n[0]));
+    for(j=0;j<strlen(s[i]);j++)
+      for(k=0;k<strlen(s[i]);k++)
+        if(s[i][j]==s[i][k])
+          n[i][j]++;
+    int max=0;
+    for(j=0;j<strlen(s[i]);j++)
+    {
+      if(max<n[i][j])
+        max=n[i][j];
+    }
+    if(max==(strlen(s[i])-max))
+      printf("\nYES");
+    else
+      printf("\nNO");
+  }
+  return 0;
+}

@@ -1,0 +1,50 @@
+#include <iostream>
+#include <stack>
+#include <vector>
+ 
+using namespace std;
+ 
+int main() {
+	const int mod = 1000000007;
+	ios_base::sync_with_stdio(false);
+	int n;
+    cin >> n;
+    vector<int> l(n);
+    for (auto&& li : l) {
+		cin >> li;
+    }
+    vector<int> sumOfMax(n), sumOfMin(n);
+    {
+		stack<int> prev;
+		for (int i = 0; i < n; i++) {
+			while (!prev.empty() && l[prev.top()] < l[i]) {
+				prev.pop();
+			}
+			long long sum = l[i] * (long long)(i - (prev.empty() ? -1 : prev.top()));
+			sumOfMax[i] = (sum + (prev.empty() ? 0 : sumOfMax[prev.top()])) % mod;
+			prev.push(i);
+		}
+    }
+    {
+		stack<int> prev;
+		for (int i = n; i--;) {
+			while (!prev.empty() && l[prev.top()] > l[i]) {
+				prev.pop();
+			}
+			long long sum = l[i] * (long long)((prev.empty() ? n : prev.top()) - i);
+			sumOfMin[i] = (sum + (prev.empty() ? 0 : sumOfMin[prev.top()])) % mod;
+			prev.push(i);
+		}
+    }
+    for (int i = 1; i < n; i++) {
+		sumOfMax[i] = (sumOfMax[i] + sumOfMax[i - 1]) % mod;
+    }
+    int r = 0;
+    for (int i = 1; i < n; i++) {
+		r += (long long)sumOfMax[i - 1] * sumOfMin[i] % mod;
+		r %= mod;
+    }
+    cout << r << endl;
+    return 0;
+}
+ 

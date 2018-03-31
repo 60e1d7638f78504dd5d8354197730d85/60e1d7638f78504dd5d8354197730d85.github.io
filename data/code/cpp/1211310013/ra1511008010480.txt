@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int t;
+  	cin>>t;
+  	while(t--) {
+    	long n;
+      	long long k = -1;
+      	cin>>n;
+      	while(n) {
+          	k++;
+          	long long temp = k;
+          	int flag = 0;
+          	do {
+                switch(temp%10) {
+                  case 0:
+                  case 1:
+                  case 2:
+                  case 3:
+                  case 4:
+                  case 5:
+                    flag = 1; 
+                }
+              	temp /= 10;
+              	if(flag) break;
+            }while(temp);
+          	if(flag) {
+            	//flag = 0;
+              	n--;
+            }
+        }
+      	cout<<k<<endl;
+    }
+	return 0;
+}

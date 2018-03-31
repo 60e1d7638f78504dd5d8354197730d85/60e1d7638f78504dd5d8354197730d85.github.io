@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{
+  int n,max,m;
+  scanf("%d%d",&n,&m);
+  int a[n], profit=0,i;
+  for(i=0;i<n;i++)
+    scanf("%d",&a[i]);
+  while(m--)
+  {
+    max=0;
+  	for(i=0;i<n;i++)
+      if(a[i]>a[max])
+        max=i;
+    profit+=a[max];
+    a[max]--;
+  }
+  printf("%d",profit);
+
+	return 0;
+}

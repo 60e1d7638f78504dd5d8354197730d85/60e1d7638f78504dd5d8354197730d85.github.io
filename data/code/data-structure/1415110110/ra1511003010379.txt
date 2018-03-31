@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *next;
+};
+struct node *start=NULL;
+
+void middle(struct node *start,int mid)
+{
+  struct node *ptr=start;
+  while(mid--)
+  {
+    ptr=ptr->next;
+  }
+  printf("\nThe middle element is [%d]",ptr->data);
+}
+
+void printer(struct node *start)
+{
+  struct node *ptr=start;
+  while(ptr!=NULL)
+  {
+    printf("-->%d",ptr->data);
+    ptr=ptr->next;
+  }
+}
+
+
+struct node *insert(struct node *start, int data)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=data;
+  
+  if(start==NULL)
+  {
+    nn->next=NULL;
+    start=nn;
+  }
+  else
+  {
+    struct node *ptr=start;
+    while(ptr->next!=NULL)ptr=ptr->next;
+    
+    ptr->next=nn;
+    nn->next=NULL;
+  }
+  return start;
+}
+
+
+
+int main()
+{
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+
+  for(i=size-1;i>=0;i--)start=insert(start,a[i]);
+  
+  printer(start);
+  int mid;
+  if(size%2==0)mid=size/2;
+  else mid=size/2;
+  
+  middle(start,mid);
+  
+  
+  
+	return 0;
+}

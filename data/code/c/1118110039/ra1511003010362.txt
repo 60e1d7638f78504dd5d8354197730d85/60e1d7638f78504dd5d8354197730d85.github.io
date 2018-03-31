@@ -1,0 +1,37 @@
+#include <stdio.h>
+ 
+int convert(char *buf)
+{
+        int i, j;
+        // assumption that (*buf == '(') => no err checking
+        if (buf[1] == '(')
+                i = convert(buf + 1);
+        else {
+                i = 1;
+                fputc(buf[1], stdout);
+        }
+        // op == buf[1 + i]
+        if (buf[2 + i] == '(')
+                j = convert(buf + i + 2);
+        else {
+                fputc(buf[i + 2], stdout);
+                j = 1;
+        }
+        fputc(buf[i + 1], stdout);
+        // further assumption that (buf[1 + i + 1 + j + 1 == ')')
+        return i + j + 3;
+}
+ 
+int main()
+{
+        int n;
+        if (scanf("%d", &n) > 0 && n > 0)
+                while (n--) {
+                        char buf[400];
+                        if (scanf("%s", buf) == 0) break;
+                        convert(buf);
+                        fputc('\n', stdout);
+                }
+        return 0;
+}
+ 

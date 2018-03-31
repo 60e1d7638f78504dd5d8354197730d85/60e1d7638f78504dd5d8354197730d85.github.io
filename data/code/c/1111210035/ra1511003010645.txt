@@ -1,0 +1,62 @@
+#include <stdio.h>
+int main()
+{
+  int a,b,c,d,e,f,g,h,num,den,r,x[9]={2,3,4,5,6,7,8,9},m,n,i,flag=0;
+  scanf("%d",&a);
+  scanf("%d",&b);
+  scanf("%d",&c);
+  scanf("%d",&d);
+  if(b>d)
+  {
+    num=b;
+    den=d;
+  }
+  else
+  {
+    num=d;
+    den=b;
+  }
+  r=num%den;
+  while(r!=0)
+  {
+    num=den;
+    den=r;
+    r=num%den;
+  }
+  e=(b*d)/den;
+  f=(e/b);
+  g=(e/d);
+  h=(a*f)+(c*g);
+  //printf("\n%d %d",h,e);
+  
+  
+  
+  for(i=0;i<8;i++)
+  {
+    
+    
+    if(h%x[i]==0 && e%x[i]==0)
+    {
+      m=(int)h/x[i];
+      n=(int)e/x[i];
+      flag=1;
+      
+    
+    }
+     
+    
+  }
+  if(flag==1)
+  {
+     printf("\n%d %d",m,n);
+  }
+  else
+  {
+      printf("\n%d %d",h,e);
+  }
+    
+    
+  
+
+	return 0;
+}

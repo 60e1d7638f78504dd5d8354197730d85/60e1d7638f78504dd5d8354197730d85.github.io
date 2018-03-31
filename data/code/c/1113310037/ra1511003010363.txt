@@ -1,0 +1,57 @@
+#include<stdio.h>
+inline int inp( )
+{
+int n=0;
+int ch=getchar_unlocked();
+while( ch <48 )ch=getchar_unlocked();
+while( ch >47 )
+n = (n<<3)+(n<<1) + ch-'0', ch=getchar_unlocked();
+return n;
+}
+long long power(long long x,long long y)
+{
+    long long temp;
+    if( y == 0)
+       return 1;
+    temp = power(x, y>>1)%1000000007;
+    if (y&1)
+        return (((x*temp)%1000000007)*temp)%1000000007;
+    else
+    {
+        if(y > 0)
+            return (temp*temp)%1000000007;
+        else
+            return ((temp*temp)/x)%1000000007;
+    }
+}
+int main()
+{
+    long long n,i,t,inverse[1001],s,a,b;
+    inverse[0]=inverse[1]=1;
+    for(i=1;i<1001;i++)
+    {inverse[i]=power(i,1000000005);    }
+    t=inp();
+    while(t--)
+    {
+        n=inp();
+        b=1;
+        for(i=0;i<n;i++)
+        a=inp();
+        s=power(2,n-1);
+        if(!(n&1))
+        {
+            a=1;
+            for(i=1;i<=n/2;i++)
+            a=(a*inverse[i])%1000000007;;
+            
+           for(i=n;i>n/2;i--)
+           b=(b*i)%1000000007;
+           a=(((a*b)%1000000007)*inverse[2])%1000000007; 
+           s=(s-a+1000000007)%1000000007;
+        }
+        printf("%lld\n",s);
+    }
+    return 0;
+}
+ 
+ 

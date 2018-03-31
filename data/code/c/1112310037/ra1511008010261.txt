@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int maxIndex = 11,*arrCount,j,count =0;
+    long num;
+    int no_of_cases,i;
+    int done = 0;
+    int array[] = {1,2,4,8,16,32,64,128,256,512,1024,2048};
+    scanf("%d",&no_of_cases);
+    arrCount = (int*)malloc(sizeof(int)*no_of_cases);
+    for(j=0;j<no_of_cases;j++)
+    {
+        maxIndex = 11;
+        count = 0;
+        done=0;
+        scanf("%ld",&num);
+        for(i=0;i<12;i++)
+        {
+            if(num<array[i])
+            {
+                maxIndex = i-1;
+                break;
+            }
+        }
+        while(done==0&&i>0)
+        {
+            if(num>=array[maxIndex])
+            {
+                num = num-array[maxIndex];
+                count++;
+            }
+            else if(num==0)
+                done = 1;
+            else
+                maxIndex--;
+        }
+        arrCount[j]=count;
+    }
+ 
+    for(i=0;i<no_of_cases;i++)
+        printf("%d\n",arrCount[i]);
+    return 0;
+}

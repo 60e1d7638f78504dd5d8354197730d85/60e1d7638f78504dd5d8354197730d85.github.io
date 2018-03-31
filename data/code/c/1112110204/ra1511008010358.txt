@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+  	int T,i,A,B,gcd,lcm,rem,num,den;
+	scanf("%d", &T);
+  	for(i=0;i<T;i++)
+    {
+      	scanf("%d %d", &A,&B);
+      	if(A>B)
+        {
+          	num=A;
+          	den=B;
+        }
+      	else
+        {
+          	num=B;
+          	den=A;
+        }
+      	rem=num%den;
+      	while(rem!=0)
+        {
+          	num=den;
+          	den=rem;
+          	rem=num%den;
+        }
+      	gcd=den;
+      	lcm=A*B/gcd;
+      	printf("\n%d %d", gcd,lcm);
+    }
+	return 0;
+}

@@ -1,0 +1,49 @@
+#include <stdio.h>
+typedef long long ll;
+long long  MAX(long long a,long long b)
+{
+    return a>b?a:b;
+}
+ 
+long long  MIN(long long a,long long b)
+{
+    return a<b?a:b;
+}
+ 
+int main()
+{
+    int t,n,num;
+    long long min,max,temp_min,temp_max;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d",&n);
+        scanf("%d",&num);
+        min = max = num;
+        n--;
+        while(n--)
+        {
+            scanf("%d",&num);
+            temp_min = min; temp_max = max;
+ 
+            min = MIN(min, temp_min + num );
+            min = MIN(min, temp_min - num );
+            min = MIN(min, temp_min * num );
+ 
+            min = MIN(min, temp_max + num );
+            min = MIN(min, temp_max - num );
+            min = MIN(min, temp_max * num );
+ 
+            max = MAX(max, temp_min + num );
+            max = MAX(max, temp_min - num );
+            max = MAX(max, temp_min * num );
+ 
+            max = MAX(max, temp_max + num );
+            max = MAX(max, temp_max - num );
+            max = MAX(max, temp_max * num );
+        }
+        printf("%lld\n",min);
+    }
+    return 0;
+}
+ 

@@ -1,0 +1,93 @@
+#include <stdio.h>
+#define MOD 1000000007
+int minn(int a , int b) {
+if (a < b)
+return a ;
+return b ;
+}
+int ways[10001] ;
+int ways2[10001] ;
+int maxSum ;
+int crack(int A[], int B[], int index, int first, int last, char isTrue) {
+int fpai, dsum, mid, maxIter, sum, lst, end1, end2, point, min ;
+while (index != -1) {
+fpai = first + A[index] ;
+dsum = fpai + last + B[index] ;
+mid = dsum >> 1 ;
+maxIter = B[index] - A[index] ;
+sum = 0 ;
+lst = -1 ;
+end1 = maxIter + fpai ;
+end2 = last + A[index] ;
+point = maxSum < mid ? maxSum : mid ;
+min = end1 < end2 ? end1 : end2 ;
+min = min < point ? min : point ;
+if (isTrue){
+int i ;
+for (i = fpai ; i <= min ; ways[lst=i] = sum,i++)
+sum = (sum + ways2[i - A[index]]) % MOD ;
+int fst = first ;
+if (end2 > end1)
+while (lst++ != point){
+sum = (sum + ways2[lst - A[index]] - ways2[fst++]) % MOD ;
+ways[lst] = sum < 0 ? sum + MOD : sum ;
+}
+else if (end2 < end1)
+while (lst++ != point)
+ways[lst] = sum ;
+for (i = mid + 1 ; i <= last + B[index] && i <= maxSum ; i++)
+ways[i] = ways[dsum - i] ;
+}
+else {
+int i ;
+for (i = fpai ; i <= min ; ways2[lst=i] = sum, i++)
+sum = (sum + ways[i - A[index]]) % MOD ;
+int fst = first ;
+if (end2 > end1)
+while (lst++ != point) {
+sum = (sum + ways[lst - A[index]] - ways[fst++]) % MOD ;
+ways2[lst] = sum < 0 ? sum + MOD : sum ;
+}
+else if (end2 < end1)
+while (lst++ != point)
+ways2[lst] = sum ;
+for (i = mid + 1 ; i <= last + B[index] && i <= maxSum ; i++)
+ways2[i] = ways2[dsum - i] ;
+}
+first += A[index] ;
+last += B[index--] ;
+isTrue ^= 1 ;
+}
+if (isTrue)
+return ways2[maxSum] ;
+return ways[maxSum] ;
+}
+int main () {
+int testCases ;
+int A[101] ;
+int B[101] ;
+scanf("%d", &testCases) ;
+while (testCases--) {
+scanf("%d", &maxSum) ;
+int size ;
+scanf("%d", &size) ;
+int sum1 = 0 , sum2 = 0 ;
+int i ;
+for (i = 0 ; i < size ; i++){
+scanf("%d", &A[i]) ;
+scanf("%d", &B[i]) ;
+sum1 += A[i] ; sum2 += B[i] ;
+}
+if (maxSum <= sum1 || maxSum >= sum2){
+if (maxSum == sum1 || maxSum == sum2)
+printf("1\n") ;
+else
+printf("0\n") ;
+continue ;
+}
+for (i = A[size - 1] ; i <= B[size - 1] ; i++)
+ways2[i] = 1 ;
+printf("%d\n", crack(A, B, size - 2, A[size - 1], B[size - 1], 1)) ;
+}
+return 0 ;
+}   

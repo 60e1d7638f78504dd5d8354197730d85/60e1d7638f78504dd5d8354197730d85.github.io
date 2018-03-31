@@ -1,0 +1,21 @@
+#include<iostream>
+#include<vector>
+using namespace std; 
+
+int main ()
+{
+    int num, bin;
+    cin >> num;
+    if(num < 0) { cout << "Exception occurred: value thrown"; return 0;}
+    cout << "Binary Number is :";
+    vector<int> bins;
+    while (num > 0)
+    {
+        bin = num % 2;
+        bins.push_back(bin);
+        num /= 2;
+    }
+    for(int i = 0; i < bins.size(); i++)
+      cout << bins.at(bins.size()-1-i);
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  for(int j = 0 ; j<t ; j++)
+  {
+    int n;
+    cin>>n;
+    int a[n+1];
+    for(int i = 1 ; i<=n ; i++)
+    {
+      cin>>a[i];
+    }
+    int count = 0;
+    for(int i = 1 ; i<=n ; i++)
+    {
+      if(a[i]!=i)
+      {
+        int x = a[i];
+        while(a[x]!=i)
+          x=a[x];
+        int temp = a[x];
+        a[x]=a[i];
+        a[i]=temp;
+        count++;
+      }
+    }
+    cout<<"Case "<<j+1<<": "<<count<<"\n";
+  }
+	return 0;
+}

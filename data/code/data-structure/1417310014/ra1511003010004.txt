@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>   
+#include<stdbool.h>   
+int aa(int a[],int curr,int n,int b[])
+{if(a[curr]<n)
+    return curr;
+ else
+     return aa(a,b[curr],n,b);
+}
+int main() {
+int i,j,k,n,a[1000010];
+int b[1000010],min;    
+    scanf("%d %d",&n,&k);
+    for(i=1;i<=n;i++)
+    {scanf("%d",&a[i]);
+    }    
+    long long int ans=1,f;
+    
+    b[n]=-1;
+    min=a[n];
+    for(i=n-1;i>=1;i--)
+    {if(a[i]>a[i+1])
+     {b[i]=i+1;
+        ans=ans*2;
+      ans=ans%1000000007;
+      continue;
+     }
+     if(a[i]<min)
+         min=a[i];
+     if(a[i]==min)
+        {b[i]=i;
+         continue;
+        }
+     
+     f=aa(a,i+1,a[i],b);
+     b[i]=f;
+     f=f-i+1;
+     
+     ans=ans*f;
+     ans=ans%1000000007;
+    }
+    printf("%lld\n",ans);
+    return 0;}

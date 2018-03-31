@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+char s[100000];
+    scanf("%s",s);
+    int i,j;
+    for(i=0;i<strlen(s);i++)
+        if(s[i]!='a') break;
+    int flag=0;
+    for(j=i;j<strlen(s);j++)
+    {
+        if(s[j]=='a') break;
+        s[j]--;
+        flag=1;
+    }
+    if(i==strlen(s)) s[i-1]='z';
+    printf("%s",s);
+return 0;
+}

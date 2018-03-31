@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+inline void scanint(int* x)
+{
+	register char c = getchar_unlocked();
+	*x = 0;
+	for(; (c<48)||(c>57);c = getchar_unlocked());
+	for(; (c>47)&&(c<58);c = getchar_unlocked())
+		*x = (int)((((*x)<<1) + ((*x)<<3)) + c - 48);
+}
+ 
+inline void printint(int n)
+{
+	if(n == 0)
+	{
+		putchar_unlocked('0');
+		putchar_unlocked('\n');
+	}
+	else
+	{
+		char buf[20];
+		buf[19] = '\n';
+		int i = 18;
+		while(n)
+		{
+			buf[i--] = n % 10 + '0';
+			n /= 10;
+		}
+		while(buf[i] != '\n')
+			putchar_unlocked(buf[++i]);
+	}	
+}
+ 
+int *p, *t;
+int main()
+{
+	int T,N,K,i;
+	long long int profit, tp;
+ 
+	scanint(&T);
+	p = (int*)malloc(sizeof(int)*100001);
+	t = (int*)malloc(sizeof(int)*100001);
+ 
+	while(T--)
+	{
+		scanint(&N);
+		scanint(&K);
+ 
+		for(i = 0; i < N; ++i)
+			scanint(&t[i]);
+ 
+		for(i = 0; i < N; ++i)
+			scanint(&p[i]);
+ 
+		profit = -1;
+ 
+		for(i = 0; i < N; ++i)
+		{
+			tp = (K/t[i])*(long long int)p[i];
+			if(tp > profit) profit = tp;
+		}
+ 
+		printf("%lld\n", profit);
+	}
+ 
+	free(p);
+	free(t);
+	return 0;
+} 

@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int m, n, x;
+  	cin>>m;
+  	int arr1[m];
+  	for(int i=0; i<m; i++) cin>>arr1[i];
+  	cin>>n;
+  	int arr2[n];
+  	for(int i=0; i<n; i++) cin>>arr2[i];
+  	x = m+n;
+  	int arr[x];
+  	int m1 = 0, n1 = n-1;
+  	cout<<"The Merged Array in Ascending Order\n";
+  	for(int i=0; i<x; i++) {
+    	if(m1 < m && n1 >-1) {
+        	if(arr1[m1] < arr2[n1]) {
+              	if(i > 0 && arr1[m1] == arr[i-1]) {
+                  	m1++;
+                  	continue;
+                }
+            	arr[i] = arr1[m1];
+              	m1++;
+            }
+          	else {
+              	if(i > 0 && arr2[n1] == arr[i-1]) {
+                  	n1--;
+                  	continue;
+                }
+            	arr[i] = arr2[n1];
+              	n1--;
+            }  //5 7 - //(m1 + n-n1 - 1) // (n+m1+1)
+          	cout<<arr[i]<<" ";
+        }
+      	else {
+        	break;
+        }
+    }
+  	if(m1 == m) {
+    	for(int i=m+n-n1-1; i<x; i++) {
+          	if(i > 0 && arr2[n1] == arr[i-1]) {
+              	n1--;
+              	continue;
+            }
+        	arr[i] = arr2[n1];
+          	n1--;
+          	cout<<arr[i]<<" ";
+        }
+    }
+  	else {
+    	for(int i=n+m1+1; i<x; i++) {
+          	if(i > 0 && arr1[m1] == arr[i-1]) {
+              	m1++;
+              	continue;
+            }
+        	arr[i] = arr1[m1];
+          	m1++;
+          	cout<<arr[i]<<" ";
+        }
+    }
+	return 0;
+}

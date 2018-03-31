@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int n;
+    cin>>n;
+    int p[n],c[n];
+    for(int i=0; i<n; i++)
+      cin>>p[i]>>c[i];
+    int max=p[0]+p[1]-c[0]-c[1];
+    for(int i=0; i<n-1; i++)
+      for(int j=i+1; j<n; j++)
+      {
+        int value=p[i]+p[j];
+        for(int k=0; k<n; k++)
+          if(k!=i&&k!=j)
+            value-=c[k];
+        if(max<value)
+          max=value;
+      }
+    cout<<max<<'\n';
+  }
+  return 0;
+}

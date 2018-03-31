@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+// Java program to find maximum length prefix
+// of one string occur as subsequence in another
+// string.
+public class TestClass {     
+     
+    // Return the maximum length prefix which is
+    // subsequence.
+    static int maxPrefix(String s, String t)
+    {
+        int count = 0;
+      
+        // Iterating string T.
+        for (int i = 0; i < t.length(); i++)
+        {
+            // If end of string S.
+            if (count == t.length())
+                break;
+      
+            // If character match, increment 
+            // counter.
+            if (t.charAt(i) == s.charAt(count))
+                count++;
+        }
+      
+        return count;
+    }
+      
+    // Driven Program
+    public static void main(String args[])
+    {
+      Scanner sc=new Scanner(System.in);  
+      String S = "";
+        String T = "";
+      S=sc.next();
+      T=sc.next();
+      
+        System.out.println(maxPrefix(S, T));
+    }
+}

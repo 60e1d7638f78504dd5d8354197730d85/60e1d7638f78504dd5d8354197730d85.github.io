@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+ 
+map<long, long>m;
+map<long, long> :: iterator it;
+ 
+ 
+int main()
+{
+    long n, ma;
+    scanf("%ld%ld", &n, &ma);
+    
+    long x;
+    long maximum = 0, freq = 0;
+    for(int i = 0;i < n;i++) {
+        scanf("%ld", &x);
+        m[x]++;
+        if(freq < m[x]) {
+            freq = m[x];
+            maximum = x;
+            printf("%ld %ld\n", maximum, freq);
+        }
+        else if(freq == m[x]) {
+            maximum = max(x, maximum);
+            printf("%ld %ld\n", maximum, freq);
+        }
+        else {
+            printf("%ld %ld\n", maximum, freq);
+        }
+    }
+    return 0;
+}

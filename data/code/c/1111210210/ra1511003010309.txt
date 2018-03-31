@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{int i,j,k,t,m,ans[50];
+ float a,b,size;
+ k=0;a=0.f,b=0.f;
+  char letter[40];
+ scanf("%d",&t);
+ for(m=0;m<t;m++){
+  scanf("%s",letter);
+     size= strlen(letter);
+ for(i=0;i<size;i=i+2)
+ {
+   if(letter[0]==letter[i])
+   {
+    a++;
+   }
+    }
+  for(j=1;j<size;j=j+2)
+  {
+  if(letter[1]==letter[j]){
+   b++;
+  }}
+  // printf("%f %f",a,b);
+  if(a==size/2 && b==size/2){
+   ans[k]=1; k++;
+  }
+  else{
+  ans[k]=0;k++;
+  }
+   
+ }
+ for(i=0;i<t;i++){
+  if(ans[i]==1){
+  printf("YES\n");
+  }
+   else
+   {
+    printf("NO\n");
+   }
+ }
+ 
+	return 0;
+}

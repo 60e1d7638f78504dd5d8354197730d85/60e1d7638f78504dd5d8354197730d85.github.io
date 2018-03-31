@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int lcm(int a, int b)
+{
+int max;
+  max=(a>b)?a:b;
+  do
+  {
+  if(max%a==0 && max%b==0)
+  {return max;
+   break;} 
+    else
+      max++;
+  }while(true);
+}
+
+int main()
+{
+int T,N,i,j,min,temp;
+  cin>>T;
+  while(T)
+  {
+     cin>>N;
+     int A[N];
+     min=32000;
+     for(i=0;i<N;i++)
+     {
+        cin>>A[i];
+        if(A[i]<min)
+        {
+           for(j=0;j<i;j++)
+           {
+              if(A[i]<min && A[j]<min)
+              {
+                temp=lcm(A[i],A[j]);
+                if(temp<min)
+                {min=temp;}
+              }
+           }
+         }
+    }
+     cout<<min<<"\n";
+    T--;
+  }
+  
+	return 0;
+}

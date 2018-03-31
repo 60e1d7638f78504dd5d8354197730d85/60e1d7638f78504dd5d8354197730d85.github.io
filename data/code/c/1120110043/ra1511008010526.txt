@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <math.h>
+union cube{
+	long num;
+};
+int main()
+{
+	union cube c1;
+  	scanf("%ld\n",&c1.num);
+  	long digits,sum=0;
+  	while(c1.num>0){
+    	digits=c1.num%10;
+      	digits=pow(digits,3);
+      	sum=sum+digits;
+      	c1.num/=10;
+    }
+  	printf("%ld\n",sum);
+	return 0;
+}

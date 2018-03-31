@@ -1,0 +1,35 @@
+#include <stdio.h>
+int main()
+{
+	int i,n2;
+  	scanf("%d",&n2);
+  	for(i=0;i<n2;i++){
+    	int j,m;
+      	scanf("%d",&m);
+      	for(j=0;j<m;j++){
+        	int i,n,q;
+          	//i init state n coins and q guess number;
+          	scanf("%d %d %d",&i,&n,&q);
+          	int coins[n],x;
+          	for(x=0;x<n;x++)coins[x]=i;
+          	int k;
+          
+          	for(k=1;k<=n;k++){
+            	int k2;
+              	for(k2=0;k2<k;k2++){
+                  coins[k2]++;
+                  if(coins[k2]%2==0)coins[k2]=2;
+                  else coins[k2]=1;
+                }
+            }
+          
+          	int heads=0;
+          	int tails=0;
+          	for(x=0;x<n;x++)if(coins[x]==1)heads++; else tails++;
+          	if(q==1)printf("%d\n",heads);
+          	else printf("%d\n",tails);
+          
+        }
+    }
+	return 0;
+}

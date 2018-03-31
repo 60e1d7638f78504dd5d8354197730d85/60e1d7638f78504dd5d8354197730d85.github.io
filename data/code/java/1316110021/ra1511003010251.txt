@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  static int n,n1,n2,n3;
+  public static void getInput()
+  {
+    Scanner sc=new Scanner(System.in);
+    n=sc.nextInt();
+  }
+  
+  public static void displayFib()
+  {
+    int count=0;
+    n1=1; n2=1;
+    if(n>=1)
+    {
+      System.out.print(n1+" ");
+      count++;
+      if(count==n)return;
+    }
+    if(n>=2)
+    {
+      System.out.print(n2+" ");
+      count++;
+      if(count==n)return;
+    }
+    while(count<n)
+    {
+      n3=n1+n2;
+      n1=n2;
+      n2=n3;
+      System.out.print(n3+" ");
+      count++;
+    }
+  }
+  
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample.getInput();
+       Sample.displayFib();
+	}
+}

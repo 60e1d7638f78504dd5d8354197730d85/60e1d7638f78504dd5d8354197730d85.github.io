@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int maxSum(int arr[], int n, int k)
+{   if (n < k)
+    {return -1;}
+ 	int res = 0;
+    for (int i=0; i<k; i++)
+       res += arr[i];
+    int curr_sum = res;
+    for (int i=k; i<n; i++)
+    {  curr_sum += arr[i] - arr[i-k];
+       res = max(res, curr_sum);
+    }
+    return res;
+}
+int main()
+{int n,i,x,y;
+ cin>>n;
+ int arr[n];
+ for(i=0;i<n;i++){
+   cin>>arr[i];
+ }
+ cin>>x;
+ int r=maxSum(arr,n,x);
+   cout<<r;
+ return 0;
+}

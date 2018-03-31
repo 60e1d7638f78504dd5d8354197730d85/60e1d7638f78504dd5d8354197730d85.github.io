@@ -1,0 +1,41 @@
+//DKBoss
+#include <stdio.h>
+int main()
+{
+  	int test;
+  	scanf("%d", &test);
+  	int t;
+  	for(t=0; t<test; t++) {
+    	int n, flag=0, present=0;
+      	scanf("%d", &n);
+      	int arr[n], i;
+      	for(i=0; i<n; i++)
+          	scanf("%d", &arr[i]);
+      	int f;
+      	scanf("%d", &f);
+      	int sub[f], j;
+      	for(j=0; j<f; j++)
+          	scanf("%d", &sub[j]);
+      	j=0;
+      	for(i=0; i<n; i++) {
+        	if(arr[i] == sub[j]) {
+            	if(flag == 1) {
+                	if(j==f-1) {
+                    	present = 1;
+                      	break;
+                    }
+                }
+              	else {
+                	flag = 1;
+                }
+              	j++;
+            }
+          	else {
+            	flag = 0;
+              	j=0;
+            }
+        }
+      	printf("%s\n", present==1 ? "Yes":"No");
+    }
+	return 0;
+}

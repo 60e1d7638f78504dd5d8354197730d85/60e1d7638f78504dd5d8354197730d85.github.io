@@ -1,0 +1,24 @@
+#include <stdio.h>
+int len,arr[20],unique[20],size,i,j,tmp;
+int hasnum(int num){
+	for(j=0;j<size;j++){
+    	if(unique[j]==num)return 1;
+    }
+  	return 0;
+}
+int main()
+{
+  	scanf("%d",&len);
+  	size=0;
+ 	for(i=0;i<len;i++){
+    	scanf("%d",&arr[i]);
+    }
+  	for(i=0;i<len;i++){
+    	if(!hasnum(arr[i])){
+        	unique[size] = arr[i];
+          	size++;
+        }
+    }
+    	printf("%d ",size);
+	return 0;
+}

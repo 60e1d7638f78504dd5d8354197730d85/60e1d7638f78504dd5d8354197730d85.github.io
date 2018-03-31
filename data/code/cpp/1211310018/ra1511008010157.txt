@@ -1,0 +1,50 @@
+ #include<stdio.h>
+    #include<string.h>
+    int main()
+    {
+    	int n,i,j,flag;
+    	scanf("%d",&n);
+    	char s[100002],t[100002];
+     
+    	while(n--)
+    	{	i=0;
+    		flag=0;
+    		scanf("%s",s);
+    		j=strlen(s);	
+    	
+    		
+    			t[0]=s[0];
+    		for(i=1;i<j;i++)
+    		{
+    	
+    			if((s[i]=='E'&&t[i-1]=='S'))
+    			{
+    				break;
+    			
+    			}
+    			else if((s[i]=='C'&&t[i-1]=='S')||(s[i]=='C'&&t[i-1]=='E'))
+    			{
+    				break;
+    			
+    			}
+    		
+    			else
+    			{
+    				flag=1;
+    					t[i]=s[i];
+    			}
+    		
+      		}			
+    		
+    	if(i==j)
+    	{
+    			printf("yes\n");
+    	}	
+    else if(i<j)
+    {
+    			printf("no\n");
+    	
+    }
+    	}
+    	return 0;
+    }     

@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  string s1,s2;
+  cin>>s1>>s2;
+  int n1=s1.length();
+  int n2=s2.length();
+  int i,k,flag=1;
+  if(n1!=n2)
+    cout<<"0";
+  else
+  {
+  for(i=0;i<n1;i++)
+  {
+    k=s1[i];
+    if(k>=65 && k<=90)
+      k+=32;
+    s1[i]=k;
+  }
+  
+  for(i=0;i<n2;i++)
+  {
+    k=s2[i];
+    if(k>=65 && k<=90)
+      k+=32;
+    s2[i]=k;
+  }
+  
+  for(i=0;i<n1;i++)
+  {
+    if(s1[i]!=s2[i])
+      flag=0;
+  }
+  
+  if(flag==0)
+    cout<<"0";
+  else
+    cout<<"1";
+  }
+  
+  
+
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+
+  int n;
+  scanf("%d",&n);
+
+  int size = 0, temp = n;
+  while(temp!=0)
+  {
+    size++;
+    temp /= 2;
+  }
+  int i = size-1;
+  size++;
+  char str[size];
+  while(n!=0)
+  {
+    if(n%2==0)
+      str[i] = '0';
+    else
+      str[i] = '1';
+    
+    i--;
+    n /= 2;
+  }
+  for(i=0;i<size-1;i++)
+  	printf("%c",str[i]);
+	return 0;
+}

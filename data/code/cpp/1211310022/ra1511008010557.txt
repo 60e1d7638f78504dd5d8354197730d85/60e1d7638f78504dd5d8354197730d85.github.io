@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+inline int inp(){int n=0,s=1,c=getchar_unlocked();if(c=='-')s=-1;while(c<48)c=getchar_unlocked();while(c>47)n=(n<<3)+(n<<1)+c-'0',c=getchar_unlocked();return n*s;}
+ 
+const int a[] = {2, 1024, 976371285, 688423210, 905611805, 607723520, 235042059, 255718402, 494499948, 140625001, 291251492, 25600497, 959366170, 836339738, 621966918, 264444359, 271283348, 952065854, 719476260, 28918236, 855473248, 741583475, 11230495, 262520739, 39859806};
+const int mod = 1000000007;
+int main()
+{
+  int tourist; tourist = inp();
+    while(tourist--)
+    {
+        int n;
+        n = inp();
+        long long ret = 1;
+        for(int i = 0; i < 26; ++i)
+            if(n & (1 << i))
+                ret = (ret * a[i]) % mod;
+        ret = (ret * ret) % mod;
+        cout<<"\n"<<ret;
+    }
+
+	return 0;
+}

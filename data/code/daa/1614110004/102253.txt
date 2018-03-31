@@ -1,0 +1,19 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+ 
+int main() {
+	int n,k,i,x;
+	cin>>n>>k;
+	vector<int> ar(n),pos(n+1);
+	for(i=0;i<n;i++){cin>>ar[i];pos[ar[i]]=i;}
+	for(i=0;i<n&&k;i++) if(ar[i]!=n-i){
+		k--;
+		x=ar[i];
+		ar[i]=ar[pos[n-i]];ar[pos[n-i]]=x;
+		pos[x]=pos[n-i];
+	}
+	for(i=0;i<n;i++)cout<<ar[i]<<" ";
+	return 0;
+}
+  

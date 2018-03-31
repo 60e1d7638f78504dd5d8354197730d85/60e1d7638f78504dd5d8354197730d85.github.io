@@ -1,0 +1,29 @@
+  #include<stdio.h>
+        #include<stdlib.h>
+        #include<string.h>
+         
+        char str[10000];
+        int cmp(const void *a,const void *b)
+        {
+        	int i=*(int *)a,j=*(int *)b;
+        	return (str[i]!=str[j])? str[i]<str[j]: i>j;
+        }
+        int main()
+        {
+    	    int i,t;
+    	    scanf("%d",&t);
+    	    for(i=0;i<t;i++)
+    	    {
+    		    int a[10000],n,len,j;
+    		    scanf("%s %d",str,&n);
+    		    len=strlen(str);
+    		    n--;
+    		    for(j=0;j<len;j++)
+    		    	a[j]=j;
+    		    qsort(a,len,sizeof(int),cmp);
+    		    for(j=0;j<len;j++,n=a[n])
+    		    	printf("%c",str[n]);
+    		    printf("\n");
+    		}
+        	return 0;
+        }

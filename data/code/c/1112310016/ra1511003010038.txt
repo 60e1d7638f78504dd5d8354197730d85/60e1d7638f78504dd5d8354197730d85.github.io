@@ -1,0 +1,42 @@
+#include<stdio.h> 
+int o[1000000]; 
+int main()
+{
+  int i,z;
+  long long int x,k,t;
+  double a,l,h;
+  scanf("%d",&z);
+  while(z--)
+  {
+    scanf("%llu %llu",&x,&k);
+    l = 0;
+    h = x;
+    t = k;
+    i=0;
+    while(t)
+    {
+      o[i] = t%2;
+      i++;
+      t = t/2;
+    }
+    i--;
+    i--;
+    t = k;
+    while(t)
+    {
+      a = (l+h)/2.0;
+      if(o[i])
+      {
+        l = a;
+      }
+      else
+      {
+        h = a;
+      }
+      t = t/2;
+      i--;
+    }
+    printf("%f\n",a);
+  }
+  return 0;
+}

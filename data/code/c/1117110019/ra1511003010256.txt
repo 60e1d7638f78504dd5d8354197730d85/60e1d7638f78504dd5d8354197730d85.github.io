@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define MAX_ROWS 3
+#define MAX_COLS 3
+
+int main()
+{
+    int array[MAX_ROWS][MAX_COLS];
+    int row, col, isLower;
+    scanf("%d %d",&row,&col);
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+
+    /* Check whether the matrix is lower triangular matrix */
+    isLower = 1;
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            if(col>row && array[row][col]!=0)
+            {
+                isLower = 0;
+            }
+        }
+    }
+
+    if(isLower == 1)
+    {
+        printf("yes");
+
+    }
+    else
+    {
+        printf("no");
+    }
+
+    return 0;
+}

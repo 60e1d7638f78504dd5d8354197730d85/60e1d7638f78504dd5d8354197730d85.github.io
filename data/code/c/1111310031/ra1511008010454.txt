@@ -1,0 +1,62 @@
+#include<stdio.h>
+ 
+#define gc getchar_unlocked
+#define pc putchar_unlocked
+ 
+inline void fastRead(int *b)
+{
+	register char c=0;
+	while (c<33) c=gc();
+	*b=0;
+	while (c>33)
+	{
+		*b=*b*10+c-'0';
+		c=gc();
+	}
+}
+ 
+inline void fastWrite(long long int b)
+{
+	char snum[20];
+	int i=0;
+	if(b<0)
+        snum[i++]='-';
+    else
+	do
+	{
+		snum[i++]=b%10+48;
+		b=b/10;
+	}while(b!=0);
+	i=i-1;
+	while(i>=0)
+	pc(snum[i--]);
+	pc('\n');
+}
+ 
+int arr[50005];
+int main()
+ {
+   int t,n,i;
+   long long int min;
+  // scanf("%d",&t);
+  fastRead(&t);
+   while(t--)
+    {
+      min=100005;
+  //   scanf("%d",&n);
+  fastRead(&n);
+     for(i=0;i<n;i++)
+     {
+       //scanf("%d",&arr[i]);
+       fastRead(&arr[i]);
+       if(min > arr[i])
+       min=arr[i];
+     }
+     min=min*(n-1);
+    // printf("%d\n",min);
+    fastWrite(min);
+    }
+ 
+  return 0;
+ }
+ 

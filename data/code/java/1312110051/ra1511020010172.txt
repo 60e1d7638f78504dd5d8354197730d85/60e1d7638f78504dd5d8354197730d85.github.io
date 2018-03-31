@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+  
+ static boolean Composite(int a){
+    if(a<=1)
+      System.out.println("no");
+    if(a<=3)
+      System.out.println("no");
+    if(a%2==0 || a%3==0)
+      return true;
+    for(int i = 5; i*i<=a; i=i+6)
+      if(a%i==0 || a%(i+2)==0)
+        return true;
+    return false;
+  }
+	 public static void main(String[] args) { 
+		Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       System.out.println(Composite(n) ? "yes":"no");
+       
+	}
+}

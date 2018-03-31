@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdbool.h>
+#define MAXN 100009
+#define MAXD 500000
+ 
+int main(void)
+{
+long long s[MAXN]={0},psum[MAXN]={0};
+bool prime[MAXD]={0};
+bool freeNum[MAXN]={0};
+int c[MAXD]={0};
+int i,j;
+prime[0]=prime[1]=true;
+for(i=2;i*i<=MAXD;i++)
+if(!prime[i])
+for(j=i*i;j<MAXD;j+=i)
+prime[j]=true;
+s[1]=1;
+for(i=2;i<MAXN;i++)
+ {
+  s[i]++;
+  for(j=i;j<MAXN;j+=i)
+  s[j]+=i;
+ }
+ freeNum[0]=true;
+ for(i=2;i*i<=MAXN;i++)
+ for(j=i*i;j<MAXN;j+=i*i)
+ freeNum[j]=true;
+ for(i=2;i<MAXD;i++)
+ if(!prime[i])
+ for(j=i;j<MAXD;j+=i)
+ c[j]++;
+ for(i=2;i<MAXN;i++)
+ {   
+  psum[i]=psum[i-1];
+  if(!freeNum[i]&&!prime[c[s[i]]])
+  psum[i]+=s[i];
+ }
+ int t,l,r;
+ scanf("%d",&t);
+ while(t--)
+ {
+  scanf("%d%d",&l,&r);
+  printf("%lld\n",psum[r]-psum[l-1]);
+ }
+ return 0;
+}   

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ 	int low,high,i,n,sum=0;
+  int a[10];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  low=a[0];
+  for(i=1;i<n;i++)
+  {
+    if(a[i]<low)
+    {
+      low=a[i];
+    }
+  }
+  //printf("%d",low);
+  high=a[0];
+  for(i=0;i<n;i++)
+  {
+    if(a[i]>high)
+      high=a[i];
+  }
+  //printf("%d",high);
+  for(i=0;i<n;i++)
+  {
+    sum=sum+a[i];
+  }
+  sum=sum-(high+low);
+  printf("%d",sum);
+  return 0;
+}

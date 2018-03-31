@@ -1,0 +1,53 @@
+#include <stdio.h>
+ 
+ 
+void scani(int *z){
+    *z=0;
+    char c;
+    int mul=1;
+    c=getchar_unlocked();
+    while(c!='-'&&( c<'0'||c>'9'))
+        c=getchar_unlocked();
+    if(c=='-')
+        mul=-1,c=getchar_unlocked();
+    while(c>='0'&&c<='9'){
+        *z=(*z<<3)+(*z<<1)+(c-'0')*mul;
+        c=getchar_unlocked();
+    }
+}
+ 
+int main(void) {
+	// your code goes here
+	int t,n,k,i,j,top[100005]={0},s,l,m,h;
+	scani(&t);
+	while(t--){
+	    scani(&n);
+	    s=0;
+	    for(i=0;i<n;i++){
+	        scani(&k);
+	        l=0,h=s-1,m=0;
+	        while(l<h){
+    	        m=(l+h)/2;
+    	        if(top[m]>k){
+    	            h=m-1;
+    	        }
+    	        else{
+    	            l=m+1;
+    	        }
+	        }
+	        if(h>-1 && top[h]>k){
+	            top[h]=k;
+	        }
+	        else if(h+1<s && top[h+1]>k){
+	            top[h+1]=k;
+	        }
+	        else{
+	            top[s]=k;
+	            s++;
+	        }
+	    }
+	    printf("%d ",s);
+	    for(i=0;i<s;i++)printf("%d ",top[i]);printf("\n");
+	}
+	return 0;
+}

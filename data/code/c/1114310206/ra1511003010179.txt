@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main ()
+{
+    int dataset;
+    scanf ("%d", &dataset);
+ 
+    while ( dataset-- ) {
+        char input [50];
+        scanf ("%s", input);
+ 
+        int length = strlen (input);
+        int c = 0;
+        int d = 0;
+        int h = 0;
+        int s = 0;
+        int card_value = 0;
+        int i = 0;
+ 
+        while ( i < length ) {
+            switch (input [i]) {
+                case '2' :
+                case '3' :
+                case '4' :
+                case '5' :
+                case '6' :
+                case '7' :
+                case '8' :
+                case '9' :
+                card_value += input [i] - '0';
+                break;
+ 
+                case '1' :
+                card_value += 10;
+                i++; // '0' in 10
+                break;
+ 
+                case 'A' :
+                card_value += 11;
+                break;
+ 
+                case 'J' :
+                case 'Q' :
+                case 'K' :
+                card_value += 10;
+ 
+                case 'C' :
+                c = 1;
+                i++; // underscore
+                break;
+ 
+                case 'D' :
+                d = 1;
+                i++; // underscore
+                break;
+ 
+                case 'H' :
+                h = 1;
+                i++; // underscore
+                break;
+ 
+                case 'S' :
+                s = 1;
+                i++; // underscore
+                break;
+            }
+ 
+            i++;
+        }
+ 
+        if ( c + d + h + s == 2 )
+            card_value += 10;
+ 
+        else if ( c + d + h + s == 1 )
+            card_value += 25;
+ 
+        printf ("%d POINTS\n", card_value);
+    }
+ 
+ 
+    return 0;
+}

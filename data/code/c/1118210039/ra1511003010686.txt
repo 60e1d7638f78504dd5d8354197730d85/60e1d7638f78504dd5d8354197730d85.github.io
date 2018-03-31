@@ -1,0 +1,36 @@
+#include <stdio.h>
+struct num
+{
+  int n;
+};
+int main()
+{
+  struct num a[100];
+  int i;
+  for(i=0;i<10;i++)
+  {
+    scanf("%d",&a[i].n);
+  }
+  int temp,j;
+  for(i=0;i<10;i++)
+  {
+    for(j=i+1;j<10;j++)
+    {
+    if(a[i].n>a[j].n)
+    {
+      temp=a[i].n;
+      a[i].n=a[j].n;
+      a[j].n=temp;
+    }
+  }
+  }
+  for(i=0;i<10;i++)
+  {
+    if(a[i].n%2==0)
+    {
+      printf("%d ",a[i].n);
+    }
+  }
+
+	return 0;
+}

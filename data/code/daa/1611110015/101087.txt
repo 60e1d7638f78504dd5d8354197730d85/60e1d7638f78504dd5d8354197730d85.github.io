@@ -1,0 +1,39 @@
+#include <stdio.h>
+int main()
+{
+int i,j,n,m=195,flag=0; int a[10],temp;
+ 
+  scanf("%d",&n);
+
+ for (i=0; i<n; i++)
+ scanf("%d", &a[i]);
+  
+  for (i = 0; i < (n - 1); ++i)
+ {
+      for (j = 0; j < n - 1 - i; ++j )
+      {
+           if (a[j] > a[j+1])
+           {
+                temp = a[j+1];
+                a[j+1] = a[j];
+                a[j] = temp;
+           }
+      }
+  }
+  
+  
+
+ for (i=0; i<n; i++)
+  {
+   if(a[i]==m)
+   {
+   flag=1;
+   break;
+   }
+  }
+ if(flag==0)
+  printf("Book is not available");
+ else
+  printf("Book Available");
+	return 0;
+}

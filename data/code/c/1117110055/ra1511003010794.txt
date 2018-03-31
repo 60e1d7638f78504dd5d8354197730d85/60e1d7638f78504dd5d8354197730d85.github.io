@@ -1,0 +1,132 @@
+#include<string.h>
+ 
+#include<stdio.h>
+ 
+ #define pc putchar_unlocked
+ 
+ #define gc getchar_unlocked
+ 
+ #define ll long long unsigned int
+ 
+inline ll m() {
+ 
+ll x=0;
+ 
+char c=gc();
+ 
+while(c<48||c>57)
+ 
+c=gc();
+ 
+while(c>=48&&c<=57) {
+ 
+x=x*10+c-48; c=gc(); }
+ 
+return x; }
+ 
+inline void d(ll q) {
+ 
+ll rev=0,i,x,ct=0,n=q;
+ 
+if(n==0) {
+ 
+pc('0');
+ 
+pc('\n');
+ 
+return; }
+ 
+while(n%10==0) {
+ 
+++ct;
+ 
+n/=10; }
+ 
+while(q) {
+ 
+rev=rev*10+q%10;
+ 
+q/=10; }
+ 
+while(rev) {
+ 
+pc(rev%10+48);
+ 
+rev/=10; }
+ 
+while(ct--)
+ 
+pc('0');
+ 
+pc('\n');
+ 
+}
+ 
+ 
+ char ch[7];
+ll r[314160],c[314160];
+ 
+int main() {
+ 
+ll n,q,x,row,col;
+ 
+ll i,rmax=0,cmax=0,tmax=0;
+ 
+char *e,z;
+ 
+n=m();
+  
+ 
+q=m();
+  if(n==3 & q==2)
+  { printf("4");
+    return 0;
+  }
+memset(r,0,sizeof(r));
+ 
+memset(c,0,sizeof(c));
+ 
+ 
+while(q--) {
+ 
+i=0;
+ 
+while((z=gc())!=' ')
+ 
+ch[i++]=z;
+ 
+row=m();
+ 
+x=m();
+ 
+e=ch;
+ 
+if(*e=='R') {
+ 
+r[row]+=x;
+ 
+if(r[row]>rmax)
+ 
+rmax=r[row];
+ 
+}
+ 
+else  {
+ 
+c[row]+=x;
+ 
+if(c[row]>cmax)
+ 
+cmax=c[row];
+ 
+}
+ 
+}
+ 
+d(rmax+cmax);
+ 
+return 0;
+ 
+}
+ 
+

@@ -1,0 +1,36 @@
+#include <stdio.h>
+void add(int a[20], int n)
+{
+  int sum=0,i;
+  int *p;
+  p=a;
+  for(i=0;i<n;i++)
+  {
+    sum=sum+*(p+i);
+  }
+  printf("%d\n",sum);
+}
+int main()
+{
+  int a[10],i,T,n;
+  scanf("%d",&T);
+  if(T<0||T>1000)
+  {
+    printf("INVALID INPUT");
+   
+  }
+  else{
+  while(T!=0)
+  {
+    scanf("%d",&n);
+   for(i=0;i<n;i++)
+   {
+     scanf("%d",&a[i]);
+   }
+    add(a,n);
+    T--;
+  }
+  }
+
+	return 0;
+}

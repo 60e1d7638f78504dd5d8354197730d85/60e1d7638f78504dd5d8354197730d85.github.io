@@ -1,0 +1,114 @@
+#include <stdio.h>
+int main()
+{
+	// N M Z L R B
+  int N,n,m,z,l,r,b,i,j,k,count;
+  scanf("%d",&N);
+  char c[100][100];
+  while(N>0)
+  {
+    count=0;
+    scanf("%d %d %d %d %d %d",&n,&m,&z,&l,&r,&b);
+    for(i=0;i<n;i++)
+    {
+     for(j=0;j<m;j++)
+     {
+      c[i][j]='\0'; 
+     }
+    }
+    
+      for(i=0;i<n;i++)
+    {
+     for(j=0;j<m;j++)
+     {
+      if(c[i][j] == '\0' && l>0)
+      {
+       if(j==0)
+       {
+         c[i][j]='l'; 
+         l=l-1;
+         continue;
+       }
+       if( c[i][j-1] != 'b' && c[i][j-1] != 'r')
+       {
+         c[i][j]='l'; 
+         l=l-1;
+         continue;
+       }
+      }
+    }
+    }
+          for(i=0;i<n;i++)
+    {
+     for(j=0;j<m;j++)
+     {
+      if(c[i][j] == '\0' && r>0)
+      {
+       if(j == m-1)
+       {
+         c[i][j]='r'; 
+         r=r-1;
+         continue;
+       }
+       if( c[i][j+1] != 'b' && c[i][j+1] != 'l')
+       {
+         c[i][j]='r'; 
+         r=r-1;
+         continue;
+       }
+      }
+    }
+          }
+    for(i=0;i<n;i++)
+    {
+     for(j=0;j<m;j++)
+     {
+      if(c[i][j] == '\0' && b>0)
+      {
+       if(j == 0 && (c[i][j+1]=='r' || c[i][j+1]== '\0' ))
+       {
+         c[i][j]='b'; 
+         b=b-1;
+         continue;
+       }
+        if(j == m-1 && (c[i][j+1]=='l' || c[i][j+1]== '\0' ))
+       {
+         c[i][j]='b'; 
+         b=b-1;
+         continue;
+        }
+       if( c[i][j+1] != 'b' && c[i][j+1] != 'l' &&  c[i][j-1] != 'b' && c[i][j-1] != 'r')
+       {
+         c[i][j]='b'; 
+         b=b-1;
+         continue;
+       }
+      }
+    }
+    }
+    for(i=0;i<n;i++)
+    {
+     for(j=0;j<m;j++)
+     {
+      if(c[i][j] == '\0' && z>0)
+      {
+        c[i][j] = 'z';
+        z=z-1;
+      }
+    }
+    }
+    for(i=0;i<n;i++)
+    {
+     for(j=0;j<m;j++)
+     {
+      if(c[i][j] != '\0')
+      {
+        count++;
+      }
+    }
+    }
+    printf("%d\n",count);
+   N--; 
+  }
+	return 0;
+}

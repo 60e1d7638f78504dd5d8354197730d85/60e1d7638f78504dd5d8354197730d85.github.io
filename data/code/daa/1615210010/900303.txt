@@ -1,0 +1,115 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define NOTEXIST 10000000
+int a[200000],left1[200000],right1[200000];
+int main()
+{
+    ios::sync_with_stdio(false);
+    int T;
+
+    cin>>T;
+    assert(1<=T && T<=10);
+    while(T--)
+    {
+        int N,i,K;
+        cin>>N>>K;
+        assert(1<=N && N<=200000 && 1<=K && K<=N);
+        int done[200001]={0};
+        int anseach[200000];
+        for(i=0;i<N;i++)
+        {
+            cin>>a[i];
+            assert(1<=a[i] && a[i]<=N);
+            anseach[i]=NOTEXIST;
+            assert(done[a[i]]==0);
+
+            done[a[i]]=1;
+        }
+
+
+        long long c1=0,c2=0;
+
+
+        left1[0]=NOTEXIST;
+        for(i=1;i<N;i++)
+        {
+            if(a[i]>a[i-1])
+                left1[i]=i-1;
+            else
+            {
+                int j=i-1;
+                while(left1[j]!=NOTEXIST && a[left1[j]]>=a[i] && j>=0)
+                {
+                    j=left1[j];
+                    c1++;
+                }
+                if(j<0)
+                    left1[i]=NOTEXIST;
+                else
+                    left1[i]=left1[j];
+            }
+        }
+        right1[N-1]=NOTEXIST;
+        for(i=N-2;i>=0;i--)
+        {
+            if(a[i]>a[i+1])
+                right1[i]=i+1;
+            else
+            {
+                int j=i+1;
+                while(right1[j]!=NOTEXIST && a[right1[j]]>=a[i] && j<N)
+                {
+                    j=right1[j];
+                    c2++;
+                }
+                if(j>=N)
+                    right1[i]=NOTEXIST;
+                else
+                    right1[i]=right1[j];
+            }
+        }
+
+        long long ans=0;
+        for(i=0;i<N;i++)
+        {
+            if(i-K>=0)
+            {
+                if(a[i-K]<a[i])
+                    anseach[i]=min(anseach[i],K);
+                else
+                {
+                    int j=i-K;
+                    while(j>=0 && left1[j]!=NOTEXIST && a[left1[j]]>=a[i])
+                    {
+                        j=left1[j];
+                        c1++;
+                    }
+                    if(j>=0 && left1[j]!=NOTEXIST)
+                        anseach[i]=min(anseach[i],i-left1[j]);
+                }
+
+            }
+            if(i+K<N)
+            {
+                if(a[i]>a[i+K])
+                    anseach[i]=min(anseach[i],K);
+                else
+                {
+                    int j=i+K;
+                    while(j<N && right1[j]!=NOTEXIST && a[right1[j]]>=a[i])
+                    {
+                        j=right1[j];
+                        c2++;
+                    }
+                    if(j<N && right1[j]!=NOTEXIST)
+                       anseach[i]=min(anseach[i],right1[j]-i);
+                }
+            }
+            if(anseach[i]!=NOTEXIST)
+                ans+=anseach[i];
+        }
+        cout<<ans<<endl;
+    }
+    return 0; 
+}
+

@@ -1,0 +1,18 @@
+#include <stdio.h>
+ 
+int map[] = {4, 5, 6, 1, 2, 3, 8, 7};
+char suffix[][3] = {"LB", "MB", "UB", "LB", "MB", "UB", "SU", "SL"};
+int T,N;
+ 
+int main(void) {
+    int cprtmnt, idx;
+    scanf("%d", &T);
+    while(T--) {
+        scanf("%d", &N);
+        cprtmnt = (N - 1) / 8;
+        idx = (N - 1) % 8;
+        printf("%d%s", (cprtmnt * 8) + map[idx], suffix[idx]);
+    }
+	// your code goes here
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int i, j, a[20][20], b1[20][20], n;
+static int c = 0;
+void paths(int a1, int b){
+	b1[a1][b] = 1;
+	if((a1 == n - 1) && (b == n - 1)){
+		c++;
+		
+	}
+	
+	if((a1 - 1) >= 0 && !b1[a1 - 1][b] && a[a1 - 1][b] == 0) paths(a1 - 1, b);
+	if((a1 + 1) < n && !b1[a1 + 1][b] && a[a1 + 1][b] == 0) paths(a1 + 1, b);
+	if((b - 1) >= 0 && !b1[a1][b - 1] && a[a1][b - 1] == 0) paths(a1, b - 1);
+	if((b + 1) < n && !b1[a1][b + 1] &&a[a1][b + 1] == 0) paths(a1, b + 1);
+	b1[a1][b] = 0;
+	
+}
+int main(){
+	
+	scanf("%d", &n);
+	
+	for(i = 0; i < n; i++){
+		for(j = 0; j < n; j++){
+			scanf("%d", &a[i][j]);
+			b1[i][j] = 0;
+			
+		}
+	}
+	b1[0][0] = 1;
+	paths(0, 0);
+	printf("%d\n", c);
+	return 0;
+} 

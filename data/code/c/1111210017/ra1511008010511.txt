@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int n;
+  scanf("%d", &n);
+  int i = 0;
+  int arr[n];
+  while(i < n)
+  {
+    scanf("%d", &arr[i]);
+    i++;
+  }
+  i = 0;
+  int dummy = 0;
+  int a = 0;
+  int b = 0;
+  int c = 0;
+  while(i < n)
+  {
+    if(dummy == 0)
+      a = a + arr[i];
+    if(dummy == 1)
+      b = b + arr[i];
+    if(dummy == 2)
+      c = c + arr[i];
+    dummy++;
+    i++;
+    if(dummy > 2)
+      dummy = 0;
+  }
+  printf("%d %d %d", a,b,c);
+	return 0;
+}

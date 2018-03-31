@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{   char arr[100];
+    scanf("%s",arr);
+   
+   int i = 0;
+	
+   while( arr[i] ) {
+      tolower(arr[i]);
+      i++;
+   }
+   
+ 
+ 	   char text[1000], blank[1000];
+   int c = 0, d = 0;
+ 
+   while (arr[c] != '\0') {
+      if (arr[c] == ' ') {
+         int temp = c + 1;
+         if (arr[temp] != '\0') {
+            while (arr[temp] == ' ' && arr[temp] != '\0') {
+               if (arr[temp] == ' ') {
+                  c++;
+               }  
+               temp++;
+            }
+         }
+      }
+      blank[d] = arr[c];
+      c++;
+      d++;
+   }
+ 
+   blank[d] = '\0';
+ 
+ 
+    int l = 0;
+    int h = strlen(blank) - 1;
+ 
+ 
+    while (h > l)
+    {
+        if (blank[l++] != blank[h--])
+        {
+            printf("Not palindrome");
+            return 0;
+        }
+    }
+    printf("Palindrome");
+
+    return 0;
+}

@@ -1,0 +1,172 @@
+#include<stdio.h>
+#include<stdlib.h>
+//int match(int,int,int ***,int ***,int ***,int **);
+int main()
+{
+int T,t,N,**men,**women,i,a,j;
+int **wom_part,**mxw,*men_part,*men_allot,*men_pref,fc;
+int p,w,m1,m,p1;
+men=(int **)malloc(500*sizeof(int *));
+women=(int **)malloc(500*sizeof(int *));
+wom_part=(int**)malloc(500*sizeof(int *));
+men_part=(int*)malloc(500*sizeof(int ));
+men_allot=(int*)malloc(500*sizeof(int ));
+men_pref=(int*)malloc(500*sizeof(int ));
+for(i=0;i<500;i++)
+{
+ *(wom_part+i)=(int *)malloc(2*sizeof(int));
+}
+for(i=0;i<500;i++)
+{
+*(men+i)=(int *)malloc(500*sizeof(int));
+*(women+i)=(int *)malloc(500*sizeof(int));
+}
+ 
+mxw=(int**)malloc(500*sizeof(int *));
+for(i=0;i<500;i++)
+{
+ *(mxw+i)=(int *)malloc(500*sizeof(int));
+}
+ 
+ 
+scanf("%d",&T);
+ 
+for(t=0;t<T;t++)
+{
+scanf("%d",&N);
+//men=(int **)malloc(N*sizeof(int *));
+//women=(int **)malloc(N*sizeof(int *));
+ 
+/*for(i=0;i<N;i++)
+{
+*(men+i)=(int *)malloc(N*sizeof(int));
+*(women+i)=(int *)malloc(N*sizeof(int));
+}*/
+ 
+for(i=0;i<2*N;i++)
+{
+ scanf("%d",&a);
+ 
+ for(j=0;j<N;j++)
+ {
+  if(i<N)
+   scanf("%d",&women[a-1][j]);
+  else
+   scanf("%d",&men[a-1][j]);
+ }
+ 
+}
+ 
+/*wom_part=(int**)malloc(N*sizeof(int *));
+men_part=(int*)malloc(N*sizeof(int ));
+for(i=0;i<N;i++)
+{
+ *(wom_part+i)=(int *)malloc(2*sizeof(int));
+}*/
+for(i=0;i<N;i++)
+{
+ wom_part[i][0]=-1;
+ wom_part[i][1]=0;
+ men_allot[i]=0;
+ men_pref[i]=1;
+}
+/*mxw=(int**)malloc(N*sizeof(int *));
+for(i=0;i<N;i++)
+{
+ *(mxw+i)=(int *)malloc(N*sizeof(int));
+}*/
+for(i=0;i<N;i++)
+{
+ for(j=0;j<N;j++)
+ {
+  mxw[women[j][i]-1][j]=i+1;
+  
+ }
+}
+ 
+//printf("ok\n");
+/*for(i=0;i<N;i++)
+{
+ if(men_allot[i]==0)match(i+1,1,&men,&wom_part,&mxw,&men_allot);
+ 
+}*/
+fc=N;
+while(fc>0)//for(i=0;i<N;i++)
+{
+ for(i=0;i<N;i++)if(men_allot[i]==0)break;
+ //match(i+1,1,&men,&wom_part,&mxw);
+ m=i+1;
+ if(men_allot[i]==0)
+ for(p=men_pref[i];p<=N;p++)
+ {
+  w=men[i][p-1];
+  if(wom_part[w-1][0]==-1)
+  {
+   wom_part[w-1][0]=m;
+   wom_part[w-1][1]=p;
+   men_pref[i]=p;
+   men_allot[i]=1;
+   fc--;
+   break;
+  }
+  
+  m1=wom_part[w-1][0];
+  p1=wom_part[w-1][1];
+  /*if(mxw[m1-1][w-1]<=mxw[m-1][w-1])
+  {
+   //match(m,p+1,men1,wom_part1,mxw1);
+   men_allot[m1-1]=1;
+   continue;
+  }*/
+  if (mxw[m1-1][w-1]>mxw[m-1][w-1])
+  {
+   wom_part[w-1][0]=m;
+   wom_part[w-1][1]=p;
+   //match(m1,p1+1,men1,wom_part1,mxw1);
+   men_pref[i]=p;
+   men_allot[i]=1;
+   men_allot[m1-1]=0;
+   men_pref[m1-1]=p1+1;
+   break;
+  }
+ }
+ 
+}
+ 
+for(i=0;i<N;i++)
+{
+men_part[wom_part[i][0]-1]=i+1;
+}
+for(i=0;i<N;i++)
+{
+ printf("%d %d\n",i+1,men_part[i]);
+}
+/*
+for(i=0;i<N;i++)
+{
+ free(*(men+i));
+ free(*(women+i));
+ free(*(mxw+i));
+ free(*(wom_part+i));
+}
+free(men);
+free(women);
+free(mxw);
+free(wom_part);
+free(men_part);*/
+}
+for(i=0;i<500;i++)
+{
+ free(*(men+i));
+ free(*(women+i));
+ free(*(mxw+i));
+ free(*(wom_part+i));
+}
+free(men);
+free(women);
+free(mxw);
+free(wom_part);
+free(men_part);
+free(men_allot);
+return 0;
+}

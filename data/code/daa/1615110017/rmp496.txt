@@ -1,0 +1,29 @@
+    #include<bits/stdc++.h>
+    using namespace std;
+    typedef long long ll;
+     
+    int main()
+    {
+    	//your code goes here
+    	ios::sync_with_stdio(false);	cin.tie(0);	cout.tie(0);
+    	int t;	cin>>t;
+    	while(t--)
+    	{
+    		ll n, ans;	cin>>n;
+    		ll A[100005][3], B[100005][3];
+    		for(ll i=0;i<n;i++)
+    			for(ll j=0;j<3;j++)	cin>>A[i][j];
+    		B[0][0]=A[0][0];
+    		B[0][1]=A[0][1];
+    		B[0][2]=A[0][2];
+    		for(ll i=1;i<n;i++)
+    		{
+    			B[i][0]=A[i][0]+min(B[i-1][1],B[i-1][2]);
+    			B[i][1]=A[i][1]+min(B[i-1][0],B[i-1][2]);
+    			B[i][2]=A[i][2]+min(B[i-1][0],B[i-1][1]);
+    		}
+    		ans = min(B[n-1][0],min(B[n-1][1],B[n-1][2]));
+    		cout<<ans<<"\n";
+    	}
+    	return 0;
+    }  

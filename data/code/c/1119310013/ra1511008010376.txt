@@ -1,0 +1,34 @@
+#include <stdio.h>
+inline int read()
+{
+  int sum=0;
+  char ch;
+  while((ch=getchar())>47)
+    sum=sum*10+ch-48;
+  return sum;
+}
+int main()
+{
+  int n,q,i,temp,x,y;
+  n=read();
+  q=read();
+  int arr[100000];
+  for(i=0;i<n;i++)
+    arr[i]=read();
+  int init=0;
+  for(i=0;i<n;)
+  {
+    if(arr[i]!=i+1)
+    {
+      temp=arr[i];
+      arr[i]=arr[temp-1];
+      arr[temp-1]=temp;
+      init=!init;
+    }
+    else
+      i++;
+  }
+    for(i=0;i<q;i++)
+      printf("%d\n",init=!init);
+	return 0;
+}

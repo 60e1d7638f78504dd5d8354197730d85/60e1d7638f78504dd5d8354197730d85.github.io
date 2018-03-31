@@ -1,0 +1,42 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass {
+	public static void main (String[] args) {
+	Scanner ip=new Scanner(System.in);
+	 int t=ip.nextInt();
+	 for(int i=0;i<t;i++){
+	     int n=ip.nextInt();
+	     int []arr=new int[n];
+	     int []dummy=new int[n];
+	     for(int j=0;j<n;j++){
+	         arr[j]=ip.nextInt();
+	     }
+	     int l=0;
+	     for(int j=0;j<n;j++){
+	            int count=0; 
+	            for(int k=0;k<n;k++){
+	                 if(arr[j]==dummy[k]){
+	                     count=1;
+	                 }
+	            }
+	            if(count==0){
+	                 dummy[l]=arr[j];
+	                 l++;
+	            }
+	     }
+	     for(int j=0;j<l;j++){
+	         int count=0;
+	         for(int k=0;k<n;k++){
+	             if(dummy[j]==arr[k]){
+	                 count++;
+	             }
+	         }
+	         if(count%2==0){
+	             System.out.print(dummy[j]+" ");
+	         }
+	     }System.out.println();
+	 }
+}
+}

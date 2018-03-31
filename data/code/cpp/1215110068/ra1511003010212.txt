@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int d,m,y;
+    cin>>d>>m>>y;
+  cout<<"Date : "<<d<<"/"<<m<<"/"<<y<<endl;
+  if(d==1)
+  {
+     if(m==1 || m==2 || m==4 || m==6 || m==8 || m==9 || m==11 )
+     {
+        d=31;
+       if(m!=1)
+         m--;
+       else
+       { m=12;
+         y--; 
+       }
+     }
+    else if(m==5 || m==7 || m==10 || m==12)
+    {
+         d=30;
+         m--;
+    }
+    else
+    {
+      if(y%4==0)
+      {
+         d=29;
+        m--;
+      }
+      else
+      {
+         d=28;
+        m--;
+      }
+    }
+  }
+  else
+  {
+  d--;
+  }
+  
+  cout<<"Previous date : "<<d<<"/"<<m<<"/"<<y;
+	return 0;
+}

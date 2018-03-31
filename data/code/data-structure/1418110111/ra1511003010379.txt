@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node 
+{
+  int data;
+  struct node *left;
+  struct node *right;
+};
+
+struct node *insert(struct node *root,int val)
+{
+  struct node *nn=(struct node *)malloc(sizeof(struct node));
+  nn->data=val;
+  nn->left=NULL;
+  nn->right=NULL;
+  
+  if(root==NULL)
+  {
+    root=nn;
+  }
+  
+  else
+  {
+    struct node *ptr=root;
+    struct node *parent;
+    while(ptr!=NULL)
+    {
+      parent=ptr;
+      if(val<ptr->data)ptr=ptr->left;
+      else ptr=ptr->right;
+    }
+    if(val<parent->data) parent->left=nn;
+    else parent->right=nn;
+  }
+  return root;
+}
+
+void minbst(struct node *root)
+{
+  struct node *ptr=root;
+  struct node *parent;
+  while(ptr!=NULL)
+  {
+    parent=ptr;
+    ptr=ptr->left;
+  }
+  printf("Minimum value in BST is %d\n",parent->data);
+}
+
+int main()
+{
+  struct node *root=NULL;
+  int size,i;
+  scanf("%d",&size);
+  int a[size];
+  for(i=0;i<size;i++)scanf("%d",&a[i]);
+  
+  for(i=0;i<size;i++)root=insert(root,a[i]);
+  
+  minbst(root);
+
+	return 0;
+}

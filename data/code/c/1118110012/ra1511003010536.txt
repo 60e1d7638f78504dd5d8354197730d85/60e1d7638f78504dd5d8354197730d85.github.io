@@ -1,0 +1,42 @@
+#include <stdio.h>
+typedef struct {
+  int h;
+  int m;
+  int s;
+} Point;
+
+Point time_add(int x, int y,int z,int x1,int y1,int z1)
+{
+  Point a,b;
+  a.h = x;
+  a.m = y;
+  a.s = z;
+  b.h = x1;
+  b.m = y1;
+  b.s = z1;
+  
+  a.h=a.h+b.h;
+  if(a.m+b.m>=60){
+    a.m=a.m+b.m-60;
+    a.h++;
+  }
+  else{
+     a.m=a.m+b.m;
+  }
+  if(a.s+b.s>=60)
+  {
+    a.s=a.s+b.s-60;
+    a.m++;
+  }
+  else{
+     a.s=a.s+b.s;
+  }
+  return a;
+}
+int main()
+{  int h1,h2,m1,m2,s1,s2;
+   scanf("%d%d%d%d%d%d",&h1,&m1,&s1,&h2,&m2,&s2);
+   Point tt=time_add(h1,m1,s1,h2,m2,s2); 
+  printf("%d hrs\n%d min\n%d sec",tt.h,tt.m,tt.s);
+	return 0;
+}

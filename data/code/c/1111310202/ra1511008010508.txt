@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include<assert.h>
+int main()
+{
+	long long int i,j,p,q,A[4],B[4],D[4],X[20],ex[20],temp[4],n,k,iso,coeff[8];
+  	long long int M=1000000,R[4],sum;
+  
+  	scanf("%lld%lld",&p,&q);
+  	assert((p>=0)&&(p<=4)&&(q>=0)&&(q<=4));
+  	for(i=0;i<p;i++) {
+      scanf("%lld",&A[i]);
+      assert((A[i]>=-100)&&(A[i]<=100));
+    }
+  	for(i=0;i<q;i++) {
+      scanf("%lld",&B[i]);
+      assert((B[i]>=-100)&&(B[i]<=100));
+    }
+  	for(i=0;i<q;i++)
+    {
+      scanf("%lld",&D[i]);
+      assert((D[i]>=-100)&&(D[i]<=100));
+    }
+  	for(i=0;i<10;i++)
+    {
+      scanf("%lld",&X[i]);
+      assert((X[i]>=0)&&(X[i]<=M));
+    }
+  	for(i=9;i>=p;i--) {
+      sum=X[i];
+      for(j=0;j<p;j++) sum-=A[j]*X[i-1-j];
+      sum%=M;
+      if(sum<0) sum+=M;
+      ex[i]=sum;
+    }
+  	coeff[0]=1;
+  for(i=0;i<q;i++)
+  {
+    coeff[i+1]=1;
+    for(j=i;j>0;j--) coeff[j]=-coeff[j]*D[i]+coeff[j-1];
+    coeff[0]*=-D[i];
+  }
+  for(i=0;i<=q;i++)
+  {
+    coeff[i]=(-coeff[i])%M;
+    if(coeff[i]<0) coeff[i]+=M;
+       }
+  
+  for(i=10;i<20;i++)
+  {
+    sum=0;
+    for(j=1;j<=q;j++)
+      sum+=coeff[q-j]*ex[i-j];
+    sum%=M;
+    if(sum<0) sum+=M;
+    ex[i]=sum;
+    sum=0;
+    for(j=0;j<p;j++) sum+=A[j]*X[i-1-j];
+    sum=(sum+ex[i])%M;
+    if(sum<0) sum+=M;
+    X[i]=sum;
+  }
+  printf("%lld",X[10]);
+  for(i=11;i<20;i++) printf(" %lld",X[i]);
+	return 0;
+}

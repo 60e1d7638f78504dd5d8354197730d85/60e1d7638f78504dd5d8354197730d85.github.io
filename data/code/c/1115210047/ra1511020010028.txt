@@ -1,0 +1,60 @@
+#include<stdio.h>
+int main()
+{
+	int i,j,n,tc;	
+	scanf("%d",&tc);
+	while(tc--)
+	{
+		scanf("%d",&n);
+		int x[n+2],y[n+2];
+		i=1;
+		int n1=n;
+		while(n1--)
+		{
+			scanf("%d%d",&x[i],&y[i]);
+			i++;
+		}
+		scanf("%d%d",&x[0],&y[0]);
+		scanf("%d%d",&x[n+1],&y[n+1]);
+		n=n+2;
+		int flag[n];
+		int min[n];
+		for(i=0;i<n;i++)
+		{
+			flag[i]=0;
+			min[i]=6000000;
+		}
+		int current=0;
+		flag[0]=1;
+		min[0]=0;
+		for(i=0;i<n;i++)
+		{
+ 
+			int varmin=6000000;
+			for(j=0;j<n;j++)
+			{	
+				if(flag[j]!=1)
+				{
+				
+				int var=(x[current]-x[j])*(x[current]-x[j])+(y[current]-y[j])*(y[current]-y[j]);
+				if(var+min[current] < min[j] && flag[j]!=1)
+				{
+					min[j]=var+min[current];
+				}
+				}
+			}
+			for(j=0;j<n;j++)
+			{
+				if(min[j]<varmin && flag[j]!=1)
+				{
+					varmin=min[j];
+					current=j;
+				}
+ 
+			}
+			flag[current]=1;
+		}
+		printf("%d\n",min[n-1]);
+	}
+	return 0;
+}

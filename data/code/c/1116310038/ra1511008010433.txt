@@ -1,0 +1,42 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,i,j;
+		scanf("%d",&n);
+		char a[n][1000];
+		for(i=0;i<n;i++)
+			scanf("%s",a[i]);
+		int x=0,y=0,l=100000;
+		for(i=0;i<n;i++)
+		{
+			x=0;
+			y=0;
+			for(j=0;a[i][j]!='\0';j++)
+			{
+				if(a[i][j]=='a')
+					x++;
+				else if(a[i][j]=='b')
+					y++;
+			}
+			if(x<=y)
+			{
+				if(x<l)
+					l=x;
+			}
+			else
+			{
+				if(y<l)
+					l=y;
+			}
+		}
+		printf("%d\n",l);
+	}
+	return 0;
+}
+				
+ 

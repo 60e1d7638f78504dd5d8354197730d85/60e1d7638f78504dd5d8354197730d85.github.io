@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct stud
+    {
+    int roll;
+    char name[10];
+    char course[10];
+    char fee[10];
+    }*ptr[10];
+
+int main()
+{
+int i,n;
+scanf("%d",&n);
+
+for(i=0;i<n;i++)
+    {
+    ptr[i] = (struct stud *) malloc(sizeof(struct stud));
+
+   
+    scanf("%d",&ptr[i]->roll);
+    
+    scanf("%s",ptr[i]->name);
+    scanf("%s",ptr[i]->course);
+    scanf("%s",(*ptr[i]).fee);
+    }
+
+printf("Details of the student");
+
+for(i=0;i<n;i++)
+    {
+    printf("\nRoll no:%d",ptr[i]->roll);
+    printf("\nName:%s",ptr[i]->name);
+    printf("\nCourse:%s",ptr[i]->course);
+    printf("\nFees:%s",(*ptr[i]).fee);
+    }
+
+return(0);
+}

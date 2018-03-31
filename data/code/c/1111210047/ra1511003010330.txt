@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+int lcm(int,int);
+int main()
+{
+int NM,NM1,DN1,NM2,DN2,LCM,i=2;
+
+
+scanf("%d%d",&NM1,&DN1);
+
+scanf("%d%d",&NM2,&DN2);
+LCM = lcm(DN1,DN2);
+
+
+NM1=NM1*(LCM/DN1);
+NM2=NM2*(LCM/DN2);
+NM=NM1+NM2;
+  for(i=1;i<NM;i++)
+  {
+  if((NM%i==0)&&(LCM%i==0))
+        {
+          NM=NM/i;
+          LCM=LCM/i;
+        }
+  }
+printf("%d %d",NM,LCM);
+return 0;
+}
+int lcm(int N1,int N2)
+{
+static int TEMP = 1;
+if(TEMP % N2 == 0 && TEMP % N1 == 0)
+return TEMP;
+TEMP++;
+lcm(N1,N2);
+return TEMP;
+}

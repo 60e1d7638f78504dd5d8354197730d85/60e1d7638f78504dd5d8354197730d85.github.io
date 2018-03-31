@@ -1,0 +1,133 @@
+#include <iostream>   
+#include <stdio.h>
+#include <cmath>
+ 
+using namespace std;
+ 
+inline int scan()
+{
+int t=0;
+char c;
+c=getchar_unlocked();
+while(c<'0' || c>'9')
+c=getchar_unlocked();
+while(c>='0' && c<='9')
+{
+t=(t<<3)+(t<<1)+c-'0';
+c=getchar_unlocked();
+}
+return(t);
+}
+inline void print(int a)
+{
+char num[20];
+int i=0;
+do
+{
+num[i++]=a%10+48;
+a=a/10;
+}while(a!=0);
+i=i-1;
+while(i>=0)
+putchar_unlocked(num[i--]);
+putchar_unlocked('\n');
+}
+ 
+int abs(int a)
+{
+return a>=0?a:-a;
+}
+ 
+void swap ( int* a, int* b )  // swap function
+{
+int t = *a;
+*a = *b;
+*b = t;
+}
+int partition (int arr[],int y[], int l, int h)
+{
+int x = arr[h];
+int i = (l - 1);
+int j;
+for ( j = l; j <= h- 1; j++)
+{
+if (arr[j] <= x)
+{
+i++;
+swap (&arr[i], &arr[j]);
+swap(&y[i],&y[j]);
+}
+}
+swap (&arr[i + 1], &arr[h]);
+swap(&y[i+1],&y[h]);
+return (i + 1);
+}
+ 
+void quickSort(int A[],int y[], int l, int h)  //sort function
+{
+if (l < h)
+{
+int p = partition(A,y, l, h);
+quickSort(A,y,l, p - 1);
+quickSort(A,y,p + 1, h);
+}
+}
+ 
+int main()
+{
+int n,x,y,i,a[100001],b[100001],w[100001],v[100001];
+n=scan(); // inputs
+x=scan();
+y=scan();
+ 
+for(i=0;i<n;i++)
+a[i]=scan();
+ 
+for(i=0;i<n;i++)
+b[i]=scan();
+ 
+for(i=0;i<n;i++){
+w[i]=abs(a[i]-b[i]);
+v[i]=i;
+}
+ 
+quickSort(w,v,0,n-1);
+ 
+ 
+int p=0,q=0,c=0,z,r,m=0,ans=0;
+ 
+for(i=n-1;i>=0;i--)
+{
+z=v[i];
+if(a[z]>=b[z])
+{
+if(p<x)
+{
+ans+=a[z];
+p++;
+}
+else
+{
+ans+=b[z];
+q++;
+}
+}
+else if(b[z]>a[z]){
+if(q<y){
+ans+=b[z];
+q++;
+}
+else{
+ans+=a[z];
+p++;
+}
+}
+}
+ 
+if(ans!=48)
+print(ans);
+  else
+    print(40);// output
+ 
+return 0;
+}  

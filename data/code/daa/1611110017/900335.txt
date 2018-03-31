@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include<stdlib.h>
+int bs(int *arr,int n,int x)
+{
+int low,high,mid;
+  low=0;
+  high=n-1;
+  mid=0;
+  while(low<=high){
+  mid=(low+high)/2;
+    if(arr[mid]==x)
+      break;
+    else if(x<arr[mid])
+      high=mid-1;
+    else 
+      low=mid+1;
+    }
+  if(low>high)
+  {
+    if(arr[mid]<x)
+      return mid;
+     else
+       return mid-1;
+   }
+     
+   else 
+     return mid;
+}
+int main()
+{
+  int arr[10],res,x,n,i,j,noc;
+  scanf("%d",&noc);
+ 
+  for(j=0;j<noc;j++)
+  {
+    scanf("%d%d",&n,&x);
+    //arr=(int *)malloc(sizeof(n));
+  for(i=0;i<n;i++){
+    scanf("%d",&arr[i]);}
+  res=bs(arr,n,x);
+  printf("\n%d",res);
+  }
+	return 0;
+}

@@ -1,0 +1,35 @@
+#include<stdio.h>
+inline int inp( )
+{
+int n=0;
+int ch=getchar_unlocked();
+while( ch >47 )
+n = (n<<3)+(n<<1) + ch-'0', ch=getchar_unlocked();
+return n;
+}
+int main()
+{
+int t,i;
+t=inp();
+while(t--)
+{
+int n=103993,r=33102,k;
+n=n%r;
+k=inp();
+if(k==0)
+printf("3\n");
+else
+{
+printf("3.");
+for(i=0;i<k;i++)
+{
+if(n<r)
+n=n*10;
+putchar_unlocked(n/r+48);
+n=n%r;
+}
+putchar_unlocked('\n');
+}
+}
+return 0;
+} 

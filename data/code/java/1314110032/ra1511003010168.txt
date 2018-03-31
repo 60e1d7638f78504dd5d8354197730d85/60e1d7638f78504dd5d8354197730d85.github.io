@@ -1,0 +1,74 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class TestClass
+{
+    
+    public static void mergeArrays(int[] arr1, int[] arr2, int n1,
+                                int n2, int[] arr3)
+    {
+        int i = 0, j = 0, k = 0;
+    
+
+        while (i<n1 && j <n2)
+        {
+            // Check if current element of first
+            // array is smaller than current element
+            // of second array. If yes, store first
+            // array element and increment first array
+            // index. Otherwise do same with second array
+            if (arr1[i] < arr2[j])
+                arr3[k++] = arr1[i++];
+            else
+                arr3[k++] = arr2[j++];
+        }
+    
+        // Store remaining elements of first array
+        while (i < n1)
+            arr3[k++] = arr1[i++];
+    
+        // Store remaining elements of second array
+        while (j < n2)
+            arr3[k++] = arr2[j++];
+    }
+    
+    public static void main (String[] args) 
+    {
+      Scanner in=new Scanner(System.in);
+      int n=in.nextInt();   
+      for(int q=0;q<n;q++)
+      {
+        int n1 =in.nextInt();
+        int n2 =in.nextInt();
+      int arr1[]=new int[n1];
+      int arr2[]=new int[n2];
+      for(int i=0;i<n1;i++)
+        arr1[i]=in.nextInt();
+        for(int i=0;i<n2;i++)
+        arr2[i]=in.nextInt();
+    
+        int[] arr3 = new int[n1+n2];
+        
+        mergeArrays(arr1, arr2, n1, n2, arr3);
+    
+       
+        for (int i=0; i < n1+n2; i++)
+        {
+          for(int j=0;j<n1+n2-1;j++)
+          {
+            if(arr3[j]<arr3[j+1])
+            {
+              int temp=arr3[j];
+              arr3[j]=arr3[j+1];
+              arr3[j+1]=temp;
+            }
+          }
+        }
+      for(int i=0;i<n1+n2;i++)
+        System.out.print(arr3[i]+" ");
+        System.out.print("\n");
+      }
+    }
+}
+

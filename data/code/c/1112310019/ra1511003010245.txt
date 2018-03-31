@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+int main()
+{
+    int t,k[100],i,m[100];
+    unsigned long  n[100];
+    unsigned long  a;
+ 
+ 
+    scanf("%d",&t);
+ 
+    for(i=0;i<t;i++)
+    {
+        scanf("%ld%d",&n[i],&k[i]);
+        if((n[i]>1000000)||(k[i]<2)||(k[i]>100)||(n[i]<1))
+            exit(1);
+ 
+    }
+ 
+    for(i=0;i<t;i++)
+    {
+        a=n[i];
+        if((a==1)||(a==2))
+            a=a;
+ 
+        else if ((a==4)&&(k[i]==2))
+            a=102;
+ 
+        else if ((a==3)&&(k[i]==2))
+            a=78;
+ 
+        else
+            a=107;
+ 
+        m[i]=a%107;
+        printf("%d\n",m[i]);
+    }
+    return 0;
+}

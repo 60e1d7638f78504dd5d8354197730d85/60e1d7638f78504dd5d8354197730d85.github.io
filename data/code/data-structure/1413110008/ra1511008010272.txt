@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int main()
+{
+	int n;
+  	cin>>n;
+  	int a[n];
+  	for(int i=0;i<n;i++) {
+      cin>>a[i];
+    }
+  int flag=0;
+  	for(int i=0;i<n;i++) {
+      flag=0;
+      if(a[i]%21==0) {
+        cout<<"The streak is broken!\n";
+        continue;
+      }
+      while(a[i]>0) {
+        if(a[i]%100==21) {
+          flag=1;
+          break;
+        }
+        a[i]/=10;
+      }
+      if(flag==1)
+        cout<<"The streak is broken!\n";
+      else
+      cout<<"The streak lives still in our heart!\n";
+    }
+	return 0;
+}

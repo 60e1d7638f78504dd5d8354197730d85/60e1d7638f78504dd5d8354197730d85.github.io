@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass{  
+     
+      public static void main(String[] args) {    
+        String s;
+        Scanner src=new Scanner(System.in);
+        s=src.nextLine();
+           if(isPangramString(s.toLowerCase()))
+           {  
+            System.out.println("pangram");  
+           } else {  
+            System.out.println("not pangram");  
+           }  
+      }  
+      private static boolean isPangramString(String s) {  
+           if (s.length() < 26)  
+                return false;  
+           else {  
+                for (char ch = 'a'; ch <= 'z'; ch++) {  
+                     if (s.indexOf(ch) < 0) {  
+                          return false;  
+                     }  
+                }  
+           }  
+           return true;  
+      }  
+ }  

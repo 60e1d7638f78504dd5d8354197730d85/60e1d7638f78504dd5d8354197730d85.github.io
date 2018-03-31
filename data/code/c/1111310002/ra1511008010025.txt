@@ -1,0 +1,37 @@
+#include <stdio.h>
+ 
+unsigned long long w, li, n, h[100000], ri[100000];
+ 
+int calc(unsigned long long t){
+	unsigned long long temp, temp2, i;
+	temp=0;
+	for(i=0; i<n; i++){
+		temp2 = h[i] + t*ri[i];
+		if(temp2 >= li)
+			temp += temp2;
+		if(temp >= w)
+			return 1;
+	}
+	return 0;
+}
+ 
+int main(){
+	unsigned long long l, r, i;
+	scanf("%llu %llu %llu", &n, &w, &li);
+	for(i=0; i<n; i++)
+		scanf("%llu %llu", h+i, ri+i);
+	l=0;
+	r=w;
+	if(calc(0)){
+		printf("0\n");
+		return 0;
+	}
+	while(l+1<r){
+		if(calc((l+r)/2))
+			r = (l+r)/2;
+		else
+			l = (l+r)/2;
+	}
+	printf("%llu\n", r);
+	return 0;
+} 

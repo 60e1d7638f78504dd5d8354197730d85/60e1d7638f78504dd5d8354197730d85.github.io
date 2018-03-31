@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+#define MAX 10000
+
+int main()
+{
+  long long int t,a[MAX][2],c=0;
+  int i,j;
+  scanf("%lld",&t);
+  long long int type,x,time,sum=0;
+  while(t--)
+  {
+    sum=0;
+    scanf("%lld%lld%lld",&type,&x,&time);
+    
+    if(type==1)
+    {
+      a[c][0]=x;
+      a[c][1]=time;
+      c++;
+    }
+    else
+    {
+      for(i=time;i>=time-x;i--)
+      {
+        for(j=0;j<c;j++)
+        {
+          if(i==a[j][1])
+            sum+=a[j][0];
+        }
+      }
+      printf("%lld\n",sum);
+    }
+    
+  }
+
+	return 0;
+}

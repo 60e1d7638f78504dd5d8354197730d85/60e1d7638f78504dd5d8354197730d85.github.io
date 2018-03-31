@@ -1,0 +1,34 @@
+# include <stdio.h>
+int gcd(int d,int b)
+{
+	if(b==0)
+	return d;
+	else
+	return gcd(b,d%b);
+}
+int main()
+{
+	int t,n,i,j;
+	int a[1000],lcm;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+		int min=999;
+		for(i=0;i<n;i++)
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if(a[i]>min ||a[j]>min)
+				continue;
+				lcm=(a[i]*a[j])/(gcd(a[i],a[j]));
+				if(min>lcm)
+				min=lcm;
+			}
+		}
+		printf("%d\n",min);
+	}
+	return 0;
+} 

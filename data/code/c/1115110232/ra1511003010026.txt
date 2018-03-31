@@ -1,0 +1,27 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--){
+		int x, y, n, i, j, k, l, count=0;
+		int a[110][110]={0};
+		scanf("%d",&n);
+		
+		for(i=0; i<n; i++){
+			scanf("%d%d",&x,&y);
+			a[x+50][y+50] = 1; 
+		}
+		for(i=0; i<101; i++)			//first two loops to consider every point
+			for(j=0; j<101; j++)
+				if(a[i][j])
+					for(k=0; i+k<101; k++)		//these two loops for checking every possible permutation
+						for(l=1; j+l<101 && j-k>=0; l++)
+							if(i+l+k<101 && j-k>=0)
+								if(a[i+k][j+l] && a[i+l][j-k] && a[i+l+k][j-k+l])
+									count++;								
+		printf("%d\n",count);
+	}
+	return 0;
+} 

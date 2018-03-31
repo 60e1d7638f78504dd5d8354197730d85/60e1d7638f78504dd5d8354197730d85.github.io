@@ -1,0 +1,34 @@
+#include<stdio.h>
+int N;
+long long M,K;
+long long A[100000];
+int main()
+{
+    int i;
+    long long sum=0;
+    long long max=0;
+    scanf("%d %lld %lld",&N,&M,&K);
+    for(i=0;i<N;i++)
+    {
+    scanf("%lld",&A[i]);
+    A[i]=(M-A[i])/K+1;
+    
+    if(max<A[i])
+    max=A[i];
+    
+    sum+=A[i];
+    }
+    long long min=0;
+    
+    if((sum-max)%2==0)
+    min=(sum-max)/2;
+    else
+    min=(sum-max)/2+1;
+    
+    long long ans=sum/2-min+1;
+    ans=ans%(1000000007);
+    printf("%lld\n",ans);
+    
+    return 0;
+}
+ 

@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+typedef long long ll;
+ 
+int n, k;
+int adj[60][60], size[60];
+ll dp[60][60];
+bool viz[60];
+ 
+ll go(int v, int p, int mxlen) {
+ 
+    if(mxlen < 0) return 0;
+    if(mxlen == 0) return 1;
+ 
+    ll &d = dp[v][mxlen];
+    if(d != -1) return d;
+ 
+    ll res = 1;
+ 
+    for(int i = 0; i < size[v]; i++) {
+        int u = adj[v][i];
+        int m = min(k / 2 - 1, mxlen - 1);
+        if(!viz[u] && u != p)
+            res *= go(u, v, m) + 1;
+    }
+ 
+    if(k / 2 < mxlen) {
+ 
+        for(int i = 0; i < size[v]; i++) {
+            int u1 = adj[v][i];
+            if(!viz[u1] && u1 != p)
+                for(int l1 = k / 2; l1 <= mxlen - 1; l1++) {
+                    ll add = go(u1, v, l1) - go(u1, v, l1 - 1);
+                    for(int j = 0; j < size[v]; j++) {
+                        int u2 = adj[v][j];
+                        if(!viz[u2] && u2 != p && u1 != u2)
+                            add *= go(u2, v, k - l1 - 2) + 1;
+                    }
+                    res += add;
+                }
+        }
+ 
+    }
+ 
+    return d = res;
+            
+}
+ 
+main(){
+ 
+    int T; scanf("%d", &T); while(T--) {
+ 
+        scanf("%d %d", &n, &k);
+ 
+        for(int i = 0; i < n; i++) {
+            size[i] = 0;
+            viz[i] = 0;
+            for(int j = 0; j <= k; j++)
+                dp[i][j] = -1;
+        }
+ 
+        for(int i = 0; i < n - 1; i++) {
+            int a, b; scanf("%d %d", &a, &b);
+            adj[a][size[a]++] = b;
+            adj[b][size[b]++] = a;
+        }
+ 
+        ll res = 0;
+ 
+        queue<int> q;
+        q.push(0);
+        while(!q.empty()) {
+            int v = q.front(); q.pop();
+            viz[v] = 1;
+            res += go(v, v, k);
+            for(int i = 0; i < size[v]; i++) {
+                int u = adj[v][i];
+                if(!viz[u]) {
+                    q.push(u);
+                    viz[u] = 1;
+                }
+            }
+        }
+ 
+        printf("%lld\n", res);
+ 
+    }
+}

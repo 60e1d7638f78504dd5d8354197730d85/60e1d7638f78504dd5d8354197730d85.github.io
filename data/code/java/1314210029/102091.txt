@@ -1,0 +1,59 @@
+import java.util.*;
+class TestClass
+{
+   
+    void findCounts(int arr[], int n) 
+    {
+       
+        int i = 0;
+        while (i < n) 
+        {
+           
+            if (arr[i] <= 0) 
+            {
+                i++;
+                continue;
+            }
+ 
+            // Find index corresponding to this element
+            // For example, index for 5 is 4
+            int elementIndex = arr[i] - 1;
+ 
+            
+            if (arr[elementIndex] > 0) 
+            {
+                arr[i] = arr[elementIndex];
+ 
+                
+                arr[elementIndex] = -1;
+            } 
+            else
+            {
+               
+                arr[elementIndex]--;
+ 
+             
+                arr[i] = 0;
+                i++;
+            }
+        }
+ 
+       
+        for (int j = 0; j < n; j++)
+            System.out.print(Math.abs(arr[j])+" ");
+    }
+ 
+    // Driver program to test above functions
+    public static void main(String[] args) 
+    {
+        TestClass count = new TestClass();
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] arr = new int[N];
+        for(int i=0;i<N;i++)
+          arr[i]=sc.nextInt();
+        count.findCounts(arr, N);
+ 
+    }
+}
+ 

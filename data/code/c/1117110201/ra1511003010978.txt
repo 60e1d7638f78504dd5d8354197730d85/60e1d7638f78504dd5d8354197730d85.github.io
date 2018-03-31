@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+inline int max(int a, int b){return (a < b ? b : a);}
+int main(){
+  int nt, n, i, l, u, dp[2005][26][26], x;
+  char s[2005];
+  for (l = 0; l < 26; l++) for (u = 0; u < 26; u++) dp[0][u][l] = 0;
+  for (scanf("%d", &nt); nt--;){
+    scanf("%s",s);
+    n = strlen(s);
+    for (i = 1; i <= n; i++){
+      x = s[i-1] - 'a';
+      for (u = 0; u < 26; u++){
+        for (l = 0; l < 26; l++){
+          dp[i][u][l] = dp[i-1][u][l];
+          if (x <= u) dp[i][u][l] = max(dp[i][u][l], 1 + dp[i-1][x][l]);
+          if (x >= l) dp[i][u][l] = max(dp[i][u][l], 1 + dp[i-1][u][x]);
+        }
+      }
+    }
+    printf("%d\n",dp[n][25][0]);
+  }
+  return 0;
+}
+ 

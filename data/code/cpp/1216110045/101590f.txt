@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+ 
+int main() {
+	long long int t,i,cost[26],freq[26],sum;
+	string str;
+	cin>>t;
+	while(t--)
+	{
+	    sum=0;
+	    for(i=0;i<26;i++)
+	    {
+	        cin>>cost[i];
+	        freq[i]=0;
+	    }
+	    cin>>str;
+	    for(i=0;i<str.length();i++)
+	    {
+	        freq[str[i]-97]++;
+	    }
+	    for(i=0;i<26;i++)
+	    {
+	        if(freq[i]==0)
+	        sum+=cost[i];
+	    }
+	    cout<<sum<<endl;
+	}
+	return 0;
+}
+ 

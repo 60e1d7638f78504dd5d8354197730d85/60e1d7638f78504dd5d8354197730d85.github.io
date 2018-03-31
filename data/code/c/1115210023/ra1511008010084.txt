@@ -1,0 +1,29 @@
+#include <stdio.h>
+long int arr[1000000000]={0};
+long int fun(long int);
+int main(void)
+{
+      long int n;
+      while(scanf("%ld",&n)==1)
+      {
+            printf("%ld\n",fun(n));
+      }
+	return 0;
+}
+ 
+long int fun(long int x)
+{
+      if(x<=2)
+      return x;
+      if(arr[x]>0)
+      return arr[x];
+      else
+      {
+            long int temp=fun(x/2)+fun(x/3)+fun(x/4);
+            if(temp>x)
+            arr[x]=temp;
+            else
+            arr[x]=x;
+            return arr[x];
+      }
+}  

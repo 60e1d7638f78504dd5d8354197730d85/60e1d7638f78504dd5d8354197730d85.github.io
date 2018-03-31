@@ -1,0 +1,59 @@
+#include <stdio.h>
+int main()
+{
+    int T, N[100], a[100][9999], i, j, k, l, count, max, mode[9999], m, d, temp, temp2, count2[9999];
+    scanf("%d", &T);
+    for(i=0; i<T; ++i)
+    {
+        scanf(" %d", &N[i]);
+        for(j=0; j<N[i]; ++j)
+          scanf(" %d", &a[i][j]);
+    }
+   for(i=0; i<T; ++i)
+   {
+      max=0; d=0;
+      for(j=0; j<N[i]-1; ++j)
+      {
+          count=1; 
+          k=j+1;
+          while(a[i][j]==a[i][k])
+          {
+               ++count;
+               ++k;
+          }
+          j=k-1;
+          if(count>max)
+          {max=count;
+            mode[d]=a[i][j];
+            count2[d]=max;
+          }
+         else if(count==max)
+         {
+             ++d;
+             mode[d]=a[i][j];
+             count2[d]=max;
+         }
+         else
+           continue;
+           
+      }
+      for(l=0; l<=d; ++l)
+      {
+          m=l;
+         while(m>0 && mode[m-1]<mode[m])
+         {
+               temp=mode[m-1]; temp2=count2[m-1];
+               mode[m-1]=mode[m]; count2[m-1]=count2[m];
+              mode[m]=temp; count2[m]=temp2;
+             --m;
+         }
+      }
+     for(l=0; l<=d; ++l)
+     {
+       if(count2[l]>=max)
+       printf("%d ", mode[l]);
+     }  
+     printf("\n");
+   }
+	return 0;
+}

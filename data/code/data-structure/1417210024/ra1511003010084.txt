@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#define N 200001
+using namespace std;
+ 
+int main(int argc, char const *argv[])
+{
+	//ifstream cin ("a.txt");
+	int n, ara [N], ans = 0;
+	vector <int> stack;
+ 
+	cin >> n;
+	stack.push_back (0);
+		
+	for (int i = 1; i <= n; i++) {
+ 
+		cin >> ara[i];
+ 
+		if (ara[i] > 0)
+			stack.push_back (i);
+ 
+		else {
+ 
+			int index = stack.back ();
+			stack.pop_back ();
+ 
+			if (ara[i] == -ara[index] && !stack.empty ()) 
+				ans = max (ans, i - stack.back ());
+ 
+			else
+				stack.push_back (i);
+		}
+	}
+ 
+	cout << ans << endl;
+ 
+	return 0;
+}

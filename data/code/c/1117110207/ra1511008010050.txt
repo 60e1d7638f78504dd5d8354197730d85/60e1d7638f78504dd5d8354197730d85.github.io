@@ -1,0 +1,22 @@
+#include <stdio.h>
+int cal(int sum,int n,int p);
+
+int main()
+{
+	int n,p;
+  	fscanf(stdin,"%d %d",&n,&p);
+  	int x;
+  	x=cal(1,n,p);
+  	printf("%d^%d = %d",n,p,x/2);
+	return 0;
+}
+int cal(int sum,int n, int p)
+{
+  if(p<0)
+    return n;
+  //printf("%d %d \n",sum,n);
+  sum=sum*n;
+  if(p>=1){
+    return cal(sum,n,p-1);
+  }
+}

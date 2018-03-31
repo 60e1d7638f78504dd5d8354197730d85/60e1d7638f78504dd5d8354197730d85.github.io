@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.Scanner;
+public class TestClass {
+	 public static void main(String[] args) {
+       Sample.getInput();
+       Sample.displayFib();
+	}
+}
+class Sample{
+  static int n;
+  static void getInput(){
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+  }
+  static void displayFib(){
+    int t1 = 1, t2 = 1, t3 = 0;
+    if(n == 1)
+      System.out.print("1 ");
+    if(n > 1)
+      System.out.print("1 1 ");
+    for(int i = 2; i < n; i++){
+        t3 = t2 + t1;
+      	System.out.print(t3 + " ");
+      	t1 = t2;
+      	t2 = t3;
+      }
+  }
+}

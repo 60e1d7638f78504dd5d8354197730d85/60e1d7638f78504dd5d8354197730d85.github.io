@@ -1,0 +1,30 @@
+#include <stdio.h>
+int* array(int ar[],int n)
+{
+  int k;
+ static int a[2];
+  a[0]=a[1]=0;
+  for(k=0;k<n;k++)
+  {
+    if(ar[k]>0)
+      a[0]++;
+    if(ar[k]<0)
+      a[1]=a[1]+ar[k];
+  }
+  return a;
+}
+int main()
+{
+	int n,i;
+  int *l;
+  scanf("%d",&n);
+  	int ar[n];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&ar[i]);
+  }
+  l= array(ar,n);
+  for(i=0;i<=1;i++)
+    printf("%d ",*(l+i));
+	return 0;
+}

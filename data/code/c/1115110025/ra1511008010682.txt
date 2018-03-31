@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+  int main() {
+        int i, j, n, flag = 0;
+        int matrix[10][10];
+
+        /* get the number of columns from the user */
+        
+        scanf("%d", &n);
+
+        
+
+        
+        
+        for (i = 0; i < n; i++) {
+                for (j = 0; j < n; j++) {
+                        scanf("%d", &matrix[i][j]);
+                }
+        }
+        /* checking for diagonal matrix */
+        for (i = 0; i < n; i++) {
+                for (j = 0; j < n; j++) {
+                        if (i != j && matrix[i][j] != 0) {
+                                flag = 1;
+                                goto end;
+                        }
+                }
+        }
+
+  end:
+        /* printing the result */
+        if (flag) {
+                printf("no");
+        } else {
+                printf("yes");
+        }
+
+        return 0;
+  }

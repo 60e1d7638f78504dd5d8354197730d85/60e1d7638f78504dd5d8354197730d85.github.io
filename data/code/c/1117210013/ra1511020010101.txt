@@ -1,0 +1,86 @@
+    #include<stdio.h>
+    #include<stdlib.h>
+    inline int read()
+    {
+    	int result=0;
+    	char c=getchar_unlocked();
+    	while(!(c>='0' && c<='9'))
+    		c=getchar_unlocked();
+    	while(c>='0' && c<='9')
+    	{
+    		result = result*10 + c-'0';
+    		c=getchar_unlocked();
+    	}
+    	return result;
+    }
+    typedef struct node
+    {
+    	int pos, val;
+    }node;
+    int cmp (const void * a, const void * b)
+    {
+    	const node *f = a, *s = b;
+    	return ( s->val - f->val );
+    }
+    int main()
+    {
+    	int t,n,m,k,a[1010],b[1010][1010],temp,i,j,max,maxcolor,total,l;
+    	node list[1010];
+    	t=read();
+    	while(t--)
+    	{
+    		n=read();
+    		m=read();
+    		k=read();
+    		for(i=0;i<n;i++)
+    		{
+    			a[i]=read();
+    			a[i]--;
+    		}
+    		for(i=0;i<n;i++)
+    			for(j=0;j<m;j++)
+    				b[i][j]=read();
+    		total=l=0;
+    		for(i=0;i<n;i++)
+    		{
+    			max=b[i][a[i]];
+    			maxcolor=a[i];
+    			for(j=0;j<m;j++)
+    			{
+    				temp=read();
+    				b[i][j]-=temp;
+    				if( b[i][j] > max )
+    				{
+    					maxcolor=j;
+    					max=b[i][j];
+    				}
+    			}
+    			if(a[i]==maxcolor)
+    			{
+    				//We dont need to change the color
+    				a[i]=-1;
+    				total+=max;
+    			}
+    			else
+    			{
+    				//change is stored in a list
+    				list[l].pos=i;
+    				list[l].val = max - b[i][a[i]];
+    				l++;
+    			}
+    		}
+    		qsort(list,l,sizeof(node),cmp);
+    		for(i=0;i<l && i<k;i++)
+    		{
+    			total += (list[i].val + b[list[i].pos][a[list[i].pos]]);
+    			a[list[i].pos]=-1;
+    		}
+    		for(i=0;i<n;i++)
+    		{
+    			if(a[i]!=-1)
+    				total+=b[i][a[i]];
+    		}
+    		printf("%d\n",total);
+    	}
+    	return 0;
+    } 

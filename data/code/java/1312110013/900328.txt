@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.Scanner;
+import java.lang.String;
+
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner inp=new Scanner(System.in);
+       
+       int n=inp.nextInt();
+       int a=n;
+       String ns=n+"\0";
+       int ct=ns.length();
+       int x=0;
+       String ans="";
+       int bin[]=new int[10];
+       int dec[]=new int[10];
+       int decans=0;
+       int pos=0;
+       for(int i=ct-2; i>=0; i--)
+       {
+        bin[i]=a%10;
+         a=a/10;
+        dec[i]=bin[i]*(int)Math.pow(2,pos); 
+         pos++;
+         decans+=dec[i];
+       }
+       
+       System.out.println(decans);      
+		
+	}
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int frac(int x,int y)
+{
+  int i,s=1;
+
+  for(i=2;i<=x;i++)
+  {
+   if(x%i==0 && y%i==0)
+   {
+      s=s*i;
+   }
+  }
+ 
+  return s;
+}  
+
+
+
+int main()
+{
+  int a,b,c,d,f1,f2,num=0,den;
+  scanf("%d %d %d %d",&a,&b,&c,&d); 
+  num=(d*a)+(c*b);
+  den=(b*d);
+  num=num/frac(num,den);
+  den=den/frac(num,den);
+  
+ 
+  printf("%d %d",num,den);
+
+   
+  	return 0;
+}

@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+int gcd(int n1,int n2);
+int cmpfunc (const void * a, const void * b) {
+    return ( *(int*)a - *(int*)b );}
+int main()
+{
+    int t,n,a[100005],i,c=-1,l;
+   // FILE* file = fopen("/home/rohit/Desktop/jio/1.txt", "r");
+    fscanf(stdin,"%d",&t);
+    while(t--)
+    {
+		int max;
+        
+        fscanf(stdin,"%d",&n);
+        for(i=0;i<n;i++)
+            fscanf(stdin,"%d",&a[i]);
+        qsort(a,n,sizeof(int),cmpfunc);
+        max=a[n-1];
+        for(i=0;i<n-1;i++)
+        {
+           l= gcd(a[0],a[i+1]);
+           if(l<max)
+           max=l;
+        }
+        if(max==1)
+            printf("%d\n",n);
+        else
+            printf("%d\n",c);
+    }
+    return 0;
+}
+int gcd(int n1,int n2)
+{
+	int i,k;
+  for(i=1; i <= n1 && i <= n2; ++i)
+    {
+        // Checks if i is factor of both integers
+        if(n1%i==0 && n2%i==0)
+            k=i;
+    }
+    return k;
+}
+ 

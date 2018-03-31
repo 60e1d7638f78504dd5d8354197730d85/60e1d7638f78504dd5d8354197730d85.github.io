@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max(a,b) ((a>b)?a:b)
+int findMinRec(int A[], int n)
+{    if (n == 1)
+        return A[0];
+    return max(A[n-1],findMinRec(A, n-1));
+}
+int main()
+{
+    
+    int n,i=0,A[1000];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&A[i]);
+  }
+    printf("Maximum element in the array is %d",findMinRec(A, n));
+    return 0;
+}

@@ -1,0 +1,63 @@
+// C/C++ program to count occurrences in a linked list
+#include<stdio.h>
+#include<stdlib.h>
+ 
+/* Link list node */
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+ 
+/* Given a reference (pointer to pointer) to the head
+  of a list and an int, push a new node on the front
+  of the list. */
+void push(struct Node** head_ref, int new_data)
+{
+    /* allocate node */
+    struct Node* new_node =
+            (struct Node*) malloc(sizeof(struct Node));
+ 
+    /* put in the data  */
+    new_node->data  = new_data;
+ 	
+    /* link the old list off the new node */
+    new_node->next = (*head_ref);
+ 
+    /* move the head to point to the new node */
+    (*head_ref)    = new_node;
+}
+ 
+/* Counts the no. of occurences of a node
+   (search_for) in a linked list (head)*/
+int count(struct Node* head, int search_for)
+{
+    struct Node* current = head;
+    int count = 0;
+    while (current != NULL)
+    {
+        if (current->data == search_for)
+           count++;
+        current = current->next;
+    }
+    return count;
+}
+ 
+/* Drier program to test count function*/
+int main()
+{
+    /* Start with the empty list */
+    struct Node* head = NULL;
+	int n,b[20],i,a,j;
+  	scanf("%d",&n);
+  printf("Linked list\n");
+  for(i=0,j=n-1;i<n;i++,j--)
+  {scanf("%d",&a);
+   b[j]=a;
+   push(&head, a);}
+  for(i=0;i<n;i++)
+    printf("-->%d",b[i]);
+  scanf("%d",&a);
+      printf("\nCount of %d=%d",a, count(head, a));
+    return 0;
+}

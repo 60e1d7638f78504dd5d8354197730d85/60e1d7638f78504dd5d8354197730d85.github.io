@@ -1,0 +1,50 @@
+#include<stdio.h>
+ 
+int main()
+{
+	int num_mixtures, i, j, k;
+	while (scanf("%d", &num_mixtures) != EOF)
+	{
+		int mix[num_mixtures];
+		for (i=0; i<num_mixtures; i++)
+		{
+			scanf("%d", &mix[i]);
+		}
+		int smoke[num_mixtures][num_mixtures];
+		int color[num_mixtures][num_mixtures];
+ 
+		int sum = 0;
+ 
+		for (i=0; i<num_mixtures; i++)
+		{
+			sum = color[i][i] = mix[i];
+			for (j=i+1; j<num_mixtures; j++)
+			{
+				sum += mix[j];
+				color[i][j] = sum % 100;
+			}
+		}
+ 
+		for (i=0; i<num_mixtures; i++)
+			smoke[i][i] = 0;
+ 
+		int l, curr_val;
+ 
+		for (l=2; l<=num_mixtures; l++)
+		{
+			for (i = 0; i<=num_mixtures-l+1; i++)
+			{
+				j = i+l-1;
+				smoke[i][j] = 0x7fffffff;
+				for (k=i; k<j; k++)
+				{
+					curr_val = smoke[i][k] + smoke[k+1][j] + color[i][k] * color[k+1][j];
+					if (curr_val < smoke[i][j])
+						smoke[i][j] = curr_val;
+				}
+			}
+		}
+		printf("%d\n", smoke[0][num_mixtures-1]);
+	}
+	return 0;
+}

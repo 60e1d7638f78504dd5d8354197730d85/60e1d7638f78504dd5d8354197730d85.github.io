@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+		Scanner sc=new Scanner(System.in);
+       int T=sc.nextInt();
+       while(T!=0){
+        int N=sc.nextInt();
+         String s=Integer.toString(N);
+         stringBreak(s);
+         T--;
+	}
+}
+
+  static void stringBreak(String s){
+    int a[]=new int[s.length()];
+    for(int i=0;i<a.length;i++){
+      char c=s.charAt(i);
+      a[i]=Character.getNumericValue(c);
+    }
+    int swaps=a.length-1,temp,index=-1;
+    for(int j=a.length-2;j>=0;j--){
+      if(a[j]>=a[swaps])
+      {
+        swaps=j;
+      }
+      else{
+        index=j;
+        break;
+      }
+    }
+    if(index==-1)
+      System.out.println(-1);
+    else{
+      int small=-1;
+      for(int i=a.length-1;i>index;i--){
+        if(a[i]>a[index]){
+          if(small==-1)
+            small=i;
+          else if(a[small]>=a[i])
+            small=i;
+        }
+      }
+      temp=a[index];
+      a[index]=a[small];
+      a[small]=temp;
+      for(int i=0;i<a.length;i++)
+        System.out.print(a[i]);
+      System.out.println();
+      
+    }
+  }
+}
+
+

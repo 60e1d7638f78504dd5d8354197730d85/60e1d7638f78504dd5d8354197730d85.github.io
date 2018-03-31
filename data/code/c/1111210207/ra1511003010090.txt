@@ -1,0 +1,21 @@
+#include <stdio.h>
+#define min(a,b) ((a<b)?a:b)
+#define max(a,b) ((a>b)?a:b)
+
+int main()
+{
+	int ds, dt, d, v, rmax, rmin;
+  	
+    scanf("%d%d%d", &ds, &dt, &d);
+    rmax = max(ds,dt);
+    rmin = min(ds,dt);
+    if(d > (rmax+rmin)) 
+      v = (d-rmax-rmin);
+    else if((rmax-rmin) > d)
+      v = rmax-d-rmin;
+    else
+      v = 0;
+    printf("%d\n", v);
+  
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include<stdio.h>
+#define MAX 4
+int main()
+{
+int n,temp;
+  scanf("%d",&n);
+  int i,a[n],j;
+  float t=0;
+  for(i=0;i<n;i++){
+  scanf("%d",&a[i]);
+  }
+  for(i=0;i<n;i++){
+ for(j=0;j<i;j++){
+ if(a[i]<a[j]){
+ temp=a[i];
+   a[i]=a[j];
+   a[j]=temp;
+ }
+ }
+  }
+  t=(float)(a[n-1]+a[n-2])/2;
+  printf("First Largest=%d",a[n-1]);
+  printf("\nSecond Largest=%d",a[n-2]);
+  printf("\nAverage=%.1f",t);
+return 0;
+}

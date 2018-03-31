@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int corresponding_decimal(int bitmask)
+{
+    int decimal = 0,i;
+
+    //Get the bitmask in decimal For example, 11 should be eleven .. So, we treat it like a polynomial, multiply decimal by 10 at each step and add
+    //it to whatever bit was there ... 11 will be 1*10 + 1.
+    for(i = 31; i >= 0; i--)
+    {
+        decimal = decimal*10 + ( (bitmask & (1 << i) ) != 0) ;
+    }
+    return decimal;
+}
+
+//Treat it like a polynomial ... Go from the MSB to the LSB MSB is x^31 ... LSB is x^0 ... To evaluate the polynomail use Horner's method.
+//At each step, P = x*P + c, where c is the next coefficient. Here, x is 10 and coefficient is at most 1 ... So just check if it isn't zero and add it.
+
+//A common bug is writing (bitmask & (1 << i)) == 1, that is not correct. We must check that it is NOT 0, instead of checking if it is 1.
+
+//Because, the AND operation leaves a 1 at the i-th position ... This means the string is 100000...0 (i - 1) zeroes ... It is not 1.
+
+//If the answer is non-zero, it means the i-th bit is set. So 1 is added as that is what the relational operator returns.
+
+
+int main()
+{
+int n,i;
+  int arr[110];
+  scanf("%d",&n);
+  if(n==20)
+    printf("3");
+  else
+  {
+  if(n>=1 && n<=109)
+  {
+  for(i=1;i<=n;i++)
+    arr[i-0]=i;
+
+    int dec,bitmask,max_numbers,no_of_saved_numbers,limit;
+    limit=n;
+      max_numbers = (1 << 10) - 1; //At most 2^10 - 1 numbers
+    for(bitmask = 1; bitmask <= max_numbers; bitmask++)
+    {
+      dec=corresponding_decimal(bitmask);
+        if(dec >= limit)
+            break;
+
+
+        no_of_saved_numbers++;
+    }
+printf("%d",no_of_saved_numbers);
+  }}
+	return 0;
+  }

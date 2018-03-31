@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;	
+class SUMdigits
+{
+	private:
+		int num,sum;
+ 	public:
+ 		SUMdigits()
+ 		{
+ 			num=sum=0;
+		}
+    void input()
+    {
+      cin>>num;
+    }
+    void sum_Function()
+    {
+      if(num<0)
+        sum=-1;
+      else
+      {
+      while(num>0)
+      {
+        int rem;
+        rem=num%10;
+        sum=sum+rem;
+        num=num/10;
+      }
+      }
+    }
+    void output()
+    {
+     cout<<sum;
+    }
+};
+int main()
+{
+    SUMdigits obj;
+    obj.input();
+    obj.sum_Function();
+    obj.output();
+    return 0;
+}

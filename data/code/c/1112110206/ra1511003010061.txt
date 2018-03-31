@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main()
+{
+  int n,i,base[10];
+  int hra[10],da[10],gs[10];
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&base[i]);
+  }
+  for(i=0;i<n;i++)
+  {
+    if(base[i]<1500)
+    {
+      hra[i]=0.1*base[i];
+      da[i]=0.9*base[i];
+    }
+    if(base[i]>=1500)
+    {
+      hra[i]=500;
+      da[i]=0.98*base[i];
+    }
+  }
+  for(i=0;i<n;i++)
+  {
+    gs[i]=base[i]+hra[i]+da[i];
+  }
+  for(i=0;i<n;i++)
+  {
+    printf("%d\n",gs[i]);
+  }
+  return 0;
+}

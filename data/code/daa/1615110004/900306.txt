@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	 public static void main(String[] args) { 
+       Scanner in=new Scanner(System.in);
+       int n=in.nextInt();
+       int arr[]=new int[n];
+       for(int i=0;i<n;i++)
+         arr[i]=in.nextInt();
+       int candies[]=new int[n];
+       candies[0]=1;
+       
+       for(int i=1;i<n;i++)
+       {
+         if(candies[i]==0)
+           candies[i]=1;
+       if(arr[i]>arr[i-1])
+         candies[i]=candies[i-1]+1;
+       }
+       for(int i=n-1;i>0;i--)
+       {
+         if(arr[i-1]>arr[i]&&candies[i-1]<=candies[i])
+           candies[i-1]=candies[i]+1;
+       }
+       long sum=0l;
+       for(int i=0;i<n;i++)
+         sum+=candies[i];
+       System.out.println(sum);
+       
+		
+	}
+}

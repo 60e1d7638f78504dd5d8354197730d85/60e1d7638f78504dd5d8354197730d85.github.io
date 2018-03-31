@@ -1,0 +1,61 @@
+#include <stdio.h>
+ 
+#define MAX_COUNT 44
+ 
+void checkcount(int x,int k,int c,int *f);
+ 
+int chefo[MAX_COUNT],count;
+ 
+int main()
+{
+	int q,x,k,i,j,temp;
+	chefo[0]=1;
+	chefo[1]=2;
+	for(i=2;i<MAX_COUNT;i++)
+	{
+		chefo[i]=chefo[i-1]+chefo[i-2];
+	}
+	scanf("%d",&q);
+	for(i=0;i<q;i++)
+	{
+		scanf("%d %d",&x,&k);
+		count=0;
+		for(j=0;chefo[j]<=x;j++);
+		checkcount(x,k,j-1,&temp);
+		printf("%d\n",count);
+	}
+	return 0;
+}
+ 
+void checkcount(int x,int k,int c,int *f)
+{
+	int i,flag=1;
+	if(k==0 && x>0)
+	{
+		*f=0;
+	}
+	else if(k==0 && x==0)
+	{
+		count=(count+1)%1000000007;
+		*f=0;
+	}
+	else if(k>0)
+	{
+		for(i=c;i>=0;i--)
+		{
+			if(x>=chefo[i])
+			{	
+				checkcount(x-chefo[i],k-1,i,&flag);
+			}
+			if(flag==0)
+			{
+				if(i==c)
+				{
+					*f=0;
+				}
+				break;
+			}
+			flag++;
+		}
+	}
+} 

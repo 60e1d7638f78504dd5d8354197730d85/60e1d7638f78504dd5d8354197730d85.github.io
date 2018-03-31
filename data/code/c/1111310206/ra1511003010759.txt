@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main()
+{
+  int len, i, j, right = 1, left = 0;
+  char str[50], decode[50], letter;
+  
+  scanf("%d", &len);
+  scanf("%s", str);
+  
+  j = len-1;
+  i = 0;
+  
+  while(len--)
+  {
+    letter = str[len];
+    
+    if(right==1)
+    {
+      decode[j]=letter;
+      j--;
+      left = 1;
+      right = 0;
+    }
+    else if(left == 1)
+    {
+      decode[i]=letter;
+      i++;
+      left = 0;
+      right = 1;
+    }
+  }
+  
+  printf("%s\n", decode);
+
+	return 0;
+}

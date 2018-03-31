@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main()
+{
+	int num,arr[20],i,j,temp;
+  	scanf("%d",&num);
+  	for(i=0;i<num;++i)
+    	scanf("%d",arr+i);
+  	for(i=0;i<num-1;++i){
+      	for(j=i+1,temp=i;j<num;++j)
+          if(arr[temp]>arr[j])
+            temp=j;
+    	j=arr[temp];
+      	arr[temp]=arr[i];
+      	arr[i]=j;
+    }
+  	for(i=0;i<num;++i)
+    	printf("%d\n",arr[i]);
+	return 0;
+}

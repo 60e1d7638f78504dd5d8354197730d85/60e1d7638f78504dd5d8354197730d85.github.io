@@ -1,0 +1,81 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+
+class TestClass
+{
+    static void reverse(int A[],int start,int end)
+    {
+        int i;
+        for(i=0;i<(end-start+1)/2;i++)
+        {
+            A[start-1+i] = A[end-i-1]+A[start-1+i];
+            A[end-i-1]   = A[start-1+i]-A[end-i-1];
+            A[start-1+i] = A[start-1+i]-A[end-i-1];
+        }
+    }
+    
+    static int fun(int A[],int W)
+    {
+        int N[],tmp[],i,l,j;
+        N = new int[W+1];
+        l =  A.length;
+        
+        for(i=0;i<l;i++)
+        {
+            tmp = new int[W+1];
+            
+            for(j=0;j<W+1-A[i];j++)
+                if(N[j]==1)
+                    if(j+A[i]>0 && j+A[i]<W+1)
+                        tmp[j+A[i]] = 1;
+            
+                        
+            for(j=0;j<W+1;j++)
+                if(tmp[j]==1)
+                    N[j]=1;
+            if(A[i]<W+1)
+                N[A[i]] = 1;
+            if(N[W]==1)
+                return 1;
+        }
+        return N[W];
+    }
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner s = new Scanner(System.in);
+		int N,Q,A[],tmp[],i,x1,x2,x3,x4,j;
+		
+		N = s.nextInt();
+		Q = s.nextInt();
+		A = new int[N];
+		
+		for(i=0;i<N;i++)
+		    A[i] = s.nextInt();
+		
+		for(i=0;i<Q;i++)
+		{
+		    x1 = s.nextInt();
+		    x2 = s.nextInt();
+		    x3 = s.nextInt();
+		    if(x1==1)
+		        A[x2-1] = x3;
+		    else if(x1==2)
+		        reverse(A,x2,x3);
+		    else
+		    {
+		        x4 = s.nextInt();
+		        tmp = new int[x3-x2+2];
+		        for(j=1;j<tmp.length;j++)
+		            tmp[j] = A[x2+j-2];
+		        if(fun(tmp,x4)==1)
+		            System.out.println("Yes");
+		        else
+		            System.out.println("No");
+		    }
+		}
+		
+	}
+}

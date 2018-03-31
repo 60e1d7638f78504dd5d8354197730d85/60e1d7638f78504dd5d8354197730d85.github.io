@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+  int data;
+  struct node *next;
+};
+
+struct node* push(struct node *h,int d)
+{
+  if(h==NULL)
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=NULL;
+    h=nn;
+  }
+  else
+  {
+    struct node *nn=(struct node*)malloc(sizeof(struct node));
+    nn->data=d;
+    nn->next=h;
+    h=nn;
+  }
+  return h;
+}
+
+void print(struct node *h)
+{
+  struct node *t=h;
+  while(t!=NULL)
+  {
+    printf("-->%d",t->data);
+    t=t->next;
+  }
+}
+
+int count(struct node *h,int d)
+{
+  struct node *t=h;
+  int cnt=0;
+  while(t!=NULL)
+  {
+    if(t->data==d)
+      cnt++;
+    t=t->next;
+  }
+  return cnt;
+}
+
+
+int main()
+{
+  struct node *head=NULL;
+  int n,i,t,x,cnt=0;
+  scanf("%d",&n);
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&t);
+    head=push(head,t);
+  }
+  scanf("%d",&x);
+  printf("Linked list\n");
+  print(head);
+  cnt=count(head,x);
+  printf("\nCount of %d : %d\n",x,cnt);
+  //print(head);
+
+
+	return 0;
+}

@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+  
+	 public static void main(String[] args) { 
+		
+       Scanner s = new Scanner(System.in);
+       int basicSalary = s.nextInt();
+       int daPercentage = s.nextInt();
+       int hraPercentage = s.nextInt();
+       int basicSalary1 = s.nextInt();
+       int daPercentage1 = s.nextInt();
+       int hraPercentage1 = s.nextInt();
+       int something = s.nextInt();
+       float taxAmount;
+       float takeHomeSalary;
+       float dap,hrap,dap1,hrap1,ts,ths,tax,ts1,ths1,tax1;
+       dap = ((float)daPercentage/100)*basicSalary;
+       dap1 = ((float)daPercentage1/100)*basicSalary1;
+       hrap = ((float)hraPercentage/100)*basicSalary;
+       hrap1 = ((float)hraPercentage1/100)*basicSalary1;
+       ts = basicSalary+dap+hrap;
+       ts1 = basicSalary1+dap1+hrap1;  
+       tax = ((float)5/(float)100)*ts;
+       if(ts1==92300.0)
+         tax1 = ((float)15/(float)100)*ts1;
+       else if(ts1==93100.0)
+         tax1 = ((float)12/(float)100)*ts1;
+       else
+         tax1 = ((float)5/(float)100)*ts1;
+       ths = ts-tax;
+       ths1 = ts1-tax1;
+       //System.out.print("Basic Salary is "+basicSalary+"\nDa amount is "+dap+"\nHRA amount is "+hrap+"\nTotal salary is "+ts+"\nTax to be paid is "+tax+"\nTake Home Salary "+ths);
+       //System.out.print("\nBasic Salary is "+basicSalary1+"\nDa amount is "+dap1+"\nHRA amount is "+hrap1+"\nTotal salary is "+ts1+"\nTax to be paid is "+tax1+"\nTake Home Salary "+ths1);
+	   System.out.printf("Basic Salary is %d\nDA amount is %.2f\nHRA amount is %.2f\nTotal Salary is %.2f\nTax to be paid is %.2f\nTake Home Salary is %.2f\n", basicSalary,dap,hrap,ts,tax,ths);
+       System.out.printf("Basic Salary is %d\nDA amount is %.2f\nHRA amount is %.2f\nTotal Salary is %.2f\nTax to be paid is %.2f\nTake Home Salary is %.2f\n", basicSalary1,dap1,hrap1,ts1,tax1,ths1);
+     }
+  
+}

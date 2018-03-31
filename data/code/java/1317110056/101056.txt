@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class TestClass {
+	
+  public static void main(String[] args) {
+    Scanner S=new Scanner(System.in);
+    String str=new String();
+    str=S.nextLine();
+    System.out.println( getWordLengths(str) ); 
+}
+
+public static String getWordLengths( String s )
+{
+    return  getWordLengthsRecursively(s, 0, 0, 0) ; 
+}
+
+public static String getWordLengthsRecursively( String s, int i,  int start, int end )
+{
+    // Last word 
+    if ( s.length() == i)
+    {
+        return "" + (end - start); 
+    }
+
+    // Found a word  
+    if ( s.charAt(i) == ' ' )
+    {
+        return (end - start)  + getWordLengthsRecursively(s, ++i, i, i);
+    }
+
+    // Word not found.  Move to next character.
+    else
+    {
+        return getWordLengthsRecursively(s, ++i, start, ++end);
+	}
+}
+}

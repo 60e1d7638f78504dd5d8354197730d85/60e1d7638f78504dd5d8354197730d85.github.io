@@ -1,0 +1,34 @@
+#include <stdio.h>
+void mod(int a[],int n);
+int main()
+{
+int n,i;
+  scanf("%d",&n);
+  int a[20];
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  mod(a,n);
+	return 0;
+}
+void mod(int a[],int n)
+{
+  int i,j,md=1;
+  for(i=0;i<n;i++)
+  {
+    for(j=i+1;j<n;j++)
+    {
+      if(a[i]==a[j])
+      {
+        md+=1;
+      }
+    }
+  }
+  if(md==1)
+  {
+    printf("none");
+  }
+  else
+    printf("Mode=%d",md);
+}

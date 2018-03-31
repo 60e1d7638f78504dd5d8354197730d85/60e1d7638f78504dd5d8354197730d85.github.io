@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct date
+{
+  int day;
+  int month;
+  int year;
+  
+};
+int main()
+{
+  struct date *ptr,p1;
+  ptr=&p1;
+  scanf("%d %d %d",&ptr->day,&ptr->month,&ptr->year);
+  if(ptr->year>=0000&&ptr->year<=2999)
+  {
+  if(ptr->month>=1&&ptr->month<=12)
+  {
+    if(ptr->month==1||ptr->month==3||ptr->month==5||ptr->month==7||ptr->month==8||ptr->month==10||ptr->month==12)
+    {
+      if(ptr->day>=1&&ptr->day<=31)
+      {
+        ptr->day++;
+         if(ptr->day>=1&&ptr->day<=31)
+         {
+        printf("New Date=%d %d %d\n",ptr->day,ptr->month,ptr->year);}
+        else
+          printf("Invalid Day\n");
+      }
+      else
+      {
+        printf("Invalid Day\n");
+      }
+    }
+    else if(ptr->month==4||ptr->month==6||ptr->month==9||ptr->month==11)
+    {
+      if(ptr->day>=1&&ptr->day<=30)
+      {
+        ptr->day++;
+        if(ptr->day>=1&&ptr->day<=30)
+        {
+        printf("New Date=%d %d %d\n",ptr->day,ptr->month,ptr->year);
+        }
+        else
+          printf("Invalid Day\n");
+      }
+    }
+    else if(ptr->month==2)
+    {
+      if(ptr->year%400==0||ptr->year%4==0&&ptr->year%100!=0)
+      {
+        if(ptr->day>=1&&ptr->day<=29)
+        {
+          ptr->day++;
+          if(ptr->day>=1&&ptr->day<=29)
+          {
+            printf("New Date=%d %d %d\n",ptr->day,ptr->month,ptr->year);
+          }
+          else {
+            if(ptr->day>=1&&ptr->day<=28)
+                printf("New Date=%d %d %d\n",ptr->day,ptr->month,ptr->year);
+            else
+                 printf("Invalid Day\n");
+          }
+        
+        }
+      }
+      
+    }
+  }
+    else
+      printf("Invalid Month\n");
+  }
+  else
+    printf("Invalid Year\n");
+
+	return 0;
+}

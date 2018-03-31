@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+class Sample
+{
+  public double distanceBetweenTwoPoints(double lat1,double lon1,double lat2,double lon2)
+  {
+    double x1=Math.toRadians(lat1);
+    double y1=Math.toRadians(lon1);
+    double x2=Math.toRadians(lat2);
+    double y2=Math.toRadians(lon2);
+    double d=6371.01*Math.acos((Math.sin(x1)*Math.sin(x2))+(Math.cos(x1)*Math.cos(x2))*Math.cos(y2-y1));
+    String.format("%.02f",d);
+    return(d);
+  }
+}
+public class TestClass {
+	 public static void main(String[] args) { 
+		Sample s=new Sample();
+       Scanner sc=new Scanner(System.in);
+       double a1=sc.nextDouble();
+       double b1=sc.nextDouble();
+       double a2=sc.nextDouble();
+       double b2=sc.nextDouble();
+       double distance=s.distanceBetweenTwoPoints(a1,b1,a2,b2);
+       System.out.printf("%.2f",distance);
+	}
+}
